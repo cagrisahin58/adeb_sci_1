@@ -1,0 +1,27 @@
+Değerlendirme cihazı: cuda
+Model yüklendi: models/resnet/adv/resnet18_adv_cifar10.pth
+Normal değerlendirme doğruluk: 82.45%
+TTA değerlendirme doğruluk: 82.82%
+Normal değerlendirme (FGSM (ε=0.00784313725490196)) doğruluk: 75.07%
+TTA değerlendirme (FGSM (ε=0.00784313725490196)) doğruluk: 75.35%
+Normal değerlendirme (PGD (ε=0.00784313725490196)) doğruluk: 74.76%
+TTA değerlendirme (PGD (ε=0.00784313725490196)) doğruluk: 74.91%
+Normal değerlendirme (FGSM (ε=0.03137254901960784)) doğruluk: 52.76%
+TTA değerlendirme (FGSM (ε=0.03137254901960784)) doğruluk: 52.87%
+Normal değerlendirme (PGD (ε=0.03137254901960784)) doğruluk: 45.01%
+TTA değerlendirme (PGD (ε=0.03137254901960784)) doğruluk: 45.21%
+Sonuçlar kaydedildi: results/resnet_adv_tta_defense.csv
+TTA iyileştirme - Clean: 0.37%
+TTA iyileştirme - FGSM (ε=0.00784313725490196): 0.28%
+TTA iyileştirme - FGSM (ε=0.03137254901960784): 0.11%
+TTA iyileştirme - PGD (ε=0.00784313725490196): 0.15%
+TTA iyileştirme - PGD (ε=0.03137254901960784): 0.20%
+
+--- SAVUNMA ETKİNLİĞİ ÖZETİ ---
+Model: RESNET (Adversarial Eğitimli)
+Temiz doğruluk: 82.45%
+TTA doğruluk: 82.82%
+FGSM (ε=0.00784313725490196): 75.07% → 75.35% (TTA: +0.28%)
+FGSM (ε=0.03137254901960784): 52.76% → 52.87% (TTA: +0.11%)
+PGD (ε=0.00784313725490196): 74.76% → 74.91% (TTA: +0.15%)
+PGD (ε=0.03137254901960784): 45.01% → 45.21% (TTA: +0.20%)

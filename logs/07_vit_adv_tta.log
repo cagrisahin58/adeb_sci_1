@@ -1,0 +1,27 @@
+Değerlendirme cihazı: cuda
+Model yüklendi: models/vit/adv/vit_tiny_adv_cifar10.pth
+Normal değerlendirme doğruluk: 64.05%
+TTA değerlendirme doğruluk: 64.07%
+Normal değerlendirme (FGSM (ε=0.00784313725490196)) doğruluk: 55.72%
+TTA değerlendirme (FGSM (ε=0.00784313725490196)) doğruluk: 55.68%
+Normal değerlendirme (PGD (ε=0.00784313725490196)) doğruluk: 55.66%
+TTA değerlendirme (PGD (ε=0.00784313725490196)) doğruluk: 55.66%
+Normal değerlendirme (FGSM (ε=0.03137254901960784)) doğruluk: 31.15%
+TTA değerlendirme (FGSM (ε=0.03137254901960784)) doğruluk: 31.24%
+Normal değerlendirme (PGD (ε=0.03137254901960784)) doğruluk: 28.44%
+TTA değerlendirme (PGD (ε=0.03137254901960784)) doğruluk: 28.37%
+Sonuçlar kaydedildi: results/vit_adv_tta_defense.csv
+TTA iyileştirme - Clean: 0.02%
+TTA iyileştirme - FGSM (ε=0.00784313725490196): -0.04%
+TTA iyileştirme - FGSM (ε=0.03137254901960784): 0.09%
+TTA iyileştirme - PGD (ε=0.00784313725490196): 0.00%
+TTA iyileştirme - PGD (ε=0.03137254901960784): -0.07%
+
+--- SAVUNMA ETKİNLİĞİ ÖZETİ ---
+Model: VIT (Adversarial Eğitimli)
+Temiz doğruluk: 64.05%
+TTA doğruluk: 64.07%
+FGSM (ε=0.00784313725490196): 55.72% → 55.68% (TTA: +-0.04%)
+FGSM (ε=0.03137254901960784): 31.15% → 31.24% (TTA: +0.09%)
+PGD (ε=0.00784313725490196): 55.66% → 55.66% (TTA: +0.00%)
+PGD (ε=0.03137254901960784): 28.44% → 28.37% (TTA: +-0.07%)

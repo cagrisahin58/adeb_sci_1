@@ -1,0 +1,12 @@
+Değerlendirme cihazı: cuda
+Model yüklendi: models/resnet/adv/resnet18_adv_cifar10.pth
+Temiz doğruluk: 82.45%
+FGSM (ε=0.00784313725490196) doğruluk: 75.07%
+FGSM (ε=0.01568627450980392) doğruluk: 67.16%
+FGSM (ε=0.03137254901960784) doğruluk: 52.76%
+PGD (ε=0.00784313725490196) doğruluk: 74.75%
+PGD (ε=0.01568627450980392) doğruluk: 65.35%
+PGD (ε=0.03137254901960784) doğruluk: 44.98%
+CW doğruluk: 28.30% (subset=1000)
+Sonuçlar kaydedildi: results/resnet_adv_attack_results.csv
+Grafik kaydedildi: results/resnet_adv_attack_results.png

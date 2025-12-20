@@ -1,0 +1,11 @@
+Model,Training,Attack,Epsilon,Defense,Accuracy
+resnet,adv,None,0.0,None,82.45
+resnet,adv,None,0.0,TTA,82.82
+resnet,adv,FGSM,0.00784313725490196,None,75.07
+resnet,adv,FGSM,0.00784313725490196,TTA,75.35
+resnet,adv,PGD,0.00784313725490196,None,74.76
+resnet,adv,PGD,0.00784313725490196,TTA,74.91
+resnet,adv,FGSM,0.03137254901960784,None,52.76
+resnet,adv,FGSM,0.03137254901960784,TTA,52.87
+resnet,adv,PGD,0.03137254901960784,None,45.01
+resnet,adv,PGD,0.03137254901960784,TTA,45.21

@@ -1,0 +1,70 @@
+Değerlendirme cihazı: cuda
+Model yüklendi: models/resnet/clean/resnet18_cifar10.pth
+Temiz doğruluk: 95.10%
+
+AutoAttack değerlendirmesi başlatılıyor (ε=0.00784313725490196)...
+setting parameters for standard version
+using standard version including apgd-ce, apgd-t, fab-t, square.
+initial accuracy: 95.10%
+apgd-ce - 1/10 - 99 out of 100 successfully perturbed
+apgd-ce - 2/10 - 97 out of 100 successfully perturbed
+apgd-ce - 3/10 - 99 out of 100 successfully perturbed
+apgd-ce - 4/10 - 98 out of 100 successfully perturbed
+apgd-ce - 5/10 - 96 out of 100 successfully perturbed
+apgd-ce - 6/10 - 100 out of 100 successfully perturbed
+apgd-ce - 7/10 - 98 out of 100 successfully perturbed
+apgd-ce - 8/10 - 97 out of 100 successfully perturbed
+apgd-ce - 9/10 - 98 out of 100 successfully perturbed
+apgd-ce - 10/10 - 47 out of 51 successfully perturbed
+robust accuracy after APGD-CE: 2.20% (total time 35.5 s)
+apgd-t - 1/1 - 8 out of 22 successfully perturbed
+robust accuracy after APGD-T: 1.40% (total time 64.1 s)
+fab-t - 1/1 - 0 out of 14 successfully perturbed
+robust accuracy after FAB-T: 1.40% (total time 187.4 s)
+square - 1/1 - 0 out of 14 successfully perturbed
+robust accuracy after SQUARE: 1.40% (total time 393.0 s)
+max Linf perturbation: 0.00784, nan in tensor: 0, max: 1.00000, min: 0.00000
+robust accuracy: 1.40%
+AutoAttack (ε=0.00784313725490196) doğruluk: 1.40%
+Süre: 6.55 dakika
+
+AutoAttack değerlendirmesi başlatılıyor (ε=0.01568627450980392)...
+setting parameters for standard version
+using standard version including apgd-ce, apgd-t, fab-t, square.
+initial accuracy: 95.10%
+apgd-ce - 1/10 - 100 out of 100 successfully perturbed
+apgd-ce - 2/10 - 100 out of 100 successfully perturbed
+apgd-ce - 3/10 - 100 out of 100 successfully perturbed
+apgd-ce - 4/10 - 100 out of 100 successfully perturbed
+apgd-ce - 5/10 - 100 out of 100 successfully perturbed
+apgd-ce - 6/10 - 100 out of 100 successfully perturbed
+apgd-ce - 7/10 - 100 out of 100 successfully perturbed
+apgd-ce - 8/10 - 100 out of 100 successfully perturbed
+apgd-ce - 9/10 - 100 out of 100 successfully perturbed
+apgd-ce - 10/10 - 51 out of 51 successfully perturbed
+robust accuracy after APGD-CE: 0.00% (total time 41.8 s)
+max Linf perturbation: 0.01569, nan in tensor: 0, max: 1.00000, min: 0.00000
+robust accuracy: 0.00%
+AutoAttack (ε=0.01568627450980392) doğruluk: 0.00%
+Süre: 0.70 dakika
+
+AutoAttack değerlendirmesi başlatılıyor (ε=0.03137254901960784)...
+setting parameters for standard version
+using standard version including apgd-ce, apgd-t, fab-t, square.
+initial accuracy: 95.10%
+apgd-ce - 1/10 - 100 out of 100 successfully perturbed
+apgd-ce - 2/10 - 100 out of 100 successfully perturbed
+apgd-ce - 3/10 - 100 out of 100 successfully perturbed
+apgd-ce - 4/10 - 100 out of 100 successfully perturbed
+apgd-ce - 5/10 - 100 out of 100 successfully perturbed
+apgd-ce - 6/10 - 100 out of 100 successfully perturbed
+apgd-ce - 7/10 - 100 out of 100 successfully perturbed
+apgd-ce - 8/10 - 100 out of 100 successfully perturbed
+apgd-ce - 9/10 - 100 out of 100 successfully perturbed
+apgd-ce - 10/10 - 51 out of 51 successfully perturbed
+robust accuracy after APGD-CE: 0.00% (total time 42.9 s)
+max Linf perturbation: 0.03137, nan in tensor: 0, max: 1.00000, min: 0.00000
+robust accuracy: 0.00%
+AutoAttack (ε=0.03137254901960784) doğruluk: 0.00%
+Süre: 0.72 dakika
+Sonuçlar kaydedildi: results/resnet_clean_autoattack_results.csv

@@ -1,0 +1,62 @@
+# Default configuration for Adversarial Defense Study
+
+# Experiment settings
+name: "experiment"
+seed: 42
+device: "auto"  # auto, cuda, cpu, mps
+
+# Model settings
+model: "resnet18"
+model_args: {}
+
+# Data settings
+data:
+  dataset: "cifar10"
+  data_dir: "./data"
+  batch_size: 128
+  test_batch_size: 100
+  num_workers: 2
+
+# Training settings
+training:
+  epochs: 50
+  optimizer: "sgd"  # sgd, adam, adamw
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
+  scheduler: "cosine"  # cosine, step, multistep
+
+# Defense settings (optional)
+defense: null
+# defense:
+#   name: "adversarial_training"
+#   attack:
+#     name: "pgd"
+#     eps: 0.031373  # 8/255
+#     alpha: 0.007843  # 2/255
+#     steps: 10
+#   beta: 6.0  # for TRADES/MART
+
+# Evaluation settings
+evaluation:
+  batch_size: 100
+  subset_size: null  # Use full test set
+  attacks:
+    - "fgsm"
+    - "pgd"
+  epsilons:
+    - 0.007843  # 2/255
+    - 0.015686  # 4/255
+    - 0.031373  # 8/255
+
+# Logging settings
+logging:
+  log_dir: "./logs"
+  save_freq: 5
+  verbose: true
+
+# Checkpoint settings
+checkpoint:
+  checkpoint_dir: "./models"
+  save_best: true
+  save_last: true

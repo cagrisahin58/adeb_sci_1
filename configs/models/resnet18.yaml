@@ -1,0 +1,17 @@
+# ResNet18 configuration for CIFAR-10
+
+model: "resnet18"
+model_args:
+  num_classes: 10
+  pretrained: false
+
+training:
+  epochs: 50
+  optimizer: "sgd"
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
+  scheduler: "cosine"
+
+data:
+  batch_size: 128

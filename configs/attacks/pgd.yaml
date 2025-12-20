@@ -1,0 +1,9 @@
+# PGD attack configuration
+
+attack:
+  name: "pgd"
+  eps: 0.031373  # 8/255
+  alpha: 0.007843  # 2/255
+  steps: 10
+  random_start: true
+  targeted: false

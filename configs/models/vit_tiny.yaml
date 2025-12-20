@@ -1,0 +1,16 @@
+# ViT-Tiny configuration for CIFAR-10
+
+model: "vit_tiny"
+model_args:
+  num_classes: 10
+  pretrained: false
+
+training:
+  epochs: 50
+  optimizer: "adamw"
+  lr: 0.001
+  weight_decay: 0.05
+  scheduler: "cosine"
+
+data:
+  batch_size: 64  # Smaller batch size due to larger model
