@@ -41,3 +41,4 @@ def resnet_model():
 def resnet_model_gpu(resnet_model, device):
     """ResNet18 model on device."""
     return resnet_model.to(device)
+

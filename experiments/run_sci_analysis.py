@@ -85,12 +85,37 @@ def load_models(device: torch.device, model_paths: dict = None) -> dict:
     return models
 
 
-def create_pgd_attack(eps: float):
-    """Create PGD attack function for given epsilon."""
+def create_pgd_attack(eps: float, normalize_data: bool = True):
+    """
+    Create PGD attack function for given epsilon.
+
+    Args:
+        eps: Perturbation budget
+        normalize_data: If True, expects normalized inputs and handles denorm/renorm
+    """
     def attack_fn(model, images, labels):
         from src.attacks import PGDAttack
-        attack = PGDAttack(model, eps=eps, alpha=eps/4, steps=20)
-        return attack(images, labels)
+        from src.data import get_normalization, denormalize, normalize
+
+        if normalize_data:
+            # Get CIFAR-10 normalization parameters
+            mean, std = get_normalization("cifar10")
+
+            # Denormalize to [0, 1] range for attack
+            images_denorm = denormalize(images, mean, std)
+
+            # Run attack on denormalized images
+            attack = PGDAttack(model, eps=eps, alpha=eps/4, steps=20)
+            adv_images_denorm = attack(images_denorm, labels)
+
+            # Normalize back for model input
+            adv_images = normalize(adv_images_denorm, mean, std)
+            return adv_images
+        else:
+            # Direct attack (for non-normalized data)
+            attack = PGDAttack(model, eps=eps, alpha=eps/4, steps=20)
+            return attack(images, labels)
+
     return attack_fn
 
 

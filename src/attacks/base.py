@@ -82,9 +82,15 @@ class BaseAttack(ABC):
         images = images.to(self.device)
         labels = labels.to(self.device)
 
-        # Ensure images are in valid range [0, 1]
-        if images.min() < 0 or images.max() > 1:
-            raise ValueError("Images should be in range [0, 1]")
+        # Ensure images are in valid range [0, 1] (with small tolerance for floating point errors)
+        if images.min() < -1e-6 or images.max() > 1 + 1e-6:
+            raise ValueError(
+                f"Images should be in range [0, 1], got [{images.min():.4f}, {images.max():.4f}]. "
+                f"If using normalized data, denormalize before attacks."
+            )
+
+        # Clamp to [0, 1] to handle small floating point errors
+        images = torch.clamp(images, 0.0, 1.0)
 
         return images, labels
 
