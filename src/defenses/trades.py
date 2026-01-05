@@ -112,7 +112,7 @@ class TRADESDefense(TrainingDefense):
 
         # Generate adversarial examples
         model.eval()
-        adv_images = self._trades_pgd(images, logits_natural)
+        adv_images = self._trades_pgd(images, logits_natural.detach())
         model.train()
 
         # Adversarial predictions

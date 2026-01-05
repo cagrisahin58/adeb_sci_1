@@ -75,13 +75,32 @@ class Trainer:
         # Loss function
         self.criterion = criterion or nn.CrossEntropyLoss()
 
-        # Optimizer
-        self.optimizer = optimizer or optim.SGD(
-            self.model.parameters(),
-            lr=lr,
-            momentum=momentum,
-            weight_decay=weight_decay,
-        )
+        # Optimizer - use AdamW for ViT models, SGD for CNNs
+        if optimizer is not None:
+            self.optimizer = optimizer
+        else:
+            # Check if model is a ViT (by checking class name or module name)
+            model_name = model.__class__.__name__.lower()
+            is_vit = 'vit' in model_name or 'vision' in model_name or 'transformer' in model_name
+            
+            if is_vit:
+                # ViT models work better with AdamW and lower LR
+                effective_lr = min(lr, 1e-3)  # Cap LR at 1e-3 for ViT
+                self.optimizer = optim.AdamW(
+                    self.model.parameters(),
+                    lr=effective_lr,
+                    weight_decay=0.05,
+                )
+                if self.verbose:
+                    print(f"Using AdamW optimizer for ViT (lr={effective_lr})")
+            else:
+                # CNN models work well with SGD
+                self.optimizer = optim.SGD(
+                    self.model.parameters(),
+                    lr=lr,
+                    momentum=momentum,
+                    weight_decay=weight_decay,
+                )
 
         # Scheduler
         self.scheduler = scheduler or optim.lr_scheduler.CosineAnnealingLR(

@@ -119,13 +119,29 @@ class AdversarialTrainer:
         else:
             raise ValueError(f"Unknown defense: {defense}")
 
-        # Optimizer
-        self.optimizer = optimizer or optim.SGD(
-            self.model.parameters(),
-            lr=lr,
-            momentum=momentum,
-            weight_decay=weight_decay,
-        )
+        # Optimizer - use AdamW for ViT models, SGD for CNNs
+        if optimizer is not None:
+            self.optimizer = optimizer
+        else:
+            model_name = model.__class__.__name__.lower()
+            is_vit = 'vit' in model_name or 'vision' in model_name or 'transformer' in model_name
+            
+            if is_vit:
+                effective_lr = min(lr, 1e-3)
+                self.optimizer = optim.AdamW(
+                    self.model.parameters(),
+                    lr=effective_lr,
+                    weight_decay=0.05,
+                )
+                if self.verbose:
+                    print(f"Using AdamW optimizer for ViT (lr={effective_lr})")
+            else:
+                self.optimizer = optim.SGD(
+                    self.model.parameters(),
+                    lr=lr,
+                    momentum=momentum,
+                    weight_decay=weight_decay,
+                )
 
         # Scheduler
         self.scheduler = scheduler or optim.lr_scheduler.CosineAnnealingLR(
@@ -171,8 +187,18 @@ class AdversarialTrainer:
             loss = self.defense.get_loss(self.model, inputs, labels)
 
             loss.backward()
+
+            # Gradient clipping to prevent explosion
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=10.0)
             self.optimizer.step()
 
+            # Skip NaN losses
+            if torch.isnan(loss) or torch.isinf(loss):
+                continue
+            # Skip if loss is NaN or Inf
+            if torch.isnan(loss) or torch.isinf(loss):
+                print(f"Warning: NaN/Inf loss detected, skipping batch")
+                continue
             running_loss += loss.item()
             total += labels.size(0)
 
@@ -264,6 +290,9 @@ class AdversarialTrainer:
             loss = nn.CrossEntropyLoss()(outputs, labels)
 
             loss.backward()
+
+            # Gradient clipping to prevent explosion
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=10.0)
 
             grad = delta.grad.sign()
             delta = delta.detach() + alpha * grad

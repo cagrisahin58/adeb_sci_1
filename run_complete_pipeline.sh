@@ -126,7 +126,7 @@ echo "[1/2] Evaluating ResNet18 (clean)..."
 advdefense evaluate robustness \
     --model-path $MODEL_DIR/resnet18/clean/best.pth \
     --model-type resnet18 \
-    --attacks fgsm pgd autoattack \
+    -a fgsm -a pgd -a autoattack \
     --output-dir $RESULTS_DIR/evaluation
 
 echo ""
@@ -134,7 +134,7 @@ echo "[2/2] Evaluating ResNet18 (adversarial)..."
 advdefense evaluate robustness \
     --model-path $MODEL_DIR/resnet18/adv/adversarial_training/best.pth \
     --model-type resnet18 \
-    --attacks fgsm pgd autoattack \
+    -a fgsm -a pgd -a autoattack \
     --output-dir $RESULTS_DIR/evaluation
 
 echo ""
