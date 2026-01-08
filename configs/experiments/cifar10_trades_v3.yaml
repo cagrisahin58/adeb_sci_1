@@ -1,0 +1,39 @@
+# TRADES v3 - Optimized training configuration
+# Strategy: Train from scratch (not pretrained) - standard TRADES approach
+# - epochs: 100
+# - lr: 0.1 with cosine annealing
+# - No pretrained weights (scratch training)
+
+name: "resnet18_trades_v3"
+seed: 42
+device: "auto"
+
+model: "resnet18"
+model_args:
+  num_classes: 10
+
+data:
+  dataset: "cifar10"
+  data_dir: "./data"
+  batch_size: 128
+
+training:
+  epochs: 100
+  optimizer: "sgd"
+  lr: 0.1
+  momentum: 0.9
+  weight_decay: 0.0005
+  scheduler: "cosine"
+
+defense:
+  name: "trades"
+  beta: 6.0
+  attack:
+    name: "pgd"
+    eps: 0.031373
+    alpha: 0.007843
+    steps: 10
+
+checkpoint:
+  checkpoint_dir: "./models/resnet18/adv/trades_v3"
+  save_best: true

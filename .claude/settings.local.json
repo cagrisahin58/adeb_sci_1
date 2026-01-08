@@ -5,7 +5,12 @@
       "Read",
       "Write",
       "Edit",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nProje temizliği ve yeniden yapılandırma\n\n- Eski log ve script dosyaları kaldırıldı\n- TRADES ve training modülleri güncellendi\n- DevContainer yapılandırması eklendi\n- Bilimsel makale sonuçları eklendi \\(results/sci_paper/\\)\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git config:*)",
+      "Bash(git push:*)",
+      "Bash(python -m cli.main train:*)",
+      "Bash(tee:*)"
     ]
   }
 }
