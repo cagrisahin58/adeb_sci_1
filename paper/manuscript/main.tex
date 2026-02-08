@@ -1,0 +1,88 @@
+\documentclass[journal]{IEEEtran}
+
+% ============================================================================
+% PACKAGES
+% ============================================================================
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{balance}
+
+% For placeholder text during writing
+\usepackage{lipsum}
+
+% Custom commands
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\placeholder}[1]{\textcolor{blue}{[#1]}}
+\newcommand{\eps}{\epsilon}
+\newcommand{\Linf}{L_\infty}
+
+% ============================================================================
+% DOCUMENT INFO
+% ============================================================================
+\title{A Comparative Study of Convolutional and Transformer Architectures Under Adversarial Perturbations: Gradient Characteristics and Transferability Analysis}
+
+\author{
+    \IEEEauthorblockN{Çağrı Şahin\IEEEauthorrefmark{1}* and Özal Yıldırım\IEEEauthorrefmark{1}}
+    \IEEEauthorblockA{
+        \IEEEauthorrefmark{1}Department of Software Engineering, Fırat University, Elazığ, Turkey\\
+        *Corresponding author. Email: csahin@firat.edu.tr
+    }
+}
+
+% ============================================================================
+% DOCUMENT
+% ============================================================================
+\begin{document}
+
+\maketitle
+
+% ----------------------------------------------------------------------------
+% ABSTRACT
+% ----------------------------------------------------------------------------
+\begin{abstract}
+Adversarial robustness of deep neural networks remains a critical concern for safety-critical applications. While Vision Transformers (ViT) have achieved remarkable success on clean data, their vulnerability to adversarial attacks compared to Convolutional Neural Networks (CNNs) requires deeper investigation. This paper presents a comprehensive comparative analysis examining \textit{why} these architectures exhibit different adversarial behaviors rather than merely comparing robustness scores. Using CIFAR-10 with adversarially trained ResNet-18 and ViT-Tiny models evaluated under AutoAttack ($\epsilon=8/255$), we demonstrate four key findings: (1) CNNs achieve 36.0\% robust accuracy compared to 32.4\% for ViTs, a gap that persists across attack types; (2) Transfer attacks exhibit significant asymmetry---CNN-generated adversarial examples transfer to ViT at 47.5\% success rate while ViT-to-CNN transfers succeed at only 33.5\%; (3) Gradient analysis reveals ViT gradients are 2.2$\times$ more aligned across samples and CNN gradients are 4.5$\times$ more sparse, explaining the transfer asymmetry; (4) Feature degradation in ViT increases progressively through layers, with late layers showing 7.86\% norm reduction and cosine similarity dropping from 0.997 to 0.917. These findings provide mechanistic insights into architectural vulnerability differences and suggest design principles for robust hybrid systems.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Adversarial robustness, Vision Transformer, Convolutional Neural Networks, Transfer attacks, Deep learning security
+\end{IEEEkeywords}
+
+% ----------------------------------------------------------------------------
+% SECTIONS
+% ----------------------------------------------------------------------------
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_methodology}
+\input{sections/04_experiments}
+\input{sections/05_discussion}
+\input{sections/06_conclusion}
+
+% ----------------------------------------------------------------------------
+% ACKNOWLEDGMENT
+% ----------------------------------------------------------------------------
+\section*{Acknowledgment}
+The authors thank the anonymous reviewers for their constructive feedback.
+
+% ----------------------------------------------------------------------------
+% REFERENCES
+% ----------------------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+% ----------------------------------------------------------------------------
+% BIOGRAPHY (Optional for IEEE journals)
+% ----------------------------------------------------------------------------
+% \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author1.png}}]{First Author}
+% Biography text here.
+% \end{IEEEbiography}
+
+\end{document}

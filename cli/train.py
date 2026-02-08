@@ -81,8 +81,9 @@ def clean(model, epochs, lr, batch_size, data_dir, output_dir, seed, device):
 @click.option("--output-dir", "-o", type=str, default="./models", help="Output directory")
 @click.option("--seed", type=int, default=42, help="Random seed")
 @click.option("--device", type=str, default="auto", help="Device")
+@click.option("--patience", type=int, default=0, help="Early stopping patience (0=disabled)")
 def adversarial(model, defense, pretrained, epochs, lr, batch_size, eps, alpha, steps,
-                beta, data_dir, output_dir, seed, device):
+                beta, data_dir, output_dir, seed, device, patience):
     """Train a model with adversarial defense."""
     from src.utils.seed import set_seed
     from src.utils.device import get_device
@@ -129,7 +130,11 @@ def adversarial(model, defense, pretrained, epochs, lr, batch_size, eps, alpha, 
         steps=steps,
         beta=beta,
         checkpoint_dir=str(checkpoint_dir),
+        patience=patience,
     )
+
+    if patience > 0:
+        click.echo(f"Early stopping enabled (patience={patience})")
 
     # Train
     history = trainer.train()

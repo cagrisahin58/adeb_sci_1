@@ -1,0 +1,132 @@
+% ============================================================================
+% SECTION 3: METHODOLOGY
+% ============================================================================
+\section{Methodology}
+\label{sec:methodology}
+
+% ----------------------------------------------------------------------------
+% 3.1 Threat Model
+% ----------------------------------------------------------------------------
+\subsection{Threat Model}
+\label{subsec:threat_model}
+
+We consider the standard $\Linf$ threat model where an adversary can perturb input images within a bounded region:
+\begin{equation}
+    \mathcal{B}_\eps(x) = \{x' : \|x' - x\|_\infty \leq \eps\}
+\end{equation}
+
+Following established conventions for CIFAR-10~\cite{croce2021robustbench}, we use $\eps = 8/255 \approx 0.031$ as the primary perturbation budget, with additional experiments at $\eps \in \{2/255, 4/255, 16/255\}$ for epsilon sweep analysis.
+
+We evaluate under both white-box (full model access) and black-box (transfer attack) scenarios. For white-box attacks, the adversary has complete knowledge of model architecture and parameters. For transfer attacks, adversarial examples are generated on a source model and evaluated on a different target model.
+
+% ----------------------------------------------------------------------------
+% 3.2 Model Architectures
+% ----------------------------------------------------------------------------
+\subsection{Model Architectures}
+\label{subsec:architectures}
+
+\paragraph{CNN Models}
+
+\textbf{ResNet-18}~\cite{he2016deep}: A widely-used baseline CNN with residual connections, containing 11.2M parameters. We use the standard architecture designed for CIFAR-10 (initial 3$\times$3 convolution instead of 7$\times$7).
+
+\textbf{WideResNet-28-10}~\cite{zagoruyko2016wide}: A wider variant of ResNet with 36.5M parameters, representing the state-of-the-art architecture for adversarial robustness on CIFAR-10. We use pretrained robust weights from RobustBench~\cite{croce2021robustbench}.
+
+\paragraph{Vision Transformer Models}
+
+\textbf{ViT-Tiny}: We use the ViT-Tiny architecture from the \texttt{timm} library~\cite{rw2019timm}, adapted for CIFAR-10 by resizing inputs to 224$\times$224. The architecture uses 16$\times$16 patches (196 patches per image), 192-dimensional embeddings, 12 transformer blocks with 3 attention heads each, MLP ratio of 4, and totals 5.7M parameters. This configuration enables direct comparison with pretrained ImageNet backbones while maintaining similar scale to ResNet-18.
+
+% ----------------------------------------------------------------------------
+% 3.3 Attack Methods
+% ----------------------------------------------------------------------------
+\subsection{Attack Methods}
+\label{subsec:attack_methods}
+
+\paragraph{FGSM}
+Single-step attack with step size equal to the perturbation budget:
+\begin{equation}
+    x_{adv} = x + \eps \cdot \text{sign}(\nabla_x \mathcal{L}_{CE}(f(x), y))
+\end{equation}
+
+\paragraph{PGD-20}
+Iterative attack with 20 steps, step size $\alpha = 2/255$, and random initialization:
+\begin{equation}
+    x^{t+1} = \Pi_{B_\eps(x)} \left( x^t + \alpha \cdot \text{sign}(\nabla_{x^t} \mathcal{L}_{CE}(f(x^t), y)) \right)
+\end{equation}
+with $x^0 = x + \mathcal{U}(-\eps, \eps)$.
+
+\paragraph{AutoAttack}
+We use AutoAttack~\cite{croce2020reliable}, the standardized ensemble attack combining APGD-CE (Auto-PGD with cross-entropy loss), APGD-DLR (Auto-PGD with difference of logits ratio loss), FAB (Fast Adaptive Boundary attack), and Square Attack (score-based black-box attack). This ensemble represents the gold standard for robustness evaluation.
+
+% ----------------------------------------------------------------------------
+% 3.4 Defense Methods
+% ----------------------------------------------------------------------------
+\subsection{Defense Methods}
+\label{subsec:defense_methods}
+
+\paragraph{Adversarial Training (AT)}
+We train models on PGD-generated adversarial examples:
+\begin{equation}
+    \min_\theta \mathbb{E}_{(x,y)} \left[ \mathcal{L}_{CE}(f_\theta(x_{adv}), y) \right]
+\end{equation}
+with inner maximization using PGD-10 ($\alpha = 2/255$, $\eps = 8/255$).
+
+\paragraph{TRADES}
+Trade-off between natural accuracy and robustness:
+\begin{equation}
+    \mathcal{L} = \mathcal{L}_{CE}(f(x), y) + \beta \cdot \text{KL}(f(x) \| f(x_{adv}))
+\end{equation}
+We use $\beta = 6.0$ following the original paper~\cite{zhang2019theoretically}.
+
+% ----------------------------------------------------------------------------
+% 3.5 Training Protocol
+% ----------------------------------------------------------------------------
+\subsection{Training Protocol}
+\label{subsec:training}
+
+\paragraph{Clean Training}
+For CNNs, we use SGD optimizer with initial learning rate 0.1, cosine annealing schedule, weight decay $5 \times 10^{-4}$, and 200 epochs. For ViTs, we use AdamW optimizer with initial learning rate $10^{-3}$, cosine annealing, weight decay 0.05, and 200 epochs.
+
+\paragraph{Adversarial Training}
+Starting from pretrained clean models, we fine-tune with reduced learning rates: CNNs use SGD with LR $10^{-3}$ and cosine annealing for 100 epochs, while ViTs use AdamW with the same learning rate and schedule. Data augmentation includes random cropping with 4-pixel padding and horizontal flipping. We use batch size 128 for all experiments.
+
+% ----------------------------------------------------------------------------
+% 3.6 Evaluation Metrics
+% ----------------------------------------------------------------------------
+\subsection{Evaluation Metrics}
+\label{subsec:metrics}
+
+\paragraph{Robustness Metrics}
+We evaluate models using three standard metrics: clean accuracy (classification performance on unperturbed test images), robust accuracy (classification performance on adversarial examples), and attack success rate (fraction of correctly classified clean images that become misclassified after attack).
+
+\paragraph{Transfer Attack Metrics}
+For source model $S$ and target model $T$:
+\begin{equation}
+    \text{Transfer Rate} = \frac{|\{x : f_S(x_{adv}^S) \neq y \land f_T(x_{adv}^S) \neq y\}|}{|\{x : f_S(x_{adv}^S) \neq y\}|}
+\end{equation}
+For transfer attack analysis, we compute success rates on the full test set (10,000 samples) to ensure statistical stability. We report 95\% confidence intervals using bootstrap resampling with 1,000 iterations, computing the percentile interval from the resampled transfer rate distribution. Given the large sample size, differences exceeding 5\% absolute are statistically significant at $p < 0.001$ under binomial proportion tests.
+
+\paragraph{Gradient Analysis Metrics}
+We analyze gradient properties through three complementary metrics. Gradient norm ($\|\nabla_x \mathcal{L}\|_2$ and $\|\nabla_x \mathcal{L}\|_\infty$) measures overall sensitivity magnitude. Gradient sparsity quantifies the fraction of gradient components below threshold ($|g_i| < 10^{-6}$), indicating localization of sensitivity. Gradient alignment measures the average pairwise cosine similarity across samples:
+\begin{equation}
+    \text{Alignment} = \frac{1}{N(N-1)} \sum_{i \neq j} \left| \frac{\nabla_{x_i} \mathcal{L} \cdot \nabla_{x_j} \mathcal{L}}{\|\nabla_{x_i} \mathcal{L}\| \|\nabla_{x_j} \mathcal{L}\|} \right|
+\end{equation}
+High alignment indicates similar perturbation directions across inputs, suggesting vulnerability to universal adversarial perturbations.
+
+\paragraph{Feature Degradation Metrics}
+To analyze how adversarial perturbations affect ViT representations across layers, we compute three metrics at each layer $\ell$. Feature cosine similarity measures semantic preservation:
+\begin{equation}
+    \text{Sim}_\ell = \frac{h_\ell(x) \cdot h_\ell(x_{adv})}{\|h_\ell(x)\| \|h_\ell(x_{adv})\|}
+\end{equation}
+where $h_\ell$ denotes the representation at layer $\ell$. Feature norm change captures magnitude effects:
+\begin{equation}
+    \Delta_\ell = \frac{\|h_\ell(x_{adv})\| - \|h_\ell(x)\|}{\|h_\ell(x)\|} \times 100\%
+\end{equation}
+Feature $L_2$ distance ($\|h_\ell(x) - h_\ell(x_{adv})\|_2$) quantifies absolute deviation.
+
+% ----------------------------------------------------------------------------
+% 3.7 Statistical Validation
+% ----------------------------------------------------------------------------
+\subsection{Statistical Validation}
+\label{subsec:statistics}
+
+To ensure reproducibility and statistical significance, we train each model configuration 3 times with different random seeds (42, 123, 456) and report mean $\pm$ standard deviation for all metrics. We conduct paired t-tests to assess significance of differences ($p < 0.05$) and use deterministic operations where possible through CUDA deterministic mode. All experiments are conducted on NVIDIA RTX 5060 Ti (16GB) using PyTorch 2.6.0 with CUDA 12.8.

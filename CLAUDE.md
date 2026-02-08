@@ -1,343 +1,210 @@
 # CLAUDE.md - Adversarial Defense Study
 
-Bu dosya, Claude Code'un bu proje ile etkili bir şekilde çalışabilmesi için gerekli bağlamı sağlar.
+Bu dosya, Claude Code'un bu proje ile etkili calışabilmesi icin gerekli baglamı saglar.
 
-## Proje Özeti
+---
 
-Bu proje, **CNN vs ViT adversarial robustness karşılaştırması** üzerine bir SCI makalesi için geliştirilmiş kapsamlı bir adversarial defense çerçevesidir. CIFAR-10 veri seti üzerinde derin öğrenme modellerinin adversarial saldırılara karşı dayanıklılığını değerlendirir.
+## Gelistirme Ortamı
 
-**Ana Hedef:** ResNet (CNN) ve Vision Transformer (ViT) mimarilerinin adversarial robustness açısından karşılaştırmalı analizi.
+**Container:** `med-lab` (dogrudan icindeyiz)
+- Docker exec komutlarına gerek yok
+- SSH ile evden baglanıldıgında: `claude --continue`
 
-## Hızlı Başlangıç
+**Donanım:**
+- GPU: RTX 5060 Ti (16GB VRAM)
+- Framework: PyTorch 2.6.0, CUDA 12.8
 
-```bash
-# Ortam kurulumu
-pip install -r requirements.txt
+**Diger Container'lar:**
+- `vit_ecl` egitimi ayrı container'da calışıyor olabilir
+- GPU paylaşımlı - egitim oncesi `nvidia-smi` kontrol et
 
-# Clean model eğitimi
-python -m cli.main train clean --model resnet18 --epochs 50
+---
 
-# Adversarial training
-python -m cli.main train adversarial --model resnet18 --defense adversarial_training --epochs 100
+## Proje Ozeti
 
-# Model değerlendirme
-python -m cli.main evaluate clean --model-path models/resnet18/clean/best.pth --model-type resnet18
+**CNN vs ViT adversarial robustness karşılaştırması** icin SCI makalesi calışması.
+CIFAR-10 uzerinde derin ogrenme modellerinin adversarial saldırılara karşı dayanıklılıgını degerlendirir.
 
-# Robustness değerlendirme
-python -m cli.main evaluate robustness --model-path models/resnet18/adv/adversarial_training/best.pth --model-type resnet18
+**Arastırma Soruları:**
+1. CNN'ler mi ViT'ler mi daha robust?
+2. Transfer attack'lar mimariler arasında nasıl calışıyor?
+3. Gradient karakteristikleri bu farkı acıklıyor mu?
+4. ViT attention pattern'leri adversarial orneklerde nasıl bozuluyor?
+
+---
+
+## Mevcut Durum (2026-01-11 - GUNCELLENDI)
+
+### Strateji: Analiz Odaklı Yaklasım
+**Robustness yarışı degil, davranış analizi**
+
+> "Neden farklı davranıyorlar?" sorusuna cevap arıyoruz.
+
+### Tamamlanan Analizler
+| Analiz | Sonuc | Durum |
+|--------|-------|-------|
+| Transfer Attack | CNN→ViT: 47.5%, ViT→CNN: 33.5% | Tamamlandı |
+| Gradient Karakteristikleri | ViT 2.2x aligned, CNN 4.5x sparse | Tamamlandı |
+| Attention Degradation | -7.86% norm, cosine 0.997→0.917 | Tamamlandı |
+| AutoAttack Eval (run1) | ResNet: 34.6%, ViT: 28.0% | Tamamlandı |
+| Istatistiksel Dogrulama | 3 seed, <0.15% varyans | Tamamlandı |
+
+### Model Performansları (GUNCELLENDI)
+
+| Model | Clean Acc | PGD (8/255) | AutoAttack | Kaynak |
+|-------|-----------|-------------|------------|--------|
+| **WideResNet-28-10** | 89.48% | 66.05% | 62.76% | RobustBench |
+| **ResNet18 AT (run2)** | 81.80% | **40.97%** | **36.0%** | Kendi (01/11) |
+| ResNet18 AT (run1) | 80.34% | 40.25% | 34.6% | Kendi |
+| **ViT-Tiny AT (run2)** | 73.60% | **36.87%** | **32.4%** | Kendi (01/11) |
+| ViT-Tiny AT (run1) | 63.42% | 32.77% | 28.0% | Kendi |
+| ResNet18 Clean | 94.37% | 0% | - | Kendi |
+| ViT-Tiny Clean | 77.50% | 0% | - | Kendi |
+
+### Model Dosyaları
+```
+models/
+├── robustbench/
+│   └── wideresnet28_10_robust.pth  # 89.48% clean, 62.76% AA
+├── resnet18/
+│   ├── clean/best.pth              # 94.37%
+│   ├── adv/adversarial_training/best.pth  # run1: 40.25% PGD, 34.6% AA
+│   └── adv/at_run2/.../best.pth    # run2: 40.97% PGD (YENİ!)
+├── vit_tiny/
+│   ├── clean/best.pth              # 77.50%
+│   ├── adv/adversarial_training/best.pth  # run1: 32.77% PGD, 28.0% AA
+│   └── adv/at_run2/.../best.pth    # run2: 36.87% PGD (YENİ!)
+└── densenet121/
+    └── clean/best.pth              # 95.09%
 ```
 
-## Proje Yapısı
+---
 
-```
-advdefense/
-├── cli/                          # CLI komutları
-│   ├── main.py                   # Ana giriş noktası
-│   ├── train.py                  # Eğitim komutları (clean, adversarial)
-│   └── evaluate.py               # Değerlendirme komutları
-│
-├── src/                          # Ana kaynak kodu
-│   ├── models/                   # Model mimarileri
-│   │   ├── registry.py           # Model registry sistemi
-│   │   ├── resnet.py             # CIFAR-10 ResNet (18, 34, 50)
-│   │   ├── vit.py                # Vision Transformer (Tiny, Small, Base)
-│   │   ├── densenet.py           # DenseNet (121, 169, 201)
-│   │   ├── efficientnet.py       # EfficientNet (B0, B1, B2)
-│   │   └── robustbench.py        # RobustBench model wrapper
-│   │
-│   ├── attacks/                  # Saldırı implementasyonları
-│   │   ├── registry.py           # Attack registry sistemi
-│   │   ├── fgsm.py               # FGSM, Targeted FGSM
-│   │   ├── pgd.py                # PGD, Targeted PGD, PGD-L2
-│   │   ├── cw.py                 # Carlini & Wagner (L2, Linf)
-│   │   ├── deepfool.py           # DeepFool
-│   │   ├── spatial.py            # Spatial attacks (rotation, translation)
-│   │   └── autoattack.py         # AutoAttack wrapper
-│   │
-│   ├── defenses/                 # Savunma mekanizmaları
-│   │   ├── registry.py           # Defense registry sistemi
-│   │   ├── adversarial_training.py  # Standard adversarial training
-│   │   ├── trades.py             # TRADES defense
-│   │   ├── mart.py               # MART defense
-│   │   ├── tta.py                # Test-time augmentation
-│   │   └── purification.py       # Input purification (denoise, JPEG)
-│   │
-│   ├── training/                 # Eğitim döngüleri
-│   │   ├── trainer.py            # Clean training
-│   │   └── adversarial_trainer.py # Adversarial training
-│   │
-│   ├── evaluation/               # Değerlendirme araçları
-│   │   ├── evaluator.py          # Model evaluator
-│   │   ├── metrics.py            # Accuracy, robustness metrics
-│   │   └── reporters.py          # CSV, Plot reporters
-│   │
-│   ├── analysis/                 # Analiz araçları
-│   │   ├── gradient_analysis.py  # Gradient analizi (CNN vs ViT)
-│   │   ├── transfer_analysis.py  # Transfer attack analizi
-│   │   ├── attention_analysis.py # Attention map analizi
-│   │   └── visualization.py      # Görselleştirme araçları
-│   │
-│   ├── data/                     # Veri yükleyiciler
-│   │   ├── datasets.py           # CIFAR-10 loaders
-│   │   └── transforms.py         # Data augmentation
-│   │
-│   └── utils/                    # Yardımcı fonksiyonlar
-│       ├── checkpoint.py         # Model kaydetme/yükleme
-│       ├── config.py             # YAML config parser
-│       ├── device.py             # Device detection (CUDA/MPS/CPU)
-│       └── seed.py               # Reproducibility
-│
-├── configs/                      # YAML yapılandırma dosyaları
-│   ├── default.yaml              # Varsayılan ayarlar
-│   ├── models/                   # Model-specific configs
-│   ├── attacks/                  # Attack configs
-│   └── experiments/              # Deney configs
-│
-├── models/                       # Eğitilmiş model checkpointleri
-│   ├── resnet18/
-│   │   ├── clean/best.pth        # 94.37% clean accuracy
-│   │   └── adv/
-│   │       ├── adversarial_training/best.pth
-│   │       └── trades/best.pth
-│   ├── vit_tiny/
-│   │   ├── clean/best.pth        # 78.69% clean accuracy
-│   │   └── adv/best.pth
-│   └── densenet121/
-│       └── clean/best.pth        # ~95% clean accuracy
-│
-├── results/                      # Deney sonuçları
-│   ├── sci_paper/                # SCI paper için analizler
-│   └── evaluation_*/             # Değerlendirme CSV/PNG'leri
-│
-├── logs/                         # Eğitim logları
-├── tests/                        # Unit testler
-├── experiments/                  # Deney scriptleri
-└── data/                         # CIFAR-10 veri seti (auto-download)
-```
+## Tamamlanan Fazlar
 
-## Teknik Detaylar
+- [x] Faz 1: RobustBench CNN (WideResNet-28-10)
+- [x] Faz 2: Model Egitimleri (ResNet18 AT, ViT-Tiny AT)
+- [x] Faz 3: Karsılastırmalı Analiz (Transfer, Gradient, Attention)
+- [x] Faz 4: Makale taslağı ve Q1 revizyonu
+- [x] Early stopping mekanizması eklendi
+- [x] ResNet18 AT run2 egitimi (40.97% PGD)
+- [x] ViT-Tiny AT run2 egitimi (36.87% PGD)
 
-### Dataset ve Normalization
-- **Dataset:** CIFAR-10 (50K train, 10K test, 32x32 RGB)
-- **Normalization:** `[0, 1]` aralığı (ImageNet normalization KULLANILMIYOR)
-- **Augmentation:** RandomCrop(32, padding=4), RandomHorizontalFlip
+### Bekleyen Isler
+- [x] Run2 modelleri icin AutoAttack evaluation (ResNet: 36.0%, ViT: 32.4%)
+- [x] Figure kalite kontrolu (final/ klasorune kopyalandı)
+- [ ] Final proofreading
+- [ ] LaTeX derleme kontrolu (kullanıcı tarafından yapılacak)
 
-### Adversarial Attack Parametreleri
+---
+
+## Kritik Bilgiler
+
+### Adversarial Training Parametreleri
 ```python
-# Standart parametreler (ε = 8/255 ≈ 0.0314)
-eps = 8/255     # 0.03137254901960784
-alpha = 2/255   # 0.00784313725490196 (PGD step size)
-steps = 10      # PGD iteration sayısı
+eps = 8/255      # 0.03137254901960784
+alpha = 2/255    # 0.00784313725490196
+steps = 10
 ```
 
-### Model Performans Referansları
+### LR Secimi (ONEMLI!)
+- **Clean training:** LR=0.1 (scratch'ten)
+- **Adversarial training (pretrained'den):** LR=0.001
+- LR=0.01 catastrophic forgetting yapıyor!
 
-| Model | Training | Clean Acc | PGD Acc (ε=8/255) |
-|-------|----------|-----------|-------------------|
-| ResNet18 | Clean | 94.37% | 0.00% |
-| ResNet18 | Adv Training | ~82% | ~45% |
-| ViT-Tiny | Clean | 78.69% | 0.00% |
-| ViT-Tiny | Adv Training | 64.05% | ~28% |
-| DenseNet121 | Clean | ~95% | 0.00% |
-
-### Bilinen Sorunlar ve Çözümler
-
-1. **ViT resize sorunu:** ViT modelleri 224x224 bekler, CIFAR-10 32x32. `timm` ile resize yapılıyor ama performans düşük. Çözüm: `vit_tiny_patch4_32` gibi CIFAR-native model kullanılmalı.
-
-2. **TRADES instabilitesi:** TRADES defense yüksek LR ile çöküyor. LR=0.001 ve warmup kullanılmalı.
-
-3. **Catastrophic forgetting:** Pretrained model üzerinde adversarial training yaparken LR çok yüksek olmamalı (0.1 yerine 0.001).
-
-## Sık Kullanılan Komutlar
-
-### Model Eğitimi
-
+### Early Stopping
 ```bash
-# Clean ResNet18 eğitimi
-python -m cli.main train clean --model resnet18 --epochs 100 --lr 0.1
-
-# Adversarial Training (pretrained'den)
-python -m cli.main train adversarial \
-    --model resnet18 \
-    --defense adversarial_training \
-    --pretrained models/resnet18/clean/best.pth \
-    --epochs 100 \
-    --lr 0.001 \
-    --eps 0.0314 \
-    --alpha 0.00784 \
-    --steps 10
-
-# TRADES eğitimi
-python -m cli.main train adversarial \
-    --model resnet18 \
-    --defense trades \
-    --epochs 100 \
-    --beta 6.0
+python -m cli.main train adversarial --patience 20  # 20 epoch iyilesme yoksa dur
 ```
+- `--patience 0` = devre dışı (default)
+- `--patience 20` = onerilen deger
+- `min_delta = 0.1%` improvement threshold
 
-### Model Değerlendirme
+**Etkinlik:** ViT-Tiny AT run2'de 51 epoch tasarruf (100→49)
+
+---
+
+## Hızlı Komutlar
 
 ```bash
-# Clean accuracy
-python -m cli.main evaluate clean \
-    --model-path models/resnet18/clean/best.pth \
-    --model-type resnet18
+# GPU durumu kontrol (EGITIM ONCESI!)
+nvidia-smi
 
-# Robustness (multiple attacks & epsilons)
+# Model degerlendirme
 python -m cli.main evaluate robustness \
     --model-path models/resnet18/adv/adversarial_training/best.pth \
     --model-type resnet18 \
     --attacks fgsm pgd \
     --epsilons 0.00784 0.01569 0.0314
 
-# Full evaluation suite
-python -m cli.main evaluate full \
-    --model-path models/resnet18/clean/best.pth \
-    --model-type resnet18
-```
+# AutoAttack evaluation
+python experiments/run_autoattack_evaluation.py
 
-### Analiz Scriptleri
-
-```bash
-# Gradient analizi (CNN vs ViT)
+# SCI analizleri
 python experiments/run_sci_analysis.py --analysis gradient
-
-# Transfer attack analizi
 python experiments/run_sci_analysis.py --analysis transfer
-
-# Attention degradation (ViT)
 python experiments/run_sci_analysis.py --analysis attention
 ```
 
-## Registry Sistemi
+---
 
-Proje, modeller, saldırılar ve savunmalar için registry pattern kullanır:
+## Proje Yapısı (Ozet)
 
-```python
-# Model oluşturma
-from src.models import ModelRegistry
-model = ModelRegistry.get("resnet18")  # veya "vit_tiny", "densenet121"
-
-# Attack oluşturma
-from src.attacks import AttackRegistry
-attack = AttackRegistry.get("pgd", model=model, eps=8/255, alpha=2/255, steps=10)
-
-# Defense oluşturma
-from src.defenses import DefenseRegistry
-defense = DefenseRegistry.get("adversarial_training", model=model, eps=8/255)
+```
+├── cli/                    # CLI komutları
+├── src/
+│   ├── models/             # ResNet, ViT, DenseNet, EfficientNet
+│   ├── attacks/            # FGSM, PGD, C&W, DeepFool, AutoAttack
+│   ├── defenses/           # AT, TRADES, MART, TTA
+│   ├── training/           # Egitim dongulerı (+ early stopping)
+│   ├── evaluation/         # Degerlendirme aracları
+│   └── analysis/           # Gradient, Transfer, Attention analizi
+├── models/                 # Egitilmis checkpointler
+├── paper/                  # Makale dosyaları (manuscript/, figures/)
+├── results/                # Deney sonucları
+└── logs/                   # Egitim logları
 ```
 
-### Mevcut Modeller
-- `resnet18`, `resnet34`, `resnet50`
-- `vit_tiny`, `vit_small`, `vit_base`
-- `densenet121`, `densenet169`, `densenet201`
-- `efficientnet_b0`, `efficientnet_b1`, `efficientnet_b2`
+---
 
-### Mevcut Saldırılar
-- `fgsm`, `targeted_fgsm`
-- `pgd`, `targeted_pgd`, `pgd_l2`
-- `cw`, `cw_linf`
-- `deepfool`, `deepfool_linf`
-- `spatial`, `rotation`, `translation`
-- `autoattack` (Linf, L2)
+## Ogrenilen Dersler
 
-### Mevcut Savunmalar
-- **Training-time:** `adversarial_training`, `trades`, `mart`
-- **Inference-time:** `tta`, `tta_tencrop`, `denoise`, `jpeg`, `randomization`
+1. **Pretrained + yuksek LR = felaket:** 0.01 bile cok yuksek, 0.001 kullan
+2. **Log dosyalarını kontrol et:** Birden fazla egitim varsa karısabilir
+3. **Model capacity kritik:** WideResNet-28-10 (66%) >> ResNet18 (40%)
+4. **Hibrit yaklasım:** CNN icin RobustBench, ViT icin kendi egitim
+5. **Early stopping sart:** 35+ epoch iyilesme olmadan devam etmek GPU israfı
+6. **GPU paylaşımı:** Baska container egitim yapıyor olabilir, kontrol et
+7. **Otomatik egitim script:** `scripts/auto_train_vit.sh` GPU bekleyip egitim baslatiyor
 
-## Kod Stili ve Conventions
+---
 
-### Import Sırası
-```python
-# 1. Standard library
-import os
-from pathlib import Path
+## Ozgun Katkı (SCI Paper)
 
-# 2. Third-party
-import torch
-import torch.nn as nn
-from tqdm import tqdm
+1. **CNN vs ViT fair comparison** - Aynı analiz pipeline ile
+2. **Transfer attack analizi** - Mimariler arası saldırı transferi (asimetri!)
+3. **Gradient karakteristikleri** - Robustness farkının matematiksel acıklaması
+4. **Attention degradation** - ViT'te adversarial ornek etkisi
 
-# 3. Local
-from src.models import ModelRegistry
-from src.attacks import PGDAttack
-```
+---
 
-### Checkpoint Formatı
-```python
-{
-    'epoch': int,
-    'model_state_dict': dict,
-    'optimizer_state_dict': dict,
-    'best_acc': float,      # Clean accuracy için
-    'best_adv_acc': float,  # Adversarial accuracy için (AT modellerinde)
-    'config': dict,         # Eğitim konfigürasyonu
-}
-```
+## Makale Durumu
 
-### Epsilon Değerleri
-Her zaman 255 tabanlı kullan ve float'a çevir:
-```python
-eps = 8/255   # DOĞRU: 0.03137254901960784
-eps = 0.031   # YANLIŞ: Yaklaşık değer, hataya sebep olabilir
-```
+| Bolum | Durum |
+|-------|-------|
+| Introduction | Tamamlandı, Q1 revize |
+| Related Work | Tamamlandı, 2023-2025 referanslar eklendi |
+| Methodology | Tamamlandı, Q1 revize |
+| Experiments | Tamamlandı, Q1 revize |
+| Discussion | Tamamlandı, Q1 revize |
+| Conclusion | Tamamlandı, Q1 revize |
 
-## Test Etme
+**Hedef Dergi:** Pattern Recognition (IF: ~8.0, Q1)
 
-```bash
-# Tüm testleri çalıştır
-pytest tests/ -v
-
-# Belirli test dosyası
-pytest tests/test_models.py -v
-
-# Coverage ile
-pytest tests/ --cov=src --cov-report=html
-```
-
-## GPU/Device Yönetimi
-
-```python
-from src.utils.device import get_device
-
-# Otomatik device seçimi
-device = get_device("auto")  # CUDA > MPS > CPU
-
-# Manuel seçim
-device = get_device("cuda")
-device = get_device("cpu")
-```
-
-## Yapılacaklar ve Mevcut Durum
-
-### Tamamlanan
-- [x] ResNet18 clean training (94.37%)
-- [x] ViT-Tiny clean training (78.69%)
-- [x] DenseNet121 clean training (~95%)
-- [x] Gradient analizi (CNN vs ViT)
-- [x] Transfer attack analizi
-
-### Devam Eden
-- [ ] ResNet18 adversarial training (100 epoch)
-- [ ] TRADES debug ve stabilizasyonu
-
-### Planlanmış
-- [ ] WideResNet-28-10 ekleme (SOTA karşılaştırması için)
-- [ ] CIFAR-native ViT modeli
-- [ ] Epsilon sweep analizi
-- [ ] AWP (Adversarial Weight Perturbation)
-- [ ] SCI paper figürleri
-
-## Ortam Bilgisi
-
-- **Framework:** PyTorch 2.6.0
-- **CUDA:** 12.8
-- **GPU:** RTX 5060 Ti (16GB VRAM)
-- **Python:** 3.10+
+---
 
 ## Referanslar
 
-- [TRADES Paper](https://arxiv.org/abs/1901.08573)
+- [TRADES](https://arxiv.org/abs/1901.08573)
 - [AutoAttack](https://arxiv.org/abs/2003.01690)
 - [RobustBench](https://robustbench.github.io/)
-- [timm Library](https://github.com/huggingface/pytorch-image-models)

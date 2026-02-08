@@ -1,0 +1,71 @@
+# CIFAR-10 Native ViT Configuration
+# Uses native 32x32 resolution with 4x4 patches (no upsampling)
+
+model:
+  name: vit_cifar_tiny
+  pretrained: false
+  num_classes: 10
+  # Native CIFAR-10 architecture
+  img_size: 32
+  patch_size: 4  # 8x8 = 64 patches per image
+  embed_dim: 192
+  depth: 12
+  num_heads: 3
+  mlp_ratio: 4.0
+  drop_rate: 0.1
+  attn_drop_rate: 0.0
+
+training:
+  epochs: 100
+  batch_size: 128
+  optimizer:
+    name: adamw
+    lr: 0.001
+    weight_decay: 0.05
+    betas: [0.9, 0.999]
+  scheduler:
+    name: cosine
+    warmup_epochs: 5
+    min_lr: 1.0e-6
+
+  # Early stopping
+  early_stopping:
+    enabled: true
+    patience: 20
+    min_delta: 0.001
+
+  # Mixed precision
+  amp: true
+
+  # Data augmentation
+  augmentation:
+    random_crop: true
+    crop_padding: 4
+    horizontal_flip: true
+    cutout: false
+    mixup: 0.0
+    cutmix: 0.0
+
+adversarial:
+  enabled: true
+  method: pgd
+  eps: 0.03137254901960784  # 8/255
+  alpha: 0.00784313725490196  # 2/255
+  steps: 10
+  random_start: true
+
+data:
+  dataset: cifar10
+  num_workers: 4
+  pin_memory: true
+  persistent_workers: true
+
+checkpoint:
+  save_dir: models/vit_tiny_native/adv
+  save_best: true
+  save_frequency: 10
+
+logging:
+  project: adversarial-defense
+  name: vit-native-at
+  log_frequency: 50

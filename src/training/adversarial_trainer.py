@@ -47,6 +47,8 @@ class AdversarialTrainer:
         save_best: bool = True,
         save_last: bool = True,
         verbose: bool = True,
+        patience: int = 0,
+        min_delta: float = 0.1,
     ):
         """
         Initialize the adversarial trainer.
@@ -71,6 +73,8 @@ class AdversarialTrainer:
             save_best: Whether to save best model
             save_last: Whether to save last model
             verbose: Whether to print progress
+            patience: Early stopping patience (0 = disabled)
+            min_delta: Minimum improvement to reset patience counter
         """
         self.model = model
         self.train_loader = train_loader
@@ -158,6 +162,12 @@ class AdversarialTrainer:
             "adv_acc": [],
             "lr": [],
         }
+
+        # Early stopping
+        self.patience = patience
+        self.min_delta = min_delta
+        self.patience_counter = 0
+        self.early_stopped = False
 
     def train_epoch(self) -> Dict[str, float]:
         """
@@ -345,8 +355,9 @@ class AdversarialTrainer:
                 )
 
             # Save best model (based on adversarial accuracy)
-            if self.save_best and adv_acc > self.best_adv_acc:
+            if self.save_best and adv_acc > self.best_adv_acc + self.min_delta:
                 self.best_adv_acc = adv_acc
+                self.patience_counter = 0
                 save_checkpoint(
                     self.model,
                     self.checkpoint_dir / "best.pth",
@@ -358,6 +369,15 @@ class AdversarialTrainer:
                 )
                 if self.verbose:
                     print(f"  Best model saved! Adv accuracy: {self.best_adv_acc:.2f}%")
+            elif self.patience > 0:
+                self.patience_counter += 1
+                if self.verbose:
+                    print(f"  No improvement ({self.patience_counter}/{self.patience})")
+                if self.patience_counter >= self.patience:
+                    self.early_stopped = True
+                    if self.verbose:
+                        print(f"\nEarly stopping triggered at epoch {epoch + 1}")
+                    break
 
         # Save last model
         if self.save_last:

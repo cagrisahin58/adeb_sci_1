@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-01-10T03:00:33.916021",
+  "model": "ViT-Tiny AT",
+  "attack": "PGD-10 (eps=0.0314)",
+  "clean_accuracy": 81.25,
+  "adv_accuracy": 56.25,
+  "attack_success": 30.76923076923077,
+  "feature_analysis": [
+    {
+      "layer": "blocks.0.mlp",
+      "l2_distance": 3.525444984436035,
+      "cosine_similarity": 0.996811032295227,
+      "clean_norm": 47.25667953491211,
+      "adv_norm": 47.23125076293945,
+      "norm_change_pct": -0.05380989993990178
+    },
+    {
+      "layer": "blocks.1.mlp",
+      "l2_distance": 1.556972622871399,
+      "cosine_similarity": 0.9908980131149292,
+      "clean_norm": 12.423688888549805,
+      "adv_norm": 12.644927978515625,
+      "norm_change_pct": 1.7807842095090096
+    },
+    {
+      "layer": "blocks.2.mlp",
+      "l2_distance": 1.0812170505523682,
+      "cosine_similarity": 0.993483304977417,
+      "clean_norm": 9.678731918334961,
+      "adv_norm": 9.660016059875488,
+      "norm_change_pct": -0.19337097687371796
+    },
+    {
+      "layer": "blocks.9.mlp",
+      "l2_distance": 1.4599190950393677,
+      "cosine_similarity": 0.9613543152809143,
+      "clean_norm": 5.42813777923584,
+      "adv_norm": 5.248807907104492,
+      "norm_change_pct": -3.3037089223736187
+    },
+    {
+      "layer": "blocks.10.mlp",
+      "l2_distance": 1.6049829721450806,
+      "cosine_similarity": 0.9174323081970215,
+      "clean_norm": 4.597583770751953,
+      "adv_norm": 4.370813369750977,
+      "norm_change_pct": -4.932382144804016
+    },
+    {
+      "layer": "blocks.11.mlp",
+      "l2_distance": 2.5421409606933594,
+      "cosine_similarity": 0.9554306864738464,
+      "clean_norm": 8.588390350341797,
+      "adv_norm": 7.913527011871338,
+      "norm_change_pct": -7.857855907115366
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+% ============================================================================
+% SECTION 6: CONCLUSION
+% ============================================================================
+\section{Conclusion}
+\label{sec:conclusion}
+
+This paper presented a mechanistic analysis of why CNN and Vision Transformer architectures exhibit different adversarial vulnerability patterns. Moving beyond simple robustness comparisons, we investigated the underlying causes of behavioral differences through transfer attack analysis, gradient characterization, and layer-wise feature degradation studies.
+
+Our analysis reveals that a consistent robustness gap exists between architectures under AutoAttack evaluation, with model capacity playing a substantial role beyond architectural choice alone. The observed transfer asymmetry---CNN-generated adversarial examples transfer more effectively to ViTs than vice versa---can be explained through gradient characteristics: sparse CNN gradients produce perturbations targeting generic features that both architectures rely on, while aligned ViT gradients produce architecture-specific perturbations that exploit attention mechanisms CNNs do not possess. The higher cross-sample alignment of ViT gradients also indicates potential vulnerability to universal adversarial perturbations, a concern warranting attention as transformers become more prevalent in deployed systems. Furthermore, we identify a ``semantic drift'' mechanism whereby adversarial perturbations cause progressive semantic degradation in ViT, with representations increasingly deviating from clean features as they propagate through later layers.
+
+This work provides the first connection between gradient sparsity and alignment to cross-architecture transfer attack asymmetry, offering actionable understanding rather than mere performance comparison. Our systematic layer-wise analysis characterizes how adversarial perturbations propagate through ViT layers, and we derive evidence-based recommendations for robust system design. We publicly release our analysis pipeline to enable future work extending these findings to other architectures and datasets.
+
+% ----------------------------------------------------------------------------
+% Closing
+% ----------------------------------------------------------------------------
+Understanding \textit{why} architectures behave differently under adversarial attack---not just \textit{how much}---is essential for developing targeted defenses. Our analysis reveals that the robustness gap between CNNs and ViTs is not arbitrary but stems from fundamental differences in gradient characteristics: sparse, localized gradients (CNN) versus aligned, distributed gradients (ViT). These findings suggest that improving ViT robustness requires addressing gradient alignment rather than simply applying stronger adversarial training. We hope this mechanistic perspective guides future research toward more principled defense design.

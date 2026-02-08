@@ -1,0 +1,77 @@
+% ============================================================================
+% SECTION 5: DISCUSSION
+% ============================================================================
+\section{Discussion}
+\label{sec:discussion}
+
+% ----------------------------------------------------------------------------
+% 5.1 Key Findings
+% ----------------------------------------------------------------------------
+\subsection{Key Findings and Their Implications}
+\label{subsec:findings}
+
+\paragraph{Transfer Attack Asymmetry}
+
+Our experiments reveal a striking asymmetry in cross-architecture adversarial transfer. Adversarial examples generated on CNN transfer to ViT with 47.5\% success rate (80\% transfer efficiency), while ViT-generated examples transfer to CNN at only 33.5\% (51\% efficiency). This nearly 30 percentage point gap in transfer efficiency is not coincidental---it reflects fundamental differences in how these architectures process information.
+
+The asymmetry has a clear mechanistic explanation rooted in gradient characteristics. CNN gradients are 4.5$\times$ more sparse than ViT gradients, concentrating sensitivity in localized regions that correspond to generic image features such as edges and textures. Because both architectures rely on these low-level features for recognition, perturbations crafted to exploit CNN vulnerabilities naturally affect ViTs as well. In contrast, ViT gradients are distributed across the input and exhibit 2.2$\times$ higher cross-sample alignment, producing perturbations that exploit global attention patterns---representations that CNNs simply do not compute. This finding has practical implications for adversarial defense: in black-box scenarios where the target architecture is unknown, using a CNN as the surrogate model is the more effective attack strategy.
+
+\paragraph{Gradient Characteristics as Vulnerability Signatures}
+
+The gradient analysis provides deeper insight into why each architecture responds differently to adversarial perturbations. CNNs exhibit 6.9\% near-zero gradient components compared to only 1.5\% for ViTs, indicating that CNN sensitivity is concentrated in specific spatial regions while ViT sensitivity is spread throughout the input. This sparsity difference directly explains why CNN-generated perturbations are more transferable: they target features that are universally important across architectures.
+
+Perhaps more importantly, the higher cross-sample gradient alignment in ViTs (0.097 vs. 0.044 average pairwise cosine similarity) suggests vulnerability to universal adversarial perturbations~\cite{moosavi2017universal}. When gradients point in similar directions across different inputs, a single perturbation direction can fool the model on many samples. This property makes ViTs potentially more susceptible to efficient, sample-agnostic attacks---a concern that warrants attention as these architectures become more prevalent in deployed systems.
+
+\paragraph{Feature Degradation in Vision Transformers}
+
+Our layer-wise analysis reveals a ``semantic drift'' mechanism underlying ViT vulnerability. In early transformer blocks (0--2), adversarial inputs produce high $L_2$ distance from clean representations but maintain semantic direction with cosine similarity exceeding 0.99. The perturbation affects magnitude without corrupting the semantic content. However, as representations propagate through the network, this pattern reverses: late layers (9--11) show decreasing $L_2$ distance but cosine similarity drops to 0.917, indicating progressive semantic corruption despite smaller absolute changes.
+
+The final layer exhibits 7.86\% feature norm reduction, suggesting that adversarial perturbations cause ViTs to suppress discriminative features rather than simply adding noise. This ``feature suppression'' phenomenon implies that effective defenses should focus on stabilizing late-layer representations rather than filtering perturbations at the input level. The progressive nature of this degradation also suggests that intermediate supervision or layer-wise regularization might help maintain semantic consistency throughout the network.
+
+% ----------------------------------------------------------------------------
+% 5.2 Broader Implications
+% ----------------------------------------------------------------------------
+\subsection{Broader Implications}
+\label{subsec:implications}
+
+\paragraph{For Researchers}
+
+Our work demonstrates the value of mechanistic analysis over pure benchmarking. Simply reporting that one architecture achieves higher robust accuracy than another provides limited insight for improving defenses. Understanding \textit{why} architectures behave differently---through gradient analysis, transfer studies, and feature degradation tracking---enables targeted improvements rather than trial-and-error defense development.
+
+The consistent gap between AutoAttack and PGD-10 results (6--7\% lower robust accuracy under AutoAttack) reinforces the importance of using standardized, strong evaluation protocols. While PGD-10 remains useful during development for its computational efficiency, final robustness claims should always be validated with AutoAttack or equivalent comprehensive evaluation. Transfer attack analysis also emerges from our work as a valuable diagnostic tool: when a model shows low transfer rates from diverse source architectures, this indicates architecture-specific vulnerabilities that merit dedicated investigation.
+
+\paragraph{For Practitioners}
+
+For deployment scenarios requiring adversarial robustness, our findings offer concrete guidance. CNNs currently provide better robust accuracy with more stable adversarial training dynamics, making them the safer choice when robustness is paramount. ViTs require more careful hyperparameter tuning during adversarial training and may benefit from specialized techniques beyond standard adversarial training.
+
+When deploying ensemble defenses that combine CNN and ViT models, practitioners should be aware that such combinations protect more effectively against ViT-generated attacks than CNN-generated ones due to the transfer asymmetry we observe. Additionally, our comparison between WideResNet-28-10 (62.76\% robust accuracy) and ResNet-18 (36.0\%) demonstrates that model capacity substantially impacts robustness. Investing in larger models may prove more effective than developing novel defense mechanisms, particularly for high-stakes applications.
+
+\paragraph{On Model Capacity}
+
+Our comparison involves models with different parameter counts: ResNet-18 has 11.2M parameters while ViT-Tiny has 5.7M. This $2\times$ capacity difference could partially explain the robustness gap. However, our mechanistic analyses suggest that architectural factors play a more fundamental role than model size alone.
+
+The gradient sparsity difference ($4.5\times$) and alignment difference ($2.2\times$) reflect how each architecture computes gradients, not how many parameters it has. A larger ViT would still compute distributed, aligned gradients; a smaller CNN would still compute sparse, localized gradients. Furthermore, the transfer asymmetry cannot be explained by capacity: it indicates qualitatively different vulnerability patterns that stem from architectural computation, not parameter count. Nevertheless, capacity-matched comparisons using ViT-Small versus ResNet-18 would strengthen these conclusions and isolate architectural effects more cleanly.
+
+% ----------------------------------------------------------------------------
+% 5.3 Limitations
+% ----------------------------------------------------------------------------
+\subsection{Limitations}
+\label{subsec:limitations}
+
+Several limitations constrain the scope of our conclusions and suggest directions for future validation.
+
+Our ViT-Tiny model uses $224 \times 224$ upsampling from CIFAR-10's native $32 \times 32$ resolution, following standard practice for leveraging pretrained ImageNet backbones. This design choice introduces potential confounds: the upsampling may introduce artifacts that affect adversarial vulnerability differently than native-resolution processing. We note, however, that this setup reflects common deployment practice where pretrained ViTs are adapted to smaller images. Moreover, our gradient and transfer analyses reveal fundamental architectural differences in sparsity and alignment that are unlikely to be artifacts of resolution, and the semantic drift phenomenon operates at the feature level independent of input preprocessing. Nevertheless, future work should validate these findings using CIFAR-native ViT architectures with smaller patch sizes to isolate architectural effects from resolution effects.
+
+Our evaluation focuses exclusively on CIFAR-10, and findings may differ on ImageNet where ViTs typically excel and pretrained robust models are available. We evaluate only $L_\infty$ attacks; $L_2$ or semantic attacks may reveal different vulnerability patterns. While we validate evaluation stability across three random seeds (showing less than 0.15\% variance), full training-level validation with independent training runs would strengthen claims about training stability. Finally, standard adversarial training for ViT produces lower robust accuracy than specialized techniques such as diffusion-based augmentation; our ViT results represent baseline adversarial training performance rather than state-of-the-art ViT robustness.
+
+% ----------------------------------------------------------------------------
+% 5.4 Future Work
+% ----------------------------------------------------------------------------
+\subsection{Future Directions}
+\label{subsec:future}
+
+Our findings motivate several research directions. Systematically evaluating CNN-ViT hybrid architectures such as ConViT and CoAtNet could reveal whether combining architectural elements yields robustness benefits beyond either paradigm alone. The complementary gradient properties we identify---sparse localized gradients in CNNs, distributed aligned gradients in ViTs---suggest that hybrids might achieve more balanced vulnerability profiles.
+
+Developing training losses that explicitly encourage attention pattern stability under perturbation may address the fundamental vulnerability mechanism we identify in ViTs. The progressive semantic drift we observe suggests that intermediate-layer supervision or consistency regularization could help maintain feature integrity throughout the network.
+
+Investigating whether the robustness gap persists at larger scales (ViT-Base, ViT-Large) and on higher-resolution datasets would establish the generality of our conclusions. Finally, extending our analysis to certified defense methods, including randomized smoothing and interval bound propagation, would determine whether the architectural differences we identify affect achievable certification radii.
