@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-02-16T21:49:56.283624",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT"
+  ],
+  "matrix": [
+    [
+      59.9,
+      41.2
+    ],
+    [
+      36.1,
+      62.7
+    ]
+  ],
+  "eps": 0.03137254901960784,
+  "steps": 10,
+  "model_variant": "run2",
+  "results": [
+    {
+      "source": "ResNet18_AT",
+      "target": "ResNet18_AT",
+      "attack_success": 59.9,
+      "transfer_rate": 59.9,
+      "is_self": true,
+      "total_samples": 1000
+    },
+    {
+      "source": "ResNet18_AT",
+      "target": "ViT_Tiny_AT",
+      "attack_success": 59.8,
+      "transfer_rate": 41.2,
+      "is_self": false,
+      "total_samples": 1000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ResNet18_AT",
+      "attack_success": 62.6,
+      "transfer_rate": 36.1,
+      "is_self": false,
+      "total_samples": 1000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ViT_Tiny_AT",
+      "attack_success": 62.7,
+      "transfer_rate": 62.7,
+      "is_self": true,
+      "total_samples": 1000
+    }
+  ]
+}

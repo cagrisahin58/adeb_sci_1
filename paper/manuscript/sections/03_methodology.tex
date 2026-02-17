@@ -15,7 +15,7 @@ We consider the standard $\Linf$ threat model where an adversary can perturb inp
     \mathcal{B}_\eps(x) = \{x' : \|x' - x\|_\infty \leq \eps\}
 \end{equation}
 
-Following established conventions for CIFAR-10~\cite{croce2021robustbench}, we use $\eps = 8/255 \approx 0.031$ as the primary perturbation budget, with additional experiments at $\eps \in \{2/255, 4/255, 16/255\}$ for epsilon sweep analysis.
+Following established conventions for CIFAR-10~\cite{krizhevsky2009learning, croce2021robustbench}, we use $\eps = 8/255 \approx 0.031$ as the primary perturbation budget, with additional experiments at $\eps \in \{2/255, 4/255, 16/255\}$ for epsilon sweep analysis.
 
 We evaluate under both white-box (full model access) and black-box (transfer attack) scenarios. For white-box attacks, the adversary has complete knowledge of model architecture and parameters. For transfer attacks, adversarial examples are generated on a source model and evaluated on a different target model.
 
@@ -47,15 +47,15 @@ Single-step attack with step size equal to the perturbation budget:
     x_{adv} = x + \eps \cdot \text{sign}(\nabla_x \mathcal{L}_{CE}(f(x), y))
 \end{equation}
 
-\paragraph{PGD-20}
-Iterative attack with 20 steps, step size $\alpha = 2/255$, and random initialization:
+\paragraph{PGD}
+Iterative attack with step size $\alpha = 2/255$ and random initialization:
 \begin{equation}
     x^{t+1} = \Pi_{B_\eps(x)} \left( x^t + \alpha \cdot \text{sign}(\nabla_{x^t} \mathcal{L}_{CE}(f(x^t), y)) \right)
 \end{equation}
-with $x^0 = x + \mathcal{U}(-\eps, \eps)$.
+with $x^0 = x + \mathcal{U}(-\eps, \eps)$. We use PGD-10 (10 iterations) for both adversarial training and evaluation throughout this work (Table~\ref{tab:main_results}).
 
 \paragraph{AutoAttack}
-We use AutoAttack~\cite{croce2020reliable}, the standardized ensemble attack combining APGD-CE (Auto-PGD with cross-entropy loss), APGD-DLR (Auto-PGD with difference of logits ratio loss), FAB (Fast Adaptive Boundary attack), and Square Attack (score-based black-box attack). This ensemble represents the gold standard for robustness evaluation.
+We use AutoAttack~\cite{croce2020reliable}, the standardized ensemble attack combining APGD-CE (Auto-PGD with cross-entropy loss), APGD-T (Auto-PGD with targeted DLR loss), FAB-T (targeted Fast Adaptive Boundary attack), and Square Attack (score-based black-box attack). This ensemble represents the gold standard for robustness evaluation.
 
 % ----------------------------------------------------------------------------
 % 3.4 Defense Methods
@@ -64,18 +64,11 @@ We use AutoAttack~\cite{croce2020reliable}, the standardized ensemble attack com
 \label{subsec:defense_methods}
 
 \paragraph{Adversarial Training (AT)}
-We train models on PGD-generated adversarial examples:
+We employ a mixed adversarial training objective that combines clean and adversarial losses:
 \begin{equation}
-    \min_\theta \mathbb{E}_{(x,y)} \left[ \mathcal{L}_{CE}(f_\theta(x_{adv}), y) \right]
+    \mathcal{L} = (1 - \lambda)\,\mathcal{L}_{CE}(f_\theta(x), y) + \lambda\,\mathcal{L}_{CE}(f_\theta(x_{adv}), y)
 \end{equation}
-with inner maximization using PGD-10 ($\alpha = 2/255$, $\eps = 8/255$).
-
-\paragraph{TRADES}
-Trade-off between natural accuracy and robustness:
-\begin{equation}
-    \mathcal{L} = \mathcal{L}_{CE}(f(x), y) + \beta \cdot \text{KL}(f(x) \| f(x_{adv}))
-\end{equation}
-We use $\beta = 6.0$ following the original paper~\cite{zhang2019theoretically}.
+where $\lambda = 0.5$ balances standard classification performance with adversarial robustness. The inner maximization generates adversarial examples using PGD-10 ($\alpha = 2/255$, $\eps = 8/255$). This mixed objective, widely adopted in practice, helps maintain clean accuracy while building robustness, as training solely on adversarial examples can degrade natural performance. While alternative formulations such as TRADES~\cite{zhang2019theoretically} offer theoretically grounded trade-off mechanisms, this work focuses on standard adversarial training to isolate architectural effects from defense-specific interactions.
 
 % ----------------------------------------------------------------------------
 % 3.5 Training Protocol
@@ -84,7 +77,7 @@ We use $\beta = 6.0$ following the original paper~\cite{zhang2019theoretically}.
 \label{subsec:training}
 
 \paragraph{Clean Training}
-For CNNs, we use SGD optimizer with initial learning rate 0.1, cosine annealing schedule, weight decay $5 \times 10^{-4}$, and 200 epochs. For ViTs, we use AdamW optimizer with initial learning rate $10^{-3}$, cosine annealing, weight decay 0.05, and 200 epochs.
+For CNNs, we use SGD optimizer with initial learning rate 0.1, cosine annealing schedule~\cite{loshchilov2016sgdr}, weight decay $5 \times 10^{-4}$, and 200 epochs. For ViTs, we use AdamW optimizer~\cite{loshchilov2017decoupled} with initial learning rate $10^{-3}$, cosine annealing, weight decay 0.05, and 200 epochs.
 
 \paragraph{Adversarial Training}
 Starting from pretrained clean models, we fine-tune with reduced learning rates: CNNs use SGD with LR $10^{-3}$ and cosine annealing for 100 epochs, while ViTs use AdamW with the same learning rate and schedule. Data augmentation includes random cropping with 4-pixel padding and horizontal flipping. We use batch size 128 for all experiments.
@@ -99,11 +92,11 @@ Starting from pretrained clean models, we fine-tune with reduced learning rates:
 We evaluate models using three standard metrics: clean accuracy (classification performance on unperturbed test images), robust accuracy (classification performance on adversarial examples), and attack success rate (fraction of correctly classified clean images that become misclassified after attack).
 
 \paragraph{Transfer Attack Metrics}
-For source model $S$ and target model $T$:
+We define the transfer attack success rate as the misclassification rate of the target model on adversarial examples crafted by the source model. Given $n$ test samples and adversarial examples $\{x_{adv}^S\}$ generated against source model $f_S$, the transfer rate to target model $f_T$ is:
 \begin{equation}
-    \text{Transfer Rate} = \frac{|\{x : f_S(x_{adv}^S) \neq y \land f_T(x_{adv}^S) \neq y\}|}{|\{x : f_S(x_{adv}^S) \neq y\}|}
+    T(f_S \rightarrow f_T) = \frac{1}{n} \sum_{i=1}^{n} \mathbf{1}[f_T(x_{adv,i}^S) \neq y_i]
 \end{equation}
-For transfer attack analysis, we compute success rates on the full test set (10,000 samples) to ensure statistical stability. We report 95\% confidence intervals using bootstrap resampling with 1,000 iterations, computing the percentile interval from the resampled transfer rate distribution. Given the large sample size, differences exceeding 5\% absolute are statistically significant at $p < 0.001$ under binomial proportion tests.
+This metric measures the raw misclassification rate on the target model regardless of whether the source model was itself fooled by the adversarial example. For transfer attack analysis, we compute success rates on the full test set (10,000 samples) to ensure statistical stability. We report 95\% confidence intervals using bootstrap resampling with 1,000 iterations, computing the percentile interval from the resampled distribution. Given the large sample size, differences exceeding 5\% absolute are statistically significant at $p < 0.001$ under binomial proportion tests.
 
 \paragraph{Gradient Analysis Metrics}
 We analyze gradient properties through three complementary metrics. Gradient norm ($\|\nabla_x \mathcal{L}\|_2$ and $\|\nabla_x \mathcal{L}\|_\infty$) measures overall sensitivity magnitude. Gradient sparsity quantifies the fraction of gradient components below threshold ($|g_i| < 10^{-6}$), indicating localization of sensitivity. Gradient alignment measures the average pairwise cosine similarity across samples:
@@ -129,4 +122,4 @@ Feature $L_2$ distance ($\|h_\ell(x) - h_\ell(x_{adv})\|_2$) quantifies absolute
 \subsection{Statistical Validation}
 \label{subsec:statistics}
 
-To ensure reproducibility and statistical significance, we train each model configuration 3 times with different random seeds (42, 123, 456) and report mean $\pm$ standard deviation for all metrics. We conduct paired t-tests to assess significance of differences ($p < 0.05$) and use deterministic operations where possible through CUDA deterministic mode. All experiments are conducted on NVIDIA RTX 5060 Ti (16GB) using PyTorch 2.6.0 with CUDA 12.8.
+To assess evaluation stochasticity, we evaluate each trained model 3 times with different random seeds (42, 123, 456) for attack initialization and test set shuffling, reporting mean $\pm$ standard deviation for all metrics. This procedure quantifies the variance attributable to stochastic elements of the evaluation pipeline (random restarts in PGD, data ordering) rather than training variance. To address training-level reproducibility, we conducted two independent training runs (run1 and run2) for each architecture, yielding consistent performance trends (Section~\ref{subsec:robustness}). We use deterministic CUDA operations where possible. All experiments are conducted on NVIDIA RTX 5060 Ti (16GB) using PyTorch 2.6.0 with CUDA 12.8.

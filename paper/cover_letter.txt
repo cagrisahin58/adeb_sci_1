@@ -1,78 +1,68 @@
-COVER LETTER
+COVER LETTER — IEEE Access Submission
+=====================================
+(LaTeX version: paper/submission/cover_letter.tex)
 
 Dear Editor,
 
-We are pleased to submit our manuscript titled "Understanding Architectural
-Differences in Adversarial Vulnerability: A Comparative Analysis of CNNs
-and Vision Transformers" for consideration in [Journal Name].
+We are pleased to submit our manuscript titled "A Comparative Study of
+Convolutional and Transformer Architectures Under Adversarial Perturbations:
+Gradient Characteristics and Transferability Analysis" for consideration as
+a Regular Article in IEEE Access.
 
-MOTIVATION AND SIGNIFICANCE
-
-Adversarial robustness remains a critical concern for deploying deep learning
-in safety-critical applications. While numerous studies compare CNN and ViT
-robustness scores, few investigate WHY these architectures behave differently
-under attack. This mechanistic understanding is essential for developing
-principled defenses rather than ad-hoc solutions.
+This paper investigates the mechanistic differences underlying adversarial
+vulnerability in convolutional neural networks (CNNs) and Vision Transformers
+(ViTs). Rather than merely comparing robustness scores, we ask WHY these
+architectures behave differently under adversarial perturbations — an
+increasingly important question as both architecture families are deployed
+in safety-critical systems. Using CIFAR-10 with adversarially trained
+ResNet-18 and ViT-Tiny models evaluated under AutoAttack (eps=8/255),
+we present four key findings:
 
 KEY CONTRIBUTIONS
 
-1. Transfer Attack Asymmetry: We discover that CNN-generated adversarial
-   examples transfer to ViTs at 80% efficiency, while ViT-generated examples
-   transfer to CNNs at only 51%. This 29% asymmetry has direct implications
-   for black-box attack strategies and ensemble defense design.
+1. Transfer Attack Asymmetry: CNN-generated adversarial examples transfer
+   to ViTs at 47.5% success rate, while ViT-to-CNN transfers succeed at
+   only 33.5%, revealing a 14-percentage-point directional gap with
+   practical implications for black-box attack strategies.
 
-2. Gradient Characteristics: We identify that CNN gradients are 4.5× more
-   sparse (localized sensitivity) while ViT gradients are 2.2× more aligned
-   across samples (vulnerability to universal perturbations). These properties
-   directly explain the transfer asymmetry.
+2. Gradient Characteristics: ViT gradients are 2.2x more aligned across
+   samples and CNN gradients are 4.5x more sparse, providing a quantitative
+   explanation for the observed transfer asymmetry.
 
-3. Semantic Drift Mechanism: We provide the first layer-wise analysis of how
-   adversarial perturbations propagate through ViT, showing progressive
-   semantic degradation with cosine similarity dropping from 0.997 to 0.917
-   and 7.86% feature norm reduction in late layers.
+3. Feature Degradation Analysis: Layer-wise examination of ViT internals
+   shows progressive semantic degradation under adversarial perturbations,
+   with cosine similarity dropping from 0.997 to 0.917 and 7.86% feature
+   norm reduction in late layers.
 
 4. Design Principles: Based on our mechanistic findings, we propose specific
-   recommendations for robust hybrid system design, including limitations of
-   CNN-ViT ensembles and potential benefits of CNN feature extraction with
-   ViT classification.
+   recommendations for robust hybrid system design.
 
-NOVELTY AND IMPACT
+FIT TO IEEE ACCESS
 
-Unlike prior work that focuses on benchmarking robustness numbers, our
-analysis provides actionable understanding of architectural vulnerability
-differences. We believe this perspective will guide the research community
-toward more principled defense development.
-
-METHODOLOGY RIGOR
-
-- Evaluation using AutoAttack, the gold standard for robustness assessment
-- Statistical validation across 3 random seeds showing <0.15% variance
-- Comprehensive analysis pipeline covering transfer attacks, gradient
-  characteristics, and feature degradation
-
-ETHICAL STATEMENT
-
-This work studies adversarial vulnerabilities to improve deep learning
-security. All experiments use publicly available datasets (CIFAR-10) and
-standard evaluation protocols. The findings are intended to help defenders
-build more robust systems.
+We believe this work is well suited for IEEE Access because of the journal's
+interdisciplinary readership spanning computer vision, machine learning
+security, and deep learning systems. Our analysis bridges adversarial
+robustness and architectural understanding — topics relevant to the diverse
+IEEE community. The open-access nature of IEEE Access will maximize the
+impact of these findings for researchers and practitioners working on
+secure AI deployment.
 
 DECLARATIONS
 
-- The manuscript has not been published elsewhere
-- The manuscript is not under consideration by another journal
-- All authors have approved the manuscript and agree with submission
-- Code and trained models will be made publicly available upon acceptance
+- This manuscript is original work and has not been published elsewhere.
+- The manuscript is not under consideration by any other journal.
+- All authors have reviewed and approved the final manuscript.
+- All experiments use the publicly available CIFAR-10 dataset and
+  standard evaluation protocols.
+- The authors declare no conflict of interest.
+- Code and trained models will be made publicly available upon acceptance.
 
-Thank you for considering our work. We look forward to your response.
+Thank you for considering our manuscript. We look forward to your
+editorial decision.
 
 Sincerely,
-[Author Names]
-[Affiliations]
-[Contact Email]
 
----
-Suggested Reviewers:
-1. [Name], [Institution] - Expert in adversarial robustness
-2. [Name], [Institution] - Expert in Vision Transformers
-3. [Name], [Institution] - Expert in transfer attacks
+Cagri Sahin (Corresponding Author)
+Department of Software Engineering
+Firat University, Elazig, Turkey
+Email: csahin@firat.edu.tr

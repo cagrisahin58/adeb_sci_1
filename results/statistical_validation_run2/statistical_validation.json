@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-02-16T21:51:11.147373",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "n_samples": 1000,
+  "eps": 0.03137254901960784,
+  "model_variant": "run2",
+  "results": [
+    {
+      "model": "ResNet18_AT",
+      "clean_mean": 80.1,
+      "clean_std": 0.0,
+      "robust_mean": 40.03333333333333,
+      "robust_std": 0.1247219128924665,
+      "n_runs": 3,
+      "n_samples": 1000
+    },
+    {
+      "model": "ViT_Tiny_AT",
+      "clean_mean": 74.0,
+      "clean_std": 0.0,
+      "robust_mean": 37.43333333333334,
+      "robust_std": 0.20548046676563278,
+      "n_runs": 3,
+      "n_samples": 1000
+    }
+  ]
+}

@@ -33,21 +33,23 @@ CIFAR-10 uzerinde derin ogrenme modellerinin adversarial saldırılara karşı d
 
 ---
 
-## Mevcut Durum (2026-01-11 - GUNCELLENDI)
+## Mevcut Durum (2026-02-17 - GUNCELLENDI)
 
 ### Strateji: Analiz Odaklı Yaklasım
 **Robustness yarışı degil, davranış analizi**
 
 > "Neden farklı davranıyorlar?" sorusuna cevap arıyoruz.
 
-### Tamamlanan Analizler
-| Analiz | Sonuc | Durum |
+### Hedef Dergi: IEEE Access (Q2, IF ~3.4)
+
+### Tamamlanan Analizler (RUN2 - TUTARLI)
+| Analiz | Sonuc (run2) | Durum |
 |--------|-------|-------|
-| Transfer Attack | CNN→ViT: 47.5%, ViT→CNN: 33.5% | Tamamlandı |
-| Gradient Karakteristikleri | ViT 2.2x aligned, CNN 4.5x sparse | Tamamlandı |
-| Attention Degradation | -7.86% norm, cosine 0.997→0.917 | Tamamlandı |
-| AutoAttack Eval (run1) | ResNet: 34.6%, ViT: 28.0% | Tamamlandı |
-| Istatistiksel Dogrulama | 3 seed, <0.15% varyans | Tamamlandı |
+| Transfer Attack | CNN→ViT: 41.2%, ViT→CNN: 36.1% (5.1pp asimetri) | Tamamlandı |
+| Gradient Karakteristikleri | CNN 1.7x sparse, alignment ~esit | Tamamlandı |
+| Feature Degradation | cosine 0.995→0.958, norm max -1.43% | Tamamlandı |
+| AutoAttack Eval (run2) | ResNet: 36.0%, ViT: 32.4% | Tamamlandı |
+| Istatistiksel Dogrulama (run2) | 3 eval seed, <0.25% varyans | Tamamlandı |
 
 ### Model Performansları (GUNCELLENDI)
 
@@ -93,8 +95,17 @@ models/
 ### Bekleyen Isler
 - [x] Run2 modelleri icin AutoAttack evaluation (ResNet: 36.0%, ViT: 32.4%)
 - [x] Figure kalite kontrolu (final/ klasorune kopyalandı)
-- [ ] Final proofreading
-- [ ] LaTeX derleme kontrolu (kullanıcı tarafından yapılacak)
+- [x] Run2 ile tum analizler tekrarlandi (transfer, gradient 500 ornek, feature degradation 100 ornek, stat validation)
+- [x] Hakemlik (hakem-simulasyonu + sci-peer-reviewer) tamamlandi
+- [x] Referans duzeltmeleri (5 hata giderildi, Bai et al. eklendi)
+- [x] Makale revizyonlari (F2, F3, MAJ1-7, 14 minor)
+- [x] IEEE Access format uyumu
+- [x] Gonderim paketi (cover letter, reviewers, checklist)
+- [x] Tablolar run2 sayilariyla guncellendi
+- [x] Anlatı run2 verileriyle tutarli hale getirildi
+- [x] LaTeX derleme kontrolu (0 undefined ref, 0 citation error)
+- [ ] Intihal kontrolu (iThenticate)
+- [ ] IEEE Author Portal'a yukleme
 
 ---
 
@@ -199,7 +210,7 @@ python experiments/run_sci_analysis.py --analysis attention
 | Discussion | Tamamlandı, Q1 revize |
 | Conclusion | Tamamlandı, Q1 revize |
 
-**Hedef Dergi:** Pattern Recognition (IF: ~8.0, Q1)
+**Hedef Dergi:** IEEE Access (IF: ~3.4, Q2, Open Access)
 
 ---
 

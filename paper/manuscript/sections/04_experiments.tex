@@ -12,7 +12,7 @@
 
 Table~\ref{tab:main_results} presents the main robustness comparison across all evaluated models. We report clean accuracy and robust accuracy under PGD-10 and AutoAttack with $\eps = 8/255$.
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
 \caption{Main Robustness Results on CIFAR-10 ($\eps = 8/255$)}
 \label{tab:main_results}
@@ -35,7 +35,7 @@ ViT-Tiny & AT & 5.7M & 73.60 & 36.87 & \textbf{32.40} \\
 
 The results reveal a consistent robustness advantage for CNNs under standard adversarial training. ResNet-18 AT achieves 36.0\% robust accuracy under AutoAttack, compared to 32.4\% for ViT-Tiny AT---a 3.6\% absolute gap despite the CNN having approximately twice as many parameters. The clean accuracy gap is 8.2 percentage points (81.8\% vs 73.6\%). Notably, AutoAttack robustness is consistently lower than PGD-10 robustness for both architectures (4.97\% drop for ResNet-18, 4.47\% drop for ViT-Tiny), confirming the importance of using this stronger benchmark for reliable evaluation. The WideResNet-28-10 baseline from RobustBench, achieving 62.76\% robust accuracy, demonstrates that model capacity plays a crucial role in adversarial robustness beyond architectural choice.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig1_robustness_comparison.pdf}
 \caption{Robustness comparison across architectures under AutoAttack ($\eps=8/255$). CNNs consistently outperform ViTs under standard adversarial training, with WideResNet-28-10 achieving the highest robust accuracy due to its larger model capacity.}
@@ -44,7 +44,7 @@ The results reveal a consistent robustness advantage for CNNs under standard adv
 
 Figure~\ref{fig:robustness_comparison} visualizes this robustness gap across architectures. To further understand the effect of perturbation magnitude, Figure~\ref{fig:epsilon_sweep} shows robust accuracy across different epsilon values.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig_adversarial_examples.pdf}
 \caption{Adversarial example visualization. Each row shows: original image with model prediction, perturbation magnified $10\times$, and adversarial image with new prediction. Row 1: Attack on ResNet-18. Row 2: Attack on ViT-Tiny. Row 3: Transfer attack (generated on ResNet, evaluated on ViT). The perturbations are imperceptible yet cause confident misclassifications.}
@@ -53,7 +53,7 @@ Figure~\ref{fig:robustness_comparison} visualizes this robustness gap across arc
 
 Figure~\ref{fig:adversarial_examples} provides visual examples of adversarial perturbations and their effects on model predictions.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig2_epsilon_sweep.pdf}
 \caption{Robust accuracy vs. perturbation budget ($\eps$). Both architectures exhibit similar degradation patterns as epsilon increases.}
@@ -68,32 +68,26 @@ Figure~\ref{fig:adversarial_examples} provides visual examples of adversarial pe
 
 We analyze the transferability of adversarial examples between architectures using PGD-10 attacks. Table~\ref{tab:transfer} shows the transfer attack success rate matrix, where adversarial examples are generated on the source model (rows) and evaluated on the target model (columns).
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
-\caption{Transfer Attack Matrix with 95\% Bootstrap CI. Source model (row) generates adversarial examples, evaluated on target model (column). White-box attack success rate shown on diagonal.}
+\caption{Transfer Attack Matrix. Source model (row) generates adversarial examples, evaluated on target model (column). White-box attack success rate shown on diagonal. Results computed over 1,000 test samples.}
 \label{tab:transfer}
-\begin{tabular}{l|cc}
+\begin{tabular}{lcc}
 \toprule
 \textbf{Source} $\rightarrow$ \textbf{Target} & \textbf{ResNet-18 AT} & \textbf{ViT-Tiny AT} \\
 \midrule
-ResNet-18 AT & 59.4\% $\pm$ 1.0\% & \textbf{47.5\% $\pm$ 1.0\%} \\
-ViT-Tiny AT & \textbf{33.5\% $\pm$ 0.9\%} & 66.2\% $\pm$ 0.9\% \\
+ResNet-18 AT & 59.9\% & \textbf{41.2\%} \\
+ViT-Tiny AT & \textbf{36.1\%} & 62.7\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-To quantify the transfer efficiency, we compute the \textit{transfer rate}---the percentage of successful white-box attacks that also succeed on the target model:
+As defined in Section~\ref{subsec:metrics}, the transfer attack success rate measures the misclassification rate of the target model on adversarial examples crafted against the source model (computed over all test samples). The off-diagonal entries in Table~\ref{tab:transfer} reveal a consistent asymmetry: CNN-to-ViT transfer achieves 41.2\% misclassification, while ViT-to-CNN transfer reaches 36.1\%---a 5.1 percentage point gap. Although more modest than the white-box accuracy differences might suggest, this gap is directionally consistent and reproducible. To contextualize these raw rates relative to each model's white-box vulnerability, we compute transfer efficiency as the ratio of cross-model success to white-box success: CNN-to-ViT achieves 68.8\% efficiency (41.2\%/59.9\%), while ViT-to-CNN achieves 57.6\% (36.1\%/62.7\%). This 11.2 percentage point gap in transfer efficiency indicates that CNN adversarial perturbations exploit more generalizable features that affect both architectures, while ViT-specific perturbations target representation properties that CNNs are less sensitive to. The asymmetry, though moderate, has practical implications for ensemble defense design---CNN-generated attacks remain the harder case for mixed-architecture ensembles to defend against.
 
-\begin{equation}
-\text{Transfer Rate} = \frac{\text{Cross-model Attack Success}}{\text{White-box Attack Success}} \times 100\%
-\end{equation}
-
-Computing these rates from Table~\ref{tab:transfer} reveals striking asymmetry: CNN-to-ViT transfer achieves 80.0\% efficiency (47.5\%/59.4\%), while ViT-to-CNN transfer achieves only 50.6\% (33.5\%/66.2\%). This 29.4\% difference in transfer rates indicates that CNN adversarial perturbations exploit more generalizable features that affect both architectures, while ViT-specific perturbations target representation properties that CNNs do not share. This asymmetry has significant implications for ensemble defense design---combining CNN and ViT may provide limited protection against CNN-generated attacks.
-
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig3_transfer_heatmap.pdf}
-\caption{Transfer attack success rate heatmap. CNN-generated adversarial examples transfer effectively to ViT (47.5\%), while ViT-generated examples transfer poorly to CNN (33.5\%).}
+\caption{Transfer attack success rate heatmap. CNN-generated adversarial examples transfer to ViT at 41.2\%, while ViT-generated examples transfer to CNN at 36.1\%, revealing a moderate but consistent asymmetry.}
 \label{fig:transfer_heatmap}
 \end{figure}
 
@@ -107,7 +101,7 @@ Figure~\ref{fig:transfer_heatmap} visualizes this transfer asymmetry.
 
 To explain the transfer asymmetry, we analyze the gradient properties of both architectures. Table~\ref{tab:gradient} summarizes the key gradient statistics.
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
 \caption{Gradient Characteristics Comparison}
 \label{tab:gradient}
@@ -115,17 +109,17 @@ To explain the transfer asymmetry, we analyze the gradient properties of both ar
 \toprule
 \textbf{Metric} & \textbf{ResNet-18 AT} & \textbf{ViT-Tiny AT} \\
 \midrule
-$L_2$ Norm (mean) & 0.0169 & 0.0172 \\
-$L_\infty$ Norm (mean) & 0.00220 & 0.00338 \\
-Sparsity & \textbf{6.90\%} & 1.52\% \\
-Gradient Alignment & 0.044 & \textbf{0.097} \\
+$L_2$ Norm (mean) & 0.0189 & 0.0211 \\
+$L_\infty$ Norm (mean) & 0.00275 & 0.00418 \\
+Sparsity & \textbf{7.24\%} & 4.15\% \\
+Gradient Alignment & 0.053 & \textbf{0.055} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The gradient analysis reveals fundamental architectural differences that explain the transfer asymmetry. CNN gradients exhibit 4.5$\times$ higher sparsity (6.9\% vs 1.5\% near-zero components), indicating localized sensitivity regions concentrated around edges and textures. In contrast, ViT gradients show 2.2$\times$ higher cross-sample alignment (0.097 vs 0.044 average pairwise cosine similarity), suggesting vulnerability to universal perturbations that exploit shared gradient directions. Additionally, ViT gradients have 54\% higher $L_\infty$ norm, indicating larger gradient ``hotspots'' that attackers can exploit. These properties directly explain the transfer asymmetry: sparse, localized CNN gradients produce perturbations that target generic image features used by both architectures, while aligned, distributed ViT gradients produce perturbations specific to global attention patterns that CNNs do not rely on.
+The gradient analysis reveals architectural differences that partially explain the observed transfer asymmetry. CNN gradients exhibit 1.7$\times$ higher sparsity (7.24\% vs 4.15\% near-zero components), indicating more localized sensitivity concentrated around edges and textures. Notably, cross-sample gradient alignment is nearly identical between architectures (0.053 vs 0.055 average pairwise cosine similarity), suggesting that alignment alone does not account for the transfer asymmetry. ViT gradients have 52\% higher $L_\infty$ norm (0.00418 vs 0.00275), indicating larger gradient peaks that attackers can exploit. The sparsity difference, rather than alignment, emerges as the more informative gradient characteristic: sparse CNN gradients concentrate perturbation energy on localized, generic image features---edges, textures, and contours---that both architectures rely on for recognition. ViT gradients, being more uniformly distributed, produce perturbations that spread across the input and are less effective at targeting the localized features that CNN processing depends on.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \begin{subfigure}[b]{0.48\columnwidth}
     \includegraphics[width=\textwidth]{../figures/final/fig4a_gradient_visualization.pdf}
@@ -144,7 +138,7 @@ The gradient analysis reveals fundamental architectural differences that explain
 
 Figure~\ref{fig:gradient_analysis} provides visual evidence for these gradient differences.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig4_gradient_comparison.pdf}
 \caption{Gradient heatmap comparison between CNN and ViT. CNN gradients (top) exhibit sparse, localized patterns concentrated around object edges, while ViT gradients (bottom) are distributed across the entire image with higher alignment across samples.}
@@ -161,7 +155,7 @@ Figure~\ref{fig:gradient_heatmap} shows a direct comparison of gradient heatmaps
 
 We analyze how adversarial perturbations affect ViT feature representations across layers. Table~\ref{tab:feature_degradation} shows the layer-wise analysis.
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
 \caption{ViT-Tiny Feature Degradation Under PGD-10 Attack}
 \label{tab:feature_degradation}
@@ -170,28 +164,28 @@ We analyze how adversarial perturbations affect ViT feature representations acro
 \textbf{Layer} & \textbf{$L_2$ Distance} & \textbf{Cosine Sim.} & \textbf{Norm Change} \\
 \midrule
 \multicolumn{4}{l}{\textit{Early Layers}} \\
-Block 0 & 3.53 & 0.997 & $-$0.05\% \\
-Block 1 & 1.56 & 0.991 & $+$1.78\% \\
-Block 2 & 1.08 & 0.994 & $-$0.19\% \\
+Block 0 & 2.57 & 0.995 & $-$0.12\% \\
+Block 1 & 1.73 & 0.994 & $-$0.16\% \\
+Block 2 & 1.68 & 0.981 & $-$1.18\% \\
 \midrule
 \multicolumn{4}{l}{\textit{Late Layers}} \\
-Block 9 & 1.46 & 0.961 & $-$3.30\% \\
-Block 10 & 1.61 & 0.917 & $-$4.93\% \\
-Block 11 & 2.54 & \textbf{0.955} & $\mathbf{-7.86\%}$ \\
+Block 9 & 1.95 & 0.963 & $-$0.57\% \\
+Block 10 & 1.95 & \textbf{0.958} & $-$0.86\% \\
+Block 11 & 2.21 & 0.964 & $\mathbf{-1.18\%}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The layer-wise analysis reveals a ``semantic drift'' mechanism underlying ViT vulnerability. Cosine similarity between clean and adversarial features decreases progressively from 0.997 in early layers to 0.917 in late layers, indicating that adversarial perturbations cause increasing semantic deviation as they propagate through the network. Concurrently, feature norm decreases progressively, reaching $-$7.86\% in the final layer---suggesting that adversarial perturbations cause ViT to suppress discriminative features rather than simply adding noise. The early and late layers exhibit qualitatively different behaviors: early layers show high $L_2$ distance but preserved semantic direction (magnitude changes without semantic impact), while late layers show smaller absolute changes that nonetheless cause larger semantic deviation. This pattern indicates that small input perturbations accumulate into progressively larger directional changes in feature space, ultimately causing misclassification despite preserving much of the feature magnitude.
+The layer-wise analysis reveals a progressive feature degradation pattern in ViT layers. Cosine similarity between clean and adversarial features decreases from 0.995 in early layers to 0.958 at Block~10, indicating that adversarial perturbations cause increasing semantic deviation as they propagate through the network. Feature norm changes remain modest throughout, with the largest reduction of $-$1.43\% occurring at Block~5 and $-$1.18\% at Block~11. The degradation is subtler than might be expected given the attack's effectiveness, suggesting that even small directional shifts accumulate into meaningful semantic corruption across twelve transformer blocks. Cosine similarity partially recovers in the final block (Block~11: 0.964), which may reflect the classifier head's regularizing effect on the last transformer block's representations. The early and late layers exhibit qualitatively different behaviors: early layers show high $L_2$ distance but preserved semantic direction (cosine similarity above 0.99), while late layers show smaller absolute changes that nonetheless cause larger directional deviation. This pattern indicates that adversarial perturbations produce a progressive ``semantic drift'' through the ViT feature hierarchy, where small per-layer directional changes compound into sufficient deviation to cause misclassification. A limitation of this analysis is the absence of a comparable layer-wise study for CNN, which would help establish whether this degradation pattern is ViT-specific or a general property of deep networks under adversarial attack.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig5_attention_comparison.pdf}
 \caption{Attention map comparison across ViT layers under adversarial attack. Each row shows a different layer (1, 6, 12). Columns show clean attention, adversarial attention, and their difference. Early layers maintain similar attention patterns, while late layers show significant attention degradation.}
 \label{fig:attention_layers}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \begin{subfigure}[b]{0.48\columnwidth}
     \includegraphics[width=\textwidth]{../figures/final/fig5a_attention_comparison.pdf}
@@ -210,7 +204,7 @@ The layer-wise analysis reveals a ``semantic drift'' mechanism underlying ViT vu
 
 Figure~\ref{fig:feature_degradation} visualizes this progressive degradation pattern.
 
-\begin{figure}[htbp]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig_tsne_features.pdf}
 \caption{t-SNE visualization of feature space perturbation. Clean samples (circles) vs adversarial samples (triangles) for ResNet-18 (left) and ViT-Tiny (right). Adversarial perturbations cause feature displacement that differs between architectures: CNN features show more class-coherent displacement, while ViT features exhibit greater inter-class confusion.}
@@ -225,22 +219,24 @@ Figure~\ref{fig:tsne_features} provides a t-SNE visualization of how adversarial
 \subsection{Statistical Validation}
 \label{subsec:statistics_results}
 
-To ensure reproducibility, we evaluate each model across 3 different random seeds (42, 123, 456) on 1,000 test samples. Table~\ref{tab:statistical} shows the results.
+To quantify evaluation stochasticity, we evaluate each trained model across 3 different random seeds (42, 123, 456) for attack initialization on 1,000 test samples. Table~\ref{tab:statistical} shows the results.
 
-\begin{table}[htbp]
+\begin{table}[!t]
 \centering
-\caption{Statistical Validation (Mean $\pm$ Std over 3 seeds)}
+\caption{Statistical Validation (Mean $\pm$ Std over 3 evaluation seeds)}
 \label{tab:statistical}
 \begin{tabular}{lcc}
 \toprule
 \textbf{Model} & \textbf{Clean Acc (\%)} & \textbf{PGD-10 Acc (\%)} \\
 \midrule
-ResNet-18 AT & 80.40 $\pm$ 0.00 & 40.73 $\pm$ 0.12 \\
-ViT-Tiny AT & 64.20 $\pm$ 0.00 & 33.60 $\pm$ 0.08 \\
+ResNet-18 AT & 80.10 $\pm$ 0.00 & 40.03 $\pm$ 0.12 \\
+ViT-Tiny AT & 74.00 $\pm$ 0.00 & 37.43 $\pm$ 0.21 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The extremely low variance ($<$0.15\%) confirms that our results are stable and reproducible. The clean accuracy shows zero variance because the model weights are fixed; only the random shuffling of test samples changes across seeds. The robust accuracy shows minimal variance ($\pm$0.12\% for CNN, $\pm$0.08\% for ViT), indicating stable attack behavior.
+The low variance confirms that evaluation stochasticity is negligible. Clean accuracy shows zero variance because the same trained model is evaluated deterministically; variance arises only from random elements in attack initialization and data ordering. Robust accuracy shows minimal variance ($\pm$0.12\% for CNN, $\pm$0.21\% for ViT), indicating stable attack behavior across random seeds.
+
+Beyond evaluation seeds, we additionally conducted two independent training runs (run1 and run2) for each architecture. ResNet-18 AT achieved 40.25\% and 40.97\% PGD-10 accuracy across runs, while ViT-Tiny AT achieved 32.77\% and 36.87\%, respectively. The consistent ranking and comparable magnitudes across runs support the reliability of the observed robustness patterns, though we acknowledge that the training-level variance---particularly for ViT---is larger than the evaluation-level variance reported above.
 
 \textbf{Computational Details:} All experiments were conducted on an NVIDIA RTX 5060 Ti (16GB VRAM) using PyTorch 2.6.0 with CUDA 12.8. AutoAttack evaluation used the standard configuration (APGD-CE, APGD-T, FAB-T, Square) on 500 samples, requiring approximately 13 minutes for ResNet-18 and 22 minutes for ViT-Tiny.

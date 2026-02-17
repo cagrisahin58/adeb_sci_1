@@ -3,6 +3,7 @@
 % ============================================================================
 % PACKAGES
 % ============================================================================
+\usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
@@ -10,18 +11,13 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{multirow}
-\usepackage{hyperref}
-\usepackage{cleveref}
 \usepackage{subcaption}
 \usepackage{array}
 \usepackage{balance}
-
-% For placeholder text during writing
-\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{cleveref}
 
 % Custom commands
-\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
-\newcommand{\placeholder}[1]{\textcolor{blue}{[#1]}}
 \newcommand{\eps}{\epsilon}
 \newcommand{\Linf}{L_\infty}
 
@@ -49,7 +45,7 @@
 % ABSTRACT
 % ----------------------------------------------------------------------------
 \begin{abstract}
-Adversarial robustness of deep neural networks remains a critical concern for safety-critical applications. While Vision Transformers (ViT) have achieved remarkable success on clean data, their vulnerability to adversarial attacks compared to Convolutional Neural Networks (CNNs) requires deeper investigation. This paper presents a comprehensive comparative analysis examining \textit{why} these architectures exhibit different adversarial behaviors rather than merely comparing robustness scores. Using CIFAR-10 with adversarially trained ResNet-18 and ViT-Tiny models evaluated under AutoAttack ($\epsilon=8/255$), we demonstrate four key findings: (1) CNNs achieve 36.0\% robust accuracy compared to 32.4\% for ViTs, a gap that persists across attack types; (2) Transfer attacks exhibit significant asymmetry---CNN-generated adversarial examples transfer to ViT at 47.5\% success rate while ViT-to-CNN transfers succeed at only 33.5\%; (3) Gradient analysis reveals ViT gradients are 2.2$\times$ more aligned across samples and CNN gradients are 4.5$\times$ more sparse, explaining the transfer asymmetry; (4) Feature degradation in ViT increases progressively through layers, with late layers showing 7.86\% norm reduction and cosine similarity dropping from 0.997 to 0.917. These findings provide mechanistic insights into architectural vulnerability differences and suggest design principles for robust hybrid systems.
+Understanding why convolutional neural networks (CNNs) and Vision Transformers (ViTs) exhibit fundamentally different behaviors under adversarial perturbations remains an open question. While ViTs have achieved remarkable success on clean data, their vulnerability to adversarial attacks compared to CNNs requires deeper investigation. This paper presents a comparative analysis examining \textit{why} these architectures exhibit different adversarial behaviors rather than merely comparing robustness scores. Using CIFAR-10 with adversarially trained ResNet-18 and ViT-Tiny models evaluated under AutoAttack ($\epsilon=8/255$), we demonstrate four key findings: (1) CNNs achieve 36.0\% robust accuracy compared to 32.4\% for ViTs, a gap that persists across attack types; (2) Transfer attacks exhibit a consistent asymmetry---CNN-generated adversarial examples cause 41.2\% misclassification on ViT while ViT-to-CNN transfers reach 36.1\%; (3) Gradient analysis reveals CNN gradients are 1.7$\times$ more sparse while cross-sample alignment is comparable across architectures, suggesting that gradient sparsity rather than alignment drives the transfer asymmetry; (4) Feature degradation in ViT increases progressively through transformer layers, with cosine similarity dropping from 0.995 to 0.958 in late layers. These findings provide mechanistic insights into architectural vulnerability differences and suggest design principles for robust hybrid systems.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -67,10 +63,16 @@ Adversarial robustness, Vision Transformer, Convolutional Neural Networks, Trans
 \input{sections/06_conclusion}
 
 % ----------------------------------------------------------------------------
+% DATA AND CODE AVAILABILITY
+% ----------------------------------------------------------------------------
+\section*{Data and Code Availability}
+The experiments in this study use the CIFAR-10 dataset~\cite{krizhevsky2009learning}, which is publicly available at \url{https://www.cs.toronto.edu/~kriz/cifar.html}. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench}. The source code for the analysis pipeline and trained model checkpoints will be made publicly available upon acceptance.
+
+% ----------------------------------------------------------------------------
 % ACKNOWLEDGMENT
 % ----------------------------------------------------------------------------
 \section*{Acknowledgment}
-The authors thank the anonymous reviewers for their constructive feedback.
+The authors acknowledge the computational resources provided by the Department of Software Engineering, F{\i}rat University.
 
 % ----------------------------------------------------------------------------
 % REFERENCES
@@ -79,10 +81,14 @@ The authors thank the anonymous reviewers for their constructive feedback.
 \bibliography{references}
 
 % ----------------------------------------------------------------------------
-% BIOGRAPHY (Optional for IEEE journals)
+% BIOGRAPHY (Required for IEEE Access)
 % ----------------------------------------------------------------------------
-% \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author1.png}}]{First Author}
-% Biography text here.
-% \end{IEEEbiography}
+\begin{IEEEbiography}[]{\c{C}a\u{g}r{\i} \c{S}ahin}
+received the B.Sc.\ degree in software engineering from F{\i}rat University, Elaz{\i}\u{g}, Turkey. He is currently pursuing the M.Sc.\ degree at the Department of Software Engineering, F{\i}rat University. His research interests include adversarial machine learning, deep learning security, and computer vision, with a focus on the robustness of neural network architectures against adversarial perturbations.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[]{\"Ozal Y{\i}ld{\i}r{\i}m}
+is with the Department of Software Engineering, F{\i}rat University, Elaz{\i}\u{g}, Turkey. His research interests include deep learning, computer vision, and biomedical signal processing.
+\end{IEEEbiography}
 
 \end{document}

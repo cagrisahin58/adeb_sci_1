@@ -22,7 +22,7 @@ Projected Gradient Descent (PGD)~\cite{madry2018towards} extends FGSM through it
 \end{equation}
 where $\Pi_{B_\eps(x)}$ projects onto the $\eps$-ball around the original input and $\alpha$ is the step size.
 
-The Carlini \& Wagner (C\&W) attack~\cite{carlini2017towards} formulates adversarial example generation as an optimization problem, often achieving higher success rates but at increased computational cost. More recently, AutoAttack~\cite{croce2020reliable} combines multiple attack strategies (APGD-CE, APGD-DLR, FAB, Square Attack) to provide a reliable robustness evaluation, becoming the de facto standard for benchmarking.
+The Carlini \& Wagner (C\&W) attack~\cite{carlini2017towards} formulates adversarial example generation as an optimization problem, often achieving higher success rates but at increased computational cost. More recently, AutoAttack~\cite{croce2020reliable} combines multiple attack strategies (APGD-CE, APGD-T, FAB-T, Square Attack) to provide a reliable robustness evaluation, becoming the de facto standard for benchmarking.
 
 % ----------------------------------------------------------------------------
 % 2.2 Defense Mechanisms
@@ -41,7 +41,7 @@ TRADES~\cite{zhang2019theoretically} provides a theoretically-grounded trade-off
 \end{equation}
 where $\beta$ controls the trade-off parameter.
 
-MART~\cite{wang2020improving} addresses the issue of misclassified examples by emphasizing them during training. Other approaches include input transformation~\cite{guo2018countering}, certified defenses via randomized smoothing~\cite{cohen2019certified}, and ensemble methods~\cite{tramer2018ensemble}. Recent advances in certified robustness include Adaptive Randomized Smoothing~\cite{ars2024neurips}, which improves certification radii through multi-step defenses.
+MART~\cite{wang2020improving} addresses the issue of misclassified examples by emphasizing them during training. Other approaches include input transformation~\cite{guo2018countering}, certified defenses via randomized smoothing~\cite{cohen2019certified}, and ensemble methods~\cite{tramer2018ensemble}. Recent advances in certified robustness include Adaptive Randomized Smoothing~\cite{lyu2024adaptive}, which improves certification radii through multi-step defenses.
 
 % ----------------------------------------------------------------------------
 % 2.3 CNN Robustness Studies
@@ -59,15 +59,15 @@ Studies have shown that model capacity correlates with achievable robustness~\ci
 \subsection{Vision Transformer Robustness}
 \label{subsec:vit_robustness}
 
-Vision Transformers~\cite{dosovitskiy2021image} process images as sequences of patches using self-attention. Initial studies suggested that ViTs exhibit some inherent robustness properties due to their global receptive field~\cite{bhojanapalli2021understanding}. However, subsequent work revealed that ViTs remain vulnerable to adversarial attacks, particularly gradient-based methods~\cite{mahmood2021robustness}.
+Vision Transformers~\cite{dosovitskiy2021image}, building on the self-attention mechanism introduced by Vaswani et al.~\cite{vaswani2017attention}, process images as sequences of patches. Initial studies suggested that ViTs exhibit some inherent robustness properties due to their global receptive field~\cite{bhojanapalli2021understanding}. Bai et al.~\cite{bai2021transformers} systematically investigated whether transformers are more robust than CNNs, finding that larger ViT models can exhibit robustness advantages, particularly under distribution shift. Our work extends this line of inquiry by analyzing adversarially trained models of comparable scale and providing mechanistic explanations through gradient characteristics and feature degradation analysis. Subsequent work revealed that ViTs remain vulnerable to adversarial attacks, particularly gradient-based methods~\cite{mahmood2021robustness}.
 
-Shao et al.~\cite{shao2022adversarial} demonstrated that adversarial training can improve ViT robustness, though challenges remain due to training instability. The relationship between patch size, attention mechanisms, and adversarial vulnerability has been explored~\cite{paul2022vision}. More recently, Jain et al.~\cite{jain2024towards} proposed Adaptive Attention Scaling Adversarial Training (AAS-AT) to address ViT-specific training challenges, achieving state-of-the-art robustness on CIFAR-10 and ImageNet-100. Wei et al.~\cite{wei2024enhancing} further investigated ViT vulnerabilities through gradient normalization and high-frequency adaptation. Despite these advances, comprehensive mechanistic comparisons between CNN and ViT robustness under unified evaluation frameworks remain limited.
+Shao et al.~\cite{shao2022adversarial} demonstrated that adversarial training can improve ViT robustness, though challenges remain due to training instability. The relationship between patch size, attention mechanisms, and adversarial vulnerability has been explored~\cite{paul2022vision}. More recently, Jain et al.~\cite{jain2024towards} proposed Adaptive Attention Scaling Adversarial Training (AAS-AT) to address ViT-specific training challenges, achieving state-of-the-art robustness on CIFAR-10 and ImageNet-100. Wei et al.~\cite{zhu2024enhancing} further investigated ViT vulnerabilities through gradient normalization and high-frequency adaptation. Despite these advances, comprehensive mechanistic comparisons between CNN and ViT robustness under unified evaluation frameworks remain limited.
 
 % ----------------------------------------------------------------------------
 % 2.5 Transfer Attacks
 % ----------------------------------------------------------------------------
 \subsection{Transfer Attacks}
-\label{subsec:transfer}
+\label{subsec:transfer_related}
 
 Adversarial examples often transfer between models, enabling black-box attacks~\cite{papernot2016transferability}. The transferability depends on factors including model architecture, training data, and attack methods~\cite{demontis2019adversarial}.
 
