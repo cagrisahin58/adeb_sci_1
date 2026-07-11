@@ -67,14 +67,17 @@ class AdversarialTraining(TrainingDefense):
             images = torch.clamp(images, 0, 1)
 
         for _ in range(self.steps):
-            images.requires_grad = True
+            images = images.detach().requires_grad_(True)
 
             outputs = self.model(images)
             loss = self.loss_fn(outputs, labels)
 
-            loss.backward()
+            # torch.autograd.grad: input gradyanini izole hesaplar; loss.backward()
+            # kullanmak saldiri gradyanlarini model parametrelerine biriktirir ve
+            # optimizer.step() bunlari egitim guncellemesine karistirir (M10)
+            grad = torch.autograd.grad(loss, images)[0]
 
-            adv_images = images + self.alpha * images.grad.sign()
+            adv_images = images + self.alpha * grad.sign()
             delta = torch.clamp(adv_images - original_images, -self.eps, self.eps)
             images = torch.clamp(original_images + delta, 0, 1).detach()
 
@@ -97,18 +100,16 @@ class AdversarialTraining(TrainingDefense):
         Returns:
             Combined loss
         """
-        # Save current training mode and set to eval for attack generation
-        was_training = model.training
-
-        # Generate adversarial examples
-        model.eval()
+        # Saldiri, egitim moduyla TUTARLI uretilir (Rice et al. 2020 referans
+        # AT kodundaki gibi model.eval()'e GECILMEZ). Onceki surum saldiriyi
+        # eval-mode BN istatistikleriyle uretip egitimi train-mode batch
+        # istatistikleriyle yapiyordu; M10 duzeltmesi sonrasi bu mod
+        # uyumsuzlugu pretrained baslangicta eval-mode dogrulugunun kademeli
+        # cokusune yol aciyordu (bkz. scripts/diagnose_at_collapse2.py).
         if self.attack is not None:
             adv_images = self.attack(images, labels)
         else:
             adv_images = self._pgd_attack(images, labels)
-
-        # Restore training mode
-        model.train(was_training)
 
         # Compute losses
         outputs_clean = model(images)

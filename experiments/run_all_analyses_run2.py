@@ -50,9 +50,14 @@ def clear_gpu():
 
 
 def set_seed(seed):
+    """Full seeding (M15): python-random + cudnn determinism dahil."""
+    import random
+    random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
     np.random.seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 
 def load_model(model_type, model_path, device):
@@ -66,12 +71,34 @@ def load_model(model_type, model_path, device):
 # =============================================================================
 # 1. TRANSFER ANALYSIS
 # =============================================================================
-def run_transfer_analysis(device):
+def _bootstrap_ci(values: np.ndarray, n_boot: int = 1000, seed: int = 42):
+    """Percentile bootstrap 95% CI for the mean of a boolean/float array."""
+    rng = np.random.default_rng(seed)
+    n = len(values)
+    if n == 0:
+        return (float('nan'), float('nan'))
+    boot_means = np.array([
+        values[rng.integers(0, n, n)].mean() for _ in range(n_boot)
+    ])
+    return (float(np.percentile(boot_means, 2.5)), float(np.percentile(boot_means, 97.5)))
+
+
+def run_transfer_analysis(device, n_samples=10000, output_dir="results/transfer_analysis_run3", seed=42):
+    """Transfer analysis with the conditioned fooling-rate metric (M3).
+
+    Onceki surum ham hedef-yanlis-siniflandirma oranini rapor ediyordu; bu,
+    hedefin temiz hata oranini icerdiginden (ViT %26 vs CNN %20 temiz hata)
+    mimariler arasi karsilastirmayi bozuyordu. Yeni birincil metrik:
+    hedefin temiz-dogru siniflandirdigi ornekler icinde adversarial ornekle
+    yanlisa donen oran (conditioned fooling rate). Ham oran da seffaflik
+    icin raporlanir. Ornek-bazli bool dizileri .npz olarak kaydedilir
+    (McNemar / bootstrap esli testleri icin) ve bootstrap %95 CI hesaplanir.
+    """
     print("\n" + "=" * 70)
-    print("TRANSFER ANALYSIS (RUN2)")
+    print(f"TRANSFER ANALYSIS (conditioned metric, n={n_samples})")
     print("=" * 70)
 
-    output_dir = Path("results/transfer_analysis_run2")
+    output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     _, test_loader = get_cifar10_loaders(data_dir='./data', test_batch_size=50)
@@ -94,38 +121,75 @@ def run_transfer_analysis(device):
                 clear_gpu()
                 target_model = load_model(target_type, target_path, device)
 
+            src_clean_ok, tgt_clean_ok = [], []
+            src_adv_wrong, tgt_adv_wrong = [], []
             total = 0
-            source_success = 0
-            transfer_success = 0
 
-            for batch_idx, (images, labels) in enumerate(test_loader):
-                if batch_idx >= 20:
+            for images, labels in test_loader:
+                if total >= n_samples:
                     break
+                # Son partiyi tam n_samples'a kirp (M20)
+                if total + labels.size(0) > n_samples:
+                    keep = n_samples - total
+                    images, labels = images[:keep], labels[:keep]
+
                 images, labels = images.to(device), labels.to(device)
 
                 adv_images = attack(images, labels)
 
                 with torch.no_grad():
-                    source_pred = source_model(adv_images).argmax(1)
-                    source_success += (source_pred != labels).sum().item()
+                    src_clean_pred = source_model(images).argmax(1)
+                    tgt_clean_pred = target_model(images).argmax(1)
+                    src_adv_pred = source_model(adv_images).argmax(1)
+                    tgt_adv_pred = target_model(adv_images).argmax(1)
 
-                    target_pred = target_model(adv_images).argmax(1)
-                    transfer_success += (target_pred != labels).sum().item()
+                src_clean_ok.append((src_clean_pred == labels).cpu().numpy())
+                tgt_clean_ok.append((tgt_clean_pred == labels).cpu().numpy())
+                src_adv_wrong.append((src_adv_pred != labels).cpu().numpy())
+                tgt_adv_wrong.append((tgt_adv_pred != labels).cpu().numpy())
 
                 total += labels.size(0)
 
-            source_rate = 100. * source_success / total
-            transfer_rate = 100. * transfer_success / total
+            src_clean_ok = np.concatenate(src_clean_ok)
+            tgt_clean_ok = np.concatenate(tgt_clean_ok)
+            src_adv_wrong = np.concatenate(src_adv_wrong)
+            tgt_adv_wrong = np.concatenate(tgt_adv_wrong)
 
-            print(f"    Source Attack: {source_rate:.2f}%, Transfer: {transfer_rate:.2f}%")
+            # Ham oranlar (eski metrik - seffaflik icin)
+            source_rate_raw = 100. * src_adv_wrong.mean()
+            transfer_rate_raw = 100. * tgt_adv_wrong.mean()
+
+            # Kosullu fooling rate (birincil metrik, M3):
+            # hedefin temiz-dogru orneklerinde adv ile yanlisa donme orani
+            cond_mask = tgt_clean_ok
+            cond_fool = tgt_adv_wrong[cond_mask]
+            cond_rate = 100. * cond_fool.mean() if cond_mask.sum() > 0 else float('nan')
+            ci_lo, ci_hi = _bootstrap_ci(cond_fool.astype(float), n_boot=1000, seed=seed)
+
+            print(f"    Raw: src={source_rate_raw:.2f}%, tgt={transfer_rate_raw:.2f}% | "
+                  f"Conditioned fooling: {cond_rate:.2f}% "
+                  f"[95% CI {100*ci_lo:.2f}-{100*ci_hi:.2f}] (n_cond={int(cond_mask.sum())})")
+
+            # Ornek-bazli loglar: esli testler icin (M3/M8)
+            np.savez(
+                output_dir / f"per_sample_{source_name}_to_{target_name}.npz",
+                source_clean_correct=src_clean_ok,
+                target_clean_correct=tgt_clean_ok,
+                source_adv_wrong=src_adv_wrong,
+                target_adv_wrong=tgt_adv_wrong,
+            )
 
             results.append({
                 'source': source_name,
                 'target': target_name,
-                'attack_success': source_rate,
-                'transfer_rate': transfer_rate,
+                'attack_success_raw': float(source_rate_raw),
+                'transfer_rate_raw': float(transfer_rate_raw),
+                'conditioned_fooling_rate': float(cond_rate),
+                'conditioned_ci95': [100 * ci_lo, 100 * ci_hi],
+                'n_conditioned': int(cond_mask.sum()),
+                'target_clean_acc': float(100. * tgt_clean_ok.mean()),
                 'is_self': i == j,
-                'total_samples': total,
+                'total_samples': int(total),
             })
 
             if i != j:
@@ -137,19 +201,26 @@ def run_transfer_analysis(device):
 
     # Save
     models = [m[0] for m in models_config]
-    matrix = np.zeros((len(models), len(models)))
+    matrix = np.zeros((len(models), len(models)))          # conditioned (primary)
+    matrix_raw = np.zeros((len(models), len(models)))      # raw (legacy)
     for r in results:
         ii = models.index(r['source'])
         jj = models.index(r['target'])
-        matrix[ii, jj] = r['transfer_rate']
+        matrix[ii, jj] = r['conditioned_fooling_rate']
+        matrix_raw[ii, jj] = r['transfer_rate_raw']
 
     summary = {
         'timestamp': datetime.now().isoformat(),
         'models': models,
+        'metric': 'conditioned_fooling_rate',
         'matrix': matrix.tolist(),
+        'matrix_raw': matrix_raw.tolist(),
         'eps': EPS,
         'steps': STEPS,
-        'model_variant': 'run2',
+        'n_samples': n_samples,
+        'seed': seed,
+        'model_variant': 'run3-metric',
+        'model_paths': {k: v[1] for k, v in RUN2_MODELS.items()},
         'results': results,
     }
 
@@ -158,11 +229,12 @@ def run_transfer_analysis(device):
 
     pd.DataFrame(results).to_csv(output_dir / "transfer_results.csv", index=False)
     np.save(output_dir / "transfer_matrix.npy", matrix)
+    np.save(output_dir / "transfer_matrix_raw.npy", matrix_raw)
 
-    print(f"\nTransfer matrix (run2):")
-    print(f"  CNN → ViT: {matrix[0, 1]:.1f}%")
-    print(f"  ViT → CNN: {matrix[1, 0]:.1f}%")
-    print(f"  Asymmetry: {abs(matrix[0, 1] - matrix[1, 0]):.1f}%")
+    print(f"\nTransfer matrix (conditioned fooling rate):")
+    print(f"  CNN → ViT: {matrix[0, 1]:.1f}%  (raw: {matrix_raw[0, 1]:.1f}%)")
+    print(f"  ViT → CNN: {matrix[1, 0]:.1f}%  (raw: {matrix_raw[1, 0]:.1f}%)")
+    print(f"  Asymmetry: {matrix[0, 1] - matrix[1, 0]:+.1f}pp (conditioned)")
     print(f"Saved to {output_dir}")
 
     return summary
@@ -171,22 +243,30 @@ def run_transfer_analysis(device):
 # =============================================================================
 # 2. GRADIENT ANALYSIS (500 samples)
 # =============================================================================
-def run_gradient_analysis(device):
+def run_gradient_analysis(device, seed=42):
     print("\n" + "=" * 70)
-    print("GRADIENT ANALYSIS (RUN2, 500 samples)")
+    print("GRADIENT ANALYSIS (500 samples, scale-invariant metrics)")
     print("=" * 70)
 
-    output_dir = Path("results/gradient_analysis_run2")
+    output_dir = Path("results/gradient_analysis_run3")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     n_samples = 500
-    batch_size = 32
+    batch_size = 50  # 10 tam parti = tam 500 ornek (M20)
     _, test_loader = get_cifar10_loaders(data_dir='./data', test_batch_size=batch_size)
+
+    # Native-cozunurluk kontrolu (M11): 32->224 upsample confound'unu test
+    # etmek icin CIFAR-native ViT checkpoint'i varsa analize dahil et
+    models_to_analyze = dict(RUN2_MODELS)
+    native_ckpt = "models/vit_cifar_tiny/adv/vit_cifar_tiny/adv/adversarial_training/best.pth"
+    if Path(native_ckpt).exists():
+        models_to_analyze["ViT_CIFAR_Native_AT"] = ("vit_cifar_tiny", native_ckpt)
+        print("Native-resolution ViT control included (vit_cifar_tiny)")
 
     all_stats = {}
     gradient_data = {}
 
-    for name, (model_type, model_path) in RUN2_MODELS.items():
+    for name, (model_type, model_path) in models_to_analyze.items():
         print(f"\nAnalyzing: {name}")
         clear_gpu()
 
@@ -197,6 +277,9 @@ def run_gradient_analysis(device):
         all_l2_norms = []
         all_linf_norms = []
         all_sparsities = []
+        all_hoyer = []
+        all_gini = []
+        all_rel_sparsity = []
         all_spatial_vars = []
         all_alignments = []
         total_collected = 0
@@ -204,6 +287,10 @@ def run_gradient_analysis(device):
         for batch_idx, (images, labels) in enumerate(test_loader):
             if total_collected >= n_samples:
                 break
+            # Son partiyi tam n_samples'a kirp (M20)
+            if total_collected + images.size(0) > n_samples:
+                keep = n_samples - total_collected
+                images, labels = images[:keep], labels[:keep]
 
             images, labels = images.to(device), labels.to(device)
 
@@ -212,9 +299,12 @@ def run_gradient_analysis(device):
             all_l2_norms.append(stats['l2_norm_mean'])
             all_linf_norms.append(stats['linf_norm_mean'])
             all_sparsities.append(stats['sparsity'])
+            all_hoyer.append(stats['sparsity_hoyer'])
+            all_gini.append(stats['sparsity_gini'])
+            all_rel_sparsity.append(stats['sparsity_rel_threshold'])
             all_spatial_vars.append(stats['spatial_variance'])
 
-            # Compute alignment
+            # Compute alignment (tum-ciftler, M21)
             alignment = analyzer.compute_gradient_alignment(images, labels)
             all_alignments.append(alignment)
 
@@ -223,16 +313,24 @@ def run_gradient_analysis(device):
             if batch_idx % 5 == 0:
                 print(f"  Batch {batch_idx}, collected {total_collected}/{n_samples} samples")
 
-        # Aggregate
+        # Aggregate (± degerleri parti-ortalamalari uzerinden std'dir; makalede
+        # bu sekilde beyan edilmeli, M20)
         aggregated_stats = {
             'l2_norm_mean': float(np.mean(all_l2_norms)),
             'l2_norm_std': float(np.std(all_l2_norms)),
             'linf_norm_mean': float(np.mean(all_linf_norms)),
             'sparsity': float(np.mean(all_sparsities)),
             'sparsity_std': float(np.std(all_sparsities)),
+            'sparsity_hoyer': float(np.mean(all_hoyer)),
+            'sparsity_hoyer_std': float(np.std(all_hoyer)),
+            'sparsity_gini': float(np.mean(all_gini)),
+            'sparsity_gini_std': float(np.std(all_gini)),
+            'sparsity_rel_threshold': float(np.mean(all_rel_sparsity)),
+            'sparsity_rel_threshold_std': float(np.std(all_rel_sparsity)),
             'spatial_variance': float(np.mean(all_spatial_vars)),
             'gradient_alignment': float(np.mean(all_alignments)),
             'gradient_alignment_std': float(np.std(all_alignments)),
+            'std_semantics': 'std across batch means (10 batches of 50)',
             'n_samples': total_collected,
             'n_batches': len(all_l2_norms),
         }
@@ -265,7 +363,9 @@ def run_gradient_analysis(device):
         'timestamp': datetime.now().isoformat(),
         'models': list(all_stats.keys()),
         'n_samples': n_samples,
-        'model_variant': 'run2',
+        'seed': seed,
+        'model_variant': 'run3-metric',
+        'model_paths': {k: v[1] for k, v in RUN2_MODELS.items()},
         'statistics': {k: {kk: vv for kk, vv in v.items() if kk != 'landscape'}
                        for k, v in all_stats.items()},
     }
@@ -283,6 +383,12 @@ def run_gradient_analysis(device):
             'linf_norm_mean': stats['linf_norm_mean'],
             'sparsity': stats['sparsity'],
             'sparsity_std': stats['sparsity_std'],
+            'sparsity_hoyer': stats['sparsity_hoyer'],
+            'sparsity_hoyer_std': stats['sparsity_hoyer_std'],
+            'sparsity_gini': stats['sparsity_gini'],
+            'sparsity_gini_std': stats['sparsity_gini_std'],
+            'sparsity_rel_threshold': stats['sparsity_rel_threshold'],
+            'sparsity_rel_threshold_std': stats['sparsity_rel_threshold_std'],
             'spatial_variance': stats['spatial_variance'],
             'gradient_alignment': stats['gradient_alignment'],
             'gradient_alignment_std': stats['gradient_alignment_std'],
@@ -291,7 +397,7 @@ def run_gradient_analysis(device):
     pd.DataFrame(comparison).to_csv(output_dir / "gradient_statistics.csv", index=False)
 
     # Visualization
-    colors = ['#2ecc71', '#e74c3c']
+    colors = ['#2ecc71', '#e74c3c', '#3498db']  # 3. renk: native-res ViT kontrolu
     model_names = list(all_stats.keys())
 
     fig1, ax1 = plt.subplots(figsize=(10, 6))
@@ -299,7 +405,7 @@ def run_gradient_analysis(device):
         ax1.hist(data['l2_norms'], bins=20, alpha=0.6, label=name, color=colors[i])
     ax1.set_xlabel('Gradient L2 Norm', fontsize=12)
     ax1.set_ylabel('Frequency', fontsize=12)
-    ax1.set_title('Gradient Norm Distribution: CNN vs ViT (Run2)', fontsize=14)
+    ax1.set_title('Gradient Norm Distribution: CNN vs ViT', fontsize=14)
     ax1.legend()
     fig1.savefig(output_dir / "gradient_norm_distribution.pdf", dpi=300, bbox_inches='tight')
     plt.close(fig1)
@@ -309,9 +415,16 @@ def run_gradient_analysis(device):
     # Key findings
     resnet = all_stats[model_names[0]]
     vit = all_stats[model_names[1]]
-    print(f"\nKey Findings (run2, {n_samples} samples):")
-    print(f"  Sparsity ratio (ResNet/ViT): {resnet['sparsity']/vit['sparsity']:.1f}x")
-    print(f"  Alignment ratio (ViT/ResNet): {vit['gradient_alignment']/resnet['gradient_alignment']:.1f}x")
+    print(f"\nKey Findings ({n_samples} samples):")
+    print(f"  Sparsity ratio, absolute threshold (ResNet/ViT): {resnet['sparsity']/vit['sparsity']:.2f}x  [OLCEK BAGIMLI - dikkat]")
+    print(f"  Hoyer sparsity: ResNet={resnet['sparsity_hoyer']:.4f}, ViT={vit['sparsity_hoyer']:.4f}")
+    print(f"  Gini sparsity: ResNet={resnet['sparsity_gini']:.4f}, ViT={vit['sparsity_gini']:.4f}")
+    print(f"  Relative-threshold sparsity: ResNet={resnet['sparsity_rel_threshold']:.4f}, ViT={vit['sparsity_rel_threshold']:.4f}")
+    print(f"  Alignment ratio (ViT/ResNet): {vit['gradient_alignment']/resnet['gradient_alignment']:.2f}x")
+    if "ViT_CIFAR_Native_AT" in all_stats:
+        nat = all_stats["ViT_CIFAR_Native_AT"]
+        print(f"  Native-res ViT control: Hoyer={nat['sparsity_hoyer']:.4f}, "
+              f"Gini={nat['sparsity_gini']:.4f} (upsample confound testi, M11)")
 
     return summary
 
@@ -319,16 +432,16 @@ def run_gradient_analysis(device):
 # =============================================================================
 # 3. FEATURE DEGRADATION / ATTENTION ANALYSIS
 # =============================================================================
-def run_feature_degradation_analysis(device):
+def run_feature_degradation_analysis(device, seed=42):
     print("\n" + "=" * 70)
-    print("FEATURE DEGRADATION ANALYSIS (RUN2)")
+    print("FEATURE DEGRADATION ANALYSIS")
     print("=" * 70)
 
-    output_dir = Path("results/attention_analysis_run2")
+    output_dir = Path("results/attention_analysis_run3")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    n_samples = 100  # More than 16, reasonable for feature analysis
-    batch_size = 16
+    n_samples = 100
+    batch_size = 20  # 5 tam parti = tam 100 ornek (M20)
     _, test_loader = get_cifar10_loaders(data_dir='./data', test_batch_size=batch_size)
 
     # Load ViT model (run2)
@@ -347,6 +460,10 @@ def run_feature_degradation_analysis(device):
     for batch_idx, (images, labels) in enumerate(test_loader):
         if total_collected >= n_samples:
             break
+        # Son partiyi tam n_samples'a kirp (M20)
+        if total_collected + images.size(0) > n_samples:
+            keep = n_samples - total_collected
+            images, labels = images[:keep], labels[:keep]
 
         images, labels = images.to(device), labels.to(device)
 
@@ -456,12 +573,15 @@ def run_feature_degradation_analysis(device):
 
     summary = {
         'timestamp': datetime.now().isoformat(),
-        'model': 'ViT-Tiny AT (run2)',
+        'model': 'ViT-Tiny AT',
         'attack': f'PGD-{STEPS} (eps={EPS:.4f})',
         'n_samples': total_collected,
+        'seed': seed,
         'clean_accuracy': 100 * total_clean_correct / total_collected,
         'adv_accuracy': 100 * total_adv_correct / total_collected,
-        'model_variant': 'run2',
+        'model_variant': 'run3-metric',
+        'model_paths': {k: v[1] for k, v in RUN2_MODELS.items()},
+        'hook_target': 'transformer block MLP sub-block outputs (blocks.*.mlp)',
         'feature_analysis': aggregated,
     }
 
@@ -509,11 +629,16 @@ def run_feature_degradation_analysis(device):
 # 4. STATISTICAL VALIDATION
 # =============================================================================
 def run_statistical_validation(device):
+    """NOT: Bu analiz yalnizca SALDIRI BASLATMA rastgeleligini olcer -
+    test loader shuffle=False oldugundan ayni ilk 1000 ornek kullanilir ve
+    clean accuracy seed'ler arasi degismez (M18). Makalede bu sekilde
+    beyan edilmelidir; egitim-seviyesi varyans icin bagimsiz egitim
+    kosulari gerekir."""
     print("\n" + "=" * 70)
-    print("STATISTICAL VALIDATION (RUN2)")
+    print("STATISTICAL VALIDATION (attack-init randomness only)")
     print("=" * 70)
 
-    output_dir = Path("results/statistical_validation_run2")
+    output_dir = Path("results/statistical_validation_run3")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     seeds = [42, 123, 456]
@@ -588,7 +713,8 @@ def run_statistical_validation(device):
             'seeds': seeds,
             'n_samples': n_samples,
             'eps': EPS,
-            'model_variant': 'run2',
+            'model_variant': 'run3-metric',
+            'model_paths': {k: v[1] for k, v in RUN2_MODELS.items()},
             'results': all_results
         }, f, indent=2)
 
@@ -602,10 +728,33 @@ def run_statistical_validation(device):
 # MAIN
 # =============================================================================
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Run2/run3 analyses (seeded, conditioned transfer metric)")
+    parser.add_argument("--only", type=str, default="all",
+                        choices=["all", "transfer", "gradient", "attention", "statistical"],
+                        help="Run only the selected analysis")
+    parser.add_argument("--n-samples", type=int, default=10000,
+                        help="Transfer analysis sample count (default: full test set)")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed")
+    parser.add_argument("--resnet-path", type=str, default=None,
+                        help="Override ResNet18 AT checkpoint path (run3 icin)")
+    parser.add_argument("--vit-path", type=str, default=None,
+                        help="Override ViT-Tiny AT checkpoint path (run3 icin)")
+    args = parser.parse_args()
+
+    if args.resnet_path:
+        RUN2_MODELS["ResNet18_AT"] = ("resnet18", args.resnet_path)
+    if args.vit_path:
+        RUN2_MODELS["ViT_Tiny_AT"] = ("vit_tiny", args.vit_path)
+
+    # Tum analizler icin tam seed (M15): PGD random-start dahil
+    set_seed(args.seed)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Device: {device}")
+    print(f"Seed: {args.seed}, only: {args.only}")
     print(f"Timestamp: {datetime.now().isoformat()}")
-    print(f"\nRun2 Model Paths:")
+    print(f"\nModel Paths:")
     for name, (mtype, mpath) in RUN2_MODELS.items():
         print(f"  {name}: {mpath}")
 
@@ -618,24 +767,22 @@ if __name__ == "__main__":
 
     results = {}
 
-    # 1. Transfer analysis
-    results['transfer'] = run_transfer_analysis(device)
+    if args.only in ("all", "transfer"):
+        results['transfer'] = run_transfer_analysis(
+            device, n_samples=args.n_samples, seed=args.seed)
 
-    # 2. Gradient analysis (500 samples)
-    results['gradient'] = run_gradient_analysis(device)
+    if args.only in ("all", "gradient"):
+        results['gradient'] = run_gradient_analysis(device, seed=args.seed)
 
-    # 3. Feature degradation analysis
-    results['feature_degradation'] = run_feature_degradation_analysis(device)
+    if args.only in ("all", "attention"):
+        results['feature_degradation'] = run_feature_degradation_analysis(
+            device, seed=args.seed)
 
-    # 4. Statistical validation
-    results['statistical'] = run_statistical_validation(device)
+    if args.only in ("all", "statistical"):
+        results['statistical'] = run_statistical_validation(device)
 
     print("\n" + "=" * 70)
-    print("ALL ANALYSES COMPLETE")
+    print("ANALYSES COMPLETE")
     print("=" * 70)
-    print(f"\nResults saved to:")
-    print(f"  results/transfer_analysis_run2/")
-    print(f"  results/gradient_analysis_run2/")
-    print(f"  results/attention_analysis_run2/")
-    print(f"  results/statistical_validation_run2/")
-    print(f"\nTimestamp: {datetime.now().isoformat()}")
+    print(f"\nResults saved to results/*_run3/ directories")
+    print(f"Timestamp: {datetime.now().isoformat()}")

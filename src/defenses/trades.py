@@ -68,7 +68,7 @@ class TRADESDefense(TrainingDefense):
         delta = torch.clamp(original_images + delta, 0, 1) - original_images
 
         for _ in range(self.steps):
-            delta.requires_grad = True
+            delta = delta.detach().requires_grad_(True)
 
             adv_images = original_images + delta
             logits_adv = self.model(adv_images)
@@ -79,10 +79,9 @@ class TRADESDefense(TrainingDefense):
                 F.softmax(logits_natural.detach(), dim=1),
             )
 
-            loss.backward()
-
-            # Update delta
-            grad = delta.grad.sign()
+            # torch.autograd.grad: model parametrelerine gradyan biriktirmeden
+            # yalnizca delta gradyanini hesapla (M10)
+            grad = torch.autograd.grad(loss, delta)[0].sign()
             delta = delta.detach() + self.alpha * grad
             delta = torch.clamp(delta, -self.eps, self.eps)
             delta = torch.clamp(original_images + delta, 0, 1) - original_images

@@ -31,7 +31,10 @@ class GradientAnalyzer:
         """
         self.model = model
         self.device = device or next(model.parameters()).device
-        self.loss_fn = nn.CrossEntropyLoss()
+        # reduction='sum': ornek-basina gradyan olcegi batch boyutundan
+        # BAGIMSIZ olur (mean-reduction'da grad 1/N olceklenir ve farkli
+        # batch boyutlariyla hesaplanan normlar karsilastirilamaz)
+        self.loss_fn = nn.CrossEntropyLoss(reduction="sum")
 
     def compute_input_gradients(
         self,
@@ -92,13 +95,63 @@ class GradientAnalyzer:
             "kurtosis": self._compute_kurtosis(grads_flat).item(),
 
             # Sparsity (percentage of near-zero gradients)
+            # UYARI: mutlak esik olcek bagimlidir (M11) - gradyan normu buyuk
+            # modelde "sparsity" yapay olarak dusuk cikar; karsilastirma icin
+            # asagidaki olcek-bagimsiz metrikleri kullanin
             "sparsity": (grads_flat.abs() < 1e-6).float().mean().item(),
+
+            # Scale-invariant sparsity metrics (M11)
+            "sparsity_hoyer": self._compute_hoyer_sparsity(grads_flat).item(),
+            "sparsity_gini": self._compute_gini_sparsity(grads_flat).item(),
+            "sparsity_rel_threshold": self._compute_relative_sparsity(grads_flat).item(),
 
             # Spatial statistics (for 2D gradients)
             "spatial_variance": self._compute_spatial_variance(grads).item(),
         }
 
         return stats
+
+    @staticmethod
+    def _compute_hoyer_sparsity(grads_flat: torch.Tensor) -> torch.Tensor:
+        """
+        Hoyer sparsity: (sqrt(n) - L1/L2) / (sqrt(n) - 1), per-sample mean.
+
+        Scale-invariant; 0 = uniform, 1 = single nonzero component.
+        Reference: Hoyer, "Non-negative Matrix Factorization with Sparseness
+        Constraints", JMLR 2004.
+        """
+        n = grads_flat.shape[1]
+        l1 = grads_flat.abs().sum(dim=1)
+        l2 = torch.norm(grads_flat, p=2, dim=1)
+        sqrt_n = torch.sqrt(torch.tensor(float(n), device=grads_flat.device))
+        hoyer = (sqrt_n - l1 / (l2 + 1e-12)) / (sqrt_n - 1)
+        return hoyer.mean()
+
+    @staticmethod
+    def _compute_gini_sparsity(grads_flat: torch.Tensor) -> torch.Tensor:
+        """
+        Gini coefficient of |g| per sample, averaged over the batch.
+
+        Scale-invariant; 0 = perfectly uniform magnitudes, ->1 = concentrated.
+        """
+        abs_sorted, _ = grads_flat.abs().sort(dim=1)
+        n = abs_sorted.shape[1]
+        idx = torch.arange(1, n + 1, device=grads_flat.device, dtype=abs_sorted.dtype)
+        # Gini = (2*sum(i*x_i) / (n*sum(x_i))) - (n+1)/n  (x sorted ascending)
+        gini = (2 * (idx * abs_sorted).sum(dim=1) / (n * abs_sorted.sum(dim=1) + 1e-12)
+                - (n + 1) / n)
+        return gini.mean()
+
+    @staticmethod
+    def _compute_relative_sparsity(grads_flat: torch.Tensor, rel: float = 0.01) -> torch.Tensor:
+        """
+        Fraction of components below `rel` * per-sample max |g|.
+
+        Scale-invariant alternative to the absolute 1e-6 threshold.
+        """
+        max_abs = grads_flat.abs().max(dim=1, keepdim=True)[0]
+        frac = (grads_flat.abs() < rel * max_abs).float().mean(dim=1)
+        return frac.mean()
 
     def _compute_skewness(self, x: torch.Tensor) -> torch.Tensor:
         """Compute skewness of distribution."""
@@ -185,20 +238,26 @@ class GradientAnalyzer:
         self,
         images: torch.Tensor,
         labels: torch.Tensor,
-        num_samples: int = 10,
+        use_abs: bool = True,
     ) -> float:
         """
         Measure how consistent gradient directions are across samples.
 
         High alignment suggests the model is vulnerable to universal perturbations.
 
+        Computes ALL within-batch pairs (M21: onceki surum yalnizca ilk 10
+        ornegi kullaniyordu; makaledeki tum-ciftler formuluyle uyum icin
+        vektorize edildi).
+
         Args:
             images: Input images
             labels: True labels
-            num_samples: Number of sample pairs to compare
+            use_abs: If True, average |cos|; if False, signed cosine.
+                Reported run2 values used |cos| - keep True for comparability,
+                and disclose the estimator in the paper.
 
         Returns:
-            Average cosine similarity between gradient pairs
+            Average pairwise cosine similarity between gradient pairs
         """
         grads = self.compute_input_gradients(images, labels)
         grads_flat = grads.view(grads.shape[0], -1)
@@ -206,19 +265,18 @@ class GradientAnalyzer:
         # Normalize gradients
         grads_norm = F.normalize(grads_flat, p=2, dim=1)
 
-        # Compute pairwise cosine similarities
-        similarities = []
         batch_size = grads_norm.shape[0]
+        if batch_size < 2:
+            return 0.0
 
-        for i in range(min(num_samples, batch_size)):
-            for j in range(i + 1, min(num_samples, batch_size)):
-                sim = F.cosine_similarity(
-                    grads_norm[i:i+1],
-                    grads_norm[j:j+1],
-                ).item()
-                similarities.append(abs(sim))
+        # All-pairs cosine similarity via Gram matrix, upper triangle
+        sim_matrix = grads_norm @ grads_norm.t()
+        iu = torch.triu_indices(batch_size, batch_size, offset=1)
+        pair_sims = sim_matrix[iu[0], iu[1]]
+        if use_abs:
+            pair_sims = pair_sims.abs()
 
-        return np.mean(similarities) if similarities else 0.0
+        return pair_sims.mean().item()
 
     def compute_layer_gradient_norms(
         self,

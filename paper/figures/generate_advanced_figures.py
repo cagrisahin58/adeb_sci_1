@@ -15,6 +15,7 @@ Usage:
 
 import os
 import sys
+import json
 import argparse
 import numpy as np
 import torch
@@ -64,25 +65,31 @@ def load_models_and_data():
     # Load models
     models = {}
 
-    # ResNet18 AT
-    resnet_path = PROJECT_ROOT / 'models/resnet18/adv/adversarial_training/best.pth'
-    if resnet_path.exists():
-        models['resnet18'] = create_model('resnet18', num_classes=10).to(device)
-        ckpt = torch.load(resnet_path, map_location=device, weights_only=False)
-        models['resnet18'].load_state_dict(ckpt['model_state_dict'])
-        models['resnet18'].eval()
-        print("Loaded ResNet18 AT")
+    # Tablolarin tanimladigi FINAL checkpoint'ler (M9: onceki surum run1
+    # checkpoint'lerinden figur uretiyordu, tablolar ise run2 raporluyordu).
+    # run3 varsa run3, yoksa run2 (ikisi de gercek egitim ciktisi).
+    def _pick_ckpt(key):
+        for c in [PROJECT_ROOT / f'models/{key}/adv/at_run3/{key}/adv/adversarial_training/best.pth',
+                  PROJECT_ROOT / f'models/{key}/adv/at_run2/{key}/adv/adversarial_training/best.pth']:
+            if c.exists():
+                return c
+        raise FileNotFoundError(f"{key} icin at_run3/at_run2 checkpoint'i yok")
+
+    resnet_path = _pick_ckpt('resnet18')
+    models['resnet18'] = create_model('resnet18', num_classes=10).to(device)
+    ckpt = torch.load(resnet_path, map_location=device, weights_only=False)
+    models['resnet18'].load_state_dict(ckpt['model_state_dict'])
+    models['resnet18'].eval()
+    print(f"Loaded ResNet18 AT from {resnet_path}")
 
     # ViT-Tiny AT (uses 224x224 upsampling model)
-    vit_path = PROJECT_ROOT / 'models/vit_tiny/adv/adversarial_training/best.pth'
-
-    if vit_path.exists():
-        # Use vit_tiny (224x224 upsampling, 16x16 patches)
-        models['vit'] = create_model('vit_tiny', num_classes=10).to(device)
-        ckpt = torch.load(vit_path, map_location=device, weights_only=False)
-        models['vit'].load_state_dict(ckpt['model_state_dict'])
-        models['vit'].eval()
-        print(f"Loaded ViT-Tiny AT from {vit_path}")
+    vit_path = _pick_ckpt('vit_tiny')
+    # Use vit_tiny (224x224 upsampling, 16x16 patches)
+    models['vit'] = create_model('vit_tiny', num_classes=10).to(device)
+    ckpt = torch.load(vit_path, map_location=device, weights_only=False)
+    models['vit'].load_state_dict(ckpt['model_state_dict'])
+    models['vit'].eval()
+    print(f"Loaded ViT-Tiny AT from {vit_path}")
 
     # Load test data
     _, test_loader = get_cifar10_loaders(batch_size=128, num_workers=0)
@@ -90,7 +97,7 @@ def load_models_and_data():
     return models, test_loader, device
 
 
-def pgd_attack(model, images, labels, eps=8/255, alpha=2/255, steps=20):
+def pgd_attack(model, images, labels, eps=8/255, alpha=2/255, steps=10):
     """PGD attack."""
     images = images.clone().detach()
     adv_images = images.clone().detach()
@@ -121,48 +128,47 @@ def figure1_adversarial_showcase(models, test_loader, device, output_path):
     print("\n[GÖREV 1] Generating Adversarial Example Showcase...")
 
     if 'resnet18' not in models or 'vit' not in models:
-        print("  Warning: Models not available, using synthetic data")
-        # Create synthetic figure
-        fig, axes = plt.subplots(3, 3, figsize=(10, 10))
-        for ax in axes.flat:
-            ax.imshow(np.random.rand(32, 32, 3), interpolation='bilinear')
-            ax.axis('off')
-        fig.suptitle('Adversarial Examples (Placeholder)', fontsize=14)
-        plt.tight_layout()
-        plt.savefig(output_path)
-        plt.close()
-        return
+        # Sentetik placeholder KALDIRILDI (M1): eksik model = yuksek sesli hata
+        raise RuntimeError("Model checkpoint'leri yuklenemedi; figur uretilemez.")
 
-    # Get sample images
+    # Ornek secimi (2026-07-10 paneli MIN-9): her satir icin saldirinin
+    # GERCEKTEN sinif degistirdigi ornekler secilir; onceki surum rastgele ilk
+    # 3 dogru-ornegi aliyordu ve ViT satirinda saldiri basarisiz kalabiliyordu
+    # (baslik 'new prediction' vaat ederken).
     images, labels = next(iter(test_loader))
-    images, labels = images[:10].to(device), labels[:10].to(device)
+    images, labels = images[:64].to(device), labels[:64].to(device)
 
-    # Find correctly classified samples
     with torch.no_grad():
-        resnet_preds = models['resnet18'](images).argmax(1)
-        vit_preds = models['vit'](images).argmax(1)
+        resnet_clean_ok = models['resnet18'](images).argmax(1) == labels
+        vit_clean_ok = models['vit'](images).argmax(1) == labels
 
-    # Find samples correctly classified by both
-    correct_mask = (resnet_preds == labels) & (vit_preds == labels)
-    correct_idx = torch.where(correct_mask)[0]
+    pool_adv_resnet = pgd_attack(models['resnet18'], images, labels)
+    pool_adv_vit = pgd_attack(models['vit'], images, labels)
 
-    if len(correct_idx) < 3:
-        correct_idx = torch.arange(3)
+    with torch.no_grad():
+        resnet_adv_flip = models['resnet18'](pool_adv_resnet).argmax(1) != labels
+        vit_adv_flip = models['vit'](pool_adv_vit).argmax(1) != labels
+        transfer_flip = models['vit'](pool_adv_resnet).argmax(1) != labels
 
-    # Select 3 samples
-    sample_idx = correct_idx[:3]
-    sample_images = images[sample_idx]
-    sample_labels = labels[sample_idx]
+    def pick(mask, exclude):
+        idxs = torch.where(mask)[0]
+        for k in idxs.tolist():
+            if k not in exclude:
+                return k
+        raise RuntimeError("Uygun (saldirisi basarili) ornek bulunamadi; havuzu buyutun.")
 
-    # Generate adversarial examples
-    # Row 1: Attack ResNet
-    adv_resnet = pgd_attack(models['resnet18'], sample_images[0:1], sample_labels[0:1])
+    used = set()
+    i1 = pick(resnet_clean_ok & resnet_adv_flip, used); used.add(i1)
+    i2 = pick(vit_clean_ok & vit_adv_flip, used); used.add(i2)
+    i3 = pick(resnet_clean_ok & vit_clean_ok & transfer_flip, used); used.add(i3)
 
-    # Row 2: Attack ViT
-    adv_vit = pgd_attack(models['vit'], sample_images[1:2], sample_labels[1:2])
+    sample_images = torch.stack([images[i1], images[i2], images[i3]])
+    sample_labels = torch.stack([labels[i1], labels[i2], labels[i3]])
 
-    # Row 3: Transfer (ResNet adv -> ViT)
-    adv_transfer = pgd_attack(models['resnet18'], sample_images[2:3], sample_labels[2:3])
+    # Havuzdan, basarisi dogrulanmis adv ornekleri kullan
+    adv_resnet = pool_adv_resnet[i1:i1 + 1]
+    adv_vit = pool_adv_vit[i2:i2 + 1]
+    adv_transfer = pool_adv_resnet[i3:i3 + 1]
 
     # Get predictions
     with torch.no_grad():
@@ -256,15 +262,8 @@ def figure2_gradient_comparison(models, test_loader, device, output_path):
     print("\n[GÖREV 2] Generating Gradient Comparison...")
 
     if 'resnet18' not in models or 'vit' not in models:
-        print("  Warning: Models not available, using synthetic data")
-        fig, axes = plt.subplots(2, 2, figsize=(10, 10))
-        for ax in axes.flat:
-            im = ax.imshow(np.random.rand(32, 32), cmap='hot', interpolation='bilinear')
-            plt.colorbar(im, ax=ax)
-        plt.tight_layout()
-        plt.savefig(output_path)
-        plt.close()
-        return
+        # Sentetik fallback KALDIRILDI (M1)
+        raise RuntimeError("Model checkpoint'leri yuklenemedi; gradient figuru uretilemez.")
 
     # Get sample
     images, labels = next(iter(test_loader))
@@ -282,57 +281,55 @@ def figure2_gradient_comparison(models, test_loader, device, output_path):
     resnet_grads = get_gradients(models['resnet18'], images.clone(), labels)
     vit_grads = get_gradients(models['vit'], images.clone(), labels)
 
-    # Create figure
-    fig = plt.figure(figsize=(12, 10))
-    gs = GridSpec(2, 2, figure=fig, hspace=0.3, wspace=0.3)
+    # Iki mimari AYNI goruntuler uzerinde karsilastirilir (2026-07-10 paneli
+    # MAJ-7: onceki surum CNN'i 'cat', ViT'i 'ship' uzerinde gosteriyordu ve
+    # 'direct comparison' basligiyla celisiyordu). Satirlar: goruntu A ve B;
+    # sutunlar: orijinal | ResNet-18 gradyani | ViT-Tiny gradyani.
+    fig = plt.figure(figsize=(15, 10))
+    gs = GridSpec(2, 3, figure=fig, hspace=0.25, wspace=0.3)
 
-    # Sample indices for display
-    idx = 0
+    for row, idx in enumerate([0, 1]):
+        img = images[idx].permute(1, 2, 0).detach().cpu().numpy()
+        ax_img = fig.add_subplot(gs[row, 0])
+        ax_img.imshow(np.clip(img, 0, 1), interpolation='bilinear')
+        ax_img.set_title(f'Original Image\n(Class: {CIFAR10_CLASSES[labels[idx].item()]})', fontsize=12)
+        ax_img.axis('off')
 
-    # Original image
-    ax1 = fig.add_subplot(gs[0, 0])
-    img = images[idx].permute(1, 2, 0).detach().cpu().numpy()
-    ax1.imshow(np.clip(img, 0, 1), interpolation='bilinear')
-    ax1.set_title(f'Original Image\n(Class: {CIFAR10_CLASSES[labels[idx].item()]})', fontsize=12)
-    ax1.axis('off')
+        cnn_grad = resnet_grads[idx].max(0)[0].detach().cpu().numpy()
+        ax_cnn = fig.add_subplot(gs[row, 1])
+        im_c = ax_cnn.imshow(cnn_grad, cmap='hot', vmin=0, vmax=cnn_grad.max(), interpolation='bilinear')
+        ax_cnn.set_title('ResNet-18 Gradient\n(more concentrated)', fontsize=12)
+        ax_cnn.axis('off')
+        divider = make_axes_locatable(ax_cnn)
+        plt.colorbar(im_c, cax=divider.append_axes("right", size="5%", pad=0.05))
 
-    # CNN gradient heatmap
-    ax2 = fig.add_subplot(gs[0, 1])
-    cnn_grad = resnet_grads[idx].max(0)[0].detach().cpu().numpy()
-    im2 = ax2.imshow(cnn_grad, cmap='hot', vmin=0, vmax=cnn_grad.max(), interpolation='bilinear')
-    ax2.set_title('ResNet-18 Gradient\n(Sparse, Localized)', fontsize=12)
-    ax2.axis('off')
-    divider2 = make_axes_locatable(ax2)
-    cax2 = divider2.append_axes("right", size="5%", pad=0.05)
-    plt.colorbar(im2, cax=cax2)
+        vit_grad = vit_grads[idx].max(0)[0].detach().cpu().numpy()
+        ax_vit = fig.add_subplot(gs[row, 2])
+        im_v = ax_vit.imshow(vit_grad, cmap='hot', vmin=0, vmax=vit_grad.max(), interpolation='bilinear')
+        ax_vit.set_title('ViT-Tiny Gradient\n(more distributed)', fontsize=12)
+        ax_vit.axis('off')
+        divider = make_axes_locatable(ax_vit)
+        plt.colorbar(im_v, cax=divider.append_axes("right", size="5%", pad=0.05))
 
-    # Another sample
-    idx = 1
-
-    # Original image 2
-    ax3 = fig.add_subplot(gs[1, 0])
-    img2 = images[idx].permute(1, 2, 0).detach().cpu().numpy()
-    ax3.imshow(np.clip(img2, 0, 1), interpolation='bilinear')
-    ax3.set_title(f'Original Image\n(Class: {CIFAR10_CLASSES[labels[idx].item()]})', fontsize=12)
-    ax3.axis('off')
-
-    # ViT gradient heatmap
-    ax4 = fig.add_subplot(gs[1, 1])
-    vit_grad = vit_grads[idx].max(0)[0].detach().cpu().numpy()
-    im4 = ax4.imshow(vit_grad, cmap='hot', vmin=0, vmax=vit_grad.max(), interpolation='bilinear')
-    ax4.set_title('ViT-Tiny Gradient\n(Distributed, Aligned)', fontsize=12)
-    ax4.axis('off')
-    divider4 = make_axes_locatable(ax4)
-    cax4 = divider4.append_axes("right", size="5%", pad=0.05)
-    plt.colorbar(im4, cax=cax4)
-
-    # Add statistics text (values from Table III - gradient analysis)
-    # Using validated experimental values for consistency with manuscript
-    cnn_sparsity = 6.90  # From gradient analysis experiment
-    vit_sparsity = 1.52  # From gradient analysis experiment
+    # Anotasyon: OLCEK-BAGIMSIZ Hoyer sparsity (2026-07-10 paneli MAJ-7:
+    # onceki esik-tabanli metrik makalenin kendisinin reddettigi metrikti)
+    grad_summary_candidates = [
+        PROJECT_ROOT / 'results/gradient_analysis_run3/gradient_summary.json',
+        PROJECT_ROOT / 'results/gradient_analysis_run2/gradient_summary.json',
+    ]
+    grad_summary_path = next((p for p in grad_summary_candidates if p.exists()), None)
+    if grad_summary_path is None:
+        raise FileNotFoundError(
+            "gradient_summary.json bulunamadi; once gradient analizini calistirin")
+    with open(grad_summary_path) as f:
+        grad_stats = json.load(f)['statistics']
+    cnn_hoyer = grad_stats['ResNet18_AT']['sparsity_hoyer']
+    vit_hoyer = grad_stats['ViT_Tiny_AT']['sparsity_hoyer']
+    print(f"  Hoyer annotations from {grad_summary_path.name}: "
+          f"CNN={cnn_hoyer:.3f}, ViT={vit_hoyer:.3f}")
 
     fig.text(0.5, 0.02,
-             f'CNN Sparsity: {cnn_sparsity:.2f}% near-zero | ViT Sparsity: {vit_sparsity:.2f}% near-zero',
+             f'Hoyer sparsity (scale-invariant): ResNet-18 {cnn_hoyer:.3f} | ViT-Tiny {vit_hoyer:.3f}',
              ha='center', fontsize=11, style='italic')
 
     plt.savefig(output_path)
@@ -348,15 +345,8 @@ def figure3_attention_comparison(models, test_loader, device, output_path):
     print("\n[GÖREV 3] Generating Attention Comparison...")
 
     if 'vit' not in models:
-        print("  Warning: ViT model not available, using synthetic data")
-        fig, axes = plt.subplots(3, 3, figsize=(12, 12))
-        for ax in axes.flat:
-            ax.imshow(np.random.rand(8, 8), cmap='viridis', interpolation='bilinear')
-            ax.axis('off')
-        plt.tight_layout()
-        plt.savefig(output_path)
-        plt.close()
-        return
+        # Sentetik fallback KALDIRILDI (M9c)
+        raise RuntimeError("ViT model yuklenemedi; attention figuru uretilemez.")
 
     vit = models['vit']
 
@@ -367,17 +357,14 @@ def figure3_attention_comparison(models, test_loader, device, output_path):
     # Generate adversarial
     adv_images = pgd_attack(vit, images, labels)
 
-    # Get attention maps
-    if hasattr(vit, 'get_attention_maps'):
-        clean_attn = vit.get_attention_maps(images)
-        adv_attn = vit.get_attention_maps(adv_images)
-    elif hasattr(vit, 'model') and hasattr(vit.model, 'get_attention_maps'):
-        clean_attn = vit.model.get_attention_maps(images)
-        adv_attn = vit.model.get_attention_maps(adv_images)
-    else:
-        print("  Warning: get_attention_maps not available, using synthetic data")
-        clean_attn = [torch.rand(1, 3, 65, 65) for _ in range(12)]
-        adv_attn = [torch.rand(1, 3, 65, 65) for _ in range(12)]
+    # Gercek post-softmax attention (M1: torch.rand fallback kaldirildi;
+    # src/models/vit.py get_attention_maps dict dondurur)
+    if not hasattr(vit, 'get_attention_maps'):
+        raise AttributeError(
+            "vit_tiny modelinde get_attention_maps yok; src/models/vit.py "
+            "guncel degil (M1 attention-extraction edit'i gerekli).")
+    clean_attn = vit.get_attention_maps(images)['attention']
+    adv_attn = vit.get_attention_maps(adv_images)['attention']
 
     # Select layers 0, 5, 11 (1, 6, 12 in 1-indexed)
     layer_indices = [0, 5, 11]
@@ -387,12 +374,10 @@ def figure3_attention_comparison(models, test_loader, device, output_path):
 
     for row, (layer_idx, layer_name) in enumerate(zip(layer_indices, layer_names)):
         # Get attention for CLS token, average over heads
-        if layer_idx < len(clean_attn):
-            clean_att = clean_attn[layer_idx][0, :, 0, 1:].mean(0).detach().cpu().numpy()
-            adv_att = adv_attn[layer_idx][0, :, 0, 1:].mean(0).detach().cpu().numpy()
-        else:
-            clean_att = np.random.rand(64)
-            adv_att = np.random.rand(64)
+        if layer_idx >= len(clean_attn):
+            raise IndexError(f"Layer {layer_idx} yok (toplam {len(clean_attn)} katman)")
+        clean_att = clean_attn[layer_idx][0, :, 0, 1:].mean(0).detach().cpu().numpy()
+        adv_att = adv_attn[layer_idx][0, :, 0, 1:].mean(0).detach().cpu().numpy()
 
         # Reshape to grid
         grid_size = int(np.sqrt(len(clean_att)))
@@ -437,25 +422,11 @@ def figure4_tsne_features(models, test_loader, device, output_path):
     """
     print("\n[GÖREV 4] Generating t-SNE Feature Space...")
 
-    try:
-        from sklearn.manifold import TSNE
-    except ImportError:
-        print("  Warning: sklearn not available, using synthetic data")
-        fig, axes = plt.subplots(1, 2, figsize=(14, 6))
-        for ax in axes:
-            ax.scatter(np.random.randn(100), np.random.randn(100))
-        plt.savefig(output_path)
-        plt.close()
-        return
+    # Sentetik fallback'ler KALDIRILDI (M1): eksik bagimlilik/model = hata
+    from sklearn.manifold import TSNE
 
     if 'resnet18' not in models or 'vit' not in models:
-        print("  Warning: Models not available, using synthetic data")
-        fig, axes = plt.subplots(1, 2, figsize=(14, 6))
-        for ax in axes:
-            ax.scatter(np.random.randn(100), np.random.randn(100))
-        plt.savefig(output_path)
-        plt.close()
-        return
+        raise RuntimeError("Model checkpoint'leri yuklenemedi; t-SNE figuru uretilemez.")
 
     # Collect features
     n_samples = 500  # Reduced for speed

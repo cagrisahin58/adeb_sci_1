@@ -111,10 +111,12 @@
   year={2016}
 }
 
-@article{zagoruyko2016wide,
-  title={Wide residual networks},
+@inproceedings{zagoruyko2016wide,
+  title={Wide Residual Networks},
   author={Zagoruyko, Sergey and Komodakis, Nikos},
-  journal={arXiv preprint arXiv:1605.07146},
+  booktitle={Proceedings of the British Machine Vision Conference ({BMVC})},
+  pages={87.1--87.12},
+  publisher={BMVA Press},
   year={2016}
 }
 
@@ -165,10 +167,10 @@
   year={2021}
 }
 
-@inproceedings{shao2022adversarial,
-  title={On the adversarial robustness of vision transformers},
+@article{shao2022adversarial,
+  title={On the Adversarial Robustness of Vision Transformers},
   author={Shao, Rulin and Shi, Zhouxing and Yi, Jinfeng and Chen, Pin-Yu and Hsieh, Cho-Jui},
-  booktitle={European Conference on Computer Vision},
+  journal={Transactions on Machine Learning Research},
   year={2022}
 }
 
@@ -191,10 +193,10 @@
 % BENCHMARKS AND DATASETS
 % ============================================================================
 
-@article{croce2021robustbench,
-  title={Robustbench: a standardized adversarial robustness benchmark},
+@inproceedings{croce2021robustbench,
+  title={{RobustBench}: a standardized adversarial robustness benchmark},
   author={Croce, Francesco and Andriushchenko, Maksym and Sehwag, Vikash and Debenedetti, Edoardo and Flammarion, Nicolas and Chiang, Mung and Mittal, Prateek and Hein, Matthias},
-  journal={arXiv preprint arXiv:2010.09670},
+  booktitle={NeurIPS Datasets and Benchmarks Track},
   year={2021}
 }
 
@@ -209,18 +211,18 @@
 % OPTIMIZATION
 % ============================================================================
 
-@article{loshchilov2017decoupled,
-  title={Decoupled weight decay regularization},
+@inproceedings{loshchilov2017decoupled,
+  title={Decoupled Weight Decay Regularization},
   author={Loshchilov, Ilya and Hutter, Frank},
-  journal={arXiv preprint arXiv:1711.05101},
-  year={2017}
+  booktitle={International Conference on Learning Representations ({ICLR})},
+  year={2019}
 }
 
-@article{loshchilov2016sgdr,
-  title={Sgdr: Stochastic gradient descent with warm restarts},
+@inproceedings{loshchilov2016sgdr,
+  title={{SGDR}: Stochastic Gradient Descent with Warm Restarts},
   author={Loshchilov, Ilya and Hutter, Frank},
-  journal={arXiv preprint arXiv:1608.03983},
-  year={2016}
+  booktitle={International Conference on Learning Representations ({ICLR})},
+  year={2017}
 }
 
 % ============================================================================
@@ -293,13 +295,199 @@
 }
 
 
-@article{wang2023understanding,
+% ============================================================================
+% 2026-07-10 PANEL MUST-CITE EKLERI (tum kunyeler WebSearch ile teyitli)
+% ============================================================================
+
+@inproceedings{pinto2022impartial,
+  author    = {Pinto, Francesco and Torr, Philip H. S. and Dokania, Puneet K.},
+  title     = {An Impartial Take to the {CNN} vs {Transformer} Robustness Contest},
+  booktitle = {Computer Vision -- {ECCV} 2022},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {13673},
+  pages     = {466--480},
+  publisher = {Springer},
+  address   = {Cham},
+  year      = {2022},
+  doi       = {10.1007/978-3-031-19778-9_27}
+}
+
+@article{ali2024adversarial,
+  author  = {Ali, Kazim and Bhatti, Muhammad Shahid and Saeed, Atif and Athar, Atifa and {Al Ghamdi}, Mohammed A. and Almotiri, Sultan H. and Akram, Samina},
+  title   = {Adversarial Robustness of Vision Transformers Versus Convolutional Neural Networks},
+  journal = {IEEE Access},
+  volume  = {12},
+  pages   = {105281--105293},
+  year    = {2024},
+  doi     = {10.1109/ACCESS.2024.3435347}
+}
+
+@inproceedings{wu2025vision,
+  author    = {Wu, Juntao and Song, Ziyu and Zhang, Xiaoyu and Xie, Shujun and Lin, Longxin and Wang, Ke},
+  title     = {Vision Transformers Beat {WideResNets} on Small Scale Datasets Adversarial Robustness},
+  booktitle = {Proceedings of the {AAAI} Conference on Artificial Intelligence},
+  volume    = {39},
+  number    = {1},
+  pages     = {886--894},
+  year      = {2025},
+  doi       = {10.1609/aaai.v39i1.32073}
+}
+
+@inproceedings{raghu2021vision,
+  author    = {Raghu, Maithra and Unterthiner, Thomas and Kornblith, Simon and Zhang, Chiyuan and Dosovitskiy, Alexey},
+  title     = {Do Vision Transformers See Like Convolutional Neural Networks?},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {34},
+  pages     = {12116--12128},
+  publisher = {Curran Associates, Inc.},
+  year      = {2021}
+}
+
+@inproceedings{benz2021adversarial,
+  author    = {Benz, Philipp and Ham, Soomin and Zhang, Chaoning and Karjauv, Adil and Kweon, In So},
+  title     = {Adversarial Robustness Comparison of Vision Transformer and {MLP-Mixer} to {CNNs}},
+  booktitle = {Proceedings of the 32nd British Machine Vision Conference ({BMVC})},
+  year      = {2021}
+}
+
+@inproceedings{wang2023better,
+  author    = {Wang, Zekai and Pang, Tianyu and Du, Chao and Lin, Min and Liu, Weiwei and Yan, Shuicheng},
+  title     = {Better Diffusion Models Further Improve Adversarial Training},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning ({ICML})},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {202},
+  pages     = {36246--36263},
+  publisher = {PMLR},
+  year      = {2023}
+}
+
+@article{ravikumar2023trend,
+  author  = {Ravikumar, Deepak and Kodge, Sangamesh and Garg, Isha and Roy, Kaushik},
+  title   = {{TREND}: Transferability-Based Robust {EN}semble Design},
+  journal = {IEEE Transactions on Artificial Intelligence},
+  volume  = {4},
+  number  = {3},
+  pages   = {534--548},
+  year    = {2023},
+  doi     = {10.1109/TAI.2022.3175172}
+}
+
+@inproceedings{liu2017delving,
+  author    = {Liu, Yanpei and Chen, Xinyun and Liu, Chang and Song, Dawn},
+  title     = {Delving into Transferable Adversarial Examples and Black-box Attacks},
+  booktitle = {Proceedings of the 5th International Conference on Learning Representations ({ICLR})},
+  year      = {2017}
+}
+
+@inproceedings{dong2018boosting,
+  author    = {Dong, Yinpeng and Liao, Fangzhou and Pang, Tianyu and Su, Hang and Zhu, Jun and Hu, Xiaolin and Li, Jianguo},
+  title     = {Boosting Adversarial Attacks with Momentum},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  pages     = {9185--9193},
+  year      = {2018},
+  doi       = {10.1109/CVPR.2018.00957}
+}
+
+@article{zhao2025revisiting,
+  author  = {Zhao, Zhengyu and Zhang, Hanwei and Li, Renjue and Sicre, Ronan and Amsaleg, Laurent and Backes, Michael and Li, Qi and Wang, Qian and Shen, Chao},
+  title   = {Revisiting Transferable Adversarial Images: Systemization, Evaluation, and New Insights},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume  = {48},
+  number  = {1},
+  pages   = {765--780},
+  year    = {2026},
+  doi     = {10.1109/TPAMI.2025.3610085}
+}
+
+@inproceedings{wei2022towards,
+  author    = {Wei, Zhipeng and Chen, Jingjing and Goldblum, Micah and Wu, Zuxuan and Goldstein, Tom and Jiang, Yu-Gang},
+  title     = {Towards Transferable Adversarial Attacks on Vision Transformers},
+  booktitle = {Proceedings of the {AAAI} Conference on Artificial Intelligence},
+  volume    = {36},
+  number    = {3},
+  pages     = {2668--2676},
+  year      = {2022},
+  doi       = {10.1609/aaai.v36i3.20169}
+}
+
+@article{gowal2020uncovering,
+  author  = {Gowal, Sven and Qin, Chongli and Uesato, Jonathan and Mann, Timothy and Kohli, Pushmeet},
+  title   = {Uncovering the Limits of Adversarial Training against Norm-Bounded Adversarial Examples},
+  journal = {arXiv preprint arXiv:2010.03593},
+  year    = {2020}
+}
+
+@inproceedings{chalasani2020concise,
+  author    = {Prasad Chalasani and Jiefeng Chen and Amrita Roy Chowdhury and Xi Wu and Somesh Jha},
+  title     = {Concise Explanations of Neural Networks using Adversarial Training},
+  booktitle = {Proceedings of the 37th International Conference on Machine Learning ({ICML})},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {119},
+  pages     = {1383--1391},
+  publisher = {PMLR},
+  year      = {2020}
+}
+
+@article{hurley2009comparing,
+  author  = {Niall Hurley and Scott Rickard},
+  title   = {Comparing Measures of Sparsity},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {55},
+  number  = {10},
+  pages   = {4723--4741},
+  month   = oct,
+  year    = {2009},
+  doi     = {10.1109/TIT.2009.2027527}
+}
+
+@inproceedings{tsipras2019robustness,
+  author    = {Dimitris Tsipras and Shibani Santurkar and Logan Engstrom and Alexander Turner and Aleksander Madry},
+  title     = {Robustness May Be at Odds with Accuracy},
+  booktitle = {International Conference on Learning Representations ({ICLR})},
+  year      = {2019}
+}
+
+@inproceedings{fu2022patchfool,
+  author    = {Yonggan Fu and Shunyao Zhang and Shang Wu and Cheng Wan and Yingyan Lin},
+  title     = {{Patch-Fool}: Are Vision Transformers Always Robust Against Adversarial Perturbations?},
+  booktitle = {International Conference on Learning Representations ({ICLR})},
+  year      = {2022}
+}
+
+@inproceedings{gu2022vision,
+  author    = {Jindong Gu and Volker Tresp and Yao Qin},
+  title     = {Are Vision Transformers Robust to Patch Perturbations?},
+  booktitle = {Computer Vision -- {ECCV} 2022},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {13672},
+  pages     = {404--421},
+  publisher = {Springer},
+  year      = {2022},
+  doi       = {10.1007/978-3-031-19775-8_24}
+}
+
+@inproceedings{wu2020skip,
+  author    = {Dongxian Wu and Yisen Wang and Shu-Tao Xia and James Bailey and Xingjun Ma},
+  title     = {Skip Connections Matter: On the Transferability of Adversarial Examples Generated with {ResNets}},
+  booktitle = {International Conference on Learning Representations ({ICLR})},
+  year      = {2020}
+}
+
+@inproceedings{xie2020intriguing,
+  author    = {Cihang Xie and Alan Yuille},
+  title     = {Intriguing Properties of Adversarial Training at Scale},
+  booktitle = {International Conference on Learning Representations ({ICLR})},
+  year      = {2020}
+}
+
+@article{chen2023understanding,
   title={Understanding and improving adversarial transferability of vision transformers and convolutional neural networks},
-  author={Wang, Zhihao and Yang, Yongxiang and Liu, Aishan and Tao, Dacheng},
+  author={Chen, Zhiyu and Xu, Chi and Lv, Huanhuan and Liu, Shangdong and Ji, Yimu},
   journal={Information Sciences},
   volume={648},
-  pages={119473},
-  year={2023}
+  pages={119474},
+  year={2023},
+  doi={10.1016/j.ins.2023.119474}
 }
 
 
@@ -314,4 +502,29 @@
   volume={34},
   pages={26831--26843},
   year={2021}
+}
+
+@inproceedings{rice2020overfitting,
+  title={Overfitting in adversarially robust deep learning},
+  author={Rice, Leslie and Wong, Eric and Kolter, J. Zico},
+  booktitle={International Conference on Machine Learning},
+  pages={8093--8104},
+  year={2020}
+}
+
+@inproceedings{debenedetti2023light,
+  title={A Light Recipe to Train Robust Vision Transformers},
+  author={Debenedetti, Edoardo and Sehwag, Vikash and Mittal, Prateek},
+  booktitle={IEEE Conference on Secure and Trustworthy Machine Learning (SaTML)},
+  pages={225--253},
+  year={2023}
+}
+
+@inproceedings{mo2022adversarial,
+  title={When Adversarial Training Meets Vision Transformers: Recipes from Training to Architecture},
+  author={Mo, Yichuan and Wu, Dongxian and Wang, Yifei and Guo, Yiwen and Wang, Yisen},
+  booktitle={Advances in Neural Information Processing Systems},
+  volume={35},
+  pages={18599--18611},
+  year={2022}
 }

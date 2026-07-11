@@ -141,20 +141,24 @@ python -m cli.main train adversarial --patience 20  # 20 epoch iyilesme yoksa du
 # GPU durumu kontrol (EGITIM ONCESI!)
 nvidia-smi
 
-# Model degerlendirme
+# Model degerlendirme (NOT: click multiple flag'leri tekrarlanmali:
+# "-a fgsm -a pgd -e 0.0078 -e 0.0157" — bosluklu liste PARSE EDILMEZ)
 python -m cli.main evaluate robustness \
-    --model-path models/resnet18/adv/adversarial_training/best.pth \
-    --model-type resnet18 \
-    --attacks fgsm pgd \
-    --epsilons 0.00784 0.01569 0.0314
+    -m models/resnet18/adv/at_run2/resnet18/adv/adversarial_training/best.pth \
+    -t resnet18 \
+    -a fgsm -a pgd \
+    -e 0.00784313725490196 -e 0.01568627450980392 -e 0.03137254901960784
 
-# AutoAttack evaluation
-python experiments/run_autoattack_evaluation.py
+# AutoAttack evaluation (seedli, ornek-bazli loglu; default n=10000)
+python experiments/run_autoattack_run2.py --n-samples 10000 --seed 42
 
-# SCI analizleri
-python experiments/run_sci_analysis.py --analysis gradient
-python experiments/run_sci_analysis.py --analysis transfer
-python experiments/run_sci_analysis.py --analysis attention
+# SCI analizleri (dogru bayrak: --experiment, --analysis DEGIL)
+python experiments/run_sci_analysis.py --experiment gradient
+python experiments/run_sci_analysis.py --experiment transfer
+python experiments/run_sci_analysis.py --experiment attention
+
+# Run3 analizleri (kosullu transfer metrigi, tam seed, --only secimi)
+python experiments/run_all_analyses_run2.py --only transfer --n-samples 10000 --seed 42
 ```
 
 ---

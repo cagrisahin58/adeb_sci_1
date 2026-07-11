@@ -117,7 +117,9 @@ def figure1_robustness_comparison(results: dict, output_path: str):
     fig, ax = plt.subplots(figsize=FIG_DOUBLE)
 
     models = list(results.keys())
-    metrics = ['Clean', 'FGSM', 'PGD-20', 'AutoAttack']
+    # PGD-10: makale protokolu (03_methodology). Onceki 'PGD-20' etiketi
+    # cizilen PGD-10 degerleriyle celisiyordu (M5)
+    metrics = ['Clean', 'FGSM', 'PGD-10', 'AutoAttack']
     x = np.arange(len(models))
     width = 0.2
 
@@ -227,7 +229,7 @@ def figure3_transfer_heatmap(transfer_matrix: np.ndarray, model_names: list, out
 
     # Add colorbar
     cbar = ax.figure.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
-    cbar.set_label('Transfer Success Rate (%)', rotation=270, labelpad=15)
+    cbar.set_label('Conditioned Fooling Rate (%)', rotation=270, labelpad=15)
 
     # Set ticks
     ax.set_xticks(np.arange(len(model_names)))
@@ -389,8 +391,10 @@ def figure5_attention_degradation(
     fig, axes = plt.subplots(2, 3, figsize=(7, 4.5))
 
     for j, (layer_idx, layer_name) in enumerate(zip(layers_to_show, layer_names)):
-        # Clean attention
-        clean_attn = clean_attention.get(layer_idx, np.zeros((8, 8)))
+        # Sessiz sifir-fallback KALDIRILDI: eksik katman = hata
+        if layer_idx not in clean_attention or layer_idx not in adv_attention:
+            raise KeyError(f"Attention haritasi eksik: layer {layer_idx}")
+        clean_attn = clean_attention[layer_idx]
         axes[0, j].imshow(sample_image)
         im = axes[0, j].imshow(clean_attn, cmap='jet', alpha=0.5,
                                extent=[0, sample_image.shape[1], sample_image.shape[0], 0])
@@ -398,15 +402,18 @@ def figure5_attention_degradation(
         axes[0, j].set_title(layer_name, fontsize=9)
 
         # Adversarial attention
-        adv_attn = adv_attention.get(layer_idx, np.zeros((8, 8)))
+        adv_attn = adv_attention[layer_idx]
         axes[1, j].imshow(sample_image)
         axes[1, j].imshow(adv_attn, cmap='jet', alpha=0.5,
                          extent=[0, sample_image.shape[1], sample_image.shape[0], 0])
         axes[1, j].axis('off')
 
-    # Row labels
-    axes[0, 0].set_ylabel('Clean', fontsize=9, rotation=0, ha='right', va='center')
-    axes[1, 0].set_ylabel('Adversarial', fontsize=9, rotation=0, ha='right', va='center')
+    # Satir etiketleri: axis('off') ylabel'i gizledigi icin fig.text kullanilir
+    # (2026-07-10 paneli, bicim-11)
+    fig.text(0.06, 0.70, 'Clean', fontsize=9, fontweight='bold',
+             rotation=90, va='center')
+    fig.text(0.06, 0.30, 'Adversarial', fontsize=9, fontweight='bold',
+             rotation=90, va='center')
 
     # Colorbar
     cbar_ax = fig.add_axes([0.92, 0.15, 0.02, 0.7])
@@ -461,10 +468,10 @@ def generate_demo_data():
 
     # Figure 1: Robustness comparison
     robustness_results = {
-        'ResNet-18\n(Clean)': {'clean': 94.4, 'fgsm': 12.3, 'pgd20': 0.0, 'aa': 0.0},
-        'ResNet-18\n(AT)': {'clean': 80.3, 'fgsm': 55.2, 'pgd20': 40.3, 'aa': 38.1},
-        'WRN-28-10': {'clean': 89.5, 'fgsm': 71.2, 'pgd20': 66.1, 'aa': 62.8},
-        'ViT-Tiny\n(AT)': {'clean': 65.0, 'fgsm': 42.1, 'pgd20': 32.5, 'aa': 30.2},
+        'ResNet-18\n(Clean)': {'clean': 94.4, 'fgsm': 12.3, 'pgd10': 0.0, 'aa': 0.0},
+        'ResNet-18\n(AT)': {'clean': 80.3, 'fgsm': 55.2, 'pgd10': 40.3, 'aa': 38.1},
+        'WRN-28-10': {'clean': 89.5, 'fgsm': 71.2, 'pgd10': 66.1, 'aa': 62.8},
+        'ViT-Tiny\n(AT)': {'clean': 65.0, 'fgsm': 42.1, 'pgd10': 32.5, 'aa': 30.2},
     }
 
     # Figure 2: Epsilon sweep
@@ -518,62 +525,68 @@ def generate_demo_data():
 # =============================================================================
 
 def main():
-    """Generate all figures with demo data."""
+    """Generate all figures with demo data.
+
+    UYARI: Bu fonksiyon SENTETIK demo verisi cizer ve yalnizca figur kodunu
+    test etmek icindir. Ciktilar 'demo_' onekiyle kaydedilir ki makale
+    figurlerinin (fig1..fig5) uzerine asla yazilmasin (M5). Gercek figurler
+    icin generate_from_experiments.py kullanin.
+    """
 
     output_dir = Path(__file__).parent / 'raw'
     output_dir.mkdir(exist_ok=True)
 
-    print("Generating publication figures...")
+    print("Generating DEMO figures (synthetic data, demo_* filenames)...")
     print("=" * 50)
 
     # Generate demo data
     demo = generate_demo_data()
 
     # Figure 1
-    print("\n[1/5] Robustness Comparison")
+    print("\n[1/5] Robustness Comparison (DEMO)")
     figure1_robustness_comparison(
         demo['robustness'],
-        str(output_dir / 'fig1_robustness_comparison.pdf')
+        str(output_dir / 'demo_fig1_robustness_comparison.pdf')
     )
 
     # Figure 2
-    print("\n[2/5] Epsilon Sweep")
+    print("\n[2/5] Epsilon Sweep (DEMO)")
     figure2_epsilon_sweep(
         demo['epsilon'],
-        str(output_dir / 'fig2_epsilon_sweep.pdf')
+        str(output_dir / 'demo_fig2_epsilon_sweep.pdf')
     )
 
     # Figure 3
-    print("\n[3/5] Transfer Attack Heatmap")
+    print("\n[3/5] Transfer Attack Heatmap (DEMO)")
     transfer_matrix, model_names = demo['transfer']
     figure3_transfer_heatmap(
         transfer_matrix,
         model_names,
-        str(output_dir / 'fig3_transfer_heatmap.pdf')
+        str(output_dir / 'demo_fig3_transfer_heatmap.pdf')
     )
 
     # Figure 4
-    print("\n[4/5] Gradient Analysis")
+    print("\n[4/5] Gradient Analysis (DEMO)")
     images, cnn_grads, vit_grads, perts, cnn_norms, vit_norms = demo['gradient']
     figure4_gradient_analysis(
         images, cnn_grads, vit_grads, perts,
-        str(output_dir / 'fig4a_gradient_visualization.pdf')
+        str(output_dir / 'demo_fig4a_gradient_visualization.pdf')
     )
     figure4b_gradient_distribution(
         cnn_norms, vit_norms,
-        str(output_dir / 'fig4b_gradient_distribution.pdf')
+        str(output_dir / 'demo_fig4b_gradient_distribution.pdf')
     )
 
     # Figure 5
-    print("\n[5/5] Attention Analysis")
+    print("\n[5/5] Attention Analysis (DEMO)")
     clean_attn, adv_attn, sample_img, entropy = demo['attention']
     figure5_attention_degradation(
         clean_attn, adv_attn, sample_img,
-        str(output_dir / 'fig5a_attention_comparison.pdf')
+        str(output_dir / 'demo_fig5a_attention_comparison.pdf')
     )
     figure5b_attention_entropy(
         entropy,
-        str(output_dir / 'fig5b_attention_entropy.pdf')
+        str(output_dir / 'demo_fig5b_attention_entropy.pdf')
     )
 
     print("\n" + "=" * 50)

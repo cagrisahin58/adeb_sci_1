@@ -86,6 +86,85 @@ def get_cifar10_loaders(
     return trainloader, testloader
 
 
+def get_cifar10_loaders_with_val(
+    data_dir: str = "./data",
+    batch_size: int = 128,
+    test_batch_size: int = 100,
+    val_size: int = 2000,
+    split_seed: int = 42,
+    num_workers: int = 2,
+    download: bool = True,
+) -> Tuple[DataLoader, DataLoader, DataLoader]:
+    """
+    Get CIFAR-10 loaders with a held-out validation split for model selection.
+
+    Egitim setinden sabit tohumlu bir permutasyonla `val_size` ornek ayrilir;
+    validasyon augmentasyonsuz (ToTensor) degerlendirilir. Model secimi ve
+    early stopping bu set uzerinden yapilarak test-set selection leakage
+    onlenir (M7). Test seti yalnizca son degerlendirmede kullanilmalidir.
+
+    Args:
+        data_dir: Directory to store/load data
+        batch_size: Training batch size
+        test_batch_size: Validation/test batch size
+        val_size: Number of training samples held out for validation
+        split_seed: Seed for the fixed train/val permutation
+        num_workers: Number of data loading workers
+        download: Whether to download the dataset
+
+    Returns:
+        Tuple of (train_loader, val_loader, test_loader)
+    """
+    train_transform = T.Compose([
+        T.RandomCrop(32, padding=4),
+        T.RandomHorizontalFlip(),
+        T.ToTensor(),
+    ])
+    eval_transform = T.Compose([
+        T.ToTensor(),
+    ])
+
+    # Ayni goruntuler, farkli transformlar: iki dataset ornegi gerekir
+    train_aug_set = torchvision.datasets.CIFAR10(
+        root=data_dir, train=True, download=download, transform=train_transform,
+    )
+    train_eval_set = torchvision.datasets.CIFAR10(
+        root=data_dir, train=True, download=False, transform=eval_transform,
+    )
+    testset = torchvision.datasets.CIFAR10(
+        root=data_dir, train=False, download=download, transform=eval_transform,
+    )
+
+    generator = torch.Generator().manual_seed(split_seed)
+    perm = torch.randperm(len(train_aug_set), generator=generator).tolist()
+    val_indices = perm[:val_size]
+    train_indices = perm[val_size:]
+
+    trainloader = DataLoader(
+        Subset(train_aug_set, train_indices),
+        batch_size=batch_size,
+        shuffle=True,
+        num_workers=num_workers,
+        pin_memory=True,
+    )
+    valloader = DataLoader(
+        Subset(train_eval_set, val_indices),
+        batch_size=test_batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=True,
+    )
+    testloader = DataLoader(
+        testset,
+        batch_size=test_batch_size,
+        shuffle=False,
+        num_workers=num_workers,
+        pin_memory=True,
+    )
+
+    return trainloader, valloader, testloader
+
+
 def get_cifar100_loaders(
     data_dir: str = "./data",
     batch_size: int = 128,

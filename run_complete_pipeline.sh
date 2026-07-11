@@ -1,5 +1,13 @@
 #!/bin/bash
 #
+# ############################################################################
+# # KULLANIM DISI (DEPRECATED, 2026-07-10)                                   #
+# # Bu betik ON-CALISMA protokolunu kosar (50/25 epoch, patience yok) ve     #
+# # makaledeki sonuclari URETMEZ. Makale protokolunun kanonik zinciri:       #
+# #   reproduce_paper.sh          (okunabilir referans + dogrudan kosulur)   #
+# #   run_revision_pipeline.sh    (kesintiye dayanikli, idempotent surum)    #
+# ############################################################################
+#
 # Complete Pipeline for SCI Publication
 #
 # This script trains all necessary models and runs comprehensive analysis

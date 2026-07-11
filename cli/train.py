@@ -82,14 +82,21 @@ def clean(model, epochs, lr, batch_size, data_dir, output_dir, seed, device):
 @click.option("--seed", type=int, default=42, help="Random seed")
 @click.option("--device", type=str, default="auto", help="Device")
 @click.option("--patience", type=int, default=0, help="Early stopping patience (0=disabled)")
+@click.option("--val-split", type=int, default=2000,
+              help="Egitim setinden ayrilacak validasyon ornegi sayisi; model secimi "
+                   "bu set uzerinden yapilir (0 = eski davranis: test setiyle secim, "
+                   "selection leakage icerir)")
+@click.option("--resume", is_flag=True, default=False,
+              help="Checkpoint dizinindeki last.pth'tan devam et (kesinti sonrasi). "
+                   "last.pth yoksa sifirdan baslar.")
 def adversarial(model, defense, pretrained, epochs, lr, batch_size, eps, alpha, steps,
-                beta, data_dir, output_dir, seed, device, patience):
+                beta, data_dir, output_dir, seed, device, patience, val_split, resume):
     """Train a model with adversarial defense."""
     from src.utils.seed import set_seed
     from src.utils.device import get_device
     from src.utils.checkpoint import load_model_weights
     from src.models import ModelRegistry
-    from src.data import get_cifar10_loaders
+    from src.data import get_cifar10_loaders, get_cifar10_loaders_with_val
     from src.training import AdversarialTrainer
 
     # Setup
@@ -110,10 +117,21 @@ def adversarial(model, defense, pretrained, epochs, lr, batch_size, eps, alpha, 
     model_instance = model_instance.to(device)
 
     # Load data
-    train_loader, test_loader = get_cifar10_loaders(
-        data_dir=data_dir,
-        batch_size=batch_size,
-    )
+    if val_split > 0:
+        train_loader, val_loader, test_loader = get_cifar10_loaders_with_val(
+            data_dir=data_dir,
+            batch_size=batch_size,
+            val_size=val_split,
+            split_seed=seed,
+        )
+        click.echo(f"Validation split: {val_split} samples (model selection on val, not test)")
+    else:
+        train_loader, test_loader = get_cifar10_loaders(
+            data_dir=data_dir,
+            batch_size=batch_size,
+        )
+        val_loader = None
+        click.echo("WARNING: no validation split - model selection uses the TEST set (leakage)")
 
     # Create trainer
     checkpoint_dir = Path(output_dir) / model / "adv" / defense
@@ -121,6 +139,7 @@ def adversarial(model, defense, pretrained, epochs, lr, batch_size, eps, alpha, 
         model=model_instance,
         train_loader=train_loader,
         test_loader=test_loader,
+        val_loader=val_loader,
         defense=defense,
         device=device,
         epochs=epochs,
@@ -135,9 +154,11 @@ def adversarial(model, defense, pretrained, epochs, lr, batch_size, eps, alpha, 
 
     if patience > 0:
         click.echo(f"Early stopping enabled (patience={patience})")
+    if resume:
+        click.echo("Resume mode: last.pth varsa kaldigi epoch'tan devam edilecek")
 
     # Train
-    history = trainer.train()
+    history = trainer.train(resume=resume)
 
     click.echo(f"\nAdversarial training complete!")
     click.echo(f"Best adversarial accuracy: {trainer.best_adv_acc:.2f}%")

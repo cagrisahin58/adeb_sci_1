@@ -16,7 +16,7 @@
 **Website:** https://huaming-chen.com/
 **Email:** huaming.chen@sydney.edu.au
 
-**Justification:** Dr. Chen is a corresponding author of the ICLR 2024 paper "Enhancing Transferable Adversarial Attacks on Vision Transformers through Gradient Normalization Scaling and High-Frequency Adaptation," which directly addresses gradient-based transferability between ViTs and CNNs. His expertise in gradient analysis of adversarial attacks is highly relevant to our manuscript's core contributions on gradient characteristics and transfer asymmetry.
+**Justification:** Dr. Chen is a corresponding author of the ICLR 2024 paper "Enhancing Transferable Adversarial Attacks on Vision Transformers through Gradient Normalization Scaling and High-Frequency Adaptation," which directly addresses gradient-based transferability between ViTs and CNNs. His expertise in gradient analysis of adversarial attacks is highly relevant to our manuscript's core contributions on gradient characteristics and clean-accuracy-controlled transfer measurement.
 
 ---
 
@@ -51,7 +51,7 @@
 **Affiliation:** Yonsei University, Seoul, South Korea
 **Email:** (available via institutional directory)
 
-**Justification:** Dr. Kim is the first author of "Exploring Adversarial Robustness of Vision Transformers in the Spectral Perspective" (WACV 2024), which analyzes ViT vulnerability through frequency-domain analysis. His spectral perspective complements our gradient-based analysis and would provide a valuable alternative viewpoint for evaluating our mechanistic claims about architectural differences.
+**Justification:** Dr. Kim is the first author of "Exploring Adversarial Robustness of Vision Transformers in the Spectral Perspective" (WACV 2024), which analyzes ViT vulnerability through frequency-domain analysis. His spectral perspective complements our gradient-based analysis and would provide a valuable alternative viewpoint for evaluating our behavioral characterization of architectural differences.
 
 ---
 

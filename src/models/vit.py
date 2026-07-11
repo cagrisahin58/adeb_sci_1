@@ -324,6 +324,74 @@ class CIFAR10ViTTiny(BaseModel):
         x = self.resize(x)
         return self.model.forward_features(x)
 
+    @torch.no_grad()
+    def get_attention_maps(self, x: torch.Tensor):
+        """
+        Extract real post-softmax attention weights from every block.
+
+        timm'in fused SDPA yolu attention matrisini hic olusturmaz; bu yuzden
+        gecici olarak fused_attn=False yapilir ve attn_drop uzerine hook
+        takilir (M1: onceki figur kodu torch.rand ile sahte attention uretiyordu).
+
+        Args:
+            x: Input images in [0,1], shape (B, 3, 32, 32)
+
+        Returns:
+            Dict with:
+              'attention': list of L tensors (B, heads, N, N), post-softmax
+              'cls_maps': tensor (B, L, 14, 14) - CLS-row attention over the
+                  196 patches, averaged over heads
+              'entropy': tensor (L,) - mean entropy of CLS-row attention
+                  distributions per layer
+        """
+        blocks = self.model.blocks
+        captured = []
+        hooks = []
+        old_fused = []
+
+        def hook(module, inputs, output):
+            # attn_drop input/output: (B, heads, N, N) post-softmax attention
+            captured.append(output.detach())
+
+        for blk in blocks:
+            old_fused.append(getattr(blk.attn, "fused_attn", None))
+            if hasattr(blk.attn, "fused_attn"):
+                blk.attn.fused_attn = False
+            hooks.append(blk.attn.attn_drop.register_forward_hook(hook))
+
+        try:
+            _ = self.model(self.resize(x))
+        finally:
+            for h in hooks:
+                h.remove()
+            for blk, flag in zip(blocks, old_fused):
+                if flag is not None:
+                    blk.attn.fused_attn = flag
+
+        if len(captured) != len(blocks):
+            raise RuntimeError(
+                f"Expected {len(blocks)} attention tensors, captured {len(captured)}; "
+                "timm Attention module layout may have changed."
+            )
+
+        # CLS-row attention: (B, heads, N, N) -> row 0, patch columns 1..N-1
+        cls_rows = []
+        entropies = []
+        for attn in captured:
+            cls_row = attn[:, :, 0, 1:]           # (B, heads, 196)
+            cls_row = cls_row.mean(dim=1)          # (B, 196), head-averaged
+            # Entropy of the (renormalized) CLS->patch distribution
+            p = cls_row / (cls_row.sum(dim=-1, keepdim=True) + 1e-12)
+            entropies.append(-(p * (p + 1e-12).log()).sum(dim=-1).mean())
+            grid = int(cls_row.shape[-1] ** 0.5)   # 14 for 196 patches
+            cls_rows.append(cls_row.reshape(-1, grid, grid))
+
+        return {
+            "attention": captured,
+            "cls_maps": torch.stack(cls_rows, dim=1),   # (B, L, 14, 14)
+            "entropy": torch.stack(entropies),           # (L,)
+        }
+
     def freeze_backbone(self) -> None:
         """Freeze all layers except the classification head."""
         for name, param in self.model.named_parameters():

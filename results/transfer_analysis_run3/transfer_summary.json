@@ -1,0 +1,95 @@
+{
+  "timestamp": "2026-07-08T07:16:38.384886",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT"
+  ],
+  "metric": "conditioned_fooling_rate",
+  "matrix": [
+    [
+      52.15406228049637,
+      20.9517514871117
+    ],
+    [
+      20.323109342074456,
+      52.333113020489094
+    ]
+  ],
+  "matrix_raw": [
+    [
+      59.13,
+      40.17
+    ],
+    [
+      31.900000000000002,
+      63.94
+    ]
+  ],
+  "eps": 0.03137254901960784,
+  "steps": 10,
+  "n_samples": 10000,
+  "seed": 42,
+  "model_variant": "run3-metric",
+  "results": [
+    {
+      "source": "ResNet18_AT",
+      "target": "ResNet18_AT",
+      "attack_success_raw": 59.13,
+      "transfer_rate_raw": 59.13,
+      "conditioned_fooling_rate": 52.15406228049637,
+      "conditioned_ci95": [
+        51.100152189182865,
+        53.26621400140482
+      ],
+      "n_conditioned": 8542,
+      "target_clean_acc": 85.42,
+      "is_self": true,
+      "total_samples": 10000
+    },
+    {
+      "source": "ResNet18_AT",
+      "target": "ViT_Tiny_AT",
+      "attack_success_raw": 59.099999999999994,
+      "transfer_rate_raw": 40.17,
+      "conditioned_fooling_rate": 20.9517514871117,
+      "conditioned_ci95": [
+        20.079312623925976,
+        21.916721744877727
+      ],
+      "n_conditioned": 7565,
+      "target_clean_acc": 75.64999999999999,
+      "is_self": false,
+      "total_samples": 10000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ResNet18_AT",
+      "attack_success_raw": 63.89,
+      "transfer_rate_raw": 31.900000000000002,
+      "conditioned_fooling_rate": 20.323109342074456,
+      "conditioned_ci95": [
+        19.456801685787873,
+        21.21312339030672
+      ],
+      "n_conditioned": 8542,
+      "target_clean_acc": 85.42,
+      "is_self": false,
+      "total_samples": 10000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ViT_Tiny_AT",
+      "attack_success_raw": 63.94,
+      "transfer_rate_raw": 63.94,
+      "conditioned_fooling_rate": 52.333113020489094,
+      "conditioned_ci95": [
+        51.288830138797096,
+        53.41705221414409
+      ],
+      "n_conditioned": 7565,
+      "target_clean_acc": 75.64999999999999,
+      "is_self": true,
+      "total_samples": 10000
+    }
+  ]
+}

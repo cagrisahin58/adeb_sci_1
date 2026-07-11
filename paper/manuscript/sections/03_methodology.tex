@@ -15,7 +15,7 @@ We consider the standard $\Linf$ threat model where an adversary can perturb inp
     \mathcal{B}_\eps(x) = \{x' : \|x' - x\|_\infty \leq \eps\}
 \end{equation}
 
-Following established conventions for CIFAR-10~\cite{krizhevsky2009learning, croce2021robustbench}, we use $\eps = 8/255 \approx 0.031$ as the primary perturbation budget, with additional experiments at $\eps \in \{2/255, 4/255, 16/255\}$ for epsilon sweep analysis.
+Following established conventions for CIFAR-10~\cite{krizhevsky2009learning, croce2021robustbench}, we use $\eps = 8/255 \approx 0.031$ as the primary perturbation budget, with additional full-test PGD-10 evaluations at $\eps \in \{2/255, 4/255, 16/255\}$ for the epsilon sweep analysis.
 
 We evaluate under both white-box (full model access) and black-box (transfer attack) scenarios. For white-box attacks, the adversary has complete knowledge of model architecture and parameters. For transfer attacks, adversarial examples are generated on a source model and evaluated on a different target model.
 
@@ -29,11 +29,11 @@ We evaluate under both white-box (full model access) and black-box (transfer att
 
 \textbf{ResNet-18}~\cite{he2016deep}: A widely-used baseline CNN with residual connections, containing 11.2M parameters. We use the standard architecture designed for CIFAR-10 (initial 3$\times$3 convolution instead of 7$\times$7).
 
-\textbf{WideResNet-28-10}~\cite{zagoruyko2016wide}: A wider variant of ResNet with 36.5M parameters, representing the state-of-the-art architecture for adversarial robustness on CIFAR-10. We use pretrained robust weights from RobustBench~\cite{croce2021robustbench}.
+\textbf{WideResNet-28-10}~\cite{zagoruyko2016wide}: A wider variant of ResNet with 36.5M parameters, representing the state-of-the-art architecture for adversarial robustness on CIFAR-10. We use the pretrained robust checkpoint of Gowal et al.~\cite{gowal2020uncovering} distributed via RobustBench~\cite{croce2021robustbench}; note that this model was trained with additional unlabeled data and a stronger recipe than our standard adversarial training, so it serves as a reference point rather than a matched comparison.
 
 \paragraph{Vision Transformer Models}
 
-\textbf{ViT-Tiny}: We use the ViT-Tiny architecture from the \texttt{timm} library~\cite{rw2019timm}, adapted for CIFAR-10 by resizing inputs to 224$\times$224. The architecture uses 16$\times$16 patches (196 patches per image), 192-dimensional embeddings, 12 transformer blocks with 3 attention heads each, MLP ratio of 4, and totals 5.7M parameters. This configuration enables direct comparison with pretrained ImageNet backbones while maintaining similar scale to ResNet-18.
+\textbf{ViT-Tiny}: We use the ViT-Tiny architecture from the \texttt{timm} library~\cite{rw2019timm}, adapted for CIFAR-10 by bilinearly upsampling inputs to 224$\times$224. The architecture uses 16$\times$16 patches (196 patches per image), 192-dimensional embeddings, 12 transformer blocks with 3 attention heads each, MLP ratio of 4, and totals 5.7M parameters. The model is trained \emph{from scratch} on CIFAR-10 (no ImageNet pretraining) with basic augmentation (random crop and horizontal flip), then adversarially fine-tuned. Since ViT robustness on small datasets is known to be sensitive to the training recipe~\cite{debenedetti2023light, mo2022adversarial}, our architecture-level conclusions should be interpreted as holding \emph{under this baseline training recipe} rather than for optimally trained ViTs.
 
 % ----------------------------------------------------------------------------
 % 3.3 Attack Methods
@@ -50,7 +50,7 @@ Single-step attack with step size equal to the perturbation budget:
 \paragraph{PGD}
 Iterative attack with step size $\alpha = 2/255$ and random initialization:
 \begin{equation}
-    x^{t+1} = \Pi_{B_\eps(x)} \left( x^t + \alpha \cdot \text{sign}(\nabla_{x^t} \mathcal{L}_{CE}(f(x^t), y)) \right)
+    x^{t+1} = \Pi_{\mathcal{B}_\eps(x)} \left( x^t + \alpha \cdot \text{sign}(\nabla_{x^t} \mathcal{L}_{CE}(f(x^t), y)) \right)
 \end{equation}
 with $x^0 = x + \mathcal{U}(-\eps, \eps)$. We use PGD-10 (10 iterations) for both adversarial training and evaluation throughout this work (Table~\ref{tab:main_results}).
 
@@ -68,7 +68,7 @@ We employ a mixed adversarial training objective that combines clean and adversa
 \begin{equation}
     \mathcal{L} = (1 - \lambda)\,\mathcal{L}_{CE}(f_\theta(x), y) + \lambda\,\mathcal{L}_{CE}(f_\theta(x_{adv}), y)
 \end{equation}
-where $\lambda = 0.5$ balances standard classification performance with adversarial robustness. The inner maximization generates adversarial examples using PGD-10 ($\alpha = 2/255$, $\eps = 8/255$). This mixed objective, widely adopted in practice, helps maintain clean accuracy while building robustness, as training solely on adversarial examples can degrade natural performance. While alternative formulations such as TRADES~\cite{zhang2019theoretically} offer theoretically grounded trade-off mechanisms, this work focuses on standard adversarial training to isolate architectural effects from defense-specific interactions.
+where $\lambda = 0.5$ balances standard classification performance with adversarial robustness. The inner maximization generates adversarial examples using PGD-10 ($\alpha = 2/255$, $\eps = 8/255$), computed with the model in training mode so that attack generation and the parameter update see consistent batch-normalization statistics, following standard adversarial-training implementations~\cite{rice2020overfitting}. This mixed objective, widely adopted in practice, helps maintain clean accuracy while building robustness, as training solely on adversarial examples can degrade natural performance. While alternative formulations such as TRADES~\cite{zhang2019theoretically} offer theoretically grounded trade-off mechanisms, this work focuses on standard adversarial training to isolate architectural effects from defense-specific interactions.
 
 % ----------------------------------------------------------------------------
 % 3.5 Training Protocol
@@ -80,7 +80,7 @@ where $\lambda = 0.5$ balances standard classification performance with adversar
 For CNNs, we use SGD optimizer with initial learning rate 0.1, cosine annealing schedule~\cite{loshchilov2016sgdr}, weight decay $5 \times 10^{-4}$, and 200 epochs. For ViTs, we use AdamW optimizer~\cite{loshchilov2017decoupled} with initial learning rate $10^{-3}$, cosine annealing, weight decay 0.05, and 200 epochs.
 
 \paragraph{Adversarial Training}
-Starting from pretrained clean models, we fine-tune with reduced learning rates: CNNs use SGD with LR $10^{-3}$ and cosine annealing for 100 epochs, while ViTs use AdamW with the same learning rate and schedule. Data augmentation includes random cropping with 4-pixel padding and horizontal flipping. We use batch size 128 for all experiments.
+Starting from our clean-trained checkpoints, we fine-tune with reduced learning rates: CNNs use SGD with LR $10^{-3}$ and cosine annealing for up to 100 epochs, while ViTs use AdamW with the same learning rate and schedule. Gradients are clipped to a global $L_2$ norm of 10, and batches with non-finite loss are skipped. Data augmentation includes random cropping with 4-pixel padding and horizontal flipping; all models consume raw pixel inputs in $[0,1]$ without mean/std normalization, and attacks and epsilon budgets operate directly in this pixel space. The training batch size is 128 for the CNN and 64 for the ViT (evaluation batch sizes vary by analysis). Model selection and early stopping use PGD-10 adversarial accuracy on a held-out 2{,}000-sample validation split carved from the training set, so the test set is touched only by the final post-hoc evaluations. The training seeds are 42 for ResNet-18 and 123 for ViT-Tiny; since the validation permutation is derived from the training seed, the two models use different (fixed) held-out splits. Because the validation images were seen during clean pretraining, validation accuracies are optimistic in absolute terms, but this does not affect test-set results. Early stopping uses patience 20 with a 0.1 percentage-point improvement threshold: the ResNet-18 run stopped at epoch 84 and the ViT-Tiny run at epoch 51, truncating their cosine schedules.
 
 % ----------------------------------------------------------------------------
 % 3.6 Evaluation Metrics
@@ -92,14 +92,14 @@ Starting from pretrained clean models, we fine-tune with reduced learning rates:
 We evaluate models using three standard metrics: clean accuracy (classification performance on unperturbed test images), robust accuracy (classification performance on adversarial examples), and attack success rate (fraction of correctly classified clean images that become misclassified after attack).
 
 \paragraph{Transfer Attack Metrics}
-We define the transfer attack success rate as the misclassification rate of the target model on adversarial examples crafted by the source model. Given $n$ test samples and adversarial examples $\{x_{adv}^S\}$ generated against source model $f_S$, the transfer rate to target model $f_T$ is:
+Our primary transfer metric is the \emph{conditioned fooling rate}: among the samples that the target model classifies correctly on clean inputs, the fraction that becomes misclassified under adversarial examples crafted on the source model. Given adversarial examples $\{x_{adv}^S\}$ generated against source model $f_S$, the conditioned transfer rate to target model $f_T$ is:
 \begin{equation}
-    T(f_S \rightarrow f_T) = \frac{1}{n} \sum_{i=1}^{n} \mathbf{1}[f_T(x_{adv,i}^S) \neq y_i]
+    T_c(f_S \rightarrow f_T) = \frac{\sum_{i=1}^{n} \mathbf{1}[f_T(x_i) = y_i]\,\mathbf{1}[f_T(x_{adv,i}^S) \neq y_i]}{\sum_{i=1}^{n} \mathbf{1}[f_T(x_i) = y_i]}
 \end{equation}
-This metric measures the raw misclassification rate on the target model regardless of whether the source model was itself fooled by the adversarial example. For transfer attack analysis, we compute success rates on the full test set (10,000 samples) to ensure statistical stability. We report 95\% confidence intervals using bootstrap resampling with 1,000 iterations, computing the percentile interval from the resampled distribution. Given the large sample size, differences exceeding 5\% absolute are statistically significant at $p < 0.001$ under binomial proportion tests.
+Conditioning transfer evaluation on correctly classified samples follows established practice~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend, zhao2025revisiting} and is essential in cross-architecture comparisons: the raw misclassification rate $\frac{1}{n} \sum_{i} \mathbf{1}[f_T(x_{adv,i}^S) \neq y_i]$ includes the target's clean error, so a target with lower clean accuracy appears more ``vulnerable'' to transfer even when no additional samples are flipped by the attack. We report the raw rate as a secondary metric for transparency and to quantify the size of this confound. Transfer rates are computed on the full test set (10{,}000 samples) with per-sample outcomes logged, and we report 95\% confidence intervals obtained by percentile bootstrap over samples (1{,}000 resamples).
 
 \paragraph{Gradient Analysis Metrics}
-We analyze gradient properties through three complementary metrics. Gradient norm ($\|\nabla_x \mathcal{L}\|_2$ and $\|\nabla_x \mathcal{L}\|_\infty$) measures overall sensitivity magnitude. Gradient sparsity quantifies the fraction of gradient components below threshold ($|g_i| < 10^{-6}$), indicating localization of sensitivity. Gradient alignment measures the average pairwise cosine similarity across samples:
+We analyze gradient properties through three complementary metric families, computing gradients of per-sample losses so that magnitudes are independent of the evaluation batch size. Gradient norm ($\|\nabla_x \mathcal{L}\|_2$ and $\|\nabla_x \mathcal{L}\|_\infty$) measures overall sensitivity magnitude. Gradient sparsity is quantified with scale-invariant measures---Hoyer sparsity, the Gini coefficient of $|g|$, and the fraction of components below 1\% of the per-sample maximum---since fixed absolute thresholds conflate gradient scale with structure; Hoyer and Gini satisfy the scale-invariance axioms formalized by Hurley and Rickard~\cite{hurley2009comparing}. Gradient alignment measures the average pairwise absolute cosine similarity across samples (computed over all within-batch pairs):
 \begin{equation}
     \text{Alignment} = \frac{1}{N(N-1)} \sum_{i \neq j} \left| \frac{\nabla_{x_i} \mathcal{L} \cdot \nabla_{x_j} \mathcal{L}}{\|\nabla_{x_i} \mathcal{L}\| \|\nabla_{x_j} \mathcal{L}\|} \right|
 \end{equation}
@@ -122,4 +122,4 @@ Feature $L_2$ distance ($\|h_\ell(x) - h_\ell(x_{adv})\|_2$) quantifies absolute
 \subsection{Statistical Validation}
 \label{subsec:statistics}
 
-To assess evaluation stochasticity, we evaluate each trained model 3 times with different random seeds (42, 123, 456) for attack initialization and test set shuffling, reporting mean $\pm$ standard deviation for all metrics. This procedure quantifies the variance attributable to stochastic elements of the evaluation pipeline (random restarts in PGD, data ordering) rather than training variance. To address training-level reproducibility, we conducted two independent training runs (run1 and run2) for each architecture, yielding consistent performance trends (Section~\ref{subsec:robustness}). We use deterministic CUDA operations where possible. All experiments are conducted on NVIDIA RTX 5060 Ti (16GB) using PyTorch 2.6.0 with CUDA 12.8.
+To assess evaluation stochasticity, we evaluate each trained model 3 times with different random seeds (42, 123, 456), reporting mean $\pm$ standard deviation. The evaluated subset and its ordering are fixed (the test loader does not shuffle), so the seeds vary \emph{only} the random initialization of PGD restarts; the measured variance therefore quantifies attack-initialization stochasticity, not data-sampling or training variance. To address training-level reproducibility, we conducted multiple independent adversarial-training runs per architecture: two under a preliminary implementation of the training loop, and one final run per architecture under the standardized protocol reported in this paper---rankings were preserved across all runs, with non-negligible run-to-run variation for the ViT (Section~\ref{subsec:statistics_results}). The AutoAttack, transfer, gradient, feature-degradation, and statistical-validation scripts fix all random seeds (seed 42, including CUDA determinism flags); the FGSM/PGD table cells produced by the evaluation CLI use random-start PGD without an explicit seed and therefore carry attack-initialization stochasticity of roughly $\pm$0.1 percentage points (Table~\ref{tab:statistical}). All experiments are conducted on NVIDIA RTX 5060 Ti (16GB) using PyTorch 2.6.0 with CUDA 12.8.

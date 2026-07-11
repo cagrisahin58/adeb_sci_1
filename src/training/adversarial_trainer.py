@@ -9,7 +9,7 @@ from pathlib import Path
 from tqdm import tqdm
 import time
 
-from ..utils.checkpoint import save_checkpoint
+from ..utils.checkpoint import save_checkpoint, load_checkpoint
 from ..defenses.base import TrainingDefense
 from ..defenses.adversarial_training import AdversarialTraining
 from ..defenses.trades import TRADESDefense
@@ -31,6 +31,7 @@ class AdversarialTrainer:
         model: nn.Module,
         train_loader: DataLoader,
         test_loader: DataLoader,
+        val_loader: Optional[DataLoader] = None,
         defense: Optional[Union[TrainingDefense, str]] = None,
         optimizer: Optional[optim.Optimizer] = None,
         scheduler: Optional[Any] = None,
@@ -57,6 +58,11 @@ class AdversarialTrainer:
             model: Model to train
             train_loader: Training data loader
             test_loader: Test data loader
+            val_loader: Validation loader for model selection / early stopping.
+                Saglanirsa best.pth secimi ve early stopping bu set uzerinden
+                yapilir ve test seti egitim boyunca HIC kullanilmaz (M7:
+                test-set selection leakage onlenir). None ise eski davranis
+                (test seti ile secim) korunur.
             defense: Defense method (TrainingDefense instance or name string)
             optimizer: Optimizer (None to create default SGD)
             scheduler: Learning rate scheduler
@@ -79,6 +85,7 @@ class AdversarialTrainer:
         self.model = model
         self.train_loader = train_loader
         self.test_loader = test_loader
+        self.val_loader = val_loader
         self.epochs = epochs
         self.checkpoint_dir = Path(checkpoint_dir)
         self.save_best = save_best
@@ -196,19 +203,18 @@ class AdversarialTrainer:
             # Compute defense loss
             loss = self.defense.get_loss(self.model, inputs, labels)
 
+            # NaN/Inf kontrolu backward/step'ten ONCE yapilmali; sonrasinda
+            # yapilirsa bozuk gradyan agirliklara islenmis olur (M25)
+            if torch.isnan(loss) or torch.isinf(loss):
+                print("Warning: NaN/Inf loss detected, skipping batch")
+                continue
+
             loss.backward()
 
             # Gradient clipping to prevent explosion
             torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=10.0)
             self.optimizer.step()
 
-            # Skip NaN losses
-            if torch.isnan(loss) or torch.isinf(loss):
-                continue
-            # Skip if loss is NaN or Inf
-            if torch.isnan(loss) or torch.isinf(loss):
-                print(f"Warning: NaN/Inf loss detected, skipping batch")
-                continue
             running_loss += loss.item()
             total += labels.size(0)
 
@@ -222,18 +228,19 @@ class AdversarialTrainer:
         }
 
     @torch.no_grad()
-    def evaluate_clean(self) -> float:
+    def evaluate_clean(self, loader: Optional[DataLoader] = None) -> float:
         """
-        Evaluate on clean test set.
+        Evaluate clean accuracy on the given loader (default: test set).
 
         Returns:
             Clean accuracy percentage
         """
+        loader = loader if loader is not None else self.test_loader
         self.model.eval()
         correct = 0
         total = 0
 
-        for inputs, labels in self.test_loader:
+        for inputs, labels in loader:
             inputs, labels = inputs.to(self.device), labels.to(self.device)
 
             outputs = self.model(inputs)
@@ -243,21 +250,27 @@ class AdversarialTrainer:
 
         return 100.0 * correct / total
 
-    def evaluate_adversarial(self, eps: float = 8 / 255) -> float:
+    def evaluate_adversarial(
+        self,
+        eps: float = 8 / 255,
+        loader: Optional[DataLoader] = None,
+    ) -> float:
         """
-        Evaluate on adversarial test set.
+        Evaluate adversarial accuracy on the given loader (default: test set).
 
         Args:
             eps: Perturbation size for evaluation
+            loader: Data loader to evaluate on (None = test set)
 
         Returns:
             Adversarial accuracy percentage
         """
+        loader = loader if loader is not None else self.test_loader
         self.model.eval()
         correct = 0
         total = 0
 
-        for inputs, labels in self.test_loader:
+        for inputs, labels in loader:
             inputs, labels = inputs.to(self.device), labels.to(self.device)
 
             # Generate adversarial examples
@@ -294,26 +307,28 @@ class AdversarialTrainer:
         delta = torch.clamp(original_images + delta, 0, 1) - original_images
 
         for _ in range(steps):
-            delta.requires_grad = True
+            delta = delta.detach().requires_grad_(True)
 
             outputs = self.model(original_images + delta)
             loss = nn.CrossEntropyLoss()(outputs, labels)
 
-            loss.backward()
-
-            # Gradient clipping to prevent explosion
-            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=10.0)
-
-            grad = delta.grad.sign()
+            # torch.autograd.grad: model parametrelerine gradyan biriktirmeden
+            # yalnizca delta gradyanini hesapla (M10/M25)
+            grad = torch.autograd.grad(loss, delta)[0].sign()
             delta = delta.detach() + alpha * grad
             delta = torch.clamp(delta, -eps, eps)
             delta = torch.clamp(original_images + delta, 0, 1) - original_images
 
         return original_images + delta
 
-    def train(self) -> Dict[str, list]:
+    def train(self, resume: bool = False) -> Dict[str, list]:
         """
         Run full adversarial training loop.
+
+        Args:
+            resume: True ise checkpoint_dir/last.pth'tan devam eder
+                (elektrik kesintisi vb. sonrasi kaldigi epoch'tan surer).
+                last.pth yoksa sifirdan baslar.
 
         Returns:
             Training history dictionary
@@ -321,20 +336,45 @@ class AdversarialTrainer:
         self.checkpoint_dir.mkdir(parents=True, exist_ok=True)
         start_time = time.time()
 
+        # Kesinti sonrasi devam (resume)
+        start_epoch = 0
+        last_path = self.checkpoint_dir / "last.pth"
+        if resume and last_path.exists():
+            ckpt = load_checkpoint(
+                str(last_path), self.model, self.optimizer, self.scheduler, self.device
+            )
+            start_epoch = ckpt.get("epoch", -1) + 1
+            self.best_adv_acc = ckpt.get("best_adv_acc", ckpt.get("accuracy", 0.0) or 0.0)
+            self.patience_counter = ckpt.get("patience_counter", 0)
+            saved_history = ckpt.get("history")
+            if saved_history:
+                self.history = saved_history
+            if ckpt.get("early_stopped", False):
+                self.early_stopped = True
+                if self.verbose:
+                    print(f"Training already early-stopped at epoch {start_epoch}; nothing to resume.")
+                return self.history
+            if self.verbose:
+                print(f"Resuming from epoch {start_epoch} "
+                      f"(best adv acc so far: {self.best_adv_acc:.2f}%, "
+                      f"patience: {self.patience_counter}/{self.patience})")
+
         if self.verbose:
             print(f"Adversarial training on {self.device}")
             print(f"Defense method: {self.defense.name}")
             print(f"Model parameters: {sum(p.numel() for p in self.model.parameters()):,}")
 
-        for epoch in range(self.epochs):
+        for epoch in range(start_epoch, self.epochs):
             self.current_epoch = epoch
 
             # Train
             train_metrics = self.train_epoch()
 
-            # Evaluate
-            clean_acc = self.evaluate_clean()
-            adv_acc = self.evaluate_adversarial()
+            # Evaluate: val_loader saglanmissa secim/izleme validasyon
+            # setinde yapilir, test seti egitim boyunca kullanilmaz (M7)
+            eval_loader = self.val_loader if self.val_loader is not None else self.test_loader
+            clean_acc = self.evaluate_clean(eval_loader)
+            adv_acc = self.evaluate_adversarial(loader=eval_loader)
 
             # Update scheduler
             self.scheduler.step()
@@ -377,19 +417,39 @@ class AdversarialTrainer:
                     self.early_stopped = True
                     if self.verbose:
                         print(f"\nEarly stopping triggered at epoch {epoch + 1}")
-                    break
 
-        # Save last model
-        if self.save_last:
-            save_checkpoint(
-                self.model,
-                self.checkpoint_dir / "last.pth",
-                self.optimizer,
-                self.scheduler,
-                self.epochs - 1,
-                adv_acc,
-                extra_info={"clean_acc": clean_acc},
-            )
+            # Her epoch sonunda kesintiye dayanikli last.pth (atomik yaz:
+            # once .tmp'ye kaydet sonra yerine tasi - yazim sirasinda elektrik
+            # giderse eski last.pth bozulmaz)
+            if self.save_last:
+                tmp_path = self.checkpoint_dir / "last.pth.tmp"
+                save_checkpoint(
+                    self.model,
+                    tmp_path,
+                    self.optimizer,
+                    self.scheduler,
+                    epoch,
+                    adv_acc,
+                    extra_info={
+                        "clean_acc": clean_acc,
+                        "best_adv_acc": self.best_adv_acc,
+                        "patience_counter": self.patience_counter,
+                        "early_stopped": self.early_stopped,
+                        "history": self.history,
+                    },
+                )
+                tmp_path.replace(self.checkpoint_dir / "last.pth")
+
+            if self.early_stopped:
+                break
+
+        # Tamamlanma isareti: orkestrasyon scripti bu dosyaya bakarak
+        # egitimin bittigini (kesintiye ugramadigini) anlar
+        (self.checkpoint_dir / "TRAINING_COMPLETE").write_text(
+            f"epochs_run={self.current_epoch + 1}\n"
+            f"early_stopped={self.early_stopped}\n"
+            f"best_adv_acc={self.best_adv_acc:.4f}\n"
+        )
 
         elapsed_time = time.time() - start_time
         if self.verbose:

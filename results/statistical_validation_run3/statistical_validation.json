@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-07-08T07:17:51.510038",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "n_samples": 1000,
+  "eps": 0.03137254901960784,
+  "model_variant": "run3-metric",
+  "results": [
+    {
+      "model": "ResNet18_AT",
+      "clean_mean": 86.09999999999998,
+      "clean_std": 1.4210854715202004e-14,
+      "robust_mean": 40.56666666666666,
+      "robust_std": 0.12472191289246648,
+      "n_runs": 3,
+      "n_samples": 1000
+    },
+    {
+      "model": "ViT_Tiny_AT",
+      "clean_mean": 76.9,
+      "clean_std": 0.0,
+      "robust_mean": 38.23333333333333,
+      "robust_std": 0.09428090415820432,
+      "n_runs": 3,
+      "n_samples": 1000
+    }
+  ],
+  "model_paths": {
+    "ResNet18_AT": "models/resnet18/adv/at_run3/resnet18/adv/adversarial_training/best.pth",
+    "ViT_Tiny_AT": "models/vit_tiny/adv/at_run3/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "provenance_note": "metadata corrected post-hoc on 2026-07-10: the original model_variant label was a stale hardcoded string; checkpoint paths recovered from logs/R10_statistical.log. Numerical results unchanged."
+}

@@ -1,0 +1,224 @@
+[
+ {
+  "citation": "P. Chalasani, J. Chen, A. R. Chowdhury, X. Wu, S. Jha, \"Concise Explanations of Neural Networks using Adversarial Training,\" Proc. 37th Int. Conf. on Machine Learning (ICML), PMLR 119:1383-1394, 2020.",
+  "url": "https://proceedings.mlr.press/v119/chalasani20a.html",
+  "why_relevant": "l-inf adversarial training'in girdi-gradyan/atıf vektörlerini seyrekleştirdiğini Gini indeksiyle gösteren doğrudan metodolojik öncül; makale Gini katsayısını gradyan seyrekliği için aynı amaçla kullanıyor ama bu işe atıf yapmıyor. Hem §3.6 metrik tanımı hem §4.3/§5.1 yorumu için gerekli.",
+  "must_cite": true
+ },
+ {
+  "citation": "N. Hurley, S. Rickard, \"Comparing Measures of Sparsity,\" IEEE Transactions on Information Theory, vol. 55, no. 10, pp. 4723-4741, 2009.",
+  "url": "https://arxiv.org/abs/0811.4706",
+  "why_relevant": "Hoyer ve Gini ölçülerinin ölçek-değişmezlik (scaling) dahil altı aksiyomatik özelliğini kanıtlayan kanonik kaynak; makale bu ölçüleri 'scale-invariant' oldukları gerekçesiyle seçiyor (§3.6) fakat tanım/gerekçe kaynağı vermiyor.",
+  "must_cite": true
+ },
+ {
+  "citation": "P. O. Hoyer, \"Non-negative Matrix Factorization with Sparseness Constraints,\" Journal of Machine Learning Research, vol. 5, pp. 1457-1469, 2004.",
+  "url": "https://jmlr.org/papers/v5/hoyer04a.html",
+  "why_relevant": "'Hoyer sparsity' ölçüsünün orijinal tanımı; Hurley & Rickard'a ek/alternatif olarak metrik tanımında atıf verilebilir.",
+  "must_cite": false
+ },
+ {
+  "citation": "D. Tsipras, S. Santurkar, L. Engstrom, A. Turner, A. Madry, \"Robustness May Be at Odds with Accuracy,\" Int. Conf. on Learning Representations (ICLR), 2019.",
+  "url": "https://arxiv.org/abs/1805.12152",
+  "why_relevant": "AT'li modellerin girdi-gradyanlarının algısal olarak hizalı/yorumlanabilir hale geldiğini (perceptually aligned gradients) gösteren temel iş. Her iki modelin de AT'li olduğu bir gradyan-yapısı analizinde, 'AT mimari eğilimleri bastırıyor' (§5.1) yorumunun literatür çapası; gradient bölümünde şu an gradyan-yapısı literatüründen hiç atıf yok.",
+  "must_cite": true
+ },
+ {
+  "citation": "C. Etmann, S. Lunz, P. Maass, C.-B. Schönlieb, \"On the Connection between Adversarial Robustness and Saliency Map Interpretability,\" Proc. ICML, PMLR 97:1823-1832, 2019.",
+  "url": "https://arxiv.org/abs/1905.04172",
+  "why_relevant": "Robustluk arttıkça saliency/gradyan haritalarının girdiyle hizalandığını nicel gösterir; Tsipras et al. ile birlikte AT-gradyan-yapısı bağlantısını destekleyen ikincil kaynak.",
+  "must_cite": false
+ },
+ {
+  "citation": "Y. Fu, S. Zhang, S. Wu, C. Wan, Y. Lin, \"Patch-Fool: Are Vision Transformers Always Robust Against Adversarial Perturbations?\" Int. Conf. on Learning Representations (ICLR), 2022.",
+  "url": "https://arxiv.org/abs/2203.08392",
+  "why_relevant": "Self-attention mekanizmasını attention-aware patch seçimiyle doğrudan hedef alan saldırı; ViT'lerin CNN'lerden her koşulda robust olmadığını ilk gösteren işlerden. Attention degradation analizinin (§4.4, fig5) karşılaştırılması gereken birincil iş; görev tanımında adı geçmesine rağmen references.bib'de yok.",
+  "must_cite": true
+ },
+ {
+  "citation": "J. Gu, V. Tresp, Y. Qin, \"Are Vision Transformers Robust to Patch Perturbations?\" Computer Vision - ECCV 2022, LNCS vol. 13672, pp. 404-421, Springer, 2022.",
+  "url": "https://arxiv.org/abs/2111.10659",
+  "why_relevant": "Saldırı altında ViT attention'ının perturbe bölgeye çekilerek 'kandırıldığını' attention analiziyle nicel gösteren iş — makalenin clean-vs-adversarial attention kayması bulgusunun (fig5a/5b, 'later layers show larger attention shifts') en yakın öncülü; entropi/attention bulgusu bu işle karşılaştırılmadan sunulmamalı.",
+  "must_cite": true
+ },
+ {
+  "citation": "M. Raghu, T. Unterthiner, S. Kornblith, C. Zhang, A. Dosovitskiy, \"Do Vision Transformers See Like Convolutional Neural Networks?\" Advances in Neural Information Processing Systems (NeurIPS), vol. 34, pp. 12116-12128, 2021.",
+  "url": "https://proceedings.neurips.cc/paper/2021/hash/652cf38361a209088302ba2b8b7f51e0-Abstract.html",
+  "why_relevant": "ViT'lerde katman-bazlı temsil analizi (CKA) metodolojisinin kanonik kaynağı; ViT temsillerinin katmanlar arası homojenliği ve residual bağlantıların özellik taşıması, makaledeki orta-ağ platosu ve son-blok toparlanması profilinin yorumlanması için gerekli bağlam. §4.4'teki katman-bazlı analiz bu literatüre hiç bağlanmamış.",
+  "must_cite": true
+ },
+ {
+  "citation": "N. Park, S. Kim, \"How Do Vision Transformers Work?\" Int. Conf. on Learning Representations (ICLR), 2022.",
+  "url": "https://arxiv.org/abs/2202.06709",
+  "why_relevant": "MSA'ların alçak-geçiren, konvolüsyonların yüksek-geçiren filtre gibi davrandığını gösterir; CNN gradyanlarının daha seyrek/lokalize, ViT gradyanlarının dağıtık olması bulgusuna frekans-mekanizması açıklaması sağlar (§4.3/§5.1 yorumunu güçlendirir).",
+  "must_cite": false
+ },
+ {
+  "citation": "Z. Wang, W. Ruan, \"Understanding Adversarial Robustness of Vision Transformers via Cauchy Problem,\" Machine Learning and Knowledge Discovery in Databases (ECML-PKDD 2022), LNCS vol. 13715, Springer, 2023.",
+  "url": "https://arxiv.org/abs/2208.00906",
+  "why_relevant": "ViT robustluğunun katmanlar boyunca yayılımını teorik çerçeveyle niceler; ilk ve son katmanların kritik olduğu ve MSA'nın güçlü saldırılarda (PGD) robustluğu azalttığı bulguları, makalenin erken-düşüş + son-blok toparlanması profiliyle doğrudan karşılaştırılmalı.",
+  "must_cite": false
+ },
+ {
+  "citation": "D. Zhou, Z. Yu, E. Xie, C. Xiao, A. Anandkumar, J. Feng, J. M. Alvarez, \"Understanding The Robustness in Vision Transformers,\" Proc. ICML, PMLR 162:27378-27394, 2022.",
+  "url": "https://arxiv.org/abs/2204.12451",
+  "why_relevant": "Self-attention'ın orta-seviye temsiller (visual grouping) üzerinden robustluk kazandırdığı tezi; degradasyonun orta-ağda plato yapması bulgusunun mekanizma tartışmasına bağlam sağlar.",
+  "must_cite": false
+ },
+ {
+  "citation": "P. Benz, S. Ham, C. Zhang, A. Karjauv, I. S. Kweon, \"Adversarial Robustness Comparison of Vision Transformer and MLP-Mixer to CNNs,\" British Machine Vision Conference (BMVC), 2021.",
+  "url": "https://arxiv.org/abs/2110.02797",
+  "why_relevant": "Erken CNN-vs-ViT adversarial karşılaştırmalarından biri; robust ViT'lerin düşük-frekans özelliklere dayandığını frekans analiziyle gösterir — related work'teki frekans-önyargı anlatısını (wang2023understanding) destekleyen birincil kaynaklardan.",
+  "must_cite": false
+ },
+ {
+  "citation": "S. Sun, K. Nwodo, S. Sugrim, A. Stavrou, H. Wang, \"ViTGuard: Attention-aware Detection against Adversarial Examples for Vision Transformer,\" Proc. Annual Computer Security Applications Conference (ACSAC), 2024.",
+  "url": "https://arxiv.org/abs/2409.13828",
+  "why_relevant": "Attention ve CLS temsil kaymalarını adversarial örnek TESPİTİ için kullanan güncel iş; makalenin attention/feature degradation gözlemlerinin pratik sonucu olarak Discussion'da konumlandırılabilir (2023-2025 güncel atıf beklentisine de hizmet eder).",
+  "must_cite": false
+ },
+ {
+  "citation": "G. Kim, J. Kim, J.-S. Lee, \"Exploring Adversarial Robustness of Vision Transformers in the Spectral Perspective,\" IEEE/CVF Winter Conf. on Applications of Computer Vision (WACV), pp. 3976-3985, 2024.",
+  "url": "https://arxiv.org/abs/2208.09602",
+  "why_relevant": "ViT'lerin düşük-frekans pertürbasyonlara CNN'lerden daha duyarlı olabildiğini spektral saldırılarla gösterir; 'ViT düşük-frekans = daha robust' anlatısının koşullu olduğunu hatırlatır, frekans tartışmasını günceller.",
+  "must_cite": false
+ },
+ {
+  "citation": "Z. Wei, J. Chen, M. Goldblum, Z. Wu, T. Goldstein, Y.-G. Jiang, \"Towards Transferable Adversarial Attacks on Vision Transformers,\" Proc. AAAI Conf. on Artificial Intelligence, 36(3):2668-2676, 2022.",
+  "url": "https://arxiv.org/abs/2109.04176",
+  "why_relevant": "Attention gradyanlarını atlamanın (Pay-No-Attention) ViT kaynaklı transferi artırdığını gösterir; attention-gradyan yapısı ile cross-architecture transfer arasındaki bağı kurar — alignment/transfer tartışmasına (§5.1) bağlanabilir.",
+  "must_cite": false
+ },
+ {
+  "citation": "F. Pinto, P. H. S. Torr, P. K. Dokania, \"An Impartial Take to the CNN vs Transformer Robustness Contest,\" European Conference on Computer Vision (ECCV), LNCS vol. 13673, pp. 466-480, Springer, 2022.",
+  "url": "https://arxiv.org/abs/2207.11347",
+  "why_relevant": "Makalenin 'fair comparison' iddiasının en doğrudan öncülü: eşleştirilmiş kapasite/reçete ile CNN (ConvNeXt) vs Transformer robustluk yarışında net kazanan olmadığını gösterir. Related work §2.6'daki 'existing comparative studies use inconsistent configurations' eleştirisinin tam muhatabı olan fair-comparison çalışmasına atıf yokken bu eleştiriyi yapmak hakem itirazı çeker.",
+  "must_cite": true
+ },
+ {
+  "citation": "K. Ali, M. S. Bhatti, A. Saeed, A. Athar, M. A. Al Ghamdi, S. H. Almotiri et al., \"Adversarial Robustness of Vision Transformers Versus Convolutional Neural Networks,\" IEEE Access, vol. 12, 2024.",
+  "url": "https://ieeexplore.ieee.org/document/10614176/",
+  "why_relevant": "HEDEF DERGİNİN KENDİSİNDE (IEEE Access, 2024) yayımlanmış, neredeyse aynı başlıklı doğrudan CNN-vs-ViT adversarial robustluk karşılaştırması (FGSM/PGD/DeepFool). Hakemin ve editörün ilk arayacağı iş; atıf verip farklılaşma (AutoAttack, tam test seti, eşleştirilmiş istatistik, mekanistik analiz) açıkça yazılmalı.",
+  "must_cite": true
+ },
+ {
+  "citation": "J. Wu, Z. Song, X. Zhang, S. Xie, L. Lin, K. Wang, \"Vision Transformers Beat WideResNets on Small Scale Datasets Adversarial Robustness,\" Proc. AAAI Conference on Artificial Intelligence, vol. 39, no. 1, pp. 886-894, 2025. DOI: 10.1609/aaai.v39i1.32073.",
+  "url": "https://ojs.aaai.org/index.php/AAAI/article/view/32073",
+  "why_relevant": "Makalenin ana bulgusuna (küçük ölçekte CNN > ViT) en güncel karşı-kanıt: diffusion-üretimli veriyle AT yapılan ViT-B/2, CIFAR-10'da %74.97 AutoAttack robust accuracy ile WRN-70-16'yı geçiyor. Discussion §5.3'te zaten atıfsız duran 'specialized techniques such as diffusion-based augmentation' cümlesinin dayanağı tam olarak bu makale; atıf eklenmezse hem eksik atıf hem desteksiz iddia bulgusu doğar.",
+  "must_cite": true
+ },
+ {
+  "citation": "M. Raghu, T. Unterthiner, S. Kornblith, C. Zhang, A. Dosovitskiy, \"Do Vision Transformers See Like Convolutional Neural Networks?,\" Advances in Neural Information Processing Systems (NeurIPS), vol. 34, pp. 12116-12128, 2021.",
+  "url": "https://arxiv.org/abs/2108.08810",
+  "why_relevant": "ViT ve CNN temsillerinin katman-bazlı karşılaştırmasının kanonik çalışması (CKA analizi, ViT'lerde katmanlar arası daha uniform temsiller). Makalenin 4. katkısı (katman-bazlı feature degradation) doğrudan bu literatürün üzerine kuruluyor; intro'daki 'complementing earlier layer-wise robustness studies' cümlesi şu an sadece bhojanapalli2021 ve shao2022'ye atıf veriyor. Hakem 'Raghu neden yok' diye sorar.",
+  "must_cite": true
+ },
+ {
+  "citation": "P. Benz, S. Ham, C. Zhang, A. Karjauv, I. S. Kweon, \"Adversarial Robustness Comparison of Vision Transformer and MLP-Mixer to CNNs,\" British Machine Vision Conference (BMVC), 2021.",
+  "url": "https://arxiv.org/abs/2110.02797",
+  "why_relevant": "Erken dönem doğrudan CNN-vs-ViT adversarial robustluk karşılaştırması; ViT'lerin düşük-frekans özelliklere dayandığı bulgusu, makalenin §2.5'te Wang et al. (2023) üzerinden verdiği frekans argümanının öncülü. §2.4'teki karşılaştırma literatürü listesinde belirgin bir boşluk.",
+  "must_cite": true
+ },
+ {
+  "citation": "Z. Zhao, H. Zhang, R. Li, R. Sicre, L. Amsaleg, M. Backes, Q. Li, C. Shen, \"Revisiting Transferable Adversarial Images: Systemization, Evaluation, and New Insights,\" IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI), 2025 (arXiv:2211.09565, 'Towards Good Practices in Evaluating Transfer Adversarial Attacks').",
+  "url": "https://arxiv.org/abs/2211.09565",
+  "why_relevant": "Makalenin ana metodolojik katkısı transfer-değerlendirme pratiğinin bir eleştirisi; transfer saldırılarının sistematik/adil değerlendirilmesindeki tuzakları inceleyen bu iyi-pratikler literatürüne atıf vermeden 'a methodological caution for transfer studies' iddiası eksik konumlanmış olur. Koşullu metrik katkısını bu çerçeveye bağlamak novelty'yi güçlendirir, zayıflatmaz.",
+  "must_cite": true
+ },
+ {
+  "citation": "C. Liu, Y. Dong, W. Xiang, X. Yang, H. Su, J. Zhu, Y. Chen, Y. He, H. Xue, S. Zheng, \"A Comprehensive Study on Robustness of Image Classification Models: Benchmarking and Rethinking,\" International Journal of Computer Vision, vol. 132, pp. 567-589, 2024. DOI: 10.1007/s11263-024-02196-3.",
+  "url": "https://arxiv.org/abs/2302.14301",
+  "why_relevant": "61 modelle (CNN + Transformer) ARES-Bench: adversarial training'in özellikle Transformer mimarilerinde daha etkili olduğu bulgusu, makalenin CNN-önde bulgusunun ölçek/reçete-bağımlı olduğunu tartışmak için gerekli karşı-kanıt. Discussion'daki 'findings may differ on ImageNet' cümlesini atıflı hale getirir.",
+  "must_cite": false
+ },
+ {
+  "citation": "N. D. Singh, F. Croce, M. Hein, \"Revisiting Adversarial Training for ImageNet: Architectures, Training and Generalization across Threat Models,\" Advances in Neural Information Processing Systems (NeurIPS), vol. 36, 2023.",
+  "url": "https://arxiv.org/abs/2303.01870",
+  "why_relevant": "ImageNet ölçeğinde ConvNeXt vs ViT adversarial training karşılaştırması (eşleştirilmiş reçetelerle); mimari karşılaştırmasının eğitim reçetesine duyarlılığını gösteren güncel referans. §2.3/2.4 veya Discussion ölçek tartışması için güçlü destek.",
+  "must_cite": false
+ },
+ {
+  "citation": "A. Aldahdooh, W. Hamidouche, O. Déforges, \"Reveal of Vision Transformers Robustness against Adversarial Attacks,\" arXiv:2106.03734, 2021 (genişletilmiş dergi versiyonu: \"Adversarial threats to vision transformers: evaluating robustness beyond CNNs,\" Neural Computing and Applications, 2025/2026, DOI: 10.1007/s00521-025-11734-0).",
+  "url": "https://arxiv.org/abs/2106.03734",
+  "why_relevant": "Erken ve kapsamlı ViT-vs-CNN Lp-robustluk karşılaştırması (frekans/attention analizleriyle); dergi versiyonu 2025-2026'da yayımlandı ve makalenin 'mekanistik karşılaştırma sınırlı' iddiasının karşısında duran güncel bir rakip. §2.4'e eklenmesi önerilir.",
+  "must_cite": false
+ },
+ {
+  "citation": "Y. Fu, S. Zhang, S. Wu, C. Wan, Y. Lin, \"Patch-Fool: Are Vision Transformers Always Robust Against Adversarial Perturbations?,\" International Conference on Learning Representations (ICLR), 2022.",
+  "url": "https://arxiv.org/abs/2203.08392",
+  "why_relevant": "ViT'lerin patch-düzeyi saldırılarda CNN'lerden DAHA KIRILGAN olabildiğini gösterir; §2.4'teki 'ViT robustluğu saldırı tipine bağlı' anlatısını dengeleyen bilinen bir karşı örnek. Zorunlu değil ama ViT robustness bölümünü güçlendirir.",
+  "must_cite": false
+ },
+ {
+  "citation": "W. Yu, J. Gu, Z. Li, P. H. S. Torr, \"Reliable Evaluation of Adversarial Transferability,\" arXiv:2306.08565, 2023.",
+  "url": "https://arxiv.org/abs/2306.08565",
+  "why_relevant": "4 mimari ailesinden 18 modelle transferabilite değerlendirmesi; transferin sıklıkla ABARTILI ölçüldüğünü gösterir — makalenin 'ham transfer metrikleri yanıltıcı olabilir' bulgusuyla aynı yönde, koşullu-metrik katkısını konumlandırmak için yararlı.",
+  "must_cite": false
+ },
+ {
+  "citation": "M. Naseer, K. Ranasinghe, S. Khan, M. Hayat, F. S. Khan, M.-H. Yang, \"Intriguing Properties of Vision Transformers,\" Advances in Neural Information Processing Systems (NeurIPS), vol. 34, 2021.",
+  "url": "https://arxiv.org/abs/2105.10497",
+  "why_relevant": "ViT'lerin perturbasyon/occlusion altındaki davranış farklılıklarının temel karakterizasyonu; 'ViT'ler neden farklı davranıyor' sorusunu ilk soran işlerden. Opsiyonel — §2.4 arka planını zenginleştirir.",
+  "must_cite": false
+ },
+ {
+  "citation": "G. Kim, J. Kim, J.-S. Lee, \"Exploring Adversarial Robustness of Vision Transformers in the Spectral Perspective,\" IEEE/CVF Winter Conference on Applications of Computer Vision (WACV), pp. 3976-3985, 2024.",
+  "url": "https://arxiv.org/abs/2208.09602",
+  "why_relevant": "ViT'lerin frekans-alanı perturbasyonlarına CNN'lerden daha kırılgan olabildiğini gösterir; §2.5'teki frekans-önyargısı anlatısına (Wang et al. 2023) güncel nüans ekler. Opsiyonel.",
+  "must_cite": false
+ },
+ {
+  "citation": "D. Ravikumar, S. Kodge, I. Garg, K. Roy, \"TREND: Transferability Based Robust Ensemble Design,\" IEEE Transactions on Artificial Intelligence, vol. 4, no. 3, pp. 534-548, 2023 (arXiv:2008.01524).",
+  "url": "https://arxiv.org/abs/2008.01524",
+  "why_relevant": "Makalenin ana metodolojik iddiasının en doğrudan öncülü: transferability metriğini kaynak ve hedefin doğru sınıfladığı alt kümede tanımlar ve gerekçeyi aynen makaledeki argümanla verir: \"To account for differences in accuracies, we choose a subset of the testset that was correctly classified by both the source and the target model.\" Atıflanmazsa novelty iddiası hakem tarafından düşürülebilir.",
+  "must_cite": true
+ },
+ {
+  "citation": "Y. Liu, X. Chen, C. Liu, D. Song, \"Delving into Transferable Adversarial Examples and Black-box Attacks,\" ICLR 2017 (arXiv:1611.02770).",
+  "url": "https://arxiv.org/abs/1611.02770",
+  "why_relevant": "Büyük ölçekli transferability çalışmalarının kurucu makalesi; doğru-sınıflanan-örnek seçim protokolünü standartlaştırmıştır. Related work'te transfer için yalnız Papernot ve Demontis atıflı; bu temel iş eksik.",
+  "must_cite": true
+ },
+ {
+  "citation": "Y. Dong, F. Liao, T. Pang, H. Su, J. Zhu, X. Hu, J. Li, \"Boosting Adversarial Attacks with Momentum,\" CVPR 2018, pp. 9185-9193 (arXiv:1710.06081).",
+  "url": "https://arxiv.org/abs/1710.06081",
+  "why_relevant": "Koşullamanın gerekçesini açıkça yazan standart pratik: \"it is less meaningful to study the success rates of attacks if the models cannot classify the original image correctly\" diyerek tüm modellerce doğru sınıflanan 1000 görüntüyle değerlendirir. Makalenin \"standard raw metric\" nitelemesini dengelemek için gerekli.",
+  "must_cite": true
+ },
+ {
+  "citation": "Z. Wei, J. Chen, M. Goldblum, R.-T. Wu, T. Goldstein, Y.-G. Jiang, \"Towards Transferable Adversarial Attacks on Vision Transformers,\" AAAI 2022, vol. 36, no. 3, pp. 2668-2676 (arXiv:2109.04176).",
+  "url": "https://ojs.aaai.org/index.php/AAAI/article/view/20169",
+  "why_relevant": "ViT→CNN transferinin temel işi (PNA + PatchOut); makalenin atıfladığı TGR (zhang2023tgr) ve MIG (ma2023transferable) bu işin üzerine kuruludur. Görevde anılan \"Wu et al.\" büyük olasılıkla bu çalışmadır (Wu ortak yazar). Cross-architecture transfer tartışması için eksik halka.",
+  "must_cite": true
+ },
+ {
+  "citation": "Z. Zhao, H. Zhang, R. Li, R. Sicre, L. Amsaleg, M. Backes, Q. Li, Q. Wang, C. Shen, \"Revisiting Transferable Adversarial Images: Systemization, Evaluation, and New Insights,\" IEEE TPAMI, 2025 (arXiv:2310.11850; erken sürüm: \"Towards Good Practices in Evaluating Transfer Adversarial Attacks,\" arXiv:2211.09565).",
+  "url": "https://arxiv.org/abs/2310.11850",
+  "why_relevant": "Transfer saldırılarının sistematik/adil değerlendirmesi üzerine ana referans (23 saldırı x 11 savunma); değerlendirme protokolünde tüm modellerin doğru sınıfladığı görüntüler kullanılır. Makale \"cautionary methodological result for cross-architecture transfer studies\" iddiasında bulunduğu için bu evaluation-practices literatürüne atıf zorunlu.",
+  "must_cite": true
+ },
+ {
+  "citation": "N. Carlini, A. Athalye, N. Papernot, W. Brendel, J. Rauber, D. Tsipras, I. Goodfellow, A. Madry, A. Kurakin, \"On Evaluating Adversarial Robustness,\" arXiv:1902.06705, 2019.",
+  "url": "https://arxiv.org/abs/1902.06705",
+  "why_relevant": "Değerlendirme metodolojisinin kanonik kılavuzu; saldırı başarısı tanımında \"orijinal girdinin doğru sınıflanması şartının makaleden makaleye değiştiğini\" açıkça not eder (§2.2.2). Metrik tanım tartışmasını çerçevelemek için güçlü destek.",
+  "must_cite": false
+ },
+ {
+  "citation": "W. Yu, J. Gu, Z. Li, P. Torr, \"Reliable Evaluation of Adversarial Transferability,\" arXiv:2306.08565, 2023 (IEEE yayın sürümü mevcut, IEEE Xplore no. 10992575).",
+  "url": "https://arxiv.org/abs/2306.08565",
+  "why_relevant": "18 model / 4 mimari tipiyle (CNN, ViT, MLP vb.) transferability'nin sistematik yeniden değerlendirmesi; yalnız-CNN değerlendirmenin transferability'yi abarttığını gösterir. Makalenin \"AT modeller arası düşük ve simetrik transfer\" bulgusuyla uyumlu bağlam sağlar.",
+  "must_cite": false
+ },
+ {
+  "citation": "Q. Li, Y. Guo, W. Zuo, H. Chen, \"Towards Evaluating Transfer-based Attacks Systematically, Practically, and Fairly,\" NeurIPS 2023 (arXiv:2311.01323).",
+  "url": "https://arxiv.org/abs/2311.01323",
+  "why_relevant": "TA-Bench: 30+ transfer saldırısının 25 model üzerinde adil karşılaştırması; transfer değerlendirmelerindeki adaletsizlik/eksik-kapsam sorunlarını belgeler. Evaluation-pitfalls konumlandırması için ikincil destek.",
+  "must_cite": false
+ },
+ {
+  "citation": "J. Gu, X. Jia, P. de Jorge, W. Yu, X. Liu, A. Ma, Y. Xun, A. Hu, A. Khakzar, Z. Li, X. Cao, P. Torr, \"A Survey on Transferability of Adversarial Examples across Deep Neural Networks,\" Transactions on Machine Learning Research (TMLR), 2024 (arXiv:2310.17626).",
+  "url": "https://arxiv.org/abs/2310.17626",
+  "why_relevant": "Transferability literatürünün güncel kapsamlı taraması; related work §2.5'in 2023 sonrası kapsamını güçlendirir ve değerlendirme metrikleri tartışmasına genel çerçeve sağlar.",
+  "must_cite": false
+ }
+]

@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-07-09T14:52:37.281504",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT",
+    "ViT_CIFAR_Native_AT"
+  ],
+  "n_samples": 500,
+  "seed": 42,
+  "model_variant": "run3-metric",
+  "statistics": {
+    "ResNet18_AT": {
+      "l2_norm_mean": 0.6979187369346619,
+      "l2_norm_std": 0.06116398913366635,
+      "linf_norm_mean": 0.13887355625629424,
+      "sparsity": 0.005497395992279053,
+      "sparsity_std": 0.0022857427227989994,
+      "sparsity_hoyer": 0.4740207850933075,
+      "sparsity_hoyer_std": 0.008696324567866828,
+      "sparsity_gini": 0.6344788134098053,
+      "sparsity_gini_std": 0.0061896709715565015,
+      "sparsity_rel_threshold": 0.3145533949136734,
+      "sparsity_rel_threshold_std": 0.01678980942557737,
+      "spatial_variance": 0.00016743716405471788,
+      "gradient_alignment": 0.03830013796687126,
+      "gradient_alignment_std": 0.0018014942349224643,
+      "std_semantics": "std across batch means (10 batches of 50)",
+      "n_samples": 500,
+      "n_batches": 10
+    },
+    "ViT_Tiny_AT": {
+      "l2_norm_mean": 0.7601051747798919,
+      "l2_norm_std": 0.06930253191852798,
+      "linf_norm_mean": 0.14419579952955247,
+      "sparsity": 0.0022539063007570802,
+      "sparsity_std": 0.0011919284197301804,
+      "sparsity_hoyer": 0.4493557423353195,
+      "sparsity_hoyer_std": 0.010542947788071237,
+      "sparsity_gini": 0.6057391583919525,
+      "sparsity_gini_std": 0.008251375067542673,
+      "sparsity_rel_threshold": 0.25775977224111557,
+      "sparsity_rel_threshold_std": 0.017071349845321316,
+      "spatial_variance": 0.0001903233365737833,
+      "gradient_alignment": 0.05213992223143578,
+      "gradient_alignment_std": 0.0020057068611305535,
+      "std_semantics": "std across batch means (10 batches of 50)",
+      "n_samples": 500,
+      "n_batches": 10
+    },
+    "ViT_CIFAR_Native_AT": {
+      "l2_norm_mean": 0.5541313946247101,
+      "l2_norm_std": 0.06489700957118814,
+      "linf_norm_mean": 0.08648667708039284,
+      "sparsity": 0.0006347656424622982,
+      "sparsity_std": 0.0002482211068909334,
+      "sparsity_hoyer": 0.40459391176700593,
+      "sparsity_hoyer_std": 0.008371803390557056,
+      "sparsity_gini": 0.5712305128574371,
+      "sparsity_gini_std": 0.0056165523855057605,
+      "sparsity_rel_threshold": 0.1785123735666275,
+      "sparsity_rel_threshold_std": 0.011980764429931737,
+      "spatial_variance": 5.996374729875242e-05,
+      "gradient_alignment": 0.07941100373864174,
+      "gradient_alignment_std": 0.004574304432833969,
+      "std_semantics": "std across batch means (10 batches of 50)",
+      "n_samples": 500,
+      "n_batches": 10
+    }
+  }
+}

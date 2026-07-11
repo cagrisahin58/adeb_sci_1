@@ -26,13 +26,14 @@
 % ============================================================================
 \title{A Comparative Study of Convolutional and Transformer Architectures Under Adversarial Perturbations: Gradient Characteristics and Transferability Analysis}
 
-\author{
-    \IEEEauthorblockN{Çağrı Şahin\IEEEauthorrefmark{1}* and Özal Yıldırım\IEEEauthorrefmark{1}}
-    \IEEEauthorblockA{
-        \IEEEauthorrefmark{1}Department of Software Engineering, Fırat University, Elazığ, Turkey\\
-        *Corresponding author. Email: csahin@firat.edu.tr
-    }
-}
+% IEEEtran journal modu icin standart yazar blogu (\IEEEauthorblock* komutlari
+% conference modu icindir; 2026-07-10 paneli MIN-6). IEEE Access'in kendi
+% sablonuna (access.cls: \author+\address+\corresp) tasima islemi Author
+% Portal yuklemesinde yapilacaktir.
+\author{\c{C}a\u{g}r{\i}~\c{S}ahin
+        and~\"Ozal~Y{\i}ld{\i}r{\i}m%
+\thanks{The authors are with the Department of Software Engineering, F{\i}rat University, 23119 Elaz{\i}\u{g}, Turkey.}%
+\thanks{Corresponding author: \c{C}a\u{g}r{\i} \c{S}ahin (e-mail: csahin@firat.edu.tr).}}
 
 % ============================================================================
 % DOCUMENT
@@ -45,11 +46,11 @@
 % ABSTRACT
 % ----------------------------------------------------------------------------
 \begin{abstract}
-Understanding why convolutional neural networks (CNNs) and Vision Transformers (ViTs) exhibit fundamentally different behaviors under adversarial perturbations remains an open question. While ViTs have achieved remarkable success on clean data, their vulnerability to adversarial attacks compared to CNNs requires deeper investigation. This paper presents a comparative analysis examining \textit{why} these architectures exhibit different adversarial behaviors rather than merely comparing robustness scores. Using CIFAR-10 with adversarially trained ResNet-18 and ViT-Tiny models evaluated under AutoAttack ($\epsilon=8/255$), we demonstrate four key findings: (1) CNNs achieve 36.0\% robust accuracy compared to 32.4\% for ViTs, a gap that persists across attack types; (2) Transfer attacks exhibit a consistent asymmetry---CNN-generated adversarial examples cause 41.2\% misclassification on ViT while ViT-to-CNN transfers reach 36.1\%; (3) Gradient analysis reveals CNN gradients are 1.7$\times$ more sparse while cross-sample alignment is comparable across architectures, suggesting that gradient sparsity rather than alignment drives the transfer asymmetry; (4) Feature degradation in ViT increases progressively through transformer layers, with cosine similarity dropping from 0.995 to 0.958 in late layers. These findings provide mechanistic insights into architectural vulnerability differences and suggest design principles for robust hybrid systems.
+How convolutional neural networks (CNNs) and Vision Transformers (ViTs) differ under adversarial perturbations remains an open question. This paper presents a behavioral comparison of the two architecture families under matched standard adversarial training, pairing robustness scores with gradient- and feature-level analyses. Using CIFAR-10 with adversarially trained ResNet-18 and ViT-Tiny models evaluated under AutoAttack at the standard perturbation budget of 8/255 on the full test set, we report four findings. First, the CNN attains significantly higher robust accuracy than the ViT (35.74 percent versus 32.94 percent; McNemar paired test on 10{,}000 samples, p below 0.001), a modest but reliable 2.8-point gap. Second, cross-architecture transfer between this model pair is symmetric once each target's clean error is controlled for (conditioned fooling rates of 20.95 versus 20.32 percent, statistically equivalent within a two-point margin), whereas the widely used raw transfer metric manufactures an apparent 8.3-point asymmetry---a methodological caution for transfer studies comparing targets of unequal clean accuracy. Third, scale-invariant sparsity measures show CNN gradients concentrate sensitivity more locally (Hoyer sparsity 0.474 versus 0.449), a difference that persists in a native-resolution ViT control and is therefore not an input-upsampling artifact, while cross-sample gradient alignment is low for both models but higher for the ViT (0.052 versus 0.038). Fourth, ViT feature representations under attack exhibit an early-drop, mid-network-plateau degradation profile, with clean--adversarial cosine similarity falling from 0.994 to 0.955 by mid-network while feature norms change by less than 1.5 percent. These characterizations inform the evaluation and deployment of mixed-architecture ensembles.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Adversarial robustness, Vision Transformer, Convolutional Neural Networks, Transfer attacks, Deep learning security
+Adversarial robustness, convolutional neural networks, deep learning security, transfer attacks, Vision Transformer
 \end{IEEEkeywords}
 
 % ----------------------------------------------------------------------------
@@ -66,7 +67,10 @@ Adversarial robustness, Vision Transformer, Convolutional Neural Networks, Trans
 % DATA AND CODE AVAILABILITY
 % ----------------------------------------------------------------------------
 \section*{Data and Code Availability}
-The experiments in this study use the CIFAR-10 dataset~\cite{krizhevsky2009learning}, which is publicly available at \url{https://www.cs.toronto.edu/~kriz/cifar.html}. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench}. The source code for the analysis pipeline and trained model checkpoints will be made publicly available upon acceptance.
+% TODO(submission): repo URL — kabul sonrasi (veya gonderimde anonim depo ile)
+% asagidaki cumleye gercek URL eklenecek. Erisebilirlik dili uc yerde de
+% "will be made publicly available upon acceptance" olarak birlestirildi.
+The experiments in this study use the CIFAR-10 dataset~\cite{krizhevsky2009learning}, which is publicly available at \url{https://www.cs.toronto.edu/~kriz/cifar.html}. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench, gowal2020uncovering}. The source code for the analysis pipeline and trained model checkpoints will be made publicly available upon acceptance.
 
 % ----------------------------------------------------------------------------
 % ACKNOWLEDGMENT
@@ -77,6 +81,7 @@ The authors acknowledge the computational resources provided by the Department o
 % ----------------------------------------------------------------------------
 % REFERENCES
 % ----------------------------------------------------------------------------
+\balance
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 

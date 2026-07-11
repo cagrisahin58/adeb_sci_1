@@ -85,19 +85,37 @@ def load_models(device: torch.device, model_paths: dict = None) -> dict:
     return models
 
 
-def create_pgd_attack(eps: float, normalize_data: bool = True):
+def create_pgd_attack(eps: float, normalize_data: bool = False,
+                      alpha: float = None, steps: int = 10):
     """
     Create PGD attack function for given epsilon.
 
     Args:
         eps: Perturbation budget
-        normalize_data: If True, expects normalized inputs and handles denorm/renorm
+        normalize_data: If True, expects NORMALIZED inputs and handles
+            denorm/renorm. Proje loader'lari [0,1] uretir (ToTensor-only,
+            src/data/datasets.py); bu yuzden default False'tur. Eski default
+            (True) [0,1] veriyi yanlislikla "denormalize" edip ~5x efektif
+            epsilon uyguluyordu (M17).
+        alpha: PGD step size (None = 2/255, makale protokolu)
+        steps: PGD steps (default 10, makale protokolu; eski surum 20 idi)
     """
+    if alpha is None:
+        alpha = 2 / 255
+
     def attack_fn(model, images, labels):
         from src.attacks import PGDAttack
         from src.data import get_normalization, denormalize, normalize
 
         if normalize_data:
+            # Girdi gercekten normalize mi? [0,1] veri yanlislikla
+            # denormalize edilirse eps ~5x buyur (M17)
+            if images.min().item() >= -0.5:
+                raise ValueError(
+                    "normalize_data=True verildi ama girdiler [0,1] araliginda "
+                    f"gorunuyor (min={images.min().item():.4f}). Proje loader'lari "
+                    "normalizasyon yapmaz; normalize_data=False kullanin."
+                )
             # Get CIFAR-10 normalization parameters
             mean, std = get_normalization("cifar10")
 
@@ -105,15 +123,15 @@ def create_pgd_attack(eps: float, normalize_data: bool = True):
             images_denorm = denormalize(images, mean, std)
 
             # Run attack on denormalized images
-            attack = PGDAttack(model, eps=eps, alpha=eps/4, steps=20)
+            attack = PGDAttack(model, eps=eps, alpha=alpha, steps=steps)
             adv_images_denorm = attack(images_denorm, labels)
 
             # Normalize back for model input
             adv_images = normalize(adv_images_denorm, mean, std)
             return adv_images
         else:
-            # Direct attack (for non-normalized data)
-            attack = PGDAttack(model, eps=eps, alpha=eps/4, steps=20)
+            # Direct attack (for non-normalized [0,1] data - proje default'u)
+            attack = PGDAttack(model, eps=eps, alpha=alpha, steps=steps)
             return attack(images, labels)
 
     return attack_fn
