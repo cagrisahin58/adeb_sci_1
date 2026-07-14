@@ -71,10 +71,12 @@ CHECKPOINTS = {
 }
 
 ARTIFACTS = {
-    'final_eval': PROJECT_ROOT / 'results/final_eval',
+    # final_eval_seeded / epsilon_sweep_seeded: C24 (2026-07-10 paneli) sonrasi
+    # kanonik kaynak SEED'LI degerlendirmelerdir (--seed 42, cudnn determinism)
+    'final_eval': PROJECT_ROOT / 'results/final_eval_seeded',
     'autoattack': PROJECT_ROOT / 'results/autoattack_run3_full/autoattack_summary.json',
     'wrn_eval': PROJECT_ROOT / 'results/wrn_eval/wrn_eval_summary.json',
-    'epsilon_sweep': PROJECT_ROOT / 'results/epsilon_sweep_run3',
+    'epsilon_sweep': PROJECT_ROOT / 'results/epsilon_sweep_seeded',
     'transfer': PROJECT_ROOT / 'results/transfer_analysis_run3/transfer_summary.json',
 }
 

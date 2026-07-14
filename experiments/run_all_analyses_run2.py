@@ -740,6 +740,9 @@ if __name__ == "__main__":
                         help="Override ResNet18 AT checkpoint path (run3 icin)")
     parser.add_argument("--vit-path", type=str, default=None,
                         help="Override ViT-Tiny AT checkpoint path (run3 icin)")
+    parser.add_argument("--transfer-output-dir", type=str,
+                        default="results/transfer_analysis_run3",
+                        help="Transfer analizi cikti dizini (C19 clean-model kosusu icin)")
     args = parser.parse_args()
 
     if args.resnet_path:
@@ -769,7 +772,8 @@ if __name__ == "__main__":
 
     if args.only in ("all", "transfer"):
         results['transfer'] = run_transfer_analysis(
-            device, n_samples=args.n_samples, seed=args.seed)
+            device, n_samples=args.n_samples, seed=args.seed,
+            output_dir=args.transfer_output_dir)
 
     if args.only in ("all", "gradient"):
         results['gradient'] = run_gradient_analysis(device, seed=args.seed)

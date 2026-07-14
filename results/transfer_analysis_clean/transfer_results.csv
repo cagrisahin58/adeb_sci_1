@@ -1,0 +1,5 @@
+source,target,attack_success_raw,transfer_rate_raw,conditioned_fooling_rate,conditioned_ci95,n_conditioned,target_clean_acc,is_self,total_samples
+ResNet18_AT,ResNet18_AT,99.98,99.98,99.97880906971815,"[99.94702267429541, 100.0]",9438,94.38,True,10000
+ResNet18_AT,ViT_Tiny_AT,99.99,28.32,9.90967741935484,"[9.316129032258065, 10.529032258064516]",7750,77.5,False,10000
+ViT_Tiny_AT,ResNet18_AT,99.97,16.06,11.760966306420851,"[11.14642932824751, 12.407289680016953]",9438,94.38,False,10000
+ViT_Tiny_AT,ViT_Tiny_AT,99.97,99.97,99.96129032258064,"[99.90967741935484, 100.0]",7750,77.5,True,10000

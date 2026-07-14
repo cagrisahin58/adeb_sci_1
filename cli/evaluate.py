@@ -54,13 +54,27 @@ def clean(model_path, model_type, data_dir, batch_size, device):
 @click.option("--output-dir", "-o", type=str, default="./results", help="Output directory")
 @click.option("--batch-size", "-b", type=int, default=100, help="Batch size")
 @click.option("--device", type=str, default="auto", help="Device")
-def robustness(model_path, model_type, attacks, epsilons, data_dir, output_dir, batch_size, device):
+@click.option("--seed", type=int, default=None,
+              help="Random seed (PGD random-start dahil tam determinizm; None = seed'siz)")
+def robustness(model_path, model_type, attacks, epsilons, data_dir, output_dir, batch_size, device, seed):
     """Evaluate model robustness against attacks."""
     from src.utils.device import get_device
     from src.utils.checkpoint import load_model_weights
     from src.models import ModelRegistry
     from src.data import get_cifar10_loaders
     from src.evaluation import Evaluator, CSVReporter
+
+    if seed is not None:
+        import random
+        import numpy as np
+        import torch as _torch
+        random.seed(seed)
+        np.random.seed(seed)
+        _torch.manual_seed(seed)
+        _torch.cuda.manual_seed_all(seed)
+        _torch.backends.cudnn.deterministic = True
+        _torch.backends.cudnn.benchmark = False
+        click.echo(f"Seed: {seed} (cudnn deterministic)")
 
     device = get_device(device)
 

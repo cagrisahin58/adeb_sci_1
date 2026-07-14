@@ -1,0 +1,99 @@
+{
+  "timestamp": "2026-07-14T11:19:19.222502",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT"
+  ],
+  "metric": "conditioned_fooling_rate",
+  "matrix": [
+    [
+      99.97880906971815,
+      9.90967741935484
+    ],
+    [
+      11.760966306420851,
+      99.96129032258064
+    ]
+  ],
+  "matrix_raw": [
+    [
+      99.98,
+      28.32
+    ],
+    [
+      16.06,
+      99.97
+    ]
+  ],
+  "eps": 0.03137254901960784,
+  "steps": 10,
+  "n_samples": 10000,
+  "seed": 42,
+  "model_variant": "run3-metric",
+  "model_paths": {
+    "ResNet18_AT": "models/resnet18/clean/best.pth",
+    "ViT_Tiny_AT": "models/vit_tiny/clean/best.pth"
+  },
+  "results": [
+    {
+      "source": "ResNet18_AT",
+      "target": "ResNet18_AT",
+      "attack_success_raw": 99.98,
+      "transfer_rate_raw": 99.98,
+      "conditioned_fooling_rate": 99.97880906971815,
+      "conditioned_ci95": [
+        99.94702267429541,
+        100.0
+      ],
+      "n_conditioned": 9438,
+      "target_clean_acc": 94.38,
+      "is_self": true,
+      "total_samples": 10000
+    },
+    {
+      "source": "ResNet18_AT",
+      "target": "ViT_Tiny_AT",
+      "attack_success_raw": 99.99,
+      "transfer_rate_raw": 28.32,
+      "conditioned_fooling_rate": 9.90967741935484,
+      "conditioned_ci95": [
+        9.316129032258065,
+        10.529032258064516
+      ],
+      "n_conditioned": 7750,
+      "target_clean_acc": 77.5,
+      "is_self": false,
+      "total_samples": 10000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ResNet18_AT",
+      "attack_success_raw": 99.97,
+      "transfer_rate_raw": 16.06,
+      "conditioned_fooling_rate": 11.760966306420851,
+      "conditioned_ci95": [
+        11.14642932824751,
+        12.407289680016953
+      ],
+      "n_conditioned": 9438,
+      "target_clean_acc": 94.38,
+      "is_self": false,
+      "total_samples": 10000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ViT_Tiny_AT",
+      "attack_success_raw": 99.97,
+      "transfer_rate_raw": 99.97,
+      "conditioned_fooling_rate": 99.96129032258064,
+      "conditioned_ci95": [
+        99.90967741935484,
+        100.0
+      ],
+      "n_conditioned": 7750,
+      "target_clean_acc": 77.5,
+      "is_self": true,
+      "total_samples": 10000
+    }
+  ]
+}

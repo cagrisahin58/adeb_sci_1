@@ -77,7 +77,41 @@ Ayrıca düzeltilen mevcut girdiler: chen2023understanding (uydurma yazarlar→g
 croce2021robustbench (NeurIPS D&B), loshchilov2017decoupled (ICLR 2019),
 loshchilov2016sgdr (ICLR 2017, {SGDR}).
 
-## 5. C maddeleri — KULLANICI ONAYI bekleyen GPU koşuları
+## 5b. C maddeleri SONUÇLARI (2026-07-14'te koşuldu; C23 hariç)
+
+Kullanıcı onayıyla `run_c_pipeline.sh` koşuldu (idempotent; artefaktlar
+`results/c_addenda/`, `results/transfer_analysis_clean/`,
+`results/final_eval_seeded/`, `results/epsilon_sweep_seeded/`):
+
+- **C21 (clean alignment):** Clean ResNet 0.030, clean ViT 0.050 — AT'li
+  değerlerle (0.038/0.052) neredeyse aynı → **"AT alignment'ı bastırıyor"
+  hipotezi doğrulanmadı; alignment farkı mimari, eğitimden bağımsız.**
+  Bonus: clean'de ViT daha sparse (Hoyer 0.406 vs 0.354) — AT sıralamayı
+  tersine çeviriyor (CNN'i +0.12, ViT'i +0.04 seyrekleştiriyor; Chalasani
+  ile tutarlı). §4.3, §5.1 ve Conclusion güncellendi (hipotez → ölçülmüş
+  ayrışma: alignment=mimari, sparsity-sıralaması=eğitim-şekilli).
+- **C20 (ResNet feature degradation):** Monotonik bozulma 0.995→0.913,
+  plato/toparlanma yok; son bloklarda büyük norm bozulması (−6.4%/+7.2%)
+  → **erken-düşüş+plato+korunan-norm profili ViT'e özgü.** §4.4 ve §5.1'e
+  işlendi; "CNN karşılaştırması yok" limitation'ı kaldırıldı.
+- **C22 (MI-FGSM):** Koşullu 19.85 [18.97-20.78] vs 20.11 [19.28-20.96] →
+  **simetri saldırı seçimine dayanıklı.** §4.2'ye eklendi.
+- **C19 (clean-model transfer):** Koşullu 9.91 [9.32-10.53] vs 11.76
+  [11.15-12.41] — clean çiftte KÜÇÜK ama ayırt edilebilir asimetri (ters
+  yönde); ham metrik 12.2pp'lik sahte fark üretiyor (28.3 vs 16.1).
+  **Matched AT hem transferi artırıyor hem kalan yönlü farkı eşitliyor.**
+  §4.2'ye eklendi.
+- **C24 (seed'li CLI):** Tüm Tablo 1/fig2 hücreleri --seed 42 ile yeniden
+  üretildi (eskilerden ≤0.1pp fark: PGD 40.97/36.09); Tablo 1, fig1, fig2
+  ve §3.7 beyanı tam-determinizme güncellendi; kanonik artefakt dizinleri
+  `*_seeded` oldu (reproduce_paper.sh dahil).
+- **C23 (≥3 eğitim seed'i): KOŞULMADI** — ~2 gün GPU; metin kapsam
+  daraltmasıyla (tek final-protokol koşusu beyanı) savunulabilir yazıldı.
+  İstenirse `run_revision_pipeline.sh` deseninde eklenebilir.
+
+Doğrulama: latexmk EXIT 0, 0 undefined, 0 overfull (2026-07-14).
+
+## 5. C maddeleri — KULLANICI ONAYI bekleyen GPU koşuları (orijinal liste)
 
 | # | Deney | Tahmini GPU | Etki |
 |---|-------|-------------|------|
