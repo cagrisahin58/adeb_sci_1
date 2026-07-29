@@ -67,7 +67,7 @@ WRN_AA_RB = 62.76  # RobustBench-raporlu AA (yerel AA kosulmadi)
 
 # --- Fig B1: robustluk cubuklari (WRN ayri blok) ----------------------------
 fig, ax = plt.subplots(figsize=(5.0, 3.2))
-metrics = ["Clean", "PGD-10", "AutoAttack"]
+metrics = ["Temiz", "PGD-10", "AutoAttack"]
 rn_vals = [rn[("clean", 0.0)], rn[("pgd", EPS8)], aa_rn]
 vt_vals = [vt[("clean", 0.0)], vt[("pgd", EPS8)], aa_vt]
 wrn_vals = [wrn["clean"]["accuracy"], wrn["pgd10_eps0.03137"]["accuracy"], WRN_AA_RB]
@@ -78,7 +78,7 @@ ax.bar(x + w / 2, vt_vals, w, color=C_VIT, label="ViT-Tiny (AT)")
 # WRN: sagda ayri blok, gri + tarama + ayirici cizgi
 xw = x + 3.4
 ax.bar(xw, wrn_vals, w * 1.3, color=C_WRN, hatch="//", alpha=0.85,
-       label="WRN-28-10 (reference$^{\\dagger}$)")
+       label="WRN-28-10 (referans$^{\\dagger}$)")
 sep = (x[-1] + xw[0]) / 2
 ax.axvline(sep, color="black", linewidth=0.8, linestyle=":")
 for xi, v in zip(np.concatenate([x - w / 2, x + w / 2, xw]), rn_vals + vt_vals + wrn_vals):
@@ -88,7 +88,7 @@ ax.set_xticklabels(metrics + metrics, fontsize=9)
 ax.set_ylabel("Doğruluk (%)")
 ax.set_ylim(0, 100)
 ax.text(float(np.mean(x)), 96, "Eşleşmiş AT çifti", ha="center", fontsize=9, fontweight="bold")
-ax.text(float(np.mean(xw)), 96, "Reference$^{\\dagger}$", ha="center", fontsize=9, color="#444444")
+ax.text(float(np.mean(xw)), 96, "Referans$^{\\dagger}$", ha="center", fontsize=9, color="#444444")
 ax.legend(loc="center", bbox_to_anchor=(0.5, -0.28), ncol=3, frameon=False)
 ax.spines[["top", "right"]].set_visible(False)
 fig.savefig(os.path.join(OUT, "fig_b1_robustness.pdf"))
@@ -115,12 +115,12 @@ wrn_sweep = [wrn["clean"]["accuracy"], wrn["pgd10_eps0.00784"]["accuracy"], wrn[
 xi = np.arange(len(eps_grid))
 ax.plot(xi, sweep_vals(rs, rs[("clean", 0.0)]), "o-", color=C_CNN, label="ResNet-18 (AT)")
 ax.plot(xi, sweep_vals(vs, vs[("clean", 0.0)]), "s-", color=C_VIT, label="ViT-Tiny (AT)")
-ax.plot(xi, wrn_sweep, "^--", color=C_WRN, alpha=0.9, label="WRN-28-10 (reference$^{\\dagger}$)")
+ax.plot(xi, wrn_sweep, "^--", color=C_WRN, alpha=0.9, label="WRN-28-10 (referans$^{\\dagger}$)")
 ax.axvline(3, color="black", linewidth=0.7, linestyle=":", alpha=0.6)
 ax.text(3.05, 5, "$\\epsilon$=8/255", fontsize=8)
 ax.set_xticks(xi)
 ax.set_xticklabels(eps_lbl)
-ax.set_xlabel("Perturbation budget $\\epsilon$ ($L_\\infty$, PGD-10)")
+ax.set_xlabel("Pertürbasyon bütçesi $\\epsilon$ ($L_\\infty$, PGD-10)")
 ax.set_ylabel("Doğruluk (%)")
 ax.set_ylim(0, 95)
 ax.legend(frameon=False)
@@ -139,13 +139,26 @@ with open(att_path) as f:
     att = json.load(f)
 vit_layers = att["feature_analysis"] if "feature_analysis" in att else att["layers"]
 vit_cos = [d["cosine_similarity"] for d in vit_layers]
+vit_std = [d.get("cosine_similarity_std", 0.0) for d in vit_layers]
+if not any(vit_std):  # summary json'da std yoksa CSV'den al
+    csv_path = os.path.join(ROOT, "results/attention_analysis_run3/attention_feature_analysis.csv")
+    with open(csv_path) as f:
+        rows = list(csv.DictReader(f))
+    vit_std = [float(r["cosine_similarity_std"]) for r in rows]
+    assert len(vit_std) == len(vit_cos), "CSV blok sayisi summary ile uyusmuyor"
 with open(res_path) as f:
     resdeg = json.load(f)["feature_analysis"]
 res_cos = [d["cosine_similarity"] for d in resdeg]
+res_std = [d.get("cosine_similarity_std", 0.0) for d in resdeg]
 
 fig, ax = plt.subplots(figsize=(5.0, 3.0))
 xv = np.linspace(0, 1, len(vit_cos))
 xr = np.linspace(0, 1, len(res_cos))
+# +-1 std bantlari (5 parti ortalamasi uzerinden std; ChatGPT hakemligi 4. madde)
+ax.fill_between(xv, np.array(vit_cos) - np.array(vit_std), np.array(vit_cos) + np.array(vit_std),
+                color=C_VIT, alpha=0.15, linewidth=0)
+ax.fill_between(xr, np.array(res_cos) - np.array(res_std), np.array(res_cos) + np.array(res_std),
+                color=C_CNN, alpha=0.15, linewidth=0)
 ax.plot(xv, vit_cos, "o-", color=C_VIT, label=f"ViT-Tiny (12 blok)")
 ax.plot(xr, res_cos, "s--", color=C_CNN, label=f"ResNet-18 (8 artık blok)")
 imin = int(np.argmin(vit_cos))
