@@ -27,7 +27,7 @@ from src.models import ModelRegistry  # noqa: E402
 from src.utils.checkpoint import load_model_weights  # noqa: E402
 
 OUT = os.path.join(ROOT, "paper/bildiri/figures/fig_b4_data_adv.pdf")
-CLASSES = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+CLASSES = ["uçak", "otomobil", "kuş", "kedi", "geyik", "köpek", "kurbağa", "at", "gemi", "kamyon"]
 
 torch.manual_seed(42)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -84,24 +84,24 @@ gs = GridSpec(3, 10, figure=fig, height_ratios=[1.0, 1.9, 1.9], hspace=0.45, wsp
 
 for c in range(10):
     ax = fig.add_subplot(gs[0, c])
-    ax.imshow(strip[c].permute(1, 2, 0).numpy())
+    ax.imshow(strip[c].permute(1, 2, 0).numpy(), interpolation="nearest")
     ax.set_title(CLASSES[c], fontsize=6.2, pad=2)
     ax.axis("off")
 
 def show(ax, img, title):
-    ax.imshow(np.clip(img.permute(1, 2, 0).numpy(), 0, 1), interpolation="bilinear")
+    ax.imshow(np.clip(img.permute(1, 2, 0).numpy(), 0, 1), interpolation="nearest")
     ax.set_title(title, fontsize=8, pad=3)
     ax.axis("off")
 
 for r, row in enumerate(rows, start=1):
     ax1 = fig.add_subplot(gs[r, 0:3])
-    show(ax1, row["clean"], f"clean: {row['pc'][0]} ({row['pc'][1]*100:.0f}%)")
+    show(ax1, row["clean"], f"temiz: {row['pc'][0]} (%{row['pc'][1]*100:.0f})")
     ax2 = fig.add_subplot(gs[r, 3:6])
     pert = row["pert"]
     pert_vis = (pert * 10 + 0.5)
-    show(ax2, pert_vis, "perturbation ($\\times$10)")
+    show(ax2, pert_vis, "pertürbasyon ($\\times$10)")
     ax3 = fig.add_subplot(gs[r, 6:9])
-    show(ax3, row["adv"], f"adversarial: {row['pa'][0]} ({row['pa'][1]*100:.0f}%)")
+    show(ax3, row["adv"], f"çekişmeli: {row['pa'][0]} (%{row['pa'][1]*100:.0f})")
     axl = fig.add_subplot(gs[r, 9])
     axl.text(0.1, 0.5, row["name"].replace(" (AT)", "\n(AT)"), fontsize=8, fontweight="bold",
              va="center", rotation=90)
