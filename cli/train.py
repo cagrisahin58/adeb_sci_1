@@ -20,12 +20,16 @@ def train():
 @click.option("--output-dir", "-o", type=str, default="./models", help="Output directory for checkpoints")
 @click.option("--seed", type=int, default=42, help="Random seed")
 @click.option("--device", type=str, default="auto", help="Device (auto, cuda, cpu)")
-def clean(model, epochs, lr, batch_size, data_dir, output_dir, seed, device):
+@click.option("--val-indices", type=str, default=None,
+              help="Sabit validasyon indeksleri JSON'u (rev2 C1 leak fix): bu ornekler "
+                   "egitimden CIKARILIR ve model secimi val seti uzerinden yapilir "
+                   "(test seti egitim/secime hic girmez)")
+def clean(model, epochs, lr, batch_size, data_dir, output_dir, seed, device, val_indices):
     """Train a model with clean data."""
     from src.utils.seed import set_seed
     from src.utils.device import get_device
     from src.models import ModelRegistry
-    from src.data import get_cifar10_loaders
+    from src.data import get_cifar10_loaders, get_cifar10_loaders_with_val
     from src.training import Trainer
 
     # Setup
@@ -40,10 +44,22 @@ def clean(model, epochs, lr, batch_size, data_dir, output_dir, seed, device):
     click.echo(f"Model parameters: {model_instance.count_parameters():,}")
 
     # Load data
-    train_loader, test_loader = get_cifar10_loaders(
-        data_dir=data_dir,
-        batch_size=batch_size,
-    )
+    if val_indices:
+        # rev2 C1: sabit val split egitimden cikarilir; epoch-degerlendirme ve
+        # best-checkpoint secimi VAL uzerinden yapilir (test dokunulmaz).
+        train_loader, val_loader, _ = get_cifar10_loaders_with_val(
+            data_dir=data_dir,
+            batch_size=batch_size,
+            val_indices_path=val_indices,
+        )
+        test_loader = val_loader
+        click.echo(f"Fixed val split ({val_indices}): egitim {len(train_loader.dataset)} ornek; "
+                   f"secim {len(val_loader.dataset)} val ornegi uzerinden (test kullanilmiyor)")
+    else:
+        train_loader, test_loader = get_cifar10_loaders(
+            data_dir=data_dir,
+            batch_size=batch_size,
+        )
 
     # Create trainer
     checkpoint_dir = Path(output_dir) / model / "clean"
@@ -89,8 +105,12 @@ def clean(model, epochs, lr, batch_size, data_dir, output_dir, seed, device):
 @click.option("--resume", is_flag=True, default=False,
               help="Checkpoint dizinindeki last.pth'tan devam et (kesinti sonrasi). "
                    "last.pth yoksa sifirdan baslar.")
+@click.option("--val-indices", type=str, default=None,
+              help="Sabit validasyon indeksleri JSON'u (rev2 C1 leak fix): split "
+                   "seed'den turetilmez, tum seed'ler ayni val setini paylasir")
 def adversarial(model, defense, pretrained, epochs, lr, batch_size, eps, alpha, steps,
-                beta, data_dir, output_dir, seed, device, patience, val_split, resume):
+                beta, data_dir, output_dir, seed, device, patience, val_split, resume,
+                val_indices):
     """Train a model with adversarial defense."""
     from src.utils.seed import set_seed
     from src.utils.device import get_device
@@ -117,7 +137,15 @@ def adversarial(model, defense, pretrained, epochs, lr, batch_size, eps, alpha, 
     model_instance = model_instance.to(device)
 
     # Load data
-    if val_split > 0:
+    if val_indices:
+        train_loader, val_loader, test_loader = get_cifar10_loaders_with_val(
+            data_dir=data_dir,
+            batch_size=batch_size,
+            val_indices_path=val_indices,
+        )
+        click.echo(f"Fixed validation split from {val_indices} "
+                   f"({len(val_loader.dataset)} samples; shared across training seeds)")
+    elif val_split > 0:
         train_loader, val_loader, test_loader = get_cifar10_loaders_with_val(
             data_dir=data_dir,
             batch_size=batch_size,

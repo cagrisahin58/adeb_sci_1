@@ -94,6 +94,7 @@ def get_cifar10_loaders_with_val(
     split_seed: int = 42,
     num_workers: int = 2,
     download: bool = True,
+    val_indices_path: str = None,
 ) -> Tuple[DataLoader, DataLoader, DataLoader]:
     """
     Get CIFAR-10 loaders with a held-out validation split for model selection.
@@ -103,6 +104,12 @@ def get_cifar10_loaders_with_val(
     early stopping bu set uzerinden yapilarak test-set selection leakage
     onlenir (M7). Test seti yalnizca son degerlendirmede kullanilmalidir.
 
+    rev2 C1 (leak fix): `val_indices_path` verilirse split, seed'den TUREMEZ;
+    JSON dosyasindaki sabit indeks listesi kullanilir. Boylece (1) tum egitim
+    seed'leri AYNI validasyon setini paylasir, (2) ayni indeks dosyasi clean
+    pretraining'de de kullanilarak validasyon orneklerinin pretraining'de
+    gorulmesi engellenir.
+
     Args:
         data_dir: Directory to store/load data
         batch_size: Training batch size
@@ -111,6 +118,9 @@ def get_cifar10_loaders_with_val(
         split_seed: Seed for the fixed train/val permutation
         num_workers: Number of data loading workers
         download: Whether to download the dataset
+        val_indices_path: Sabit validasyon indeksleri JSON dosyasi (opsiyonel;
+            {"val_indices": [...]} formati). Verilirse val_size/split_seed
+            yoksayilir.
 
     Returns:
         Tuple of (train_loader, val_loader, test_loader)
@@ -135,10 +145,22 @@ def get_cifar10_loaders_with_val(
         root=data_dir, train=False, download=download, transform=eval_transform,
     )
 
-    generator = torch.Generator().manual_seed(split_seed)
-    perm = torch.randperm(len(train_aug_set), generator=generator).tolist()
-    val_indices = perm[:val_size]
-    train_indices = perm[val_size:]
+    if val_indices_path is not None:
+        import json as _json
+        with open(val_indices_path) as _f:
+            _payload = _json.load(_f)
+        val_indices = list(_payload["val_indices"])
+        _val_set = set(val_indices)
+        if len(_val_set) != len(val_indices):
+            raise ValueError(f"{val_indices_path}: tekrarli indeks var")
+        if any(i < 0 or i >= len(train_aug_set) for i in _val_set):
+            raise ValueError(f"{val_indices_path}: indeks araligi disi deger var")
+        train_indices = [i for i in range(len(train_aug_set)) if i not in _val_set]
+    else:
+        generator = torch.Generator().manual_seed(split_seed)
+        perm = torch.randperm(len(train_aug_set), generator=generator).tolist()
+        val_indices = perm[:val_size]
+        train_indices = perm[val_size:]
 
     trainloader = DataLoader(
         Subset(train_aug_set, train_indices),
