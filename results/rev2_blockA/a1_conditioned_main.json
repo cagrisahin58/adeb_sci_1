@@ -1,0 +1,84 @@
+{
+ "seed": 42,
+ "n_bootstrap": 10000,
+ "models": {
+  "ResNet18_AT": {
+   "AA": {
+    "clean_acc": 85.42,
+    "robust_acc": 35.74,
+    "cond_survival": 41.84,
+    "cond_fooling": 58.16,
+    "cond_fooling_ci95": [
+     57.11,
+     59.24
+    ],
+    "decomposition_clean_x_survival": 35.74,
+    "robust_but_clean_wrong_pct": 0.0
+   },
+   "PGD10": {
+    "clean_acc": 85.42,
+    "robust_acc": 40.87,
+    "cond_survival": 47.85,
+    "cond_fooling": 52.15,
+    "cond_fooling_ci95": [
+     51.11,
+     53.23
+    ],
+    "decomposition_clean_x_survival": 40.87,
+    "robust_but_clean_wrong_pct": 0.0
+   }
+  },
+  "ViT_Tiny_AT": {
+   "AA": {
+    "clean_acc": 75.65,
+    "robust_acc": 32.94,
+    "cond_survival": 43.54,
+    "cond_fooling": 56.46,
+    "cond_fooling_ci95": [
+     55.35,
+     57.55
+    ],
+    "decomposition_clean_x_survival": 32.94,
+    "robust_but_clean_wrong_pct": 0.0
+   },
+   "PGD10": {
+    "clean_acc": 75.65,
+    "robust_acc": 36.06,
+    "cond_survival": 47.67,
+    "cond_fooling": 52.33,
+    "cond_fooling_ci95": [
+     51.24,
+     53.5
+    ],
+    "decomposition_clean_x_survival": 36.06,
+    "robust_but_clean_wrong_pct": 0.0
+   }
+  }
+ },
+ "both_correct": {
+  "AA": {
+   "n_common": 7260,
+   "robust_acc_ResNet": 48.15,
+   "robust_acc_ViT": 45.33,
+   "diff_R_minus_V": 2.82,
+   "only_ResNet_robust": 862,
+   "only_ViT_robust": 657,
+   "mcnemar_chi2": 27.4,
+   "mcnemar_p": 1.66e-07
+  },
+  "PGD10": {
+   "n_common": 7260,
+   "robust_acc_ResNet": 54.92,
+   "robust_acc_ViT": 49.61,
+   "diff_R_minus_V": 5.3,
+   "only_ResNet_robust": 1029,
+   "only_ViT_robust": 644,
+   "mcnemar_chi2": 88.14,
+   "mcnemar_p": 6.1e-21
+  }
+ },
+ "notes": [
+  "PGD-10 per-sample maskeleri transfer_analysis_run3 kosusunun white-box kosegeninden gelir (full-test PGD 40.87/36.06); Tablo I'deki seedli 40.97/36.09 ayri bir degerlendirme kosusudur (restart stokastisitesi ~0.1pp).",
+  "AA icin robust_correct her zaman clean_correct alt kumesidir; ayristirma denklemi tamdir."
+ ]
+}

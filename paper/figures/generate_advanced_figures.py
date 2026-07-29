@@ -296,17 +296,20 @@ def figure2_gradient_comparison(models, test_loader, device, output_path):
         ax_img.axis('off')
 
         cnn_grad = resnet_grads[idx].max(0)[0].detach().cpu().numpy()
+        vit_grad = vit_grads[idx].max(0)[0].detach().cpu().numpy()
+        # Ortak renk skalasi (rev2 A6): panel-basina vmax gorsel karsilastirmayi
+        # yaniltiyordu; iki gradyan paneli ayni [0, shared_max] araligini kullanir.
+        shared_max = max(cnn_grad.max(), vit_grad.max())
         ax_cnn = fig.add_subplot(gs[row, 1])
-        im_c = ax_cnn.imshow(cnn_grad, cmap='hot', vmin=0, vmax=cnn_grad.max(), interpolation='bilinear')
-        ax_cnn.set_title('ResNet-18 Gradient\n(more concentrated)', fontsize=12)
+        im_c = ax_cnn.imshow(cnn_grad, cmap='hot', vmin=0, vmax=shared_max, interpolation='bilinear')
+        ax_cnn.set_title('ResNet-18 Gradient\n(more concentrated)', fontsize=13)
         ax_cnn.axis('off')
         divider = make_axes_locatable(ax_cnn)
         plt.colorbar(im_c, cax=divider.append_axes("right", size="5%", pad=0.05))
 
-        vit_grad = vit_grads[idx].max(0)[0].detach().cpu().numpy()
         ax_vit = fig.add_subplot(gs[row, 2])
-        im_v = ax_vit.imshow(vit_grad, cmap='hot', vmin=0, vmax=vit_grad.max(), interpolation='bilinear')
-        ax_vit.set_title('ViT-Tiny Gradient\n(more distributed)', fontsize=12)
+        im_v = ax_vit.imshow(vit_grad, cmap='hot', vmin=0, vmax=shared_max, interpolation='bilinear')
+        ax_vit.set_title('ViT-Tiny Gradient\n(more distributed)', fontsize=13)
         ax_vit.axis('off')
         divider = make_axes_locatable(ax_vit)
         plt.colorbar(im_v, cax=divider.append_axes("right", size="5%", pad=0.05))
@@ -372,42 +375,42 @@ def figure3_attention_comparison(models, test_loader, device, output_path):
 
     fig, axes = plt.subplots(3, 3, figsize=(12, 12))
 
-    for row, (layer_idx, layer_name) in enumerate(zip(layer_indices, layer_names)):
-        # Get attention for CLS token, average over heads
+    # Once tum katman verilerini topla: fark haritalari TUM katmanlarda AYNI
+    # simetrik araligi kullanir (rev2 A6; katman-basina aralik katmanlar arasi
+    # karsilastirmayi yaniltiyordu).
+    layer_data = []
+    for layer_idx in layer_indices:
         if layer_idx >= len(clean_attn):
             raise IndexError(f"Layer {layer_idx} yok (toplam {len(clean_attn)} katman)")
         clean_att = clean_attn[layer_idx][0, :, 0, 1:].mean(0).detach().cpu().numpy()
         adv_att = adv_attn[layer_idx][0, :, 0, 1:].mean(0).detach().cpu().numpy()
-
-        # Reshape to grid
         grid_size = int(np.sqrt(len(clean_att)))
         clean_att = clean_att[:grid_size**2].reshape(grid_size, grid_size)
         adv_att = adv_att[:grid_size**2].reshape(grid_size, grid_size)
-        diff_att = adv_att - clean_att
+        layer_data.append((clean_att, adv_att, adv_att - clean_att))
+    global_max_diff = max(max(abs(d.min()), abs(d.max())) for _, _, d in layer_data)
 
-        # Clean attention
-        im1 = axes[row, 0].imshow(clean_att, cmap='viridis', vmin=0, vmax=clean_att.max(), interpolation='bilinear')
-        axes[row, 0].set_title(f'{layer_name}\nClean', fontsize=11)
+    for row, (layer_name, (clean_att, adv_att, diff_att)) in enumerate(zip(layer_names, layer_data)):
+        # Clean/adversarial paneller satir-ici ortak skala kullanir
+        row_vmax = max(clean_att.max(), adv_att.max())
+        im1 = axes[row, 0].imshow(clean_att, cmap='viridis', vmin=0, vmax=row_vmax, interpolation='bilinear')
+        axes[row, 0].set_title(f'{layer_name}\nClean', fontsize=12)
         axes[row, 0].axis('off')
 
-        # Adversarial attention
-        im2 = axes[row, 1].imshow(adv_att, cmap='viridis', vmin=0, vmax=adv_att.max(), interpolation='bilinear')
-        axes[row, 1].set_title(f'{layer_name}\nAdversarial', fontsize=11)
+        im2 = axes[row, 1].imshow(adv_att, cmap='viridis', vmin=0, vmax=row_vmax, interpolation='bilinear')
+        axes[row, 1].set_title(f'{layer_name}\nAdversarial', fontsize=12)
         axes[row, 1].axis('off')
 
-        # Difference
-        max_diff = max(abs(diff_att.min()), abs(diff_att.max()))
-        im3 = axes[row, 2].imshow(diff_att, cmap='RdBu_r', vmin=-max_diff, vmax=max_diff, interpolation='bilinear')
-        axes[row, 2].set_title(f'{layer_name}\nDifference', fontsize=11)
+        im3 = axes[row, 2].imshow(diff_att, cmap='RdBu_r', vmin=-global_max_diff,
+                                  vmax=global_max_diff, interpolation='bilinear')
+        axes[row, 2].set_title(f'{layer_name}\nDifference', fontsize=12)
         axes[row, 2].axis('off')
 
-        # Add colorbar to difference
         divider = make_axes_locatable(axes[row, 2])
         cax = divider.append_axes("right", size="5%", pad=0.05)
         plt.colorbar(im3, cax=cax)
 
-    fig.suptitle('Attention Map Degradation Under Adversarial Attack', fontsize=14)
-    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.tight_layout()
 
     plt.savefig(output_path)
     plt.close()
@@ -444,8 +447,11 @@ def figure4_tsne_features(models, test_loader, device, output_path):
 
     print(f"  Collecting features from {n_samples} samples...")
 
-    # Generate adversarial examples
-    adv_images = pgd_attack(models['resnet18'], images, labels)
+    # Generate adversarial examples WHITE-BOX per model (rev2 A6/A5: onceki
+    # surum ViT paneline CNN'de uretilen saldirilari veriyordu — transfer
+    # tasarimi; per-mimari iddialar icin her model kendi saldirisiyla olculur)
+    adv_images_cnn = pgd_attack(models['resnet18'], images, labels)
+    adv_images_vit = pgd_attack(models['vit'], images, labels)
 
     # Get features
     def get_features(model, images):
@@ -461,14 +467,14 @@ def figure4_tsne_features(models, test_loader, device, output_path):
 
     # ResNet features (flatten if needed)
     resnet_clean_feat = get_features(models['resnet18'], images).cpu().numpy()
-    resnet_adv_feat = get_features(models['resnet18'], adv_images).cpu().numpy()
+    resnet_adv_feat = get_features(models['resnet18'], adv_images_cnn).cpu().numpy()
     if resnet_clean_feat.ndim > 2:
         resnet_clean_feat = resnet_clean_feat.reshape(resnet_clean_feat.shape[0], -1)
         resnet_adv_feat = resnet_adv_feat.reshape(resnet_adv_feat.shape[0], -1)
 
     # ViT features (flatten if needed)
     vit_clean_feat = get_features(models['vit'], images).cpu().numpy()
-    vit_adv_feat = get_features(models['vit'], adv_images).cpu().numpy()
+    vit_adv_feat = get_features(models['vit'], adv_images_vit).cpu().numpy()
     if vit_clean_feat.ndim > 2:
         vit_clean_feat = vit_clean_feat.reshape(vit_clean_feat.shape[0], -1)
         vit_adv_feat = vit_adv_feat.reshape(vit_adv_feat.shape[0], -1)
@@ -509,40 +515,38 @@ def figure4_tsne_features(models, test_loader, device, output_path):
 
     colors = plt.cm.tab10(np.linspace(0, 1, 10))
 
-    # ResNet plot
-    for c in range(10):
-        mask = labels_np == c
-        axes[0].scatter(resnet_clean_emb[mask, 0], resnet_clean_emb[mask, 1],
-                       c=[colors[c]], marker='o', s=20, alpha=0.6, label=f'{CIFAR10_CLASSES[c]}' if c < 5 else '')
-        axes[0].scatter(resnet_adv_emb[mask, 0], resnet_adv_emb[mask, 1],
-                       c=[colors[c]], marker='^', s=20, alpha=0.4)
+    # rev2 A6: adversarial ucgenler ONCE cizilir, clean daireler USTTE — ViT'te
+    # clean/adv noktalar neredeyse cakisik oldugundan aksi sirada daireler
+    # tamamen ortuluyordu. Fontlar buyutuldu, suptitle kaldirildi.
+    def draw_panel(ax, clean_emb, adv_emb):
+        for c in range(10):
+            mask = labels_np == c
+            ax.scatter(adv_emb[mask, 0], adv_emb[mask, 1],
+                       c=[colors[c]], marker='^', s=52, alpha=0.7,
+                       edgecolors='black', linewidths=0.4)
+            ax.scatter(clean_emb[mask, 0], clean_emb[mask, 1],
+                       c=[colors[c]], marker='o', s=26, alpha=0.9,
+                       edgecolors='white', linewidths=0.3)
 
-    axes[0].set_title('ResNet-18 Feature Space', fontsize=12)
-    axes[0].set_xlabel('t-SNE 1')
-    axes[0].set_ylabel('t-SNE 2')
+    draw_panel(axes[0], resnet_clean_emb, resnet_adv_emb)
+    axes[0].set_title('ResNet-18 Feature Space', fontsize=13)
+    axes[0].set_xlabel('t-SNE 1', fontsize=12)
+    axes[0].set_ylabel('t-SNE 2', fontsize=12)
 
-    # ViT plot
-    for c in range(10):
-        mask = labels_np == c
-        axes[1].scatter(vit_clean_emb[mask, 0], vit_clean_emb[mask, 1],
-                       c=[colors[c]], marker='o', s=20, alpha=0.6)
-        axes[1].scatter(vit_adv_emb[mask, 0], vit_adv_emb[mask, 1],
-                       c=[colors[c]], marker='^', s=20, alpha=0.4)
+    draw_panel(axes[1], vit_clean_emb, vit_adv_emb)
+    axes[1].set_title('ViT-Tiny Feature Space', fontsize=13)
+    axes[1].set_xlabel('t-SNE 1', fontsize=12)
+    axes[1].set_ylabel('t-SNE 2', fontsize=12)
 
-    axes[1].set_title('ViT-Tiny Feature Space', fontsize=12)
-    axes[1].set_xlabel('t-SNE 1')
-    axes[1].set_ylabel('t-SNE 2')
-
-    # Legend
+    # Legend (eksen icinde: panel basligiyla cakismasin)
     from matplotlib.lines import Line2D
     legend_elements = [
-        Line2D([0], [0], marker='o', color='w', markerfacecolor='gray', markersize=8, label='Clean'),
-        Line2D([0], [0], marker='^', color='w', markerfacecolor='gray', markersize=8, label='Adversarial'),
+        Line2D([0], [0], marker='o', color='w', markerfacecolor='gray', markeredgecolor='white', markersize=8, label='Clean'),
+        Line2D([0], [0], marker='^', color='w', markerfacecolor='gray', markeredgecolor='black', markersize=9, label='Adversarial (white-box)'),
     ]
-    fig.legend(handles=legend_elements, loc='upper right', bbox_to_anchor=(0.99, 0.99))
+    axes[0].legend(handles=legend_elements, loc='lower left', fontsize=10, framealpha=0.9)
 
-    fig.suptitle('Feature Space Perturbation: Clean vs Adversarial Samples', fontsize=14)
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.tight_layout()
 
     plt.savefig(output_path)
     plt.close()
