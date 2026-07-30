@@ -17,7 +17,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-ROOT = "/workspace" if os.path.isdir("/workspace/results") else os.path.expanduser("~/projects/adeb_sci_1")
+# Repo koku: bu dosya paper/bildiri/ altinda oldugundan iki ust dizin.
+ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 sys.path.insert(0, ROOT)
 os.chdir(ROOT)
 
@@ -27,7 +28,7 @@ from src.models import ModelRegistry  # noqa: E402
 from src.utils.checkpoint import load_model_weights  # noqa: E402
 
 OUT = os.path.join(ROOT, "paper/bildiri/figures/fig_b4_data_adv.pdf")
-CLASSES = ["uçak", "otomobil", "kuş", "kedi", "geyik", "köpek", "kurbağa", "at", "gemi", "kamyon"]
+CLASSES = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 
 torch.manual_seed(42)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -95,13 +96,13 @@ def show(ax, img, title):
 
 for r, row in enumerate(rows, start=1):
     ax1 = fig.add_subplot(gs[r, 0:3])
-    show(ax1, row["clean"], f"temiz: {row['pc'][0]} (%{row['pc'][1]*100:.0f})")
+    show(ax1, row["clean"], f"clean: {row['pc'][0]} ({row['pc'][1]*100:.0f}%)")
     ax2 = fig.add_subplot(gs[r, 3:6])
     pert = row["pert"]
     pert_vis = (pert * 10 + 0.5)
-    show(ax2, pert_vis, "pertürbasyon ($\\times$10)")
+    show(ax2, pert_vis, "perturbation ($\\times$10)")
     ax3 = fig.add_subplot(gs[r, 6:9])
-    show(ax3, row["adv"], f"çekişmeli: {row['pa'][0]} (%{row['pa'][1]*100:.0f})")
+    show(ax3, row["adv"], f"adversarial: {row['pa'][0]} ({row['pa'][1]*100:.0f}%)")
     axl = fig.add_subplot(gs[r, 9])
     axl.text(0.1, 0.5, row["name"].replace(" (AT)", "\n(AT)"), fontsize=8, fontweight="bold",
              va="center", rotation=90)

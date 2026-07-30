@@ -3,7 +3,6 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[turkish,shorthands=off]{babel}
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
@@ -11,181 +10,179 @@
 \usepackage{url}
 
 \newcommand{\eps}{\epsilon}
-\renewcommand{\IEEEkeywordsname}{Anahtar Kelimeler}
 
 \begin{document}
 
-\title{Çekişmeli Eğitilmiş ResNet-18 ve ViT-Tiny'nin CIFAR-10 Üzerinde Davranışsal Karşılaştırması:\\ Transfer Metrikleri, Gradyan Yapısı ve Blok Bazlı Öznitelik Kayması\\
-{\normalsize\itshape A Behavioral Comparison of Adversarially Trained ResNet-18 and ViT-Tiny on CIFAR-10: Transfer Metrics, Gradient Structure, and Block-wise Feature Drift}}
+\title{A Behavioral Comparison of Adversarially Trained ResNet-18 and ViT-Tiny on CIFAR-10:\\ Transfer Metrics, Gradient Structure, and Block-wise Feature Drift}
 
 \author{\IEEEauthorblockN{Çağrı Şahin}
-\IEEEauthorblockA{\textit{Yazılım Mühendisliği Bölümü}\\
-\textit{Fırat Üniversitesi}\\
-Elazığ, Türkiye\\
+\IEEEauthorblockA{\textit{Department of Software Engineering}\\
+\textit{Fırat University}\\
+Elazığ, Turkey\\
 csahin@firat.edu.tr}
 \and
 \IEEEauthorblockN{Özal Yıldırım}
-\IEEEauthorblockA{\textit{Yazılım Mühendisliği Bölümü}\\
-\textit{Fırat Üniversitesi}\\
-Elazığ, Türkiye}
+\IEEEauthorblockA{\textit{Department of Software Engineering}\\
+\textit{Fırat University}\\
+Elazığ, Turkey}
 }
 
 \maketitle
 
 \begin{abstract}
-Evrişimli sinir ağları (CNN) ile Görü Dönüştürücülerinin (Vision Transformer, ViT) çekişmeli saldırılar altındaki farkları genellikle tek bir gürbüz doğruluk sayısıyla özetlenir. Bu bildiri, CIFAR-10 üzerinde çekişmeli eğitilmiş (adversarial training, AT) ResNet-18 ile ViT-Tiny'nin tam test kümesinde AutoAttack ile ($\eps=8/255$) değerlendirildiği, devam etmekte olan bir davranışsal karşılaştırmanın ön sonuçlarını sunar ve tek sayının hikâyenin çoğunu gizlediğini savunur. İlk bulguya göre CNN mutlak gürbüz doğrulukta önde olsa da (\%35{,}74'e karşı \%32{,}94; McNemar $p<10^{-11}$), koşullu ayrıştırma, genel görünümün hangi açıdan bakıldığına bağlı olduğunu gösterir: PGD-10 farkının tamamı temiz doğruluk farkından gelir, AutoAttack altında model bazlı koşullu sıralama hafifçe ViT lehine döner, ancak iki modelin de temizde doğru sınıfladığı ortak altkümede CNN'in üstünlüğü anlamlı biçimde sürer. İkinci bulgu, mimariler arası transfer asimetrisinin ölçümde kullanılan koşullama protokolüne güçlü biçimde bağlı olduğudur: koşulsuz (ham) oran 8{,}3 puanlık yapay bir asimetri üretir, hedef doğru koşullu oranlar istatistiksel olarak eşdeğerdir, her ikisi doğru ve başarılı kaynak protokolleri ise 5{,}3 puanlık anlamlı bir CNN$\rightarrow$ViT üstünlüğü ortaya çıkarır. Kısacası protokol seçimi yönlü sonuçlar yaratabilir, silebilir veya tersine çevirebilir. Üçüncü bulgu gradyan yapısına ilişkindir: ölçekten bağımsız ölçüler CNN girdi gradyanlarının bir miktar daha seyrek olduğunu, ViT'in örnekler arası gradyan hizalanmasının ise mutlak kosinüste daha yüksek kaldığını gösterir (işaretli kosinüs her iki modelde sıfıra yakındır). Son olarak, saldırı altında ViT öznitelikleri erken düşüş ve orta ağ platosu profiliyle kayarken CNN'in profili derinlikle monoton bozulur. Sonuçlar mimari başına tek bir eğitim koşusundan gelmektedir ve ön sonuç olarak okunmalıdır; genişletilmiş bir analiz hazırlanmaktadır.
+How convolutional neural networks (CNNs) and Vision Transformers (ViTs) differ under adversarial attack is usually summarized by a single robust accuracy number. This paper reports preliminary results from an ongoing behavioral comparison of adversarially trained (AT) ResNet-18 and ViT-Tiny on CIFAR-10, evaluated with AutoAttack on the full test set at $\eps=8/255$, and argues that the single number hides most of the story. The first finding is that although the CNN leads in absolute robust accuracy (35.74\% vs 32.94\%; McNemar $p<10^{-11}$), a conditional decomposition shows the overall picture to be view-dependent: the entire PGD-10 gap traces to the clean accuracy gap, the per-model conditional ordering under AutoAttack turns slightly in favor of the ViT, yet on the subset both models classify correctly on clean inputs the CNN advantage persists significantly. The second finding is that cross-architecture transfer asymmetry depends strongly on the conditioning protocol used to measure it: the unconditioned (raw) rate manufactures an artificial 8.3-point asymmetry, target-correct conditioned rates are statistically equivalent, while the both-correct and successful-source protocols reveal a significant 5.3-point CNN$\rightarrow$ViT advantage. In short, protocol choice can create, erase, or reverse directional conclusions. The third finding concerns gradient structure: scale-invariant measures show CNN input gradients to be somewhat sparser, while ViT cross-sample gradient alignment remains higher in absolute cosine (the signed cosine is near zero for both models). Finally, under attack ViT features drift with an early drop and mid-network plateau profile, whereas the CNN profile degrades monotonically with depth. Results come from a single training run per architecture and should be read as preliminary; an extended analysis is in preparation.
 \end{abstract}
 
 \begin{IEEEkeywords}
-çekişmeli örnekler, çekişmeli eğitim, CIFAR-10, evrişimli sinir ağları, gürbüzlük, transfer saldırıları, Görü Dönüştürücü
+adversarial examples, adversarial training, CIFAR-10, convolutional neural networks, robustness, transfer attacks, Vision Transformer
 \end{IEEEkeywords}
 
-\section{Giriş}
-Derin görüntü sınıflandırıcıları, tahminleri yüksek güvenle değiştirebilen küçük ve özenle üretilmiş pertürbasyonlara, yani çekişmeli örneklere (adversarial examples) karşı savunmasızdır~\cite{szegedy2014intriguing, goodfellow2015explaining}. Görü Dönüştürücüleri (Vision Transformer, ViT)~\cite{dosovitskiy2021image} evrişimli sinir ağlarının (CNN)~\cite{he2016deep} yanında baskın bir mimari ailesi hâline gelirken, iki ailenin saldırı altında nasıl farklılaştığı doğal bir sorudur. Literatürün önemli bölümü bu soruyu bir yarışma olarak ele alır ve hangi mimarinin daha yüksek gürbüz doğruluk elde ettiğini raporlar~\cite{bai2021transformers, benz2021adversarial, ali2024adversarial}. Bu bildiri farklı, davranışsal bir bakış benimser: çekişmeli eğitilmiş sabit bir model çifti için mimariler manşet gürbüzlük sayısının bileşiminde, çekişmeli örneklerin aralarındaki transferinde, girdi gradyanlarının yapısında ve pertürbasyonların katmanlar boyunca yayılımında \emph{nasıl} farklılaşır?
+\section{Introduction}
+Deep image classifiers are vulnerable to adversarial examples, small and carefully crafted perturbations that flip predictions with high confidence~\cite{szegedy2014intriguing, goodfellow2015explaining}. As Vision Transformers (ViTs)~\cite{dosovitskiy2021image} join convolutional neural networks (CNNs)~\cite{he2016deep} as a dominant architecture family, a natural question is how the two families differ under attack. Much of the literature approaches this as a contest and reports which architecture attains higher robust accuracy~\cite{bai2021transformers, benz2021adversarial, ali2024adversarial}. This paper takes a different, behavioral view: for a fixed pair of adversarially trained models, \emph{how} do the architectures differ in the composition of the headline robustness number, in how adversarial examples transfer between them, in the structure of their input gradients, and in how perturbations propagate through their layers?
 
-Bu soruya ilişkin devam eden bir çalışmanın ön sonuçlarını CIFAR-10~\cite{krizhevsky2009learning} üzerinde raporluyoruz: aynı çekişmeli amaç fonksiyonu ve tehdit modeliyle eğitilmiş bir ResNet-18 ile bir ViT-Tiny, tam test kümesinde AutoAttack~\cite{croce2020reliable} ile değerlendirilmiştir. Katkılarımız: (i) ``CNN daha gürbüz'' manşetinin bileşime bağlı olduğunu gösteren koşullu gürbüzlük ayrıştırması; (ii) mimariler arası transfer asimetrisinin ölçülen yönünün ve büyüklüğünün koşullama protokolüne bağlı olduğunu gösteren, transfer çalışmaları için metodolojik bir uyarı niteliğindeki çok protokollü analiz; (iii) işaretli/mutlak hizalanma ayrımını içeren, eşleştirilmiş ve ölçekten bağımsız gradyan yapısı karşılaştırmaları; (iv) nitel olarak farklı derinlik profillerini ortaya koyan blok bazlı öznitelik kayması karşılaştırması. Tüm sonuçlar örnek bazında kayıtlı değerlendirmelerden türetilmiştir; sonuçlar mimari başına tek bir eğitim koşusundan gelmektedir ve ön sonuç olarak okunmalıdır.
+We report preliminary results from an ongoing study of this question on CIFAR-10~\cite{krizhevsky2009learning}: a ResNet-18 and a ViT-Tiny trained with the same adversarial objective and threat model, evaluated with AutoAttack~\cite{croce2020reliable} on the full test set. Our contributions are: (i) a conditional decomposition of robustness showing that the ``CNN is more robust'' headline is composition-dependent; (ii) a multi-protocol analysis showing that the measured direction and size of cross-architecture transfer asymmetry depend on the conditioning protocol, which serves as a methodological caution for transfer studies; (iii) paired, scale-invariant gradient structure comparisons including a signed versus absolute alignment distinction; and (iv) a block-wise feature drift comparison that reveals qualitatively different depth profiles. All results derive from per-sample-logged evaluations; they come from a single training run per architecture and should be read as preliminary.
 
-\section{İlgili Çalışmalar}
-Çekişmeli örnekler ve gradyan tabanlı saldırılar Szegedy vd.~\cite{szegedy2014intriguing} ile Goodfellow vd.~\cite{goodfellow2015explaining} tarafından ortaya konmuştur; izdüşümlü gradyan inişi (PGD) ile çekişmeli eğitim (adversarial training, AT)~\cite{madry2018towards} standart savunma olmayı sürdürmekte, gürbüz aşırı öğrenme ve erken durdurma Rice vd.~\cite{rice2020overfitting} tarafından karakterize edilmektedir. AutoAttack~\cite{croce2020reliable} ve RobustBench~\cite{croce2021robustbench} gürbüzlük değerlendirmesini standartlaştırmıştır.
+\section{Related Work}
+Adversarial examples and gradient-based attacks were established by Szegedy et al.~\cite{szegedy2014intriguing} and Goodfellow et al.~\cite{goodfellow2015explaining}; projected gradient descent (PGD) adversarial training (AT)~\cite{madry2018towards} remains the standard defense, with robust overfitting and early stopping characterized by Rice et al.~\cite{rice2020overfitting}. AutoAttack~\cite{croce2020reliable} and RobustBench~\cite{croce2021robustbench} standardized robustness evaluation.
 
-Doğrudan CNN--ViT gürbüzlük karşılaştırmalarında bulgular kuruluma göre değişmektedir: Bai vd.~\cite{bai2021transformers} adil eğitim tarifleri altında dönüştürücülerin çekişmeli gürbüzlükte CNN'lerden üstün olmadığını bulurken, Benz vd.~\cite{benz2021adversarial} standart eğitilmiş modellerde ViT'leri CNN'lerden daha gürbüz raporlamıştır; bu karşıtlık, karşılaştırma sonuçlarının kurulum ve protokole duyarlılığına dair tezimizle uyumludur. Bizim kurulumumuza en yakın çalışma olan Ali vd.~\cite{ali2024adversarial}, standart eğitilmiş ViT ve CNN'lerin gürbüzlüğünü FGSM (Fast Gradient Sign Method), PGD ve DeepFool skor karşılaştırmalarıyla incelemiştir. Çalışmamız üç yönden ayrışır: her iki model de eşleşmiş bir amaç fonksiyonuyla \emph{çekişmeli eğitilmiştir}; değerlendirme, tam test kümesinde örnek bazında eşleştirilmiş istatistiklerle AutoAttack kullanır; karşılaştırma skorların ötesine geçerek koşullu ayrıştırmaları, protokolü açık transferi, gradyan yapısını ve blok bazlı kaymayı kapsar. ViT çekişmeli eğitiminin küçük veri kümelerinde tarife duyarlı olduğu bilinmektedir~\cite{mo2022adversarial, debenedetti2023light}; difüzyon modeliyle üretilmiş sentetik ek veriyle ViT'ler CIFAR-10'da WideResNet'leri geçebilmektedir~\cite{wu2025vision}. Dolayısıyla vardığımız sonuçlar, incelediğimiz temel tarif altında geçerlidir; en iyi şekilde eğitilmiş ViT'ler için değil.
+Among direct CNN--ViT robustness comparisons, findings vary with the setup: Bai et al.~\cite{bai2021transformers} found that under fair training recipes transformers do not surpass CNNs in adversarial robustness, whereas Benz et al.~\cite{benz2021adversarial} reported ViTs to be more robust than CNNs for standardly trained models. This contrast is consistent with our thesis that comparison outcomes are sensitive to setup and protocol. Closest to our setting, Ali et al.~\cite{ali2024adversarial} examined the robustness of standardly trained ViTs and CNNs through FGSM (Fast Gradient Sign Method), PGD, and DeepFool score comparisons. Our study differs in three ways: both models are \emph{adversarially trained} under a matched objective; evaluation uses AutoAttack on the full test set with paired per-sample statistics; and the comparison goes beyond scores to conditional decompositions, protocol-explicit transfer, gradient structure, and block-wise drift. ViT adversarial training is known to be recipe-sensitive on small datasets~\cite{mo2022adversarial, debenedetti2023light}, and with synthetic extra data generated by diffusion models ViTs can surpass WideResNets on CIFAR-10~\cite{wu2025vision}. Our conclusions therefore hold under the baseline recipe we study, not for optimally trained ViTs.
 
-Transfer değerlendirmesinde, doğru sınıflanan örneklere koşullama yerleşik pratiktir~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend}; her ikisi doğru varyantları Mahmood vd.~\cite{mahmood2021robustness} ve TREND~\cite{ravikumar2023trend} tarafından kullanılmıştır. Bizim katkımız, bu protokoller arasındaki \emph{seçimin} asimetri sonucunu nitel olarak değiştirdiğini tek bir veri kümesi üzerinde göstermektir.
+For transfer evaluation, conditioning on correctly classified samples is established practice~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend}; both-correct variants were used by Mahmood et al.~\cite{mahmood2021robustness} and TREND~\cite{ravikumar2023trend}. Our contribution is to show on a single dataset that the \emph{choice} among these protocols qualitatively changes the asymmetry conclusion.
 
-\section{Yöntem}
+\section{Method}
 % --- (Beklemede) Genel-bakis semasi: kullanicinin AI'ya cizdirecegi figur ---
 % Dosya paper/bildiri/figures/fig_b0_overview.pdf olarak eklendiginde asagidaki
-% blogu acin ve Giris sonuna "Şekil~\ref{fig:overview} çalışma tasarımını
-% özetlemektedir." cumlesini ekleyin.
+% blogu acin ve Introduction sonuna "Fig.~\ref{fig:overview} summarizes the
+% study design." cumlesini ekleyin.
 %\begin{figure}[!t]
 %\centering
 %\includegraphics[width=\columnwidth]{figures/fig_b0_overview.pdf}
-%\caption{Çalışmaya genel bakış: iki mimari için eşleşmiş çekişmeli eğitim hattı
-%ve örnek bazında kayıtlı değerlendirme bataryası.}
+%\caption{Study overview: the matched adversarial training pipeline for the two
+%architectures and the per-sample-logged evaluation battery.}
 %\label{fig:overview}
 %\end{figure}
-\subsection{Veri Kümesi, Modeller ve Eğitim}
-Deneyler CIFAR-10~\cite{krizhevsky2009learning} üzerinde yürütülmüştür: on dengeli sınıfta 60{.}000 adet $32\times32$ renkli görüntü (50{.}000 eğitim / 10{.}000 test). Şekil~\ref{fig:data}, veri kümesini ve saldırının etkisini örneklendirir: gösterilen örnek, test sırasına göre temizde doğru sınıflanan ve saldırının sınıf değiştirdiği ilk örnektir (deterministik seçim); pertürbasyonlar özgün ölçekte zor fark edilir ancak tahminleri yüksek güvenle değiştirir ve iki mimaride nitel olarak farklı yapıdadır (CNN'de dağınık, ViT'te yama hizalı). Görüntüler $32\times32$ çözünürlüktedir ve pikselleri birebir koruyan (en yakın komşu) büyütmeyle gösterilmiştir. ResNet-18 (11{,}2M parametre; CIFAR tipi gövde) ile ViT-Tiny (5{,}7M parametre; \texttt{timm}~\cite{rw2019timm} mimarisi, $224\times224$'e çift doğrusal yukarı örneklenen girdiler üzerinde $16\times16$ yamalar) karşılaştırılmıştır; iki model de CIFAR-10 üzerinde sıfırdan, temel veri artırmayla eğitilmiş ve ardından çekişmeli ince ayara tabi tutulmuştur. Saldırılar dahil tüm işlemler özgün $32\times32$ CIFAR-10 piksel uzayında tanımlıdır: $32\to224$ çift doğrusal büyütme, ViT sarmalayıcısının \emph{içinde} türevlenebilir bir katmandır (\texttt{nn.Upsample}). Dolayısıyla iki model aynı $L_\infty$ tehdit modelini ($\eps=8/255$, $[0,1]$ ham piksel uzayında) paylaşır ve transfer edilen çekişmeli örnekler her iki modele aynı $32\times32$ girdiler olarak verilir.
+\subsection{Dataset, Models, and Training}
+Experiments are conducted on CIFAR-10~\cite{krizhevsky2009learning}: 60{,}000 color images of size $32\times32$ in ten balanced classes (50{,}000 train / 10{,}000 test). Fig.~\ref{fig:data} illustrates the dataset and the effect of the attack. The example shown is the first sample in test order that is correctly classified on clean input and whose class the attack flips, a deterministic selection criterion; the perturbations are hard to notice at native scale yet change predictions with high confidence, and they are qualitatively different in structure across the two architectures (diffuse for the CNN, patch-aligned for the ViT). Images are $32\times32$ and are displayed with pixel-preserving (nearest neighbor) magnification. We compare a ResNet-18 (11.2M parameters; CIFAR-style stem) with a ViT-Tiny (5.7M parameters; \texttt{timm}~\cite{rw2019timm} architecture, $16\times16$ patches over inputs bilinearly upsampled to $224\times224$); both models are trained from scratch on CIFAR-10 with basic data augmentation and then adversarially fine-tuned. All operations including attacks are defined in the native $32\times32$ CIFAR-10 pixel space: the $32\to224$ bilinear upsampling is a differentiable layer \emph{inside} the ViT wrapper (\texttt{nn.Upsample}). The two models therefore share the same $L_\infty$ threat model ($\eps=8/255$ in raw $[0,1]$ pixel space), and transferred adversarial examples are fed to both models as the same $32\times32$ inputs.
 
-Çekişmeli eğitim, $(1-\lambda)\mathcal{L}_{CE}(f(x),y) + \lambda\,\mathcal{L}_{CE}(f(x_{adv}),y)$ karma amacını $\lambda=0{,}5$ ile enküçültür; $x_{adv}$, standart pratiğe uygun olarak~\cite{madry2018towards, rice2020overfitting} eğitim kipinde PGD-10 ($\eps=8/255$, $\alpha=2/255$, $\mathcal{U}(-\eps,\eps)$ rastgele başlangıç, tek yeniden başlatma) ile üretilir. Temiz ön eğitim 200 dönemdir (CNN: SGD, öğrenme oranı 0{,}1, ağırlık sönümü $5\times10^{-4}$; ViT: AdamW~\cite{loshchilov2017decoupled}, $10^{-3}$, sönüm 0{,}05; kosinüs tavlama); çekişmeli ince ayar en fazla 100 dönem, $10^{-3}$ öğrenme oranı ve 128 (CNN) / 64 (ViT) parti boyutuyla yapılır. Veri artırma 4 piksel dolgulu rastgele kırpma ve yatay çevirmedir. Erken durdurma ve model seçimi, eğitim kümesinden ayrılan 2{.}000 örneklik doğrulama bölmesinin PGD-10 doğruluğu üzerinden yürütülür (sabır 20, 0{,}1 puan eşiği); test kümesine yalnızca nihai değerlendirmelerde dokunulur. Üst referans olarak Gowal vd.'nin~\cite{gowal2020uncovering} RobustBench~\cite{croce2021robustbench} üzerinden dağıtılan WideResNet-28-10 kontrol noktası dahil edilmiştir; bu model ek veri ve daha güçlü bir tarifle eğitildiğinden eşleşmiş çiftten görsel ve analitik olarak ayrı tutulur.
+Adversarial training minimizes the mixed objective $(1-\lambda)\mathcal{L}_{CE}(f(x),y) + \lambda\,\mathcal{L}_{CE}(f(x_{adv}),y)$ with $\lambda=0.5$, where $x_{adv}$ is generated in training mode with PGD-10 ($\eps=8/255$, $\alpha=2/255$, random start from $\mathcal{U}(-\eps,\eps)$, single restart) following standard practice~\cite{madry2018towards, rice2020overfitting}. Clean pretraining runs for 200 epochs (CNN: SGD, learning rate 0.1, weight decay $5\times10^{-4}$; ViT: AdamW~\cite{loshchilov2017decoupled}, $10^{-3}$, decay 0.05; cosine annealing); adversarial fine-tuning runs for at most 100 epochs with learning rate $10^{-3}$ and batch size 128 (CNN) / 64 (ViT). Data augmentation is random cropping with 4-pixel padding and horizontal flipping. Early stopping and model selection are driven by PGD-10 accuracy on a 2{,}000-sample validation split held out from the training set (patience 20, threshold 0.1 points); the test set is touched only for final evaluations. As an upper reference we include the WideResNet-28-10 checkpoint of Gowal et al.~\cite{gowal2020uncovering} distributed through RobustBench~\cite{croce2021robustbench}; since that model is trained with extra data and a stronger recipe, it is kept visually and analytically separate from the matched pair.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_b4_data_adv.pdf}
-\caption{Üstte her CIFAR-10 sınıfından bir örnek; altta aynı test görüntüsüne her modelin kendi beyaz kutu PGD-10 saldırısı ($\eps=8/255$): temiz tahmin, pertürbasyon ($10\times$) ve çekişmeli tahmin.}
+\caption{Top: one sample from each CIFAR-10 class. Bottom: each model's own white-box PGD-10 attack ($\eps=8/255$) on the same test image, with the clean prediction, the perturbation ($10\times$), and the adversarial prediction.}
 \label{fig:data}
 \end{figure}
 
-\subsection{Değerlendirme ve Metrikler}
-Tüm değerlendirmeler, örnek bazında sonuç kaydıyla 10{.}000 örneklik tam test kümesinde yapılır. Gürbüzlük FGSM, PGD-10 ve standart AutoAttack (AA) topluluğuyla (resmi uygulama, sürüm 0.1: APGD-CE, APGD-T, FAB-T, Square) $\eps=8/255$'te ölçülür. Mutlak gürbüz doğruluğun yanında \emph{koşullu yanıltma oranı} (saldırının, temizde doğru sınıflanan örneklerin ne kadarını devirdiği) raporlanır; temizde yanlış sınıflanan örnekler gürbüz olmayan örnek sayıldığından, mutlak gürbüzlük tam olarak $\text{gürbüz} = \text{temiz} \times (1-\text{koşullu yanıltma})$ biçiminde çarpanlarına ayrılır ve temiz doğruluk bileşeni ile koşullu duyarlılık bileşeni ayrışır. Ayrıca \emph{her ikisi doğru} altkümesi (iki modelin de temizde doğru sınıfladığı örnekler) değerlendirilir; bu, birebir eşleştirilmiş karşılaştırmalar sağlar.
+\subsection{Evaluation and Metrics}
+All evaluations are run on the full 10{,}000-sample test set with per-sample outcome logging. Robustness is measured at $\eps=8/255$ with FGSM, PGD-10, and the standard AutoAttack (AA) ensemble (official implementation, version 0.1: APGD-CE, APGD-T, FAB-T, Square). Alongside absolute robust accuracy we report the \emph{conditional fooling rate}, that is, how many of the samples classified correctly on clean input the attack overturns. Since samples misclassified on clean input count as non-robust, absolute robustness factors exactly as $\text{robust} = \text{clean} \times (1-\text{conditional fooling})$, separating the clean accuracy component from the conditional sensitivity component. We further evaluate the \emph{both-correct} subset, the samples both models classify correctly on clean input, which enables one-to-one paired comparisons.
 
-Transfer için, kaynak modelde üretilen çekişmeli örnekler diğer (hedef) modelde üç koşullama protokolüyle değerlendirilir: \emph{hedef doğru} (hedef, temiz örneği doğru sınıflar), \emph{her ikisi doğru}~\cite{mahmood2021robustness, ravikumar2023trend} ve \emph{başarılı kaynak} (hedef doğru ve saldırı kaynakta beyaz kutu anlamında başarılı). Güven aralıkları (GA) yüzdelik bootstrap ile (10{.}000 yeniden örnekleme) verilir. Her ikisi doğru protokolünde iki yönün yanıltma göstergeleri \emph{aynı} örnekler üzerinde tanımlıdır: eşleştirilmiş bootstrap ortak kümenin örneklerini yeniden örnekler, işaret çevirme permütasyon testi örnek başına yön farkları üzerinde kurulur. İki tek yönlü eşdeğerlik testinin (TOST) $\pm$2 puanlık ana marjı, eğitim koşusu düzeyinde gözlenen varyasyonun (birkaç puan) altında kalan farkları pratikte eşdeğer sayma ilkesiyle seçilmiştir; $\pm$1 ve $\pm$3 duyarlılıkları da metinde raporlanır.
+For transfer, adversarial examples generated on a source model are evaluated on the other (target) model under three conditioning protocols: \emph{target-correct} (the target classifies the clean sample correctly), \emph{both-correct}~\cite{mahmood2021robustness, ravikumar2023trend}, and \emph{successful-source} (the target is correct and the attack succeeds in the white-box sense on the source). Confidence intervals (CIs) are given by percentile bootstrap (10{,}000 resamples). Under the both-correct protocol the fooling indicators of the two directions are defined on the \emph{same} samples: the paired bootstrap resamples the members of the joint set, and the sign-flip permutation test is built on per-sample directional differences. The main $\pm$2 point margin of the two one-sided equivalence tests (TOST) was chosen on the principle of treating as practically equivalent any difference below the variation observed at the training-run level (a few points); the $\pm$1 and $\pm$3 sensitivities are also reported in the text.
 
-Gradyan yapısı, 500 sabit test örneğinde örnek başına kayıp gradyanlarıyla incelenir: ölçekten bağımsız seyreklik (Hoyer, Gini~\cite{hurley2009comparing} ve örnek maksimumunun \%1'inin altındaki bileşen oranı) örnek bazında eşleştirilmiş Wilcoxon testleriyle (Holm düzeltmeli); örnekler arası gradyan hizalanması, tüm örnek çiftleri üzerinden ortalama mutlak kosinüs olarak, işaretli ortalamayla birlikte raporlanır. Blok bazlı öznitelik kayması, test kümesinin (seçimsiz, doğruluğa bakılmaksızın) ilk 100 örneği üzerinde, her modelin \emph{kendi} beyaz kutu PGD-10 örnekleriyle ölçülür: ViT'te her dönüştürücü bloğunun MLP alt-blok çıktısı tüm belirteçler (CLS + 196 yama) üzerinden, CNN'de her artık blok çıktısı uzamsal boyutlar üzerinden örnek başına düzleştirilir; temiz ile çekişmeli temsiller arasındaki kosinüs benzerliği ve norm değişimi hesaplanır (ViT 12 blok, CNN 8 artık blok).
+Gradient structure is examined through per-sample loss gradients on 500 fixed test samples: scale-invariant sparsity (Hoyer, Gini~\cite{hurley2009comparing}, and the fraction of components below 1\% of the per-sample maximum) with per-sample paired Wilcoxon tests (Holm-corrected); cross-sample gradient alignment is reported as the mean absolute cosine over all sample pairs, together with the signed mean. Block-wise feature drift is measured on the first 100 test samples (unselected, regardless of correctness) using each model's \emph{own} white-box PGD-10 examples: for the ViT, the MLP sub-block output of each transformer block is flattened per sample over all tokens (CLS + 196 patches); for the CNN, each residual block output is flattened over the spatial dimensions. We then compute the cosine similarity and the norm change between clean and adversarial representations (12 blocks for the ViT, 8 residual blocks for the CNN).
 
-\section{Sonuçlar}
-\subsection{Gürbüzlük: Tek Manşet, Üç Okuma}
-Tablo~\ref{tab:main} ve Şekil~\ref{fig:rob} mutlak sonuçları verir: çekişmeli eğitilmiş CNN her saldırıda ViT'in önündedir (AutoAttack \%35{,}74'e karşı \%32{,}94; ortak örneklerde McNemar $\chi^2=48{,}65$, $p<10^{-11}$) ve ikisi de referans WideResNet'in gerisindedir; bu modelin üstünlüğü kapasite, ek veri ve daha güçlü tarifin ortak ürünüdür~\cite{gowal2020uncovering}. Şekil~\ref{fig:eps} farkın pertürbasyon bütçeleri boyunca kararlı olduğunu gösterir.
+\section{Results}
+\subsection{Robustness: One Headline, Three Readings}
+Table~\ref{tab:main} and Fig.~\ref{fig:rob} give the absolute results: the adversarially trained CNN leads the ViT under every attack (AutoAttack 35.74\% vs 32.94\%; on joint samples McNemar $\chi^2=48.65$, $p<10^{-11}$), and both trail the reference WideResNet, whose advantage is the joint product of capacity, extra data, and a stronger recipe~\cite{gowal2020uncovering}. Fig.~\ref{fig:eps} shows the gap to be stable across perturbation budgets.
 
 \begin{table}[!t]
 \centering
-\caption{CIFAR-10 tam test kümesinde gürbüzlük ($\eps=8/255$).}
+\caption{Robustness on the full CIFAR-10 test set ($\eps=8/255$).}
 \label{tab:main}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lccccc}
 \toprule
-\textbf{Model} & \textbf{AT} & \textbf{Temiz} & \textbf{FGSM} & \textbf{PGD-10} & \textbf{AA} \\
+\textbf{Model} & \textbf{AT} & \textbf{Clean} & \textbf{FGSM} & \textbf{PGD-10} & \textbf{AA} \\
 \midrule
-ResNet-18 & -- & 94{,}37 & 30{,}93 & 0{,}01 & -- \\
-ViT-Tiny & -- & 77{,}50 & 3{,}34 & 0{,}03 & -- \\
-ResNet-18 & \checkmark & 85{,}42 & 49{,}90 & 40{,}97 & \textbf{35{,}74} \\
-ViT-Tiny & \checkmark & 75{,}65 & 40{,}07 & 36{,}09 & \textbf{32{,}94} \\
+ResNet-18 & -- & 94.37 & 30.93 & 0.01 & -- \\
+ViT-Tiny & -- & 77.50 & 3.34 & 0.03 & -- \\
+ResNet-18 & \checkmark & 85.42 & 49.90 & 40.97 & \textbf{35.74} \\
+ViT-Tiny & \checkmark & 75.65 & 40.07 & 36.09 & \textbf{32.94} \\
 \midrule
-WRN-28-10$^{\dagger}$ & \checkmark & 89{,}48 & 70{,}91 & 66{,}92 & 62{,}76 \\
+WRN-28-10$^{\dagger}$ & \checkmark & 89.48 & 70.91 & 66.92 & 62.76 \\
 \bottomrule
-\multicolumn{6}{l}{\scriptsize $^{\dagger}$Harici referans kontrol noktası~\cite{gowal2020uncovering}: daha güçlü tarif ve ek}\\
-\multicolumn{6}{l}{\scriptsize \phantom{$^{\dagger}$}veri; AA değeri RobustBench raporudur.}
+\multicolumn{6}{l}{\scriptsize $^{\dagger}$External reference checkpoint~\cite{gowal2020uncovering}: stronger recipe and}\\
+\multicolumn{6}{l}{\scriptsize \phantom{$^{\dagger}$}extra data; the AA value is as reported by RobustBench.}
 \end{tabular}
 \end{table}
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_b1_robustness.pdf}
-\caption{Temiz, PGD-10 ve AutoAttack doğrulukları. WRN-28-10 (taramalı) daha güçlü tarif ve ek veriyle eğitilmiş harici referanstır.}
+\caption{Clean, PGD-10, and AutoAttack accuracies. WRN-28-10 (hatched) is an external reference trained with a stronger recipe and extra data.}
 \label{fig:rob}
 \end{figure}
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_b2_eps_sweep.pdf}
-\caption{Pertürbasyon bütçesine göre PGD-10 doğruluğu (tam test kümesi).}
+\caption{PGD-10 accuracy as a function of the perturbation budget (full test set).}
 \label{fig:eps}
 \end{figure}
 
-Koşullu ayrıştırma (Tablo~\ref{tab:cond}) okumayı değiştirir. PGD-10 altında iki modelin koşullu yanıltma oranları istatistiksel olarak ayırt edilemez (\%52{,}15'e karşı \%52{,}33); dolayısıyla mutlak PGD farkının tamamı temiz doğrulukla açıklanır ($85{,}42 \times 0{,}478$'e karşı $75{,}65 \times 0{,}477$). AutoAttack altında model bazlı koşullu sıralama hafifçe ViT lehine bile döner (yanıltma \%58{,}16'ya karşı \%56{,}46). Ancak birebir eşleştirilmiş bir karşılaştırma sunan 7{.}260 ortak çözülen örnekte CNN iki saldırıda da anlamlı biçimde öndedir (PGD \%54{,}92'ye karşı \%49{,}61, McNemar $p<10^{-20}$; AA \%48{,}15'e karşı \%45{,}33, $p<10^{-6}$). Bu görünümler bileşimsel olarak uzlaşır: yalnızca CNN'in temizde çözdüğü $\sim$1{.}300 örnek neredeyse hiç gürbüz değildir (PGD sağkalımı \%8'in altında) ve CNN'in model bazlı koşullu oranını aşağı çeker. Tek bir gürbüz doğruluk sayısı tüm bu yapıyı gizlerdi.
+The conditional decomposition (Table~\ref{tab:cond}) changes the reading. Under PGD-10 the conditional fooling rates of the two models are statistically indistinguishable (52.15\% vs 52.33\%), so the entire absolute PGD gap is explained by clean accuracy ($85.42 \times 0.478$ vs $75.65 \times 0.477$). Under AutoAttack the per-model conditional ordering even turns slightly in favor of the ViT (fooling 58.16\% vs 56.46\%). Yet on the 7{,}260 jointly solved samples, which provide a one-to-one paired comparison, the CNN leads significantly under both attacks (PGD 54.92\% vs 49.61\%, McNemar $p<10^{-20}$; AA 48.15\% vs 45.33\%, $p<10^{-6}$). These views reconcile compositionally: the $\sim$1{,}300 samples only the CNN solves on clean input are almost never robust (PGD survival below 8\%) and pull down the CNN per-model conditional rate. A single robust accuracy number would hide all of this structure.
 
 \begin{table}[!t]
 \centering
-\caption{Koşullu ayrıştırma (tam test; \%95 bootstrap GA'ları). Her ikisi doğru: iki modelin de temizde doğru sınıfladığı $n=7{.}260$ örnek.}
+\caption{Conditional decomposition (full test; 95\% bootstrap CIs). Both-correct: the $n=7{,}260$ samples both models classify correctly on clean input.}
 \label{tab:cond}
 \scriptsize
 \setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{lcccc}
 \toprule
-& \multicolumn{2}{c}{\textbf{Koşullu yanıltma (\%)}} & \multicolumn{2}{c}{\textbf{Her ikisi doğru gürbüz (\%)}} \\
+& \multicolumn{2}{c}{\textbf{Conditional fooling (\%)}} & \multicolumn{2}{c}{\textbf{Both-correct robust (\%)}} \\
 \textbf{Model} & \textbf{PGD-10} & \textbf{AA} & \textbf{PGD-10} & \textbf{AA} \\
 \midrule
-ResNet-18 AT & 52{,}15 [51{,}1; 53{,}2] & 58{,}16 [57{,}1; 59{,}2] & \textbf{54{,}92} & \textbf{48{,}15} \\
-ViT-Tiny AT & 52{,}33 [51{,}2; 53{,}5] & \textbf{56{,}46} [55{,}4; 57{,}6] & 49{,}61 & 45{,}33 \\
+ResNet-18 AT & 52.15 [51.1; 53.2] & 58.16 [57.1; 59.2] & \textbf{54.92} & \textbf{48.15} \\
+ViT-Tiny AT & 52.33 [51.2; 53.5] & \textbf{56.46} [55.4; 57.6] & 49.61 & 45.33 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Transfer: Protokol, Sonucun Parçasıdır}
-Tablo~\ref{tab:protocols} mimariler arası transferi, koşulsuz (ham) oranla birlikte üç yerleşik koşullama protokolüyle raporlar (her protokolün paydaları tablo dipnotundadır). Koşulsuz (ham) oranlar CNN kaynakları lehine 8{,}3 puanlık bir asimetri önerir (\%40{,}2'ye karşı \%31{,}9); bu fark, hedefler arasındaki on puanlık temiz doğruluk farkının ürettiği yapay bir sonuçtur. Hedef doğru protokolü bu karıştırıcı etkeni (confounder) giderir ve neredeyse parite gösterir (fark 0{,}63 puan; $\pm$2 puan marjında TOST eşdeğerliği, $p=0{,}016$); bu parite momentum tabanlı MI-FGSM~\cite{dong2018boosting} altında da kararlıdır (\%19{,}85'e karşı \%20{,}11). Ancak her ikisi doğru ve başarılı kaynak protokolleri \emph{farkı ortak kümede yeniden CNN lehine döndürür}: ortak çözülen örneklerde yönler belirgin biçimde ayrışır ($\sim$5{,}3 puanlık CNN$\rightarrow$ViT üstünlüğü; eşleştirilmiş bootstrap GA [4{,}39; 6{,}25]; işaret çevirme permütasyonu $p<5\times10^{-5}$; TOST eşdeğerliği $\pm$3 puanda bile reddedilir). Mekanizma bileşimseldir: hedefin temizde çözdüğü ama kaynağın çözemediği örnekler iki yönde de aşırı kırılgandır (\%56{,}9 ve \%63{,}0 yanıltma) ve bu marjinal altkümelerin asimetrik boyutları (1{.}282'ye karşı 305) hedef doğru oranlarını pariteye çeker. Mimariler arası transfer çalışmaları için pratik ders: koşullama protokolü aynı veri üzerinde yönlü bir farkı yaratabilir, silebilir veya ortaya çıkarabilir; bu nedenle açıkça beyan edilmeli ve mümkünse çeşitlendirilmelidir.
+\subsection{Transfer: The Protocol Is Part of the Result}
+Table~\ref{tab:protocols} reports cross-architecture transfer under three established conditioning protocols alongside the unconditioned (raw) rate, with the denominator of each protocol given in the table footnote. The unconditioned (raw) rates suggest an 8.3-point asymmetry in favor of CNN sources (40.2\% vs 31.9\%), an artifact produced by the ten-point clean accuracy gap between the targets. The target-correct protocol removes this confounder and shows near parity (difference 0.63 points; TOST equivalence at a $\pm$2 point margin, $p=0.016$); this parity is also stable under the momentum-based MI-FGSM~\cite{dong2018boosting} (19.85\% vs 20.11\%). The both-correct and successful-source protocols, however, \emph{turn the difference back in favor of the CNN on the joint set}: on jointly solved samples the directions separate markedly ($\sim$5.3-point CNN$\rightarrow$ViT advantage; paired bootstrap CI [4.39; 6.25]; sign-flip permutation $p<5\times10^{-5}$; TOST equivalence is rejected even at $\pm$3 points). The mechanism is compositional: samples the target solves on clean input but the source does not are extremely fragile in both directions (56.9\% and 63.0\% fooling), and the asymmetric sizes of these marginal subsets (1{,}282 vs 305) pull the target-correct rates toward parity. The practical lesson for cross-architecture transfer studies is that the conditioning protocol can create, erase, or expose a directional difference on the same data; it should therefore be stated explicitly and, where possible, varied.
 
 \begin{table}[!t]
 \centering
-\caption{Koşulsuz oran ve üç koşullama protokolü altında transfer asimetrisi (PGD-10, $\eps=8/255$, tam test; \%95 bootstrap GA'ları).}
+\caption{Transfer asymmetry under the unconditioned rate and three conditioning protocols (PGD-10, $\eps=8/255$, full test; 95\% bootstrap CIs).}
 \label{tab:protocols}
 \scriptsize
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lccc}
 \toprule
-\textbf{Protokol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Fark} \\
+\textbf{Protocol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Diff.} \\
 \midrule
-Koşulsuz (ham) & 40{,}17 & 31{,}90 & $+$8{,}27 \\
-Hedef doğru & 20{,}95 [20{,}03; 21{,}88] & 20{,}32 [19{,}47; 21{,}19] & $+$0{,}63 \\
-Her ikisi doğru & 19{,}19 [18{,}26; 20{,}10] & 13{,}86 [13{,}07; 14{,}66] & $+$5{,}33 \\
-Başarılı kaynak & 39{,}07 [37{,}47; 40{,}66] & 33{,}79 [32{,}48; 35{,}13] & $+$5{,}28 \\
+Unconditioned (raw) & 40.17 & 31.90 & $+$8.27 \\
+Target-correct & 20.95 [20.03; 21.88] & 20.32 [19.47; 21.19] & $+$0.63 \\
+Both-correct & 19.19 [18.26; 20.10] & 13.86 [13.07; 14.66] & $+$5.33 \\
+Successful-source & 39.07 [37.47; 40.66] & 33.79 [32.48; 35.13] & $+$5.28 \\
 \bottomrule
-\multicolumn{4}{l}{\scriptsize Paydalar (CNN$\rightarrow$ViT / ViT$\rightarrow$CNN): koşulsuz $N=10{.}000/10{.}000$;}\\
-\multicolumn{4}{l}{\scriptsize hedef doğru $N=7{.}565/8{.}542$; her ikisi doğru $N=7{.}260$ (ortak küme);}\\
-\multicolumn{4}{l}{\scriptsize başarılı kaynak $N=3{.}576/4{.}936$.}
+\multicolumn{4}{l}{\scriptsize Denominators (CNN$\rightarrow$ViT / ViT$\rightarrow$CNN): unconditioned}\\
+\multicolumn{4}{l}{\scriptsize $N=10{,}000/10{,}000$; target-correct $N=7{,}565/8{,}542$; both-correct}\\
+\multicolumn{4}{l}{\scriptsize $N=7{,}260$ (joint set); successful-source $N=3{,}576/4{,}936$.}
 \end{tabular}
 \end{table}
 
-\subsection{Gradyan Yapısı}
-Her iki modelde de ölçülen 500 sabit test örneğinde, CNN girdi gradyanları, ölçekten bağımsız her üç ölçüde de ViT'inkilerden tutarlı fakat ölçülü biçimde daha seyrektir (Hoyer 0{,}474$\pm$0{,}009'a karşı 0{,}449$\pm$0{,}011; Gini 0{,}634'e karşı 0{,}606; örnek maksimumunun \%1'i altındaki bileşenler \%31{,}5'e karşı \%25{,}8) ve fark eşleştirilmiş Wilcoxon testlerinde anlamlıdır (Holm düzeltmeli $p<10^{-15}$; eşleştirilmiş Cohen $d$'si 0{,}34--0{,}65). Bu sıralamayı çekişmeli eğitim yaratır: temiz eğitilmiş çiftte seyrek olan model ViT'tir (Hoyer 0{,}406'ya karşı 0{,}354) ve bu, çekişmeli eğitimin CNN gradyanları üzerindeki güçlü seyrekleştirici etkisiyle uyumludur~\cite{chalasani2020concise}. Örnekler arası gradyan hizalanması, tüm çiftler üzerinden ortalama mutlak kosinüste ViT'te daha yüksektir (0{,}052'ye karşı 0{,}038; temiz eğitilmiş çiftte neredeyse aynı düzeylerin gözlenmesi, incelenen kontrol noktalarında bu farkın yalnızca çekişmeli eğitimden kaynaklanmadığına işaret eder); ancak \emph{işaretli} ortalama kosinüs iki modelde de sıfıra yakındır ($\leq$0{,}002): örneklerin paylaştığı şey tutarlı yönler değil, duyarlılık eksenleridir.
+\subsection{Gradient Structure}
+On the 500 fixed test samples measured for both models, CNN input gradients are consistently but moderately sparser than those of the ViT under all three scale-invariant measures (Hoyer 0.474$\pm$0.009 vs 0.449$\pm$0.011; Gini 0.634 vs 0.606; components below 1\% of the per-sample maximum 31.5\% vs 25.8\%), and the difference is significant under paired Wilcoxon tests (Holm-corrected $p<10^{-15}$; paired Cohen's $d$ of 0.34--0.65). Adversarial training is what creates this ordering: in the cleanly trained pair the sparser model is the ViT (Hoyer 0.406 vs 0.354), which is consistent with the strong sparsifying effect of adversarial training on CNN gradients~\cite{chalasani2020concise}. Cross-sample gradient alignment, as mean absolute cosine over all pairs, is higher for the ViT (0.052 vs 0.038); observing nearly identical levels in the cleanly trained pair indicates that for the checkpoints examined this difference does not stem from adversarial training alone. The \emph{signed} mean cosine, however, is near zero for both models ($\leq$0.002): what the samples share is axes of sensitivity, not consistent directions.
 
-\subsection{Blok Bazlı Öznitelik Kayması}
-Şekil~\ref{fig:drift}, saldırıya uğramış bir girdinin her bloktaki temsilinin temiz karşılığından ne kadar uzaklaştığını karşılaştırır. ViT erken düşüş ve orta ağ platosu profili gösterir: kosinüs benzerliği hızla düşerek 8.~blokta 0{,}955 minimumuna iner, ardından hafifçe toparlanır (10--11. bloklarda 0{,}965); öznitelik normları baştan sona \%1{,}5'ten az değişir; pertürbasyon temsilin büyüklüğünü değil \emph{yönünü} bozar. CNN nitel olarak farklı davranır: kosinüs benzerliği derinlikle monoton ve ivmelenerek düşer (0{,}995'ten son artık blokta 0{,}913'e) ve son iki blokta büyük norm bozulmaları görülür ($-$\%6{,}4 ve $+$\%7{,}2). Bu plato ve toparlanma biçimi derin ağların genel bir özelliği değildir; incelenen model çiftinde ViT'e özgüdür. Analiz, temiz eğitilmiş ViT'lerin katman bazlı temsil incelemelerini~\cite{raghu2021vision} çekişmeli eğitilmiş ortama taşımaktadır. Şekil~\ref{fig:drift}'teki gölgeli bantlar, 5 parti ortalaması üzerinden $\pm$1 standart sapmayı gösterir.
+\subsection{Block-wise Feature Drift}
+Fig.~\ref{fig:drift} compares how far the representation of an attacked input departs from its clean counterpart at each block. The ViT shows an early drop and mid-network plateau profile: cosine similarity falls rapidly to a minimum of 0.955 at block 8, then recovers slightly (0.965 at blocks 10--11); feature norms change by less than 1.5\% throughout, so the perturbation corrupts the \emph{direction} of the representation rather than its magnitude. The CNN behaves qualitatively differently: cosine similarity falls monotonically and with acceleration through depth (from 0.995 to 0.913 at the last residual block), and large norm distortions appear in the final two blocks ($-$6.4\% and $+$7.2\%). This plateau and recovery pattern is not a general property of deep networks; it is specific to the ViT in the model pair examined. The analysis carries layer-wise representation studies of cleanly trained ViTs~\cite{raghu2021vision} over to the adversarially trained setting. The shaded bands in Fig.~\ref{fig:drift} show $\pm$1 standard deviation over the mean of 5 batches.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig_b3_feature_drift.pdf}
-\caption{Göreli derinliğe göre temiz ve çekişmeli temsiller arasındaki blok bazlı kosinüs benzerliği ($n=100$; bantlar $\pm$1 standart sapma).}
+\caption{Block-wise cosine similarity between clean and adversarial representations as a function of relative depth ($n=100$; bands are $\pm$1 standard deviation).}
 \label{fig:drift}
 \end{figure}
 
-\section{Tartışma ve Sınırlılıklar}
-Üç ana çıkarım öne çıkmaktadır. Birincisi, tek sayılık gürbüzlük karşılaştırmaları kayıplıdır: koşullu ayrıştırmamız ``CNN daha gürbüzdür'' (mutlak ve her ikisi doğru görünümleri), ``koşullu duyarlılık eşleşiktir'' (model bazlı PGD) ve ``ViT kendi çözdüğü örneklerde daha az kaybeder'' (model bazlı AutoAttack) okumalarının üçünü de aynı anda destekler. Buna ek olarak, transfer asimetrisi iddiaları protokole görelidir; mimariler arası çalışmalar koşullama protokolünü sonucun bir parçası olarak raporlamalıdır. Son çıkarım davranışsal ayrışmadır: mimariler gradyan yoğunlaşmasında ve çekişmeli hasarın derinlik boyunca nerede biriktiğinde ayrışır; bu, iki mimari için farklı yerlere konumlanmış kararlılaştırma (stabilizasyon) önerir.
+\section{Discussion and Limitations}
+Three main implications stand out. First, single-number robustness comparisons are lossy: our conditional decomposition simultaneously supports all three readings of ``the CNN is more robust'' (absolute and both-correct views), ``conditional sensitivity is matched'' (per-model PGD), and ``the ViT loses less on the samples it solves'' (per-model AutoAttack). In addition, claims of transfer asymmetry are relative to the protocol; cross-architecture studies should report the conditioning protocol as part of the result. The final implication is a behavioral dissociation: the architectures differ in gradient concentration and in where adversarial damage accumulates along depth, which suggests stabilization targeted at different locations for the two architectures.
 
-Bu sonuçları birkaç sınırlılık çerçeveler. Bulgular tek bir temel tarif altında, mimari başına tek eğitim koşusuna dayanır; bu nedenle kesinleşmiş değil, yönlendirici niteliktedir. Ayrıca kullanılan tüm istatistiksel testler (McNemar, Wilcoxon, bootstrap, permütasyon) örneklem düzeyinde çıkarım yapar ve \emph{eğitilmiş sabit kontrol noktalarına koşulludur}; eğitim tohumu belirsizliğini nicelemezler. ViT gürbüzlüğünün tarife duyarlı olduğu da bilinmektedir~\cite{mo2022adversarial, debenedetti2023light, wu2025vision}. Çalışma tek veri kümesini, tek model çiftini ve koşullu analizler için tek bütçeli $L_\infty$ tehdit modelini kapsar. Gradyan ve kayma ölçümleri davranışsal korelasyonlardır; yerleşik nedensel açıklamalar değildir. Eğitim tohumu belirsizliğini nicelemek üzere mimari başına üç bağımsız eğitim koşusu içeren tekrarlar hâlen yürütülmektedir; ek transfer saldırılarını ve uzamsal gradyan istatistiklerini de ele alan genişletilmiş analiz hazırlanmaktadır.
+Several limitations frame these results. The findings rest on a single training run per architecture under a single baseline recipe, and are therefore indicative rather than settled. Moreover, all statistical tests used (McNemar, Wilcoxon, bootstrap, permutation) infer at the sample level and are \emph{conditional on the fixed trained checkpoints}; they do not quantify training seed uncertainty. ViT robustness is also known to be recipe-sensitive~\cite{mo2022adversarial, debenedetti2023light, wu2025vision}. The study covers a single dataset, a single model pair, and a single-budget $L_\infty$ threat model for the conditional analyses. The gradient and drift measurements are behavioral correlations, not established causal explanations. Replications with three independent training runs per architecture are still under way in order to quantify training seed uncertainty, and an extended analysis addressing additional transfer attacks and spatial gradient statistics is in preparation.
 
-\section{Sonuç}
-CIFAR-10 üzerinde eşleşmiş çekişmeli eğitilmiş bir ResNet-18/ViT-Tiny çifti için gürbüzlük manşetinin bileşime bağlı olduğunu, ölçülen transfer asimetrisinin büyük ölçüde koşullama protokolünün bir özelliği olduğunu, gradyan yapısı farklarının tutarlı fakat ölçülü olduğunu (hizalanma farkının doğası gereği işaretsiz kaldığını) ve çekişmeli hasarın iki mimaride nitel olarak farklı derinliklerde biriktiğini gösterdik. Bu ön sonuçları, mimari aileleri arasında protokolü açık, çok görünümlü gürbüzlük karşılaştırmaları için bir şablon olarak sunuyoruz.
+\section{Conclusion}
+For a matched adversarially trained ResNet-18 / ViT-Tiny pair on CIFAR-10 we showed that the robustness headline is composition-dependent, that the measured transfer asymmetry is largely a property of the conditioning protocol, that gradient structure differences are consistent but moderate (with the alignment difference remaining unsigned by nature), and that adversarial damage accumulates at qualitatively different depths in the two architectures. We offer these preliminary results as a template for protocol-explicit, multi-view robustness comparisons across architecture families.
 
 \bibliographystyle{IEEEtran}
 \bibliography{bildiri}
