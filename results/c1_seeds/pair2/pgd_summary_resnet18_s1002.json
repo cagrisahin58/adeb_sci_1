@@ -1,0 +1,9 @@
+{
+ "model_type": "resnet18",
+ "ckpt": "models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+ "seed": 42,
+ "n": 10000,
+ "attack": "PGD-10 eps=8/255 alpha=2/255",
+ "clean_acc": 85.94,
+ "pgd10_acc": 43.93
+}

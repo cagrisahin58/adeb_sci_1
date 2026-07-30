@@ -1,0 +1,9 @@
+{
+ "model_type": "vit_tiny",
+ "ckpt": "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth",
+ "seed": 42,
+ "n": 10000,
+ "attack": "PGD-10 eps=8/255 alpha=2/255",
+ "clean_acc": 74.1,
+ "pgd10_acc": 32.73
+}
