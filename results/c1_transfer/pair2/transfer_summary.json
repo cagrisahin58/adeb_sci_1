@@ -1,0 +1,99 @@
+{
+  "timestamp": "2026-07-31T12:29:52.313905",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT"
+  ],
+  "metric": "conditioned_fooling_rate",
+  "matrix": [
+    [
+      48.848033511752384,
+      19.76316864026133
+    ],
+    [
+      15.475913427973003,
+      55.723424527017826
+    ]
+  ],
+  "matrix_raw": [
+    [
+      56.04,
+      40.97
+    ],
+    [
+      27.279999999999998,
+      67.47
+    ]
+  ],
+  "eps": 0.03137254901960784,
+  "steps": 10,
+  "n_samples": 10000,
+  "seed": 42,
+  "model_variant": "run3-metric",
+  "model_paths": {
+    "ResNet18_AT": "models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+    "ViT_Tiny_AT": "models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "results": [
+    {
+      "source": "ResNet18_AT",
+      "target": "ResNet18_AT",
+      "attack_success_raw": 56.04,
+      "transfer_rate_raw": 56.04,
+      "conditioned_fooling_rate": 48.848033511752384,
+      "conditioned_ci95": [
+        47.74261112404003,
+        49.94181987433093
+      ],
+      "n_conditioned": 8594,
+      "target_clean_acc": 85.94000000000001,
+      "is_self": true,
+      "total_samples": 10000
+    },
+    {
+      "source": "ResNet18_AT",
+      "target": "ViT_Tiny_AT",
+      "attack_success_raw": 56.11000000000001,
+      "transfer_rate_raw": 40.97,
+      "conditioned_fooling_rate": 19.76316864026133,
+      "conditioned_ci95": [
+        18.878453790662856,
+        20.661494487545937
+      ],
+      "n_conditioned": 7347,
+      "target_clean_acc": 73.47,
+      "is_self": false,
+      "total_samples": 10000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ResNet18_AT",
+      "attack_success_raw": 67.56,
+      "transfer_rate_raw": 27.279999999999998,
+      "conditioned_fooling_rate": 15.475913427973003,
+      "conditioned_ci95": [
+        14.64975564347219,
+        16.27879916220619
+      ],
+      "n_conditioned": 8594,
+      "target_clean_acc": 85.94000000000001,
+      "is_self": false,
+      "total_samples": 10000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ViT_Tiny_AT",
+      "attack_success_raw": 67.47,
+      "transfer_rate_raw": 67.47,
+      "conditioned_fooling_rate": 55.723424527017826,
+      "conditioned_ci95": [
+        54.607322716755135,
+        56.88069960528107
+      ],
+      "n_conditioned": 7347,
+      "target_clean_acc": 73.47,
+      "is_self": true,
+      "total_samples": 10000
+    }
+  ]
+}

@@ -243,12 +243,12 @@ def run_transfer_analysis(device, n_samples=10000, output_dir="results/transfer_
 # =============================================================================
 # 2. GRADIENT ANALYSIS (500 samples)
 # =============================================================================
-def run_gradient_analysis(device, seed=42):
+def run_gradient_analysis(device, seed=42, output_dir="results/gradient_analysis_run3"):
     print("\n" + "=" * 70)
     print("GRADIENT ANALYSIS (500 samples, scale-invariant metrics)")
     print("=" * 70)
 
-    output_dir = Path("results/gradient_analysis_run3")
+    output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     n_samples = 500
@@ -432,12 +432,12 @@ def run_gradient_analysis(device, seed=42):
 # =============================================================================
 # 3. FEATURE DEGRADATION / ATTENTION ANALYSIS
 # =============================================================================
-def run_feature_degradation_analysis(device, seed=42):
+def run_feature_degradation_analysis(device, seed=42, output_dir="results/attention_analysis_run3"):
     print("\n" + "=" * 70)
     print("FEATURE DEGRADATION ANALYSIS")
     print("=" * 70)
 
-    output_dir = Path("results/attention_analysis_run3")
+    output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     n_samples = 100
