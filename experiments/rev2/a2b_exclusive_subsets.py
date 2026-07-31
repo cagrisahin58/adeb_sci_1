@@ -8,7 +8,7 @@ ROOT = "/workspace" if os.path.isdir("/workspace/results") else os.path.expandus
 
 
 def load(name):
-    with np.load(os.path.join(ROOT, "results/transfer_analysis_run3", name)) as z:
+    with np.load(os.path.join(ROOT, os.environ.get("A2B_IN_DIR", "results/transfer_analysis_run3"), name)) as z:
         return {k: z[k].copy() for k in z.files}
 
 
@@ -36,5 +36,7 @@ out = {
     },
 }
 print(json.dumps(out, indent=1))
-with open(os.path.join(ROOT, "results/rev2_blockA/a2b_exclusive_subsets.json"), "w") as f:
+out_path = os.environ.get("A2B_OUT", os.path.join(ROOT, "results/rev2_blockA/a2b_exclusive_subsets.json"))
+os.makedirs(os.path.dirname(out_path), exist_ok=True)
+with open(out_path, "w") as f:
     json.dump(out, f, indent=1)
