@@ -33,10 +33,18 @@ CLASSES = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "hors
 torch.manual_seed(42)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-MODELS = {
-    "ResNet-18 (AT)": ("resnet18", "models/resnet18/adv/at_run3/resnet18/adv/adversarial_training/best.pth"),
-    "ViT-Tiny (AT)": ("vit_tiny", "models/vit_tiny/adv/at_run3/vit_tiny/adv/adversarial_training/best.pth"),
-}
+# Kaynak kontrol noktalari: varsayilan C1 cift 1 (sizinti duzeltmeli, 3 tohumun
+# ilki). Eski tek-kosu modelleri icin: BILDIRI_FIG_SOURCE=run3
+if os.environ.get("BILDIRI_FIG_SOURCE", "c1") == "run3":
+    MODELS = {
+        "ResNet-18 (AT)": ("resnet18", "models/resnet18/adv/at_run3/resnet18/adv/adversarial_training/best.pth"),
+        "ViT-Tiny (AT)": ("vit_tiny", "models/vit_tiny/adv/at_run3/vit_tiny/adv/adversarial_training/best.pth"),
+    }
+else:
+    MODELS = {
+        "ResNet-18 (AT)": ("resnet18", "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth"),
+        "ViT-Tiny (AT)": ("vit_tiny", "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"),
+    }
 
 _, test_loader = get_cifar10_loaders(data_dir="./data", test_batch_size=200)
 images, labels = next(iter(test_loader))

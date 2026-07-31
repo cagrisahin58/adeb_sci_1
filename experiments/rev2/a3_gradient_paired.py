@@ -38,6 +38,16 @@ MODELS = {
     "ViT_CIFAR_Native_AT": ("vit_cifar_tiny", "models/vit_cifar_tiny/adv/vit_cifar_tiny/adv/adversarial_training/best.pth"),
 }
 
+# Ayni istatistik kodunu baska kontrol noktalarina (or. C1 tohum ciftleri)
+# uygulayabilmek icin ortam degiskeni ile model/cikti yolu degistirilebilir.
+if os.environ.get("A3_RESNET") and os.environ.get("A3_VIT"):
+    MODELS = {
+        "ResNet18_AT": ("resnet18", os.environ["A3_RESNET"]),
+        "ViT_Tiny_AT": ("vit_tiny", os.environ["A3_VIT"]),
+    }
+OUT_DIR = os.environ.get("A3_OUT_DIR", OUT_DIR)
+os.makedirs(OUT_DIR, exist_ok=True)
+
 torch.manual_seed(SEED)
 torch.cuda.manual_seed_all(SEED)
 np.random.seed(SEED)
