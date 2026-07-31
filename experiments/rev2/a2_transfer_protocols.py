@@ -22,9 +22,15 @@ N_BOOT = 10000
 N_PERM = 20000
 
 
+# Girdi/cikti yolu ortam degiskeniyle degistirilebilir: ayni istatistik kodunu
+# C1 (3 tohum, sizinti duzeltmeli) kontrol noktalarina da uygulayabilmek icin.
+IN_DIR = os.environ.get("A2_IN_DIR", "results/transfer_analysis_run3")
+OUT_FILE = os.environ.get("A2_OUT", os.path.join(OUT_DIR, "a2_transfer_protocols.json"))
+
+
 def load_pair(src, tgt):
     fname = f"per_sample_{src}_to_{tgt}.npz"
-    with np.load(os.path.join(ROOT, "results/transfer_analysis_run3", fname)) as z:
+    with np.load(os.path.join(ROOT, IN_DIR, fname)) as z:
         return {k: z[k].copy() for k in z.files}
 
 
@@ -48,7 +54,9 @@ def rate_ci(fool_mask, cond_mask):
 
 def protocol_masks(pair, protocol):
     fool = pair["target_adv_wrong"]
-    if protocol == "target_correct":
+    if protocol == "raw":
+        cond = np.ones_like(fool, dtype=bool)
+    elif protocol == "target_correct":
         cond = pair["target_clean_correct"]
     elif protocol == "both_correct":
         cond = pair["target_clean_correct"] & pair["source_clean_correct"]
@@ -61,7 +69,7 @@ def protocol_masks(pair, protocol):
 
 report = {"seed": 42, "n_bootstrap": N_BOOT, "n_permutation": N_PERM, "protocols": {}}
 
-for protocol in ["target_correct", "both_correct", "successful_source"]:
+for protocol in ["raw", "target_correct", "both_correct", "successful_source"]:
     f_cv, c_cv = protocol_masks(cnn2vit, protocol)
     f_vc, c_vc = protocol_masks(vit2cnn, protocol)
     entry = {
@@ -117,7 +125,8 @@ report["both_correct_paired"] = {
     "altinda kalan farklari pratikte-esdeger sayma ilkesine dayanir; +-1/+-3 duyarlilik tablosu verilir.",
 }
 
-out = os.path.join(OUT_DIR, "a2_transfer_protocols.json")
+out = OUT_FILE
+os.makedirs(os.path.dirname(out), exist_ok=True)
 with open(out, "w") as f:
     json.dump(report, f, indent=1)
 print(json.dumps(report, indent=1))
