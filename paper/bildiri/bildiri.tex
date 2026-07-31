@@ -40,7 +40,14 @@ adversarial examples, adversarial training, CIFAR-10, convolutional neural netwo
 \section{Introduction}
 Deep image classifiers are vulnerable to adversarial examples, small and carefully crafted perturbations that flip predictions with high confidence~\cite{szegedy2014intriguing, goodfellow2015explaining}. As Vision Transformers (ViTs)~\cite{dosovitskiy2021image} join convolutional neural networks (CNNs)~\cite{he2016deep} as a dominant architecture family, a natural question is how the two families differ under attack. Much of the literature approaches this as a contest and reports which architecture attains higher robust accuracy~\cite{bai2021transformers, benz2021adversarial, ali2024adversarial}. This paper takes a different, behavioral view: for a fixed pair of adversarially trained models, \emph{how} do the architectures differ in the composition of the headline robustness number, in how adversarial examples transfer between them, in the structure of their input gradients, and in how perturbations propagate through their layers?
 
-We report preliminary results from an ongoing study of this question on CIFAR-10~\cite{krizhevsky2009learning}: a ResNet-18 and a ViT-Tiny trained with the same adversarial objective and threat model, evaluated with AutoAttack~\cite{croce2020reliable} on the full test set. Our contributions are: (i) a conditional decomposition of robustness showing which factor, clean accuracy or conditional sensitivity, carries the ``CNN is more robust'' headline, and showing that this attribution can change between training runs; (ii) a multi-protocol analysis showing that the measured size of cross-architecture transfer asymmetry varies several-fold with the conditioning protocol, which serves as a methodological caution for transfer studies; (iii) paired, scale-invariant gradient structure comparisons including a signed versus absolute alignment distinction; and (iv) a block-wise feature drift comparison that reveals qualitatively different depth profiles. All results derive from per-sample-logged evaluations on the full test set, over three independent training runs per architecture.
+We report preliminary results from an ongoing study of this question on CIFAR-10~\cite{krizhevsky2009learning}: a ResNet-18 and a ViT-Tiny trained with the same adversarial objective and threat model, evaluated with AutoAttack~\cite{croce2020reliable} on the full test set. Our contributions are: (i) a conditional decomposition of robustness showing which factor, clean accuracy or conditional sensitivity, carries the ``CNN is more robust'' headline, and showing that this attribution can change between training runs; (ii) a multi-protocol analysis showing that the measured size of cross-architecture transfer asymmetry varies several-fold with the conditioning protocol, which serves as a methodological caution for transfer studies; (iii) paired, scale-invariant gradient structure comparisons including a signed versus absolute alignment distinction; and (iv) a block-wise feature drift comparison that reveals qualitatively different depth profiles. All results derive from per-sample-logged evaluations on the full test set, over three independent training runs per architecture. Fig.~\ref{fig:overview} summarizes the study design.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig_b0_overview.png}
+\caption{Study overview: the matched adversarial training pipeline for the two architectures and the per-sample-logged evaluation battery.}
+\label{fig:overview}
+\end{figure*}
 
 \section{Related Work}
 Adversarial examples and gradient-based attacks were established by Szegedy et al.~\cite{szegedy2014intriguing} and Goodfellow et al.~\cite{goodfellow2015explaining}; projected gradient descent (PGD) adversarial training (AT)~\cite{madry2018towards} remains the standard defense, with robust overfitting and early stopping characterized by Rice et al.~\cite{rice2020overfitting}. AutoAttack~\cite{croce2020reliable} and RobustBench~\cite{croce2021robustbench} standardized robustness evaluation.
@@ -50,17 +57,6 @@ Among direct CNN--ViT robustness comparisons, findings vary with the setup: Bai 
 For transfer evaluation, conditioning on correctly classified samples is established practice~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend}; both-correct variants were used by Mahmood et al.~\cite{mahmood2021robustness} and TREND~\cite{ravikumar2023trend}. Our contribution is to show on a single dataset that the \emph{choice} among these protocols qualitatively changes the asymmetry conclusion.
 
 \section{Method}
-% --- (Beklemede) Genel-bakis semasi: kullanicinin AI'ya cizdirecegi figur ---
-% Dosya paper/bildiri/figures/fig_b0_overview.pdf olarak eklendiginde asagidaki
-% blogu acin ve Introduction sonuna "Fig.~\ref{fig:overview} summarizes the
-% study design." cumlesini ekleyin.
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=\columnwidth]{figures/fig_b0_overview.pdf}
-%\caption{Study overview: the matched adversarial training pipeline for the two
-%architectures and the per-sample-logged evaluation battery.}
-%\label{fig:overview}
-%\end{figure}
 \subsection{Dataset, Models, and Training}
 Experiments are conducted on CIFAR-10~\cite{krizhevsky2009learning}: 60{,}000 color images of size $32\times32$ in ten balanced classes (50{,}000 train / 10{,}000 test). Fig.~\ref{fig:data} illustrates the dataset and the effect of the attack. The example shown is the first sample in test order that is correctly classified on clean input and whose class the attack flips, a deterministic selection criterion; the perturbations are hard to notice at native scale yet change predictions with high confidence, and they are qualitatively different in structure across the two architectures (diffuse for the CNN, patch-aligned for the ViT). Images are $32\times32$ and are displayed with pixel-preserving (nearest neighbor) magnification. We compare a ResNet-18 (11.2M parameters; CIFAR-style stem) with a ViT-Tiny (5.7M parameters; \texttt{timm}~\cite{rw2019timm} architecture, $16\times16$ patches over inputs bilinearly upsampled to $224\times224$); both models are trained from scratch on CIFAR-10 with basic data augmentation and then adversarially fine-tuned. All operations including attacks are defined in the native $32\times32$ CIFAR-10 pixel space: the $32\to224$ bilinear upsampling is a differentiable layer \emph{inside} the ViT wrapper (\texttt{nn.Upsample}). The two models therefore share the same $L_\infty$ threat model ($\eps=8/255$ in raw $[0,1]$ pixel space), and transferred adversarial examples are fed to both models as the same $32\times32$ inputs.
 
