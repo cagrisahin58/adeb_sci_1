@@ -1,0 +1,67 @@
+{
+  "pair": 2,
+  "seed": 42,
+  "n_samples": 10000,
+  "eps": 0.03137254901960784,
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT",
+    "WRN_28_10"
+  ],
+  "results": {
+    "ResNet18_AT->ResNet18_AT": {
+      "raw_fooling": 56.04,
+      "cond_fooling": 48.85,
+      "n_cond": 8594,
+      "target_clean_acc": 85.94
+    },
+    "ResNet18_AT->ViT_Tiny_AT": {
+      "raw_fooling": 41.12,
+      "cond_fooling": 19.94,
+      "n_cond": 7347,
+      "target_clean_acc": 73.47
+    },
+    "ResNet18_AT->WRN_28_10": {
+      "raw_fooling": 21.79,
+      "cond_fooling": 12.59,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    },
+    "ViT_Tiny_AT->ResNet18_AT": {
+      "raw_fooling": 27.23,
+      "cond_fooling": 15.44,
+      "n_cond": 8594,
+      "target_clean_acc": 85.94
+    },
+    "ViT_Tiny_AT->ViT_Tiny_AT": {
+      "raw_fooling": 67.54,
+      "cond_fooling": 55.82,
+      "n_cond": 7347,
+      "target_clean_acc": 73.47
+    },
+    "ViT_Tiny_AT->WRN_28_10": {
+      "raw_fooling": 18.19,
+      "cond_fooling": 8.58,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    },
+    "WRN_28_10->ResNet18_AT": {
+      "raw_fooling": 32.47,
+      "cond_fooling": 21.43,
+      "n_cond": 8594,
+      "target_clean_acc": 85.94
+    },
+    "WRN_28_10->ViT_Tiny_AT": {
+      "raw_fooling": 39.83,
+      "cond_fooling": 18.25,
+      "n_cond": 7347,
+      "target_clean_acc": 73.47
+    },
+    "WRN_28_10->WRN_28_10": {
+      "raw_fooling": 33.03,
+      "cond_fooling": 25.16,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    }
+  }
+}
