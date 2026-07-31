@@ -50,6 +50,15 @@ MODELS = {
     "ViT_Tiny_AT": ("vit_tiny", "models/vit_tiny/adv/at_run3/vit_tiny/adv/adversarial_training/best.pth"),
 }
 
+# Ayni analizi baska kontrol noktalarina (or. C1 tohum ciftleri) uygulamak icin.
+if os.environ.get("A5_RESNET") and os.environ.get("A5_VIT"):
+    MODELS = {
+        "ResNet18_AT": ("resnet18", os.environ["A5_RESNET"]),
+        "ViT_Tiny_AT": ("vit_tiny", os.environ["A5_VIT"]),
+    }
+OUT_DIR = os.environ.get("A5_OUT_DIR", OUT_DIR)
+os.makedirs(OUT_DIR, exist_ok=True)
+
 _, test_loader = get_cifar10_loaders(data_dir="./data", test_batch_size=100)
 imgs, lbls = [], []
 for x, y in test_loader:

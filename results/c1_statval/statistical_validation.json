@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-07-31T14:22:41.038207",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "n_samples": 1000,
+  "eps": 0.03137254901960784,
+  "model_variant": "run3-metric",
+  "model_paths": {
+    "ResNet18_AT": "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+    "ViT_Tiny_AT": "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "results": [
+    {
+      "model": "ResNet18_AT",
+      "clean_mean": 85.7,
+      "clean_std": 0.0,
+      "robust_mean": 45.53333333333333,
+      "robust_std": 0.04714045207910384,
+      "n_runs": 3,
+      "n_samples": 1000
+    },
+    {
+      "model": "ViT_Tiny_AT",
+      "clean_mean": 75.7,
+      "clean_std": 0.0,
+      "robust_mean": 34.7,
+      "robust_std": 0.0,
+      "n_runs": 3,
+      "n_samples": 1000
+    }
+  ]
+}

@@ -17,6 +17,7 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 import json
+import os
 from datetime import datetime
 import gc
 import matplotlib
@@ -638,7 +639,7 @@ def run_statistical_validation(device):
     print("STATISTICAL VALIDATION (attack-init randomness only)")
     print("=" * 70)
 
-    output_dir = Path("results/statistical_validation_run3")
+    output_dir = Path(os.environ.get("STATVAL_OUT_DIR", "results/statistical_validation_run3"))
     output_dir.mkdir(parents=True, exist_ok=True)
 
     seeds = [42, 123, 456]

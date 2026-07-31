@@ -1,0 +1,52 @@
+{
+ "seed": 42,
+ "n_samples": 500,
+ "attack": "PGD-10 eps=8/255 alpha=2/255",
+ "designs": {
+  "whitebox": {
+   "ResNet18_AT": {
+    "silhouette_clean": 0.202,
+    "silhouette_adv": -0.03,
+    "knn_clean_fit_adv_consistency": 0.494,
+    "knn_clean_fit_clean_consistency": 0.848,
+    "centroid_shift_rel": 0.2252,
+    "intra_inter_ratio_clean": 0.497,
+    "intra_inter_ratio_adv": 0.849
+   },
+   "ViT_Tiny_AT": {
+    "silhouette_clean": -0.019,
+    "silhouette_adv": -0.033,
+    "knn_clean_fit_adv_consistency": 0.482,
+    "knn_clean_fit_clean_consistency": 0.626,
+    "centroid_shift_rel": 0.079,
+    "intra_inter_ratio_clean": 1.538,
+    "intra_inter_ratio_adv": 1.825
+   }
+  },
+  "transfer_cnn_crafted": {
+   "ResNet18_AT": {
+    "silhouette_clean": 0.202,
+    "silhouette_adv": -0.03,
+    "knn_clean_fit_adv_consistency": 0.494,
+    "knn_clean_fit_clean_consistency": 0.848,
+    "centroid_shift_rel": 0.2252,
+    "intra_inter_ratio_clean": 0.497,
+    "intra_inter_ratio_adv": 0.849
+   },
+   "ViT_Tiny_AT": {
+    "silhouette_clean": -0.019,
+    "silhouette_adv": -0.028,
+    "knn_clean_fit_adv_consistency": 0.568,
+    "knn_clean_fit_clean_consistency": 0.626,
+    "centroid_shift_rel": 0.0501,
+    "intra_inter_ratio_clean": 1.538,
+    "intra_inter_ratio_adv": 1.685
+   }
+  }
+ },
+ "notes": [
+  "Mevcut fig_tsne_features ViT paneli CNN'de uretilen saldirilarla (transfer_cnn_crafted tasarimi) cizilmistir;",
+  "per-mimari iddialar icin dogru tasarim whitebox'tir. Caption/metin buna gore yazilmalidir.",
+  "silhouette/kNN gercek etiketlerle; centroid_shift_rel ortalama clean feature normuna gore normalize."
+ ]
+}
