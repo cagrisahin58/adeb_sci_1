@@ -1,0 +1,33 @@
+{
+  "attack": "MI-FGSM (mu=1.0, steps=10, alpha=eps/10)",
+  "eps": 0.03137254901960784,
+  "seed": 42,
+  "model_paths": {
+    "ResNet18_AT": "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+    "ViT_Tiny_AT": "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "results": [
+    {
+      "source": "ResNet18_AT",
+      "target": "ViT_Tiny_AT",
+      "conditioned_fooling_rate": 18.71794871794872,
+      "ci95": [
+        17.813765182186234,
+        19.60863697705803
+      ],
+      "n_conditioned": 7410,
+      "n": 10000
+    },
+    {
+      "source": "ViT_Tiny_AT",
+      "target": "ResNet18_AT",
+      "conditioned_fooling_rate": 15.028698606067707,
+      "ci95": [
+        14.279020733278669,
+        15.801803912381398
+      ],
+      "n_conditioned": 8537,
+      "n": 10000
+    }
+  ]
+}

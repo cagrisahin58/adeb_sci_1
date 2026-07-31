@@ -1,0 +1,82 @@
+{
+  "model": "ResNet18_AT (run3)",
+  "n_samples": 100,
+  "seed": 42,
+  "attack": "PGD-10 eps=8/255",
+  "hook_target": "BasicBlock outputs",
+  "model_path": "models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth",
+  "feature_analysis": [
+    {
+      "layer": "layer1.0",
+      "l2_distance": 4.264201641082764,
+      "cosine_similarity": 0.9951597213745117,
+      "norm_change_pct": -0.26054136068560185,
+      "l2_distance_std": 0.06808514430390306,
+      "cosine_similarity_std": 0.00022736553632594125,
+      "norm_change_pct_std": 0.16977160347576897
+    },
+    {
+      "layer": "layer1.1",
+      "l2_distance": 5.348575496673584,
+      "cosine_similarity": 0.9923760771751404,
+      "norm_change_pct": -0.6033712923526764,
+      "l2_distance_std": 0.11640439954304689,
+      "cosine_similarity_std": 0.0004133982094126954,
+      "norm_change_pct_std": 0.26892805637434114
+    },
+    {
+      "layer": "layer2.0",
+      "l2_distance": 3.293710136413574,
+      "cosine_similarity": 0.989438271522522,
+      "norm_change_pct": -0.6559656143188477,
+      "l2_distance_std": 0.09301556390333335,
+      "cosine_similarity_std": 0.0005127847687618391,
+      "norm_change_pct_std": 0.1407979985904207
+    },
+    {
+      "layer": "layer2.1",
+      "l2_distance": 4.2822723388671875,
+      "cosine_similarity": 0.9868720293045044,
+      "norm_change_pct": -0.8976518630981445,
+      "l2_distance_std": 0.12130555531239,
+      "cosine_similarity_std": 0.0006441737754701275,
+      "norm_change_pct_std": 0.15875883079427927
+    },
+    {
+      "layer": "layer3.0",
+      "l2_distance": 2.0517333984375,
+      "cosine_similarity": 0.9779132723808288,
+      "norm_change_pct": -1.720436406135559,
+      "l2_distance_std": 0.07048281913554187,
+      "cosine_similarity_std": 0.0012590977071229074,
+      "norm_change_pct_std": 0.29919562600062694
+    },
+    {
+      "layer": "layer3.1",
+      "l2_distance": 2.685631275177002,
+      "cosine_similarity": 0.9670148730278015,
+      "norm_change_pct": -2.5630386114120483,
+      "l2_distance_std": 0.07961814961782929,
+      "cosine_similarity_std": 0.0017989090775965394,
+      "norm_change_pct_std": 0.38534511720379927
+    },
+    {
+      "layer": "layer4.0",
+      "l2_distance": 1.7100512027740478,
+      "cosine_similarity": 0.9048166990280151,
+      "norm_change_pct": -10.598358154296875,
+      "l2_distance_std": 0.08733701528697321,
+      "cosine_similarity_std": 0.009468986540096858,
+      "norm_change_pct_std": 1.8096916317152183
+    },
+    {
+      "layer": "layer4.1",
+      "l2_distance": 8.154311180114746,
+      "cosine_similarity": 0.925507664680481,
+      "norm_change_pct": 7.324293231964111,
+      "l2_distance_std": 0.6080420883288793,
+      "cosine_similarity_std": 0.00833301390650076,
+      "norm_change_pct_std": 2.5644565963960697
+    }
+  ]
+}

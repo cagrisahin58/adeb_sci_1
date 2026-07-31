@@ -1,0 +1,34 @@
+{
+  "seed": 42,
+  "note": "clean-trained counterparts; per-sample loss gradients",
+  "statistics": {
+    "ResNet18_clean": {
+      "model_path": "models/c1/resnet18_s1003/resnet18/clean/best.pth",
+      "n_samples": 500,
+      "hoyer_mean": 0.34499632716178896,
+      "gini_mean": 0.5318374633789062,
+      "rel_mean": 0.11840820461511611,
+      "align_mean": 0.029318631812930106,
+      "l2_mean": 7.180820727348328,
+      "hoyer_std": 0.006711082363043986,
+      "gini_std": 0.005772900548423001,
+      "rel_std": 0.006654535664288903,
+      "align_std": 0.0007460152671325176,
+      "l2_std": 3.039243718352759
+    },
+    "ViT_Tiny_clean": {
+      "model_path": "models/c1/vit_tiny_s2003/vit_tiny/clean/best.pth",
+      "n_samples": 500,
+      "hoyer_mean": 0.38599270284175874,
+      "gini_mean": 0.5495269358158111,
+      "rel_mean": 0.16760156452655792,
+      "align_mean": 0.05907316729426384,
+      "l2_mean": 19.191265487670897,
+      "hoyer_std": 0.008941463336209047,
+      "gini_std": 0.0070548991972851464,
+      "rel_std": 0.014160082835189117,
+      "align_std": 0.003050314707411262,
+      "l2_std": 3.8577225310866705
+    }
+  }
+}

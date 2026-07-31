@@ -1,0 +1,74 @@
+{
+ "seed": 42,
+ "n_samples": 500,
+ "n_bootstrap": 10000,
+ "model_paths": {
+  "ResNet18_AT": "models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth",
+  "ViT_Tiny_AT": "models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth"
+ },
+ "paired_sparsity_ResNet_vs_ViT": {
+  "hoyer": {
+   "mean_ResNet": 0.4821,
+   "mean_ViT": 0.4599,
+   "paired_mean_diff": 0.0222,
+   "paired_bootstrap_ci95": [
+    0.016,
+    0.0283
+   ],
+   "wilcoxon_z": 7.02,
+   "wilcoxon_p_raw": 2.22e-12,
+   "cohens_d_paired": 0.321,
+   "n_effective": 500,
+   "wilcoxon_p_holm": 2.22e-12
+  },
+  "gini": {
+   "mean_ResNet": 0.6412,
+   "mean_ViT": 0.6121,
+   "paired_mean_diff": 0.0291,
+   "paired_bootstrap_ci95": [
+    0.0252,
+    0.033
+   ],
+   "wilcoxon_z": 12.3,
+   "wilcoxon_p_raw": 8.84e-35,
+   "cohens_d_paired": 0.646,
+   "n_effective": 500,
+   "wilcoxon_p_holm": 2.65e-34
+  },
+  "rel": {
+   "mean_ResNet": 0.3282,
+   "mean_ViT": 0.2725,
+   "paired_mean_diff": 0.0558,
+   "paired_bootstrap_ci95": [
+    0.0446,
+    0.0667
+   ],
+   "wilcoxon_z": 9.53,
+   "wilcoxon_p_raw": 1.63e-21,
+   "cohens_d_paired": 0.441,
+   "n_effective": 500,
+   "wilcoxon_p_holm": 3.25e-21
+  }
+ },
+ "alignment": {
+  "ResNet18_AT": {
+   "all_pairs_abs_mean": 0.039,
+   "all_pairs_signed_mean": 0.0008,
+   "n_pairs": 124750,
+   "partition50_abs_mean": 0.039,
+   "partition50_abs_std": 0.0001
+  },
+  "ViT_Tiny_AT": {
+   "all_pairs_abs_mean": 0.057,
+   "all_pairs_signed_mean": 0.0004,
+   "n_pairs": 124750,
+   "partition50_abs_mean": 0.0571,
+   "partition50_abs_std": 0.0003
+  }
+ },
+ "notes": [
+  "Sparsity metrik formulleri src/analysis/gradient_analysis.py ile birebir ayni; yalnizca per-sample toplandi.",
+  "Alignment all-pairs 500x499/2 cift uzerinden; partition50 eski batch-of-50 semantiginin 10 rastgele bolunme ortalamasi.",
+  "Absolute cosine paylasilan duyarlilik YONLERINI (isaretten bagimsiz) olcer; signed ortalama, yon tutarliligini gosterir (UAP argumani icin ikisi de rapor edilir)."
+ ]
+}

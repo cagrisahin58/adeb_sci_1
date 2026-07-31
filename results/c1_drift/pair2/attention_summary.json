@@ -1,0 +1,149 @@
+{
+  "timestamp": "2026-07-31T12:51:05.849402",
+  "model": "ViT-Tiny AT",
+  "attack": "PGD-10 (eps=0.0314)",
+  "n_samples": 100,
+  "seed": 42,
+  "clean_accuracy": 74.0,
+  "adv_accuracy": 32.0,
+  "model_variant": "run3-metric",
+  "model_paths": {
+    "ResNet18_AT": "models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+    "ViT_Tiny_AT": "models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "hook_target": "transformer block MLP sub-block outputs (blocks.*.mlp)",
+  "feature_analysis": [
+    {
+      "layer": "blocks.0.mlp",
+      "l2_distance": 2.3734621524810793,
+      "l2_distance_std": 0.12886036974718593,
+      "cosine_similarity": 0.994834566116333,
+      "cosine_similarity_std": 0.0004011314736385836,
+      "clean_norm": 25.39969482421875,
+      "adv_norm": 25.386580657958984,
+      "norm_change_pct": -0.0515438484181288,
+      "norm_change_pct_std": 0.11091619636597722
+    },
+    {
+      "layer": "blocks.1.mlp",
+      "l2_distance": 1.9343952894210816,
+      "l2_distance_std": 0.07423691962552997,
+      "cosine_similarity": 0.9892157196998597,
+      "cosine_similarity_std": 0.0013529588027544471,
+      "clean_norm": 13.628230667114257,
+      "adv_norm": 13.624124717712402,
+      "norm_change_pct": -0.025875548321045085,
+      "norm_change_pct_std": 0.2621045567814394
+    },
+    {
+      "layer": "blocks.2.mlp",
+      "l2_distance": 1.4263752698898315,
+      "l2_distance_std": 0.019222519217043196,
+      "cosine_similarity": 0.9836140632629394,
+      "cosine_similarity_std": 0.0010951776100691709,
+      "clean_norm": 8.31729564666748,
+      "adv_norm": 8.297609329223633,
+      "norm_change_pct": -0.22915226537948657,
+      "norm_change_pct_std": 0.8020797542747776
+    },
+    {
+      "layer": "blocks.3.mlp",
+      "l2_distance": 1.3805538415908813,
+      "l2_distance_std": 0.01732615648762999,
+      "cosine_similarity": 0.9740274310111999,
+      "cosine_similarity_std": 0.0016649882861692184,
+      "clean_norm": 6.610088062286377,
+      "adv_norm": 6.570626068115234,
+      "norm_change_pct": -0.5745027381006237,
+      "norm_change_pct_std": 0.8064340320254803
+    },
+    {
+      "layer": "blocks.4.mlp",
+      "l2_distance": 1.0165441632270813,
+      "l2_distance_std": 0.029556121264664063,
+      "cosine_similarity": 0.9757045865058899,
+      "cosine_similarity_std": 0.0021672963499386856,
+      "clean_norm": 5.061699676513672,
+      "adv_norm": 5.028873538970947,
+      "norm_change_pct": -0.6038373382743674,
+      "norm_change_pct_std": 1.2215461561909482
+    },
+    {
+      "layer": "blocks.5.mlp",
+      "l2_distance": 0.9811075091361999,
+      "l2_distance_std": 0.048542410782790806,
+      "cosine_similarity": 0.9753350257873535,
+      "cosine_similarity_std": 0.0017227114333223856,
+      "clean_norm": 4.901480388641358,
+      "adv_norm": 4.859000873565674,
+      "norm_change_pct": -0.864881376895047,
+      "norm_change_pct_std": 0.8143167268921637
+    },
+    {
+      "layer": "blocks.6.mlp",
+      "l2_distance": 1.0861016273498536,
+      "l2_distance_std": 0.04333329544346357,
+      "cosine_similarity": 0.9704501152038574,
+      "cosine_similarity_std": 0.0024223943361886954,
+      "clean_norm": 4.938017749786377,
+      "adv_norm": 4.898626899719238,
+      "norm_change_pct": -0.7330074441025891,
+      "norm_change_pct_std": 1.5608572607078388
+    },
+    {
+      "layer": "blocks.7.mlp",
+      "l2_distance": 1.3604719161987304,
+      "l2_distance_std": 0.09657446071019338,
+      "cosine_similarity": 0.9683755278587342,
+      "cosine_similarity_std": 0.0012727475906794006,
+      "clean_norm": 6.0461201667785645,
+      "adv_norm": 5.969443130493164,
+      "norm_change_pct": -1.0648658297821487,
+      "norm_change_pct_std": 2.401751746170036
+    },
+    {
+      "layer": "blocks.8.mlp",
+      "l2_distance": 1.8057548522949218,
+      "l2_distance_std": 0.10426213424217194,
+      "cosine_similarity": 0.9657294869422912,
+      "cosine_similarity_std": 0.001912653720695742,
+      "clean_norm": 7.609590816497803,
+      "adv_norm": 7.487900066375732,
+      "norm_change_pct": -1.4711204261663953,
+      "norm_change_pct_std": 2.296657521360914
+    },
+    {
+      "layer": "blocks.9.mlp",
+      "l2_distance": 1.360025954246521,
+      "l2_distance_std": 0.05966216272605572,
+      "cosine_similarity": 0.9680648803710937,
+      "cosine_similarity_std": 0.0020064515161469453,
+      "clean_norm": 5.776083946228027,
+      "adv_norm": 5.729387664794922,
+      "norm_change_pct": -0.8030443383623365,
+      "norm_change_pct_std": 0.7466062134093178
+    },
+    {
+      "layer": "blocks.10.mlp",
+      "l2_distance": 1.5415362596511841,
+      "l2_distance_std": 0.05592885223348658,
+      "cosine_similarity": 0.9755078911781311,
+      "cosine_similarity_std": 0.0020531003089524352,
+      "clean_norm": 7.524297142028809,
+      "adv_norm": 7.510203456878662,
+      "norm_change_pct": -0.18663149367048043,
+      "norm_change_pct_std": 0.4180012989289491
+    },
+    {
+      "layer": "blocks.11.mlp",
+      "l2_distance": 1.8698622465133667,
+      "l2_distance_std": 0.12122583199573983,
+      "cosine_similarity": 0.9938787341117858,
+      "cosine_similarity_std": 0.001864640799286241,
+      "clean_norm": 19.175301361083985,
+      "adv_norm": 19.313221740722657,
+      "norm_change_pct": 0.743424937327877,
+      "norm_change_pct_std": 0.9480466015295513
+    }
+  ]
+}

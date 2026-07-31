@@ -1,0 +1,74 @@
+{
+ "seed": 42,
+ "n_samples": 500,
+ "n_bootstrap": 10000,
+ "model_paths": {
+  "ResNet18_AT": "models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+  "ViT_Tiny_AT": "models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth"
+ },
+ "paired_sparsity_ResNet_vs_ViT": {
+  "hoyer": {
+   "mean_ResNet": 0.5058,
+   "mean_ViT": 0.4498,
+   "paired_mean_diff": 0.056,
+   "paired_bootstrap_ci95": [
+    0.0497,
+    0.0624
+   ],
+   "wilcoxon_z": 14.38,
+   "wilcoxon_p_raw": 7.06e-47,
+   "cohens_d_paired": 0.769,
+   "n_effective": 500,
+   "wilcoxon_p_holm": 7.06e-47
+  },
+  "gini": {
+   "mean_ResNet": 0.659,
+   "mean_ViT": 0.604,
+   "paired_mean_diff": 0.055,
+   "paired_bootstrap_ci95": [
+    0.0511,
+    0.0588
+   ],
+   "wilcoxon_z": 17.79,
+   "wilcoxon_p_raw": 8.69e-71,
+   "cohens_d_paired": 1.227,
+   "n_effective": 500,
+   "wilcoxon_p_holm": 2.61e-70
+  },
+  "rel": {
+   "mean_ResNet": 0.3699,
+   "mean_ViT": 0.2578,
+   "paired_mean_diff": 0.1121,
+   "paired_bootstrap_ci95": [
+    0.101,
+    0.1234
+   ],
+   "wilcoxon_z": 15.49,
+   "wilcoxon_p_raw": 3.81e-54,
+   "cohens_d_paired": 0.857,
+   "n_effective": 498,
+   "wilcoxon_p_holm": 7.63e-54
+  }
+ },
+ "alignment": {
+  "ResNet18_AT": {
+   "all_pairs_abs_mean": 0.0372,
+   "all_pairs_signed_mean": 0.0008,
+   "n_pairs": 124750,
+   "partition50_abs_mean": 0.0372,
+   "partition50_abs_std": 0.0002
+  },
+  "ViT_Tiny_AT": {
+   "all_pairs_abs_mean": 0.0569,
+   "all_pairs_signed_mean": 0.0004,
+   "n_pairs": 124750,
+   "partition50_abs_mean": 0.0572,
+   "partition50_abs_std": 0.0003
+  }
+ },
+ "notes": [
+  "Sparsity metrik formulleri src/analysis/gradient_analysis.py ile birebir ayni; yalnizca per-sample toplandi.",
+  "Alignment all-pairs 500x499/2 cift uzerinden; partition50 eski batch-of-50 semantiginin 10 rastgele bolunme ortalamasi.",
+  "Absolute cosine paylasilan duyarlilik YONLERINI (isaretten bagimsiz) olcer; signed ortalama, yon tutarliligini gosterir (UAP argumani icin ikisi de rapor edilir)."
+ ]
+}

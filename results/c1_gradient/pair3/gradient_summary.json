@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-07-31T12:50:56.343680",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT",
+    "ViT_CIFAR_Native_AT"
+  ],
+  "n_samples": 500,
+  "seed": 42,
+  "model_variant": "run3-metric",
+  "model_paths": {
+    "ResNet18_AT": "models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth",
+    "ViT_Tiny_AT": "models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "statistics": {
+    "ResNet18_AT": {
+      "l2_norm_mean": 0.6615724503993988,
+      "l2_norm_std": 0.06599258217001168,
+      "linf_norm_mean": 0.136786500364542,
+      "sparsity": 0.010185547079890967,
+      "sparsity_std": 0.004931934576649464,
+      "sparsity_hoyer": 0.4821090579032898,
+      "sparsity_hoyer_std": 0.007778572082635848,
+      "sparsity_gini": 0.6412271320819855,
+      "sparsity_gini_std": 0.006944953411753792,
+      "sparsity_rel_threshold": 0.3282330811023712,
+      "sparsity_rel_threshold_std": 0.015199526641397438,
+      "spatial_variance": 0.00016988304705591872,
+      "gradient_alignment": 0.03882308639585972,
+      "gradient_alignment_std": 0.0017102506983630963,
+      "std_semantics": "std across batch means (10 batches of 50)",
+      "n_samples": 500,
+      "n_batches": 10
+    },
+    "ViT_Tiny_AT": {
+      "l2_norm_mean": 0.700531131029129,
+      "l2_norm_std": 0.05816090616514936,
+      "linf_norm_mean": 0.13672397956252097,
+      "sparsity": 0.0010110677336342632,
+      "sparsity_std": 0.0005620797910513125,
+      "sparsity_hoyer": 0.4599430650472641,
+      "sparsity_hoyer_std": 0.01162745652846411,
+      "sparsity_gini": 0.612089854478836,
+      "sparsity_gini_std": 0.007614203092145025,
+      "sparsity_rel_threshold": 0.2724759131669998,
+      "sparsity_rel_threshold_std": 0.01740993640379917,
+      "spatial_variance": 0.00012589303587446922,
+      "gradient_alignment": 0.056519373506307605,
+      "gradient_alignment_std": 0.002954804544696719,
+      "std_semantics": "std across batch means (10 batches of 50)",
+      "n_samples": 500,
+      "n_batches": 10
+    },
+    "ViT_CIFAR_Native_AT": {
+      "l2_norm_mean": 0.5541353255510331,
+      "l2_norm_std": 0.06489936388933036,
+      "linf_norm_mean": 0.08648666739463806,
+      "sparsity": 0.0006282552232732997,
+      "sparsity_std": 0.000251747807284431,
+      "sparsity_hoyer": 0.40459333956241605,
+      "sparsity_hoyer_std": 0.008370275585667003,
+      "sparsity_gini": 0.5712300896644592,
+      "sparsity_gini_std": 0.005616228342352014,
+      "sparsity_rel_threshold": 0.17850195616483688,
+      "sparsity_rel_threshold_std": 0.011998142491604386,
+      "spatial_variance": 5.9964230422338007e-05,
+      "gradient_alignment": 0.0794112965464592,
+      "gradient_alignment_std": 0.004573856558624178,
+      "std_semantics": "std across batch means (10 batches of 50)",
+      "n_samples": 500,
+      "n_batches": 10
+    }
+  }
+}
