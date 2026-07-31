@@ -239,7 +239,14 @@ def main():
 
         with open(out_dir / "c4_summary.json", "w") as f:
             json.dump(summary, f, indent=2)
-        print(f"cift {pair} kaydedildi: {out_dir}/c4_summary.json")
+        print(f"cift {pair} kaydedildi: {out_dir}/c4_summary.json", flush=True)
+
+        # Ciftler arasi bellegi bosalt (arka arkaya model yuklemek segfault'a yol aciyordu)
+        del vit, rnet, acc
+        import gc
+
+        gc.collect()
+        torch.cuda.empty_cache()
 
 
 if __name__ == "__main__":
