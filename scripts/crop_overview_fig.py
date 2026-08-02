@@ -6,7 +6,7 @@ kirpmak sayfa maliyetini dusurur. Kucuk bir guvenlik payi birakilir.
 import numpy as np
 from PIL import Image
 
-SRC = "paper/bildiri/figures/mimari.png"
+SRC = "paper/bildiri/figures/mimari_v2.png"
 DST = "paper/bildiri/figures/fig_b0_overview.png"
 PAD = 8          # piksel guvenlik payi
 THRESH = 247     # bundan acik pikseller "bos" sayilir
