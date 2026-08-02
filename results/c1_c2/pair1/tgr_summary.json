@@ -1,0 +1,53 @@
+{
+  "pair": 1,
+  "seed": 42,
+  "n_samples": 10000,
+  "attack_budget": {
+    "eps": 0.03137254901960784,
+    "alpha": 0.00784313725490196,
+    "steps": 10,
+    "momentum": 1.0
+  },
+  "source": "ViT_Tiny_AT",
+  "target": "ResNet18_AT",
+  "note": "TGR uyarlamasi; taban saldiri MI-FGSM. Kontrol: ayni butcede duz MI-FGSM.",
+  "tgr": {
+    "whitebox_source_fooling_raw": 51.2,
+    "transfer_raw": 25.8,
+    "transfer_target_correct": 13.18,
+    "transfer_target_correct_ci95": [
+      12.46,
+      13.89
+    ],
+    "transfer_both_correct": 8.41,
+    "transfer_both_correct_ci95": [
+      7.76,
+      9.05
+    ],
+    "n_target_correct": 8537,
+    "n_both_correct": 7126
+  },
+  "mi": {
+    "whitebox_source_fooling_raw": 66.28,
+    "transfer_raw": 27.49,
+    "transfer_target_correct": 15.13,
+    "transfer_target_correct_ci95": [
+      14.38,
+      15.91
+    ],
+    "transfer_both_correct": 9.74,
+    "transfer_both_correct_ci95": [
+      9.05,
+      10.43
+    ],
+    "n_target_correct": 8537,
+    "n_both_correct": 7126
+  },
+  "tgr_minus_mi_target_correct": -1.95,
+  "tgr_minus_mi_both_correct": -1.33,
+  "mcnemar_both_correct": {
+    "tgr_only": 71,
+    "mi_only": 166,
+    "p_exact": 6.067408889093941e-10
+  }
+}

@@ -121,7 +121,14 @@ _Kaynak: `results/c1_c45_summary.json`_
 **Negatif sonuc:** mekansal lokalite farki yok; makalede yalnizca 'daha seyrek' denebilir, 'daha lokalize/yogunlasmis' denemez.
 
 
-## C2: TGR
+## C2: TGR vs MI-FGSM (ViT -> CNN)
 
-_Kosum devam ediyor; bittiginde bu bolum dolacak._
+_Kaynak: `results/c1_c2/pair*/tgr_summary.json`_
 
+| Olcut | TGR | MI-FGSM |
+|---|---|---|
+| Kaynakta beyaz kutu (ham) | 51.56$\pm$0.80 | 66.43$\pm$0.29 |
+| Transfer, hedef dogru | 12.70$\pm$0.41 | 15.71$\pm$0.60 |
+| Transfer, her ikisi dogru | 7.93$\pm$0.42 | 10.08$\pm$0.30 |
+
+Eslesmis McNemar (her ikisi dogru): cift 1 p=6.07e-10, cift 2 p=1.11e-27, cift 3 p=7.02e-34
