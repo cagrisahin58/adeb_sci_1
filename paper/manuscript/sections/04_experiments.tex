@@ -173,7 +173,7 @@ To characterize architectural differences in input sensitivity, we analyze the g
 
 \begin{table}[!t]
 \centering
-\caption{Gradient Characteristics ($n$=500 test samples; per-sample loss gradients; alignment is the mean absolute cosine similarity over \emph{all} sample pairs---random 50-sample partition means agree within 0.0002; $\pm$ values are std across 10 batch means). All ResNet--ViT differences on the scale-invariant sparsity metrics are significant under per-sample paired Wilcoxon tests (Holm-corrected $p < 10^{-15}$; paired Cohen's $d$ = 0.34--0.65).}
+\caption{Gradient characteristics ($n$=500 test samples per run; per-sample loss gradients; mean$\pm$std over three runs). Alignment is the mean absolute cosine similarity over \emph{all} $500\times499/2$ sample pairs. All ResNet--ViT differences on the scale-invariant sparsity metrics are significant under per-sample paired Wilcoxon tests in every run (Holm-corrected $p < 10^{-11}$; paired Cohen's $d$ = 0.32--1.23).}
 \label{tab:gradient}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
@@ -181,20 +181,48 @@ To characterize architectural differences in input sensitivity, we analyze the g
 \toprule
 \textbf{Metric} & \textbf{ResNet-18 AT} & \textbf{ViT-Tiny AT} & \textbf{ViT (native)$^\ddagger$} \\
 \midrule
-$L_2$ Norm (mean) & 0.698 & 0.760 & 0.554 \\
-$L_\infty$ Norm (mean) & 0.139 & 0.144 & 0.087 \\
-Hoyer Sparsity & \textbf{0.474}$\pm$0.009 & 0.449$\pm$0.011 & 0.405$\pm$0.008 \\
-Gini Coefficient & \textbf{0.634}$\pm$0.006 & 0.606$\pm$0.008 & 0.571$\pm$0.006 \\
-Frac.\ $<$1\% of max & \textbf{31.5\%}$\pm$1.7 & 25.8\%$\pm$1.7 & 17.9\%$\pm$1.2 \\
-Gradient Alignment & 0.038$\pm$0.002 & \textbf{0.052}$\pm$0.002 & 0.079$\pm$0.005 \\
+Hoyer sparsity & \textbf{0.4928}$\pm$0.0120 & 0.4561$\pm$0.0055 & 0.405 \\
+Gini coefficient & \textbf{0.6498}$\pm$0.0089 & 0.6099$\pm$0.0051 & 0.571 \\
+Frac.\ $<$1\% of max & \textbf{34.8\%}$\pm$2.1 & 26.8\%$\pm$0.9 & 17.9\% \\
+Alignment (absolute) & 0.0378$\pm$0.0009 & \textbf{0.0562}$\pm$0.0004 & 0.079 \\
+Alignment (signed) & 0.0014 & 0.0005 & -- \\
 \bottomrule
-\multicolumn{4}{l}{\scriptsize $^\ddagger$CIFAR-native ViT control (4$\times$4 patches, no upsampling; 5.4M}\\
-\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}params; checkpoint-selection clean/robust acc.\ 62.4\%/31.8\%).}\\
-\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}Included only to test the upsampling confound.}
+\multicolumn{4}{l}{\scriptsize $^\ddagger$CIFAR-native ViT control (4$\times$4 patches, no upsampling; 5.4M params),}\\
+\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}a single checkpoint included only to test the upsampling confound.}
 \end{tabular}
 \end{table}
 
-The gradient analysis reveals consistent but modest architectural differences. Across all three scale-invariant sparsity measures, CNN gradients are sparser than ViT gradients (Hoyer 0.474 vs 0.449; Gini 0.634 vs 0.606; 31.5\% vs 25.8\% of components below 1\% of the per-sample maximum), indicating that CNN sensitivity is somewhat more concentrated in fewer input components. Because the same 500 samples are measured under both models, we test these differences with per-sample paired statistics: all three are highly significant (Wilcoxon signed-rank, Holm-corrected $p < 10^{-15}$) with small-to-medium paired effect sizes (Cohen's $d$ of 0.34, 0.65, and 0.43 for Hoyer, Gini, and the relative-threshold fraction), quantifying ``consistent but modest'' precisely. Interestingly, this ordering is a product of adversarial training: in the clean-trained counterparts the ViT is the sparser model (Hoyer 0.406 vs 0.354), and adversarial training sparsifies the CNN far more strongly ($+$0.12 Hoyer) than the ViT ($+$0.04), consistent with the known sparsifying effect of adversarial training on input gradients~\cite{chalasani2020concise}. The native-resolution ViT control is \emph{less} sparse than the upsampled ViT on every measure, so the CNN--ViT sparsity ordering is not an artifact of the 32$\rightarrow$224 upsampling---if anything, upsampling moves the ViT \emph{toward} the CNN. We emphasize that these differences are far smaller than a threshold-based sparsity metric would suggest: an earlier version of this analysis (fixed $10^{-6}$ threshold, measured on the preliminary run2 models) indicated a 1.7$\times$ sparsity ratio, most of which reflected gradient-scale differences rather than structure; on the final models the same scale-dependent metric inflates the ratio even further ($\approx$2.4$\times$). Cross-sample gradient alignment is low for both architectures but measurably higher for the ViT (0.052 vs 0.038 in mean absolute cosine over all pairs, a 1.36$\times$ ratio; native control 0.079), suggesting that transformer sensitivity axes are somewhat more shared across inputs. The \emph{signed} mean cosine, by contrast, is near zero for every model ($\leq$0.002): what is shared across samples is sensitivity axes, not consistent directions, so the alignment gap should not be read as direct evidence of cheap universal perturbations. We treat both characteristics as behavioral correlates of, rather than established explanations for, the architectures' differing adversarial behavior.
+Across all three scale-invariant sparsity measures, CNN gradients are sparser than ViT gradients, and the ordering reproduces in every run with seed-level standard deviations an order of magnitude below the gap. Because the same 500 samples are measured under both models, the differences are tested with per-sample paired statistics: all three are significant in all three runs (Wilcoxon signed-rank, Holm-corrected $p<10^{-11}$ throughout) with paired Cohen's $d$ between 0.32 and 1.23. The ordering is a product of adversarial training rather than of architecture: in the clean-trained counterparts of the same runs the \emph{ViT} is the sparser model (Hoyer $0.380\pm0.009$ versus $0.347\pm0.002$), so adversarial training sparsifies CNN gradients far more strongly, consistent with~\cite{chalasani2020concise}. The native-resolution ViT control is less sparse than the upsampled ViT on every measure, so the ordering is not an artifact of the $32\rightarrow224$ upsampling. Cross-sample alignment is higher for the ViT in absolute cosine, and the clean-trained pair already shows this gap ($0.058$ versus $0.029$), which makes it a property of the architecture rather than of the defense. The \emph{signed} mean cosine is near zero for both models ($\leq0.0014$): what samples share is sensitivity axes, not consistent directions, so the alignment gap is not evidence for cheap universal perturbations.
+
+These gradient results are also the one part of our analysis that is insensitive to which checkpoint set is used: every quantity in Table~\ref{tab:gradient} reproduces the value measured on our earlier single-run checkpoints to within the reported standard deviations, in contrast to the conditional decomposition of Section~\ref{subsec:robustness}.
+
+% ----------------------------------------------------------------------------
+% 4.3.1 Sparsity is not spatial locality
+% ----------------------------------------------------------------------------
+\subsubsection{Sparsity is not spatial locality}
+\label{subsubsec:spatial}
+
+Sparsity measures answer how \emph{many} gradient components are large, not whether those components sit together in the image. The distinction matters because the sparser-CNN result is frequently described in spatial language---gradients said to be more ``localized'' or ``concentrated'' on object regions---and that reading implies a claim these measures cannot support. We therefore measure spatial structure directly on the same gradients, using four scale-invariant descriptors of the channel-summed energy map: the smallest pixel fraction carrying 50\% and 90\% of the gradient energy, the spatial entropy of the normalized energy map, and Moran's $I$ with 4-neighbourhood weights, which is positive when energy clusters in adjacent pixels.
+
+\begin{table}[!t]
+\centering
+\caption{Spatial locality of input gradients ($n$=500 samples per run; mean$\pm$std over three runs). Paired differences are computed on the same samples; $p$ is the largest per-run paired Wilcoxon $p$-value. Lower area and entropy mean more localized; higher Moran's $I$ means more clustered.}
+\label{tab:spatial}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Measure} & \textbf{ResNet-18} & \textbf{ViT-Tiny} & \textbf{Diff.} & \textbf{$p$} \\
+\midrule
+Area for 50\% energy & 0.0378$\pm$0.0017 & 0.0397$\pm$0.0010 & $-$0.0019 & 0.26 \\
+Area for 90\% energy & 0.2345$\pm$0.0078 & 0.2570$\pm$0.0067 & $-$0.0224 & 0.039 \\
+Spatial entropy (nat) & 5.2014$\pm$0.0387 & 5.2524$\pm$0.0197 & $-$0.0509 & 0.80 \\
+Moran's $I$ & 0.4141$\pm$0.0132 & 0.3941$\pm$0.0024 & $+$0.0200 & 0.54 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The result is negative (Table~\ref{tab:spatial}). Three of the four measures show no significant difference, and the one that reaches nominal significance, the area carrying 90\% of the energy, points in the direction of a \emph{smaller} area for the CNN by two percentage points of image area, which is a marginal effect next to a Hoyer gap that is significant at $p<10^{-11}$. Neighbourhood clustering is essentially identical for the two architectures. The two families of measures therefore disagree, and the disagreement is informative: adversarially trained CNN gradients place more of their mass on fewer pixels, but those pixels are not more spatially grouped than the ViT's. Descriptions of CNN gradients as spatially localized are not supported by our measurements, and we restrict our own claims to sparsity.
 
 \begin{figure}[!t]
 \centering
