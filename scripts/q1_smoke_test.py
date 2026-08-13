@@ -159,10 +159,19 @@ def t_trainer():
                        capture_output=True, text=True)
     assert r.returncode == 0, r.stderr[-400:]
     sel = json.load(open(outj))
-    assert sel["selected_epoch"] in (1, 2) and len(sel["records"]) == 2
+    # SOZLESME testi: aracin sectigi epoch, ayni kayitlara C1 kuralinin
+    # bagimsiz uygulanmasiyla ayni olmali (mini model %0 adv alabilir ve
+    # secim mesru olarak None kalabilir - trainer'in best.pth kurali gibi)
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from q1_offline_select import simulate_selection
+    recs = [(d["epoch"], d["clean"], d["adv"]) for d in sel["records"]]
+    exp_epoch, exp_adv, _ = simulate_selection(recs, patience=20, min_delta=0.1)
+    assert len(recs) == 2, recs
+    assert sel["selected_epoch"] == exp_epoch and sel["selected_adv_acc"] == exp_adv
     shutil.rmtree(ckdir)
     return (f"epochs/={files}, metrics={len(metrics)} satir, COMPLETE={complete}, "
-            f"eps_restore={eps_ok}, offline_select epoch={sel['selected_epoch']}")
+            f"eps_restore={eps_ok}, offline_select={sel['selected_epoch']} "
+            f"(bagimsiz simulasyonla ozdes)")
 
 
 @check("clean_trainer_resume")

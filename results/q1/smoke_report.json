@@ -1,0 +1,34 @@
+{
+  "veri_cifar100": {
+    "status": "PASS",
+    "detail": "train=50000, test=10000, y_max=96"
+  },
+  "veri_svhn": {
+    "status": "PASS",
+    "detail": "train=73257, test=26032, flip=KAPALI"
+  },
+  "veri_svhn_val_split": {
+    "status": "PASS",
+    "detail": "svhn val bolmesi: 2000 indeks, n_train=73257"
+  },
+  "modeller": {
+    "status": "PASS",
+    "detail": "resnet50(nc=10)=23.52M; vit_small(nc=10)=21.67M; resnet18(nc=100)=11.22M; vit_tiny(nc=100)=5.54M"
+  },
+  "load_model_auto": {
+    "status": "PASS",
+    "detail": "nc=100 checkpoint'ten dogru cikarildi"
+  },
+  "vit_small_attention": {
+    "status": "PASS",
+    "detail": "cls_maps (2, 12, 14, 14), 12 blok"
+  },
+  "adv_trainer_save_every": {
+    "status": "PASS",
+    "detail": "epochs/=['epoch_001.pth', 'epoch_002.pth'], metrics=2 satir, COMPLETE=True, eps_restore=True, offline_select=None (bagimsiz simulasyonla ozdes)"
+  },
+  "clean_trainer_resume": {
+    "status": "PASS",
+    "detail": "1 epoch + resume ile 2.: history=2 epoch, COMPLETE var"
+  }
+}
