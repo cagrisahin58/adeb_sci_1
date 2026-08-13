@@ -1,0 +1,89 @@
+\documentclass[journal]{IEEEtran}
+
+% ============================================================================
+% PAKETLER
+% ============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[turkish,shorthands=off]{babel}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{array}
+\usepackage{balance}
+\usepackage{hyperref}
+
+% Ozel komutlar
+\newcommand{\eps}{\epsilon}
+\newcommand{\Linf}{L_\infty}
+\renewcommand{\IEEEkeywordsname}{Anahtar Kelimeler}
+
+% NOT: Bu surum, TR Dizin dergi gonderimi icin calisma taslagi formatidir
+% (IEEEtran). Secilen derginin kendi sablonuna aktarim gonderim asamasinda
+% yapilacaktir; cogu TR Dizin dergisi Word/serbest bicim kabul eder.
+% Ingilizce ozgun metin: paper/manuscript/ (birebir ayni bilimsel icerik).
+
+% ============================================================================
+% BELGE BILGISI
+% ============================================================================
+\title{Ölçüm Protokolü Sonucu Belirler: CNN--Görü Dönüştürücüsü Çekişmeli Gürbüzlük Karşılaştırmalarının Yöntembilimsel Bir İncelemesi\\
+{\normalsize\itshape The Measurement Protocol Decides the Conclusion: A Methodological Study of CNN--Vision Transformer Adversarial Robustness Comparisons}}
+
+\author{Çağrı~Şahin ve~Özal~Yıldırım%
+\thanks{Yazarlar Fırat Üniversitesi Yazılım Mühendisliği Bölümü'ndedir, 23119 Elazığ, Türkiye.}%
+\thanks{Sorumlu yazar: Çağrı Şahin (e-posta: csahin@firat.edu.tr).}}
+
+% ============================================================================
+% BELGE
+% ============================================================================
+\begin{document}
+
+\maketitle
+
+% ----------------------------------------------------------------------------
+% OZ
+% ----------------------------------------------------------------------------
+\begin{abstract}
+Mimari aileler arasındaki çekişmeli gürbüzlük karşılaştırmaları literatürde çelişen sonuçlar bildirmekte ve bu uyuşmazlık genellikle modellere, eğitim tariflerine veya veri kümelerine atfedilmektedir. Bu çalışma, uyuşmazlığın önemli bir bölümünün ölçüm protokolünün kendisinden geldiğini göstermektedir. CIFAR-10 üzerinde çekişmeli eğitilmiş ResNet-18 ve ViT-Tiny çiftleri kullanılarak (mimari başına üç bağımsız eğitim koşusu, örnek bazında kayıtla tam test kümesi değerlendirmesi ve her eğitim aşamasından önce ayrılmış sabit bir doğrulama bölmesi) yalnızca gürbüzlüğün ve transferin nasıl ölçüldüğü değiştirilmiştir. Dört yerleşik koşullama protokolü boyunca ölçülen CNN$\rightarrow$ViT transfer asimetrisi 4,4 ile 14,6 puan arasında değişmekte (3,3 katlık bir yayılım) ve protokol seçimi bir eşdeğerlik testinin kabul mü ret mi edileceğine karar vermektedir; buna karşılık etkinin yönü kararlıdır. WideResNet-28-10 referanslı $3\times3$ transfer matrisi, koşulsuz oranların koşullu oranlardan sapmasının neredeyse tamamen hedefin temiz hatasıyla açıklandığını göstermektedir ($r=0{,}997$): ham transfer oranları mimari karşılaştırması için geçerli bir temel değildir. Koşullu ayrıştırma, CNN üstünlüğünü temiz doğruluk ve koşullu duyarlılık çarpanlarına ayırmakta; mutlak sıralama değişmediği hâlde iki çarpan arasındaki pay eğitim koşuları arasında değişebilmektedir. Son olarak, bu literatürde yaygın üç iddia doğrudan ölçüm altında tekrarlanamamıştır: girdi gradyanlarında mekânsal lokalite farkı yoktur, CLS dikkat entropisi $n=1000$'de saldırı altında değişmemektedir ve ViT'e özgü bir transfer saldırısı bu rejimde transfer kazancı sağlamamaktadır. Ölçekten bağımsız gradyan seyrekliği farkları ile çekişmeli hasarın mimariye özgü derinlik profilleri ise ayakta kalmaktadır. Çalışma, mimariler arası gürbüzlük çalışmaları için raporlama gereklilikleriyle sonlanmaktadır.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Çekişmeli gürbüzlük, değerlendirme yöntembilimi, derin öğrenme güvenliği, evrişimli sinir ağları, görü dönüştürücüsü, tekrarlanabilirlik, transfer saldırıları
+\end{IEEEkeywords}
+
+% ----------------------------------------------------------------------------
+% BOLUMLER
+% ----------------------------------------------------------------------------
+\input{sections/01_giris}
+\input{sections/02_ilgili_calismalar}
+\input{sections/03_yontem}
+\input{sections/04_deneyler}
+\input{sections/05_tartisma}
+\input{sections/06_sonuc}
+
+% ----------------------------------------------------------------------------
+% VERI VE KOD ERISILEBILIRLIGI
+% ----------------------------------------------------------------------------
+\section*{Veri ve Kod Erişilebilirliği}
+Bu çalışmadaki deneyler, \url{https://www.cs.toronto.edu/~kriz/cifar.html} adresinden herkese açık olan CIFAR-10 veri kümesini~\cite{krizhevsky2009learning} kullanmaktadır. Önceden eğitilmiş WideResNet-28-10 ağırlıkları RobustBench kıyaslamasından~\cite{croce2021robustbench, gowal2020uncovering} alınmıştır. Analiz hattının kaynak kodu, eğitilmiş model kontrol noktaları, örnek bazında değerlendirme kayıtları ve tüm analiz betikleri kabul sonrasında herkese açık hâle getirilecektir.
+
+% ----------------------------------------------------------------------------
+% TESEKKUR
+% ----------------------------------------------------------------------------
+\section*{Teşekkür}
+Yazarlar, hesaplama kaynakları için Fırat Üniversitesi Yazılım Mühendisliği Bölümü'ne teşekkür eder.
+
+% ----------------------------------------------------------------------------
+% KAYNAKLAR
+% ----------------------------------------------------------------------------
+\balance
+\bibliographystyle{IEEEtran}
+\bibliography{../manuscript/references}
+
+\end{document}

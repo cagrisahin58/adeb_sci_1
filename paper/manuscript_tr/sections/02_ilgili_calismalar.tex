@@ -1,0 +1,76 @@
+% ============================================================================
+% BOLUM 2: ILGILI CALISMALAR
+% ============================================================================
+\section{İlgili Çalışmalar}
+\label{sec:related_work}
+
+% ----------------------------------------------------------------------------
+% 2.1 Cekismeli Saldirilar
+% ----------------------------------------------------------------------------
+\subsection{Çekişmeli Saldırılar}
+\label{subsec:attacks}
+
+Çekişmeli saldırılar, yanlış sınıflandırmaya yol açan en küçük pertürbasyonları bulmayı amaçlar. Hızlı Gradyan İşaret Yöntemi (FGSM)~\cite{goodfellow2015explaining}, kayıp gradyanının işaretini izleyerek pertürbasyonu tek adımda üretir; pertürbasyon büyüklüğü $\Linf$ normu altında sınırlıdır. İzdüşümlü Gradyan İnişi (PGD)~\cite{madry2018towards} FGSM'yi yinelemeli eniyilemeyle genişletir: birden çok gradyan-işaret adımı atar ve her adımdan sonra $\eps$-topuna geri izdüşüm yapar (biçimsel tanımlar Bölüm~\ref{subsec:attack_methods}).
+
+Carlini--Wagner (C\&W) saldırısı~\cite{carlini2017towards} çekişmeli örnek üretimini bir eniyileme problemi olarak kurar; genellikle daha yüksek başarı oranlarına ulaşır ancak hesaplama maliyeti artar. Daha yakın tarihli AutoAttack~\cite{croce2020reliable}, güvenilir bir gürbüzlük değerlendirmesi sağlamak için birden çok saldırı stratejisini (APGD-CE, APGD-T, FAB-T, Square) birleştirir ve kıyaslamada fiilî standart hâline gelmiştir.
+
+% ----------------------------------------------------------------------------
+% 2.2 Savunma Mekanizmalari
+% ----------------------------------------------------------------------------
+\subsection{Savunma Mekanizmaları}
+\label{subsec:defenses}
+
+Çekişmeli eğitim (adversarial training, AT)~\cite{madry2018towards} en etkili savunma olmayı sürdürmektedir; modeli her partide üretilen çekişmeli örneklerle eğitir:
+\begin{equation}
+    \min_\theta \mathbb{E}_{(x,y) \sim \mathcal{D}} \left[ \max_{\|\delta\|_\infty \leq \eps} \mathcal{L}(f_\theta(x + \delta), y) \right]
+\end{equation}
+
+TRADES~\cite{zhang2019theoretically}, doğal doğruluk ile gürbüzlük arasında kuramsal temelli bir ödünleşim sunar:
+\begin{equation}
+    \mathcal{L}_{\text{TRADES}} = \mathcal{L}_{CE}(f(x), y) + \beta \cdot \text{KL}(f(x) \| f(x_{adv}))
+\end{equation}
+burada $\beta$ ödünleşim parametresidir.
+
+MART~\cite{wang2020improving}, yanlış sınıflandırılan örnekleri eğitim sırasında vurgulayarak ele alır. Diğer yaklaşımlar arasında girdi dönüşümü~\cite{guo2018countering}, rastgeleleştirilmiş yumuşatma yoluyla sertifikalı savunmalar~\cite{cohen2019certified} ve topluluk yöntemleri~\cite{tramer2018ensemble} bulunur. Sertifikalı gürbüzlükteki güncel gelişmeler arasında, çok adımlı savunmalarla sertifika yarıçaplarını iyileştiren Uyarlanabilir Rastgeleleştirilmiş Yumuşatma~\cite{lyu2024adaptive} sayılabilir.
+
+% ----------------------------------------------------------------------------
+% 2.3 CNN Gurbuzlugu
+% ----------------------------------------------------------------------------
+\subsection{CNN Gürbüzlüğü}
+\label{subsec:cnn_robustness}
+
+CNN mimarilerinin çekişmeli gürbüzlüğü kapsamlı biçimde incelenmiştir. Madry vd.~\cite{madry2018towards}, PGD saldırılarıyla çekişmeli eğitimin güçlü deneysel gürbüzlük sağladığını göstermiştir. RobustBench lider tablosu~\cite{croce2021robustbench} en güncel CNN gürbüzlüğünü izlemektedir; CIFAR-10'da en yüksek gürbüz doğruluğa WideResNet türevleri ulaşmaktadır.
+
+Model kapasitesinin ulaşılabilir gürbüzlükle ilişkili olduğu gösterilmiştir~\cite{madry2018towards}; daha geniş ve derin ağlar daha iyi gürbüz doğruluk sergilemektedir. Mimariye özgü bulgular arasında atlama bağlantılarının çekişmeli transfer edilebilirlikteki rolü~\cite{wu2020skip} ve çekişmeli eğitimin büyük ölçekte yol açtığı ayrık parti-normalizasyonu istatistikleri~\cite{xie2020intriguing} sayılabilir; ilişkili olarak, yardımcı parti-normalizasyonu dalları çekişmeli örneklerin temiz doğruluğu artırmasına imkân vermektedir~\cite{xie2020adversarial}. Çekişmeli eğitimin girdi-gradyan yapısının kendisini de yeniden biçimlendirdiği, daha algısal hizalı~\cite{tsipras2019robustness} ve daha seyrek~\cite{chalasani2020concise} gradyanlar ürettiği bilinmektedir.
+
+% ----------------------------------------------------------------------------
+% 2.4 ViT Gurbuzlugu
+% ----------------------------------------------------------------------------
+\subsection{Görü Dönüştürücüsü Gürbüzlüğü}
+\label{subsec:vit_robustness}
+
+Vaswani vd.~\cite{vaswani2017attention} tarafından tanıtılan öz-dikkat mekanizması üzerine kurulan Görü Dönüştürücüleri~\cite{dosovitskiy2021image}, görüntüleri yama dizileri olarak işler; iç temsilleri CNN'lerden katman katman ölçülebilir biçimde ayrışır~\cite{raghu2021vision}. İlk çalışmalar, küresel alıcı alan sayesinde ViT'lerin bazı içkin gürbüzlük özellikleri sergilediğini öne sürmüştür~\cite{bhojanapalli2021understanding}. Bai vd.~\cite{bai2021transformers}, dönüştürücülerin CNN'lerden daha gürbüz olup olmadığını sistematik olarak incelemiş; adil eğitim tarifleri altında çekişmeli gürbüzlükte üstün olmadıklarını, buna karşılık öz-dikkate atfedilen dağılım kayması gürbüzlüğünde öne geçtiklerini bulmuştur. Benz vd.~\cite{benz2021adversarial}, MLP-Mixer'i de içeren erken bir doğrudan karşılaştırma raporlamış ve farkları frekans tercihlerine bağlamıştır. Sonraki çalışmalar ViT'lerin özellikle gradyan tabanlı saldırılara karşı savunmasız kaldığını~\cite{mahmood2021robustness}, yama hedefli saldırıların dikkat mekanizmasını doğrudan istismar ettiğini~\cite{fu2022patchfool} ve dikkatın yama pertürbasyonları altında ölçülebilir biçimde kaydığını~\cite{gu2022vision} ortaya koymuştur.
+
+Shao vd.~\cite{shao2022adversarial}, çekişmeli eğitimin ViT gürbüzlüğünü artırabildiğini ve ViT özniteliklerinin yüksek frekanslı içeriğe daha az dayandığını göstermiştir; eğitim kararsızlığı kaynaklı güçlükler ise sürmektedir. ViT'lerin yaygın bozulmalara ve örtmelere karşı gürbüzlüğü de betimlenmiştir~\cite{paul2022vision}. Daha yakın zamanda Jain vd.~\cite{jain2024towards}, ViT'e özgü eğitim güçlüklerini ele alan AAS-AT yöntemini önermiş; difüzyonla artırılmış çekişmeli eğitimle ViT'lerin küçük ölçekli veri kümelerinde WideResNet'leri geçebildiği bildirilmiştir~\cite{wu2025vision}. Zhu vd.~\cite{zhu2024enhancing}, gradyan normalizasyonu ölçekleme ve yüksek frekans uyarlamasıyla ViT'lere yönelik transfer edilebilir saldırıları güçlendirmiştir. Bu ilerlemelere karşın, birleşik değerlendirme çerçeveleri altında kapsamlı CNN--ViT davranışsal karşılaştırmaları sınırlı kalmaktadır.
+
+% ----------------------------------------------------------------------------
+% 2.5 Transfer Saldirilari
+% ----------------------------------------------------------------------------
+\subsection{Transfer Saldırıları}
+\label{subsec:transfer_related}
+
+Çekişmeli örnekler modeller arasında sıklıkla transfer olur ve bu, kara kutu saldırılarını mümkün kılar~\cite{papernot2016transferability}. Transfer edilebilirlik; model mimarisi, eğitim verisi ve saldırı yöntemi gibi etkenlere bağlıdır~\cite{demontis2019adversarial}. Temel transfer çalışmaları transfer edilebilirliği zaten doğru sınıflandırılan örnekler üzerinde değerlendirmekte~\cite{liu2017delving}, standart saldırı makaleleri de başarı oranlarını aynı gerekçeyle koşullamaktadır~\cite{dong2018boosting}; güncel değerlendirme kılavuzları bu tür protokol seçimlerini açık hâle getirmektedir~\cite{zhao2025revisiting}. Topluluk tasarımında Ravikumar vd.~\cite{ravikumar2023trend}, transfer ölçümünü tam olarak modeller arasındaki doğruluk farklarını hesaba katmak için her iki modelin de doğru sınıflandırdığı örneklerle sınırlamaktadır --- koşullu metriğimizin kontrol ettiği karıştırıcının aynısı.
+
+CNN'ler ile ViT'ler arasındaki mimariler arası transfer artan ilgi görmektedir. Mahmood vd.~\cite{mahmood2021robustness}, her-ikisi-doğru protokolüyle mimariler arası transferi ölçmüş ve dikkat çekici ölçüde düşük CNN$\leftrightarrow$ViT transferi bulmuştur; Naseer vd.~\cite{naseer2022improving}, ViT'lerde üretilen çekişmeli örneklerin geleneksel saldırılarla zayıf transfer ettiğini göstermiş ve ViT kaynaklı transferi iyileştirmek için öz-topluluk ve jeton arıtma önermiştir; Wei vd.~\cite{wei2022towards} dikkat gradyanlarını atlayarak ve yama bazlı seyreltmeyle ViT kaynaklı transferi geliştirmiştir. Bunların üzerine Jeton Gradyanı Düzenlileştirme (TGR)~\cite{zhang2023tgr}, ViT'in dikkat bileşenlerini kullanarak transfer edilebilir örnekler üretmekte; Momentum Bütünleşik Gradyanlar (MIG)~\cite{ma2023transferable} hem ViT'lerde hem CNN'lerde gelişmiş transfer sağlamaktadır. Chen vd.~\cite{chen2023understanding}, mimariler arası transferi etkileyen etkenleri sistematik olarak incelemekte ve mimari tümevarım önyargılarının (CNN'lerin yüksek, ViT'lerin düşük frekanslı bilgiyi tercih etmesi) transfer başarısını önemli ölçüde etkilediğini bulmaktadır. Bu transfer örüntülerini anlamak, gürbüz topluluk sistemleri geliştirmek ve gerçek dünya saldırı senaryolarını değerlendirmek için önemlidir.
+
+% ----------------------------------------------------------------------------
+% 2.6 Bosluk ve Konumumuz
+% ----------------------------------------------------------------------------
+\subsection{Araştırma Boşluğu}
+\label{subsec:gap}
+
+Tekil çalışmalar CNN ve ViT gürbüzlüğünü ayrı ayrı incelemiş ve adil olmayan CNN--dönüştürücü karşılaştırmalarının tuzaklarına daha önce dikkat çekilmiş olsa da~\cite{pinto2022impartial, bai2021transformers}, mevcut karşılaştırmalı çalışmalar gürbüzlük skorlarını çoğunlukla tek başına, üstelik tutarsız pertürbasyon bütçeleri, saldırı yapılandırmaları veya model ölçekleriyle raporlamakta; karşılaştırmayı davranışsal analizle eşleştirmemektedir. Yakın tarihli bir çalışma ViT ve CNN çekişmeli gürbüzlüğünü doğrudan karşılaştırmaktadır~\cite{ali2024adversarial}; çalışmamız, tam test kümesinde AutoAttack ve eşleştirilmiş istatistiklerle değerlendirme yapması, transfer ölçümünü temiz doğruluk farklarına karşı kontrol etmesi ve karşılaştırmaya gradyan ile öznitelik düzeyinde davranışsal analizler eklemesiyle ayrışmaktadır.
+
+Çalışmamız ölçüm sorusunu doğrudan ele almakta ve onu incelemenin nesnesi hâline getirmektedir. Transfer değerlendirmesini doğru sınıflandırılan örneklerle koşullamak yerleşik pratiktir~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend} ve tekil makaleler bir protokol seçip devam etmektedir. Eksik olan, bu seçimin ne kadar önemli olduğuna dair kontrollü bir tahmindir. Bunu; modelleri, veriyi, tehdit modelini ve saldırı bütçesini sabit tutup yalnızca protokolü değiştirerek sağlıyor ve ölçülen asimetride 3,3 katlık bir yayılım buluyoruz --- bağımsız eğitim koşuları arasındaki standart sapmanın yaklaşık yirmi katı. Koşulsuz oranlardaki karıştırıcıyı üçüncü bir mimariyle de niceliyoruz (hedefin temiz hatasına karşı $r=0{,}997$); bu, bilinen nitel bir uyarıyı yayımlanmış sonuçlara karşı sınanabilir bir sayıya dönüştürmektedir.
+
+Bu literatürde tekrar eden ve tasarımımızın varsaymak yerine test etmeye imkân verdiği üç iddia daha vardır: CNN gradyanlarının mekânsal olarak daha lokalize olduğu, çekişmeli pertürbasyonun ViT dikkatini bozduğu ve dönüştürücüye özgü transfer saldırılarının~\cite{zhang2023tgr, naseer2022improving} mimariler arası transferi iyileştirdiği. Her birini doğrudan ölçüyoruz ve hiçbiri bizim kurulumumuzda geçerli çıkmıyor --- bu sonuçları raporluyoruz, çünkü protokole duyarlı bir karşılaştırmanın kaldıramayacağı şey tam da bu türden test edilmemiş bir varsayımdır.

@@ -1,0 +1,42 @@
+% ============================================================================
+% BOLUM 1: GIRIS
+% ============================================================================
+\section{Giriş}
+\label{sec:introduction}
+
+Derin sinir ağları, küçük bir norm bütçesiyle sınırlı kalırken yüksek güvenle yanlış sınıflandırmaya yol açan, özenle üretilmiş pertürbasyonlar olan çekişmeli örneklere (adversarial examples) karşı savunmasızdır~\cite{szegedy2014intriguing, goodfellow2015explaining}. Görü Dönüştürücüleri (Vision Transformer, ViT)~\cite{dosovitskiy2021image, vaswani2017attention} evrişimli sinir ağlarının (CNN)~\cite{he2016deep} yanında baskın bir mimari aile hâline gelince doğal bir soru ortaya çıkmıştır: hangi aile daha gürbüzdür ve neden?
+
+Literatür bu soruya tutarsız yanıtlar vermektedir. Bai vd.~\cite{bai2021transformers} eşleşmiş eğitim tarifleri altında dönüştürücülerin CNN'leri geçmediğini, Benz vd.~\cite{benz2021adversarial} ise standart eğitilmiş modellerde ViT'lerin daha gürbüz olduğunu bildirmektedir; mimariler arası transfer çalışmaları da saldırıların CNN'den ViT'e mi yoksa tersine mi daha kolay taşındığı konusunda uyuşmamaktadır~\cite{mahmood2021robustness, ravikumar2023trend, naseer2022improving}. Bu uyuşmazlıklar genellikle model, eğitim tarifi veya veri kümesi farklarına atfedilir ve standart tepki, eşleşmiş bir tarif altında karşılaştırma yapmaktır.
+
+Bu makale farklı bir gözlemde bulunmaktadır. Modeller, veri, tehdit modeli ve saldırı bütçesinin tamamı sabit tutulduğunda bile sonuç, nadiren raporlanan bir seçime bağlı kalmaktadır: \emph{ölçüm protokolü}. Transfer çalışmaları paydaya hangi örneklerin gireceğine karar vermek zorundadır (tüm test örnekleri mi, hedefin doğru sınıflandırdıkları mı, her iki modelin de doğru sınıflandırdıkları mı, yoksa kaynak saldırının başarılı olduğu örnekler mi); gürbüzlük karşılaştırmaları da mutlak bir skor mu raporlayacaklarına yoksa onu temiz doğruluk ve koşullu duyarlılık bileşenlerine mi ayıracaklarına karar vermek zorundadır. Bu seçimler genellikle raporlama ayrıntısı sayılır. Biz bunların sonucun parçası olduğunu gösteriyoruz.
+
+% ----------------------------------------------------------------------------
+% Yaklasim
+% ----------------------------------------------------------------------------
+Kurulumumuz, ölçüm sorusunu yalıtabilmek için bilinçli olarak dardır. CIFAR-10~\cite{krizhevsky2009learning} üzerinde ResNet-18 ile ViT-Tiny'yi eşleşmiş bir amaç fonksiyonu ve tehdit modeliyle çekişmeli eğitiyoruz; mimari başına üç bağımsız eğitim koşusu yapılmakta ve \emph{her} eğitim aşamasından önce ayrılan sabit bir doğrulama bölmesi kullanılmaktadır, dolayısıyla hiçbir model gördüğü veriyle seçilmemektedir. Tüm değerlendirmeler, örnek bazında sonuç kaydıyla tam test kümesinde koşmaktadır; bu, eşleştirilmiş istatistikleri mümkün kılar: aynı örnekler, saldırıyı yeniden koşmadan farklı protokoller altında yeniden ağırlıklandırılabilir. Ardından modelleri değil protokolü değiştiriyor ve sonucun ne kadar hareket ettiğini ölçüyoruz.
+
+Mimari karşılaştırma makalelerinde tekrar eden üç iddiayı da yorum olarak değil, ölçülebilir hipotez olarak ele alıyoruz: CNN girdi gradyanlarının mekânsal olarak daha lokalize olduğu, çekişmeli pertürbasyonun ViT dikkatini (attention) bozduğu ve ViT'e özgü transfer saldırılarının mimariler arası transferi iyileştirdiği. Her biri, amaca özel bir ölçümle doğrudan test edilmektedir.
+
+% ----------------------------------------------------------------------------
+% Katkilar
+% ----------------------------------------------------------------------------
+Katkılarımız şunlardır.
+
+\begin{enumerate}
+\item \textbf{Protokol duyarlılığının nicelenmesi.} Aynı modeller ve aynı veri üzerinde, ölçülen mimariler arası transfer asimetrisi dört yerleşik koşullama protokolü boyunca $+4{,}4$ ile $+14{,}6$ puan arasında değişmektedir; bu 3,3 katlık bir yayılımdır ve tohum düzeyindeki standart sapma bir puanın altındadır. Protokol, bir eşdeğerlik testinin kabul mü ret mi edileceğine karar vermektedir; asimetrinin yönü ise büyüklüğünün aksine kararlıdır.
+
+\item \textbf{Koşulsuz transfer oranlarındaki karıştırıcının ölçülmesi.} WideResNet-28-10 referansının eklendiği $3\times3$ transfer matrisinde, ham oranların koşullu oranlardan sapması neredeyse tamamen hedefin temiz hatasıyla açıklanmaktadır (altı köşegen dışı yön üzerinde $r=0{,}997$). Ayrıca gelen transferin kaynak mimarisini değil hedefin kendi kırılganlığını izlediğini buluyoruz (üç hedef üzerinde $r=0{,}986$); bu, asimetriyi güçlü CNN saldırılarının değil, daha zayıf hedefin bir özelliği olarak yeniden çerçevelemektedir.
+
+\item \textbf{Koşullu ayrıştırma ve atfının kararsızlığına dair kanıt.} Mutlak gürbüzlük, temiz doğruluk ile koşullu duyarlılığın çarpımına birebir ayrışır. İkisini birden raporlamak önemlidir; çünkü mutlak sıralama değişmediği hâlde, iki çarpan arasındaki pay önceki tek koşuluk kontrol noktalarımız ile üç yeni koşu arasında değişmiştir.
+
+\item \textbf{Üç negatif sonuç.} Ölçekten bağımsız seyreklik farkları mekânsal lokalite farkına karşılık gelmemektedir (dört mekânsal ölçütten üçü sıfır sonuç); CLS dikkat entropisi $n=1000$'de saldırı altında ölçülebilir biçimde değişmemektedir; ViT'e özgü bir transfer saldırısı olan Jeton Gradyanı Düzenlileştirme (TGR)~\cite{zhang2023tgr} bu rejimde transfer kazancı sağlamamakta, eşleşmiş bütçede düz MI-FGSM'ye yenilmektedir.
+
+\item \textbf{Ayakta kalanlar.} Gradyan seyrekliği farkları bağımsız kontrol noktası kümelerinde tekrarlanmakta, mimariden değil çekişmeli eğitimden kaynaklanmakta ve yalnızca mutlak kosinüste var olan bir hizalanma farkıyla birlikte gelmektedir. Çekişmeli hasar iki mimaride nitel olarak farklı derinliklerde birikmektedir ve ölçülen kayma profili, hesaplamada kullanılan jeton (token) agregasyonuna bağlıdır.
+\end{enumerate}
+
+Çalışmayı, bu ölçümlerden çıkan kısa bir raporlama gereklilikleri listesiyle kapatıyoruz.
+
+% ----------------------------------------------------------------------------
+% Makale Duzeni
+% ----------------------------------------------------------------------------
+Bölüm~\ref{sec:related_work} çekişmeli değerlendirme pratiğini ve mimari karşılaştırma çalışmalarını gözden geçirmektedir. Bölüm~\ref{sec:methodology} eğitim protokolünü, koşullama protokollerini ve ölçümleri tanımlamaktadır. Bölüm~\ref{sec:experiments} sonuçları raporlamakta, Bölüm~\ref{sec:discussion} çıkarımları ve sınırlılıkları tartışmakta, Bölüm~\ref{sec:conclusion} çalışmayı sonuçlandırmaktadır.

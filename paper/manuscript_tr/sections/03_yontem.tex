@@ -1,0 +1,134 @@
+% ============================================================================
+% BOLUM 3: YONTEM
+% ============================================================================
+\section{Yöntem}
+\label{sec:methodology}
+
+% ----------------------------------------------------------------------------
+% 3.1 Tehdit Modeli
+% ----------------------------------------------------------------------------
+\subsection{Tehdit Modeli}
+\label{subsec:threat_model}
+
+Saldırganın girdi görüntülerini sınırlı bir bölge içinde pertürbe edebildiği standart $\Linf$ tehdit modelini ele alıyoruz:
+\begin{equation}
+    \mathcal{B}_\eps(x) = \{x' : \|x' - x\|_\infty \leq \eps\}
+\end{equation}
+
+CIFAR-10 için yerleşik uzlaşımları izleyerek~\cite{krizhevsky2009learning, croce2021robustbench} birincil pertürbasyon bütçesi olarak $\eps = 8/255 \approx 0{,}031$ kullanıyoruz; epsilon taraması analizi için $\eps \in \{2/255, 4/255, 16/255\}$ değerlerinde ek tam-test PGD-10 değerlendirmeleri yapılmaktadır.
+
+Hem beyaz kutu (tam model erişimi) hem kara kutu (transfer saldırısı) senaryolarında değerlendirme yapıyoruz. Beyaz kutu saldırılarda saldırgan model mimarisi ve parametrelerine tam olarak hâkimdir. Transfer saldırılarında çekişmeli örnekler bir kaynak modelde üretilir ve farklı bir hedef modelde değerlendirilir.
+
+% ----------------------------------------------------------------------------
+% 3.2 Model Mimarileri
+% ----------------------------------------------------------------------------
+\subsection{Model Mimarileri}
+\label{subsec:architectures}
+
+\paragraph{CNN Modelleri}
+
+\textbf{ResNet-18}~\cite{he2016deep}: Artık bağlantılı, yaygın kullanılan bir taban CNN; 11,2M parametre içerir. CIFAR-10 için tasarlanmış standart mimariyi (7$\times$7 yerine başlangıçta 3$\times$3 evrişim) kullanıyoruz.
+
+\textbf{WideResNet-28-10}~\cite{zagoruyko2016wide}: ResNet'in 36,5M parametreli daha geniş bir türevi; CIFAR-10'da çekişmeli gürbüzlük için en güncel mimariyi temsil eder. Gowal vd.'nin~\cite{gowal2020uncovering} RobustBench~\cite{croce2021robustbench} üzerinden dağıtılan önceden eğitilmiş gürbüz kontrol noktasını kullanıyoruz; bu model ek etiketsiz veriyle ve bizim standart çekişmeli eğitimimizden daha güçlü bir tarifle eğitildiğinden, eşleşmiş bir karşılaştırma değil bir referans noktası işlevi görmektedir.
+
+\paragraph{Görü Dönüştürücüsü Modelleri}
+
+\textbf{ViT-Tiny}: \texttt{timm} kütüphanesindeki~\cite{rw2019timm} ViT-Tiny mimarisini, girdileri çift doğrusal olarak 224$\times$224'e büyüterek CIFAR-10'a uyarlıyoruz. Mimari 16$\times$16 yamalar (görüntü başına 196 yama), 192 boyutlu gömmeler, her biri 3 dikkat başlı 12 dönüştürücü bloğu ve 4 MLP oranı kullanır; toplam 5,7M parametredir. Model CIFAR-10 üzerinde \emph{sıfırdan} (ImageNet ön eğitimi olmadan) temel veri artırmayla (rastgele kırpma ve yatay çevirme) eğitilmekte, ardından çekişmeli ince ayara tabi tutulmaktadır. Küçük veri kümelerinde ViT gürbüzlüğünün eğitim tarifine duyarlı olduğu bilindiğinden~\cite{debenedetti2023light, mo2022adversarial}, mimari düzeyindeki sonuçlarımız en iyi şekilde eğitilmiş ViT'ler için değil, \emph{bu temel eğitim tarifi altında} geçerli okunmalıdır.
+
+% ----------------------------------------------------------------------------
+% 3.3 Saldiri Yontemleri
+% ----------------------------------------------------------------------------
+\subsection{Saldırı Yöntemleri}
+\label{subsec:attack_methods}
+
+\paragraph{FGSM}
+Adım boyu pertürbasyon bütçesine eşit tek adımlı saldırı:
+\begin{equation}
+    x_{adv} = x + \eps \cdot \text{sign}(\nabla_x \mathcal{L}_{CE}(f(x), y))
+\end{equation}
+
+\paragraph{PGD}
+Adım boyu $\alpha = 2/255$ ve rastgele başlangıçlı yinelemeli saldırı:
+\begin{equation}
+    x^{t+1} = \Pi_{\mathcal{B}_\eps(x)} \left( x^t + \alpha \cdot \text{sign}(\nabla_{x^t} \mathcal{L}_{CE}(f(x^t), y)) \right)
+\end{equation}
+burada $x^0 = x + \mathcal{U}(-\eps, \eps)$. Bu çalışma boyunca hem çekişmeli eğitimde hem değerlendirmede PGD-10 (10 yineleme) kullanılmaktadır (Tablo~\ref{tab:main_results}).
+
+\paragraph{AutoAttack}
+APGD-CE (çapraz entropi kayıplı Auto-PGD), APGD-T (hedefli DLR kayıplı Auto-PGD), FAB-T (hedefli Hızlı Uyarlanabilir Sınır saldırısı) ve Square (skor tabanlı kara kutu saldırısı) bileşenlerini birleştiren standartlaştırılmış topluluk saldırısı AutoAttack~\cite{croce2020reliable} kullanılmaktadır. Bu topluluk, gürbüzlük değerlendirmesi için standartlaştırılmış güçlü bir kıyaslamadır.
+
+% ----------------------------------------------------------------------------
+% 3.4 Savunma Yontemleri
+% ----------------------------------------------------------------------------
+\subsection{Savunma Yöntemleri}
+\label{subsec:defense_methods}
+
+\paragraph{Çekişmeli Eğitim (AT)}
+Temiz ve çekişmeli kayıpları birleştiren karma bir çekişmeli eğitim amacı kullanıyoruz:
+\begin{equation}
+    \mathcal{L} = (1 - \lambda)\,\mathcal{L}_{CE}(f_\theta(x), y) + \lambda\,\mathcal{L}_{CE}(f_\theta(x_{adv}), y)
+\end{equation}
+burada $\lambda = 0{,}5$, standart sınıflandırma başarımı ile çekişmeli gürbüzlüğü dengeler. İç enbüyükleme, çekişmeli örnekleri PGD-10 ile üretir ($\alpha = 2/255$, $\eps = 8/255$); saldırı üretimi model eğitim kipindeyken yapılır, böylece saldırı üretimi ile parametre güncellemesi tutarlı parti-normalizasyonu istatistikleri görür ve standart çekişmeli eğitim gerçeklemeleri izlenir~\cite{rice2020overfitting}. Pratikte yaygın benimsenen bu karma amaç, gürbüzlük kazanılırken temiz doğruluğun korunmasına yardım eder; yalnızca çekişmeli örneklerle eğitim doğal başarımı düşürebilir. TRADES~\cite{zhang2019theoretically} gibi alternatif formülasyonlar kuramsal temelli ödünleşim mekanizmaları sunsa da, bu çalışma mimari etkileri savunmaya özgü etkileşimlerden yalıtmak için standart çekişmeli eğitime odaklanmaktadır.
+
+% ----------------------------------------------------------------------------
+% 3.5 Egitim Protokolu
+% ----------------------------------------------------------------------------
+\subsection{Eğitim Protokolü}
+\label{subsec:training}
+
+\paragraph{Temiz Eğitim}
+CNN'ler için SGD eniyileyici; başlangıç öğrenme oranı 0,1, kosinüs tavlama çizelgesi~\cite{loshchilov2016sgdr}, ağırlık sönümü $5 \times 10^{-4}$ ve 200 epok. ViT'ler için AdamW eniyileyici~\cite{loshchilov2017decoupled}; başlangıç öğrenme oranı $10^{-3}$, kosinüs tavlama, ağırlık sönümü 0,05 ve 200 epok.
+
+\paragraph{Çekişmeli Eğitim}
+Temiz eğitilmiş kontrol noktalarından başlayarak düşürülmüş öğrenme oranlarıyla ince ayar yapıyoruz: CNN'ler SGD ile $10^{-3}$ öğrenme oranı ve kosinüs tavlamayla en çok 100 epok; ViT'ler AdamW ile aynı öğrenme oranı ve çizelgeyle eğitilir. Gradyanlar küresel $L_2$ normu 10'a kırpılır ve kaybı sonlu olmayan partiler atlanır. Veri artırma, 4 piksel dolgulu rastgele kırpma ve yatay çevirmedir; tüm modeller $[0,1]$ aralığında ham piksel girdisi tüketir (ortalama/std normalizasyonu yoktur) ve saldırılar ile epsilon bütçeleri doğrudan bu piksel uzayında işler. Eğitim parti boyu CNN için 128, ViT için 64'tür (değerlendirme parti boyları analize göre değişir). Erken durdurma 20 sabır ve 0,1 puanlık iyileşme eşiğiyle uygulanır.
+
+\paragraph{Doğrulama Bölmesi ve Tekrarlar}
+Model seçimi ve erken durdurma, sabit 2.000 örneklik bir doğrulama bölmesindeki PGD-10 çekişmeli doğruluğuyla yürütülür. Bu bölme bir kez çekilir (tohum 777; indeksler kodla birlikte saklanır), çalışmadaki her model tarafından paylaşılır ve hem temiz hem çekişmeli aşamanın eğitim kümesinden çıkarılır; dolayısıyla hiçbir kontrol noktası, üzerinde eğitildiği veriyle seçilmez. Test kümesine yalnızca nihai art-değerlendirmelerde dokunulur. Tüm boru hattını (temiz ön eğitim + çekişmeli ince ayar) mimari başına üç kez, bağımsız tohumlarla tekrarlıyoruz (ResNet-18 için 1001--1003, ViT-Tiny için 2001--2003) ve koşuları indekse göre eşliyoruz; böylece her mimariler arası karşılaştırma aynı tekrar altında eğitilmiş modeller arasındadır. Tüm tablolar bu üç koşunun ortalamasını ve standart sapmasını raporlar.
+
+Bölüm~\ref{subsec:robustness}'teki bir karşılaştırma için, bu protokol benimsenmeden önce eğitilmiş ve doğrulama bölmesi temiz ön eğitimin parçası olmuş daha eski bir kontrol noktası çiftine de başvuruyoruz. Bunları sonuç olarak değil, açıkça bir karşıtlık olarak raporluyoruz; çünkü iki kontrol noktası kümesi arasındaki fark, tek koşuluk bir sonucun ne kadar hareket edebileceğine dair kendi başına kanıttır.
+
+% ----------------------------------------------------------------------------
+% 3.6 Degerlendirme Metrikleri
+% ----------------------------------------------------------------------------
+\subsection{Değerlendirme Metrikleri}
+\label{subsec:metrics}
+
+\paragraph{Temel Metrikler}
+Modelleri üç standart metrikle değerlendiriyoruz: temiz doğruluk (pertürbe edilmemiş test görüntülerinde sınıflandırma başarımı), gürbüz doğruluk (çekişmeli örneklerde başarım) ve saldırı başarı oranı (temizde doğru sınıflandırılan görüntülerin saldırı sonrası yanlışa dönen oranı). Beyaz kutu değerlendirmelerde ek olarak \emph{koşullu yanıltma oranını} (temizde doğru sınıflandırılan örneklerin saldırının devirdiği kesri) ve tümleyeni olan koşullu sağkalımı raporluyoruz. Örnek bazındaki kayıtlarımızda hem PGD hem AutoAttack, temizde yanlış sınıflandırılan örnekleri gürbüz olmayan saydığından, mutlak gürbüz doğruluk birebir $\text{gürbüz} = \text{temiz} \times \text{koşullu sağkalım}$ olarak çarpanlarına ayrılır; bu, gürbüzlük farklarını temiz doğruluk bileşeni ile koşullu duyarlılık bileşenine ayırmamızı sağlar. Son olarak \emph{her ikisi doğru} altkümesindeki (karşılaştırılan iki modelin de temizde doğru sınıflandırdığı örnekler) doğrulukları raporluyoruz; bu, ortak bir örnek kümesi üzerinde birebir eşleştirilmiş karşılaştırma sağlar.
+
+\paragraph{Transfer Metrikleri}
+Birincil transfer metriğimiz \emph{koşullu yanıltma oranıdır}: hedef modelin temizde doğru sınıflandırdığı örnekler içinde, kaynak modelde üretilen çekişmeli örneklerle yanlışa dönenlerin oranı. Kaynak model $f_S$'ye karşı üretilen $\{x_{adv}^S\}$ örnekleri için hedef $f_T$'ye koşullu transfer oranı:
+\begin{equation}
+    \text{KYO} = \frac{\sum_i \mathbf{1}[f_T(x_i)=y_i]\,\mathbf{1}[f_T(x_{adv,i}^S) \neq y_i]}{\sum_i \mathbf{1}[f_T(x_i)=y_i]}
+\end{equation}
+
+Transfer değerlendirmesini doğru sınıflandırılan örneklerle koşullamak yerleşik pratiktir~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend, zhao2025revisiting} ve mimariler arası karşılaştırmalarda zorunludur: ham yanlış sınıflandırma oranı $\frac{1}{n} \sum_{i} \mathbf{1}[f_T(x_{adv,i}^S) \neq y_i]$ hedefin temiz hatasını içerir; temiz doğruluğu düşük bir hedef, saldırı hiç ek örnek devirmese bile transfere daha ``kırılgan'' görünür. Ham oranı, şeffaflık ve bu karıştırıcının boyutunu nicelemek için ikincil metrik olarak raporluyoruz. Koşullama kümesinin kendisi bir protokol seçimi olduğundan, iki yerleşik alternatifi de raporluyoruz: kaynak ve hedefin ikisinin de doğru sınıflandırdığı örneklerle koşullayan \emph{her ikisi doğru} protokolü~\cite{mahmood2021robustness, ravikumar2023trend} ve saldırının kaynakta beyaz kutu anlamında başarılı olduğu hedef-doğru örneklerle koşullayan \emph{başarılı kaynak} protokolü. Bölüm~\ref{subsec:transfer}'in gösterdiği gibi bu protokoller nitel olarak farklı asimetri sonuçları verebilir; bu yüzden protokolü bir gerçekleme ayrıntısı değil, raporlanan sonucun parçası olarak ele alıyoruz. Transfer oranları tam test kümesinde (10.000 örnek) örnek bazında kayıtla hesaplanır ve örnekler üzerinde yüzdelik bootstrap ile \%95 güven aralıkları verilir (10.000 yeniden örnekleme).
+
+\paragraph{Gradyan Analizi Metrikleri}
+Gradyan özelliklerini, büyüklükler değerlendirme parti boyundan bağımsız olsun diye örnek başına kayıplarla hesaplayarak üç tamamlayıcı metrik ailesiyle inceliyoruz. Gradyan normu ($\|\nabla_x \mathcal{L}\|_2$ ve $\|\nabla_x \mathcal{L}\|_\infty$) toplam duyarlılık büyüklüğünü ölçer. Gradyan seyrekliği, ölçekten bağımsız ölçülerle nicelenir --- Hoyer seyrekliği, $|g|$'nin Gini katsayısı ve örnek maksimumunun \%1'inin altındaki bileşen oranı --- çünkü sabit mutlak eşikler gradyan ölçeğini yapıyla karıştırır; Hoyer ve Gini, Hurley ve Rickard'ın~\cite{hurley2009comparing} biçimselleştirdiği ölçek-değişmezliği aksiyomlarını sağlar. Gradyan hizalanması, örnekler arasındaki ortalama ikili mutlak kosinüs benzerliğidir (500 analiz örneğinin tüm çiftleri üzerinden):
+\begin{equation}
+    \text{Hizalanma} = \frac{1}{N(N-1)} \sum_{i \neq j} \left| \frac{\nabla_{x_i} \mathcal{L} \cdot \nabla_{x_j} \mathcal{L}}{\|\nabla_{x_i} \mathcal{L}\| \|\nabla_{x_j} \mathcal{L}\|} \right|
+\end{equation}
+Mutlak kosinüsü kullanıyoruz, çünkü paylaşılan duyarlılık \emph{eksenleri} işaretten bağımsız olarak saldırı geometrisi için önemlidir; evrensel pertürbasyon argümanlarının ek olarak gerektirdiği şey işaret tutarlılığı olduğundan işaretli ortalama kosinüsü de raporluyoruz --- bu değer her model için sıfıra yakın çıkmaktadır (Bölüm~\ref{subsec:gradient}). Yüksek mutlak hizalanma, girdiler arasında benzer pertürbasyon eksenlerine işaret eder.
+
+\paragraph{Mekânsal Lokalite Metrikleri}
+Seyreklik kaç gradyan bileşeninin büyük olduğunu ölçer ama bunların görüntüde nerede durduğu hakkında bir şey söylemez; bu yüzden mekânsal yapıyı, kanal toplamı enerji haritası $e = \sum_c (\nabla_x \mathcal{L})_c^2$ (toplamı 1'e normalize) üzerinde ayrıca ölçüyoruz. Enerjinin \%50'sini ve \%90'ını toplayan en küçük piksel oranını (küçük değer = daha lokalize), $e$'nin piksel dağılımı olarak Shannon entropisini (düşük değer = daha lokalize) ve enerji bitişik piksellerde kümelendiğinde pozitif olan 4-komşuluklu Moran's $I$'yı raporluyoruz. Dördü de gradyan ölçeğinden bağımsızdır ve örnek başına hesaplanır; böylece iki mimari aynı girdiler üzerinde eşleştirilmiş testlerle karşılaştırılabilir.
+
+\paragraph{Katman Analizi için Jeton Agregasyonu}
+Bir dönüştürücü bloğu jeton başına bir vektör üretir; bloğu özetlemek bir seçim gerektirir. Üçünü raporluyoruz: yalnız CLS jetonu, 196 yama jetonunun ortalaması ve tüm jetonların örnek başına düzleştirilmiş birleşimi. CNN'de her artık blok çıktısı mekânsal boyutlar üzerinden düzleştirilir. ViT için üçünü birden raporluyoruz; çünkü Bölüm~\ref{subsec:attention}'ün gösterdiği gibi, farklı kayma büyüklükleri verirler ve minimumu farklı derinliklere yerleştirirler.
+
+\paragraph{Dikkat Metrikleri}
+ViT için her bloğun softmax sonrası CLS$\to$yama dikkat satırını başlar üzerinden ortalayarak çıkarıyoruz. Dikkatin ne kadar geniş yayıldığını ölçen Shannon entropisini ve saldırı altındaki yer değiştirmesini (temiz ile çekişmeli dikkat dağılımları arasındaki, 1 ile sınırlı toplam varyasyon uzaklığı) raporluyoruz. İkisi de örnek başına hesaplanıp ortalanır; koşu başına $n=1000$ örnek.
+
+\paragraph{ViT'e Özgü Transfer Saldırısı}
+Transfer sonuçlarının mimariden bağımsız saldırılara bağlı olup olmadığını test etmek için kaynak örnekleri ek olarak Jeton Gradyanı Düzenlileştirme (TGR)~\cite{zhang2023tgr} ile üretiyoruz; TGR, geri yayılım sırasında dikkat, QKV ve MLP yollarındaki jeton-gradyan tensörlerinin uç değerli girdilerini sıfırlar ve kalan gradyanı $\gamma=0{,}5$ ile ölçekler. Gerçeklememiz yöntemi CIFAR-10 ViT sarmalayıcımıza ve bu makale boyunca kullanılan bütçeye ($\eps=8/255$, $\alpha=2/255$, 10 adım, momentum 1,0) uyarlamaktadır; özgün ImageNet varsayılanları kullanılmamıştır ve bu yüzden bir uyarlama olarak raporlanmaktadır. Düz MI-FGSM~\cite{dong2018boosting} örnekleri aynı koşuda aynı örnekler üzerinde üretilir; bu, birebir aynı bütçede eşleştirilmiş bir kontrol sağlar.
+
+% ----------------------------------------------------------------------------
+% 3.7 Istatistiksel Dogrulama
+% ----------------------------------------------------------------------------
+\subsection{İstatistiksel Doğrulama}
+\label{subsec:statistics}
+
+Üç varyans kaynağını ayırıyor ve her birini geçerli olduğu yerde raporluyoruz. Mimari karşılaştırmalarını ilgilendiren \emph{eğitim koşusu varyansıdır}: her tablo, mimari başına üç bağımsız koşunun ortalamasını ve standart sapmasını verir (Bölüm~\ref{subsec:training}). \emph{Saldırı başlatma varyansı}, PGD-10'un sabit bir altkümede üç saldırı tohumuyla (42, 123, 456) yeniden koşulmasıyla ölçülür; değerlendirilen örnekler ve sıraları sabittir, tohumlar yalnızca saldırının rastgele başlangıcını değiştirir. \emph{Protokol varyansı}, koşullama protokolleri arasındaki yayılımdır ve gürültü değil sonuç olarak ele alınır (Bölüm~\ref{subsec:transfer}). Bölüm~\ref{subsec:statistics_results} büyüklüklerini karşılaştırmaktadır.
+
+Aynı örneklerin iki koşul altında puanlandığı her yerde eşleştirilmiş testler kullanılır: eşleştirilmiş ikili sonuçlar için McNemar'ın kesin testi, üç seyreklik ölçüsü için Holm düzeltmeli Wilcoxon işaretli sıra testi, farklar için eşleştirilmiş bootstrap güven aralıkları (10.000 yeniden örnekleme) ve her-ikisi-doğru transfer farkı için işaret çevirme permütasyon testi (20.000 permütasyon). Eşdeğerlik iddiaları, marjı her kullanımda belirtilen iki tek yönlü test (TOST) ile yapılır. Tüm değerlendirme ve analiz betikleri rastgele tohumları sabitler (tohum 42, CUDA determinizm bayrakları dâhil); dolayısıyla raporlanan her sayı, yayımlanan boru hattından yeniden üretilebilir.

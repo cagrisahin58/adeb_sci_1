@@ -84,7 +84,7 @@ Figure~\ref{fig:robustness_comparison} visualizes this robustness gap across arc
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig_adversarial_examples.pdf}
-\caption{Adversarial example visualization. Each row shows: original image with model prediction, perturbation magnified $10\times$, and adversarial image with new prediction. Row 1: Attack on ResNet-18. Row 2: Attack on ViT-Tiny. Row 3: Transfer attack (generated on ResNet, evaluated on ViT). The perturbations are bounded by $\eps$=8/255 and visually subtle at the displayed scale, yet cause confident misclassifications.}
+\caption{Adversarial example visualization: for each model, its own white-box PGD-10 attack on the same test image, showing the clean prediction, the perturbation magnified $10\times$, and the adversarial prediction. Images are displayed with pixel-preserving nearest-neighbour magnification; the perturbations are bounded by $\eps$=8/255 and visually subtle at this scale, yet flip the predictions.}
 \label{fig:adversarial_examples}
 \end{figure}
 

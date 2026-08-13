@@ -44,7 +44,48 @@ from src.utils.checkpoint import load_model_weights  # noqa: E402
 PAIRS = [1, 2, 3]
 C_CNN, C_VIT, C_WRN = "#0f62fe", "#da1e28", "#8d8d8d"
 EPS8 = round(8 / 255, 5)
-CLASSES = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+
+# --lang tr: Turkce etiketli varyantlar paper/figures/final_tr/ altina uretilir.
+LANGS = {
+    "en": {
+        "classes": ["airplane", "automobile", "bird", "cat", "deer", "dog",
+                    "frog", "horse", "ship", "truck"],
+        "metrics": ["Clean", "PGD-10", "AutoAttack"],
+        "acc": "Accuracy (%)", "matched": "Matched AT pair", "ref": "Reference",
+        "wrn": "WRN-28-10 (reference)",
+        "eps_x": r"Perturbation budget $\epsilon$ ($L_\infty$, PGD-10)",
+        "target": "Target", "source": "Source",
+        "cond_cbar": "Conditioned fooling rate (%)",
+        "blk_x": "Transformer block", "ent_y": "CLS attention entropy (nats)",
+        "clean": "Clean", "adv": "Adversarial",
+        "gnorm_x": r"Per-sample input-gradient $L_2$ norm", "count": "Count",
+        "input": "Input", "mean": "mean",
+        "cap_clean": "clean", "cap_pert": r"perturbation ($\times$10)",
+        "cap_adv": "adversarial",
+        "att_clean": "clean", "att_adv": "adversarial", "att_diff": "difference",
+        "block": "block",
+    },
+    "tr": {
+        "classes": ["uçak", "otomobil", "kuş", "kedi", "geyik", "köpek",
+                    "kurbağa", "at", "gemi", "kamyon"],
+        "metrics": ["Temiz", "PGD-10", "AutoAttack"],
+        "acc": "Doğruluk (%)", "matched": "Eşleşmiş AT çifti", "ref": "Referans",
+        "wrn": "WRN-28-10 (referans)",
+        "eps_x": r"Pertürbasyon bütçesi $\epsilon$ ($L_\infty$, PGD-10)",
+        "target": "Hedef", "source": "Kaynak",
+        "cond_cbar": "Koşullu yanıltma oranı (%)",
+        "blk_x": "Dönüştürücü bloğu", "ent_y": "CLS dikkat entropisi (nat)",
+        "clean": "Temiz", "adv": "Çekişmeli",
+        "gnorm_x": r"Örnek başına girdi gradyanı $L_2$ normu", "count": "Adet",
+        "input": "Girdi", "mean": "ort.",
+        "cap_clean": "temiz", "cap_pert": r"pertürbasyon ($\times$10)",
+        "cap_adv": "çekişmeli",
+        "att_clean": "temiz", "att_adv": "çekişmeli", "att_diff": "fark",
+        "block": "blok",
+    },
+}
+L = LANGS["en"]
+CLASSES = L["classes"]
 
 plt.rcParams.update({
     "font.size": 9, "axes.labelsize": 10, "axes.titlesize": 10,
@@ -98,7 +139,7 @@ def fig1():
             aa.setdefault(key, []).append(e["robust_accuracy"])
     wrn = jload("results/wrn_eval/wrn_eval_summary.json")["results"]
 
-    metrics = ["Clean", "PGD-10", "AutoAttack"]
+    metrics = L["metrics"]
     rn = [ms([ev[p]["resnet18"][("clean", 0.0)] for p in PAIRS]),
           ms([ev[p]["resnet18"][("pgd", EPS8)] for p in PAIRS]), ms(aa["resnet18"])]
     vt = [ms([ev[p]["vit_tiny"][("clean", 0.0)] for p in PAIRS]),
@@ -113,17 +154,17 @@ def fig1():
     ax.bar(x + w / 2, [m for m, _ in vt], w, yerr=[s for _, s in vt], capsize=2.5,
            error_kw={"lw": 0.8}, color=C_VIT, label="ViT-Tiny (AT)")
     xw = x + 3.4
-    ax.bar(xw, wv, w * 1.3, color=C_WRN, hatch="//", alpha=0.85, label="WRN-28-10 (reference)")
+    ax.bar(xw, wv, w * 1.3, color=C_WRN, hatch="//", alpha=0.85, label=L["wrn"])
     ax.axvline((x[-1] + xw[0]) / 2, color="black", lw=0.8, ls=":")
     for xi, v in zip(np.concatenate([x - w / 2, x + w / 2, xw]),
                      [m for m, _ in rn] + [m for m, _ in vt] + wv):
         ax.text(xi, v + 1.8, f"{v:.1f}", ha="center", fontsize=7)
     ax.set_xticks(np.concatenate([x, xw]))
     ax.set_xticklabels(metrics + metrics, fontsize=8)
-    ax.set_ylabel("Accuracy (%)")
+    ax.set_ylabel(L["acc"])
     ax.set_ylim(0, 100)
-    ax.text(float(np.mean(x)), 95, "Matched AT pair", ha="center", fontsize=8, fontweight="bold")
-    ax.text(float(np.mean(xw)), 95, "Reference", ha="center", fontsize=8, color="#444")
+    ax.text(float(np.mean(x)), 95, L["matched"], ha="center", fontsize=8, fontweight="bold")
+    ax.text(float(np.mean(xw)), 95, L["ref"], ha="center", fontsize=8, color="#444")
     ax.legend(loc="center", bbox_to_anchor=(0.5, -0.24), ncol=3, frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     fig.savefig(OUT / "fig1_robustness_comparison.pdf")
@@ -155,13 +196,13 @@ def fig2():
         m, s = series(model)
         ax.fill_between(xi, m - s, m + s, color=color, alpha=0.18, lw=0)
         ax.plot(xi, m, marker, color=color, label=lab)
-    ax.plot(xi, wv, "^--", color=C_WRN, alpha=0.9, label="WRN-28-10 (reference)")
+    ax.plot(xi, wv, "^--", color=C_WRN, alpha=0.9, label=L["wrn"])
     ax.axvline(3, color="black", lw=0.7, ls=":", alpha=0.6)
     ax.text(3.05, 5, r"$\epsilon$=8/255", fontsize=8)
     ax.set_xticks(xi)
     ax.set_xticklabels(lbl)
-    ax.set_xlabel(r"Perturbation budget $\epsilon$ ($L_\infty$, PGD-10)")
-    ax.set_ylabel("Accuracy (%)")
+    ax.set_xlabel(L["eps_x"])
+    ax.set_ylabel(L["acc"])
     ax.set_ylim(0, 95)
     ax.legend(frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
@@ -189,9 +230,9 @@ def fig3():
                     fontweight="bold" if i == j else "normal")
     ax.set_xticks(range(3), short, fontsize=8)
     ax.set_yticks(range(3), short, fontsize=8)
-    ax.set_xlabel("Target")
-    ax.set_ylabel("Source")
-    fig.colorbar(im, ax=ax, shrink=0.85, label="Conditioned fooling rate (%)")
+    ax.set_xlabel(L["target"])
+    ax.set_ylabel(L["source"])
+    fig.colorbar(im, ax=ax, shrink=0.85, label=L["cond_cbar"])
     fig.savefig(OUT / "fig3_transfer_heatmap.pdf")
     plt.close(fig)
     print("fig3_transfer_heatmap.pdf")
@@ -205,12 +246,12 @@ def fig5b():
                    for p in PAIRS])
     x = np.arange(1, ec.shape[1] + 1)
     fig, ax = plt.subplots(figsize=(4.6, 3.0))
-    for arr, color, lab, marker in ((ec, "#1a7f37", "Clean", "o-"), (ea, C_VIT, "Adversarial", "s--")):
+    for arr, color, lab, marker in ((ec, "#1a7f37", L["clean"], "o-"), (ea, C_VIT, L["adv"], "s--")):
         m, s = arr.mean(0), arr.std(0, ddof=1)
         ax.fill_between(x, m - s, m + s, color=color, alpha=0.18, lw=0)
         ax.plot(x, m, marker, color=color, label=lab, ms=4)
-    ax.set_xlabel("Transformer block")
-    ax.set_ylabel("CLS attention entropy (nats)")
+    ax.set_xlabel(L["blk_x"])
+    ax.set_ylabel(L["ent_y"])
     ax.set_xticks(x)
     ax.legend(frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
@@ -246,9 +287,9 @@ def fig4():
     fig, ax = plt.subplots(figsize=(4.4, 3.0))
     for lab, color in (("ResNet-18 (AT)", C_CNN), ("ViT-Tiny (AT)", C_VIT)):
         v = np.concatenate(norms[lab])
-        ax.hist(v, bins=40, alpha=0.55, color=color, label=f"{lab} (mean {v.mean():.3f})")
-    ax.set_xlabel(r"Per-sample input-gradient $L_2$ norm")
-    ax.set_ylabel("Count")
+        ax.hist(v, bins=40, alpha=0.55, color=color, label=f"{lab} ({L[chr(39)+chr(39) if False else chr(109)+chr(101)+chr(97)+chr(110)]} {v.mean():.3f})")
+    ax.set_xlabel(L["gnorm_x"])
+    ax.set_ylabel(L["count"])
     ax.legend(frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
     fig.savefig(OUT / "fig4b_gradient_distribution.pdf")
@@ -266,7 +307,7 @@ def fig4():
         for r in range(3):
             axes[r, k].set_xticks([])
             axes[r, k].set_yticks([])
-    for r, lab in enumerate(["Input", "ResNet-18 (AT)", "ViT-Tiny (AT)"]):
+    for r, lab in enumerate([L["input"], "ResNet-18 (AT)", "ViT-Tiny (AT)"]):
         axes[r, 0].set_ylabel(lab, fontsize=8)
     fig.tight_layout()
     fig.savefig(OUT / "fig4_gradient_comparison.pdf")
@@ -336,9 +377,9 @@ def figadv():
         pert = (adv - clean)
         pert = (pert - pert.min()) / (pert.max() - pert.min() + 1e-12)
         for c, (img, title) in enumerate([
-            (clean, f"clean: {CLASSES[pc]}"),
-            (pert, r"perturbation ($\times$10)"),
-            (adv, f"adversarial: {CLASSES[pa]}"),
+            (clean, f"{L[chr(99)+chr(97)+chr(112)+chr(95)+chr(99)+chr(108)+chr(101)+chr(97)+chr(110)]}: {L[chr(99)+chr(108)+chr(97)+chr(115)+chr(115)+chr(101)+chr(115)][pc]}"),
+            (pert, L["cap_pert"]),
+            (adv, f"{L['cap_adv']}: {L['classes'][pa]}"),
         ]):
             axes[r, c].imshow(img.permute(1, 2, 0).numpy(), interpolation="nearest")
             axes[r, c].set_title(title, fontsize=7)
@@ -370,16 +411,16 @@ def fig5maps():
         d = am[l] - cm[l]
         vmax = max(cm[l].max(), am[l].max())
         for c, (arr, title, kw) in enumerate([
-            (cm[l], "clean", {"cmap": "viridis", "vmin": 0, "vmax": vmax}),
-            (am[l], "adversarial", {"cmap": "viridis", "vmin": 0, "vmax": vmax}),
-            (d, "difference", {"cmap": "coolwarm", "vmin": -np.abs(d).max(), "vmax": np.abs(d).max()}),
+            (cm[l], L["att_clean"], {"cmap": "viridis", "vmin": 0, "vmax": vmax}),
+            (am[l], L["att_adv"], {"cmap": "viridis", "vmin": 0, "vmax": vmax}),
+            (d, L["att_diff"], {"cmap": "coolwarm", "vmin": -np.abs(d).max(), "vmax": np.abs(d).max()}),
         ]):
             axes[r, c].imshow(arr, interpolation="nearest", **kw)
             if r == 0:
                 axes[r, c].set_title(title, fontsize=8)
             axes[r, c].set_xticks([])
             axes[r, c].set_yticks([])
-        axes[r, 0].set_ylabel(f"block {l + 1}", fontsize=8)
+        axes[r, 0].set_ylabel(f"{L['block']} {l + 1}", fontsize=8)
     fig.tight_layout()
     fig.savefig(OUT / "fig5_attention_comparison.pdf")
     plt.close(fig)
@@ -403,7 +444,13 @@ ALL = {"fig1": fig1, "fig2": fig2, "fig3": fig3, "fig5b": fig5b,
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="+", default=list(ALL))
+    ap.add_argument("--lang", choices=["en", "tr"], default="en")
     args = ap.parse_args()
+    L = LANGS[args.lang]
+    CLASSES = L["classes"]
+    if args.lang != "en":
+        OUT = ROOT / f"paper/figures/final_{args.lang}"
+        OUT.mkdir(parents=True, exist_ok=True)
     for name in args.only:
         ALL[name]()
-    print("TAMAM")
+    print(f"TAMAM (lang={args.lang}, out={OUT})")
