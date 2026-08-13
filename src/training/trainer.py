@@ -9,7 +9,7 @@ from pathlib import Path
 from tqdm import tqdm
 import time
 
-from ..utils.checkpoint import save_checkpoint
+from ..utils.checkpoint import save_checkpoint, load_checkpoint
 
 
 class Trainer:
@@ -36,6 +36,7 @@ class Trainer:
         save_best: bool = True,
         save_last: bool = True,
         verbose: bool = True,
+        save_every: int = 0,
     ):
         """
         Initialize the trainer.
@@ -65,6 +66,7 @@ class Trainer:
         self.save_best = save_best
         self.save_last = save_last
         self.verbose = verbose
+        self.save_every = save_every
 
         # Device
         self.device = device or (
@@ -195,9 +197,13 @@ class Trainer:
             "test_acc": 100.0 * correct / total,
         }
 
-    def train(self) -> Dict[str, list]:
+    def train(self, resume: bool = False) -> Dict[str, list]:
         """
         Run full training loop.
+
+        Args:
+            resume: True ise checkpoint_dir/last.pth'tan devam eder
+                (kesinti sonrasi). last.pth yoksa sifirdan baslar.
 
         Returns:
             Training history dictionary
@@ -205,11 +211,28 @@ class Trainer:
         self.checkpoint_dir.mkdir(parents=True, exist_ok=True)
         start_time = time.time()
 
+        # Kesinti sonrasi devam (resume) - AdversarialTrainer ile ayni desen
+        start_epoch = 0
+        last_path = self.checkpoint_dir / "last.pth"
+        if resume and last_path.exists():
+            ckpt = load_checkpoint(
+                str(last_path), self.model, self.optimizer, self.scheduler, self.device
+            )
+            start_epoch = ckpt.get("epoch", -1) + 1
+            self.best_acc = ckpt.get("best_acc", ckpt.get("accuracy", 0.0) or 0.0)
+            saved_history = ckpt.get("history")
+            if saved_history:
+                self.history = saved_history
+            if self.verbose:
+                print(f"Resuming clean training from epoch {start_epoch} "
+                      f"(best acc so far: {self.best_acc:.2f}%)")
+
         if self.verbose:
             print(f"Training on {self.device}")
             print(f"Model parameters: {sum(p.numel() for p in self.model.parameters()):,}")
 
-        for epoch in range(self.epochs):
+        test_metrics = {"test_acc": 0.0}
+        for epoch in range(start_epoch, self.epochs):
             self.current_epoch = epoch
 
             # Train
@@ -251,16 +274,40 @@ class Trainer:
                 if self.verbose:
                     print(f"  Best model saved! Accuracy: {self.best_acc:.2f}%")
 
-        # Save last model
-        if self.save_last:
-            save_checkpoint(
-                self.model,
-                self.checkpoint_dir / "last.pth",
-                self.optimizer,
-                self.scheduler,
-                self.epochs - 1,
-                test_metrics["test_acc"],
-            )
+            # Periyodik checkpoint (E3 yorunge noktalari; yalniz agirlik)
+            if self.save_every > 0 and (epoch + 1) % self.save_every == 0:
+                ep_dir = self.checkpoint_dir / "epochs"
+                ep_dir.mkdir(parents=True, exist_ok=True)
+                ep_tmp = ep_dir / f"epoch_{epoch + 1:03d}.pth.tmp"
+                torch.save({
+                    "model_state_dict": self.model.state_dict(),
+                    "epoch": epoch,
+                    "test_acc": test_metrics["test_acc"],
+                }, ep_tmp)
+                ep_tmp.replace(ep_dir / f"epoch_{epoch + 1:03d}.pth")
+
+            # Kesintiye dayanikli last.pth (atomik: .tmp'ye yaz, tasi)
+            if self.save_last:
+                tmp_path = self.checkpoint_dir / "last.pth.tmp"
+                save_checkpoint(
+                    self.model,
+                    tmp_path,
+                    self.optimizer,
+                    self.scheduler,
+                    epoch,
+                    test_metrics["test_acc"],
+                    extra_info={
+                        "best_acc": self.best_acc,
+                        "history": self.history,
+                    },
+                )
+                tmp_path.replace(self.checkpoint_dir / "last.pth")
+
+        # Tamamlanma isareti: orkestrasyon scripti yarim egitimi tam sanmasin
+        (self.checkpoint_dir / "TRAINING_COMPLETE").write_text(
+            f"epochs_run={self.current_epoch + 1}\n"
+            f"best_acc={self.best_acc:.4f}\n"
+        )
 
         elapsed_time = time.time() - start_time
         if self.verbose:

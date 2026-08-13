@@ -256,6 +256,129 @@ def get_cifar100_loaders(
     return trainloader, testloader
 
 
+# ============================================================================
+# Q1 genisletmesi: dataset-parametrik generic loaders
+# ============================================================================
+# Mevcut get_cifar10_* fonksiyonlarina DOKUNULMAZ (27 dosya import ediyor);
+# yeni kod generic yolu kullanir. Normalizasyon YOKTUR: tum modeller [0,1]
+# ham piksel girdisi tuketir (saldiri tabani src/attacks bunu varsayar).
+
+DATASETS = {
+    "cifar10": {
+        "cls": "CIFAR10", "num_classes": 10, "n_train": 50000, "n_test": 10000,
+        "img_size": 32, "flip": True,
+    },
+    "cifar100": {
+        "cls": "CIFAR100", "num_classes": 100, "n_train": 50000, "n_test": 10000,
+        "img_size": 32, "flip": True,
+    },
+    # SVHN: rakam siniflari - yatay cevirme ANLAMSIZ (flip kapali);
+    # extra-604k split'i BILEREK kullanilmaz (literatur karsilastirilabilirligi)
+    "svhn": {
+        "cls": "SVHN", "num_classes": 10, "n_train": 73257, "n_test": 26032,
+        "img_size": 32, "flip": False,
+    },
+}
+
+
+def _make_dataset(name: str, data_dir: str, train: bool, transform, download: bool):
+    """torchvision dataset fabrikasi (SVHN'in train/split imza farkini gizler)."""
+    spec = DATASETS[name]
+    cls = getattr(torchvision.datasets, spec["cls"])
+    if name == "svhn":
+        return cls(root=data_dir, split="train" if train else "test",
+                   download=download, transform=transform)
+    return cls(root=data_dir, train=train, download=download, transform=transform)
+
+
+def _default_transforms(name: str):
+    spec = DATASETS[name]
+    aug = [T.RandomCrop(spec["img_size"], padding=4)]
+    if spec["flip"]:
+        aug.append(T.RandomHorizontalFlip())
+    aug.append(T.ToTensor())
+    return T.Compose(aug), T.Compose([T.ToTensor()])
+
+
+def get_loaders(
+    dataset: str = "cifar10",
+    data_dir: str = "./data",
+    batch_size: int = 128,
+    test_batch_size: int = 100,
+    num_workers: int = 2,
+    download: bool = True,
+) -> Tuple[DataLoader, DataLoader]:
+    """Generic train/test loader cifti (cifar10 | cifar100 | svhn)."""
+    if dataset not in DATASETS:
+        raise ValueError(f"Bilinmeyen dataset '{dataset}'. Secenekler: {list(DATASETS)}")
+    train_tf, test_tf = _default_transforms(dataset)
+    trainset = _make_dataset(dataset, data_dir, True, train_tf, download)
+    testset = _make_dataset(dataset, data_dir, False, test_tf, download)
+    trainloader = DataLoader(trainset, batch_size=batch_size, shuffle=True,
+                             num_workers=num_workers, pin_memory=True)
+    testloader = DataLoader(testset, batch_size=test_batch_size, shuffle=False,
+                            num_workers=num_workers, pin_memory=True)
+    return trainloader, testloader
+
+
+def get_loaders_with_val(
+    dataset: str = "cifar10",
+    data_dir: str = "./data",
+    batch_size: int = 128,
+    test_batch_size: int = 100,
+    val_size: int = 2000,
+    split_seed: int = 42,
+    num_workers: int = 2,
+    download: bool = True,
+    val_indices_path: str = None,
+) -> Tuple[DataLoader, DataLoader, DataLoader]:
+    """Generic train/val/test loaders; sabit val bolmesi C1 protokoluyle ayni.
+
+    val_indices_path verilirse split seed'den TUREMEZ: JSON'daki sabit indeks
+    listesi kullanilir (tum egitim tohumlari ayni val setini paylasir ve ayni
+    dosya clean pretraining'de de kullanilarak secim sizintisi engellenir).
+    Dataset basina AYRI indeks dosyasi gerekir (SVHN n_train=73257!).
+    """
+    if dataset not in DATASETS:
+        raise ValueError(f"Bilinmeyen dataset '{dataset}'. Secenekler: {list(DATASETS)}")
+    train_tf, eval_tf = _default_transforms(dataset)
+
+    train_aug_set = _make_dataset(dataset, data_dir, True, train_tf, download)
+    train_eval_set = _make_dataset(dataset, data_dir, True, eval_tf, False)
+    testset = _make_dataset(dataset, data_dir, False, eval_tf, download)
+
+    if val_indices_path is not None:
+        import json as _json
+        with open(val_indices_path) as _f:
+            _payload = _json.load(_f)
+        if _payload.get("dataset", dataset) != dataset:
+            raise ValueError(
+                f"{val_indices_path} '{_payload['dataset']}' icin uretilmis; "
+                f"'{dataset}' ile kullanilamaz")
+        val_indices = list(_payload["val_indices"])
+        _val_set = set(val_indices)
+        if len(_val_set) != len(val_indices):
+            raise ValueError(f"{val_indices_path}: tekrarli indeks var")
+        if any(i < 0 or i >= len(train_aug_set) for i in _val_set):
+            raise ValueError(f"{val_indices_path}: indeks araligi disi deger var")
+        train_indices = [i for i in range(len(train_aug_set)) if i not in _val_set]
+    else:
+        generator = torch.Generator().manual_seed(split_seed)
+        perm = torch.randperm(len(train_aug_set), generator=generator).tolist()
+        val_indices = perm[:val_size]
+        train_indices = perm[val_size:]
+
+    trainloader = DataLoader(Subset(train_aug_set, train_indices),
+                             batch_size=batch_size, shuffle=True,
+                             num_workers=num_workers, pin_memory=True)
+    valloader = DataLoader(Subset(train_eval_set, val_indices),
+                           batch_size=test_batch_size, shuffle=False,
+                           num_workers=num_workers, pin_memory=True)
+    testloader = DataLoader(testset, batch_size=test_batch_size, shuffle=False,
+                            num_workers=num_workers, pin_memory=True)
+    return trainloader, valloader, testloader
+
+
 # CIFAR-10 class names
 CIFAR10_CLASSES = [
     'airplane', 'automobile', 'bird', 'cat', 'deer',

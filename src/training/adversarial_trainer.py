@@ -50,6 +50,11 @@ class AdversarialTrainer:
         verbose: bool = True,
         patience: int = 0,
         min_delta: float = 0.1,
+        save_every: int = 0,
+        grad_clip: float = 10.0,
+        vit_lr_cap: Optional[float] = 1e-3,
+        eps_warmup_epochs: int = 0,
+        lr_warmup_epochs: int = 0,
     ):
         """
         Initialize the adversarial trainer.
@@ -81,6 +86,17 @@ class AdversarialTrainer:
             verbose: Whether to print progress
             patience: Early stopping patience (0 = disabled)
             min_delta: Minimum improvement to reset patience counter
+            save_every: Her N epokta periyodik checkpoint kaydet
+                (checkpoint_dir/epochs/epoch_XXX.pth, yalniz model agirliklari;
+                E3 kalibrasyon egrisi yorunge noktalari icin). 0 = kapali.
+            grad_clip: Gradyan kirpma L2 max-norm (ViT-S icin 1.0 onerilir;
+                10.0 fiilen devre disi demektir).
+            vit_lr_cap: ViT'lerde LR ust siniri (None = sinirsiz). Kalibrasyon
+                deneylerinde kasitli dusuk/yuksek LR icin parametrik.
+            eps_warmup_epochs: Ilk N epokta egitim eps'i 0'dan hedefe lineer
+                artar (SVHN 8/255 ve ViT-S kararsizligi sigortasi).
+                DEGERLENDIRME her zaman tam eps'te yapilir.
+            lr_warmup_epochs: Ilk N epokta lineer LR isinmasi (sonra cosine).
         """
         self.model = model
         self.train_loader = train_loader
@@ -138,7 +154,7 @@ class AdversarialTrainer:
             is_vit = 'vit' in model_name or 'vision' in model_name or 'transformer' in model_name
             
             if is_vit:
-                effective_lr = min(lr, 1e-3)
+                effective_lr = min(lr, vit_lr_cap) if vit_lr_cap else lr
                 self.optimizer = optim.AdamW(
                     self.model.parameters(),
                     lr=effective_lr,
@@ -154,11 +170,24 @@ class AdversarialTrainer:
                     weight_decay=weight_decay,
                 )
 
-        # Scheduler
-        self.scheduler = scheduler or optim.lr_scheduler.CosineAnnealingLR(
-            self.optimizer,
-            T_max=epochs,
-        )
+        # Scheduler (istege bagli lineer LR isinmasi + cosine)
+        if scheduler is not None:
+            self.scheduler = scheduler
+        elif lr_warmup_epochs > 0:
+            warm = optim.lr_scheduler.LinearLR(
+                self.optimizer, start_factor=0.1, end_factor=1.0,
+                total_iters=lr_warmup_epochs,
+            )
+            cos = optim.lr_scheduler.CosineAnnealingLR(
+                self.optimizer, T_max=max(1, epochs - lr_warmup_epochs),
+            )
+            self.scheduler = optim.lr_scheduler.SequentialLR(
+                self.optimizer, [warm, cos], milestones=[lr_warmup_epochs],
+            )
+        else:
+            self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
+                self.optimizer, T_max=epochs,
+            )
 
         # Training state
         self.best_adv_acc = 0.0
@@ -175,6 +204,13 @@ class AdversarialTrainer:
         self.min_delta = min_delta
         self.patience_counter = 0
         self.early_stopped = False
+
+        # E0 altyapisi: periyodik checkpoint + egitim sigortalari
+        self.save_every = save_every
+        self.grad_clip = grad_clip
+        self.eps_warmup_epochs = eps_warmup_epochs
+        # Egitim eps'i warmup'ta degisir; degerlendirme HER ZAMAN bu tabanda
+        self.base_eps = eps
 
     def train_epoch(self) -> Dict[str, float]:
         """
@@ -211,8 +247,8 @@ class AdversarialTrainer:
 
             loss.backward()
 
-            # Gradient clipping to prevent explosion
-            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=10.0)
+            # Gradient clipping to prevent explosion (ViT-S icin 1.0 onerilir)
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=self.grad_clip)
             self.optimizer.step()
 
             running_loss += loss.item()
@@ -252,7 +288,7 @@ class AdversarialTrainer:
 
     def evaluate_adversarial(
         self,
-        eps: float = 8 / 255,
+        eps: Optional[float] = None,
         loader: Optional[DataLoader] = None,
     ) -> float:
         """
@@ -266,28 +302,39 @@ class AdversarialTrainer:
             Adversarial accuracy percentage
         """
         loader = loader if loader is not None else self.test_loader
+        # eps verilmezse trainer'in TAM egitim eps'i kullanilir (base_eps);
+        # eps-warmup degerlendirmeyi asla etkilemez
+        eps = eps if eps is not None else getattr(self, "base_eps", 8 / 255)
         self.model.eval()
         correct = 0
         total = 0
 
-        for inputs, labels in loader:
-            inputs, labels = inputs.to(self.device), labels.to(self.device)
+        # Normal yolda defense'in eps'ini gecici olarak istenen degere sabitle
+        old_def_eps = getattr(self.defense, "eps", None)
+        if old_def_eps is not None:
+            self.defense.eps = eps
+        try:
+            for inputs, labels in loader:
+                inputs, labels = inputs.to(self.device), labels.to(self.device)
 
-            # Generate adversarial examples
-            if hasattr(self.defense, "generate_adversarial"):
-                if "labels" in self.defense.generate_adversarial.__code__.co_varnames:
-                    adv_inputs = self.defense.generate_adversarial(inputs, labels)
+                # Generate adversarial examples
+                if hasattr(self.defense, "generate_adversarial"):
+                    if "labels" in self.defense.generate_adversarial.__code__.co_varnames:
+                        adv_inputs = self.defense.generate_adversarial(inputs, labels)
+                    else:
+                        adv_inputs = self.defense.generate_adversarial(inputs)
                 else:
-                    adv_inputs = self.defense.generate_adversarial(inputs)
-            else:
-                # Fallback to simple PGD
-                adv_inputs = self._simple_pgd(inputs, labels, eps)
+                    # Fallback to simple PGD
+                    adv_inputs = self._simple_pgd(inputs, labels, eps)
 
-            with torch.no_grad():
-                outputs = self.model(adv_inputs)
-                _, predicted = outputs.max(1)
-                total += labels.size(0)
-                correct += predicted.eq(labels).sum().item()
+                with torch.no_grad():
+                    outputs = self.model(adv_inputs)
+                    _, predicted = outputs.max(1)
+                    total += labels.size(0)
+                    correct += predicted.eq(labels).sum().item()
+        finally:
+            if old_def_eps is not None:
+                self.defense.eps = old_def_eps
 
         return 100.0 * correct / total
 
@@ -353,11 +400,30 @@ class AdversarialTrainer:
                 self.early_stopped = True
                 if self.verbose:
                     print(f"Training already early-stopped at epoch {start_epoch}; nothing to resume.")
+                # Kokme TRAINING_COMPLETE yazilmadan once olduysa marker'i
+                # burada tamamla; aksi halde pipeline guard'i sonsuza dek kilitli
+                (self.checkpoint_dir / "TRAINING_COMPLETE").write_text(
+                    f"epochs_run={start_epoch}\n"
+                    f"early_stopped=True\n"
+                    f"best_adv_acc={self.best_adv_acc:.4f}\n"
+                )
                 return self.history
             if self.verbose:
                 print(f"Resuming from epoch {start_epoch} "
                       f"(best adv acc so far: {self.best_adv_acc:.2f}%, "
                       f"patience: {self.patience_counter}/{self.patience})")
+            # metrics.jsonl budamasi: yeniden kosulacak epoch'larin eski
+            # satirlarini at (cokme epoch-ckpt ile last.pth arasina duserse
+            # ayni epoch icin cift satir olusmasin)
+            if self.save_every > 0:
+                mfile = self.checkpoint_dir / "epochs" / "metrics.jsonl"
+                if mfile.exists():
+                    import json as _json
+                    kept = [ln for ln in mfile.read_text().splitlines()
+                            if ln.strip() and _json.loads(ln)["epoch"] <= start_epoch]
+                    tmp = mfile.with_suffix(".jsonl.tmp")
+                    tmp.write_text("\n".join(kept) + ("\n" if kept else ""))
+                    tmp.replace(mfile)
 
         if self.verbose:
             print(f"Adversarial training on {self.device}")
@@ -367,8 +433,18 @@ class AdversarialTrainer:
         for epoch in range(start_epoch, self.epochs):
             self.current_epoch = epoch
 
+            # eps-warmup: EGITIM saldirisi ilk N epokta lineer buyuyen eps
+            # kullanir; asagidaki degerlendirmeden once tabana geri alinir
+            if self.eps_warmup_epochs > 0 and hasattr(self.defense, "eps"):
+                frac = min(1.0, (epoch + 1) / self.eps_warmup_epochs)
+                self.defense.eps = self.base_eps * frac
+
             # Train
             train_metrics = self.train_epoch()
+
+            # Degerlendirme ve best-secimi HER ZAMAN tam eps'te yapilir
+            if hasattr(self.defense, "eps"):
+                self.defense.eps = self.base_eps
 
             # Evaluate: val_loader saglanmissa secim/izleme validasyon
             # setinde yapilir, test seti egitim boyunca kullanilmaz (M7)
@@ -417,6 +493,25 @@ class AdversarialTrainer:
                     self.early_stopped = True
                     if self.verbose:
                         print(f"\nEarly stopping triggered at epoch {epoch + 1}")
+
+            # E3 kalibrasyon yorungeleri icin periyodik checkpoint: yalniz
+            # model agirliklari (optimizersiz) + metrics.jsonl satiri, boylece
+            # checkpoint'ler sonradan TEMIZ-DOGRULUK KANTILLERINE gore secilebilir
+            if self.save_every > 0 and (epoch + 1) % self.save_every == 0:
+                ep_dir = self.checkpoint_dir / "epochs"
+                ep_dir.mkdir(parents=True, exist_ok=True)
+                ep_tmp = ep_dir / f"epoch_{epoch + 1:03d}.pth.tmp"
+                torch.save({
+                    "model_state_dict": self.model.state_dict(),
+                    "epoch": epoch,
+                    "clean_acc": clean_acc,
+                    "adv_acc": adv_acc,
+                }, ep_tmp)
+                ep_tmp.replace(ep_dir / f"epoch_{epoch + 1:03d}.pth")
+                with open(ep_dir / "metrics.jsonl", "a") as f:
+                    f.write('{"epoch": %d, "clean_acc": %.4f, "adv_acc": %.4f, "lr": %.6g}\n'
+                            % (epoch + 1, clean_acc, adv_acc,
+                               self.optimizer.param_groups[0]["lr"]))
 
             # Her epoch sonunda kesintiye dayanikli last.pth (atomik yaz:
             # once .tmp'ye kaydet sonra yerine tasi - yazim sirasinda elektrik

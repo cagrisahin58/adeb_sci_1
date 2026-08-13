@@ -23,7 +23,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.models import ModelRegistry
-from src.data import get_cifar10_loaders
+from src.data import get_cifar10_loaders, get_loaders, DATASETS
+from src.utils.load_model_auto import load_model_auto
 from src.utils.checkpoint import load_model_weights
 
 try:
@@ -52,7 +53,7 @@ def set_seed(seed):
 
 def evaluate_with_autoattack(model, test_loader, device, eps=8/255, n_samples=500,
                              batch_size=100, seed=42, chunk_size=1000,
-                             chunk_dir=None, model_name=""):
+                             chunk_dir=None, model_name="", aa_norm="Linf"):
     """Evaluate model with AutoAttack.
 
     Kesintiye dayaniklilik: degerlendirme `chunk_size`'lik parcalara bolunur,
@@ -101,7 +102,12 @@ def evaluate_with_autoattack(model, test_loader, device, eps=8/255, n_samples=50
         lo, hi = k * chunk_size, min((k + 1) * chunk_size, len(labels))
         chunk_file = None
         if chunk_dir is not None:
-            chunk_file = Path(chunk_dir) / f"aa_chunk_{model_name}_{k:03d}.npz"
+            # Cache anahtari degerlendirme konfigurasyonunu ICERIR: farkli
+            # norm/eps/seed kosulari birbirinin parcalarini yeniden kullanamaz.
+            # (Geriye uyum: eski Linf-8/255-seed42 kosularinin adlari degisir;
+            # C1 sonuclari zaten tamamlandigi icin sorun degil.)
+            cfg_tag = f"{aa_norm}_eps{eps:.5f}_s{seed}_n{n_samples}"
+            chunk_file = Path(chunk_dir) / f"aa_chunk_{model_name}_{cfg_tag}_{k:03d}.npz"
             if chunk_file.exists():
                 cached = np.load(chunk_file)["robust_correct"]
                 if len(cached) == hi - lo:
@@ -113,7 +119,7 @@ def evaluate_with_autoattack(model, test_loader, device, eps=8/255, n_samples=50
         xb = images[lo:hi].to(device)
         yb = labels[lo:hi].to(device)
 
-        adversary = AutoAttack(model, norm='Linf', eps=eps, version='standard',
+        adversary = AutoAttack(model, norm=aa_norm, eps=eps, version='standard',
                                seed=seed + k, verbose=True)
         adv_images = adversary.run_standard_evaluation(xb, yb, bs=batch_size)
 
@@ -165,6 +171,14 @@ def main():
                         default="models/resnet18/adv/at_run2/resnet18/adv/adversarial_training/best.pth")
     parser.add_argument("--vit-path", type=str,
                         default="models/vit_tiny/adv/at_run2/vit_tiny/adv/adversarial_training/best.pth")
+    parser.add_argument("--dataset", choices=sorted(DATASETS), default="cifar10",
+                        help="Degerlendirme veri kumesi (num_classes ckpt'ten otomatik)")
+    parser.add_argument("--eps", type=float, default=8/255)
+    parser.add_argument("--norm", choices=["Linf", "L2"], default="Linf")
+    parser.add_argument("--model", action="append", default=None, metavar="AD:TIP:YOL",
+                        help="Ek/alternatif model tanimi (tekrarlanabilir). Verilirse "
+                             "--resnet-path/--vit-path yoksayilir. Ornek: "
+                             "--model R50_AT:resnet50:models/q1/.../best.pth")
     args = parser.parse_args()
 
     if not AUTOATTACK_AVAILABLE:
@@ -180,16 +194,29 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Load data
-    print("\nLoading CIFAR-10...")
-    _, test_loader = get_cifar10_loaders(data_dir='./data', test_batch_size=100)
+    # Load data (Q1: dataset-parametrik)
+    print(f"\nLoading {args.dataset}...")
+    _, test_loader = get_loaders(dataset=args.dataset, data_dir='./data',
+                                 test_batch_size=100)
 
-    models_config = [
-        ("ResNet18_AT", "resnet18", args.resnet_path),
-        ("ViT_Tiny_AT", "vit_tiny", args.vit_path),
-    ]
+    # Q1: --model AD:TIP:YOL verilirse varsayilan cift yerine o liste kullanilir
+    if args.model:
+        models_config = []
+        for spec in args.model:
+            parts = spec.split(":", 2)
+            if len(parts) != 3:
+                sys.exit(f"FATAL: gecersiz --model spec '{spec}' (AD:TIP:YOL bekleniyor)")
+            models_config.append(tuple(parts))
+    else:
+        models_config = [
+            ("ResNet18_AT", "resnet18", args.resnet_path),
+            ("ViT_Tiny_AT", "vit_tiny", args.vit_path),
+        ]
 
-    eps = 8/255
+    eps = args.eps
+    if args.norm == "L2" and eps < 0.1:
+        print(f"UYARI: L2 normu ile eps={eps:.4f} cok kucuk gorunuyor "
+              f"(L2 standardi 0.5); Linf butcesi mi verildi?")
     n_samples = args.n_samples
     batch_size = args.batch_size
 
@@ -201,23 +228,23 @@ def main():
         print(f"Evaluating: {name}")
         print(f"{'='*60}")
 
-        # Check if model exists
+        # Eksik checkpoint = SERT hata: guard dosyasi kismi degerlendirmeyle
+        # olusup pipeline'i yanlis DONE'a dusurmesin
         if not Path(model_path).exists():
-            print(f"  Model not found: {model_path}")
-            continue
+            sys.exit(f"FATAL: checkpoint bulunamadi: {model_path}")
 
         clear_gpu()
 
         # Load model
-        model = ModelRegistry.get(model_type)
-        load_model_weights(model, model_path, device)
-        model = model.to(device)
+        # num_classes checkpoint'ten otomatik (CIFAR-100 icin sart)
+        model = load_model_auto(model_type, model_path, device)
         model.eval()
 
         # Evaluate (chunk'li: kesinti sonrasi tamamlanan parcalar atlanir)
         result = evaluate_with_autoattack(
             model, test_loader, device,
             eps=eps, n_samples=n_samples, batch_size=batch_size, seed=args.seed,
+            aa_norm=args.norm,
             chunk_size=args.chunk_size, chunk_dir=output_dir, model_name=name,
         )
         result['model'] = name
@@ -268,8 +295,16 @@ def main():
         }
         print(f"\nMcNemar (robust): b={b}, c={c}, stat={stat:.3f}, p={p_value:.4f}")
 
+    # Kemer-aski: istenen her model degerlendirilmis olmali; kismi/bos
+    # degerlendirme guard dosyasi uretmemeli (pipeline yanlis DONE olmasin)
+    if len(results) != len(models_config):
+        sys.exit(f"FATAL: {len(models_config)} model istendi, {len(results)} "
+                 f"degerlendirildi; autoattack_summary.json YAZILMADI")
+
     summary = {
         'timestamp': datetime.now().isoformat(),
+        'dataset': args.dataset,
+        'norm': args.norm,
         'eps': eps,
         'n_samples': n_samples,
         'seed': args.seed,
@@ -277,8 +312,11 @@ def main():
         'results': results,
     }
 
-    with open(output_dir / "autoattack_summary.json", 'w') as f:
+    # Atomik yaz: guard dosyasi yarim halde asla gorunmesin
+    _tmp = output_dir / "autoattack_summary.json.tmp"
+    with open(_tmp, 'w') as f:
         json.dump(summary, f, indent=2)
+    _tmp.replace(output_dir / "autoattack_summary.json")
 
     # Print summary
     print("\n" + "="*60)

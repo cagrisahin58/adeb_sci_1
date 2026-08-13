@@ -28,7 +28,8 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.models import ModelRegistry
-from src.data import get_cifar10_loaders
+from src.data import get_cifar10_loaders, get_loaders
+from src.utils.load_model_auto import load_model_auto
 from src.attacks import PGDAttack
 from src.utils.checkpoint import load_model_weights
 from src.analysis.gradient_analysis import GradientAnalyzer
@@ -62,11 +63,8 @@ def set_seed(seed):
 
 
 def load_model(model_type, model_path, device):
-    model = ModelRegistry.get(model_type)
-    load_model_weights(model, model_path, device)
-    model = model.to(device)
-    model.eval()
-    return model
+    # Q1: num_classes checkpoint'ten otomatik cikarilir (CIFAR-100 destegi)
+    return load_model_auto(model_type, model_path, device)
 
 
 # =============================================================================
@@ -84,7 +82,8 @@ def _bootstrap_ci(values: np.ndarray, n_boot: int = 1000, seed: int = 42):
     return (float(np.percentile(boot_means, 2.5)), float(np.percentile(boot_means, 97.5)))
 
 
-def run_transfer_analysis(device, n_samples=10000, output_dir="results/transfer_analysis_run3", seed=42):
+def run_transfer_analysis(device, n_samples=10000, output_dir="results/transfer_analysis_run3", seed=42,
+                          dataset="cifar10", models_config=None):
     """Transfer analysis with the conditioned fooling-rate metric (M3).
 
     Onceki surum ham hedef-yanlis-siniflandirma oranini rapor ediyordu; bu,
@@ -102,9 +101,9 @@ def run_transfer_analysis(device, n_samples=10000, output_dir="results/transfer_
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    _, test_loader = get_cifar10_loaders(data_dir='./data', test_batch_size=50)
+    _, test_loader = get_loaders(dataset=dataset, data_dir='./data', test_batch_size=50)
 
-    models_config = list(RUN2_MODELS.items())
+    models_config = list((models_config or RUN2_MODELS).items())
     results = []
 
     for i, (source_name, (source_type, source_path)) in enumerate(models_config):
@@ -220,8 +219,11 @@ def run_transfer_analysis(device, n_samples=10000, output_dir="results/transfer_
         'steps': STEPS,
         'n_samples': n_samples,
         'seed': seed,
+        'dataset': dataset,
         'model_variant': 'run3-metric',
-        'model_paths': {k: v[1] for k, v in RUN2_MODELS.items()},
+        # Provenans: gercekten degerlendirilen modeller (models_config),
+        # modul-duzeyi RUN2_MODELS degil (Q1 review bulgusu)
+        'model_paths': {name: cfg[1] for name, cfg in models_config},
         'results': results,
     }
 
@@ -734,6 +736,9 @@ if __name__ == "__main__":
     parser.add_argument("--only", type=str, default="all",
                         choices=["all", "transfer", "gradient", "attention", "statistical"],
                         help="Run only the selected analysis")
+    parser.add_argument("--dataset", type=str, default="cifar10",
+                        help="Transfer analizi veri kumesi (Q1); diger analizler "
+                             "simdilik cifar10-sabittir ve farkli kumeyle reddedilir")
     parser.add_argument("--n-samples", type=int, default=10000,
                         help="Transfer analysis sample count (default: full test set)")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
@@ -771,10 +776,14 @@ if __name__ == "__main__":
 
     results = {}
 
+    if args.dataset != "cifar10" and args.only != "transfer":
+        sys.exit("FATAL: --dataset != cifar10 yalniz --only transfer ile kullanilabilir "
+                 "(gradyan/attention/statistical analizleri cifar10-sabit)")
+
     if args.only in ("all", "transfer"):
         results['transfer'] = run_transfer_analysis(
             device, n_samples=args.n_samples, seed=args.seed,
-            output_dir=args.transfer_output_dir)
+            output_dir=args.transfer_output_dir, dataset=args.dataset)
 
     if args.only in ("all", "gradient"):
         results['gradient'] = run_gradient_analysis(device, seed=args.seed)

@@ -49,7 +49,12 @@ def save_checkpoint(
     if extra_info is not None:
         checkpoint.update(extra_info)
 
-    torch.save(checkpoint, save_path)
+    # Atomik yaz (Q1): best.pth dahil hicbir checkpoint yarim halde gorunmesin
+    # (yazim sirasinda kesinti eski dosyayi bozmaz). Cagiranlarin kendi
+    # .tmp+replace desenleri zararsiz bicimde ikinci kez rename yapar.
+    tmp_path = save_path.with_name(save_path.name + ".tmp")
+    torch.save(checkpoint, tmp_path)
+    tmp_path.replace(save_path)
 
 
 def load_checkpoint(

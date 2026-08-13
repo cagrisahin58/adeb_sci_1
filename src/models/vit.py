@@ -280,49 +280,13 @@ class CIFAR10ViTCIFARSmall(BaseModel):
 # =============================================================================
 
 
-@register_model("vit_tiny")
-class CIFAR10ViTTiny(BaseModel):
+class TimmViTAttentionMixin:
+    """timm ViT sarmalayicilari icin gercek attention cikarimi (Q1 Adim 4).
+
+    Gereksinimler: self.model (timm VisionTransformer, .blocks'lu) ve
+    self.resize (32->224 upsample). Grid boyutu dinamik hesaplandigi icin
+    Tiny/Small/Base tum patch-16 varyantlarinda calisir.
     """
-    ViT-Tiny adapted for CIFAR-10.
-
-    Uses timm library's vit_tiny_patch16_224 model.
-    Input images are resized to 224x224 for patch-based processing.
-    """
-
-    def __init__(self, num_classes: int = 10, pretrained: bool = False):
-        """
-        Initialize ViT-Tiny for CIFAR-10.
-
-        Args:
-            num_classes: Number of output classes (default: 10)
-            pretrained: Whether to use pretrained weights (default: False)
-        """
-        super().__init__(num_classes=num_classes)
-
-        if not TIMM_AVAILABLE:
-            raise ImportError(
-                "timm library is required for ViT models. "
-                "Install it with: pip install timm"
-            )
-
-        self.model = timm.create_model(
-            "vit_tiny_patch16_224",
-            pretrained=pretrained,
-            num_classes=num_classes,
-        )
-
-        # Resize layer for CIFAR-10 (32x32 -> 224x224)
-        self.resize = nn.Upsample(size=(224, 224), mode="bilinear", align_corners=False)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        # Resize input from 32x32 to 224x224
-        x = self.resize(x)
-        return self.model(x)
-
-    def get_features(self, x: torch.Tensor) -> torch.Tensor:
-        """Get features before the final classification head."""
-        x = self.resize(x)
-        return self.model.forward_features(x)
 
     @torch.no_grad()
     def get_attention_maps(self, x: torch.Tensor):
@@ -339,8 +303,8 @@ class CIFAR10ViTTiny(BaseModel):
         Returns:
             Dict with:
               'attention': list of L tensors (B, heads, N, N), post-softmax
-              'cls_maps': tensor (B, L, 14, 14) - CLS-row attention over the
-                  196 patches, averaged over heads
+              'cls_maps': tensor (B, L, G, G) - CLS-row attention over the
+                  patches, averaged over heads (G=14 for 196 patches)
               'entropy': tensor (L,) - mean entropy of CLS-row attention
                   distributions per layer
         """
@@ -388,9 +352,54 @@ class CIFAR10ViTTiny(BaseModel):
 
         return {
             "attention": captured,
-            "cls_maps": torch.stack(cls_rows, dim=1),   # (B, L, 14, 14)
+            "cls_maps": torch.stack(cls_rows, dim=1),   # (B, L, G, G)
             "entropy": torch.stack(entropies),           # (L,)
         }
+
+
+@register_model("vit_tiny")
+class CIFAR10ViTTiny(TimmViTAttentionMixin, BaseModel):
+    """
+    ViT-Tiny adapted for CIFAR-10.
+
+    Uses timm library's vit_tiny_patch16_224 model.
+    Input images are resized to 224x224 for patch-based processing.
+    """
+
+    def __init__(self, num_classes: int = 10, pretrained: bool = False):
+        """
+        Initialize ViT-Tiny for CIFAR-10.
+
+        Args:
+            num_classes: Number of output classes (default: 10)
+            pretrained: Whether to use pretrained weights (default: False)
+        """
+        super().__init__(num_classes=num_classes)
+
+        if not TIMM_AVAILABLE:
+            raise ImportError(
+                "timm library is required for ViT models. "
+                "Install it with: pip install timm"
+            )
+
+        self.model = timm.create_model(
+            "vit_tiny_patch16_224",
+            pretrained=pretrained,
+            num_classes=num_classes,
+        )
+
+        # Resize layer for CIFAR-10 (32x32 -> 224x224)
+        self.resize = nn.Upsample(size=(224, 224), mode="bilinear", align_corners=False)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        # Resize input from 32x32 to 224x224
+        x = self.resize(x)
+        return self.model(x)
+
+    def get_features(self, x: torch.Tensor) -> torch.Tensor:
+        """Get features before the final classification head."""
+        x = self.resize(x)
+        return self.model.forward_features(x)
 
     def freeze_backbone(self) -> None:
         """Freeze all layers except the classification head."""
@@ -404,7 +413,7 @@ class CIFAR10ViTTiny(BaseModel):
 
 
 @register_model("vit_small")
-class CIFAR10ViTSmall(BaseModel):
+class CIFAR10ViTSmall(TimmViTAttentionMixin, BaseModel):
     """ViT-Small adapted for CIFAR-10."""
 
     def __init__(self, num_classes: int = 10, pretrained: bool = False):
