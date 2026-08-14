@@ -73,6 +73,9 @@ doğruluğu, val eğrilerinin kendisi (`records`).
   özdeşliği olgusuna ve (b) McNemar'a dayandırılır (Δ ≡ 0 zaten δ içinde).
 - **Seçim None** (hiçbir epok 0,0+min_delta'yı geçemedi): gerçek eğitimde
   fiilen imkânsız; olursa koşum incelemeye alınır, o hücre analiz dışı.
+  *(Uygulama notu: toplama betiği final modda bu durumda raporu TÜMDEN
+  reddeder — insan incelemesi olmadan rapor üretilmez; yalnız
+  `--allow-partial` ara denetiminde tohum atlanarak devam edilir.)*
 - **TOST sonuçsuz + fark testi anlamsız** (0,59 < s_Δ): manşet McNemar'a
   kayar; E4 (+2 tohum) tetiklenebilir — n=5'te s_Δ toleransı 1,05'e çıkar.
   E4 kararı E2+E1 sonuçlarıyla birlikte verilecek (rapor planındaki gibi).
@@ -83,6 +86,14 @@ doğruluğu, val eğrilerinin kendisi (`records`).
   çekilişine dair belirsizlik tohumlar-arası std'ye yansımaz. s_Δ bu
   bileşeni eksik tahmin eder; makalede sınırlama olarak yazılır
   (bölme-yeniden-çekilişli tam faktöriyel, bütçe dışıdır).
+- **Havuzlanmış McNemar'da test-kümesi tekrarı** *(eklendi 2026-08-14,
+  toplama betiği doğrulama denetiminde — E2 verisi henüz üretilmeden)*:
+  3 tohum AYNI 10k test kümesinde değerlendirilir; havuzdaki ~30k eşleşmiş
+  birim aynı 10k örneğin 3 korelasyonlu kopyasıdır ve örnek-zorluk
+  korelasyonu kesin binom p'sini anti-konservatif yapabilir. Havuzlama
+  ön-kayıtlı tercihtir ve korunur; raporlamada tohum-bazlı McNemar
+  p'lerinin havuzlanmışla yön/anlamlılık tutarlılığı BİRLİKTE gösterilir,
+  makalede sınırlama olarak beyan edilir.
 - **Tek veri kümesi/rejim:** E2 yalnız CIFAR-10 + PGD-10 seçim metriğiyle
   koşulur; genelleme iddiası yapılmaz.
 - **AT'nin canlı `best.pth`'ı** V_A∪V_B∪V_C (6000) üzerinde seçilir —

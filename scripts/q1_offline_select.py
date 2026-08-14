@@ -158,7 +158,8 @@ def main():
         payload = torch.load(sel_ck, map_location="cpu", weights_only=False)
         model.load_state_dict(payload["model_state_dict"])
         _, test_loader = get_loaders(dataset=args.dataset,
-                                     data_dir=str(ROOT / "data"), batch_size=256)
+                                     data_dir=str(ROOT / "data"),
+                                     test_batch_size=256)
         if args.test_n > 0:
             from torch.utils.data import DataLoader, Subset
             test_loader = DataLoader(
