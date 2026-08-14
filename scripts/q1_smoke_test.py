@@ -155,10 +155,18 @@ def t_trainer():
                         "--epochs-dir", str(ckdir / "epochs"),
                         "--model-type", "resnet18", "--dataset", "cifar10",
                         "--val-indices", "data/val_split_indices.json",
-                        "--out", str(outj), "--steps", "2"],
+                        "--out", str(outj), "--steps", "2",
+                        "--test-eval", "--test-n", "200"],
                        capture_output=True, text=True)
     assert r.returncode == 0, r.stderr[-400:]
     sel = json.load(open(outj))
+    # test-eval sozlesmesi: secim None ise test de None; degilse npz + acc var
+    assert "test" in sel
+    if sel["selected_epoch"] is None:
+        assert sel["test"] is None
+    else:
+        assert sel["test"] is not None and 0.0 <= sel["test"]["adv_acc"] <= 100.0
+        assert Path(sel["test"]["per_sample_npz"]).exists()
     # SOZLESME testi: aracin sectigi epoch, ayni kayitlara C1 kuralinin
     # bagimsiz uygulanmasiyla ayni olmali (mini model %0 adv alabilir ve
     # secim mesru olarak None kalabilir - trainer'in best.pth kurali gibi)

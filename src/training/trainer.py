@@ -231,6 +231,10 @@ class Trainer:
             print(f"Training on {self.device}")
             print(f"Model parameters: {sum(p.numel() for p in self.model.parameters()):,}")
 
+        # Resume'da dongu hic donmese bile TRAINING_COMPLETE dogru epochs_run yazsin
+        if start_epoch > 0:
+            self.current_epoch = start_epoch - 1
+
         test_metrics = {"test_acc": 0.0}
         for epoch in range(start_epoch, self.epochs):
             self.current_epoch = epoch

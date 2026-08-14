@@ -9,7 +9,9 @@ otomatik). Başlatmadan önce `nvidia-smi` ile GPU'nun boş olduğunu kontrol et
 ## Aşama komutları (konteyner içinde, arka planda)
 
 ```bash
-# 1) E2 - sızıntı ablasyonu (~21 GPU-saat; her epoch checkpoint'li, disk ~25GB)
+# 1) E2 - sızıntı ablasyonu (~19-28 GPU-saat; her epoch checkpoint'li, disk ~25GB)
+#    (bütçe güncellendi: patience 0 → 6 AT koşusunun hepsi tam 100 epok; ayrıca
+#    18 çevrimdışı seçim geçişi ~2-3 saat + 18 test değerlendirmesi ~1 saat)
 docker exec -d -w /workspace -e STAGE=e2 adeb_eval bash scripts/q1_pipeline.sh
 
 # 2) E1 - CIFAR-100 ana çift (~24 GPU-saat)
@@ -86,3 +88,27 @@ tohumlarıyla `train_pair_member cifar10 ...` çağrıları — istenirse ekleri
 - E2 notu (review bulgusu): AT başlangıcı clean `last.pth`'tan alınır (sabit
   200-epok bütçe) — `best.pth` seçimi V_B'ye dokunurdu, V_B'nin "hiç
   kullanılmamış" statüsü korunur.
+
+## Başlatma-öncesi denetim güncellemeleri (2026-08-14, 3 Opus ajanı)
+
+- **E2'ye V_C negatif kontrolü eklendi:** V_A/V_B/V_C 2000'er, D_core=44k.
+  V_B-vs-V_C = saf seçim-gürültüsü tabanı; V_A-vs-V_B bu tabana karşı okunur.
+  Analiz kuralları EĞİTİMDEN ÖNCE sabitlendi: `E2_ISTATISTIK_PROTOKOLU.md`
+  (McNemar eş-birincil, TOST δ=1.0, dejenere durumlar, ortak-bölme sınırlaması).
+- **E2 seçimleri artık test değerlendirmesi içerir:** `q1_offline_select.py
+  --test-eval` seçilen checkpoint'i tam 10k testte ölçer, örnek maskelerini
+  `select_*_test.npz`'ye yazar. Toplama betiği `scripts/q1_e2_report.py`
+  (eğitim koşarken yazılacak) TOST+McNemar'ı bunlardan üretir.
+- **E2 `adv/*/best.pth` dosyalarını KULLANMA** — canlı seçim V_A∪V_B∪V_C
+  (6000) üzerindedir, üçüncü kuraldır (`models/q1/e2/BEST_PTH_KULLANMA.txt`).
+- **Pipeline sertleştirmeleri:** başta sert CUDA kontrolü (auto-device'ın
+  sessiz CPU düşüşü C1'de yaşanmıştı) + tüm eğitim komutlarında `--device
+  cuda`; her eğitim/adım 3 denemeli (aralarda 300 sn, `--resume` ile);
+  `PYTHONUNBUFFERED=1` (loglar gecikmesiz).
+- **Sıfırdan yeniden başlatma kuralı:** bir AT koşusunu hiperparametre
+  değişikliğiyle bilerek sıfırlarken `TRAINING_COMPLETE` + `last.pth` +
+  `epochs/` ÜÇÜNÜ birden sil — yalnız marker silinirse eski `epoch_*.pth`
+  dosyaları yeni yörüngeyle sessizce karışır.
+- **Bölme dosyaları:** `data/e2_*.json` üretimden hemen sonra `git add -f`
+  ile depoya alınır (data/ gitignore'da; torch.randperm sürüme bağlı —
+  dosyalar kanonik kaynak).

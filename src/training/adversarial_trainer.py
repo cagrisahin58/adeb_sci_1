@@ -430,6 +430,11 @@ class AdversarialTrainer:
             print(f"Defense method: {self.defense.name}")
             print(f"Model parameters: {sum(p.numel() for p in self.model.parameters()):,}")
 
+        # Resume'da dongu hic donmese bile (tum epochlar zaten bitmis)
+        # TRAINING_COMPLETE dogru epochs_run yazsin
+        if start_epoch > 0:
+            self.current_epoch = start_epoch - 1
+
         for epoch in range(start_epoch, self.epochs):
             self.current_epoch = epoch
 
