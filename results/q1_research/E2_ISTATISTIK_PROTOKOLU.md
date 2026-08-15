@@ -100,6 +100,32 @@ doğruluğu, val eğrilerinin kendisi (`records`).
   ÜÇÜNCÜ bir kuraldır, hiçbir analizde kullanılmaz
   (`models/q1/e2/BEST_PTH_KULLANMA.txt`).
 
+## 6b. Ara denetim beklenti kaydı (2026-08-16, VERİ ÜRETİLMEDEN)
+
+4/6 yörünge tamamlandığında koşulan 3-mercekli ara denetim, **eğitim
+eğrilerinden** (test sayıları görülmeden) şu beklentiyi üretti. Sonuçlar
+görüldükten sonra protokolü değiştirmek yasak olduğu için beklenti şimdi
+yazılıyor:
+
+- **Tepe bölgesi yassı:** ResNet kollarında tepenin 1 puanı içindeki epoklar
+  38-99 aralığına *parçalı* dağılmış (tepe-5 yayılımı 0,68 puan); ViT'te daha
+  keskin (tepe ep19, bant [17,32]). 2000'lik bölmenin binom SE'si ~1,05-1,11
+  puan — yani eğrinin kendi salınımıyla aynı mertebede.
+- **Beklenen s_Δ ≈ 0,79-1,04 puan > 0,59** (protokol §3'ün eşdeğerlik için
+  gerektirdiği tolerans). Dolayısıyla **TOST büyük olasılıkla SONUÇSUZ
+  kalacak** ve §5'in "manşet McNemar'a kayar" yedeği devreye girecek.
+  δ=1,0 DEĞİŞTİRİLMEYECEK.
+- **McNemar yanlış-pozitif tuzağı:** iki farklı epok checkpoint'i zaten
+  binlerce örnekte uyuşmadığından, **sıfır sızıntı altında bile** havuzlanmış
+  McNemar simülasyonda %37-56 oranında p<0,05 veriyor. Bu, V_C negatif
+  kontrolünün süs değil *asıl test* olduğunu doğrular: manşet yalnızca
+  |Δ_AB| ≫ |Δ_BC| ise sızıntıya atfedilir (§4 kuralı bağlayıcı).
+- **Anlatı kuralları:** (a) "eşdeğerdir" denmeyecek; "sızıntı etkisi %95 üst
+  sınırla ≤ X puan; protokol yayılımı 10,45 puan; oran ≥ N kat" formülü
+  kullanılacak. (b) ViT mutlak gürbüzlüğü ASLA final epoktan raporlanmayacak
+  (tepeden 8 puan aşağıda). (c) Sonuçlar mimari-başına verilecek: ViT
+  sinyal-hakimiyetli, ResNet gürültü-hakimiyetli rejimde.
+
 ## 7. Tekrarlanabilirlik
 
 - Seçim değerlendirmesi checkpoint-başına deterministik tohumlu
@@ -107,6 +133,21 @@ doğruluğu, val eğrilerinin kendisi (`records`).
 - Bölme dosyaları `git add -f` ile depoya alınır (data/ gitignore'da;
   `torch.randperm` yalnız aynı PyTorch sürümünde aynı çıktıyı verir —
   dosyaların kendisi kanonik kaynaktır).
-- Toplama betiği (`scripts/q1_e2_report.py`, eğitim koşarken yazılacak)
-  yalnız `select_*.json` + `select_*_test.npz` tüketir; bu protokolün
-  dışına çıkan hiçbir karar kuralı içeremez.
+- Toplama betiği (`scripts/q1_e2_report.py`) yalnız `select_*.json` +
+  `select_*_test.npz` tüketir; bu protokolün dışına çıkan hiçbir karar
+  kuralı içeremez.
+
+## 8. Keşifsel artefaktlar (birincil analize GİRMEZ)
+
+`q1_offline_select.py` her koşumda `select_*_valcurve.npz` de yazar: 100
+epok × 2000 örneklik val doğru/yanlış maskeleri (~90 KB). Amaç, seçim
+kararının **ampirik** kararsızlığını ölçmek — val bölmesi yeniden
+örneklenerek (küme bootstrap) binlerce sözde-bölmede hangi epoğun seçileceği
+dağılımı çıkarılabilir. Böylece gürültü tabanı, V_C'nin tek çekilişine ek
+olarak dağılım düzeyinde raporlanır.
+
+Kurallar: bu artefakt **birincil uç noktalara girmez**; ondan türetilen her
+sayı makalede *keşifsel* etiketiyle sunulur; seçim kuralı (§2) hiçbir koşulda
+bu analize göre değiştirilmez. Skaler kayıtlar (`records`) maskelerin
+sayımlarından birebir türetilir — artefakt eklenmesi hiçbir sayıyı
+değiştirmez (gerçek checkpointlerle doğrulandı).

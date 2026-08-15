@@ -37,18 +37,16 @@ from src.models import ModelRegistry  # noqa: E402
 
 
 def eval_checkpoint(model, loader, device, eps, alpha, steps):
-    """Val kumesinde temiz + PGD dogrulugu."""
-    model.eval()
-    attack = PGDAttack(model, eps=eps, alpha=alpha, steps=steps)
-    n = c_clean = c_adv = 0
-    for images, labels in loader:
-        images, labels = images.to(device), labels.to(device)
-        adv = attack(images, labels)
-        with torch.no_grad():
-            c_clean += (model(images).argmax(1) == labels).sum().item()
-            c_adv += (model(adv).argmax(1) == labels).sum().item()
-        n += labels.size(0)
-    return 100.0 * c_clean / n, 100.0 * c_adv / n
+    """Val kumesinde temiz + PGD dogrulugu + ornek-bazli maskeler.
+
+    Skaler degerler maske SAYIMLARINDAN turetilir (100*dogru/n) - eski
+    sayac-tabanli surumle birebir ayni sayi; RNG akisi da ozdes (saldiri
+    cagri sirasi degismedi), yani onceki kosumlarla karsilastirilabilir.
+    """
+    clean_ok, adv_ok = eval_per_sample(model, loader, device, eps, alpha, steps)
+    n = clean_ok.size
+    return (100.0 * int(clean_ok.sum()) / n, 100.0 * int(adv_ok.sum()) / n,
+            clean_ok, adv_ok)
 
 
 def eval_per_sample(model, loader, device, eps, alpha, steps):
@@ -133,6 +131,7 @@ def main():
     model = ModelRegistry.get(args.model_type, num_classes=nc).to(device)
 
     records = []
+    curve_clean, curve_adv = [], []   # KESIFSEL: epok x ornek maskeleri
     for ck in ckpts:
         payload = torch.load(ck, map_location="cpu", weights_only=False)
         model.load_state_dict(payload["model_state_dict"])
@@ -141,10 +140,29 @@ def main():
         # calistirmadan calistirmaya AYNI olsun (min_delta=0.1'lik esik,
         # tohumlanmamis ~+-0.3-0.5 puanlik oynamayla cevrilebilirdi)
         torch.manual_seed(args.seed * 100000 + epoch)
-        clean, adv = eval_checkpoint(model, val_loader, device,
-                                     args.eps, args.alpha, args.steps)
+        clean, adv, m_clean, m_adv = eval_checkpoint(model, val_loader, device,
+                                                     args.eps, args.alpha, args.steps)
         records.append((epoch, clean, adv))
+        curve_clean.append(m_clean)
+        curve_adv.append(m_adv)
         print(f"epoch {epoch:3d}: clean {clean:6.2f}  adv {adv:6.2f}", flush=True)
+
+    # KESIFSEL ARTEFAKT (on-kayitli birincil analize GIRMEZ): tum epoklarin
+    # ornek-bazli val maskeleri. Bunlarla val bolmesi yeniden orneklenerek
+    # (kume bootstrap) secim kararinin ampirik kararsizlik dagilimi cikarilir -
+    # yani "gurultu tabani" V_C'nin tek cekilisine ek olarak binlerce
+    # sozde-bolmeyle olculebilir. Maliyet: ~2000 x 100 bayt/bolme (~0.2 MB).
+    curve_path = re.sub(r"\.json$", "", args.out) + "_valcurve.npz"
+    Path(curve_path).parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(
+        curve_path + ".tmp.npz",
+        epochs=np.array([r[0] for r in records], dtype=np.int32),
+        clean_mask=np.stack(curve_clean),   # (n_epoch, n_val) bool
+        adv_mask=np.stack(curve_adv),
+        val_indices_file=np.array(args.val_indices),
+    )
+    import os as _os0
+    _os0.replace(curve_path + ".tmp.npz", curve_path)
 
     best_epoch, best_adv, stopped_at = simulate_selection(
         records, patience=args.patience, min_delta=args.min_delta)
@@ -201,6 +219,7 @@ def main():
         "selected_adv_acc": best_adv,
         "early_stop_simulated_at": stopped_at,
         "test": test_result,
+        "val_curve_npz": curve_path,   # kesifsel (bkz. protokol Bolum 8)
     }
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     with open(args.out + ".tmp", "w") as f:

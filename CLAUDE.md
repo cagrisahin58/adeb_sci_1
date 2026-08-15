@@ -6,13 +6,16 @@ Bu dosya, Claude Code'un bu proje ile etkili calışabilmesi icin gerekli baglam
 
 ## Gelistirme Ortamı
 
-**Container:** `med-lab` (dogrudan icindeyiz)
-- Docker exec komutlarına gerek yok
+**Container:** `adeb_eval` (repo `/workspace`'e mount'lu)
+- Windows/WSL'den calisiliyor: `docker exec -w /workspace adeb_eval ...`
+- Uzun kosumlar: `docker exec -d ...` (arka plan)
 - SSH ile evden baglanıldıgında: `claude --continue`
 
-**Donanım:**
-- GPU: RTX 5060 Ti (16GB VRAM)
-- Framework: PyTorch 2.6.0, CUDA 12.8
+**Donanım (2026-08 itibariyle GUNCEL):**
+- GPU: **RTX 5090 (32GB VRAM)** — eski kayit RTX 5060 Ti 16GB idi; run1/run2
+  ve C1 kampanyalari 5060 Ti'de, Q1 kampanyasi (E0-E7) 5090'da kosuldu.
+  Makalenin "Computational Details" bolumu bu ayrimi yazmali.
+- Framework: PyTorch 2.6.0a0+nv25.01, CUDA 12.8, timm 1.0.27
 
 **Diger Container'lar:**
 - `vit_ecl` egitimi ayrı container'da calışıyor olabilir
