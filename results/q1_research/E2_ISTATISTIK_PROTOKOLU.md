@@ -146,6 +146,13 @@ kararının **ampirik** kararsızlığını ölçmek — val bölmesi yeniden
 dağılımı çıkarılabilir. Böylece gürültü tabanı, V_C'nin tek çekilişine ek
 olarak dağılım düzeyinde raporlanır.
 
+**Bootstrap tasarımı** (`scripts/q1_e2_bootstrap.py`, veri tamamlanmadan
+sabitlendi): seçim, V_B'nin 2000-örneklik bootstrap yeniden-örneklemesi
+üzerinde ön-kayıtlı kuralla (patience 20, min_delta 0,1) yapılır; seçilen
+checkpoint **ayrık V_C** üzerinde değerlendirilir (ve simetrik olarak tersi).
+İki bağımsız çekilişin farkı, **sıfır sızıntı altındaki Δ dağılımıdır** —
+Δ_AB bu dağılıma karşı okunur. B=2000 tekrar, seed 20260816.
+
 Kurallar: bu artefakt **birincil uç noktalara girmez**; ondan türetilen her
 sayı makalede *keşifsel* etiketiyle sunulur; seçim kuralı (§2) hiçbir koşulda
 bu analize göre değiştirilmez. Skaler kayıtlar (`records`) maskelerin
