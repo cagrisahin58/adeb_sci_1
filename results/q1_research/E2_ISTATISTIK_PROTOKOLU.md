@@ -17,8 +17,11 @@ kullanılmaz.
 
 - Bölmeler (seed 778, `q1_make_e2_split.py`): V_A, V_B, V_C = 2000'er örnek;
   D_core = 44.000.
-- Clean ön-eğitim: D_core ∪ V_A (48k) — **V_A görülür (sızıntı tedavisi)**;
-  V_B, V_C görülmez. Sabit 200 epok, seçimsiz; AT başlangıcı `last.pth`.
+- Clean ön-eğitim: D_core ∪ V_A (**46.000** = 44k + 2k) — **V_A görülür
+  (sızıntı tedavisi)**; V_B, V_C görülmez (`e2_exclude_for_clean.json`,
+  n=4000). Sabit 200 epok, seçimsiz; AT başlangıcı `last.pth`.
+  *(Düzeltme 2026-08-17: burada önce "48k" yazıyordu — V_C eklenmeden önceki
+  tasarımdan kalma hata. Kod ve loglar 46.000 ile koştu; tasarım etkilenmedi.)*
 - AT: yalnız D_core, sabit 100 epok (`--patience 0`), her epok checkpoint.
 - Aynı checkpoint dizisine ÜÇ çevrimdışı seçim kuralı
   (`q1_offline_select.py`, patience=20, min_delta=0.1, val PGD-10):
