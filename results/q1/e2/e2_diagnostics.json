@@ -1,0 +1,506 @@
+{
+  "kesifsel": true,
+  "protokol": "E2_ISTATISTIK_PROTOKOLU.md Bolum 8",
+  "n_boot": 20000,
+  "seed": 20260816,
+  "yorungeler": {
+    "resnet18_s1001": {
+      "kural_duyarliligi": {
+        "A": {
+          "0": {
+            "secilen_epok": 84,
+            "val_adv": 44.55,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 63,
+            "val_adv": 44.1,
+            "durus": 73
+          },
+          "20": {
+            "secilen_epok": 63,
+            "val_adv": 44.1,
+            "durus": 83
+          },
+          "ham_argmax_epok": 84,
+          "tepe_val_adv": 44.55
+        },
+        "B": {
+          "0": {
+            "secilen_epok": 63,
+            "val_adv": 46.4,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 44,
+            "val_adv": 45.5,
+            "durus": 54
+          },
+          "20": {
+            "secilen_epok": 63,
+            "val_adv": 46.4,
+            "durus": 83
+          },
+          "ham_argmax_epok": 63,
+          "tepe_val_adv": 46.4
+        },
+        "C": {
+          "0": {
+            "secilen_epok": 63,
+            "val_adv": 45.5,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 32,
+            "val_adv": 44.5,
+            "durus": 42
+          },
+          "20": {
+            "secilen_epok": 32,
+            "val_adv": 44.5,
+            "durus": 52
+          },
+          "ham_argmax_epok": 63,
+          "tepe_val_adv": 45.5
+        }
+      },
+      "kanal_ayrisimi": {
+        "temiz": {
+          "V_A": 88.2475,
+          "referans_ort": 86.4435,
+          "fazla_puan": 1.804,
+          "z": 2.717,
+          "p_iki_yonlu": 0.0064
+        },
+        "cekismeli_SECIM_METRIGI": {
+          "V_A": 39.918,
+          "referans_ort": 41.4178,
+          "fazla_puan": -1.4998,
+          "z": -1.554,
+          "p_iki_yonlu": 0.1231,
+          "fazla_ust_sinir_p95": 0.096
+        },
+        "adv_kosullu_temiz_artik_z": 3.793
+      },
+      "bolme_ofseti_B_eksi_C": {
+        "temiz_puan": -0.9485,
+        "cekismeli_puan": 0.9055
+      }
+    },
+    "resnet18_s1002": {
+      "kural_duyarliligi": {
+        "A": {
+          "0": {
+            "secilen_epok": 49,
+            "val_adv": 44.9,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 21,
+            "val_adv": 41.2,
+            "durus": 31
+          },
+          "20": {
+            "secilen_epok": 49,
+            "val_adv": 44.9,
+            "durus": 69
+          },
+          "ham_argmax_epok": 49,
+          "tepe_val_adv": 44.9
+        },
+        "B": {
+          "0": {
+            "secilen_epok": 49,
+            "val_adv": 46.25,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 33,
+            "val_adv": 45.65,
+            "durus": 43
+          },
+          "20": {
+            "secilen_epok": 49,
+            "val_adv": 46.25,
+            "durus": 69
+          },
+          "ham_argmax_epok": 49,
+          "tepe_val_adv": 46.25
+        },
+        "C": {
+          "0": {
+            "secilen_epok": 49,
+            "val_adv": 44.35,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 21,
+            "val_adv": 42.65,
+            "durus": 31
+          },
+          "20": {
+            "secilen_epok": 49,
+            "val_adv": 44.35,
+            "durus": 69
+          },
+          "ham_argmax_epok": 49,
+          "tepe_val_adv": 44.35
+        }
+      },
+      "kanal_ayrisimi": {
+        "temiz": {
+          "V_A": 88.5235,
+          "referans_ort": 86.9283,
+          "fazla_puan": 1.5952,
+          "z": 2.492,
+          "p_iki_yonlu": 0.0102
+        },
+        "cekismeli_SECIM_METRIGI": {
+          "V_A": 40.429,
+          "referans_ort": 41.1007,
+          "fazla_puan": -0.6717,
+          "z": -0.694,
+          "p_iki_yonlu": 0.4878,
+          "fazla_ust_sinir_p95": 0.9115
+        },
+        "adv_kosullu_temiz_artik_z": 3.111
+      },
+      "bolme_ofseti_B_eksi_C": {
+        "temiz_puan": -0.859,
+        "cekismeli_puan": 1.5665
+      }
+    },
+    "resnet18_s1003": {
+      "kural_duyarliligi": {
+        "A": {
+          "0": {
+            "secilen_epok": 45,
+            "val_adv": 43.75,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 45,
+            "val_adv": 43.75,
+            "durus": 55
+          },
+          "20": {
+            "secilen_epok": 45,
+            "val_adv": 43.75,
+            "durus": 65
+          },
+          "ham_argmax_epok": 63,
+          "tepe_val_adv": 43.85
+        },
+        "B": {
+          "0": {
+            "secilen_epok": 44,
+            "val_adv": 45.7,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 44,
+            "val_adv": 45.7,
+            "durus": 54
+          },
+          "20": {
+            "secilen_epok": 44,
+            "val_adv": 45.7,
+            "durus": 64
+          },
+          "ham_argmax_epok": 44,
+          "tepe_val_adv": 45.7
+        },
+        "C": {
+          "0": {
+            "secilen_epok": 60,
+            "val_adv": 44.3,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 41,
+            "val_adv": 43.9,
+            "durus": 51
+          },
+          "20": {
+            "secilen_epok": 60,
+            "val_adv": 44.3,
+            "durus": 80
+          },
+          "ham_argmax_epok": 60,
+          "tepe_val_adv": 44.3
+        }
+      },
+      "kanal_ayrisimi": {
+        "temiz": {
+          "V_A": 88.6205,
+          "referans_ort": 86.5249,
+          "fazla_puan": 2.0956,
+          "z": 3.198,
+          "p_iki_yonlu": 0.0013
+        },
+        "cekismeli_SECIM_METRIGI": {
+          "V_A": 39.8245,
+          "referans_ort": 40.9806,
+          "fazla_puan": -1.1561,
+          "z": -1.189,
+          "p_iki_yonlu": 0.2339,
+          "fazla_ust_sinir_p95": 0.439
+        },
+        "adv_kosullu_temiz_artik_z": 4.148
+      },
+      "bolme_ofseti_B_eksi_C": {
+        "temiz_puan": -1.2825,
+        "cekismeli_puan": 1.372
+      }
+    },
+    "vit_tiny_s2001": {
+      "kural_duyarliligi": {
+        "A": {
+          "0": {
+            "secilen_epok": 19,
+            "val_adv": 33.9,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 19,
+            "val_adv": 33.9,
+            "durus": 29
+          },
+          "20": {
+            "secilen_epok": 19,
+            "val_adv": 33.9,
+            "durus": 39
+          },
+          "ham_argmax_epok": 19,
+          "tepe_val_adv": 33.9
+        },
+        "B": {
+          "0": {
+            "secilen_epok": 28,
+            "val_adv": 35.3,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 28,
+            "val_adv": 35.3,
+            "durus": 38
+          },
+          "20": {
+            "secilen_epok": 28,
+            "val_adv": 35.3,
+            "durus": 48
+          },
+          "ham_argmax_epok": 28,
+          "tepe_val_adv": 35.3
+        },
+        "C": {
+          "0": {
+            "secilen_epok": 18,
+            "val_adv": 32.75,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 18,
+            "val_adv": 32.75,
+            "durus": 28
+          },
+          "20": {
+            "secilen_epok": 18,
+            "val_adv": 32.75,
+            "durus": 38
+          },
+          "ham_argmax_epok": 32,
+          "tepe_val_adv": 32.8
+        }
+      },
+      "kanal_ayrisimi": {
+        "temiz": {
+          "V_A": 72.4945,
+          "referans_ort": 72.4511,
+          "fazla_puan": 0.0434,
+          "z": 0.054,
+          "p_iki_yonlu": 0.9645
+        },
+        "cekismeli_SECIM_METRIGI": {
+          "V_A": 28.7125,
+          "referans_ort": 29.1848,
+          "fazla_puan": -0.4723,
+          "z": -0.573,
+          "p_iki_yonlu": 0.5619,
+          "fazla_ust_sinir_p95": 0.876
+        },
+        "adv_kosullu_temiz_artik_z": 0.476
+      },
+      "bolme_ofseti_B_eksi_C": {
+        "temiz_puan": 0.4695,
+        "cekismeli_puan": 1.4925
+      }
+    },
+    "vit_tiny_s2002": {
+      "kural_duyarliligi": {
+        "A": {
+          "0": {
+            "secilen_epok": 18,
+            "val_adv": 34.45,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 18,
+            "val_adv": 34.45,
+            "durus": 28
+          },
+          "20": {
+            "secilen_epok": 18,
+            "val_adv": 34.45,
+            "durus": 38
+          },
+          "ham_argmax_epok": 18,
+          "tepe_val_adv": 34.45
+        },
+        "B": {
+          "0": {
+            "secilen_epok": 20,
+            "val_adv": 36.9,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 20,
+            "val_adv": 36.9,
+            "durus": 30
+          },
+          "20": {
+            "secilen_epok": 20,
+            "val_adv": 36.9,
+            "durus": 40
+          },
+          "ham_argmax_epok": 20,
+          "tepe_val_adv": 36.9
+        },
+        "C": {
+          "0": {
+            "secilen_epok": 20,
+            "val_adv": 34.45,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 20,
+            "val_adv": 34.45,
+            "durus": 30
+          },
+          "20": {
+            "secilen_epok": 20,
+            "val_adv": 34.45,
+            "durus": 40
+          },
+          "ham_argmax_epok": 20,
+          "tepe_val_adv": 34.45
+        }
+      },
+      "kanal_ayrisimi": {
+        "temiz": {
+          "V_A": 73.6715,
+          "referans_ort": 73.7508,
+          "fazla_puan": -0.0793,
+          "z": -0.101,
+          "p_iki_yonlu": 0.92
+        },
+        "cekismeli_SECIM_METRIGI": {
+          "V_A": 29.1725,
+          "referans_ort": 29.7253,
+          "fazla_puan": -0.5528,
+          "z": -0.666,
+          "p_iki_yonlu": 0.5078,
+          "fazla_ust_sinir_p95": 0.8115
+        },
+        "adv_kosullu_temiz_artik_z": 0.351
+      },
+      "bolme_ofseti_B_eksi_C": {
+        "temiz_puan": 1.003,
+        "cekismeli_puan": 0.4025
+      }
+    },
+    "vit_tiny_s2003": {
+      "kural_duyarliligi": {
+        "A": {
+          "0": {
+            "secilen_epok": 36,
+            "val_adv": 34.35,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 36,
+            "val_adv": 34.35,
+            "durus": 46
+          },
+          "20": {
+            "secilen_epok": 36,
+            "val_adv": 34.35,
+            "durus": 56
+          },
+          "ham_argmax_epok": 36,
+          "tepe_val_adv": 34.35
+        },
+        "B": {
+          "0": {
+            "secilen_epok": 28,
+            "val_adv": 36.6,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 17,
+            "val_adv": 35.15,
+            "durus": 27
+          },
+          "20": {
+            "secilen_epok": 28,
+            "val_adv": 36.6,
+            "durus": 48
+          },
+          "ham_argmax_epok": 28,
+          "tepe_val_adv": 36.6
+        },
+        "C": {
+          "0": {
+            "secilen_epok": 28,
+            "val_adv": 34.15,
+            "durus": 100
+          },
+          "10": {
+            "secilen_epok": 16,
+            "val_adv": 33.65,
+            "durus": 26
+          },
+          "20": {
+            "secilen_epok": 28,
+            "val_adv": 34.15,
+            "durus": 48
+          },
+          "ham_argmax_epok": 28,
+          "tepe_val_adv": 34.15
+        }
+      },
+      "kanal_ayrisimi": {
+        "temiz": {
+          "V_A": 74.1525,
+          "referans_ort": 74.2618,
+          "fazla_puan": -0.1093,
+          "z": -0.141,
+          "p_iki_yonlu": 0.8782
+        },
+        "cekismeli_SECIM_METRIGI": {
+          "V_A": 30.194,
+          "referans_ort": 30.2763,
+          "fazla_puan": -0.0823,
+          "z": -0.099,
+          "p_iki_yonlu": 0.9287,
+          "fazla_ust_sinir_p95": 1.2805
+        },
+        "adv_kosullu_temiz_artik_z": -0.102
+      },
+      "bolme_ofseti_B_eksi_C": {
+        "temiz_puan": 0.3905,
+        "cekismeli_puan": 1.147
+      }
+    }
+  }
+}

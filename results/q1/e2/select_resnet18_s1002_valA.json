@@ -1,0 +1,529 @@
+{
+  "epochs_dir": "models/q1/e2/resnet18_s1002/resnet18/adv/adversarial_training/epochs",
+  "model_type": "resnet18",
+  "dataset": "cifar10",
+  "val_indices": "data/e2_val_A.json",
+  "selection_rule": {
+    "patience": 20,
+    "min_delta": 0.1,
+    "metric": "pgd_adv_acc"
+  },
+  "attack": {
+    "eps": 0.03137254901960784,
+    "alpha": 0.00784313725490196,
+    "steps": 10,
+    "seed": 42
+  },
+  "records": [
+    {
+      "epoch": 1,
+      "clean": 85.95,
+      "adv": 16.55
+    },
+    {
+      "epoch": 2,
+      "clean": 82.85,
+      "adv": 25.0
+    },
+    {
+      "epoch": 3,
+      "clean": 84.15,
+      "adv": 29.95
+    },
+    {
+      "epoch": 4,
+      "clean": 83.5,
+      "adv": 31.75
+    },
+    {
+      "epoch": 5,
+      "clean": 85.1,
+      "adv": 33.6
+    },
+    {
+      "epoch": 6,
+      "clean": 85.3,
+      "adv": 33.55
+    },
+    {
+      "epoch": 7,
+      "clean": 85.95,
+      "adv": 34.4
+    },
+    {
+      "epoch": 8,
+      "clean": 85.6,
+      "adv": 36.35
+    },
+    {
+      "epoch": 9,
+      "clean": 85.25,
+      "adv": 35.55
+    },
+    {
+      "epoch": 10,
+      "clean": 86.75,
+      "adv": 36.5
+    },
+    {
+      "epoch": 11,
+      "clean": 86.45,
+      "adv": 37.35
+    },
+    {
+      "epoch": 12,
+      "clean": 87.2,
+      "adv": 37.1
+    },
+    {
+      "epoch": 13,
+      "clean": 88.2,
+      "adv": 36.15
+    },
+    {
+      "epoch": 14,
+      "clean": 86.95,
+      "adv": 36.55
+    },
+    {
+      "epoch": 15,
+      "clean": 88.2,
+      "adv": 37.45
+    },
+    {
+      "epoch": 16,
+      "clean": 88.45,
+      "adv": 38.3
+    },
+    {
+      "epoch": 17,
+      "clean": 88.8,
+      "adv": 37.85
+    },
+    {
+      "epoch": 18,
+      "clean": 88.8,
+      "adv": 37.6
+    },
+    {
+      "epoch": 19,
+      "clean": 87.85,
+      "adv": 38.85
+    },
+    {
+      "epoch": 20,
+      "clean": 88.8,
+      "adv": 38.15
+    },
+    {
+      "epoch": 21,
+      "clean": 88.0,
+      "adv": 41.2
+    },
+    {
+      "epoch": 22,
+      "clean": 88.75,
+      "adv": 39.0
+    },
+    {
+      "epoch": 23,
+      "clean": 88.6,
+      "adv": 39.75
+    },
+    {
+      "epoch": 24,
+      "clean": 88.2,
+      "adv": 40.25
+    },
+    {
+      "epoch": 25,
+      "clean": 87.75,
+      "adv": 40.2
+    },
+    {
+      "epoch": 26,
+      "clean": 89.75,
+      "adv": 38.55
+    },
+    {
+      "epoch": 27,
+      "clean": 90.1,
+      "adv": 39.8
+    },
+    {
+      "epoch": 28,
+      "clean": 89.7,
+      "adv": 41.0
+    },
+    {
+      "epoch": 29,
+      "clean": 87.9,
+      "adv": 40.0
+    },
+    {
+      "epoch": 30,
+      "clean": 89.65,
+      "adv": 40.95
+    },
+    {
+      "epoch": 31,
+      "clean": 89.65,
+      "adv": 41.15
+    },
+    {
+      "epoch": 32,
+      "clean": 88.65,
+      "adv": 41.55
+    },
+    {
+      "epoch": 33,
+      "clean": 88.15,
+      "adv": 43.45
+    },
+    {
+      "epoch": 34,
+      "clean": 90.65,
+      "adv": 39.7
+    },
+    {
+      "epoch": 35,
+      "clean": 89.55,
+      "adv": 42.6
+    },
+    {
+      "epoch": 36,
+      "clean": 89.1,
+      "adv": 43.25
+    },
+    {
+      "epoch": 37,
+      "clean": 90.95,
+      "adv": 40.65
+    },
+    {
+      "epoch": 38,
+      "clean": 88.05,
+      "adv": 43.7
+    },
+    {
+      "epoch": 39,
+      "clean": 89.05,
+      "adv": 40.85
+    },
+    {
+      "epoch": 40,
+      "clean": 89.35,
+      "adv": 40.35
+    },
+    {
+      "epoch": 41,
+      "clean": 88.75,
+      "adv": 41.85
+    },
+    {
+      "epoch": 42,
+      "clean": 88.9,
+      "adv": 42.8
+    },
+    {
+      "epoch": 43,
+      "clean": 90.75,
+      "adv": 39.4
+    },
+    {
+      "epoch": 44,
+      "clean": 90.3,
+      "adv": 38.9
+    },
+    {
+      "epoch": 45,
+      "clean": 89.6,
+      "adv": 41.25
+    },
+    {
+      "epoch": 46,
+      "clean": 88.3,
+      "adv": 43.45
+    },
+    {
+      "epoch": 47,
+      "clean": 89.0,
+      "adv": 42.75
+    },
+    {
+      "epoch": 48,
+      "clean": 88.95,
+      "adv": 43.0
+    },
+    {
+      "epoch": 49,
+      "clean": 87.25,
+      "adv": 44.9
+    },
+    {
+      "epoch": 50,
+      "clean": 89.6,
+      "adv": 43.3
+    },
+    {
+      "epoch": 51,
+      "clean": 89.0,
+      "adv": 43.6
+    },
+    {
+      "epoch": 52,
+      "clean": 89.35,
+      "adv": 42.35
+    },
+    {
+      "epoch": 53,
+      "clean": 88.4,
+      "adv": 43.05
+    },
+    {
+      "epoch": 54,
+      "clean": 88.5,
+      "adv": 43.25
+    },
+    {
+      "epoch": 55,
+      "clean": 90.3,
+      "adv": 40.9
+    },
+    {
+      "epoch": 56,
+      "clean": 87.9,
+      "adv": 43.45
+    },
+    {
+      "epoch": 57,
+      "clean": 89.7,
+      "adv": 41.85
+    },
+    {
+      "epoch": 58,
+      "clean": 89.95,
+      "adv": 41.6
+    },
+    {
+      "epoch": 59,
+      "clean": 87.85,
+      "adv": 43.6
+    },
+    {
+      "epoch": 60,
+      "clean": 88.4,
+      "adv": 43.05
+    },
+    {
+      "epoch": 61,
+      "clean": 89.75,
+      "adv": 42.25
+    },
+    {
+      "epoch": 62,
+      "clean": 89.5,
+      "adv": 41.8
+    },
+    {
+      "epoch": 63,
+      "clean": 89.25,
+      "adv": 41.95
+    },
+    {
+      "epoch": 64,
+      "clean": 88.7,
+      "adv": 42.5
+    },
+    {
+      "epoch": 65,
+      "clean": 90.05,
+      "adv": 41.35
+    },
+    {
+      "epoch": 66,
+      "clean": 88.3,
+      "adv": 42.9
+    },
+    {
+      "epoch": 67,
+      "clean": 88.75,
+      "adv": 42.4
+    },
+    {
+      "epoch": 68,
+      "clean": 88.15,
+      "adv": 42.55
+    },
+    {
+      "epoch": 69,
+      "clean": 87.8,
+      "adv": 43.05
+    },
+    {
+      "epoch": 70,
+      "clean": 89.75,
+      "adv": 41.75
+    },
+    {
+      "epoch": 71,
+      "clean": 88.95,
+      "adv": 42.3
+    },
+    {
+      "epoch": 72,
+      "clean": 88.4,
+      "adv": 43.75
+    },
+    {
+      "epoch": 73,
+      "clean": 89.35,
+      "adv": 41.35
+    },
+    {
+      "epoch": 74,
+      "clean": 89.25,
+      "adv": 41.95
+    },
+    {
+      "epoch": 75,
+      "clean": 88.3,
+      "adv": 44.5
+    },
+    {
+      "epoch": 76,
+      "clean": 88.8,
+      "adv": 41.85
+    },
+    {
+      "epoch": 77,
+      "clean": 89.2,
+      "adv": 43.0
+    },
+    {
+      "epoch": 78,
+      "clean": 88.3,
+      "adv": 43.85
+    },
+    {
+      "epoch": 79,
+      "clean": 89.95,
+      "adv": 41.6
+    },
+    {
+      "epoch": 80,
+      "clean": 88.9,
+      "adv": 43.45
+    },
+    {
+      "epoch": 81,
+      "clean": 88.45,
+      "adv": 43.35
+    },
+    {
+      "epoch": 82,
+      "clean": 89.2,
+      "adv": 42.35
+    },
+    {
+      "epoch": 83,
+      "clean": 90.15,
+      "adv": 41.0
+    },
+    {
+      "epoch": 84,
+      "clean": 89.15,
+      "adv": 42.95
+    },
+    {
+      "epoch": 85,
+      "clean": 89.3,
+      "adv": 41.05
+    },
+    {
+      "epoch": 86,
+      "clean": 88.9,
+      "adv": 42.65
+    },
+    {
+      "epoch": 87,
+      "clean": 89.05,
+      "adv": 42.2
+    },
+    {
+      "epoch": 88,
+      "clean": 89.35,
+      "adv": 41.5
+    },
+    {
+      "epoch": 89,
+      "clean": 88.8,
+      "adv": 42.5
+    },
+    {
+      "epoch": 90,
+      "clean": 88.25,
+      "adv": 41.95
+    },
+    {
+      "epoch": 91,
+      "clean": 88.4,
+      "adv": 42.3
+    },
+    {
+      "epoch": 92,
+      "clean": 89.15,
+      "adv": 41.55
+    },
+    {
+      "epoch": 93,
+      "clean": 89.55,
+      "adv": 41.4
+    },
+    {
+      "epoch": 94,
+      "clean": 88.85,
+      "adv": 41.35
+    },
+    {
+      "epoch": 95,
+      "clean": 89.6,
+      "adv": 40.1
+    },
+    {
+      "epoch": 96,
+      "clean": 88.55,
+      "adv": 42.35
+    },
+    {
+      "epoch": 97,
+      "clean": 87.9,
+      "adv": 42.7
+    },
+    {
+      "epoch": 98,
+      "clean": 89.9,
+      "adv": 41.05
+    },
+    {
+      "epoch": 99,
+      "clean": 88.3,
+      "adv": 43.95
+    },
+    {
+      "epoch": 100,
+      "clean": 89.75,
+      "adv": 39.75
+    }
+  ],
+  "selected_epoch": 49,
+  "selected_adv_acc": 44.9,
+  "early_stop_simulated_at": 69,
+  "test": {
+    "n": 10000,
+    "clean_acc": 84.59,
+    "adv_acc": 43.62,
+    "per_sample_npz": "results/q1/e2/select_resnet18_s1002_valA_test.npz"
+  },
+  "val_curve_npz": "results/q1/e2/select_resnet18_s1002_valA_valcurve.npz"
+}

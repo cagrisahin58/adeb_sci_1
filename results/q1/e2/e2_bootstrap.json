@@ -1,0 +1,372 @@
+{
+  "kesifsel": true,
+  "protokol": "E2_ISTATISTIK_PROTOKOLU.md Bolum 8",
+  "n_boot": 2000,
+  "seed": 20260816,
+  "secim_kurali": {
+    "patience": 20,
+    "min_delta": 0.1
+  },
+  "yorungeler": {
+    "resnet18_s1001": {
+      "B_sec_C_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 63.0,
+          "min": 32,
+          "max": 94,
+          "essiz_sayisi": 20,
+          "en_sik": 63,
+          "en_sik_pay": 0.4425
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 44.6485,
+          "sd": 0.8129272263478872,
+          "min": 41.85,
+          "max": 45.5,
+          "oracle_en_iyi": 45.5,
+          "oracle_epok": 63,
+          "ortalama_oracle_kaybi": 0.8515000000000015
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.8839000000000002,
+          "medyan_mutlak": 0.8999999999999986,
+          "sd": 1.1507602333054783,
+          "p90_mutlak": 1.75,
+          "p95_mutlak": 1.8999999999999986,
+          "P_ayni_epok": 0.234,
+          "P_absDelta_gt_1pp": 0.4365
+        }
+      },
+      "C_sec_B_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 32.0,
+          "min": 29,
+          "max": 89,
+          "essiz_sayisi": 23,
+          "en_sik": 32,
+          "en_sik_pay": 0.507
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 45.0818,
+          "sd": 0.9809204159518853,
+          "min": 43.05,
+          "max": 46.400000000000006,
+          "oracle_en_iyi": 46.400000000000006,
+          "oracle_epok": 63,
+          "ortalama_oracle_kaybi": 1.3182000000000045
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 1.029250000000002,
+          "medyan_mutlak": 0.9500000000000028,
+          "sd": 1.396173803881641,
+          "p90_mutlak": 2.0500000000000043,
+          "p95_mutlak": 2.0500000000000043,
+          "P_ayni_epok": 0.3515,
+          "P_absDelta_gt_1pp": 0.477
+        }
+      }
+    },
+    "resnet18_s1002": {
+      "B_sec_C_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 49.0,
+          "min": 33,
+          "max": 78,
+          "essiz_sayisi": 12,
+          "en_sik": 49,
+          "en_sik_pay": 0.585
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 43.78732500000001,
+          "sd": 0.8557273099472139,
+          "min": 40.949999999999996,
+          "max": 44.35,
+          "oracle_en_iyi": 44.35,
+          "oracle_epok": 49,
+          "ortalama_oracle_kaybi": 0.5626749999999916
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.8001999999999998,
+          "medyan_mutlak": 0.14999999999999858,
+          "sd": 1.2099854172075497,
+          "p90_mutlak": 2.0,
+          "p95_mutlak": 2.0,
+          "P_ayni_epok": 0.4115,
+          "P_absDelta_gt_1pp": 0.3995
+        }
+      },
+      "C_sec_B_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 46.0,
+          "min": 21,
+          "max": 81,
+          "essiz_sayisi": 19,
+          "en_sik": 49,
+          "en_sik_pay": 0.466
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 45.753350000000005,
+          "sd": 0.6535364048132349,
+          "min": 42.8,
+          "max": 46.25,
+          "oracle_en_iyi": 46.25,
+          "oracle_epok": 49,
+          "ortalama_oracle_kaybi": 0.4966499999999954
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.6007499999999998,
+          "medyan_mutlak": 0.6499999999999986,
+          "sd": 0.9382423777359933,
+          "p90_mutlak": 1.5500000000000043,
+          "p95_mutlak": 2.200000000000003,
+          "P_ayni_epok": 0.415,
+          "P_absDelta_gt_1pp": 0.168
+        }
+      }
+    },
+    "resnet18_s1003": {
+      "B_sec_C_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 44.0,
+          "min": 30,
+          "max": 79,
+          "essiz_sayisi": 18,
+          "en_sik": 44,
+          "en_sik_pay": 0.3735
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 43.30114999999999,
+          "sd": 0.6682510435671722,
+          "min": 41.8,
+          "max": 44.3,
+          "oracle_en_iyi": 44.3,
+          "oracle_epok": 60,
+          "ortalama_oracle_kaybi": 0.9988500000000045
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.7529750000000002,
+          "medyan_mutlak": 0.7999999999999972,
+          "sd": 0.9627643491379321,
+          "p90_mutlak": 1.6000000000000014,
+          "p95_mutlak": 1.6499999999999986,
+          "P_ayni_epok": 0.2285,
+          "P_absDelta_gt_1pp": 0.3115
+        }
+      },
+      "C_sec_B_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 60.0,
+          "min": 32,
+          "max": 81,
+          "essiz_sayisi": 21,
+          "en_sik": 60,
+          "en_sik_pay": 0.262
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 45.1187,
+          "sd": 0.45581431893554425,
+          "min": 43.95,
+          "max": 45.7,
+          "oracle_en_iyi": 45.7,
+          "oracle_epok": 44,
+          "ortalama_oracle_kaybi": 0.5813000000000059
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.4533750000000006,
+          "medyan_mutlak": 0.19999999999999574,
+          "sd": 0.6487572252728083,
+          "p90_mutlak": 1.25,
+          "p95_mutlak": 1.25,
+          "P_ayni_epok": 0.175,
+          "P_absDelta_gt_1pp": 0.23
+        }
+      }
+    },
+    "vit_tiny_s2001": {
+      "B_sec_C_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 24.0,
+          "min": 10,
+          "max": 33,
+          "essiz_sayisi": 17,
+          "en_sik": 28,
+          "en_sik_pay": 0.4125
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 32.11565,
+          "sd": 0.40518164270088963,
+          "min": 30.2,
+          "max": 32.800000000000004,
+          "oracle_en_iyi": 32.800000000000004,
+          "oracle_epok": 32,
+          "ortalama_oracle_kaybi": 0.684350000000002
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.3906000000000005,
+          "medyan_mutlak": 0.15000000000000213,
+          "sd": 0.5654875644899694,
+          "p90_mutlak": 0.8000000000000043,
+          "p95_mutlak": 0.9500000000000028,
+          "P_ayni_epok": 0.2605,
+          "P_absDelta_gt_1pp": 0.0435
+        }
+      },
+      "C_sec_B_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 21.0,
+          "min": 16,
+          "max": 43,
+          "essiz_sayisi": 15,
+          "en_sik": 18,
+          "en_sik_pay": 0.2665
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 34.078525000000006,
+          "sd": 0.7320830193007982,
+          "min": 31.75,
+          "max": 35.3,
+          "oracle_en_iyi": 35.3,
+          "oracle_epok": 28,
+          "ortalama_oracle_kaybi": 1.221474999999991
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.7407249999999983,
+          "medyan_mutlak": 0.5500000000000043,
+          "sd": 1.0171394967028238,
+          "p90_mutlak": 1.75,
+          "p95_mutlak": 2.3000000000000043,
+          "P_ayni_epok": 0.1785,
+          "P_absDelta_gt_1pp": 0.295
+        }
+      }
+    },
+    "vit_tiny_s2002": {
+      "B_sec_C_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 20.0,
+          "min": 18,
+          "max": 36,
+          "essiz_sayisi": 7,
+          "en_sik": 20,
+          "en_sik_pay": 0.7885
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 34.03897499999999,
+          "sd": 0.7942150767701919,
+          "min": 31.75,
+          "max": 34.449999999999996,
+          "oracle_en_iyi": 34.449999999999996,
+          "oracle_epok": 20,
+          "ortalama_oracle_kaybi": 0.4110250000000022
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.6433999999999986,
+          "medyan_mutlak": 0.0,
+          "sd": 1.1190644888321124,
+          "p90_mutlak": 1.9499999999999957,
+          "p95_mutlak": 1.9499999999999957,
+          "P_ayni_epok": 0.6635,
+          "P_absDelta_gt_1pp": 0.33
+        }
+      },
+      "C_sec_B_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 20.0,
+          "min": 15,
+          "max": 40,
+          "essiz_sayisi": 13,
+          "en_sik": 20,
+          "en_sik_pay": 0.892
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 36.53164999999999,
+          "sd": 1.1426837447738045,
+          "min": 31.0,
+          "max": 36.9,
+          "oracle_en_iyi": 36.9,
+          "oracle_epok": 20,
+          "ortalama_oracle_kaybi": 0.3683500000000066
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.6448999999999999,
+          "medyan_mutlak": 0.0,
+          "sd": 1.5835983927229516,
+          "p90_mutlak": 3.799999999999997,
+          "p95_mutlak": 4.5,
+          "P_ayni_epok": 0.8095,
+          "P_absDelta_gt_1pp": 0.1805
+        }
+      }
+    },
+    "vit_tiny_s2003": {
+      "B_sec_C_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 28.0,
+          "min": 12,
+          "max": 39,
+          "essiz_sayisi": 16,
+          "en_sik": 28,
+          "en_sik_pay": 0.899
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 34.05095,
+          "sd": 0.342845255085247,
+          "min": 31.1,
+          "max": 34.150000000000006,
+          "oracle_en_iyi": 34.150000000000006,
+          "oracle_epok": 28,
+          "ortalama_oracle_kaybi": 0.09905000000000541
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 0.20165000000000088,
+          "medyan_mutlak": 0.0,
+          "sd": 0.5033407652505242,
+          "p90_mutlak": 0.8000000000000043,
+          "p95_mutlak": 1.000000000000007,
+          "P_ayni_epok": 0.7945,
+          "P_absDelta_gt_1pp": 0.0605
+        }
+      },
+      "C_sec_B_degerlendir": {
+        "n_boot": 2000,
+        "secilen_epok": {
+          "medyan": 28.0,
+          "min": 12,
+          "max": 39,
+          "essiz_sayisi": 17,
+          "en_sik": 28,
+          "en_sik_pay": 0.3465
+        },
+        "ayrik_degerlendirmede_adv": {
+          "ort": 35.224925000000006,
+          "sd": 1.0687076599361516,
+          "min": 32.800000000000004,
+          "max": 36.6,
+          "oracle_en_iyi": 36.6,
+          "oracle_epok": 28,
+          "ortalama_oracle_kaybi": 1.3750749999999954
+        },
+        "sifir_sizinti_Delta_dagilimi": {
+          "ort_mutlak": 1.1509500000000006,
+          "medyan_mutlak": 0.8999999999999915,
+          "sd": 1.5188039307922856,
+          "p90_mutlak": 2.299999999999997,
+          "p95_mutlak": 2.5,
+          "P_ayni_epok": 0.2085,
+          "P_absDelta_gt_1pp": 0.49
+        }
+      }
+    }
+  }
+}
