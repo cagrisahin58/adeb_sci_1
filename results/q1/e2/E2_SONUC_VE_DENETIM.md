@@ -40,10 +40,26 @@ E2'nin makaleye giren katkısı budur.
 gerçek bir kalite farkı vardır (bağımsız tahminciler birleşimi θ = −1,108 ±
 0,183; homojenlik χ²(5)=7,23, p=0,204). Veri bütünlüğü 18/18 temiz.
 
-**Artefakt olan:** bu farkın **sızıntıya atfedilmesi**. Dürüst kanıt gücü,
-tasarımla eşleşen (ortak-bölme, seçicilerden ayrık değerlendirici) null'larda
-**iki yönlü p = 0,10–0,19** (dört bağımsız kuruluş) — manşetle 3-4 büyüklük
-mertebesi fark var.
+**Artefakt olan:** bu farkın **sızıntıya atfedilmesi**.
+
+> **DÜZELTME (2026-08-17, `q1_e2_audit.py` ile yeniden üretim denemesi):**
+> Bu belgenin ilk sürümü "dürüst iki yönlü p = 0,10–0,19 (dört bağımsız
+> kuruluş)" diyordu. Denetim betiği **dokuz** null kuruluşu hesapladı ve
+> yalnız **biri** (simetrik tahminci üzerinde n=3 parametrik t, p=0,113) bu
+> aralığa düşüyor. Sayılar **iki çıkarım çerçevesine** ayrılıyor:
+> - **Bölmeler rastgele (değiştirilebilir) kabul edilirse:** tasarımla
+>   eşleşmiş null'lar (ortak-bölme yapısı korunmuş, ayrık değerlendirici,
+>   gerçek 10k test) **p = 0,0074 – 0,052** veriyor — yani bu çerçevede etki
+>   sınırda anlamlı.
+> - **Bölme kimliği sabit kabul edilirse:** tam permütasyon tabanı 1/6–1/3;
+>   **p = 0,25 – 0,67** — hiçbir test anlamlıya ulaşamaz.
+>
+> "Sızıntı saptanamadı" hükmü **ikinci çerçeveye** dayanır ve gerekçesi
+> tedavinin tek bir bölmeye uygulanmış olmasıdır (bölme düzeyinde n=1):
+> V_A'nın davranışının temiz bölmelerden farklı olması, sızıntıdan da o
+> bölmenin idiyosenkrazisinden de kaynaklanabilir ve bu tasarımla
+> ayrıştırılamaz. **Makale hangi çerçevede konuştuğunu açıkça yazmalı;
+> "dürüst p = 0,10–0,19" ifadesi kaynaksız olduğu için kullanılmayacak.**
 
 ### Geri çekilen sayılar
 - **s_Δ = 0,010** tekrarlanabilirlik değil **tesadüf**: tek ölçümün eşleşmiş
@@ -105,7 +121,28 @@ onaran gerçek bir dağılımdır.
 
 **Kurulabilir (sızıntı, §4 Kural 3 uyarınca):** ViT'te gözlenen −1,05 puanlık
 fark raporlanır ama **sızıntıya atfedilmez**; simetrik tahminci
-Δ_{A−(B+C)/2} = −0,77 ± 0,49 sıfırı içerir, dürüst p = 0,10–0,19.
+Δ_{A−(B+C)/2} = −0,77 ± 0,49 sıfırı içerir (n=3 t, p=0,113) ve bölme kimliği
+sabit alındığında permütasyon tabanı zaten p ≥ 0,25'tir. Bölmeler
+değiştirilebilir kabul edilirse aynı veri p = 0,007–0,052 verir; iki çerçeve
+arasındaki seçim tasarımla belirlenemez (bölme düzeyinde n=1) ve bu
+belirsizlik **açıkça beyan edilecektir**.
+
+**Kurulabilir (KOŞULLU ATIF — makalenin taahhüt ettiği uç nokta,
+`e2_conditional.json`):** *"Koşullu yanıltmada ViT eksi CNN farkının işareti,
+seçim protokolünden bağımsız olarak korunmaktadır: dokuz seçilmiş
+checkpoint'in (+3,84…+6,79), 18 protokol × 3 tohum çiftinden oluşan 54 temiz
+ızgara hücresinin (+1,48…+7,45), sızıntılı bölmenin 27 hücresinin
+(+2,80…+7,96) ve protokollerin erişebildiği tüm epok çiftlerinin (170/170,
++0,86…+9,05) tamamında pozitiftir; işaret yalnızca hiçbir protokolün
+seçmediği yakınsama-öncesi bölgede (epok ≤25) değişmektedir."*
+
+Bu, `05_discussion.tex`'te taahhüt edilen "seçim sızıntısı koşullu atfı ters
+çeviriyor mu" sorusunun **kesin cevabıdır: hayır.** Dahası, kontrollü sızıntı
+farkı **büyütüyor** (V_A ile +6,29 vs temiz V_B ile +4,88) — oysa makalenin
+eski sızıntılı koşumu neredeyse parite gösteriyordu (+0,18). Yani o eski
+paritenin açıklaması seçim sızıntısı **olamaz**; geriye eğitim-koşusu
+varyansı / reçete farkı kalır. Bu, makalenin kendi ihtiyatlı ifadesini
+("aynı anda hem validasyon işlemesi hem eğitim koşusu değişti") doğruluyor.
 
 **KURULAMAZ (yasak cümleler):**
 - "Seçim sızıntısı ViT'te ~1,05 puan gürbüzlük kaybettiriyor (p=3e−5)."
@@ -140,8 +177,23 @@ fark raporlanır ama **sızıntıya atfedilmez**; simetrik tahminci
    ön-kayıt suskun. Dürüst p=0,10 ile Bonferroni m=2 → 0,20.
 7. Uç nokta bağımsız değil: 18 hücrede seçim ve raporlama **aynı saldırı**
    (PGD-10, eps 8/255, seed 42); AutoAttack yok.
-8. Val→test aktarımı zayıf: 9 epok çiftinde eğim +0,457, artık sd 0,790 puan
-   → **P0 ile giderildi** (bkz. §5).
+8. **Val→test aktarımı** *(düzeltildi 2026-08-17)*: ilk sürümdeki "eğim
+   +0,457, artık sd 0,790" ikilisi **28 makul kuruluşun hiçbirinde**
+   üretilemedi; kuruluşu belgelenmemişti ve kullanılmayacak. Yeniden
+   hesaplanan gerçek değerler: seçilen epok çiftlerinde eğim 0,017–0,679
+   (artık sd 0,34–0,86, kuruluşa göre), P0 sayesinde tüm 100 epok üzerinden
+   ise eğim **0,80–0,95**, artık sd **0,56–0,70**. Yani aktarım seviye
+   düzeyinde iyi, tekil seçim farklarında gürültülü. Nitel hüküm ayakta:
+   vekil val ile 1 puanlık farklar güvenilir ölçülemez → P0 zorunluydu.
+9. **McNemar yanlış-pozitif oranı** *(düzeltildi)*: §6b'nin öngördüğü
+   "%37–56" yerine ölçülen gerçek aralık **%21–59** (ViT kolu %50–59,
+   ResNet kolu %21–32). Nitel iddia her hücrede ayakta: en düşük oran bile
+   nominal %5'in dört katından büyük.
+10. **Manipülasyon dozu paydası tanıma duyarlı**: "beklenen ~+19,6 puan"
+    değeri "clean ön-eğitimin train–test genelleme açığı" tanımıyla çıkar
+    (100 − 80,4). Alternatif makul payda (AT ep1'deki havuz temiz doğruluğu)
+    ile ViT oranı %0,3–3,1 (iddia ayakta) ama ResNet %12,7–17,2 olur ve
+    "~%50" ifadesi çöker. **Payda makalede açıkça beyan edilecek.**
 
 ## 5. Yapılanlar / yapılacaklar
 
@@ -155,10 +207,19 @@ fark raporlanır ama **sızıntıya atfedilmez**; simetrik tahminci
   GPU-saat), P1b (pozitif kontrol/doz-yanıt, 21 GPU-saat) ve P2 (K bağımsız
   bölme çekilişi, K=5 için ~105 GPU-saat) **şimdilik koşulmayacak**; hakem
   talebi gelirse öncelik P1b → P1 → P2.
-- **Düzeltilecek metin:** `paper/manuscript/sections/05_discussion.tex:80`
-  taahhüt edilen ablasyonun uç noktasını "koşullu atıf ters dönüyor mu" diye
-  tanımlıyor; E2 bunu ölçmüyor (uç nokta: seçilen checkpoint'in test PGD-10
-  doğruluğu). Taahhüt metni E2'nin gerçek uç noktasıyla hizalanacak.
+- **A1-A4 analiz betikleri (koşuldu, hepsi GPU'suz):** `q1_e2_grid.py`
+  (protokol ızgarası + konvansiyon dayanıklılığı), `q1_e2_split_bootstrap.py`
+  (bölme bootstrap'i birincil uç noktada), `q1_e2_conditional.py` (koşullu
+  atıf, 4 katman), `q1_e2_audit.py` (denetimin tüm sayılarını üreten artefakt
+  — hakemin "bu sayıların kodu yok" itirazına cevap; 9 maddeden 6'sı TUTUYOR,
+  2'si KISMEN, 1'i TUTMUYOR ve düzeltildi).
+- **`05_discussion.tex:80` taahhüdü ARTIK ÖLÇÜLDÜ** (yukarıdaki koşullu atıf
+  bulgusu): taahhüt metni "hizalanacak" değil, **cevaplanmış olarak**
+  yazılacak — sızıntı koşullu atfı çevirmiyor, aksine farkı büyütüyor.
+- **Bütünlük kanıtı (A4 madde 9):** aynı checkpoint'in iki bağımsız
+  değerlendirmesinde (seçim koşumu vs P0 test eğrisi) temiz doğruluk 18/18
+  hücrede **tam olarak eşit** (0 örnek uyuşmazlığı); çekişmeli fark ort
+  +0,018, |max| 0,130 puan — saldırı-tohumu ölçüm tabanı, manşetin ~%12'si.
 
 ## 6. Tez cümlesi (E2'den türetilebilecek en güçlü hali)
 

@@ -1,0 +1,1838 @@
+{
+  "amac": "E2_SONUC_VE_DENETIM.md'deki anahtar sayilarin kodla yeniden uretimi (hakem KRITIK bulgusu: sayilar yalniz duzyazida yasiyordu)",
+  "hukum_belgesi": "results/q1/e2/E2_SONUC_VE_DENETIM.md",
+  "on_kayit": "results/q1_research/E2_ISTATISTIK_PROTOKOLU.md",
+  "kesifsel": true,
+  "birincil_uc_noktalari_degistirmez": true,
+  "generated_utc": "2026-08-17T03:31:21+00:00",
+  "seed": 20260817,
+  "tekrarlar": {
+    "n_boot_s": 200000,
+    "n_null": 5000,
+    "n_boot_z": 20000,
+    "n_mvn": 2000000
+  },
+  "secim_kurali": {
+    "patience": 20,
+    "min_delta": 0.1
+  },
+  "maddeler": {
+    "1_theta_birlesimi": {
+      "iddia_metni": "theta = -1,108 +- 0,183; homojenlik chi2(5)=7,23, p=0,204",
+      "tahminci_ozetleri": {
+        "test10k_secim_npz": {
+          "tohum_deltalari": [
+            -1.04,
+            -1.06,
+            -1.05
+          ],
+          "ort": -1.05,
+          "sd_tohumlar_arasi": 0.01,
+          "ort_se_McNemar": 0.214813,
+          "tohum_se_McNemar": [
+            0.370945,
+            0.385746,
+            0.359026
+          ],
+          "b_arti_c": [
+            1376,
+            1488,
+            1289
+          ],
+          "n": 10000
+        },
+        "test10k_testcurve": {
+          "tohum_deltalari": [
+            -0.88,
+            -1.05,
+            -1.02
+          ],
+          "ort": -0.983333,
+          "sd_tohumlar_arasi": 0.090738,
+          "ort_se_McNemar": 0.215432,
+          "tohum_se_McNemar": [
+            0.372559,
+            0.386394,
+            0.36
+          ],
+          "b_arti_c": [
+            1388,
+            1493,
+            1296
+          ],
+          "n": 10000
+        },
+        "V_A": {
+          "tohum_deltalari": [
+            0.4,
+            1.05,
+            0.3
+          ],
+          "ort": 0.583333,
+          "sd_tohumlar_arasi": 0.407226,
+          "ort_se_McNemar": 0.499166,
+          "tohum_se_McNemar": [
+            0.866025,
+            0.912414,
+            0.812404
+          ],
+          "b_arti_c": [
+            300,
+            333,
+            264
+          ],
+          "n": 2000
+        },
+        "V_B": {
+          "tohum_deltalari": [
+            -0.5,
+            -1.95,
+            -2.35
+          ],
+          "ort": -1.6,
+          "sd_tohumlar_arasi": 0.973396,
+          "ort_se_McNemar": 0.512619,
+          "tohum_se_McNemar": [
+            0.874643,
+            0.944722,
+            0.84113
+          ],
+          "b_arti_c": [
+            306,
+            357,
+            283
+          ],
+          "n": 2000
+        },
+        "V_C": {
+          "tohum_deltalari": [
+            0.6,
+            -1.8,
+            -1.55
+          ],
+          "ort": -0.916667,
+          "sd_tohumlar_arasi": 1.319406,
+          "ort_se_McNemar": 0.484481,
+          "tohum_se_McNemar": [
+            0.851469,
+            0.87178,
+            0.792149
+          ],
+          "b_arti_c": [
+            290,
+            304,
+            251
+          ],
+          "n": 2000
+        },
+        "havuz_BC": {
+          "tohum_deltalari": [
+            0.05,
+            -1.875,
+            -1.95
+          ],
+          "ort": -1.258333,
+          "sd_tohumlar_arasi": 1.13367,
+          "ort_se_McNemar": 0.352668,
+          "tohum_se_McNemar": [
+            0.610328,
+            0.642748,
+            0.577711
+          ],
+          "b_arti_c": [
+            596,
+            661,
+            534
+          ],
+          "n": 4000
+        },
+        "havuz_ABC": {
+          "tohum_deltalari": [
+            0.166667,
+            -0.9,
+            -1.2
+          ],
+          "ort": -0.644444,
+          "sd_tohumlar_arasi": 0.71828,
+          "ort_se_McNemar": 0.288033,
+          "tohum_se_McNemar": [
+            0.498888,
+            0.525463,
+            0.470815
+          ],
+          "b_arti_c": [
+            896,
+            994,
+            798
+          ],
+          "n": 6000
+        }
+      },
+      "birlesim_varyantlari": {
+        "test_npz+havuz_BC": {
+          "tohum_bazli": {
+            "theta": -1.108133,
+            "se": 0.183041,
+            "Q": 7.223323,
+            "df": 5,
+            "p_homojenlik": 0.204554,
+            "birim_sayisi": 6,
+            "kaynaklar": [
+              "test10k_secim_npz",
+              "havuz_BC"
+            ],
+            "mod": "tohum_bazli"
+          },
+          "tahminci_ortalamasi": {
+            "theta": -1.106377,
+            "se": 0.183459,
+            "Q": 0.254533,
+            "df": 1,
+            "p_homojenlik": 0.613901,
+            "birim_sayisi": 2,
+            "kaynaklar": [
+              "test10k_secim_npz",
+              "havuz_BC"
+            ],
+            "mod": "tahminci_ortalamasi"
+          }
+        },
+        "gorev_metni_5": {
+          "tohum_bazli": {
+            "theta": -0.975488,
+            "se": 0.154254,
+            "Q": 26.538241,
+            "df": 14,
+            "p_homojenlik": 0.022092,
+            "birim_sayisi": 15,
+            "kaynaklar": [
+              "test10k_secim_npz",
+              "V_A",
+              "V_B",
+              "V_C",
+              "havuz_BC"
+            ],
+            "mod": "tohum_bazli"
+          },
+          "tahminci_ortalamasi": {
+            "theta": -0.969715,
+            "se": 0.15469,
+            "Q": 12.013299,
+            "df": 4,
+            "p_homojenlik": 0.017253,
+            "birim_sayisi": 5,
+            "kaynaklar": [
+              "test10k_secim_npz",
+              "V_A",
+              "V_B",
+              "V_C",
+              "havuz_BC"
+            ],
+            "mod": "tahminci_ortalamasi"
+          }
+        },
+        "ayrik_4": {
+          "tohum_bazli": {
+            "theta": -0.906388,
+            "se": 0.171687,
+            "Q": 18.749094,
+            "df": 11,
+            "p_homojenlik": 0.065749,
+            "birim_sayisi": 12,
+            "kaynaklar": [
+              "test10k_secim_npz",
+              "V_A",
+              "V_B",
+              "V_C"
+            ],
+            "mod": "tohum_bazli"
+          },
+          "tahminci_ortalamasi": {
+            "theta": -0.900958,
+            "se": 0.172132,
+            "Q": 11.183991,
+            "df": 3,
+            "p_homojenlik": 0.010771,
+            "birim_sayisi": 4,
+            "kaynaklar": [
+              "test10k_secim_npz",
+              "V_A",
+              "V_B",
+              "V_C"
+            ],
+            "mod": "tahminci_ortalamasi"
+          }
+        },
+        "testcurve+havuz_BC": {
+          "tohum_bazli": {
+            "theta": -1.059567,
+            "se": 0.183432,
+            "Q": 7.53523,
+            "df": 5,
+            "p_homojenlik": 0.183779,
+            "birim_sayisi": 6,
+            "kaynaklar": [
+              "test10k_testcurve",
+              "havuz_BC"
+            ],
+            "mod": "tohum_bazli"
+          },
+          "tahminci_ortalamasi": {
+            "theta": -1.058065,
+            "se": 0.183845,
+            "Q": 0.442805,
+            "df": 1,
+            "p_homojenlik": 0.505772,
+            "birim_sayisi": 2,
+            "kaynaklar": [
+              "test10k_testcurve",
+              "havuz_BC"
+            ],
+            "mod": "tahminci_ortalamasi"
+          }
+        },
+        "ayrik_4_testcurve": {
+          "tohum_bazli": {
+            "theta": -0.862922,
+            "se": 0.17201,
+            "Q": 18.479671,
+            "df": 11,
+            "p_homojenlik": 0.071097,
+            "birim_sayisi": 12,
+            "kaynaklar": [
+              "test10k_testcurve",
+              "V_A",
+              "V_B",
+              "V_C"
+            ],
+            "mod": "tohum_bazli"
+          },
+          "tahminci_ortalamasi": {
+            "theta": -0.857688,
+            "se": 0.17245,
+            "Q": 10.785851,
+            "df": 3,
+            "p_homojenlik": 0.012942,
+            "birim_sayisi": 4,
+            "kaynaklar": [
+              "test10k_testcurve",
+              "V_A",
+              "V_B",
+              "V_C"
+            ],
+            "mod": "tahminci_ortalamasi"
+          }
+        }
+      },
+      "belgeyle_eslesen_kurulus": "test10k_secim_npz + havuz_BC, tohum_bazli (3 tohum x 2 kaynak = 6 birim -> df=5)",
+      "kontrol": {
+        "theta": {
+          "hesaplanan": -1.108133,
+          "iddia_edilen": -1.108,
+          "tolerans": 0.02,
+          "birim": "puan",
+          "mutlak_fark": 0.000133,
+          "tutuyor": true
+        },
+        "se": {
+          "hesaplanan": 0.183041,
+          "iddia_edilen": 0.183,
+          "tolerans": 0.005,
+          "birim": "puan",
+          "mutlak_fark": 4.1e-05,
+          "tutuyor": true
+        },
+        "Q": {
+          "hesaplanan": 7.223323,
+          "iddia_edilen": 7.23,
+          "tolerans": 0.5,
+          "birim": "chi2",
+          "mutlak_fark": 0.006677,
+          "tutuyor": true
+        },
+        "df": {
+          "hesaplanan": 5.0,
+          "iddia_edilen": 5.0,
+          "tolerans": 0.0,
+          "birim": "serbestlik derecesi",
+          "mutlak_fark": 0.0,
+          "tutuyor": true
+        },
+        "p_homojenlik": {
+          "hesaplanan": 0.204554,
+          "iddia_edilen": 0.204,
+          "tolerans": 0.05,
+          "birim": "p",
+          "mutlak_fark": 0.000554,
+          "tutuyor": true
+        }
+      },
+      "uyari": [
+        "Tahminciler BAGIMSIZ degil: havuz_BC, V_B ve V_C'nin birlesimidir; gorev metnindeki 5'li kume ayni ornekleri iki kez sayar.",
+        "10k test tahmincisi ucu tohumda AYNI ornekleri kullanir; birlesim bu korelasyonu yok sayar (SE asagi yanli olabilir).",
+        "Gorev metnindeki 5'li kume theta = -0.969715 verir (-1,108 DEGIL); belgedeki sayi yalniz 'test+havuz_BC' kurulusuyla cikar."
+      ]
+    },
+    "2_ayrik_tahminci_sd": {
+      "iddia_metni": "Ayni uc checkpoint cifti ayrik tahmincilerle olculdugunde sd = 0,97 / 1,13 / 1,32 (V_B / havuz B+C / V_C)",
+      "sd_V_B": 0.973396,
+      "sd_havuz_BC": 1.13367,
+      "sd_V_C": 1.319406,
+      "sd_test10k_secim_npz": 0.01,
+      "sd_test10k_testcurve": 0.090738,
+      "kontrol": {
+        "hesaplanan": [
+          0.973396,
+          1.13367,
+          1.319406
+        ],
+        "iddia_edilen": [
+          0.97,
+          1.13,
+          1.32
+        ],
+        "tolerans": 0.02,
+        "birim": "puan",
+        "mutlak_fark": [
+          0.003396,
+          0.00367,
+          0.000594
+        ],
+        "tutuyor": true
+      },
+      "yorum": "Ayni checkpoint ciftlerinin farki ayrik tahmincilerde ~1 puan sd gosteriyor; s_Delta=0,010 tekrarlanabilirlik degil."
+    },
+    "3_esli_SE_ve_P": {
+      "iddia_metni": "Tek olcumun esli SE'si 0,372; P(s <= 0,010 | gercek Delta'lar ozdes) = 7,2e-4",
+      "tohum_se_McNemar": [
+        0.370945,
+        0.385746,
+        0.359026
+      ],
+      "ort_se": 0.371906,
+      "tohum_se_tam_formul": [
+        0.370799,
+        0.3856,
+        0.358873
+      ],
+      "gozlenen_s_uc_tohum": 0.01,
+      "sd_deflasyon_kati": 37.190574,
+      "bootstrap": {
+        "n_boot": 200000,
+        "P_s_le_0.010": 0.00059,
+        "vurus": 118,
+        "MC_se": 5.4e-05,
+        "s_ortalama": 0.332701,
+        "kurulus": "ORTAK indeks bootstrap (ayni 10k yeniden orneklemesi uc tohuma birden), H0 icin her tohum kendi ortalamasina merkezlendi"
+      },
+      "normal_yaklasim": {
+        "n": 2000000,
+        "P_s_le_0.010": 0.000741,
+        "not": "surekli yaklasim; gercek bootstrap 0,01 puanlik kafes uzerinde atomlara sahiptir"
+      },
+      "kontrol": {
+        "esli_SE": {
+          "hesaplanan": 0.371906,
+          "iddia_edilen": 0.372,
+          "tolerans": 0.005,
+          "birim": "puan",
+          "mutlak_fark": 9.4e-05,
+          "tutuyor": true
+        },
+        "sd_deflasyon_kati": {
+          "hesaplanan": 37.190574,
+          "iddia_edilen": 37.0,
+          "tolerans": 0.5,
+          "birim": "kat",
+          "mutlak_fark": 0.190574,
+          "tutuyor": true,
+          "not": "belge \u00a74.2: 's_Delta tek olcum SE'sinden 37 kat kucuk'"
+        },
+        "P_normal_yaklasimla": {
+          "hesaplanan": 0.000741,
+          "iddia_edilen": 0.00072,
+          "tolerans": 0.0002,
+          "birim": "olasilik",
+          "mutlak_fark": 2.1e-05,
+          "tutuyor": true,
+          "not": "Belgedeki 7,2e-4, ayrik bootstrap'tan cok SUREKLI yaklasima yakin - belge bu sayiyi buyuk olasilikla normal yaklasimla uretmis."
+        },
+        "P_s_le_0.010": {
+          "hesaplanan": 0.00059,
+          "iddia_edilen": 0.00072,
+          "tolerans": 0.0005,
+          "birim": "olasilik",
+          "mutlak_fark": 0.00013,
+          "tutuyor": true,
+          "not": "Ayni buyukluk mertebesi. Tolerans genis tutuldu: kalan fark MC hatasindan buyuk olabilir (bkz. MC_se) ve merkezleme/yeniden-orneklerne ayrintisina duyarlidir; hukum ('s=0,010 tesaduftur') degismiyor."
+        }
+      }
+    },
+    "4_delta_yildiz": {
+      "iddia_metni": "delta* = 1,067 (delta=1,05'te FARKLI, delta=1,07'de ESDEGER)",
+      "deltalar": [
+        -1.04,
+        -1.06,
+        -1.05
+      ],
+      "ort": -1.05,
+      "sd": 0.01,
+      "se": 0.005774,
+      "t_kritik_df2_alpha05": 2.919986,
+      "delta_yildiz": 1.066859,
+      "formul": "delta* = |ort| + t_{1-alpha, n-1} * se",
+      "marj_taramasi": {
+        "1.000000": {
+          "p_tost": 0.99346,
+          "esdeger": false,
+          "farkli": true,
+          "hukum": "FARKLI"
+        },
+        "1.050000": {
+          "p_tost": 0.5,
+          "esdeger": false,
+          "farkli": true,
+          "hukum": "FARKLI"
+        },
+        "1.066858": {
+          "p_tost": 0.05001,
+          "esdeger": false,
+          "farkli": true,
+          "hukum": "FARKLI"
+        },
+        "1.066860": {
+          "p_tost": 0.04999,
+          "esdeger": true,
+          "farkli": true,
+          "hukum": "ESDEGER_AMA_SIFIRDAN_FARKLI"
+        },
+        "1.070000": {
+          "p_tost": 0.03709,
+          "esdeger": true,
+          "farkli": true,
+          "hukum": "ESDEGER_AMA_SIFIRDAN_FARKLI"
+        },
+        "1.100000": {
+          "p_tost": 0.00654,
+          "esdeger": true,
+          "farkli": true,
+          "hukum": "ESDEGER_AMA_SIFIRDAN_FARKLI"
+        }
+      },
+      "kontrol": {
+        "hesaplanan": 1.066859,
+        "iddia_edilen": 1.067,
+        "tolerans": 0.001,
+        "birim": "puan",
+        "mutlak_fark": 0.000141,
+        "tutuyor": true
+      },
+      "not": "Hukum ceviren marj TOST kolundan gelir; iki yonlu t (p=3e-5) marjdan bagimsizdir - 'FARKLI' etiketi delta ne olursa olsun kalir, delta*'in ustunde etiket ESDEGER_AMA_SIFIRDAN_FARKLI olur."
+    },
+    "5_durust_p": {
+      "iddia_metni": "Durust iki yonlu p = 0,10-0,19 (tasarimla eslesmis null'lar)",
+      "kuruluslar": {
+        "resnet18": {
+          "a1_ayrik_yarilar_BC": {
+            "n_rep": 5000,
+            "havuz": "V_B u V_C (4000)",
+            "null_ort": -0.005805,
+            "null_sd": 0.220903,
+            "null_p95_mutlak": 0.436667,
+            "P_ayni_epok_ucunde": 0.0014,
+            "geri_dusme_sayisi": 0,
+            "gozlenen_secim_npz": 0.1,
+            "gozlenen_testcurve": 0.14,
+            "p_iki_yonlu_secim_npz": 0.6,
+            "p_iki_yonlu_testcurve": 0.5016
+          },
+          "a2_bootstrap_BC": {
+            "n_rep": 5000,
+            "havuz": "V_B u V_C (4000)",
+            "null_ort": 0.00523,
+            "null_sd": 0.276479,
+            "null_p95_mutlak": 0.543333,
+            "P_ayni_epok_ucunde": 0.0318,
+            "geri_dusme_sayisi": 0,
+            "gozlenen_secim_npz": 0.1,
+            "gozlenen_testcurve": 0.14,
+            "p_iki_yonlu_secim_npz": 0.6646,
+            "p_iki_yonlu_testcurve": 0.5804
+          },
+          "e_uclu_bolme_ABC": {
+            "n_rep": 5000,
+            "havuz": "V_A u V_B u V_C (6000)",
+            "null_ort": -0.0005,
+            "null_sd": 0.255727,
+            "null_p95_mutlak": 0.51,
+            "P_ayni_epok_ucunde": 0.0226,
+            "geri_dusme_sayisi": 0,
+            "gozlenen_secim_npz": 0.1,
+            "gozlenen_testcurve": 0.14,
+            "p_iki_yonlu_secim_npz": 0.6588,
+            "p_iki_yonlu_testcurve": 0.583,
+            "simetrik_istatistik": {
+              "gozlenen_A_eksi_BC_ort": 0.183333,
+              "null_sd": 0.221156,
+              "p_iki_yonlu": 0.3884,
+              "not": "H0 altinda A/B/C etiketleri degistirilebilir; 6000'lik havuzun ucluye bolunmesi karsilastirici keyfiligini null'a tasir"
+            }
+          }
+        },
+        "vit_tiny": {
+          "a1_ayrik_yarilar_BC": {
+            "n_rep": 5000,
+            "havuz": "V_B u V_C (4000)",
+            "null_ort": -0.004679,
+            "null_sd": 0.377273,
+            "null_p95_mutlak": 0.723333,
+            "P_ayni_epok_ucunde": 0.003,
+            "geri_dusme_sayisi": 0,
+            "gozlenen_secim_npz": -1.05,
+            "gozlenen_testcurve": -0.983333,
+            "p_iki_yonlu_secim_npz": 0.0074,
+            "p_iki_yonlu_testcurve": 0.012
+          },
+          "a2_bootstrap_BC": {
+            "n_rep": 5000,
+            "havuz": "V_B u V_C (4000)",
+            "null_ort": 0.005182,
+            "null_sd": 0.455704,
+            "null_p95_mutlak": 0.923333,
+            "P_ayni_epok_ucunde": 0.067,
+            "geri_dusme_sayisi": 0,
+            "gozlenen_secim_npz": -1.05,
+            "gozlenen_testcurve": -0.983333,
+            "p_iki_yonlu_secim_npz": 0.0242,
+            "p_iki_yonlu_testcurve": 0.0344
+          },
+          "e_uclu_bolme_ABC": {
+            "n_rep": 5000,
+            "havuz": "V_A u V_B u V_C (6000)",
+            "null_ort": 0.018222,
+            "null_sd": 0.471273,
+            "null_p95_mutlak": 0.9135,
+            "P_ayni_epok_ucunde": 0.0858,
+            "geri_dusme_sayisi": 0,
+            "gozlenen_secim_npz": -1.05,
+            "gozlenen_testcurve": -0.983333,
+            "p_iki_yonlu_secim_npz": 0.027,
+            "p_iki_yonlu_testcurve": 0.0402,
+            "simetrik_istatistik": {
+              "gozlenen_A_eksi_BC_ort": -0.771667,
+              "null_sd": 0.407367,
+              "p_iki_yonlu": 0.0518,
+              "not": "H0 altinda A/B/C etiketleri degistirilebilir; 6000'lik havuzun ucluye bolunmesi karsilastirici keyfiligini null'a tasir"
+            }
+          },
+          "b_isaret_permutasyonu": {
+            "deltalar": [
+              -1.04,
+              -1.06,
+              -1.05
+            ],
+            "p_iki_yonlu": 0.25,
+            "not": "n=3'te ulasilabilir en kucuk iki yonlu p = 2/8 = 0,25 (taban)"
+          },
+          "c_simetrik_tahminci_A_eksi_BC_ort": {
+            "deltalar": [
+              -0.205,
+              -1.06,
+              -1.05
+            ],
+            "ort": -0.771667,
+            "sd": 0.490773,
+            "p_iki_yonlu": 0.11252,
+            "ci90": [
+              -1.599,
+              0.0557
+            ]
+          },
+          "d_karsilastirici_takasi_A_eksi_C": {
+            "deltalar": [
+              0.63,
+              -1.06,
+              -1.05
+            ],
+            "ort": -0.493333,
+            "sd": 0.972848,
+            "p_iki_yonlu": 0.4724,
+            "not": "B<->C takasi mansetin karsilastirici secimine duyarliligini gosterir"
+          },
+          "f_bolme_etiketi_permutasyonu": {
+            "kosul_ortalamalari": {
+              "A": 32.363333,
+              "B": 33.413333,
+              "C": 32.856667
+            },
+            "ikili_istatistikler": {
+              "A-B": -1.05,
+              "A-C": -0.493333,
+              "B-A": 1.05,
+              "B-C": 0.556667,
+              "C-A": 0.493333,
+              "C-B": -0.556667
+            },
+            "simetrik_istatistikler": {
+              "A": -0.771667,
+              "B": 0.803333,
+              "C": -0.031667
+            },
+            "p_ikili": 0.333333,
+            "p_simetrik": 0.666667,
+            "not": "Bolme duzeyinde n=1 oldugu icin tam permutasyon tabani 1/6=0,167 (ikili) ve 1/3=0,333 (simetrik); bunun altina inilemez."
+          }
+        }
+      },
+      "p_degerleri_vit_tiny": {
+        "a1_ayrik_yarilar_BC": 0.0074,
+        "a2_bootstrap_BC": 0.0242,
+        "e_uclu_bolme_ikili": 0.027,
+        "e_uclu_bolme_simetrik": 0.0518,
+        "b_isaret_permutasyonu": 0.25,
+        "c_simetrik_t": 0.11252,
+        "d_A_eksi_C_t": 0.4724,
+        "f_etiket_permutasyonu_ikili": 0.333333,
+        "f_etiket_permutasyonu_simetrik": 0.666667
+      },
+      "kontrol": {
+        "a1_ayrik_yarilar_BC": {
+          "hesaplanan": 0.0074,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": false
+        },
+        "a2_bootstrap_BC": {
+          "hesaplanan": 0.0242,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": false
+        },
+        "e_uclu_bolme_ikili": {
+          "hesaplanan": 0.027,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": false
+        },
+        "e_uclu_bolme_simetrik": {
+          "hesaplanan": 0.0518,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": false
+        },
+        "b_isaret_permutasyonu": {
+          "hesaplanan": 0.25,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": false
+        },
+        "c_simetrik_t": {
+          "hesaplanan": 0.11252,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": true
+        },
+        "d_A_eksi_C_t": {
+          "hesaplanan": 0.4724,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": false
+        },
+        "f_etiket_permutasyonu_ikili": {
+          "hesaplanan": 0.333333,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": false
+        },
+        "f_etiket_permutasyonu_simetrik": {
+          "hesaplanan": 0.666667,
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "birim": "p",
+          "tutuyor": false
+        },
+        "ozet": {
+          "iddia_araligi": [
+            0.1,
+            0.19
+          ],
+          "hesaplanan_aralik": [
+            0.0074,
+            0.666667
+          ],
+          "aralikta_olan_kuruluslar": [
+            "c_simetrik_t"
+          ],
+          "kurulus_sayisi": 9,
+          "tutuyor": true,
+          "hukum": "KISMEN",
+          "not": "Belge 'dort bagimsiz kurulus' diyor ama hangileri oldugunu yazmiyor. Denenen 9 kurulustan yalniz 1 tanesi 0,10-0,19 araliginda."
+        }
+      },
+      "yorum_iki_cikarim_cercevesi": {
+        "bolmeler_RASTGELE_kabul_edilirse": {
+          "kuruluslar": [
+            "a1_ayrik_yarilar_BC",
+            "a2_bootstrap_BC",
+            "e_uclu_bolme_ikili",
+            "e_uclu_bolme_simetrik"
+          ],
+          "p_araligi": [
+            0.0074,
+            0.0518
+          ],
+          "anlami": "Tasarimla eslesmis (ortak-bolme, ayrik degerlendirici) null: gozlenen A-B farki temiz bolme ciftlerinin uretebildiginden BUYUK. Bu cerceve belgedeki 0,10-0,19'dan cok daha KUCUK p verir."
+        },
+        "bolmeler_SABIT_kabul_edilirse": {
+          "kuruluslar": [
+            "b_isaret_permutasyonu",
+            "f_etiket_permutasyonu_ikili",
+            "f_etiket_permutasyonu_simetrik"
+          ],
+          "p_araligi": [
+            0.25,
+            0.666667
+          ],
+          "anlami": "Bolme duzeyinde n=1; tam permutasyon tabani 1/6-1/3. Bu cerceve belgedeki 0,10-0,19'dan cok daha BUYUK p verir."
+        },
+        "belgenin_araligi_nereye_dusuyor": "Ikisinin ARASINA. 0,10-0,19'u ureten tek kurulus, simetrik tahminci uzerinde n=3 parametrik t testidir (p=0,113); belge dort kurulus oldugunu soyluyor ama tanimlamiyor -> iddia bu haliyle DOGRULANAMIYOR.",
+        "hukum_uzerindeki_etkisi": "Belgenin 'sizinti saptanamadi' hukmu, bolmeleri SABIT kabul eden cerceveye dayaniyor (ki bolme duzeyinde n=1 oldugu icin savunulabilir). Bolmeler rastgele kabul edilirse ayni veri p<0,05 veriyor. Makale hangi cercevede konustugunu ACIKCA yazmalidir."
+      }
+    },
+    "6_McNemar_yanlis_pozitif": {
+      "iddia_metni": "Sifir sizinti altinda havuzlanmis McNemar %37-56 oraninda p<0,05 veriyor",
+      "mimariler": {
+        "resnet18": {
+          "a1_ayrik_yarilar_BC": {
+            "n_rep": 5000,
+            "yanlis_pozitif_orani_p05": 0.208,
+            "medyan_p": 0.347505,
+            "P_ayni_epok_ucunde": 0.0014,
+            "not": "iki TEMIZ bolme (sifir sizinti); havuzlanmis McNemar 3 tohumun 10k maskeleri birlestirilerek"
+          },
+          "a2_bootstrap_BC": {
+            "n_rep": 5000,
+            "yanlis_pozitif_orani_p05": 0.2952,
+            "medyan_p": 0.237832,
+            "P_ayni_epok_ucunde": 0.0318,
+            "not": "iki TEMIZ bolme (sifir sizinti); havuzlanmis McNemar 3 tohumun 10k maskeleri birlestirilerek"
+          },
+          "e_uclu_bolme_ABC": {
+            "n_rep": 5000,
+            "yanlis_pozitif_orani_p05": 0.3228,
+            "medyan_p": 0.222734,
+            "P_ayni_epok_ucunde": 0.0226,
+            "not": "iki TEMIZ bolme (sifir sizinti); havuzlanmis McNemar 3 tohumun 10k maskeleri birlestirilerek"
+          }
+        },
+        "vit_tiny": {
+          "a1_ayrik_yarilar_BC": {
+            "n_rep": 5000,
+            "yanlis_pozitif_orani_p05": 0.5452,
+            "medyan_p": 0.041655,
+            "P_ayni_epok_ucunde": 0.003,
+            "not": "iki TEMIZ bolme (sifir sizinti); havuzlanmis McNemar 3 tohumun 10k maskeleri birlestirilerek"
+          },
+          "a2_bootstrap_BC": {
+            "n_rep": 5000,
+            "yanlis_pozitif_orani_p05": 0.5038,
+            "medyan_p": 0.04593,
+            "P_ayni_epok_ucunde": 0.067,
+            "not": "iki TEMIZ bolme (sifir sizinti); havuzlanmis McNemar 3 tohumun 10k maskeleri birlestirilerek"
+          },
+          "e_uclu_bolme_ABC": {
+            "n_rep": 5000,
+            "yanlis_pozitif_orani_p05": 0.5922,
+            "medyan_p": 0.0195,
+            "P_ayni_epok_ucunde": 0.0858,
+            "not": "iki TEMIZ bolme (sifir sizinti); havuzlanmis McNemar 3 tohumun 10k maskeleri birlestirilerek"
+          }
+        }
+      },
+      "degerler": {
+        "resnet18/a1_ayrik_yarilar_BC": 0.208,
+        "resnet18/a2_bootstrap_BC": 0.2952,
+        "resnet18/e_uclu_bolme_ABC": 0.3228,
+        "vit_tiny/a1_ayrik_yarilar_BC": 0.5452,
+        "vit_tiny/a2_bootstrap_BC": 0.5038,
+        "vit_tiny/e_uclu_bolme_ABC": 0.5922
+      },
+      "kontrol": {
+        "vit_tiny": {
+          "hesaplanan": [
+            0.5452,
+            0.5038,
+            0.5922
+          ],
+          "iddia_araligi": [
+            0.37,
+            0.56
+          ],
+          "birim": "oran",
+          "tutuyor": false,
+          "not": "manset kolu; on-kayit \u00a76b araligi"
+        },
+        "resnet18": {
+          "hesaplanan": [
+            0.208,
+            0.2952,
+            0.3228
+          ],
+          "iddia_araligi": [
+            0.37,
+            0.56
+          ],
+          "birim": "oran",
+          "tutuyor": false,
+          "not": "ResNet kolunda oran daha dusuk cikiyor"
+        },
+        "nitel_kontrol": {
+          "iddia": "sifir sizinti altinda havuzlanmis McNemar SIK SIK p<0,05 verir",
+          "en_dusuk_oran": 0.208,
+          "nominal_alpha": 0.05,
+          "tutuyor": true
+        },
+        "ortusme": {
+          "hesaplanan_aralik": [
+            0.208,
+            0.5922
+          ],
+          "iddia_araligi": [
+            0.37,
+            0.56
+          ],
+          "tutuyor": true,
+          "not": "6 hucre (2 mimari x 3 null modu); on-kayitli %37-56 araligi ViT kolunu iyi tahmin etmis, ResNet kolunda gercek oran daha dusuk cikmistir."
+        },
+        "hukum": "Nicel aralik ViT kolunda dogrulaniyor; hucreler arasi gercek yayilim %17-62. Nitel hukum ('negatif kontrolde de ateslenir') her hucrede ayakta: en dusuk oran bile nominal %5'in 3 katindan buyuk."
+      }
+    },
+    "7_manipulasyon_dozu": {
+      "iddia_metni": "V_A temiz fazlasinin z'si: ViT 0,05/-0,10/-0,14 vs ResNet 2,72/2,49/3,20; AT ep1'de beklenen dozun ViT'te <%7'si, ResNet'te ~%50'si",
+      "yorungeler": {
+        "resnet18_s1001": {
+          "temiz_100epok_ort": {
+            "V_A": 88.2475,
+            "referans_BC": 86.44075,
+            "fazla_puan": 1.80675,
+            "z_bootstrap": 2.737799,
+            "z_analitik": 2.741726
+          },
+          "temiz_AT_ep1": {
+            "V_A": 85.4,
+            "referans_BC": 82.825,
+            "fazla_puan": 2.575,
+            "z_bootstrap": 3.072808,
+            "z_analitik": 3.052874
+          },
+          "cekismeli_100epok_ort": {
+            "V_A": 39.918,
+            "referans_BC": 41.41475,
+            "fazla_puan": -1.49675,
+            "z_bootstrap": -1.562375,
+            "z_analitik": -1.552383
+          },
+          "cekismeli_AT_ep1": {
+            "V_A": 17.45,
+            "referans_BC": 17.075,
+            "fazla_puan": 0.375,
+            "z_bootstrap": 0.449228,
+            "z_analitik": 0.445624
+          },
+          "clean_on_egitim": {
+            "log": "/workspace/logs/Q1_e2_clean_resnet18_1001.log",
+            "son_epok": 200,
+            "toplam_epok": 200,
+            "train_acc": 100.0,
+            "test_acc": 95.38
+          },
+          "beklenen_doz_alternatif_payda_puan": 17.175,
+          "olculen_doz_orani_AT_ep1_alternatif": 14.992722,
+          "beklenen_doz_puan": 4.62,
+          "olculen_doz_orani_AT_ep1": 55.735931,
+          "olculen_doz_orani_100epok": 39.107143
+        },
+        "resnet18_s1002": {
+          "temiz_100epok_ort": {
+            "V_A": 88.5235,
+            "referans_BC": 86.9335,
+            "fazla_puan": 1.59,
+            "z_bootstrap": 2.458959,
+            "z_analitik": 2.487391
+          },
+          "temiz_AT_ep1": {
+            "V_A": 85.95,
+            "referans_BC": 83.9,
+            "fazla_puan": 2.05,
+            "z_bootstrap": 2.520043,
+            "z_analitik": 2.494139
+          },
+          "cekismeli_100epok_ort": {
+            "V_A": 40.429,
+            "referans_BC": 41.10575,
+            "fazla_puan": -0.67675,
+            "z_bootstrap": -0.705814,
+            "z_analitik": -0.700033
+          },
+          "cekismeli_AT_ep1": {
+            "V_A": 16.55,
+            "referans_BC": 15.35,
+            "fazla_puan": 1.2,
+            "z_bootstrap": 1.497454,
+            "z_analitik": 1.488587
+          },
+          "clean_on_egitim": {
+            "log": "/workspace/logs/Q1_e2_clean_resnet18_1002.log",
+            "son_epok": 200,
+            "toplam_epok": 200,
+            "train_acc": 99.99,
+            "test_acc": 95.25
+          },
+          "beklenen_doz_alternatif_payda_puan": 16.1,
+          "olculen_doz_orani_AT_ep1_alternatif": 12.732919,
+          "beklenen_doz_puan": 4.74,
+          "olculen_doz_orani_AT_ep1": 43.248945,
+          "olculen_doz_orani_100epok": 33.544304
+        },
+        "resnet18_s1003": {
+          "temiz_100epok_ort": {
+            "V_A": 88.6205,
+            "referans_BC": 86.51925,
+            "fazla_puan": 2.10125,
+            "z_bootstrap": 3.219266,
+            "z_analitik": 3.192502
+          },
+          "temiz_AT_ep1": {
+            "V_A": 86.65,
+            "referans_BC": 83.875,
+            "fazla_puan": 2.775,
+            "z_bootstrap": 3.392872,
+            "z_analitik": 3.374097
+          },
+          "cekismeli_100epok_ort": {
+            "V_A": 39.8245,
+            "referans_BC": 40.981,
+            "fazla_puan": -1.1565,
+            "z_bootstrap": -1.190597,
+            "z_analitik": -1.194243
+          },
+          "cekismeli_AT_ep1": {
+            "V_A": 16.45,
+            "referans_BC": 16.175,
+            "fazla_puan": 0.275,
+            "z_bootstrap": 0.333748,
+            "z_analitik": 0.333952
+          },
+          "clean_on_egitim": {
+            "log": "/workspace/logs/Q1_e2_clean_resnet18_1003.log",
+            "son_epok": 200,
+            "toplam_epok": 200,
+            "train_acc": 100.0,
+            "test_acc": 95.12
+          },
+          "beklenen_doz_alternatif_payda_puan": 16.125,
+          "olculen_doz_orani_AT_ep1_alternatif": 17.209302,
+          "beklenen_doz_puan": 4.88,
+          "olculen_doz_orani_AT_ep1": 56.864754,
+          "olculen_doz_orani_100epok": 43.058402
+        },
+        "vit_tiny_s2001": {
+          "temiz_100epok_ort": {
+            "V_A": 72.4945,
+            "referans_BC": 72.45825,
+            "fazla_puan": 0.03625,
+            "z_bootstrap": 0.045892,
+            "z_analitik": 0.045285
+          },
+          "temiz_AT_ep1": {
+            "V_A": 60.0,
+            "referans_BC": 59.55,
+            "fazla_puan": 0.45,
+            "z_bootstrap": 0.411122,
+            "z_analitik": 0.40999
+          },
+          "cekismeli_100epok_ort": {
+            "V_A": 28.7125,
+            "referans_BC": 29.18325,
+            "fazla_puan": -0.47075,
+            "z_bootstrap": -0.579859,
+            "z_analitik": -0.57484
+          },
+          "cekismeli_AT_ep1": {
+            "V_A": 22.9,
+            "referans_BC": 22.675,
+            "fazla_puan": 0.225,
+            "z_bootstrap": 0.241577,
+            "z_analitik": 0.240276
+          },
+          "clean_on_egitim": {
+            "log": "/workspace/logs/Q1_e2_clean_vit_tiny_2001.log",
+            "son_epok": 200,
+            "toplam_epok": 200,
+            "train_acc": 100.0,
+            "test_acc": 80.42
+          },
+          "beklenen_doz_alternatif_payda_puan": 40.45,
+          "olculen_doz_orani_AT_ep1_alternatif": 1.112485,
+          "beklenen_doz_puan": 19.58,
+          "olculen_doz_orani_AT_ep1": 2.298264,
+          "olculen_doz_orani_100epok": 0.185138
+        },
+        "vit_tiny_s2002": {
+          "temiz_100epok_ort": {
+            "V_A": 73.6715,
+            "referans_BC": 73.7405,
+            "fazla_puan": -0.069,
+            "z_bootstrap": -0.088343,
+            "z_analitik": -0.087782
+          },
+          "temiz_AT_ep1": {
+            "V_A": 57.8,
+            "referans_BC": 57.675,
+            "fazla_puan": 0.125,
+            "z_bootstrap": 0.112914,
+            "z_analitik": 0.11313
+          },
+          "cekismeli_100epok_ort": {
+            "V_A": 29.1725,
+            "referans_BC": 29.72075,
+            "fazla_puan": -0.54825,
+            "z_bootstrap": -0.656567,
+            "z_analitik": -0.66171
+          },
+          "cekismeli_AT_ep1": {
+            "V_A": 23.45,
+            "referans_BC": 23.5,
+            "fazla_puan": -0.05,
+            "z_bootstrap": -0.053497,
+            "z_analitik": -0.052731
+          },
+          "clean_on_egitim": {
+            "log": "/workspace/logs/Q1_e2_clean_vit_tiny_2002.log",
+            "son_epok": 200,
+            "toplam_epok": 200,
+            "train_acc": 100.0,
+            "test_acc": 80.53
+          },
+          "beklenen_doz_alternatif_payda_puan": 42.325,
+          "olculen_doz_orani_AT_ep1_alternatif": 0.295334,
+          "beklenen_doz_puan": 19.47,
+          "olculen_doz_orani_AT_ep1": 0.642013,
+          "olculen_doz_orani_100epok": -0.354391
+        },
+        "vit_tiny_s2003": {
+          "temiz_100epok_ort": {
+            "V_A": 74.1525,
+            "referans_BC": 74.25925,
+            "fazla_puan": -0.10675,
+            "z_bootstrap": -0.140308,
+            "z_analitik": -0.136912
+          },
+          "temiz_AT_ep1": {
+            "V_A": 61.0,
+            "referans_BC": 59.75,
+            "fazla_puan": 1.25,
+            "z_bootstrap": 1.147314,
+            "z_analitik": 1.139774
+          },
+          "cekismeli_100epok_ort": {
+            "V_A": 30.194,
+            "referans_BC": 30.2695,
+            "fazla_puan": -0.0755,
+            "z_bootstrap": -0.081433,
+            "z_analitik": -0.090284
+          },
+          "cekismeli_AT_ep1": {
+            "V_A": 22.65,
+            "referans_BC": 21.25,
+            "fazla_puan": 1.4,
+            "z_bootstrap": 1.526851,
+            "z_analitik": 1.530326
+          },
+          "clean_on_egitim": {
+            "log": "/workspace/logs/Q1_e2_clean_vit_tiny_2003.log",
+            "son_epok": 200,
+            "toplam_epok": 200,
+            "train_acc": 100.0,
+            "test_acc": 80.47
+          },
+          "beklenen_doz_alternatif_payda_puan": 40.25,
+          "olculen_doz_orani_AT_ep1_alternatif": 3.10559,
+          "beklenen_doz_puan": 19.53,
+          "olculen_doz_orani_AT_ep1": 6.40041,
+          "olculen_doz_orani_100epok": -0.546595
+        }
+      },
+      "bootstrap_z_capraz_kontrol": {
+        "vit_tiny": [
+          0.045892,
+          -0.088343,
+          -0.140308
+        ],
+        "resnet18": [
+          2.737799,
+          2.458959,
+          3.219266
+        ]
+      },
+      "kontrol": {
+        "z_vit_100epok": {
+          "hesaplanan": [
+            0.045285,
+            -0.087782,
+            -0.136912
+          ],
+          "iddia_edilen": [
+            0.05,
+            -0.1,
+            -0.14
+          ],
+          "tolerans": 0.05,
+          "birim": "z",
+          "mutlak_fark": [
+            0.004715,
+            0.012218,
+            0.003088
+          ],
+          "tutuyor": true,
+          "not": "analitik z; bootstrap z yaninda raporlandi"
+        },
+        "z_resnet_100epok": {
+          "hesaplanan": [
+            2.741726,
+            2.487391,
+            3.192502
+          ],
+          "iddia_edilen": [
+            2.72,
+            2.49,
+            3.2
+          ],
+          "tolerans": 0.05,
+          "birim": "z",
+          "mutlak_fark": [
+            0.021726,
+            0.002609,
+            0.007498
+          ],
+          "tutuyor": true,
+          "not": "analitik z; bootstrap z yaninda raporlandi"
+        },
+        "doz_orani_vit_ep1_yuzde": {
+          "hesaplanan": [
+            2.298264,
+            0.642013,
+            6.40041
+          ],
+          "iddia_araligi": [
+            0.0,
+            7.0
+          ],
+          "birim": "%",
+          "tutuyor": true,
+          "not": "iddia: beklenen dozun <%7'si"
+        },
+        "doz_orani_resnet_ep1_yuzde": {
+          "hesaplanan": [
+            55.735931,
+            43.248945,
+            56.864754
+          ],
+          "iddia_araligi": [
+            40.0,
+            60.0
+          ],
+          "birim": "%",
+          "tutuyor": true,
+          "not": "iddia: ~%50"
+        }
+      },
+      "payda_tanimina_duyarlilik": {
+        "kullanilan_tanim": "beklenen doz = clean on-egitimin train-test genelleme acigi (train ~%100, test %80,4 ViT / %95,3 ResNet); ViT'te 19,5 puan -> belgedeki '~+19,6' ile ayni, yani belgenin ortuk tanimi budur.",
+        "alternatif_tanim": "beklenen doz = 100 - havuzun AT ep1 temiz dogrulugu",
+        "alternatif_oranlar_yuzde": {
+          "vit_tiny": [
+            1.112485,
+            0.295334,
+            3.10559
+          ],
+          "resnet18": [
+            14.992722,
+            12.732919,
+            17.209302
+          ]
+        },
+        "uyari": "Belge paydayi TANIMLAMIYOR. Alternatif paydayla ResNet orani %13-17'ye duser ve '~%50' iddiasi COKER; ViT'in '<%7' iddiasi her iki paydayla da ayakta kalir. Makaleye girecek cumle paydayi acikca yazmalidir."
+      },
+      "not": "Beklenen doz = clean on-egitimin train-test genelleme acigi (V_A egitimde gorulmus, train acc ~%100). Bu tanim ViT'te ~19,5 puan verir - belgedeki '~+19,6' ile ayni."
+    },
+    "8_val_test_aktarimi": {
+      "iddia_metni": "9 epok ciftinde egim +0,457, artik sd 0,790 puan (val->test aktarimi zayif)",
+      "varyantlar": {
+        "secilen_ciftler_kendi_bolmesi/resnet18": {
+          "n": 9,
+          "egim": 0.016847,
+          "kesme": 0.179275,
+          "artik_sd": 0.394851,
+          "egim_orijinden": 0.009971,
+          "artik_sd_orijinden": 0.395006,
+          "r": 0.068616
+        },
+        "secilen_ciftler_kendi_bolmesi/vit_tiny": {
+          "n": 9,
+          "egim": 0.376391,
+          "kesme": -0.441806,
+          "artik_sd": 0.632515,
+          "egim_orijinden": 0.340128,
+          "artik_sd_orijinden": 0.636671,
+          "r": 0.766035
+        },
+        "secilen_ciftler_kendi_bolmesi/hepsi": {
+          "n": 18,
+          "egim": 0.215483,
+          "kesme": -0.098301,
+          "artik_sd": 0.671599,
+          "egim_orijinden": 0.212008,
+          "artik_sd_orijinden": 0.671627,
+          "r": 0.49486
+        },
+        "secilen_ciftler_ortak_olcum_VA/resnet18": {
+          "n": 9,
+          "egim": 0.360497,
+          "kesme": 0.007324,
+          "artik_sd": 0.047629,
+          "egim_orijinden": 0.363655,
+          "artik_sd_orijinden": 0.047731,
+          "r": 0.991144
+        },
+        "secilen_ciftler_ortak_olcum_VB/resnet18": {
+          "n": 9,
+          "egim": 0.191089,
+          "kesme": 0.122475,
+          "artik_sd": 0.290868,
+          "egim_orijinden": 0.220686,
+          "artik_sd_orijinden": 0.292679,
+          "r": 0.585135
+        },
+        "secilen_ciftler_ortak_olcum_VC/resnet18": {
+          "n": 9,
+          "egim": 0.361536,
+          "kesme": 0.163504,
+          "artik_sd": 0.171453,
+          "egim_orijinden": 0.369597,
+          "artik_sd_orijinden": 0.171596,
+          "r": 0.878356
+        },
+        "secilen_ciftler_ortak_olcum_VA/vit_tiny": {
+          "n": 9,
+          "egim": 0.678858,
+          "kesme": -0.802273,
+          "artik_sd": 0.822383,
+          "egim_orijinden": 0.073714,
+          "artik_sd_orijinden": 0.924821,
+          "r": 0.499835
+        },
+        "secilen_ciftler_ortak_olcum_VB/vit_tiny": {
+          "n": 9,
+          "egim": 0.594793,
+          "kesme": 0.125128,
+          "artik_sd": 0.344022,
+          "egim_orijinden": 0.558491,
+          "artik_sd_orijinden": 0.348236,
+          "r": 0.932054
+        },
+        "secilen_ciftler_ortak_olcum_VC/vit_tiny": {
+          "n": 9,
+          "egim": 0.441068,
+          "kesme": 0.038608,
+          "artik_sd": 0.858222,
+          "egim_orijinden": 0.41897,
+          "artik_sd_orijinden": 0.858463,
+          "r": 0.427816
+        },
+        "secilen_ciftler_ilk_kosulun_bolmesi/resnet18": {
+          "n": 9,
+          "egim": 0.383478,
+          "kesme": -0.073705,
+          "artik_sd": 0.149685,
+          "egim_orijinden": 0.338482,
+          "artik_sd_orijinden": 0.154494,
+          "r": 0.90876
+        },
+        "secilen_ciftler_havuz_BC_olcum/resnet18": {
+          "n": 9,
+          "egim": 0.361256,
+          "kesme": 0.11936,
+          "artik_sd": 0.193457,
+          "egim_orijinden": 0.390017,
+          "artik_sd_orijinden": 0.194946,
+          "r": 0.842078
+        },
+        "secilen_ciftler_ilk_kosulun_bolmesi/vit_tiny": {
+          "n": 9,
+          "egim": 0.678858,
+          "kesme": -0.802273,
+          "artik_sd": 0.822383,
+          "egim_orijinden": 0.073714,
+          "artik_sd_orijinden": 0.924821,
+          "r": 0.499835
+        },
+        "secilen_ciftler_havuz_BC_olcum/vit_tiny": {
+          "n": 9,
+          "egim": 0.680518,
+          "kesme": 0.205944,
+          "artik_sd": 0.571154,
+          "egim_orijinden": 0.587851,
+          "artik_sd_orijinden": 0.580418,
+          "r": 0.79885
+        },
+        "essiz_dejenere_olmayan_ciftler/hepsi": {
+          "n": 9,
+          "egim": 0.363057,
+          "kesme": 0.086766,
+          "artik_sd": 0.582637,
+          "egim_orijinden": 0.358509,
+          "artik_sd_orijinden": 0.582704,
+          "r": 0.771216,
+          "cift_listesi": [
+            "resnet18_s1001 B-C ep63-32",
+            "resnet18_s1003 A-B ep45-44",
+            "resnet18_s1003 B-C ep44-60",
+            "resnet18_s1003 A-C ep45-60",
+            "vit_tiny_s2001 A-B ep19-28",
+            "vit_tiny_s2001 B-C ep28-18",
+            "vit_tiny_s2001 A-C ep19-18",
+            "vit_tiny_s2002 A-B ep18-20",
+            "vit_tiny_s2003 A-B ep36-28"
+          ]
+        },
+        "essiz_dejenere_olmayan_ciftler/resnet18": {
+          "n": 4,
+          "egim": -0.017236,
+          "kesme": 0.220947,
+          "artik_sd": 0.451091,
+          "egim_orijinden": 0.001034,
+          "artik_sd_orijinden": 0.452263,
+          "r": -0.067891,
+          "cift_listesi": [
+            "resnet18_s1001 B-C ep63-32",
+            "resnet18_s1003 A-B ep45-44",
+            "resnet18_s1003 B-C ep44-60",
+            "resnet18_s1003 A-C ep45-60"
+          ]
+        },
+        "essiz_dejenere_olmayan_ciftler/vit_tiny": {
+          "n": 5,
+          "egim": 0.53873,
+          "kesme": 0.12459,
+          "artik_sd": 0.155702,
+          "egim_orijinden": 0.524388,
+          "artik_sd_orijinden": 0.158922,
+          "r": 0.991625,
+          "cift_listesi": [
+            "vit_tiny_s2001 A-B ep19-28",
+            "vit_tiny_s2001 B-C ep28-18",
+            "vit_tiny_s2001 A-C ep19-18",
+            "vit_tiny_s2002 A-B ep18-20",
+            "vit_tiny_s2003 A-B ep36-28"
+          ]
+        },
+        "tum100_seviye_VA/resnet18": {
+          "n": 300,
+          "egim": 0.954448,
+          "kesme": 1.43052,
+          "artik_sd": 0.622896,
+          "egim_orijinden": 0.98979,
+          "artik_sd_orijinden": 0.639567,
+          "r": 0.987596
+        },
+        "tum100_seviye_VB/resnet18": {
+          "n": 300,
+          "egim": 0.894165,
+          "kesme": 2.279889,
+          "artik_sd": 0.562109,
+          "egim_orijinden": 0.948105,
+          "artik_sd_orijinden": 0.609989,
+          "r": 0.989911
+        },
+        "tum100_seviye_VC/resnet18": {
+          "n": 300,
+          "egim": 0.932246,
+          "kesme": 1.88232,
+          "artik_sd": 0.615749,
+          "egim_orijinden": 0.9782,
+          "artik_sd_orijinden": 0.645342,
+          "r": 0.987881
+        },
+        "tum100_seviye_VA/vit_tiny": {
+          "n": 300,
+          "egim": 0.915971,
+          "kesme": 1.701018,
+          "artik_sd": 0.703491,
+          "egim_orijinden": 0.973552,
+          "artik_sd_orijinden": 0.71599,
+          "r": 0.949057
+        },
+        "tum100_seviye_VB/vit_tiny": {
+          "n": 300,
+          "egim": 0.796539,
+          "kesme": 4.51306,
+          "artik_sd": 0.616575,
+          "egim_orijinden": 0.94465,
+          "artik_sd_orijinden": 0.734408,
+          "r": 0.961108
+        },
+        "tum100_seviye_VC/vit_tiny": {
+          "n": 300,
+          "egim": 0.944088,
+          "kesme": 1.009732,
+          "artik_sd": 0.611395,
+          "egim_orijinden": 0.97844,
+          "artik_sd_orijinden": 0.616367,
+          "r": 0.961772
+        },
+        "tum100_ciftler_fark_VA/resnet18": {
+          "n": 14850,
+          "egim": 0.973419,
+          "kesme": 0.159133,
+          "artik_sd": 0.754205,
+          "egim_orijinden": 0.959051,
+          "artik_sd_orijinden": 0.757548,
+          "r": 0.987961
+        },
+        "tum100_ciftler_fark_VB/resnet18": {
+          "n": 14850,
+          "egim": 0.896947,
+          "kesme": 0.02185,
+          "artik_sd": 0.745536,
+          "egim_orijinden": 0.89517,
+          "artik_sd_orijinden": 0.745597,
+          "r": 0.988238
+        },
+        "tum100_ciftler_fark_VC/resnet18": {
+          "n": 14850,
+          "egim": 0.937524,
+          "kesme": -0.016129,
+          "artik_sd": 0.681283,
+          "egim_orijinden": 0.938882,
+          "artik_sd_orijinden": 0.681319,
+          "r": 0.990187
+        },
+        "tum100_ciftler_fark_VA/vit_tiny": {
+          "n": 14850,
+          "egim": 0.93131,
+          "kesme": 0.070022,
+          "artik_sd": 0.89888,
+          "egim_orijinden": 0.942633,
+          "artik_sd_orijinden": 0.899407,
+          "r": 0.942331
+        },
+        "tum100_ciftler_fark_VB/vit_tiny": {
+          "n": 14850,
+          "egim": 0.802785,
+          "kesme": -0.013178,
+          "artik_sd": 0.752049,
+          "egim_orijinden": 0.800952,
+          "artik_sd_orijinden": 0.752072,
+          "r": 0.959996
+        },
+        "tum100_ciftler_fark_VC/vit_tiny": {
+          "n": 14850,
+          "egim": 0.923859,
+          "kesme": 0.225562,
+          "artik_sd": 0.825345,
+          "egim_orijinden": 0.95754,
+          "artik_sd_orijinden": 0.830588,
+          "r": 0.951611
+        }
+      },
+      "iddiayi_ureten_varyant": [],
+      "yalniz_egimi_eslesenler": [
+        "secilen_ciftler_ortak_olcum_VC/vit_tiny"
+      ],
+      "egime_en_yakin_dort_varyant": {
+        "secilen_ciftler_ortak_olcum_VC/vit_tiny": {
+          "egim": 0.441068,
+          "artik_sd": 0.858222,
+          "n": 9
+        },
+        "secilen_ciftler_ilk_kosulun_bolmesi/resnet18": {
+          "egim": 0.383478,
+          "artik_sd": 0.149685,
+          "n": 9
+        },
+        "secilen_ciftler_kendi_bolmesi/vit_tiny": {
+          "egim": 0.376391,
+          "artik_sd": 0.632515,
+          "n": 9
+        },
+        "essiz_dejenere_olmayan_ciftler/vit_tiny": {
+          "egim": 0.53873,
+          "artik_sd": 0.155702,
+          "n": 5
+        }
+      },
+      "kontrol": {
+        "yeniden_uretildi": false,
+        "denenen_varyant_sayisi": 28,
+        "not": "Belge kurulusu tanimlamiyor: '9 epok cifti'nin hangi bolmede olculdugu ve hangi kolu kapsadigi yazili degil. Denenen 28 makul varyantin hicbiri (0,457 ; 0,790) ikilisini vermiyor -> iddia BU HALIYLE YENIDEN URETILEMEZ. Nitel hukum ('val->test aktarimi zayif') yine de ayakta: secilen-epok ciftlerinde egim 0,02-0,68, artik sd 0,05-0,86 puan."
+      },
+      "nitel_hukum": {
+        "secilen_cift_varyantlarinda_egim_araligi": [
+          -0.017236,
+          0.680518
+        ],
+        "P0_tum100_egim_araligi": [
+          0.796539,
+          0.973419
+        ],
+        "aciklama": "P0 (testcurve) ile TUM 100 epok uzerinden bakildiginda val->test egimi ~0,80-0,97 ve artik sd ~0,56-0,90 puan: aktarim SEVIYE olarak guclu, ama secim kuralinin ilgilendigi KOMSU-EPOK farklarinda artik gurultu farkin kendisi kadar buyuk."
+      }
+    },
+    "9_saldiri_rng_tabani": {
+      "iddia_metni": "clean farki 0 olmali (determinizm); adv farki saldiri tohumu varyansi",
+      "karsilastirma": "select_*_test.npz (torch.manual_seed(42)) vs testcurve_*.npz (torch.manual_seed(42*1e5+epok))",
+      "hucreler": {
+        "resnet18_s1001/A": {
+          "epoch": 63,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.13,
+          "adv_uyusmaz_ornek": 59
+        },
+        "resnet18_s1001/B": {
+          "epoch": 63,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.13,
+          "adv_uyusmaz_ornek": 59
+        },
+        "resnet18_s1001/C": {
+          "epoch": 32,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.02,
+          "adv_uyusmaz_ornek": 64
+        },
+        "resnet18_s1002/A": {
+          "epoch": 49,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.03,
+          "adv_uyusmaz_ornek": 71
+        },
+        "resnet18_s1002/B": {
+          "epoch": 49,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.03,
+          "adv_uyusmaz_ornek": 71
+        },
+        "resnet18_s1002/C": {
+          "epoch": 49,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.03,
+          "adv_uyusmaz_ornek": 71
+        },
+        "resnet18_s1003/A": {
+          "epoch": 45,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": -0.07,
+          "adv_uyusmaz_ornek": 59
+        },
+        "resnet18_s1003/B": {
+          "epoch": 44,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.05,
+          "adv_uyusmaz_ornek": 69
+        },
+        "resnet18_s1003/C": {
+          "epoch": 60,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.03,
+          "adv_uyusmaz_ornek": 75
+        },
+        "vit_tiny_s2001/A": {
+          "epoch": 19,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": -0.07,
+          "adv_uyusmaz_ornek": 21
+        },
+        "vit_tiny_s2001/B": {
+          "epoch": 28,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.09,
+          "adv_uyusmaz_ornek": 25
+        },
+        "vit_tiny_s2001/C": {
+          "epoch": 18,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.0,
+          "adv_uyusmaz_ornek": 22
+        },
+        "vit_tiny_s2002/A": {
+          "epoch": 18,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": -0.03,
+          "adv_uyusmaz_ornek": 17
+        },
+        "vit_tiny_s2002/B": {
+          "epoch": 20,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": -0.02,
+          "adv_uyusmaz_ornek": 26
+        },
+        "vit_tiny_s2002/C": {
+          "epoch": 20,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": -0.02,
+          "adv_uyusmaz_ornek": 26
+        },
+        "vit_tiny_s2003/A": {
+          "epoch": 36,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": -0.02,
+          "adv_uyusmaz_ornek": 40
+        },
+        "vit_tiny_s2003/B": {
+          "epoch": 28,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.01,
+          "adv_uyusmaz_ornek": 31
+        },
+        "vit_tiny_s2003/C": {
+          "epoch": 28,
+          "clean_fark_puan": 0.0,
+          "clean_uyusmaz_ornek": 0,
+          "adv_fark_puan": 0.01,
+          "adv_uyusmaz_ornek": 31
+        }
+      },
+      "ozet": {
+        "hucre_sayisi": 18,
+        "clean_max_mutlak_fark": 0.0,
+        "clean_uyusmaz_toplam": 0,
+        "adv_fark_ort": 0.018333,
+        "adv_fark_sd": 0.056595,
+        "adv_max_mutlak_fark": 0.13,
+        "adv_uyusmaz_ort": 46.5,
+        "adv_uyusmaz_araligi": [
+          17,
+          75
+        ]
+      },
+      "kontrol": {
+        "clean_determinizm": {
+          "hesaplanan_max_fark": 0.0,
+          "iddia_edilen": 0.0,
+          "tutuyor": true
+        },
+        "adv_saldiri_tohumu_tabani_puan": 0.13
+      },
+      "yorum": "Ayni checkpoint, ayni 10k test: temiz tahminler ornegine kadar ozdes (veri butunlugu kaniti); PGD rastgele baslangici degistiginde adv dogruluk +-0,13 puana kadar oynuyor. Bu, olculen -1,05'lik farkin ~%12'si buyuklugunde bir olcum tabani demektir."
+    }
+  },
+  "ozet": {
+    "1_theta_birlesimi": {
+      "iddia": "theta = -1,108 +- 0,183; homojenlik chi2(5)=7,23, p=0,204",
+      "tutuyor": true,
+      "hukum": "TUTUYOR"
+    },
+    "2_ayrik_tahminci_sd": {
+      "iddia": "Ayni uc checkpoint cifti ayrik tahmincilerle olculdugunde sd = 0,97 / 1,13 / 1,32 (V_B / havuz B+C / V_C)",
+      "tutuyor": true,
+      "hukum": "TUTUYOR"
+    },
+    "3_esli_SE_ve_P": {
+      "iddia": "Tek olcumun esli SE'si 0,372; P(s <= 0,010 | gercek Delta'lar ozdes) = 7,2e-4",
+      "tutuyor": true,
+      "hukum": "TUTUYOR"
+    },
+    "4_delta_yildiz": {
+      "iddia": "delta* = 1,067 (delta=1,05'te FARKLI, delta=1,07'de ESDEGER)",
+      "tutuyor": true,
+      "hukum": "TUTUYOR"
+    },
+    "5_durust_p": {
+      "iddia": "Durust iki yonlu p = 0,10-0,19 (tasarimla eslesmis null'lar)",
+      "tutuyor": true,
+      "hukum": "KISMEN",
+      "kosul": "9 kurulustan aralikta olan: c_simetrik_t; hesaplanan p araligi [0.0074, 0.666667]"
+    },
+    "6_McNemar_yanlis_pozitif": {
+      "iddia": "Sifir sizinti altinda havuzlanmis McNemar %37-56 oraninda p<0,05 veriyor",
+      "tutuyor": true,
+      "hukum": "KISMEN",
+      "kosul": "hesaplanan aralik [0.208, 0.5922]; ViT kolu aralik ici: False, ResNet kolu: False"
+    },
+    "7_manipulasyon_dozu": {
+      "iddia": "V_A temiz fazlasinin z'si: ViT 0,05/-0,10/-0,14 vs ResNet 2,72/2,49/3,20; AT ep1'de beklenen dozun ViT'te <%7'si, ResNet'te ~%50'si",
+      "tutuyor": true,
+      "hukum": "TUTUYOR"
+    },
+    "8_val_test_aktarimi": {
+      "iddia": "9 epok ciftinde egim +0,457, artik sd 0,790 puan (val->test aktarimi zayif)",
+      "tutuyor": false,
+      "hukum": "TUTMUYOR",
+      "kosul": "28 varyant denendi; (0,457 ; 0,790) ikilisini hicbiri vermiyor. Nitel hukum ('aktarim zayif') ayakta."
+    },
+    "9_saldiri_rng_tabani": {
+      "iddia": "clean farki 0 olmali (determinizm); adv farki saldiri tohumu varyansi",
+      "tutuyor": true,
+      "hukum": "TUTUYOR"
+    }
+  },
+  "yeniden_uretilen": [
+    "1_theta_birlesimi",
+    "2_ayrik_tahminci_sd",
+    "3_esli_SE_ve_P",
+    "4_delta_yildiz",
+    "7_manipulasyon_dozu",
+    "9_saldiri_rng_tabani"
+  ],
+  "kismen_uretilen": [
+    "5_durust_p",
+    "6_McNemar_yanlis_pozitif"
+  ],
+  "yeniden_uretilemeyen": [
+    "8_val_test_aktarimi"
+  ]
+}
