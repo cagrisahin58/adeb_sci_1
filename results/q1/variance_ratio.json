@@ -1,0 +1,101 @@
+{
+  "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+  "n_tohum_cifti": 3,
+  "protokoller": [
+    "raw",
+    "target_correct",
+    "both_correct",
+    "successful_source"
+  ],
+  "asimetri_degerleri_tohum_bazli": {
+    "raw": [
+      13.2,
+      13.69,
+      13.83
+    ],
+    "target_correct": [
+      4.83,
+      4.28,
+      3.97
+    ],
+    "both_correct": [
+      8.51,
+      8.05,
+      8.24
+    ],
+    "successful_source": [
+      16.14,
+      14.46,
+      13.19
+    ]
+  },
+  "PAY_protokol_etkisi": {
+    "aralik_tohum_bazli": [
+      11.31,
+      10.18,
+      9.86
+    ],
+    "aralik_ortalama": 10.45,
+    "aralik_sd": 0.7618,
+    "sd_tohum_bazli": [
+      5.0031,
+      4.8295,
+      4.6244
+    ],
+    "sd_ortalama": 4.819
+  },
+  "PAYDA_kosum_etkisi_AYNI_NICELIK": {
+    "sd_protokol_bazli": {
+      "raw": 0.3308,
+      "target_correct": 0.4355,
+      "both_correct": 0.2312,
+      "successful_source": 1.4797
+    },
+    "sd_min": 0.2312,
+    "sd_max": 1.4797,
+    "aralik_protokol_bazli": {
+      "raw": 0.63,
+      "target_correct": 0.86,
+      "both_correct": 0.46,
+      "successful_source": 2.95
+    }
+  },
+  "ORAN_TANIMA_DUYARLI": {
+    "sd_vs_sd": {
+      "tanim": "protokol sd'si (tohum icinde, 4 protokol) / kosum sd'si (protokol icinde, 3 tohum)",
+      "pay_ortalama": 4.819,
+      "degerler": {
+        "raw": 14.57,
+        "target_correct": 11.06,
+        "both_correct": 20.85,
+        "successful_source": 3.26
+      }
+    },
+    "aralik_vs_aralik": {
+      "tanim": "protokol araligi (10.45) / kosum araligi (protokol icinde)",
+      "pay_ortalama": 10.45,
+      "degerler": {
+        "raw": 16.59,
+        "target_correct": 12.15,
+        "both_correct": 22.72,
+        "successful_source": 3.54
+      }
+    },
+    "aralik_vs_sd_OLCEK_UYUMSUZ": {
+      "tanim": "MAKALEDE KULLANILAN HATALI BICIM: aralik / sd. Sadece kayit icin.",
+      "degerler": {
+        "raw": 31.59,
+        "target_correct": 23.99,
+        "both_correct": 45.21,
+        "successful_source": 7.06
+      }
+    }
+  },
+  "ORAN_ACIKLIGI": {
+    "min": 3.26,
+    "max": 22.72,
+    "yorum": "Tek bir kat-degeri manseti KURULAMAZ: olcek-uyumlu iki tanim arasinda oran 3.3x-22.7x araliginda oynuyor. Ayrica en buyuk asimetri yayilimini veren protokol (successful_source) ayni zamanda en buyuk kosum sd'sine sahip; yani pay ve payda bagimsiz degil."
+  },
+  "EN_BUYUK_KOSUM_SD_PROTOKOLU": "successful_source",
+  "EN_BUYUK_ASIMETRI_PROTOKOLU": "successful_source"
+}

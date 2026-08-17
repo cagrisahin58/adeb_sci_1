@@ -288,16 +288,31 @@ koşusu değişti") doğrulayan bir sonuç.
   cevaplıyor; taahhüdün kendisi (ön-eğitimde görülme durumunu değiştiren
   çiftler) **kurulmadı**. Metin ölçülen tasarımla yeniden yazılacak; P1
   gelecek-iş maddesi olarak kalacak. Bkz. §3 aşırı-iddia düzeltmesi.
-- **MAKALENİN EN BÜYÜK RİSKİ (gidişat denetçisi, KRİTİK):** ana metindeki
-  *"protokol yayılımı ≈ eğitim-koşusu sd'sinin yirmi katı"* iddiası, E2'de
-  **iki kez geri çektiğimiz hatanın aynısıdır** — 10,24 puanlık *aralığı*
-  0,50-0,55'lik *sd*'ye bölüyor ve üstüne ölçek uyumsuz (pay: transfer
-  asimetrisi; payda: mutlak doğruluk). Aynı nicelikte hesaplandığında oran
-  kuruluşa göre **3,2× - 18,6×** arasında oynuyor. E2 bölümü hakeme bu kuralı
-  kendi elimizle öğrettiği için hakem bunu bulacaktır. **arXiv ön-baskısı bu
-  düzeltilmeden atılmamalı** — atılırsa hata kalıcı ve atıf verilebilir olur.
-  Çözüm E2'nin v3 çözümüyle aynı: oranı kaldır, mutlak dile geç (özet zaten
-  güvenli; gövdede ~4 cümle).
+- **MAKALENİN EN BÜYÜK RİSKİ (gidişat denetçisi, KRİTİK) — ÇÖZÜLDÜ
+  (2026-08-17):** ana metindeki *"protokol yayılımı ≈ eğitim-koşusu sd'sinin
+  yirmi katı"* iddiası, E2'de **iki kez geri çektiğimiz hatanın aynısıydı** —
+  10,24 puanlık *aralığı* 0,50-0,55'lik *sd*'ye bölüyor ve üstüne ölçek
+  uyumsuzdu (pay: transfer asimetrisi; payda: mutlak doğruluk).
+
+  **Düzeltme:** `scripts/q1_variance_ratio.py` yazıldı → artefakt
+  `results/q1/variance_ratio.json`. Her iki yayılım **aynı nicelik** (köşegen-
+  dışı asimetri) üzerinde hesaplandı:
+  - PAY (protokol etkisi): tohum-içi açıklık **10,45 ± 0,76** puan; sd 4,82
+  - PAYDA (koşum etkisi, AYNI NİCELİK): protokole göre sd **0,23 - 1,48** puan
+  - ORAN: ölçek-uyumlu iki tanımda **3,26× - 22,72×**
+  - Hatalı biçim (aralık/sd) kayıt için saklandı: 7,06× - 45,21× → "yirmi"
+    bu aralığın içindeydi ama **keyfiydi**.
+  - **Pay ile payda bağımsız değil:** en büyük asimetriyi veren protokol
+    (successful-source) en büyük koşum sd'sine de sahip (1,48) ve aralığın
+    alt ucunu o üretiyor. En muhafazakâr eşleştirme bile ölçüm etkisini
+    koşum etkisinin **3 katından fazla** bırakıyor — sav ayakta.
+
+  8 konum düzeltildi (4 EN + 4 TR): `02_related_work.tex:74`,
+  `04_experiments.tex:369`, `05_discussion.tex:15`, `06_conclusion.tex:9` ve
+  TR eşleri. Tek kat-değeri manşeti kaldırıldı, yerine aralık + bağımlılık
+  uyarısı yazıldı. Özet zaten güvenliydi ("3,3 katlık yayılım"), dokunulmadı.
+  İki dil de temiz derlendi (EN 16 s., TR 15 s.; 0 tanımsız ref/atıf).
+  **arXiv ön-baskısı önündeki engel kaldırıldı.**
 - **E2'nin ana tezle birleşme yolu** (gidişat denetçisi): ikinci bir manşet
   değil, **ana manşetin paydasını düzeltmek**. Makalenin raporladığı 0,50-0,55
   koşum varyansı, üç tohumun tek bir seed-777 bölmesini paylaşması nedeniyle
