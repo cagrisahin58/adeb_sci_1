@@ -9,7 +9,7 @@
 #
 # Kullanim (konteyner icinde, arka planda):
 #   STAGE=e2       bash scripts/q1_pipeline.sh   # sizinti ablasyonu (~19-28 GPU-sa)
-#   STAGE=e1       bash scripts/q1_pipeline.sh   # CIFAR-100 ana cift (24 GPU-sa)
+#   STAGE=e1       bash scripts/q1_pipeline.sh   # CIFAR-100 ana cift (~36-45 GPU-sa)
 #   STAGE=e5pilot  bash scripts/q1_pipeline.sh   # R50+ViT-S 1 tohum (sure olcumu!)
 #   STAGE=e5       bash scripts/q1_pipeline.sh   # R50+ViT-S kalan tohumlar
 #   STAGE=e7       bash scripts/q1_pipeline.sh   # SVHN capasi (ilk dusecek kalem)
@@ -124,14 +124,25 @@ train_pair_member() {
 
 case "$STAGE" in
 # ---------------------------------------------------------------------------
-e1)  # CIFAR-100 ana cift (RN18/ViT-T), 3 tohum, save_every 2 (E3 yorungeleri)
+e1)  # CIFAR-100 ana cift (RN18/ViT-T), 3 tohum, save_every 1
+    # BOLME: sinif-dengeli (stratified) ZORUNLU - 100 sinifta rastgele 2000'lik
+    # bolme sinif basina 7-35 ornek birakiyordu (secim metrigi asiri gurultulu).
     run_step Q1_val_split_c100 data/val_split_indices_cifar100.json \
-        python experiments/rev2/make_val_split.py --dataset cifar100
-    for seed in 1001 1002 1003; do
-        train_pair_member cifar100 resnet18 "$seed" data/val_split_indices_cifar100.json 2
-    done
-    for seed in 2001 2002 2003; do
-        train_pair_member cifar100 vit_tiny "$seed" data/val_split_indices_cifar100.json 2
+        python experiments/rev2/make_val_split.py --dataset cifar100 --stratified
+    # CIFTLESTIRILMIS SIRA (hakem onerisi): pair1 tam bitsin -> pair2 -> pair3.
+    # Boylece ilk ViT kaniti ~2 saatte gelir ve on-kayitin istedigi 1-tohum
+    # PILOT KAPISI dogal olarak olusur (asagidaki durdurma kurallari).
+    # DURDURMA KURALLARI (pilot, logs/Q1_cifar100_*_2001.log):
+    #   clean ViT-T val acc < %40      -> DUR: --timm-pretrained veya patch-4
+    #   AT ilk 5 epok val adv-acc < %5 -> DUR: LR/eps-warmup gozden gecir
+    for i in 1 2 3; do
+        rs=$((1000 + i)); vs=$((2000 + i))
+        train_pair_member cifar100 resnet18 "$rs" data/val_split_indices_cifar100.json 1
+        train_pair_member cifar100 vit_tiny "$vs" data/val_split_indices_cifar100.json 1
+        if [ "$i" = 1 ]; then
+            log "PILOT KAPISI: pair1 tamam. logs/Q1_cifar100_clean_vit_tiny_2001.log"
+            log "  ve *_at_vit_tiny_2001.log incelenmeli (clean val>=%40, AT ilk-5 adv>=%5)."
+        fi
     done
     # AutoAttack: cift bazli (indeks eslesmesi: 1001<->2001 ...)
     for i in 1 2 3; do
@@ -251,7 +262,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
                 --val-indices data/val_split_indices_svhn.json
         run_train "Q1_svhn_at_resnet18_${seed}" "${root}/resnet18/adv/adversarial_training" \
             python -m cli.main train adversarial -m resnet18 --dataset svhn \
-                --lr 0.001 --epochs 100 --batch-size 128 --patience 20 \
+                --device cuda --lr 0.001 --epochs 100 --batch-size 128 --patience 20 \
                 --eps-warmup 10 --seed "$seed" -o "$root" \
                 --pretrained "${root}/resnet18/clean/best.pth" \
                 --val-indices data/val_split_indices_svhn.json --save-every 2 \
@@ -270,7 +281,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
                 --val-indices data/val_split_indices_svhn.json
         run_train "Q1_svhn_at_vit_tiny_${seed}" "${root}/vit_tiny/adv/adversarial_training" \
             python -m cli.main train adversarial -m vit_tiny --dataset svhn \
-                --lr 0.001 --epochs 100 --batch-size 64 --patience 20 \
+                --device cuda --lr 0.001 --epochs 100 --batch-size 64 --patience 20 \
                 --eps-warmup 10 --seed "$seed" -o "$root" \
                 --pretrained "${root}/vit_tiny/clean/best.pth" \
                 --val-indices data/val_split_indices_svhn.json --save-every 2 \

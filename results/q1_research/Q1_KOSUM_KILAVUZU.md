@@ -14,7 +14,13 @@ otomatik). Başlatmadan önce `nvidia-smi` ile GPU'nun boş olduğunu kontrol et
 #    18 çevrimdışı seçim geçişi ~2-3 saat + 18 test değerlendirmesi ~1 saat)
 docker exec -d -w /workspace -e STAGE=e2 adeb_eval bash scripts/q1_pipeline.sh
 
-# 2) E1 - CIFAR-100 ana çift (~24 GPU-saat)
+# 2) E1 - CIFAR-100 ana çift (~36-45 GPU-saat; hakem denetimi bütçeyi düzeltti:
+#    clean 6,4 + AT 29,7 + AutoAttack 8,8 + PGD 0,1)
+#    Sıra ÇİFTLEŞTİRİLDİ: pair1 (RN18 s1001 + ViT s2001) tam bitsin → pair2 → pair3.
+#    PİLOT KAPISI pair1'de: clean ViT-T val acc < %40 VEYA AT ilk 5 epok
+#    val adv-acc < %5 ise DURDUR (logs/Q1_cifar100_*_2001.log).
+#    Bölme SINIF-DENGELİ (--stratified): 100 sınıfta rastgele bölme sınıf başına
+#    7-35 örnek bırakıyordu; şimdi tam 20. C1'den sapma olarak beyan edilecek.
 docker exec -d -w /workspace -e STAGE=e1 adeb_eval bash scripts/q1_pipeline.sh
 
 # 3) E5 PILOT - R50 + ViT-S birer tohum (SÜRE ÖLÇÜMÜ; rapor: ±%40 belirsizlik)
