@@ -73,3 +73,46 @@ ViT kolunun zayıf çıkmasının beklendiğini saptadı. Bu yüzden E1'in rolü
 - E1'in save_every=1 checkpointleriyle **E2'nin seçim-piyangosu ölçümü
   CIFAR-100'de replike edilecek** (~5 GPU-saat, bedava kazanç) — bu, E1'in
   tez açısından en değerli çıktısı olacaktır.
+
+---
+
+## EK A — Kapı kararı (ölçüm anında yazılmıştır, 2026-08-17 ~19:07)
+
+**Kapı noktası: ViT-Tiny s2001 CIFAR-100 AT, epoch 5.**
+
+Ölçülen: `Clean: 40.00%`, `Adv: 10.40%` (val, n=2000, sabit bölme).
+
+| Ön-kayıtlı eşik (§2) | Değer | Ölçüm | Hüküm |
+|---|---|---|---|
+| SERT DUR: `adv < 3,0` (şansın 3 katı) | 3,000 | 10,40 | **GEÇTİ** |
+| SERT DUR: `adv < 0,10 × temiz-taban` | 4,745 | 10,40 | **GEÇTİ** |
+| Clean kapısı: temiz val < %40 | 40,00 | 47,45 (temiz ön-eğitim en iyi) | **GEÇTİ** |
+
+**KARAR: koşum DEVAM EDİYOR.** Reçete revizyonu (`--timm-pretrained` / patch-4
+`vit_cifar_tiny`) tetiklenmedi.
+
+**Kapının gevşek olmadığının kanıtı — ölçülen orana bakılmadan yazılmış eşikle
+karşılaştırma:** ep5'te ViT'in adv/temiz-taban oranı 10,40/47,45 = **0,219**;
+ResNet-18'in aynı epoktaki oranı 15,10/78,50 = **0,192**. Yani ViT, kapıyı
+kuran ResNet çapasından *proporsiyonel olarak daha iyi* durumda. Eşik
+(0,10) çapanın yaklaşık yarısına konmuştu; gerçekleşen oran çapanın üstünde
+çıktı. Marj 2,2 kat.
+
+**AT ilk beş epok yörüngesi (kayıt için):**
+
+| epok | Loss | Clean | Adv |
+|---|---|---|---|
+| 1 | 3,5978 | 33,65 | 8,30 |
+| 2 | 3,1510 | 38,25 | 9,00 |
+| 3 | 3,0001 | 38,85 | 10,60 |
+| 4 | 2,8830 | 40,20 | 10,30 |
+| 5 | 2,7782 | 40,00 | 10,40 |
+
+Temiz doğruluk ön-eğitim tabanından (%47,45) düşüp ~%40'ta stabilize oldu —
+klasik AT tavizi; §3'te veri görülmeden yazılan "temiz (test) %33-40"
+beklentisiyle tutarlı. Adv ep3'ten sonra ~%10,4'te plato yapıyor.
+
+**HENÜZ AÇIK: ep10 nitelik çubuğu (§2).** `adv < 8,0` ise reçete gözden
+geçirilir ama koşum durmaz. Ep5 değeri 10,40 olduğundan çubuğun aşılması
+olası; yine de karar ep10 ölçümünde verilecek ve buraya EK B olarak
+yazılacaktır. Ep5 değerine bakıp ep10 hükmü şimdi verilmemektedir.
