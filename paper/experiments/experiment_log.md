@@ -1,5 +1,12 @@
 # Experiment Log
 
+> **KARANTINA (2026-08-18):** Bu dosyadaki run1/run2 sayilari TARIHSEL kayittir.
+> Makale, tez, sunum veya bildiriye **hicbiri aktarilamaz**. Gecerli sayilarin tek
+> kaynagi `results/C1_REFERANS_FOYU.md` dosyasidir (uretici:
+> `scripts/build_reference_sheet.py`). C1 sizinti duzeltmesi sonuclari ondalik
+> duzeyinde degil ANLATI duzeyinde degistirmistir. Gerekce: `CLAUDE.md` bas kismi.
+
+
 This file tracks all experiments for the SCI paper.
 
 ---
