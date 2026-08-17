@@ -313,11 +313,37 @@ koşusu değişti") doğrulayan bir sonuç.
   uyarısı yazıldı. Özet zaten güvenliydi ("3,3 katlık yayılım"), dokunulmadı.
   İki dil de temiz derlendi (EN 16 s., TR 15 s.; 0 tanımsız ref/atıf).
   **arXiv ön-baskısı önündeki engel kaldırıldı.**
-- **E2'nin ana tezle birleşme yolu** (gidişat denetçisi): ikinci bir manşet
-  değil, **ana manşetin paydasını düzeltmek**. Makalenin raporladığı 0,50-0,55
-  koşum varyansı, üç tohumun tek bir seed-777 bölmesini paylaşması nedeniyle
-  eksik ölçülmüştür; E2'nin bölme-bootstrap'i eksik bileşeni veriyor
-  (sd 0,31-0,81). Hakemin "bu bölüm ne katıyor" sorusunun cevabı budur.
+- **E2'nin ana tezle birleşme yolu — TALİMAT İPTAL EDİLDİ VE DEĞİŞTİRİLDİ
+  (2026-08-17).** Bu maddenin önceki hâli şunu söylüyordu: *"ana manşetin
+  paydasını düzelt; makalenin 0,50-0,55 koşum varyansı eksik ölçülmüştür,
+  E2'nin bölme-bootstrap'i eksik bileşeni veriyor (sd 0,31-0,81)."*
+  **Bu talimatın kendisi ölçek-uyumsuzdur** ve izlenseydi, "yirmi kat"
+  hatasının dördüncü tekrarını üretirdi:
+  - O cümle yazıldığında paydanın cetveli **mutlak doğruluktu** (0,50-0,55).
+  - "Yirmi kat" düzeltmesinden sonra paydanın cetveli **transfer asimetrisine**
+    döndü (0,23-1,48).
+  - E2'nin 0,31-0,81'i ise **mutlak PGD doğruluğu** cetvelindedir. Bu sayıyı
+    asimetri paydasına eklemek, bu belgenin kendi yasak listesindeki ölçek
+    karışımını yeniden üretir.
+
+  **Yerine geçen tasarım — aynı cetvelde üç terimli yayılım sıralaması.**
+  Ortak uç nokta: **ViT eksi CNN koşullu yanıltma farkı** (puan). Üç terim de
+  bu tek nicelik üzerinde ölçülür ve üçünün de artefaktı diskte hazırdır:
+  1. **koşullama protokolü** etkisi — 4 protokol yayılımı
+  2. **checkpoint-seçim protokolü** etkisi — `e2_conditional.json`:
+     `cift_farklari` (9 seçilmiş çift, +3,84…+6,79 = **2,95 puan**) ve
+     `izgara_dayanikliligi` (54 temiz ızgara hücresi, +1,48…+7,45 = **5,97
+     puan**)
+  3. **eğitim tohumu** etkisi — aynı yapıdaki `sd_fark` alanları
+
+  Hakemin "bu bölüm ne katıyor" sorusunun cevabı budur: ikili sıralama
+  **üçlüye** çıkar ve üçü de aynı cetvelde ölçülür. **GPU gerektirmez.**
+
+  **Bilinen sınır:** transfer asimetrisinin *seçim* varyansı E2
+  artefaktlarından çıkmaz — `select_*_test.npz` yalnız model-içi clean/adv
+  maskeleri taşıyor, çapraz-mimari transfer maskesi yok. O ölçüm istenirse
+  18 checkpoint'ten PGD arşivi + çapraz değerlendirme gerekir (~1-2 GPU-saat).
+  Seçenektir, zorunluluk değil.
 - **Bütünlük kanıtı (A4 madde 9):** aynı checkpoint'in iki bağımsız
   değerlendirmesinde (seçim koşumu vs P0 test eğrisi) temiz doğruluk 18/18
   hücrede **tam olarak eşit** (0 örnek uyuşmazlığı); çekişmeli fark ort

@@ -28,6 +28,31 @@ def sd(x):
     return float(np.std(np.asarray(x, dtype=float), ddof=1))
 
 
+def chi2_quantile(p, df):
+    """chi-kare kuantili. df=2 icin kapali form: CDF = 1-exp(-x/2).
+
+    Boylece scipy bagimliligi olmadan tam deger elde edilir. df=2, n=3
+    tohumun serbestlik derecesidir (n-1).
+    """
+    if df == 2:
+        return -2.0 * float(np.log(1.0 - p))
+    from scipy.stats import chi2  # yalniz df != 2 ise gerekir
+
+    return float(chi2.ppf(p, df))
+
+
+def sd_guven_araligi(s, n, alpha=0.05):
+    """Normal varsayimi altinda sigma icin chi-kare GA'si.
+
+    n=3'te df=2; aralik COK genistir ve makale tam bu yuzden oran manseti
+    kurmuyor.
+    """
+    df = n - 1
+    lo = s * float(np.sqrt(df / chi2_quantile(1 - alpha / 2, df)))
+    hi = s * float(np.sqrt(df / chi2_quantile(alpha / 2, df)))
+    return lo, hi
+
+
 def main():
     data = json.load(open(SRC))["protocols"]
 
@@ -54,7 +79,7 @@ def main():
             "degerler": {p: round(float(np.mean(proto_sd)) / seed_sd[p], 2) for p in PROTOCOLS},
         },
         "aralik_vs_aralik": {
-            "tanim": "protokol araligi (10.45) / kosum araligi (protokol icinde)",
+            "tanim": "protokol araligi (bkz. pay_ortalama) / kosum araligi (protokol icinde)",
             "pay_ortalama": round(float(np.mean(proto_range)), 4),
             "degerler": {p: round(float(np.mean(proto_range)) / seed_range[p], 2) for p in PROTOCOLS},
         },
@@ -69,11 +94,64 @@ def main():
         for v in d["degerler"].values()
     ]
 
+    # ---- ORANIN GUVEN ARALIGI: makalenin "manşete koymuyoruz" gerekcesi
+    # Pay tohumlar boyunca kararli (proto_sd 4,62-5,00) oldugundan sabit kabul
+    # edilir; belirsizligin tamami paydadan (2 df) gelir.
+    pay = float(np.mean(proto_sd))
+    oran_ga = {}
+    for p in PROTOCOLS:
+        lo_s, hi_s = sd_guven_araligi(seed_sd[p], n)
+        oran_ga[p] = {
+            "kosum_sd": round(seed_sd[p], 4),
+            "sigma_95_GA": [round(lo_s, 4), round(hi_s, 4)],
+            "oran_95_GA": [round(pay / hi_s, 2), round(pay / lo_s, 2)],
+            "GA_birimi_iceriyor_mu": bool(pay / hi_s <= 1.0 <= pay / lo_s),
+        }
+
+    # ---- 10,45 (tohum-basina acikliklarin ortalamasi) vs 10,24 (protokol
+    # ortalamalarinin acikligi): fark, uc protokolun her tohumda ayni
+    # olmamasindan gelir. Hangi tohumda hangi protokol uc?
+    proto_means = {p: float(np.mean(diff[p])) for p in PROTOCOLS}
+    uc_protokoller = [
+        {
+            "tohum_index": i,
+            "max_protokol": max(PROTOCOLS, key=lambda p: diff[p][i]),
+            "min_protokol": min(PROTOCOLS, key=lambda p: diff[p][i]),
+            "aciklik": round(proto_range[i], 4),
+        }
+        for i in range(n)
+    ]
+
     result = {
         "kaynak": str(SRC.relative_to(ROOT)),
         "n_tohum_cifti": n,
         "protokoller": PROTOCOLS,
         "asimetri_degerleri_tohum_bazli": diff,
+        "ORAN_GUVEN_ARALIGI_chi2": {
+            "aciklama": (
+                "n=3 -> df=2. Pay (protokol sd ortalamasi) sabit kabul edildi. "
+                "Bir veya daha fazla protokolde GA 1'i iceriyorsa oran MANSETE "
+                "KONAMAZ; makale bu yuzden mutlak yayilim dilini kullaniyor."
+            ),
+            "pay_sabit": round(pay, 4),
+            "protokol_bazli": oran_ga,
+            "en_az_bir_GA_birimi_iceriyor": any(
+                v["GA_birimi_iceriyor_mu"] for v in oran_ga.values()
+            ),
+        },
+        "PAY_10_45_vs_10_24": {
+            "aciklama": (
+                "10,45 = tohum-basina acikliklarin ORTALAMASI; 10,24 = protokol "
+                "ORTALAMALARININ acikligi. Ikisi esit degil cunku uc protokol her "
+                "tohumda ayni degil."
+            ),
+            "tohum_basina_aciklik_ortalamasi": round(float(np.mean(proto_range)), 4),
+            "protokol_ortalamalari_acikligi": round(
+                max(proto_means.values()) - min(proto_means.values()), 4
+            ),
+            "protokol_ortalamalari": {p: round(v, 4) for p, v in proto_means.items()},
+            "tohum_bazli_uc_protokoller": uc_protokoller,
+        },
         "PAY_protokol_etkisi": {
             "aralik_tohum_bazli": [round(v, 4) for v in proto_range],
             "aralik_ortalama": round(float(np.mean(proto_range)), 4),

@@ -116,3 +116,124 @@ beklentisiyle tutarlı. Adv ep3'ten sonra ~%10,4'te plato yapıyor.
 geçirilir ama koşum durmaz. Ep5 değeri 10,40 olduğundan çubuğun aşılması
 olası; yine de karar ep10 ölçümünde verilecek ve buraya EK B olarak
 yazılacaktır. Ep5 değerine bakıp ep10 hükmü şimdi verilmemektedir.
+
+---
+
+## EK B — Kapı ölmüştür; yerine analiz-uygunluk kuralları (2026-08-17 ~19:35)
+
+**Yazım zamanı: ViT-Tiny s2001 AT epoch 7 içinde. Görülen: yalnız ep1-7
+doğrulama eğrisi. GÖRÜLMEYEN: hiçbir test-kümesi sayısı, hiçbir CIFAR-100
+transfer/protokol ölçümü, pair2 ve pair3'ün hiçbir sayısı.**
+
+### B.1 Kapının ölü olduğunun tespiti
+
+Ara denetim (gidişat merceği) şunu saptadı ve doğruladım: **ep1'de adv = 8,30**
+ölçüldü. Bu değer hem ep5 sert durma eşiğini (4,745) hem ep10 nitelik çubuğunu
+(8,0) daha birinci epokta aşmıştı. Yani §2'deki kapı, ölçüm noktalarına
+varmadan önce geçilmişti ve **hiçbir zaman bir karar üretmedi.** EK A'da
+raporlanan "GEÇTİ" hükmü bu nedenle bir doğrulama değil, bir formalitedir.
+
+**Ders (kayda geçiriliyor):** kapı, tedavinin *çökme* riskini ölçüyordu; oysa
+bu reçetede gerçek risk çökme değil, **bilimsel olarak zayıf ama çalışan** bir
+ViT koluydu. Eşik, ölçmesi gereken şeyin yanına konmuştu.
+
+### B.2 Neden yeni bir DURDURMA kapısı kurulmuyor
+
+ep1-7 verisi görülmüştür. Bu noktadan sonra kurulacak her durdurma eşiği o
+veriye göre ayarlanmış olur — **kapı alışverişi (gate shopping)**. Ön-kayıt
+disiplini bunu yasaklar ve zaten durdurma kararı veriyle kapanmıştır: çökme
+riski yoktur. Bu yüzden §2'deki kapı **yürürlükten kaldırılmıyor, ölü ilan
+ediliyor**; yerine aşağıdaki kurallar konuyor. Aşağıdakilerin hiçbiri
+gözlenmiş bir büyüklüğe dayanmamaktadır.
+
+### B.3 Dosya-çekmecesi taahhüdü (bağlayıcı)
+
+ViT kolunun mutlak sayısı ne çıkarsa çıksın, **E1 çifti makalede raporlanır.**
+Zayıf çıkması yayımlanmama gerekçesi değildir; E1 mutlak gürbüzlük yarışması
+olarak değil, ölçüm-protokolü bulgularının yön kontrolü olarak kurulmuştur
+(§4). Sonuç beğenilmediği için E1'in rafa kaldırılması bu belgeyle
+yasaklanmıştır.
+
+### B.4 Doğrulayıcı ön-kestirimler (hiçbiri ölçülmemiştir)
+
+E1'in tezi desteklemesi şu üç uç noktaya bağlıdır. Karşılanmazlarsa **E1 tezi
+desteklemiyor olarak raporlanır**, sessizce yeniden çerçevelenmez:
+
+1. **Protokol yayılımı korunur ve büyür.** CIFAR-100'de dört koşullama
+   protokolü arasındaki transfer asimetrisi yayılımı, CIFAR-10'daki
+   $10{,}45$ puandan **büyük** olmalıdır. Gerekçe: koşullama, temiz hatayla
+   ölçeklenir ve CIFAR-100'de temiz hata çok daha büyüktür.
+2. **İşaret korunur.** CNN$\to$ViT $>$ ViT$\to$CNN, dört protokolün
+   **dördünde de** geçerli olmalıdır.
+3. **Karıştırıcı yeniden üretilir.** Ham ve koşullu oranlar arasındaki sapma,
+   hedefin temiz hatasıyla birlikte artmalıdır (CIFAR-10'da $r = 0{,}997$).
+
+### B.5 Bütçe kuralı — gerçekten açık olan tek karar
+
+pair2 ve pair3 (~24 GPU-saat) koşulacak mı? **Ön-kayıt:** pair1'in ViT test
+PGD-10 değeri
+
+- **$< 10{,}0$** ise → E1 **yalnız yön kontrolü** olarak raporlanır (B.4'ün
+  2. ve 3. maddeleri), ama **pair2/pair3 yine koşulur**: yayılımın kendisi
+  için $\sigma$ gerekir ve tek çift $\sigma$ vermez.
+- **$\geq 10{,}0$** ise → E1 ayrıca CIFAR-100 $\sigma$'sını da besler ve
+  yayılım karşılaştırması (B.4 madde 1) nicel olarak raporlanır.
+
+Her iki dalda da pair2/pair3 koşulmaktadır; değişen şey **E1'in taşıdığı
+iddianın gücüdür**, koşum kapsamı değil.
+
+### B.6 Gürbüz aşırı-öğrenme tanısı (durdurmaz, raporlanır)
+
+ViT için: en iyi epok indeksi, son epok indeksi, ve patience-20'nin ep40
+öncesinde ateşleyip ateşlemediği kaydedilir. ResNet s1001 ep52'de durdu;
+iki kolun durma davranışı farklıysa bu, seçim-protokolü tartışmasının
+CIFAR-100 ayağı olarak raporlanır.
+
+### B.7 Ön-kayıt sapması olarak beyan edilecek durum
+
+§3'te ViT PGD-10 test beklentisi **%10-14** yazılmıştı. Doğrulama eğrisi ep7'de
+zaten 11,05'tedir ve ResNet çapasında doğrulama ile test birbirine yakın
+çıkmıştı (val-best 18,85 → test 19,14). **Beklenti aralığının üstten aşılması
+olasıdır.** Aşılırsa bu, iyi haber olsa dahi **ön-kayıt sapması olarak açıkça
+beyan edilecek**, sessizce geçilmeyecektir.
+
+### B.8 §4'teki vaadin düzeltilmesi (teslim edilemez olduğu tespit edildi)
+
+§4 son maddesi "E1'in save_every=1 checkpointleriyle **E2'nin seçim-piyangosu
+ölçümü** CIFAR-100'de replike edilecek" diyordu. Ara denetim bunun **tasarım
+gereği teslim edilemez** olduğunu gösterdi; doğruladım:
+
+- **Tek doğrulama bölmesi.** E1 tek bir 2000'lik bölme kullanıyor; E2'nin
+  manşeti **iki temiz bölme** (V_B/V_C) üzerineydi. Izgaranın baskın boyutu
+  (bölme × patience) tek bölmeyle yok oluyor.
+- **Yörünge kesik.** ResNet CIFAR-100 patience-20 ile **ep52**'de durdu
+  (E2: 100 epok, patience KAPALI). Çevrimdışı ızgara ep52 sonrasını simüle
+  edemez; üstelik kesme noktasını, ızgaranın değiştirmesi gereken bölmenin
+  kendisi belirledi.
+- **Kalan boyutlar E2'nin diskalifiye ettikleri.** Geriye patience × yumuşatma
+  kalıyor; E2 patience'ı ViT'te fiilen atıl, yumuşatmayı ise nötr alternatif
+  değil **monoton olarak daha kötü** bir seçici ilan etti.
+
+**Vaat şu şekilde daraltılmıştır:** E1'in seçim-protokolü katkısı
+**bölme-çekilişi bootstrap'inin ikinci veri kümesinde replikasyonu** olacaktır
+(tek bölme yeterlidir; E2'nin en dayanıklı niceliksel çıktısı budur).
+Bunun için iki kod değişikliği gerekiyor ve **henüz yoktur**:
+`scripts/q1_e2_test_curve.py` içindeki sabit `dataset="cifar10"` bir bayrağa
+çevrilmeli, `scripts/q1_e2_split_bootstrap.py` tek-bölme varyantı yazılmalı.
+Tahmini maliyet ~5-6 GPU-saat.
+
+### B.9 Bilinen sınırlama (kayda geçiriliyor)
+
+E1'de AT, `best.pth`'ten başlıyor (E2 bilinçli olarak `last.pth` kullanmıştı)
+ve temiz seçim ile AT seçimi **aynı 2000'lik bölmeyi** paylaşıyor. Yani
+CIFAR-100 yörüngesinin başlangıç noktası da o bölmeyle seçilmiştir. C1 ile
+tutarlıdır ve makalenin beyanına uygundur, ancak bölme-bootstrap replikasyonu
+raporlanırken **sınırlama olarak yazılacaktır**.
+
+### B.10 Uygulama notu
+
+§2'deki kapı `scripts/q1_pipeline.sh` içinde **kod olarak uygulanmamıştır**
+(yalnız pair1 bittikten sonra bir log satırı basılır) ve betiğin yorumları
+hâlâ terk edilmiş `%5` eşiğini anmaktadır. Betik **şu anda koşmakta** olduğu
+için düzenlenmiyor (bash betikleri artımlı okur; koşan betiği düzenlemek
+yürütmeyi bozar). Koşum bittiğinde bu yorumlar temizlenecektir.

@@ -23,7 +23,7 @@ We also treat three claims that recur in architecture-comparison papers as measu
 Our contributions are as follows.
 
 \begin{enumerate}
-\item \textbf{Protocol sensitivity, quantified.} On identical models and data, the measured cross-architecture transfer asymmetry ranges from $+4.4$ to $+14.6$ points across four established conditioning protocols, a 3.3-fold spread with a seed-level standard deviation below one point. The protocol decides whether an equivalence test is accepted or rejected; the direction of the asymmetry, unlike its magnitude, is stable.
+\item \textbf{Protocol sensitivity, quantified.} On identical models and data, the measured cross-architecture transfer asymmetry ranges from $+4.4$ to $+14.6$ points across four established conditioning protocols, a 3.3-fold spread, whereas retraining both architectures from scratch moves the same quantity by under $1.5$ points. The protocol decides whether an equivalence test is accepted or rejected; the direction of the asymmetry, unlike its magnitude, is stable.
 
 \item \textbf{Unconditioned transfer rates are confounded, and we measure by how much.} In a $3\times3$ transfer matrix that adds a WideResNet-28-10 reference, the deviation of raw from conditioned rates is explained almost entirely by the target's clean error ($r = 0.997$ over the six off-diagonal directions). We also find that incoming transfer tracks the target's own vulnerability rather than the source architecture ($r = 0.986$ across three targets), which reframes the asymmetry as a property of the weaker target rather than of stronger CNN-crafted attacks.
 

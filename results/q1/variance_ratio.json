@@ -29,6 +29,92 @@
       13.19
     ]
   },
+  "ORAN_GUVEN_ARALIGI_chi2": {
+    "aciklama": "n=3 -> df=2. Pay (protokol sd ortalamasi) sabit kabul edildi. Bir veya daha fazla protokolde GA 1'i iceriyorsa oran MANSETE KONAMAZ; makale bu yuzden mutlak yayilim dilini kullaniyor.",
+    "pay_sabit": 4.819,
+    "protokol_bazli": {
+      "raw": {
+        "kosum_sd": 0.3308,
+        "sigma_95_GA": [
+          0.1722,
+          2.079
+        ],
+        "oran_95_GA": [
+          2.32,
+          27.98
+        ],
+        "GA_birimi_iceriyor_mu": false
+      },
+      "target_correct": {
+        "kosum_sd": 0.4355,
+        "sigma_95_GA": [
+          0.2268,
+          2.7373
+        ],
+        "oran_95_GA": [
+          1.76,
+          21.25
+        ],
+        "GA_birimi_iceriyor_mu": false
+      },
+      "both_correct": {
+        "kosum_sd": 0.2312,
+        "sigma_95_GA": [
+          0.1204,
+          1.4528
+        ],
+        "oran_95_GA": [
+          3.32,
+          40.04
+        ],
+        "GA_birimi_iceriyor_mu": false
+      },
+      "successful_source": {
+        "kosum_sd": 1.4797,
+        "sigma_95_GA": [
+          0.7704,
+          9.2998
+        ],
+        "oran_95_GA": [
+          0.52,
+          6.25
+        ],
+        "GA_birimi_iceriyor_mu": true
+      }
+    },
+    "en_az_bir_GA_birimi_iceriyor": true
+  },
+  "PAY_10_45_vs_10_24": {
+    "aciklama": "10,45 = tohum-basina acikliklarin ORTALAMASI; 10,24 = protokol ORTALAMALARININ acikligi. Ikisi esit degil cunku uc protokol her tohumda ayni degil.",
+    "tohum_basina_aciklik_ortalamasi": 10.45,
+    "protokol_ortalamalari_acikligi": 10.2367,
+    "protokol_ortalamalari": {
+      "raw": 13.5733,
+      "target_correct": 4.36,
+      "both_correct": 8.2667,
+      "successful_source": 14.5967
+    },
+    "tohum_bazli_uc_protokoller": [
+      {
+        "tohum_index": 0,
+        "max_protokol": "successful_source",
+        "min_protokol": "target_correct",
+        "aciklik": 11.31
+      },
+      {
+        "tohum_index": 1,
+        "max_protokol": "successful_source",
+        "min_protokol": "target_correct",
+        "aciklik": 10.18
+      },
+      {
+        "tohum_index": 2,
+        "max_protokol": "raw",
+        "min_protokol": "target_correct",
+        "aciklik": 9.86
+      }
+    ]
+  },
   "PAY_protokol_etkisi": {
     "aralik_tohum_bazli": [
       11.31,
@@ -72,7 +158,7 @@
       }
     },
     "aralik_vs_aralik": {
-      "tanim": "protokol araligi (10.45) / kosum araligi (protokol icinde)",
+      "tanim": "protokol araligi (bkz. pay_ortalama) / kosum araligi (protokol icinde)",
       "pay_ortalama": 10.45,
       "degerler": {
         "raw": 16.59,

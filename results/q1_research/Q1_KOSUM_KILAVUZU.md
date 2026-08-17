@@ -85,8 +85,16 @@ tohumlarıyla `train_pair_member cifar10 ...` çağrıları — istenirse ekleri
 - **Toplam disk (review düzeltmesi; rapordaki ~30-40GB eksikti):** E2 her-epoch
   ~25GB + E1 (save_every=2) ~7GB + E5 (save_every=2; R50 94MB + ViT-S 87MB
   × ~30 ckpt × 3 tohum) ~16GB + E7 ~7GB ≈ **~55GB tepe**. Kampanya öncesi
-  `df -h` ile ≥80GB boş alan doğrula; E3 kantil seçimi bittikçe seçilmeyen
-  `epochs/` checkpointleri silinebilir.
+  `df -h` ile ≥80GB boş alan doğrula.
+- **SİLME YASAĞI (2026-08-17, ara denetim):** bu kılavuzun önceki hâli "E3
+  kantil seçimi bittikçe seçilmeyen `epochs/` checkpointleri silinebilir"
+  diyordu. **Bu öneri geçersizdir.** E3 yeniden tasarlanıyor ve en olası
+  tasarım kantil seçimini tamamen terk edip **tüm checkpointleri** yörünge
+  düzeyi küme bootstrap'iyle kullanıyor (bkz. E3 tasarım notu). Silme geri
+  dönüşsüzdür: `models/q1/e2` = 21 GB / 600 checkpoint, yeniden eğitmek
+  ~21 GPU-saat. **E3 tasarımı kesinleşene kadar HİÇBİR `epochs/` dizini
+  silinmeyecektir.** Mevcut durum: 89 GB boş (%91 dolu); kalan E1
+  (save_every=1, ~20 GB) + E5 pilot (~5 GB) sığar, tampon dar.
 - AutoAttack koşuları gece kuyruğuna; chunk-resume var, kesinti güvenli
   (cache anahtarı artık norm/eps/seed içeriyor — L2 koşusu Linf parçalarını
   yeniden kullanamaz).
