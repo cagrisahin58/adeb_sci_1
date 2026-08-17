@@ -117,8 +117,10 @@ def main():
                     "p90_mutlak": round(float(np.percentile(np.abs(d), 90)), 4),
                     "p95_mutlak": round(float(np.percentile(np.abs(d), 95)), 4),
                     "P_absD_gt_1pp": round(float((np.abs(d) > 1.0).mean()), 4),
-                    "beklenen_max_3_cekilis": round(float(np.mean(
-                        np.abs(d).reshape(-1, 1).repeat(3, 1).max(axis=1))), 4),
+                    # 3 BAGIMSIZ cekilisin maksimumunun beklentisi (n=3 tohumun
+                    # maksimumunu raporlamanin ne kadar yanili oldugunu gosterir)
+                    "beklenen_max_3_cekilis": round(float(np.mean(np.abs(
+                        d[rng.integers(0, d.size, (d.size, 3))]).max(axis=1))), 4),
                 }
             out["yorungeler"][tag] = res
 

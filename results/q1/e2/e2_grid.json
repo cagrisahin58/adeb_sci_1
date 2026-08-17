@@ -608,7 +608,129 @@
         2.85
       ],
       "tohum_sd_referans_protokolde": 0.5329,
-      "oran_protokol_sd_bolu_tohum_sd": 1.535
+      "oran_protokol_sd_bolu_tohum_sd": 1.535,
+      "REFERANS_DUYARLILIGI": {
+        "referanslar": [
+          {
+            "referans": "V_B/p0/k1",
+            "tohum_sd": 0.5329,
+            "oran": 1.535
+          },
+          {
+            "referans": "V_B/p0/k3",
+            "tohum_sd": 0.8002,
+            "oran": 1.022
+          },
+          {
+            "referans": "V_B/p0/k5",
+            "tohum_sd": 0.5969,
+            "oran": 1.371
+          },
+          {
+            "referans": "V_B/p10/k1",
+            "tohum_sd": 0.3002,
+            "oran": 2.725
+          },
+          {
+            "referans": "V_B/p10/k3",
+            "tohum_sd": 0.7754,
+            "oran": 1.055
+          },
+          {
+            "referans": "V_B/p10/k5",
+            "tohum_sd": 0.7575,
+            "oran": 1.08
+          },
+          {
+            "referans": "V_B/p20/k1",
+            "tohum_sd": 0.5329,
+            "oran": 1.535
+          },
+          {
+            "referans": "V_B/p20/k3",
+            "tohum_sd": 0.7754,
+            "oran": 1.055
+          },
+          {
+            "referans": "V_B/p20/k5",
+            "tohum_sd": 0.2421,
+            "oran": 3.379
+          },
+          {
+            "referans": "V_C/p0/k1",
+            "tohum_sd": 0.3427,
+            "oran": 2.387
+          },
+          {
+            "referans": "V_C/p0/k3",
+            "tohum_sd": 0.3612,
+            "oran": 2.265
+          },
+          {
+            "referans": "V_C/p0/k5",
+            "tohum_sd": 0.9318,
+            "oran": 0.878
+          },
+          {
+            "referans": "V_C/p10/k1",
+            "tohum_sd": 1.22,
+            "oran": 0.671
+          },
+          {
+            "referans": "V_C/p10/k3",
+            "tohum_sd": 0.735,
+            "oran": 1.113
+          },
+          {
+            "referans": "V_C/p10/k5",
+            "tohum_sd": 0.7104,
+            "oran": 1.152
+          },
+          {
+            "referans": "V_C/p20/k1",
+            "tohum_sd": 0.4757,
+            "oran": 1.72
+          },
+          {
+            "referans": "V_C/p20/k3",
+            "tohum_sd": 0.5162,
+            "oran": 1.585
+          },
+          {
+            "referans": "V_C/p20/k5",
+            "tohum_sd": 0.575,
+            "oran": 1.423
+          }
+        ],
+        "oran_min": 0.671,
+        "oran_max": 3.379,
+        "oran_medyan": 1.397,
+        "birin_altinda_referans_sayisi": 2,
+        "toplam_referans": 18
+      },
+      "cekirdek_k1": {
+        "aciklama": "yalniz bolme x patience (yumusatma HARIC; yumusatma monoton kotulestirici oldugu icin yayilimi sisiriyor)",
+        "protokol_sd_ort": 0.5818,
+        "tohum_sd": 0.5329,
+        "oran": 1.092
+      },
+      "yumusatma_marjinal_ortalamalari": {
+        "1001": {
+          "1": 43.0567,
+          "3": 42.5283,
+          "5": 41.9
+        },
+        "1002": {
+          "1": 42.8967,
+          "3": 42.625,
+          "5": 41.66
+        },
+        "1003": {
+          "1": 42.7683,
+          "3": 42.01,
+          "5": 41.7683
+        }
+      }
     },
     "vit_tiny": {
       "tohum_sayisi": 3,
@@ -1183,88 +1305,128 @@
         2.09
       ],
       "tohum_sd_referans_protokolde": 0.3403,
-      "oran_protokol_sd_bolu_tohum_sd": 2.171
-    }
-  },
-  "konvansiyon_dayanikliligi": {
-    "edge": {
-      "resnet18": {
-        "protokol_sd_ort": 0.8182,
-        "yayilim_araligi": [
-          2.62,
-          2.85
+      "oran_protokol_sd_bolu_tohum_sd": 2.171,
+      "REFERANS_DUYARLILIGI": {
+        "referanslar": [
+          {
+            "referans": "V_B/p0/k1",
+            "tohum_sd": 0.3403,
+            "oran": 2.171
+          },
+          {
+            "referans": "V_B/p0/k3",
+            "tohum_sd": 0.7233,
+            "oran": 1.021
+          },
+          {
+            "referans": "V_B/p0/k5",
+            "tohum_sd": 0.5012,
+            "oran": 1.474
+          },
+          {
+            "referans": "V_B/p10/k1",
+            "tohum_sd": 0.1002,
+            "oran": 7.376
+          },
+          {
+            "referans": "V_B/p10/k3",
+            "tohum_sd": 0.7233,
+            "oran": 1.021
+          },
+          {
+            "referans": "V_B/p10/k5",
+            "tohum_sd": 0.5012,
+            "oran": 1.474
+          },
+          {
+            "referans": "V_B/p20/k1",
+            "tohum_sd": 0.3403,
+            "oran": 2.171
+          },
+          {
+            "referans": "V_B/p20/k3",
+            "tohum_sd": 0.7233,
+            "oran": 1.021
+          },
+          {
+            "referans": "V_B/p20/k5",
+            "tohum_sd": 0.5012,
+            "oran": 1.474
+          },
+          {
+            "referans": "V_C/p0/k1",
+            "tohum_sd": 1.1702,
+            "oran": 0.631
+          },
+          {
+            "referans": "V_C/p0/k3",
+            "tohum_sd": 0.595,
+            "oran": 1.242
+          },
+          {
+            "referans": "V_C/p0/k5",
+            "tohum_sd": 0.162,
+            "oran": 4.562
+          },
+          {
+            "referans": "V_C/p10/k1",
+            "tohum_sd": 0.8651,
+            "oran": 0.854
+          },
+          {
+            "referans": "V_C/p10/k3",
+            "tohum_sd": 0.595,
+            "oran": 1.242
+          },
+          {
+            "referans": "V_C/p10/k5",
+            "tohum_sd": 0.162,
+            "oran": 4.562
+          },
+          {
+            "referans": "V_C/p20/k1",
+            "tohum_sd": 1.1702,
+            "oran": 0.631
+          },
+          {
+            "referans": "V_C/p20/k3",
+            "tohum_sd": 0.595,
+            "oran": 1.242
+          },
+          {
+            "referans": "V_C/p20/k5",
+            "tohum_sd": 0.162,
+            "oran": 4.562
+          }
         ],
-        "tohum_sd": 0.5329,
-        "oran": 1.535
+        "oran_min": 0.631,
+        "oran_max": 7.376,
+        "oran_medyan": 1.358,
+        "birin_altinda_referans_sayisi": 3,
+        "toplam_referans": 18
       },
-      "vit_tiny": {
-        "protokol_sd_ort": 0.7388,
-        "yayilim_araligi": [
-          1.58,
-          2.09
-        ],
+      "cekirdek_k1": {
+        "aciklama": "yalniz bolme x patience (yumusatma HARIC; yumusatma monoton kotulestirici oldugu icin yayilimi sisiriyor)",
+        "protokol_sd_ort": 0.4821,
         "tohum_sd": 0.3403,
-        "oran": 2.171
-      }
-    },
-    "zero": {
-      "resnet18": {
-        "protokol_sd_ort": 0.8182,
-        "yayilim_araligi": [
-          2.62,
-          2.85
-        ],
-        "tohum_sd": 0.5329,
-        "oran": 1.535
+        "oran": 1.416
       },
-      "vit_tiny": {
-        "protokol_sd_ort": 0.7388,
-        "yayilim_araligi": [
-          1.58,
-          2.09
-        ],
-        "tohum_sd": 0.3403,
-        "oran": 2.171
-      }
-    },
-    "valid": {
-      "resnet18": {
-        "protokol_sd_ort": 0.8182,
-        "yayilim_araligi": [
-          2.62,
-          2.85
-        ],
-        "tohum_sd": 0.5329,
-        "oran": 1.535
-      },
-      "vit_tiny": {
-        "protokol_sd_ort": 0.7388,
-        "yayilim_araligi": [
-          1.58,
-          2.09
-        ],
-        "tohum_sd": 0.3403,
-        "oran": 2.171
-      }
-    },
-    "causal": {
-      "resnet18": {
-        "protokol_sd_ort": 0.7839,
-        "yayilim_araligi": [
-          1.59,
-          2.83
-        ],
-        "tohum_sd": 0.5329,
-        "oran": 1.471
-      },
-      "vit_tiny": {
-        "protokol_sd_ort": 0.563,
-        "yayilim_araligi": [
-          0.69,
-          1.69
-        ],
-        "tohum_sd": 0.3403,
-        "oran": 1.654
+      "yumusatma_marjinal_ortalamalari": {
+        "2001": {
+          "1": 32.33,
+          "3": 32.33,
+          "5": 32.24
+        },
+        "2002": {
+          "1": 33.27,
+          "3": 31.755,
+          "5": 32.45
+        },
+        "2003": {
+          "1": 33.4233,
+          "3": 32.03,
+          "5": 31.815
+        }
       }
     }
   }

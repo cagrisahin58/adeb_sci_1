@@ -40,10 +40,19 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from q1_offline_select import simulate_selection  # noqa: E402
 
 SPLITS = ["B", "C"]          # yalniz TEMIZ bolmeler (V_A ayri raporlanir)
-PATIENCES = [0, 10, 20]      # 0 = saf argmax
+# DIKKAT (R3 denetimi): patience=0 SAF ARGMAX DEGILDIR - simulate_selection'da
+# min_delta kosulsuz uygulanir, yani "kosan en iyiyi 0.1 puandan fazla asan SON
+# epok" (cirit/ratchet) kurali cikar. 54 hucrenin 13'unde gercek argmax'tan
+# farkli epok seciyor (test etkisi 2.37 puana kadar). Gercek argmax ayri bir
+# kol olarak (ARGMAX_ARM) raporlanir.
+PATIENCES = [0, 10, 20]      # 0 = erken durdurma yok (min_delta esigi HALA aktif)
 KERNELS = [1, 3, 5]
 MIN_DELTA = 0.1
-REF_PROTOCOL = ("B", 20, 1)  # tohum sd'si bu SABIT protokolde olculur (on-kayitli kural)
+REF_PROTOCOL = ("B", 20, 1)  # varsayilan referans; DUYARLILIK 18 referansta taranir
+# Makalelerin fiilen degistirdigi cekirdek: bolme x patience (yumusatma HARIC).
+# Yumusatma notr bir alternatif degil, monoton kotulestirici bir seci ci
+# oldugundan yayilimin buyuk kismini o tasiyor; cekirdek ayri raporlanir.
+CORE_KERNEL = 1
 
 
 def smooth(y, k, conv="edge"):
@@ -115,6 +124,46 @@ def run_cell(traj, split, patience, k, conv="edge"):
             "durus": stop}
 
 
+def run_argmax_cell(traj, split, k, conv="edge"):
+    """GERCEK saf argmax kolu (min_delta/ratchet yok) - patience=0'in dogrusu."""
+    ep = traj["epochs"]
+    adv = smooth(traj["val"][split]["adv"], k, conv)
+    i = int(np.argmax(adv))
+    return {"split": split, "patience": "argmax", "k": k,
+            "secilen_epok": int(ep[i]),
+            "test_adv": round(float(traj["test_adv"][i]), 4),
+            "test_clean": round(float(traj["test_clean"][i]), 4)}
+
+
+def ref_sensitivity(per_seed, seeds):
+    """Oranin REFERANS PROTOKOL secimine duyarliligi (18 referansin tamami).
+
+    R3 denetimi: tek sabit referansla (V_B,20,1) hesaplanan oran, ayna referansla
+    (V_C,20,1) ViT'te 2.17x -> 0.63x'e donuyordu. Tek sayi yerine dagilim verilir.
+    """
+    keys = [(s, p, k) for s in SPLITS for p in PATIENCES for k in KERNELS]
+    prot_sd = float(np.mean([per_seed[str(s)]["sd"] for s in seeds]))
+    out = []
+    for key in keys:
+        vals = []
+        for s in seeds:
+            c = next((c for c in per_seed[str(s)]["hucreler"]
+                      if (c["split"], c["patience"], c["k"]) == key), None)
+            if c:
+                vals.append(c["test_adv"])
+        if len(vals) == len(seeds) and len(vals) > 1:
+            ssd = float(np.std(vals, ddof=1))
+            out.append({"referans": f"V_{key[0]}/p{key[1]}/k{key[2]}",
+                        "tohum_sd": round(ssd, 4),
+                        "oran": round(prot_sd / ssd, 3) if ssd > 1e-9 else None})
+    oranlar = [o["oran"] for o in out if o["oran"] is not None]
+    return {"referanslar": out,
+            "oran_min": round(min(oranlar), 3), "oran_max": round(max(oranlar), 3),
+            "oran_medyan": round(float(np.median(oranlar)), 3),
+            "birin_altinda_referans_sayisi": int(sum(1 for o in oranlar if o <= 1.0)),
+            "toplam_referans": len(oranlar)}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--in-dir", default=str(ROOT / "results/q1/e2"))
@@ -171,6 +220,15 @@ def main():
             continue
         prot_sds = [per_seed[s]["sd"] for s in per_seed]
         seed_sd = float(np.std(ref_vals, ddof=1)) if len(ref_vals) > 1 else float("nan")
+        done_seeds = [int(s) for s in per_seed]
+        # CEKIRDEK IZGARA (k=1): makalelerin fiilen degistirdigi boyutlar
+        core_sds, core_ref = [], []
+        for s in done_seeds:
+            cv = [c["test_adv"] for c in per_seed[str(s)]["hucreler"] if c["k"] == CORE_KERNEL]
+            core_sds.append(float(np.std(cv, ddof=1)))
+            core_ref.append(next(c["test_adv"] for c in per_seed[str(s)]["hucreler"]
+                                 if (c["split"], c["patience"], c["k"]) == REF_PROTOCOL))
+        core_seed_sd = float(np.std(core_ref, ddof=1)) if len(core_ref) > 1 else float("nan")
         report["mimariler"][arch] = {
             "tohum_sayisi": len(per_seed),
             "per_seed": per_seed,
@@ -181,6 +239,19 @@ def main():
             "tohum_sd_referans_protokolde": round(seed_sd, 4),
             "oran_protokol_sd_bolu_tohum_sd": round(float(np.mean(prot_sds) / seed_sd), 3)
             if seed_sd and not np.isnan(seed_sd) else None,
+            "REFERANS_DUYARLILIGI": ref_sensitivity(per_seed, done_seeds),
+            "cekirdek_k1": {
+                "aciklama": "yalniz bolme x patience (yumusatma HARIC; yumusatma "
+                            "monoton kotulestirici oldugu icin yayilimi sisiriyor)",
+                "protokol_sd_ort": round(float(np.mean(core_sds)), 4),
+                "tohum_sd": round(core_seed_sd, 4),
+                "oran": round(float(np.mean(core_sds)) / core_seed_sd, 3)
+                if core_seed_sd and not np.isnan(core_seed_sd) else None,
+            },
+            "yumusatma_marjinal_ortalamalari": {
+                str(s): {str(k): round(float(np.mean([c["test_adv"] for c in
+                                                      per_seed[str(s)]["hucreler"] if c["k"] == k])), 4)
+                         for k in KERNELS} for s in done_seeds},
         }
 
     # Konvansiyon dayanikliligi: manset (yayilim ve oran) konvansiyona bagli mi?
@@ -235,7 +306,14 @@ def main():
         print(f"  PROTOKOL sd {r['protokol_sd_ort']:.2f} "
               f"(aralik {r['protokol_sd_araligi'][0]:.2f}-{r['protokol_sd_araligi'][1]:.2f}) vs "
               f"TOHUM sd {r['tohum_sd_referans_protokolde']:.2f} -> "
-              f"oran {r['oran_protokol_sd_bolu_tohum_sd']}x")
+              f"oran {r['oran_protokol_sd_bolu_tohum_sd']}x  [varsayilan referans]")
+        rs = r["REFERANS_DUYARLILIGI"]
+        print(f"  REFERANS DUYARLILIGI: oran {rs['oran_min']}x - {rs['oran_max']}x "
+              f"(medyan {rs['oran_medyan']}x); {rs['birin_altinda_referans_sayisi']}/"
+              f"{rs['toplam_referans']} referansta oran <= 1")
+        ck = r["cekirdek_k1"]
+        print(f"  CEKIRDEK (k=1, bolme x patience): protokol sd {ck['protokol_sd_ort']:.2f} / "
+              f"tohum sd {ck['tohum_sd']:.2f} -> oran {ck['oran']}x")
 
 
 if __name__ == "__main__":

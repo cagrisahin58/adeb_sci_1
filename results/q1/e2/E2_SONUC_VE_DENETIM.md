@@ -4,20 +4,29 @@
 analiz koşuldu, sonuç 4 mercek + 3 şüpheci hakemden oluşan bir çürütme
 denetiminden geçirildi (2026-08-16/17).
 
-**Tek cümlelik hüküm:** Sızıntının checkpoint seçimine etkisi **saptanamadı**;
-buna karşılık **seçim protokolünün kendisi** sabit bir yörüngede raporlanan
-PGD-10 doğruluğunu **ResNet-18'de 2,62-2,85, ViT-Tiny'de 1,58-2,09 puan**
-oynatıyor ve bu yayılımın standart sapması, aynı protokolde tohum
-değiştirmenin standart sapmasının **1,54× (ResNet) / 2,17× (ViT)** katı.
-E2'nin makaleye giren katkısı budur.
+**Tek cümlelik hüküm:** Sızıntının checkpoint seçimine etkisi **saptanamadı**
+(ve ViT kolunda tedavi zaten teslim edilememiştir); buna karşılık **seçim
+protokolünün kendisi** sabit bir yörüngede raporlanan PGD-10 doğruluğunu
+ResNet-18'de **2,62-2,85**, ViT-Tiny'de **1,58-2,09 puan** aralığında
+oynatmaktadır. Bu yayılımın eğitim-tohumu yayılımına ORANI ise tanıma ve
+referans seçimine duyarlıdır (§3'e bakınız) ve **manşet olarak
+kullanılmayacaktır**; manşet mutlak yayılım ve bölme-bootstrap dağılımıdır.
 
-> **DÜZELTME (2026-08-17, ara hakemlik):** Bu belgenin ilk sürümü manşeti
-> "1,67 / 0,82 puana kadar" diye kurmuştu. Bu sayılar n=3'ün **maksimumuydu**
-> (diğer çekilişler 0,00 ve 0,00 / −0,32) ve "tohum yayılımının üç katı"
-> ifadesi bir maksimumu bir standart sapmaya bölüyordu; eşli oranda ResNet'te
-> 0,77× çıkıyor, yani iddia **tersine dönüyordu**. Yerine, tanımlı bir
-> protokol ızgarası üzerinden hesaplanan ve her iki mimaride de geçerli olan
-> yukarıdaki ifade geçti (`scripts/q1_e2_grid.py` → `e2_grid.json`).
+> **İKİ KEZ DÜZELTİLDİ.**
+> **(1) 2026-08-17 sabah:** ilk sürüm manşeti "1,67 / 0,82 puana kadar" diye
+> kurmuştu — bunlar n=3'ün **maksimumuydu** (diğer çekilişler 0,00 ve
+> 0,00/−0,32) ve "tohum yayılımının üç katı" ifadesi maksimumu standart
+> sapmaya bölüyordu (eşli oranda ResNet'te 0,77×, yani tersine dönüyordu).
+> **(2) 2026-08-17 öğle (R3 denetimi):** yerine konan "1,54× / 2,17×" oranı da
+> **tek bir keyfi referans protokolüne** dayanıyordu. 18 referansın tamamı
+> tarandığında oran ResNet'te **0,67-3,38×** (medyan 1,40; 2/18 referansta
+> ≤1), ViT'te **0,63-7,38×** (medyan 1,36; 3/18 ≤1); ayna referansla (V_C
+> yerine V_B) ViT iddiası **0,63×'e tersine dönüyor**. Ayrıca yayılımın
+> baskın kaldıracı **eğri yumuşatmasıdır** ve yumuşatma nötr bir alternatif
+> değil **monoton olarak daha kötü** bir seçicidir; pratikte değiştirilen
+> boyutlarla sınırlanınca (bölme × patience, k=1) oran **1,09× (ResNet) /
+> 1,42× (ViT)**'e iniyor. Bu yüzden oran manşetten çıkarıldı, duyarlılık
+> aralığıyla birlikte §3'te raporlanıyor.
 
 ---
 
@@ -74,25 +83,36 @@ gerçek bir kalite farkı vardır (bağımsız tahminciler birleşimi θ = −1,
 1. **Mekanizmanın tek olası kanalında araç yok.** Yörünge sabit olduğundan
    sızıntı Δ_AB'yi ancak V_A'nın adv eğrisini bozarak etkileyebilir. Ölçülen:
    V_A adv fazlası ViT'te −0,47/−0,55/−0,08 (işaret negatif). **Çift ayrışma:**
-   ResNet'te sızıntı izi var (clean fazlası +1,81/+1,59/+2,10, z≈+2,0…+2,3)
-   ama etki yok; ViT'te iz yok (z≈0) ama "etki" var.
+   ResNet'te sızıntı izi var (clean fazlası +1,81/+1,59/+2,10; z = **+2,74 /
+   +2,49 / +3,19**, `e2_audit.json → 7_manipulasyon_dozu`) ama etki yok;
+   ViT'te iz yok (z = +0,05 / −0,09 / −0,14) ama "etki" var.
 2. **Manipülasyon kontrolü ViT'te başarısız.** Clean ön-eğitim iki kolda da
    V_A'yı ezberledi (%100 train acc), ama AT epoch 1'de beklenen fazlanın
-   ViT'te yalnız **<%7'si** ölçülüyor (+0,45/+0,12/+1,25 vs beklenen ~+19,6),
-   ResNet'te ~%50'si (ve 100 epok kalıcı). **ViT kolunda tedavi fiilen
-   uygulanmamıştır** — ölçülecek sızıntı yoktur.
+   ViT'te yalnız **%0,6-6,4'ü** ölçülüyor (+0,45/+0,12/+1,25 vs beklenen
+   ~+19,6), ResNet'te **%43-57'si** (ve 100 epok kalıcı). **ViT kolunda tedavi
+   fiilen uygulanmamıştır** — ölçülecek sızıntı yoktur.
+   *Payda tanımı (beyan zorunlu):* "beklenen doz" = clean ön-eğitimin
+   train−test genelleme açığı (100 − holdout doğruluğu). Alternatif payda
+   (AT ep1'deki havuz temiz doğruluğu) ViT sonucunu değiştirmez ama ResNet
+   oranını %12,7-17,2'ye indirir.
 3. **Karşılaştırıcı keyfiliği + sahte-tekrarlama.** V_B ↔ V_C takası manşeti
    −1,05 → −0,49'a (p=0,47) taşıyor. V_A/V_B/V_C tek çekiliştir (seed 778,
    altı koşumun hepsi aynı dosya): **bölme düzeyinde etkin n = 1**, üç tohum
    yörüngeyi tekrarlar, tedaviyi değil.
 
 ### Çürütülen yan hikâyeler
-- "ViT'in tepesi keskin, ResNet'inki düz" **yanlış**: gürültüden arındırılmış
-  ölçümde ResNet'in manzarası 2 kat daha engebeli (komşu-epok gerçek kalite
-  değişimi ResNet 1,88-2,16 vs ViT 0,94-1,06); iki bölmenin aynı epoğu seçme
-  olasılığı ResNet s1001'de 0,371, ViT s2002'de 0,852.
-- ResNet'in Δ_AB = +0,10'u "sızıntıya bağışıklık" değil, **seçim çakışması**
-  (null'da bu desenin olasılığı ≈0,25).
+- "ViT'in tepesi keskin, ResNet'inki düz, o yüzden yalnız ViT etkileniyor"
+  **yanlış**: iki bağımsız temiz bölmenin aynı epoğu seçme olasılığı
+  (`e2_bootstrap.json → P_ayni_epok`) ResNet s1001'de **0,23-0,35**, ViT
+  s2002'de **0,66-0,81** — yani ViT seçimi ResNet'ten *daha* kararlı. Mimari
+  asimetrisi seçim kararlılığıyla açıklanamaz.
+- ResNet'in Δ_AB = +0,10'u "sızıntıya bağışıklık" değil, **seçim çakışması**:
+  üç tohumun ikisinde A ve B aynı checkpoint'i seçtiği için Δ tanım gereği 0.
+
+*(Bu bölümdeki "komşu-epok kalite değişimi", "etkileşim p" ve "null'da desen
+olasılığı ≈0,25" gibi ilk sürümde yer alan sayılar, üretici kodları
+bulunmadığı için ÇIKARILDI — R3 kuralı: makaleye girecek hiçbir sayı yalnız
+düzyazıda yaşayamaz.)*
 
 ## 3. Makaleye giren ifadeler
 
@@ -101,23 +121,40 @@ eğitim yörüngesi üzerinde yalnızca checkpoint-seçim protokolü değiştiri
 — iki hiç-görülmemiş doğrulama bölmesi × üç erken-durdurma sabrı × üç
 yumuşatma penceresi = 18 hücre — aynı 10k test kümesinde raporlanan PGD-10
 doğruluğu ResNet-18'de 2,62-2,85, ViT-Tiny'de 1,58-2,09 puan aralığında
-değişmektedir; bu yayılımın yörünge-içi standart sapması (ResNet 0,82; ViT
-0,74), aynı protokol sabit tutulduğunda eğitim tohumunun yarattığı standart
-sapmanın (0,53 / 0,34) sırasıyla 1,54 ve 2,17 katıdır."*
+değişmektedir (yörünge-içi sd: ResNet 0,82; ViT 0,74)."*
 
-Dayanıklılık: dört yumuşatma konvansiyonunda da oran >1 (edge/zero/valid
-1,54× ve 2,17×; nedensel/causal 1,47× ve 1,65×). En büyük kaldıraç mimariye
-göre değişiyor — ResNet'te yumuşatma (1,00-1,24 puan), ViT'te bölme seçimi
-(0,25-1,05) ve yumuşatma (0,09-1,61); patience ViT'te hiç bağlamıyor.
+**Zorunlu nitelemeler (R3 denetimi):**
+- **Izgaranın boyut etiketi:** `patience=0` **saf argmax değildir** —
+  `min_delta=0,1` koşulsuz uygulandığı için "koşan en iyiyi 0,1 puandan fazla
+  aşan son epok" (ratchet) kuralıdır; 54 hücrenin 13'ünde gerçek argmax'tan
+  farklı epok seçer (test etkisi 2,37 puana kadar). Gerçek argmax kolu ayrıca
+  raporlanır; yön değişmez (ViT yayılımı 1,58-2,09 → 2,02-2,09).
+- **Yayılımın baskın kaldıracı yumuşatmadır ve yumuşatma tek yönlüdür:**
+  marjinal ortalamalar k=1/3/5 için her yörüngede **monoton düşüyor**
+  (ör. ResNet s1001: 43,06 / 42,53 / 41,90). Yani yayılımın bir kısmı
+  "protokol belirsizliği" değil "kötü bir seçicinin maliyeti"dir.
+- **Çekirdek ızgara** (makalelerin fiilen değiştirdiği boyutlar: bölme ×
+  patience, k=1): protokol sd ResNet 0,58 / ViT 0,48; tohum sd 0,53 / 0,34 →
+  oran **1,09× / 1,42×**.
+- **Oranın referans duyarlılığı:** 18 referans protokolün tamamında ResNet
+  0,67-3,38× (medyan 1,40; 2/18 ≤1), ViT 0,63-7,38× (medyan 1,36; 3/18 ≤1).
+  n=3 ile oranın %95 GA'sı her iki mimaride 1'i içeriyor. **Tek bir oran
+  sayısı raporlanmayacak.**
+- **Konvansiyon kontrolü aslında iki ailedir:** edge/zero/valid 108/108
+  hücrede özdeş seçim veriyor (yalnız eğri uçlarında farklılar ve hiçbir
+  protokol uç seçmiyor); bağımsız olan tek alternatif nedensel (causal)
+  ailedir. "Dört konvansiyon" ifadesi kullanılmayacak.
+- Patience ViT'te fiilen atıl (marjinal yayılım 0,00/0,00/0,35 puan).
 
 **Kurulabilir (örnekleme dağılımı, `e2_split_bootstrap.json`):** *"Doğrulama
 bölmesinin çekilişi bootstrap ile yeniden örneklendiğinde, ön-kayıtlı seçim
 kuralının ulaştığı gerçek test doğruluğunun standart sapması 0,30-0,83 puan,
-%95 aralık genişliği 1,0-2,0 puan ve oracle'a (en iyi checkpoint) göre
+%95 aralık genişliği 0,69-2,18 puan ve oracle'a (en iyi checkpoint) göre
 ortalama pişmanlık 0,14-1,53 puandır; hiç sızıntı yokken iki bağımsız temiz
 bölmenin ürettiği fark ortalama 0,30-0,97 puan olup 1 puanı aşma olasılığı
 %8-53'tür."* — bu, "bölme düzeyinde n=1" sınırlamasını yeni eğitim olmadan
-onaran gerçek bir dağılımdır.
+onaran gerçek bir dağılımdır ve **E2'nin en dayanıklı niceliksel çıktısıdır**
+(protokol ızgarasının tanım duyarlılığından etkilenmez).
 
 **Kurulabilir (sızıntı, §4 Kural 3 uyarınca):** ViT'te gözlenen −1,05 puanlık
 fark raporlanır ama **sızıntıya atfedilmez**; simetrik tahminci
@@ -137,12 +174,21 @@ checkpoint'in (+3,84…+6,79), 18 protokol × 3 tohum çiftinden oluşan 54 temi
 seçmediği yakınsama-öncesi bölgede (epok ≤25) değişmektedir."*
 
 Bu, `05_discussion.tex`'te taahhüt edilen "seçim sızıntısı koşullu atfı ters
-çeviriyor mu" sorusunun **kesin cevabıdır: hayır.** Dahası, kontrollü sızıntı
-farkı **büyütüyor** (V_A ile +6,29 vs temiz V_B ile +4,88) — oysa makalenin
-eski sızıntılı koşumu neredeyse parite gösteriyordu (+0,18). Yani o eski
-paritenin açıklaması seçim sızıntısı **olamaz**; geriye eğitim-koşusu
-varyansı / reçete farkı kalır. Bu, makalenin kendi ihtiyatlı ifadesini
-("aynı anda hem validasyon işlemesi hem eğitim koşusu değişti") doğruluyor.
+çeviriyor mu" sorusunun **kesin cevabıdır: hayır.**
+
+Sızıntılı kolda fark **nominal olarak daha büyüktür** (V_A ile +6,29; temiz
+V_B ile +4,88; negatif kontrol V_C ile +5,09) — ama bu sıralama sızıntıya
+**atfedilmez**: eşli A−B farkı n=3'te p=0,09 ve belgenin kendi çerçevesinde
+(bölme düzeyinde n=1, işaret permütasyonu tabanı 0,25) anlamlı olamaz; ayrıca
+V_C > V_B olması sıralamanın bölme kimliğine de bağlanabileceğini gösterir.
+Kesin olan tek şey **işaretin hiçbir protokolde dönmemesidir**.
+
+Buna karşılık şu karşılaştırma bilgilendirici: makalenin eski sızıntılı koşumu
+neredeyse parite gösteriyordu (+0,18), oysa **kontrollü sızıntı altında bile**
+fark +6,29 çıkıyor. Yani o eski paritenin açıklaması seçim sızıntısı
+**olamaz**; geriye eğitim-koşusu varyansı / reçete farkı kalır — makalenin
+kendi ihtiyatlı ifadesini ("aynı anda hem validasyon işlemesi hem eğitim
+koşusu değişti") doğrulayan bir sonuç.
 
 **KURULAMAZ (yasak cümleler):**
 - "Seçim sızıntısı ViT'te ~1,05 puan gürbüzlük kaybettiriyor (p=3e−5)."
@@ -167,14 +213,17 @@ varyansı / reçete farkı kalır. Bu, makalenin kendi ihtiyatlı ifadesini
 1. Ortak bölme / sahte-tekrarlama: bölme düzeyinde n=1; s_Δ sızıntı bileşeni
    hakkında sıfır bilgi taşır (ön-kayıt §6'da önceden beyan edilmişti).
 2. Varyans deflasyonu: s_Δ=0,010 tek ölçüm SE'sinden 37 kat küçük.
-3. n=3 güç tabanı: dürüst σ≈0,53-0,70 ile MDE = 1,32-1,74 puan; n=3'te işaret
-   permütasyonunun ulaşabileceği en küçük iki yönlü p = 0,25.
-4. δ=1,0 kırılganlığı: δ* = 1,067 — δ=1,05'te "FARKLI", δ=1,07'de "EŞDEĞER".
-   Ayrıca δ eğitim-tohumu std'sine (0,55) kalibre edilmişti; ilgili bileşen
-   seçim gürültüsüdür (§2'nin kendi hesabı 1,55 puan).
-5. Karşılaştırıcı keyfiliği (B↔C takası).
+3. n=3 güç tabanı: **n=3'te işaret permütasyonunun ulaşabileceği en küçük iki
+   yönlü p = 0,25** — yani bölme kimliği sabit çerçevede hiçbir test α=0,05'e
+   ulaşamaz (`e2_audit.json → 5_durust_p.kuruluslar.*.b_isaret_permutasyonu`).
+4. δ=1,0 kırılganlığı: δ* = 1,0669 (`e2_audit.json → 4_delta_yildiz`) —
+   δ=1,05'te "FARKLI", δ=1,07'de eşdeğerlik dalına geçiyor. Ayrıca δ
+   eğitim-tohumu std'sine kalibre edilmişti; ilgili bileşen seçim
+   gürültüsüdür (ön-kayıt §2'nin hesabı: √2 × 1,10 ≈ 1,55 puan).
+5. Karşılaştırıcı keyfiliği (B↔C takası: −1,05 → −0,49, p=0,47).
 6. Çoklu karşılaştırma: 2 mimari × 3 ikili kontrast × 2 metrik = 12 hücre;
-   ön-kayıt suskun. Dürüst p=0,10 ile Bonferroni m=2 → 0,20.
+   ön-kayıt suskun. Düzeltme, §2'de beyan edilen çerçeveye göre yapılacak
+   (tek bir "düzeltilmiş p" sayısı raporlanmayacak).
 7. Uç nokta bağımsız değil: 18 hücrede seçim ve raporlama **aynı saldırı**
    (PGD-10, eps 8/255, seed 42); AutoAttack yok.
 8. **Val→test aktarımı** *(düzeltildi 2026-08-17)*: ilk sürümdeki "eğim
@@ -223,17 +272,41 @@ varyansı / reçete farkı kalır. Bu, makalenin kendi ihtiyatlı ifadesini
 
 ## 6. Tez cümlesi (E2'den türetilebilecek en güçlü hali)
 
-> "Ölçüm protokolünün yalnızca checkpoint-seçim bileşeni — hangi hiç
-> görülmemiş doğrulama bölmesinin seçim yaptığı, hangi erken-durdurma sabrının
-> kullanıldığı ve eğrinin yumuşatılıp yumuşatılmadığı — sabit bir eğitim
-> yörüngesinde raporlanan PGD-10 doğruluğunu ResNet-18'de 2,62-2,85,
-> ViT-Tiny'de 1,58-2,09 puan aralığında değiştirmektedir; bu bileşenin
-> standart sapması, eğitim tohumunun standart sapmasının 1,54 ve 2,17
-> katıdır (dört yumuşatma konvansiyonunda da >1). Seçim sızıntısının bu
-> yayılıma ek katkısı ise tek bölme çekilişiyle ayrıştırılamamış ve
-> saptanamamıştır (dürüst iki yönlü p = 0,10-0,19)."
+> "Sabit bir eğitim yörüngesinde, yalnızca checkpoint-seçim protokolü
+> değiştirildiğinde — hangi hiç görülmemiş doğrulama bölmesinin seçim yaptığı,
+> hangi erken-durdurma eşiğinin kullanıldığı ve doğrulama eğrisinin
+> yumuşatılıp yumuşatılmadığı — aynı test kümesinde raporlanan PGD-10
+> doğruluğu ResNet-18'de 2,62-2,85, ViT-Tiny'de 1,58-2,09 puan aralığında
+> değişmektedir. Yalnız bölme çekilişi yeniden örneklendiğinde bile raporlanan
+> değerin standart sapması 0,30-0,83 puan, %95 aralık genişliği 0,69-2,18
+> puandır ve seçim kuralı en iyi checkpoint'in ortalama 0,14-1,53 puan
+> gerisinde kalmaktadır. Seçim sızıntısının bu yayılıma ek katkısı ise tek
+> bölme çekilişiyle ayrıştırılamamıştır: bölme kimliği sabit alındığında
+> hiçbir test anlamlıya ulaşamaz (permütasyon tabanı p ≥ 0,25), bölmeler
+> değiştirilebilir alındığında ise aynı veri p = 0,007-0,052 verir."
+
+**Neden oran manşete konmuyor:** protokol sd'sinin tohum sd'sine oranı
+tanıma ve referans protokol seçimine duyarlıdır (18 referansta ResNet
+0,67-3,38×, ViT 0,63-7,38×; çekirdek k=1 ızgarasında 1,09× / 1,42×; n=3 ile
+%95 GA her iki mimaride 1'i içerir). Mutlak yayılım ve bootstrap dağılımı
+kullanılır.
 
 Bu bileşen **sıfır-şişkin ve kesiklidir**: iki temiz bölme ya aynı epoğu seçer
 (Δ=0) ya da farklı seçer ve 1-2 puan fark üretir — yani gürbüzlük sayısı
 sürekli bir gürültüyle değil, **manzara dejenere olduğunda ateşlenen bir
 piyangoyla** oynuyor.
+
+## 7. Kanoniklik kuralı (R3 zorunluluğu)
+
+İki değerlendirme tabanı var ve aynı büyüklükler için farklı sayı veriyorlar
+(saldırı tohumu farkı):
+- **Ön-kayıtlı birincil tablo** (`e2_report.json`): `select_*_test.npz`
+  tabanlı, saldırı tohumu 42. ViT Δ_AB = −1,050; ResNet +0,100.
+- **Tüm protokol/ızgara/bootstrap/koşullu analizleri**: `testcurve_*.npz`
+  tabanlı, tohum 42·10⁵+epok. ViT Δ_AB = −0,983; ResNet +0,14.
+
+**Kural:** birincil (ön-kayıtlı) sonuçlar select tabanında raporlanır;
+betimleyici/keşifsel analizlerin tamamı testcurve tabanındadır ve makalede
+öyle etiketlenir. İki taban arasındaki ölçüm tabanı: temiz doğrulukta **tam
+sıfır** (18/18 hücre), çekişmeli doğrulukta ortalama 0,018 / en fazla 0,130
+puan.

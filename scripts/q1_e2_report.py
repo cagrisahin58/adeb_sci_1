@@ -158,9 +158,10 @@ def mcnemar_exact(mask_x, mask_y):
         p = 1.0
     else:
         p = float(sps.binomtest(min(b, c), n_disc, 0.5, alternative="two-sided").pvalue)
+    # p cok kucuk olabilir (b+c binlerce); round(p, 6) 8.9e-13'u 0.0 yapiyordu
     return {"b_only_first": b, "c_only_second": c, "n_discordant": n_disc,
             "acc_diff_pp": round(100.0 * (b - c) / mask_x.size, 4),
-            "p_exact": round(p, 6), "significant": bool(p < ALPHA)}
+            "p_exact": float(f"{p:.6g}"), "significant": bool(p < ALPHA)}
 
 
 def contrast(cells, cond_x, cond_y, metric):
