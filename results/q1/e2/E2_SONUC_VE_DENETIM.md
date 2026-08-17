@@ -5,10 +5,19 @@ analiz koşuldu, sonuç 4 mercek + 3 şüpheci hakemden oluşan bir çürütme
 denetiminden geçirildi (2026-08-16/17).
 
 **Tek cümlelik hüküm:** Sızıntının checkpoint seçimine etkisi **saptanamadı**;
-buna karşılık **seçim protokolünün kendisi** (hangi temiz bölme seçim yapıyor,
-eğri yumuşatılıyor mu) sabit bir yörüngede raporlanan PGD-10 doğruluğunu
-**1,67 puana kadar** oynatıyor — bu, eğitim-tohumu yayılımının (0,55 puan) üç
-katı. E2'nin makaleye giren katkısı budur.
+buna karşılık **seçim protokolünün kendisi** sabit bir yörüngede raporlanan
+PGD-10 doğruluğunu **ResNet-18'de 2,62-2,85, ViT-Tiny'de 1,58-2,09 puan**
+oynatıyor ve bu yayılımın standart sapması, aynı protokolde tohum
+değiştirmenin standart sapmasının **1,54× (ResNet) / 2,17× (ViT)** katı.
+E2'nin makaleye giren katkısı budur.
+
+> **DÜZELTME (2026-08-17, ara hakemlik):** Bu belgenin ilk sürümü manşeti
+> "1,67 / 0,82 puana kadar" diye kurmuştu. Bu sayılar n=3'ün **maksimumuydu**
+> (diğer çekilişler 0,00 ve 0,00 / −0,32) ve "tohum yayılımının üç katı"
+> ifadesi bir maksimumu bir standart sapmaya bölüyordu; eşli oranda ResNet'te
+> 0,77× çıkıyor, yani iddia **tersine dönüyordu**. Yerine, tanımlı bir
+> protokol ızgarası üzerinden hesaplanan ve her iki mimaride de geçerli olan
+> yukarıdaki ifade geçti (`scripts/q1_e2_grid.py` → `e2_grid.json`).
 
 ---
 
@@ -71,13 +80,28 @@ mertebesi fark var.
 
 ## 3. Makaleye giren ifadeler
 
-**Kurulabilir (asıl bulgu):** *"Sabit bir eğitim yörüngesi üzerinde, yalnızca
-hangi 2000-örneklik doğrulama bölmesinin checkpoint seçtiği değiştirildiğinde
-— her iki bölme de eğitimde hiç görülmemişken — aynı 10k test kümesinde
-raporlanan PGD-10 doğruluğu ViT-Tiny'de 1,67, ResNet-18'de 0,82 puana kadar
-oynamaktadır; aynı eğriye üç-epokluk hareketli ortalama uygulanması seçilen
-epoğu ve farkın işaretini değiştirmektedir (V_C üzerinde ortalama Δ: k=1 →
-−0,92, k=3 → +0,10, k=5 → +0,30)."*
+**Kurulabilir (ASIL BULGU — protokol ızgarası, `e2_grid.json`):** *"Sabit bir
+eğitim yörüngesi üzerinde yalnızca checkpoint-seçim protokolü değiştirildiğinde
+— iki hiç-görülmemiş doğrulama bölmesi × üç erken-durdurma sabrı × üç
+yumuşatma penceresi = 18 hücre — aynı 10k test kümesinde raporlanan PGD-10
+doğruluğu ResNet-18'de 2,62-2,85, ViT-Tiny'de 1,58-2,09 puan aralığında
+değişmektedir; bu yayılımın yörünge-içi standart sapması (ResNet 0,82; ViT
+0,74), aynı protokol sabit tutulduğunda eğitim tohumunun yarattığı standart
+sapmanın (0,53 / 0,34) sırasıyla 1,54 ve 2,17 katıdır."*
+
+Dayanıklılık: dört yumuşatma konvansiyonunda da oran >1 (edge/zero/valid
+1,54× ve 2,17×; nedensel/causal 1,47× ve 1,65×). En büyük kaldıraç mimariye
+göre değişiyor — ResNet'te yumuşatma (1,00-1,24 puan), ViT'te bölme seçimi
+(0,25-1,05) ve yumuşatma (0,09-1,61); patience ViT'te hiç bağlamıyor.
+
+**Kurulabilir (örnekleme dağılımı, `e2_split_bootstrap.json`):** *"Doğrulama
+bölmesinin çekilişi bootstrap ile yeniden örneklendiğinde, ön-kayıtlı seçim
+kuralının ulaştığı gerçek test doğruluğunun standart sapması 0,30-0,83 puan,
+%95 aralık genişliği 1,0-2,0 puan ve oracle'a (en iyi checkpoint) göre
+ortalama pişmanlık 0,14-1,53 puandır; hiç sızıntı yokken iki bağımsız temiz
+bölmenin ürettiği fark ortalama 0,30-0,97 puan olup 1 puanı aşma olasılığı
+%8-53'tür."* — bu, "bölme düzeyinde n=1" sınırlamasını yeni eğitim olmadan
+onaran gerçek bir dağılımdır.
 
 **Kurulabilir (sızıntı, §4 Kural 3 uyarınca):** ViT'te gözlenen −1,05 puanlık
 fark raporlanır ama **sızıntıya atfedilmez**; simetrik tahminci
@@ -93,6 +117,10 @@ fark raporlanır ama **sızıntıya atfedilmez**; simetrik tahminci
   (negatif kontrol ateşliyor: ViT B-C clean p = 8,9×10⁻¹³)
 - Herhangi bir mekanizma cümlesi ("sızıntılı bölme ezberci checkpoint'leri
   ödüllendiriyor")
+- **"X puana kadar oynuyor"** biçiminde, n=3'ün maksimumuna dayanan hiçbir
+  ifade (ara hakemlik kararı; maksimumlar yalnız dağılımın uç noktası olarak,
+  sd/aralık ile birlikte verilir)
+- "Tohum yayılımının üç katı" (max ÷ sd karışımı; doğrusu 1,54× / 2,17×)
 - "Sızıntı katkısı protokol yayılımının ~1/10'u" (ölçek uyumsuzluğu: 10,45
   puan **transfer asimetrisinin** protokol yayılımı, E2'nin 1,05'i ise
   **mutlak gürbüz doğruluk** farkı — aynı cetvele konulamaz)
@@ -135,12 +163,14 @@ fark raporlanır ama **sızıntıya atfedilmez**; simetrik tahminci
 ## 6. Tez cümlesi (E2'den türetilebilecek en güçlü hali)
 
 > "Ölçüm protokolünün yalnızca checkpoint-seçim bileşeni — hangi hiç
-> görülmemiş 2000-örneklik bölmenin seçim yaptığı ve eğrinin yumuşatılıp
-> yumuşatılmadığı — sabit bir yörünge üzerinde raporlanan PGD-10 doğruluğunu
-> 1,67 puana kadar oynatmaktadır; bu, aynı mimarinin eğitim-tohumu yayılımının
-> (0,55 puan) üç katıdır. Seçim sızıntısının bu yayılıma ek katkısı ise tek
-> bölme çekilişiyle ayrıştırılamamış ve saptanamamıştır (dürüst iki yönlü
-> p = 0,10-0,19)."
+> görülmemiş doğrulama bölmesinin seçim yaptığı, hangi erken-durdurma sabrının
+> kullanıldığı ve eğrinin yumuşatılıp yumuşatılmadığı — sabit bir eğitim
+> yörüngesinde raporlanan PGD-10 doğruluğunu ResNet-18'de 2,62-2,85,
+> ViT-Tiny'de 1,58-2,09 puan aralığında değiştirmektedir; bu bileşenin
+> standart sapması, eğitim tohumunun standart sapmasının 1,54 ve 2,17
+> katıdır (dört yumuşatma konvansiyonunda da >1). Seçim sızıntısının bu
+> yayılıma ek katkısı ise tek bölme çekilişiyle ayrıştırılamamış ve
+> saptanamamıştır (dürüst iki yönlü p = 0,10-0,19)."
 
 Bu bileşen **sıfır-şişkin ve kesiklidir**: iki temiz bölme ya aynı epoğu seçer
 (Δ=0) ya da farklı seçer ve 1-2 puan fark üretir — yani gürbüzlük sayısı
