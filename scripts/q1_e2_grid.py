@@ -193,6 +193,19 @@ def main():
             cells = [run_cell(traj, s, p, k, args.conv)
                      for s in SPLITS for p in PATIENCES for k in KERNELS]
             cells = [c for c in cells if c]
+            # GERCEK argmax kolu (patience=0'in yanlis etiketlenmesine karsi)
+            argmax_cells = [run_argmax_cell(traj, s, k, args.conv)
+                            for s in SPLITS for k in KERNELS]
+            # ratchet (patience=0) ile gercek argmax kac hucrede ayrisiyor?
+            ratchet_diff = []
+            for a in argmax_cells:
+                r = next(c for c in cells if c["split"] == a["split"]
+                         and c["patience"] == 0 and c["k"] == a["k"])
+                if r["secilen_epok"] != a["secilen_epok"]:
+                    ratchet_diff.append({"split": a["split"], "k": a["k"],
+                                         "ratchet_epok": r["secilen_epok"],
+                                         "argmax_epok": a["secilen_epok"],
+                                         "test_fark": round(a["test_adv"] - r["test_adv"], 4)})
             vals = np.array([c["test_adv"] for c in cells])
             oracle_i = int(np.argmax(traj["test_adv"]))
             ref = next(c for c in cells if (c["split"], c["patience"], c["k"]) == REF_PROTOCOL)
@@ -207,6 +220,8 @@ def main():
                            "test_adv": round(float(traj["test_adv"][oracle_i]), 4)},
                 "ort_oracle_pismanligi": round(float(traj["test_adv"][oracle_i] - vals.mean()), 4),
                 # hangi serbestlik derecesi ne kadar oynatiyor (marjinal yayilim)
+                "_argmax": argmax_cells,
+                "_ratchet": ratchet_diff,
                 "kaldirac": {
                     "bolme": round(float(np.ptp([np.mean([c["test_adv"] for c in cells if c["split"] == s])
                                                  for s in SPLITS])), 4),
@@ -242,7 +257,8 @@ def main():
             "REFERANS_DUYARLILIGI": ref_sensitivity(per_seed, done_seeds),
             "cekirdek_k1": {
                 "aciklama": "yalniz bolme x patience (yumusatma HARIC; yumusatma "
-                            "monoton kotulestirici oldugu icin yayilimi sisiriyor)",
+                            "cogu yorungede tek yonlu kotulestirici oldugu icin "
+                            "yayilimi sisiriyor - monotonluk sayimi asagida)",
                 "protokol_sd_ort": round(float(np.mean(core_sds)), 4),
                 "tohum_sd": round(core_seed_sd, 4),
                 "oran": round(float(np.mean(core_sds)) / core_seed_sd, 3)
@@ -252,11 +268,66 @@ def main():
                 str(s): {str(k): round(float(np.mean([c["test_adv"] for c in
                                                       per_seed[str(s)]["hucreler"] if c["k"] == k])), 4)
                          for k in KERNELS} for s in done_seeds},
+            "argmax_kolu": {str(s): per_seed[str(s)].pop("_argmax") for s in per_seed},
+            "ratchet_vs_argmax": {str(s): per_seed[str(s)].pop("_ratchet") for s in per_seed},
         }
+        # Yumusatma MONOTON MU? (belge "her yorungede monoton" diyordu; sayilir)
+        ym = report["mimariler"][arch]["yumusatma_marjinal_ortalamalari"]
+        mono = {s: bool(all(ym[s][str(KERNELS[i])] >= ym[s][str(KERNELS[i + 1])]
+                            for i in range(len(KERNELS) - 1))) for s in ym}
+        report["mimariler"][arch]["yumusatma_monoton_mu"] = {
+            "per_seed": mono, "monoton_sayisi": int(sum(mono.values())), "toplam": len(mono)}
+        # ratchet-argmax ayrisma sayimi ve en buyuk test etkisi
+        rv = [d for s in report["mimariler"][arch]["ratchet_vs_argmax"]
+              for d in report["mimariler"][arch]["ratchet_vs_argmax"][s]]
+        report["mimariler"][arch]["ratchet_ozet"] = {
+            "ayrisan_hucre": len(rv),
+            "toplam_hucre": len(SPLITS) * len(KERNELS) * len(done_seeds),
+            "max_abs_test_fark": round(max((abs(d["test_fark"]) for d in rv), default=0.0), 4)}
+        # argmax koluyla yayilim/oran (etiket hatasina karsi dayaniklilik)
+        am_sds, am_spread = [], []
+        for s in done_seeds:
+            av = [c["test_adv"] for c in report["mimariler"][arch]["argmax_kolu"][str(s)]]
+            am_sds.append(float(np.std(av, ddof=1)))
+            am_spread.append(float(max(av) - min(av)))
+        report["mimariler"][arch]["argmax_kolu_ozet"] = {
+            "yayilim_araligi": [round(min(am_spread), 4), round(max(am_spread), 4)],
+            "protokol_sd_ort": round(float(np.mean(am_sds)), 4)}
+        # oranin n=3 belirsizligi (tohum sd'sinin chi2 GA'si)
+        if len(done_seeds) > 1 and seed_sd and seed_sd > 1e-9:
+            from scipy.stats import chi2 as _chi2
+            dfree = len(done_seeds) - 1
+            pm = float(np.mean(prot_sds))
+            lo = pm / np.sqrt(seed_sd ** 2 * dfree / _chi2.ppf(0.025, dfree))
+            hi = pm / np.sqrt(seed_sd ** 2 * dfree / _chi2.ppf(0.975, dfree))
+            report["mimariler"][arch]["oran_95_GA"] = [round(hi, 3), round(lo, 3)]
 
     # Konvansiyon dayanikliligi: manset (yayilim ve oran) konvansiyona bagli mi?
     if args.conventions:
         rob = {}
+        # konvansiyonlar HUCRE DUZEYINDE ozdes mi? (belge "dort konvansiyon"
+        # diyordu; R3 ucunun ozdes secim verdigini buldu - burada sayilir)
+        ident = {}
+        base = {}
+        for conv in ["edge", "zero", "valid", "causal"]:
+            picks = []
+            for arch, seeds in ARCHS.items():
+                for seed in seeds:
+                    traj = load_traj(in_dir, arch, seed)
+                    if traj is None:
+                        continue
+                    picks += [c["secilen_epok"] for c in
+                              (run_cell(traj, s, p, k, conv) for s in SPLITS
+                               for p in PATIENCES for k in KERNELS) if c]
+            base[conv] = picks
+        ref = base["edge"]
+        for conv, picks in base.items():
+            same = sum(1 for a, b in zip(ref, picks) if a == b)
+            ident[conv] = {"edge_ile_ayni_hucre": same, "toplam_hucre": len(ref)}
+        report["konvansiyon_hucre_ozdesligi"] = ident
+        print("\nKONVANSIYON HUCRE OZDESLIGI (edge referans):")
+        for conv, d in ident.items():
+            print(f"  {conv:<7} {d['edge_ile_ayni_hucre']}/{d['toplam_hucre']} hucrede ayni secim")
         for conv in ["edge", "zero", "valid", "causal"]:
             per_arch = {}
             for arch, seeds in ARCHS.items():

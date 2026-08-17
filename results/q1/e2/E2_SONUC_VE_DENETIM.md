@@ -126,33 +126,40 @@ değişmektedir (yörünge-içi sd: ResNet 0,82; ViT 0,74)."*
 **Zorunlu nitelemeler (R3 denetimi):**
 - **Izgaranın boyut etiketi:** `patience=0` **saf argmax değildir** —
   `min_delta=0,1` koşulsuz uygulandığı için "koşan en iyiyi 0,1 puandan fazla
-  aşan son epok" (ratchet) kuralıdır; 54 hücrenin 13'ünde gerçek argmax'tan
-  farklı epok seçer (test etkisi 2,37 puana kadar). Gerçek argmax kolu ayrıca
-  raporlanır; yön değişmez (ViT yayılımı 1,58-2,09 → 2,02-2,09).
-- **Yayılımın baskın kaldıracı yumuşatmadır ve yumuşatma tek yönlüdür:**
-  marjinal ortalamalar k=1/3/5 için her yörüngede **monoton düşüyor**
-  (ör. ResNet s1001: 43,06 / 42,53 / 41,90). Yani yayılımın bir kısmı
-  "protokol belirsizliği" değil "kötü bir seçicinin maliyeti"dir.
+  aşan son epok" (ratchet) kuralıdır. Gerçek argmax kolu artık ayrıca
+  hesaplanıyor (`e2_grid.json → argmax_kolu`, `ratchet_ozet`): **36 hücrenin
+  7'sinde** farklı epok seçiliyor (ResNet 5/18, ViT 2/18); en büyük test
+  etkisi **2,37 puan** (ResNet) ve **1,14 puan** (ViT). Argmax kolunun kendi
+  yayılımı ResNet 0,88-2,32 / ViT 2,02-2,09 puan — yön değişmiyor.
+- **Yayılımın baskın kaldıracı yumuşatmadır ve çoğu yörüngede tek yönlüdür:**
+  marjinal ortalamalar k=1/3/5 için **6 yörüngenin 5'inde monoton düşüyor**
+  (ör. ResNet s1001: 43,06 / 42,53 / 41,90); **istisna ViT s2002**
+  (33,27 / 31,76 / 32,45 — düşüp yukarı dönüyor). `e2_grid.json →
+  yumusatma_monoton_mu`. Yani yayılımın bir kısmı "protokol belirsizliği"
+  değil "kötü bir seçicinin maliyeti"dir — ama bu niteleme 6/6 değil 5/6'dır.
 - **Çekirdek ızgara** (makalelerin fiilen değiştirdiği boyutlar: bölme ×
   patience, k=1): protokol sd ResNet 0,58 / ViT 0,48; tohum sd 0,53 / 0,34 →
   oran **1,09× / 1,42×**.
 - **Oranın referans duyarlılığı:** 18 referans protokolün tamamında ResNet
-  0,67-3,38× (medyan 1,40; 2/18 ≤1), ViT 0,63-7,38× (medyan 1,36; 3/18 ≤1).
-  n=3 ile oranın %95 GA'sı her iki mimaride 1'i içeriyor. **Tek bir oran
-  sayısı raporlanmayacak.**
-- **Konvansiyon kontrolü aslında iki ailedir:** edge/zero/valid 108/108
-  hücrede özdeş seçim veriyor (yalnız eğri uçlarında farklılar ve hiçbir
-  protokol uç seçmiyor); bağımsız olan tek alternatif nedensel (causal)
-  ailedir. "Dört konvansiyon" ifadesi kullanılmayacak.
+  0,671-3,379× (medyan 1,397; 2/18 ≤1), ViT 0,631-7,376× (medyan 1,358;
+  3/18 ≤1). n=3'ün χ² belirsizliğiyle oranın %95 GA'sı **ResNet
+  [0,24; 2,95], ViT [0,35; 4,17]** — ikisi de 1'i içeriyor (`e2_grid.json →
+  REFERANS_DUYARLILIGI`, `oran_95_GA`). **Tek bir oran sayısı
+  raporlanmayacak.**
+- **Konvansiyon kontrolü aslında iki ailedir:** hücre düzeyinde sayıldığında
+  edge/zero/valid **108/108 hücrede özdeş** seçim veriyor; nedensel (causal)
+  yalnız 36/108'de aynı (`e2_grid.json → konvansiyon_hucre_ozdesligi`).
+  Bağımsız olan tek alternatif nedensel ailedir; **"dört konvansiyon" ifadesi
+  kullanılmayacak.**
 - Patience ViT'te fiilen atıl (marjinal yayılım 0,00/0,00/0,35 puan).
 
 **Kurulabilir (örnekleme dağılımı, `e2_split_bootstrap.json`):** *"Doğrulama
 bölmesinin çekilişi bootstrap ile yeniden örneklendiğinde, ön-kayıtlı seçim
-kuralının ulaştığı gerçek test doğruluğunun standart sapması 0,30-0,83 puan,
+kuralının ulaştığı gerçek test doğruluğunun standart sapmasi 0,31-0,81 puan,
 %95 aralık genişliği 0,69-2,18 puan ve oracle'a (en iyi checkpoint) göre
-ortalama pişmanlık 0,14-1,53 puandır; hiç sızıntı yokken iki bağımsız temiz
+ortalama pismanlik 0,16-1,53 puandir; hiç sızıntı yokken iki bağımsız temiz
 bölmenin ürettiği fark ortalama 0,30-0,97 puan olup 1 puanı aşma olasılığı
-%8-53'tür."* — bu, "bölme düzeyinde n=1" sınırlamasını yeni eğitim olmadan
+%9-53'tür."* — bu, "bölme düzeyinde n=1" sınırlamasını yeni eğitim olmadan
 onaran gerçek bir dağılımdır ve **E2'nin en dayanıklı niceliksel çıktısıdır**
 (protokol ızgarasının tanım duyarlılığından etkilenmez).
 
@@ -173,8 +180,22 @@ checkpoint'in (+3,84…+6,79), 18 protokol × 3 tohum çiftinden oluşan 54 temi
 +0,86…+9,05) tamamında pozitiftir; işaret yalnızca hiçbir protokolün
 seçmediği yakınsama-öncesi bölgede (epok ≤25) değişmektedir."*
 
-Bu, `05_discussion.tex`'te taahhüt edilen "seçim sızıntısı koşullu atfı ters
-çeviriyor mu" sorusunun **kesin cevabıdır: hayır.**
+> **AŞIRI-İDDİA DÜZELTMESİ (2026-08-17 akşam, geçmiş denetçisi):** Bu bulgu
+> ilk sürümde `05_discussion.tex`'teki taahhüdün "kesin cevabı" ilan
+> edilmişti. **Bu doğru değildi.** Taahhüt şuydu: *"aynı veri üzerinde çiftler
+> eğit, yalnızca seçim bölmesinin ön-eğitimde görülüp görülmediğini değiştir
+> ve koşullu atfın ters dönüp dönmediğini ölç."* E2 bu tasarımı **kurmuyor**:
+> altı yörüngenin **hepsinde** V_A clean ön-eğitimde görülmüştür (ön-kayıt §2,
+> D_core ∪ V_A = 46.000); değişen şey "ön-eğitim bölmeyi gördü mü" değil,
+> "hangi bölme seçiyor". Taahhüdü fiilen kuracak kol **P1 (sızıntı-takası)**
+> ve o koşulmuyor. Üstüne ViT kolunda manipülasyon kontrolü başarısızdır.
+>
+> **Doğru ifade:** E2, taahhüdün *ilgili ama daha zayıf* bir versiyonunu
+> cevaplıyor — "seçim bölmesinin kimliği (ve seçim protokolü) koşullu atfı
+> ters çeviriyor mu?" → hayır, 251 ölçümün tamamında işaret korunuyor.
+> Taahhüdün kendisi ya P1 koşularak karşılanacak ya da makale metni
+> **ölçülen tasarımla yeniden yazılacak** (tercih edilen: ikincisi;
+> `05_discussion.tex` gelecek-iş maddesi P1 + P1b olarak kalır).
 
 Sızıntılı kolda fark **nominal olarak daha büyüktür** (V_A ile +6,29; temiz
 V_B ile +4,88; negatif kontrol V_C ile +5,09) — ama bu sıralama sızıntıya
@@ -262,9 +283,26 @@ koşusu değişti") doğrulayan bir sonuç.
   atıf, 4 katman), `q1_e2_audit.py` (denetimin tüm sayılarını üreten artefakt
   — hakemin "bu sayıların kodu yok" itirazına cevap; 9 maddeden 6'sı TUTUYOR,
   2'si KISMEN, 1'i TUTMUYOR ve düzeltildi).
-- **`05_discussion.tex:80` taahhüdü ARTIK ÖLÇÜLDÜ** (yukarıdaki koşullu atıf
-  bulgusu): taahhüt metni "hizalanacak" değil, **cevaplanmış olarak**
-  yazılacak — sızıntı koşullu atfı çevirmiyor, aksine farkı büyütüyor.
+- **`05_discussion.tex:80` taahhüdü KISMEN karşılandı:** E2, taahhüdün daha
+  zayıf versiyonunu (seçim bölmesi/protokolü koşullu atfı çevirir mi?)
+  cevaplıyor; taahhüdün kendisi (ön-eğitimde görülme durumunu değiştiren
+  çiftler) **kurulmadı**. Metin ölçülen tasarımla yeniden yazılacak; P1
+  gelecek-iş maddesi olarak kalacak. Bkz. §3 aşırı-iddia düzeltmesi.
+- **MAKALENİN EN BÜYÜK RİSKİ (gidişat denetçisi, KRİTİK):** ana metindeki
+  *"protokol yayılımı ≈ eğitim-koşusu sd'sinin yirmi katı"* iddiası, E2'de
+  **iki kez geri çektiğimiz hatanın aynısıdır** — 10,24 puanlık *aralığı*
+  0,50-0,55'lik *sd*'ye bölüyor ve üstüne ölçek uyumsuz (pay: transfer
+  asimetrisi; payda: mutlak doğruluk). Aynı nicelikte hesaplandığında oran
+  kuruluşa göre **3,2× - 18,6×** arasında oynuyor. E2 bölümü hakeme bu kuralı
+  kendi elimizle öğrettiği için hakem bunu bulacaktır. **arXiv ön-baskısı bu
+  düzeltilmeden atılmamalı** — atılırsa hata kalıcı ve atıf verilebilir olur.
+  Çözüm E2'nin v3 çözümüyle aynı: oranı kaldır, mutlak dile geç (özet zaten
+  güvenli; gövdede ~4 cümle).
+- **E2'nin ana tezle birleşme yolu** (gidişat denetçisi): ikinci bir manşet
+  değil, **ana manşetin paydasını düzeltmek**. Makalenin raporladığı 0,50-0,55
+  koşum varyansı, üç tohumun tek bir seed-777 bölmesini paylaşması nedeniyle
+  eksik ölçülmüştür; E2'nin bölme-bootstrap'i eksik bileşeni veriyor
+  (sd 0,31-0,81). Hakemin "bu bölüm ne katıyor" sorusunun cevabı budur.
 - **Bütünlük kanıtı (A4 madde 9):** aynı checkpoint'in iki bağımsız
   değerlendirmesinde (seçim koşumu vs P0 test eğrisi) temiz doğruluk 18/18
   hücrede **tam olarak eşit** (0 örnek uyuşmazlığı); çekişmeli fark ort
@@ -278,8 +316,8 @@ koşusu değişti") doğrulayan bir sonuç.
 > yumuşatılıp yumuşatılmadığı — aynı test kümesinde raporlanan PGD-10
 > doğruluğu ResNet-18'de 2,62-2,85, ViT-Tiny'de 1,58-2,09 puan aralığında
 > değişmektedir. Yalnız bölme çekilişi yeniden örneklendiğinde bile raporlanan
-> değerin standart sapması 0,30-0,83 puan, %95 aralık genişliği 0,69-2,18
-> puandır ve seçim kuralı en iyi checkpoint'in ortalama 0,14-1,53 puan
+> değerin standart sapması 0,31-0,81 puan, %95 aralık genişliği 0,69-2,18
+> puandır ve seçim kuralı en iyi checkpoint'in ortalama 0,16-1,53 puan
 > gerisinde kalmaktadır. Seçim sızıntısının bu yayılıma ek katkısı ise tek
 > bölme çekilişiyle ayrıştırılamamıştır: bölme kimliği sabit alındığında
 > hiçbir test anlamlıya ulaşamaz (permütasyon tabanı p ≥ 0,25), bölmeler

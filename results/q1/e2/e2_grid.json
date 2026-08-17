@@ -709,7 +709,7 @@
         "toplam_referans": 18
       },
       "cekirdek_k1": {
-        "aciklama": "yalniz bolme x patience (yumusatma HARIC; yumusatma monoton kotulestirici oldugu icin yayilimi sisiriyor)",
+        "aciklama": "yalniz bolme x patience (yumusatma HARIC; yumusatma cogu yorungede tek yonlu kotulestirici oldugu icin yayilimi sisiriyor - monotonluk sayimi asagida)",
         "protokol_sd_ort": 0.5818,
         "tohum_sd": 0.5329,
         "oran": 1.092
@@ -730,7 +730,226 @@
           "3": 42.01,
           "5": 41.7683
         }
-      }
+      },
+      "argmax_kolu": {
+        "1001": [
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 63,
+            "test_adv": 43.38,
+            "test_clean": 85.06
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 88,
+            "test_adv": 42.34,
+            "test_clean": 85.79
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 93,
+            "test_adv": 41.45,
+            "test_clean": 85.67
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 63,
+            "test_adv": 43.38,
+            "test_clean": 85.06
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 71,
+            "test_adv": 41.82,
+            "test_clean": 86.27
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 90,
+            "test_adv": 41.06,
+            "test_clean": 85.97
+          }
+        ],
+        "1002": [
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 49,
+            "test_adv": 43.59,
+            "test_clean": 84.59
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 50,
+            "test_adv": 41.59,
+            "test_clean": 86.8
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 49,
+            "test_adv": 43.59,
+            "test_clean": 84.59
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 49,
+            "test_adv": 43.59,
+            "test_clean": 84.59
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 48,
+            "test_adv": 41.66,
+            "test_clean": 86.21
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 48,
+            "test_adv": 41.66,
+            "test_clean": 86.21
+          }
+        ],
+        "1003": [
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 44,
+            "test_adv": 42.58,
+            "test_clean": 86.46
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 43,
+            "test_adv": 42.04,
+            "test_clean": 86.52
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 43,
+            "test_adv": 42.04,
+            "test_clean": 86.52
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 60,
+            "test_adv": 42.92,
+            "test_clean": 85.85
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 59,
+            "test_adv": 42.35,
+            "test_clean": 85.6
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 43,
+            "test_adv": 42.04,
+            "test_clean": 86.52
+          }
+        ]
+      },
+      "ratchet_vs_argmax": {
+        "1001": [
+          {
+            "split": "B",
+            "k": 3,
+            "ratchet_epok": 80,
+            "argmax_epok": 88,
+            "test_fark": -0.13
+          },
+          {
+            "split": "B",
+            "k": 5,
+            "ratchet_epok": 79,
+            "argmax_epok": 93,
+            "test_fark": 0.58
+          },
+          {
+            "split": "C",
+            "k": 5,
+            "ratchet_epok": 72,
+            "argmax_epok": 90,
+            "test_fark": -2.37
+          }
+        ],
+        "1002": [
+          {
+            "split": "B",
+            "k": 3,
+            "ratchet_epok": 49,
+            "argmax_epok": 50,
+            "test_fark": -2.0
+          },
+          {
+            "split": "B",
+            "k": 5,
+            "ratchet_epok": 48,
+            "argmax_epok": 49,
+            "test_fark": 1.93
+          }
+        ],
+        "1003": []
+      },
+      "yumusatma_monoton_mu": {
+        "per_seed": {
+          "1001": true,
+          "1002": true,
+          "1003": true
+        },
+        "monoton_sayisi": 3,
+        "toplam": 3
+      },
+      "ratchet_ozet": {
+        "ayrisan_hucre": 5,
+        "toplam_hucre": 18,
+        "max_abs_test_fark": 2.37
+      },
+      "argmax_kolu_ozet": {
+        "yayilim_araligi": [
+          0.88,
+          2.32
+        ],
+        "protokol_sd_ort": 0.8048
+      },
+      "oran_95_GA": [
+        2.948,
+        0.244
+      ]
     },
     "vit_tiny": {
       "tohum_sayisi": 3,
@@ -1406,7 +1625,7 @@
         "toplam_referans": 18
       },
       "cekirdek_k1": {
-        "aciklama": "yalniz bolme x patience (yumusatma HARIC; yumusatma monoton kotulestirici oldugu icin yayilimi sisiriyor)",
+        "aciklama": "yalniz bolme x patience (yumusatma HARIC; yumusatma cogu yorungede tek yonlu kotulestirici oldugu icin yayilimi sisiriyor - monotonluk sayimi asagida)",
         "protokol_sd_ort": 0.4821,
         "tohum_sd": 0.3403,
         "oran": 1.416
@@ -1427,6 +1646,303 @@
           "3": 32.03,
           "5": 31.815
         }
+      },
+      "argmax_kolu": {
+        "2001": [
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 28,
+            "test_adv": 33.12,
+            "test_clean": 72.35
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 28,
+            "test_adv": 33.12,
+            "test_clean": 72.35
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 26,
+            "test_adv": 31.1,
+            "test_clean": 73.4
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 32,
+            "test_adv": 31.64,
+            "test_clean": 71.29
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 18,
+            "test_adv": 31.54,
+            "test_clean": 69.67
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 19,
+            "test_adv": 32.24,
+            "test_clean": 71.22
+          }
+        ],
+        "2002": [
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 20,
+            "test_adv": 33.27,
+            "test_clean": 72.24
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 28,
+            "test_adv": 32.28,
+            "test_clean": 73.23
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 27,
+            "test_adv": 32.68,
+            "test_clean": 73.83
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 20,
+            "test_adv": 33.27,
+            "test_clean": 72.24
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 19,
+            "test_adv": 31.23,
+            "test_clean": 72.41
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 18,
+            "test_adv": 32.22,
+            "test_clean": 71.89
+          }
+        ],
+        "2003": [
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 28,
+            "test_adv": 33.77,
+            "test_clean": 74.29
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 27,
+            "test_adv": 31.68,
+            "test_clean": 75.55
+          },
+          {
+            "split": "B",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 27,
+            "test_adv": 31.68,
+            "test_clean": 75.55
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 1,
+            "secilen_epok": 28,
+            "test_adv": 33.77,
+            "test_clean": 74.29
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 3,
+            "secilen_epok": 16,
+            "test_adv": 32.38,
+            "test_clean": 71.37
+          },
+          {
+            "split": "C",
+            "patience": "argmax",
+            "k": 5,
+            "secilen_epok": 21,
+            "test_adv": 31.95,
+            "test_clean": 72.93
+          }
+        ]
+      },
+      "ratchet_vs_argmax": {
+        "2001": [
+          {
+            "split": "B",
+            "k": 5,
+            "ratchet_epok": 19,
+            "argmax_epok": 26,
+            "test_fark": -1.14
+          },
+          {
+            "split": "C",
+            "k": 1,
+            "ratchet_epok": 18,
+            "argmax_epok": 32,
+            "test_fark": 0.1
+          }
+        ],
+        "2002": [],
+        "2003": []
+      },
+      "yumusatma_monoton_mu": {
+        "per_seed": {
+          "2001": true,
+          "2002": false,
+          "2003": true
+        },
+        "monoton_sayisi": 2,
+        "toplam": 3
+      },
+      "ratchet_ozet": {
+        "ayrisan_hucre": 2,
+        "toplam_hucre": 18,
+        "max_abs_test_fark": 1.14
+      },
+      "argmax_kolu_ozet": {
+        "yayilim_araligi": [
+          2.02,
+          2.09
+        ],
+        "protokol_sd_ort": 0.8693
+      },
+      "oran_95_GA": [
+        4.169,
+        0.345
+      ]
+    }
+  },
+  "konvansiyon_hucre_ozdesligi": {
+    "edge": {
+      "edge_ile_ayni_hucre": 108,
+      "toplam_hucre": 108
+    },
+    "zero": {
+      "edge_ile_ayni_hucre": 108,
+      "toplam_hucre": 108
+    },
+    "valid": {
+      "edge_ile_ayni_hucre": 108,
+      "toplam_hucre": 108
+    },
+    "causal": {
+      "edge_ile_ayni_hucre": 36,
+      "toplam_hucre": 108
+    }
+  },
+  "konvansiyon_dayanikliligi": {
+    "edge": {
+      "resnet18": {
+        "protokol_sd_ort": 0.8182,
+        "yayilim_araligi": [
+          2.62,
+          2.85
+        ],
+        "tohum_sd": 0.5329,
+        "oran": 1.535
+      },
+      "vit_tiny": {
+        "protokol_sd_ort": 0.7388,
+        "yayilim_araligi": [
+          1.58,
+          2.09
+        ],
+        "tohum_sd": 0.3403,
+        "oran": 2.171
+      }
+    },
+    "zero": {
+      "resnet18": {
+        "protokol_sd_ort": 0.8182,
+        "yayilim_araligi": [
+          2.62,
+          2.85
+        ],
+        "tohum_sd": 0.5329,
+        "oran": 1.535
+      },
+      "vit_tiny": {
+        "protokol_sd_ort": 0.7388,
+        "yayilim_araligi": [
+          1.58,
+          2.09
+        ],
+        "tohum_sd": 0.3403,
+        "oran": 2.171
+      }
+    },
+    "valid": {
+      "resnet18": {
+        "protokol_sd_ort": 0.8182,
+        "yayilim_araligi": [
+          2.62,
+          2.85
+        ],
+        "tohum_sd": 0.5329,
+        "oran": 1.535
+      },
+      "vit_tiny": {
+        "protokol_sd_ort": 0.7388,
+        "yayilim_araligi": [
+          1.58,
+          2.09
+        ],
+        "tohum_sd": 0.3403,
+        "oran": 2.171
+      }
+    },
+    "causal": {
+      "resnet18": {
+        "protokol_sd_ort": 0.7839,
+        "yayilim_araligi": [
+          1.59,
+          2.83
+        ],
+        "tohum_sd": 0.5329,
+        "oran": 1.471
+      },
+      "vit_tiny": {
+        "protokol_sd_ort": 0.563,
+        "yayilim_araligi": [
+          0.69,
+          1.69
+        ],
+        "tohum_sd": 0.3403,
+        "oran": 1.654
       }
     }
   }
