@@ -318,3 +318,62 @@ bir temiz-doğruluk dezavantajıdır. Bu, makalenin koşullu-ayrıştırma tezin
 (mutlak farkın büyük kısmı temiz farktan) ikinci veri kümesindeki karşılığıdır
 — ama **tek çift üzerinde** ölçülmüştür ve iki oranın yakınlığı tesadüf
 olabilir. sigma olmadan iddia kurulmayacaktır.
+
+---
+
+## EK D — pair2 kapandı (2026-08-19)
+
+### D.1 Ölçülen sonuçlar (tohum ResNet 1002 / ViT 2002)
+
+| | ResNet-18 | ViT-Tiny |
+|---|---|---|
+| AT en iyi val adv | %18,85 @ ep24 | %10,90 @ **ep11** |
+| AT erken durma | ep44 | ep31 |
+| Test temiz | **%64,67** | **%43,50** |
+| Test PGD-10 | **%19,09** | **%10,48** |
+
+### D.2 İki tohumun karşılaştırması (n=2, hüküm KURULMUYOR)
+
+| | s1001/s2001 | s1002/s2002 | fark |
+|---|---|---|---|
+| ResNet temiz | 64,24 | 64,67 | 0,43 |
+| ResNet PGD-10 | 19,14 | 19,09 | **0,05** |
+| ViT temiz | 41,94 | 43,50 | 1,56 |
+| ViT PGD-10 | 11,35 | 10,48 | **0,87** |
+
+**B.7 sapma beyanı (devam):** her iki ViT tohumu da PGD-10 için ön-kayıtlı
+%10-14 aralığının **içinde** (11,35 ve 10,48). Temiz doğruluk ise iki tohumda
+da %33-40 aralığının **üstünde** (41,94 ve 43,50); EK C.3'te beyan edilen
+sapma pair2'de teyit edilmiştir, yani tek koşumluk bir tesadüf değildir.
+
+### D.3 B.6 tanısı — seçim yolları ayrışıyor, test sonucu ayrışmıyor (ResNet)
+
+| | en iyi epok | durma epok |
+|---|---|---|
+| ResNet s1001 | 32 | 52 |
+| ResNet s1002 | **24** | **44** |
+| ViT s2001 | 7 | 27 |
+| ViT s2002 | **11** | **31** |
+
+ResNet'te iki tohum **farklı** checkpointlerde zirve yapıyor (ep32 vs ep24) ama
+test PGD-10 farkı yalnız **0,05 puan**. Yani seçim *hangi* checkpoint'e
+düştüğünü değiştiriyor, *sonucu* burada değiştirmiyor. Bu, E2'nin CIFAR-10
+seçim-piyangosu bulgusuna **karşı-ağırlık** oluşturan bir gözlemdir ve
+raporlanacaktır. ViT'te fark daha büyük (0,87 puan). n=2'de hüküm
+kurulmamaktadır; pair3 beklenmektedir.
+
+### D.4 Seçim piyangosu imzası ikinci tohumda tekrarlandı (post-hoc)
+
+EK C.5(a)'daki gözlem ViT s2002'de de görülüyor:
+
+| | plato bandı (ep3+) | genişlik | sd | ort | seçilen | ort'tan uzaklık |
+|---|---|---|---|---|---|---|
+| ViT s2001 | 9,65 - 11,05 | 1,40 | 0,397 | 10,34 | 11,05 | **+1,79 sd** |
+| ViT s2002 | 8,90 - 10,90 | 2,00 | 0,517 | 9,82 | 10,90 | **+2,09 sd** |
+
+İki tohumda da "en iyi checkpoint" seçimi, doğrulama platosunun ortalamasının
+yaklaşık **2 standart sapma üstüne** düşüyor. Bu, seçim kuralının yapısal
+sonucudur (maksimum alıyor), sürpriz değil; **sürpriz olan platonun
+genişliği** — 1,4-2,0 puan, yani ViT'in mutlak gürbüzlüğünün ~%15-20'si
+kadar. Ölçüm hâlâ **doğrulama düzeyindedir**; makaleye girecek biçim gerçek
+10k test eğrisidir ve gereken kod B.8'de tespit edildiği gibi henüz yoktur.
