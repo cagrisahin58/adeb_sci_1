@@ -1,0 +1,187 @@
+{
+  "dataset": "cifar100",
+  "min_delta": 0.1,
+  "sd_tanimi": "ornek sd (ddof=1)",
+  "mimariler": {
+    "resnet18": {
+      "tohumlar": {
+        "1001": {
+          "test_clean": 64.24,
+          "test_pgd10": 19.14,
+          "test_n": 10000,
+          "val_en_iyi_adv": 18.85,
+          "en_iyi_epok": 32,
+          "durma_epogu": 52,
+          "plato_ep3+": {
+            "min": 14.75,
+            "max": 18.9,
+            "genislik": 4.15,
+            "sd": 0.946,
+            "ort": 17.45,
+            "secilen_ort_uzakligi_sd": 1.48
+          }
+        },
+        "1002": {
+          "test_clean": 64.67,
+          "test_pgd10": 19.09,
+          "test_n": 10000,
+          "val_en_iyi_adv": 18.85,
+          "en_iyi_epok": 24,
+          "durma_epogu": 44,
+          "plato_ep3+": {
+            "min": 15.25,
+            "max": 18.85,
+            "genislik": 3.6,
+            "sd": 0.866,
+            "ort": 17.55,
+            "secilen_ort_uzakligi_sd": 1.5
+          }
+        },
+        "1003": {
+          "test_clean": 62.67,
+          "test_pgd10": 19.67,
+          "test_n": 10000,
+          "val_en_iyi_adv": 19.25,
+          "en_iyi_epok": 49,
+          "durma_epogu": 69,
+          "plato_ep3+": {
+            "min": 14.5,
+            "max": 19.25,
+            "genislik": 4.75,
+            "sd": 0.949,
+            "ort": 17.72,
+            "secilen_ort_uzakligi_sd": 1.61
+          }
+        }
+      },
+      "ozet": {
+        "n_tohum": 3,
+        "test_clean": {
+          "ort": 63.86,
+          "sd": 1.053,
+          "degerler": [
+            64.24,
+            64.67,
+            62.67
+          ]
+        },
+        "test_pgd10": {
+          "ort": 19.3,
+          "sd": 0.321,
+          "degerler": [
+            19.14,
+            19.09,
+            19.67
+          ]
+        },
+        "en_iyi_epok": {
+          "degerler": [
+            32,
+            24,
+            49
+          ],
+          "aciklik": 25
+        },
+        "durma_epogu": {
+          "degerler": [
+            52,
+            44,
+            69
+          ],
+          "aciklik": 25
+        }
+      }
+    },
+    "vit_tiny": {
+      "tohumlar": {
+        "2001": {
+          "test_clean": 41.94,
+          "test_pgd10": 11.35,
+          "test_n": 10000,
+          "val_en_iyi_adv": 11.05,
+          "en_iyi_epok": 7,
+          "durma_epogu": 27,
+          "plato_ep3+": {
+            "min": 9.65,
+            "max": 11.05,
+            "genislik": 1.4,
+            "sd": 0.397,
+            "ort": 10.34,
+            "secilen_ort_uzakligi_sd": 1.79
+          }
+        },
+        "2002": {
+          "test_clean": 43.5,
+          "test_pgd10": 10.48,
+          "test_n": 10000,
+          "val_en_iyi_adv": 10.9,
+          "en_iyi_epok": 11,
+          "durma_epogu": 31,
+          "plato_ep3+": {
+            "min": 8.9,
+            "max": 10.9,
+            "genislik": 2.0,
+            "sd": 0.517,
+            "ort": 9.82,
+            "secilen_ort_uzakligi_sd": 2.09
+          }
+        },
+        "2003": {
+          "durum": "EKSIK",
+          "test_var_mi": false,
+          "egri_var_mi": false
+        }
+      },
+      "ozet": {
+        "n_tohum": 2,
+        "test_clean": {
+          "ort": 42.72,
+          "sd": 1.103,
+          "degerler": [
+            41.94,
+            43.5
+          ]
+        },
+        "test_pgd10": {
+          "ort": 10.91,
+          "sd": 0.615,
+          "degerler": [
+            11.35,
+            10.48
+          ]
+        },
+        "en_iyi_epok": {
+          "degerler": [
+            7,
+            11
+          ],
+          "aciklik": 4
+        },
+        "durma_epogu": {
+          "degerler": [
+            27,
+            31
+          ],
+          "aciklik": 4
+        }
+      }
+    }
+  },
+  "SECIM_YOLU_vs_SONUC": {
+    "aciklama": "Tohumlar FARKLI epoklarda zirve yapip FARKLI epoklarda duruyor (secim yolu oynak) ama test sonucu ne kadar oynuyor? Bu, E2'nin secim-piyangosu bulgusuna KARSI-KANIT adayidir. DIKKAT: E2 ayni yorungeye farkli SECIM PROTOKOLLERI uyguluyordu; burada her tohumun kendi yorungesi ve kendi dogal durma noktasi var. AYNI deney DEGIL; E2 muadili olcum icin tek yorungeye cevrimdisi izgara gerekir (E1_PILOT_KAPISI.md B.8: kod henuz YOK).",
+    "mimariler": {
+      "resnet18": {
+        "en_iyi_epok_acikligi": 25,
+        "durma_epogu_acikligi": 25,
+        "test_pgd10_sd": 0.321,
+        "test_clean_sd": 1.053
+      },
+      "vit_tiny": {
+        "en_iyi_epok_acikligi": 4,
+        "durma_epogu_acikligi": 4,
+        "test_pgd10_sd": 0.615,
+        "test_clean_sd": 1.103
+      }
+    }
+  }
+}

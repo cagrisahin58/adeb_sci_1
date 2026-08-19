@@ -377,3 +377,67 @@ sonucudur (maksimum alıyor), sürpriz değil; **sürpriz olan platonun
 genişliği** — 1,4-2,0 puan, yani ViT'in mutlak gürbüzlüğünün ~%15-20'si
 kadar. Ölçüm hâlâ **doğrulama düzeyindedir**; makaleye girecek biçim gerçek
 10k test eğrisidir ve gereken kod B.8'de tespit edildiği gibi henüz yoktur.
+
+---
+
+## EK E — ResNet kolu tamamlandı (n=3); seçim yolu ile sonuç ayrışıyor
+
+**2026-08-20.** Artefakt: `scripts/q1_e1_summary.py` →
+`results/q1/e1_cifar100_summary.json`. Aşağıdaki hiçbir sayı elle girilmemiştir.
+
+### E.1 ResNet-18 CIFAR-100, üç tohum
+
+| tohum | test clean | test PGD-10 | en iyi epok | durma epoğu |
+|---|---|---|---|---|
+| 1001 | 64,24 | 19,14 | 32 | 52 |
+| 1002 | 64,67 | 19,09 | 24 | 44 |
+| 1003 | 62,67 | 19,67 | 49 | 69 |
+| **ort ± sd** | **63,86 ± 1,05** | **19,30 ± 0,32** | açıklık **25** | açıklık **25** |
+
+ViT kolu (n=2, s2003 koşuyor): temiz 42,72 ± 1,10 · PGD-10 10,91 ± 0,62.
+
+### E.2 B.4 madde 1 için ilk girdi (yayılım karşılaştırması henüz YAPILAMAZ)
+
+B.4'ün birinci doğrulayıcı ön-kestirimi CIFAR-100'de **transfer protokol
+yayılımının** CIFAR-10'daki 10,45 puandan büyük olmasını gerektiriyor. Bu
+ölçüm **henüz yapılmamıştır**: transfer matrisi ve protokol analizi E1
+pipeline'ında koşmuyor, elle tetiklenecek (bkz. `Q1_KOSUM_KILAVUZU.md`).
+Yukarıdaki sayılar yalnız mutlak performanstır ve B.4'ü **test etmez**.
+
+### E.3 Seçim yolu çok oynak, sonuç değil — E2 manşetine olası sınır
+
+ResNet'te üç tohum **çok farklı** noktalarda seçiliyor: en iyi epok 24 ile 49
+arasında (25 epokluk açıklık), durma epoğu 44 ile 69 arasında. Buna karşılık
+test PGD-10 standart sapması yalnız **0,32 puan**.
+
+Yani bu yörüngelerde seçimin *nereye* düştüğü büyük ölçüde değişiyor ama
+*sonuç* değişmiyor. Bu, E2'nin seçim-piyangosu manşetine (CIFAR-10'da mutlak
+yayılım ResNet 2,62-2,85 / ViT 1,58-2,09 puan) **potansiyel bir sınır**dır ve
+raporlanacaktır.
+
+**AYNI DENEY DEĞİLDİR — aşırı yorum yasak.** Fark şudur:
+
+- **E2:** *tek* yörüngeye *farklı seçim protokolleri* uygulanır. Yörünge
+  sabit, değişen tek şey seçim kuralıdır.
+- **Buradaki gözlem:** *farklı tohumlar*, her biri *kendi* yörüngesi ve
+  *kendi doğal durma noktası* ile. Yörünge farkı ile seçim farkı iç içedir.
+
+Dolayısıyla bu tablo E2'yi çürütmez; **E2 muadili ölçümün CIFAR-100'de
+yapılması gerektiğini** gösterir. O ölçüm B.8'de tanımlıdır (tek yörüngeye
+çevrimdışı seçim ızgarası + gerçek 10k test eğrisi) ve **kodu henüz yoktur**
+(`scripts/q1_e2_test_curve.py` içinde `dataset="cifar10"` sabit).
+
+**Bu belgeyle bağlayıcı hâle getirilen kural:** E2 manşeti makalede
+raporlanırken, CIFAR-100'de seçim yolunun 25 epok oynamasına rağmen test
+sd'sinin 0,32 puanda kalması **sınırlama olarak** yazılacaktır — B.8 ölçümü
+yapılsın ya da yapılmasın. Bulgunun beğenilmemesi onu gizleme gerekçesi
+değildir (B.3 dosya-çekmecesi taahhüdünün bu bulguya uzantısı).
+
+### E.4 Ön-kayıt karşılaştırması (ResNet kolu için)
+
+ResNet CIFAR-100 için §3'te ön-kayıtlı bir aralık **yazılmamıştı** (beklenti
+tablosu yalnız ViT içindi; ResNet çapa olarak kullanılmıştı). Dolayısıyla
+ResNet kolunda beyan edilecek bir sapma yoktur. Kayıt için: ResNet CIFAR-100
+sonucumuz (63,86 temiz / 19,30 PGD-10) §3'te anılan Rice2020 PreActResNet-18
+çapasıyla (%53,83 temiz / %18,95 AA) tutarlıdır — daha yüksek temiz, benzer
+gürbüzlük.
