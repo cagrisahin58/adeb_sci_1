@@ -26,16 +26,29 @@ gerekçelerini tarihiyle kaydeder. Amaç: bir karar sonradan sorgulandığında
 E3 tezin omurgasıdır ve temiz-hata ekseninde bir regresyon kurar. Mevcut
 yörüngelerin **ölçülen** kapsaması:
 
-| kaynak | temiz doğruluk | temiz hata |
-|---|---|---|
-| ResNet CIFAR-10 (×3) | 80,6 - 87,9 | %12-19 |
-| ViT CIFAR-10 (×3) | 56,9 - 76,5 | %23-43 |
-| CIFAR-100 (E1) | ~40 - 78 | %22-60 |
+Aşağıdaki tablo **gerçek 10.000 örnek test** ölçümüdür (P0 test eğrileri,
+`results/q1/e3_xekseni_test.json`); ilk yazımda kullanılan doğrulama-tabanlı
+rakamlar bu yetkili değerlerle **düzeltilmiştir** (2026-08-19).
 
-**%5-12 bandı tamamen boştur.** E7 (SVHN, AT temiz ~%92-95 → hata %5-8)
-planlanmış **tek** düşük-hata çapasıydı. E7 düşerse o uçta kalan yegâne nokta
-WRN-28-10'dur (temiz 89,48 → hata %10,5) — farklı mimari, farklı reçete, ek
-veri. Yani regresyonun bir ucu tek bir dış modele dayanır.
+| kaynak | temiz doğruluk (test) | temiz hata |
+|---|---|---|
+| ResNet-18 CIFAR-10 (×3) | 80,62 - 87,94 | **%12,06 - 19,38** |
+| ViT-Tiny CIFAR-10 (×3) | 56,89 - 76,53 | **%23,47 - 43,11** |
+| WRN-28-10 (dış çapa) | 89,48 | %10,52 |
+
+600 noktanın bant dağılımı: %0-5 → **0**, %5-10 → **0**, %10-12 → **0**,
+%12-20 → 300, %20-30 → 262, %30-45 → 38.
+
+**%12'nin altı tamamen boştur** (ön-kayıtlı hedef aralık %5-55 idi; alt uç
+karşılanmıyor). E7 (SVHN, AT temiz ~%92-95 → hata %5-8) planlanmış **tek**
+düşük-hata çapasıydı. E7 düşerse o uçta kalan yegâne nokta WRN-28-10'dur
+(hata %10,52) — farklı mimari, farklı reçete, ek veri. Yani regresyonun bir
+ucu tek bir dış modele dayanır.
+
+*(İkinci bir boşluk daha ölçüldü: %19,4-23,5 arası — ResNet ile ViT
+yörüngeleri arasındaki kopukluk. E1'in CIFAR-100 noktalarıyla kapanması
+bekleniyor; ayrıntı ve doğrusallık testi zorunluluğu için bkz.
+`E3_YENIDEN_TASARIM.md` §2.)*
 
 Ayrıca `Q1_ARASTIRMA_RAPORU.md` §2.2 Q1 dergi eşiğini "2-3 veri kümesi" olarak
 koyuyor ve 3 kümeli planı **"alt sınırda yeterli"** diye niteliyor. E7 düşerse
@@ -79,5 +92,10 @@ Doğru hamle koşum eklemek değil **iddiayı yeniden yazmaktı** ve yazıldı
    kapalı, extra-604k yok, **eps-warmup + LR 0.001** (8/255 kararsızlığı
    belgeli), 1 koşu pilot şart, **sınıf-dengesi kontrolü analiz koduna
    eklenmeli** (SVHN dengesizdir). Bu kontrol henüz **yoktur**.
-2. **E3 yeniden tasarımı yazılmalı** — E5 kararının önkoşulu.
+2. ~~**E3 yeniden tasarımı yazılmalı** — E5 kararının önkoşulu.~~
+   **KAPANDI (2026-08-19):** `E3_YENIDEN_TASARIM.md`. Ölçülen çöküş 66 hedef →
+   33 ayrı nokta (%50); ResNet yörüngelerinde 2/6. Kantil seçimi terk edildi,
+   tüm checkpointler + yörünge düzeyi küme bootstrap; iki kol (kontrollü /
+   gözlemsel) ayrı raporlanacak, havuzlama yasak. Sapma beyanı yazıldı.
+   Tasarım, E5 ertelemesini ve E7-kısa kararını **doğruladı**.
 3. E5 ertelendiği için, makalede E5'e dayanan hiçbir iddia kurulmayacak.
