@@ -10,8 +10,11 @@ import os
 import numpy as np
 
 ROOT = "/workspace" if os.path.isdir("/workspace/results") else os.path.expanduser("~/projects/adeb_sci_1")
-IN = os.path.join(ROOT, "results/c1_transfer")
-OLD = os.path.join(ROOT, "results/rev2_blockA/a2_transfer_protocols.json")
+# Girdi/cikti koku ortam degiskeniyle degistirilebilir: AYNI toplulastirma
+# kodunu E1 (CIFAR-100) protokol sonuclarina da uygulayabilmek icin.
+IN = os.path.join(ROOT, os.environ.get("AGG_IN_DIR", "results/c1_transfer"))
+_old_rel = os.environ.get("AGG_OLD", "results/rev2_blockA/a2_transfer_protocols.json")
+OLD = os.path.join(ROOT, _old_rel) if _old_rel else None
 PROTOCOLS = ["raw", "target_correct", "both_correct", "successful_source"]
 LABELS = {
     "raw": "Kosulsuz (ham)",
@@ -26,7 +29,7 @@ for p in (1, 2, 3):
         pairs.append(json.load(fh))
 
 old = None
-if os.path.exists(OLD):
+if OLD and os.path.exists(OLD):
     with open(OLD, encoding="utf-8") as fh:
         old = json.load(fh)
 
@@ -71,7 +74,7 @@ spread = [
 ]
 agg["protocol_spread_pp"] = ms(spread)
 
-out_json = os.path.join(IN, "c1_transfer_summary.json")
+out_json = os.path.join(IN, os.environ.get("AGG_OUT_NAME", "c1_transfer_summary.json"))
 with open(out_json, "w", encoding="utf-8") as fh:
     json.dump(agg, fh, indent=2, ensure_ascii=False)
 
