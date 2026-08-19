@@ -1,0 +1,83 @@
+# Kampanya Kararları — Q1 (karar günlüğü)
+
+Bu dosya, Q1 kampanyasında verilen **geri dönüşü pahalı** kararları ve
+gerekçelerini tarihiyle kaydeder. Amaç: bir karar sonradan sorgulandığında
+"neden böyle yapmıştık" sorusunun kaynağa dayanarak cevaplanabilmesi.
+
+---
+
+## K-01 (2026-08-19) — E7-kısa KOŞULACAK, E5 ERTELENDİ
+
+**Karar veren:** kullanıcı (Çağrı Şahin), ara denetim bulgularının sunulması
+üzerine.
+
+### Karar
+
+- **E7-kısa: KOŞULACAK** (~11 GPU-saat). Tanım `Q1_ARASTIRMA_RAPORU.md` §E7
+  kısa sürümü: 2 mimari × 2 tohum, AT 50 epok (SVHN hızlı konverjans),
+  yalnız PGD protokol analizi, **AutoAttack yok**.
+- **E5: ERTELENDİ** (70-85 GPU-saat). E3 yeniden tasarımı kesinleşene kadar
+  başlatılmayacak.
+- **E4: DÜŞTÜ.** **E6: TUTULDU.**
+- Koşum sırası: E1 (koşuyor) → E7-kısa → E6 → [E5 kararı yeniden gözden geçirilir].
+
+### Gerekçe — E7 neden düşürülemez (ilk düşecek kalem olarak planlanmıştı)
+
+E3 tezin omurgasıdır ve temiz-hata ekseninde bir regresyon kurar. Mevcut
+yörüngelerin **ölçülen** kapsaması:
+
+| kaynak | temiz doğruluk | temiz hata |
+|---|---|---|
+| ResNet CIFAR-10 (×3) | 80,6 - 87,9 | %12-19 |
+| ViT CIFAR-10 (×3) | 56,9 - 76,5 | %23-43 |
+| CIFAR-100 (E1) | ~40 - 78 | %22-60 |
+
+**%5-12 bandı tamamen boştur.** E7 (SVHN, AT temiz ~%92-95 → hata %5-8)
+planlanmış **tek** düşük-hata çapasıydı. E7 düşerse o uçta kalan yegâne nokta
+WRN-28-10'dur (temiz 89,48 → hata %10,5) — farklı mimari, farklı reçete, ek
+veri. Yani regresyonun bir ucu tek bir dış modele dayanır.
+
+Ayrıca `Q1_ARASTIRMA_RAPORU.md` §2.2 Q1 dergi eşiğini "2-3 veri kümesi" olarak
+koyuyor ve 3 kümeli planı **"alt sınırda yeterli"** diye niteliyor. E7 düşerse
+2 kümeye inilir, yani alt sınırın altına.
+
+**Maliyet/fayda:** E7-kısa 11 GPU-saatte gerçek bir boşluğu kapatıyor; E5
+70-85 GPU-saatte E3'e yalnız 2 yörünge daha ekliyor (aşağıya bakınız). Bütçe
+E7'ye harcanmalı.
+
+### Gerekçe — E5 neden erteleniyor
+
+E5'in E3'e katkısı, E3'ün **yeniden tasarımına** bağlıdır. Ara denetimin
+ölçtüğü üzere E3'ün ön-kayıtlı kantil hedefleri çöküyor: hedefler
+{40, 50, 60, 70, 80, konverjan} iken ResNet yörüngeleri 80,6-87,9 aralığında
+kaldığı için 40/50/60/70 **aynı** checkpoint'e düşüyor. 6 E2 yörüngesinden
+beklenen "≥72 nokta" gerçekte **18 nokta**.
+
+En olası düzeltme (kantil seçimini terk edip **tüm** checkpointleri yörünge
+düzeyi küme bootstrap'iyle kullanmak) benimsenirse E5'in katkısı marjinaldir.
+Bu yüzden sıra **E3 tasarımı → E5 kararı** olmalıdır; ters sıra 70-85 saati
+geri dönüşsüz harcar.
+
+E5 koşulursa bile **1 tohumla** koşulacak ve iddiası daraltılacaktır: 1 tohum
+protokol yayılımını (çift-içi nicelik) taşır, ama araştırma raporundaki
+kayıtlı ön-kestirimi ("protokol yayılımı ve r ilişkileri kapasiteden bağımsız
+kalmalı" — bir **oran** iddiası) **taşımaz**, çünkü 1 tohumda payda sigma'sı
+yoktur. Bu, sonuç gelmeden şimdi kaydedilmiştir.
+
+### Bağlı diğer karar: E4 neden düştü ve yerine ne kondu
+
+E4'ün (+2 tohum, n=5) tek gerekçesi n=3'te sigma kestiriminin güven aralığıydı.
+Ama hesaplandığında n=5 bile makalenin kurmak istediği "en az üç kat" tabanını
+**kurtarmıyor**: n=5'te çarpan [0,60; 2,87] → en muhafazakâr eşleştirmenin alt
+sınırı 3,26/2,87 = **1,13**. Yani 16 GPU-saat harcamak sorunu çözmezdi.
+Doğru hamle koşum eklemek değil **iddiayı yeniden yazmaktı** ve yazıldı
+(commit 95d6338: oran manşetten çıkarıldı, mutlak dile geçildi).
+
+### Bu kararın açtığı borçlar
+
+1. **E7-kısa için zorunlu önlemler** (`Q1_ARASTIRMA_RAPORU.md` §E7): flip
+   kapalı, extra-604k yok, **eps-warmup + LR 0.001** (8/255 kararsızlığı
+   belgeli), 1 koşu pilot şart, **sınıf-dengesi kontrolü analiz koduna
+   eklenmeli** (SVHN dengesizdir). Bu kontrol henüz **yoktur**.
+2. **E3 yeniden tasarımı yazılmalı** — E5 kararının önkoşulu.
+3. E5 ertelendiği için, makalede E5'e dayanan hiçbir iddia kurulmayacak.
