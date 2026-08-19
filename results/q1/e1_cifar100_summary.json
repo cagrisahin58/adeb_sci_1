@@ -127,42 +127,57 @@
           }
         },
         "2003": {
-          "durum": "EKSIK",
-          "test_var_mi": false,
-          "egri_var_mi": false
+          "test_clean": 44.06,
+          "test_pgd10": 11.62,
+          "test_n": 10000,
+          "val_en_iyi_adv": 11.85,
+          "en_iyi_epok": 20,
+          "durma_epogu": 40,
+          "plato_ep3+": {
+            "min": 9.75,
+            "max": 11.85,
+            "genislik": 2.1,
+            "sd": 0.503,
+            "ort": 10.59,
+            "secilen_ort_uzakligi_sd": 2.5
+          }
         }
       },
       "ozet": {
-        "n_tohum": 2,
+        "n_tohum": 3,
         "test_clean": {
-          "ort": 42.72,
-          "sd": 1.103,
+          "ort": 43.17,
+          "sd": 1.099,
           "degerler": [
             41.94,
-            43.5
+            43.5,
+            44.06
           ]
         },
         "test_pgd10": {
-          "ort": 10.91,
-          "sd": 0.615,
+          "ort": 11.15,
+          "sd": 0.596,
           "degerler": [
             11.35,
-            10.48
+            10.48,
+            11.62
           ]
         },
         "en_iyi_epok": {
           "degerler": [
             7,
-            11
+            11,
+            20
           ],
-          "aciklik": 4
+          "aciklik": 13
         },
         "durma_epogu": {
           "degerler": [
             27,
-            31
+            31,
+            40
           ],
-          "aciklik": 4
+          "aciklik": 13
         }
       }
     }
@@ -177,10 +192,10 @@
         "test_clean_sd": 1.053
       },
       "vit_tiny": {
-        "en_iyi_epok_acikligi": 4,
-        "durma_epogu_acikligi": 4,
-        "test_pgd10_sd": 0.615,
-        "test_clean_sd": 1.103
+        "en_iyi_epok_acikligi": 13,
+        "durma_epogu_acikligi": 13,
+        "test_pgd10_sd": 0.596,
+        "test_clean_sd": 1.099
       }
     }
   }

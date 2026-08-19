@@ -441,3 +441,67 @@ ResNet kolunda beyan edilecek bir sapma yoktur. Kayıt için: ResNet CIFAR-100
 sonucumuz (63,86 temiz / 19,30 PGD-10) §3'te anılan Rice2020 PreActResNet-18
 çapasıyla (%53,83 temiz / %18,95 AA) tutarlıdır — daha yüksek temiz, benzer
 gürbüzlük.
+
+---
+
+## EK F — E1 eğitim aşaması KAPANDI (n=3, 2026-08-20)
+
+Artefakt: `results/q1/e1_cifar100_summary.json` (üretici `scripts/q1_e1_summary.py`).
+
+### F.1 Sonuçlar
+
+| | ResNet-18 | ViT-Tiny |
+|---|---|---|
+| test clean | **63,86 ± 1,05** | **43,17 ± 1,10** |
+| test PGD-10 | **19,30 ± 0,32** | **11,15 ± 0,60** |
+| tohum değerleri (clean) | 64,24 · 64,67 · 62,67 | 41,94 · 43,50 · 44,06 |
+| tohum değerleri (PGD) | 19,14 · 19,09 · 19,67 | 11,35 · 10,48 · 11,62 |
+| en iyi epok | 32 · 24 · 49 (açıklık 25) | 7 · 11 · 20 (açıklık 13) |
+| durma epoğu | 52 · 44 · 69 (açıklık 25) | 27 · 31 · 40 (açıklık 13) |
+
+### F.2 B.7 ön-kayıt hükmü — NİHAİ
+
+§3'te **veri görülmeden** yazılan beklenti tablosuna karşı:
+
+| metrik | ön-kayıt | ölçülen (n=3) | hüküm |
+|---|---|---|---|
+| PGD-10 (test) | %10-14 | 11,15 ± 0,60; üç değer de aralıkta | **KESTİRİM TUTTU** |
+| Temiz (test) | %33-40 | 43,17 ± 1,10; **üç değer de üstünde** | **SAPMA — beyan edildi** |
+| AutoAttack | %8-11 | koşuyor | açık |
+
+Temiz sapması EK C.3'te tek tohumla beyan edilmişti; **üç tohumda da**
+gerçekleştiği için tesadüf değildir. Kestirim ResNet'in AT/ön-eğitim temiz
+oranından (0,818) türetilmişti; ViT'te gerçekleşen oran ~0,91, yani ViT temiz
+doğruluğunu çekişmeli eğitim altında ResNet'ten belirgin biçimde **daha iyi**
+korudu. Bu, kestirimin dayanağının (mimariden bağımsız sabit oran) yanlış
+olduğunu gösterir ve makalede böyle yazılacaktır.
+
+### F.3 EK E.3'ün teyidi — seçim yolu oynak, sonuç değil
+
+ViT kolunda da aynı desen: en iyi epok 7 ile 20 arasında (13 epokluk açıklık),
+buna karşılık test PGD-10 sd'si **0,60 puan**. ResNet'te açıklık 25 epok,
+sd 0,32 puan.
+
+Yani **her iki mimaride de** seçimin düştüğü nokta tohumlar arasında büyük
+ölçüde kayıyor ama test sonucu dar bir bantta kalıyor. EK E.3'te konan
+bağlayıcı kural (E2 manşeti raporlanırken bu sınırın **sınırlama olarak**
+yazılması) burada n=3 ile teyit edilmiştir.
+
+Yeniden hatırlatma: bu, E2'nin ölçtüğü şeyin **aynısı değildir** (E2 tek
+yörüngeye farklı seçim protokolleri uygular; burada her tohumun kendi
+yörüngesi vardır). E2 muadili ölçüm B.8'de tanımlıdır ve kodu hâlâ yoktur.
+
+### F.4 Sırada ne var
+
+1. **AutoAttack** (pipeline koşuyor, pair1-3): ön-kayıtlı %8-11 beklentisi
+   burada sınanacak.
+2. **Transfer/protokol analizi** (`scripts/q1_e1_analysis.sh`): B.4'ün üç
+   doğrulayıcı ön-kestirimi burada sınanacak. **E1'in tezle bağlantısı bu
+   adımdadır**; F.1'deki mutlak sayılar B.4'ü test etmez.
+3. WRN-28-10 CIFAR-100 referansı (Pang2022) indirildi ve matrise otomatik
+   giriyor → 3×3 karıştırıcı analizi CIFAR-100'de de mümkün.
+   **Kayda değer:** bu referansın temiz doğruluğu **63,64**, yani bizim
+   ResNet-18'imizden (64,23) *düşük*. CIFAR-10'da tersiydi (89,48 vs 85,78).
+   Dolayısıyla CIFAR-100 WRN'i E3'ün boş düşük-hata bandını **doldurmaz**
+   (temiz hatası ~%36, aralığın ortası); E7-kısa kararının gerekçesi
+   güçlenmiştir (bkz. `E3_YENIDEN_TASARIM.md` §2).
