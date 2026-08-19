@@ -237,3 +237,84 @@ raporlanırken **sınırlama olarak yazılacaktır**.
 hâlâ terk edilmiş `%5` eşiğini anmaktadır. Betik **şu anda koşmakta** olduğu
 için düzenlenmiyor (bash betikleri artımlı okur; koşan betiği düzenlemek
 yürütmeyi bozar). Koşum bittiğinde bu yorumlar temizlenecektir.
+
+---
+
+## EK C — pair1 kapandı: ön-kayıtlı kuralların uygulanması (2026-08-19)
+
+### C.1 Ölçülen sonuçlar (pair1, tohum ResNet 1001 / ViT 2001)
+
+| | ResNet-18 | ViT-Tiny |
+|---|---|---|
+| Temiz ön-eğitim (en iyi val) | %78,50 | %47,45 |
+| AT en iyi val adv | %18,85 @ **ep32** | %11,05 @ **ep7** |
+| AT erken durma | **ep52** | **ep27** |
+| Test temiz | **%64,24** | **%41,94** |
+| Test PGD-10 | **%19,14** | **%11,35** |
+
+### C.2 B.5 bütçe kuralı — HÜKÜM
+
+Ön-kayıt: pair1 ViT test PGD-10 `< 10,0` ise E1 yalnız yön kontrolü; `>= 10,0`
+ise E1 ayrıca CIFAR-100 sigma'sini da besler.
+
+Ölçülen: **11,35 >= 10,0** → **E1, yayılım karşılaştırmasını (B.4 madde 1)
+nicel olarak raporlar.** pair2/pair3 zaten her iki dalda da koşulacaktı;
+değişen şey E1'in taşıdığı iddianın gücüdür. Koşum kapsamı değişmiyor.
+
+### C.3 B.7 ön-kayıt sapma beyanı — İKİ HÜKÜM
+
+Sapmaların sessizce geçilmemesi bağlayıcıydı. İki uç nokta için ayrı hüküm:
+
+- **PGD-10 test: SAPMA YOK.** Ön-kayıt %10-14; ölçülen **11,35** → aralık
+  içinde. §3'te ResNet oranından türetilen kestirim tuttu.
+- **Temiz test: SAPMA VAR, BEYAN EDİLİYOR.** Ön-kayıt %33-40; ölçülen
+  **41,94** → üst sınır **1,94 puan aşıldı**. Sapma ön-kayıt yönünde iyi
+  haberdir (beklenenden güçlü temiz doğruluk), ancak B.7 uyarınca açıkça
+  kaydedilmektedir. Kestirimin dayanağı ResNet'in AT/ön-eğitim temiz oranıydı
+  (0,818); ViT'te gerçekleşen oran 41,94/47,45 = **0,884**, yani ViT temiz
+  doğruluğunu AT altında ResNet'ten daha iyi korudu.
+
+### C.4 B.6 gürbüz aşırı-öğrenme tanısı
+
+| | en iyi epok | durma epok | ep40 öncesi mi? |
+|---|---|---|---|
+| ResNet-18 | 32 | 52 | hayır |
+| ViT-Tiny | **7** | **27** | **evet** |
+
+İki kolun durma davranışı belirgin biçimde farklıdır: ViT zirvesini
+**ep7'de** yapıp patience-20 ile ep27'de durdu; ResNet ep32'de zirve yapıp
+ep52'de durdu. B.6 uyarınca bu fark, seçim-protokolü tartışmasının CIFAR-100
+ayağı olarak raporlanacaktır.
+
+### C.5 SONRADAN GÖZLENEN (post-hoc — ön-kestirim DEĞİL, öyle sunulmayacak)
+
+Aşağıdaki iki gözlem ölçüm sonrası yapılmıştır ve **ön-kayıtlı kestirim
+olarak sunulmaları yasaktır**. Doğrulayıcı statü kazanmaları için pair2/pair3
+gerekir.
+
+**(a) Seçim piyangosu doğrulama düzeyinde tekrarlandı.** ViT'in AT doğrulama
+eğrisi ep3-27 arasında dar bir gürültü bandında salınıyor:
+
+- band: **%9,65 - %11,05**, genişlik **1,40 puan**, sd **0,397**, ort **10,34**
+- "en iyi checkpoint" seçimi bandın **tepesine** düşüyor (11,05), yani
+  ortalamanın ~**1,8 sd** üstüne
+- 11,05 değeri ep7 ve ep12'de iki kez görülüyor; min_delta=0,1 eşiği
+  nedeniyle ikincisi "iyileşme" saymıyor ve seçim ep7'de kalıyor
+
+Bu, E2'nin CIFAR-10'daki seçim-piyangosu bulgusuyla aynı yapıdadır. **ANCAK
+doğrulama düzeyindedir.** Makaleye girecek biçim, E2'nin P0 yaklaşımıyla
+aynı olmalıdır: 27 checkpoint'in **gerçek 10k test** eğrisi. Bunun için
+gereken kod B.8'de tespit edildiği üzere **henüz yoktur**
+(`scripts/q1_e2_test_curve.py` içinde `dataset="cifar10"` sabit).
+
+**(b) Mutlak fark büyük ölçüde temiz tabandan geliyor.** PGD-10'un temiz
+ön-eğitim tabanına oranı iki mimaride neredeyse özdeş:
+
+- ResNet: 19,14 / 78,50 = **0,244**
+- ViT: 11,35 / 47,45 = **0,239**
+
+Yani CIFAR-100'de ViT'in mutlak gürbüzlük dezavantajı, aynı oranla ölçekleyen
+bir temiz-doğruluk dezavantajıdır. Bu, makalenin koşullu-ayrıştırma tezinin
+(mutlak farkın büyük kısmı temiz farktan) ikinci veri kümesindeki karşılığıdır
+— ama **tek çift üzerinde** ölçülmüştür ve iki oranın yakınlığı tesadüf
+olabilir. sigma olmadan iddia kurulmayacaktır.
