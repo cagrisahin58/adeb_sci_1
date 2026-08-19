@@ -153,6 +153,10 @@ def main():
                     for n in names:
                         adv_wrong[n].append((models[n](adv).argmax(1) != labels).cpu().numpy())
                 seen += labels.size(0)
+            # Kaynagin KENDI cekismeli orneklerine kanip kanmadigi (kosegen).
+            # a2_transfer_protocols'un successful_source protokolu bunu ister;
+            # sema boylece C1 artefaktlariyla ayni dort anahtara sahip olur.
+            src_aw = np.concatenate(adv_wrong[src])
             for tgt in names:
                 aw = np.concatenate(adv_wrong[tgt])
                 cond = clean_ok[tgt]
@@ -164,7 +168,8 @@ def main():
                 }
                 np.savez(out_dir / f"per_sample_{src}_to_{tgt}.npz",
                          target_clean_correct=cond, target_adv_wrong=aw,
-                         source_clean_correct=clean_ok[src])
+                         source_clean_correct=clean_ok[src],
+                         source_adv_wrong=src_aw)
                 print(f"  {src}->{tgt}: raw={results[f'{src}->{tgt}']['raw_fooling']:.2f} "
                       f"cond={results[f'{src}->{tgt}']['cond_fooling']:.2f}")
             del attack
