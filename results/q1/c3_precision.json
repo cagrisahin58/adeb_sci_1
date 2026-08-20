@@ -1,0 +1,111 @@
+{
+  "aciklama": "Kosegen-disi 6 nokta 3 HEDEF x 2 KAYNAK'tir; x degiskeni yalniz 3 ayri deger alir. n=6 varsayan Pearson GA'si kesinligi ABARTIR. Hedef duzeyinde toplanmis n=3 hesabi gercek serbestlik derecesini yansitir ama Fisher-z GA'si n<4'te TANIMSIZDIR -- yani bu korelasyona GA verilemiyor, bu da baslibasina raporlanmasi gereken bir sinirlamadir.",
+  "veri_kumeleri": {
+    "cifar10": {
+      "n_kosegen_disi": 6,
+      "n_ayri_hedef": 3,
+      "X_AYRIKLIGI": {
+        "hedef_hatalari_sirali": [
+          10.52,
+          14.21,
+          26.47
+        ],
+        "aralik": 15.95,
+        "en_kucuk_ara": 3.69,
+        "en_kucuk_ara_aralik_orani": 0.2315,
+        "IKI_HEDEF_CAKISIYOR": false,
+        "etkin_ayri_x_degeri": 3,
+        "uyari": "Uc hedef de ayrik; korelasyon uc nokta uzerinden."
+      },
+      "hedefler": [
+        "ResNet18_AT",
+        "ViT_Tiny_AT",
+        "WRN_28_10"
+      ],
+      "hedef_temiz_hatasi": [
+        14.21,
+        26.47,
+        10.52
+      ],
+      "hedef_sapmasi": [
+        11.54,
+        21.36,
+        9.4
+      ],
+      "RAPOR_EDILEN_n6": {
+        "pearson_r": 0.9971,
+        "egim": 0.7625,
+        "kesisim": 1.0892,
+        "fisher_95_GA": [
+          0.9722,
+          0.9997
+        ],
+        "uyari": "noktalar bagimsiz DEGIL; bu GA kesinligi abartir"
+      },
+      "HEDEF_DUZEYI_n3": {
+        "pearson_r": 0.9985,
+        "egim": 0.7625,
+        "kesisim": 1.0892,
+        "fisher_95_GA": null,
+        "not": "n=3 -> Fisher-z GA'si TANIMSIZ (SE = 1/sqrt(n-3))"
+      }
+    },
+    "cifar100": {
+      "n_kosegen_disi": 6,
+      "n_ayri_hedef": 3,
+      "X_AYRIKLIGI": {
+        "hedef_hatalari_sirali": [
+          36.15,
+          36.36,
+          56.83
+        ],
+        "aralik": 20.69,
+        "en_kucuk_ara": 0.21,
+        "en_kucuk_ara_aralik_orani": 0.0103,
+        "IKI_HEDEF_CAKISIYOR": true,
+        "etkin_ayri_x_degeri": 2,
+        "uyari": "Iki hedefin temiz hatasi cakisik -> korelasyon fiilen IKI KUME uzerinden hesaplaniyor. Dogrusal iliski icin GUCLU KANIT DEGILDIR."
+      },
+      "hedefler": [
+        "ResNet18_AT",
+        "ViT_Tiny_AT",
+        "WRN_28_10"
+      ],
+      "hedef_temiz_hatasi": [
+        36.15,
+        56.83,
+        36.36
+      ],
+      "hedef_sapmasi": [
+        25.42,
+        40.79,
+        29.2
+      ],
+      "RAPOR_EDILEN_n6": {
+        "pearson_r": 0.9307,
+        "egim": 0.6564,
+        "kesisim": 3.5007,
+        "fisher_95_GA": [
+          0.4868,
+          0.9926
+        ],
+        "uyari": "noktalar bagimsiz DEGIL; bu GA kesinligi abartir"
+      },
+      "HEDEF_DUZEYI_n3": {
+        "pearson_r": 0.9739,
+        "egim": 0.6564,
+        "kesisim": 3.5007,
+        "fisher_95_GA": null,
+        "not": "n=3 -> Fisher-z GA'si TANIMSIZ (SE = 1/sqrt(n-3))"
+      }
+    }
+  },
+  "HUKUM": {
+    "yon_korunuyor_mu": true,
+    "cifar10_r_n6": 0.9971,
+    "cifar100_r_n6": 0.9307,
+    "cifar10_r_n3": 0.9985,
+    "cifar100_r_n3": 0.9739,
+    "yorum": "B.4 madde 3 YONSELDIR ('sapma hedefin temiz hatasiyla ARTMALI'), bir r degerine baglanmis degildir. Iki veri kumesinde de egim POZITIF ise on-kestirim dogrulanir. Ancak makale r=0,997'yi NOKTA KESTIRIMI olarak veriyor; bu deger 3 hedefe dayandigi icin kesinligi abartilmis olabilir ve boyle nitelenmelidir."
+  }
+}

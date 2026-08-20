@@ -505,3 +505,109 @@ yörüngesi vardır). E2 muadili ölçüm B.8'de tanımlıdır ve kodu hâlâ yo
    Dolayısıyla CIFAR-100 WRN'i E3'ün boş düşük-hata bandını **doldurmaz**
    (temiz hatası ~%36, aralığın ortası); E7-kısa kararının gerekçesi
    güçlenmiştir (bkz. `E3_YENIDEN_TASARIM.md` §2).
+
+---
+
+## EK G — B.4 ön-kestirimlerinin NİHAİ hükmü: üçü de doğrulandı (2026-08-20)
+
+Artefaktlar: `results/q1/cifar100/transfer/e1_transfer_summary.json`,
+`.../e1_c3_summary.json`, `results/q1/c3_precision.json`,
+`.../pairN/a2b_class_balance_cifar100.json`.
+Üretici zincir: `scripts/q1_e1_analysis.sh`.
+
+### G.1 Ölçülen asimetriler (CIFAR-100, 3 tohum çifti)
+
+| protokol | pair1 | pair2 | pair3 | ort |
+|---|---|---|---|---|
+| ham | +19,22 | +18,58 | +17,80 | +18,53 |
+| hedef-doğru | +4,21 | +4,54 | +6,12 | +4,96 |
+| her-ikisi-doğru | +11,15 | +10,53 | +11,09 | +10,92 |
+| başarılı-kaynak | +9,85 | +11,04 | +13,44 | +11,44 |
+
+**Protokol yayılımı: 13,58 ± 1,71 puan** (tohum başına 15,01 / 14,03 / 11,69).
+
+### G.2 B.4 madde 1 — DOĞRULANDI
+
+> Ön-kayıt: *"CIFAR-100'de dört koşullama protokolü arasındaki transfer
+> asimetrisi yayılımı, CIFAR-10'daki 10,45 puandan **büyük** olmalıdır."*
+
+Ölçülen **13,58 > 10,45**. Gerekçe de tuttu: koşullama temiz hatayla
+ölçekleniyor ve CIFAR-100'de temiz hata çok daha büyük.
+
+### G.3 B.4 madde 2 — DOĞRULANDI
+
+> Ön-kayıt: *"CNN→ViT > ViT→CNN, dört protokolün dördünde de geçerli olmalı."*
+
+**12/12 ölçümün tamamı pozitif** (4 protokol × 3 tohum). Yön, ikinci veri
+kümesinde de korunuyor.
+
+### G.4 B.4 madde 3 — YÖN DOĞRULANDI, ama kanıt gücü CIFAR-10'dakinden ZAYIF
+
+> Ön-kayıt: *"Ham ve koşullu oranlar arasındaki sapma, hedefin temiz
+> hatasıyla birlikte **artmalıdır** (CIFAR-10'da r = 0,997)."*
+
+Ön-kestirim **yönseldir**, bir r değerine bağlanmamıştır. Eğim iki veri
+kümesinde de pozitif: CIFAR-10 **+0,762**, CIFAR-100 **+0,656**. → **DOĞRULANDI.**
+
+**Ancak kesinlik farkı belirgindir ve raporlanacaktır** (`q1_c3_precision.py`):
+
+| | hedef temiz hataları | en küçük ara / aralık | etkin ayrık x | r (n=6) | %95 GA |
+|---|---|---|---|---|---|
+| CIFAR-10 | 10,52 · 14,21 · 26,47 | 0,23 | **3** | 0,9971 | [0,972; 0,9997] |
+| CIFAR-100 | 36,15 · 36,36 · 56,83 | **0,010** | **2** | 0,9307 | [0,487; 0,993] |
+
+CIFAR-100'de ResNet-18 (36,15) ile WRN-28-10 (36,36) referansının temiz
+hatası **çakışıyor**. Yani korelasyon üç nokta üzerinden değil **iki küme**
+üzerinden hesaplanıyor; doğrusal ilişki için güçlü kanıt sayılamaz ve %95
+GA'sı [0,49; 0,99] ile neredeyse bilgisizdir. CIFAR-10'da üç hedef de ayrıktır.
+
+**Bunun nedeni EK F.4'te kaydedilmişti:** CIFAR-100 WRN referansının temiz
+doğruluğu (63,64) bizim ResNet-18'imizle (63,85 ort) neredeyse aynı; CIFAR-10'da
+ise WRN belirgin biçimde daha yüksekti. Aynı olgu E3'ün boş düşük-hata bandını
+da açıklıyor (bkz. `E3_YENIDEN_TASARIM.md` §2) ve E7-kısa kararının
+gerekçesidir.
+
+**Makale için zorunlu niteleme:** CIFAR-100 karıştırıcı analizi, CIFAR-10'daki
+r = 0,997 sonucunun *yönünü* tekrarlar ama *kesinliğini* tekrarlamaz. İki r
+yan yana konarken bu fark açıkça yazılacaktır.
+
+### G.5 Ek not — makalenin mevcut r = 0,997 iddiası da nitelenmeli
+
+`q1_c3_precision.py` bir yan bulgu üretti: köşegen-dışı **6 nokta 3 hedef ×
+2 kaynaktan** gelir, yani x değişkeni yalnız 3 ayrı değer alır ve noktalar
+bağımsız değildir. n=6 varsayan Fisher-z aralığı kesinliği **abartır**. Hedef
+düzeyinde toplandığında n=3 olur ve Fisher-z aralığı **tanımsızdır**
+(SE = 1/√(n−3)).
+
+CIFAR-10 için r hedef düzeyinde 0,9985'tir, yani sonuç sağlamdır; ama
+makalede r = 0,997 verilirken **"üç hedef üzerinde"** nitelemesi bulunmalıdır.
+Bu, bu oturumda düzeltilen "kat değeri" ailesinin aynısıdır: az sayıda
+bağımsız birimden hesaplanan bir istatistiği niteliksiz raporlamak.
+
+### G.6 Sınıf bileşimi kontrolü (CIFAR-100)
+
+`a2b_class_balance` üç çiftte de koştu; iki sağlama testi geçti (ham ve
+her-ikisi-doğru protokollerinde iki yönün bileşimi tam özdeş, TV = 0).
+
+Bileşim etkisi hedef-doğru protokolünde −1,249 / −1,330 / −1,065 puan
+(asimetrinin %12,9-18,6'sı), başarılı-kaynakta ihmal edilebilir (%0,1-1,3).
+CIFAR-10'da bu paylar %6-14 idi. **İşaret CIFAR-100'de de negatif**: sınıf
+bileşimi farkı asimetriyi küçültüyor, yani gerçek sınıf-içi oran farkı
+ölçülenden büyük. Koşullama asimetriyi bir örnekleme artefaktı olarak
+üretmiyor.
+
+### G.7 Post-hoc gözlem (ön-kestirim DEĞİL)
+
+Protokollerin **sıralaması** veri kümeleri arasında değişiyor. CIFAR-10'da uç
+değeri çoğunlukla başarılı-kaynak veriyordu; CIFAR-100'de üç çiftin üçünde de
+**ham** veriyor ve başarılı-kaynak ortalarda kalıyor. Yani protokol seçimi
+yalnız asimetrinin büyüklüğünü değil, **hangi protokolün uç değeri üreteceğini**
+de veri kümesine bağlı olarak değiştiriyor. Ölçüm-protokolü tezini güçlendirir;
+post-hoc olduğu için doğrulayıcı statüde sunulmayacaktır.
+
+### G.8 E1'in hükmü
+
+Üç doğrulayıcı ön-kestirimin **üçü de doğrulandı**. B.4'ün açık şartı
+("karşılanmazlarsa E1 tezi desteklemiyor olarak raporlanır") tetiklenmedi:
+**E1, ölçüm-protokolü bulgularının ikinci bir veri kümesinde korunduğunu
+göstermektedir.** Kalan tek açık uç nokta AutoAttack'tır (ön-kayıt %8-11).

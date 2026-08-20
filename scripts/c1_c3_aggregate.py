@@ -7,10 +7,15 @@ import numpy as np
 
 ROOT = "/workspace" if os.path.isdir("/workspace/results") else os.path.expanduser("~/projects/adeb_sci_1")
 PAIRS = [1, 2, 3]
+# Girdi/cikti koku ortam degiskeniyle degistirilebilir: AYNI karistirici
+# analizini E1 (CIFAR-100) 3x3 matrisine de uygulayabilmek icin.
+C3_DIR = os.environ.get("C3_DIR", "results/c1_c3")
+C3_JSON = os.environ.get("C3_JSON", "c3_summary.json")
+C3_MD = os.environ.get("C3_MD", "C3_RAPORU.md")
 
 R = {}
 for p in PAIRS:
-    with open(os.path.join(ROOT, f"results/c1_c3/pair{p}/transfer_matrix.json"), encoding="utf-8") as fh:
+    with open(os.path.join(ROOT, C3_DIR, f"pair{p}/transfer_matrix.json"), encoding="utf-8") as fh:
         d = json.load(fh)
     for k, v in d["results"].items():
         e = R.setdefault(k, {"raw": [], "cond": [], "tgt_clean": []})
@@ -83,8 +88,8 @@ if len(targets) >= 3:
         f"hedeftir' okumasiyla tutarli.\n"
     )
 
-with open(os.path.join(ROOT, "results/c1_c3/c3_summary.json"), "w", encoding="utf-8") as fh:
+with open(os.path.join(ROOT, C3_DIR, C3_JSON), "w", encoding="utf-8") as fh:
     json.dump(summary, fh, indent=2, ensure_ascii=False)
-with open(os.path.join(ROOT, "results/c1_c3/C3_RAPORU.md"), "w", encoding="utf-8") as fh:
+with open(os.path.join(ROOT, C3_DIR, C3_MD), "w", encoding="utf-8") as fh:
     fh.write("\n".join(lines) + "\n")
 print("\n".join(lines))
