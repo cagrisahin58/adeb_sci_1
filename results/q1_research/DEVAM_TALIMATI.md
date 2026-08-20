@@ -13,14 +13,40 @@
 > `docker exec adeb_eval bash -lc 'pgrep -af q1_pipeline'` ile bakılır.
 > Kısa sürüm (2 tohum × 50 epok AT), bütçe etiketi `svhn-at-50ep`.
 >
-> **E7 MALİYETİ ÖLÇÜLDÜ VE TAHMİNDEN BÜYÜK.** Ölçüm: temiz ön-eğitimde
-> ~1,67 dk/epok (paylaşımlı GPU). 200 epok × 4 model ≈ 22 saat; çekişmeli
-> eğitim epok başına ~5-6 kat pahalı olduğundan 50 epok × 4 model ≈ 30 saat.
-> **Toplam ~50 saat duvar-saati.** K-01'in onayladığı "~11 GPU-saat" rakamı
-> (a) temiz ön-eğitimi dışarıda bırakıyordu ve (b) GPU'nun bu projeye ait
-> olmayan üç işle paylaşıldığını hesaba katmıyordu. Koşum **kesintiye
-> dayanıklıdır** (`TRAINING_COMPLETE` + `--resume`, 3 deneme), yani
-> durdurulup sürdürülebilir. **Devam edip etmemek kullanıcının kararıdır.**
+> **E7 DURDURULDU** (2026-08-20 ~23:53; kullanıcı PC'yi yeniden başlatacağı
+> için, temiz sırayla: önce yürütücü betik, sonra eğitim süreci).
+>
+> **Durum: 5/8 eğitim bitti.**
+>
+> | model | temiz | AT | PGD | bütçe |
+> |---|---|---|---|---|
+> | resnet18_s1001 | BİTTİ | BİTTİ | BİTTİ | `svhn-at-50ep` |
+> | resnet18_s1002 | BİTTİ | BİTTİ | BİTTİ | `svhn-at-50ep` |
+> | vit_tiny_s2001 | BİTTİ | **YARIM** | — | — |
+> | vit_tiny_s2002 | — | — | — | — |
+>
+> Yarım kalan AT'nin dizininde `best.pth` **var** ama `TRAINING_COMPLETE`
+> **yok** — K6'nın tarif ettiği durum. Muhafız doğru çalışıyor: yeniden
+> başlatıldığında o eğitim atlanmayacak, `--resume` ile sürecek.
+>
+> **İlk sonuçlar E7'nin gerekçesini karşılıyor.** ResNet-18 AT temiz doğruluk
+> 94,76 / 93,77 → temiz **hata %5,24 / %6,23**; yani `E3_YENIDEN_TASARIM` §2'nin
+> "tamamen boş" dediği %5-12 bandının tam içinde. (PGD-10: 55,98 / 55,07;
+> n=26.032 tam test kümesi. Bunlar ham ölçümlerdir; E7 analiz zinciri henüz
+> koşulmadı.)
+>
+> **SÜRE TAHMİNİM YANLIŞTI — düzeltildi.** Daha önce bu belgede "~50 saat"
+> yazmıştım. O rakam, GPU'nun bu projeye ait olmayan üç işle %97 dolu olduğu
+> bir **anlık** hız ölçümünden (1,67 dk/epok) genellenmişti. Gerçekleşen:
+> 4 sa 40 dk'da üç temiz ön-eğitim (200'er epok) + iki çekişmeli eğitim + iki
+> PGD değerlendirmesi bitti. Makul toplam **~18-22 saat**, 50 değil.
+> **Ders:** anlık bir hız ölçümü kampanya süresine çevrilmeden önce, ölçümün
+> alındığı koşulların (GPU paylaşımı) sürüp sürmediği kontrol edilmelidir.
+>
+> **Kaldığı yerden devam:**
+> `docker exec -d -e STAGE=e7 -w /workspace adeb_eval bash scripts/q1_pipeline.sh`
+> Biten 5 eğitim atlanır (bütçe etiketi uyuşması da denetlenir).
+> `E7_FULL` VERİLMEZ · `--stratified` EKLENMEZ.
 >
 > **Sırada bekleyenler (GPU boşalınca, bu sırayla):**
 > 1. E7 analiz zinciri: `bash scripts/q1_e1_analysis.sh --dataset svhn`
