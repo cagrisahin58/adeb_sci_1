@@ -611,3 +611,67 @@ post-hoc olduğu için doğrulayıcı statüde sunulmayacaktır.
 ("karşılanmazlarsa E1 tezi desteklemiyor olarak raporlanır") tetiklenmedi:
 **E1, ölçüm-protokolü bulgularının ikinci bir veri kümesinde korunduğunu
 göstermektedir.** Kalan tek açık uç nokta AutoAttack'tır (ön-kayıt %8-11).
+
+---
+
+## EK H — E1 TAMAMEN KAPANDI (2026-08-20 01:28)
+
+`logs/q1_e1.log`: `=============== Q1-E1 TAMAM ===============`
+
+### H.1 Nihai sonuç tablosu (CIFAR-100, n=3)
+
+| | ResNet-18 | ViT-Tiny |
+|---|---|---|
+| Temiz | **63,86 ± 1,05** | **43,17 ± 1,10** |
+| PGD-10 | **19,30 ± 0,32** | **11,15 ± 0,60** |
+| AutoAttack | **15,04 ± 0,54** | **8,87 ± 0,83** |
+
+Tohum değerleri (AA): ResNet 14,75 · 14,71 · 15,67 — ViT 8,58 · 8,22 · 9,81.
+
+McNemar (gürbüz, eşleştirilmiş, tam test kümesi) üç çiftte de ResNet lehine:
+p = 8,5e-77 / 1,4e-87 / 3,0e-70.
+
+### H.2 Ön-kayıtlı uç noktaların NİHAİ hükmü (§3 tablosu)
+
+| metrik | ön-kayıt | ölçülen (n=3) | hüküm |
+|---|---|---|---|
+| PGD-10 | %10-14 | 11,15 (11,35 · 10,48 · 11,62) | **TUTTU** |
+| AutoAttack | %8-11 | 8,87 (8,58 · 8,22 · 9,81) | **TUTTU** |
+| Temiz | %33-40 | 43,17 (41,94 · 43,50 · 44,06) | **SAPMA, beyan edildi** |
+
+Üç uç noktadan **ikisi tuttu**, biri üstten sapıp beyan edildi (EK C.3, F.2).
+Sapmanın nedeni belgelendi: kestirim ResNet'in AT/ön-eğitim temiz oranından
+türetilmişti; ViT o oranı korumadı (0,91'e karşı 0,82), yani "mimariden
+bağımsız sabit taviz oranı" varsayımı yanlıştı.
+
+**Not:** çekişmeli uç noktalar (asıl ilgi alanı) tuttu; tutmayan uç nokta
+temiz doğruluktu ve sapma **iyi haber yönündeydi**. Ön-kayıtlı kestirimin
+işe yaradığı, tam da yanlış çıktığı yerde bir mekanizma hatası ortaya
+çıkardığı için gösterilebilir.
+
+### H.3 AA/PGD oranı — post-hoc gözlem
+
+| | AA/PGD | (CIFAR-10 karşılığı) |
+|---|---|---|
+| ResNet-18 | 15,04/19,30 = **0,779** | 37,93/44,11 = 0,860 |
+| ViT-Tiny | 8,87/11,15 = **0,795** | 29,14/32,69 = 0,891 |
+
+CIFAR-100'de PGD-10, gürbüzlüğü CIFAR-10'dakinden **daha fazla** abartıyor
+(oran 0,78-0,80 vs 0,86-0,89). İki mimaride oran birbirine yakın, yani bu bir
+mimari etkisi değil veri kümesi etkisi. Post-hoc; ön-kestirim değildir.
+
+### H.4 E1'in nihai hükmü
+
+- **B.3 dosya-çekmecesi taahhüdü** yerine getirildi: tüm sayılar, beğenilsin
+  ya da beğenilmesin, kayda geçti.
+- **B.4 doğrulayıcı ön-kestirimlerinin üçü de doğrulandı** (EK G).
+- **B.5 bütçe kuralı** eşiği aşıldı (ViT PGD 11,35 ≥ 10,0), üç çift de koşuldu.
+- **B.6 tanısı** ve **EK E.3 sınırı** kaydedildi: seçim yolu oynak, sonuç dar
+  bantta; E2 manşeti raporlanırken sınırlama olarak yazılacak.
+- **B.7 sapma beyanları** yapıldı (temiz doğruluk, iki kez: tek tohumda ve
+  n=3'te).
+- **B.8 vaadi** daraltılmış hâliyle açık: bölme-bootstrap replikasyonu için
+  gereken kod (`q1_e2_test_curve.py --dataset`) hâlâ **yazılmadı**.
+
+**E1 kapandı; tezle bağlantısı EK G'de kurulmuştur.** Kalan tek açık iş
+B.8'in kodu ve makaleye yazım.

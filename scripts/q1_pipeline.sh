@@ -252,9 +252,23 @@ e5)  # kalan tohumlar (pilot onaylandiktan sonra)
     ;;
 # ---------------------------------------------------------------------------
 e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E7)
+    # K-01 karari (KAMPANYA_KARARLARI.md): VARSAYILAN KISA SURUM.
+    #   kisa: 2 tohum x 50 epok  ~11 GPU-saat  <- onaylanan
+    #   tam : 3 tohum x 100 epok ~33-36 GPU-saat, BILINCLI olarak E7_FULL=1 ister
+    # Varsayilan kisa tutuluyor ki kaza eseri butcenin 3 kati harcanmasin.
+    if [ "${E7_FULL:-0}" = "1" ]; then
+        E7_RN_SEEDS="1001 1002 1003"; E7_VIT_SEEDS="2001 2002 2003"; E7_EPOCHS=100
+        log "E7: TAM surum (E7_FULL=1) -- 3 tohum x 100 epok"
+    else
+        E7_RN_SEEDS="1001 1002"; E7_VIT_SEEDS="2001 2002"; E7_EPOCHS=50
+        log "E7: KISA surum (varsayilan, K-01) -- 2 tohum x 50 epok; tam surum icin E7_FULL=1"
+    fi
+    # SVHN val bolmesi BILEREK --stratified DEGIL: esit-sinif bolmesi dengesiz
+    # SVHN'de val kumesini dengeli yapar, test dengesiz kalir -> secim olcutu ile
+    # raporlama olcutu uyusmaz. Ayrinti: E7_KOSUM_ONCESI_KONTROL.md §3.
     run_step Q1_val_split_svhn data/val_split_indices_svhn.json \
         python experiments/rev2/make_val_split.py --dataset svhn
-    for seed in 1001 1002 1003; do
+    for seed in $E7_RN_SEEDS; do
         root="models/q1/svhn/resnet18_s${seed}"
         run_train "Q1_svhn_clean_resnet18_${seed}" "${root}/resnet18/clean" \
             python -m cli.main train clean -m resnet18 --dataset svhn \
@@ -262,7 +276,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
                 --val-indices data/val_split_indices_svhn.json
         run_train "Q1_svhn_at_resnet18_${seed}" "${root}/resnet18/adv/adversarial_training" \
             python -m cli.main train adversarial -m resnet18 --dataset svhn \
-                --device cuda --lr 0.001 --epochs 100 --batch-size 128 --patience 20 \
+                --device cuda --lr 0.001 --epochs "$E7_EPOCHS" --batch-size 128 --patience 20 \
                 --eps-warmup 10 --seed "$seed" -o "$root" \
                 --pretrained "${root}/resnet18/clean/best.pth" \
                 --val-indices data/val_split_indices_svhn.json --save-every 2 \
@@ -273,7 +287,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
                 --ckpt "${root}/resnet18/adv/adversarial_training/best.pth" \
                 --out "results/q1/svhn/resnet18_s${seed}"
     done
-    for seed in 2001 2002 2003; do
+    for seed in $E7_VIT_SEEDS; do
         root="models/q1/svhn/vit_tiny_s${seed}"
         run_train "Q1_svhn_clean_vit_tiny_${seed}" "${root}/vit_tiny/clean" \
             python -m cli.main train clean -m vit_tiny --dataset svhn \
@@ -281,7 +295,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
                 --val-indices data/val_split_indices_svhn.json
         run_train "Q1_svhn_at_vit_tiny_${seed}" "${root}/vit_tiny/adv/adversarial_training" \
             python -m cli.main train adversarial -m vit_tiny --dataset svhn \
-                --device cuda --lr 0.001 --epochs 100 --batch-size 64 --patience 20 \
+                --device cuda --lr 0.001 --epochs "$E7_EPOCHS" --batch-size 64 --patience 20 \
                 --eps-warmup 10 --seed "$seed" -o "$root" \
                 --pretrained "${root}/vit_tiny/clean/best.pth" \
                 --val-indices data/val_split_indices_svhn.json --save-every 2 \

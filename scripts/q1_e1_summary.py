@@ -55,6 +55,25 @@ def best_epoch(rows):
     return best_e, best_v
 
 
+AA_MODEL = {"resnet18": "ResNet18_AT", "vit_tiny": "ViT_Tiny_AT"}
+SEED_TO_PAIR = {1001: 1, 1002: 2, 1003: 3, 2001: 1, 2002: 2, 2003: 3}
+
+
+def read_aa(arch, seed):
+    """AutoAttack ozetinden bu mimari/tohum icin gurbuz dogruluk."""
+    pair = SEED_TO_PAIR.get(seed)
+    if pair is None:
+        return None
+    f = ROOT / "results" / "q1" / "cifar100" / f"pair{pair}" / "autoattack_summary.json"
+    if not f.exists():
+        return None
+    d = json.loads(f.read_text(encoding="utf-8"))
+    for r in d.get("results", []):
+        if r.get("model") == AA_MODEL.get(arch):
+            return float(r["robust_accuracy"])
+    return None
+
+
 def read_test(arch, seed):
     p = ROOT / "results" / "q1" / "cifar100" / f"{arch}_s{seed}" / f"pgd_summary_{arch}.json"
     if not p.exists():
@@ -79,10 +98,12 @@ def main():
                                "egri_var_mi": rows is not None}
                 continue
             be, bv = best_epoch(rows)
+            aa = read_aa(arch, s)
             plateau = [a for e, _c, a in rows if e >= PLATEAU_FROM]
             per[str(s)] = {
                 "test_clean": round(t["clean"], 2),
                 "test_pgd10": round(t["pgd10"], 2),
+                "test_autoattack": (round(aa, 2) if aa is not None else None),
                 "test_n": t["n"],
                 "val_en_iyi_adv": round(bv, 2),
                 "en_iyi_epok": be,
@@ -104,6 +125,7 @@ def main():
         if done:
             cl = [v["test_clean"] for v in done]
             pg = [v["test_pgd10"] for v in done]
+            aal = [v["test_autoattack"] for v in done if v.get("test_autoattack") is not None]
             be = [v["en_iyi_epok"] for v in done]
             de = [v["durma_epogu"] for v in done]
             agg = {
@@ -112,6 +134,9 @@ def main():
                                "degerler": cl},
                 "test_pgd10": {"ort": round(st.mean(pg), 2), "sd": (round(sd(pg), 3) if sd(pg) else None),
                                "degerler": pg},
+                "test_autoattack": ({"ort": round(st.mean(aal), 2),
+                                     "sd": (round(sd(aal), 3) if sd(aal) else None),
+                                     "degerler": aal} if aal else None),
                 "en_iyi_epok": {"degerler": be, "aciklik": max(be) - min(be)},
                 "durma_epogu": {"degerler": de, "aciklik": max(de) - min(de)},
             }
@@ -153,6 +178,9 @@ def main():
         print(f"\n{arch} (n={a['n_tohum']})")
         print(f"  test clean : {a['test_clean']['ort']} +/- {a['test_clean']['sd']}  {a['test_clean']['degerler']}")
         print(f"  test PGD-10: {a['test_pgd10']['ort']} +/- {a['test_pgd10']['sd']}  {a['test_pgd10']['degerler']}")
+        if a.get("test_autoattack"):
+            aa_ = a["test_autoattack"]
+            print(f"  test AA    : {aa_['ort']} +/- {aa_['sd']}  {aa_['degerler']}")
         print(f"  en iyi epok: {a['en_iyi_epok']['degerler']} (aciklik {a['en_iyi_epok']['aciklik']})")
         print(f"  durma epogu: {a['durma_epogu']['degerler']} (aciklik {a['durma_epogu']['aciklik']})")
     print("\nyazildi:", OUT.relative_to(ROOT))
