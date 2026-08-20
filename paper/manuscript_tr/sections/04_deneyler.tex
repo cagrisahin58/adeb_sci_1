@@ -164,7 +164,40 @@ WRN-28-10 & WRN-28-10 & 33,03 & 25,16 \\
 \end{figure}
 
 % ----------------------------------------------------------------------------
-% 4.3 Gradyan Analizi
+% 4.3 Ikinci veri kumesi (E1)
+% ----------------------------------------------------------------------------
+\subsection{Protokol Etkisi Genelleniyor mu? İkinci Bir Veri Kümesi}
+\label{subsec:cifar100}
+
+Yukarıdaki ölçüm tek bir veri kümesi üzerinde yapılmıştır ve yalnızca CIFAR-10'da var olan bir protokol etkisi genel bir raporlama önerisini desteklemezdi. Bu nedenle tasarımın tamamını CIFAR-100 üzerinde yineledik: aynı mimariler, aynı tehdit modeli, aynı saldırı bütçesi, aynı üç tohumlu yapı, aynı dört protokol. Koşumdan önce üç yönsel ön kestirim ile üç uç nokta bandını salt eklemeli bir belgeye kaydettik; böylece sonuç, ölçüldükten sonra yeniden yorumlanamazdı.
+
+\begin{table}[!t]
+\centering
+\caption{CIFAR-100 yinelemesi (mimari başına üç bağımsız eğitim koşusunun ortalaması$\pm$std, tam test kümesi, $\eps$=8/255). Her iki model de Bölüm~\ref{subsec:training}'deki protokolle çekişmeli eğitilmiştir. Mutlak gürbüzlük iki mimaride de CIFAR-10'a göre düşüktür ve CNN'in ViT üzerindeki sıralaması değişmemiştir.}
+\label{tab:cifar100_results}
+\footnotesize
+\begin{tabular}{lccc}
+\toprule
+\textbf{Model} & \textbf{Temiz (\%)} & \textbf{PGD-10 (\%)} & \textbf{AutoAttack (\%)} \\
+\midrule
+ResNet-18 AT & 63,86$\pm$1,05 & 19,30$\pm$0,32 & 15,04$\pm$0,54 \\
+ViT-Tiny AT  & 43,17$\pm$1,10 & 11,15$\pm$0,60 & 8,87$\pm$0,83 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Protokol yayılımı daralmıyor, genişliyor.} Aynı dört protokol boyunca ölçülen CNN$\rightarrow$ViT asimetrisi $+4{,}96\pm1{,}01$ puandan (hedef doğru) $+18{,}53\pm0{,}71$ puana (koşulsuz) uzanmakta; her ikisi doğru protokolünde $+10{,}92\pm0{,}34$, başarılı kaynak protokolünde $+11{,}44\pm1{,}82$ puandır. Tohum başına ortalama yayılım $13{,}58\pm1{,}71$ puandır; CIFAR-10'da bu değer $10{,}45\pm0{,}76$ idi. Yön, CIFAR-10'da olduğu gibi on iki ölçümün tamamında pozitiftir (dört protokol $\times$ üç tohum çifti). Her ikisi doğru protokolünde eşleştirilmiş fark $10{,}92$ puan, bootstrap güven aralığı $[9{,}48;\ 12{,}36]$, işaret çevirme permütasyon $p$ değeri her tohumda $20{,}000$ permütasyonun çözünürlüğünün altında ve eşdeğerlik sınanan her marjda reddedilmiştir.
+
+\textbf{Üç ön kestirimin ikisi doğrulandı; üçüncüsü bu tasarımda sınanamadı.} Protokol yayılımının daha zor veri kümesinde büyüyeceği ön kestirimi doğrulanmıştır ($13{,}58 > 10{,}45$); işaretin korunacağı ön kestirimi de doğrulanmıştır ($12/12$). Üçüncüsü, koşulsuz oranın koşullu orandan sapmasının hedefin temiz hatasıyla birlikte büyüyeceğini öngörüyordu. Ölçülen eğim, öngörüldüğü gibi pozitiftir: hedef hatasının puanı başına $+0{,}656$ puan. Ancak CIFAR-100'de üç hedeften ikisinin temiz hatası yalnızca $0{,}21$ puan farklıdır ($36{,}15$ ve $36{,}36$); dolayısıyla korelasyon üç değil \emph{iki} etkin küme üzerinden hesaplanmakta ve değeri (altı yön üzerinde $r = 0{,}931$, hedef düzeyinde $0{,}974$) iki noktalı bir karşıtlığa dayanmaktadır. Ölçüm ön kestirimle \emph{tutarlıdır} ancak onu \emph{sınamaz}; bu yüzden üçüncü bir doğrulama olarak değil, böyle raporlanmaktadır.
+
+\textbf{Kayıtlı uç noktalardan biri tutmadı ve nedenini yazıyoruz.} Çekişmeli eğitilmiş ViT için temiz doğruluğu $\%33$--$40$ bandında öngörmüş, $\%43{,}17\pm1{,}10$ ölçtük. Band, çekişmeli eğitimin temiz doğruluk bedelinin iki mimaride aynı oranda ölçekleneceği varsayımıyla türetilmişti. Ölçekleşmiyor: ViT çekişmeli eğitim altında temiz ön eğitim doğruluğunun $0{,}885$'ini korurken ResNet $0{,}802$'sini korumuştur. Protokol iddiasının dayandığı iki çekişmeli uç nokta ise bantlarının içinde kalmıştır (PGD-10 öngörü $\%10$--$14$, ölçüm $11{,}15$; AutoAttack öngörü $\%8$--$11$, ölçüm $8{,}87$).
+
+\textbf{Sınıf bileşimi asimetriyi üretmiyor.} Koşullama, paydaya hangi örneklerin gireceğini değiştirdiği için sınıf karışımını da değiştirir; ilkece bir asimetri bileşim artefaktı olabilir. Her yönün oranını bir bileşim bileşenine ve bir oran bileşenine ayrıştırıyoruz. Hedef doğru protokolünde bileşim etkisi üç tohum çiftinde $-1{,}249$, $-1{,}330$ ve $-1{,}065$ puandır; yani asimetrinin $\%12{,}9$--$18{,}6$'sı kadar ve \emph{negatiftir}: sınıf karışımı dengelenseydi asimetri küçülmez, büyürdü. Başarılı kaynak protokolünde etki ihmal edilebilirdir ve işareti kararlı değildir ($+0{,}039$, $+0{,}013$, $-0{,}174$). Koşulsuz ve her ikisi doğru protokollerinde tam olarak sıfırdır; bu, ayrıştırmanın geçmesi gereken aritmetik sağlama testidir.
+
+\textbf{Bu sonuçla birlikte okunması gereken iki niteleme vardır.} Birincisi, iki çekişmeli band en yakın tohum düzeyi kenarında $0{,}22$ puanlık (AutoAttack) ve $0{,}48$ puanlık (PGD-10) marjlarla tutmuştur; oysa Bölüm~\ref{subsec:statistics_results}'te raporlanan kontrol noktası seçimi ablasyonu, aynı türden bir nicelikte $1{,}58$--$2{,}85$ puanlık bir seçim protokolü genliği ölçmektedir. Bantlar tutmuştur, ama kendi ölçtüğümüz bir yayılımın birkaç katı küçük marjlarla; okur ön kaydı buna göre tartmalıdır. İkincisi, çekişmeli eğitilmiş kontrol noktasını seçmekte kullanılan doğrulama bölmesi, temiz ön eğitimde de kullanılmış olan bölmedir. Bu tercih, iki veri kümesi karşılaştırılabilir kalsın diye CIFAR-10 protokolünden bilinçli olarak devralınmıştır ve Bölüm~\ref{subsec:statistics_results} bunun neye mal olup neye mal olmadığını raporlamaktadır.
+
+% ----------------------------------------------------------------------------
+% 4.4 Gradyan Analizi
 % ----------------------------------------------------------------------------
 \subsection{Gradyan Karakteristikleri}
 \label{subsec:gradient}
@@ -364,10 +397,14 @@ Sonucu dar tutuyoruz. Kurulumumuz, TGR'nin tasarlandığı kurulumdan her biri �
 \subsection{Varyans Kaynakları}
 \label{subsec:statistics_results}
 
-Yukarıdaki karşılaştırmaları üç varyans kaynağı ilgilendirmektedir. Saldırı başlatma stokastisitesi ihmal edilebilirdir: PGD-10'u sabit 1.000 örneklik altkümede üç saldırı tohumuyla yeniden koşmak temiz doğruluğu hiç değiştirmez (yükleyici karıştırmaz) ve gürbüz doğruluğu CNN'de $0{,}05$, ViT'te $0{,}00$ puanlık standart sapmayla oynatır. Eğitim koşusu varyansı daha büyüktür ama yine küçüktür: mimari başına üç bağımsız koşuda, çekişmeli eğitilmiş çift için standart sapma temiz doğrulukta en çok $0{,}55$, PGD-10'da $0{,}50$ puandır (Tablo~\ref{tab:main_results}).
+Yukarıdaki karşılaştırmaları dört varyans kaynağı ilgilendirmektedir. Saldırı başlatma stokastisitesi ihmal edilebilirdir: PGD-10'u sabit 1.000 örneklik altkümede üç saldırı tohumuyla yeniden koşmak temiz doğruluğu hiç değiştirmez (yükleyici karıştırmaz) ve gürbüz doğruluğu CNN'de $0{,}05$, ViT'te $0{,}00$ puanlık standart sapmayla oynatır. Eğitim koşusu varyansı daha büyüktür ama yine küçüktür: mimari başına üç bağımsız koşuda, çekişmeli eğitilmiş çift için standart sapma temiz doğrulukta en çok $0{,}55$, PGD-10'da $0{,}50$ puandır (Tablo~\ref{tab:main_results}).
 
 Protokol etkisini doğrudan bu iki sayıyla karşılaştırmak bir ölçek hatası olurdu; çünkü protokol etkisi transfer asimetrisi üzerinde, yukarıdaki iki sayı ise mutlak doğruluk üzerinde ölçülmektedir. Bu nedenle protokol ve eğitim koşusu etkilerini \emph{aynı} nicelik --- köşegen-dışı asimetri --- üzerinde ve mutlak birimlerle niceliyoruz. Sabit bir tohum çiftinde yalnızca koşullama protokolünü değiştirmek asimetriyi $10{,}45\pm0{,}76$ puan oynatmaktadır. Bu değer tohum-başına açıklıkların ortalamasıdır ve protokol ortalamalarının $10{,}24$ puanlık açıklığını bir miktar aşar; çünkü uç protokol her tohumda aynı değildir: üçüncü tohum çiftinde en büyük asimetri başarılı-kaynak değil koşulsuz orandan gelmektedir. Aynı asimetriyi, her iki mimariyi sıfırdan yeniden eğitmek ise yalnızca $0{,}23$--$1{,}48$ puanlık standart sapmayla oynatmaktadır; değer hangi protokol altında ölçüldüğüne bağlıdır (Tablo~\ref{tab:transfer_protocols}, Fark sütunu). Makalenin dayandığı sıralama budur: on puanlık bir ölçüm etkisine karşı $1{,}5$ puanın altında bir eğitim etkisi.
 
 Bu iki yayılımın oranını bilerek manşete koymuyoruz. Üç koşumla payda iki serbestlik derecesi taşır; dolayısıyla herhangi bir tek oran için $\chi^2$ aralığı çok geniştir: dördü içinde en büyük koşumlar arası standart sapmaya sahip başarılı-kaynak protokolünde oranın $\%95$ aralığı $0{,}5$ ile $6{,}3$ arasında uzanır ve \emph{birimi içerir}. Tahmin olarak değil duyarlılık olarak raporlandığında oran, yayılım ölçüleri ve referans protokoller boyunca $3{,}3$ ile $22{,}7$ arasında değişmekte ve birincil saydığımız her-ikisi-doğru protokolünde benzeri-benzeriyle standart sapma karşılaştırmasında $20{,}9$ olmaktadır. İki uyarı oranı daha da sınırlar. En büyük asimetriyi veren protokol aynı zamanda en büyük koşumlar arası standart sapmayı taşımaktadır; yani pay ile payda bağımsız değildir. Ayrıca üç koşumun tamamı, eğitimden önce çekilen tek doğrulama bölmesini paylaştığından bu standart sapma bölmeler arası varyansı dışarıda bırakır; bu da oranı bir üst sınır yapar. Üç uyarıyı da atlatan şey mutlak karşılaştırmadır; iddiayı taşıyan da kat değeri değil odur. Bu sıralama makalenin savının nicel hâlidir: protokol belirtilmemişse okur, gerçek bir mimari farkı bir ölçüm seçiminden ayırt edemez.
+
+Dördüncü kaynak, genellikle örtük bırakılan çevrimdışı kontrol noktası seçimi protokolüdür. Bir eğitim yörüngesi tamamen sabit tutulup yalnızca son kontrol noktasının nasıl seçildiği değiştirildiğinde --- hangi doğrulama bölmesi, hangi erken durdurma sabrı ve argmaks öncesinde doğrulama eğrisinin yumuşatılıp yumuşatılmadığı (on sekiz bileşim) --- raporlanan PGD-10 doğruluğu ResNet'te tohum başına $2{,}62$--$2{,}85$, ViT'te $1{,}58$--$2{,}09$ puan oynamaktadır. Bu hücrelerde diskteki ağırlıklar özdeştir; yalnızca içlerinden birini seçen kural farklıdır. Bu yayılımı mutlak birimlerle raporluyor ve bilinçli olarak tohum düzeyi yayılıma oran biçiminde vermiyoruz; çünkü o oran, on sekiz hücreden hangisinin referans alındığına bağlıdır: on sekizinin tamamı tarandığında ResNet'te $0{,}67$--$3{,}38$, ViT'te $0{,}63$--$7{,}38$ arasında değişmekte, bazı referanslarda birin altına inip karşılaştırmayı tersine çevirmektedir.
+
+Hemen yanına bir karşı ağırlık konmalıdır. CIFAR-100'de kendi protokolümüzün seçtiği epok üç ResNet tohumu arasında $25$ epok kaymakta, buna karşılık ortaya çıkan test PGD-10 standart sapması $0{,}32$ puanda kalmaktadır. Seçim \emph{yolu} oynaktı, seçilen \emph{sonuç} değildi. İki gözlem birbirinden ayrı genellenemez: seçim tercihleri raporlanan bir sayıyı eğitim tohumundan daha fazla oynatabilir, neredeyse hiç oynatmayabilir de; hangisinin gerçekleşeceği mimarinin değil, yörüngenin platosunun bir özelliğidir. Raporlama açısından pratik sonuç iki durumda da aynıdır: seçim kuralı sonucun bir parçasıdır ve yöntem bölümüne yazılmalıdır.
 
 \textbf{Hesaplama Ayrıntıları:} Burada raporlanan eğitim koşuları ve analizler NVIDIA RTX 5090 (32GB) üzerinde yürütülmüştür; Tablo~\ref{tab:conditional}'deki karşılaştırmada kullanılan önceki tek koşuluk kontrol noktaları RTX 5060 Ti (16GB) üzerinde eğitilmişti. Tüm koşular PyTorch 2.6.0, CUDA 12.8 ve deterministik cuDNN ayarlarıyla yapılmıştır. AutoAttack değerlendirmesi, standart yapılandırmayla (APGD-CE, APGD-T, FAB-T, Square) 10.000 örneklik tam test kümesinde, örnek bazında kayıtla, tohumlanmış 1.000 örneklik parçalar hâlinde koşulmuştur. Üç tohumlu eğitim boru hattı toplam 21,7 GPU-saat gerektirmiştir.

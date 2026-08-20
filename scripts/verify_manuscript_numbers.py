@@ -69,6 +69,11 @@ c45 = jl("results/c1_c45_summary.json")
 c2 = [jl(f"results/c1_c2/pair{p}/tgr_summary.json") for p in (1, 2, 3)]
 vr = jl("results/q1/variance_ratio.json")
 c3p = jl("results/q1/c3_precision.json")
+e1 = jl("results/q1/e1_cifar100_summary.json")
+e1t = jl("results/q1/cifar100/transfer/e1_transfer_summary.json")
+e2g = jl("results/q1/e2/e2_grid.json")
+a2b = [jl(f"results/q1/cifar100/transfer/pair{p}/a2b_class_balance_cifar100.json")
+       for p in (1, 2, 3)]
 
 
 def ms(v):
@@ -128,6 +133,43 @@ chk("benzeri-benzeriyle oran (20,9)",
 for prot, lbl in [("raw", "ham"), ("target_correct", "hedef-dogru"),
                   ("both_correct", "her-ikisi-dogru"), ("successful_source", "basarili-kaynak")]:
     chk(f"tablo Fark sd {lbl}", payda["sd_protokol_bazli"][prot])
+
+# --- YENI (2026-08-20, IS-2): E1 (CIFAR-100) + E2 (ckpt secimi) ---
+# Bu sayilar makaleye bu oturumda girdi; hicbiri denetlenmiyordu.
+for arch, lbl in (("resnet18", "ResNet"), ("vit_tiny", "ViT")):
+    o = e1["mimariler"][arch]["ozet"]
+    chk(f"E1 temiz {lbl}", o["test_clean"]["ort"])
+    chk(f"E1 PGD {lbl}", o["test_pgd10"]["ort"])
+    chk(f"E1 AA {lbl}", o["test_autoattack"]["ort"])
+for prot, lbl in (("raw", "ham"), ("target_correct", "hedef-dogru"),
+                  ("both_correct", "her-ikisi-dogru"), ("successful_source", "basarili-kaynak")):
+    chk(f"E1 fark {lbl}", e1t["protocols"][prot]["diff"]["mean"])
+chk("E1 protokol yayilimi (13,58)", e1t["protocol_spread_pp"]["mean"])
+# CIFAR-100 karistirici: egim ve iki r degeri (kesinlik nitelemesiyle birlikte)
+_c100 = c3p["veri_kumeleri"]["cifar100"]
+chk("E1 karistirici egim (0,656)", _c100["RAPOR_EDILEN_n6"]["egim"], 3)
+chk("E1 karistirici r n=6 (0,931)", _c100["RAPOR_EDILEN_n6"]["pearson_r"], 3)
+chk("E1 karistirici r n=3 (0,974)", _c100["HEDEF_DUZEYI_n3"]["pearson_r"], 3)
+# hedef temiz hatalarinin CAKISMASI: ucuncu on-kestirimin neden sinanamadigi
+chk("E1 cakisik hedef hatasi A", sorted(_c100["hedef_temiz_hatasi"])[0])
+chk("E1 cakisik hedef hatasi B", sorted(_c100["hedef_temiz_hatasi"])[1])
+# sinif bilesimi: hedef-dogru protokolunde uc tohumun bilesim etkisi
+for i, d in enumerate(a2b, start=1):
+    chk(f"E1 bilesim etkisi t{i}", d["protokoller"]["target_correct"]["AYRISTIRMA"]["bilesim_etkisi"], 3)
+# E2 secim protokolu yayilimi -- MUTLAK, oran DEGIL (K2)
+for arch, lbl in (("resnet18", "ResNet"), ("vit_tiny", "ViT")):
+    lo, hi = e2g["mimariler"][arch]["protokol_yayilim_araligi"]
+    chk(f"E2 secim yayilimi alt {lbl}", lo)
+    chk(f"E2 secim yayilimi ust {lbl}", hi)
+# E2 oran DUYARLILIGI (mansette degil, govdede): referans secimine bagli aralik
+for arch, lbl in (("resnet18", "ResNet"), ("vit_tiny", "ViT")):
+    rd = e2g["mimariler"][arch]["REFERANS_DUYARLILIGI"]
+    chk(f"E2 oran alt {lbl}", rd["oran_min"], 2)
+    chk(f"E2 oran ust {lbl}", rd["oran_max"], 2)
+# E2 karsi-agirligi: secim YOLU oynak, SONUC degil
+chk("E2 karsi-agirlik epok acikligi",
+    e1["mimariler"]["resnet18"]["ozet"]["en_iyi_epok"]["aciklik"], 0)
+chk("E2 karsi-agirlik test sd", e1["mimariler"]["resnet18"]["ozet"]["test_pgd10"]["sd"])
 
 # --- rapor ---
 rows = []
