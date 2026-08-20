@@ -1,6 +1,36 @@
 # DEVAM TALİMATI — Q1 kampanyasını bitirme kılavuzu
 
-**Son güncelleme: 2026-08-20. Dal: `q1`. Son commit: `3ebe403`.**
+**Son güncelleme: 2026-08-20 (akşam). Dal: `q1`. Son commit: `54e8b6e`.**
+
+> ## GÜNCEL DURUM — bu bölüm en son yazıldı, önce bunu oku
+>
+> **Biten işler:** İŞ-1 (`fe86f48`), İŞ-2 (`9707337`), İŞ-5 (`b2f38c0`),
+> İŞ-6'nın altı kalemi (`784e52d`), İŞ-4'ün **kodu** (`54e8b6e`).
+> Ayrıca plansız ama önemli bir düzeltme: **`r = 0,997` bir korelasyon değil
+> cebirsel bir ÖZDEŞLİKMİŞ** (`68b6a74`, EK J).
+>
+> **Koşan iş:** E7 (SVHN), 2026-08-20 13:41'de başladı.
+> `docker exec adeb_eval bash -lc 'pgrep -af q1_pipeline'` ile bakılır.
+> Kısa sürüm (2 tohum × 50 epok AT), bütçe etiketi `svhn-at-50ep`.
+>
+> **E7 MALİYETİ ÖLÇÜLDÜ VE TAHMİNDEN BÜYÜK.** Ölçüm: temiz ön-eğitimde
+> ~1,67 dk/epok (paylaşımlı GPU). 200 epok × 4 model ≈ 22 saat; çekişmeli
+> eğitim epok başına ~5-6 kat pahalı olduğundan 50 epok × 4 model ≈ 30 saat.
+> **Toplam ~50 saat duvar-saati.** K-01'in onayladığı "~11 GPU-saat" rakamı
+> (a) temiz ön-eğitimi dışarıda bırakıyordu ve (b) GPU'nun bu projeye ait
+> olmayan üç işle paylaşıldığını hesaba katmıyordu. Koşum **kesintiye
+> dayanıklıdır** (`TRAINING_COMPLETE` + `--resume`, 3 deneme), yani
+> durdurulup sürdürülebilir. **Devam edip etmemek kullanıcının kararıdır.**
+>
+> **Sırada bekleyenler (GPU boşalınca, bu sırayla):**
+> 1. E7 analiz zinciri: `bash scripts/q1_e1_analysis.sh --dataset svhn`
+> 2. E3 tam koşumu (kod hazır, duman testi geçti) — 3-5 GPU-saat
+> 3. E6/L2: `bash scripts/q1_e6_l2.sh` (muhafız E7 koşarken reddediyor)
+> 4. B.8: `q1_e2_test_curve.py --dataset cifar100` (1 GPU-saat)
+>
+> **T5 nedeniyle ertelenen iki kalem** (koşan `q1_pipeline.sh`'a dokunuyor):
+> İŞ-6(b) `e5pilot` dalındaki ölü kapı · İŞ-6(c) 137/144 satırlarındaki
+> terk edilmiş "%5 kapısı" yorumları. E7 bitince yapılacak.
 
 Bu belge, konuşma geçmişi sıfırlansa bile kalan işin tek başına
 yürütülebilmesi için yazılmıştır. Önce **kurallar**, sonra **ortam tuzakları**,
@@ -15,10 +45,16 @@ saldırılara* dayanıklılığını karşılaştırıyor. Ama makalenin asıl t
 "hangisi daha dayanıklı" değil: **"ölçüm yöntemi sonucu belirliyor."**
 
 Bitenler: C1 (CIFAR-10 ana ölçümler), E2 (seçim protokolü ablasyonu),
-E1 (CIFAR-100 genelleme). Bitmeyenler: makaleye yazım, E7 (SVHN), E3
-(kalibrasyon), E6 (L2 tehdit modeli).
+E1 (CIFAR-100 genelleme), **makaleye yazım** (E1+E2 iki dilde içeride).
+Bitmeyenler: E7 (SVHN — **koşuyor**), E3 (kod hazır, koşum bekliyor),
+E6 (kod + ön-kayıt hazır, koşum bekliyor).
 
-Hiçbir koşum aktif değil. GPU boş.
+**Bu oturumda tezin en kırılgan iddiası düzeltildi.** `r = 0,997` ampirik bir
+korelasyon değil, cebirsel bir özdeşlikmiş: temiz-yanlış örnekler saldırı
+altında yanlış kaldığı için (36 yönde ölçüm 0,989-1,000) `ham = hata +
+koşullu·(1−hata)` zorunlu olarak çıkar; artık en fazla 0,41 puan. Bu iddiayı
+**güçlendirdi** — artık üç hedefe dayanmıyor ve her çalışmaya uygulanabilir.
+Ayrıntı: `E1_PILOT_KAPISI.md` EK J.
 
 ---
 
@@ -31,6 +67,13 @@ Makaleye veya belgeye giren her sayının, onu üreten bir **artefakt dosyası**
 (JSON/npz) ve o dosyayı üreten bir **betik** olmalı. "Hesapladım, şu çıktı"
 kabul edilmez. Bu depoda daha önce, üretici kodu olmayan sayılar metne girdi
 ve yanlış çıktı.
+
+### K2a — Bire çok yakın bir korelasyon ÖNCE özdeşlik mi diye sınanır
+Bir niceliğin **kendi baskın bileşeniyle** korelasyonu bir bulgu değildir.
+`r = 0,997` tam bu yüzden yanlış çerçevelenmişti: bağımlı değişken bağımsız
+değişkeni tanım gereği içeriyordu. Yüksek bir korelasyon raporlanmadan önce
+cebirsel olarak türetilip türetilemeyeceği sorulacaktır. Bu oturumun
+denetimleri ölçünün *kesinliğini* sorguladı, *kendisini* sorgulamadı.
 
 ### K2 — "X kat" biçimindeki hiçbir iddia üç sınavı geçmeden manşete konmaz
 1. Pay ve payda **aynı nicelik** ve aynı cetvelde mi?
@@ -116,7 +159,10 @@ GPU zamanı bu yüzden boşa gitti. Bekçi de çare değil (o da uyur).
 
 ## 3. YAPILACAK İŞLER — öncelik sırasıyla
 
-### İŞ-1 · `r = 0,997` iddiasını 14 konumda nitele  ⏱ 1-2 saat, GPU yok
+### İŞ-1 · ~~`r = 0,997` iddiasını 14 konumda nitele~~ — **BİTTİ** (`fe86f48`)
+
+> Sonradan ortaya çıktı ki bu korelasyon bir **özdeşlik**; §4.2.1 yeniden
+> yazıldı (`68b6a74`). Niteleme, korelasyonun hâlâ anıldığı tek yerde duruyor.
 
 **Sorun nedir:** Makale, ham transfer oranı ile koşullu oran arasındaki
 sapmanın hedefin temiz hatasıyla açıklandığını `r = 0,997` diye söylüyor. Bu
@@ -153,7 +199,7 @@ nitelemesi ekle. Öz (`main.tex`) için kısa biçim yeterli.
 
 ---
 
-### İŞ-2 · E1 ve E2'yi makaleye yaz  ⏱ 1-2 gün, GPU yok
+### İŞ-2 · ~~E1 ve E2'yi makaleye yaz~~ — **BİTTİ** (`9707337`)
 
 **Sorun nedir:** `paper/` ağacında "CIFAR-100" kelimesi **hiç geçmiyor**.
 E1 ve E2 bitti ama makaleye tek satır girmedi. Dahası iki cümle artık
@@ -202,7 +248,7 @@ sayılar `verify_manuscript_numbers.py`'ye kontrol olarak eklendi.
 
 ---
 
-### İŞ-3 · E7-kısa'yı başlat  ⏱ 2-4 saat hazırlık + ~11 GPU-saat (+ temiz ön-eğitim)
+### İŞ-3 · E7-kısa'yı başlat — **KOŞUYOR** (hazırlık `c24bb22`, başlangıç 13:41)
 
 **Ne bu:** SVHN veri kümesinde küçük bir koşum. **Neden gerekli:** E3'ün
 kurduğu regresyonun x ekseni "modelin temiz hatası". Elimizdeki bütün noktalar
@@ -240,7 +286,7 @@ raporlanmış (SVHN dengesiz olduğu için bileşim payının CIFAR'daki
 
 ---
 
-### İŞ-4 · E3'ü kodla ve koş  ⏱ 4-8 saat kod + 3-5 GPU-saat
+### İŞ-4 · E3'ü kodla ve koş — **KOD BİTTİ** (`54e8b6e`), koşum GPU bekliyor
 
 **Ne bu:** Tezin omurgası. "Ham transfer oranı ile koşullu oran arasındaki
 fark, hedefin temiz hatasıyla ne kadar açıklanıyor?" sorusunun kalibrasyon
@@ -268,7 +314,7 @@ ayrı eğim + küme bootstrap GA'sı içeriyor; havuzlanmış fit **üretilmiyor
 
 ---
 
-### İŞ-5 · E6 hakkında karar ver  ⏱ 1-2 saat belge (veya ~5 GPU-saat)
+### İŞ-5 · ~~E6 hakkında karar ver~~ — **BİTTİ** (`b2f38c0`, K-02)
 
 **Ne bu:** L2 tehdit modeli — saldırıyı farklı bir "mesafe ölçüsüyle"
 sınırlamak. Şu ana kadar her şey L∞ ile yapıldı.
@@ -284,7 +330,7 @@ Sessiz bırakmak **kabul edilmez**.
 
 ---
 
-### İŞ-6 · Küçük kalemler (hepsi kısa)
+### İŞ-6 · Küçük kalemler — **a,d,e,f,g,h BİTTİ** (`784e52d`); b,c T5 nedeniyle ertelendi
 
 | # | İş | Süre |
 |---|---|---|
