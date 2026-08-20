@@ -101,3 +101,58 @@ Doğru hamle koşum eklemek değil **iddiayı yeniden yazmaktı** ve yazıldı
    gözlemsel) ayrı raporlanacak, havuzlama yasak. Sapma beyanı yazıldı.
    Tasarım, E5 ertelemesini ve E7-kısa kararını **doğruladı**.
 3. E5 ertelendiği için, makalede E5'e dayanan hiçbir iddia kurulmayacak.
+
+
+---
+
+## K-02 (2026-08-20) — E6 UYGULANDI ve E7'nin ARKASINA KUYRUKLANDI
+
+**Karar veren:** K-01'de kullanıcı ("E6: TUTULDU", sıra "E1 → E7-kısa → E6").
+Bu kayıt, o kararın **uygulamasını** belgeler; kararı değiştirmez.
+
+### Bulunan durum
+
+K-01'de E6 tutulmuştu ama ortada **hiçbir uygulama yoktu**: `q1_pipeline.sh`'ta
+`e6` aşaması yok, ön-kayıt belgesi yok, tek çıktı yok. Yani karar kâğıt
+üstündeydi ve sessizce düşmüş sayılabilirdi.
+
+### Ölçülen gerçek — E6 sanıldığı kadar pahalı değil
+
+E6 **eğitim gerektirmiyor**; mevcut C1 checkpointlerinin farklı bir norm altında
+**değerlendirilmesi**. Altyapı da zaten yerindeydi:
+
+| bileşen | durum |
+|---|---|
+| `PGDL2Attack` | `src/attacks/pgd.py:135` — hazır |
+| `c1_pgd_eval.py --norm l2` | bayrak zaten var |
+| `run_autoattack_run2.py --norm L2` | bayrak zaten var |
+| `c1_c3_transfer_matrix.py` L2 | **eksikti → eklendi** (`--norm {linf,l2}`, varsayılan `linf`, eski davranış birebir korunur) |
+
+### Yapılanlar
+
+1. **Ön-kayıt yazıldı:** `results/q1_research/E6_ON_KAYIT.md` — hiçbir L2
+   ölçümü görülmeden. Sabitlenen tasarım (ε=0,5; PGD-L2 steps=10, α=0,125,
+   n=10.000; AA-L2 n=5.000), üç sınanabilir ön-kestirim (Ö1 yön, Ö2 yayılım
+   ≥2 puan, Ö3 işaret) ve dört analiz-uygunluk kuralı (U1-U4).
+2. **Koşucu yazıldı:** `scripts/q1_e6_l2.sh` — **ayrı betik**, koşan
+   `q1_pipeline.sh`'a dokunulmadı (T5: koşan bash betiği düzenlenmez).
+   İçinde bir **GPU çakışma muhafızı** var: `q1_pipeline.sh` koşuyorsa
+   başlamayı reddeder (sınandı: E7 koşarken doğru şekilde durdu).
+3. **Sağlama testi yazıldı:** `scripts/q1_e6_u4_check.py` — aynı checkpoint
+   L∞ ve L2 değerlendirmelerinde **aynı temiz doğruluğu** vermelidir; vermezse
+   yükleme/ön-işleme hatası vardır ve analiz durur.
+4. **Makaleye tehdit modeli kapsamı yazıldı** (iki dilde) — E6 koşulsun ya da
+   koşulmasın doğru olması gereken beyan.
+
+### Bağlayıcı çerçeve (E6_ON_KAYIT §0'dan)
+
+> Modeller **L∞ ile eğitilmiştir**. E6 onları L2 altında **ölçer**. Bu,
+> modellerin L2-gürbüz olduğu iddiası değildir ve çıkan sayılar RobustBench'in
+> **L2-eğitilmiş** girdileriyle karşılaştırılamaz. E6'nın taşıdığı tek nicelik,
+> protokol yayılımının ve ham−koşullu ilişkisinin norm değişince ne yaptığıdır.
+
+### Neden şimdi koşulmadı
+
+E7 (SVHN) 2026-08-20 13:41'de başlatıldı ve GPU'yu kullanıyor. İki GPU işini
+üst üste bindirmek ikisini de yavaşlatır. E6 muhafızı bunu kod düzeyinde
+engelliyor; E7 bitince `bash scripts/q1_e6_l2.sh` tek komutla başlar.

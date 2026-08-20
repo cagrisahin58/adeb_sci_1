@@ -17,7 +17,7 @@ import torch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.attacks import PGDAttack  # noqa: E402
+from src.attacks import PGDAttack, PGDL2Attack  # noqa: E402
 from src.data import DATASETS, get_loaders  # noqa: E402
 from src.models import ModelRegistry  # noqa: E402
 from src.utils.load_model_auto import load_model_auto  # noqa: E402
@@ -25,6 +25,10 @@ from src.utils.load_model_auto import load_model_auto  # noqa: E402
 EPS = 8 / 255
 ALPHA = 2 / 255
 STEPS = 10
+# E6 (L2 tehdit modeli) on-kayitli degerleri -- E6_ON_KAYIT.md §1
+EPS_L2 = 0.5
+STEPS_L2 = 10
+ALPHA_L2 = 2.5 * EPS_L2 / STEPS_L2  # = 0.125
 PAIRS = {1: (1001, 2001), 2: (1002, 2002), 3: (1003, 2003)}
 
 
@@ -72,7 +76,13 @@ def main():
                     help="PAIRS yerine acik model listesi (tekrarlanabilir); "
                          "verilirse tek kosu yapilir ve --out-dir kullanilir")
     ap.add_argument("--out-dir", type=str, default=None)
+    # E6: tehdit modeli ekseni. VARSAYILAN linf -> eski davranis birebir korunur.
+    ap.add_argument("--norm", choices=["linf", "l2"], default="linf")
     args = ap.parse_args()
+    if args.norm == "l2":
+        atk_cls, atk_eps, atk_alpha, atk_steps = PGDL2Attack, EPS_L2, ALPHA_L2, STEPS_L2
+    else:
+        atk_cls, atk_eps, atk_alpha, atk_steps = PGDAttack, EPS, ALPHA, STEPS
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Referans model: SVHN'de RobustBench yok -> --model listesine ucuncu bir
@@ -138,7 +148,7 @@ def main():
 
         results = {}
         for src in names:
-            attack = PGDAttack(models[src], eps=EPS, alpha=ALPHA, steps=STEPS)
+            attack = atk_cls(models[src], eps=atk_eps, alpha=atk_alpha, steps=atk_steps)
             adv_wrong = {n: [] for n in names}
             seen = 0
             for images, labels in test_loader:
@@ -177,7 +187,9 @@ def main():
 
         with open(out_dir / "transfer_matrix.json", "w") as f:
             json.dump({"pair": run_tag, "seed": args.seed, "n_samples": args.n_samples,
-                       "eps": EPS, "models": names, "results": results}, f, indent=2)
+                       "eps": atk_eps, "alpha": atk_alpha, "steps": atk_steps,
+                       "norm": args.norm,
+                       "models": names, "results": results}, f, indent=2)
         print(f"{run_tag} kaydedildi: {out_dir}")
 
 
