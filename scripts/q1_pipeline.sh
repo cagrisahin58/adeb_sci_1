@@ -36,13 +36,33 @@ EPS8=0.03137254901960784
 # guard: TRAINING_COMPLETE dosyasi (yarim egitim asla atlanmaz)
 # Gecici hatalara (paylasilan GPU'da anlik OOM vb.) karsi 3 deneme; --resume
 # sayesinde her deneme kaldigi yerden devam eder, is kaybi olmaz.
+# BUTCE ETIKETI: TRAINING_COMPLETE "bitti" der ama HANGI BUTCEYLE bitti DEMEZ.
+# E7 once kisa (50 epok) kosulup sonra E7_FULL=1 verilirse muhafiz eski kisa
+# egitimleri SKIP eder ve KARISIK KOHORT olusur. Etiket uyusmazsa DURULUR.
+# TRAIN_BUDGET bos ise davranis eskisiyle AYNIDIR (geriye donuk uyumlu).
+TRAIN_BUDGET="${TRAIN_BUDGET:-}"
+
 run_train() {
     local name="$1" ckdir="$2"; shift 2
-    if [ -e "$ckdir/TRAINING_COMPLETE" ]; then log "SKIP  $name"; return 0; fi
+    local bfile="$ckdir/TRAINING_BUDGET"
+    if [ -e "$ckdir/TRAINING_COMPLETE" ]; then
+        if [ -n "$TRAIN_BUDGET" ] && [ -e "$bfile" ]; then
+            local have
+            have="$(cat "$bfile" 2>/dev/null)"
+            if [ "$have" != "$TRAIN_BUDGET" ]; then
+                log "FAIL  $name: BUTCE UYUSMAZLIGI (diskte '$have', istenen '$TRAIN_BUDGET')"
+                log "      Sessizce atlanirsa KARISIK KOHORT olusur (tohumlar farkli epok butcesiyle)."
+                log "      Ya $ckdir kaldirilip yeniden egitilmeli, ya da ayni butceyle kosulmali."
+                exit 1
+            fi
+        fi
+        log "SKIP  $name"; return 0
+    fi
     local attempt
     for attempt in 1 2 3; do
         log "START $name (deneme $attempt/3)"
         if "$@" --resume >> "logs/${name}.log" 2>&1 && [ -e "$ckdir/TRAINING_COMPLETE" ]; then
+            if [ -n "$TRAIN_BUDGET" ]; then printf '%s\n' "$TRAIN_BUDGET" > "$bfile"; fi
             log "DONE  $name"; return 0
         fi
         if [ "$attempt" -lt 3 ]; then
@@ -263,6 +283,11 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
         E7_RN_SEEDS="1001 1002"; E7_VIT_SEEDS="2001 2002"; E7_EPOCHS=50
         log "E7: KISA surum (varsayilan, K-01) -- 2 tohum x 50 epok; tam surum icin E7_FULL=1"
     fi
+    # Butce etiketi yalniz AT adimlari icin anlamlidir: temiz on-egitim
+    # E7_FULL'den ETKILENMEZ (butcesi clean_args icinde sabittir), o yuzden
+    # temiz cagrilarda TRAIN_BUDGET bos birakilir.
+    E7_BUDGET="svhn-at-${E7_EPOCHS}ep"
+    log "E7: butce etiketi = ${E7_BUDGET} (karisik kohort muhafizi)"
     # SVHN val bolmesi BILEREK --stratified DEGIL: esit-sinif bolmesi dengesiz
     # SVHN'de val kumesini dengeli yapar, test dengesiz kalir -> secim olcutu ile
     # raporlama olcutu uyusmaz. Ayrinti: E7_KOSUM_ONCESI_KONTROL.md §3.
@@ -274,6 +299,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
             python -m cli.main train clean -m resnet18 --dataset svhn \
                 $(clean_args resnet18) --seed "$seed" -o "$root" \
                 --val-indices data/val_split_indices_svhn.json
+        TRAIN_BUDGET="$E7_BUDGET"   # karisik kohort muhafizi
         run_train "Q1_svhn_at_resnet18_${seed}" "${root}/resnet18/adv/adversarial_training" \
             python -m cli.main train adversarial -m resnet18 --dataset svhn \
                 --device cuda --lr 0.001 --epochs "$E7_EPOCHS" --batch-size 128 --patience 20 \
@@ -281,6 +307,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
                 --pretrained "${root}/resnet18/clean/best.pth" \
                 --val-indices data/val_split_indices_svhn.json --save-every 2 \
                 --eps $EPS8
+        TRAIN_BUDGET=""             # temiz on-egitim etiketsiz kalsin
         run_step "Q1_svhn_pgd_resnet18_${seed}" \
             "results/q1/svhn/resnet18_s${seed}/pgd_summary_resnet18.json" \
             python scripts/c1_pgd_eval.py --model-type resnet18 --dataset svhn \
@@ -293,6 +320,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
             python -m cli.main train clean -m vit_tiny --dataset svhn \
                 $(clean_args vit_tiny) --seed "$seed" -o "$root" \
                 --val-indices data/val_split_indices_svhn.json
+        TRAIN_BUDGET="$E7_BUDGET"   # karisik kohort muhafizi
         run_train "Q1_svhn_at_vit_tiny_${seed}" "${root}/vit_tiny/adv/adversarial_training" \
             python -m cli.main train adversarial -m vit_tiny --dataset svhn \
                 --device cuda --lr 0.001 --epochs "$E7_EPOCHS" --batch-size 64 --patience 20 \
@@ -300,6 +328,7 @@ e7)  # SVHN capasi: flip zaten kapali (DATASETS), eps-warmup + LR 0.001 (rapor E
                 --pretrained "${root}/vit_tiny/clean/best.pth" \
                 --val-indices data/val_split_indices_svhn.json --save-every 2 \
                 --eps $EPS8
+        TRAIN_BUDGET=""             # temiz on-egitim etiketsiz kalsin
         run_step "Q1_svhn_pgd_vit_tiny_${seed}" \
             "results/q1/svhn/vit_tiny_s${seed}/pgd_summary_vit_tiny.json" \
             python scripts/c1_pgd_eval.py --model-type vit_tiny --dataset svhn \
