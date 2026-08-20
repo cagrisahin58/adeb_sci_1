@@ -50,7 +50,7 @@
 >
 > **Sırada bekleyenler (GPU boşalınca, bu sırayla):**
 > 1. E7 analiz zinciri: `bash scripts/q1_e1_analysis.sh --dataset svhn`
-> 2. E3 tam koşumu (kod hazır, duman testi geçti) — 3-5 GPU-saat
+> 2. E3 **A kolu** — `bash scripts/q1_e3_run.sh` (B kolu bitti) — 3-5 GPU-saat
 > 3. E6/L2: `bash scripts/q1_e6_l2.sh` (muhafız E7 koşarken reddediyor)
 > 4. B.8: `q1_e2_test_curve.py --dataset cifar100` (1 GPU-saat)
 >
@@ -316,7 +316,17 @@ raporlanmış (SVHN dengesiz olduğu için bileşim payının CIFAR'daki
 
 ---
 
-### İŞ-4 · E3'ü kodla ve koş — **KOD BİTTİ** (`54e8b6e`), koşum GPU bekliyor
+### İŞ-4 · E3 — **B KOLU KOŞULDU** (`35d41fd`); A kolu GPU bekliyor
+
+> B kolunun (gözlemsel) GPU gerektirmediği fark edildi: final modellerden
+> gelir ve gereken örnek-bazlı maskeler zaten diskte.
+> **Sonuç:** 24 nokta / 5 küme, temiz hata %13,95-58,06; protokol
+> yayılımının eğimi **0,608**, küme bootstrap GA'sı **[0,364; 1,275]** —
+> sıfırı içermiyor. Özdeşlik artığı 0,129 / 0,41 puan (bağımsız ölçümle
+> tutarlı). Doğrusal-olmama işareti var (mse 9,61 → 5,82 karesel terimle);
+> hüküm A kolu gelmeden verilmiyor.
+> **Manşet (iki kolun eğimlerinin uyuşması) HENÜZ KURULAMAZ** ve kod da
+> kurmuyor. A kolu için: `bash scripts/q1_e3_run.sh` (GPU boşken).
 
 **Ne bu:** Tezin omurgası. "Ham transfer oranı ile koşullu oran arasındaki
 fark, hedefin temiz hatasıyla ne kadar açıklanıyor?" sorusunun kalibrasyon
