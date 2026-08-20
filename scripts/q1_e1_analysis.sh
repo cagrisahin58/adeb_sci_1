@@ -29,10 +29,24 @@ while [ $# -gt 0 ]; do
     esac
 done
 
+# Rapor basligi/dosya adi da veri kumesine gore: CIFAR-100 ciktisi "C1"
+# basligiyla ureiliyordu ve KARANTINA kurali acisindan karistirma riskiydi.
 case "$DS" in
-    cifar100) DEF_PAIRS="1 2 3"; DEF_SUMMARY="e1_transfer_summary.json" ;;
-    svhn)     DEF_PAIRS="1 2";   DEF_SUMMARY="e7_transfer_summary.json" ;;
-    cifar10)  DEF_PAIRS="1 2 3"; DEF_SUMMARY="c1_transfer_summary.json" ;;
+    cifar100)
+        DEF_PAIRS="1 2 3"; DEF_SUMMARY="e1_transfer_summary.json"
+        DEF_TITLE="E1 Transfer Protokolleri - CIFAR-100, 3 Tohum"
+        DEF_MD="E1_TRANSFER_RAPORU.md"
+        DEF_DESC="Ayni istatistik kodu (a2_transfer_protocols.py), E1 (CIFAR-100) kontrol noktalarina uygulandi. Her satir 3 tohum ortalamasi +- std." ;;
+    svhn)
+        DEF_PAIRS="1 2";   DEF_SUMMARY="e7_transfer_summary.json"
+        DEF_TITLE="E7 Transfer Protokolleri - SVHN, 2 Tohum"
+        DEF_MD="E7_TRANSFER_RAPORU.md"
+        DEF_DESC="Ayni istatistik kodu (a2_transfer_protocols.py), E7 (SVHN, kisa surum) kontrol noktalarina uygulandi. Her satir 2 tohum ortalamasi +- std. UCUNCU MIMARI YOKTUR (2x2 matris)." ;;
+    cifar10)
+        DEF_PAIRS="1 2 3"; DEF_SUMMARY="c1_transfer_summary.json"
+        DEF_TITLE="C1 Transfer Protokolleri - 3 Tohum"
+        DEF_MD="C1_TRANSFER_RAPORU.md"
+        DEF_DESC="Ayni istatistik kodu (a2_transfer_protocols.py), C1 sizinti-duzeltmeli kontrol noktalarina uygulandi. Her satir 3 tohum ortalamasi +- std." ;;
     *) echo "HATA: desteklenmeyen veri kumesi '$DS' (cifar10|cifar100|svhn)"; exit 1 ;;
 esac
 
@@ -148,6 +162,7 @@ if [ "$PAIRS" = "$DEF_PAIRS" ]; then
     log "START toplulastirma"
     "${DEX[@]}" env AGG_IN_DIR="$OUT_ROOT" AGG_OLD="" \
         AGG_OUT_NAME="$SUMMARY_NAME" \
+        AGG_TITLE="$DEF_TITLE" AGG_MD_NAME="$DEF_MD" AGG_DESC="$DEF_DESC" \
         python scripts/c1_transfer_aggregate.py \
         || { echo "FAIL toplulastirma"; exit 1; }
     log "DONE toplulastirma -> ${OUT_ROOT}/${SUMMARY_NAME}"

@@ -15,6 +15,15 @@ ROOT = "/workspace" if os.path.isdir("/workspace/results") else os.path.expandus
 IN = os.path.join(ROOT, os.environ.get("AGG_IN_DIR", "results/c1_transfer"))
 _old_rel = os.environ.get("AGG_OLD", "results/rev2_blockA/a2_transfer_protocols.json")
 OLD = os.path.join(ROOT, _old_rel) if _old_rel else None
+# IS-6(e): baslik ve rapor dosya adi SABITTI -> CIFAR-100 ciktisi 'C1'
+# basligiyla ureiliyordu ve KARANTINA kurali acisindan karistirma riski
+# tasiyordu (C1 = CIFAR-10 sizinti-duzeltmeli kampanya). Artik ortamdan.
+TITLE = os.environ.get("AGG_TITLE", "C1 Transfer Protokolleri - 3 Tohum")
+MD_NAME = os.environ.get("AGG_MD_NAME", "C1_TRANSFER_RAPORU.md")
+DESC = os.environ.get(
+    "AGG_DESC",
+    "Ayni istatistik kodu (a2_transfer_protocols.py), C1 sizinti-duzeltmeli kontrol "
+    "noktalarina uygulandi. Her satir 3 tohum ortalamasi +- std.")
 PROTOCOLS = ["raw", "target_correct", "both_correct", "successful_source"]
 LABELS = {
     "raw": "Kosulsuz (ham)",
@@ -84,10 +93,9 @@ def f(x, n=2):
 
 
 L = []
-L.append("# C1 Transfer Protokolleri - 3 Tohum\n")
+L.append(f"# {TITLE}\n")
 L.append(
-    "Ayni istatistik kodu (a2_transfer_protocols.py), C1 sizinti-duzeltmeli kontrol "
-    "noktalarina uygulandi. Her satir 3 tohum ortalamasi +- std.\n"
+    DESC + "\n"
 )
 L.append("| Protokol | CNN->ViT | ViT->CNN | Fark | run3 fark |")
 L.append("|---|---|---|---|---|")
@@ -113,7 +121,7 @@ L.append(
     f"arasindaki mesafe {f(agg['protocol_spread_pp']['mean'])} +- {f(agg['protocol_spread_pp']['std'])} puan.\n"
 )
 
-out_md = os.path.join(IN, "C1_TRANSFER_RAPORU.md")
+out_md = os.path.join(IN, MD_NAME)
 with open(out_md, "w", encoding="utf-8") as fh:
     fh.write("\n".join(L) + "\n")
 print("\n".join(L))

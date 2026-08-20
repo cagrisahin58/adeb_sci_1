@@ -193,3 +193,12 @@ tr_missing = sum(1 for _, _, f in rows if not f["TR"])
 print(f"TOPLAM={len(rows)}  EN_EKSIK={en_missing}  TR_EKSIK={tr_missing}")
 if not LANGS["TR"].strip():
     print("UYARI: TR metni okunamadi (dosya adlari degismis olabilir).")
+
+# IS-6(d): betik eksik bulsa BILE 0 ile cikiyordu -> KAPI olarak kullanilamiyordu.
+# Artik eksik varsa 1 doner ve CI/kanca icinde kapi gorevi gorebilir.
+import sys as _sys
+if en_missing or tr_missing or not LANGS["TR"].strip():
+    print("SONUC: KALDI -- metinde bulunamayan sayi var (ya da TR okunamadi).")
+    _sys.exit(1)
+print("SONUC: GECTI -- tum tasiyici sayilar iki dilde de artefaktla tutuyor.")
+_sys.exit(0)

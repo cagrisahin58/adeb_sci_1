@@ -58,7 +58,12 @@ def eval_masks(model, loader, device, eps, alpha, steps):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out-dir", default=str(ROOT / "results/q1/e2"))
+    # IS-6(a) / B.8 borcu: veri kumesi artik SABIT DEGIL. CIFAR-100 secim
+    # bandini VEKIL (val) yerine GERCEK TEST uzerinde olcebilmek icin gerekli.
+    ap.add_argument("--dataset", default="cifar10", choices=["cifar10", "cifar100", "svhn"])
+    ap.add_argument("--traj-root", default=None,
+                    help="yorunge koku; verilmezse veri kumesinden turetilir")
+    ap.add_argument("--out-dir", default=None)
     ap.add_argument("--only", default="", help="ornek: vit_tiny_s2001")
     ap.add_argument("--eps", type=float, default=8 / 255)
     ap.add_argument("--alpha", type=float, default=2 / 255)
@@ -70,9 +75,15 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     if device.type != "cuda":
         sys.exit("CUDA yok - P0 test egrisi CPU'da makul surede bitmez")
-    _, test_loader = get_loaders(dataset="cifar10", data_dir=str(ROOT / "data"),
+    # Yorunge koku ve cikti dizini veri kumesinden turetilir (acikca verilmezse)
+    TRAJ_ROOTS = {"cifar10": "models/q1/e2", "cifar100": "models/q1/cifar100",
+                  "svhn": "models/q1/svhn"}
+    OUT_DIRS = {"cifar10": "results/q1/e2", "cifar100": "results/q1/cifar100/testcurve",
+                "svhn": "results/q1/svhn/testcurve"}
+    traj_root = args.traj_root or TRAJ_ROOTS[args.dataset]
+    _, test_loader = get_loaders(dataset=args.dataset, data_dir=str(ROOT / "data"),
                                  test_batch_size=args.batch_size)
-    out_dir = Path(args.out_dir)
+    out_dir = Path(args.out_dir or str(ROOT / OUT_DIRS[args.dataset]))
     out_dir.mkdir(parents=True, exist_ok=True)
 
     for arch, seed in TRAJ:
@@ -83,7 +94,7 @@ def main():
         if out_path.exists():
             print(f"SKIP {tag} (zaten var)", flush=True)
             continue
-        ep_dir = (ROOT / f"models/q1/e2/{tag}/{arch}/adv/adversarial_training/epochs")
+        ep_dir = (ROOT / f"{traj_root}/{tag}/{arch}/adv/adversarial_training/epochs")
         ckpts = sorted(ep_dir.glob("epoch_*.pth"),
                        key=lambda p: int(re.search(r"epoch_(\d+)", p.name).group(1)))
         if not ckpts:

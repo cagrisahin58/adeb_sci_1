@@ -172,3 +172,77 @@ modellere uygulanacaksa yayımlanmış modellerde kalibre edilmelidir.
    kolu ayrı koşar ve eğim farkı için küme bootstrap GA'sı üretir.
 3. Havuzlanmış fit **üretilmeyecek** — kodda böyle bir çıktı yolu
    bırakılmayacak ki sonradan yanlışlıkla raporlanmasın.
+
+---
+
+## EK A — §2'nin vaat ettiği boşluk ölçümü (2026-08-20)
+
+§2 iki boşluk saymış ve ikincisi için bir **beklenti** yazmıştı:
+
+> *"İkinci bir boşluk daha ölçüldü: %19,4-23,5 arası — ResNet ile ViT
+> yörüngeleri arasındaki kopukluk. **E1'in CIFAR-100 noktalarıyla kapanması
+> bekleniyor.**"*
+
+E1 bitti; beklenti ölçüldü. **Beklenti karşılanmadı.**
+
+Üretici: `scripts/q1_e3_bosluk_kontrol.py` → `results/q1/e3_bosluk_kontrol.json`
+(girdi: `e3_coverage.json` yörünge aralıkları + `e1_cifar100_summary.json`
+gerçek test temiz doğrulukları).
+
+### A.1 Ölçülen kapsama
+
+Yörüngelerin temiz hata ekseninde kapladığı birleşim:
+
+| kapsanan aralık | genişlik |
+|---|---|
+| %10,72 – 17,68 | 6,96 |
+| %23,28 – 42,28 | 19,00 |
+| %56,40 – 66,95 | 10,55 |
+
+**Ölçülen boşluklar:**
+
+| boşluk | genişlik | durum |
+|---|---|---|
+| **%17,68 – 23,28** | **5,60** | §2'nin adıyla andığı kopukluk; **hâlâ boş** |
+| **%42,28 – 56,40** | **14,12** | **§2'de HİÇ ANILMAMIŞ**; bu ölçümde ortaya çıktı |
+| %12'nin altı | — | E7 (SVHN) kapatacak; koşum 2026-08-20'de başladı |
+
+### A.2 E1 boşluğu neden kapatmadı
+
+CIFAR-100 modellerinin gerçek test temiz hataları: ResNet **%35,33 / 35,76 /
+37,33**, ViT **%55,94 / 56,50 / 58,06**. Altı noktanın hepsi boşluğun **çok
+üzerinde**. Ön-kayıtlı boşluğun kapsanan oranı: **%4,6** — ve o %4,6 bile
+boşluğa giren bir noktadan değil, iki CIFAR-10 ViT yörüngesinin (s2002, s2003)
+alt ucunun boşluğun üst kenarına **0,19 puan** girmesinden geliyor.
+
+Beklenti neden yanlıştı: CIFAR-100'ün "daha zor" olması, temiz hatayı boşluğun
+**içine** değil **üstüne** taşır. Zorluk arttıkça hata artar; ara bir bandı
+doldurmak için ara bir zorluk gerekir, daha yükseği değil.
+
+### A.3 Bunun E3 için sonucu — raporlanması ZORUNLU
+
+E3'ün regresyonu %10,72-66,95 arasını kapsıyor ama içinde toplam **19,72
+puanlık iki delik** var. Bu bantlarda:
+
+- eğim **hiçbir noktayla desteklenmiyor**; oradaki değerler **interpolasyondur**,
+- iki kol (A: yörünge-içi, B: gözlemsel) de aynı deliklere sahiptir, dolayısıyla
+  "iki kolun eğimleri uyuşuyor" manşeti bu bantlar için kanıt taşımaz,
+- doğrusallık varsayımı deliklerin içinde **sınanmamıştır**.
+
+**Bağlayıcı:** E3 raporlanırken bu iki delik şekil üzerinde görünür kılınacak
+ve metinde adıyla anılacaktır (K8). Kapsama, "n=863 nokta" ifadesiyle
+sunulmayacaktır — 863 nokta 12 yörüngeden gelir ve eksende **sürekli değildir**.
+
+### A.4 Boşlukları ne kapatabilir
+
+| boşluk | aday | durum |
+|---|---|---|
+| %17,68 – 23,28 | E5 (ResNet-50 / ViT-Small, CIFAR-10) | **ERTELENDİ** (K-01) |
+| %42,28 – 56,40 | CIFAR-100 ViT yörüngesinin erken epokları | ölçülebilir: B.8 borcu kapanınca (`q1_e2_test_curve.py --dataset cifar100`, İŞ-6a ile **kod hazır**) |
+| %12 altı | E7 (SVHN) | koşuyor |
+
+İkinci boşluk için ucuz bir yol var: CIFAR-100 yörüngelerinin **test** eğrileri
+henüz üretilmedi (şimdiye kadar yalnız val vekili vardı). Kod artık
+veri-kümesi-parametrik; koşulduğunda o yörüngelerin erken epokları %42-56
+bandına düşebilir. **Düşeceği varsayılmayacak, ölçülecektir** — bu ekin
+yazılmasına yol açan hata tam olarak buydu.

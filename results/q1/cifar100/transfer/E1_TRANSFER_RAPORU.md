@@ -1,6 +1,6 @@
-# C1 Transfer Protokolleri - 3 Tohum
+# E1 Transfer Protokolleri - CIFAR-100, 3 Tohum
 
-Ayni istatistik kodu (a2_transfer_protocols.py), C1 sizinti-duzeltmeli kontrol noktalarina uygulandi. Her satir 3 tohum ortalamasi +- std.
+Ayni istatistik kodu (a2_transfer_protocols.py), E1 (CIFAR-100) kontrol noktalarina uygulandi. Her satir 3 tohum ortalamasi +- std.
 
 | Protokol | CNN->ViT | ViT->CNN | Fark | run3 fark |
 |---|---|---|---|---|

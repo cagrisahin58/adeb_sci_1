@@ -1,0 +1,132 @@
+{
+  "uretildi_utc": "2026-08-20T14:01:24.390694+00:00",
+  "aciklama": "Q1 bas artefaktlarinin koken kutugu. Artefaktlarin KENDISI degistirilmez; bu dosya onlarin yanindaki kanittir (IS-6h).",
+  "depo": {
+    "git_okunabildi": true,
+    "kaynak": "ana makine (q1_koken.sh)",
+    "git_sha": "b2f38c0106905252f8e1a49f809bbb5a8c53d21a",
+    "git_kisa": "b2f38c0",
+    "dal": "q1",
+    "son_commit_tarihi": "2026-08-20T16:52:23+03:00",
+    "calisma_agaci_kirli_mi": true
+  },
+  "tohumlar": {
+    "cifar10 (C1/E2)": {
+      "resnet18": [
+        1001,
+        1002,
+        1003
+      ],
+      "vit_tiny": [
+        2001,
+        2002,
+        2003
+      ]
+    },
+    "cifar100 (E1)": {
+      "resnet18": [
+        1001,
+        1002,
+        1003
+      ],
+      "vit_tiny": [
+        2001,
+        2002,
+        2003
+      ]
+    },
+    "svhn (E7-kisa)": {
+      "resnet18": [
+        1001,
+        1002
+      ],
+      "vit_tiny": [
+        2001,
+        2002
+      ]
+    },
+    "degerlendirme": {
+      "attack_seed": 42,
+      "attack_seed_ablasyon": [
+        42,
+        123,
+        456
+      ]
+    }
+  },
+  "calisma_zamani": {
+    "torch": "2.6.0a0+ecf3bae40a.nv25.01",
+    "cuda": "12.8",
+    "cudnn": 90700,
+    "gpu": "NVIDIA GeForce RTX 5090",
+    "numpy": "1.26.4",
+    "timm": "1.0.27",
+    "scipy": "1.14.1",
+    "torchvision": "0.20.0a0",
+    "robustbench": "mevcut"
+  },
+  "artefaktlar": {
+    "results/q1/e1_cifar100_summary.json": {
+      "sha256": "fd48de12015b3f42038d9cb751d49b68e1f7fa4bdab65420e87e35a035d73e6f",
+      "bayt": 5508,
+      "degistirilme_utc": "2026-08-20T01:30:24.075123+00:00"
+    },
+    "results/q1/cifar100/transfer/e1_transfer_summary.json": {
+      "sha256": "bcb2a5404bde74e51cd684735ed16775186fb378c37d8d23aaddd0bf39660a75",
+      "bayt": 4662,
+      "degistirilme_utc": "2026-08-20T13:59:15.650590+00:00"
+    },
+    "results/q1/c3_precision.json": {
+      "sha256": "073601bd8239a173c2a44e0cd07453f00a87f78f172a09e5ad83920571e020a7",
+      "bayt": 3281,
+      "degistirilme_utc": "2026-08-20T10:11:19.311376+00:00"
+    },
+    "results/q1/variance_ratio.json": {
+      "sha256": "8606022dcca10042f1fcc62b9de4ad77a66400469ad8bf751e8cb7d293884000",
+      "bayt": 4691,
+      "degistirilme_utc": "2026-08-17T16:14:48.790891+00:00"
+    },
+    "results/q1/e3_coverage.json": {
+      "sha256": "f9b117be064ae609505c3c9da0af8799852be7961c7a0d155aee8f002061f740",
+      "bayt": 6710,
+      "degistirilme_utc": "2026-08-20T10:40:27.186790+00:00"
+    },
+    "results/q1/e3_xekseni_test.json": {
+      "sha256": "4703c47f35315d8a2bcf8c739f390e1ee68271deed6ae03d8abe1f7cbf326e57",
+      "bayt": 1305,
+      "degistirilme_utc": "2026-08-19T20:54:32.997071+00:00"
+    },
+    "results/q1/e3_bosluk_kontrol.json": {
+      "sha256": "1c2e31377b0865edaf3c77251c88a8cb3900305e7791cb380cadc8630d3fc7d5",
+      "bayt": 3157,
+      "degistirilme_utc": "2026-08-20T13:55:34.114472+00:00"
+    },
+    "results/q1/e2/e2_report.json": {
+      "sha256": "aae297ba45f21d322e3ffcb578c57759edd6fcf96bf8ec5e929b9d2bab9f2447",
+      "bayt": 16026,
+      "degistirilme_utc": "2026-08-17T09:59:03.358850+00:00"
+    },
+    "results/q1/e2/e2_grid.json": {
+      "sha256": "74733741aa2a8335ea77984b2caf2a6d447a5a592c5d2741e5660bab843247e5",
+      "bayt": 47930,
+      "degistirilme_utc": "2026-08-17T14:56:16.782348+00:00"
+    },
+    "results/c1_seeds/c1_seed_summary.json": {
+      "sha256": "7b9b3ce499d7501439c78aee47937e19b13f1f920d880bcd3a1e3664185a1b2b",
+      "bayt": 10030,
+      "degistirilme_utc": "2026-08-06T17:49:29.993521+00:00"
+    },
+    "results/c1_transfer/c1_transfer_summary.json": {
+      "sha256": "0604279b58f2b38553d23c02c2d4b58b67347e5839e299cdfcdaabdbaa8c549a",
+      "bayt": 4686,
+      "degistirilme_utc": "2026-08-20T13:59:24.070026+00:00"
+    },
+    "results/c1_c3/c3_summary.json": {
+      "sha256": "bc13df4bcd92693991bbf307bd0b12261933b90ef91be60336ef13673c3351f7",
+      "bayt": 2763,
+      "degistirilme_utc": "2026-08-20T00:03:22.789513+00:00"
+    }
+  },
+  "eksik_artefaktlar": [],
+  "not": "eksik_artefaktlar bos degilse o deneyler henuz kosulmamistir (ornegin E7/SVHN veya E6/L2 ciktilari)."
+}

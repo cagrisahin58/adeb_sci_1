@@ -22,12 +22,18 @@ BASE = ROOT / "paper" / "manuscript_tr"
 # $...$ (tek dolar) araliklari; \$ kacislari haric tutulur
 MATH = re.compile(r"(?<!\\)\$(.+?)(?<!\\)\$", re.DOTALL)
 BAD = re.compile(r"\d,\d")
+# IS-6(f): ARALIK ISTISNASI. $[0,1]$ bir ondalik DEGIL, aralik gosterimidir
+# ve virgul orada dogrudur. Bu desen yakalanmazsa betik dogru yazimi hata
+# sanar; bir kez tam bu yuzden 252 DOGRU virgulu "duzeltmekten" donuldu.
+# Istisna SESSIZ DEGILDIR: aralik adaylari ayri bir bolumde raporlanir.
+ARALIK = re.compile(r"[\[\(]\s*-?\d+(?:\.\d+)?\s*,\s*-?\d+(?:\.\d+)?\s*[\]\)]")
 
 
 def main():
     files = sorted(BASE.rglob("*.tex"))
     total_bad = 0
     rows = []
+    aralik_rows = []
     for f in files:
         try:
             txt = f.read_text(encoding="utf-8")
@@ -37,10 +43,21 @@ def main():
         for i, line in enumerate(lines, 1):
             for m in MATH.finditer(line):
                 seg = m.group(1)
-                if BAD.search(seg):
+                if not BAD.search(seg):
+                    continue
+                # aralik gosterimlerini cikarip KALANDA ondalik ara
+                kalan = ARALIK.sub("", seg)
+                if BAD.search(kalan):
                     total_bad += 1
                     rows.append((str(f.relative_to(ROOT)), i, seg.strip()[:70]))
+                else:
+                    aralik_rows.append((str(f.relative_to(ROOT)), i, seg.strip()[:70]))
 
+    if aralik_rows:
+        print("ARALIK GOSTERIMI olarak ayiklandi (%d yer, HATA DEGIL):" % len(aralik_rows))
+        for path, ln, seg in aralik_rows[:10]:
+            print("  %s:%d  ->  $%s$" % (path, ln, seg))
+        print()
     if not rows:
         print("TEMIZ: matematik kipinde ciplak ondalik virgul YOK.")
         print("(Metin kipindeki virguller Turkce icin dogrudur, taranmadi.)")

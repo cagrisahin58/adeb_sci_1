@@ -1,0 +1,150 @@
+{
+  "uretildi_utc": "2026-08-20T13:55:34.116600+00:00",
+  "git": "",
+  "soru": "E3_YENIDEN_TASARIM §2'nin %19,4-23,5 boslugunu E1 (CIFAR-100) kapatti mi?",
+  "bosluk_temiz_hata": {
+    "alt": 19.38,
+    "ust": 23.47
+  },
+  "yorunge_kapsamasi_birlesim": [
+    [
+      10.72,
+      17.68
+    ],
+    [
+      23.28,
+      42.28
+    ],
+    [
+      56.4,
+      66.95
+    ]
+  ],
+  "OLCULEN_TUM_BOSLUKLAR": [
+    {
+      "alt": 17.68,
+      "ust": 23.28,
+      "genislik": 5.6
+    },
+    {
+      "alt": 42.28,
+      "ust": 56.4,
+      "genislik": 14.12
+    }
+  ],
+  "cifar100_final_temiz_hata": {
+    "resnet18": {
+      "temiz_dogruluk": [
+        64.24,
+        64.67,
+        62.67
+      ],
+      "temiz_hata": [
+        35.76,
+        35.33,
+        37.33
+      ]
+    },
+    "vit_tiny": {
+      "temiz_dogruluk": [
+        41.94,
+        43.5,
+        44.06
+      ],
+      "temiz_hata": [
+        58.06,
+        56.5,
+        55.94
+      ]
+    }
+  },
+  "cifar100_final_hata_araligi": [
+    35.33,
+    58.06
+  ],
+  "kaynak_araliklar": [
+    {
+      "kaynak": "e2/resnet18_s1001",
+      "alt": 10.72,
+      "ust": 16.32,
+      "n_ckpt": 100
+    },
+    {
+      "kaynak": "e2/resnet18_s1002",
+      "alt": 10.77,
+      "ust": 17.68,
+      "n_ckpt": 100
+    },
+    {
+      "kaynak": "e2/resnet18_s1003",
+      "alt": 10.85,
+      "ust": 16.78,
+      "n_ckpt": 100
+    },
+    {
+      "kaynak": "e2/vit_tiny_s2001",
+      "alt": 24.45,
+      "ust": 40.3,
+      "n_ckpt": 100
+    },
+    {
+      "kaynak": "e2/vit_tiny_s2002",
+      "alt": 23.4,
+      "ust": 42.28,
+      "n_ckpt": 100
+    },
+    {
+      "kaynak": "e2/vit_tiny_s2003",
+      "alt": 23.28,
+      "ust": 39.83,
+      "n_ckpt": 100
+    },
+    {
+      "kaynak": "cifar100/resnet18_s1001",
+      "alt": 34.55,
+      "ust": 40.2,
+      "n_ckpt": 52
+    },
+    {
+      "kaynak": "cifar100/resnet18_s1002",
+      "alt": 35.65,
+      "ust": 39.2,
+      "n_ckpt": 44
+    },
+    {
+      "kaynak": "cifar100/resnet18_s1003",
+      "alt": 35.15,
+      "ust": 40.15,
+      "n_ckpt": 69
+    },
+    {
+      "kaynak": "cifar100/vit_tiny_s2001",
+      "alt": 56.4,
+      "ust": 66.35,
+      "n_ckpt": 27
+    },
+    {
+      "kaynak": "cifar100/vit_tiny_s2002",
+      "alt": 57.3,
+      "ust": 66.95,
+      "n_ckpt": 31
+    },
+    {
+      "kaynak": "cifar100/vit_tiny_s2003",
+      "alt": 56.5,
+      "ust": 64.65,
+      "n_ckpt": 40
+    }
+  ],
+  "HUKUM": {
+    "bosluk_kapandi_mi": false,
+    "on_kayitli_bosluk_kapsanan_yuzde": 4.6,
+    "bosluga_giren_final_nokta": [],
+    "boslugun_ucuna_DEGEN_yorunge": [
+      "e2/vit_tiny_s2002",
+      "e2/vit_tiny_s2003"
+    ],
+    "NOT": "degen yorunge kapsama demek DEGILDIR; olcut kapsanan yuzdedir",
+    "yorum": "BEKLENTI KARSILANMADI (on-kayitli boslugun yalnizca %4.6i kapsaniyor). CIFAR-100 modelleri boslugun COK UZERINDE bir hata bolgesinde (35.33-58.06%) yasiyor; %19,4-23,5 araligi E1'den SONRA DA BOS. E3'un bu bolgedeki egimi hicbir noktayla desteklenmiyor; regresyon orada INTERPOLASYONDUR ve E3 raporlanirken YAZILMALIDIR (K8). Boslugu kapatabilecek tek planli kalem E5'tir (R50/ViT-S, ERTELENDI). NOT: E7 (SVHN) ALT ucu doldurur, bu ORTA boslugu DOLDURMAZ."
+  }
+}
