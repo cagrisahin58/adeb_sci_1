@@ -152,16 +152,26 @@ e1)  # CIFAR-100 ana cift (RN18/ViT-T), 3 tohum, save_every 1
     # CIFTLESTIRILMIS SIRA (hakem onerisi): pair1 tam bitsin -> pair2 -> pair3.
     # Boylece ilk ViT kaniti ~2 saatte gelir ve on-kayitin istedigi 1-tohum
     # PILOT KAPISI dogal olarak olusur (asagidaki durdurma kurallari).
-    # DURDURMA KURALLARI (pilot, logs/Q1_cifar100_*_2001.log):
+    # DURDURMA KURALLARI -- OLU (E1_PILOT_KAPISI.md EK B.1, 2026-08-17):
     #   clean ViT-T val acc < %40      -> DUR: --timm-pretrained veya patch-4
     #   AT ilk 5 epok val adv-acc < %5 -> DUR: LR/eps-warmup gozden gecir
+    # BU KAPI HICBIR ZAMAN BIR KARAR URETMEDI. ep1'de adv = 8,30 olculdu; bu
+    # deger hem ep5 sert esigini (4,745) hem ep10 nitelik cubugunu (8,0) DAHA
+    # BIRINCI EPOKTA asmisti. EK A'daki "GECTI" hukmu bir dogrulama degil
+    # formalitedir.
+    # DERS: kapi tedavinin COKME riskini olcuyordu; gercek risk ise "bilimsel
+    # olarak zayif ama CALISAN" bir ViT koluydu. Esik, olcmesi gereken seyin
+    # YANINA konmustu.
+    # Kapi SILINMEDI (silinseydi neden oldugu kayittan duserdi) ve YERINE YENI
+    # BIR ESIK DE KONMADI: veri gorulduk ten sonra esik kurmak kapi alisverisidir
+    # (K5 / EK B.2). Yerine analiz-uygunluk kurallari yazildi (EK B.3-B.7).
     for i in 1 2 3; do
         rs=$((1000 + i)); vs=$((2000 + i))
         train_pair_member cifar100 resnet18 "$rs" data/val_split_indices_cifar100.json 1
         train_pair_member cifar100 vit_tiny "$vs" data/val_split_indices_cifar100.json 1
         if [ "$i" = 1 ]; then
-            log "PILOT KAPISI: pair1 tamam. logs/Q1_cifar100_clean_vit_tiny_2001.log"
-            log "  ve *_at_vit_tiny_2001.log incelenmeli (clean val>=%40, AT ilk-5 adv>=%5)."
+            log "PILOT (KAPI OLU -- EK B.1): pair1 tamam. Loglar incelenebilir"
+            log "  ama esikler KARAR URETMEZ; ep1 zaten her iki cubugu asiyor."
         fi
     done
     # AutoAttack: cift bazli (indeks eslesmesi: 1001<->2001 ...)
@@ -243,8 +253,18 @@ e5pilot)  # R50 + ViT-S, 1 tohum: SURE OLCUMU (rapor: +-40% belirsizlik, pilot s
         python experiments/rev2/make_val_split.py --dataset cifar10
     train_pair_member cifar10 resnet50 3001 data/val_split_indices.json 2
     train_pair_member cifar10 vit_small 4001 data/val_split_indices.json 2
-    log "PILOT TAMAM - logs/Q1_cifar10_*_3001.log ve *_4001.log surelerini incele,"
-    log "ViT-S ilk-5-epoch adv-acc kontrolu: <%15 ise LR 2.5e-4'e dusur (rapor 5.3)"
+    log "PILOT TAMAM - logs/Q1_cifar10_*_3001.log ve *_4001.log SURELERINI incele."
+    # Buradaki "ViT-S ilk-5-epok adv-acc < %15 -> LR 2.5e-4" kuralı (rapor 5.3)
+    # E1'de OLU CIKAN kapiyla AYNI AILEDENDIR (ilk-birkac-epok adv-acc esigi).
+    # E1'de olculen: ep1 adv = 8,30, yani esikler daha ilk epokta asiliyor ve
+    # kapi hicbir karar uretmiyor (EK B.1). Ders E7'de uygulandi (ayri kapi
+    # KURULMADI, ilk cift pilot islevi goruyor), E5'te uygulanmamisti.
+    # E5 kosulursa: bu esik BAGLAYICI SAYILMAZ. Yeni bir esik de KONMUYOR --
+    # veri gorulduk ten sonra esik kurmak kapi alisverisidir (K5 / EK B.2).
+    # Yapilacak olan, sureleri olcup E5 kararini yeniden gozden gecirmektir
+    # (KAMPANYA_KARARLARI.md K-01: E5 ERTELENDI).
+    log "NOT: ilk-5-epok adv-acc esigi OLU sayilir (E1_PILOT_KAPISI.md EK B.1);"
+    log "  pilotun isi SURE olcumudur, kapi degil."
     ;;
 e5)  # kalan tohumlar (pilot onaylandiktan sonra)
     # On kosullar (review bulgusu): val split + pilot ciktilarinin varligi.
