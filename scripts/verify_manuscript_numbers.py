@@ -105,8 +105,15 @@ chk("C3 gelen-transfer r", c3["incoming_transfer_vs_own_vulnerability"]["pearson
 # r = 0,997 alti KOSEGEN-DISI yonden gelir ama o alti yon yalniz UC HEDEFTEN;
 # metin artik hedef duzeyi degeri de veriyor. Ikisi de denetlenmeli (K1).
 chk("C3 egim (0,762)", c3["raw_minus_cond_vs_target_error"]["slope"], 3)
-chk("C3 hedef-duzeyi r (n=3)",
-    c3p["veri_kumeleri"]["cifar10"]["HEDEF_DUZEYI_n3"]["pearson_r"], 4)
+# NOT: hedef-duzeyi r (0,9985) kontrolu KALDIRILDI. §4.2.1 artik iliskiyi
+# korelasyon olarak degil OZDESLIK olarak sunuyor; o sayi metinde yok.
+# Yerine ozdesligin TASIYICI sayilari denetleniyor.
+_oz = jl("results/q1/ozdeslik_kontrol.json")["ozet"]
+chk("ozdeslik P(aw|cw) min", _oz["P_advyanlis_verili_temizyanlis"]["min"], 3)
+chk("ozdeslik P(aw|cw) max", _oz["P_advyanlis_verili_temizyanlis"]["max"], 3)
+chk("ozdeslik artik max (puan)", _oz["ARTIK_puan"]["mutlak_max"], 2)
+chk("ozdeslik artik ort (puan)", _oz["ARTIK_puan"]["mutlak_ort"], 3)
+chk("ozdeslik artik/sapma max %", _oz["artigin_sapmaya_orani_yuzde"]["max"], 2)
 chk("Hoyer ResNet", beh["gradient"]["ResNet18_AT"]["sparsity_hoyer"]["mean"], 4)
 chk("Hoyer ViT", beh["gradient"]["ViT_Tiny_AT"]["sparsity_hoyer"]["mean"], 4)
 chk("alan50 ResNet", c45["spatial"]["energy_area_50pct"]["resnet"][0], 4)

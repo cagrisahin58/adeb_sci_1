@@ -129,7 +129,19 @@ Yayılımın arkasındaki mekanizma bileşimseldir. Hedefin temizde çözdüğü
 \subsubsection{Ham oranın ne kadarı hedefin temiz hatası?}
 \label{subsubsec:matrix}
 
-Karıştırıcıyı tartışmak yerine doğrudan nicelemek için analizi, WideResNet-28-10 referansını hem kaynak hem hedef olarak ekleyerek $3\times3$ matrise genişletiyoruz (Tablo~\ref{tab:transfer_matrix}). Altı köşegen dışı yönde, koşulsuz oran ile koşullu oran arasındaki fark hedefin temiz hatasıyla neredeyse mükemmel açıklanmaktadır: Pearson $r = 0{,}997$, eğim hedef hatasının puanı başına $0{,}762$ puan. Altı yön, üç hedefin iki kaynakla çaprazlanmasıdır; dolayısıyla yordayıcı yalnızca üç ayrı değer alır ve altı nokta bağımsız değildir. $n = 6$ varsayan bir güven aralığı kesinliği abartır. Hedef düzeyinde toplandığında nokta kestirimi neredeyse değişmez ($r = 0{,}9985$, aynı eğim) ama $n = 3$ kalır ve bu durumda Fisher-$z$ aralığı tanımsızdır. Bu yüzden korelasyonu üç hedef üzerinde bir nokta kestirimi olarak raporluyor, savı korelasyonun gücüne değil eğime ve işaretine dayandırıyoruz. Koşulsuz transfer oranları bu yüzden mimariler arası transfer edilebilirliği ölçmez; transfer edilebilirlik artı hedefin temiz zayıflığını, artık belirtebildiğimiz sabit bir oranda ölçer.
+Karıştırıcıyı tartışmak yerine doğrudan nicelemek için analizi, WideResNet-28-10 referansını hem kaynak hem hedef olarak ekleyerek $3\times3$ matrise genişletiyoruz (Tablo~\ref{tab:transfer_matrix}). İki oran arasındaki ilişki bir korelasyondan daha güçlü çıkmaktadır: tek bir olgusal öncüle dayanan bir \emph{özdeşliktir}.
+
+Hedefin temiz hatasına $e$, koşulsuz orana $r_{\text{ham}}$ ve hedef doğru koşullu orana $r_{\text{koş}}$ diyelim. Hedefin temiz girdide zaten yanlış sınıflandırdığı bir örnek pertürbasyondan sonra da yanlış kalıyorsa $r_{\text{ham}} = e + r_{\text{koş}}(1-e)$ olur ve dolayısıyla
+\begin{equation}
+r_{\text{ham}} - r_{\text{koş}} = e\,(1 - r_{\text{koş}}).
+\label{eq:raw_identity}
+\end{equation}
+
+Ölçülen kısım öncüldür ve sıkı biçimde tutmaktadır: $36$ köşegen dışı yönde (iki veri kümesi, üç tohum çifti, üç hedef, iki kaynak) temiz girdide yanlış sınıflandırılan bir örneğin saldırı altında da yanlış kalma olasılığı $0{,}989$ ile $1{,}000$ arasındadır. Denklem~\eqref{eq:raw_identity} bunun sonucunda ölçülen her koşulsuz oranı $0{,}41$ puandan küçük bir hatayla yeniden üretmektedir; ortalama mutlak artık $0{,}095$ puandır ve artık, açıklanan sapmanın en çok $\%1{,}39$'unu oluşturmaktadır.
+
+Bu, iddianın konumunu değiştirir ve güçlendirir. Koşulsuz oranın koşullu orandan sapması, verimizde hedefin temiz hatasıyla yalnızca ilişkili değildir; yarım puanın altında bir artık dışında $(1 - r_{\text{koş}})$ ile ölçeklenmiş \emph{o hatanın kendisidir}. Koşulsuz transfer oranları, üç hedefte rastlantısal olarak gözlediğimiz bir düzenlilik olarak değil, \emph{yapısı gereği} ve onları raporlayan her çalışmada hedef zayıflığıyla kirlenmektedir. Bu sonucu daha önce bir Pearson korelasyonu olarak ifade etmiştik (üç hedeften gelen altı yön üzerinde $r = 0{,}997$) ve bu ifade sonucu olduğundan zayıf göstermekteydi: bir niceliğin kendi baskın bileşeniyle bire yakın korelasyonu aritmetiktir ve özdeşlik yazıldığında onun gerektirdiği küçük örneklem uyarısına gerek kalmaz.
+
+Veri kümesine özgü kalan şey mekanizma değil orantı çarpanıdır. $(1 - r_{\text{koş}})$ saldırının ne kadar transfer edilebilir olduğuna bağlı olduğundan, uydurulan eğim CIFAR-10'da hedef hatasının puanı başına $0{,}762$, CIFAR-100'de $0{,}656$ puandır. Bu bir doğa sabiti değil, ölçülen hedefler üzerinden bir ortalamadır; özdeşlik başka model havuzlarına uygulanırken varsayılmamalı, yeniden kestirilmelidir. Koşulsuz transfer oranları bu yüzden mimariler arası transfer edilebilirliği ölçmez; transfer edilebilirlik artı hedefin temiz zayıflığını, Denklem~\eqref{eq:raw_identity}'in açıkça gösterdiği bir oranda ölçer.
 
 \begin{table}[!t]
 \centering

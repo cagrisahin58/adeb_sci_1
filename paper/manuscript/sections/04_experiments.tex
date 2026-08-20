@@ -129,7 +129,19 @@ The mechanism behind the spread is compositional. Samples that the target solves
 \subsubsection{How much of the raw rate is the target's clean error?}
 \label{subsubsec:matrix}
 
-To quantify the confound directly rather than argue it, we extend the analysis to a $3\times3$ matrix by adding the WideResNet-28-10 reference as both source and target (Table~\ref{tab:transfer_matrix}). Across the six off-diagonal directions, the gap between the unconditioned and the conditioned rate is almost perfectly explained by the clean error of the target: Pearson $r = 0.997$, with a slope of $0.762$ points per point of target error. The six directions are three targets crossed with two sources, so the predictor takes only three distinct values and the six points are not independent; an interval computed as if $n = 6$ would overstate the precision. Aggregating to the target level leaves the point estimate essentially unchanged ($r = 0.9985$, same slope) but leaves $n = 3$, where the Fisher-$z$ interval is undefined. We therefore report this correlation as a point estimate over three targets and rest the argument on the slope and its sign rather than on the strength of the correlation. Unconditioned transfer rates therefore do not measure transferability across architectures; they measure transferability plus the target's clean weakness, in a fixed proportion that we can now state.
+To quantify the confound directly rather than argue it, we extend the analysis to a $3\times3$ matrix by adding the WideResNet-28-10 reference as both source and target (Table~\ref{tab:transfer_matrix}). The relationship between the two rates turns out to be stronger than a correlation: it is an identity resting on a single empirical fact.
+
+Write $e$ for the target's clean error, $r_{\text{raw}}$ for the unconditioned rate and $r_{\text{cond}}$ for the target-correct conditioned rate. If a sample the target already misclassifies on clean input is still misclassified after the perturbation, then $r_{\text{raw}} = e + r_{\text{cond}}(1-e)$, and therefore
+\begin{equation}
+r_{\text{raw}} - r_{\text{cond}} = e\,(1 - r_{\text{cond}}).
+\label{eq:raw_identity}
+\end{equation}
+
+The antecedent is the part that is measured, and it holds tightly: across $36$ off-diagonal directions (two datasets, three seed pairs, three targets, two sources) the probability that a clean-misclassified sample is also misclassified under attack ranges from $0.989$ to $1.000$. Equation~\eqref{eq:raw_identity} consequently reproduces every measured unconditioned rate to within $0.41$ points, with a mean absolute residual of $0.095$ points; the residual accounts for at most $1.39\%$ of the deviation being explained.
+
+This changes the status of the claim, and strengthens it. The deviation of unconditioned from conditioned transfer rates does not merely correlate with the target's clean error in our data; it is that error, scaled by $(1 - r_{\text{cond}})$, up to a residual below half a point. Unconditioned transfer rates are contaminated by target weakness \emph{by construction}, in any study that reports them, not as a regularity we happened to observe on three targets. We previously stated this result as a Pearson correlation ($r = 0.997$ over six directions drawn from three targets) and that phrasing understated it: a near-unit correlation between a quantity and its own dominant component is arithmetic, and the small-sample caveat it required is unnecessary once the identity is written down.
+
+What remains dataset-specific is the proportionality factor, not the mechanism. Because $(1 - r_{\text{cond}})$ depends on how transferable the attack is, the fitted slope is $0.762$ points per point of target error on CIFAR-10 and $0.656$ on CIFAR-100. It is an average over the targets measured rather than a constant, and it should be re-estimated, not assumed, when the identity is applied to other model pools. Unconditioned transfer rates therefore do not measure transferability across architectures; they measure transferability plus the target's clean weakness, in a proportion that Equation~\eqref{eq:raw_identity} makes explicit.
 
 \begin{table}[!t]
 \centering

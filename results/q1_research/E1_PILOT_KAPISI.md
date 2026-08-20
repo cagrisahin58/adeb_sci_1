@@ -808,3 +808,82 @@ seçim-protokolü genliğinin 3-8 katı küçük** bir marjla kurulmuştur.
 - Analiz zincirinin logunda hata/traceback **yok**.
 - KARANTINA ihlali **yok**: makaledeki değerler `C1_REFERANS_FOYU` ile
   uyuşuyor, eski koşum sayıları "earlier single run" etiketli.
+
+---
+
+## EK J — B.4 madde 3 SINANAMAZDI: ön-kestirim aritmetik olarak garantiliydi (2026-08-20)
+
+**Bu ek, EK G.4 ve EK I.3'ün hükmünü GENİŞLETİR** (salt-ekleme; eski satırlar
+değiştirilmemiştir).
+
+### J.1 Ne bulundu
+
+EK I.3, B.4 madde 3 için *"bu tasarımda test edilemedi"* demişti ve gerekçeyi
+**x ekseninin çökmesine** bağlamıştı (CIFAR-100'de iki hedefin temiz hatası
+0,21 puan arayla çakışık → etkin ayrık x = 2).
+
+O gerekçe doğrudur ama **yeterli değildir**. Daha temel bir sorun var:
+ön-kestirimin sınadığı ilişki **cebirsel bir özdeşliktir**.
+
+Hedefin temiz hatası $e$, koşulsuz oran $r_{ham}$, koşullu (hedef-doğru) oran
+$r_{koş}$ olsun. Hedefin temiz girdide zaten yanlış sınıflandırdığı bir örnek
+saldırı altında da yanlış kalıyorsa:
+
+$$r_{ham} = e + r_{koş}(1-e) \quad\Longrightarrow\quad r_{ham} - r_{koş} = e\,(1 - r_{koş})$$
+
+Yani "sapma hedefin temiz hatasıyla ARTMALI" ön-kestirimi, öncül sağlandığı
+sürece **ölçüm yapılmadan bilinir**. $(1 - r_{koş})$ pozitif olduğu için eğim
+zorunlu olarak pozitiftir.
+
+### J.2 Öncül ölçüldü
+
+Üretici: `scripts/q1_ozdeslik_kontrol.py` → `results/q1/ozdeslik_kontrol.json`
+
+36 köşegen dışı yönde (iki veri kümesi × üç tohum çifti × üç hedef × iki kaynak):
+
+| ölçüm | değer |
+|---|---|
+| $P(\text{adv yanlış} \mid \text{temiz yanlış})$ | **0,989 – 1,000** |
+| özdeşliğin artığı (mutlak ortalama) | **0,095 puan** |
+| özdeşliğin artığı (mutlak en büyük) | **0,41 puan** |
+| artık / açıklanan sapma | **%0,00 – 1,39** |
+
+Öncül pratikte tamdır. Dolayısıyla ön-kestirim 3 de tamdır — **ölçümden önce**.
+
+### J.3 Hüküm
+
+> **B.4 madde 3 bir ön-kestirim değil, bir aritmetik sonuçtur.** Doğrulanmış
+> olması E1 lehine kanıt sayılmaz; yanlışlanması ise bir veri hatası
+> belirtisi olurdu. Bu maddenin doğrulanması, kayıtlı üç ön-kestirimden
+> **ikisinin** gerçek sınama olduğu anlamına gelir (madde 1: yayılım büyür;
+> madde 2: işaret korunur) ve makale böyle raporlamaktadır.
+
+Bu, EK I.3'ün hükmünü **zayıflatmaz, güçlendirir**: orada "yön tutarlı ama
+sınamıyor" denmişti; şimdi *neden* sınayamayacağı da biliniyor.
+
+### J.4 İyi haber — iddia zayıflamıyor, güçleniyor
+
+Özdeşlik olarak yazıldığında iddia:
+
+- **üç hedefe dayanmaktan çıkar** → EK G.5'in zorunlu kıldığı küçük-$n$
+  nitelemesi (İŞ-1'de 14 konuma eklenmişti) bu manşet için **gereksizleşir**;
+- **bu veri kümesine değil her çalışmaya** genellenir — ham oran raporlayan
+  yayımlanmış herhangi bir sonuca düzeltme olarak uygulanabilir;
+- **yeniden koşum gerektirmez** — düzeltme yalnız $e$ ve $r_{koş}$ ister.
+
+Veri kümesine özgü kalan tek şey orantı çarpanı $(1 - r_{koş})$'dur:
+CIFAR-10'da uydurulan eğim 0,762, CIFAR-100'de 0,656. Bu bir doğa sabiti
+değildir ve başka model havuzlarına uygulanırken **yeniden kestirilmelidir**.
+
+### J.5 Neden bu daha önce fark edilmedi — ders
+
+Sonuç, ilk yazımdan beri bir **Pearson korelasyonu** olarak çerçevelenmişti ve
+denetimler o çerçevenin *içinde* kaldı: "r kaç noktadan geliyor?", "GA'sı
+abartılı mı?", "kaç hedef var?" Hepsi doğru sorulardı ve İŞ-1'de gerçek
+kusurlar buldular. Ama hiçbiri **"bu bir korelasyon mu, yoksa özdeşlik mi?"**
+diye sormadı — yani ölçünün *kendisi* değil, ölçünün *kesinliği* denetlendi.
+
+**Kural olarak kaydediliyor:** bire çok yakın bir korelasyon raporlanmadan
+önce, bağımlı değişkenin bağımsız değişkeni **tanım gereği** içerip
+içermediği sorulacaktır. Bir niceliğin kendi baskın bileşeniyle korelasyonu
+bir bulgu değildir.
