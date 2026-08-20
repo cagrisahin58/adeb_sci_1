@@ -54,9 +54,13 @@
 > 3. E6/L2: `bash scripts/q1_e6_l2.sh` (muhafız E7 koşarken reddediyor)
 > 4. B.8: `q1_e2_test_curve.py --dataset cifar100` (1 GPU-saat)
 >
-> **T5 nedeniyle ertelenen iki kalem** (koşan `q1_pipeline.sh`'a dokunuyor):
-> İŞ-6(b) `e5pilot` dalındaki ölü kapı · İŞ-6(c) 137/144 satırlarındaki
-> terk edilmiş "%5 kapısı" yorumları. E7 bitince yapılacak.
+> **İŞ-6(b) ve (c) BİTTİ** (`db03fdb`). Bunlar "E7 bitmeden yapılamaz" diye
+> ertelenmişti; **gerekçe yanlıştı** — engel E7'nin bitmesi değil, betiğin
+> *koşuyor* olmasıydı (T5). E7 durunca engel kalktı ve yapıldı. Her iki ölü
+> kapı da işaretlendi; **silinmedi** (silinseydi neden öldükleri kayıttan
+> düşerdi) ve **yerlerine yeni eşik konmadı** (K5 / EK B.2 — kapı alışverişi).
+>
+> **Böylece İŞ-6'nın sekiz kaleminin tamamı kapandı.**
 
 Bu belge, konuşma geçmişi sıfırlansa bile kalan işin tek başına
 yürütülebilmesi için yazılmıştır. Önce **kurallar**, sonra **ortam tuzakları**,
@@ -356,7 +360,7 @@ Sessiz bırakmak **kabul edilmez**.
 
 ---
 
-### İŞ-6 · Küçük kalemler — **a,d,e,f,g,h BİTTİ** (`784e52d`); b,c T5 nedeniyle ertelendi
+### İŞ-6 · ~~Küçük kalemler~~ — **TAMAMI BİTTİ**: a,d,e,f,g,h (`784e52d`) + b,c (`db03fdb`)
 
 | # | İş | Süre |
 |---|---|---|
