@@ -68,6 +68,7 @@ beh = jl("results/c1_behavior_summary.json")
 c45 = jl("results/c1_c45_summary.json")
 c2 = [jl(f"results/c1_c2/pair{p}/tgr_summary.json") for p in (1, 2, 3)]
 vr = jl("results/q1/variance_ratio.json")
+c3p = jl("results/q1/c3_precision.json")
 
 
 def ms(v):
@@ -95,6 +96,12 @@ chk("basarili-kaynak fark", tr["protocols"]["successful_source"]["diff"]["mean"]
 chk("protokol yayilimi", tr["protocol_spread_pp"]["mean"])
 chk("C3 r", c3["raw_minus_cond_vs_target_error"]["pearson_r"], 3)
 chk("C3 gelen-transfer r", c3["incoming_transfer_vs_own_vulnerability"]["pearson_r"], 3)
+# --- YENI (2026-08-20, IS-1 nitelemesi): kesinlik nitelemesinin tasidigi sayilar.
+# r = 0,997 alti KOSEGEN-DISI yonden gelir ama o alti yon yalniz UC HEDEFTEN;
+# metin artik hedef duzeyi degeri de veriyor. Ikisi de denetlenmeli (K1).
+chk("C3 egim (0,762)", c3["raw_minus_cond_vs_target_error"]["slope"], 3)
+chk("C3 hedef-duzeyi r (n=3)",
+    c3p["veri_kumeleri"]["cifar10"]["HEDEF_DUZEYI_n3"]["pearson_r"], 4)
 chk("Hoyer ResNet", beh["gradient"]["ResNet18_AT"]["sparsity_hoyer"]["mean"], 4)
 chk("Hoyer ViT", beh["gradient"]["ViT_Tiny_AT"]["sparsity_hoyer"]["mean"], 4)
 chk("alan50 ResNet", c45["spatial"]["energy_area_50pct"]["resnet"][0], 4)
