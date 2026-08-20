@@ -246,3 +246,67 @@ henüz üretilmedi (şimdiye kadar yalnız val vekili vardı). Kod artık
 veri-kümesi-parametrik; koşulduğunda o yörüngelerin erken epokları %42-56
 bandına düşebilir. **Düşeceği varsayılmayacak, ölçülecektir** — bu ekin
 yazılmasına yol açan hata tam olarak buydu.
+
+---
+
+## EK B — E3'ün KESTIRDIĞI NİCELİK DEĞİŞTİ (2026-08-20, sapma beyanı)
+
+**Bu bir sapma beyanıdır ve nedeni ölçümdür.** Eski satırlar değiştirilmemiştir.
+
+### B.1 Neden
+
+`scripts/q1_ozdeslik_kontrol.py` (→ `results/q1/ozdeslik_kontrol.json`)
+E3'ün birincil kestirim hedefinin **cebirsel bir özdeşlik** olduğunu ölçtü:
+
+$$r_{ham} - r_{koş} = e\,(1 - r_{koş})$$
+
+36 köşegen dışı yönde artık: mutlak ortalama 0,095 puan, en büyük 0,41 puan;
+öncül $P(\text{adv yanlış}\mid\text{temiz yanlış}) = 0{,}989$–$1{,}000$.
+
+Bu belge (§1-§4) E3'ü *"ham−koşullu sapmanın hedefin temiz hatasıyla nasıl
+ölçeklendiğini kalibre etmek"* diye tanımlamıştı. **O ilişki artık ölçülecek
+bir şey değildir; türetilmiştir.** 863 noktayı, sonucu önceden bilinen bir
+regresyona harcamak GPU israfı olur ve makaleye sahte bir ampirik katman ekler.
+
+### B.2 Yeni kestirim hedefi
+
+E3 artık **protokol yayılımını** kalibre eder — makalenin manşet niceliği ve
+özdeşlikle **türetilemeyen** tek nicelik:
+
+| | eski (düşen) | yeni (yürürlükte) |
+|---|---|---|
+| $y$ | $r_{ham} - r_{koş}$ | dört protokolün ürettiği **asimetri yayılımı** (puan) |
+| $x$ | hedefin temiz hatası | çiftteki **iki modelin temiz doğruluk FARKI** |
+| durum | özdeşlik → türetilir | **ampirik, bilinmiyor** |
+
+Gerekçe metinde zaten duruyor: tartışma bölümü *"hâlâ belirtemediğimiz şey bu
+bağımlılığın işlevsel biçimidir"* diyor. E3 tam olarak onu ölçecektir.
+
+### B.3 İki kol (havuzlama YASAK — bu kural DEĞİŞMEDİ)
+
+- **A kolu — kontrollü (yörünge-içi).** Çiftin bir üyesi SABİT tutulur, diğeri
+  kendi yörüngesi boyunca taranır. Temiz doğruluk farkı değişir, mimari ·
+  tohum · veri kümesi · saldırı bütçesi **değişmez**. Nedensel yorum bu koldan
+  gelir.
+- **B kolu — gözlemsel.** Farklı mimariler, tohumlar ve veri kümeleri
+  (CIFAR-10 · CIFAR-100 · SVHN · WRN referansı). Fark değişirken **her şey**
+  değişir.
+- **Manşet, iki kolun eğimlerinin UYUŞMASIDIR.** Havuzlanmış tek bir uydurma
+  **üretilmeyecektir**; kodda o çıktı yolu bulunmayacaktır.
+
+### B.4 Değişmeyen tasarım kararları
+
+- Kantil seçimi terk edildi; yörüngenin **tüm** checkpointleri (`--stride` ile
+  seyreltilebilir, seyreltme **raporlanır**).
+- Çıkarım **yörünge düzeyi küme bootstrap** ($B=10.000$). Nokta sayısı büyük
+  olsa da **serbestlik derecesini yörünge sayısı belirler**; metinde açıkça
+  yazılacak, yoksa "n=863" sahte kesinlik izlenimi verir.
+- EK A'nın ölçtüğü **iki delik** (%17,68-23,28 ve %42,28-56,40) şekilde
+  görünür kılınacak; o bantlarda eğim interpolasyondur.
+
+### B.5 Özdeşlik büsbütün atılmıyor
+
+E3, özdeşliğin **artığını** ikincil bir çıktı olarak raporlayacaktır: artık
+sıfırdan anlamlı ölçüde sapıyorsa bu, "temiz-yanlış örnekler saldırı altında
+yanlış kalır" öncülünün bozulduğu bir rejim demektir ve **kendi başına**
+raporlanması gereken bir bulgudur (K8).

@@ -137,25 +137,40 @@ def cmd_points(args):
             clean = payload.get("clean_acc", payload.get("test_acc"))
         entries.append((ep, clean, ck))
 
-    # Kantil secimi (ON-KAYITLI kriter)
-    chosen = {}
-    skipped_targets = []
-    for tgt in CLEAN_TARGETS:
-        if tgt is None:
-            ep, _, ck = entries[-1]
-        else:
-            known = [(abs(c - tgt), ep, ck) for ep, c, ck in entries if c is not None]
-            if not known:
-                skipped_targets.append(tgt)
-                continue
-            _, ep, ck = min(known)
-        chosen[ep] = ck
-    if skipped_targets:
-        raise SystemExit(
-            f"HATA: {ep_dir} icin clean_acc verisi yok; {skipped_targets} kantil "
-            f"hedefleri atlanacakti. Sessiz tek-nokta yorungesi kabul edilmez; "
-            f"metrics.jsonl'i veya checkpoint payload'larini kontrol edin.")
-    print(f"kantil secimi: {sorted(chosen)} ({len(chosen)} checkpoint)")
+    # --- SECIM ---
+    # ON-KAYITLI kantil kriteri TERK EDILDI (E3_YENIDEN_TASARIM §1): 12 yorunge
+    # x 6 hedef = 72 hedef yalniz 38 AYRI NOKTA uretiyordu (%47,2 cokme), cunku
+    # birden fazla hedef ayni epoga dusuyordu. Artik varsayilan TUM
+    # checkpointlerdir; --stride ile seyreltilebilir ve seyreltme kayda gecer.
+    # Eski davranis --quantile-mode ile hala erisilebilir (karsilastirma icin).
+    if args.quantile_mode:
+        chosen = {}
+        skipped_targets = []
+        for tgt in CLEAN_TARGETS:
+            if tgt is None:
+                ep, _, ck = entries[-1]
+            else:
+                known = [(abs(c - tgt), ep, ck) for ep, c, ck in entries if c is not None]
+                if not known:
+                    skipped_targets.append(tgt)
+                    continue
+                _, ep, ck = min(known)
+            chosen[ep] = ck
+        if skipped_targets:
+            raise SystemExit(
+                f"HATA: {ep_dir} icin clean_acc verisi yok; {skipped_targets} kantil "
+                f"hedefleri atlanacakti. Sessiz tek-nokta yorungesi kabul edilmez; "
+                f"metrics.jsonl'i veya checkpoint payload'larini kontrol edin.")
+        secim_kipi = "kantil (ESKI)"
+        print(f"kantil secimi: {sorted(chosen)} ({len(chosen)} checkpoint)")
+    else:
+        sec = entries[::max(1, args.stride)]
+        # son checkpoint (konverjan) HER ZAMAN dahil -- yorungenin ucu duser
+        if entries and sec[-1][0] != entries[-1][0]:
+            sec.append(entries[-1])
+        chosen = {ep: ck for ep, _c, ck in sec}
+        secim_kipi = f"tum-checkpoint (stride={args.stride})"
+        print(f"secim: {secim_kipi} -> {len(chosen)} / {len(entries)} checkpoint")
 
     first = torch.load(next(iter(chosen.values())), map_location="cpu", weights_only=False)
     nc = infer_num_classes(first["model_state_dict"])
@@ -168,13 +183,24 @@ def cmd_points(args):
         model.load_state_dict(payload["model_state_dict"])
         clean_ok, adv_wrong = eval_target(model, clean_images, adv, labels, device)
         rates = protocol_rates(clean_ok, adv_wrong, src_clean_ok, src_adv_wrong)
+        _e = float(100 * (1 - clean_ok.mean()))
+        # OZDESLIK SAGLAMASI (EK B.5): ham = e + kos*(1-e) beklenir.
+        # Artik sifirdan anlamli sapiyorsa "temiz-yanlis ornekler saldiri
+        # altinda yanlis kalir" onculu bozulmus demektir; bu KENDI BASINA
+        # raporlanmasi gereken bir bulgudur.
+        _ham_tahmin = _e + rates["target_correct"] * (1 - _e / 100.0)
         point = {
             "trajectory_id": args.trajectory_id,
+            "arm": args.arm,
+            "secim_kipi": secim_kipi,
+            "stride": (None if args.quantile_mode else args.stride),
             "epoch": ep,
             "target_clean_acc": float(100 * clean_ok.mean()),
-            "target_clean_err": float(100 * (1 - clean_ok.mean())),
+            "target_clean_err": _e,
             "source_archive": str(args.adv_archive),
             "dataset": args.dataset,
+            "ozdeslik_ham_tahmin": _ham_tahmin,
+            "ozdeslik_artik": rates["raw"] - _ham_tahmin,
             **rates,
         }
         fname = out_dir / f"{args.trajectory_id}_ep{ep:03d}.json"
@@ -191,14 +217,21 @@ def cmd_fit(args):
     if len(pts) < 6:
         raise SystemExit(f"cok az nokta ({len(pts)}); once points komutunu kosun")
 
-    x = np.array([p["target_clean_err"] for p in pts])
-    y1 = np.array([p["raw_minus_cond"] for p in pts])
-    y2 = np.array([p["spread"] for p in pts])
-    traj = np.array([p["trajectory_id"] for p in pts])
-    uniq = sorted(set(traj))
+    # KOLLAR AYRI (E3_YENIDEN_TASARIM §B.3): havuzlanmis uydurma URETILMEZ.
+    # Kod duzeyinde de uretilemez: asagidaki dongu yalniz kol alt kumeleri
+    # uzerinde calisir, "hepsi" diye bir kol YOKTUR.
+    kollar = sorted({p.get("arm", "?") for p in pts})
+    if "?" in kollar:
+        raise SystemExit("HATA: bazi noktalarda 'arm' alani yok. Kol etiketi "
+                         "olmadan kollari ayirmak imkansiz; points komutunu "
+                         "--arm ile yeniden kosun.")
 
-    def cluster_bootstrap(y, B=10000, seed=42):
-        """Yorunge-duzeyi kume bootstrap: noktalar bagimsiz DEGIL (on-kayit)."""
+    def cluster_bootstrap(y, x, traj, uniq, B=10000, seed=42):
+        """Yorunge-duzeyi kume bootstrap: noktalar bagimsiz DEGIL (on-kayit).
+
+        Serbestlik derecesini NOKTA sayisi degil YORUNGE sayisi belirler;
+        yeniden orneklem yorunge duzeyinde yapilir.
+        """
         rng = np.random.default_rng(seed)
         slopes, rs = [], []
         for _ in range(B):
@@ -209,28 +242,83 @@ def cmd_fit(args):
             b1, b0 = np.polyfit(x[idx], y[idx], 1)
             slopes.append(b1)
             rs.append(np.corrcoef(x[idx], y[idx])[0, 1])
+        if not slopes:
+            return ([float("nan")] * 2, [float("nan")] * 2)
         return (np.percentile(slopes, [2.5, 97.5]).tolist(),
                 np.percentile(rs, [2.5, 97.5]).tolist())
 
-    out = {"n_points": len(pts), "n_trajectories": len(uniq),
-           "clean_err_range": [float(x.min()), float(x.max())]}
-    for label, y in (("raw_minus_cond", y1), ("spread", y2)):
-        b1, b0 = np.polyfit(x, y, 1)
-        r = float(np.corrcoef(x, y)[0, 1])
-        # dogrusal-olmama: karesel terim katkisi
-        q = np.polyfit(x, y, 2)
-        resid_lin = float(np.mean((np.polyval([b1, b0], x) - y) ** 2))
-        resid_quad = float(np.mean((np.polyval(q, x) - y) ** 2))
-        ci_b1, ci_r = cluster_bootstrap(y)
-        out[label] = {
-            "slope": float(b1), "intercept": float(b0), "pearson_r": r,
-            "slope_ci95_cluster_bootstrap": ci_b1,
-            "r_ci95_cluster_bootstrap": ci_r,
-            "mse_linear": resid_lin, "mse_quadratic": resid_quad,
+    out = {
+        "HAVUZLAMA": "YAPILMADI -- kollar ayri raporlanir (E3_YENIDEN_TASARIM B.3). "
+                     "Manset iki kolun EGIMLERININ UYUSMASIDIR, ortak bir uydurma degil.",
+        "BIRINCIL_NICELIK": "spread (4 protokolun urettigi asimetri yayilimi). "
+                            "raw_minus_cond IKINCILDIR: ozdeslikle turetilebilir "
+                            "oldugu icin saglama gorevi gorur (EK B).",
+        "kollar": {},
+    }
+    for kol in kollar:
+        alt = [p for p in pts if p.get("arm") == kol]
+        if len(alt) < 6:
+            out["kollar"][kol] = {"n_points": len(alt), "DURUM": "COK AZ NOKTA, uydurulmadi"}
+            continue
+        x = np.array([p["target_clean_err"] for p in alt])
+        traj = np.array([p["trajectory_id"] for p in alt])
+        uniq = sorted(set(traj))
+        artik = np.array([p.get("ozdeslik_artik", float("nan")) for p in alt])
+        kol_out = {
+            "n_points": len(alt),
+            "n_trajectories": len(uniq),
+            "SERBESTLIK_DERECESI_NOTU":
+                f"Cikarim {len(uniq)} YORUNGE uzerinden kume bootstrap iledir. "
+                f"n={len(alt)} nokta SERBESTLIK DERECESI DEGILDIR; metinde "
+                f"'n={len(alt)} nokta' seklinde sunmak sahte kesinlik verir.",
+            "clean_err_range": [float(x.min()), float(x.max())],
+            "ozdeslik_artik_puan": {
+                "mutlak_ort": float(np.nanmean(np.abs(artik))),
+                "mutlak_max": float(np.nanmax(np.abs(artik))),
+            },
         }
+        for label, key in (("spread", "spread"), ("raw_minus_cond", "raw_minus_cond")):
+            y = np.array([p[key] for p in alt])
+            b1, b0 = np.polyfit(x, y, 1)
+            r = float(np.corrcoef(x, y)[0, 1])
+            q = np.polyfit(x, y, 2)
+            resid_lin = float(np.mean((np.polyval([b1, b0], x) - y) ** 2))
+            resid_quad = float(np.mean((np.polyval(q, x) - y) ** 2))
+            ci_b1, ci_r = cluster_bootstrap(y, x, traj, uniq)
+            kol_out[label] = {
+                "slope": float(b1), "intercept": float(b0), "pearson_r": r,
+                "slope_ci95_cluster_bootstrap": ci_b1,
+                "r_ci95_cluster_bootstrap": ci_r,
+                "mse_linear": resid_lin, "mse_quadratic": resid_quad,
+            }
+        out["kollar"][kol] = kol_out
+
+    # iki kol da uydurulduysa EGIM UYUSMASI (manset) raporlanir
+    uygun = [k for k, v in out["kollar"].items() if "spread" in v]
+    if len(uygun) == 2:
+        a, b = uygun
+        sa = out["kollar"][a]["spread"]["slope"]
+        sb = out["kollar"][b]["spread"]["slope"]
+        ca = out["kollar"][a]["spread"]["slope_ci95_cluster_bootstrap"]
+        cb = out["kollar"][b]["spread"]["slope_ci95_cluster_bootstrap"]
+        ortusuyor = not (ca[1] < cb[0] or cb[1] < ca[0])
+        out["EGIM_UYUSMASI"] = {
+            "kol_" + a: {"egim": sa, "GA": ca},
+            "kol_" + b: {"egim": sb, "GA": cb},
+            "GA_ortusuyor_mu": bool(ortusuyor),
+            "yorum": ("Iki kolun egimleri ortusuyor: kontrollu ve gozlemsel "
+                      "kanit ayni yonu veriyor."
+                      if ortusuyor else
+                      "Iki kolun egimleri ORTUSMUYOR. Bu, gozlemsel koldaki "
+                      "karistiriciların etkisine isarettir ve RAPORLANMALIDIR "
+                      "(K8); havuzlama yine YAPILMAZ."),
+        }
+    else:
+        out["EGIM_UYUSMASI"] = {"DURUM": f"iki kol da uydurulamadi (uygun: {uygun})"}
+
     with open(args.out, "w") as f:
         json.dump(out, f, indent=2)
-    print(json.dumps(out, indent=1))
+    print(json.dumps(out, indent=1, ensure_ascii=False))
 
 
 def main():
@@ -246,6 +334,14 @@ def main():
                     help="Kaynagin pgd_per_sample_*.npz'i (clean_correct maskesi)")
     p1.add_argument("--trajectory-id", required=True)
     p1.add_argument("--out-dir", required=True)
+    # E3_YENIDEN_TASARIM §B.3: kol etiketi ZORUNLU. A = kontrollu (yorunge-ici,
+    # cift uyesi sabit), B = gozlemsel (mimari/tohum/veri kumesi degisiyor).
+    p1.add_argument("--arm", required=True, choices=["A", "B"],
+                    help="A=kontrollu (yorunge-ici)  B=gozlemsel")
+    p1.add_argument("--stride", type=int, default=1,
+                    help="her N. checkpoint (1=hepsi). Seyreltme nokta json'una yazilir.")
+    p1.add_argument("--quantile-mode", action="store_true",
+                    help="ESKI on-kayitli kantil secimi (terk edildi; yalniz karsilastirma icin)")
     p2 = sub.add_parser("fit")
     p2.add_argument("--points-dir", required=True)
     p2.add_argument("--out", required=True)
