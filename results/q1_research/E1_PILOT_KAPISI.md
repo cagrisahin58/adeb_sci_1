@@ -675,3 +675,136 @@ mimari etkisi değil veri kümesi etkisi. Post-hoc; ön-kestirim değildir.
 
 **E1 kapandı; tezle bağlantısı EK G'de kurulmuştur.** Kalan tek açık iş
 B.8'in kodu ve makaleye yazım.
+
+---
+
+## EK I — Kapanış denetimi: kendi kayıtlarımdaki dört düzeltme (2026-08-20)
+
+Beş boyutlu bağımsız denetim (artefakt / ön-kayıt / makale / kampanya / kod),
+her boyutun bulguları ayrı bir çürütücüye verilerek koşuldu. Aşağıdaki dört
+madde **bu belgenin kendi önceki eklerindeki hatalardır** ve hepsi bağımsız
+olarak yeniden ölçülerek doğrulanmıştır.
+
+**Neden geriye dönük düzeltme yapılmıyor:** EK A-H sırasıyla eklenmiştir ve
+belgenin salt-ekleme geçmişi, kapı alışverişi yapılmadığının kanıtıdır
+(denetim bunu ayrıca doğruladı: dokuz commit'in tamamı saf ekleme). Eski
+satırları sessizce düzeltmek o kanıtı yok ederdi. Düzeltmeler bu yüzden
+burada, açık atıfla yapılmaktadır.
+
+### I.1 [DÜZELTME] Temiz ön-eğitim taban değerleri yanlıştı (EK C.1, F.2, F.4)
+
+EK C.1 ResNet için temiz ön-eğitim tabanını **%78,50** yazmıştı. Bu değer
+**son epok** doğruluğudur; belgenin kullandığı istatistik ise **en iyi val**
+olmalıydı (ViT tarafında doğru istatistik kullanılmıştı, ResNet tarafında
+kullanılmamıştı).
+
+Loglardan doğrulanan gerçek değerler:
+
+| | s1001/s2001 | s1002/s2002 | s1003/s2003 | ort |
+|---|---|---|---|---|
+| ResNet temiz en iyi val | 79,25 | 79,30 | 80,30 | **79,617** |
+| ViT temiz en iyi val | 47,45 | 48,50 | 50,35 | **48,767** |
+
+**Sonuç değişmiyor, mekanizma anlatısı değişiyor.** EK F.2 sapmayı şöyle
+açıklamıştı: *"ViT o oranı korumadı (0,91'e karşı 0,82)"*. O karşılaştırma
+**karışık-n** idi (payı n=3, paydası n=1; üstelik payda yanlış). Tutarlı n=3
+oranlar:
+
+- ViT: 43,17 / 48,767 = **0,885**
+- ResNet: 63,86 / 79,617 = **0,802**
+
+Fark 0,083. **Hükmün yönü ayaktadır** — ViT temiz doğruluğunu AT altında
+ResNet'ten daha iyi korumuştur ve B.7 sapma beyanının mekanizma açıklaması
+geçerlidir; yalnız sayılar düzeltilmiştir.
+
+Ayrıca EK F.4 WRN karşılaştırmasında **64,23** kullanmıştı; bu pair1'in tek
+tohumluk değeridir. n=3 ortalama **63,86 ± 1,05**'tir ve **tohum 1003
+(62,67), WRN referansının (63,64) ALTINDADIR**. F.4'ün hükmü (CIFAR-100
+WRN'i düşük-hata bandını doldurmuyor) değişmez, hatta güçlenir.
+
+### I.2 [DÜZELTME] EK G.6'daki "işaret de negatif" iddiası fazla geniş
+
+G.6 şöyle yazmıştı: *"İşaret CIFAR-100'de de negatif: sınıf bileşimi farkı
+asimetriyi küçültüyor."* Bu, **hedef-doğru** protokolü için doğrudur
+(−1,249 / −1,330 / −1,065, üçü de negatif), ama **başarılı-kaynak** protokolü
+için **yanlıştır**: bileşim etkisi **+0,039 / +0,013 / −0,174**, yani üç
+çiftin **ikisinde pozitif**.
+
+**Doğru ifade:** bileşim etkisi hedef-doğru protokolünde üç çiftte de negatif
+ve asimetrinin %12,9-18,6'sı kadardır; başarılı-kaynak protokolünde işaret
+değişkendir ve büyüklük ihmal edilebilirdir (%0,1-1,3). **Genel hüküm
+korunur:** koşullama asimetriyi bir örnekleme artefaktı olarak üretmiyor.
+
+### I.3 [DÜZELTME] "B.4'ün ÜÇÜ DE DOĞRULANDI" hükmü fazla geniştir (EK G.8, H.4)
+
+EK G.4 madde 3'ü zaten *"yön doğrulandı, kanıt gücü zayıf"* diye nitelemişti
+ve `X_AYRIKLIGI` ölçümünü vermişti (CIFAR-100'de iki hedefin temiz hatası
+0,21 puan arayla çakışık → **etkin ayrık x değeri 2**). Ama G.8'in ve commit
+`b4aed79` başlığının **"üçü de doğrulandı"** çerçevesi bu nitelemeyi yutuyor.
+
+Bu, tam olarak bu oturumda üç kez düzeltilen hatanın ailesidir: nitelemesi
+gövdede duran bir sonucu manşette niteliksiz sunmak.
+
+**Yürürlükteki doğru hüküm:**
+
+> B.4'ün **iki** ön-kestirimi doğrulandı (protokol yayılımı büyüdü: 13,58 >
+> 10,45; işaret 12/12 ölçümde korundu). **Üçüncüsü bu tasarımda test
+> edilemedi**: CIFAR-100'de üç hedeften ikisinin temiz hatası çakıştığı için
+> korelasyon iki küme üzerinden hesaplanıyor. Ölçülen eğim pozitiftir
+> (+0,656) ve bu, ön-kestirimle **tutarlıdır**, ancak onu **sınamaz**.
+
+Ek karşı-kanıt (aynı artefakttan): hedef-içi kaynak yayılımı CIFAR-100'de
+2,36-5,94 puan iken Δx yalnız 0,21 puandır. Yani x'te neredeyse hiç
+değişmezken y 3,78 puan oynuyor. Bu, makalenin `04_experiments.tex:132`
+satırındaki *"sabit bir oranda"* ifadesine karşı kanıttır ve E1 makaleye
+girerken birlikte yazılacaktır.
+
+### I.4 [YENİ SINIRLAMA] Ön-kayıt marjları, kendi ölçtüğümüz seçim genliğinden küçük
+
+Bu, denetimin beş boyutun hiçbirinde çıkmayan, sentez aşamasında kurulan
+bağıdır ve **kaydedilmesi zorunludur**.
+
+E1, C1 protokolünü bilinçli olarak miras alıyor: temiz ön-eğitim ile AT
+**aynı** doğrulama bölmesini kullanıyor ve AT, o bölmede seçilmiş
+`best.pth`'ten başlıyor (`q1_pipeline.sh` `train_pair_member`). Bu, CIFAR-10
+ile karşılaştırılabilirlik için doğru tercihtir (B.9'da kaydedilmişti).
+
+**Ama E2 tam bu tasarım kararının etkisini ölçtü:** seçim protokolü tek
+başına raporlanan PGD-10'u CIFAR-10'da ResNet'te **2,62-2,85**, ViT'te
+**1,58-2,09** puan oynatıyor.
+
+E1'in ön-kayıtlı bantları ise dar marjla tutmuştur:
+
+| uç nokta | bant | tohum değerleri | en dar marj |
+|---|---|---|---|
+| AutoAttack | %8-11 | 8,58 · 8,22 · **9,81** | **0,22** puan (s2002, alt kenar) |
+| PGD-10 | %10-14 | 11,35 · **10,48** · 11,62 | **0,48** puan (s2002, alt kenar) |
+
+Yani "ön-kayıtlı iki çekişmeli uç nokta TUTTU" hükmü, **kendi ölçtüğümüz
+seçim-protokolü genliğinin 3-8 katı küçük** bir marjla kurulmuştur.
+
+**Bu, hükmü geçersiz kılmaz** — E2 bir *yayılım* ölçtü, *yanlılık* değil ve
+ölçüm CIFAR-10'daydı. Ama:
+
+1. Hüküm bu genlikle **birlikte** okunmalıdır ve E1 makaleye girerken
+   bu niteleme **zorunludur**. Aksi halde hakem E2 bölümünü okuyup E1
+   bölümüne dönerek aynı hesabı kendisi yapacaktır.
+2. EK E.3 zaten simetriğini taahhüt etmişti (*"E2 manşeti raporlanırken bu
+   sınır SINIRLAMA olarak yazılacaktır"*); bu madde o taahhüdün E1
+   yönündeki eşidir ve aynı bağlayıcılıktadır.
+3. Genlik **doğrudan ölçülebilir**: E1'in `--save-every 1` checkpointleri
+   diskte; B.8'in eksik kodu (`q1_e2_test_curve.py --dataset`) yazılınca
+   CIFAR-100 seçim bandı vekil değil **gerçek test** üzerinde verilir.
+   Bu, B.8 borcunun aynı zamanda bu sınırlamanın çözümü olduğunu gösterir.
+
+### I.5 Bu denetimde DOĞRULANANLAR (değişiklik gerekmedi)
+
+- Kapı alışverişi **yok**: belgenin dokuz commit'inin tamamı saf ekleme.
+- EK G/H'nin taşıyıcı sayıları ham JSON/npz'den bağımsız yeniden üretildi
+  (McNemar 860/243, protokol farkları 19,220/4,211/11,152, AA 6424/1475/
+  4194/858) ve **tuttu**.
+- 27/27 transfer npz'sinde `source_adv_wrong` mevcut ve köşegen maskesiyle
+  **bayt-eşit** — yani 4fb006a şema düzeltmesi doğru çalışmış.
+- Analiz zincirinin logunda hata/traceback **yok**.
+- KARANTINA ihlali **yok**: makaledeki değerler `C1_REFERANS_FOYU` ile
+  uyuşuyor, eski koşum sayıları "earlier single run" etiketli.

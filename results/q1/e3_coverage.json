@@ -1,4 +1,5 @@
 {
+  "BITMISLIK_KAPISI": "yalniz TRAINING_COMPLETE tasiyan yorungeler dahil",
   "clean_targets": [
     40.0,
     50.0,
@@ -7,11 +8,11 @@
     80.0,
     "konverjan"
   ],
-  "n_yorunge": 11,
-  "beklenen_nokta": 66,
-  "GERCEK_AYRI_NOKTA": 33,
-  "cokme_orani_yuzde": 50.0,
-  "TUM_CHECKPOINT_KULLANILSA": 756,
+  "n_yorunge": 12,
+  "beklenen_nokta": 72,
+  "GERCEK_AYRI_NOKTA": 38,
+  "cokme_orani_yuzde": 47.2,
+  "TUM_CHECKPOINT_KULLANILSA": 863,
   "temiz_hata_kapsamasi": [
     10.72,
     66.95
@@ -220,26 +221,28 @@
     },
     {
       "yorunge": "models/q1/cifar100/resnet18_s1003/resnet18/adv/adversarial_training/epochs",
-      "n_checkpoint": 2,
-      "temiz_min": 60.15,
-      "temiz_max": 62.35,
+      "n_checkpoint": 69,
+      "temiz_min": 59.85,
+      "temiz_max": 64.85,
       "temiz_hata_araligi": [
-        37.65,
-        39.85
+        35.15,
+        40.15
       ],
       "hedef_sayisi": 6,
-      "AYRI_NOKTA": 2,
+      "AYRI_NOKTA": 4,
       "secilen_epoklar": [
-        1,
-        2
+        16,
+        58,
+        61,
+        69
       ],
       "hedef_epok_eslesmesi": {
-        "40.0": 1,
-        "50.0": 1,
-        "60.0": 1,
-        "70.0": 2,
-        "80.0": 2,
-        "None": 2
+        "40.0": 58,
+        "50.0": 58,
+        "60.0": 61,
+        "70.0": 16,
+        "80.0": 16,
+        "None": 69
       }
     },
     {
@@ -290,6 +293,31 @@
         "70.0": 25,
         "80.0": 25,
         "None": 31
+      }
+    },
+    {
+      "yorunge": "models/q1/cifar100/vit_tiny_s2003/vit_tiny/adv/adversarial_training/epochs",
+      "n_checkpoint": 40,
+      "temiz_min": 35.35,
+      "temiz_max": 43.5,
+      "temiz_hata_araligi": [
+        56.5,
+        64.65
+      ],
+      "hedef_sayisi": 6,
+      "AYRI_NOKTA": 3,
+      "secilen_epoklar": [
+        2,
+        11,
+        40
+      ],
+      "hedef_epok_eslesmesi": {
+        "40.0": 2,
+        "50.0": 11,
+        "60.0": 11,
+        "70.0": 11,
+        "80.0": 11,
+        "None": 40
       }
     }
   ]

@@ -55,15 +55,36 @@ def select(entries, targets):
     return sorted(chosen), mapping
 
 
-def find_trajectories():
-    """metrics.jsonl iceren tum epochs/ dizinleri."""
-    out = []
-    for base in ["models/q1/e2", "models/q1/cifar100"]:
+# Yorunge kokleri: yeni bir asama eklendiginde (E5 -> cifar10, E7 -> svhn)
+# BURAYA da eklenmelidir, yoksa kapsama sessizce eksik hesaplanir.
+TRAJ_ROOTS = ["models/q1/e2", "models/q1/cifar100", "models/q1/svhn", "models/q1/cifar10"]
+
+
+def find_trajectories(require_complete=True):
+    """metrics.jsonl iceren epochs/ dizinleri.
+
+    BITMISLIK KAPISI (require_complete): egitim SURERKEN kosulursa yarim
+    yorungeler kapsamayi carpitir. Bu betik bir kez tam bunu yapti: s1003
+    2 checkpoint'teyken kosuldu ve 11 yorunge/33 nokta raporladi; egitim
+    bitince gercek deger 12/38 cikti ve BAYAT sayilar iki karar belgesine
+    gecti. Kanit: epochs/ dizininin UST dizininde TRAINING_COMPLETE dosyasi.
+    """
+    out, skipped = [], []
+    for base in TRAJ_ROOTS:
         p = ROOT / base
         if not p.exists():
             continue
         for m in sorted(p.rglob("epochs/metrics.jsonl")):
+            marker = m.parent.parent / "TRAINING_COMPLETE"
+            if require_complete and not marker.exists():
+                skipped.append(str(m.parent.relative_to(ROOT)))
+                continue
             out.append(m)
+    if skipped:
+        print("UYARI: %d yorunge BITMEMIS sayildi ve DISLANDI "
+              "(TRAINING_COMPLETE yok):" % len(skipped))
+        for sp in skipped:
+            print("   -", sp)
     return out
 
 
@@ -107,6 +128,7 @@ def main():
     hata_max = max((r["temiz_hata_araligi"][1] for r in rows), default=None)
 
     ozet = {
+        "BITMISLIK_KAPISI": "yalniz TRAINING_COMPLETE tasiyan yorungeler dahil",
         "clean_targets": [("konverjan" if t is None else t) for t in targets],
         "n_yorunge": len(rows),
         "beklenen_nokta": toplam_beklenen,

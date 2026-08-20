@@ -1,0 +1,10 @@
+{
+ "model_type": "vit_tiny",
+ "ckpt": "models/q1/cifar100/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth",
+ "seed": 42,
+ "n": 10000,
+ "dataset": "cifar100",
+ "attack": "PGD-10 linf eps=0.0313725 alpha=0.00784314",
+ "clean_acc": 43.5,
+ "pgd10_acc": 10.48
+}

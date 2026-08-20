@@ -93,8 +93,10 @@ Doğru hamle koşum eklemek değil **iddiayı yeniden yazmaktı** ve yazıldı
    belgeli), 1 koşu pilot şart, **sınıf-dengesi kontrolü analiz koduna
    eklenmeli** (SVHN dengesizdir). Bu kontrol henüz **yoktur**.
 2. ~~**E3 yeniden tasarımı yazılmalı** — E5 kararının önkoşulu.~~
-   **KAPANDI (2026-08-19):** `E3_YENIDEN_TASARIM.md`. Ölçülen çöküş 66 hedef →
-   33 ayrı nokta (%50); ResNet yörüngelerinde 2/6. Kantil seçimi terk edildi,
+   **KAPANDI (2026-08-19):** `E3_YENIDEN_TASARIM.md`. Ölçülen çöküş 72 hedef →
+   **38 ayrı nokta (%47,2)**; ResNet yörüngelerinde 2/6.
+   *(İlk yazımdaki 66→33/%50 değerleri E1 koşarken üretilmiş bayat bir
+   artefakttan geliyordu; betiğe bitmişlik kapısı eklenip yenilendi.)* Kantil seçimi terk edildi,
    tüm checkpointler + yörünge düzeyi küme bootstrap; iki kol (kontrollü /
    gözlemsel) ayrı raporlanacak, havuzlama yasak. Sapma beyanı yazıldı.
    Tasarım, E5 ertelemesini ve E7-kısa kararını **doğruladı**.

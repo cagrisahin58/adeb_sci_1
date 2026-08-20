@@ -25,18 +25,26 @@ düzenli olarak oluyor.
 Ölçüm (`scripts/q1_e3_coverage.py` → `results/q1/e3_coverage.json`;
 `cmd_points` ile **aynı** seçim mantığı, GPU'suz):
 
+> **DÜZELTME (2026-08-20).** Bu bölümün ilk sürümü, E1 **hâlâ koşarken**
+> üretilmiş bayat bir artefakta dayanıyordu (11 yörünge / 33 nokta / %50 /
+> 756 ckpt). O anda `resnet18_s1003` 2 checkpoint'teydi ve `vit_tiny_s2003`
+> hiç yoktu. Kök sebep: `q1_e3_coverage.py`'de **bitmişlik kapısı yoktu**.
+> Kapı eklendi (`TRAINING_COMPLETE` aranıyor) ve ölçüm yenilendi. Aşağıdaki
+> sayılar 12/12 yörünge tamamlandıktan sonraki **geçerli** değerlerdir.
+> Hükmün yönü değişmemiştir; çöküş %50 yerine %47,2'dir.
+
 | yörünge grubu | checkpoint | temiz doğruluk (val) | ayrı nokta |
 |---|---|---|---|
-| ResNet-18 CIFAR-10 (×3) | 100 | 82,3 - 89,3 | **2/6** her birinde |
-| ViT-Tiny CIFAR-10 (×3) | 100 | 57,7 - 76,7 | 4/6, 5/6, 4/6 |
-| ResNet-18 CIFAR-100 (×3) | 52 / 44 / 2 | 59,8 - 65,5 | 3/6, 3/6, 2/6 |
-| ViT-Tiny CIFAR-100 (×2) | 27 / 31 | 33,1 - 43,6 | 3/6, 3/6 |
+| ResNet-18 CIFAR-10 (×3) | 100 · 100 · 100 | 82,3 - 89,3 | **2/6** her birinde |
+| ViT-Tiny CIFAR-10 (×3) | 100 · 100 · 100 | 57,7 - 76,7 | 4/6 · 5/6 · 4/6 |
+| ResNet-18 CIFAR-100 (×3) | 52 · 44 · 69 | 59,8 - 65,5 | 3/6 · 3/6 · 4/6 |
+| ViT-Tiny CIFAR-100 (×3) | 27 · 31 · 40 | 33,1 - 43,6 | 3/6 · 3/6 · 3/6 |
 
-**Toplam: 66 hedef → 33 ayrı nokta (%50 çöküş).** ResNet CIFAR-10'da her
-yörünge yalnız **2** nokta veriyor; 40/50/60/70 hedeflerinin dördü de aynı
-(en düşük temiz doğruluklu) checkpoint'e düşüyor.
+**Toplam: 12 yörünge, 72 hedef → 38 ayrı nokta (%47,2 çöküş).** ResNet
+CIFAR-10'da her yörünge yalnız **2** nokta veriyor; 40/50/60/70 hedeflerinin
+dördü de aynı (en düşük temiz doğruluklu) checkpoint'e düşüyor.
 
-Aynı yörüngelerin **tüm** checkpointleri kullanılsaydı: **756 nokta.**
+Aynı yörüngelerin **tüm** checkpointleri kullanılsaydı: **863 nokta.**
 
 ## 2. Ölçülen ikinci sorun — x ekseninin kapsaması
 
@@ -86,14 +94,14 @@ kiraz toplama **fiziksel olarak imkânsızdır**, dolayısıyla sapma
 ön-kaydın amacını zayıflatmaz, güçlendirir.
 
 **Otokorelasyon.** Aynı yörüngenin ardışık checkpointleri bağımsız değildir;
-nokta sayısını 33'ten 756'ya çıkarmak **bağımsız bilgi miktarını artırmaz**.
+nokta sayısını 38'den 863'e çıkarmak **bağımsız bilgi miktarını artırmaz**.
 Bunu karşılayan mekanizma zaten ön-kayıtlıdır ve kodda vardır:
 **yörünge düzeyi küme bootstrap (B=10.000)** — `cluster_bootstrap`,
 `q1_e3_calibration.py:200`. Serbestlik derecesi yörünge sayısıyla belirlenir,
-nokta sayısıyla değil. Bu, metinde **açıkça** yazılacaktır; aksi halde "n=756"
+nokta sayısıyla değil. Bu, metinde **açıkça** yazılacaktır; aksi halde "n=863"
 sahte bir kesinlik izlenimi verir.
 
-**Maliyet.** Ek eğitim YOKTUR; yalnız ileri geçiş. Kaba tahmin: 756
+**Maliyet.** Ek eğitim YOKTUR; yalnız ileri geçiş. Kaba tahmin: 863
 checkpoint × 10.000 örnek × (temiz + çekişmeli arşiv) ≈ 2-4 GPU-saat. Bütçe
 sıkışırsa **sabit adımla seyreltme** (her 2. veya 5. checkpoint) yapılır —
 bu da sonuçtan bağımsız, deterministik bir kuraldır, dolayısıyla seçim
@@ -135,7 +143,7 @@ modellere uygulanacaksa yayımlanmış modellerde kalibre edilmelidir.
 > E3'ün ön-kaydı, her eğitim yörüngesinden temiz-doğruluk kantillerine göre
 > altı checkpoint seçmeyi öngörüyordu. Koşum sonrası ölçüm, yörüngelerin
 > temiz-doğruluk aralığının hedeflerin çoğunu kapsamadığını ve seçimin
-> noktaları çökerttiğini gösterdi: 66 hedef yalnız 33 ayrı checkpoint
+> noktaları çökerttiğini gösterdi: 72 hedef yalnız 38 ayrı checkpoint
 > üretiyor, ResNet yörüngelerinde altı hedefin dördü tek bir checkpoint'e
 > düşüyordu. Bu nedenle kantil seçimi terk edilmiş ve her yörüngenin tüm
 > checkpointleri kullanılmıştır. Sapma bir seçim adımını **kaldırmaktadır**;
