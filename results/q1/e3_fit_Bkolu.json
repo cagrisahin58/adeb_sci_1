@@ -1,0 +1,52 @@
+{
+  "HAVUZLAMA": "YAPILMADI -- kollar ayri raporlanir (E3_YENIDEN_TASARIM B.3). Manset iki kolun EGIMLERININ UYUSMASIDIR, ortak bir uydurma degil.",
+  "BIRINCIL_NICELIK": "spread (4 protokolun urettigi asimetri yayilimi). raw_minus_cond IKINCILDIR: ozdeslikle turetilebilir oldugu icin saglama gorevi gorur (EK B).",
+  "kollar": {
+    "B": {
+      "n_points": 24,
+      "n_trajectories": 5,
+      "SERBESTLIK_DERECESI_NOTU": "Cikarim 5 YORUNGE uzerinden kume bootstrap iledir. n=24 nokta SERBESTLIK DERECESI DEGILDIR; metinde 'n=24 nokta' seklinde sunmak sahte kesinlik verir.",
+      "clean_err_range": [
+        13.949999999999996,
+        58.06
+      ],
+      "ozdeslik_artik_puan": {
+        "mutlak_ort": 0.12875,
+        "mutlak_max": 0.4099999999999966
+      },
+      "spread": {
+        "slope": 0.6079355482573096,
+        "intercept": 10.926498853830646,
+        "pearson_r": 0.9339650537589296,
+        "slope_ci95_cluster_bootstrap": [
+          0.36379978651687384,
+          1.2747362875604242
+        ],
+        "r_ci95_cluster_bootstrap": [
+          0.8573947321607776,
+          0.996528277666087
+        ],
+        "mse_linear": 9.610970477880448,
+        "mse_quadratic": 5.824645208029545
+      },
+      "raw_minus_cond": {
+        "slope": 0.6690822429451845,
+        "intercept": 2.9497668917538014,
+        "pearson_r": 0.9710484623881227,
+        "slope_ci95_cluster_bootstrap": [
+          0.56887845171662,
+          0.7851525371184974
+        ],
+        "r_ci95_cluster_bootstrap": [
+          0.5932678495841123,
+          0.9977361271368871
+        ],
+        "mse_linear": 4.812127241375996,
+        "mse_quadratic": 4.760699705289735
+      }
+    }
+  },
+  "EGIM_UYUSMASI": {
+    "DURUM": "iki kol da uydurulamadi (uygun: ['B'])"
+  }
+}
