@@ -1,0 +1,10 @@
+{
+ "model_type": "resnet18",
+ "ckpt": "models/q1/svhn/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+ "seed": 42,
+ "n": 26032,
+ "dataset": "svhn",
+ "attack": "PGD-10 linf eps=0.0313725 alpha=0.00784314",
+ "clean_acc": 94.76,
+ "pgd10_acc": 55.98
+}
