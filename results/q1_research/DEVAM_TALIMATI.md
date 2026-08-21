@@ -2,70 +2,47 @@
 
 **Son güncelleme: 2026-08-20 (akşam). Dal: `q1`. Son commit: `54e8b6e`.**
 
-> ## GÜNCEL DURUM — bu bölüm en son yazıldı, önce bunu oku
+> ## GÜNCEL DURUM — 2026-08-21 sabahı, en son yazılan bölüm
 >
-> **Biten işler:** İŞ-1 (`fe86f48`), İŞ-2 (`9707337`), İŞ-5 (`b2f38c0`),
-> İŞ-6'nın altı kalemi (`784e52d`), İŞ-4'ün **kodu** (`54e8b6e`).
-> Ayrıca plansız ama önemli bir düzeltme: **`r = 0,997` bir korelasyon değil
-> cebirsel bir ÖZDEŞLİKMİŞ** (`68b6a74`, EK J).
+> **Biten işler:** İŞ-1 · İŞ-2 · İŞ-5 · İŞ-6 (sekiz kalem) · **İŞ-4 (E3) —
+> iki kol da koşuldu.** Ayrıca plansız iki büyük düzeltme: `r = 0,997`'nin
+> korelasyon değil **özdeşlik** olması (EK J) ve E3'ün **yanlış niceliği**
+> ölçüyor olması (EK C).
 >
-> **Koşan iş:** E7 (SVHN), 2026-08-20 13:41'de başladı.
-> `docker exec adeb_eval bash -lc 'pgrep -af q1_pipeline'` ile bakılır.
-> Kısa sürüm (2 tohum × 50 epok AT), bütçe etiketi `svhn-at-50ep`.
+> **Koşan:** E7'nin son eğitimi (SVHN ViT s2002, çekişmeli). 7/8 bitti.
 >
-> **E7 DURDURULDU** (2026-08-20 ~23:53; kullanıcı PC'yi yeniden başlatacağı
-> için, temiz sırayla: önce yürütücü betik, sonra eğitim süreci).
+> ### E3 sonucu (yürürlükte)
+> $x$ = çiftin temiz hata farkı · $y$ = **asimetrinin** protokoller arası
+> yayılımı. Üretici: `scripts/q1_e3_iki_kol_fit.py` →
+> `results/q1/e3_iki_kol_fit.json`. Şekil: `paper/figures/raw/fig_e3_kalibrasyon.pdf`.
 >
-> **Durum: 5/8 eğitim bitti.**
+> | kol | 4 protokol | 3 protokol (başarılı-kaynak hariç) |
+> |---|---|---|
+> | **A** kontrollü, 108 nokta / 7 küme | +0,337 [+0,210; +0,512] | +0,655 [+0,583; +0,718] |
+> | **B** gözlemsel, 18 nokta / 6 küme | **−0,567** [−0,757; −0,451] | +0,431 [+0,333; +0,633] |
+> | B, WRN'siz alt küme | +0,387 [+0,075; +0,576] | +0,546 [+0,398; +0,837] |
 >
-> | model | temiz | AT | PGD | bütçe |
-> |---|---|---|---|---|
-> | resnet18_s1001 | BİTTİ | BİTTİ | BİTTİ | `svhn-at-50ep` |
-> | resnet18_s1002 | BİTTİ | BİTTİ | BİTTİ | `svhn-at-50ep` |
-> | vit_tiny_s2001 | BİTTİ | **YARIM** | — | — |
-> | vit_tiny_s2002 | — | — | — | — |
+> **Manşet:** üç protokolde iki kol **uyuşuyor** (GA'lar örtüşüyor, işaret
+> aynı). Dört protokolde uyuşmuyor — ama sebep **kontrol değil havuz
+> bileşimi**: A kolu WRN içermez; B'yi aynı bileşime kısıtlayınca (+0,387)
+> işaret A ile aynı olur. Fit bunu `BILESIM_mi_KONTROL_mu` alanında verir.
 >
-> Yarım kalan AT'nin dizininde `best.pth` **var** ama `TRAINING_COMPLETE`
-> **yok** — K6'nın tarif ettiği durum. Muhafız doğru çalışıyor: yeniden
-> başlatıldığında o eğitim atlanmayacak, `--resume` ile sürecek.
+> **Bağlayıcı sınırlamalar (yazılacak):** B kolunun negatif eğimi $x$'te
+> 4,1–11,3 arasındaki **7,2 puanlık boşluğun** üzerinden geçer (EK D.2);
+> serbestlik derecesini **küme** sayısı belirler, nokta sayısı değil;
+> havuzlanmış uydurma üretilmedi ve kodda o çıktı yolu yoktur.
 >
-> **İlk sonuçlar E7'nin gerekçesini karşılıyor.** ResNet-18 AT temiz doğruluk
-> 94,76 / 93,77 → temiz **hata %5,24 / %6,23**; yani `E3_YENIDEN_TASARIM` §2'nin
-> "tamamen boş" dediği %5-12 bandının tam içinde. (PGD-10: 55,98 / 55,07;
-> n=26.032 tam test kümesi. Bunlar ham ölçümlerdir; E7 analiz zinciri henüz
-> koşulmadı.)
+> ### Sıradaki işler
+> 1. E7 bitince: `bash scripts/q1_devam.sh e7analiz` (SVHN analiz zinciri)
+> 2. `bash scripts/q1_e3_akolu_run.sh 10` → SVHN çift-2'yi A koluna ekler
+>    (muhafız `TRAINING_COMPLETE` arar; bitmemişse sessiz atlamaz)
+> 3. `docker exec -w /workspace adeb_eval python -B scripts/q1_e3_iki_kol_fit.py`
+>    ve `scripts/q1_e3_figur.py` → **son sayılar bunlardan alınır**
+> 4. E3'ü makaleye yaz (EK C/D'deki dört nitelemeyle birlikte)
+> 5. `bash scripts/q1_e6_l2.sh` (E6/L2) · `q1_e2_test_curve.py --dataset cifar100` (B.8)
 >
-> **SÜRE TAHMİNİM YANLIŞTI — düzeltildi.** Daha önce bu belgede "~50 saat"
-> yazmıştım. O rakam, GPU'nun bu projeye ait olmayan üç işle %97 dolu olduğu
-> bir **anlık** hız ölçümünden (1,67 dk/epok) genellenmişti. Gerçekleşen:
-> 4 sa 40 dk'da üç temiz ön-eğitim (200'er epok) + iki çekişmeli eğitim + iki
-> PGD değerlendirmesi bitti. Makul toplam **~18-22 saat**, 50 değil.
-> **Ders:** anlık bir hız ölçümü kampanya süresine çevrilmeden önce, ölçümün
-> alındığı koşulların (GPU paylaşımı) sürüp sürmediği kontrol edilmelidir.
->
-> **Kaldığı yerden devam:**
-> `docker exec -d -e STAGE=e7 -w /workspace adeb_eval bash scripts/q1_pipeline.sh`
-> Biten 5 eğitim atlanır (bütçe etiketi uyuşması da denetlenir).
-> `E7_FULL` VERİLMEZ · `--stratified` EKLENMEZ.
->
-> **Sırada bekleyenler (GPU boşalınca, bu sırayla):**
-> 1. E7 analiz zinciri: `bash scripts/q1_e1_analysis.sh --dataset svhn`
-> 2. E3 **A kolu** — `bash scripts/q1_e3_run.sh` (B kolu bitti) — 3-5 GPU-saat
-> 3. E6/L2: `bash scripts/q1_e6_l2.sh` (muhafız E7 koşarken reddediyor)
-> 4. B.8: `q1_e2_test_curve.py --dataset cifar100` (1 GPU-saat)
->
-> **İŞ-6(b) ve (c) BİTTİ** (`db03fdb`). Bunlar "E7 bitmeden yapılamaz" diye
-> ertelenmişti; **gerekçe yanlıştı** — engel E7'nin bitmesi değil, betiğin
-> *koşuyor* olmasıydı (T5). E7 durunca engel kalktı ve yapıldı. Her iki ölü
-> kapı da işaretlendi; **silinmedi** (silinseydi neden öldükleri kayıttan
-> düşerdi) ve **yerlerine yeni eşik konmadı** (K5 / EK B.2 — kapı alışverişi).
->
-> **Böylece İŞ-6'nın sekiz kaleminin tamamı kapandı.**
-
-Bu belge, konuşma geçmişi sıfırlansa bile kalan işin tek başına
-yürütülebilmesi için yazılmıştır. Önce **kurallar**, sonra **ortam tuzakları**,
-sonra **yapılacak işler** (her biri kabul ölçütüyle).
-
+> **UYARI:** yukarıdaki A kolu sayıları SVHN çift-2 eklenmeden önceki
+> değerlerdir. Makaleye **adım 3'ten sonraki** değerler yazılacaktır.
 ---
 
 ## 0. Otuz saniyede durum
