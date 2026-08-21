@@ -310,3 +310,98 @@ E3, özdeşliğin **artığını** ikincil bir çıktı olarak raporlayacaktır:
 sıfırdan anlamlı ölçüde sapıyorsa bu, "temiz-yanlış örnekler saldırı altında
 yanlış kalır" öncülünün bozulduğu bir rejim demektir ve **kendi başına**
 raporlanması gereken bir bulgudur (K8).
+
+---
+
+## EK C — E3'ün ölçtüğü nicelik YANLIŞTI; düzeltildi ve gerçek bulgu çıktı (2026-08-21)
+
+**Salt-ekleme.** EK B'nin ilan ettiği tasarım ile KOD arasındaki uyuşmazlık
+ölçülerek bulundu; aşağıda önce uyuşmazlık, sonra düzeltme, sonra ortaya
+çıkan bulgu var.
+
+### C.1 Uyuşmazlık — ilan edilen tasarım uygulanmamıştı
+
+EK B.2 şunu ilan etmişti:
+
+| | ilan edilen |
+|---|---|
+| $y$ | dört protokolün ürettiği **asimetri** yayılımı |
+| $x$ | çiftteki iki modelin temiz doğruluk **farkı** |
+
+Kod ise başka bir şey hesaplıyordu: $y$ = **tek bir yön** için dört protokol
+oranının açıklığı, $x$ = **hedefin** temiz hatası. Bu, makalenin manşet
+niceliğiyle aynı tür değildir: CIFAR-100'de manşet yayılım 13,58 puan iken
+tek-yön açıklığı 37 puan mertebesindedir.
+
+### C.2 Uyuşmazlık neden önemliydi — ölçüldü
+
+Üretici: `scripts/q1_e3_spread_teshis.py` → `results/q1/e3_spread_teshis.json`
+
+Tek-yön açıklığının **ortalama %82,1'i** (aralık %59,7–95,2) özdeşlik
+terimidir ($r_{ham}-r_{koş}=e(1-r_{koş})$, bkz. EK B / EK J).
+
+| nicelik | eğim ($x$ = hedefin temiz hatası) | $r$ |
+|---|---|---|
+| tek-yön yayılımı | 0,608 | 0,934 |
+| özdeşlik terimi | 0,669 | 0,971 |
+| **özdeşlik çıkarılınca artık** | **0,070** | **0,117** |
+
+Yani B kolunun ilk sonucu (eğim 0,608) **aritmetiği yeniden ölçüyordu**;
+ampirik içerik sıfıra yakındı.
+
+### C.3 Düzeltme — doğru nicelik kuruldu (yeni GPU koşumu GEREKMEDİ)
+
+`scripts/q1_e3_asimetri.py` mevcut nokta json'larını **yöne göre eşleştirip**
+asimetriyi ve onun protokoller arası yayılımını kurar.
+
+**Doğrulama:** kurgu, makalenin yayımlanmış sayılarını yeniden üretiyor —
+CIFAR-10 ana çifti 11,31 / 10,17 / 9,86 (rapor: 10,45) ve CIFAR-100 ana çifti
+15,01 / 14,04 / 11,68 → **ortalama 13,58** (rapor: 13,58). Yani eşleştirme
+doğru kuruldu.
+
+**Dengesizlik giderildi.** İlk koşumda WRN içeren bütün çiftler CIFAR-100'den
+geliyordu; CIFAR-10'un 3×3 artefaktlarında `source_adv_wrong` alanı yoktu
+(eski şema, `4fb006a` öncesi). Alan **köşegenden yeniden kuruldu**
+(src→src beyaz kutusu = kaynağın kendi çekişmeli örneğine yenilmesi) ve
+yöntem CIFAR-100'de **18/18 yönde bayt-eşit** doğrulandı
+(`scripts/q1_e3_bkolu_c10_wrn.py`). Orijinal npz'ler değiştirilmedi.
+Nokta sayısı 12 → **18 eşleşmiş çift / 6 küme**, iki veri kümesi de WRN
+çiftleri katıyor.
+
+### C.4 BULGU — mekanizma anlatısı EKSİK
+
+Üretici: `scripts/q1_e3_surucu_ayristir.py` → `results/q1/e3_surucu_ayristirma.json`
+
+| $y$ | eğim ($x$ = çiftin temiz hata farkı) | $r$ | GA%95 (küme bootstrap) |
+|---|---|---|---|
+| **4 protokol** yayılımı | **−0,567** | −0,531 | [−0,757; −0,451] |
+| **3 protokol** (başarılı-kaynak HARİÇ) | **+0,431** | +0,840 | [+0,333; +0,633] |
+
+İşareti çeviren tek şey **başarılı-kaynak** protokolüdür: 18 çiftin 12'sinde
+uç (minimum) odur ve en geniş protokol çifti hep onu içerir
+(hedef-doğru ↔ başarılı-kaynak: ortalama 19,68 puan).
+
+**En büyük yayılım, hata farkı ~0 olan çiftlerde çıkıyor** — ve bu iki veri
+kümesinde de tekrarlanıyor: CIFAR-10'da ResNet↔WRN farkı 3,4–4,1 puanken
+yayılım 33,3–34,2; CIFAR-100'de fark 0,6–1,0 puanken yayılım 22,7–26,6.
+
+**Yürürlükteki hüküm:**
+
+> Protokol yayılımının **iki** sürücüsü vardır. Birincisi hedeflerin temiz
+> hata farkıdır ve üç protokol (ham, hedef-doğru, her-ikisi-doğru) için
+> geçerlidir; bu bileşen özdeşlikten **türetilebilir** (öngörü artığı: mutlak
+> ortalama 0,046, en çok 0,16 puan). İkincisi **başarılı-kaynak** protokolüdür;
+> **kaynağın kendi gürbüzlüğüne** bağlıdır, temiz hata farkından türetilemez
+> ve tek başına ilişkinin işaretini çevirecek kadar güçlüdür.
+
+Makalenin tartışma bölümündeki *"yayılım hedefler arasındaki temiz doğruluk
+farkından kaynaklanır"* ifadesi bu yüzden **eksiktir** ve dört protokolün
+tamamı raporlanırken **yanlıştır**. Düzeltilecektir.
+
+### C.5 Sınırlamalar (rapor edilecek)
+
+- 18 çift / **6 küme**; serbestlik derecesini küme sayısı belirler.
+- WRN harici bir modeldir (farklı reçete, ek veri); küçük-fark çiftlerinin
+  hepsi WRN içerir, dolayısıyla "küçük fark" ile "farklı reçete" bu havuzda
+  tam ayrıştırılamaz. E5 (kapasite çifti) koşulursa ayrışır.
+- EK A'nın ölçtüğü iki delik (%17,68–23,28 ve %42,28–56,40) burada da geçerli.

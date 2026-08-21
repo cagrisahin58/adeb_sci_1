@@ -1,0 +1,319 @@
+{
+  "uretildi_utc": "2026-08-21T00:40:19.598766+00:00",
+  "n_nokta": 24,
+  "UYARI_NICELIK": "Buradaki 'spread' TEK YON icin dort protokol oraninin acikligidir. Makalenin manset 'protokol yayilimi' (CIFAR-10 10,45 · CIFAR-100 13,58) IKI YON ARASINDAKI ASIMETRININ yayilimidir. IKISI AYNI NICELIK DEGILDIR.",
+  "ozdeslik_payi_yuzde": {
+    "min": 59.73,
+    "max": 95.15,
+    "ort": 82.05166666666666
+  },
+  "raw_her_zaman_en_buyuk_mu": false,
+  "uydurmalar_x_hedefin_temiz_hatasi": {
+    "spread": {
+      "egim": 0.6079355482573096,
+      "kesisim": 10.926498853830646,
+      "pearson_r": 0.9339650537589296
+    },
+    "ozdeslik_terimi": {
+      "egim": 0.6690822429451845,
+      "kesisim": 2.9497668917538014,
+      "pearson_r": 0.9710484623881227
+    },
+    "ARTIK_spread": {
+      "egim": 0.07037946487254292,
+      "kesisim": 15.375079231520814,
+      "pearson_r": 0.11743425974706416
+    }
+  },
+  "noktalar": [
+    {
+      "id": "B_c100_ResNet18_AT",
+      "yon": "ViT_Tiny_AT->ResNet18_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 35.77,
+      "spread": 37.02213530655391,
+      "ozdeslik_terimi": 27.87357465358867,
+      "ozdeslik_payi_yuzde": 75.29,
+      "artik_spread": 13.13156990889089,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_ResNet18_AT",
+      "yon": "WRN_28_10->ResNet18_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 35.77,
+      "spread": 35.56842725309247,
+      "ozdeslik_terimi": 22.027863926514094,
+      "ozdeslik_payi_yuzde": 61.93,
+      "artik_spread": 35.56842725309247,
+      "raw_en_buyuk_mu": false
+    },
+    {
+      "id": "B_c100_ResNet18_AT",
+      "yon": "ViT_Tiny_AT->ResNet18_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 35.35,
+      "spread": 35.87296032553408,
+      "ozdeslik_terimi": 27.75832946635731,
+      "ozdeslik_payi_yuzde": 77.38,
+      "artik_spread": 11.703201711198348,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_ResNet18_AT",
+      "yon": "WRN_28_10->ResNet18_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 35.35,
+      "spread": 36.42451544369468,
+      "ozdeslik_terimi": 21.755065738592414,
+      "ozdeslik_payi_yuzde": 59.73,
+      "artik_spread": 36.42451544369468,
+      "raw_en_buyuk_mu": false
+    },
+    {
+      "id": "B_c100_ResNet18_AT",
+      "yon": "ViT_Tiny_AT->ResNet18_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 37.32,
+      "spread": 37.20184724689165,
+      "ozdeslik_terimi": 29.544837268666242,
+      "ozdeslik_payi_yuzde": 79.42,
+      "artik_spread": 11.551115539574578,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_ResNet18_AT",
+      "yon": "WRN_28_10->ResNet18_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 37.32,
+      "spread": 33.6231643816916,
+      "ozdeslik_terimi": 23.549955328653482,
+      "ozdeslik_payi_yuzde": 70.04,
+      "artik_spread": 33.6231643816916,
+      "raw_en_buyuk_mu": false
+    },
+    {
+      "id": "B_c100_ViT_Tiny_AT",
+      "yon": "ResNet18_AT->ViT_Tiny_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 58.06,
+      "spread": 45.0899154334038,
+      "ozdeslik_terimi": 42.882770624701955,
+      "ozdeslik_payi_yuzde": 95.11,
+      "artik_spread": 11.826758769335218,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_ViT_Tiny_AT",
+      "yon": "WRN_28_10->ViT_Tiny_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 58.06,
+      "spread": 42.795317919075146,
+      "ozdeslik_terimi": 40.04793037672866,
+      "ozdeslik_payi_yuzde": 93.58,
+      "artik_spread": 25.212949854122503,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_ViT_Tiny_AT",
+      "yon": "ResNet18_AT->ViT_Tiny_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 56.49999999999999,
+      "spread": 43.92396744659206,
+      "ozdeslik_terimi": 41.79471264367815,
+      "ozdeslik_payi_yuzde": 95.15,
+      "artik_spread": 12.217640765143432,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_ViT_Tiny_AT",
+      "yon": "WRN_28_10->ViT_Tiny_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 56.49999999999999,
+      "spread": 42.56643347748665,
+      "ozdeslik_terimi": 39.63275862068966,
+      "ozdeslik_payi_yuzde": 93.11,
+      "artik_spread": 25.559747616962014,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_ViT_Tiny_AT",
+      "yon": "ResNet18_AT->ViT_Tiny_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 55.94,
+      "spread": 43.91329104288252,
+      "ozdeslik_terimi": 41.22888788016341,
+      "ozdeslik_payi_yuzde": 93.89,
+      "artik_spread": 13.898060792040138,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_ViT_Tiny_AT",
+      "yon": "WRN_28_10->ViT_Tiny_AT",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 55.94,
+      "spread": 42.041065989847716,
+      "ozdeslik_terimi": 39.147031320926004,
+      "ozdeslik_payi_yuzde": 93.12,
+      "artik_spread": 24.66581270654565,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_WRN_28_10",
+      "yon": "ResNet18_AT->WRN_28_10",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 36.36000000000001,
+      "spread": 32.631497480201574,
+      "ozdeslik_terimi": 27.701351351351345,
+      "ozdeslik_payi_yuzde": 84.89,
+      "artik_spread": 14.443278639297578,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_WRN_28_10",
+      "yon": "ViT_Tiny_AT->WRN_28_10",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 36.36000000000001,
+      "spread": 37.78555964266947,
+      "ozdeslik_terimi": 30.329503456945318,
+      "ozdeslik_payi_yuzde": 80.27,
+      "artik_spread": 10.700015088214023,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_WRN_28_10",
+      "yon": "ResNet18_AT->WRN_28_10",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 36.36000000000001,
+      "spread": 32.50137672090113,
+      "ozdeslik_terimi": 27.73563796354494,
+      "ozdeslik_payi_yuzde": 85.34,
+      "artik_spread": 14.516830248336738,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_WRN_28_10",
+      "yon": "ViT_Tiny_AT->WRN_28_10",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 36.36000000000001,
+      "spread": 37.86045535487153,
+      "ozdeslik_terimi": 30.660873664362036,
+      "ozdeslik_payi_yuzde": 80.98,
+      "artik_spread": 9.994962397125054,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_WRN_28_10",
+      "yon": "ResNet18_AT->WRN_28_10",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 36.36000000000001,
+      "spread": 33.5897800183318,
+      "ozdeslik_terimi": 27.945600251414202,
+      "ozdeslik_payi_yuzde": 83.2,
+      "artik_spread": 15.326010266638804,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c100_WRN_28_10",
+      "yon": "ViT_Tiny_AT->WRN_28_10",
+      "dataset": "c100",
+      "arm": "B",
+      "e": 36.36000000000001,
+      "spread": 37.10593908629441,
+      "ozdeslik_terimi": 30.7979949717159,
+      "ozdeslik_payi_yuzde": 83.0,
+      "artik_spread": 9.30781648093043,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c10_ResNet18_AT",
+      "yon": "ViT_Tiny_AT->ResNet18_AT",
+      "dataset": "c10",
+      "arm": "B",
+      "e": 14.629999999999999,
+      "spread": 17.67328094302554,
+      "ozdeslik_terimi": 12.365011128030924,
+      "ozdeslik_payi_yuzde": 69.96,
+      "artik_spread": 13.592977912722512,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c10_ResNet18_AT",
+      "yon": "ViT_Tiny_AT->ResNet18_AT",
+      "dataset": "c10",
+      "arm": "B",
+      "e": 14.059999999999995,
+      "spread": 17.162552709777838,
+      "ozdeslik_terimi": 11.804086572026995,
+      "ozdeslik_payi_yuzde": 68.78,
+      "artik_spread": 13.60599661585313,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c10_ResNet18_AT",
+      "yon": "ViT_Tiny_AT->ResNet18_AT",
+      "dataset": "c10",
+      "arm": "B",
+      "e": 13.949999999999996,
+      "spread": 17.561172936632815,
+      "ozdeslik_terimi": 11.653085415456133,
+      "ozdeslik_payi_yuzde": 66.36,
+      "artik_spread": 14.581423544450283,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c10_ViT_Tiny_AT",
+      "yon": "ResNet18_AT->ViT_Tiny_AT",
+      "dataset": "c10",
+      "arm": "B",
+      "e": 25.900000000000002,
+      "spread": 22.355178220600617,
+      "ozdeslik_terimi": 20.742914979757085,
+      "ozdeslik_payi_yuzde": 92.79,
+      "artik_spread": 21.211055837347796,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c10_ViT_Tiny_AT",
+      "yon": "ResNet18_AT->ViT_Tiny_AT",
+      "dataset": "c10",
+      "arm": "B",
+      "e": 26.529999999999998,
+      "spread": 22.801045705391253,
+      "ozdeslik_terimi": 21.20683135973867,
+      "ozdeslik_payi_yuzde": 93.01,
+      "artik_spread": 20.015759081187433,
+      "raw_en_buyuk_mu": true
+    },
+    {
+      "id": "B_c10_ViT_Tiny_AT",
+      "yon": "ResNet18_AT->ViT_Tiny_AT",
+      "dataset": "c10",
+      "arm": "B",
+      "e": 26.990000000000002,
+      "spread": 23.15200829638106,
+      "ozdeslik_terimi": 21.510558827557865,
+      "ozdeslik_payi_yuzde": 92.91,
+      "artik_spread": 19.530608104134988,
+      "raw_en_buyuk_mu": true
+    }
+  ],
+  "HUKUM": "spread egimi 0.608, bunun 0.669'i OZDESLIK teriminden geliyor; ozdeslik cikarilinca artik egim 0.070. OZDESLIK BASKIN: E3'un mevcut hali buyuk olcude ARITMETIGI olcuyor ve EK B'nin amacladigi ampirik soruyu yanitlamiyor. x ekseni ve y niceligi yeniden tanimlanmalidir."
+}
