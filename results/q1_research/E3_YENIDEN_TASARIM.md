@@ -474,3 +474,82 @@ değildir. Ancak erken epoklar çıkarıldığında $x$ aralığı 10,6–16,0'a
 A kolu bu ek yazılırken **hâlâ koşuyordu** (3 küme). Küme bootstrap 2–3 kümede
 dejenere olur (GA [+0,583; +0,651] gerçekçi olamayacak kadar dardır).
 **Küme sayısı 6–8'e çıkmadan A kolu güven aralıkları kullanılmayacaktır.**
+
+---
+
+## EK E — E3 NİHAİ SONUÇ (2026-08-21, SVHN dahil tüm veriyle)
+
+**Salt-ekleme.** EK C/D'deki ara değerler SVHN çiftleri eklenmeden önceydi;
+aşağıdakiler **yürürlüktedir** ve makaleye bunlar yazılır.
+
+Üretici: `scripts/q1_e3_iki_kol_fit.py` → `results/q1/e3_iki_kol_fit.json`
+Şekil: `paper/figures/raw/fig_e3_kalibrasyon.pdf` (`scripts/q1_e3_figur.py`)
+
+$x$ = çiftin temiz hata farkı (puan) · $y$ = **asimetrinin** protokoller arası
+yayılımı (puan). Çıkarım **küme** düzeyi bootstrap ($B=10.000$).
+
+### E.1 Kollar (havuzlanmış uydurma ÜRETİLMEDİ)
+
+| kol | $n$ / küme | $x$ aralığı | 4 protokol | 3 protokol (baş.-kaynak hariç) |
+|---|---|---|---|---|
+| **A** kontrollü (yörünge içi) | 116 / **8** | 0,89–30,31 | **+0,294** [+0,206; +0,489] | **+0,672** [+0,601; +0,726] |
+| **B** gözlemsel (final modeller) | 18 / 6 | 0,59–22,29 | **−0,567** [−0,757; −0,451] | **+0,431** [+0,333; +0,633] |
+| B, WRN'siz alt küme | 6 / 6 | 11,27–22,29 | +0,387 [+0,075; +0,576] | +0,546 [+0,398; +0,837] |
+
+### E.2 Manşet — iki kolun eğimlerinin uyuşması
+
+- **Üç protokolde UYUŞUYOR:** A [+0,601; +0,726] ile B [+0,333; +0,633]
+  örtüşüyor, işaretler aynı. Kontrollü ve gözlemsel kanıt **aynı yönü**
+  veriyor: yayılım, çiftin temiz hata farkıyla **artıyor**.
+- **Dört protokolde UYUŞMUYOR** (A pozitif, B negatif) — **ama sebep kontrol
+  değil havuz bileşimidir.** A kolu yalnız ResNet↔ViT tarar, WRN içermez;
+  B'yi aynı bileşime kısıtlayan alt küme **+0,387** verir ve A (+0,294) ile
+  hem işaret aynıdır hem güven aralıkları örtüşür. Fit bunu
+  `BILESIM_mi_KONTROL_mu` alanında raporlar.
+
+### E.3 Sağlamlık
+
+**Kaldıraç.** A kolunun eğimi erken checkpoint'lere bağlı değildir:
+
+| alt küme | 4 protokol | 3 protokol |
+|---|---|---|
+| tam | +0,294 | +0,672 |
+| ep ≥ 2 | +0,220 | +0,668 |
+| ep ≥ 10 | +0,524 | +0,659 |
+| ep ≥ 20 | +0,524 | +0,664 |
+
+İşaret her alt kümede korunuyor. **3 protokol eğimi olağanüstü kararlı**
+(0,659–0,672); asıl güvenilir nicelik odur.
+
+**Özdeşlik artığı.** Her noktada hesaplandı; CIFAR'da ≤0,2 puan, CIFAR-100 ve
+SVHN'in erken epoklarında 0,43'e kadar — hepsi açıklanan sapmanın çok altında.
+
+### E.4 Bağlayıcı sınırlamalar (makaleye yazılacak)
+
+1. **B kolunun negatif eğimi bir boşluğun üzerinden geçer.** $x$'te
+   4,1–11,3 arası **boştur** (7,2 puan): küçük-fark çiftleri ile büyük-fark
+   çiftleri arasında veri yoktur. O eğim sürekli bir eğilim ölçümü değil,
+   **iki ayrık kümenin karşılaştırmasıdır**.
+2. **Serbestlik derecesini küme sayısı belirler** (A: 8, B: 6). "n = 116
+   nokta" biçiminde sunmak sahte kesinlik verir.
+3. **Ölçülmemiş bantlar** şekilde gri ile işaretlidir
+   (A: 4,8–7,8 · 23,4–25,9 — B: 1,0–3,4 · 4,1–11,3 · 13,0–15,4 · 16,5–18,6).
+4. EK C.5'in "küçük fark ile farklı reçete ayrıştırılamıyor" sınırlaması
+   **gevşedi**: SVHN çifti aynı mimari ve aynı tarifle eğitildi ve temiz hata
+   farkı yalnız 1,85 puandır, yani küçük-fark bölgesinde artık WRN'siz bir
+   çapa vardır.
+
+### E.5 E7 ile bağımsız tutarlılık
+
+E7'nin protokol yayılımı (`e7_transfer_summary.json`) bu kalibrasyonu
+**bağımsız olarak** doğruluyor — E3'ün noktalarından değil, SVHN'in kendi
+uçtan uca analizinden geliyor:
+
+| veri kümesi | temiz hata farkı | protokol yayılımı |
+|---|---|---|
+| SVHN | ~1,85 | **3,65** |
+| CIFAR-10 | ~11,3 | 10,45 |
+| CIFAR-100 | ~21 | 13,58 |
+
+Üçü de pozitif eğimle uyumludur ve ilişkinin **alt-doğrusal** olduğunu
+göstermektedir (SVHN→CIFAR-10 eğimi ≈0,72; CIFAR-10→CIFAR-100 ≈0,32).

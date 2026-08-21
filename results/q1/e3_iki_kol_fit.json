@@ -1,41 +1,41 @@
 {
-  "uretildi_utc": "2026-08-21T02:57:43.015785+00:00",
+  "uretildi_utc": "2026-08-21T06:53:29.785807+00:00",
   "HAVUZLAMA": "YAPILMADI. Kollar ayri uydurulur; manset iki kolun EGIMLERININ UYUSMASIDIR (E3_YENIDEN_TASARIM B.3). Ortak bir uydurma yoktur.",
   "NICELIK": "x = ciftin temiz hata farki (puan) · y = ASIMETRININ protokoller arasi yayilimi (puan). Makalenin manset niceligiyle ayni turdendir.",
   "kollar": {
     "A": {
-      "n_nokta": 108,
-      "n_kume": 7,
-      "SERBESTLIK_DERECESI_NOTU": "Cikarim 7 KUME uzerinden kume bootstrap iledir; n=108 SERBESTLIK DERECESI DEGILDIR.",
+      "n_nokta": 116,
+      "n_kume": 8,
+      "SERBESTLIK_DERECESI_NOTU": "Cikarim 8 KUME uzerinden kume bootstrap iledir; n=116 SERBESTLIK DERECESI DEGILDIR.",
       "x_araligi": [
-        1.2500000000000062,
+        0.8900000000000023,
         30.310000000000002
       ],
       "dort_protokol": {
-        "egim": 0.33653077384360813,
-        "kesisim": 7.260190221668558,
-        "pearson_r": 0.44460561286591144,
+        "egim": 0.29347132666503906,
+        "kesisim": 8.061398554092774,
+        "pearson_r": 0.3493470612248937,
         "egim_GA95": [
-          0.2095218415297661,
-          0.5118072265702118
+          0.20558694288731647,
+          0.48854030968111484
         ],
         "GA_sifiri_iceriyor_mu": false,
         "y_araligi": [
-          1.5976,
+          1.4066,
           36.29559999999999
         ]
       },
       "uc_protokol_bas_kaynak_haric": {
-        "egim": 0.6549649547695986,
-        "kesisim": 1.0992428073207394,
-        "pearson_r": 0.9743190974840827,
+        "egim": 0.6719657234363632,
+        "kesisim": 0.8018311248318245,
+        "pearson_r": 0.9796992213966106,
         "egim_GA95": [
-          0.5825909738102342,
-          0.7176712748613038
+          0.6006719101333841,
+          0.7259243569583571
         ],
         "GA_sifiri_iceriyor_mu": false,
         "y_araligi": [
-          0.8665999999999983,
+          0.2406999999999968,
           22.4152
         ]
       }
@@ -118,43 +118,43 @@
   },
   "A_KALDIRAC_DUYARLILIGI": {
     "ep>=2": {
-      "n_nokta": 96,
-      "n_kume": 7,
+      "n_nokta": 104,
+      "n_kume": 8,
       "x_araligi": [
-        1.2500000000000062,
+        0.8900000000000023,
         23.35000000000001
       ],
-      "dort_protokol_egim": 0.2648896306835954,
-      "uc_protokol_egim": 0.6472632911657655
+      "dort_protokol_egim": 0.2202298500626165,
+      "uc_protokol_egim": 0.6678727426508534
     },
     "ep>=10": {
-      "n_nokta": 94,
-      "n_kume": 7,
+      "n_nokta": 100,
+      "n_kume": 8,
       "x_araligi": [
-        1.2500000000000062,
+        0.8900000000000023,
         23.35000000000001
       ],
-      "dort_protokol_egim": 0.4955960003789017,
-      "uc_protokol_egim": 0.6383837862006381
+      "dort_protokol_egim": 0.5243678365985095,
+      "uc_protokol_egim": 0.6589029623964013
     },
     "ep>=20": {
-      "n_nokta": 82,
-      "n_kume": 7,
+      "n_nokta": 88,
+      "n_kume": 8,
       "x_araligi": [
-        1.2500000000000062,
+        0.8900000000000023,
         22.619999999999997
       ],
-      "dort_protokol_egim": 0.48951597314655915,
-      "uc_protokol_egim": 0.6426641413023835
+      "dort_protokol_egim": 0.523828941161297,
+      "uc_protokol_egim": 0.6639849254255499
     },
-    "yorum": "Tam A kolu egimi +0.337. Erken epoklar cikarilinca [0.265, 0.496, 0.49]. Isaret KORUNUYOR; egim erken checkpointlere BAGLI DEGIL."
+    "yorum": "Tam A kolu egimi +0.293. Erken epoklar cikarilinca [0.22, 0.524, 0.524]. Isaret KORUNUYOR; egim erken checkpointlere BAGLI DEGIL."
   },
   "EGIM_UYUSMASI": {
     "dort_protokol": {
-      "A_egim": 0.33653077384360813,
+      "A_egim": 0.29347132666503906,
       "A_GA": [
-        0.2095218415297661,
-        0.5118072265702118
+        0.20558694288731647,
+        0.48854030968111484
       ],
       "B_egim": -0.5671475816924401,
       "B_GA": [
@@ -165,10 +165,10 @@
       "isaret_ayni_mi": false
     },
     "uc_protokol_bas_kaynak_haric": {
-      "A_egim": 0.6549649547695986,
+      "A_egim": 0.6719657234363632,
       "A_GA": [
-        0.5825909738102342,
-        0.7176712748613038
+        0.6006719101333841,
+        0.7259243569583571
       ],
       "B_egim": 0.4314765037776934,
       "B_GA": [
@@ -180,7 +180,7 @@
     },
     "BILESIM_mi_KONTROL_mu": {
       "aciklama": "A (kontrollu, WRN yok) ile B_ana_cift (gozlemsel, WRN yok) AYNI havuz bilesimine sahiptir; aralarindaki fark KONTROLDEN gelir. Ham B ile fark ise bilesimi de icerir.",
-      "A_egim": 0.33653077384360813,
+      "A_egim": 0.29347132666503906,
       "B_ana_cift_egim": 0.3870059842641805,
       "B_tum_egim": -0.5671475816924401,
       "isaret_A_ile_B_ana_cift_ayni_mi": true,
