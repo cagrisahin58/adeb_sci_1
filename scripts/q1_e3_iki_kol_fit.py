@@ -86,14 +86,29 @@ sonuc = {
                "arasi yayilimi (puan). Makalenin manset niceligiyle ayni turdendir.",
     "kollar": {},
 }
-for kol in ("A", "B"):
+# B kolunun ANA CIFT alt kumesi: A kolu WRN icermez, dolayisiyla ham B ile
+# karsilastirma HAVUZ BILESIMI farkini kontrol farkiyla karistirir. Bu varyant
+# A ile AYNI bilesimi kurar; kalan fark yalniz KONTROLDUR.
+def _ana_cift_mi(k):
+    yonler = f"{k.get('yon_ileri','')} {k.get('yon_geri','')}"
+    return "WRN" not in yonler
+
+
+kayit["B_ana_cift"] = [k for k in kayit["B"] if _ana_cift_mi(k)]
+
+for kol in ("A", "B", "B_ana_cift"):
     if len(kayit[kol]) < 4:
         sonuc["kollar"][kol] = {"n_nokta": len(kayit[kol]),
                                 "DURUM": "COK AZ NOKTA -- uydurulmadi"}
         continue
     sonuc["kollar"][kol] = kol_fit(kayit[kol])
+    if kol == "B_ana_cift":
+        sonuc["kollar"][kol]["NOT"] = (
+            "B kolunun WRN'siz alt kumesi. A kolu ile AYNI havuz bilesimi; "
+            "A ile fark yalniz KONTROLDUR (yorunge-ici vs gozlemsel).")
 
-uygun = [k for k, v in sonuc["kollar"].items() if "dort_protokol" in v]
+# MANSET yalniz A ve B icindir; B_ana_cift bir DUYARLILIK varyantidir.
+uygun = [k for k in ("A", "B") if "dort_protokol" in sonuc["kollar"].get(k, {})]
 if len(uygun) == 2:
     ua = sonuc["kollar"]["A"]
     ub = sonuc["kollar"]["B"]
@@ -109,6 +124,22 @@ if len(uygun) == 2:
         }
     sonuc["EGIM_UYUSMASI"] = uyusma
     hepsi = all(v["GA_ortusuyor_mu"] for v in uyusma.values())
+    # bilesim mi kontrol mu? A ile B_ana_cift karsilastirmasi bunu ayirir.
+    ba = sonuc["kollar"].get("B_ana_cift", {})
+    if "dort_protokol" in ba:
+        import numpy as _np
+        sonuc["EGIM_UYUSMASI"]["BILESIM_mi_KONTROL_mu"] = {
+            "aciklama": "A (kontrollu, WRN yok) ile B_ana_cift (gozlemsel, WRN yok) "
+                        "AYNI havuz bilesimine sahiptir; aralarindaki fark KONTROLDEN "
+                        "gelir. Ham B ile fark ise bilesimi de icerir.",
+            "A_egim": ua["dort_protokol"]["egim"],
+            "B_ana_cift_egim": ba["dort_protokol"]["egim"],
+            "B_tum_egim": ub["dort_protokol"]["egim"],
+            "isaret_A_ile_B_ana_cift_ayni_mi":
+                bool(_np.sign(ua["dort_protokol"]["egim"]) == _np.sign(ba["dort_protokol"]["egim"])),
+            "isaret_A_ile_B_tum_ayni_mi":
+                bool(_np.sign(ua["dort_protokol"]["egim"]) == _np.sign(ub["dort_protokol"]["egim"])),
+        }
     sonuc["EGIM_UYUSMASI"]["yorum"] = (
         "Iki kolun egimleri her iki nicelikte de ortusuyor: kontrollu ve gozlemsel "
         "kanit ayni yonu veriyor."
