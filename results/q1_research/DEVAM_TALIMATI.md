@@ -2,7 +2,7 @@
 
 **Son güncelleme: 2026-08-20 (akşam). Dal: `q1`. Son commit: `54e8b6e`.**
 
-> ## GÜNCEL DURUM — 2026-08-21, KAMPANYA TAMAMLANDI
+> ## GÜNCEL DURUM — 2026-08-21, KAMPANYA TAMAMLANDI + ÜSLUP TEMİZLİĞİ
 >
 > **Altı işin altısı da bitti. Koşan iş yok, GPU boş.**
 >
@@ -14,6 +14,7 @@
 > | İŞ-4 E3 (kalibrasyon) | bitti — 116 nokta / 8 küme, iki kol | `7148fd9` |
 > | İŞ-5 E6 (L2) | bitti — PGD + AutoAttack | `920a646` |
 > | İŞ-6 sekiz kalem | bitti (B.8 dahil) | `784e52d`, `f608cbb` |
+> | İŞ-7 üslup temizliği (EN+TR) | bitti | `20a77f3` |
 >
 > ### Planda olmayan üç bulgu (hepsi ölçümle çıktı)
 > 1. **`r = 0,997` korelasyon değil ÖZDEŞLİK** (EK J) — iddia zayıflamadı,
@@ -35,7 +36,8 @@
 > | `check_abstract_body.py` | geçiyor; `test_abstract_body_check.sh` ile sınandı |
 > | `q1_tr_decimal_check.py` | temiz (aralık istisnalı) |
 >
-> Derleme: EN 20 s. · TR 18 s. · 0 undefined · 0 overfull.
+> Derleme: EN 19 s. · TR 18 s. · bildiri 6 s. · 0 undefined · 0 hata.
+> (EN, üslup temizliğinden sonra 20 sayfadan 19'a indi.)
 > Takipsiz ham artefakt: **0** (K7).
 >
 > ### GERİYE KALAN: yalnızca geri dönüşsüz adımlar (KULLANICI KARARI)
@@ -376,6 +378,41 @@ Sessiz bırakmak **kabul edilmez**.
 | f | `q1_tr_decimal_check.py` desenine **aralık istisnası** ekle (`$[0,1]$` yanlış pozitif veriyor) | 15 dk |
 | g | `E3_YENIDEN_TASARIM.md` §2'nin vaat ettiği ek yazılmadı: E1 noktaları %19,4-23,5 boşluğunu kapattı mı? | 1 sa |
 | h | E1 baş artefaktlarında **köken bilgisi yok** (git SHA, tarih, tohum listesi, torch sürümü). Kıyas: `e2_report.json`'da `generated_utc` var | 1 sa |
+
+---
+
+### İŞ-7 · ~~Üslup temizliği~~ — **BİTTİ** (`20a77f3`)
+
+Kullanıcı talebi: yapay zekâ yapımı olduğu belli üslup kalksın.
+
+| # | Yapılan | EN | TR |
+|---|---|---|---|
+| a | `enumerate` listeleri düz paragrafa çevrildi; ana metinde artık hiç liste yok | 0 kaldı | 0 kaldı |
+| b | Paragraf başı kalın cümle açıcıları kaldırıldı ("The protocol spread grows rather than shrinks." tarzı) | 11 | 11 |
+| c | Tartışma'da cümle biçimli `\paragraph{}` başlıkları kaldırıldı | 5 | 5 |
+| d | Altyazılar kısaltıldı; kaybolan bilgi ilgili paragrafa cümle olarak gömüldü | 6 | 6 |
+| e | Metin içi tireler kaldırıldı (`---` ve düzyazı `--`) | 44 → 0 | 44 → 0 |
+
+**Kasıtlı olarak KORUNANLAR** (üslup izi değil, yerleşik bilimsel yazım):
+
+- Yöntem bölümündeki 17 ad öbeği `\paragraph{}` etiketi ("Threat Model",
+  "Robustness Metrics" gibi). Bunlar makale yazımında standarttır.
+- Tablolardaki `& -- \\` hücreleri. Oradaki tire noktalama değil,
+  "değeri yok" işaretidir ve evrensel gösterimdir.
+- `% ------` biçimindeki LaTeX yorum ayraçları. PDF'e hiç çıkmazlar.
+
+**Yan ürün — Kapı 2'de bulunan kusur.** `check_manuscript_claims.py`
+sabit bir host yolu (`/home/firat/...`) okuyordu; kapsayıcı içinde bu yol
+yok, `rglob` boş dönüyor, `en`/`tr` boş dize oluyordu. Sonuç: VARLIK
+kontrolleri kalıyor ama **YOKLUK kontrolleri boş metin üzerinde sahte
+geçiyordu**. Yol artık `/workspace` ya da dosya konumundan türetiliyor ve
+sıfır `.tex` okunursa kapı kendi kendini hata veriyor. Öz-sınamanın kök
+enjeksiyonu da `sed` ile kaynak satırı yamamaktan `MANUSCRIPT_ROOT`
+değişkenine geçirildi; eski `sed` yaması satır biçimi değişince sessizce
+işlemez olmuştu ve bunu ancak yeni sıfır-dosya koruması yakaladı.
+
+**Kabul ölçütü (hepsi koşuldu):** dört kapı + iki öz-sınama geçti, EN ve
+TR sıfır undefined ile derlendi, hiçbir sayı değişmedi.
 
 ---
 
