@@ -73,6 +73,7 @@ e3s = jl("results/q1/e3_surucu_ayristirma.json")
 e7 = jl("results/q1/e7_svhn_summary.json")
 e7t = jl("results/q1/svhn/transfer/e7_transfer_summary.json")
 e3f = jl("results/q1/e3_iki_kol_fit.json")
+b8 = jl("results/q1/b8_secim_bandi.json")
 e1 = jl("results/q1/e1_cifar100_summary.json")
 e1t = jl("results/q1/cifar100/transfer/e1_transfer_summary.json")
 e2g = jl("results/q1/e2/e2_grid.json")
@@ -224,6 +225,15 @@ for ad, blok, ek in (("A 4prot", _A["dort_protokol"], ""), ("A 3prot", _A["uc_pr
     chk(f"E3 {ad} GA alt", abs(blok["egim_GA95"][0]), 3)
     chk(f"E3 {ad} GA ust", abs(blok["egim_GA95"][1]), 3)
 chk("E3 A kolu nokta sayisi", _A["n_nokta"], 0)
+
+# --- YENI (2026-08-21, B.8): CIFAR-100'un KENDI secim bandi ---
+# 9 hucre (sabir x yumusatma). E2'nin 18 hucrelik degeriyle KARISTIRILMAMALI:
+# CIFAR-100'de bolme boyutu yoktur.
+for ds, lbl in (("cifar100", "C100"), ("cifar10", "C10")):
+    v = b8["veri_kumeleri"][ds]
+    chk(f"B8 {lbl} yayilim alt", v["yayilim_araligi"][0])
+    chk(f"B8 {lbl} yayilim ust", v["yayilim_araligi"][1])
+chk("B8 C100 yayilim ort", b8["veri_kumeleri"]["cifar100"]["yayilim_ort"])
 
 # --- rapor ---
 rows = []
