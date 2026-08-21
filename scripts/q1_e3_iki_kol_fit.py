@@ -108,6 +108,36 @@ for kol in ("A", "B", "B_ana_cift"):
             "A ile fark yalniz KONTROLDUR (yorunge-ici vs gozlemsel).")
 
 # MANSET yalniz A ve B icindir; B_ana_cift bir DUYARLILIK varyantidir.
+# --- KALDIRAC DUYARLILIGI (A kolu) ---
+# A kolunun egimini tasiyan noktalar yorungelerin ERKEN epoklaridir (ep1
+# civari, temiz hata cok yuksek). Egim birkac erken checkpoint'e dayaniyorsa
+# "kontrollu kol" etiketi bunu gizlememelidir. Erken epoklar cikarilinca
+# egim ne oluyor: OLCULUR ve RAPORLANIR (K8).
+if len(kayit["A"]) >= 4:
+    sonuc["A_KALDIRAC_DUYARLILIGI"] = {}
+    for esik in (2, 10, 20):
+        alt = [k for k in kayit["A"] if k.get("epoch", 0) >= esik]
+        if len(alt) < 4:
+            sonuc["A_KALDIRAC_DUYARLILIGI"][f"ep>={esik}"] = {
+                "n_nokta": len(alt), "DURUM": "cok az nokta"}
+            continue
+        f = kol_fit(alt)
+        sonuc["A_KALDIRAC_DUYARLILIGI"][f"ep>={esik}"] = {
+            "n_nokta": f["n_nokta"], "n_kume": f["n_kume"],
+            "x_araligi": f["x_araligi"],
+            "dort_protokol_egim": f["dort_protokol"]["egim"],
+            "uc_protokol_egim": f["uc_protokol_bas_kaynak_haric"]["egim"],
+        }
+    _tam = sonuc["kollar"]["A"]["dort_protokol"]["egim"]
+    _kirp = [v.get("dort_protokol_egim") for v in sonuc["A_KALDIRAC_DUYARLILIGI"].values()
+             if "dort_protokol_egim" in v]
+    sonuc["A_KALDIRAC_DUYARLILIGI"]["yorum"] = (
+        f"Tam A kolu egimi {_tam:+.3f}. Erken epoklar cikarilinca "
+        f"{[round(v, 3) for v in _kirp]}. "
+        + ("Isaret KORUNUYOR; egim erken checkpointlere BAGLI DEGIL."
+           if _kirp and all(v > 0 for v in _kirp) == (_tam > 0) else
+           "ISARET DEGISIYOR: egim erken checkpointlere BAGLI ve boyle raporlanmalidir."))
+
 uygun = [k for k in ("A", "B") if "dort_protokol" in sonuc["kollar"].get(k, {})]
 if len(uygun) == 2:
     ua = sonuc["kollar"]["A"]
