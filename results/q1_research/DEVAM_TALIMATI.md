@@ -158,7 +158,19 @@ Bash betiği artımlı okur; koşarken düzenlemek yürütmeyi bozar.
 Yeni dizinlerde "Permission denied" alırsan:
 `docker exec adeb_eval chown -R 1000:1000 /workspace/<dizin>`
 
-### T7 — Makine uykuya girerse eğitim ölür
+### T7 — Makine uykuya girerse eğitim ölür (ve BOZUK DOSYA bırakır)
+**Kesinti yalnız zaman kaybettirmez, 0 baytlık checkpoint bırakabilir.**
+Ölçülen örnek: `models/q1/cifar100/vit_tiny_s2002/.../epoch_009.pth` **0 bayt**.
+Zaman çizelgesi kesintiyi doğruluyor: epoch_008 22:06:23, epoch_009 22:08:43
+(0 bayt), epoch_010 **22:37:40** — normal ritim 2 dk 20 sn iken araya **29
+dakikalık** boşluk girmiş. `metrics.jsonl`'de epok 9 kaydı VAR, yani metrik
+yazılmış ama checkpoint tamamlanamamış; koşum sonra `--resume` ile bitmiş.
+Tarama sonucu: E1/E2/E7'nin **tüm** checkpointleri arasında bozuk olan
+YALNIZ BU. Yayımlanmış hiçbir sayı etkilenmemiştir (E3 A kolu stride 10 ile
+o epoğu kullanmadı; `e3_coverage` ve `q1_e1_summary` `.pth` değil
+`metrics.jsonl` okuyor). `q1_e2_test_curve.py` artık okunamayan checkpoint'i
+ATLAYIP uyarı basıyor ve atlanan epokları çıktı npz'sine yazıyor.
+
 Uzun koşumlarda Windows uyku/hibernate kapatılmalı. Bir kez ~3,5 saat
 GPU zamanı bu yüzden boşa gitti. Bekçi de çare değil (o da uyur).
 

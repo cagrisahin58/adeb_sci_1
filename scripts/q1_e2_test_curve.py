@@ -106,11 +106,21 @@ def main():
         model = ModelRegistry.get(arch, num_classes=nc).to(device)
 
         epochs, cl_acc, ad_acc, cl_masks, ad_masks = [], [], [], [], []
+        atlanan = []
         t0 = time.time()
         for ck in ckpts:
-            payload = torch.load(ck, map_location="cpu", weights_only=False)
-            model.load_state_dict(payload["model_state_dict"])
             ep = int(re.search(r"epoch_(\d+)", ck.name).group(1))
+            # OKUNAMAYAN CHECKPOINT: tum kosumu oldurmesin ama SESSIZ gecilmesin.
+            # (models/q1/cifar100/vit_tiny_s2002/.../epoch_009.pth 0 BAYT cikti
+            #  ve bu kosumu EOFError ile oldurmustu.)
+            try:
+                payload = torch.load(ck, map_location="cpu", weights_only=False)
+            except Exception as e:
+                atlanan.append(ep)
+                print(f"  UYARI {tag}: epoch_{ep:03d} OKUNAMADI ({type(e).__name__}) "
+                      f"-- ATLANDI, egride bu epok YOK", flush=True)
+                continue
+            model.load_state_dict(payload["model_state_dict"])
             # Secim kosumlariyla AYNI tohumlama semasi (karsilastirilabilirlik)
             torch.manual_seed(args.seed * 100000 + ep)
             cm, am = eval_masks(model, test_loader, device, args.eps, args.alpha, args.steps)
@@ -127,6 +137,7 @@ def main():
         np.savez_compressed(
             str(out_path) + ".tmp.npz",
             epochs=np.array(epochs, dtype=np.int32),
+            atlanan_epoklar=np.array(atlanan, dtype=np.int32),
             clean_acc=np.array(cl_acc), adv_acc=np.array(ad_acc),
             clean_mask=np.stack(cl_masks), adv_mask=np.stack(ad_masks),
             attack=np.array(json.dumps({"eps": args.eps, "alpha": args.alpha,
