@@ -70,6 +70,9 @@ c2 = [jl(f"results/c1_c2/pair{p}/tgr_summary.json") for p in (1, 2, 3)]
 vr = jl("results/q1/variance_ratio.json")
 c3p = jl("results/q1/c3_precision.json")
 e3s = jl("results/q1/e3_surucu_ayristirma.json")
+e7 = jl("results/q1/e7_svhn_summary.json")
+e7t = jl("results/q1/svhn/transfer/e7_transfer_summary.json")
+e3f = jl("results/q1/e3_iki_kol_fit.json")
 e1 = jl("results/q1/e1_cifar100_summary.json")
 e1t = jl("results/q1/cifar100/transfer/e1_transfer_summary.json")
 e2g = jl("results/q1/e2/e2_grid.json")
@@ -191,6 +194,36 @@ chk("E3 3-protokol GA alt", _B["egim_GA95"][0], 3)
 chk("E3 3-protokol GA ust", _B["egim_GA95"][1], 3)
 chk("E3 en genis protokol cifti",
     e3s["protokol_cifti_ortalama_aciklik"]["target_correct vs successful_source"]["ort_aciklik"])
+
+# --- YENI (2026-08-21): E7 (SVHN) mutlak + protokol sayilari ---
+for arch, lbl in (("resnet18", "ResNet"), ("vit_tiny", "ViT")):
+    o = e7["mimariler"][arch]["ozet"]
+    chk(f"E7 temiz {lbl}", o["test_clean"]["ort"])
+    chk(f"E7 temiz sd {lbl}", o["test_clean"]["sd"])
+    chk(f"E7 PGD {lbl}", o["test_pgd10"]["ort"])
+_prot = e7t["protocols"]
+for p, lbl in (("raw", "ham"), ("target_correct", "hedef-dogru"),
+               ("both_correct", "her-ikisi-dogru"), ("successful_source", "basarili-kaynak")):
+    chk(f"E7 {lbl} CNN->ViT", _prot[p]["CNN_to_ViT"]["mean"])
+    chk(f"E7 {lbl} ViT->CNN", _prot[p]["ViT_to_CNN"]["mean"])
+    chk(f"E7 {lbl} fark", abs(_prot[p]["diff"]["mean"]))
+chk("E7 protokol yayilimi", e7t["protocol_spread_pp"]["mean"])
+_bcp = e7t["both_correct_paired"]
+chk("E7 esli GA alt", abs(_bcp["ci_low"]["mean"]))
+chk("E7 esli GA ust", _bcp["ci_high"]["mean"])
+chk("E7 permutasyon p", _bcp["perm_p_max"], 3)
+
+# --- E3 iki kol nihai egimleri ---
+_A = e3f["kollar"]["A"]
+_B = e3f["kollar"]["B"]
+_Ba = e3f["kollar"]["B_ana_cift"]
+for ad, blok, ek in (("A 4prot", _A["dort_protokol"], ""), ("A 3prot", _A["uc_protokol_bas_kaynak_haric"], ""),
+                     ("B 4prot", _B["dort_protokol"], ""), ("B 3prot", _B["uc_protokol_bas_kaynak_haric"], ""),
+                     ("Bana 4prot", _Ba["dort_protokol"], "")):
+    chk(f"E3 {ad} egim", abs(blok["egim"]), 3)
+    chk(f"E3 {ad} GA alt", abs(blok["egim_GA95"][0]), 3)
+    chk(f"E3 {ad} GA ust", abs(blok["egim_GA95"][1]), 3)
+chk("E3 A kolu nokta sayisi", _A["n_nokta"], 0)
 
 # --- rapor ---
 rows = []

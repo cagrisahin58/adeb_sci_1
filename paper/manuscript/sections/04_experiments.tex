@@ -123,6 +123,10 @@ What is stable is the direction. CNN-crafted examples transfer better to the ViT
 
 The mechanism behind the spread is compositional. Samples that the target solves on clean input but the source does not are three to four times more fragile than jointly solved ones ($41.2\pm0.8\%$ and $59.1\pm1.7\%$ fooling versus $10.0$ and $18.3\%$), and these marginal subsets differ five-fold in size ($1{,}517\pm102$ versus $291\pm16$) because the two models differ in clean accuracy. Conditioning on target-correct admits both marginal subsets, whose asymmetric sizes pull the two rates toward each other; conditioning on both-correct excludes them, and the directional difference reappears. This account covers three of the four protocols. The successful-source protocol is driven differently, and separating the two drivers changes what the spread depends on: across $18$ direction pairs drawn from six seed-and-dataset clusters, the spread of the four-protocol asymmetry \emph{falls} as the clean-error gap between the two models widens (slope $-0.567$, cluster-bootstrap CI $[-0.757, -0.451]$), whereas the spread computed without the successful-source protocol \emph{rises} with it (slope $+0.431$, CI $[+0.333, +0.633]$). The successful-source rate is the extreme of the four in $12$ of $18$ pairs, and the widest protocol pair is always target-correct against successful-source ($19.68$ points on average). Conditioning on source success selects by the \emph{source's} own robustness, which is not a function of the clean-accuracy gap between the pair, so it contributes a second and partly opposing term.
 
+\textbf{The two arms agree on three protocols.} We calibrate the protocol spread against the clean-error gap in two ways that fail differently. The \emph{controlled} arm holds one member of a pair fixed and sweeps the other along its own training trajectory, so architecture, seed, dataset, and attack budget stay constant while the gap moves ($116$ points from eight seed-and-dataset clusters). The \emph{observational} arm compares final models across architectures, seeds, and datasets, where everything moves at once ($18$ direction pairs from six clusters). Inference in both is by cluster bootstrap at the trajectory level; the degrees of freedom are set by the number of clusters, not by the number of points, and we do not pool the arms.
+
+Excluding the successful-source protocol, the two arms give slopes of $+0.672$ (CI $[+0.601, +0.726]$) and $+0.431$ (CI $[+0.333, +0.633]$): same sign, overlapping intervals. Including it, the controlled arm gives $+0.293$ (CI $[+0.206, +0.489]$) while the observational arm gives $-0.567$ (CI $[-0.757, -0.451]$). That disagreement is a composition effect, not a control effect: the controlled arm contains no WideResNet, and restricting the observational arm to the same architecture pair yields $+0.387$ (CI $[+0.075, +0.576]$), which agrees with the controlled arm in both sign and interval. Two limits belong with this: the observational arm's negative slope is fitted across an unmeasured gap of $7.2$ points on the $x$ axis, so it compares two separated clusters rather than tracing a trend; and the controlled arm's slope survives dropping early checkpoints ($+0.220$ to $+0.524$ across thresholds), with the three-protocol slope the most stable quantity of all ($0.659$ to $0.672$).
+
 % ----------------------------------------------------------------------------
 % 4.2.1 Three-architecture control
 % ----------------------------------------------------------------------------
@@ -209,7 +213,39 @@ ViT-Tiny AT  & 43.17$\pm$1.10 & 11.15$\pm$0.60 & 8.87$\pm$0.83 \\
 \textbf{Two qualifications belong with this result.} First, the two adversarial bands held with margins of $0.22$ points (AutoAttack) and $0.48$ points (PGD-10) at the nearest seed-level edge, while the checkpoint-selection ablation reported in Section~\ref{subsec:statistics_results} measures a selection-protocol amplitude of $1.58$ to $2.85$ points on a quantity of the same kind. The bands held, but by margins several times smaller than a dispersion we measured ourselves; a reader should weigh the pre-registration accordingly. Second, the validation split used to select the adversarially trained checkpoint is the one already used during clean pre-training. That choice is inherited deliberately from the CIFAR-10 protocol so the two datasets remain comparable, and Section~\ref{subsec:statistics_results} reports what it does and does not cost.
 
 % ----------------------------------------------------------------------------
-% 4.4 Gradient Analysis
+% 4.4 Third dataset: SVHN, where the architectures are matched
+% ----------------------------------------------------------------------------
+\subsection{A Third Dataset Where the Architectures Are Matched}
+\label{subsec:svhn}
+
+CIFAR-10 and CIFAR-100 both place the two architectures far apart in clean accuracy (about $11$ and $21$ points). SVHN does not: adversarially trained under the same recipe, the ResNet reaches $94.27\pm0.70\%$ clean and the ViT $92.42\pm0.56\%$, a gap of $1.85$ points. Robust accuracies are $55.52\pm0.64$ and $52.30\pm0.10$ under PGD-10. This is the regime our thesis makes the sharpest prediction about, and the prediction is not the one a reader of the previous sections would expect.
+
+\begin{table}[!t]
+\centering
+\caption{SVHN transfer asymmetry under the four protocols (PGD-10, $\eps$=8/255, full test set $n$=26{,}032; mean$\pm$std over two seed pairs; two architectures only, so no third-architecture control). Unlike CIFAR-10 and CIFAR-100, the sign is not the same in all four rows.}
+\label{tab:svhn_protocols}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Protocol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Diff.} \\
+\midrule
+Unconditioned (raw) & 31.89 & 31.49 & $+$0.39$\pm$0.08 \\
+Target-correct & 26.32 & 27.33 & $-$1.00$\pm$0.22 \\
+Both-correct & 25.36 & 25.70 & $-$0.35$\pm$0.01 \\
+Successful-source & 62.50 & 59.86 & $+$2.64$\pm$0.03 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{When the architectures are matched, the protocol decides the sign.} Two of the four protocols report a CNN advantage and two report a ViT advantage (Table~\ref{tab:svhn_protocols}). Under the both-correct protocol, which we treat as primary because it scores both directions on identical samples, the difference is $-0.35$ points with a paired bootstrap CI of $[-0.77, +0.06]$, a sign-flip permutation $p$ of $0.105$, and TOST equivalence \emph{accepted}. A study reporting only the successful-source rate would announce a $2.64$-point CNN advantage on SVHN; one reporting only the target-correct rate would announce a $1.00$-point ViT advantage. Both would be arithmetically correct and neither would be reproducible by the other.
+
+\textbf{This is consistent with the mechanism, not an exception to it.} The protocol spread on SVHN is $3.65\pm0.19$ points, against $10.45\pm0.76$ on CIFAR-10 and $13.58\pm1.71$ on CIFAR-100---ordered exactly as the clean-accuracy gaps are ($1.85$, $\approx11$, $\approx21$ points). A smaller gap produces a smaller spread; and once the spread is small enough, it no longer clears the asymmetry itself, so the sign becomes a property of the protocol rather than of the architectures. The direction we reported as stable in Section~\ref{subsec:transfer} is stable \emph{in the regime where the two models differ in clean accuracy}, which is the regime both CIFAR datasets happen to occupy.
+
+\textbf{What this dataset cannot do.} SVHN was run in a reduced configuration fixed in advance: two seed pairs rather than three, $50$ adversarial-training epochs, no AutoAttack, and no third architecture. The last of these means the $3\times3$ confound control of Section~\ref{subsubsec:matrix} cannot be built here, and we do not build a within-SVHN version of it.
+
+% ----------------------------------------------------------------------------
+% 4.5 Gradient Analysis
 % ----------------------------------------------------------------------------
 \subsection{Gradient Characteristics}
 \label{subsec:gradient}

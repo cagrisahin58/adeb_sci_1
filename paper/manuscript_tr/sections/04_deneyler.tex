@@ -123,6 +123,10 @@ Kararlı olan yöndür. CNN'de üretilen örnekler ViT'e, dört protokolün dör
 
 Yayılımın arkasındaki mekanizma bileşimseldir. Hedefin temizde çözdüğü ama kaynağın çözemediği örnekler, ortak çözülenlerden üç-dört kat daha kırılgandır ($41{,}2\pm0{,}8$ ve $\%59{,}1\pm1{,}7$ yanıltma; ortak kümede $10{,}0$ ve $\%18{,}3$) ve bu marjinal altkümeler, iki model temiz doğrulukta ayrıştığı için boyutça beş kat farklıdır ($1.517\pm102$'ye karşı $291\pm16$). Hedef doğru koşullaması iki marjinal altkümeyi de içeri alır ve asimetrik boyutları iki oranı birbirine doğru çeker; her ikisi doğru koşullaması onları dışarıda bırakır ve yönlü fark yeniden ortaya çıkar. Bu açıklama dört protokolün üçünü kapsar. Başarılı kaynak protokolü farklı bir mekanizmayla sürülür ve iki sürücü ayrıştırıldığında yayılımın neye bağlı olduğu değişir: altı tohum-ve-veri-kümesi kümesinden gelen $18$ yön çiftinde, dört protokollü asimetri yayılımı iki model arasındaki temiz hata farkı büyüdükçe \emph{azalmaktadır} (eğim $-0{,}567$, küme bootstrap GA $[-0{,}757;\ -0{,}451]$); buna karşılık başarılı kaynak protokolü dışarıda bırakılarak hesaplanan yayılım aynı farkla \emph{artmaktadır} (eğim $+0{,}431$, GA $[+0{,}333;\ +0{,}633]$). Başarılı kaynak oranı $18$ çiftin $12$'sinde dördün ucudur ve en geniş protokol çifti her zaman hedef doğru ile başarılı kaynak arasındadır (ortalama $19{,}68$ puan). Kaynak başarısıyla koşullama \emph{kaynağın} kendi gürbüzlüğüne göre seçim yapar; bu, çiftin temiz doğruluk farkının bir fonksiyonu değildir ve dolayısıyla ikinci, kısmen ters yönlü bir terim katmaktadır.
 
+\textbf{İki kol üç protokolde uyuşmaktadır.} Protokol yayılımını temiz hata farkına karşı, farklı biçimlerde hata veren iki yolla kalibre ediyoruz. \emph{Kontrollü} kol, çiftin bir üyesini sabit tutup diğerini kendi eğitim yörüngesi boyunca taramakta; böylece mimari, tohum, veri kümesi ve saldırı bütçesi sabit kalırken fark değişmektedir (sekiz tohum-ve-veri-kümesi kümesinden $116$ nokta). \emph{Gözlemsel} kol ise final modelleri mimariler, tohumlar ve veri kümeleri arasında karşılaştırmakta, yani her şey aynı anda değişmektedir (altı kümeden $18$ yön çifti). Her ikisinde çıkarım yörünge düzeyi küme bootstrap iledir; serbestlik derecesini nokta sayısı değil küme sayısı belirler ve kollar havuzlanmamaktadır.
+
+Başarılı kaynak protokolü dışarıda bırakıldığında iki kol $+0{,}672$ (GA $[+0{,}601;\ +0{,}726]$) ve $+0{,}431$ (GA $[+0{,}333;\ +0{,}633]$) eğimleri vermektedir: işaret aynı, aralıklar örtüşüyor. Dahil edildiğinde kontrollü kol $+0{,}293$ (GA $[+0{,}206;\ +0{,}489]$), gözlemsel kol $-0{,}567$ (GA $[-0{,}757;\ -0{,}451]$) vermektedir. Bu uyuşmazlık bir kontrol etkisi değil bir bileşim etkisidir: kontrollü kol WideResNet içermez ve gözlemsel kol aynı mimari çiftine kısıtlandığında $+0{,}387$ (GA $[+0{,}075;\ +0{,}576]$) çıkmakta, yani kontrollü kolla hem işaret hem aralık bakımından uyuşmaktadır. Bununla birlikte iki sınır yazılmalıdır: gözlemsel kolun negatif eğimi $x$ ekseninde $7{,}2$ puanlık ölçülmemiş bir boşluğun üzerinden uydurulmuştur, dolayısıyla bir eğilimi izlemek yerine birbirinden ayrık iki kümeyi karşılaştırmaktadır; kontrollü kolun eğimi ise erken kontrol noktaları çıkarıldığında ayakta kalmaktadır (eşiklere göre $+0{,}220$ ile $+0{,}524$ arasında) ve en kararlı nicelik üç protokollü eğimdir ($0{,}659$ ile $0{,}672$).
+
 % ----------------------------------------------------------------------------
 % 4.2.1 Uc mimarili kontrol
 % ----------------------------------------------------------------------------
@@ -209,7 +213,39 @@ ViT-Tiny AT  & 43,17$\pm$1,10 & 11,15$\pm$0,60 & 8,87$\pm$0,83 \\
 \textbf{Bu sonuçla birlikte okunması gereken iki niteleme vardır.} Birincisi, iki çekişmeli band en yakın tohum düzeyi kenarında $0{,}22$ puanlık (AutoAttack) ve $0{,}48$ puanlık (PGD-10) marjlarla tutmuştur; oysa Bölüm~\ref{subsec:statistics_results}'te raporlanan kontrol noktası seçimi ablasyonu, aynı türden bir nicelikte $1{,}58$--$2{,}85$ puanlık bir seçim protokolü genliği ölçmektedir. Bantlar tutmuştur, ama kendi ölçtüğümüz bir yayılımın birkaç katı küçük marjlarla; okur ön kaydı buna göre tartmalıdır. İkincisi, çekişmeli eğitilmiş kontrol noktasını seçmekte kullanılan doğrulama bölmesi, temiz ön eğitimde de kullanılmış olan bölmedir. Bu tercih, iki veri kümesi karşılaştırılabilir kalsın diye CIFAR-10 protokolünden bilinçli olarak devralınmıştır ve Bölüm~\ref{subsec:statistics_results} bunun neye mal olup neye mal olmadığını raporlamaktadır.
 
 % ----------------------------------------------------------------------------
-% 4.4 Gradyan Analizi
+% 4.4 Ucuncu veri kumesi: SVHN, mimarilerin esitlendigi rejim
+% ----------------------------------------------------------------------------
+\subsection{Mimarilerin Eşitlendiği Üçüncü Bir Veri Kümesi}
+\label{subsec:svhn}
+
+CIFAR-10 ve CIFAR-100, iki mimariyi temiz doğrulukta birbirinden hayli uzağa yerleştirmektedir (yaklaşık $11$ ve $21$ puan). SVHN öyle değildir: aynı tarifle çekişmeli eğitildiklerinde ResNet $\%94{,}27\pm0{,}70$, ViT $\%92{,}42\pm0{,}56$ temiz doğruluğa ulaşmakta, yani fark $1{,}85$ puanda kalmaktadır. PGD-10 altındaki gürbüz doğruluklar $55{,}52\pm0{,}64$ ve $52{,}30\pm0{,}10$'dur. Tezimizin en keskin öngörüde bulunduğu rejim budur ve öngörü, önceki bölümleri okuyanın bekleyeceği yönde değildir.
+
+\begin{table}[!t]
+\centering
+\caption{SVHN'de dört protokol altında transfer asimetrisi (PGD-10, $\eps$=8/255, tam test kümesi $n$=26.032; iki tohum çiftinin ortalaması$\pm$std; yalnız iki mimari olduğu için üçüncü mimari kontrolü yoktur). CIFAR-10 ve CIFAR-100'den farklı olarak işaret dört satırda aynı değildir.}
+\label{tab:svhn_protocols}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Protokol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Fark} \\
+\midrule
+Koşulsuz (ham) & 31,89 & 31,49 & $+$0,39$\pm$0,08 \\
+Hedef doğru & 26,32 & 27,33 & $-$1,00$\pm$0,22 \\
+Her ikisi doğru & 25,36 & 25,70 & $-$0,35$\pm$0,01 \\
+Başarılı kaynak & 62,50 & 59,86 & $+$2,64$\pm$0,03 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Mimariler eşitlendiğinde işarete protokol karar vermektedir.} Dört protokolün ikisi CNN üstünlüğü, ikisi ViT üstünlüğü bildirmektedir (Tablo~\ref{tab:svhn_protocols}). İki yönü özdeş örnekler üzerinde puanladığı için birincil saydığımız her ikisi doğru protokolünde fark $-0{,}35$ puan, eşleştirilmiş bootstrap güven aralığı $[-0{,}77;\ +0{,}06]$, işaret çevirme permütasyon $p$ değeri $0{,}105$ ve TOST eşdeğerliği \emph{kabul edilmektedir}. Yalnızca başarılı kaynak oranını raporlayan bir çalışma SVHN'de $2{,}64$ puanlık bir CNN üstünlüğü duyururdu; yalnızca hedef doğru oranını raporlayan bir çalışma ise $1{,}00$ puanlık bir ViT üstünlüğü. İkisi de aritmetik olarak doğru olurdu ve hiçbiri diğerince yeniden üretilemezdi.
+
+\textbf{Bu, mekanizmaya aykırı değil onunla tutarlıdır.} SVHN'de protokol yayılımı $3{,}65\pm0{,}19$ puandır; CIFAR-10'da $10{,}45\pm0{,}76$, CIFAR-100'de $13{,}58\pm1{,}71$ idi --- yani tam olarak temiz doğruluk farklarının sırasıyla ($1{,}85$, $\approx11$, $\approx21$ puan). Daha küçük bir fark daha küçük bir yayılım üretmekte; yayılım yeterince küçüldüğünde ise asimetrinin kendisini aşamamakta ve işaret, mimarilerin değil protokolün bir özelliği hâline gelmektedir. Bölüm~\ref{subsec:transfer}'de kararlı diye raporladığımız yön, \emph{iki modelin temiz doğrulukta ayrıştığı rejimde} kararlıdır ve her iki CIFAR veri kümesi de o rejimde bulunmaktadır.
+
+\textbf{Bu veri kümesinin yapamadıkları.} SVHN, önceden sabitlenmiş indirgenmiş bir yapılandırmayla koşulmuştur: üç yerine iki tohum çifti, $50$ epok çekişmeli eğitim, AutoAttack yok ve üçüncü mimari yok. Sonuncusu, Bölüm~\ref{subsubsec:matrix}'teki $3\times3$ karıştırıcı kontrolünün burada kurulamayacağı anlamına gelir ve onun SVHN içi bir sürümünü kurmuyoruz.
+
+% ----------------------------------------------------------------------------
+% 4.5 Gradyan Analizi
 % ----------------------------------------------------------------------------
 \subsection{Gradyan Karakteristikleri}
 \label{subsec:gradient}
