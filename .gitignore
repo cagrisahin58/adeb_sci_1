@@ -23,3 +23,8 @@ paper/bildiri/_p*.png
 # AutoAttack devam-ettirme dilimleri: yalniz resume icin, tamamen fazlalik
 # (ozet autoattack_summary.json + per_sample_*.npz izleniyor)
 results/**/aa_chunk_*.npz
+
+# E3 ara urunu: arsivlenmis cekismeli ornekler (166 MB, 6 dosya).
+# SONUC DEGIL, GIRDIDIR: checkpointlerden seed 42 ile birebir yeniden
+# uretilir (scripts/q1_archive_adv.py). aa_chunk_*.npz ile ayni gerekce.
+results/q1/adv_archive/
