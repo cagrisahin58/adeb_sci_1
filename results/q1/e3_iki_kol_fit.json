@@ -1,0 +1,51 @@
+{
+  "uretildi_utc": "2026-08-21T00:53:51.900757+00:00",
+  "HAVUZLAMA": "YAPILMADI. Kollar ayri uydurulur; manset iki kolun EGIMLERININ UYUSMASIDIR (E3_YENIDEN_TASARIM B.3). Ortak bir uydurma yoktur.",
+  "NICELIK": "x = ciftin temiz hata farki (puan) · y = ASIMETRININ protokoller arasi yayilimi (puan). Makalenin manset niceligiyle ayni turdendir.",
+  "kollar": {
+    "A": {
+      "n_nokta": 0,
+      "DURUM": "COK AZ NOKTA -- uydurulmadi"
+    },
+    "B": {
+      "n_nokta": 18,
+      "n_kume": 6,
+      "SERBESTLIK_DERECESI_NOTU": "Cikarim 6 KUME uzerinden kume bootstrap iledir; n=18 SERBESTLIK DERECESI DEGILDIR.",
+      "x_araligi": [
+        0.5900000000000034,
+        22.29
+      ],
+      "dort_protokol": {
+        "egim": -0.5671475816924401,
+        "kesisim": 28.779063762006416,
+        "pearson_r": -0.5307383911731642,
+        "egim_GA95": [
+          -0.7571699669142118,
+          -0.4512505212723541
+        ],
+        "GA_sifiri_iceriyor_mu": false,
+        "y_araligi": [
+          9.8575,
+          34.203
+        ]
+      },
+      "uc_protokol_bas_kaynak_haric": {
+        "egim": 0.4314765037776934,
+        "kesisim": 3.1990928067921502,
+        "pearson_r": 0.8402286646767707,
+        "egim_GA95": [
+          0.332727776362541,
+          0.6330326893871534
+        ],
+        "GA_sifiri_iceriyor_mu": false,
+        "y_araligi": [
+          1.6991999999999994,
+          15.0092
+        ]
+      }
+    }
+  },
+  "EGIM_UYUSMASI": {
+    "DURUM": "iki kol da uydurulamadi (uygun: ['B'])"
+  }
+}
