@@ -57,6 +57,24 @@ for m, v in modeller.items():
         "ciftler": v["ciftler"],
     }
 
+# --- PGD-L2 de ayni artefakta girsin: makale iki sayiyi yan yana veriyor,
+# ikisi AYRI dosyadan okunursa biri guncellenip digeri unutulabilir.
+pgd = {}
+for arch, seeds in (("resnet18", (1001, 1002, 1003)), ("vit_tiny", (2001, 2002, 2003))):
+    vals, cln = [], []
+    for s in seeds:
+        f = L2 / f"{arch}_s{s}/pgd_summary_{arch}.json"
+        if not f.exists():
+            continue
+        d = json.loads(f.read_text(encoding="utf-8"))
+        vals.append(d["pgd10_acc"]); cln.append(d["clean_acc"])
+    if vals:
+        pgd[arch] = {"n_tohum": len(vals), "n_samples": 10000,
+                     "pgd_l2": {"ort": round(float(st.mean(vals)), 2), "sd": sd(vals),
+                                "degerler": vals},
+                     "temiz_tam_kume": {"ort": round(float(st.mean(cln)), 2), "sd": sd(cln),
+                                        "degerler": cln}}
+
 mcnemar = [{"cift": p,
             "a": d["mcnemar_robust"]["model_a"], "b": d["mcnemar_robust"]["model_b"],
             "yalniz_a_dogru": d["mcnemar_robust"]["a_only_correct"],
@@ -72,7 +90,8 @@ sonuc = {
                      "Iki sayi ayni ornek kumesinden gelmez ve oyle sunulmaz.",
     "BAGLAYICI_CERCEVE": "Modeller L-infinity ile EGITILMISTIR; bu sayilar "
                          "L2-EGITILMIS referanslarla KARSILASTIRILAMAZ.",
-    "modeller": ozet,
+    "modeller_autoattack_l2": ozet,
+    "modeller_pgd_l2": pgd,
     "mcnemar_gurbuz": mcnemar,
     "eksik_ciftler": eksik,
 }
@@ -85,6 +104,11 @@ out.write_text(json.dumps(sonuc, indent=2, ensure_ascii=False), encoding="utf-8"
 
 print(f"AutoAttack-L2 (eps={sonuc['eps']}, n={sonuc['n_samples']}), "
       f"{len(pairs)}/3 cift")
+print("  --- PGD-L2 (n=10.000, TAM test) ---")
+for m, v in pgd.items():
+    q = v["pgd_l2"]
+    print(f"  {m:9s} PGD-L2 {q['ort']:6.2f} +/- {q['sd'] or 0:.2f}  temiz {v['temiz_tam_kume']['ort']:6.2f}")
+print("  --- AutoAttack-L2 (n=5.000) ---")
 for m, v in ozet.items():
     r, c = v["aa_l2_robust"], v["temiz_5000_altkumede"]
     print(f"  {m:14s} gurbuz {r['ort']:6.2f} +/- {r['sd'] if r['sd'] is not None else 0:.2f}"

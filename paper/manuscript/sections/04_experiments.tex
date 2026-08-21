@@ -245,7 +245,34 @@ Successful-source & 62.50 & 59.86 & $+$2.64$\pm$0.03 \\
 \textbf{What this dataset cannot do.} SVHN was run in a reduced configuration fixed in advance: two seed pairs rather than three, $50$ adversarial-training epochs, no AutoAttack, and no third architecture. The last of these means the $3\times3$ confound control of Section~\ref{subsubsec:matrix} cannot be built here, and we do not build a within-SVHN version of it.
 
 % ----------------------------------------------------------------------------
-% 4.5 Gradient Analysis
+% 4.5 Changing the threat model
+% ----------------------------------------------------------------------------
+\subsection{Does the Protocol Effect Survive a Change of Threat Model?}
+\label{subsec:l2}
+
+Everything so far is measured inside one threat model. To test whether the protocol effect is an $\Linf$ artifact, we re-evaluated the same CIFAR-10 checkpoints under an $L_2$ budget of $\eps=0.5$, registering three directional predictions before looking at any $L_2$ output. The models are $\Linf$-trained, so this measures the \emph{measurement axis}, not $L_2$ robustness, and the absolute values below are not comparable with $L_2$-trained references.
+
+\begin{table}[!t]
+\centering
+\caption{Same checkpoints, $L_2$ budget ($\eps$=0.5; mean$\pm$std over three seed pairs). PGD-L2 uses the full test set; AutoAttack-L2 uses a pre-registered $5{,}000$-sample subset, so its clean column differs slightly from the full-set value and the two are not drawn from the same samples.}
+\label{tab:l2_results}
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Clean} & \textbf{PGD-L2} & \textbf{Clean (5k)} & \textbf{AA-L2} \\
+\midrule
+ResNet-18 AT & 85.78 & 63.78$\pm$0.38 & 85.33 & 60.61$\pm$0.42 \\
+ViT-Tiny AT & 73.53 & 51.72$\pm$0.23 & 73.61 & 49.85$\pm$0.20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{All three registered predictions hold.} The protocol spread is $10.91$ points under $L_2$ against $10.45$ under $\Linf$---not merely non-zero but the same size. The sign is positive in all twelve measurements, and the deviation of unconditioned from conditioned rates still rises with the target's clean error (slope $+0.914$, $r=0.999$ over eighteen directions). The four protocols report asymmetries of $+13.03\pm0.81$ (unconditioned), $+2.12\pm0.18$ (target-correct), $+4.07\pm0.36$ (both-correct) and $+9.51\pm0.89$ (successful-source). Absolute robustness keeps the CNN-over-ViT ordering under both attacks, with McNemar $p<10^{-57}$ in every seed pair.
+
+\textbf{The slope also confirms the identity out of sample.} Equation~\eqref{eq:raw_identity} predicts a slope of $1-r_{\text{cond}}$ averaged over targets. Conditioned rates are far lower under this $L_2$ budget than under $\Linf$ (roughly $2$--$9\%$ against $9$--$22\%$), so the identity predicts a \emph{steeper} slope---and the measured $0.914$ sits where it should, against $0.762$ on the same models under $\Linf$. The proportionality factor is a property of the attack budget, not a constant, exactly as Section~\ref{subsubsec:matrix} states.
+
+% ----------------------------------------------------------------------------
+% 4.6 Gradient Analysis
 % ----------------------------------------------------------------------------
 \subsection{Gradient Characteristics}
 \label{subsec:gradient}

@@ -1,0 +1,44 @@
+{
+  "timestamp": "2026-08-21T10:23:42.979438",
+  "dataset": "cifar10",
+  "norm": "L2",
+  "eps": 0.5,
+  "n_samples": 5000,
+  "seed": 42,
+  "mcnemar_robust": {
+    "model_a": "ResNet18_AT",
+    "model_b": "ViT_Tiny_AT",
+    "a_only_correct": 800,
+    "b_only_correct": 272,
+    "statistic": 259.0755597014925,
+    "p_value": 2.729124852761076e-58
+  },
+  "results": [
+    {
+      "n_samples": 5000,
+      "clean_accuracy": 85.56,
+      "robust_accuracy": 60.32,
+      "clean_correct": 4278,
+      "robust_correct": 3016,
+      "seed": 42,
+      "chunk_size": 1000,
+      "model": "ResNet18_AT",
+      "model_type": "resnet18",
+      "eps": 0.5,
+      "model_path": "models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth"
+    },
+    {
+      "n_samples": 5000,
+      "clean_accuracy": 73.88,
+      "robust_accuracy": 49.76,
+      "clean_correct": 3694,
+      "robust_correct": 2488,
+      "seed": 42,
+      "chunk_size": 1000,
+      "model": "ViT_Tiny_AT",
+      "model_type": "vit_tiny",
+      "eps": 0.5,
+      "model_path": "models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth"
+    }
+  ]
+}

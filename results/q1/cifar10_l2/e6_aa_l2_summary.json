@@ -1,0 +1,135 @@
+{
+  "uretildi_utc": "2026-08-21T11:43:44.113921+00:00",
+  "norm": "L2",
+  "eps": 0.5,
+  "n_samples": 5000,
+  "KAPSAM_BEYANI": "AutoAttack-L2 n=5.000 (on-kayitli butce indirimi, E6_ON_KAYIT §1); PGD-L2 ise TAM test kumesinde n=10.000. Iki sayi ayni ornek kumesinden gelmez ve oyle sunulmaz.",
+  "BAGLAYICI_CERCEVE": "Modeller L-infinity ile EGITILMISTIR; bu sayilar L2-EGITILMIS referanslarla KARSILASTIRILAMAZ.",
+  "modeller_autoattack_l2": {
+    "ResNet18_AT": {
+      "n_cift": 3,
+      "aa_l2_robust": {
+        "ort": 60.61,
+        "sd": 0.424,
+        "degerler": [
+          60.42,
+          60.32,
+          61.1
+        ]
+      },
+      "temiz_5000_altkumede": {
+        "ort": 85.33,
+        "sd": 0.295,
+        "degerler": [
+          85.0,
+          85.56,
+          85.44
+        ]
+      },
+      "ciftler": [
+        1,
+        2,
+        3
+      ]
+    },
+    "ViT_Tiny_AT": {
+      "n_cift": 3,
+      "aa_l2_robust": {
+        "ort": 49.85,
+        "sd": 0.204,
+        "degerler": [
+          50.08,
+          49.76,
+          49.7
+        ]
+      },
+      "temiz_5000_altkumede": {
+        "ort": 73.61,
+        "sd": 0.439,
+        "degerler": [
+          73.84,
+          73.88,
+          73.1
+        ]
+      },
+      "ciftler": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "modeller_pgd_l2": {
+    "resnet18": {
+      "n_tohum": 3,
+      "n_samples": 10000,
+      "pgd_l2": {
+        "ort": 63.78,
+        "sd": 0.382,
+        "degerler": [
+          64.05,
+          63.34,
+          63.94
+        ]
+      },
+      "temiz_tam_kume": {
+        "ort": 85.78,
+        "sd": 0.361,
+        "degerler": [
+          85.37,
+          85.94,
+          86.04
+        ]
+      }
+    },
+    "vit_tiny": {
+      "n_tohum": 3,
+      "n_samples": 10000,
+      "pgd_l2": {
+        "ort": 51.72,
+        "sd": 0.234,
+        "degerler": [
+          51.45,
+          51.84,
+          51.87
+        ]
+      },
+      "temiz_tam_kume": {
+        "ort": 73.53,
+        "sd": 0.547,
+        "degerler": [
+          74.1,
+          73.47,
+          73.01
+        ]
+      }
+    }
+  },
+  "mcnemar_gurbuz": [
+    {
+      "cift": 1,
+      "a": "ResNet18_AT",
+      "b": "ViT_Tiny_AT",
+      "yalniz_a_dogru": 766,
+      "yalniz_b_dogru": 249,
+      "p": 5.3525695001142955e-59
+    },
+    {
+      "cift": 2,
+      "a": "ResNet18_AT",
+      "b": "ViT_Tiny_AT",
+      "yalniz_a_dogru": 800,
+      "yalniz_b_dogru": 272,
+      "p": 2.729124852761076e-58
+    },
+    {
+      "cift": 3,
+      "a": "ResNet18_AT",
+      "b": "ViT_Tiny_AT",
+      "yalniz_a_dogru": 872,
+      "yalniz_b_dogru": 302,
+      "p": 6.2532815108216005e-62
+    }
+  ],
+  "eksik_ciftler": []
+}

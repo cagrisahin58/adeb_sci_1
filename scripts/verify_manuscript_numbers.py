@@ -74,6 +74,9 @@ e7 = jl("results/q1/e7_svhn_summary.json")
 e7t = jl("results/q1/svhn/transfer/e7_transfer_summary.json")
 e3f = jl("results/q1/e3_iki_kol_fit.json")
 b8 = jl("results/q1/b8_secim_bandi.json")
+e6 = jl("results/q1/cifar10_l2/e6_aa_l2_summary.json")
+e6t = jl("results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json")
+e6o = jl("results/q1/cifar10_l2/e6_onkestirim.json")
 e1 = jl("results/q1/e1_cifar100_summary.json")
 e1t = jl("results/q1/cifar100/transfer/e1_transfer_summary.json")
 e2g = jl("results/q1/e2/e2_grid.json")
@@ -234,6 +237,26 @@ for ds, lbl in (("cifar100", "C100"), ("cifar10", "C10")):
     chk(f"B8 {lbl} yayilim alt", v["yayilim_araligi"][0])
     chk(f"B8 {lbl} yayilim ust", v["yayilim_araligi"][1])
 chk("B8 C100 yayilim ort", b8["veri_kumeleri"]["cifar100"]["yayilim_ort"])
+
+# --- YENI (2026-08-21, E6/L2) ---
+for arch, lbl in (("resnet18", "ResNet"), ("vit_tiny", "ViT")):
+    v = e6["modeller_pgd_l2"][arch]
+    chk(f"E6 PGD-L2 {lbl}", v["pgd_l2"]["ort"])
+    chk(f"E6 PGD-L2 sd {lbl}", v["pgd_l2"]["sd"])
+    chk(f"E6 temiz tam {lbl}", v["temiz_tam_kume"]["ort"])
+for m, lbl in (("ResNet18_AT", "ResNet"), ("ViT_Tiny_AT", "ViT")):
+    v = e6["modeller_autoattack_l2"][m]
+    chk(f"E6 AA-L2 {lbl}", v["aa_l2_robust"]["ort"])
+    chk(f"E6 AA-L2 sd {lbl}", v["aa_l2_robust"]["sd"])
+    chk(f"E6 temiz 5k {lbl}", v["temiz_5000_altkumede"]["ort"])
+for p, lbl in (("raw", "ham"), ("target_correct", "hedef-dogru"),
+               ("both_correct", "her-ikisi-dogru"), ("successful_source", "basarili-kaynak")):
+    d = e6t["protocols"][p]["diff"]
+    chk(f"E6 L2 fark {lbl}", d["mean"])
+    chk(f"E6 L2 fark sd {lbl}", d["std"])
+chk("E6 L2 protokol yayilimi", e6t["protocol_spread_pp"]["mean"])
+chk("E6 O1 egim", e6o["O1_yon"]["egim"], 3)
+chk("E6 O1 r", e6o["O1_yon"]["pearson_r"], 3)
 
 # --- rapor ---
 rows = []

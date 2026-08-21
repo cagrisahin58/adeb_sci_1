@@ -1,0 +1,3 @@
+n_samples,clean_accuracy,robust_accuracy,clean_correct,robust_correct,seed,chunk_size,model,model_type,eps,model_path
+5000,85.0,60.42,4250,3021,42,1000,ResNet18_AT,resnet18,0.5,models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth
+5000,73.84,50.08,3692,2504,42,1000,ViT_Tiny_AT,vit_tiny,0.5,models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth

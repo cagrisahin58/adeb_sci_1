@@ -245,7 +245,34 @@ Başarılı kaynak & 62,50 & 59,86 & $+$2,64$\pm$0,03 \\
 \textbf{Bu veri kümesinin yapamadıkları.} SVHN, önceden sabitlenmiş indirgenmiş bir yapılandırmayla koşulmuştur: üç yerine iki tohum çifti, $50$ epok çekişmeli eğitim, AutoAttack yok ve üçüncü mimari yok. Sonuncusu, Bölüm~\ref{subsubsec:matrix}'teki $3\times3$ karıştırıcı kontrolünün burada kurulamayacağı anlamına gelir ve onun SVHN içi bir sürümünü kurmuyoruz.
 
 % ----------------------------------------------------------------------------
-% 4.5 Gradyan Analizi
+% 4.5 Tehdit modelinin degistirilmesi
+% ----------------------------------------------------------------------------
+\subsection{Protokol Etkisi Tehdit Modeli Değişince Ayakta Kalıyor mu?}
+\label{subsec:l2}
+
+Buraya kadarki her ölçüm tek bir tehdit modelinin içinde yapılmıştır. Protokol etkisinin $\Linf$'ye özgü bir artefakt olup olmadığını sınamak için aynı CIFAR-10 kontrol noktalarını $\eps=0{,}5$'lik bir $L_2$ bütçesi altında yeniden değerlendirdik ve üç yönsel ön kestirimi, herhangi bir $L_2$ çıktısına bakmadan önce kaydettik. Modeller $\Linf$ ile eğitilmiştir; dolayısıyla bu ölçüm $L_2$ gürbüzlüğünü değil \emph{ölçüm eksenini} yoklamakta ve aşağıdaki mutlak değerler $L_2$ ile eğitilmiş referanslarla karşılaştırılamamaktadır.
+
+\begin{table}[!t]
+\centering
+\caption{Aynı kontrol noktaları, $L_2$ bütçesi ($\eps$=0,5; üç tohum çiftinin ortalaması$\pm$std). PGD-L2 tam test kümesini, AutoAttack-L2 ise ön kayıtlı $5.000$ örneklik bir altkümeyi kullanır; bu yüzden temiz sütunu tam küme değerinden bir miktar farklıdır ve ikisi aynı örneklerden gelmez.}
+\label{tab:l2_results}
+\footnotesize
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Temiz} & \textbf{PGD-L2} & \textbf{Temiz (5k)} & \textbf{AA-L2} \\
+\midrule
+ResNet-18 AT & 85,78 & 63,78$\pm$0,38 & 85,33 & 60,61$\pm$0,42 \\
+ViT-Tiny AT & 73,53 & 51,72$\pm$0,23 & 73,61 & 49,85$\pm$0,20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Kayıtlı üç ön kestirimin üçü de tutmaktadır.} Protokol yayılımı $L_2$ altında $10{,}91$ puandır; $\Linf$ altında $10{,}45$ idi --- yani yalnızca sıfırdan farklı değil, aynı büyüklüktedir. İşaret on iki ölçümün tamamında pozitiftir ve koşulsuz oranın koşullu orandan sapması hâlâ hedefin temiz hatasıyla artmaktadır (on sekiz yön üzerinde eğim $+0{,}914$, $r=0{,}999$). Dört protokolün bildirdiği asimetriler $+13{,}03\pm0{,}81$ (koşulsuz), $+2{,}12\pm0{,}18$ (hedef doğru), $+4{,}07\pm0{,}36$ (her ikisi doğru) ve $+9{,}51\pm0{,}89$ (başarılı kaynak) şeklindedir. Mutlak gürbüzlük her iki saldırı altında da CNN'in ViT üzerindeki sıralamasını korumakta, McNemar $p<10^{-57}$ her tohum çiftinde sağlanmaktadır.
+
+\textbf{Eğim, özdeşliği örneklem dışında da doğrulamaktadır.} Denklem~\eqref{eq:raw_identity}, eğimin hedefler üzerinden ortalanmış $1-r_{\text{koş}}$ değerine eşit olmasını öngörür. Koşullu oranlar bu $L_2$ bütçesi altında $\Linf$'dekinden çok daha düşüktür (kabaca $\%2$--$9$'a karşı $\%9$--$22$), dolayısıyla özdeşlik \emph{daha dik} bir eğim öngörür --- ölçülen $0{,}914$ tam da olması gereken yerdedir; aynı modellerde $\Linf$ altında bu değer $0{,}762$ idi. Orantı çarpanı bir sabit değil, saldırı bütçesinin bir özelliğidir; Bölüm~\ref{subsubsec:matrix} bunu zaten belirtmektedir.
+
+% ----------------------------------------------------------------------------
+% 4.6 Gradyan Analizi
 % ----------------------------------------------------------------------------
 \subsection{Gradyan Karakteristikleri}
 \label{subsec:gradient}
