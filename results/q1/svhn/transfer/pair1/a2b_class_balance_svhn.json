@@ -1,0 +1,261 @@
+{
+  "dataset": "svhn",
+  "in_dir": "results/q1/svhn/transfer/pair1",
+  "yon": {
+    "ileri": "ResNet18_AT->ViT_Tiny_AT",
+    "geri": "ViT_Tiny_AT->ResNet18_AT"
+  },
+  "n_test": 26032,
+  "n_classes": 10,
+  "sinif_dengesi_tam_mi": false,
+  "test_pay_min_max": [
+    0.06127,
+    0.19587
+  ],
+  "test_dengesizlik_orani": 3.197,
+  "protokoller": {
+    "raw": {
+      "n_kosullu": {
+        "ileri": 26032,
+        "geri": 26032
+      },
+      "oran_yuzde": {
+        "ileri": 31.21,
+        "geri": 30.88
+      },
+      "asimetri_puan": 0.33,
+      "AYRISTIRMA": {
+        "bilesim_etkisi": 0.0,
+        "oran_etkisi": 0.33,
+        "toplam_kontrol": 0.33,
+        "bilesim_payi_yuzde": 0.0
+      },
+      "bilesim_sapmasi": {
+        "TV_ileri_vs_test": 0.0,
+        "TV_geri_vs_test": 0.0,
+        "TV_ileri_vs_geri": 0.0,
+        "max_mutlak_pay_farki": 0.0,
+        "chi2_ileri": {
+          "stat": 0.0,
+          "df": 9,
+          "dusuk_beklenen_sinif": 0
+        },
+        "chi2_geri": {
+          "stat": 0.0,
+          "df": 9,
+          "dusuk_beklenen_sinif": 0
+        }
+      },
+      "sinif_paylari": {
+        "ileri": [
+          0.06699,
+          0.19587,
+          0.15938,
+          0.11071,
+          0.09692,
+          0.09158,
+          0.07594,
+          0.07756,
+          0.06377,
+          0.06127
+        ],
+        "geri": [
+          0.06699,
+          0.19587,
+          0.15938,
+          0.11071,
+          0.09692,
+          0.09158,
+          0.07594,
+          0.07756,
+          0.06377,
+          0.06127
+        ]
+      }
+    },
+    "target_correct": {
+      "n_kosullu": {
+        "ileri": 24164,
+        "geri": 24667
+      },
+      "oran_yuzde": {
+        "ileri": 25.9,
+        "geri": 27.06
+      },
+      "asimetri_puan": -1.162,
+      "AYRISTIRMA": {
+        "bilesim_etkisi": -0.016,
+        "oran_etkisi": -1.146,
+        "toplam_kontrol": -1.162,
+        "bilesim_payi_yuzde": 1.4
+      },
+      "bilesim_sapmasi": {
+        "TV_ileri_vs_test": 0.0155,
+        "TV_geri_vs_test": 0.0148,
+        "TV_ileri_vs_geri": 0.0044,
+        "max_mutlak_pay_farki": 0.0018,
+        "chi2_ileri": {
+          "stat": 32.55,
+          "df": 9,
+          "dusuk_beklenen_sinif": 0
+        },
+        "chi2_geri": {
+          "stat": 27.58,
+          "df": 9,
+          "dusuk_beklenen_sinif": 0
+        }
+      },
+      "sinif_paylari": {
+        "ileri": [
+          0.06754,
+          0.20506,
+          0.16131,
+          0.10288,
+          0.09911,
+          0.0932,
+          0.07474,
+          0.07532,
+          0.06063,
+          0.06021
+        ],
+        "geri": [
+          0.06872,
+          0.20335,
+          0.16273,
+          0.10467,
+          0.099,
+          0.09178,
+          0.07472,
+          0.07484,
+          0.06016,
+          0.06004
+        ]
+      }
+    },
+    "both_correct": {
+      "n_kosullu": {
+        "ileri": 23870,
+        "geri": 23870
+      },
+      "oran_yuzde": {
+        "ileri": 25.07,
+        "geri": 25.41
+      },
+      "asimetri_puan": -0.339,
+      "AYRISTIRMA": {
+        "bilesim_etkisi": 0.0,
+        "oran_etkisi": -0.339,
+        "toplam_kontrol": -0.339,
+        "bilesim_payi_yuzde": 0.0
+      },
+      "bilesim_sapmasi": {
+        "TV_ileri_vs_test": 0.0192,
+        "TV_geri_vs_test": 0.0192,
+        "TV_ileri_vs_geri": 0.0,
+        "max_mutlak_pay_farki": 0.0,
+        "chi2_ileri": {
+          "stat": 47.76,
+          "df": 9,
+          "dusuk_beklenen_sinif": 0
+        },
+        "chi2_geri": {
+          "stat": 47.76,
+          "df": 9,
+          "dusuk_beklenen_sinif": 0
+        }
+      },
+      "sinif_paylari": {
+        "ileri": [
+          0.06795,
+          0.20712,
+          0.16234,
+          0.10201,
+          0.09958,
+          0.093,
+          0.07457,
+          0.07453,
+          0.05924,
+          0.05966
+        ],
+        "geri": [
+          0.06795,
+          0.20712,
+          0.16234,
+          0.10201,
+          0.09958,
+          0.093,
+          0.07457,
+          0.07453,
+          0.05924,
+          0.05966
+        ]
+      }
+    },
+    "successful_source": {
+      "n_kosullu": {
+        "ileri": 9632,
+        "geri": 11028
+      },
+      "oran_yuzde": {
+        "ileri": 61.84,
+        "geri": 59.22
+      },
+      "asimetri_puan": 2.614,
+      "AYRISTIRMA": {
+        "bilesim_etkisi": 0.377,
+        "oran_etkisi": 2.237,
+        "toplam_kontrol": 2.614,
+        "bilesim_payi_yuzde": 14.4
+      },
+      "bilesim_sapmasi": {
+        "TV_ileri_vs_test": 0.1035,
+        "TV_geri_vs_test": 0.0703,
+        "TV_ileri_vs_geri": 0.038,
+        "max_mutlak_pay_farki": 0.0211,
+        "chi2_ileri": {
+          "stat": 542.25,
+          "df": 9,
+          "dusuk_beklenen_sinif": 0
+        },
+        "chi2_geri": {
+          "stat": 362.51,
+          "df": 9,
+          "dusuk_beklenen_sinif": 0
+        }
+      },
+      "sinif_paylari": {
+        "ileri": [
+          0.06032,
+          0.12874,
+          0.15147,
+          0.13175,
+          0.07517,
+          0.10735,
+          0.09282,
+          0.08461,
+          0.09271,
+          0.07506
+        ],
+        "geri": [
+          0.06882,
+          0.1498,
+          0.15851,
+          0.1294,
+          0.07653,
+          0.09385,
+          0.08397,
+          0.07463,
+          0.08968,
+          0.07481
+        ]
+      }
+    }
+  },
+  "OZET": {
+    "en_buyuk_yon_bilesim_farki_protokolu": "successful_source",
+    "en_buyuk_TV_ileri_vs_geri": 0.038,
+    "both_correct_TV_ileri_vs_geri": 0.0,
+    "both_correct_sifir_mi_SAGLAMA": true,
+    "yorum": "both_correct protokolu iki yonu AYNI orneklerde puanladigi icin TV_ileri_vs_geri tam 0 olmalidir; olmuyorsa maskelerde hata vardir (bu alan bir SAGLAMA testidir). Diger protokollerde TV > 0 beklenir; AYRISTIRMA/bilesim_etkisi asimetrinin ne kadarinin sinif bilesiminden geldigini puan cinsinden verir."
+  }
+}

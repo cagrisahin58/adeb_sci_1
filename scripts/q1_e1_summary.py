@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""E1 (CIFAR-100) ozet artefakti — tohumlar arasi ortalama/sd + secim yolu.
+"""Q1 ozet artefakti (E1/CIFAR-100 ve E7/SVHN) — ortalama/sd + secim yolu.
+
+Veri kumesi --dataset ile secilir; bayrak verilmezse davranis eskisiyle
+BIREBIR aynidir (cifar100, 3 tohum).
 
 Kaynaklar (hicbiri elle girilmez):
   results/q1/cifar100/<arch>_s<seed>/pgd_summary_<arch>.json  -> test clean/PGD
@@ -11,14 +14,31 @@ Cikti: results/q1/e1_cifar100_summary.json
 NOT: sd her yerde ddof=1 (makale boyunca kullanilan tanim).
 """
 
+import argparse
 import json
 import pathlib
 import statistics as st
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-OUT = ROOT / "results" / "q1" / "e1_cifar100_summary.json"
 
-ARCHS = {"resnet18": [1001, 1002, 1003], "vit_tiny": [2001, 2002, 2003]}
+_ap = argparse.ArgumentParser()
+_ap.add_argument("--dataset", default="cifar100", choices=["cifar100", "svhn", "cifar10"])
+_ap.add_argument("--out", default=None)
+_args = _ap.parse_args()
+DS = _args.dataset
+
+# Tohum listeleri veri kumesine gore: E7 KISA surum 2 tohumdur (K-01).
+_TOHUMLAR = {
+    "cifar100": {"resnet18": [1001, 1002, 1003], "vit_tiny": [2001, 2002, 2003]},
+    "cifar10": {"resnet18": [1001, 1002, 1003], "vit_tiny": [2001, 2002, 2003]},
+    "svhn": {"resnet18": [1001, 1002], "vit_tiny": [2001, 2002]},
+}
+_VARSAYILAN_CIKTI = {"cifar100": "e1_cifar100_summary.json",
+                     "svhn": "e7_svhn_summary.json",
+                     "cifar10": "c1_cifar10_summary.json"}
+OUT = pathlib.Path(_args.out) if _args.out else (
+    ROOT / "results" / "q1" / _VARSAYILAN_CIKTI[DS])
+ARCHS = _TOHUMLAR[DS]
 MIN_DELTA = 0.1          # trainer'in erken durdurma esigi
 PLATEAU_FROM = 3         # plato istatistigi bu epoktan itibaren
 
@@ -28,7 +48,7 @@ def sd(x):
 
 
 def read_curve(arch, seed):
-    base = ROOT / "models" / "q1" / "cifar100" / f"{arch}_s{seed}" / arch / "adv"
+    base = ROOT / "models" / "q1" / DS / f"{arch}_s{seed}" / arch / "adv"
     m = base / "adversarial_training" / "epochs" / "metrics.jsonl"
     if not m.exists():
         return None
@@ -64,7 +84,11 @@ def read_aa(arch, seed):
     pair = SEED_TO_PAIR.get(seed)
     if pair is None:
         return None
-    f = ROOT / "results" / "q1" / "cifar100" / f"pair{pair}" / "autoattack_summary.json"
+    # VERI KUMESI SIZINTISI DUZELTILDI: bu yol "cifar100" diye civiliydi ve
+    # --dataset svhn verildiginde CIFAR-100 AutoAttack sonuclarini okuyup
+    # SVHN etiketiyle raporluyordu. E7-KISA on-kayitli olarak AutoAttack
+    # ICERMEZ; dosya bulunmayinca None doner ve ozet AA alanini BOS birakir.
+    f = ROOT / "results" / "q1" / DS / f"pair{pair}" / "autoattack_summary.json"
     if not f.exists():
         return None
     d = json.loads(f.read_text(encoding="utf-8"))
@@ -75,7 +99,7 @@ def read_aa(arch, seed):
 
 
 def read_test(arch, seed):
-    p = ROOT / "results" / "q1" / "cifar100" / f"{arch}_s{seed}" / f"pgd_summary_{arch}.json"
+    p = ROOT / "results" / "q1" / DS / f"{arch}_s{seed}" / f"pgd_summary_{arch}.json"
     if not p.exists():
         return None
     d = json.loads(p.read_text(encoding="utf-8"))
@@ -84,7 +108,7 @@ def read_test(arch, seed):
 
 
 def main():
-    out = {"dataset": "cifar100", "min_delta": MIN_DELTA,
+    out = {"dataset": DS, "min_delta": MIN_DELTA,
            "sd_tanimi": "ornek sd (ddof=1)", "mimariler": {}}
 
     for arch, seeds in ARCHS.items():

@@ -1,0 +1,39 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 26032,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT"
+  ],
+  "results": {
+    "ResNet18_AT->ResNet18_AT": {
+      "raw_fooling": 44.01,
+      "cond_fooling": 40.91,
+      "n_cond": 24667,
+      "target_clean_acc": 94.76
+    },
+    "ResNet18_AT->ViT_Tiny_AT": {
+      "raw_fooling": 31.21,
+      "cond_fooling": 25.9,
+      "n_cond": 24164,
+      "target_clean_acc": 92.82
+    },
+    "ViT_Tiny_AT->ResNet18_AT": {
+      "raw_fooling": 30.88,
+      "cond_fooling": 27.06,
+      "n_cond": 24667,
+      "target_clean_acc": 94.76
+    },
+    "ViT_Tiny_AT->ViT_Tiny_AT": {
+      "raw_fooling": 47.6,
+      "cond_fooling": 43.54,
+      "n_cond": 24164,
+      "target_clean_acc": 92.82
+    }
+  }
+}

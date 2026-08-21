@@ -1,0 +1,168 @@
+{
+  "dataset": "svhn",
+  "min_delta": 0.1,
+  "sd_tanimi": "ornek sd (ddof=1)",
+  "mimariler": {
+    "resnet18": {
+      "tohumlar": {
+        "1001": {
+          "test_clean": 94.76,
+          "test_pgd10": 55.98,
+          "test_autoattack": null,
+          "test_n": 26032,
+          "val_en_iyi_adv": 60.75,
+          "en_iyi_epok": 46,
+          "durma_epogu": 50,
+          "plato_ep3+": {
+            "min": 29.15,
+            "max": 60.75,
+            "genislik": 31.6,
+            "sd": 6.921,
+            "ort": 54.35,
+            "secilen_ort_uzakligi_sd": 0.92
+          }
+        },
+        "1002": {
+          "test_clean": 93.77,
+          "test_pgd10": 55.07,
+          "test_autoattack": null,
+          "test_n": 26032,
+          "val_en_iyi_adv": 59.95,
+          "en_iyi_epok": 34,
+          "durma_epogu": 50,
+          "plato_ep3+": {
+            "min": 29.45,
+            "max": 59.95,
+            "genislik": 30.5,
+            "sd": 6.849,
+            "ort": 54.48,
+            "secilen_ort_uzakligi_sd": 0.8
+          }
+        }
+      },
+      "ozet": {
+        "n_tohum": 2,
+        "test_clean": {
+          "ort": 94.27,
+          "sd": 0.7,
+          "degerler": [
+            94.76,
+            93.77
+          ]
+        },
+        "test_pgd10": {
+          "ort": 55.52,
+          "sd": 0.643,
+          "degerler": [
+            55.98,
+            55.07
+          ]
+        },
+        "test_autoattack": null,
+        "en_iyi_epok": {
+          "degerler": [
+            46,
+            34
+          ],
+          "aciklik": 12
+        },
+        "durma_epogu": {
+          "degerler": [
+            50,
+            50
+          ],
+          "aciklik": 0
+        }
+      }
+    },
+    "vit_tiny": {
+      "tohumlar": {
+        "2001": {
+          "test_clean": 92.82,
+          "test_pgd10": 52.37,
+          "test_autoattack": null,
+          "test_n": 26032,
+          "val_en_iyi_adv": 58.3,
+          "en_iyi_epok": 28,
+          "durma_epogu": 48,
+          "plato_ep3+": {
+            "min": 28.8,
+            "max": 58.3,
+            "genislik": 29.5,
+            "sd": 6.676,
+            "ort": 53.88,
+            "secilen_ort_uzakligi_sd": 0.66
+          }
+        },
+        "2002": {
+          "test_clean": 92.03,
+          "test_pgd10": 52.23,
+          "test_autoattack": null,
+          "test_n": 26032,
+          "val_en_iyi_adv": 58.55,
+          "en_iyi_epok": 34,
+          "durma_epogu": 50,
+          "plato_ep3+": {
+            "min": 24.55,
+            "max": 58.55,
+            "genislik": 34.0,
+            "sd": 7.567,
+            "ort": 53.82,
+            "secilen_ort_uzakligi_sd": 0.62
+          }
+        }
+      },
+      "ozet": {
+        "n_tohum": 2,
+        "test_clean": {
+          "ort": 92.42,
+          "sd": 0.559,
+          "degerler": [
+            92.82,
+            92.03
+          ]
+        },
+        "test_pgd10": {
+          "ort": 52.3,
+          "sd": 0.099,
+          "degerler": [
+            52.37,
+            52.23
+          ]
+        },
+        "test_autoattack": null,
+        "en_iyi_epok": {
+          "degerler": [
+            28,
+            34
+          ],
+          "aciklik": 6
+        },
+        "durma_epogu": {
+          "degerler": [
+            48,
+            50
+          ],
+          "aciklik": 2
+        }
+      }
+    }
+  },
+  "SECIM_YOLU_vs_SONUC": {
+    "aciklama": "Tohumlar FARKLI epoklarda zirve yapip FARKLI epoklarda duruyor (secim yolu oynak) ama test sonucu ne kadar oynuyor? Bu, E2'nin secim-piyangosu bulgusuna KARSI-KANIT adayidir. DIKKAT: E2 ayni yorungeye farkli SECIM PROTOKOLLERI uyguluyordu; burada her tohumun kendi yorungesi ve kendi dogal durma noktasi var. AYNI deney DEGIL; E2 muadili olcum icin tek yorungeye cevrimdisi izgara gerekir (E1_PILOT_KAPISI.md B.8: kod henuz YOK).",
+    "mimariler": {
+      "resnet18": {
+        "en_iyi_epok_acikligi": 12,
+        "durma_epogu_acikligi": 0,
+        "test_pgd10_sd": 0.643,
+        "test_clean_sd": 0.7
+      },
+      "vit_tiny": {
+        "en_iyi_epok_acikligi": 6,
+        "durma_epogu_acikligi": 2,
+        "test_pgd10_sd": 0.099,
+        "test_clean_sd": 0.559
+      }
+    }
+  }
+}
