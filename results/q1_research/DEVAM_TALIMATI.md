@@ -2,47 +2,50 @@
 
 **Son güncelleme: 2026-08-20 (akşam). Dal: `q1`. Son commit: `54e8b6e`.**
 
-> ## GÜNCEL DURUM — 2026-08-21 sabahı, en son yazılan bölüm
+> ## GÜNCEL DURUM — 2026-08-21 öğleden sonra
 >
-> **Biten işler:** İŞ-1 · İŞ-2 · İŞ-5 · İŞ-6 (sekiz kalem) · **İŞ-4 (E3) —
-> iki kol da koşuldu.** Ayrıca plansız iki büyük düzeltme: `r = 0,997`'nin
-> korelasyon değil **özdeşlik** olması (EK J) ve E3'ün **yanlış niceliği**
-> ölçüyor olması (EK C).
+> **Kampanya fiilen bitti. Tek kalan koşum: AutoAttack-L2 (E6'nın son parçası).**
 >
-> **Koşan:** E7'nin son eğitimi (SVHN ViT s2002, çekişmeli). 7/8 bitti.
+> | iş | durum |
+> |---|---|
+> | İŞ-1 r=0,997 nitelemesi | bitti — sonra **özdeşlik** olduğu bulunup yeniden yazıldı (EK J) |
+> | İŞ-2 E1+E2 makaleye | bitti |
+> | İŞ-3 E7 (SVHN) | **bitti** — 8/8 eğitim, analiz zinciri koştu |
+> | İŞ-4 E3 (kalibrasyon) | **bitti** — iki kol, 116 nokta / 8 küme (EK E) |
+> | İŞ-5 E6 (L2) | PGD kısmı bitti; **AutoAttack-L2 koşuyor** |
+> | İŞ-6 sekiz kalem | bitti (B.8 dahil) |
 >
-> ### E3 sonucu (yürürlükte)
-> $x$ = çiftin temiz hata farkı · $y$ = **asimetrinin** protokoller arası
-> yayılımı. Üretici: `scripts/q1_e3_iki_kol_fit.py` →
-> `results/q1/e3_iki_kol_fit.json`. Şekil: `paper/figures/raw/fig_e3_kalibrasyon.pdf`.
+> ### Bu oturumun üç büyük bulgusu
+> 1. **`r = 0,997` korelasyon değil ÖZDEŞLİK** (EK J). Temiz-yanlış örnekler
+>    saldırı altında yanlış kaldığı için (36 yönde 0,989–1,000) `ham = hata +
+>    koşullu·(1−hata)` zorunlu; artık ≤0,41 puan. İddia zayıflamadı, **her
+>    çalışmaya uygulanabilir** hale geldi.
+> 2. **Protokol yayılımının İKİ sürücüsü var** (EK C). Hedeflerin temiz hata
+>    farkı üç protokolü açıklıyor; **başarılı-kaynak** protokolü kaynağın kendi
+>    gürbüzlüğüne bağlı ayrı bir sürücü ve tek başına ilişkinin işaretini
+>    çeviriyor.
+> 3. **SVHN'de asimetrinin İŞARETİ protokole bağlı.** İki mimari temiz
+>    doğrulukta 1,85 puan ayrıkken iki protokol CNN, iki protokol ViT üstünlüğü
+>    bildiriyor ve birincil protokol eşdeğerliği kabul ediyor. Makalenin "yön
+>    veri kümeleri boyunca kararlıdır" iddiası bu yüzden **düzeltildi**.
 >
-> | kol | 4 protokol | 3 protokol (başarılı-kaynak hariç) |
-> |---|---|---|
-> | **A** kontrollü, 108 nokta / 7 küme | +0,337 [+0,210; +0,512] | +0,655 [+0,583; +0,718] |
-> | **B** gözlemsel, 18 nokta / 6 küme | **−0,567** [−0,757; −0,451] | +0,431 [+0,333; +0,633] |
-> | B, WRN'siz alt küme | +0,387 [+0,075; +0,576] | +0,546 [+0,398; +0,837] |
+> ### Kapılar (hepsi kendi sınamasına sahip)
+> | kapı | durum |
+> |---|---|
+> | `verify_manuscript_numbers.py` | 114/114, iki dil, çıkış kodu üretir |
+> | `check_manuscript_claims.py` | 31/31; `test_claim_guards.sh` 4/4 bozmayı yakalıyor |
+> | `check_abstract_body.py` | geçiyor; `test_abstract_body_check.sh` ile sınandı |
+> | `q1_tr_decimal_check.py` | temiz (aralık istisnası var) |
 >
-> **Manşet:** üç protokolde iki kol **uyuşuyor** (GA'lar örtüşüyor, işaret
-> aynı). Dört protokolde uyuşmuyor — ama sebep **kontrol değil havuz
-> bileşimi**: A kolu WRN içermez; B'yi aynı bileşime kısıtlayınca (+0,387)
-> işaret A ile aynı olur. Fit bunu `BILESIM_mi_KONTROL_mu` alanında verir.
+> ### AutoAttack-L2 bitince yapılacaklar
+> 1. `docker exec -w /workspace adeb_eval python -B scripts/q1_e6_aa_aggregate.py`
+> 2. `docker exec -w /workspace adeb_eval python -B scripts/q1_e6_onkestirim.py`
+>    (Ö1/Ö2/Ö3 PGD ile zaten **üçü de tuttu**; AA sonuçları E6 bölümüne girer)
+> 3. E6'yı makaleye yaz (L2 kapsam beyanı §5.3'te hazır, güncellenecek)
+> 4. `results/q1/cifar10_l2/aa_pair*` artefaktlarını izlemeye al (K7)
 >
-> **Bağlayıcı sınırlamalar (yazılacak):** B kolunun negatif eğimi $x$'te
-> 4,1–11,3 arasındaki **7,2 puanlık boşluğun** üzerinden geçer (EK D.2);
-> serbestlik derecesini **küme** sayısı belirler, nokta sayısı değil;
-> havuzlanmış uydurma üretilmedi ve kodda o çıktı yolu yoktur.
->
-> ### Sıradaki işler
-> 1. E7 bitince: `bash scripts/q1_devam.sh e7analiz` (SVHN analiz zinciri)
-> 2. `bash scripts/q1_e3_akolu_run.sh 10` → SVHN çift-2'yi A koluna ekler
->    (muhafız `TRAINING_COMPLETE` arar; bitmemişse sessiz atlamaz)
-> 3. `docker exec -w /workspace adeb_eval python -B scripts/q1_e3_iki_kol_fit.py`
->    ve `scripts/q1_e3_figur.py` → **son sayılar bunlardan alınır**
-> 4. E3'ü makaleye yaz (EK C/D'deki dört nitelemeyle birlikte)
-> 5. `bash scripts/q1_e6_l2.sh` (E6/L2) · `q1_e2_test_curve.py --dataset cifar100` (B.8)
->
-> **UYARI:** yukarıdaki A kolu sayıları SVHN çift-2 eklenmeden önceki
-> değerlerdir. Makaleye **adım 3'ten sonraki** değerler yazılacaktır.
+> **Geri dönüşsüz adımlar** hâlâ kullanıcı kararına bağlı: arXiv · dergi ·
+> repo public.
 ---
 
 ## 0. Otuz saniyede durum
