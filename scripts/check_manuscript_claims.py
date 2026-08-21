@@ -79,6 +79,35 @@ kontrol("D2. EN E2 orani mutlak birimle sunuluyor",
 kontrol("D2. TR E2 orani mutlak birimle sunuluyor",
         "bilinçli olarak tohum düzeyi yayılıma oran biçiminde vermiyoruz" in tr)
 
+# --- E: r=0,997 OZDESLIK olarak sunulmali, korelasyon olarak DEGIL (EK J) ---
+kontrol("E1. EN ozdeslik turetiliyor",
+        "identity" in en.lower() and "eq:raw_identity" in en)
+kontrol("E1. TR ozdeslik turetiliyor",
+        "özdeşlik" in tr and "eq:raw_identity" in tr)
+# olculen oncul metinde olmali: P(adv yanlis | temiz yanlis) = 0,989-1,000
+kontrol("E2. EN oncul olcumu", "0.989" in en and "1.000" in en)
+kontrol("E2. TR oncul olcumu", "0{,}989" in tr and "1{,}000" in tr)
+# ESKI KORELASYON DILI GERI GELMEMELI
+_eski_en = ["is almost entirely explained by the target's clean error (r = 0.997)",
+            "almost perfectly explained by the clean error"]
+kontrol("E3. EN eski korelasyon dili YOK",
+        not any(s in en for s in _eski_en),
+        str([s[:40] for s in _eski_en if s in en]))
+
+# --- F: protokol yayiliminin IKI surucusu (EK C) ---
+# F1 ONCE ZAYIFTI: "second" ve "driver" kelimeleri makalede baska yerlerde de
+# geciyor, bu yuzden iddia silinse bile muhafiz GECIYORDU (sentetik regresyon
+# sinamasinda yakalandi). Artik AYIRT EDICI ifadeye bagli.
+kontrol("F1. EN ikinci surucu aniliyor",
+        "second driver tied to" in en and "second and partly opposing term" in en)
+kontrol("F1. TR ikinci surucu aniliyor",
+        "ikinci bir sürücü ekler" in tr and "ikinci, kısmen ters yönlü bir" in tr)
+# mekanizma anlatisi TEK surucuye indirgenmemeli
+kontrol("F2. EN mekanizma EKSIK oldugu yaziyor",
+        "incomplete" in en.lower() and "three of the four protocols" in en)
+kontrol("F2. TR mekanizma EKSIK oldugu yaziyor",
+        "eksiktir" in tr and "dört protokolün üçü" in tr)
+
 print(f"{'KONTROL':52s} DURUM")
 print("-" * 72)
 kalan = 0
