@@ -118,6 +118,23 @@ kontrol("F2. EN mekanizma EKSIK oldugu yaziyor",
 kontrol("F2. TR mekanizma EKSIK oldugu yaziyor",
         "eksiktir" in tr and "dört protokolün üçü" in tr)
 
+# --- G: BAYAT KAPSAM IDDIASI (2026-08-21) ---
+# Sonuc bolumu Q1 kampanyasi oncesinden kalma "tek veri kumesini
+# kapsamaktadir" cumlesini tasiyordu; AYNI PARAGRAF CIFAR-100 ve SVHN
+# sonuclarini anlatiyordu. Kusur ne sayidir ne de muhafizli bir ifade,
+# yani mevcut kapilarin hicbiri gormezdi. Kapsam iddiasi, makalede
+# gercekten kosulmus veri kumesi sayisiyla bagli tutuluyor.
+_veri_kumeleri = [k for k in ("CIFAR-10", "CIFAR-100", "SVHN") if k in en]
+kontrol("G1. EN kapsam iddiasi veri kumesi sayisiyla tutuyor",
+        len(_veri_kumeleri) < 3 or "covers three datasets" in en,
+        f"{len(_veri_kumeleri)} veri kumesi kosulmus")
+kontrol("G1. TR kapsam iddiasi veri kumesi sayisiyla tutuyor",
+        len(_veri_kumeleri) < 3 or "üç veri kümesini" in tr)
+kontrol("G2. EN bayat 'one dataset' kapsami YOK",
+        "covers one dataset" not in en)
+kontrol("G2. TR bayat 'tek veri kümesini kapsamaktadır' YOK",
+        "tek veri kümesini kapsamaktadır" not in tr)
+
 print(f"{'KONTROL':52s} DURUM")
 print("-" * 72)
 kalan = 0

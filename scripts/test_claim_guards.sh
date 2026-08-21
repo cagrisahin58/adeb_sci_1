@@ -46,5 +46,11 @@ sed -i 's/second and partly/quite another and partly/' "$TMP/paper/manuscript/se
 sed -i 's/adds a second driver/adds another effect/' "$TMP/paper/manuscript/sections/05_discussion.tex"
 python3 "$TMP/chk.py" 2>&1 | grep -E 'F1. EN|TOPLAM'
 
+
+echo
+echo "=== 5) BAYAT KAPSAM geri gelsin -> G1/G2 EN KALMALI ==="
+sed -i "s/covers three datasets and a single model pair/covers one dataset and one model pair/" \
+  "$TMP/paper/manuscript/sections/06_conclusion.tex"
+python3 "$TMP/chk.py" 2>&1 | grep -E "G1. EN|G2. EN|TOPLAM"
 echo
 echo "NOT: gercek depoya DOKUNULMADI; tum degisiklikler gecici kopyada."
