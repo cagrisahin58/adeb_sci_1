@@ -93,9 +93,11 @@ for ax, kol in zip(axes, ("A", "B")):
 
     ax.set_xlabel("çiftin temiz hata farkı (puan)")
     ax.set_title(f"{BASLIK[kol]}\n{bilgi['n_kume']} küme", fontsize=11)
-    # gosterge NOKTALARI ORTMESIN: eksenin ustunde yer ac ve alt-sag'a al
-    ax.set_ylim(top=max(y4.max(), y3.max()) * 1.32)
-    ax.legend(fontsize=7.5, loc="lower right", framealpha=0.92)
+    # Gosterge NOKTALARI ve UYDURMA CIZGILERINI ORTMEMELI. Alt-sag denendi,
+    # iki panelde de veriyi ortuyordu; ust-sagda yer acilarak konumlandirildi.
+    ax.set_ylim(bottom=min(0.0, min(y4.min(), y3.min()) - 1),
+                top=max(y4.max(), y3.max()) * 1.55)
+    ax.legend(fontsize=7.2, loc="upper right", framealpha=0.95, borderpad=0.6)
     ax.grid(alpha=0.25, zorder=0)
 
 axes[0].set_ylabel("asimetrinin protokoller arası yayılımı (puan)")
