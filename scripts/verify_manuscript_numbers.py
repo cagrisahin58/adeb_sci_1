@@ -69,6 +69,7 @@ c45 = jl("results/c1_c45_summary.json")
 c2 = [jl(f"results/c1_c2/pair{p}/tgr_summary.json") for p in (1, 2, 3)]
 vr = jl("results/q1/variance_ratio.json")
 c3p = jl("results/q1/c3_precision.json")
+e3s = jl("results/q1/e3_surucu_ayristirma.json")
 e1 = jl("results/q1/e1_cifar100_summary.json")
 e1t = jl("results/q1/cifar100/transfer/e1_transfer_summary.json")
 e2g = jl("results/q1/e2/e2_grid.json")
@@ -177,6 +178,19 @@ for arch, lbl in (("resnet18", "ResNet"), ("vit_tiny", "ViT")):
 chk("E2 karsi-agirlik epok acikligi",
     e1["mimariler"]["resnet18"]["ozet"]["en_iyi_epok"]["aciklik"], 0)
 chk("E2 karsi-agirlik test sd", e1["mimariler"]["resnet18"]["ozet"]["test_pgd10"]["sd"])
+
+# --- YENI (2026-08-21, E3): protokol yayiliminin IKI surucusu ---
+# 4 protokol yayilimi ciftin temiz hata farkiyla AZALIYOR, basarili-kaynak
+# cikarilinca ARTIYOR. Isareti ceviren tek protokol odur.
+_A, _B = e3s["A_dort_protokol"], e3s["B_basarili_kaynak_HARIC"]
+chk("E3 4-protokol egim", abs(_A["egim"]), 3)
+chk("E3 4-protokol GA alt", abs(_A["egim_GA95"][0]), 3)
+chk("E3 4-protokol GA ust", abs(_A["egim_GA95"][1]), 3)
+chk("E3 3-protokol egim", _B["egim"], 3)
+chk("E3 3-protokol GA alt", _B["egim_GA95"][0], 3)
+chk("E3 3-protokol GA ust", _B["egim_GA95"][1], 3)
+chk("E3 en genis protokol cifti",
+    e3s["protokol_cifti_ortalama_aciklik"]["target_correct vs successful_source"]["ort_aciklik"])
 
 # --- rapor ---
 rows = []
