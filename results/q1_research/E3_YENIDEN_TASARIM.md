@@ -405,3 +405,72 @@ tamamı raporlanırken **yanlıştır**. Düzeltilecektir.
   hepsi WRN içerir, dolayısıyla "küçük fark" ile "farklı reçete" bu havuzda
   tam ayrıştırılamaz. E5 (kapasite çifti) koşulursa ayrışır.
 - EK A'nın ölçtüğü iki delik (%17,68–23,28 ve %42,28–56,40) burada da geçerli.
+
+---
+
+## EK D — Şekil, delikler ve A kolunun kaldıraç sınaması (2026-08-21)
+
+**Salt-ekleme.** Bu ek, E3 şekli hazırlanırken yakalanan bir hatayı ve iki
+ölçümü kaydeder. (Commit `4b24290`'in mesajı kabuk tarafından kesildiği için
+kayıt buraya alınmıştır.)
+
+### D.1 [DÜZELTME] Şekil YANLIŞ EKSENİN deliklerini çiziyordu
+
+`scripts/q1_e3_figur.py`'nin ilk sürümü, EK A'nın ölçtüğü iki deliği
+(%17,68–23,28 ve %42,28–56,40) gri bant olarak çiziyordu. **O delikler
+hedefin temiz hatası eksenindedir**; şekil ise EK C'den sonra **çiftin hata
+farkı** eksenini kullanmaktadır. İkisi aynı birimde (puan) olduğu için
+bantlar makul görünüyordu ama **başka bir niceliğin** boşluklarını
+işaretliyorlardı.
+
+EK A'nın bağlayıcı şartı *"ölçülmemiş bölgeler görünür olsun"*dur ve o şart
+**kullanılan eksende** sağlanmalıdır. Delikler artık noktaların kendi $x$
+değerlerinden hesaplanmaktadır.
+
+### D.2 Kullanılan eksende ölçülen delikler
+
+| kol | $x$'te ölçülmemiş aralıklar (puan) |
+|---|---|
+| A (kontrollü) | 13,7–16,0 · **18,4–26,8** · 26,9–29,1 |
+| B (gözlemsel) | 1,0–3,4 · **4,1–11,3** · 13,0–15,4 · 16,5–18,6 |
+
+**Bu, B kolunun negatif eğimi için ciddi bir sınırlamadır.** O eğim,
+$x \approx 4{,}1$ ile $11{,}3$ arasındaki **7,2 puanlık boşluğun üzerinden**
+geçmektedir: küçük-fark çiftleri (hepsi WRN'li) ile büyük-fark çiftleri
+arasında **hiç veri yoktur**. Yani "yayılım fark büyüdükçe azalıyor" ifadesi
+iki ayrık kümenin karşılaştırılmasıdır, sürekli bir eğilim ölçümü değil.
+Raporlanacaktır (K8).
+
+### D.3 A kolunun KALDIRAÇ sınaması
+
+Şekil bir kaldıraç sorunu gösterdi: A kolu noktalarının çoğu $x = 10$–$13$'te
+kümelenmiş, eğimi taşıyan ise $x = 27$–$29$'daki birkaç nokta — ve onlar
+yörüngelerin **ep1**'idir, yani neredeyse hiç eğitilmemiş modeller.
+"Kontrollü kol" etiketi bunu gizlememelidir.
+
+Ölçüm (`q1_e3_iki_kol_fit.py` → `A_KALDIRAC_DUYARLILIGI`):
+
+| alt küme | $n$ | $x$ aralığı | 4 protokol eğimi | 3 protokol eğimi |
+|---|---|---|---|---|
+| tam | 45+ | 7,8–29,1 | **+0,606** | +0,774 |
+| ep ≥ 2 | 50 | 9,5–18,4 | +0,555 | +0,792 |
+| ep ≥ 10 | 50 | 9,5–18,4 | +0,555 | +0,792 |
+| ep ≥ 20 | 45 | 10,6–16,0 | +0,418 | +0,853 |
+
+**İşaret korunuyor:** A kolunun pozitif eğimi erken checkpoint'lerin eseri
+değildir. Ancak erken epoklar çıkarıldığında $x$ aralığı 10,6–16,0'a
+**daralmaktadır** ve bu daralma da yazılacaktır.
+
+### D.4 Şeklin uyduğu bağlayıcı şartlar
+
+- Kollar **ayrı panelde**; havuzlanmış tek bir uydurma **çizilmez** (B.3).
+- Her panelde **iki seri**: 4 protokol ve 3 protokol (başarılı-kaynak hariç),
+  EK C'nin ayrıştırdığı iki sürücü aynı yerde görünsün diye.
+- Altyazıda $n=\langle\text{nokta}\rangle$ **değil** küme sayısı yazılır.
+- Ölçülmemiş bantlar gri ile işaretlenir (D.1–D.2).
+
+### D.5 Yürürlükteki uyarı
+
+A kolu bu ek yazılırken **hâlâ koşuyordu** (3 küme). Küme bootstrap 2–3 kümede
+dejenere olur (GA [+0,583; +0,651] gerçekçi olamayacak kadar dardır).
+**Küme sayısı 6–8'e çıkmadan A kolu güven aralıkları kullanılmayacaktır.**
