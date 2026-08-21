@@ -163,6 +163,7 @@ if [ "$PAIRS" = "$DEF_PAIRS" ]; then
     "${DEX[@]}" env AGG_IN_DIR="$OUT_ROOT" AGG_OLD="" \
         AGG_OUT_NAME="$SUMMARY_NAME" \
         AGG_TITLE="$DEF_TITLE" AGG_MD_NAME="$DEF_MD" AGG_DESC="$DEF_DESC" \
+        AGG_PAIRS="$PAIRS" \
         python scripts/c1_transfer_aggregate.py \
         || { echo "FAIL toplulastirma"; exit 1; }
     log "DONE toplulastirma -> ${OUT_ROOT}/${SUMMARY_NAME}"

@@ -18,7 +18,11 @@ OLD = os.path.join(ROOT, _old_rel) if _old_rel else None
 # IS-6(e): baslik ve rapor dosya adi SABITTI -> CIFAR-100 ciktisi 'C1'
 # basligiyla ureiliyordu ve KARANTINA kurali acisindan karistirma riski
 # tasiyordu (C1 = CIFAR-10 sizinti-duzeltmeli kampanya). Artik ortamdan.
-TITLE = os.environ.get("AGG_TITLE", "C1 Transfer Protokolleri - 3 Tohum")
+# Cift listesi ortamdan: E7-KISA 2 TOHUMDUR (K-01) ve betik UC CIFTE
+# civiliydi -> SVHN toplulastirmasi FileNotFoundError ile cokuyordu.
+PAIRS = [int(x) for x in os.environ.get("AGG_PAIRS", "1 2 3").split()]
+TITLE = os.environ.get("AGG_TITLE",
+                       f"C1 Transfer Protokolleri - {len(PAIRS)} Tohum")
 MD_NAME = os.environ.get("AGG_MD_NAME", "C1_TRANSFER_RAPORU.md")
 DESC = os.environ.get(
     "AGG_DESC",
@@ -33,7 +37,7 @@ LABELS = {
 }
 
 pairs = []
-for p in (1, 2, 3):
+for p in PAIRS:
     with open(os.path.join(IN, f"pair{p}/a2_transfer_protocols.json"), encoding="utf-8") as fh:
         pairs.append(json.load(fh))
 
