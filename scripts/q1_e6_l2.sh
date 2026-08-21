@@ -28,7 +28,9 @@ N_AA=5000               # butce indirimi, BEYAN EDILMIS
 # --- 0. GPU cakismasi muhafizi ---
 # E7 (veya baska bir q1 kosumu) suruyorsa ikisi de yavaslar. Bilincli
 # uzerine binmek icin E6_FORCE=1.
-if "${DEX[@]}" bash -lc 'pgrep -f "q1_pipeline.sh" >/dev/null'; then
+# KOSELI PARANTEZ HILESI -- bkz. q1_devam.sh'taki ayni duzeltme: duz desen
+# pgrep'in kendi sarmalayicisini eslestirip yanlis alarm uretiyordu.
+if "${DEX[@]}" bash -lc 'pgrep -f "[q]1_pipeline.sh" >/dev/null'; then
     if [ "${E6_FORCE:-0}" != "1" ]; then
         echo "DURDURULDU: q1_pipeline.sh kosuyor (buyuk olasilikla E7)."
         echo "  Iki GPU isini ust uste bindirmek ikisini de yavaslatir."

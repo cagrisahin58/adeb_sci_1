@@ -35,7 +35,10 @@ gpu_bos_mu() {
 
 kos_e7() {
     log "E7 (SVHN) -- kaldigi yerden"
-    if docker exec adeb_eval bash -lc 'pgrep -f q1_pipeline.sh >/dev/null'; then
+    # KOSELI PARANTEZ HILESI: duz 'q1_pipeline.sh' deseni pgrep'in KENDI
+    # sarmalayicisini de eslestirir (bash -lc komut satirinda desen geciyor) ve
+    # muhafiz HER ZAMAN "kosuyor" der -- E7 hic baslamazdi.
+    if docker exec adeb_eval bash -lc 'pgrep -f "[q]1_pipeline.sh" >/dev/null'; then
         echo "  ZATEN KOSUYOR, yeni kosum baslatilmadi."
         return 0
     fi
