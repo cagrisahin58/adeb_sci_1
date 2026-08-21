@@ -9,9 +9,11 @@ trap 'rm -rf "$TMP"' EXIT
 
 cp -r paper "$TMP/paper"
 cp scripts/check_manuscript_claims.py "$TMP/chk.py"
-# denetleyicinin koku gecici kopyaya baksin
-sed -i "s|^R = Path(.*)$|R = Path(\"$TMP/paper\")|" "$TMP/chk.py"
-grep -n '^R = Path' "$TMP/chk.py"
+# Denetleyicinin koku gecici kopyaya baksin. Kaynak satirini sed ile yamamak
+# kirilgandi (satir bicimi degisince sessizce islemez oluyordu); denetleyici
+# artik bu degiskeni kendisi okuyor.
+export MANUSCRIPT_ROOT="$TMP"
+echo "MANUSCRIPT_ROOT=$MANUSCRIPT_ROOT"
 
 echo
 echo "=== 0) BOZULMAMIS kopya (hepsi GECMELI) ==="

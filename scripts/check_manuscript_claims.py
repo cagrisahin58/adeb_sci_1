@@ -11,13 +11,23 @@ Kontroller:
   C. DORT ZORUNLU NITELEME metinde mi
   D. YASAK ifadeler yok mu ("ucu de dogrulandi" ailesi, E2 oran mansети)
 """
+import os
 import re
 import sys
 from pathlib import Path
 
-R = Path("/home/firat/projects/adeb_sci_1/paper")
-EN = (R / "manuscript").rglob("*.tex")
-TR = (R / "manuscript_tr").rglob("*.tex")
+# MANUSCRIPT_ROOT: oz-sinama kirilmis bir KOPYAYI denetlemek icin kullanir.
+_kok = os.environ.get("MANUSCRIPT_ROOT")
+ROOT = Path(_kok) if _kok else (
+    Path("/workspace") if Path("/workspace/results").is_dir()
+    else Path(__file__).resolve().parents[1])
+R = ROOT / "paper"
+EN = sorted((R / "manuscript").rglob("*.tex"))
+TR = sorted((R / "manuscript_tr").rglob("*.tex"))
+if not EN or not TR:
+    sys.exit(f"KAPI HATASI: {R} altinda .tex bulunamadi "
+             f"(EN={len(EN)}, TR={len(TR)}). Bos metin uzerinde YOKLUK "
+             f"kontrolleri sahte gecer; denetim yapilmadi.")
 en = "\n".join(p.read_text(encoding="utf-8") for p in EN)
 tr = "\n".join(p.read_text(encoding="utf-8") for p in TR)
 
