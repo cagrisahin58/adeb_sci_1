@@ -2,50 +2,52 @@
 
 **Son güncelleme: 2026-08-20 (akşam). Dal: `q1`. Son commit: `54e8b6e`.**
 
-> ## GÜNCEL DURUM — 2026-08-21 öğleden sonra
+> ## GÜNCEL DURUM — 2026-08-21, KAMPANYA TAMAMLANDI
 >
-> **Kampanya fiilen bitti. Tek kalan koşum: AutoAttack-L2 (E6'nın son parçası).**
+> **Altı işin altısı da bitti. Koşan iş yok, GPU boş.**
 >
-> | iş | durum |
-> |---|---|
-> | İŞ-1 r=0,997 nitelemesi | bitti — sonra **özdeşlik** olduğu bulunup yeniden yazıldı (EK J) |
-> | İŞ-2 E1+E2 makaleye | bitti |
-> | İŞ-3 E7 (SVHN) | **bitti** — 8/8 eğitim, analiz zinciri koştu |
-> | İŞ-4 E3 (kalibrasyon) | **bitti** — iki kol, 116 nokta / 8 küme (EK E) |
-> | İŞ-5 E6 (L2) | PGD kısmı bitti; **AutoAttack-L2 koşuyor** |
-> | İŞ-6 sekiz kalem | bitti (B.8 dahil) |
+> | iş | durum | commit |
+> |---|---|---|
+> | İŞ-1 `r=0,997` nitelemesi | bitti | `fe86f48` |
+> | İŞ-2 E1+E2 makaleye | bitti | `9707337` |
+> | İŞ-3 E7 (SVHN) | bitti — 8/8 eğitim + analiz | `c24bb22`, `8c01e47` |
+> | İŞ-4 E3 (kalibrasyon) | bitti — 116 nokta / 8 küme, iki kol | `7148fd9` |
+> | İŞ-5 E6 (L2) | bitti — PGD + AutoAttack | `920a646` |
+> | İŞ-6 sekiz kalem | bitti (B.8 dahil) | `784e52d`, `f608cbb` |
 >
-> ### Bu oturumun üç büyük bulgusu
-> 1. **`r = 0,997` korelasyon değil ÖZDEŞLİK** (EK J). Temiz-yanlış örnekler
->    saldırı altında yanlış kaldığı için (36 yönde 0,989–1,000) `ham = hata +
->    koşullu·(1−hata)` zorunlu; artık ≤0,41 puan. İddia zayıflamadı, **her
->    çalışmaya uygulanabilir** hale geldi.
-> 2. **Protokol yayılımının İKİ sürücüsü var** (EK C). Hedeflerin temiz hata
->    farkı üç protokolü açıklıyor; **başarılı-kaynak** protokolü kaynağın kendi
->    gürbüzlüğüne bağlı ayrı bir sürücü ve tek başına ilişkinin işaretini
->    çeviriyor.
-> 3. **SVHN'de asimetrinin İŞARETİ protokole bağlı.** İki mimari temiz
->    doğrulukta 1,85 puan ayrıkken iki protokol CNN, iki protokol ViT üstünlüğü
->    bildiriyor ve birincil protokol eşdeğerliği kabul ediyor. Makalenin "yön
->    veri kümeleri boyunca kararlıdır" iddiası bu yüzden **düzeltildi**.
+> ### Planda olmayan üç bulgu (hepsi ölçümle çıktı)
+> 1. **`r = 0,997` korelasyon değil ÖZDEŞLİK** (EK J) — iddia zayıflamadı,
+>    her çalışmaya uygulanabilir hale geldi.
+> 2. **Protokol yayılımının İKİ sürücüsü var** (EK C) — başarılı-kaynak
+>    protokolü ayrı bir sürücü ve tek başına işareti çeviriyor.
+> 3. **SVHN'de asimetrinin İŞARETİ protokole bağlı** — makalenin "yön veri
+>    kümeleri boyunca kararlıdır" iddiası düzeltildi.
 >
-> ### Kapılar (hepsi kendi sınamasına sahip)
+> ### Deney kanıtları (K6)
+> E1 6/6 · E7 8/8 eğitim + 4/4 değerlendirme · E3 116 nokta ·
+> E6 3/3 AutoAttack çifti · B.8 6/6 test eğrisi
+>
+> ### Dört kapı (hepsi kendi sınamasına sahip)
 > | kapı | durum |
 > |---|---|
-> | `verify_manuscript_numbers.py` | 114/114, iki dil, çıkış kodu üretir |
-> | `check_manuscript_claims.py` | 31/31; `test_claim_guards.sh` 4/4 bozmayı yakalıyor |
+> | `verify_manuscript_numbers.py` | **137/137**, iki dil, çıkış kodu üretir |
+> | `check_manuscript_claims.py` | **31/31**; `test_claim_guards.sh` 4/4 yakalıyor |
 > | `check_abstract_body.py` | geçiyor; `test_abstract_body_check.sh` ile sınandı |
-> | `q1_tr_decimal_check.py` | temiz (aralık istisnası var) |
+> | `q1_tr_decimal_check.py` | temiz (aralık istisnalı) |
 >
-> ### AutoAttack-L2 bitince yapılacaklar
-> 1. `docker exec -w /workspace adeb_eval python -B scripts/q1_e6_aa_aggregate.py`
-> 2. `docker exec -w /workspace adeb_eval python -B scripts/q1_e6_onkestirim.py`
->    (Ö1/Ö2/Ö3 PGD ile zaten **üçü de tuttu**; AA sonuçları E6 bölümüne girer)
-> 3. E6'yı makaleye yaz (L2 kapsam beyanı §5.3'te hazır, güncellenecek)
-> 4. `results/q1/cifar10_l2/aa_pair*` artefaktlarını izlemeye al (K7)
+> Derleme: EN 20 s. · TR 18 s. · 0 undefined · 0 overfull.
+> Takipsiz ham artefakt: **0** (K7).
 >
-> **Geri dönüşsüz adımlar** hâlâ kullanıcı kararına bağlı: arXiv · dergi ·
-> repo public.
+> ### GERİYE KALAN: yalnızca geri dönüşsüz adımlar (KULLANICI KARARI)
+> | adım | durum |
+> |---|---|
+> | arXiv ön-baskısı | teknik engel YOK; içerik hazır |
+> | dergi gönderimi | teknik engel YOK; üç veri kümesi tamam |
+> | repo public | artefakt paylaşım politikası kararı bekliyor (`models/` 36 GB) |
+>
+> Ayrıca hâlâ açık olan iki kalem: **iThenticate intihal kontrolü** ve
+> **E5** (kapasite çifti, K-01'de ERTELENDİ — düşürülmediyse yeniden
+> değerlendirilmeli).
 ---
 
 ## 0. Otuz saniyede durum
