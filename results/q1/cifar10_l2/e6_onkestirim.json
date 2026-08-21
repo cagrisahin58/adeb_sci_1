@@ -1,0 +1,189 @@
+{
+  "uretildi_utc": "2026-08-21T03:44:11.259061+00:00",
+  "ON_KAYIT": "results/q1_research/E6_ON_KAYIT.md §2 (L2 sonuclari GORULMEDEN yazildi)",
+  "BAGLAYICI_CERCEVE": "Modeller L-infinity ile EGITILMISTIR; E6 onlari L2 altinda OLCER. Mutlak sayilar L2-EGITILMIS referanslarla KARSILASTIRILAMAZ (E6_ON_KAYIT §0).",
+  "O1_yon": {
+    "n_yon": 18,
+    "egim": 0.9137652049507159,
+    "kesisim": 0.10304324616345165,
+    "pearson_r": 0.9991026292535534,
+    "hedef_hatasi_araligi": [
+      10.519999999999996,
+      26.989999999999995
+    ],
+    "GECTI_mi": true,
+    "noktalar": [
+      {
+        "cift": 1,
+        "yon": "ResNet18_AT->ViT_Tiny_AT",
+        "e": 25.9,
+        "sapma": 23.59
+      },
+      {
+        "cift": 1,
+        "yon": "ResNet18_AT->WRN_28_10",
+        "e": 10.52,
+        "sapma": 9.65
+      },
+      {
+        "cift": 1,
+        "yon": "ViT_Tiny_AT->ResNet18_AT",
+        "e": 14.63,
+        "sapma": 13.6
+      },
+      {
+        "cift": 1,
+        "yon": "ViT_Tiny_AT->WRN_28_10",
+        "e": 10.52,
+        "sapma": 10.05
+      },
+      {
+        "cift": 1,
+        "yon": "WRN_28_10->ResNet18_AT",
+        "e": 14.63,
+        "sapma": 13.05
+      },
+      {
+        "cift": 1,
+        "yon": "WRN_28_10->ViT_Tiny_AT",
+        "e": 25.9,
+        "sapma": 24.0
+      },
+      {
+        "cift": 2,
+        "yon": "ResNet18_AT->ViT_Tiny_AT",
+        "e": 26.53,
+        "sapma": 24.21
+      },
+      {
+        "cift": 2,
+        "yon": "ResNet18_AT->WRN_28_10",
+        "e": 10.52,
+        "sapma": 9.6
+      },
+      {
+        "cift": 2,
+        "yon": "ViT_Tiny_AT->ResNet18_AT",
+        "e": 14.06,
+        "sapma": 13.1
+      },
+      {
+        "cift": 2,
+        "yon": "ViT_Tiny_AT->WRN_28_10",
+        "e": 10.52,
+        "sapma": 10.04
+      },
+      {
+        "cift": 2,
+        "yon": "WRN_28_10->ResNet18_AT",
+        "e": 14.06,
+        "sapma": 12.41
+      },
+      {
+        "cift": 2,
+        "yon": "WRN_28_10->ViT_Tiny_AT",
+        "e": 26.53,
+        "sapma": 24.51
+      },
+      {
+        "cift": 3,
+        "yon": "ResNet18_AT->ViT_Tiny_AT",
+        "e": 26.99,
+        "sapma": 24.61
+      },
+      {
+        "cift": 3,
+        "yon": "ResNet18_AT->WRN_28_10",
+        "e": 10.52,
+        "sapma": 9.61
+      },
+      {
+        "cift": 3,
+        "yon": "ViT_Tiny_AT->ResNet18_AT",
+        "e": 13.95,
+        "sapma": 12.99
+      },
+      {
+        "cift": 3,
+        "yon": "ViT_Tiny_AT->WRN_28_10",
+        "e": 10.52,
+        "sapma": 10.05
+      },
+      {
+        "cift": 3,
+        "yon": "WRN_28_10->ResNet18_AT",
+        "e": 13.95,
+        "sapma": 12.48
+      },
+      {
+        "cift": 3,
+        "yon": "WRN_28_10->ViT_Tiny_AT",
+        "e": 26.99,
+        "sapma": 25.05
+      }
+    ]
+  },
+  "O2_yayilim": {
+    "yayilim_ort": 10.906666666666666,
+    "yayilim_sd": 0.8338065323162996,
+    "tohum_degerleri": [
+      9.99,
+      11.11,
+      11.62
+    ],
+    "esik": 2.0,
+    "GECTI_mi": true
+  },
+  "O3_isaret": {
+    "farklar": {
+      "raw": {
+        "ort": 13.026666666666666,
+        "sd": 0.8100205758703495,
+        "degerler": [
+          12.22,
+          13.02,
+          13.84
+        ]
+      },
+      "target_correct": {
+        "ort": 2.1199999999999997,
+        "sd": 0.18193405398660262,
+        "degerler": [
+          2.23,
+          1.91,
+          2.22
+        ]
+      },
+      "both_correct": {
+        "ort": 4.066666666666666,
+        "sd": 0.35837596645608555,
+        "degerler": [
+          4.01,
+          3.74,
+          4.45
+        ]
+      },
+      "successful_source": {
+        "ort": 9.506666666666668,
+        "sd": 0.890299575049507,
+        "degerler": [
+          10.41,
+          9.48,
+          8.63
+        ]
+      }
+    },
+    "pozitif_olcum": "12/12",
+    "GECTI_mi": true
+  },
+  "HUKUM": {
+    "gecen": [
+      "O1",
+      "O2",
+      "O3"
+    ],
+    "kalan": [],
+    "olculemeyen": [],
+    "yorum": "Uc on-kestirimin ucu de TUTTU: protokol duyarliligi tehdit modeli degisince YOK OLMUYOR."
+  }
+}

@@ -104,8 +104,14 @@ done
 
 # --- 5. Toplulastirma ---
 log "START toplulastirma"
+# Baslik/dosya adi ACIKCA verilir: verilmezse toplulastirici varsayilan
+# "C1 Transfer Protokolleri" basligini kullanir ve L2 raporu C1 (CIFAR-10
+# L-infinity kampanyasi) sanilir -- IS-6(e)'de duzeltilen kusurun aynisi.
 "${DEX[@]}" env AGG_IN_DIR="${OUT}/transfer" AGG_OLD="" \
     AGG_OUT_NAME="e6_l2_transfer_summary.json" \
+    AGG_TITLE="E6 Transfer Protokolleri - CIFAR-10, L2 tehdit modeli, 3 Tohum" \
+    AGG_MD_NAME="E6_L2_TRANSFER_RAPORU.md" \
+    AGG_DESC="Ayni istatistik kodu (a2_transfer_protocols.py), C1 kontrol noktalarina L2 BUTCESI (eps=0,5) altinda uygulandi. Her satir 3 tohum ortalamasi +- std. DIKKAT: modeller L-infinity ile EGITILMISTIR; bu sayilar L2-EGITILMIS referanslarla KARSILASTIRILAMAZ (E6_ON_KAYIT §0)." \
     python scripts/c1_transfer_aggregate.py \
     || { echo "FAIL toplulastirma"; exit 1; }
 log "DONE -> ${OUT}/transfer/e6_l2_transfer_summary.json"

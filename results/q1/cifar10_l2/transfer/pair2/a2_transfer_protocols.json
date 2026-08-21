@@ -1,0 +1,108 @@
+{
+ "seed": 42,
+ "n_bootstrap": 10000,
+ "n_permutation": 20000,
+ "protocols": {
+  "raw": {
+   "CNN_to_ViT": {
+    "rate": 32.73,
+    "n_conditioned": 10000,
+    "ci95": [
+     31.82,
+     33.65
+    ]
+   },
+   "ViT_to_CNN": {
+    "rate": 19.71,
+    "n_conditioned": 10000,
+    "ci95": [
+     18.92,
+     20.51
+    ]
+   },
+   "diff_CNNtoViT_minus_ViTtoCNN": 13.02
+  },
+  "target_correct": {
+   "CNN_to_ViT": {
+    "rate": 8.52,
+    "n_conditioned": 7347,
+    "ci95": [
+     7.89,
+     9.17
+    ]
+   },
+   "ViT_to_CNN": {
+    "rate": 6.61,
+    "n_conditioned": 8594,
+    "ci95": [
+     6.09,
+     7.13
+    ]
+   },
+   "diff_CNNtoViT_minus_ViTtoCNN": 1.91
+  },
+  "both_correct": {
+   "CNN_to_ViT": {
+    "rate": 7.57,
+    "n_conditioned": 7067,
+    "ci95": [
+     6.98,
+     8.21
+    ]
+   },
+   "ViT_to_CNN": {
+    "rate": 3.83,
+    "n_conditioned": 7067,
+    "ci95": [
+     3.4,
+     4.3
+    ]
+   },
+   "diff_CNNtoViT_minus_ViTtoCNN": 3.74
+  },
+  "successful_source": {
+   "CNN_to_ViT": {
+    "rate": 23.44,
+    "n_conditioned": 1557,
+    "ci95": [
+     21.32,
+     25.56
+    ]
+   },
+   "ViT_to_CNN": {
+    "rate": 13.96,
+    "n_conditioned": 3473,
+    "ci95": [
+     12.84,
+     15.15
+    ]
+   },
+   "diff_CNNtoViT_minus_ViTtoCNN": 9.48
+  }
+ },
+ "both_correct_paired": {
+  "n_common": 7067,
+  "diff_pp": 3.74,
+  "paired_bootstrap_ci95_pp": [
+   3.04,
+   4.41
+  ],
+  "signflip_permutation_p": 0.0,
+  "paired_se_pp": 0.351,
+  "tost_sensitivity": {
+   "margin_1pp": {
+    "p": 1.0,
+    "equivalent_at_0.05": false
+   },
+   "margin_2pp": {
+    "p": 1.0,
+    "equivalent_at_0.05": false
+   },
+   "margin_3pp": {
+    "p": 0.982,
+    "equivalent_at_0.05": false
+   }
+  },
+  "tost_margin_rationale": "2pp marji, egitim-kosusu duzeyindeki gozlenen varyasyonun (~PGD birkac puan) altinda kalan farklari pratikte-esdeger sayma ilkesine dayanir; +-1/+-3 duyarlilik tablosu verilir."
+ }
+}

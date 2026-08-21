@@ -1,0 +1,70 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 10000,
+  "eps": 0.5,
+  "alpha": 0.125,
+  "steps": 10,
+  "norm": "l2",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT",
+    "WRN_28_10"
+  ],
+  "results": {
+    "ResNet18_AT->ResNet18_AT": {
+      "raw_fooling": 36.7,
+      "cond_fooling": 26.34,
+      "n_cond": 8594,
+      "target_clean_acc": 85.94
+    },
+    "ResNet18_AT->ViT_Tiny_AT": {
+      "raw_fooling": 32.73,
+      "cond_fooling": 8.52,
+      "n_cond": 7347,
+      "target_clean_acc": 73.47
+    },
+    "ResNet18_AT->WRN_28_10": {
+      "raw_fooling": 18.33,
+      "cond_fooling": 8.73,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    },
+    "ViT_Tiny_AT->ResNet18_AT": {
+      "raw_fooling": 19.71,
+      "cond_fooling": 6.61,
+      "n_cond": 8594,
+      "target_clean_acc": 85.94
+    },
+    "ViT_Tiny_AT->ViT_Tiny_AT": {
+      "raw_fooling": 48.18,
+      "cond_fooling": 29.47,
+      "n_cond": 7347,
+      "target_clean_acc": 73.47
+    },
+    "ViT_Tiny_AT->WRN_28_10": {
+      "raw_fooling": 14.44,
+      "cond_fooling": 4.4,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    },
+    "WRN_28_10->ResNet18_AT": {
+      "raw_fooling": 24.05,
+      "cond_fooling": 11.64,
+      "n_cond": 8594,
+      "target_clean_acc": 85.94
+    },
+    "WRN_28_10->ViT_Tiny_AT": {
+      "raw_fooling": 31.94,
+      "cond_fooling": 7.43,
+      "n_cond": 7347,
+      "target_clean_acc": 73.47
+    },
+    "WRN_28_10->WRN_28_10": {
+      "raw_fooling": 29.28,
+      "cond_fooling": 20.97,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    }
+  }
+}
