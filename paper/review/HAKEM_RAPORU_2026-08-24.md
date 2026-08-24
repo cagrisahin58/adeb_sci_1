@@ -724,3 +724,69 @@ yönüdür.
 *Rapor salt-okur hakemlikten üretildi; depoda hiçbir dosya değiştirilmedi.
 `[✓ doğrulandı]` işaretli bulgular artefaktlar açılarak bağımsız olarak
 yeniden hesaplandı.*
+
+---
+
+# 11. KAPANIŞ — 2026-08-24 akşamı
+
+Rapordaki her madde **uygulanmadan önce artefakta ya da koda kadar
+doğrulandı.** Doğrulama sırasında **dört hakem iddiası çürüdü**; bunlar
+düzeltilmedi, çünkü kusur değildi.
+
+## Çürüyen hakem iddiaları
+
+| İddia | Hakem | Ölçüm | Hüküm |
+|---|---|---|---|
+| Tablo VIII'in native-ViT sütununun arkasında artefakt yok | izlenebilirlik | `rev2_blockA/a3_per_sample.npz`: hoyer 0,4046 · gini 0,5712 · rel 0,1785; `a3_gradient_paired.json`: hizalanma 0,0799 — **dördü de tutuyor** | ÇÜRÜDÜ (JSON'da yuvarlanmış dize aranmış, npz açılmamış) |
+| 0,405 temiz ViT'ten kopyalanmış olabilir | izlenebilirlik | temiz ViT 0,40594 → **0,406**'ya yuvarlanır; native ViT 0,4046 → 0,405 | ÇÜRÜDÜ |
+| §3.5 ile §4.3 doğrudan çelişiyor (MAJOR) | iddia-kanıt | `q1_pipeline.sh:119-136` aynı bölmeyi **her iki aşamada da eğitimden çıkarıyor**; sızıntı yok | MINOR yazım kusuruna indirildi (tasarım hakemi haklıydı) |
+| Şekil 8b 8 örneklik partiden çizilmiş | sunum | `fig5b` zaten `results/c1_c4` okuyor (n=1000, 3 koşum). Eski `attention_entropy_fig.json`'ı **hiçbir aktif betik okumuyor** | ÇÜRÜDÜ (gerçek eksik: altyazı n'i söylemiyordu) |
+| L2'de yalnız 3 ayrık hedef-hatası değeri | kırmızı takım | ölçüldü: **7** ayrık değer, altısı aynı WRN | Endişe geçerli, sayı yanlış; metne ölçülen sayı yazıldı |
+
+## Hakemlerin kaçırdığı, doğrulama sırasında çıkan iki bulgu
+
+**Aynı görsel iki kez basılıyordu.** `fig4_gradient_comparison.pdf` ile
+`fig4a_gradient_visualization.pdf` **birebir aynı dosya**; üretici aynı şekli
+iki ada yazıyor. Makale onu bir kez tam sütunda, bir kez 0,32× ölçekte
+okunamaz halde gösteriyordu. Altı hakemin hiçbiri görmedi.
+
+**SVHN makalede kaynaksız kullanılıyordu.** Ne metinde tek bir atıf ne de
+`references.bib`'de künye vardı.
+
+## Kapatılan kalemler
+
+| # | Kalem | Commit |
+|---|---|---|
+| B1 | EN şekilleri artık Tablo I ile tutuyor; üretici determinist | `a7dc2f4` |
+| B3 | Sütun izlenebilir çıktı; köken (test kümesinde seçim) beyan edildi | `d985344` |
+| İ1 | Maks-p yerine koşum düzeyi çıkarım; sonuç **daha güçlü** (dördün üçü → dördü de anlamsız) | `d985344` |
+| İ2 | Entropi null'u TOST ile desteklendi: 12/12 katmanda eşdeğerlik kabul | `2a75fa8` |
+| İ3 | TOST marjları yazıldı (±2 birincil, ±1/±3 duyarlılık) | `3050197` |
+| İ4 | Seçim yayılımı ayrıştırıldı (18 hücre vs çekirdek 1,09×/1,42×) | `3050197` |
+| İ5 | Küçük-G ve küme bağımsızlığı uyarıları | `8a7ee13` |
+| İ6 | L2'deki r kaldırıldı, eğim bırakıldı, gerekçe yazıldı | `3050197` |
+| K2 | Özdeşliğin genel formu; öncül ölçülebilir koşula bağlandı | `2a75fa8` |
+| K5 | SVHN'de onaylanan iki protokolün uyuştuğu yazıldı | `2a75fa8` |
+| L1 | Atıfsız "çürütülen iddia" çerçevesi düşürüldü | `2a75fa8` |
+| L2 | Mahmood karşıtlığıyla yüzleşildi | `2a75fa8` |
+| L3 | Carlini 2019 + Tramèr 2020 eklendi ve ayrım yazıldı | `2a75fa8` |
+| L4 | "Estimand" itirazı adıyla karşılandı | `2a75fa8` |
+| S1 | Dört üslup hasarı (iki dilde) | `d3e29d8` |
+| S2 | Üç altyazı şekille hizalandı | `d985344` |
+| S3 | Özet 419 → 260 kelime; kapıya uzunluk denetimi | `2a75fa8` |
+| S4 | Tekrarlanan ve okunamayan alt şekiller kaldırıldı | `8a7ee13` |
+| S5 | Dört atıfsız kayan nesneye atıf | `3050197` |
+| MINOR | 12/18→14, "üç kat"→4,1, SVHN künyesi, biyografi, paketler, veri beyanı, 4.3 ifadesi | `d3e29d8` |
+| — | Sessiz epok deliği bildiriliyor; köken defteri 23 → 42 artefakt | `8a7ee13` |
+
+## Açık kalan iki kalem
+
+**B2 — `successful-source` maskesi.** Kullanıcı kararı bekliyor: maskeyi
+sıkılaştırmak (asimetri 14,60 → 19,36, yayılım → 15,00, oran → 4,44 kat;
+bildiri dâhil tüm manşetler değişir) ya da tanımı koda uydurmak.
+
+**K1, K3, K4 — manşetin yeniden çerçevelenmesi.** Bunların sayıları B2'ye
+bağlı: maske sıkılaşırsa yayılım 10,24 → 15,00 olur ve özdeşlik payı da
+değişir. B2 kararından sonra birlikte yapılmalı.
+
+**Depo vaadi** (bkz. `results/q1_research/TESLIM_DURUMU.md` §2b).
