@@ -88,6 +88,15 @@ def c100_yorunge(arch, seed):
     ortak = np.intersect1d(ep, te_ep)
     if ortak.size < 4:
         return None
+    # BUTUNLUK: kesik yazilmis (0 bayt) bir kontrol noktasi test egrisinde
+    # SESSIZ bir delik birakiyordu; intersect1d onu gorunmez kiliyordu ve
+    # yumusatma penceresi delikli izgarada komsu olmayan epoklari komsu
+    # sayiyordu. Delik artik bildiriliyor.
+    _delik = sorted(set(range(int(ortak.min()), int(ortak.max()) + 1))
+                    - set(int(e) for e in ortak))
+    if _delik:
+        print(f"  UYARI epok deligi {tc.name}: {_delik} "
+              f"(yumusatma penceresi bu noktalarda kayiktir)")
     vi = np.searchsorted(ep, ortak)
     ti = np.searchsorted(te_ep, ortak)
     return (ortak,

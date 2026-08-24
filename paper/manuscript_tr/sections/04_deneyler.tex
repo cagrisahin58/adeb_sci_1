@@ -123,7 +123,7 @@ Kararlı olan yöndür. CNN'de üretilen örnekler ViT'e, dört protokolün dör
 
 Yayılımın arkasındaki mekanizma bileşimseldir. Hedefin temizde çözdüğü ama kaynağın çözemediği örnekler, ortak çözülenlerden üç-dört kat daha kırılgandır ($41{,}2\pm0{,}8$ ve $\%59{,}1\pm1{,}7$ yanıltma; ortak kümede $10{,}0$ ve $\%18{,}3$) ve bu marjinal altkümeler, iki model temiz doğrulukta ayrıştığı için boyutça beş kat farklıdır ($1.517\pm102$'ye karşı $291\pm16$). Hedef doğru koşullaması iki marjinal altkümeyi de içeri alır ve asimetrik boyutları iki oranı birbirine doğru çeker; her ikisi doğru koşullaması onları dışarıda bırakır ve yönlü fark yeniden ortaya çıkar. Bu açıklama dört protokolün üçünü kapsar. Başarılı kaynak protokolü farklı bir mekanizmayla sürülür ve iki sürücü ayrıştırıldığında yayılımın neye bağlı olduğu değişir: altı tohum-ve-veri-kümesi kümesinden gelen $18$ yön çiftinde, dört protokollü asimetri yayılımı iki model arasındaki temiz hata farkı büyüdükçe \emph{azalmaktadır} (eğim $-0{,}567$, küme bootstrap GA $[-0{,}757;\ -0{,}451]$); buna karşılık başarılı kaynak protokolü dışarıda bırakılarak hesaplanan yayılım aynı farkla \emph{artmaktadır} (eğim $+0{,}431$, GA $[+0{,}333;\ +0{,}633]$). Başarılı kaynak oranı $18$ çiftin $12$'sinde dördün en küçüğü, $2$ çiftte daha en büyüğüdür; yani $14$ çiftte uçtur ve en geniş protokol çifti her zaman hedef doğru ile başarılı kaynak arasındadır (ortalama $19{,}68$ puan). Kaynak başarısıyla koşullama \emph{kaynağın} kendi gürbüzlüğüne göre seçim yapar; bu, çiftin temiz doğruluk farkının bir fonksiyonu değildir ve dolayısıyla ikinci, kısmen ters yönlü bir terim katmaktadır.
 
-İki kol üç protokolde uyuşmaktadır. Protokol yayılımını temiz hata farkına karşı, farklı biçimlerde hata veren iki yolla kalibre ediyoruz. \emph{Kontrollü} kol, çiftin bir üyesini sabit tutup diğerini kendi eğitim yörüngesi boyunca taramakta; böylece mimari, tohum, veri kümesi ve saldırı bütçesi sabit kalırken fark değişmektedir (sekiz tohum-ve-veri-kümesi kümesinden $116$ nokta). \emph{Gözlemsel} kol ise final modelleri mimariler, tohumlar ve veri kümeleri arasında karşılaştırmakta, yani her şey aynı anda değişmektedir (altı kümeden $18$ yön çifti). Her ikisinde çıkarım yörünge düzeyi küme bootstrap iledir; serbestlik derecesini nokta sayısı değil küme sayısı belirler ve kollar havuzlanmamaktadır.
+İki kol üç protokolde uyuşmaktadır. Protokol yayılımını temiz hata farkına karşı, farklı biçimlerde hata veren iki yolla kalibre ediyoruz. \emph{Kontrollü} kol, çiftin bir üyesini sabit tutup diğerini kendi eğitim yörüngesi boyunca taramakta; böylece mimari, tohum, veri kümesi ve saldırı bütçesi sabit kalırken fark değişmektedir (sekiz tohum-ve-veri-kümesi kümesinden $116$ nokta). \emph{Gözlemsel} kol ise final modelleri mimariler, tohumlar ve veri kümeleri arasında karşılaştırmakta, yani her şey aynı anda değişmektedir (altı kümeden $18$ yön çifti). Her ikisinde çıkarım yörünge düzeyi küme bootstrap iledir; serbestlik derecesini nokta sayısı değil küme sayısı belirler ve kollar havuzlanmamaktadır. Bu aralıklar için iki uyarı geçerlidir. Altı ile sekiz küme varken yüzdelik küme bootstrap'i kapsamayı düşük tutar; dolayısıyla aşağıdaki aralıklar kesin değil, genişlik için alt sınır olarak okunmalıdır. Ayrıca WideResNet tek ve sabit bir dış kontrol noktasıdır ve altı gözlemsel kümenin altısında da, on sekiz yön çiftinin on ikisinde bulunur; yani bu kümeler tam bağımsız değildir. Onu dışarıda bırakan yalnız-çift duyarlılığı yanında raporlanmaktadır.
 
 Başarılı kaynak protokolü dışarıda bırakıldığında iki kol $+0{,}672$ (GA $[+0{,}601;\ +0{,}726]$) ve $+0{,}431$ (GA $[+0{,}333;\ +0{,}633]$) eğimleri vermektedir: işaret aynı, aralıklar örtüşüyor. Dahil edildiğinde kontrollü kol $+0{,}293$ (GA $[+0{,}206;\ +0{,}489]$), gözlemsel kol $-0{,}567$ (GA $[-0{,}757;\ -0{,}451]$) vermektedir. Bu uyuşmazlık bir kontrol etkisi değil bir bileşim etkisidir: kontrollü kol WideResNet içermez ve gözlemsel kol aynı mimari çiftine kısıtlandığında $+0{,}387$ (GA $[+0{,}075;\ +0{,}576]$) çıkmakta, yani kontrollü kolla hem işaret hem aralık bakımından uyuşmaktadır. Bununla birlikte iki sınır yazılmalıdır: gözlemsel kolun negatif eğimi $x$ ekseninde $7{,}2$ puanlık ölçülmemiş bir boşluğun üzerinden uydurulmuştur, dolayısıyla bir eğilimi izlemek yerine birbirinden ayrık iki kümeyi karşılaştırmaktadır; kontrollü kolun eğimi ise erken kontrol noktaları çıkarıldığında ayakta kalmaktadır (eşiklere göre $+0{,}220$ ile $+0{,}524$ arasında) ve en kararlı nicelik üç protokollü eğimdir ($0{,}659$ ile $0{,}672$).
 
@@ -335,18 +335,8 @@ Sonuç negatiftir (Tablo~\ref{tab:spatial}). Dört ölçütün hiçbiri koşum d
 
 \begin{figure}[!t]
 \centering
-\begin{subfigure}[b]{0.48\columnwidth}
-    \includegraphics[width=\textwidth]{../figures/final_tr/fig4a_gradient_visualization.pdf}
-    \caption{Gradyan alanı görselleştirmesi}
-    \label{fig:gradient_viz}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.48\columnwidth}
-    \includegraphics[width=\textwidth]{../figures/final_tr/fig4b_gradient_distribution.pdf}
-    \caption{Örnek başına gradyan $L_2$ norm dağılımı}
-    \label{fig:gradient_dist}
-\end{subfigure}
-\caption{Gradyan karakteristikleri karşılaştırması. (a) Temsilî test görüntüleri için girdi-gradyan enerji haritaları. (b) İki mimaride örnek başına gradyan $L_2$ normlarının dağılımı.}
+\includegraphics[width=\columnwidth]{../figures/final_tr/fig4b_gradient_distribution.pdf}
+\caption{İki mimaride örnek başına gradyan $L_2$ normlarının dağılımı. Aynı girdiler için enerji haritaları Şekil~\ref{fig:gradient_heatmap}'te verilmektedir.}
 \label{fig:gradient_analysis}
 \end{figure}
 
@@ -413,18 +403,8 @@ Nicel ölçümleri tamamlayıcı olarak Şekil~\ref{fig:attention_layers}, temsi
 
 \begin{figure}[!t]
 \centering
-\begin{subfigure}[b]{0.48\columnwidth}
-    \includegraphics[width=\textwidth]{../figures/final_tr/fig5a_attention_comparison.pdf}
-    \caption{Dikkat karşılaştırması}
-    \label{fig:attention_comparison}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.48\columnwidth}
-    \includegraphics[width=\textwidth]{../figures/final_tr/fig5b_attention_entropy.pdf}
-    \caption{Katman bazlı dikkat entropisi; koşum başına $n=1000$ örnek, üç koşum ortalaması ve $\pm$1 std bandı}
-    \label{fig:attention_entropy}
-\end{subfigure}
-\caption{Saldırı altında ViT dikkat analizi: (a) temsilî bir örnek için temiz ve çekişmeli CLS dikkati; (b) temiz ve çekişmeli girdiler için CLS dikkat dağılımının katman başına entropisi.}
+\includegraphics[width=\columnwidth]{../figures/final_tr/fig5b_attention_entropy.pdf}
+\caption{Temiz ve çekişmeli girdiler için CLS dikkat dağılımının katman başına entropisi; koşum başına $n=1000$ örnek, üç koşum ortalaması ve $\pm$1 std bandı. Dikkat haritalarının kendisi Şekil~\ref{fig:attention_layers}'te verilmektedir.}
 \label{fig:feature_degradation}
 \end{figure}
 

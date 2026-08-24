@@ -48,6 +48,26 @@ BAS_ARTEFAKTLAR = [
     "results/c1_seeds/c1_seed_summary.json",
     "results/c1_transfer/c1_transfer_summary.json",
     "results/c1_c3/c3_summary.json",
+    # --- makaleye dogrudan sayi tasiyan, daha once deftere girmemis olanlar ---
+    "results/c1_eval_summary.json",              # Tablo I
+    "results/c1_behavior_summary.json",          # MI-FGSM
+    "results/c1_c45_summary.json",               # uzamsal + suruklenme + flip
+    "results/c1_statval/statistical_validation.json",   # saldiri-tohumu varyansi
+    "results/stat_addendum/stat_addendum.json",  # native ViT kontrol noktasi
+    "results/rev2_blockA/a3_gradient_paired.json",      # Tablo VIII native sutunu
+    "results/rev2_blockA/a3_per_sample.npz",            # ayni sutunun ham degerleri
+    "results/c1_c2/pair1/tgr_summary.json",
+    "results/c1_c2/pair2/tgr_summary.json",
+    "results/c1_c2/pair3/tgr_summary.json",
+    "results/c1_a5/pair1/a5_tsne_quant.json",
+    "results/c1_a5/pair2/a5_tsne_quant.json",
+    "results/c1_a5/pair3/a5_tsne_quant.json",
+    "results/c1_c4/pair1/c4_summary.json",
+    "results/c1_c4/pair2/c4_summary.json",
+    "results/c1_c4/pair3/c4_summary.json",
+    "results/c1_c5/pair1/c5_spatial.json",
+    "results/c1_c5/pair2/c5_spatial.json",
+    "results/c1_c5/pair3/c5_spatial.json",
 ]
 
 TOHUMLAR = {
