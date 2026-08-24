@@ -84,7 +84,7 @@ Ayrıştırma, iki çarpan aynı yönü gösterdiğinde bile raporlanmaya değer
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final_tr/fig_adversarial_examples.pdf}
-\caption{Her model için aynı test görüntüsüne kendi beyaz kutu PGD-10 saldırısı; temiz tahmin, $10\times$ büyütülmüş pertürbasyon ve çekişmeli tahmin. Pertürbasyonlar $\eps$=8/255 ile sınırlıdır ve bu ölçekte görsel olarak silik kalmaktadır.}
+\caption{Her modele kendi beyaz kutu PGD-10 saldırısı ve bir CNN$\rightarrow$ViT transfer saldırısı; her biri farklı bir test görüntüsü üzerinde, temiz tahmin, $10\times$ büyütülmüş pertürbasyon ve çekişmeli tahminle. Pertürbasyonlar $\eps$=8/255 ile sınırlıdır ve bu ölçekte görsel olarak silik kalmaktadır.}
 \label{fig:adversarial_examples}
 \end{figure}
 
@@ -277,7 +277,7 @@ Eğim, özdeşliği örneklem dışında da doğrulamaktadır. Denklem~\eqref{eq
 \subsection{Gradyan Karakteristikleri}
 \label{subsec:gradient}
 
-Girdi duyarlılığındaki mimari farkları betimlemek için, iki mimarinin gradyan özelliklerini, ana ViT hattımızdaki $32\rightarrow224$ büyütmenin etkisini yalıtan CIFAR'a özgü bir ViT kontrolüyle ($32\times32$ girdi, $4\times4$ yama, büyütme yok; aynı çekişmeli protokolle eğitilmiş) birlikte analiz ediyoruz. Tablo~\ref{tab:gradient}, ölçekten bağımsız seyreklik ölçüleriyle (Bölüm~\ref{subsec:metrics}) temel istatistikleri özetler; gradyanlar, normlar değerlendirme parti boyuna bağlı olmasın diye örnek başına kayıplarla hesaplanır. Oradaki hizalanma, tüm $500\times499/2$ örnek çifti üzerindeki ortalama mutlak kosinüs benzerliğidir ve ölçekten bağımsız seyreklik metriklerindeki her ResNet ile ViT farkı, her koşuda örnek başına eşleştirilmiş Wilcoxon testlerinde anlamlıdır; Holm düzeltmeli $p < 10^{-11}$ ve eşleştirilmiş Cohen $d$ değeri 0,32 ile 1,23 arasındadır.
+Girdi duyarlılığındaki mimari farkları betimlemek için, iki mimarinin gradyan özelliklerini, ana ViT hattımızdaki $32\rightarrow224$ büyütmenin etkisini yalıtan CIFAR'a özgü bir ViT kontrolüyle ($32\times32$ girdi, $4\times4$ yama, büyütme yok; aynı çekişmeli amaç işleviyle, ancak Bölüm~\ref{subsec:training}'te anlatılan sabit bölme protokolü benimsenmeden önce eğitilmiş) birlikte analiz ediyoruz. Tablo~\ref{tab:gradient}, ölçekten bağımsız seyreklik ölçüleriyle (Bölüm~\ref{subsec:metrics}) temel istatistikleri özetler; gradyanlar, normlar değerlendirme parti boyuna bağlı olmasın diye örnek başına kayıplarla hesaplanır. Oradaki hizalanma, tüm $500\times499/2$ örnek çifti üzerindeki ortalama mutlak kosinüs benzerliğidir ve ölçekten bağımsız seyreklik metriklerindeki her ResNet ile ViT farkı, her koşuda örnek başına eşleştirilmiş Wilcoxon testlerinde anlamlıdır; Holm düzeltmeli $p < 10^{-11}$ ve eşleştirilmiş Cohen $d$ değeri 0,32 ile 1,23 arasındadır.
 
 \begin{table}[!t]
 \centering
@@ -296,7 +296,8 @@ Hizalanma (mutlak) & 0,0378$\pm$0,0009 & \textbf{0,0562}$\pm$0,0004 & 0,079 \\
 Hizalanma (işaretli) & 0,0014 & 0,0005 & -- \\
 \bottomrule
 \multicolumn{4}{l}{\scriptsize $^\ddagger$CIFAR'a özgü ViT kontrolü ($4\times4$ yama, büyütme yok; 5,4M parametre);}\\
-\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}yalnızca büyütme karıştırıcısını test etmek için eklenen tek kontrol noktası.}
+\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}sabit bölme protokolünden önceye ait, test kümesinde seçilmiş tek kontrol noktası;}\\
+\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}yalnızca büyütme etkisinin işareti için eklenmiştir, nicel karşılaştırma için değil.}
 \end{tabular}
 \end{table}
 
@@ -314,7 +315,7 @@ Seyreklik ölçüleri kaç gradyan bileşeninin büyük olduğunu yanıtlar; bu 
 
 \begin{table}[!t]
 \centering
-\caption{Girdi gradyanlarının mekânsal lokalitesi (koşu başına $n$=500 örnek; üç koşu üzerinden ortalama$\pm$std). Eşleştirilmiş farklar aynı örnekler üzerinde hesaplanır; $p$, koşu başına eşleştirilmiş Wilcoxon $p$-değerlerinin en büyüğüdür. Düşük alan ve entropi daha lokalize, yüksek Moran's $I$ daha kümeli demektir.}
+\caption{Girdi gradyanlarının mekânsal lokalitesi (koşu başına $n$=500 örnek; üç koşu üzerinden ortalama$\pm$std). Eşleştirilmiş farklar aynı örnekler üzerinde hesaplanır. Çıkarım koşum düzeyindedir: $p$, üç koşumun ortalama farkları üzerinde tek örneklem $t$ testidir ve dört ölçüye Holm düzeltmesi uygulanmıştır; böylece çıkarımın birimi iddianın birimiyle eşleşir. Düşük alan ve entropi daha lokalize, yüksek Moran's $I$ daha kümeli demektir.}
 \label{tab:spatial}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
@@ -322,15 +323,15 @@ Seyreklik ölçüleri kaç gradyan bileşeninin büyük olduğunu yanıtlar; bu 
 \toprule
 \textbf{Ölçüt} & \textbf{ResNet-18} & \textbf{ViT-Tiny} & \textbf{Fark} & \textbf{$p$} \\
 \midrule
-\%50 enerji alanı & 0,0378$\pm$0,0017 & 0,0397$\pm$0,0010 & $-$0,0019 & 0,26 \\
-\%90 enerji alanı & 0,2345$\pm$0,0078 & 0,2570$\pm$0,0067 & $-$0,0224 & 0,039 \\
-Mekânsal entropi (nat) & 5,2014$\pm$0,0387 & 5,2524$\pm$0,0197 & $-$0,0509 & 0,80 \\
-Moran's $I$ & 0,4141$\pm$0,0132 & 0,3941$\pm$0,0024 & $+$0,0200 & 0,54 \\
+\%50 enerji alanı & 0,0378$\pm$0,0017 & 0,0397$\pm$0,0010 & $-$0,0019 & 0,54 \\
+\%90 enerji alanı & 0,2345$\pm$0,0078 & 0,2570$\pm$0,0067 & $-$0,0224 & 0,40 \\
+Mekânsal entropi (nat) & 5,2014$\pm$0,0387 & 5,2524$\pm$0,0197 & $-$0,0509 & 0,54 \\
+Moran's $I$ & 0,4141$\pm$0,0132 & 0,3941$\pm$0,0024 & $+$0,0200 & 0,47 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Sonuç negatiftir (Tablo~\ref{tab:spatial}). Dört ölçütten üçü anlamlı fark göstermez; nominal anlamlılığa ulaşan tek ölçüt (enerjinin \%90'ını taşıyan alan) CNN için görüntü alanının iki puanı kadar \emph{daha küçük} bir alana işaret eder; bu da $p<10^{-11}$'de anlamlı olan Hoyer farkının yanında marjinal bir etkidir. Komşuluk kümelenmesi iki mimaride esasen özdeştir. İki ölçü ailesi bu yüzden uyuşmamaktadır ve uyuşmazlık bilgilendiricidir: çekişmeli eğitilmiş CNN gradyanları kütlelerinin daha büyük kısmını daha az piksele yerleştirir, ama bu pikseller ViT'inkilerden mekânsal olarak daha kümeli değildir. CNN gradyanlarının mekânsal olarak lokalize olduğu betimlemeleri ölçümlerimizce desteklenmemektedir; kendi iddialarımızı seyreklikle sınırlıyoruz.
+Sonuç negatiftir (Tablo~\ref{tab:spatial}). Dört ölçütün hiçbiri koşum düzeyinde anlamlı fark göstermez. En büyükleri olan, enerjinin \%90'ını taşıyan alan, CNN için görüntü alanının iki puanı kadar \emph{daha küçük} bir alana işaret eder ve düzeltmeden sonra ayakta kalmaz; bu da $p<10^{-11}$'de anlamlı olan Hoyer farkının yanında marjinal bir etkidir. Tek bir koşum içindeki örnek bazlı testler bu ölçülerde çok daha küçük $p$ değerlerine ulaşır, ama farklı bir soruyu yanıtlarlar, yani iki sabit kontrol noktasının bu 500 görüntüde farklı olup olmadığını; üstelik dört ölçünün ikisinde işaret koşumlar boyunca kararlı değildir. Komşuluk kümelenmesi iki mimaride esasen özdeştir. İki ölçü ailesi bu yüzden uyuşmamaktadır ve uyuşmazlık bilgilendiricidir: çekişmeli eğitilmiş CNN gradyanları kütlelerinin daha büyük kısmını daha az piksele yerleştirir, ama bu pikseller ViT'inkilerden mekânsal olarak daha kümeli değildir. CNN gradyanlarının mekânsal olarak lokalize olduğu betimlemeleri ölçümlerimizce desteklenmemektedir; kendi iddialarımızı seyreklikle sınırlıyoruz.
 
 \begin{figure}[!t]
 \centering
@@ -404,7 +405,7 @@ Son olarak kayma büyüklüğü saldırı başarısını öngörmemektedir. Örn
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final_tr/fig5_attention_comparison.pdf}
-\caption{Çekişmeli saldırı altında ViT katmanları boyunca CLS jetonu dikkat haritaları (softmax sonrası, başlar üzerinden ortalanmış). Her satır farklı bir katmanı (1, 6, 12) gösterir; sütunlar temiz dikkat, çekişmeli dikkat ve farklarıdır.}
+\caption{Çekişmeli saldırı altında ViT katmanları boyunca CLS jetonu dikkat haritaları (softmax sonrası, başlar üzerinden ortalanmış). Her satır farklı bir katmanı (1, 6, 12) gösterir; sütunlar temiz dikkat, çekişmeli dikkat ve farklarıdır. Gösterilen tek bir örnektir; dikkat kaymasındaki derinlik eğilimi metinde koşum başına $n=1000$ örnek üzerinden nicel olarak verilmektedir.}
 \label{fig:attention_layers}
 \end{figure}
 

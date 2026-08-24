@@ -84,7 +84,7 @@ Figure~\ref{fig:robustness_comparison} visualizes this robustness gap across arc
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig_adversarial_examples.pdf}
-\caption{For each model, its own white-box PGD-10 attack on the same test image, showing the clean prediction, the perturbation magnified $10\times$, and the adversarial prediction. Perturbations are bounded by $\eps$=8/255 and remain visually subtle at this scale.}
+\caption{White-box PGD-10 attacks on each model and a CNN$\rightarrow$ViT transfer attack, each on a different test image, showing the clean prediction, the perturbation magnified $10\times$, and the adversarial prediction. Perturbations are bounded by $\eps$=8/255 and remain visually subtle at this scale.}
 \label{fig:adversarial_examples}
 \end{figure}
 
@@ -277,7 +277,7 @@ The slope also confirms the identity out of sample. Equation~\eqref{eq:raw_ident
 \subsection{Gradient Characteristics}
 \label{subsec:gradient}
 
-To characterize architectural differences in input sensitivity, we analyze the gradient properties of both architectures, together with a CIFAR-native ViT control (32$\times$32 inputs, 4$\times$4 patches, no upsampling) trained with the same adversarial protocol, which isolates the effect of the 32$\rightarrow$224 upsampling in our main ViT pipeline. Table~\ref{tab:gradient} summarizes the key statistics using scale-invariant sparsity measures (Section~\ref{subsec:metrics}); gradients are computed with per-sample losses so that norms do not depend on the evaluation batch size. Alignment there is the mean absolute cosine similarity over all $500\times499/2$ sample pairs, and every ResNet to ViT difference on the scale-invariant sparsity metrics is significant under per-sample paired Wilcoxon tests in every run, with Holm-corrected $p < 10^{-11}$ and paired Cohen's $d$ between 0.32 and 1.23.
+To characterize architectural differences in input sensitivity, we analyze the gradient properties of both architectures, together with a CIFAR-native ViT control (32$\times$32 inputs, 4$\times$4 patches, no upsampling) trained with the same adversarial objective but before the fixed-split protocol described in Section~\ref{subsec:training} was adopted, which isolates the effect of the 32$\rightarrow$224 upsampling in our main ViT pipeline. Table~\ref{tab:gradient} summarizes the key statistics using scale-invariant sparsity measures (Section~\ref{subsec:metrics}); gradients are computed with per-sample losses so that norms do not depend on the evaluation batch size. Alignment there is the mean absolute cosine similarity over all $500\times499/2$ sample pairs, and every ResNet to ViT difference on the scale-invariant sparsity metrics is significant under per-sample paired Wilcoxon tests in every run, with Holm-corrected $p < 10^{-11}$ and paired Cohen's $d$ between 0.32 and 1.23.
 
 \begin{table}[!t]
 \centering
@@ -296,7 +296,8 @@ Alignment (absolute) & 0.0378$\pm$0.0009 & \textbf{0.0562}$\pm$0.0004 & 0.079 \\
 Alignment (signed) & 0.0014 & 0.0005 & -- \\
 \bottomrule
 \multicolumn{4}{l}{\scriptsize $^\ddagger$CIFAR-native ViT control (4$\times$4 patches, no upsampling; 5.4M params),}\\
-\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}a single checkpoint included only to test the upsampling confound.}
+\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}a single checkpoint predating the fixed-split protocol, selected on the test set,}\\
+\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}and included only for the sign of the upsampling effect, not as a quantitative comparison.}
 \end{tabular}
 \end{table}
 
@@ -314,7 +315,7 @@ Sparsity measures answer how \emph{many} gradient components are large, not whet
 
 \begin{table}[!t]
 \centering
-\caption{Spatial locality of input gradients ($n$=500 samples per run; mean$\pm$std over three runs). Paired differences are computed on the same samples; $p$ is the largest per-run paired Wilcoxon $p$-value. Lower area and entropy mean more localized; higher Moran's $I$ means more clustered.}
+\caption{Spatial locality of input gradients ($n$=500 samples per run; mean$\pm$std over three runs). Paired differences are computed on the same samples. Inference is at the run level: $p$ is a one-sample $t$-test on the three per-run mean differences, Holm-corrected across the four measures, so that the unit of inference matches the unit of the claim. Lower area and entropy mean more localized; higher Moran's $I$ means more clustered.}
 \label{tab:spatial}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
@@ -322,15 +323,15 @@ Sparsity measures answer how \emph{many} gradient components are large, not whet
 \toprule
 \textbf{Measure} & \textbf{ResNet-18} & \textbf{ViT-Tiny} & \textbf{Diff.} & \textbf{$p$} \\
 \midrule
-Area for 50\% energy & 0.0378$\pm$0.0017 & 0.0397$\pm$0.0010 & $-$0.0019 & 0.26 \\
-Area for 90\% energy & 0.2345$\pm$0.0078 & 0.2570$\pm$0.0067 & $-$0.0224 & 0.039 \\
-Spatial entropy (nat) & 5.2014$\pm$0.0387 & 5.2524$\pm$0.0197 & $-$0.0509 & 0.80 \\
-Moran's $I$ & 0.4141$\pm$0.0132 & 0.3941$\pm$0.0024 & $+$0.0200 & 0.54 \\
+Area for 50\% energy & 0.0378$\pm$0.0017 & 0.0397$\pm$0.0010 & $-$0.0019 & 0.54 \\
+Area for 90\% energy & 0.2345$\pm$0.0078 & 0.2570$\pm$0.0067 & $-$0.0224 & 0.40 \\
+Spatial entropy (nat) & 5.2014$\pm$0.0387 & 5.2524$\pm$0.0197 & $-$0.0509 & 0.54 \\
+Moran's $I$ & 0.4141$\pm$0.0132 & 0.3941$\pm$0.0024 & $+$0.0200 & 0.47 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The result is negative (Table~\ref{tab:spatial}). Three of the four measures show no significant difference, and the one that reaches nominal significance, the area carrying 90\% of the energy, points in the direction of a \emph{smaller} area for the CNN by two percentage points of image area, which is a marginal effect next to a Hoyer gap that is significant at $p<10^{-11}$. Neighbourhood clustering is essentially identical for the two architectures. The two families of measures therefore disagree, and the disagreement is informative: adversarially trained CNN gradients place more of their mass on fewer pixels, but those pixels are not more spatially grouped than the ViT's. Descriptions of CNN gradients as spatially localized are not supported by our measurements, and we restrict our own claims to sparsity.
+The result is negative (Table~\ref{tab:spatial}). None of the four measures shows a significant difference at the run level. The largest of them, the area carrying 90\% of the energy, points toward a \emph{smaller} area for the CNN by two percentage points of image area and does not survive correction, which is a marginal effect next to a Hoyer gap that is significant at $p<10^{-11}$. Per-sample tests within a single run reach much smaller $p$-values on these measures, but they answer a different question, whether two fixed checkpoints differ on these 500 images, and the sign is not stable across runs on two of the four measures. Neighbourhood clustering is essentially identical for the two architectures. The two families of measures therefore disagree, and the disagreement is informative: adversarially trained CNN gradients place more of their mass on fewer pixels, but those pixels are not more spatially grouped than the ViT's. Descriptions of CNN gradients as spatially localized are not supported by our measurements, and we restrict our own claims to sparsity.
 
 \begin{figure}[!t]
 \centering
@@ -354,7 +355,7 @@ Figure~\ref{fig:gradient_analysis} provides visual evidence for these gradient d
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig4_gradient_comparison.pdf}
-\caption{Gradient heatmap comparison between CNN and ViT on the same input images. CNN gradients (top) are modestly more concentrated around object edges, while ViT gradients (bottom) are somewhat more spatially distributed (Hoyer sparsity annotations from the gradient-analysis artifacts).}
+\caption{Input-gradient magnitude maps for the same test images under both models. CNN gradients place more of their mass on fewer components (Table~\ref{tab:gradient}); Table~\ref{tab:spatial} shows that this is not accompanied by a difference in spatial arrangement, so the panels should be read as sparsity rather than as localization.}
 \label{fig:gradient_heatmap}
 \end{figure}
 
@@ -406,7 +407,7 @@ Finally, drift magnitude does not predict attack success. Splitting the samples 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig5_attention_comparison.pdf}
-\caption{CLS-token attention maps (post-softmax, head-averaged) across ViT layers under adversarial attack. Each row shows a different layer (1, 6, 12); columns show clean attention, adversarial attention, and their difference. Early layers maintain similar attention patterns, while later layers show larger attention shifts.}
+\caption{CLS-token attention maps (post-softmax, head-averaged) across ViT layers under adversarial attack. Each row shows a different layer (1, 6, 12); columns show clean attention, adversarial attention, and their difference. A single sample is shown for illustration; the depth trend in attention displacement is reported quantitatively in the text over $n=1{,}000$ samples per run.}
 \label{fig:attention_layers}
 \end{figure}
 
