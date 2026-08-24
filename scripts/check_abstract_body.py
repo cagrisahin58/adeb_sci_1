@@ -69,6 +69,7 @@ def sayilari_ayikla(metin):
 
 
 kalan = 0
+OZETLER = {}
 for dil, (base, dosyalar) in DILLER.items():
     norm = norm_en if dil == "EN" else norm_tr
     oz = norm(oz_metni(base))
@@ -91,6 +92,7 @@ for dil, (base, dosyalar) in DILLER.items():
         nd = len(s.split(".")[1]) if "." in s else 0
         return any(round(b, nd) == v for b in govde_sayilari)
 
+    OZETLER[dil] = oz
     eksik = [s for s in sayilar if not govdede_var(s)]
     print(f"=== {dil} === ozde {len(sayilar)} sayi, govdede bulunmayan {len(eksik)}")
     for s in eksik:
@@ -98,6 +100,16 @@ for dil, (base, dosyalar) in DILLER.items():
         m = re.search(r".{45}" + re.escape(s) + r".{45}", oz)
         print(f"   EKSIK {s:>10s}   ...{m.group(0).strip() if m else ''}...")
     kalan += len(eksik)
+
+# --- OZET UZUNLUGU (IEEE Access siniri 250 kelime) ---
+UZUNLUK_ESIGI = 280
+print("-" * 66)
+for dil, oz in OZETLER.items():
+    k = len(oz.split())
+    durum = "OK" if k <= UZUNLUK_ESIGI else "UZUN"
+    print(f"=== {dil} === ozet uzunlugu {k} kelime (esik {UZUNLUK_ESIGI})  {durum}")
+    if k > UZUNLUK_ESIGI:
+        kalan += 1
 
 print("-" * 66)
 if kalan:
