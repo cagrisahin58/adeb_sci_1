@@ -24,6 +24,7 @@ kurar ve kume bootstrap ile uydurur. YENI GPU KOSUMU GEREKTIRMEZ.
 Cikti: results/q1/e3_asimetri_fit.json
 """
 import json
+import os
 import re
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -35,9 +36,23 @@ ROOT = Path("/workspace") if Path("/workspace/results").is_dir() else Path.home(
 PTS = ROOT / "results/q1/e3_points"
 PROTOKOLLER = ["raw", "target_correct", "both_correct", "successful_source"]
 
+# --- ON-KAYITLI BILESIM (EK E.1/E.5) ---
+# B kolu 18 nokta / 6 kumedir; SVHN uydurmaya girmez, BAGIMSIZ tutarlilik
+# kontrolu olarak kullanilir. E3B_SVHN=1 duyarlilik kolunu acar.
+SVHN_DAHIL = os.environ.get("E3B_SVHN", "0") == "1"
+
 pts = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(PTS.glob("*.json"))]
 if not pts:
     raise SystemExit(f"HATA: {PTS} bos")
+
+_svhn = [q for q in pts if q.get("dataset") == "svhn"]
+if not SVHN_DAHIL:
+    pts = [q for q in pts if q.get("dataset") != "svhn"]
+    print(f"ON-KAYITLI BILESIM: SVHN'in {len(_svhn)} noktasi uydurmanin DISINDA "
+          f"(EK E.5: bagimsiz tutarlilik kontrolu). Duyarlilik icin E3B_SVHN=1.")
+else:
+    print(f"DUYARLILIK KOLU: SVHN'in {len(_svhn)} noktasi uydurmaya DAHIL "
+          f"(kayitli bilesim DEGIL).")
 
 # --- yonleri (kume, cift) anahtarina gore topla ---
 gruplar = defaultdict(dict)
@@ -146,7 +161,8 @@ sonuc = {
     "ciftler": satirlar,
 }
 
-out = ROOT / "results/q1/e3_asimetri_fit.json"
+out = ROOT / ("results/q1/e3_asimetri_fit_svhnli.json" if SVHN_DAHIL
+              else "results/q1/e3_asimetri_fit.json")
 out.write_text(json.dumps(sonuc, indent=2, ensure_ascii=False), encoding="utf-8")
 
 print(f"eslesmis cift : {len(satirlar)}  (kume: {len(uniq)})")

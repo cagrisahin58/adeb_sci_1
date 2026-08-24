@@ -10,14 +10,30 @@ fark icin bootstrap CI, TOST +-1/+-2/+-3 duyarlilik tablosu.
 import json
 import math
 import os
+import zlib
+
+import sys
 
 import numpy as np
 
 ROOT = "/workspace" if os.path.isdir("/workspace/results") else os.path.expanduser("~/projects/adeb_sci_1")
+sys.path.insert(0, ROOT)
+from src.analysis import protokoller as PROTO  # noqa: E402
 OUT_DIR = os.path.join(ROOT, "results/rev2_blockA")
 os.makedirs(OUT_DIR, exist_ok=True)
 
-RNG = np.random.default_rng(42)
+SEED = 42
+
+
+def _akis(*etiket):
+    """Tuketici adina baglanmis BAGIMSIZ rastgele akis.
+
+    Tek bir paylasilan RNG kullanilirsa, yukarida fazladan bir bootstrap
+    kosmak asagidaki permutasyon testinin sayilarini kaydirir. Ad-tabanli
+    turetme bunu imkansiz kilar; her sayi tek basina yeniden uretilebilir.
+    """
+    anahtar = zlib.crc32("|".join(str(e) for e in etiket).encode())
+    return np.random.default_rng([SEED, anahtar])
 N_BOOT = 10000
 N_PERM = 20000
 
@@ -38,13 +54,14 @@ cnn2vit = load_pair("ResNet18_AT", "ViT_Tiny_AT")
 vit2cnn = load_pair("ViT_Tiny_AT", "ResNet18_AT")
 
 
-def rate_ci(fool_mask, cond_mask):
+def rate_ci(fool_mask, cond_mask, etiket):
+    rng = _akis("rate_ci", etiket)
     idx = np.flatnonzero(cond_mask)
     vals = fool_mask[idx].astype(float)
     n = len(vals)
     boots = np.empty(N_BOOT)
     for b in range(N_BOOT):
-        boots[b] = vals[RNG.integers(0, n, n)].mean()
+        boots[b] = vals[rng.integers(0, n, n)].mean()
     return {
         "rate": round(float(vals.mean() * 100), 2),
         "n_conditioned": int(n),
@@ -53,28 +70,29 @@ def rate_ci(fool_mask, cond_mask):
 
 
 def protocol_masks(pair, protocol):
-    fool = pair["target_adv_wrong"]
-    if protocol == "raw":
-        cond = np.ones_like(fool, dtype=bool)
-    elif protocol == "target_correct":
-        cond = pair["target_clean_correct"]
-    elif protocol == "both_correct":
-        cond = pair["target_clean_correct"] & pair["source_clean_correct"]
-    elif protocol == "successful_source":
-        cond = pair["target_clean_correct"] & pair["source_adv_wrong"]
-    else:
+    """Maskeler src/analysis/protokoller.py'den gelir (TEK KAYNAK).
+
+    'successful_source' BEYAZ KUTU BASARISIDIR: kaynak temizde dogru VE
+    cekismelide yanlis. 'successful_source_loose' terk edilmis gevsek
+    varyanttir ve yalniz duyarlilik raporlamasi icin tasinir.
+    """
+    m = PROTO.maskeler(pair["target_clean_correct"], pair["source_clean_correct"],
+                       pair["source_adv_wrong"], tani=True)
+    if protocol not in m:
         raise ValueError(protocol)
-    return fool, cond
+    return pair["target_adv_wrong"], m[protocol]
 
 
-report = {"seed": 42, "n_bootstrap": N_BOOT, "n_permutation": N_PERM, "protocols": {}}
+report = {"seed": 42, "n_bootstrap": N_BOOT, "n_permutation": N_PERM,
+          "ss_definition": "target_clean_correct & source_clean_correct & source_adv_wrong",
+          "protocols": {}}
 
-for protocol in ["raw", "target_correct", "both_correct", "successful_source"]:
+for protocol in PROTO.PROTOKOLLER + PROTO.TANI_PROTOKOLLERI:
     f_cv, c_cv = protocol_masks(cnn2vit, protocol)
     f_vc, c_vc = protocol_masks(vit2cnn, protocol)
     entry = {
-        "CNN_to_ViT": rate_ci(f_cv, c_cv),
-        "ViT_to_CNN": rate_ci(f_vc, c_vc),
+        "CNN_to_ViT": rate_ci(f_cv, c_cv, f"{protocol}/CNN_to_ViT"),
+        "ViT_to_CNN": rate_ci(f_vc, c_vc, f"{protocol}/ViT_to_CNN"),
     }
     entry["diff_CNNtoViT_minus_ViTtoCNN"] = round(entry["CNN_to_ViT"]["rate"] - entry["ViT_to_CNN"]["rate"], 2)
     report["protocols"][protocol] = entry
@@ -92,14 +110,16 @@ d = x - y
 n = len(d)
 diff = d.mean()
 
-# paired bootstrap CI
+# paired bootstrap CI -- KENDI akisi
+_rng_boot = _akis("both_correct_paired", "bootstrap")
 boots = np.empty(N_BOOT)
 for b in range(N_BOOT):
-    boots[b] = d[RNG.integers(0, n, n)].mean()
+    boots[b] = d[_rng_boot.integers(0, n, n)].mean()
 ci = [float(np.percentile(boots, 2.5) * 100), float(np.percentile(boots, 97.5) * 100)]
 
 # sign-flip permutation testi (H0: fark dagilimi 0 etrafinda simetrik)
-signs = RNG.integers(0, 2, size=(N_PERM, n)) * 2 - 1
+_rng_perm = _akis("both_correct_paired", "permutation")
+signs = _rng_perm.integers(0, 2, size=(N_PERM, n)) * 2 - 1
 perm_means = (signs * d).mean(axis=1)
 p_perm = float((np.abs(perm_means) >= abs(diff)).mean())
 

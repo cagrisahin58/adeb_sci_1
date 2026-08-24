@@ -64,9 +64,12 @@ Adversarial robustness, convolutional neural networks, evaluation methodology, d
 % ----------------------------------------------------------------------------
 \section*{Data and Code Availability}
 % TODO(submission): repo URL — kabul sonrasi (veya gonderimde anonim depo ile)
-% asagidaki cumleye gercek URL eklenecek. Erisebilirlik dili uc yerde de
-% "will be made publicly available upon acceptance" olarak birlestirildi.
-The experiments in this study use the CIFAR-10 and CIFAR-100 datasets~\cite{krizhevsky2009learning} and the SVHN dataset~\cite{netzer2011reading}, all of which are publicly available. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench, gowal2020uncovering}. The source code for the analysis pipeline and trained model checkpoints will be made publicly available upon acceptance.
+% asagidaki cumleye gercek URL eklenecek.
+% 2026-08-25: vaat KAPSAMLANDI. Yayimlanacak kume makaledeki her sayiyi
+% yeniden uretmeye yeter (analiz kodu + ornek bazinda kayitlar + bolme
+% indeksleri + tohumlar); kontrol noktalari (~36 GB) istek uzerine.
+% Uc yerdeki dil ayni: gelecek zaman, ayni kapsam.
+The experiments in this study use the CIFAR-10 and CIFAR-100 datasets~\cite{krizhevsky2009learning} and the SVHN dataset~\cite{netzer2011reading}, all of which are publicly available. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench, gowal2020uncovering}. Upon acceptance we will publish the analysis pipeline, the scripts that generate every table and figure in this paper, the per-sample evaluation records, the fixed validation-split indices and the seed lists, which together reproduce every number reported here; the four conditioning protocols are all computed from the per-sample records, so the protocol comparison can be repeated without retraining. Trained checkpoints total about $36$~GB and are available from the authors on request.
 
 % ----------------------------------------------------------------------------
 % ACKNOWLEDGMENT

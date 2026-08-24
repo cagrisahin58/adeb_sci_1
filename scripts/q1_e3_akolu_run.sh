@@ -14,7 +14,7 @@ cd "$(dirname "$0")/.." || exit 1
 DEX=(docker exec -w /workspace adeb_eval)
 STRIDE="${1:-10}"
 ARC=results/q1/adv_archive
-PTS=results/q1/e3_akolu
+PTS="${E3A_OUT:-results/q1/e3_akolu}"   # B2 yeniden kosumu icin ayri dizin verilebilir
 log() { echo "[$(date '+%F %T')] === $* ==="; }
 
 mkdir -p "$ARC" "$PTS"

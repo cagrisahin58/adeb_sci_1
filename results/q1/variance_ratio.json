@@ -24,14 +24,14 @@
       8.24
     ],
     "successful_source": [
-      16.14,
-      14.46,
-      13.19
+      20.8,
+      18.91,
+      18.39
     ]
   },
   "ORAN_GUVEN_ARALIGI_chi2": {
     "aciklama": "n=3 -> df=2. Pay (protokol sd ortalamasi) sabit kabul edildi. Bir veya daha fazla protokolde GA 1'i iceriyorsa oran MANSETE KONAMAZ; makale bu yuzden mutlak yayilim dilini kullaniyor.",
-    "pay_sabit": 4.819,
+    "pay_sabit": 6.5393,
     "protokol_bazli": {
       "raw": {
         "kosum_sd": 0.3308,
@@ -40,8 +40,8 @@
           2.079
         ],
         "oran_95_GA": [
-          2.32,
-          27.98
+          3.15,
+          37.97
         ],
         "GA_birimi_iceriyor_mu": false
       },
@@ -52,8 +52,8 @@
           2.7373
         ],
         "oran_95_GA": [
-          1.76,
-          21.25
+          2.39,
+          28.84
         ],
         "GA_birimi_iceriyor_mu": false
       },
@@ -64,20 +64,20 @@
           1.4528
         ],
         "oran_95_GA": [
-          3.32,
-          40.04
+          4.5,
+          54.33
         ],
         "GA_birimi_iceriyor_mu": false
       },
       "successful_source": {
-        "kosum_sd": 1.4797,
+        "kosum_sd": 1.2682,
         "sigma_95_GA": [
-          0.7704,
-          9.2998
+          0.6603,
+          7.9706
         ],
         "oran_95_GA": [
-          0.52,
-          6.25
+          0.82,
+          9.9
         ],
         "GA_birimi_iceriyor_mu": true
       }
@@ -86,101 +86,101 @@
   },
   "PAY_10_45_vs_10_24": {
     "aciklama": "10,45 = tohum-basina acikliklarin ORTALAMASI; 10,24 = protokol ORTALAMALARININ acikligi. Ikisi esit degil cunku uc protokol her tohumda ayni degil.",
-    "tohum_basina_aciklik_ortalamasi": 10.45,
-    "protokol_ortalamalari_acikligi": 10.2367,
+    "tohum_basina_aciklik_ortalamasi": 15.0067,
+    "protokol_ortalamalari_acikligi": 15.0067,
     "protokol_ortalamalari": {
       "raw": 13.5733,
       "target_correct": 4.36,
       "both_correct": 8.2667,
-      "successful_source": 14.5967
+      "successful_source": 19.3667
     },
     "tohum_bazli_uc_protokoller": [
       {
         "tohum_index": 0,
         "max_protokol": "successful_source",
         "min_protokol": "target_correct",
-        "aciklik": 11.31
+        "aciklik": 15.97
       },
       {
         "tohum_index": 1,
         "max_protokol": "successful_source",
         "min_protokol": "target_correct",
-        "aciklik": 10.18
+        "aciklik": 14.63
       },
       {
         "tohum_index": 2,
-        "max_protokol": "raw",
+        "max_protokol": "successful_source",
         "min_protokol": "target_correct",
-        "aciklik": 9.86
+        "aciklik": 14.42
       }
     ]
   },
   "PAY_protokol_etkisi": {
     "aralik_tohum_bazli": [
-      11.31,
-      10.18,
-      9.86
+      15.97,
+      14.63,
+      14.42
     ],
-    "aralik_ortalama": 10.45,
-    "aralik_sd": 0.7618,
+    "aralik_ortalama": 15.0067,
+    "aralik_sd": 0.8409,
     "sd_tohum_bazli": [
-      5.0031,
-      4.8295,
-      4.6244
+      6.8886,
+      6.4148,
+      6.3144
     ],
-    "sd_ortalama": 4.819
+    "sd_ortalama": 6.5393
   },
   "PAYDA_kosum_etkisi_AYNI_NICELIK": {
     "sd_protokol_bazli": {
       "raw": 0.3308,
       "target_correct": 0.4355,
       "both_correct": 0.2312,
-      "successful_source": 1.4797
+      "successful_source": 1.2682
     },
     "sd_min": 0.2312,
-    "sd_max": 1.4797,
+    "sd_max": 1.2682,
     "aralik_protokol_bazli": {
       "raw": 0.63,
       "target_correct": 0.86,
       "both_correct": 0.46,
-      "successful_source": 2.95
+      "successful_source": 2.41
     }
   },
   "ORAN_TANIMA_DUYARLI": {
     "sd_vs_sd": {
       "tanim": "protokol sd'si (tohum icinde, 4 protokol) / kosum sd'si (protokol icinde, 3 tohum)",
-      "pay_ortalama": 4.819,
+      "pay_ortalama": 6.5393,
       "degerler": {
-        "raw": 14.57,
-        "target_correct": 11.06,
-        "both_correct": 20.85,
-        "successful_source": 3.26
+        "raw": 19.77,
+        "target_correct": 15.01,
+        "both_correct": 28.29,
+        "successful_source": 5.16
       }
     },
     "aralik_vs_aralik": {
       "tanim": "protokol araligi (bkz. pay_ortalama) / kosum araligi (protokol icinde)",
-      "pay_ortalama": 10.45,
+      "pay_ortalama": 15.0067,
       "degerler": {
-        "raw": 16.59,
-        "target_correct": 12.15,
-        "both_correct": 22.72,
-        "successful_source": 3.54
+        "raw": 23.82,
+        "target_correct": 17.45,
+        "both_correct": 32.62,
+        "successful_source": 6.23
       }
     },
     "aralik_vs_sd_OLCEK_UYUMSUZ": {
       "tanim": "MAKALEDE KULLANILAN HATALI BICIM: aralik / sd. Sadece kayit icin.",
       "degerler": {
-        "raw": 31.59,
-        "target_correct": 23.99,
-        "both_correct": 45.21,
-        "successful_source": 7.06
+        "raw": 45.36,
+        "target_correct": 34.45,
+        "both_correct": 64.92,
+        "successful_source": 11.83
       }
     }
   },
   "ORAN_ACIKLIGI": {
-    "min": 3.26,
-    "max": 22.72,
-    "yorum": "Tek bir kat-degeri manseti KURULAMAZ: olcek-uyumlu iki tanim arasinda oran 3.3x-22.7x araliginda oynuyor. Ayrica en buyuk asimetri yayilimini veren protokol (successful_source) ayni zamanda en buyuk kosum sd'sine sahip; yani pay ve payda bagimsiz degil."
+    "min": 5.16,
+    "max": 32.62,
+    "yorum": "Tek bir kat-degeri manseti KURULAMAZ: olcek-uyumlu iki tanim arasinda oran 5.2x-32.6x araliginda oynuyor. Ayrica en buyuk asimetri yayilimini veren protokol (successful_source) ayni zamanda en buyuk kosum sd'sine sahip; yani pay ve payda bagimsiz degil."
   },
   "EN_BUYUK_KOSUM_SD_PROTOKOLU": "successful_source",
   "EN_BUYUK_ASIMETRI_PROTOKOLU": "successful_source"

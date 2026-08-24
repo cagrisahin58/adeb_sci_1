@@ -193,67 +193,67 @@
     },
     "successful_source": {
       "n_kosullu": {
-        "ileri": 9632,
-        "geri": 11028
+        "ileri": 9338,
+        "geri": 10231
       },
       "oran_yuzde": {
-        "ileri": 61.84,
-        "geri": 59.22
+        "ileri": 60.86,
+        "geri": 57.88
       },
-      "asimetri_puan": 2.614,
+      "asimetri_puan": 2.976,
       "AYRISTIRMA": {
-        "bilesim_etkisi": 0.377,
-        "oran_etkisi": 2.237,
-        "toplam_kontrol": 2.614,
-        "bilesim_payi_yuzde": 14.4
+        "bilesim_etkisi": 0.359,
+        "oran_etkisi": 2.617,
+        "toplam_kontrol": 2.976,
+        "bilesim_payi_yuzde": 12.1
       },
       "bilesim_sapmasi": {
-        "TV_ileri_vs_test": 0.1035,
-        "TV_geri_vs_test": 0.0703,
-        "TV_ileri_vs_geri": 0.038,
-        "max_mutlak_pay_farki": 0.0211,
+        "TV_ileri_vs_test": 0.097,
+        "TV_geri_vs_test": 0.068,
+        "TV_ileri_vs_geri": 0.0337,
+        "max_mutlak_pay_farki": 0.0228,
         "chi2_ileri": {
-          "stat": 542.25,
+          "stat": 471.44,
           "df": 9,
           "dusuk_beklenen_sinif": 0
         },
         "chi2_geri": {
-          "stat": 362.51,
+          "stat": 309.85,
           "df": 9,
           "dusuk_beklenen_sinif": 0
         }
       },
       "sinif_paylari": {
         "ileri": [
-          0.06032,
-          0.12874,
-          0.15147,
-          0.13175,
-          0.07517,
-          0.10735,
-          0.09282,
-          0.08461,
-          0.09271,
-          0.07506
+          0.06115,
+          0.13161,
+          0.15378,
+          0.13043,
+          0.07561,
+          0.1073,
+          0.09295,
+          0.08289,
+          0.09017,
+          0.07411
         ],
         "geri": [
-          0.06882,
-          0.1498,
-          0.15851,
-          0.1294,
-          0.07653,
-          0.09385,
-          0.08397,
-          0.07463,
-          0.08968,
-          0.07481
+          0.06705,
+          0.15443,
+          0.15727,
+          0.12511,
+          0.07614,
+          0.09686,
+          0.08435,
+          0.07389,
+          0.08983,
+          0.07507
         ]
       }
     }
   },
   "OZET": {
     "en_buyuk_yon_bilesim_farki_protokolu": "successful_source",
-    "en_buyuk_TV_ileri_vs_geri": 0.038,
+    "en_buyuk_TV_ileri_vs_geri": 0.0337,
     "both_correct_TV_ileri_vs_geri": 0.0,
     "both_correct_sifir_mi_SAGLAMA": true,
     "yorum": "both_correct protokolu iki yonu AYNI orneklerde puanladigi icin TV_ileri_vs_geri tam 0 olmalidir; olmuyorsa maskelerde hata vardir (bu alan bir SAGLAMA testidir). Diger protokollerde TV > 0 beklenir; AYRISTIRMA/bilesim_etkisi asimetrinin ne kadarinin sinif bilesiminden geldigini puan cinsinden verir."

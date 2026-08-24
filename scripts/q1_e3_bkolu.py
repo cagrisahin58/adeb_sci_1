@@ -22,9 +22,13 @@ import argparse
 import json
 from pathlib import Path
 
+import sys
+
 import numpy as np
 
 ROOT = Path("/workspace") if Path("/workspace/results").is_dir() else Path.home() / "projects/adeb_sci_1"
+sys.path.insert(0, str(ROOT))
+from src.analysis import protokoller as PROTO  # noqa: E402
 
 # (etiket, dizin listesi)
 # DIKKAT -- CIFAR-10 icin DOGRU DIZIN c1_transfer'dir, c1_c3 DEGIL:
@@ -46,18 +50,12 @@ KAYNAKLAR = [
 
 
 def protocol_rates(clean_ok, adv_wrong, src_clean_ok, src_adv_wrong):
-    """q1_e3_calibration.protocol_rates ile AYNI tanimlar (bilerek kopya:
-    o dosya torch import ediyor, bu betik GPU'suz calisabilmeli)."""
-    def rate(mask):
-        return float(100 * adv_wrong[mask].mean()) if mask.sum() else float("nan")
-    raw = float(100 * adv_wrong.mean())
-    tc = rate(clean_ok)
-    bc = rate(clean_ok & src_clean_ok)
-    ss = rate(clean_ok & src_adv_wrong)
-    vals = [raw, tc, bc, ss]
-    return {"raw": raw, "target_correct": tc, "both_correct": bc,
-            "successful_source": ss, "raw_minus_cond": raw - tc,
-            "spread": max(vals) - min(vals)}
+    """Tanimlar src/analysis/protokoller.py'den (TEK KAYNAK)."""
+    r = PROTO.protokol_oranlari(clean_ok, adv_wrong, src_clean_ok, src_adv_wrong,
+                                tani=True)
+    r["raw_minus_cond"] = r["raw"] - r["target_correct"]
+    r["spread"] = PROTO.yayilim(r)
+    return r
 
 
 def main():

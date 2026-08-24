@@ -29,18 +29,13 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path("/workspace") if Path("/workspace/results").is_dir() else Path.home() / "projects/adeb_sci_1"
+sys.path.insert(0, str(ROOT))
+from src.analysis import protokoller as PROTO  # noqa: E402
 
 
 def oranlar(tc, aw, sc, sa):
-    """4 protokol orani (yuzde). a2_transfer_protocols ile AYNI tanimlar."""
-    def r(m):
-        return float(100 * aw[m].mean()) if m.sum() else float("nan")
-    return {
-        "raw": float(100 * aw.mean()),
-        "target_correct": r(tc),
-        "both_correct": r(tc & sc),
-        "successful_source": r(tc & sa),
-    }
+    """Tanimlar src/analysis/protokoller.py'den (TEK KAYNAK)."""
+    return PROTO.protokol_oranlari(tc, aw, sc, sa, tani=True)
 
 
 def dogrula_kosegen_yeniden_kurma():

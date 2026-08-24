@@ -22,6 +22,7 @@ import argparse
 import json
 import re
 import sys
+import zlib
 from pathlib import Path
 
 import numpy as np
@@ -32,13 +33,25 @@ sys.path.insert(0, str(ROOT))
 import os  # noqa: E402
 os.chdir(ROOT)
 
+from src.analysis import protokoller as PROTO  # noqa: E402
 from src.attacks import PGDAttack  # noqa: E402
 from src.data import DATASETS, get_loaders  # noqa: E402
 from src.models import ModelRegistry  # noqa: E402
 from src.utils.load_model_auto import load_model_auto, infer_num_classes  # noqa: E402
 
 EPS, ALPHA, STEPS = 8 / 255, 2 / 255, 10
-PROTOKOLLER = ["raw", "target_correct", "both_correct", "successful_source"]
+PROTOKOLLER = PROTO.PROTOKOLLER          # TEK KAYNAK
+GEVSEK = PROTO.TANI_PROTOKOLLERI[0]      # geri-uyum/gerileme kontrolu
+
+
+def _ck_tohum(taban, trajectory_id, epoch):
+    """(yorunge, epok)'a baglanmis SABIT tohum.
+
+    Tarama sirasindan bagimsiz olmasi sart: aksi halde ayni epok farkli
+    stride'larda farkli sayi verir (bkz. betik basligi).
+    """
+    anahtar = zlib.crc32(f"{trajectory_id}|{epoch}".encode())
+    return int((taban * 1_000_003 + anahtar) % (2 ** 31 - 1))
 
 
 def set_seed(s):
@@ -70,10 +83,12 @@ def uret_adv(model, clean, labels, device, bs=250):
 
 
 def oranlar(tc, aw, sc, sa):
-    def r(m):
-        return float(100 * aw[m].mean()) if m.sum() else float("nan")
-    return {"raw": float(100 * aw.mean()), "target_correct": r(tc),
-            "both_correct": r(tc & sc), "successful_source": r(tc & sa)}
+    """Tanimlar src/analysis/protokoller.py'den (TEK KAYNAK).
+
+    Gevsek varyant da yazilir: eski artefaktlara karsi GERILEME KONTROLU
+    (yeni kosumun gevsek degeri eskisiyle birebir tutmali).
+    """
+    return PROTO.protokol_oranlari(tc, aw, sc, sa, tani=True)
 
 
 def main():
@@ -141,6 +156,9 @@ def main():
             print(f"  SKIP ep{ep}")
             continue
         M.load_state_dict(torch.load(ck, map_location="cpu", weights_only=False)["model_state_dict"])
+        # Bu kontrol noktasinin PGD random_start'i YALNIZ (yorunge, epok)'a
+        # bagli olsun; tarama sirasina bagli OLMASIN.
+        set_seed(_ck_tohum(args.seed, args.trajectory_id, ep))
 
         # ILERI: P -> M(c)   (salt ileri gecis)
         M_clean_ok, M_aw_fromP = maskeler(M, clean, adv_P, labels, device)
@@ -159,6 +177,7 @@ def main():
         e_P = float(100 * (1 - P_clean_ok.mean()))
         kayit = {
             "kol": "A", "dataset": args.dataset, "kume": args.cluster,
+            "ck_tohum": _ck_tohum(args.seed, args.trajectory_id, ep),
             "trajectory_id": args.trajectory_id, "epoch": ep, "stride": args.stride,
             "n": int(n),
             "yon_ileri": f"{args.partner_type}->{args.model_type}@ep{ep}",
@@ -168,6 +187,10 @@ def main():
             "oranlar_ileri": ileri, "oranlar_geri": geri,
             "asimetri": {k: round(v, 4) for k, v in asim.items()},
             "y_asimetri_yayilimi": max(asim.values()) - min(asim.values()),
+            # GERILEME KONTROLU: bu deger, 2026-08-25 oncesi artefaktlarin
+            # "successful_source" degeriyle birebir tutmali.
+            "asimetri_gevsek_successful_source": round(
+                ileri[GEVSEK] - geri[GEVSEK], 4),
             "ozdeslik_artik_ileri": ileri["raw"] - (e_M + ileri["target_correct"] * (1 - e_M / 100)),
             "ozdeslik_artik_geri": geri["raw"] - (e_P + geri["target_correct"] * (1 - e_P / 100)),
         }

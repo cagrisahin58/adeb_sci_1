@@ -1,0 +1,39 @@
+{
+ "kol": "A",
+ "dataset": "cifar10",
+ "kume": "c10_pair1",
+ "ck_tohum": 780157917,
+ "trajectory_id": "A_c10_vit_s2001",
+ "epoch": 41,
+ "stride": 10,
+ "n": 10000,
+ "yon_ileri": "resnet18->vit_tiny@ep41",
+ "yon_geri": "vit_tiny@ep41->resnet18",
+ "e_hedef_ileri": 26.359999999999996,
+ "e_hedef_geri": 14.629999999999999,
+ "x_temiz_hata_farki": 11.729999999999997,
+ "oranlar_ileri": {
+  "raw": 39.61,
+  "target_correct": 18.04725692558392,
+  "both_correct": 16.21968616262482,
+  "successful_source": 32.1688500727802,
+  "successful_source_loose": 34.68729851708575
+ },
+ "oranlar_geri": {
+  "raw": 25.97,
+  "target_correct": 13.470774276677991,
+  "both_correct": 8.644793152639087,
+  "successful_source": 14.249621020717534,
+  "successful_source_loose": 20.200546946216953
+ },
+ "asimetri": {
+  "raw": 13.64,
+  "target_correct": 4.5765,
+  "both_correct": 7.5749,
+  "successful_source": 17.9192
+ },
+ "y_asimetri_yayilimi": 13.34274640315674,
+ "asimetri_gevsek_successful_source": 14.4868,
+ "ozdeslik_artik_ileri": -0.03999999999999204,
+ "ozdeslik_artik_geri": -0.1600000000000037
+}

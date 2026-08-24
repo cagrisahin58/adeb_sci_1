@@ -30,6 +30,7 @@ import numpy as np
 _HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(_HERE))
 sys.path.insert(0, ROOT)
+from src.analysis import protokoller as PROTO  # noqa: E402
 
 IN_DIR = os.environ.get("A2B_IN_DIR", "results/c1_transfer/pair1")
 DATASET = os.environ.get("A2B_DATASET", "cifar10")
@@ -39,7 +40,7 @@ OUT_FILE = os.environ.get(
     "A2B_OUT", os.path.join("results", "rev2_blockA", "a2b_class_balance_" + DATASET + ".json")
 )
 
-PROTOCOLS = ["raw", "target_correct", "both_correct", "successful_source"]
+PROTOCOLS = PROTO.PROTOKOLLER          # TEK KAYNAK (bkz. src/analysis/protokoller.py)
 
 
 def test_labels(dataset):
@@ -72,18 +73,12 @@ def load_pair(src, tgt):
 
 
 def protocol_masks(pair, protocol):
-    fool = pair["target_adv_wrong"]
-    if protocol == "raw":
-        cond = np.ones_like(fool, dtype=bool)
-    elif protocol == "target_correct":
-        cond = pair["target_clean_correct"]
-    elif protocol == "both_correct":
-        cond = pair["target_clean_correct"] & pair["source_clean_correct"]
-    elif protocol == "successful_source":
-        cond = pair["target_clean_correct"] & pair["source_adv_wrong"]
-    else:
+    """Maskeler src/analysis/protokoller.py'den (TEK KAYNAK)."""
+    m = PROTO.maskeler(pair["target_clean_correct"], pair["source_clean_correct"],
+                       pair["source_adv_wrong"], tani=True)
+    if protocol not in m:
         raise ValueError(protocol)
-    return fool, cond
+    return pair["target_adv_wrong"], m[protocol]
 
 
 def class_profile(y, cond, fool, n_classes):
