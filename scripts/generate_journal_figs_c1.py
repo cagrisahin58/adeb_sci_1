@@ -22,6 +22,10 @@ import os
 import sys
 from pathlib import Path
 
+# CUBLAS_WORKSPACE_CONFIG, torch CUDA'yi baslatmadan ONCE kurulmalidir;
+# use_deterministic_algorithms(True) bu degisken olmadan matmul'de hata verir.
+os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+
 import matplotlib
 
 matplotlib.use("Agg")
@@ -40,6 +44,27 @@ from src.attacks.pgd import PGDAttack  # noqa: E402
 from src.data import get_cifar10_loaders  # noqa: E402
 from src.models import ModelRegistry  # noqa: E402
 from src.utils.checkpoint import load_model_weights  # noqa: E402
+
+# Tohum sabitlemesi: figtsne/figadv/fig5maps PGD kosuyor ve PGD rastgele
+# baslangicli. Bu olmadan her uretim farkli PDF veriyordu (bkz. yeniden uretim
+# gurultusu commit'leri) ve Yontem 3.7'deki "seed 42 ile yeniden uretilebilir"
+# cumlesi kod tarafindan desteklenmiyordu.
+FIG_SEED = 42
+
+
+def _tohumla(seed: int = FIG_SEED) -> None:
+    import random
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    # Tohum TEK BASINA yetmiyor: cekirdek secimi de belirlenimsiz. Olculdu --
+    # bu satir olmadan ayni tohumla iki uretim farkli PDF veriyor.
+    torch.use_deterministic_algorithms(True)
+
 
 PAIRS = [1, 2, 3]
 C_CNN, C_VIT, C_WRN = "#0f62fe", "#da1e28", "#8d8d8d"
@@ -452,5 +477,6 @@ if __name__ == "__main__":
         OUT = ROOT / f"paper/figures/final_{args.lang}"
         OUT.mkdir(parents=True, exist_ok=True)
     for name in args.only:
+        _tohumla()          # her figur ayni durumdan basasin
         ALL[name]()
     print(f"TAMAM (lang={args.lang}, out={OUT})")
