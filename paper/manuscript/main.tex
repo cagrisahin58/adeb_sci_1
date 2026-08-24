@@ -5,17 +5,12 @@
 % ============================================================================
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{textcomp}
-\usepackage{xcolor}
 \usepackage{booktabs}
-\usepackage{multirow}
 \usepackage{subcaption}
-\usepackage{array}
 \usepackage{balance}
 \usepackage{hyperref}
-\usepackage{cleveref}
 
 % Custom commands
 \newcommand{\eps}{\epsilon}
@@ -71,7 +66,7 @@ Adversarial robustness, convolutional neural networks, evaluation methodology, d
 % TODO(submission): repo URL — kabul sonrasi (veya gonderimde anonim depo ile)
 % asagidaki cumleye gercek URL eklenecek. Erisebilirlik dili uc yerde de
 % "will be made publicly available upon acceptance" olarak birlestirildi.
-The experiments in this study use the CIFAR-10 dataset~\cite{krizhevsky2009learning}, which is publicly available at \url{https://www.cs.toronto.edu/~kriz/cifar.html}. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench, gowal2020uncovering}. The source code for the analysis pipeline and trained model checkpoints will be made publicly available upon acceptance.
+The experiments in this study use the CIFAR-10 and CIFAR-100 datasets~\cite{krizhevsky2009learning} and the SVHN dataset~\cite{netzer2011reading}, all of which are publicly available. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench, gowal2020uncovering}. The source code for the analysis pipeline and trained model checkpoints will be made publicly available upon acceptance.
 
 % ----------------------------------------------------------------------------
 % ACKNOWLEDGMENT
@@ -89,12 +84,12 @@ The authors acknowledge the computational resources provided by the Department o
 % ----------------------------------------------------------------------------
 % BIOGRAPHY (Required for IEEE Access)
 % ----------------------------------------------------------------------------
-\begin{IEEEbiography}[]{\c{C}a\u{g}r{\i} \c{S}ahin}
-received the B.Sc.\ degree in software engineering from F{\i}rat University, Elaz{\i}\u{g}, Turkey. He is currently pursuing the M.Sc.\ degree at the Department of Software Engineering, F{\i}rat University. His research interests include adversarial machine learning, deep learning security, and computer vision, with a focus on the robustness of neural network architectures against adversarial perturbations.
-\end{IEEEbiography}
+\begin{IEEEbiographynophoto}{\c{C}a\u{g}r{\i} \c{S}ahin}
+received the B.Sc.\ degree in software engineering from F{\i}rat University, Elaz{\i}\u{g}, Turkey. He is currently pursuing the Ph.D.\ degree with the Department of Software Engineering, F{\i}rat University. His research interests include adversarial machine learning, deep learning security, and computer vision, with a focus on the robustness of neural network architectures against adversarial perturbations.
+\end{IEEEbiographynophoto}
 
-\begin{IEEEbiography}[]{\"Ozal Y{\i}ld{\i}r{\i}m}
+\begin{IEEEbiographynophoto}{\"Ozal Y{\i}ld{\i}r{\i}m}
 is with the Department of Software Engineering, F{\i}rat University, Elaz{\i}\u{g}, Turkey. His research interests include deep learning, computer vision, and biomedical signal processing.
-\end{IEEEbiography}
+\end{IEEEbiographynophoto}
 
 \end{document}
