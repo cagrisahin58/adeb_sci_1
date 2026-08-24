@@ -12,13 +12,14 @@
 
 ## 1. Kaç yayın çıktı? — ölçülen cevap
 
-Beklenti "1 bildiri + 1 TR dizin + 1 SCI" idi. Ölçüm bunu **doğrulamıyor**.
-Elde iki farklı yayın var, üç değil:
+Beklenti "1 bildiri + 1 TR dizin + 1 SCI" idi. Ölçüm bunu doğrulamadı;
+**2026-08-24'te karar verildi: iki yayın, ikisi de İngilizce.** Türkçe
+ayna korunuyor ama gönderilmiyor (bkz. §2b).
 
 | # | Çıktı | Yer | Dil | Durum |
 |---|---|---|---|---|
 | 1 | **Bildiri** | `paper/bildiri/` | İngilizce | 6 sayfa, IEEE conference, temiz derleniyor |
-| 2 | **Dergi makalesi** | `paper/manuscript/` (EN) + `paper/manuscript_tr/` (TR) | iki dilde **aynı** makale | EN 19 s., TR 18 s., temiz derleniyor |
+| 2 | **Dergi makalesi** | `paper/manuscript/` (EN) + `paper/manuscript_tr/` (TR) | iki dilde **aynı** makale | EN 19 s., TR 19 s., temiz derleniyor |
 
 **Neden üç değil iki:** `manuscript/` ile `manuscript_tr/` aynı makalenin
 iki dildeki taslağıdır, iki ayrı makale değildir. Kanıt:
@@ -70,48 +71,65 @@ ayakta: CIFAR-10'da dört protokolün dördü de artı işaretli. Kampanyanın
 bulduğu **işaret çevrilmesi SVHN'dedir**, bildiri ise açıkça "tek veri
 kümesi, tek model çifti, ön sonuçlar" diyor. Yani çürütülmüş iddia yok.
 
-**Ama gerçek bir boşluk var:** dört kapının hiçbiri `paper/bildiri/`
-altını taramıyor. Bildirinin bugün tutuyor olması ölçümle bilindi, kapıyla
-değil. Bildiri bir daha elden geçerse bu güvence yok.
+Bu ölçümü anlık bırakmamak için **beşinci kapı** yazıldı: dört kapının
+hiçbiri `paper/bildiri/` altını taramıyordu.
+`scripts/bildiri_tutarlilik.py` on bir büyüklüğü ve iki iddiayı denetler,
+`scripts/test_bildiri_tutarlilik.sh` kapıyı kendi üzerinde kırarak sınar.
 
 ```bash
-python3 /home/firat/bildiri_tutarlilik.py     # bu ölçümü tekrarlar
+python3 scripts/bildiri_tutarlilik.py         # beşinci kapı
+bash    scripts/test_bildiri_tutarlilik.sh    # kapının kendi sınaması
 cd paper/bildiri && latexmk -pdf bildiri.tex  # 6 sayfa, 0 undefined
 ```
 
 ---
 
-## 3. Sizden beklediklerim — yalnızca sizin verebileceğiniz kararlar
+## 2b. KARARLAR — 2026-08-24'te verildi
 
-Teknik engel kalmadı. Aşağıdakiler benim yapabileceğim işler değil.
+| # | Karar | Sonuç |
+|---|---|---|
+| 1 | **Hedef: SCI/SCIE dergisi, TR Dizin DEĞİL** | Gönderilecek sürüm `paper/manuscript/` (İngilizce). Türkçe ayna `paper/manuscript_tr/` korunuyor ama gönderilmiyor. |
+| 2 | Bildiri **ATEEC 2026**'ya, bu hafta | `paper/bildiri/`, 6 sayfa, künye düzeltildi, gönderilebilir |
+| 3 | arXiv ön-baskısı **yok** | — |
+| 4 | iThenticate sonradan | kullanıcı bildirecek |
+| 5 | Künye: **Muş Alparslan** (asıl) + Fırat doktora öğrencisi | üç belgede de uygulandı (`fe26fb6`) |
+| 6 | E5 | **kapandı** — makale zaten Sınırlılıklar'da ve Gelecek Yönelimler'de karşılıyor, ek iş yok |
+| 7 | Depo **kapalı** | **AÇIK ÇELİŞKİ, aşağıya bakınız** |
 
-**Yayın kararları**
+### Kapanmamış tek kalem: depo vaadi
 
-1. **Dergi ve dil.** Hangi dergiye, hangi dilde? Bu karar 1. bölümdeki
-   "iki mi üç mü" sorusunu da kapatır: tek dergi seçilirse iki yayın,
-   iki sürüm gerçekten ayrıştırılırsa üç yayın.
-2. **Bildiri hangi konferansa, ne zaman?** Metin hazır ve 6 sayfa
-   sınırında. Gönderildi mi, gönderilecek mi bilmiyorum.
-3. **arXiv ön-baskısı** konulacak mı? Teknik engel yok. Bazı dergiler
-   ön-baskıyı kabul etmez, bu yüzden dergi kararından sonra verilmeli.
+Makale üç yerde "kaynak kod, kontrol noktaları ve örnek bazında kayıtlar
+kabul sonrasında herkese açık hâle getirilecektir" diyor
+(`manuscript/main.tex` Data and Code Availability, `manuscript_tr/main.tex`
+Veri ve Kod Erişilebilirliği, ve her iki Sonuç bölümünün son cümlesi).
+Depo kapalı kalırsa bu vaat yerine getirilmemiş olur.
 
-**Bütünlük kalemleri**
+SCI hedefi bunu daha da bağlayıcı yapar: birçok SCIE dergisi kod/veri
+erişilebilirlik beyanını gönderim formunda ayrıca soruyor ve bir hakem
+"protokol karşılaştırması yeniden üretilebilsin diye yayımlıyoruz" cümlesini
+okuyup depo bağlantısı ister. İki seçenek var:
 
-4. **iThenticate intihal kontrolü.** Hâlâ açık, koşulmadı.
-5. **Künye.** Üç metin de "Fırat Üniversitesi / csahin@firat.edu.tr"
-   diyor. Bu oturumdaki adresiniz `c.sahin@alparslan.edu.tr`. Doktora
-   Fırat'ta yürüdüğü için bu tutarlı olabilir, ama iki kurumlu künye mi
-   yoksa tek kurum mu istediğinizi ben karara bağlayamam.
-6. **E5 (kapasite çifti)** K-01'de ertelenmişti. Düşürüldü mü, yoksa
-   yeniden değerlendirilecek mi? Düşürüldüyse Sınırlılıklar'a bir cümle
-   girmesi gerekir.
+1. **Kabul sonrası aç** (önerilen). Depo şimdi kapalı kalır, kabul edilince
+   açılır. `models/` 36 GB olduğu için tamamı değil, yalnız analiz kodu +
+   örnek bazında kayıtlar + bölme indeksleri + tohum listesi yayımlanabilir;
+   kontrol noktaları "istek üzerine" olarak nitelenir. Metinde küçük bir
+   düzeltme gerekir.
+2. **Vaadi geri çek.** Üç yerdeki cümle "veri kümeleri herkese açıktır,
+   analiz kodu makul istek üzerine sağlanacaktır" biçimine çekilir. Dürüst
+   ama hakem gözünde zayıf durur.
 
-**Paylaşım kararı**
+Karar verilene kadar metin OLDUĞU GİBİ duruyor; sessizce değiştirilmedi.
 
-7. **Depo public olacak mı?** `models/` 36 GB ve izlenmiyor. Git LFS mi,
-   yalnız `best.pth` dosyaları mı, hiç mi? Bu karar verilmeden depo
-   bağlantısı makaleye yazılamaz. Dergi çift-körse anonim bir ayna
-   gerekir (anonymous.4open.science).
+---
+
+## 3. Sizden beklediklerim — CEVAPLANDI
+
+Bu bölümdeki yedi sorunun hepsi 2026-08-24'te yanıtlandı; kararlar
+§2b'deki tabloda. Açık kalan tek kalem **depo vaadi** (§2b sonu):
+makale kabul sonrası yayımlama sözü veriyor, depo ise kapalı
+kalacak. İki seçenek §2b'de duruyor, metin karar verilene kadar
+değiştirilmedi.
+
 
 ---
 
