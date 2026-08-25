@@ -1,112 +1,174 @@
 #!/usr/bin/env bash
-# TESLIM PAKETI: hocaya verilecek tek klasoru kurar ve arsivler.
+# TESLIM PAKETI: hocaya verilecek klasoru kurar ve arsivler.
 #
-# Icerik ve GEREKCESI TESLIM_DURUMU.md §4'te tanimlidir. Bu betik o listeyi
-# uygular; listede olmayan hicbir sey pakete girmez, listede olup bulunamayan
-# her sey EKRANA YAZILIR (sessiz eksik yok).
+# YAPI: HER CIKTI KENDI KLASORUNDE. Uc cikti var (bildiri, Ingilizce dergi
+# makalesi, Turkce surumu) ve hepsinin dayandigi ORTAK kanit (sayilarin tek
+# kaynagi, koken defteri, on kayitlar, kapilar) ayri bir klasorde durur --
+# cunku o kanit ucune birden aittir, kopyalanirsa uc surumu ayrisir.
+#
+#   00_ORTAK_KANIT/   sayilar · koken · on kayit · kapilar · kararlar · hikaye
+#   01_BILDIRI/       ATEEC 2026, Ingilizce, 6 sayfa
+#   02_MAKALE_EN/     SCI dergisine gonderilecek surum
+#   03_MAKALE_TR/     ayni makalenin Turkce surumu (gonderilmiyor)
+#
+# Listede olmayan hicbir sey pakete girmez; listede olup bulunamayan her sey
+# EKRANA YAZILIR (sessiz eksik yok).
 #
 # Kosum:  bash scripts/teslim_paketi.sh
-# Cikti:  teslim/ATEEC_ve_SCI_teslim_<tarih>/  ve ayni adla .tar.gz
 set -u
 cd "$(dirname "$0")/.." || exit 1
 
 TARIH=$(git log -1 --format=%cd --date=format:%Y%m%d 2>/dev/null || echo bilinmiyor)
 SHA=$(git rev-parse --short HEAD 2>/dev/null || echo bilinmiyor)
-HEDEF="teslim/ATEEC_ve_SCI_teslim_${TARIH}_${SHA}"
+HEDEF="teslim/TESLIM_${TARIH}_${SHA}"
 
 rm -rf "$HEDEF"
-mkdir -p "$HEDEF"/{01_pdf,02_sayilar,03_on_kayit,04_kapilar,05_kararlar}
+mkdir -p "$HEDEF"/00_ORTAK_KANIT/{sayilar,on_kayit,kapilar,kararlar,hikaye}
+mkdir -p "$HEDEF"/01_BILDIRI/kaynak
+mkdir -p "$HEDEF"/02_MAKALE_EN/kaynak
+mkdir -p "$HEDEF"/03_MAKALE_TR/kaynak
 
 eksik=()
-kopyala() {  # $1=kaynak $2=hedef alt klasor
+al() {  # $1=kaynak $2=hedef alt yol
     if [ -e "$1" ]; then
-        cp -r "$1" "$HEDEF/$2/" && echo "  + $1"
-    else
-        eksik+=("$1")
+        cp -r "$1" "$HEDEF/$2" && return 0
     fi
+    eksik+=("$1")
+    return 1
 }
 
-echo "=== 01 PDF (teslimin kendisi) ==="
-kopyala paper/bildiri/bildiri.pdf            01_pdf
-kopyala paper/manuscript/main.pdf            01_pdf
-kopyala paper/manuscript_tr/main.pdf         01_pdf
-mv "$HEDEF/01_pdf/main.pdf" "$HEDEF/01_pdf/makale_EN.pdf" 2>/dev/null || true
-cp paper/manuscript_tr/main.pdf "$HEDEF/01_pdf/makale_TR.pdf" 2>/dev/null || true
-mv "$HEDEF/01_pdf/bildiri.pdf" "$HEDEF/01_pdf/bildiri_ATEEC2026.pdf" 2>/dev/null || true
+say() { printf '  %-58s %s\n' "$1" "$2"; }
 
-echo "=== 02 Sayilarin tek kaynagi ve kokeni ==="
-kopyala results/C1_REFERANS_FOYU.md          02_sayilar
-kopyala results/q1/KOKEN.json                02_sayilar
-kopyala results/c1_transfer/c1_transfer_summary.json  02_sayilar
-kopyala results/c1_eval_summary.json         02_sayilar
+# ======================================================== 00 ORTAK KANIT
+echo "== 00_ORTAK_KANIT"
+al results/C1_REFERANS_FOYU.md            00_ORTAK_KANIT/sayilar/ && say "referans foyu" "sayilarin TEK kaynagi"
+al results/q1/KOKEN.json                  00_ORTAK_KANIT/sayilar/ && say "koken defteri" "44 artefaktin sha256'si"
+al results/c1_transfer/c1_transfer_summary.json 00_ORTAK_KANIT/sayilar/ && say "transfer ozeti" "Tablo III'un kaynagi"
+al results/c1_eval_summary.json           00_ORTAK_KANIT/sayilar/ && say "gurbuzluk ozeti" "Tablo I'in kaynagi"
 
-echo "=== 03 On-kayit belgeleri (salt-ekleme disiplininin kaniti) ==="
 for f in E1_PILOT_KAPISI E2_ISTATISTIK_PROTOKOLU E3_YENIDEN_TASARIM \
          E6_ON_KAYIT E7_KOSUM_ONCESI_KONTROL; do
-    kopyala "results/q1_research/$f.md"      03_on_kayit
+    al "results/q1_research/$f.md" 00_ORTAK_KANIT/on_kayit/
 done
+say "on kayit belgeleri" "5 dosya, salt-ekleme"
 
-echo "=== 04 Kapilar ve oz-sinamalari ==="
 for f in kapilar.sh verify_manuscript_numbers.py check_manuscript_claims.py \
          check_abstract_body.py q1_tr_decimal_check.py bildiri_tutarlilik.py \
          check_en_tr_mirror.py test_claim_guards.sh test_abstract_body_check.sh \
-         test_bildiri_tutarlilik.sh test_en_tr_mirror.sh; do
-    kopyala "scripts/$f"                     04_kapilar
+         test_bildiri_tutarlilik.sh test_en_tr_mirror.sh test_verify_numbers.sh; do
+    al "scripts/$f" 00_ORTAK_KANIT/kapilar/
 done
-kopyala src/analysis/protokoller.py          04_kapilar
+al src/analysis/protokoller.py            00_ORTAK_KANIT/kapilar/
+say "kapilar" "6 denetim + 5 oz-sinama + protokol tanimi"
 
-echo "=== 05 Kararlar ve kayitlar ==="
-kopyala results/q1_research/TESLIM_DURUMU.md      05_kararlar
-kopyala results/q1_research/DEVAM_TALIMATI.md     05_kararlar
-kopyala results/q1_research/KAMPANYA_KARARLARI.md 05_kararlar
-kopyala results/q1_research/Q1_ARASTIRMA_RAPORU.md 05_kararlar
-kopyala results/q1_research/B2_DURUM.md           05_kararlar
-kopyala results/q1_research/B2_KAPI_KUSURU.md     05_kararlar
-kopyala paper/review/HAKEM_RAPORU_2026-08-24.md   05_kararlar
+al results/q1_research/TESLIM_DURUMU.md      00_ORTAK_KANIT/kararlar/
+al results/q1_research/DEVAM_TALIMATI.md     00_ORTAK_KANIT/kararlar/
+al results/q1_research/KAMPANYA_KARARLARI.md 00_ORTAK_KANIT/kararlar/
+al results/q1_research/Q1_ARASTIRMA_RAPORU.md 00_ORTAK_KANIT/kararlar/
+al results/q1_research/B2_DURUM.md           00_ORTAK_KANIT/kararlar/
+al results/q1_research/B2_KAPI_KUSURU.md     00_ORTAK_KANIT/kararlar/
+al paper/review/HAKEM_RAPORU_2026-08-24.md   00_ORTAK_KANIT/kararlar/
+say "kararlar ve denetim" "hangi karar neden verildi"
 
-# --- kapi ciktisi paketle birlikte gitsin (iddianin kaniti) ---
-echo "=== kapi ciktisi uretiliyor ==="
-bash scripts/kapilar.sh > "$HEDEF/04_kapilar/KAPI_CIKTISI.txt" 2>&1
-echo "  kapi sonucu: $(tail -1 "$HEDEF/04_kapilar/KAPI_CIKTISI.txt")"
+al results/q1_research/HIKAYE_VE_POSTER_RAPORU.md 00_ORTAK_KANIT/hikaye/
+say "hikaye raporu" "poster ve ozet cizim icin"
 
+echo "  kapi ciktisi uretiliyor..."
+bash scripts/kapilar.sh > "$HEDEF/00_ORTAK_KANIT/kapilar/SON_KAPI_CIKTISI.txt" 2>&1
+say "son kapi ciktisi" "$(tail -1 "$HEDEF/00_ORTAK_KANIT/kapilar/SON_KAPI_CIKTISI.txt")"
+
+# ============================================================ 01 BILDIRI
+echo
+echo "== 01_BILDIRI"
+al paper/bildiri/bildiri.pdf 01_BILDIRI/ && mv "$HEDEF/01_BILDIRI/bildiri.pdf" \
+    "$HEDEF/01_BILDIRI/BILDIRI_ATEEC2026.pdf" && say "bildiri.pdf" "6 sayfa, IEEE conference"
+al paper/bildiri/bildiri.tex 01_BILDIRI/kaynak/
+al paper/bildiri/bildiri.bib 01_BILDIRI/kaynak/
+al paper/bildiri/figures      01_BILDIRI/kaynak/
+say "kaynak" "tex + bib + figurler"
+
+# =========================================================== 02 MAKALE EN
+echo
+echo "== 02_MAKALE_EN"
+al paper/manuscript/main.pdf 02_MAKALE_EN/ && mv "$HEDEF/02_MAKALE_EN/main.pdf" \
+    "$HEDEF/02_MAKALE_EN/MAKALE_EN.pdf" && say "main.pdf" "gonderilecek surum"
+al paper/manuscript/main.tex       02_MAKALE_EN/kaynak/
+al paper/manuscript/sections       02_MAKALE_EN/kaynak/
+al paper/manuscript/references.bib 02_MAKALE_EN/kaynak/
+al paper/figures/final             02_MAKALE_EN/kaynak/
+say "kaynak" "tex + bolumler + kaynakca + figurler"
+
+# =========================================================== 03 MAKALE TR
+echo
+echo "== 03_MAKALE_TR"
+al paper/manuscript_tr/main.pdf 03_MAKALE_TR/ && mv "$HEDEF/03_MAKALE_TR/main.pdf" \
+    "$HEDEF/03_MAKALE_TR/MAKALE_TR.pdf" && say "main.pdf" "Turkce surum (gonderilmiyor)"
+al paper/manuscript_tr/main.tex 03_MAKALE_TR/kaynak/
+al paper/manuscript_tr/sections  03_MAKALE_TR/kaynak/
+al paper/figures/final_tr        03_MAKALE_TR/kaynak/
+al paper/manuscript_tr/TERMINOLOJI.md 03_MAKALE_TR/
+say "kaynak" "tex + bolumler + figurler + terminoloji sozlugu"
+
+# ================================================================ OKUBENI
 cat > "$HEDEF/OKUBENI.md" <<MD
 # Teslim paketi
 
-Depo: \`$SHA\` (dal q1) · paket tarihi: $TARIH
+Depo \`$SHA\` (dal \`q1\`) · paket tarihi $TARIH
 
-## Ne var burada
+## Klasorler
 
-| klasor | ne |
+| Klasor | Ne var |
 |---|---|
-| 01_pdf | Uc cikti: ATEEC 2026 bildirisi (EN), dergi makalesi (EN) ve ayni makalenin Turkce surumu |
-| 02_sayilar | Disari cikan her sayinin tek kaynagi (\`C1_REFERANS_FOYU.md\`) ve 44 artefaktin sha256 koken defteri |
-| 03_on_kayit | Kosumdan once yazilmis, salt-ekleme on-kayit belgeleri |
-| 04_kapilar | Alti otomatik denetim, dort oz-sinama, protokol tanimlarinin tek kaynagi ve son kapi ciktisi |
-| 05_kararlar | Hangi kararin neden verildigi, hakem raporu, protokol duzeltmesinin kaydi |
+| \`00_ORTAK_KANIT/\` | Uc ciktinin da dayandigi kanit: sayilarin tek kaynagi, koken defteri, on kayitlar, alti denetim kapisi, kararlar ve hikaye raporu |
+| \`01_BILDIRI/\` | ATEEC 2026 bildirisi (Ingilizce, 6 sayfa) + kaynagi |
+| \`02_MAKALE_EN/\` | SCI dergisine **gonderilecek** surum + kaynagi |
+| \`03_MAKALE_TR/\` | Ayni makalenin Turkce surumu + terminoloji sozlugu |
 
 ## Uc cikti, iki yayin
 
-\`makale_EN.pdf\` ile \`makale_TR.pdf\` **ayni makalenin iki dildeki surumudur**,
-iki ayri makale degildir; gonderilecek olan Ingilizce surumdur. Bildiri ayri ve
-gercek bir ikinci ciktidir.
+\`02_MAKALE_EN\` ile \`03_MAKALE_TR\` **ayni makalenin iki dildeki surumudur**,
+iki ayri makale degildir; gonderilecek olan Ingilizce surumdur. Bildiri ayri
+ve gercek bir ikinci ciktidir. Dergi makalesi bildiriye atif verir ve
+genisletilmis surum oldugunu beyan eder.
+
+## Kanit neden ayri klasorde
+
+Ucunun de sayilari ayni artefaktlardan gelir. Kanit her klasore
+kopyalansaydi uc surum zamanla ayrisirdi; bu projede tam olarak bu tur bir
+ayrisma iki kez kusur uretti. Bu yuzden tek kopya, \`00_ORTAK_KANIT/\`.
 
 ## Sayilar nereden geliyor
 
-Bu projede disariya cikan her sayi \`C1_REFERANS_FOYU.md\` dosyasindan gelir ve
-o dosya artefaktlardan OTOMATIK uretilir. Iddia denetlenebilir olsun diye alti
-kapi yazildi; \`04_kapilar/KAPI_CIKTISI.txt\` son kosumun sonucudur. Kapilarin
-kendileri de kirilarak sinanir (\`test_*.sh\`): gecen bir kontrol, yakaladigini
-kanitlamaz.
+Disariya cikan her sayi \`00_ORTAK_KANIT/sayilar/C1_REFERANS_FOYU.md\`
+dosyasindan gelir ve o dosya artefaktlardan **otomatik** uretilir. Iddianin
+denetlenebilir olmasi icin alti kapi yazildi;
+\`00_ORTAK_KANIT/kapilar/SON_KAPI_CIKTISI.txt\` son kosumun sonucudur.
+
+Kapilarin kendileri de kirilarak sinanir (\`test_*.sh\`). Bu projenin en
+pahali dersi sudur: **gecen bir kontrol, yakaladigini kanitlamaz.**
+
+## Hocaya anlatmak icin
+
+\`00_ORTAK_KANIT/hikaye/HIKAYE_VE_POSTER_RAPORU.md\` calismayi hicbir makine
+ogrenmesi bilgisi gerektirmeden anlatir; on panel icin cizim notu ve hazir
+sayi foyu tasir.
 
 ## Yeniden uretmek icin
 
 \`\`\`bash
-bash scripts/kapilar.sh                 # alti kapi
-bash scripts/test_claim_guards.sh       # kapilarin kendi sinamasi
+bash scripts/kapilar.sh              # alti kapi birden
+bash scripts/test_claim_guards.sh    # kapilarin kendi sinamasi
 docker exec -w /workspace adeb_eval python scripts/build_reference_sheet.py
 \`\`\`
+
+## Gonderim oncesi kalan uc is
+
+1. iThenticate intihal kontrolu
+2. IEEE Author Portal'a yukleme
+3. Depo URL'sinin metne girmesi (\`main.tex\` icinde TODO olarak isaretli)
 MD
 
+# ================================================================== OZET
 echo
 if [ ${#eksik[@]} -gt 0 ]; then
     echo "EKSIK (${#eksik[@]}):"
@@ -117,5 +179,6 @@ fi
 
 tar -czf "${HEDEF}.tar.gz" -C teslim "$(basename "$HEDEF")"
 echo
-echo "PAKET: $HEDEF"
-echo "ARSIV: ${HEDEF}.tar.gz  ($(du -h "${HEDEF}.tar.gz" | cut -f1))"
+echo "PAKET : $HEDEF"
+echo "ARSIV : ${HEDEF}.tar.gz  ($(du -h "${HEDEF}.tar.gz" | cut -f1))"
+echo "DOSYA : $(find "$HEDEF" -type f | wc -l) dosya"
