@@ -1,0 +1,41 @@
+ALTINCI KAPI: EN/TR ayna denetimi -- hemen IKI GERCEK kusur buldu
+
+BOSLUK. Bes kapinin hepsi SAYILARI ya da belirli IFADELERI denetliyordu;
+hicbiri YAPIYI denetlemiyordu. Iki surumun "ayna" oldugu iddiasi (TESLIM_DURUMU
+§1'in "iki yayin, uc degil" gerekcesinin dayanagi) hicbir yerde SINANMIYORDU.
+
+KAPI YAZILDI (scripts/check_en_tr_mirror.py) ve calistirildigi anda iki gercek
+kusur cikardi -- ikisi de B2'den ONCE de vardi:
+
+  1. TURKCE YONTEM bolumunde "Oznitelik Bozunmasi Metrikleri" basligi, iki
+     denklemi (oznitelik kosinus benzerligi ve norm degisimi) ve L2 uzakligi
+     tanimiyla birlikte HIC YOKTU. Oysa Turkce Bolum 4 ayni metrikleri
+     kullaniyor ve raporluyordu: Turkce surum, kullandigi metrikleri
+     TANIMLAMIYORDU. Eklendi.
+
+  2. INGILIZCE TARTISMA bolumunde Mahmood ve ark.'nin TERS YONLU bulgusuyla
+     yuzlesen paragraf HIC YOKTU; Turkce surumde vardi ve mahmood2021robustness
+     Ingilizce Tartisma boyunca bir kez bile anilmiyordu. GONDERILECEK SURUM
+     INGILIZCE oldugu icin bu, gonderilen metnin eksigiydi: karsit yayimlanmis
+     bir bulgunun nasil ele alindigi, bir hakemin ilk soracagi seylerdendir.
+     Ingilizce ayna eklendi (mekanizmamiz o sonuca aykiri degildir: asimetriyi
+     hedefin kendi kirilganligina bagliyoruz ve onlarin ciftinde zayif hedef
+     bizimkinden farklidir).
+
+Ikisi de sayi tasimadigi icin sayi kapisi (137/137) gormedi; ikisi de muhafizli
+bir ifade olmadigi icin iddia kapisi da gormedi. Bu tam olarak "gecen bir
+kontrol, yakaladigini kanitlamaz" dersinin baska bir bicimi: OLCULMEYEN sey
+sessizce bozulur.
+
+Kapi alti olcut karsilastiriyor (alt bolum / alt-alt bolum / ad obegi / tablo /
+sekil / denklem / paragraf) ve dort kollu oz-sinamasi var
+(scripts/test_en_tr_mirror.sh): TR'den denklem sil, EN'den paragraf sil, TR'den
+ad obegi sil, dosyayi tumden sil. Dorduncu kol EKSIK DOSYADA sessiz gecmemeyi
+sinar -- bu projede kapilarin en sik dustugu yer orasiydi.
+
+Duzeltmelerden sonra AYRISMA SAYISI = 0.
+
+Ayrica koken defterine B2'nin metne sayi tasiyan iki yeni artefakti eklendi
+(e3_asimetri_fit_svhnli.json ve rev2_blockA/a2_transfer_protocols.json).
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

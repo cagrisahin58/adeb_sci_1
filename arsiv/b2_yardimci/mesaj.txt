@@ -1,0 +1,74 @@
+B2: 'basarili kaynak' protokolu metinle AYRISMISTI -- kod duzeltildi, tek kaynaga baglandi
+
+KUSUR. Makale (3.5) protokolu "saldirinin kaynakta BEYAZ KUTU ANLAMINDA basarili
+oldugu hedef-dogru ornekler" diye tanimliyordu. Kod ise sekiz ayri dosyada
+yalnizca `target_clean_correct & source_adv_wrong` ariyordu, yani kaynagin
+TEMIZDE ZATEN YANILDIGI ornekleri de payda aliyordu; orada "basarili olmus bir
+saldiri" yoktur. Makalenin kendi Tartisma bolumu bu protokolu "zaten ise yaramis
+bir saldirinin ne kadar tasindigi" diye tanimladigi icin gevsek maske makalenin
+sordugu soruyu yanitlamiyordu.
+
+Kod duzeltildi, metin degil: tezi "protokolunuzu tam yazin, protokol sonucun
+parcasidir" olan bir makale, kendi yazdigi protokol ile kendi kostugu protokol
+ayrismis halde gonderilemez.
+
+ETKI OLCULDU. raw / hedef-dogru / her-ikisi-dogru TANIM GEREGI degismiyor;
+SVHN isaret deseni de degismiyor (her iki varyantta 4/8 pozitif).
+  CIFAR-10 : +14,60 -> +19,37 · yayilim 10,45 -> 15,01 (3,3 kat -> 4,4 kat)
+  CIFAR-100: +11,44 -> +17,50 · yayilim 13,58 -> 13,83
+  SVHN     : +2,64  -> +2,70  · yayilim  3,65 ->  3,70
+  L2       : +9,51  -> +12,06 · yayilim 10,91 -> 10,92
+
+K8 -- DUZELTMENIN ZORLADIGI IKI GERI ADIM. Duzeltme CIFAR-10 mansetini
+guclendiriyor, o yuzden zayiflattigi yerler ayrica yazildi:
+  1) "yayilim daralmiyor genisliyor" anlatisi TERSINE dondu: CIFAR-100 (13,83)
+     artik CIFAR-10'un (15,01) ALTINDA. Dogru ifade "karsilastirilabilir".
+  2) L2'deki "ayni buyuklukte" suslemesi dustu (10,92'ye karsi 15,01). Zaten
+     on-kaydin otesindeydi: E6_ON_KAYIT O2 esigi 2 puandir ve TUTUYOR.
+
+YOL BOYUNCA BULUNAN DORT AYRI KUSUR (hicbiri B2'nin parcasi degildi):
+  (a) a2'de PAYLASILAN RASTGELE AKIS. Tek modul-duzeyi RNG'yi butun
+      bootstrap'lar ve permutasyon testi paylasiyordu; besinci protokolu
+      eklemek ALAKASIZ bir permutasyon testini kaydirdi (SVHN p 0,10465 ->
+      0,10665). Her tuketici artik adina baglanmis kendi akisini aliyor.
+      Kayma olculdu: GA'larda en fazla 0,03 puan, TOST hukumlerinin HEPSI ayni,
+      SVHN p 0,105'te kaliyor. Hicbir makale iddiasi degismedi.
+  (b) A KOLUNDA ADIM-BAGIMLI SONUC. PGD'nin random_start'i tarama boyunca tek
+      akistan cekiyordu; bir kontrol noktasinin sayisi ONDAN ONCE KAC NOKTA
+      TARANDIGINA bagliydi. Olculdu: ayni yorunge stride 10 ve 50 ile
+      tarandiginda ep1 birebir tutuyor, ep51/ep100 tutmuyor (0,22 puana kadar).
+      Artik her nokta (yorunge, epok)'tan turetilen kendi tohumunu aliyor;
+      sinandi, iki farkli adimda ortak epoklar BIREBIR ayni.
+  (c) PROTOKOL TANIMI SEKIZ DOSYADA KOPYALANMISTI -- metin/kod ayrismasina izin
+      veren sey buydu. Tek kaynak: src/analysis/protokoller.py.
+  (d) BESINCI KAPI KOR: bildiri_tutarlilik.py'nin "otoriter" degerleri betige
+      SABIT yazilmis; artefakt degisince goremiyor. Ust sinir 14,60 -> 19,37
+      oldu, kapi yine GECTI dedi. results/q1_research/B2_KAPI_KUSURU.md.
+
+KAPSAM KARARI. SVHN transfer artefaktlari artik tam semali oldugu icin B kolu
+ilk kez SVHN noktalari da uretti (36 -> 40). Uydurmaya GIRMIYORLAR:
+E3_YENIDEN_TASARIM EK E.1 B kolunu 18 nokta / 6 kume olarak sabitler, EK E.5
+SVHN'e "bagimsiz tutarlilik kontrolu" rolu verir. Sonucu gordukten sonra
+bilesimi degistirmek K5'i bozardi. Secim koda yazildi (E3B_SVHN) ve duyarlilik
+raporlanacak: kayitli bilesim -0,528 [-0,664; -0,418] · SVHN dahil -0,133
+[-0,570; +0,469], yani SIFIRI ICERIYOR. Bu, makalenin ZATEN yazdigi "o egim
+7,2 puanlik olculmemis bir boslugun uzerinden gecer" uyarisinin nicel hali.
+
+AYRICA KAPATILAN IKI KARAR KALEMI:
+  - UC KAYNAK dogrulanip eklendi (kunyeleri arXiv/DBLP'den teyit edildi):
+    TA-Bench NeurIPS 2023 · Waseda vd. WACV 2023 · Yu vd. SaTML 2025 s.797-810.
+    Yu vd. bizim teze EN YAKIN onceki calisma; ayrimi aciktan yazildi (onlar
+    puanlama kuralini sabit tutup saldiriyi/model havuzunu degistiriyor, biz
+    tersini yapiyoruz).
+  - DEPO VAADI kapsamlandi. Vaat geri cekilmedi; yayimlanacak kume makaledeki
+    her sayiyi yeniden uretmeye yeten kume olarak yazildi (analiz kodu + ornek
+    bazinda kayitlar + bolme indeksleri + tohumlar), kontrol noktalari (~36 GB)
+    "istek uzerine". Ayrica iki Sonuc bolumu vaadi SIMDIKI ZAMANDA yaziyordu
+    ("yayimliyoruz"); depo kapaliyken bu gonderim aninda yanlis bir cumledir,
+    dort yerin dordu de gelecek zamana cekildi.
+
+MAKALE SU AN KENDI KAPISINDAN GECMIYOR ve bu BILEREK boyle: kapiya H1/H2
+muhafizlari kondu; A kolu (GPU, 22/116 nokta hazir) yeniden kosulmadan makale
+"temiz" gorunemez. Kalan is ve iki komut: results/q1_research/B2_DURUM.md.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

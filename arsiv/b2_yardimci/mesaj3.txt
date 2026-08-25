@@ -1,0 +1,38 @@
+B2 3/n: sayilar degisince SESSIZCE yanlislanan uc NITEL iddia duzeltildi
+
+Kapilar sayilari denetliyor, nitel iddialari denetlemiyor. "Her zaman",
+"tam olarak sirali", "ayni buyuklukte" gibi ifadeler sayi degisince sessizce
+yanlislanir ve hicbir kapi bunu gormez. Bu yuzden metinde KORUNAN nitel
+iddialar yeni artefaktlara karsi tek tek olculdu (scripts/_b2_iddia_kontrol.py).
+
+CURUYEN UC IDDIA:
+
+1. "En genis protokol cifti HER ZAMAN hedef-dogru ile basarili-kaynak
+   arasindadir." Olculdu: 18 yon ciftinin 13'unde dogru. Bes ihlalin HEPSI
+   CIFAR-100'dedir ve orada uctaki protokol kosulsuz orandir. Metin olculen
+   sayiyi yaziyor; "her zaman" kalkti.
+
+2. "L2 altinda protokol yayilimi AYNI BUYUKLUKTE ayakta kaldi." (Tartisma)
+   Olculdu: 10,92'ye karsi 15,01. Ayakta kalan sey buyuklugun esitligi degil,
+   etkinin YOK OLMAMASIDIR -- on-kaydin sinadigi da tam budur. Ayni susleme
+   Bolum 4.6'da onceki commit'te kaldirilmisti; Tartisma'daki es kalmisti.
+
+3. "CIFAR-100'de yayilimin buyuk olmasi, temiz dogruluk farkindan gecen bir
+   mekanizmayla TUTARLIDIR." Artik CIFAR-100 yayilimi CIFAR-10'un ALTINDA
+   (13,83 < 15,01) ve fark CIFAR-100'de acik ara daha buyuk. Yani gerekce bu
+   haliyle savunulamaz. Yazilan: etki CIFAR'a ozgu DEGILDIR, ama buyuklugu
+   veri kumeleri arasinda farki IZLEMEMEKTEDIR; mekanizma bir farkin bir
+   yayilim urettigini ongoruyor, yayilimin veri kumeleri arasinda nasil
+   siralanacagini ongormuyor.
+
+AYAKTA KALAN IDDIALAR (olculdu, degismedi): her protokolun tohum sd'si 1,5
+puanin altinda (en buyuk 1,27) · SVHN'de iki protokol CNN iki protokol ViT
+lehine (arti: ham ve basarili-kaynak) · CIFAR-10 / CIFAR-100 / L2'de on iki
+olcumun tamami pozitif · basarili-kaynak 12 ciftte en kucuk, 4 ciftte en buyuk.
+
+ALTYAPI. q1_e3_iki_kol_fit.py ve q1_e3_figur.py A kolu dizinini E3A_DIR
+degiskeninden okuyor; uydurma ciktisi artik hangi dizinden uretildigini
+KENDISI yaziyor (A_kolu_kaynak_dizin), boylece kapinin H2 muhafizi bir
+varsayima degil dosyanin kendisine dayaniyor.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

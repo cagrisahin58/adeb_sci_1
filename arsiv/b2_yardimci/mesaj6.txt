@@ -1,0 +1,73 @@
+Bagimsiz denetim: 20 teyitli bulgu islendi, iki kapi daha sertlestirildi
+
+YIRMI BES AJANLI ADVERSARYAL DENETIM (bes boyut x dort teyit). Her bulgu once
+bir denetci tarafindan olculdu, sonra AYRI bir ajan tarafindan CURUTULMEYE
+calisildi; yalniz curutulemeyenler islendi.
+
+EN AGIR IKI BULGU (ikisi de KARANTINA kuralini dogrudan ilgilendiriyor):
+
+  1. REFERANS FOYU ile METIN CELISIYORDU. Foydeki basarili-kaynak "run3"
+     sutunu GEVSEK tanimin degerini (5,28) tasiyordu; makale ve bildiri SIKI
+     tanimin degerini (11,17) basiyordu. Sebep zincir sirasiydi: toplulastirma
+     00:40'ta, kaynak rev2 dosyasi 04:57'de uretilmisti, yani foy girdisinden
+     dort saat eskiydi. Toplulastirma ve foy yeniden uretildi.
+  2. TABLO VIII'IN ILK IKI SATIRI ARTEFAKTLA TUTMUYORDU -- 2026-08-06'dan beri
+     ve IKI DILDE. Artefakt blok 1 = 0,9993/0,9989/0,9942 ve blok 2 =
+     0,9910/0,9957/0,9868 verirken metin 0,9964/0,9990/0,9975 ve
+     0,9893/0,9954/0,9911 yaziyordu. Satir 3-12'nin otuz alti hucresi ve
+     ResNet sutununun tamami tutuyor, yani dizgi degil aktarim hatasi. Ustelik
+     bir NITEL ayrinti ters donuyordu: artefaktta blok 1'de CLS yolu yama
+     ortalamasindan DAHA AZ kayarken tablo tersini gosteriyordu.
+
+DIGER OLGUSAL DUZELTMELER (hepsi olculdu):
+  · SVHN esli bootstrap GA'sinin IKI SINIRI DA yanlisti: [-0,77; +0,06] ->
+    [-0,76; +0,07] (artefakt ortalamalari -0,755 / 0,065).
+  · "kosum sd 0,23 ile 1,48" bayatti (gevsek tanim donemi) -> 0,23 ile 1,27;
+    dort yerde. Makalenin kendi Tablo III'u zaten 1,27 basiyordu.
+  · "tohum duzeyi degisim en cok 0,55 puan" -> ayni alt bolumun Tablo II'si
+    0,80 ve 0,59 basiyor. "raporlanan hicbir DOGRULUKTA 0,80 puani asmaz".
+  · "Tablo V'teki HER nicelik eski kosumu sd icinde yeniden uretiyor" ->
+    olculdu: SEKIZDE IKI. Iddia SIRALAMAYA cekildi (dordu de korunuyor) ve
+    degerlerin altisinin sd'yi astigi acikca yazildi.
+  · CIFAR-100 bilesim etkisi "asimetrinin %12,9-18,6'si" yanlis paydayla
+    verilmisti; artefaktin o alani |bilesim|/(|bilesim|+|oran|) demek.
+    Asimetriye gercek oran %17,4-29,7. Duzeltildi.
+  · Temiz dogruluk farki iki yerde "~11 puan" yaziyordu; uc tohum ortalamasi
+    12,26 ve ayni bolumun baska iki satiri zaten "12,3" diyordu -> ~12.
+  · SVHN yayilimi icin YAZDIGIM "bir buyukluk mertebesi" nitelemesi yanlisti:
+    olculen oran 4,06 ve 3,74 -> "kabaca dort kat".
+  · Sekil 1 basligi (EN) figurde OLMAYAN bir FGSM cubugunu sayiyordu; uretici
+    yalniz uc metrik ciziyor. TR basligi zaten dogruydu.
+  · 2026-08-25 duzenlememde IKI DILDE de bozulan cumle siniri duzeltildi.
+  · TR'de eksik iki oge eklendi: tablodaki +-0,23 ile metindeki +-0,24 farkini
+    aciklayan yan cumle, ve Sekil 4'e gonderme yapan cumle.
+  · CLAUDE.md'nin "C1 SONRASI (gecerli)" tablosu ve TESLIM_DURUMU'nun bildiri
+    denetim tablosu bayatti; ikincisinin HER IKI sutunu birden bayat oldugu
+    icin "tutuyor" hukmu hicbir seyi dogrulamiyordu.
+
+IKI KAPI SERTLESTIRILDI:
+  (a) SAYI KAPISI CIPLAK ALT DIZE ARIYORDU: '19.37' -> '119.37' yapildiginda
+      GECIYORDU. Eslesme SAYI SINIRINA baglandi. Bu, HIC DOGRULANMAYAN iki
+      kontrolu aciga cikardi (yalniz daha uzun bir sayinin icinde
+      eslesiyorlardi): biri gercek bir sayi hatasini ortuyordu (SVHN GA),
+      oteki makalenin BILEREK raporlamadigi bir korelasyonu ariyordu -- o
+      kontrol kaldirildi ve yerine kararin ayakta oldugunu sinayan bir
+      muhafiz (I1) kondu. Yeni oz-sinama: scripts/test_verify_numbers.sh.
+  (b) OZET KAPISININ GOVDE HAVUZUNA LATEX UZUNLUKLARI GIRIYORDU: ozete
+      uydurma bir "2.5 points" iddiasi konunca govdedeki
+      \setlength{\tabcolsep}{2.5pt} sayesinde "bulundu" sayiliyordu. Ayrica
+      ozet bulunamazsa kapi SESSIZ GECIYORDU. Ikisi de kapatildi.
+
+KAPATILAMAYAN SINIR, BILEREK BIRAKILDI VE BELGELENDI. Sayi kapisi bir VARLIK
+denetimidir; bir tasiyici sayi metinde birden cok yerde geciyorsa bir gecisin
+bozulmasi otekiler saglamken gorunmez kalir. "Uzun bir sayinin icinde gecmek
+kusurdur" muhafizi denendi ve OLCULDU: 44 yanlis alarm; daraltmalarda 6 ve 10.
+Mesru ornekler var (5,2 ⊂ 95,25 · 2,70 ⊂ 12,70 · 25 ⊂ 49250 posta kodu).
+Sinir results/q1_research/B2_KAPI_KUSURU.md'de yazili; kapatildigi iddia
+EDILMIYOR.
+
+DOGRULAMA: alti kapi da GECTI · sayi kapisi 136 kontrol · iddia kapisi 39/39 ·
+oz-sinamalarin tabani temiz ve her kirilma yakalaniyor · EN 21 sayfa, TR 20
+sayfa, 0 undefined · teslim paketi yeniden kuruldu, EKSIK YOK.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

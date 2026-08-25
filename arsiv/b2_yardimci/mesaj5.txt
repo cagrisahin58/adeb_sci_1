@@ -1,0 +1,50 @@
+B2 KAPANDI: A kolu yeniden kosuldu (116/116), alti kapinin altisi da GECIYOR
+
+A KOLU. 116 kontrol noktasi, duzeltilmis tanim ve kontrol-noktasi-basina
+tohumlama ile yeniden kosuldu. Iki etki AYRI olculdu (scripts/_b2_akolu_karsilastir.py):
+
+  TOHUMLAMA etkisi (ayni tanim, yalniz random_start artik epoka bagli):
+    ortalama |fark| 0,07-0,17 puan, en buyuk 0,99; ortalamalar ~0, yani
+    YANSIZ. Eski sayilarin tarama sirasina ne kadar bagli oldugunun olcusu.
+  TANIM etkisi (siki eksi gevsek, yalniz basarili-kaynak):
+    ortalama |fark| 4,12 puan, en buyuk 7,65.
+
+Yani tohumlama duzeltmesi yeniden uretilebilirlik kazanci, tanim duzeltmesi
+ise ASIL degisiklik.
+
+IKI KOL. Yeni degerler:
+  A dort protokol   +0,293 -> +0,273  GA [+0,219; +0,371]
+  A uc protokol     +0,672 -> +0,673  GA [+0,602; +0,727]  (pratikte AYNI)
+  B dort protokol   -0,567 -> -0,528
+  B ana cift        +0,387 -> -0,100  GA [-0,464; +0,092]  <-- ISARET DEGISTI
+
+ANLATI DEGISTI ve yazildi. Eski metin "uyusmazlik bir KONTROL etkisi degil
+BILESIM etkisidir" diyor, gerekce olarak gozlemsel kolun ayni mimari ciftine
+kisitlandiginda kontrollu kolla UYUSTUGUNU gosteriyordu. Artik uyusmuyor:
+kisitlanmis egim -0,100, GA'si sifiri iceriyor ama kontrollu kolunkiyle
+ORTUSMUYOR. Yazilan: bilesim farkin BUYUK KISMINI acikliyor ama KAPATMIYOR;
+iki kol UC protokollu egimde uyusuyor, DORT protokollude uyusmuyor -- ki
+mekanizma iddiasinin dayandigi nicelik zaten uc protokollu egimdir.
+
+UC KAPI/SINAMA KUSURU DAHA (hepsi bu commit'te kapandi):
+
+  (a) IDDIA KAPISINDA KOK KARISIKLIGI. H1/H2 muhafizlari ARTEFAKT okuyor ama
+      kapinin tek bir koku vardi; oz-sinama yalniz paper/ dizinini kopyalayip
+      koku oraya cevirdigi icin bozulmamis kopyada bile KALAN=2 veriyordu.
+      Metin koku (MANUSCRIPT_ROOT) ile artefakt koku (ARTEFAKT_ROOT) ayrildi.
+  (b) OZ-SINAMA KAPIYI KOPYALAYIP KOSUYOR ($TMP/chk.py), dolayisiyla artefakt
+      koku dosya konumundan /tmp diye turetiliyordu. Sinama artik artefakt
+      kokunu acikca veriyor ve YENI BIR KOL tasiyor: artefakt koku BOS bir
+      dizine cevrilirse H1/H2 KALMALIDIR (sessiz gecis olmasin).
+  (c) Kalibrasyon sekli yeniden uretildi (116 nokta / 8 kume) ve final/
+      kopyasi raw/ ile esitlendi -- ikisi sessizce ayrismisti.
+
+DOGRULAMA (scripts/kapilar.sh):
+  sayilar GECTI · iddialar GECTI (37/37) · ozet GECTI · TR ondalik GECTI ·
+  bildiri GECTI · EN/TR ayna GECTI  ->  ALTI KAPI DA GECTI
+Oz-sinamalar: iddia tabani KALAN=0, her kirilma tam olarak yakalaniyor;
+ozet 4 kol; bildiri 6 kol; ayna 4 kol.
+Koken defteri: 44 artefakt, 0 eksik, git+torch bilgisi TAM.
+Derleme: EN 21 sayfa, TR 20 sayfa, ikisi de 0 undefined.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>

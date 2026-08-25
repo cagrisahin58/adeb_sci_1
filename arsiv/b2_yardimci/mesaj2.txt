@@ -1,0 +1,67 @@
+B2 2/n: metin iki dilde islendi, bildiri guncellendi, UC KAPI KUSURU duzeltildi
+
+METIN. B2 duzeltmesi (basarili-kaynak = beyaz kutu basarisi) makalenin her
+yerine islendi: Tablo III, paydalar (3.122/5.331 -> 2.831/3.814), aralik
+(+4,36..+19,37), yayilim (15,01+/-0,84), kat (4,4), esli GA [7,33; 9,22],
+CIFAR-100 / SVHN / L2 sayilari, sinif bilesimi, oran duyarliligi (5,2-32,6;
+benzeri-benzeriyle 28,3), ozet, giris, ilgili calismalar, tartisma ve sonuc.
+Bildiri de guncellendi (tablo, paydalar, iki yerdeki kat iddiasi).
+
+K8 -- DUZELTMENIN ZORLADIGI GERI ADIMLAR. Bunlar aranarak bulundu ve yazildi:
+  1) "Yayilim daralmiyor genisliyor" anlatisi TERSINE dondu: CIFAR-100 (13,83)
+     artik CIFAR-10'un (15,01) ALTINDA. Ozet/giris/tartisma/sonuc "ayni
+     aralikta" diline cekildi.
+  2) CIFAR-100'un ON-KAYITLI kestirimi BAGLAYICI okumada TUTMUYOR. Kayit
+     (E1_PILOT_KAPISI B.4 madde 1) "CIFAR-10'daki 10,45 puandan buyuk olmali"
+     diyor: sayisal esige karsi tutuyor (13,83 > 10,45), CIFAR-10'un BUGUNKU
+     yayilimina karsi tutmuyor (13,83 < 15,01). Kayit sayiyi degil NICELIGI
+     adlandirdigi icin tutmadigi raporlandi; kurtaran okuma secilmedi.
+     Ilgili paragraf "ikisi dogrulandi" yerine "biri dogrulandi, biri tutmadi"
+     olarak yeniden yazildi.
+  3) L2'deki "ayni buyuklukte" suslemesi dustu (10,92'ye karsi 15,01). Zaten
+     on-kaydin otesindeydi; E6_ON_KAYIT O2 esigi 2 puandir ve TUTUYOR.
+  4) SVHN paragrafindaki "yayilim temiz-hata farkiyla tam olarak sirali"
+     iddiasi da dustu: iliski artik TEKDUZE DEGIL (en buyuk fark en buyuk
+     yayilimi vermiyor). Olculen sey yazildi.
+  5) Sinif bilesimi: basarili-kaynak etkisi eskiden "ihmal edilebilir, isareti
+     kararsiz" (+0,039/+0,013/-0,174) yaziyordu; yeniden uretimde uc tohumda da
+     POZITIF cikti (+0,527/+0,435/+0,382). Duzeltildi.
+
+YENI PASAJ. Bir protokolun ADI tek basina bir TANIM degildir: "saldiri kaynakta
+basarili oldu" ifadesinin kaynagin temizde dogru olmasini gerektirip
+gerektirmedigi yazilmamis bir alt secimdir ve CIFAR-10 asimetrisini 4,77 puan
+oynatir -- Tablo III'teki her protokolun kosumlar arasi sd'sinin uc katindan
+fazla. Makalenin kendi tezinin ikinci dereceden bir ornegi olarak raporlandi.
+Ayrica B kolunun bilesim karari (SVHN uydurmaya girmiyor, on-kayit boyle
+sabitliyor) ve duyarliligi (SVHN dahil egim -0,133, GA sifiri iceriyor) yazildi.
+
+UC KAPI KUSURU. Hicbiri B2'nin parcasi degildi:
+  (a) BESINCI KAPI KORDU. bildiri_tutarlilik.py'nin "otoriter" degerleri betige
+      SABIT yaziliydi, yani kapi korudugu sayinin kopyasini tasiyordu. Olculdu:
+      ust sinir 14,60 -> 19,37 oldu, kapi yine GECTI dedi. Artik hepsi
+      artefakttan okunuyor; kat iddiasi da es-varlik yerine SAYISAL
+      karsilastiriliyor; yon iddiasi artefaktin isaret desenine baglandi.
+      Oz-sinamaya UC YENI KOL eklendi (artefakti boz, eksik artefakt) -- eski
+      oz-sinama bu kusuru YAKALAYAMAZDI cunku yalniz bildiriyi bozuyordu.
+  (b) OZET OZ-SINAMASININ 1. KOLU SESSIZCE DUSMUSTU: enjeksiyon capasi metne
+      civiliydi ("a 3.3-fold spread"), ozet yeniden yazilinca assert patladi ve
+      kol kosmadan betik "gecmis" gibi gorundu. Capa ozet ORTAMINA baglandi ve
+      enjeksiyonun gercekten yazildigi dogrulaniyor. Uzunluk muhafizi icin
+      SAYI-NOTR dorduncu kol eklendi.
+  (c) OZET KAPISI YANLIS SEBEP SOYLUYORDU: iki ayri kusur tek sayaca yaziliyor
+      ve hepsi "govdede bulunmayan N sayi" diye adlandiriliyordu; uzunluk
+      ihlalinde eksik sayi SIFIR oldugu halde "1 sayi var" diyordu. Sayaclar
+      ayrildi, her kusur kendi adiyla raporlaniyor.
+
+C3 muhafizi cekime duyarsiz hale getirildi ("sinanamadi" / "sinanamamistir"
+ikisi de gecerli Turkcedir; muhafizin amaci nitelemenin ayakta olmasidir).
+
+DOGRULAMA. Kapi 1: 137/137 iki dilde. Kapi 3 ve 4: GECTI. Kapi 5 (bildiri):
+GECTI, oz-sinamasi alti kolda da dogru davraniyor. Kapi 2: yalniz H1/H2
+(A kolu) KALDI -- BILEREK. Derleme: EN 20 s., TR 20 s., bildiri 6 s., ucunde de
+0 undefined / 0 citation hatasi.
+
+KALAN: A kolu 80/116 (GPU), sonra iki-kol uydurmasi + sekil + son paragraf.
+Bkz. results/q1_research/B2_DURUM.md ve B2_KAPI_KUSURU.md.
+
+Co-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>
