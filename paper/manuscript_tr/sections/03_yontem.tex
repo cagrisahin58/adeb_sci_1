@@ -123,6 +123,17 @@ ViT için her bloğun softmax sonrası CLS$\to$yama dikkat satırını başlar �
 \paragraph{ViT'e Özgü Transfer Saldırısı}
 Transfer sonuçlarının mimariden bağımsız saldırılara bağlı olup olmadığını test etmek için kaynak örnekleri ek olarak Jeton Gradyanı Düzenlileştirme (TGR)~\cite{zhang2023tgr} ile üretiyoruz; TGR, geri yayılım sırasında dikkat, QKV ve MLP yollarındaki jeton-gradyan tensörlerinin uç değerli girdilerini sıfırlar ve kalan gradyanı $\gamma=0{,}5$ ile ölçekler. Gerçeklememiz yöntemi CIFAR-10 ViT sarmalayıcımıza ve bu makale boyunca kullanılan bütçeye ($\eps=8/255$, $\alpha=2/255$, 10 adım, momentum 1,0) uyarlamaktadır; özgün ImageNet varsayılanları kullanılmamıştır ve bu yüzden bir uyarlama olarak raporlanmaktadır. Düz MI-FGSM~\cite{dong2018boosting} örnekleri aynı koşuda aynı örnekler üzerinde üretilir; bu, birebir aynı bütçede eşleştirilmiş bir kontrol sağlar.
 
+\paragraph{Öznitelik Bozunması Metrikleri}
+Çekişmeli pertürbasyonların ViT temsillerini katmanlar boyunca nasıl etkilediğini incelemek için her $\ell$ katmanında üç metrik hesaplıyoruz. Öznitelik kosinüs benzerliği, temsilin yönünün ne ölçüde korunduğunu ölçer:
+\begin{equation}
+    \text{Benz}_\ell = \frac{h_\ell(x) \cdot h_\ell(x_{adv})}{\|h_\ell(x)\| \|h_\ell(x_{adv})\|}
+\end{equation}
+burada $h_\ell$, $\ell$ katmanındaki temsili göstermektedir. Öznitelik norm değişimi ise büyüklük etkilerini yakalar:
+\begin{equation}
+    \Delta_\ell = \frac{\|h_\ell(x_{adv})\| - \|h_\ell(x)\|}{\|h_\ell(x)\|} \times 100\%
+\end{equation}
+Öznitelik $L_2$ uzaklığı ($\|h_\ell(x) - h_\ell(x_{adv})\|_2$) mutlak sapmayı nicelemektedir.
+
 % ----------------------------------------------------------------------------
 % 3.7 Istatistiksel Dogrulama
 % ----------------------------------------------------------------------------

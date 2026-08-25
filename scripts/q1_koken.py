@@ -35,6 +35,9 @@ BAS_ARTEFAKTLAR = [
     "results/q1/ozdeslik_kontrol.json",
     "results/q1/e3_spread_teshis.json",
     "results/q1/e3_asimetri_fit.json",
+    # B2 (2026-08-25): makalede RAPORLANAN duyarliliklarin kaynaklari
+    "results/q1/e3_asimetri_fit_svhnli.json",
+    "results/rev2_blockA/a2_transfer_protocols.json",
     "results/q1/e3_surucu_ayristirma.json",
     "results/q1/e3_iki_kol_fit.json",
     "results/q1/e7_svhn_summary.json",
