@@ -63,8 +63,15 @@ Bu yüzden "eskimiş sayı taşıyor mu" sorusu ölçüldü. **Taşımıyor:**
 | Koşullu yanıltma CNN / ViT | 48,6 / 55,5 | 48,58 / 55,53 | yuvarlama |
 | Hoyer CNN / ViT | 0,493 / 0,456 | 0,4928 / 0,4561 | yuvarlama |
 | Hizalanma CNN / ViT | 0,038 / 0,056 | 0,0378 / 0,0562 | yuvarlama |
-| Protokol aralığı | +4,4 ile +14,6 | 4,36 ile 14,60 | tutuyor |
-| Protokol oranı | 3,3 kat | 14,60/4,36 = 3,35 | tutuyor |
+| Protokol aralığı | +4,4 ile +19,4 | 4,36 ile 19,37 | tutuyor |
+| Protokol oranı | 4,4 kat | 19,37/4,36 = 4,44 | tutuyor |
+| Başarılı kaynak (tablo) | +19,37 / ‡ +11,17 | aynı | tutuyor |
+
+> Bu tablo 2026-08-25'te B2 düzeltmesine göre yenilendi. Önceki hâli hem
+> bildirinin hem artefaktın eski değerlerini taşıyordu; iki sütun birden
+> bayat olduğu için "tutuyor" hükmü hiçbir şeyi doğrulamıyordu. Artık
+> denetim elle değil `scripts/bildiri_tutarlilik.py` ile yapılıyor ve o
+> kapı otoriter değerleri ARTEFAKTTAN okuyor.
 
 Bildirinin "yön protokoller ve tohumlar boyunca kararlıdır" cümlesi de
 ayakta: CIFAR-10'da dört protokolün dördü de artı işaretli. Kampanyanın

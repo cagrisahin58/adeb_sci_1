@@ -49,7 +49,11 @@ def oz_metni(base):
         return a.group(1)
     # IEEEtran bazen \begin{IEEEkeywords} oncesi duz metin kullanir
     a = re.search(r"\\maketitle(.+?)\\begin\{IEEE", m, re.DOTALL)
-    return a.group(1) if a else ""
+    if a:
+        return a.group(1)
+    # SESSIZ GECIS YOK: ozet bulunamazsa denetim YAPILMAMIS demektir.
+    sys.exit(f"KAPI HATASI: {base}/main.tex icinde ozet bulunamadi; "
+             "denetim yapilmadi.")
 
 
 SAYI = re.compile(r"\d+\.\d+|\d+")
@@ -81,7 +85,16 @@ for dil, (base, dosyalar) in DILLER.items():
     # ozu zaten "4,4-14,6" diyor). Kontrolun isi, ozde gecen bir sayinin
     # govdede HIC KARSILIGI OLMAMASINI yakalamaktir; "13,6 vs 13,58" gibi
     # yuvarlama farkini hata saymak yanlis alarmdir.
-    govde_sayilari = [float(x) for x in SAYI.findall(govde)]
+    # LaTeX UZUNLUKLARI govde havuzuna GIRMEZ. Bunlar dizgi ayarlaridir,
+    # makalenin iddialari degil; girerlerse ozdeki uydurma bir sayi
+    # (ornegin "2.5 points") \setlength{\tabcolsep}{2.5pt} sayesinde
+    # "govdede var" sayilir -- 2026-08-25 denetimi bunu olctu.
+    _govde_temiz = re.sub(
+        r"\\(?:setlength|hspace|vspace|addtolength|tabcolsep|arraystretch|"
+        r"columnsep|includegraphics|scalebox|resizebox)\b[^\n]*", " ", govde)
+    _govde_temiz = re.sub(r"\d+(?:\.\d+)?\s*(?:pt|pc|in|cm|mm|em|ex|bp|dd|sp)\b",
+                          " ", _govde_temiz)
+    govde_sayilari = [float(x) for x in SAYI.findall(_govde_temiz)]
 
     def govdede_var(s):
         if s in govde:

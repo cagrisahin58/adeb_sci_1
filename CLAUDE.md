@@ -71,8 +71,9 @@ _Asagidaki degerler 3 tohum ortalamasi +/- SS, tam test kumesi (n=10.000), eps=8
 | Analiz | Sonuc (C1 sonrasi) | Artefakt |
 |--------|--------------------|----------|
 | Transfer (ham) | CNN->ViT 41,02+/-0,55 · ViT->CNN 27,45+/-0,27 · fark +13,57+/-0,33 | `results/c1_transfer/c1_transfer_summary.json` |
-| Transfer (her ikisi dogru) | fark +8,27+/-0,23 · bootstrap GA [7,33; 9,21] · isaret-cevirme p ~ 0 | ayni |
-| Protokol yayilimi | 10,45+/-0,76 puan (en buyuk/en kucuk tahmin orani ~3,3x) | ayni |
+| Transfer (her ikisi dogru) | fark +8,27+/-0,23 · bootstrap GA [7,33; 9,22] · isaret-cevirme p ~ 0 | ayni |
+| Protokol yayilimi | 15,01+/-0,84 puan (en buyuk/en kucuk tahmin orani ~4,4 kat) | ayni |
+| Basarili kaynak (B2 sonrasi) | fark +19,37+/-1,27 · maske: hedef-dogru VE kaynak-temizde-dogru VE kaynak-adv-yanlis | `src/analysis/protokoller.py` |
 | Kosullu ayrisma | bkz. C1_REFERANS_FOYU Tablo II | `results/c1_seeds/c1_seed_summary.json` |
 | AutoAttack | bkz. asagidaki tablo | `results/c1_eval_summary.json` |
 

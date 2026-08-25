@@ -43,10 +43,10 @@ _Kaynak: `results/c1_transfer/c1_transfer_summary.json`_
 
 | Protokol | CNN->ViT | ViT->CNN | Fark | N (CNN->ViT / ViT->CNN) | run3 fark |
 |---|---|---|---|---|---|
-| Kosulsuz (ham) | 41.02$\pm$0.55 | 27.45$\pm$0.27 | +13.57$\pm$0.33 | 10000 / 10000 | - |
+| Kosulsuz (ham) | 41.02$\pm$0.55 | 27.45$\pm$0.27 | +13.57$\pm$0.33 | 10000 / 10000 | 8.27 |
 | Hedef dogru | 19.87$\pm$0.18 | 15.51$\pm$0.59 | +4.36$\pm$0.44 | 7353 / 8579 | 0.63 |
 | Her ikisi dogru | 18.25$\pm$0.17 | 9.98$\pm$0.31 | +8.27$\pm$0.23 | 7061 / 7061 | 5.33 |
-| Basarili kaynak | 36.39$\pm$0.76 | 17.02$\pm$0.52 | +19.37$\pm$1.27 | 2831 / 3814 | 5.28 |
+| Basarili kaynak | 36.39$\pm$0.76 | 17.02$\pm$0.52 | +19.37$\pm$1.27 | 2831 / 3814 | 11.17 |
 
 Eslesmis analiz: fark 8.27$\pm$0.24 puan, bootstrap GA [7.33; 9.22], isaret-cevirme permutasyon p (en buyuk) = 0.0, TOST esdegerligi hicbir marjda saglanmiyor.
 

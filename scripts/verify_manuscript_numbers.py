@@ -256,27 +256,47 @@ for p, lbl in (("raw", "ham"), ("target_correct", "hedef-dogru"),
     chk(f"E6 L2 fark sd {lbl}", d["std"])
 chk("E6 L2 protokol yayilimi", e6t["protocol_spread_pp"]["mean"])
 chk("E6 O1 egim", e6o["O1_yon"]["egim"], 3)
-chk("E6 O1 r", e6o["O1_yon"]["pearson_r"], 3)
+# KALDIRILDI (2026-08-25): Bolum 4.6 korelasyon YERINE egimi raporlamaya
+# karar verdi ("we report the slope rather than a correlation ..."), yani
+# bu sayi metinde YOK. Kontrol yalniz oznitelik tablosundaki 0.9990 icinde
+# eslesip geciyordu. Kararin AYAKTA oldugunu iddia kapisi denetliyor (I1).
+# chk("E6 O1 r", e6o["O1_yon"]["pearson_r"], 3)
 
 # --- rapor ---
+def tam_eslesme(val, txt):
+    """SAYI SINIRINA bagli eslesme sayisi.
+
+    Ciplak `val in txt` yetmez: '19.37' dizesi '119.37' icinde de gecer ve
+    manset sayiya rakam eklense bile kapi GECER (2026-08-25 denetimi bunu
+    olctu). Ayrica bazi kontroller YALNIZ daha uzun bir sayinin icinde
+    eslesip hic dogrulanmadan 'OK' aliyordu. Bu yuzden eslesmenin oncesinde
+    ve sonrasinda rakam ya da ondalik ayraci OLMAMALIDIR.
+    """
+    return len(re.findall(r"(?<![\d.,])" + re.escape(val) + r"(?![\d])", txt))
+
+
 rows = []
 for label, val in CHECKS:
-    found = {lang: (val in txt) for lang, txt in LANGS.items()}
-    rows.append((label, val, found))
+    found = {lang: (tam_eslesme(val, txt) > 0) for lang, txt in LANGS.items()}
+    sayim = {lang: tam_eslesme(val, txt) for lang, txt in LANGS.items()}
+    rows.append((label, val, found, sayim))
 
 missing = 0
 print(f"{'KONTROL':36s} {'DEGER':>9s}  EN   TR")
 print("-" * 60)
-for label, val, found in rows:
+for label, val, found, sayim in rows:
     en = "OK " if found["EN"] else "YOK"
     trk = "OK " if found["TR"] else "YOK"
     if not (found["EN"] and found["TR"]):
         missing += 1
-    print(f"{label:36s} {val:>9s}  {en}  {trk}")
+    ek = ""
+    if found["EN"] and found["TR"] and (sayim["EN"] > 3 or sayim["TR"] > 3):
+        ek = f"   ({sayim['EN']}/{sayim['TR']} yerde)"
+    print(f"{label:36s} {val:>9s}  {en}  {trk}{ek}")
 
 print("-" * 60)
-en_missing = sum(1 for _, _, f in rows if not f["EN"])
-tr_missing = sum(1 for _, _, f in rows if not f["TR"])
+en_missing = sum(1 for _, _, f, _s in rows if not f["EN"])
+tr_missing = sum(1 for _, _, f, _s in rows if not f["TR"])
 print(f"TOPLAM={len(rows)}  EN_EKSIK={en_missing}  TR_EKSIK={tr_missing}")
 if not LANGS["TR"].strip():
     print("UYARI: TR metni okunamadi (dosya adlari degismis olabilir).")

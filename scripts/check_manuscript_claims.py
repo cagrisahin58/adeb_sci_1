@@ -144,6 +144,15 @@ kontrol("G2. EN bayat 'one dataset' kapsami YOK",
 kontrol("G2. TR bayat 'tek veri kümesini kapsamaktadır' YOK",
         "tek veri kümesini kapsamaktadır" not in tr)
 
+# --- I: E6'da korelasyon YERINE egim raporlaniyor mu ---
+# Sayi kapisindan bir kontrol KALDIRILDI (E6 O1 r) cunku makale o sayiyi
+# bilerek raporlamiyor. Karar sessizce geri alinabilsin diye degil,
+# muhafizla korunsun diye buraya kondu.
+kontrol("I1. EN E6 korelasyon yerine egim gerekcesi duruyor",
+        "we report the slope rather than a correlation" in en)
+kontrol("I1. TR E6 korelasyon yerine egim gerekcesi duruyor",
+        "korelasyon yerine eğimi raporluyoruz" in tr)
+
 # --- H: B2 MUHAFIZI -- A kolu duzeltilmis tanimla yeniden kosuldu mu ---
 # 'successful_source' tanimi 2026-08-25'te duzeltildi. Tablolar ve B kolu
 # yeniden uretildi; A kolu (GPU) yarim kaldi. Bu kapi, A kolu bitmeden
