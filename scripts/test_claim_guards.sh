@@ -13,7 +13,12 @@ cp scripts/check_manuscript_claims.py "$TMP/chk.py"
 # kirilgandi (satir bicimi degisince sessizce islemez oluyordu); denetleyici
 # artik bu degiskeni kendisi okuyor.
 export MANUSCRIPT_ROOT="$TMP"
+# Kapi $TMP/chk.py olarak KOPYALANIP calistirildigi icin artefakt koku
+# dosya konumundan /tmp diye turetilirdi ve artefakt okuyan muhafizlar
+# (H1/H2) bozulmamis kopyada bile KALIRDI. Artefakt koku GERCEK depodur.
+export ARTEFAKT_ROOT="/home/firat/projects/adeb_sci_1"
 echo "MANUSCRIPT_ROOT=$MANUSCRIPT_ROOT"
+echo "ARTEFAKT_ROOT=$ARTEFAKT_ROOT"
 
 echo
 echo "=== 0) BOZULMAMIS kopya (hepsi GECMELI) ==="
@@ -54,3 +59,9 @@ sed -i "s/covers three datasets and a single model pair/covers one dataset and o
 python3 "$TMP/chk.py" 2>&1 | grep -E "G1. EN|G2. EN|TOPLAM"
 echo
 echo "NOT: gercek depoya DOKUNULMADI; tum degisiklikler gecici kopyada."
+
+echo
+echo "=== A) ARTEFAKT koku BOS dizine cevrilsin -> H1/H2 KALMALI ==="
+BOS=$(mktemp -d)
+ARTEFAKT_ROOT="$BOS" python3 "$TMP/chk.py" 2>&1 | grep -E "^H1|^H2|TOPLAM"
+rm -rf "$BOS"

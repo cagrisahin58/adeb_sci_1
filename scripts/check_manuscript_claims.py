@@ -16,11 +16,20 @@ import re
 import sys
 from pathlib import Path
 
-# MANUSCRIPT_ROOT: oz-sinama kirilmis bir KOPYAYI denetlemek icin kullanir.
+# MANUSCRIPT_ROOT: oz-sinama kirilmis bir METIN KOPYASINI denetlemek icin
+# kullanir. ARTEFAKT okuyan muhafizlar (H1/H2) bu koke BAKMAZ; onlar
+# ARTEFAKT_ROOT'tan okur ve varsayilani gercek depodur. Ayrilmasaydi
+# oz-sinama, yalniz paper/ kopyalandigi icin bozulmamis kopyada bile
+# KALDI verirdi (2026-08-25'te tam bu oldu).
 _kok = os.environ.get("MANUSCRIPT_ROOT")
 ROOT = Path(_kok) if _kok else (
     Path("/workspace") if Path("/workspace/results").is_dir()
     else Path(__file__).resolve().parents[1])
+_avar = os.environ.get("ARTEFAKT_ROOT")
+ARTEFAKT_ROOT = Path(_avar) if _avar else (
+    Path("/workspace") if Path("/workspace/results").is_dir()
+    else Path(__file__).resolve().parents[1])
+
 R = ROOT / "paper"
 EN = sorted((R / "manuscript").rglob("*.tex"))
 TR = sorted((R / "manuscript_tr").rglob("*.tex"))
@@ -139,14 +148,14 @@ kontrol("G2. TR bayat 'tek veri kümesini kapsamaktadır' YOK",
 # 'successful_source' tanimi 2026-08-25'te duzeltildi. Tablolar ve B kolu
 # yeniden uretildi; A kolu (GPU) yarim kaldi. Bu kapi, A kolu bitmeden
 # makalenin "temiz" gorunmesini ENGELLER.
-_av2 = ROOT / "results/q1/e3_akolu_v2"
+_av2 = ARTEFAKT_ROOT / "results/q1/e3_akolu_v2"
 _v2 = sorted(_av2.glob("*.json")) if _av2.is_dir() else []
 _tohumlu = sum(1 for f in _v2 if '"ck_tohum"' in f.read_text(encoding="utf-8"))
 kontrol("H1. A kolu B2 tanimiyla YENIDEN KOSULDU (116 nokta)",
         len(_v2) == 116 and _tohumlu == 116,
         f"{len(_v2)}/116 nokta, {_tohumlu} tohumlu")
 
-_ikk = ROOT / "results/q1/e3_iki_kol_fit.json"
+_ikk = ARTEFAKT_ROOT / "results/q1/e3_iki_kol_fit.json"
 _ikk_metin = _ikk.read_text(encoding="utf-8") if _ikk.exists() else ""
 kontrol("H2. Iki-kol uydurmasi YENI A kolundan uretildi",
         "e3_akolu_v2" in _ikk_metin,
