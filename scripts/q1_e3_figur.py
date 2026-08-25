@@ -13,6 +13,7 @@ BAGLAYICI SARTLAR (E3_YENIDEN_TASARIM EK A.3 ve B.3):
 Girdi : results/q1/e3_iki_kol_fit.json  (+ nokta dosyalari)
 Cikti : paper/figures/raw/fig_e3_kalibrasyon.pdf  (+ .png onizleme)
 """
+import os
 import json
 from pathlib import Path
 
@@ -42,7 +43,7 @@ def delikleri_bul(x_degerleri, esik=2.0):
 
 def kayitlar(kol):
     if kol == "A":
-        d = ROOT / "results/q1/e3_akolu"
+        d = ROOT / os.environ.get("E3A_DIR", "results/q1/e3_akolu")
         return [json.loads(f.read_text(encoding="utf-8")) for f in sorted(d.glob("*.json"))] if d.is_dir() else []
     bf = ROOT / "results/q1/e3_asimetri_fit.json"
     if not bf.exists():

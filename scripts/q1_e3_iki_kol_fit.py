@@ -15,6 +15,7 @@ kodda o cikti yolu YOKTUR (yama sonunda dizgi olarak da denetlenir).
 
 Cikti: results/q1/e3_iki_kol_fit.json
 """
+import os
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -28,7 +29,8 @@ P3 = ["raw", "target_correct", "both_correct"]
 
 def kayitlari_topla():
     kayit = {"A": [], "B": []}
-    ad = ROOT / "results/q1/e3_akolu"
+    # E3A_DIR: B2 sonrasi yeniden kosum ayri dizine yazildi.
+    ad = ROOT / os.environ.get("E3A_DIR", "results/q1/e3_akolu")
     if ad.is_dir():
         for f in sorted(ad.glob("*.json")):
             kayit["A"].append(json.loads(f.read_text(encoding="utf-8")))
@@ -80,6 +82,9 @@ def kol_fit(kayitlar):
 kayit = kayitlari_topla()
 sonuc = {
     "uretildi_utc": datetime.now(timezone.utc).isoformat(),
+    # KOKEN: H2 muhafizi bunu okur. Dosya kendi kaynagini soylemezse
+    # "yeni A kolundan uretildi" iddiasi dogrulanamaz.
+    "A_kolu_kaynak_dizin": os.environ.get("E3A_DIR", "results/q1/e3_akolu"),
     "HAVUZLAMA": "YAPILMADI. Kollar ayri uydurulur; manset iki kolun EGIMLERININ "
                  "UYUSMASIDIR (E3_YENIDEN_TASARIM B.3). Ortak bir uydurma yoktur.",
     "NICELIK": "x = ciftin temiz hata farki (puan) · y = ASIMETRININ protokoller "
