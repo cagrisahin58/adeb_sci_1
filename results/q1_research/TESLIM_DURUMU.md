@@ -141,8 +141,15 @@ bir cümledir. Dört yerin dördü de gelecek zamana ve aynı kapsama çekildi.
 | 10 | **Üç kaynak eklendi** | TA-Bench (NeurIPS 2023), Waseda vd. (WACV 2023), Yu vd. (SaTML 2025, s. 797-810) — künyeleri arXiv/DBLP'den doğrulandı |
 | 11 | **Depo: kabul sonrası kapsamlı açılım** | yukarıya bakınız |
 
-**Makale şu anda kendi kapısından GEÇMİYOR** ve bu bilerek böyle: A kolu
-yeniden koşulana kadar H1/H2 muhafızları kırmızı kalır.
+**B2 KAPANDI (2026-08-25 akşamı).** A kolu 116/116 noktayla yeniden koşuldu,
+metin iki dilde işlendi, **altı kapının altısı da geçiyor**
+(`bash scripts/kapilar.sh`). Ayrıntı ve kapanış ölçümleri: `B2_DURUM.md`.
+
+Yol boyunca **altı kapı/sınama kusuru** daha bulundu ve kapatıldı; biri
+yeni bir kapı doğurdu (EN/TR ayna denetimi), o da hemen iki gerçek kusur
+buldu: Türkçe Yöntem'de eksik bir alt bölüm ve İngilizce Tartışma'da
+eksik bir paragraf (Mahmood karşıtlığı). İkisi de sayı taşımadığı için
+mevcut kapıların hiçbiri görmüyordu.
 
 ---
 
@@ -166,14 +173,16 @@ ve neden gireceği:
 |---|---|
 | Üç PDF (bildiri, makale EN, makale TR) | teslimin kendisi |
 | `results/C1_REFERANS_FOYU.md` | dışarı çıkan her sayının tek kaynağı (karantina kuralı) |
-| `results/q1/KOKEN.json` | 23 artefaktın sha256 köken defteri |
+| `results/q1/KOKEN.json` | **44** artefaktın sha256 köken defteri |
 | Ön-kayıt belgeleri (`E1_PILOT_KAPISI`, `E2_ISTATISTIK_PROTOKOLU`, `E3_YENIDEN_TASARIM`, `E6_ON_KAYIT`, `E7_KOSUM_ONCESI_KONTROL`) | salt-ekleme disiplininin kanıtı; hakem sorarsa buradan cevaplanır |
 | `Q1_ARASTIRMA_RAPORU.md`, `KAMPANYA_KARARLARI.md` | hangi kararın neden verildiği |
-| Dört kapı betiği + çıktıları | sayıların denetlenebilir olduğunun kanıtı |
+| **Altı** kapı betiği + dört öz-sınama + `scripts/kapilar.sh` | sayıların *ve yapının* denetlenebilir olduğunun kanıtı |
+| `src/analysis/protokoller.py` | dört koşullama maskesinin TEK kaynağı (metin/kod ayrışmasını imkânsız kılar) |
+| `B2_DURUM.md` + `B2_KAPI_KUSURU.md` | protokol düzeltmesinin ve bulunan kapı kusurlarının kaydı |
 | Bu belge + `DEVAM_TALIMATI.md` | nerede kalındığı |
 
-**Pakete girmeden önce kapatılması gereken tek teknik borç:** kapıların
-`paper/bildiri/` altını da taraması (2. bölümdeki boşluk).
+**Teknik borç kalmadı.** Bildiri kapısı yazıldı (ve 2026-08-25'te kör
+olduğu bulunup artefakt-okur hâle getirildi); EN/TR ayna kapısı eklendi.
 
 ---
 
