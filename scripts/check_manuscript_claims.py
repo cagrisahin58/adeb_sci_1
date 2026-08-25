@@ -68,7 +68,7 @@ kontrol("C2. EN E2 karsi-agirligi", re.search(r"\$25\$ epochs", en) is not None 
 kontrol("C2. TR E2 karsi-agirligi", "$25$ epok" in tr and "0{,}32" in tr)
 # 3) B.4 madde 3 nitelemesi: "not testable" / "sinanamadi"
 kontrol("C3. EN 'not testable in this design'", "not testable in this design" in en)
-kontrol("C3. TR 'bu tasarımda sınanamadı'", "bu tasarımda sınanamadı" in tr)
+kontrol("C3. TR 'bu tasarımda sınanama...'", "bu tasarımda sınanama" in tr)   # cekime duyarsiz govde
 # 4) E2 taahhudun ZAYIF surumunu karsiliyor
 kontrol("C4. EN 'weaker question'", "weaker question" in en)
 kontrol("C4. TR 'daha zayıf bir sürümünü'", "daha zayıf bir sürümünü" in tr)

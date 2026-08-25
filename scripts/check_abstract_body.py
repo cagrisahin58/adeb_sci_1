@@ -68,7 +68,8 @@ def sayilari_ayikla(metin):
     return sorted(set(out), key=lambda x: (len(x), x), reverse=True)
 
 
-kalan = 0
+kalan_sayi = 0
+kalan_uzunluk = 0
 OZETLER = {}
 for dil, (base, dosyalar) in DILLER.items():
     norm = norm_en if dil == "EN" else norm_tr
@@ -99,7 +100,7 @@ for dil, (base, dosyalar) in DILLER.items():
         # baglami goster
         m = re.search(r".{45}" + re.escape(s) + r".{45}", oz)
         print(f"   EKSIK {s:>10s}   ...{m.group(0).strip() if m else ''}...")
-    kalan += len(eksik)
+    kalan_sayi += len(eksik)
 
 # --- OZET UZUNLUGU (IEEE Access siniri 250 kelime) ---
 UZUNLUK_ESIGI = 280
@@ -109,12 +110,21 @@ for dil, oz in OZETLER.items():
     durum = "OK" if k <= UZUNLUK_ESIGI else "UZUN"
     print(f"=== {dil} === ozet uzunlugu {k} kelime (esik {UZUNLUK_ESIGI})  {durum}")
     if k > UZUNLUK_ESIGI:
-        kalan += 1
+        kalan_uzunluk += 1
 
 print("-" * 66)
-if kalan:
-    print(f"SONUC: KALDI -- ozde gecip govdede bulunmayan {kalan} sayi var.")
-    print("Oz ile govde AYRI YASIYOR demektir; bu kusur bu projede iki kez cikti.")
+# Iki kusur AYRI adlandirilir: yanlis sebep soyleyen bir kapi, okuru yanlis
+# dosyaya gonderir (2026-08-25'te tam bu oldu).
+if kalan_sayi or kalan_uzunluk:
+    print("SONUC: KALDI")
+    if kalan_sayi:
+        print(f"  - ozde gecip govdede bulunmayan {kalan_sayi} sayi var; "
+              "oz ile govde AYRI YASIYOR demektir "
+              "(bu kusur bu projede iki kez cikti).")
+    if kalan_uzunluk:
+        print(f"  - {kalan_uzunluk} dilde ozet {UZUNLUK_ESIGI} kelime sinirini "
+              "asiyor.")
     sys.exit(1)
-print("SONUC: GECTI -- ozdeki her sayinin govdede karsiligi var.")
+print("SONUC: GECTI -- ozdeki her sayinin govdede karsiligi var ve iki ozet de "
+      "uzunluk sinirinin altinda.")
 sys.exit(0)

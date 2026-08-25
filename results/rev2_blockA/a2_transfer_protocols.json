@@ -2,22 +2,42 @@
  "seed": 42,
  "n_bootstrap": 10000,
  "n_permutation": 20000,
+ "ss_definition": "target_clean_correct & source_clean_correct & source_adv_wrong",
  "protocols": {
+  "raw": {
+   "CNN_to_ViT": {
+    "rate": 40.17,
+    "n_conditioned": 10000,
+    "ci95": [
+     39.22,
+     41.13
+    ]
+   },
+   "ViT_to_CNN": {
+    "rate": 31.9,
+    "n_conditioned": 10000,
+    "ci95": [
+     31.0,
+     32.82
+    ]
+   },
+   "diff_CNNtoViT_minus_ViTtoCNN": 8.27
+  },
   "target_correct": {
    "CNN_to_ViT": {
     "rate": 20.95,
     "n_conditioned": 7565,
     "ci95": [
-     20.03,
-     21.88
+     20.01,
+     21.86
     ]
    },
    "ViT_to_CNN": {
     "rate": 20.32,
     "n_conditioned": 8542,
     "ci95": [
-     19.47,
-     21.19
+     19.46,
+     21.17
     ]
    },
    "diff_CNNtoViT_minus_ViTtoCNN": 0.63
@@ -27,7 +47,7 @@
     "rate": 19.19,
     "n_conditioned": 7260,
     "ci95": [
-     18.26,
+     18.29,
      20.1
     ]
    },
@@ -35,7 +55,7 @@
     "rate": 13.86,
     "n_conditioned": 7260,
     "ci95": [
-     13.07,
+     13.06,
      14.66
     ]
    },
@@ -43,10 +63,29 @@
   },
   "successful_source": {
    "CNN_to_ViT": {
+    "rate": 36.84,
+    "n_conditioned": 3271,
+    "ci95": [
+     35.22,
+     38.43
+    ]
+   },
+   "ViT_to_CNN": {
+    "rate": 25.67,
+    "n_conditioned": 3654,
+    "ci95": [
+     24.27,
+     27.09
+    ]
+   },
+   "diff_CNNtoViT_minus_ViTtoCNN": 11.17
+  },
+  "successful_source_loose": {
+   "CNN_to_ViT": {
     "rate": 39.07,
     "n_conditioned": 3576,
     "ci95": [
-     37.47,
+     37.5,
      40.66
     ]
    },
@@ -65,7 +104,7 @@
   "n_common": 7260,
   "diff_pp": 5.33,
   "paired_bootstrap_ci95_pp": [
-   4.39,
+   4.42,
    6.25
   ],
   "signflip_permutation_p": 0.0,
