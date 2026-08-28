@@ -1,10 +1,21 @@
 # IEEE Access Pre-Submission Checklist
 
-**Manuscript:** A Comparative Study of Convolutional and Transformer Architectures Under Adversarial Perturbations: Gradient Characteristics and Transferability Analysis
+**Manuscript:** The Measurement Protocol Decides the Conclusion: A Methodological Study of CNN and Vision Transformer Adversarial Robustness Comparisons
 
 **Target:** IEEE Access (Open Access, Single-Blind Review)
 
-**Date:** 2026-02-16
+**Date:** 2026-08-25 (revised after the C1 leak fix and the Q1 campaign; the 2026-02-16 version predates both)
+
+> **2026-08-25 revizyonu.** Bu liste 2026-02-16'da yazıldı ve o tarih C1
+> sızıntı düzeltmesinden de Q1 kampanyasından da ÖNCEDİR. Aynı klasördeki
+> `cover_letter.tex`, `highlights.txt` ve `declarations.txt` o tarihte
+> karantinaya alınmış run2 sayılarını ve makalenin sonradan çürüttüğü bir
+> sonucu taşıyordu; üçü de yeniden yazıldı. Bu listenin bir maddesi de
+> olgusal olarak yanlıştı (konferans genişletmesi olmadığı yazıyordu) ve
+> düzeltildi.
+>
+> Kapılar `paper/submission/` altını taramıyordu; bu yüzden ayrıca bir
+> kapı eklendi (`scripts/gonderim_tutarlilik.py`).
 
 ---
 
@@ -16,7 +27,7 @@
 - [x] Keywords provided (5 keywords)
 - [x] All 6 sections complete (Introduction, Related Work, Methodology, Experiments, Discussion, Conclusion)
 - [x] Acknowledgment section included
-- [ ] **Author biographies included below references** (IEEE Access REQUIRES short bios for ALL authors)
+- [x] **Author biographies included below references** (4 `\IEEEbiography` blocks present in `main.tex`)
 - [ ] **ORCID iDs for all authors** (submitting author MUST have ORCID linked to IEEE account)
 - [x] Double-column IEEE format
 - [x] References in IEEE style (`IEEEtran.bst`)
@@ -29,7 +40,7 @@
 
 ## 2. Page Count
 
-- [ ] Page count verified (IEEE Access has NO hard limit but recommends under 20 pages)
+- [ ] Page count verified — currently **21 pages** (EN). IEEE Access has no hard limit but recommends under 20; the extra page follows from the three-dataset scope and should be justified or trimmed.
 - [ ] Excessive length justified by content (if over 20 pages)
 
 ### ACTION REQUIRED:
@@ -80,9 +91,9 @@
 - [x] Recent references included (2023-2025)
 - [x] Foundational works cited (Szegedy 2014, Goodfellow 2015, Madry 2018)
 - [x] IEEE style bibliography (`IEEEtran.bst`)
-- [ ] **No unresolved citations** (no "?" marks in compiled PDF)
+- [x] **No unresolved citations** (latexmk: 0 undefined references, 0 citation errors, verified 2026-08-25)
 - [ ] **All DOIs verified** (recommended for IEEE)
-- [ ] **No hallucinated references** (all verified as real publications)
+- [x] **No hallucinated references** (5 errors fixed in the 2026-07 review; the 3 references added 2026-08-25 were verified against arXiv/DBLP before being added)
 
 ### ACTION REQUIRED:
 1. Compile and check for unresolved citation warnings
@@ -161,7 +172,7 @@
 
 - [ ] Manuscript checked via plagiarism detection tool (iThenticate or Turnitin)
 - [ ] Similarity index below 35% (IEEE threshold, especially for conference-to-journal extensions)
-- [ ] No conference paper overlap (this is original work, not a conference extension)
+- [ ] **Conference extension declared.** This IS a conference extension: a preliminary subset (CIFAR-10 only, one run per architecture) is under review at ATEEC 2026. The manuscript cites it and the cover letter declares it. IEEE's similarity threshold must be read with this in mind, and the portal's "previously presented" field must be filled.
 
 ### ACTION REQUIRED:
 1. Run plagiarism check before submission
@@ -190,14 +201,14 @@
 
 ## 10. Final Review Before Submit
 
-- [ ] Title matches across: manuscript, cover letter, portal entry
+- [x] Title matches across manuscript and cover letter (both rewritten 2026-08-25); portal entry to be filled at upload
 - [ ] Author names and order: consistent in manuscript, portal, and cover letter
-- [ ] No tracked changes, TODO comments, or placeholder text in manuscript
+- [ ] No tracked changes, TODO comments, or placeholder text in manuscript — **one TODO remains on purpose**: the repository URL in `main.tex` (Data and Code Availability). It is filled at submission, with an anonymous repository if the venue is double-blind.
 - [ ] No headers/footers from another journal
 - [ ] Line numbers NOT required (IEEE Access does not require line numbers)
 - [ ] Spell check completed
 - [ ] Grammar check completed
-- [ ] All cross-references resolve (\ref, \cref commands)
+- [x] All cross-references resolve (0 undefined, verified 2026-08-25)
 - [ ] All equations numbered correctly
 - [ ] Acronyms defined at first use
 

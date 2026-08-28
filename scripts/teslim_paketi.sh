@@ -54,12 +54,14 @@ say "on kayit belgeleri" "5 dosya, salt-ekleme"
 
 for f in kapilar.sh verify_manuscript_numbers.py check_manuscript_claims.py \
          check_abstract_body.py q1_tr_decimal_check.py bildiri_tutarlilik.py \
-         check_en_tr_mirror.py test_claim_guards.sh test_abstract_body_check.sh \
-         test_bildiri_tutarlilik.sh test_en_tr_mirror.sh test_verify_numbers.sh; do
+         check_en_tr_mirror.py gonderim_tutarlilik.py \
+         test_claim_guards.sh test_abstract_body_check.sh \
+         test_bildiri_tutarlilik.sh test_en_tr_mirror.sh \
+         test_verify_numbers.sh test_gonderim_tutarlilik.sh; do
     al "scripts/$f" 00_ORTAK_KANIT/kapilar/
 done
 al src/analysis/protokoller.py            00_ORTAK_KANIT/kapilar/
-say "kapilar" "6 denetim + 5 oz-sinama + protokol tanimi"
+say "kapilar" "7 denetim + 6 oz-sinama + protokol tanimi"
 
 al results/q1_research/TESLIM_DURUMU.md      00_ORTAK_KANIT/kararlar/
 al results/q1_research/DEVAM_TALIMATI.md     00_ORTAK_KANIT/kararlar/
@@ -97,6 +99,13 @@ al paper/manuscript/sections       02_MAKALE_EN/kaynak/
 al paper/manuscript/references.bib 02_MAKALE_EN/kaynak/
 al paper/figures/final             02_MAKALE_EN/kaynak/
 say "kaynak" "tex + bolumler + kaynakca + figurler"
+mkdir -p "$HEDEF/02_MAKALE_EN/gonderim"
+for f in cover_letter.pdf cover_letter.tex highlights.txt declarations.txt \
+         pre_submission_checklist.md suggested_reviewers.md \
+         author_biographies.tex; do
+    al "paper/submission/$f" 02_MAKALE_EN/gonderim/
+done
+say "gonderim" "kapak mektubu · one cikanlar · beyanlar · kontrol listesi"
 
 # =========================================================== 03 MAKALE TR
 echo
@@ -119,9 +128,9 @@ Depo \`$SHA\` (dal \`q1\`) · paket tarihi $TARIH
 
 | Klasor | Ne var |
 |---|---|
-| \`00_ORTAK_KANIT/\` | Uc ciktinin da dayandigi kanit: sayilarin tek kaynagi, koken defteri, on kayitlar, alti denetim kapisi, kararlar ve hikaye raporu |
+| \`00_ORTAK_KANIT/\` | Uc ciktinin da dayandigi kanit: sayilarin tek kaynagi, koken defteri, on kayitlar, yedi denetim kapisi, kararlar ve hikaye raporu |
 | \`01_BILDIRI/\` | ATEEC 2026 bildirisi (Ingilizce, 6 sayfa) + kaynagi |
-| \`02_MAKALE_EN/\` | SCI dergisine **gonderilecek** surum + kaynagi |
+| \`02_MAKALE_EN/\` | SCI dergisine **gonderilecek** surum, kaynagi ve gonderim malzemeleri (kapak mektubu, one cikanlar, beyanlar, kontrol listesi) |
 | \`03_MAKALE_TR/\` | Ayni makalenin Turkce surumu + terminoloji sozlugu |
 
 ## Uc cikti, iki yayin
@@ -141,7 +150,7 @@ ayrisma iki kez kusur uretti. Bu yuzden tek kopya, \`00_ORTAK_KANIT/\`.
 
 Disariya cikan her sayi \`00_ORTAK_KANIT/sayilar/C1_REFERANS_FOYU.md\`
 dosyasindan gelir ve o dosya artefaktlardan **otomatik** uretilir. Iddianin
-denetlenebilir olmasi icin alti kapi yazildi;
+denetlenebilir olmasi icin yedi kapi yazildi;
 \`00_ORTAK_KANIT/kapilar/SON_KAPI_CIKTISI.txt\` son kosumun sonucudur.
 
 Kapilarin kendileri de kirilarak sinanir (\`test_*.sh\`). Bu projenin en
@@ -156,7 +165,7 @@ sayi foyu tasir.
 ## Yeniden uretmek icin
 
 \`\`\`bash
-bash scripts/kapilar.sh              # alti kapi birden
+bash scripts/kapilar.sh              # yedi kapi birden
 bash scripts/test_claim_guards.sh    # kapilarin kendi sinamasi
 docker exec -w /workspace adeb_eval python scripts/build_reference_sheet.py
 \`\`\`

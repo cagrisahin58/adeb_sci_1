@@ -1,3 +1,12 @@
+% ---------------------------------------------------------------------------
+% KAPAK MEKTUBU -- 2026-08-25'te YENIDEN YAZILDI.
+%
+% Onceki surum 2026-02-16 tarihliydi ve C1/Q1 kampanyalarindan onceydi:
+% eski basligi, KARANTINADAKI run2 sayilarini (AutoAttack 35,74 / 32,94) ve
+% makalenin sonradan CURUTTUGU "kosullu asimetri kayboluyor" iddiasini
+% tasiyordu. Editore giden bir belge oldugu icin karantina kurali ona da
+% uygulanir; artik her sayi results/C1_REFERANS_FOYU.md'den gelir.
+% ---------------------------------------------------------------------------
 \documentclass[11pt]{letter}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
@@ -5,15 +14,15 @@
 \signature{
 \c{C}a\u{g}r{\i} \c{S}ahin\\
 Department of Software Engineering\\
-F{\i}rat University, Elaz{\i}\u{g}, Turkey\\
-Email: csahin@firat.edu.tr
+Mu\c{s} Alparslan University, 49250 Mu\c{s}, Turkey\\
+Email: c.sahin@alparslan.edu.tr
 }
 
 \address{
 \c{C}a\u{g}r{\i} \c{S}ahin\\
 Department of Software Engineering\\
-F{\i}rat University\\
-23119 Elaz{\i}\u{g}, Turkey
+Mu\c{s} Alparslan University\\
+49250 Mu\c{s}, Turkey
 }
 
 \begin{document}
@@ -26,27 +35,32 @@ IEEE Publishing Operations
 
 \opening{Dear Editor,}
 
-We are pleased to submit our manuscript titled ``A Comparative Study of Convolutional and Transformer Architectures Under Adversarial Perturbations: Gradient Characteristics and Transferability Analysis'' for consideration as a Regular Article in \textit{IEEE Access}.
+We are pleased to submit our manuscript titled ``The Measurement Protocol Decides the Conclusion: A Methodological Study of CNN and Vision Transformer Adversarial Robustness Comparisons'' for consideration as a Regular Article in \textit{IEEE Access}.
 
-This paper provides a behavioral characterization of how convolutional neural networks (CNNs) and Vision Transformers (ViTs) differ under adversarial perturbations. Rather than merely comparing robustness scores, we examine \textit{how} these architectures behave differently under attack, an increasingly important question as both architecture families are deployed in safety-critical systems. Using CIFAR-10 with adversarially trained ResNet-18 and ViT-Tiny models evaluated on the full test set under AutoAttack ($\epsilon = 8/255$), we present four key findings:
+Comparisons of adversarial robustness across architecture families report conflicting conclusions, and the disagreement is usually attributed to models, training recipes, or datasets. This paper shows that a substantial part of it comes from the measurement protocol itself. Holding the models, the data, the threat model, and the attack budget all fixed, and varying only how robustness and transfer are scored, we quantify how much of a published conclusion is decided by a choice that is rarely reported. Our contributions are:
 
 \begin{itemize}
-    \item \textbf{Robustness comparison with paired statistics:} The CNN attains a statistically significant but modest 2.8-point advantage under full-test AutoAttack (35.74\% vs 32.94\%; McNemar paired test on 10{,}000 samples, $p < 10^{-11}$).
-    \item \textbf{A methodological caution for transfer studies:} Under the widely used raw transfer metric our models exhibit an apparent 8.3-point cross-architecture asymmetry; under a clean-accuracy-controlled (conditioned) fooling-rate metric the asymmetry vanishes entirely (20.95\% vs 20.32\%, overlapping confidence intervals). We quantify, in a controlled setting, how large a spurious asymmetry the raw metric can manufacture when targets differ in clean accuracy.
-    \item \textbf{Gradient characteristics as behavioral correlates:} Under scale-invariant sparsity measures, CNN gradients are modestly more concentrated (Hoyer 0.474 vs 0.449)---a difference that survives a native-resolution ViT control---while cross-sample gradient alignment is low for both models yet 1.36$\times$ higher for the ViT (0.052 vs 0.038).
-    \item \textbf{Layer-wise feature degradation profile:} Adversarially trained ViT representations under attack exhibit an early-drop, mid-network-plateau profile: clean--adversarial cosine similarity falls from 0.994 to a minimum of 0.955 by mid-network and then plateaus, while feature norms change by less than 1.5\%.
+    \item \textbf{The absolute ordering, and what carries it.} The CNN leads under AutoAttack on the full test set ($37.93 \pm 0.14\%$ against $29.14 \pm 0.40\%$; McNemar $p < 10^{-84}$ in every run), and a conditional decomposition factors that score exactly into clean accuracy and conditional susceptibility. Both factors favour the CNN: it starts from a $12.3$-point higher clean accuracy and also loses a smaller fraction of what it solves (conditional fooling $48.58\%$ against $55.53\%$ under PGD-10). Reporting the single number hides that attribution, which changed between our earlier checkpoints and three fresh runs while the absolute ordering did not.
+    \item \textbf{The protocol effect, measured against the training effect.} Across four established conditioning protocols, the measured CNN-to-ViT transfer asymmetry on CIFAR-10 ranges from $+4.4$ to $+19.4$ points, a mean per-seed spread of $15.01 \pm 0.84$ points. Retraining both architectures from scratch moves the same quantity by a standard deviation of only $0.23$ to $1.27$ points. The protocol also decides whether an equivalence test is accepted or rejected.
+    \item \textbf{Raw transfer rates are confounded by an identity, not a tendency.} In a $3\times3$ matrix that adds a WideResNet-28-10 reference, the deviation of unconditioned from conditioned rates is algebraically equal to the target's clean error scaled by one minus the conditioned rate. The relation holds to within $0.41$ points across $36$ measured directions, which turns a known qualitative caveat into a correction applicable to already-published raw rates.
+    \item \textbf{When the architectures are matched, the protocol decides the sign.} On SVHN, where the same recipe leaves the two models only $1.85$ points apart in clean accuracy, two of the four protocols report a CNN advantage and two report a ViT advantage. The reversal of the unconditioned rate is the arithmetic consequence of the identity above, so it can be predicted in advance.
+    \item \textbf{Replication and threat-model transfer.} The design is repeated on CIFAR-100, where the spread stays in the same range and the sign is preserved in all twelve measurements, and re-evaluated under an $L_2$ budget with three pre-registered predictions, one of which fails under the reading we treat as binding and is reported as failing.
+    \item \textbf{Three claims common in this area fail to replicate.} Scale-invariant gradient sparsity differences do not correspond to spatial localization differences (three of four spatial measures are null); CLS attention entropy does not change measurably under attack ($n=1000$, equivalence accepted in $12$ of $12$ layers); and a ViT-specific transfer attack gives no gain over plain MI-FGSM under a matched budget.
 \end{itemize}
 
-We believe this work is well suited for \textit{IEEE Access} because of the journal's interdisciplinary readership spanning computer vision, machine learning security, and deep learning systems. Our analysis bridges adversarial robustness and architectural understanding, topics that are highly relevant to the diverse IEEE community. The open-access nature of \textit{IEEE Access} will also maximize the impact of these findings for researchers and practitioners working on secure AI deployment.
+The work closes with a short set of reporting requirements for cross-architecture robustness studies. Every number in the manuscript is produced from per-sample evaluation logs by scripts that also serve as automated consistency checks, so the protocol comparison can be reproduced without retraining.
+
+We believe this work suits \textit{IEEE Access} because it is methodological rather than architecture-specific: its subject is how a widely used quantity is measured, and its conclusions apply to any study comparing robustness across model families. The journal's interdisciplinary readership and open-access model fit a contribution whose value lies in being adopted as reporting practice.
 
 \textbf{Declarations:}
 \begin{itemize}
     \item This manuscript is original work and has not been published elsewhere.
     \item The manuscript is not under consideration by any other journal.
+    \item A preliminary subset of these results, limited to CIFAR-10 and a single training run per architecture, is under review as a conference paper; the present manuscript is the extended version and cites it.
     \item All authors have reviewed and approved the final manuscript.
-    \item All experiments use the publicly available CIFAR-10 dataset and standard evaluation protocols.
+    \item All experiments use the publicly available CIFAR-10, CIFAR-100, and SVHN datasets and standard evaluation protocols.
     \item The authors declare no conflict of interest.
-    \item Code and trained models will be made publicly available upon acceptance.
+    \item Upon acceptance we will publish the analysis pipeline, the scripts that generate every table and figure, the per-sample evaluation records, the fixed validation-split indices, and the seed lists. Trained checkpoints total about $36$~GB and are available from the authors on request.
 \end{itemize}
 
 Thank you for considering our manuscript. We look forward to your editorial decision.

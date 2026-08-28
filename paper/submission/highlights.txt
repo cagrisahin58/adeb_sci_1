@@ -1,7 +1,38 @@
 HIGHLIGHTS
 
-1. CNN holds a modest but significant AutoAttack edge: 35.74% vs 32.94% (McNemar p<1e-11, n=10,000)
-2. Apparent 8.3-point cross-architecture transfer asymmetry vanishes under a clean-accuracy-controlled metric
-3. Conditioned transfer between matched AT models is symmetric: 20.95% vs 20.32% (overlapping 95% CIs)
-4. CNN gradients modestly sparser (Hoyer 0.474 vs 0.449); ViT alignment 1.36x higher (0.052 vs 0.038)
-5. ViT features under attack show an early-drop, mid-network-plateau profile (cosine 0.994 -> 0.955, norms <1.5%)
+Manuscript: The Measurement Protocol Decides the Conclusion: A Methodological
+Study of CNN and Vision Transformer Adversarial Robustness Comparisons
+
+Revised 2026-08-25. All figures come from results/C1_REFERANS_FOYU.md
+(3 seeds, full test set, eps = 8/255).
+
+1. The CNN leads under AutoAttack on the full test set (37.93 +/- 0.14%
+   against 29.14 +/- 0.40%, McNemar p < 1e-84 per run), and a conditional
+   decomposition factors that score exactly into clean accuracy and
+   conditional susceptibility. Both factors favour the CNN: a 12.3-point
+   higher clean accuracy AND a smaller conditional fooling rate (48.58%
+   against 55.53% under PGD-10).
+
+2. With models, data, threat model and attack budget all held fixed, the
+   measured CNN-to-ViT transfer asymmetry ranges from +4.4 to +19.4 points
+   across four established conditioning protocols: a mean per-seed spread of
+   15.01 +/- 0.84 points.
+
+3. Retraining both architectures from scratch moves that same quantity by a
+   standard deviation of only 0.23 to 1.27 points. The measurement choice is
+   an order of magnitude larger than the training effect the field reports.
+
+4. The confound in unconditioned transfer rates is an identity, not a
+   tendency: the deviation from the conditioned rate equals the target's
+   clean error scaled by one minus that rate, holding to within 0.41 points
+   across 36 measured directions.
+
+5. On SVHN, where the same recipe leaves the architectures only 1.85 points
+   apart in clean accuracy, two protocols report a CNN advantage and two a
+   ViT advantage. Once the models are matched, the protocol decides the sign.
+
+6. Three claims common in this area fail to replicate: sparsity differences
+   do not correspond to spatial localization (3 of 4 measures null), CLS
+   attention entropy does not change measurably under attack (equivalence
+   accepted in 12 of 12 layers), and a ViT-specific transfer attack gives no
+   gain over plain MI-FGSM at a matched budget.

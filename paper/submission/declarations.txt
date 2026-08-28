@@ -1,28 +1,33 @@
 DECLARATIONS AND STATEMENTS
 ============================
 
-Manuscript: A Comparative Study of Convolutional and Transformer Architectures
-Under Adversarial Perturbations: Gradient Characteristics and Transferability Analysis
+Manuscript: The Measurement Protocol Decides the Conclusion: A Methodological
+Study of CNN and Vision Transformer Adversarial Robustness Comparisons
 
 Target: IEEE Access
 
-Date: 2026-02-16
+Date: 2026-08-25 (revised)
 
 ---
 
 1. DATA AVAILABILITY STATEMENT
 
-The experiments in this study use the CIFAR-10 dataset [Krizhevsky, 2009],
-which is publicly available at https://www.cs.toronto.edu/~kriz/cifar.html.
-Pre-trained WideResNet-28-10 weights were obtained from the RobustBench
-benchmark (https://robustbench.github.io/).
+The experiments in this study use the CIFAR-10 and CIFAR-100 datasets
+[Krizhevsky, 2009] and the SVHN dataset [Netzer et al., 2011], all of which
+are publicly available. Pre-trained WideResNet-28-10 weights were obtained
+from the RobustBench benchmark [Croce et al., 2021].
 
 ---
 
 2. CODE AVAILABILITY STATEMENT
 
-The source code for the analysis pipeline and trained model checkpoints
-will be made publicly available upon acceptance of the manuscript.
+Upon acceptance we will publish the analysis pipeline, the scripts that
+generate every table and figure in the manuscript, the per-sample evaluation
+records, the fixed validation-split indices and the seed lists. These
+together reproduce every number reported in the paper: all four conditioning
+protocols are computed from the per-sample records, so the protocol
+comparison can be repeated without retraining. Trained checkpoints total
+about 36 GB and are available from the authors on reasonable request.
 
 ---
 
@@ -44,7 +49,8 @@ Option B: "This work was supported by [Agency] under Grant [Number]."
 5. ETHICAL APPROVAL
 
 Not applicable. This study uses only publicly available benchmark datasets
-(CIFAR-10) and does not involve human subjects, animals, or sensitive data.
+(CIFAR-10, CIFAR-100, SVHN) and does not involve human subjects, animals,
+or sensitive data.
 The research investigates adversarial vulnerabilities with the goal of
 improving deep learning security and robustness.
 
