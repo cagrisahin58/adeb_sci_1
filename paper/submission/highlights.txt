@@ -9,14 +9,17 @@ Revised 2026-08-25. All figures come from results/C1_REFERANS_FOYU.md
 1. The CNN leads under AutoAttack on the full test set (37.93 +/- 0.14%
    against 29.14 +/- 0.40%, McNemar p < 1e-84 per run), and a conditional
    decomposition factors that score exactly into clean accuracy and
-   conditional susceptibility. Both factors favour the CNN: a 12.3-point
+   conditional susceptibility. Both factors favor the CNN: a 12.3-point
    higher clean accuracy AND a smaller conditional fooling rate (48.58%
    against 55.53% under PGD-10).
 
 2. With models, data, threat model and attack budget all held fixed, the
    measured CNN-to-ViT transfer asymmetry ranges from +4.4 to +19.4 points
-   across four established conditioning protocols: a mean per-seed spread of
-   15.01 +/- 0.84 points.
+   across four conditioning protocols: a mean per-seed spread of
+   15.01 +/- 0.84 points. That spread separates into 3.91 points of
+   irreducible discretion between the two protocols we endorse, 5.31 points
+   that an identity corrects in closed form, and 5.79 points from a protocol
+   that estimates a different quantity.
 
 3. Retraining both architectures from scratch moves that same quantity by a
    standard deviation of only 0.23 to 1.27 points. The measurement choice is

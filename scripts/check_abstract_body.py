@@ -116,7 +116,11 @@ for dil, (base, dosyalar) in DILLER.items():
     kalan_sayi += len(eksik)
 
 # --- OZET UZUNLUGU (IEEE Access siniri 250 kelime) ---
-UZUNLUK_ESIGI = 280
+# IEEE Access'in GERCEK siniri 250 kelimedir (bkz. gonderim oncesi
+# kontrol listesi). Esik 280'de birakildiginda 264 kelimelik bir ozet
+# kapiyi geciyordu; kapi denetlemedigi bir siniri denetliyormus gibi
+# gorunuyordu.
+UZUNLUK_ESIGI = 250
 print("-" * 66)
 for dil, oz in OZETLER.items():
     k = len(oz.split())

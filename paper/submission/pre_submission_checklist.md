@@ -23,7 +23,7 @@
 
 - [x] IEEE Access LaTeX template used (`\documentclass[journal]{IEEEtran}`)
 - [x] Title concise and descriptive
-- [x] Abstract within word limit (IEEE Access: max 250 words)
+- [x] Abstract within word limit (IEEE Access: max 250 words) — 243 words (EN), 225 (TR); enforced by scripts/check_abstract_body.py
 - [x] Keywords provided (5 keywords)
 - [x] All 6 sections complete (Introduction, Related Work, Methodology, Experiments, Discussion, Conclusion)
 - [x] Acknowledgment section included
