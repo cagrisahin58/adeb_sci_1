@@ -377,6 +377,38 @@ try:
 except Exception as _e:
     print(f"  [uyari] C100 ayrisimi hesaplanamadi: {_e}")
 
+# --- T4: blok cikisi derinlik profili ---
+# ViT ozetleri artik ARTIK BLOK CIKISINDA aliniyor (siniflandiricinin
+# okudugu tensor). Onceki surumde CLS yalniz .mlp alt-blogunda
+# hesaplaniyordu ve Tablo VII denk olmayan nicelikleri karsilastiriyordu.
+try:
+    import glob as _g2
+    _c4 = [json.loads(Path(_f).read_text(encoding="utf-8"))
+           for _f in sorted(_g2.glob(str(ROOT / "results/c1_c4/pair*/c4_summary.json")))]
+
+    def _blokser(_key):
+        _yig = []
+        for _d in _c4:
+            _o = {}
+            for _k, _v in _d["vit"].get(_key, {}).items():
+                if _k.startswith("block") and ".mlp" not in _k:
+                    _o[int(_k[5:])] = _v["mean"]
+            if _o:
+                _yig.append([_o[_i] for _i in sorted(_o)])
+        return np.array(_yig).mean(0) if _yig else None
+
+    _cls = _blokser("cos_block_cls")
+    _pm = _blokser("cos_block_token_mean")
+    _al = _blokser("cos_block_output")
+    if _cls is not None and _pm is not None:
+        chk("T4 blok CLS minimumu", float(_cls.min()), 4)
+        chk("T4 blok yama-ort minimumu", float(_pm.min()), 4)
+        chk("T4 blok tum-jeton minimumu", float(_al.min()), 4)
+        chk("T4 CLS/yama kayma orani",
+            float((1 - _cls.min()) / (1 - _pm.min())), 2)
+except Exception as _e:
+    print(f"  [uyari] blok cikisi serisi okunamadi: {_e}")
+
 rows = []
 for label, val in CHECKS:
     found = {lang: (tam_eslesme(val, txt) > 0) for lang, txt in LANGS.items()}

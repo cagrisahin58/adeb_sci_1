@@ -161,6 +161,17 @@ def main():
                             acc[tag].setdefault("cos_flat", {}).setdefault(name, []).append(cosine_rows(flat_a, flat_b))
                         else:
                             acc[tag]["cos_block"].setdefault(name, []).append(cosine_rows(flat_a, flat_b))
+                            # TUR 4 (A10): blok CIKISINDA da CLS ve token-ortalama
+                            # kosinusu. Siniflandirici son BLOK cikisinin CLS'ini
+                            # okur, MLP alt-blok cikisini degil; onceki surumde CLS
+                            # varyanti YALNIZ .mlp icin hesaplandigi icin Bolum
+                            # 4.7'nin derinlik anlatisi olculmemis bir tensore
+                            # dayaniyordu.
+                            acc[tag].setdefault("cos_block_cls", {}).setdefault(
+                                name, []).append(cosine_rows(a[:, 0], b[:, 0]))
+                            acc[tag].setdefault("cos_block_mean", {}).setdefault(
+                                name, []).append(
+                                    cosine_rows(a[:, 1:].mean(1), b[:, 1:].mean(1)))
                         acc[tag]["norm"].setdefault(name, []).append(
                             ((flat_b.norm(dim=1) - flat_a.norm(dim=1)) / flat_a.norm(dim=1) * 100).cpu().numpy())
                     else:  # (B, C, H, W) - CNN
@@ -197,6 +208,13 @@ def main():
                 "cos_token_mean": {k: summarize(v) for k, v in acc["vit"]["cos_mean"].items()},
                 "cos_flat_all_tokens": {k: summarize(v) for k, v in acc["vit"].get("cos_flat", {}).items()},
                 "cos_block_output": {k: summarize(v) for k, v in acc["vit"]["cos_block"].items()},
+                # TUR 4: blok cikisinda CLS ve token-ortalama (siniflandiricinin
+                # gercekten okudugu tensor). Bunlar olmadan Tablo VII, ViT icin
+                # MLP alt-blogunu CNN icin blok cikisini karsilastiriyordu.
+                "cos_block_cls": {k: summarize(v)
+                                  for k, v in acc["vit"].get("cos_block_cls", {}).items()},
+                "cos_block_token_mean": {k: summarize(v)
+                                         for k, v in acc["vit"].get("cos_block_mean", {}).items()},
                 "norm_change_pct": {k: summarize(v) for k, v in acc["vit"]["norm"].items()},
                 "attack_success_rate": float(vit_success.mean() * 100),
             },
