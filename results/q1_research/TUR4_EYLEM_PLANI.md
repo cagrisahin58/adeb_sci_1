@@ -1,5 +1,46 @@
 # Tur 4 — ic hakemlik hukmu ve birlesik eylem plani (2026-08-29)
 
+> ## ILERLEME (son guncelleme: 2026-08-29, commit d747060)
+>
+> **BITTI — Faz 0 (commit 1170366):**
+> - 0.1 Denklem (1) cebiri `e(1-p)` -> `e*p`, artı ust-sinir cumlesi
+> - 0.2 Manset ayrisimi: `15,01 = 9,21` (ozdeslik) `+ 5,79` (farkli estimand);
+>   `3,91` = duzeltme SONRASI artik. CIFAR-100'de iki-parcali bolumleme
+>   GECERLI DEGIL (kosulsuz oran dordun en buyugu); metin bunu soyluyor.
+> - 0.3 Tek "birincil": Bolum 3 bir metrik AILESI tanitiyor, birincil tahmin
+>   = her-ikisi-dogru, tek yerde ilan ediliyor
+> - 0.4 `fig:feature_degradation` oksuzlugu giderildi (tur 3 regresyonu)
+> - 1.4 `p=0,88` nitelendi · 1.5 YZ beyani eklendi (EN+TR)
+> - YAPISAL MUHAFIZ + sinamasi: `scripts/test_cebir_muhafizi.sh`
+>
+> **BITTI — Faz 2A (commit d747060):**
+> - 1.2 ViT derinlik profili DOGRU TENSORDE yeniden olculdu (artik blok
+>   cikisi). CLS min blok 11 @ 0,9604 · yama-ort blok 9 @ 0,9870 ·
+>   oran 3,05 kat · norm %0,45. Tablo VII blok cikisina cevrildi, artik
+>   CNN sutunuyla DENK noktada. MLP serisi metinde duyarlilik olarak duruyor.
+>   Eski artefaktlar: `results/c1_c4_t4oncesi/`
+> - 2.1 Kol karsilastirmasi ON KAYITLI havuza tasindi. Olculdu: o havuzda
+>   B araligi A'yi KAPSIYOR -> "uyusmuyorlar" hukmu geri cekildi; uc
+>   protokollu uyusma her havuzda gecerli.
+>
+> **KAPILAR:** yedi kapi da geciyor. Sayi kapisi 152 -> 158 kontrol.
+> EN 21 sayfa, TR 21 sayfa, 0 tanimsiz gonderme, 0 Overfull.
+>
+> **GPU:** hicbir kosum calismiyor. Yeniden kosum gerektiren is KALMADI.
+>
+> ### SIRADAKI — "DEVAM" burada baslar (hicbiri GPU gerektirmez)
+> - **2.2** Birim politikasi CIFAR-100/SVHN bolumlerine tasinmali; SVHN
+>   esdegerlik raporlamasindaki kaymalar iddia lehine
+> - **2.3** On kayit beyanlari kayittan guclu (epok-7 gercegi, E2 null'u)
+> - **2.4** Prior-art: "kanonik kaynak yok" iddiasi `ravikumar2023trend`
+>   (TM = f_st/f_ss) ile curutulebilir; 02:74 "olculmemistir" kendi Yu
+>   cumlesiyle celisik
+> - **2.5** Zincir celiskileri (giris yon cumlesi, ozet SVHN, sonuc "survived")
+> - **2.6** Gonderim mekanigi: `access.cls`, ATEEC kapsam beyani, pakette
+>   geri cekilmis egimin sekli, eski `paper/cover_letter.txt`
+> - **Faz 3** kapi/altyapi · **1.3** TGR sapma beyani · **1.7** anonim arsiv
+> - **BEKLEYEN KULLANICI BILGISI:** fon (kurum adi + hibe/proje numarasi)
+
 **Kurulum:** 3 Fable hakim × 10 Opus duzenleyici × 3 Sonnet toplayici = **123 ajan**,
 0 hata, 9,1M token, ~55 dk. Sonnetler yalniz kanit topladi; Opuslar dogrulayip
 bulguya cevirdi; hukmu Fable'lar verdi.
