@@ -283,7 +283,10 @@ def tam_eslesme(val, txt):
 _pd = {k: v["diff"]["mean"] for k, v in tr["protocols"].items()}
 chk("T3 aciklik hedef-dogru->her-ikisi-dogru",
     _pd["both_correct"] - _pd["target_correct"])
-chk("T3 aciklik her-ikisi-dogru->ham", _pd["raw"] - _pd["both_correct"])
+# Tur 4: Denklem 1 HEDEF-DOGRU orani baglar, dolayisiyla kapali formda
+# kapattigi aciklik ham <-> hedef-dogru'dur (9,21). Tur 3'te yanlislikla
+# her-ikisi-dogru <-> ham (5,31) acikligi ozdeslige atfedilmisti.
+chk("T4 OZDESLIK TERIMI (ham - hedef-dogru)", _pd["raw"] - _pd["target_correct"])
 chk("T3 aciklik ham->basarili-kaynak", _pd["successful_source"] - _pd["raw"])
 
 # Her-ikisi-dogru GA'si TANIMLI BIR YORDAM DEGILDIR: makale artik uc tohumun
@@ -355,6 +358,24 @@ try:
 except ImportError:
     pass
 
+
+# --- T4: CIFAR-100 ayrisimi ---
+# CIFAR-100'de kosulsuz oran dordun EN BUYUGUDUR; iki-parcali bolumleme
+# orada gecerli degildir ve yayilimin TAMAMI ozdeslik payidir. Metin bunu
+# soyluyor; kapi da denetler.
+try:
+    _c100p = jl("results/q1/cifar100/transfer/e1_transfer_summary.json")["protocols"]
+
+    def _dg100(k):
+        _v = _c100p[k]
+        return _v["diff"]["mean"] if isinstance(_v, dict) and "diff" in _v else _v
+
+    chk("T4 C100 artik (her-ikisi - hedef-dogru)",
+        _dg100("both_correct") - _dg100("target_correct"))
+    chk("T4 C100 yayilim = ozdeslik payi",
+        _dg100("raw") - _dg100("target_correct"))
+except Exception as _e:
+    print(f"  [uyari] C100 ayrisimi hesaplanamadi: {_e}")
 
 rows = []
 for label, val in CHECKS:

@@ -153,6 +153,29 @@ kontrol("I1. EN E6 korelasyon yerine egim gerekcesi duruyor",
 kontrol("I1. TR E6 korelasyon yerine egim gerekcesi duruyor",
         "korelasyon yerine eğimi raporluyoruz" in tr)
 
+# --- T4: DENKLEM 1 CEBIR MUHAFIZI ---
+# p = P(adv yanlis | temiz yanlis) oldugu icin toplam olasilik yasasi
+#     r_ham = e*p + r_kos*(1-e)
+# verir. Metinde uzun sure e*(1-p) yaziliydi; o bicim p=1'de Denklem 1'i
+# DEGIL r_kos*(1-e)'yi verir ve olculen orandan 26,99 puana kadar sapar
+# (bagimsiz olcum: scripts/_t4_ozdeslik_dogrula.py, 6/6 yon).
+# Sayi kapisi CEBIRI denetlemez; bu yuzden hata uc hakem turu gecti.
+kontrol("T4. EN genel bicim DOGRU (e\\,p)",
+        r"e\,p + r_{\text{cond}}" in en)
+kontrol("T4. EN yanlis bicim YOK (e\\,(1-p))",
+        r"e\,(1-p) + r_{\text{cond}}" not in en)
+kontrol("T4. TR genel bicim DOGRU (e\\,p)",
+        r"e\,p + r_{\text{koş}}" in tr)
+kontrol("T4. TR yanlis bicim YOK",
+        r"e\,(1-p) + r_{\text{koş}}" not in tr)
+
+# Tek "birincil" beyani: Bolum 3'te metrik AILESI tanitilir, birincil TAHMIN
+# bir kez ve yalniz her-ikisi-dogru icin ilan edilir.
+kontrol("T4. EN 'primary transfer metric' ifadesi YOK",
+        "primary transfer metric" not in en)
+kontrol("T4. TR 'Birincil transfer metrigimiz' ifadesi YOK",
+        "Birincil transfer metriğimiz" not in tr)
+
 # --- H: B2 MUHAFIZI -- A kolu duzeltilmis tanimla yeniden kosuldu mu ---
 # 'successful_source' tanimi 2026-08-25'te duzeltildi. Tablolar ve B kolu
 # yeniden uretildi; A kolu (GPU) yarim kaldi. Bu kapi, A kolu bitmeden
