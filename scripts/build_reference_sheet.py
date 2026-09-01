@@ -16,6 +16,57 @@ PAIRS = [1, 2, 3]
 L = []
 
 
+def _bc_mcnemar_satiri():
+    """HER-IKISI-DOGRU altkumesinde McNemar (PGD ve AA), ornek bazindan.
+
+    Makale 04:64 bu altkumenin sinirini veriyor. Sinir bir sure TAM KUME
+    degerinden odunc alinmisti (1e-84); gercek altkume degeri daha zayif.
+    Foy artik bunu kendisi uretir ki metne dogru olan girsin.
+    """
+    import glob
+    from scipy import stats
+    KS = os.path.join(ROOT, "results/c1_seeds")
+    TOHUM = {1: (1001, 2001), 2: (1002, 2002), 3: (1003, 2003)}
+
+    def mcn(b, c):
+        n = b + c
+        return 1.0 if n == 0 else float(
+            stats.binomtest(min(b, c), n, 0.5, alternative="two-sided").pvalue)
+
+    def aa(pair, ad):
+        par = sorted(glob.glob(os.path.join(KS, f"pair{pair}/aa_chunk_{ad}_*.npz")))
+        return np.concatenate([np.load(p)["robust_correct"] for p in par]) if par else None
+
+    satir, pg, ap = [], [], []
+    for pair, (rs, vs) in TOHUM.items():
+        try:
+            zr = np.load(os.path.join(KS, f"pair{pair}/pgd_per_sample_resnet18_s{rs}.npz"))
+            zv = np.load(os.path.join(KS, f"pair{pair}/pgd_per_sample_vit_tiny_s{vs}.npz"))
+        except OSError:
+            continue
+        ortak = zr["clean_correct"] & zv["clean_correct"]
+        R, V = zr["robust_correct"][ortak], zv["robust_correct"][ortak]
+        p1 = mcn(int((R & ~V).sum()), int((~R & V).sum()))
+        pg.append(p1)
+        rr, rv = aa(pair, "ResNet18_AT"), aa(pair, "ViT_Tiny_AT")
+        p2 = None
+        if rr is not None and rv is not None and len(rr) == len(ortak):
+            Ra, Va = rr[ortak], rv[ortak]
+            p2 = mcn(int((Ra & ~Va).sum()), int((~Ra & Va).sum()))
+            ap.append(p2)
+        satir.append(f"- cift {pair}: n_ortak={int(ortak.sum())}, PGD p={p1:.2e}"
+                     + (f", AA p={p2:.2e}" if p2 is not None else ""))
+    if not satir:
+        return "\nHER-IKISI-DOGRU McNemar: ornek bazli dosyalar bulunamadi.\n"
+    ust = max(pg + ap) if (pg or ap) else 1.0
+    return ("\nHER-IKISI-DOGRU altkumesinde McNemar (tam binom, ornek bazindan):\n"
+            + "\n".join(satir)
+            # DIKKAT: floor DEGIL ceil. max p = 5.90e-68 icin floor 68 verir
+            # ama 5.90e-68 > 1e-68'dir; dogru sinir 1e-67'dir.
+            + f"\n  -> metne girecek ORTAK sinir: p < 1e-{int(-np.ceil(np.log10(ust)))}"
+              "  (TAM KUME sinirindan ZAYIFTIR, onunla karistirilmamalidir)\n")
+
+
 def load(rel):
     p = os.path.join(ROOT, rel)
     if not os.path.exists(p):
@@ -92,6 +143,11 @@ if seed:
              f"{agg['vit']['aa']['mean']:.2f} (ViT).")
     L.append(f"\nEski tek kosu (sizintili) karsilastirmasi: kos. yaniltma PGD 52.15 vs 52.33, "
              f"AA 58.16 vs 56.46; her ikisi dogru PGD 54.92 vs 49.61, AA 48.15 vs 45.33 (n=7260).\n")
+    # TUR 4: makale 04:64'te HER-IKISI-DOGRU altkumesinin McNemar sinirini
+    # veriyor. O sinir asagidaki TAM KUME degerlerinden ZAYIFTIR ve bir
+    # sure tam kumeden odunc alinmisti. Foy artik ikisini de tasiyor ki
+    # metne dogru olan girsin (KARANTINA kurali: her sayi foyden).
+    L.append(_bc_mcnemar_satiri())
     L.append("McNemar (kosu bazinda, tam binom): ")
     for r in seed["pairs"]:
         L.append(f"- cift {r['pair']}: PGD p={r['mcnemar_pgd']['p_exact']:.1e} "

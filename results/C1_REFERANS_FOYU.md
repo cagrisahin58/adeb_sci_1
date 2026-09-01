@@ -32,6 +32,13 @@ Ortak kume n = 7061$\pm$68. Ayrisma ornegi (AA): 85.78 x 44.2% = 37.93 (CNN), 73
 
 Eski tek kosu (sizintili) karsilastirmasi: kos. yaniltma PGD 52.15 vs 52.33, AA 58.16 vs 56.46; her ikisi dogru PGD 54.92 vs 49.61, AA 48.15 vs 45.33 (n=7260).
 
+
+HER-IKISI-DOGRU altkumesinde McNemar (tam binom, ornek bazindan):
+- cift 1: n_ortak=7126, PGD p=5.07e-124, AA p=5.90e-68
+- cift 2: n_ortak=7067, PGD p=6.89e-113, AA p=1.43e-77
+- cift 3: n_ortak=6991, PGD p=1.75e-92, AA p=1.11e-73
+  -> metne girecek ORTAK sinir: p < 1e-67  (TAM KUME sinirindan ZAYIFTIR, onunla karistirilmamalidir)
+
 McNemar (kosu bazinda, tam binom): 
 - cift 1: PGD p=1.2e-153 (1677/483), AA p=1.2e-84 (1362/528)
 - cift 2: PGD p=1.3e-140 (1658/511), AA p=1.1e-96 (1397/504)

@@ -98,6 +98,15 @@ al paper/manuscript/main.tex       02_MAKALE_EN/kaynak/
 al paper/manuscript/sections       02_MAKALE_EN/kaynak/
 al paper/manuscript/references.bib 02_MAKALE_EN/kaynak/
 al paper/figures/final             02_MAKALE_EN/kaynak/
+# IEEE Access sablonu: sinif + fontlar + sinifin kendi gorselleri.
+# Bunlar OLMADAN editor/hakem makaleyi derleyemez (2026-09-01'de makale
+# IEEEtran'dan ieeeaccess.cls'e tasindi).
+for _f in paper/manuscript/*.cls paper/manuscript/*.bst \
+          paper/manuscript/*.tfm paper/manuscript/*.pfb \
+          paper/manuscript/*.map paper/manuscript/logo.png \
+          paper/manuscript/notaglinelogo.png paper/manuscript/bullet.png; do
+    [ -e "$_f" ] && al "$_f" 02_MAKALE_EN/kaynak/
+done
 say "kaynak" "tex + bolumler + kaynakca + figurler"
 mkdir -p "$HEDEF/02_MAKALE_EN/gonderim"
 for f in cover_letter.pdf cover_letter.tex highlights.txt declarations.txt \
