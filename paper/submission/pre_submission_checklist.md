@@ -172,7 +172,7 @@
 
 - [ ] Manuscript checked via plagiarism detection tool (iThenticate or Turnitin)
 - [ ] Similarity index below 35% (IEEE threshold, especially for conference-to-journal extensions)
-- [ ] **Conference extension declared.** This IS a conference extension: a preliminary subset (CIFAR-10 only, one run per architecture) is under review at ATEEC 2026. The manuscript cites it and the cover letter declares it. IEEE's similarity threshold must be read with this in mind, and the portal's "previously presented" field must be filled.
+- [ ] **Conference extension declared.** This IS a conference extension: a preliminary subset (CIFAR-10 only; the same three runs per architecture) is under review at ATEEC 2026. The manuscript cites it and the cover letter declares it. IEEE's similarity threshold must be read with this in mind, and the portal's "previously presented" field must be filled.
 
 ### ACTION REQUIRED:
 1. Run plagiarism check before submission

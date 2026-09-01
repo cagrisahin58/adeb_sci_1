@@ -172,7 +172,7 @@ Koşullanmış matris Şekil~\ref{fig:transfer_heatmap}'te verilmektedir. Üçü
 \subsection{Protokol Etkisi Genelleniyor mu? İkinci Bir Veri Kümesi}
 \label{subsec:cifar100}
 
-Yukarıdaki ölçüm tek bir veri kümesi üzerinde yapılmıştır ve yalnızca CIFAR-10'da var olan bir protokol etkisi genel bir raporlama önerisini desteklemezdi. Bu nedenle tasarımın tamamını CIFAR-100 üzerinde yineledik: aynı mimariler, aynı tehdit modeli, aynı saldırı bütçesi, aynı üç tohumlu yapı, aynı dört protokol. Koşumdan önce üç yönsel ön kestirim ile üç uç nokta bandını salt eklemeli bir belgeye kaydettik; böylece sonuç, ölçüldükten sonra yeniden yorumlanamazdı.
+Yukarıdaki ölçüm tek bir veri kümesi üzerinde yapılmıştır ve yalnızca CIFAR-10'da var olan bir protokol etkisi genel bir raporlama önerisini desteklemezdi. Bu nedenle tasarımın tamamını CIFAR-100 üzerinde yineledik: aynı mimariler, aynı tehdit modeli, aynı saldırı bütçesi, aynı üç tohumlu yapı, aynı dört protokol. Üç yönsel ön kestirim ile üç uç nokta bandını, bu veri kümesinden herhangi bir ölçüm mevcut olmadan önce salt eklemeli bir belgeye kaydettik; böylece sonuç, ölçüldükten sonra yeniden yorumlanamazdı. Kayıt, eğitimin başlangıcından önce gelmemektedir ve bunu, ``ön kayıtlı'' ifadesinin koşumdan önce anlamına gelmesini engellemek için yazıyoruz: kayıt işlemesi, sayı bildiren ilk adımdan, epok 5'teki pilot kapısından altmış altı dakika öncedir.
 
 \begin{table}[!t]
 \centering

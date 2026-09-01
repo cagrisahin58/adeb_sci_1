@@ -172,7 +172,7 @@ Figure~\ref{fig:transfer_heatmap} shows the conditioned matrix. The third archit
 \subsection{Does the Protocol Effect Generalize? A Second Dataset}
 \label{subsec:cifar100}
 
-The measurement above is made on one dataset, and a protocol effect that exists only on CIFAR-10 would not support a general reporting recommendation. We therefore repeated the whole design on CIFAR-100: same architectures, same threat model, same attack budget, same three-seed structure, same four protocols. Before running it we registered three directional predictions and three endpoint bands in an append-only document, so that the outcome could not be reinterpreted after the fact.
+The measurement above is made on one dataset, and a protocol effect that exists only on CIFAR-10 would not support a general reporting recommendation. We therefore repeated the whole design on CIFAR-100: same architectures, same threat model, same attack budget, same three-seed structure, same four protocols. We registered three directional predictions and three endpoint bands in an append-only document before any measurement from this dataset existed, so that the outcome could not be reinterpreted after the fact. The registration does not precede the start of training, and we say so rather than let ``pre-registered'' be read as preceding the run: the registration commit precedes the first reported number, an epoch-5 pilot gate, by sixty-six minutes.
 
 \begin{table}[!t]
 \centering
