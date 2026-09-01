@@ -1,42 +1,78 @@
-\documentclass[journal]{IEEEtran}
+\documentclass{ieeeaccess}
 
 % ============================================================================
 % PACKAGES
 % ============================================================================
+% Sablonun kendi paket listesi (access.tex) + tablolarimiz icin booktabs.
+% DIKKAT: graphicx ACIKCA yuklenmelidir -- ieeeaccess.cls maketitle icinde
+% logoyu \includegraphics ile cizer ve graphicx yoksa \Gin@iii hatasi verir.
+% subcaption ve hyperref KULLANILMIYOR (subfigure yok, url/href yok) ve
+% sablonun font kurulumuyla catisma riski tasidiklari icin yuklenmiyor.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{booktabs}
-\usepackage{subcaption}
-\usepackage{balance}
-\usepackage{hyperref}
+
+% Sablonun (access.tex) kalin-matematik kurulumu. Bu blok OLMADAN
+% tablolardaki \textbf{$p$} "Extra }, or forgotten $" hatasi verir.
+\usepackage{bm}
+\makeatletter
+\AtBeginDocument{\DeclareMathVersion{bold}
+\SetSymbolFont{operators}{bold}{T1}{times}{b}{n}
+\SetSymbolFont{NewLetters}{bold}{T1}{times}{b}{it}
+\SetMathAlphabet{\mathrm}{bold}{T1}{times}{b}{n}
+\SetMathAlphabet{\mathit}{bold}{T1}{times}{b}{it}
+\SetMathAlphabet{\mathbf}{bold}{T1}{times}{b}{n}
+\SetMathAlphabet{\mathtt}{bold}{OT1}{pcr}{b}{n}
+\SetSymbolFont{symbols}{bold}{OMS}{cmsy}{b}{n}
+\renewcommand\boldmath{\@nomath\boldmath\mathversion{bold}}}
+\makeatother
+
+% ieeeaccess.cls (satir 198-199) \textit ve \textbf'i KISA \def olarak
+% yeniden tanimliyor:  \def\textbf#1{{\bf #1}}
+% Bu tanim, icinde matematik gecen tablo hucrelerinde ve basliklarda
+% "Extra }, or forgotten $" hatasi veriyor -- ornegin \textbf{$p$} ve
+% \textbf{37.93$\pm$0.14}. Standart LaTeX tanimlarini geri yukluyoruz;
+% gorunum ayni, davranis dogru.
+\AtBeginDocument{%
+  \DeclareTextFontCommand{\textbf}{\bfseries}%
+  \DeclareTextFontCommand{\textit}{\itshape}%
+}
 
 % Custom commands
 \newcommand{\eps}{\epsilon}
 \newcommand{\Linf}{L_\infty}
 
 % ============================================================================
-% DOCUMENT INFO
+% DOCUMENT INFO  (IEEE Access sablonu: history + doi + author/address/corresp)
 % ============================================================================
-\title{The Measurement Protocol Decides the Conclusion: A Methodological Study of CNN and Vision Transformer Adversarial Robustness Comparisons}
+\history{Submitted for review.}
+\doi{10.1109/ACCESS.2026.0000000}
 
-% IEEEtran journal modu icin standart yazar blogu (\IEEEauthorblock* komutlari
-% conference modu icindir; 2026-07-10 paneli MIN-6). IEEE Access'in kendi
-% sablonuna (access.cls: \author+\address+\corresp) tasima islemi Author
-% Portal yuklemesinde yapilacaktir.
-\author{\c{C}a\u{g}r{\i}~\c{S}ahin
-        and~\"Ozal~Y{\i}ld{\i}r{\i}m%
-\thanks{\c{C}a\u{g}r{\i} \c{S}ahin is with the Department of Software Engineering, Mu\c{s} Alparslan University, 49250 Mu\c{s}, Turkey, and is also a Ph.D. student with the Department of Software Engineering, F{\i}rat University, 23119 Elaz{\i}\u{g}, Turkey.}%
-\thanks{\"Ozal Y{\i}ld{\i}r{\i}m is with the Department of Software Engineering, F{\i}rat University, 23119 Elaz{\i}\u{g}, Turkey.}%
-\thanks{Corresponding author: \c{C}a\u{g}r{\i} \c{S}ahin (e-mail: c.sahin@alparslan.edu.tr).}}
+\title{The Measurement Protocol Decides the Conclusion: A Methodological Study
+of CNN and Vision Transformer Adversarial Robustness Comparisons}
+
+\author{\uppercase{\c{C}a\u{g}r{\i} \c{S}ahin}\authorrefmark{1}\authorrefmark{2},
+\uppercase{and \"Ozal Y{\i}ld{\i}r{\i}m}\authorrefmark{2}}
+
+\address[1]{Department of Software Engineering, Mu\c{s} Alparslan University,
+49250 Mu\c{s}, T\"urkiye (e-mail: c.sahin@alparslan.edu.tr)}
+\address[2]{Department of Software Engineering, F{\i}rat University,
+23119 Elaz{\i}\u{g}, T\"urkiye (e-mail: ozalyildirim@firat.edu.tr)}
+
+\corresp{Corresponding author: \c{C}a\u{g}r{\i} \c{S}ahin
+(e-mail: c.sahin@alparslan.edu.tr).}
 
 % ============================================================================
 % DOCUMENT
 % ============================================================================
 \begin{document}
 
+\titlepgskip=-21pt
+
 \maketitle
+
 
 % ----------------------------------------------------------------------------
 % ABSTRACT
@@ -82,7 +118,6 @@ The authors used Claude (Anthropic) during the preparation of this work. The too
 % ----------------------------------------------------------------------------
 % REFERENCES
 % ----------------------------------------------------------------------------
-\balance
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
@@ -96,5 +131,8 @@ received the B.Sc.\ degree in software engineering from F{\i}rat University, Ela
 \begin{IEEEbiographynophoto}{\"Ozal Y{\i}ld{\i}r{\i}m}
 is with the Department of Software Engineering, F{\i}rat University, Elaz{\i}\u{g}, Turkey. His research interests include deep learning, computer vision, and biomedical signal processing.
 \end{IEEEbiographynophoto}
+
+% ieeeaccess.cls son paragraftan sonra \EOD bekler; yoksa sinif hata verir.
+\EOD
 
 \end{document}
