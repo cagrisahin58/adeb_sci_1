@@ -1,6 +1,59 @@
 # Tur 4 — ic hakemlik hukmu ve birlesik eylem plani (2026-08-29)
 
-> ## ILERLEME (son guncelleme: 2026-08-29, commit d747060)
+> ## TUR 4 KAPANDI (2026-09-01, commit 1058176)
+>
+> **Faz 0 · 2A · 2B · 2C · 3 — HEPSI BITTI.** Yalnizca kullanici tarafinda
+> is kaldi (asagida). Yedi kapi da geciyor; EN 24 sayfa (IEEE Access
+> sinifi), TR 21, bildiri 6; ucu de 0 hata, 0 tanimsiz gonderme.
+>
+> ### Faz 2B/2C (commit da0f89b, b36255a)
+> - **2.2** Cikarim birimi serhi CIFAR-100 ve SVHN'e tasindi. CIFAR-100
+>   kosumlar-arasi t araligi [10,07; 11,77] eklendi; SVHN'in GA'si YALNIZ
+>   IKI tohumun ortalamasi oldugu ve esdegerligin kosum-ICI karsilastirmaya
+>   dayandigi yazildi. CIFAR-100'de TOST YONU TERSTI, duzeltildi.
+> - **2.3** On kayit beyani kayittan gucluydu. E1: kayit `bb08868`
+>   17:59:33, ilk sayi bildiren epok-5 pilot kapisi `aae9bfc` 19:05:11 ->
+>   66 dakika. Kayit olcumden once ama EGITIM BASLADIKTAN sonra; metin
+>   siralamayi artik yaziyor. **E6 (L2) icin panel CURUTULDU:** kayit
+>   08-20 16:52, ilk L2 artefakti 08-21 06:45 (14 saat sonra).
+> - **2.4** "Basarili kaynak icin kanonik kaynak yok" YANLISTI. TREND
+>   (ravikumar2023trend) Denklem (1) birebir bu protokol; PDF metninden
+>   dogrulandi. Atif duzeltildi. 02:74'teki "olculmemistir" iddiasi
+>   kosullama eksenine daraltildi.
+> - **2.5** Girise rejim kaydi, ozetin SVHN cumlesi govdeye hizalandi.
+> - **2.6** ATEEC kapsami IKI belgede yanlisti ("tek kosum" -> bildiri
+>   UC kosum kullaniyor). Bayat `paper/cover_letter.txt` silindi.
+>
+> ### IEEE Access sablonu (commit 675bedd)
+> Makale `IEEEtran[journal]`'dan `ieeeaccess.cls`'e tasindi (IEEE Access
+> kendi sablonunu ZORUNLU tutuyor, birinci elden dogrulandi). Sinif
+> `\textbf`/`\textit`'i kisa `\def` yaptigi icin matematik iceren tablo
+> hucreleri patliyordu; standart tanimlar preamble'da geri yuklendi.
+> **Sayfa: 21 -> 24** (Access yerlesimi daha genis).
+>
+> ### Faz 3 (commit 1058176)
+> - **1.3** TGR sapmasi beyan edildi (tek tip gamma, tek-hucre sifirlama);
+>   negatif sonucun kapsami uyarlamayla sinirlandi.
+> - **1.7** Anonim hakem arsivi hazir: `scripts/anonim_arsiv.sh`, 446 MB.
+>   Kimlik taramasi GERCEK SIZINTI yakaladi (.pyc gomulu yollar) ve
+>   temizlendi. Erisim beyani iki dilde guncel; **URL yer tutucu**.
+> - Foye her-ikisi-dogru McNemar eklendi (kural: her sayi foyden).
+> - 12 kullanilmayan sekil `figures/arsiv/`e tasindi.
+> - Teslim paketi Access sinif+font dosyalarini da tasiyor (86 -> 128
+>   dosya) ve **paketten bagimsiz derleme sinandi**: 24 sayfa, 0 hata.
+> - Olculen duzeltme: kontrol noktalari 36 GB -> **40 GB**.
+>
+> ### KULLANICI TARAFINDA KALANLAR
+> 1. **Fon beyani** — kurum + hibe/proje numarasi (declarations.txt)
+> 2. **Anonim arsiv URL'si** — Anonymous-GitHub / Zenodo; iki dilde
+>    `[ANONYMOUS-ARCHIVE-URL]` yer tutucusu bekliyor
+> 3. **iThenticate** intihal kontrolu
+> 4. **IEEE Author Portal** yuklemesi (previously-presented alani: ATEEC)
+> 5. **Depo URL'si** (kabul sonrasi yayim icin)
+
+---
+
+> ## ILERLEME (2026-08-29, commit d747060)
 >
 > **BITTI — Faz 0 (commit 1170366):**
 > - 0.1 Denklem (1) cebiri `e(1-p)` -> `e*p`, artı ust-sinir cumlesi
