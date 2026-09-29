@@ -40,7 +40,7 @@
 
 ## 2. Page Count
 
-- [x] Page count verified — **24 pages** in the IEEE Access class (`ieeeaccess.cls`, mandatory template; was 21 in IEEEtran, the Access layout is wider). IEEE Access is a flat-APC journal and publishes no hard page limit on its author page; the length follows from the three-dataset scope.
+- [x] Page count verified — **25 pages** in the IEEE Access class (`ieeeaccess.cls`, mandatory template; was 21 in IEEEtran, the Access layout is wider; +1 page on 2026-09-29 for the study-overview figure and the nested-protocol-sets figure). IEEE Access is a flat-APC journal and publishes no hard page limit on its author page; the length follows from the three-dataset scope.
 - [x] **Abstract and Index Terms actually render in the PDF** — enforced by `scripts/check_pdf_render.py` (gate 8). In `ieeeaccess.cls` both must precede `\maketitle`; the 2026-09-01 migration kept the IEEEtran order and the PDF was silently abstract-less for a month. Source-level gates cannot see this.
 - [x] Author band capitalization correct in the PDF (Turkish dotless/dotted i; `\uppercase` cannot do it, names are written in explicit uppercase).
 - [ ] Excessive length justified by content (if over 20 pages)

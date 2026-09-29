@@ -1,0 +1,232 @@
+{
+  "sekil": "fig_protocol_sets",
+  "surum": 2,
+  "betik": "paper/figures/fig_protocol_sets.py",
+  "onceki_betik": "paper/figures/fig_protocol_sets_v1.py",
+  "komut": "docker exec -w /workspace adeb_eval python paper/figures/fig_protocol_sets.py",
+  "uretim_zamani_utc": "2026-09-29T18:30:07+00:00",
+  "veri": "results/q1/fig_protokol_kumeleri_veri.json",
+  "veri_sha256": "c78882ef72f47ecbf84f556feb3bc1ca21cf5f42790fff4341b48089e9c8b003",
+  "ust_kaynak": "results/c1_transfer/c1_transfer_summary.json",
+  "ust_kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1",
+  "ust_kaynak_sha256_kaynagi": "fig_protokol_kumeleri_veri.json: kaynak_sha256 (as recorded by the data script)",
+  "git": {
+    "commit": "725e709dfe8b16631921c0bfc89cf8d14b76d3d9",
+    "branch": "q1",
+    "dirty_paths": [
+      "?? paper/figures/fig_protocol_sets.py",
+      "?? results/q1/fig_protokol_kumeleri_veri.json",
+      "?? scripts/fig_protokol_kumeleri_veri.py"
+    ]
+  },
+  "yerlesim": {
+    "secim": "tek sutun",
+    "genislik_cm": 8.8,
+    "yukseklik_cm": 9.4,
+    "dpi": 300,
+    "en_kucuk_yazi_pt": 7.0,
+    "gerekce": "IEEE Access column width 8.8 cm as the other transfer figures. One row per set; values on a horizontal axis because they are not monotone in the nesting order. Height raised from 7.2 to 9.4 cm to stack the three brackets above the axis without overlap at >=7 pt.",
+    "dikdortgenler": "schematic, NOT area-proportional to N; nesting drawn for CNN->ViT",
+    "tohum_noktalari": "vertical offsets of seed points are for visibility only, same order in every row",
+    "yon_anahtari": "'N: CNN->ViT / ViT->CNN' placed once under the left header instead of inside each box: the full string does not fit the inner boxes at >=7 pt",
+    "font": "DejaVu Sans (as in scripts/generate_journal_figs_c1.py), pdf.fonttype 42",
+    "dolgular": {
+      "raw": "#EDF5FF",
+      "target_correct": "#D0E2FF",
+      "both_correct": "#78A9FF",
+      "successful_source": "#0F62FE"
+    }
+  },
+  "basilan_sayilar": {
+    "N_CNN_to_ViT_all": {
+      "deger": 10000,
+      "kaynak": "protokoller.raw.n_CNN_to_ViT"
+    },
+    "N_ViT_to_CNN_all": {
+      "deger": 10000,
+      "kaynak": "protokoller.raw.n_ViT_to_CNN",
+      "basildi": false,
+      "not": "equal to CNN->ViT, single N printed"
+    },
+    "N_gosterim_all": {
+      "gosterim": "N = 10,000"
+    },
+    "asimetri_all": {
+      "deger": 13.57,
+      "gosterim": "+13.57 pts",
+      "kaynak": "protokoller.raw.asimetri_ort"
+    },
+    "sd_all": {
+      "deger": 0.33,
+      "gosterim": "±0.33",
+      "kaynak": "protokoller.raw.asimetri_sd"
+    },
+    "tohum_all": {
+      "deger": [
+        13.2,
+        13.69,
+        13.83
+      ],
+      "gosterim": "open circles (not labelled)",
+      "kaynak": "protokoller.raw.asimetri_tohum_degerleri"
+    },
+    "N_CNN_to_ViT_target_correct": {
+      "deger": 7353,
+      "kaynak": "protokoller.target_correct.n_CNN_to_ViT"
+    },
+    "N_ViT_to_CNN_target_correct": {
+      "deger": 8579,
+      "kaynak": "protokoller.target_correct.n_ViT_to_CNN",
+      "basildi": true,
+      "not": null
+    },
+    "N_gosterim_target_correct": {
+      "gosterim": "N = 7,353 / 8,579"
+    },
+    "asimetri_target_correct": {
+      "deger": 4.36,
+      "gosterim": "+4.36 pts",
+      "kaynak": "protokoller.target_correct.asimetri_ort"
+    },
+    "sd_target_correct": {
+      "deger": 0.44,
+      "gosterim": "±0.44",
+      "kaynak": "protokoller.target_correct.asimetri_sd"
+    },
+    "tohum_target_correct": {
+      "deger": [
+        4.83,
+        4.28,
+        3.97
+      ],
+      "gosterim": "open circles (not labelled)",
+      "kaynak": "protokoller.target_correct.asimetri_tohum_degerleri"
+    },
+    "N_CNN_to_ViT_both_correct": {
+      "deger": 7061,
+      "kaynak": "protokoller.both_correct.n_CNN_to_ViT"
+    },
+    "N_ViT_to_CNN_both_correct": {
+      "deger": 7061,
+      "kaynak": "protokoller.both_correct.n_ViT_to_CNN",
+      "basildi": false,
+      "not": "equal to CNN->ViT, single N printed"
+    },
+    "N_gosterim_both_correct": {
+      "gosterim": "N = 7,061"
+    },
+    "asimetri_both_correct": {
+      "deger": 8.27,
+      "gosterim": "+8.27 pts",
+      "kaynak": "protokoller.both_correct.asimetri_ort"
+    },
+    "sd_both_correct": {
+      "deger": 0.23,
+      "gosterim": "±0.23",
+      "kaynak": "protokoller.both_correct.asimetri_sd"
+    },
+    "tohum_both_correct": {
+      "deger": [
+        8.51,
+        8.05,
+        8.24
+      ],
+      "gosterim": "open circles (not labelled)",
+      "kaynak": "protokoller.both_correct.asimetri_tohum_degerleri"
+    },
+    "N_CNN_to_ViT_successful_source": {
+      "deger": 2831,
+      "kaynak": "protokoller.successful_source.n_CNN_to_ViT"
+    },
+    "N_ViT_to_CNN_successful_source": {
+      "deger": 3814,
+      "kaynak": "protokoller.successful_source.n_ViT_to_CNN",
+      "basildi": true,
+      "not": null
+    },
+    "N_gosterim_successful_source": {
+      "gosterim": "N = 2,831 / 3,814"
+    },
+    "asimetri_successful_source": {
+      "deger": 19.37,
+      "gosterim": "+19.37 pts",
+      "kaynak": "protokoller.successful_source.asimetri_ort"
+    },
+    "sd_successful_source": {
+      "deger": 1.27,
+      "gosterim": "±1.27",
+      "kaynak": "protokoller.successful_source.asimetri_sd"
+    },
+    "tohum_successful_source": {
+      "deger": [
+        20.8,
+        18.91,
+        18.39
+      ],
+      "gosterim": "open circles (not labelled)",
+      "kaynak": "protokoller.successful_source.asimetri_tohum_degerleri"
+    },
+    "tohum_cifti_sayisi": {
+      "deger": 3,
+      "gosterim": "3 seed pairs",
+      "kaynak": "len(protokoller.*.asimetri_tohum_degerleri)"
+    },
+    "yayilim": {
+      "deger": 15.01,
+      "gosterim": "15.01",
+      "yer": "bottom line",
+      "kaynak": "ayrisim.yayilim"
+    },
+    "ozdeslik_terimi_ham_eksi_hedef_dogru": {
+      "deger": 9.21,
+      "gosterim": "9.21",
+      "yer": "bracket target_correct..raw",
+      "kaynak": "ayrisim.ozdeslik_terimi_ham_eksi_hedef_dogru"
+    },
+    "farkli_estimand_bas_kaynak_eksi_ham": {
+      "deger": 5.79,
+      "gosterim": "5.79",
+      "yer": "bracket raw..successful_source",
+      "kaynak": "ayrisim.farkli_estimand_bas_kaynak_eksi_ham"
+    },
+    "artik_takdir_her_ikisi_eksi_hedef": {
+      "deger": 3.91,
+      "gosterim": "3.91",
+      "yer": "bracket target_correct..both_correct",
+      "kaynak": "ayrisim.artik_takdir_her_ikisi_eksi_hedef"
+    },
+    "denklem_numarasi": {
+      "deger": "11",
+      "gosterim": "sekle BASILMIYOR (baslik \\eqref tasir); .aux'taki numara yalniz kayit icin",
+      "kaynak": "paper/manuscript/main.aux \\newlabel{eq:raw_identity}",
+      "aux_sha256": "2a6160f986455c2ad422c24b2180cdc2b2157a10cd17b20a3b2f59a77fc87e49",
+      "aux_mtime_utc": "2026-09-29T18:25:38+00:00",
+      "not": "cross-reference, not a result; regenerate the figure if equations are renumbered"
+    }
+  },
+  "esitlik_kaydi": {
+    "tohum_basina_ortalama_yayilim": 15.01,
+    "yayilim": 15.01,
+    "esit": true,
+    "tohum_basina_yayilim_tohum_degerlerinden": [
+      15.97,
+      14.63,
+      14.42
+    ],
+    "ortalamasi": 15.0067
+  },
+  "denetimler": [
+    "ic_icelik_tutuyor == true",
+    "N non-increasing along nesting, both directions",
+    "raw and both_correct: same N in both directions",
+    "mean and SD(n-1) of asimetri_tohum_degerleri == asimetri_ort / asimetri_sd within 0.0051",
+    "ayrisim terms == differences of protocol means within rounding (<=0.0101)",
+    "mean per-seed spread recomputed from seed values == tohum_basina_ortalama_yayilim (<=0.0051)",
+    "tohum_basina_ortalama_yayilim == yayilim",
+    "order target_correct <= both_correct <= raw <= successful_source (bracket layout)",
+    "equation number read from compiled .aux",
+    "no Type 3 font in PDF"
+  ],
+  "not_yuvarlama": "9.21 + 5.79 = 15.00 vs spread 15.01: each term rounded from unrounded means (printed as 'terms rounded separately').",
+  "eski_surum_tasindi": "fig_protocol_sets_v2"
+}

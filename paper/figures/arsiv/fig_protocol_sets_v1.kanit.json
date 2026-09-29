@@ -1,0 +1,125 @@
+{
+  "sekil": "fig_protocol_sets",
+  "betik": "paper/figures/fig_protocol_sets.py",
+  "komut": "docker exec -w /workspace adeb_eval python paper/figures/fig_protocol_sets.py",
+  "uretim_zamani_utc": "2026-09-29T18:15:13+00:00",
+  "veri": "results/q1/fig_protokol_kumeleri_veri.json",
+  "veri_sha256": "ad282997f94dc47e0c59083b830cb59f350aab6e5f93c4c364087faced649dfe",
+  "veri_ust_kaynagi": "results/c1_transfer/c1_transfer_summary.json",
+  "git": {
+    "commit": "725e709dfe8b16631921c0bfc89cf8d14b76d3d9",
+    "branch": "q1",
+    "dirty_paths": [
+      "?? paper/figures/fig_protocol_sets.py",
+      "?? results/q1/fig_protokol_kumeleri_veri.json",
+      "?? scripts/fig_protokol_kumeleri_veri.py"
+    ]
+  },
+  "yerlesim": {
+    "secim": "tek sutun",
+    "genislik_cm": 8.8,
+    "yukseklik_cm": 7.2,
+    "dpi": 300,
+    "gerekce": "IEEE Access column width 8.8 cm like every other transfer figure (\\columnwidth). Asymmetry is read on a horizontal axis with one row per set, because the values are not monotone in the nesting order and a vertical value axis would need crossing leader lines.",
+    "dikdortgenler": "schematic, NOT area-proportional to N",
+    "font": "DejaVu Sans (as in scripts/generate_journal_figs_c1.py), pdf.fonttype 42",
+    "dolgular": {
+      "raw": "#EDF5FF",
+      "target_correct": "#D0E2FF",
+      "both_correct": "#78A9FF",
+      "successful_source": "#0F62FE"
+    }
+  },
+  "basilan_sayilar": {
+    "N_all": {
+      "deger": 10000,
+      "gosterim": "N = 10,000",
+      "kaynak": "protokoller.raw.n_CNN_to_ViT"
+    },
+    "asimetri_all": {
+      "deger": 13.57,
+      "gosterim": "+13.57 pts",
+      "kaynak": "protokoller.raw.asimetri_ort"
+    },
+    "sd_all": {
+      "deger": 0.33,
+      "gosterim": "±0.33",
+      "kaynak": "protokoller.raw.asimetri_sd"
+    },
+    "N_target_correct": {
+      "deger": 7353,
+      "gosterim": "N = 7,353",
+      "kaynak": "protokoller.target_correct.n_CNN_to_ViT"
+    },
+    "asimetri_target_correct": {
+      "deger": 4.36,
+      "gosterim": "+4.36 pts",
+      "kaynak": "protokoller.target_correct.asimetri_ort"
+    },
+    "sd_target_correct": {
+      "deger": 0.44,
+      "gosterim": "±0.44",
+      "kaynak": "protokoller.target_correct.asimetri_sd"
+    },
+    "N_both_correct": {
+      "deger": 7061,
+      "gosterim": "N = 7,061",
+      "kaynak": "protokoller.both_correct.n_CNN_to_ViT"
+    },
+    "asimetri_both_correct": {
+      "deger": 8.27,
+      "gosterim": "+8.27 pts",
+      "kaynak": "protokoller.both_correct.asimetri_ort"
+    },
+    "sd_both_correct": {
+      "deger": 0.23,
+      "gosterim": "±0.23",
+      "kaynak": "protokoller.both_correct.asimetri_sd"
+    },
+    "N_successful_source": {
+      "deger": 2831,
+      "gosterim": "N = 2,831",
+      "kaynak": "protokoller.successful_source.n_CNN_to_ViT"
+    },
+    "asimetri_successful_source": {
+      "deger": 19.37,
+      "gosterim": "+19.37 pts",
+      "kaynak": "protokoller.successful_source.asimetri_ort"
+    },
+    "sd_successful_source": {
+      "deger": 1.27,
+      "gosterim": "±1.27",
+      "kaynak": "protokoller.successful_source.asimetri_sd"
+    },
+    "yayilim": {
+      "deger": 15.01,
+      "gosterim": "15.01",
+      "kaynak": "ayrisim.yayilim"
+    },
+    "ozdeslik_terimi_ham_eksi_hedef_dogru": {
+      "deger": 9.21,
+      "gosterim": "9.21",
+      "kaynak": "ayrisim.ozdeslik_terimi_ham_eksi_hedef_dogru"
+    },
+    "farkli_estimand_bas_kaynak_eksi_ham": {
+      "deger": 5.79,
+      "gosterim": "5.79",
+      "kaynak": "ayrisim.farkli_estimand_bas_kaynak_eksi_ham"
+    },
+    "artik_takdir_her_ikisi_eksi_hedef": {
+      "deger": 3.91,
+      "gosterim": "3.91",
+      "kaynak": "ayrisim.artik_takdir_her_ikisi_eksi_hedef"
+    }
+  },
+  "denetimler": [
+    "ic_icelik_tutuyor == true",
+    "N non-increasing along nesting, both directions",
+    "both_correct N equal in both directions",
+    "ayrisim terms == differences of protocol means within rounding (<=0.0101)",
+    "spread endpoints are target_correct (min) and successful_source (max)",
+    "no Type 3 font in PDF"
+  ],
+  "not_yuvarlama": "9.21 + 5.79 = 15.00 vs spread 15.01: terms rounded from unrounded means, hence '≈'.",
+  "eski_surum_tasindi": null
+}

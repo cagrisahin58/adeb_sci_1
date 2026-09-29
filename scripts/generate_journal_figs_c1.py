@@ -116,6 +116,9 @@ plt.rcParams.update({
     "font.size": 9, "axes.labelsize": 10, "axes.titlesize": 10,
     "legend.fontsize": 8, "xtick.labelsize": 9, "ytick.labelsize": 9,
     "figure.dpi": 150, "savefig.bbox": "tight",
+    # 2026-09-29: Type 3 font gomulmesin. Uretilen alti PDF'in hepsinde
+    # /Type3 izi vardi; IEEE PDF eXpress bunu isaretler. 42 = TrueType.
+    "pdf.fonttype": 42, "ps.fonttype": 42,
 })
 
 

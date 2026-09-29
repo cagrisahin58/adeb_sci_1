@@ -26,6 +26,27 @@
 > stat_addendum, rev2_blockA) tarandi: kapi betikleri yalniz c1_*/q1 okuyor,
 > anonim arsiv de oyle; eski yollar yalniz paper/review/ tarihsel raporlarinda.
 >
+> ### Ayni gun, ikinci oturum — iki yeni sekil
+> Kullanici: "ilk hali daha cok figur icermiyor muydu, mimari diyagram
+> yok muydu?" Git: Subat 11 sekil -> 25 Agustos 9 -> 29 Agustos 6.
+> Mimari/genel-bakis sekli dergi makalesinde hic olmamisti (bildiride
+> vardi). Kabul edilen iki oneri uygulandi:
+> - **Sekil 1, genel bakis** (§3 basi, cift sutun): bildirideki
+>   `fig_b0_overview.png` -> `figures/final/fig_study_overview.png`.
+>   Sayi tasimaz. 14 cm'de ~295 dpi.
+> - **Ic ice protokol kumeleri** (§4.2, tek sutun): `/sekil` hatti.
+>   Veri `scripts/fig_protokol_kumeleri_veri.py` -> `results/q1/
+>   fig_protokol_kumeleri_veri.json` (yalniz c1_transfer_summary'den; ham
+>   ortalamalardan ayrisim 9,21/5,79/3,91; assert'ler). Betik
+>   `paper/figures/fig_protocol_sets.py`; kanit `.kanit.json`; hakem raporu
+>   `raporlar/sekil_fig_protocol_sets_2026-09-29.md` (16 sayi dogrulandi,
+>   🔴 yok). M1–M3 uygulandi; "Eq. (11)" sekle gomulmesi geri alindi
+>   (baslik `\eqref` tasir).
+> - Hakemin govde bulgusu M4: "rate" -> "estimate/kestirim" (EN/TR §1, §4.2).
+> - Yinelenen "birincil tahmin" cumlesi tekillestirildi (EN 2->1, TR 3->1).
+> - Eski alti sekil TrueType (fonttype 42) ile yeniden uretildi; Type 3 = 0.
+> - EN 25 sayfa, TR 22; sekiz kapi geciyor.
+>
 > **Kullanici karari bekleyen:** yazar FOTOGRAFLARI. Sinifta
 > `IEEEbiographynophoto` bos sarmalayici; sablon fotografli `IEEEbiography`
 > bekliyor ve son sayfada foto boslugu birakiyor. Foto eklenecekse dosyalar

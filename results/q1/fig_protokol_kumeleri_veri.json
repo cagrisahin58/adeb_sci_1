@@ -1,0 +1,66 @@
+{
+  "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+  "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1",
+  "protokoller": {
+    "raw": {
+      "asimetri_ort": 13.57,
+      "asimetri_sd": 0.33,
+      "asimetri_tohum_degerleri": [
+        13.2,
+        13.69,
+        13.83
+      ],
+      "n_CNN_to_ViT": 10000,
+      "n_ViT_to_CNN": 10000,
+      "CNN_to_ViT": 41.02,
+      "ViT_to_CNN": 27.45
+    },
+    "target_correct": {
+      "asimetri_ort": 4.36,
+      "asimetri_sd": 0.44,
+      "asimetri_tohum_degerleri": [
+        4.83,
+        4.28,
+        3.97
+      ],
+      "n_CNN_to_ViT": 7353,
+      "n_ViT_to_CNN": 8579,
+      "CNN_to_ViT": 19.87,
+      "ViT_to_CNN": 15.51
+    },
+    "both_correct": {
+      "asimetri_ort": 8.27,
+      "asimetri_sd": 0.23,
+      "asimetri_tohum_degerleri": [
+        8.51,
+        8.05,
+        8.24
+      ],
+      "n_CNN_to_ViT": 7061,
+      "n_ViT_to_CNN": 7061,
+      "CNN_to_ViT": 18.25,
+      "ViT_to_CNN": 9.98
+    },
+    "successful_source": {
+      "asimetri_ort": 19.37,
+      "asimetri_sd": 1.27,
+      "asimetri_tohum_degerleri": [
+        20.8,
+        18.91,
+        18.39
+      ],
+      "n_CNN_to_ViT": 2831,
+      "n_ViT_to_CNN": 3814,
+      "CNN_to_ViT": 36.39,
+      "ViT_to_CNN": 17.02
+    }
+  },
+  "ayrisim": {
+    "yayilim": 15.01,
+    "ozdeslik_terimi_ham_eksi_hedef_dogru": 9.21,
+    "farkli_estimand_bas_kaynak_eksi_ham": 5.79,
+    "artik_takdir_her_ikisi_eksi_hedef": 3.91,
+    "tohum_basina_ortalama_yayilim": 15.01
+  },
+  "ic_icelik_tutuyor": true
+}
