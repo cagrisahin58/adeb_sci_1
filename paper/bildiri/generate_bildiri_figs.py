@@ -222,8 +222,13 @@ imin = int(np.argmin(vit_cos))
 ax.annotate(f"min {vit_cos[imin]:.3f} (block {imin + 1})\nthen slight recovery",
             xy=(xv[imin], vit_cos[imin]), xytext=(0.42, min(0.995, vit_cos.max())), fontsize=8,
             arrowprops=dict(arrowstyle="->", lw=0.8))
-ax.annotate(f"monotonic drop\nto {res_cos[-1]:.3f}", xy=(xr[-1], res_cos[-1]),
-            xytext=(0.62, res_cos[-1] + 0.03), fontsize=8, arrowprops=dict(arrowstyle="->", lw=0.8))
+# 2026-09-29: eski "monotonic drop" notu run3 profiline aitti; C1 egrisi son
+# asamada dip yapip son blokta kismen toparlaniyor. Not artik veriden kuruluyor.
+jmin = int(np.argmin(res_cos))
+ax.annotate(f"dip to {res_cos[jmin]:.3f} (block {jmin + 1} of {len(res_cos)}),\n"
+            f"{res_cos[-1]:.3f} at the last block",
+            xy=(xr[jmin], res_cos[jmin]), xytext=(0.36, res_cos[jmin] + 0.009), fontsize=8,
+            arrowprops=dict(arrowstyle="->", lw=0.8))
 ax.set_xlabel("Relative depth (block / total blocks)")
 ax.set_ylabel("Clean-adversarial cosine similarity")
 ax.legend(frameon=False, loc="lower left")

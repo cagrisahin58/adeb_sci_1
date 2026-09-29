@@ -1,0 +1,17 @@
+# scripts/_s3_kosum_duzeyi.py ciktisi (adeb_eval, /workspace @ 725e709), 2026-09-29
+# Bildiri IV-C kosum duzeyi cumlesinin kaynagi (Holm 0.1078 ~ 0.108).
+olcut                       ResNet                   ViT     ham p
+--------------------------------------------------------------------
+Hoyer       [0.4907, 0.5058, 0.4821][0.4587, 0.4498, 0.4599]    0.0674
+Gini        [0.6491, 0.659, 0.6412][0.6136, 0.604, 0.6121]    0.0359
+Frac<1%     [0.3451, 0.3699, 0.3282][0.2743, 0.2578, 0.2725]    0.0420
+Hizalanma   [0.0377, 0.037, 0.0388][0.0557, 0.0564, 0.0565]    0.0009
+
+HOLM (uc seyreklik olcutu):
+  Gini         ham 0.0359  ->  Holm 0.1078   ANLAMLI DEGIL
+  Frac<1%      ham 0.0420  ->  Holm 0.1078   ANLAMLI DEGIL
+  Hoyer        ham 0.0674  ->  Holm 0.1078   ANLAMLI DEGIL
+
+  IUT (max-p) = 0.0674
+
+Hizalanma (ayri aile): p = 0.0009  anlamli
