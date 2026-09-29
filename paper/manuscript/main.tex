@@ -49,12 +49,19 @@
 % ============================================================================
 \history{Submitted for review.}
 \doi{10.1109/ACCESS.2026.0000000}
+% Altbilgideki yil sablonda 2023 sabit gelir; sinif \year{} komutunu sunar.
+% Cilt numarasini uretim doldurur, ona dokunulmaz.
+\year{2026}
 
 \title{The Measurement Protocol Decides the Conclusion: A Methodological Study
 of CNN and Vision Transformer Adversarial Robustness Comparisons}
 
-\author{\uppercase{\c{C}a\u{g}r{\i} \c{S}ahin}\authorrefmark{1}\authorrefmark{2},
-\uppercase{and \"Ozal Y{\i}ld{\i}r{\i}m}\authorrefmark{2}}
+% Yazar bandi sablonda buyuk harftir. \uppercase Turkce {\i}'yi buyutmez ve
+% i -> I yapar (Turkce'de i -> İ); "CAGRı SAHIN" / "YıLDıRıM" basiliyordu.
+% Bu yuzden buyuk harf ACIKCA yaziliyor: Cagri -> CAGRI, Sahin -> SAHİN (\.I),
+% Yildirim -> YILDIRIM.
+\author{\c{C}A\u{G}RI \c{S}AH\.IN\authorrefmark{1}\authorrefmark{2},
+AND \"OZAL YILDIRIM\authorrefmark{2}}
 
 \address[1]{Department of Software Engineering, Mu\c{s} Alparslan University,
 49250 Mu\c{s}, T\"urkiye (e-mail: c.sahin@alparslan.edu.tr)}
@@ -69,13 +76,14 @@ of CNN and Vision Transformer Adversarial Robustness Comparisons}
 % ============================================================================
 \begin{document}
 
-\titlepgskip=-21pt
-
-\maketitle
-
-
 % ----------------------------------------------------------------------------
-% ABSTRACT
+% ABSTRACT + INDEX TERMS
+% DIKKAT (2026-09-29): ieeeaccess.cls ozeti ve anahtar kelimeleri \maketitle
+% ICINDE, baslik blogunun altina diker; dolayisiyla IKISI DE \maketitle'dan
+% ONCE gelmek ZORUNDADIR (IEEEtran'in tersi). 09-01 tasimasinda sira
+% korunmus, sinif ikisini de SESSIZCE dusurmus: PDF bir ay boyunca ozetsiz
+% ve anahtar kelimesizdi. Kapilar .tex okudugu icin yakalamadi; artik
+% scripts/check_pdf_render.py PDF metnini denetliyor.
 % ----------------------------------------------------------------------------
 \begin{abstract}
 Comparisons of adversarial robustness across architecture families reach conflicting conclusions, usually attributed to models, training recipes, or datasets. We show that much of it comes from the measurement protocol itself. On adversarially trained ResNet-18 and ViT-Tiny pairs, three runs each, with full-test-set per-sample logging and a validation split held out before training, we fix models, data, threat model and attack budget and vary only how transfer is scored. Across four conditioning protocols the measured CNN-to-ViT transfer asymmetry ranges from 4.4 to 19.4 points on CIFAR-10, whereas retraining both architectures moves it by under 1.5 points. That 15.01-point spread is not one thing: an identity we derive removes 9.21 points of it in closed form, and 5.79 points come from a protocol that estimates a different quantity. What survives is 3.91 points of discretion between the two protocols we endorse. The identity equates the deviation of unconditioned from conditioned rates with the target's clean error scaled by one minus the conditioned rate, on a premise we measure rather than assume. Replicating on CIFAR-100 preserves the sign in all twelve measurements. On SVHN, where the same recipe leaves the architectures 1.85 points apart in clean accuracy, the protocol decides the sign as well as the size: two report a CNN advantage and two a ViT advantage, though the two we endorse agree. Varying only the checkpoint-selection rule adds a fourth, rarely reported, source of variance. Three further readings fail to replicate, and we close with reporting requirements for cross-architecture robustness studies.
@@ -84,6 +92,10 @@ Comparisons of adversarial robustness across architecture families reach conflic
 \begin{IEEEkeywords}
 Adversarial robustness, convolutional neural networks, evaluation methodology, deep learning security, reproducibility, transfer attacks, Vision Transformer
 \end{IEEEkeywords}
+
+\titlepgskip=-21pt
+
+\maketitle
 
 % ----------------------------------------------------------------------------
 % SECTIONS
@@ -124,11 +136,13 @@ The authors used Claude (Anthropic) during the preparation of this work. The too
 % ----------------------------------------------------------------------------
 % BIOGRAPHY (Required for IEEE Access)
 % ----------------------------------------------------------------------------
-\begin{IEEEbiographynophoto}{\c{C}a\u{g}r{\i} \c{S}ahin}
+% Biyografi basligini da sinif buyuk harfe cevirir ve {\i} yine buyumez;
+% adlar burada da ACIKCA buyuk harf (bkz. yazar bandi notu).
+\begin{IEEEbiographynophoto}{\c{C}A\u{G}RI \c{S}AH\.IN}
 received the B.Sc.\ degree in software engineering from F{\i}rat University, Elaz{\i}\u{g}, Turkey. He is currently pursuing the Ph.D.\ degree with the Department of Software Engineering, F{\i}rat University. His research interests include adversarial machine learning, deep learning security, and computer vision, with a focus on the robustness of neural network architectures against adversarial perturbations.
 \end{IEEEbiographynophoto}
 
-\begin{IEEEbiographynophoto}{\"Ozal Y{\i}ld{\i}r{\i}m}
+\begin{IEEEbiographynophoto}{\"OZAL YILDIRIM}
 is with the Department of Software Engineering, F{\i}rat University, Elaz{\i}\u{g}, Turkey. His research interests include deep learning, computer vision, and biomedical signal processing.
 \end{IEEEbiographynophoto}
 

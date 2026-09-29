@@ -1,5 +1,38 @@
 # Tur 4 — ic hakemlik hukmu ve birlesik eylem plani (2026-08-29)
 
+> ## 2026-09-29 TAZE GOZ KONTROLU — RENDER KUSURU
+>
+> Bir aylik aradan sonra PDF'e GERCEKTEN bakildi (sayfa goruntusu). Bulgu:
+> **gonderim PDF'i 09-01'den beri OZETSIZ ve ANAHTAR KELIMESIZDI.**
+> `ieeeaccess.cls` ozeti ve anahtar kelimeleri `\maketitle` ICINDE diker;
+> ikisi de `\maketitle`'dan ONCE gelmeli (IEEEtran'in tersi). Tasimada
+> sira korunmus, sinif ikisini SESSIZCE dusurmus. Yedi kapi da gecti
+> (hepsi .tex okur), paketten bagimsiz derleme de gecti (hata yok, icerik
+> yok). "Gecen bir kontrol, yakaladigini kanitlamaz" — bir kez daha.
+>
+> Ayrica `\uppercase` Turkce `{\i}`'yi buyutmuyordu: yazar bandi
+> "CAGRı SAHIN / YıLDıRıM", biyografi basliklari da ayni. Adlar acikca
+> buyuk harfle yazildi (ŞAHİN icin `\.I`). Altbilgi yili 2023 -> 2026.
+>
+> **SEKIZINCI KAPI**: `scripts/check_pdf_render.py` PDF METNINI denetler
+> (ozet, INDEX TERMS, baslik, yazar bandi ve biyografide dotless-i
+> kalintisi, sayfa sayisi, biyografi varligi). `kapilar.sh`'ye eklendi.
+> Sinamasi `scripts/test_pdf_render.sh` 09-01 hatasini birebir enjekte
+> eder; ilk iki surumu kirmadi (enjeksiyon bir YORUMDAKI `\maketitle` ile
+> eslesiyordu), ucuncu surum kirdi: Kol 0 GECTI / Kol 1 KALDI.
+>
+> Kontrol listesi bayat "21 sayfa"dan 24'e cekildi; render maddeleri eklendi.
+> Genisletilmis karantina (09-08: run3, attention_analysis_run3,
+> stat_addendum, rev2_blockA) tarandi: kapi betikleri yalniz c1_*/q1 okuyor,
+> anonim arsiv de oyle; eski yollar yalniz paper/review/ tarihsel raporlarinda.
+>
+> **Kullanici karari bekleyen:** yazar FOTOGRAFLARI. Sinifta
+> `IEEEbiographynophoto` bos sarmalayici; sablon fotografli `IEEEbiography`
+> bekliyor ve son sayfada foto boslugu birakiyor. Foto eklenecekse dosyalar
+> gerekli; eklenmeyecekse mevcut hal kabul edilebilir (bosluk kozmetik).
+
+---
+
 > ## TUR 4 KAPANDI (2026-09-01, commit 1058176)
 >
 > **Faz 0 · 2A · 2B · 2C · 3 — HEPSI BITTI.** Yalnizca kullanici tarafinda

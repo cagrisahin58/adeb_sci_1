@@ -9,6 +9,12 @@
 #   6 check_en_tr_mirror.py         EN/TR yapisal ayna
 #   7 gonderim_tutarlilik.py       kapak mektubu / one cikanlar / beyanlar
 #                                  <-> makale basligi ve ARTEFAKTLAR
+#   8 check_pdf_render.py          DERLENMIS PDF: ozet, anahtar kelimeler,
+#                                  baslik, yazar bandi ve biyografi RENDER'da
+#                                  var mi. (2026-09-29: ilk yedi kapi .tex
+#                                  okur; ieeeaccess.cls ozeti bir ay boyunca
+#                                  sessizce dusurmustu ve hepsi gecmisti.)
+#                                  Sinamasi: scripts/test_pdf_render.sh
 set -u
 cd "$(dirname "$0")/.." || exit 1
 DEX=(docker exec -w /workspace adeb_eval python)
@@ -21,6 +27,7 @@ KAPILAR=(
   "bildiri_tutarlilik.py:bildiri"
   "check_en_tr_mirror.py:EN/TR ayna"
   "gonderim_tutarlilik.py:gonderim"
+  "check_pdf_render.py:PDF render"
 )
 
 kalan=0
@@ -36,7 +43,7 @@ done
 
 echo "----------------------------------------------------------------------"
 if [ "$kalan" -eq 0 ]; then
-    echo "YEDI KAPI DA GECTI"
+    echo "SEKIZ KAPI DA GECTI"
 else
     echo "KALAN KAPI: $kalan"
 fi
