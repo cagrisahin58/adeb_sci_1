@@ -1,0 +1,26 @@
+AI/çeviri izi: 43/100 (belirgin iz) — AI kalıbı 8, çeviri kokusu 35; 11 bulgu / 425 kelime
+Kategoriler: sozcuk 6, resmiyet 2, zarf 1, hafif_fiil 1, bir 1
+En sık: "hedefler" ×1, "m ile" ×1, "yinelemesi ile" ×1, "çarpanı ile" ×1, "sağlayan" ×1, "bir iddiadır" ×1, "çıkamamıştır" ×1, "hiçbir biçimde" ×1
+Bulgular (şiddete göre):
+  [1] ¶2 "cnn ile" (sozcuk): CNN ile Görü Dönüştürücüsü gürbüzlük karşılaştırmalarındaki uyuşmazlığın ne kadarının modellerden değil ölçümden geldiğini sorduk ve bunu...
+      → "-le" eki; "birlikte" çoğu zaman gereksiz.
+  [1] ¶3 "m ile" (sozcuk): Ölçüm hükmediyor: özdeş çekişmeli eğitilmiş ResNet-18 ve ViT-Tiny çiftlerinde, mimariler arası transfer asimetrisi dört koşullama protoko...
+      → "-le" eki; "birlikte" çoğu zaman gereksiz.
+  [1] ¶3 "puan ile" (sozcuk): Bu M puanlık yayılım, türettiğimiz bir özdeşliğin kapalı formda kaldırdığı M puan ile farklı bir niceliği kestiren bir protokolden gelen ...
+      → "-le" eki; "birlikte" çoğu zaman gereksiz.
+  [1] ¶3 "hiçbir biçimde" (zarf): Koşulsuz oranlar böyle bir karşılaştırma için hiçbir biçimde geçerli temel değildir: WideResNet-28-10 referansının eklendiği M matriste, ...
+      → "X biçimde" yerine tek zarf ya da fiili değiştir.
+  [1] ¶3 "sağlayan" (hafif_fiil): Koşulsuz oranlar böyle bir karşılaştırma için hiçbir biçimde geçerli temel değildir: WideResNet-28-10 referansının eklendiği M matriste, ...
+      → Hafif fiil. "X'in artmasını sağladı" → "X'i artırdı".
+  [1] ¶3 "yinelemesi ile" (sozcuk): CIFAR-100 yinelemesi ile kontrol noktası seçimi ablasyonu aynı yönü gösterir: makalelerin nadiren raporladığı ölçüm tercihleri, raporlana...
+      → "-le" eki; "birlikte" çoğu zaman gereksiz.
+  [1] ¶4 "çarpanı ile" (sozcuk): Koşullu ayrıştırma, mutlak gürbüzlüğü temiz doğruluk çarpanı ile koşullu duyarlılık çarpanına ayırır.
+      → "-le" eki; "birlikte" çoğu zaman gereksiz.
+  [1] ¶5 "çıkamamıştır" (resmiyet): Üç okuma doğrudan ölçümden sağ çıkamamıştır: çekişmeli eğitilmiş CNN gradyanları daha seyrektir ama mekansal olarak daha lokalize değildi...
+      → "-mıştır": ansiklopedi sesi; "-dı" ya da "-mış".
+  [1] ¶5 "bir iddiadır" (bir): Bunlardan yalnızca üçüncüsü yayımlanmış bir iddiadır; ilk ikisi kendi önceki şekillerimizin davet ettiği yorumlardır.
+      → "is a X": "bir" düşebilir: "İstanbul bir şehirdir" → "İstanbul şehirdir" / "İstanbul, şehir".
+  [1] ¶5 "kalmıştır" (resmiyet): İki davranışsal fark ise bağımsız kontrol noktası kümelerinde tekrarlanarak ayakta kalmıştır: çekişmeli eğitimin yarattığı gradyan seyrek...
+      → "-mıştır": ansiklopedi sesi; "-dı" ya da "-mış".
+  [1] ¶6 "hedefler" (sozcuk): Etkinin arkasındaki mekanizma, yani hedefler arasındaki eşitsiz temiz doğruluk farkı, kurulumumuza özgü değildir.
+      → "targets": "-i istiyor", "-e çalışıyor".

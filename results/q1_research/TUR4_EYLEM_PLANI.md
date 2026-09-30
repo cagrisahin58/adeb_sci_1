@@ -1,5 +1,42 @@
 # Tur 4 — ic hakemlik hukmu ve birlesik eylem plani (2026-08-29)
 
+> ## 2026-09-30 ATIF-BAGLAM + USLUP GECISI (EN ve TR)
+>
+> Kullanici istegi: atif kontrolu yalniz kunye degil BAGLAM duzeyinde;
+> AI izi temizligi; EN metin "profesyonel bir Amerikan akademisyenin
+> agzindan" okunmali.
+>
+> - **Kaynakca** (`raporlar/atif_2026-09-30/rapor.md`): 64 girdi, uydurma
+>   yok, 63 VERIFIED (DOI/arXiv + ikinci kaynak), 1 UNCERTAIN (kendi
+>   bildirimiz). 15 kunye duzeltildi (`references.bib`, yedek `.bak`).
+> - **Atif-baglam**: 3 kirmizi (A1 TREND'de ViT yok; A2 Shao "egitim
+>   kararsizligi" yok; A3 Bhojanapalli "kuresel alici alan" yok) + 10 sari
+>   + O1 (Benz ve Shao da Mahmood'la ayni yonu bildiriyor). HEPSI EN ve
+>   TR'ye uygulandi (`arsiv/b2_yardimci/_atif_baglam_{en,tr}.py`, 16+16
+>   yama). A5 (Chen 2023) ozeti erisilemedi: saldiri makalesi diye anildi,
+>   frekans tercihi Benz/Shao'ya baglandi. `bildiri.tex:57` bilincli olarak
+>   degistirilmedi (ATEEC gonderildi); `bildiri.bib` yeniden uretildi.
+> - **EN uslup** (`raporlar/ai_izi_2026-09-30/`): cumle duzeyi yeniden
+>   yazim, degismezler (sayi/cite/ref/label) korundu; koyu etiketler ayna
+>   kapisi yuzunden geri alindi. EN 25 -> 24 sayfa.
+> - **TR ayna**: EN diff'i cumle cumle yansitildi (opus ajan); ardindan
+>   `turkce-yazi` betikleri (`raporlar/turkce_yazi_2026-09-30/`): 41
+>   duzeltme isareti kaldirildi, §1 ve §6'da rapor sesi (-maktadir %38)
+>   genis zamana cekildi, isaretli tekil cumleler duzeltildi. §4 ve §5'te
+>   -maktadir payi hala %25/%12 ve "X degil Y" karsitligi 19/5 — sinyal,
+>   ayrica karar ister. TR 22 -> 21 sayfa.
+> - **Capraz atif**: EN 04:421 `subsec:attacks` -> `subsec:attack_methods`
+>   (butce §3'te tanimli; TR ile ayni). TR 04:117'ye EN'deki MI-FGSM adim
+>   notu ve `Tablo tgr` gondermesi eklendi (HEAD'de de eksikti). EN/TR
+>   cite ve ref coklukumeleri artik birebir.
+> - Sekiz kapi geciyor; EN 24, TR 21, bildiri 6 sayfa; hepsi 0 hata.
+>
+> **Kullanici karari bekleyen:** YZ beyani metnine OK; hangi uzak depo
+> herkese acilacak (origin=adeb_sci_1 / adeb_son) ve gecmis yeniden yazimi
+> (Co-Authored-By satirlarinin silinmesi + force-push) icin acik onay; fon
+> bilgisi; yazar fotograflari; iThenticate. Commit mesajlarinda
+> Co-Authored-By KULLANILMAZ (30.09 karari).
+
 > ## 2026-09-29 TAZE GOZ KONTROLU — RENDER KUSURU
 >
 > Bir aylik aradan sonra PDF'e GERCEKTEN bakildi (sayfa goruntusu). Bulgu:
