@@ -111,9 +111,8 @@
 > The experiments in this study use the CIFAR-10 dataset, which is publicly available at https://www.cs.toronto.edu/~kriz/cifar.html. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark (https://robustbench.github.io/).
 
 ### Code Availability Statement
-**Status:** Needs to be added
-**Recommended text:**
-> The source code and trained models used in this study will be made publicly available upon acceptance of the manuscript.
+**Status:** Done (2026-10-02). Public repository https://github.com/cagrisahin58/cnn-vit-robustness-protocols (analysis pipeline, per-sample records, split indices, seed lists, verification scripts; checkpoints on request). Built by `scripts/acik_depo_kur.sh`; reference sheet regenerates byte-identically from the records.
+**Text in the manuscript:** present tense and the same scope in main.tex (Data and Code Availability), Section 6, the Turkish mirror, declarations.txt and the cover letter.
 
 ### Conflict of Interest
 **Status:** Declared in cover letter

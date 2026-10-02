@@ -1,5 +1,37 @@
 # Tur 4 — ic hakemlik hukmu ve birlesik eylem plani (2026-08-29)
 
+> ## 2026-10-02 KULLANICI KARARLARI + ACIK DEPO
+>
+> Kararlar (kullanici): (1) YZ beyani metni OK. (2) Gonderim icin YENI,
+> derlenmis, herkese acik depo; ad Claude onerisi:
+> `github.com/cagrisahin58/cnn-vit-robustness-protocols`. adeb_sci_1 ve
+> adeb_sci_son kapali kalir. (3) Gecmis yeniden yazimi GEREKMIYOR (yeni
+> depo tek commit, imza yok). (4) Fon simdilik tamamen devre disi:
+> declarations.txt "no specific grant". Yazar adresleri dogru.
+> (5) Fotograflar, IEEE uyelik ibaresi, ikinci yazar ozgecmisi: SONRA.
+> (6) iThenticate henuz yapilmadi.
+>
+> Yapilanlar:
+> - `scripts/acik_depo_kur.sh` → `teslim/acik_depo/cnn-vit-robustness-protocols/`
+>   (23 MB, 910 dosya, tek commit "Cagri Sahin"). Icerik: results/c1_* +
+>   q1 (adv_archive 434 MB, `_` ile baslayan ic sinamalar ve Turkce ic
+>   raporlar HARIC; yalniz C1_REFERANS_FOYU.md kalir), src, cli,
+>   experiments, bes analiz/sekil betigi + iki dogrulama betigi, data/
+>   bolme indeksleri, configs (root sahipli trades_v3.yaml atlandi),
+>   README (EN, Turkce etiket sozlugu), LICENSE (MIT), CITATION.cff.
+>   Betiklerdeki /workspace ve ~/projects kokleri depo kokune cevrildi.
+> - SINAMA (konteynerde, depo kopyasindan): `build_reference_sheet.py`
+>   referans foyunu BIREBIR AYNI uretti; `fig_protokol_kumeleri_veri.py`
+>   ayni JSON'u uretti (git status bos).
+> - "Upon acceptance" dili KALKTI, URL girdi: EN/TR main.tex veri-kod
+>   bolumu, EN/TR §6 son cumle, declarations.txt (§2, §4 fon, tarih),
+>   cover_letter.tex (36 GB -> 40 GB; `du -sh models` = 40G), kontrol
+>   listesi. Sekiz kapi geciyor; EN 24, TR 21 sayfa.
+>
+> **Kullanicidan beklenen:** GitHub'da `cnn-vit-robustness-protocols`
+> adinda bos depo acmak (Claude'da gh/token yok); ardindan itme komutu
+> betigin son satirinda. Depoyu herkese acma dugmesi kullanicida.
+
 > ## 2026-09-30 ATIF-BAGLAM + USLUP GECISI (EN ve TR)
 >
 > Kullanici istegi: atif kontrolu yalniz kunye degil BAGLAM duzeyinde;

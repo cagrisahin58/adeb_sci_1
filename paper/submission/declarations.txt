@@ -6,7 +6,7 @@ Study of CNN and Vision Transformer Adversarial Robustness Comparisons
 
 Target: IEEE Access
 
-Date: 2026-08-25 (revised)
+Date: 2026-10-02 (revised)
 
 ---
 
@@ -21,10 +21,12 @@ from the RobustBench benchmark [Croce et al., 2021].
 
 2. CODE AVAILABILITY STATEMENT
 
-Upon acceptance we will publish the analysis pipeline, the scripts that
-generate every table and figure in the manuscript, the per-sample evaluation
-records, the fixed validation-split indices and the seed lists. These
-together reproduce every number reported in the paper: all four conditioning
+The analysis pipeline, the scripts that generate every table and figure in
+the manuscript, the per-sample evaluation records, the fixed
+validation-split indices and the seed lists are publicly available at
+https://github.com/cagrisahin58/cnn-vit-robustness-protocols
+(MIT license for the code, CC BY 4.0 for the records). Together they
+reproduce every number reported in the paper: all four conditioning
 protocols are computed from the per-sample records, so the protocol
 comparison can be repeated without retraining. Trained checkpoints total
 about 40 GB and are available from the authors on reasonable request.
@@ -39,10 +41,8 @@ The authors declare no conflict of interest.
 
 4. FUNDING
 
-[TO BE CONFIRMED BY AUTHORS]
-Option A: "This research received no specific grant from any funding agency
-in the public, commercial, or not-for-profit sectors."
-Option B: "This work was supported by [Agency] under Grant [Number]."
+This research received no specific grant from any funding agency in the
+public, commercial, or not-for-profit sectors.
 
 ---
 
