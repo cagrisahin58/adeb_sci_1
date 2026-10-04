@@ -1,0 +1,163 @@
+{
+  "sekil": "fig2_epsilon_sweep",
+  "dil": "tr",
+  "betik": "scripts/generate_journal_figs_c1.py",
+  "komut": "docker exec -w /workspace adeb_eval python scripts/generate_journal_figs_c1.py --lang tr --only fig2 fig5b",
+  "uretim_zamani_utc": "2026-10-04T02:06:56+00:00",
+  "git": {
+    "commit": "ded2356188280d4aba2712f048879f60f7a353ed",
+    "branch": "q1",
+    "betik_kirli": true
+  },
+  "cihaz": "cpu",
+  "tohum": 42,
+  "boyut_in": [
+    3.5,
+    2.55
+  ],
+  "en_kucuk_yazi_pt": 8.0,
+  "kaynaklar": {
+    "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3",
+    "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a",
+    "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv": "276b3bad6c65d60292950f17ab3bb54a7caac6591e9d8c942843ecc5ec56dfca",
+    "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv": "3db9892b20c6e7c9612fe2c8721b91a169c969480c51c6208faa4dd02ae7e8a1",
+    "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv": "c8fef0b665339b70601ab279c1bb786c4375a0324a60329dab821b16d6bbefd2",
+    "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv": "e04d82bc9060f07e7a0cb013810203c6d260c8a536578da5e7d3b23590e4e8cd",
+    "results/wrn_eval/wrn_eval_summary.json": "0f0930ba2d9e32460a3f9b0c7bdfe5ef4cedc33350f5f1850c99a5bee9163375"
+  },
+  "degerler": {
+    "resnet18": {
+      "eps_etiket": [
+        "0 (clean)",
+        "2/255",
+        "4/255",
+        "8/255",
+        "16/255"
+      ],
+      "tohum_degerleri": [
+        [
+          85.37,
+          85.94,
+          86.04
+        ],
+        [
+          77.18,
+          77.29,
+          77.42
+        ],
+        [
+          66.89,
+          66.98,
+          66.33
+        ],
+        [
+          44.86,
+          43.99,
+          43.73
+        ],
+        [
+          20.56,
+          20.45,
+          20.12
+        ]
+      ],
+      "ortalama": [
+        85.78333333333335,
+        77.29666666666668,
+        66.73333333333333,
+        44.19333333333333,
+        20.376666666666665
+      ],
+      "sd_n-1": [
+        0.361432335760558,
+        0.12013880860626472,
+        0.3521836642056742,
+        0.59180514811324,
+        0.22898325994127341
+      ],
+      "en_buyuk_sd": 0.59180514811324
+    },
+    "vit_tiny": {
+      "eps_etiket": [
+        "0 (clean)",
+        "2/255",
+        "4/255",
+        "8/255",
+        "16/255"
+      ],
+      "tohum_degerleri": [
+        [
+          74.1,
+          73.47,
+          73.01
+        ],
+        [
+          64.16,
+          64.23,
+          63.92
+        ],
+        [
+          53.94,
+          53.7,
+          54.04
+        ],
+        [
+          32.68,
+          32.47,
+          32.83
+        ],
+        [
+          12.22,
+          12.19,
+          12.06
+        ]
+      ],
+      "ortalama": [
+        73.52666666666666,
+        64.10333333333334,
+        53.89333333333334,
+        32.660000000000004,
+        12.156666666666666
+      ],
+      "sd_n-1": [
+        0.5472050194701502,
+        0.16258331197676265,
+        0.17473789896107986,
+        0.18083141320025103,
+        0.08504900548115368
+      ],
+      "en_buyuk_sd": 0.5472050194701502
+    },
+    "wrn_28_10": {
+      "anahtarlar": [
+        "clean",
+        "pgd10_eps0.00784",
+        "pgd10_eps0.01569",
+        "pgd10_eps0.03137",
+        "pgd10_eps0.06275"
+      ],
+      "deger": [
+        89.48,
+        85.35000000000001,
+        80.0,
+        66.92,
+        47.36
+      ],
+      "not": "tek checkpoint, SD yok"
+    },
+    "fark_cnn_eksi_vit": [
+      12.2567,
+      13.1933,
+      12.84,
+      11.5333,
+      8.22
+    ]
+  },
+  "notlar": [
+    "x ekseni kategorik (esit aralik), lineer epsilon degil",
+    "eps=0 noktasi temiz dogruluk (CSV satiri Attack=clean, Epsilon=0)",
+    "hata cubugu: 3 tohum cifti uzerinden +-1 SD (ddof=1); cogu nokta isaretciden dar",
+    "tarama kosusu (results/c1_sweep) Tablo 1'in kosusundan ayridir; 8/255 noktasi Tablo 1 ile birebir ayni degildir"
+  ],
+  "ek_ciktilar": []
+}

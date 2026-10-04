@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Nested conditioning sets figure (IEEE Access, Section 4.2), version 2.
+"""Nested conditioning sets figure (IEEE Access, Section 4.2), version 3 (2026-10-04).
 
 Left: the four evaluation sets drawn as nested boxes (schematic, NOT
 area-proportional; the nesting is the CNN->ViT one, the ViT->CNN sets nest in
 the same order). Each box carries N for both directions where they differ.
 Right: per protocol, the three seed-pair asymmetries (open circles), their
 mean (short vertical bar) and SD; above the axis, brackets for the spread
-decomposition.
+decomposition (9.21, 5.79); the 3.91 term (both-correct minus target-correct)
+is a connector between rows B and C. Rows are lettered A-D on both panels.
+--lang tr writes the Turkish variant to paper/figures/final_tr.
 
 QUARANTINE RULE: every result number drawn comes from ONE file,
 results/q1/fig_protokol_kumeleri_veri.json (scripts/fig_protokol_kumeleri_veri.py).
@@ -37,12 +39,42 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib.patches import Rectangle  # noqa: E402
 
 PROTOCOLS = ["raw", "target_correct", "both_correct", "successful_source"]
-SET_NAMES = {
-    "raw": ["All test samples (raw)"],
-    "target_correct": ["Target (ViT) correct"],
-    "both_correct": ["Both correct"],
-    "successful_source": ["Successful source", "(CNN white-box)"],
+# 2026-10-04 (hakem paneli, mercek D kucuk 2 / yeniden uretim 12): satir
+# harfleri A-D iki panelde de; sol-sag eslesmesi dikey konuma birakilmaz.
+ROW_LETTERS = ["A", "B", "C", "D"]
+TXT = {
+    "en": {
+        "sets": {"raw": ["All test samples (raw)"], "target_correct": ["Target (ViT) correct"],
+                 "both_correct": ["Both correct"], "successful_source": ["Successful source", "(CNN white-box)"]},
+        "n_key": "N: CNN→ViT / ViT→CNN",
+        "hdr_left": "Evaluation set\n(CNN→ViT boxes)",
+        "hdr_right": "Measured asymmetry\n(mean ± SD, {k} seed pairs)",
+        "xlabel": "CNN→ViT − ViT→CNN (pts)", "unit": "pts",
+        "identity": "identity term", "estimand": "different estimand",
+        "spread": "Spread {v} pts (terms rounded separately)",
+        "dec": ".", "thou": ",", "aux": "paper/manuscript/main.aux", "outdir": "paper/figures/final",
+    },
+    "tr": {
+        "sets": {"raw": ["Tüm örnekler (koşulsuz)"], "target_correct": ["Hedef (ViT) doğru"],
+                 "both_correct": ["Her ikisi doğru"], "successful_source": ["Başarılı kaynak", "(CNN beyaz kutu)"]},
+        "n_key": "N: CNN→ViT / ViT→CNN",
+        "hdr_left": "Değerlendirme kümesi\n(CNN→ViT kutuları)",
+        "hdr_right": "Ölçülen asimetri\n(ort. ± SS, {k} tohum çifti)",
+        "xlabel": "CNN→ViT − ViT→CNN (puan)", "unit": "puan",
+        "identity": "özdeşlik terimi", "estimand": "farklı nicelik",
+        "spread": "Yayılım {v} puan (terimler ayrı yuvarlandı)",
+        "dec": ",", "thou": ".", "aux": "paper/manuscript_tr/main.aux", "outdir": "paper/figures/final_tr",
+    },
 }
+LANG = "en"
+
+
+def loc_num(s):
+    """Dile gore ondalik/binlik ayiraci: TR '13,57' ve '10.000'."""
+    t = TXT[LANG]
+    if t["dec"] == ".":
+        return s
+    return s.replace(",", "\0").replace(".", t["dec"]).replace("\0", t["thou"])
 # IBM blue scale around the CNN colour #0F62FE of the journal figures
 # (scripts/generate_journal_figs_c1.py: C_CNN = "#0f62fe"): blue 10/20/40/60.
 FILLS = ["#EDF5FF", "#D0E2FF", "#78A9FF", "#0F62FE"]
@@ -51,7 +83,7 @@ EDGE = "#393939"
 INK = "#262626"
 GUIDE = "#C6C6C6"
 CM = 1 / 2.54
-MIN_FONT = 7.0
+MIN_FONT = 8.0   # 2026-10-04: dergi sekillerinin tumunde en kucuk yazi 8 pt (onceden 7)
 
 
 def fail(msg):
@@ -162,7 +194,7 @@ def keep_old(outdir, name):
 
 
 def fmt_n(n):
-    return f"{n:,}"
+    return loc_num(f"{n:,}")
 
 
 def n_label(P, p):
@@ -185,15 +217,22 @@ def bracket(ax, x0, x1, y, label, tick, fs, label_side="above", lw=0.7):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--data", default="results/q1/fig_protokol_kumeleri_veri.json")
-    ap.add_argument("--aux", default="paper/manuscript/main.aux")
+    ap.add_argument("--lang", choices=sorted(TXT), default="en",
+                    help="en -> paper/figures/final, tr -> paper/figures/final_tr (decimal comma)")
+    ap.add_argument("--aux", default=None, help="default: the language's main.aux")
     ap.add_argument("--eq-key", default="eq:raw_identity")
-    ap.add_argument("--outdir", default="paper/figures/final")
+    ap.add_argument("--outdir", default=None, help="default: by --lang")
     ap.add_argument("--name", default="fig_protocol_sets")
-    ap.add_argument("--width-cm", type=float, default=8.8, help="IEEE single column")
-    ap.add_argument("--height-cm", type=float, default=9.4)
+    ap.add_argument("--width-cm", type=float, default=8.89, help="IEEE single column, 3.5 in")
+    ap.add_argument("--height-cm", type=float, default=10.0)
     ap.add_argument("--dpi", type=int, default=300)
     ap.add_argument("--seed", type=int, default=0, help="unused (no randomness); kept for the log")
     args = ap.parse_args()
+    global LANG
+    LANG = args.lang
+    T = TXT[LANG]
+    args.aux = args.aux or T["aux"]
+    args.outdir = args.outdir or T["outdir"]
 
     root = Path.cwd()
     data_path = Path(args.data)
@@ -208,9 +247,10 @@ def main():
         # Same family as scripts/generate_journal_figs_c1.py (current final figures).
         "font.family": "sans-serif",
         "font.sans-serif": ["DejaVu Sans"],
-        "font.size": 7.5,
-        "axes.labelsize": 7.5,
-        "xtick.labelsize": 7.5,
+        "font.size": 8.0,
+        "axes.labelsize": 9.0,
+        "xtick.labelsize": 8.0,
+        "ytick.labelsize": 8.0,
         "axes.linewidth": 0.6,
         "axes.edgecolor": EDGE,
         "xtick.color": EDGE,
@@ -220,22 +260,24 @@ def main():
         "ps.fonttype": 42,
         "svg.hashsalt": str(args.seed),
     })
-    FS_NAME, FS_N, FS_VAL, FS_SD, FS_BR = 7.5, 7.0, 7.5, 7.0, 7.0
-    assert min(FS_NAME, FS_N, FS_VAL, FS_SD, FS_BR) >= MIN_FONT
+    # 2026-10-04: every text >= 8 pt at the final column width (was 7-7.5 pt).
+    FS_NAME, FS_N, FS_VAL, FS_SD, FS_BR, FS_ROW, FS_PANEL = 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 9.0
+    assert min(FS_NAME, FS_N, FS_VAL, FS_SD, FS_BR, FS_ROW, FS_PANEL) >= MIN_FONT
 
     W, H = args.width_cm * CM, args.height_cm * CM
     fig = plt.figure(figsize=(W, H))
     fig.patch.set_facecolor("white")
 
     # ---- geometry in layout units (carries no data) ----
-    band = 0.9                              # label band of rings 0..2
-    inner_h = 1.0                           # innermost box holds three lines
+    band = 1.0                              # label band of rings 0..2 (row letter + two lines)
+    inner_h = 1.2                           # innermost box: row letter + three lines
     nlev = len(PROTOCOLS)
     ymax = band * (nlev - 1) + inner_h + 0.0
-    x_in, y_in = 0.05, 0.12
+    x_in, y_in = 0.04, 0.12
     y_inner0 = ymax - (nlev - 1) * band - inner_h
     y_outer0 = y_inner0 - (nlev - 1) * y_in
-    y_brackets = [ymax + 0.20, ymax + 0.55, ymax + 1.02]   # 3.91 / 9.21 / 5.79
+    # [0] was the 3.91 bracket; since 2026-10-04 it is drawn between rows B and C.
+    y_brackets = [None, ymax + 0.55, ymax + 1.02]   # - / 9.21 / 5.79
     y_top = ymax + 1.40
 
     ax_bottom, ax_top = 0.165, 0.885
@@ -249,9 +291,9 @@ def main():
         y0 = y_outer0 + k * y_in if k < nlev - 1 else y_inner0
         axL.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, facecolor=FILLS[k],
                                 edgecolor=EDGE, linewidth=0.6, joinstyle="miter"))
-        yc = y1 - band / 2 if k < nlev - 1 else (y0 + y1) / 2
+        yc = y1 - band / 2 - 0.07 if k < nlev - 1 else y0 + (y1 - y0 - 0.2) / 2
         rows[p] = yc
-        lines = SET_NAMES[p] + [n_label(P, p)]
+        lines = T["sets"][p] + [n_label(P, p)]
         step = 0.235
         y_first = yc + step * (len(lines) - 1) / 2
         for i, ln in enumerate(lines):
@@ -260,53 +302,77 @@ def main():
                      fontsize=FS_N if is_n else FS_NAME,
                      fontweight="normal" if (is_n or ln.startswith("(")) else "bold",
                      color=TEXT_ON_FILL[k])
+        # row letter in the top-left corner of the set's own band
+        axL.text(x0 + 0.012, y1 - 0.035, ROW_LETTERS[k], ha="left", va="top",
+                 fontsize=FS_ROW, fontweight="bold", color=TEXT_ON_FILL[k])
     axL.set_xlim(-0.005, 1.005)
     axL.set_ylim(y_outer0 - 0.02, y_top)
     axL.axis("off")
-    axL.text(0.5, ymax + 0.10, "N: CNN\u2192ViT / ViT\u2192CNN", ha="center", va="bottom",
-             fontsize=FS_N, color=INK)
-    # column headers at figure level, above both panels
-    fig.text(0.015 + 0.475 / 2, 0.985, "Evaluation set\n(CNN\u2192ViT boxes)", ha="center", va="top",
+    axL.text(0.5, ymax + 0.10, T["n_key"], ha="center", va="bottom", fontsize=FS_N, color=INK)
+    # column headers at figure level, above both panels; panel letters at the left of each
+    fig.text(0.015 + 0.475 / 2 + 0.025, 0.985, T["hdr_left"], ha="center", va="top",
              fontsize=FS_NAME, color=INK, linespacing=1.1)
+    fig.text(0.004, 0.985, "(a)", ha="left", va="top", fontsize=FS_PANEL, fontweight="bold", color=INK)
+    fig.text(0.500, 0.985, "(b)", ha="left", va="top", fontsize=FS_PANEL, fontweight="bold", color=INK)
 
     # ---- right: seed values, mean, SD ----
     allv = [v for p in PROTOCOLS for v in P[p]["asimetri_tohum_degerleri"]]
     xmax = 5 * math.ceil(max(allv) / 5 + 0.2)
     xmin = min(0.0, 5 * math.floor(min(allv) / 5))
     offs = [(i - (k_seeds - 1) / 2) * 0.11 for i in range(k_seeds)]  # visibility only
+    half_bar = 0.2
+    label_side = {}
     for p in PROTOCOLS:
         y, m, s = rows[p], P[p]["asimetri_ort"], P[p]["asimetri_sd"]
+        seeds = P[p]["asimetri_tohum_degerleri"]
         axR.plot([xmin, xmax], [y, y], color=GUIDE, lw=0.5, ls=(0, (1, 2)), zorder=1)
-        for dy, v in zip(offs, P[p]["asimetri_tohum_degerleri"]):
+        for dy, v in zip(offs, seeds):
             axR.plot(v, y + dy, "o", ms=3.2, mfc="white", mec=INK, mew=0.7, zorder=3)
-        axR.plot([m, m], [y - 0.2, y + 0.2], color=INK, lw=1.1, solid_capstyle="butt", zorder=4)
-        axR.annotate(f"{m:+.2f} pts", (m, y + 0.2), xytext=(0, 1), textcoords="offset points",
-                     ha="center", va="bottom", fontsize=FS_VAL, color=INK)
-        axR.annotate(f"\u00b1{s:.2f}", (m, y - 0.2), xytext=(0, -1), textcoords="offset points",
-                     ha="center", va="top", fontsize=FS_SD, color=INK)
+        axR.plot([m, m], [y - half_bar, y + half_bar], color=INK, lw=1.1, solid_capstyle="butt", zorder=4)
+        # mean and SD beside the row (two lines), on the side with more free axis length,
+        # so the space between rows stays free for the B-C connector.
+        right = (xmax - max(seeds + [m])) >= (min(seeds + [m]) - xmin)
+        label_side[p] = "right" if right else "left"
+        xa = max(seeds + [m]) if right else min(seeds + [m])
+        axR.annotate(f"{loc_num(f'{m:+.2f}')} {T['unit']}\n±{loc_num(f'{s:.2f}')}", (xa, y),
+                     xytext=(5 if right else -5, 0), textcoords="offset points",
+                     ha="left" if right else "right", va="center", fontsize=FS_VAL, color=INK,
+                     linespacing=1.05, multialignment="center")
     axR.set_xlim(xmin, xmax)
     axR.set_xticks(range(int(xmin), int(xmax) + 1, 5))
-    axR.tick_params(axis="y", left=False, labelleft=False)
+    # row letters A-D on the right panel too (shared y with the boxes)
+    axR.set_yticks([rows[p] for p in PROTOCOLS])
+    axR.set_yticklabels(ROW_LETTERS, fontsize=FS_ROW, fontweight="bold", color=INK)
+    axR.tick_params(axis="y", left=False, labelleft=True, pad=1)
     for sp in ("top", "right", "left"):
         axR.spines[sp].set_visible(False)
-    axR.set_xlabel("CNN\u2192ViT \u2212 ViT\u2192CNN (pts)", labelpad=2)
-    fig.text(0.535 + 0.440 / 2, 0.985, f"Measured asymmetry\n(mean \u00b1 SD, {k_seeds} seed pairs)",
+    axR.set_xlabel(T["xlabel"], labelpad=2, loc="right")  # TR label is wider than the axis
+    fig.text(0.535 + 0.440 / 2, 0.985, T["hdr_right"].format(k=k_seeds),
              ha="center", va="top", fontsize=FS_NAME, color=INK, linespacing=1.1)
 
     # ---- brackets: decomposition, endpoints = protocol means ----
     a = {p: P[p]["asimetri_ort"] for p in PROTOCOLS}
     tick = 0.07
-    bracket(axR, a["target_correct"], a["both_correct"], y_brackets[0],
-            f"{A['artik_takdir_her_ikisi_eksi_hedef']:.2f}", tick, FS_BR, label_side="right")
+    # 3.91 = both_correct - target_correct: drawn BETWEEN rows B and C, from the
+    # bottom of B's mean bar to the top of C's mean bar, so it no longer sits
+    # inside the 9.21 bracket (which implied a partition; mercek D, B2/kucuk 2).
+    yb, yc_ = rows["target_correct"], rows["both_correct"]
+    ymid = (yb + yc_) / 2
+    axR.plot([a["target_correct"], a["target_correct"], a["both_correct"], a["both_correct"]],
+             [yb - half_bar, ymid, ymid, yc_ + half_bar], color=INK, lw=0.7,
+             solid_joinstyle="miter", zorder=4)
+    axR.annotate(loc_num(f"{A['artik_takdir_her_ikisi_eksi_hedef']:.2f}"), (a["both_correct"], ymid),
+                 xytext=(3, 0), textcoords="offset points", ha="left", va="center",
+                 fontsize=FS_BR, color=INK)
     bracket(axR, a["target_correct"], a["raw"], y_brackets[1],
             # 2026-09-29: denklem NUMARASI sekle basilmaz. Numara .aux'a
             # baglidir; her yeniden numaralandirma sekli sessizce yanlislar.
             # Gonderme baslikta \eqref ile durur, sekil yalniz terimi adlandirir.
-            f"{A['ozdeslik_terimi_ham_eksi_hedef_dogru']:.2f}, identity term", tick, FS_BR)
+            f"{loc_num(format(A['ozdeslik_terimi_ham_eksi_hedef_dogru'], '.2f'))}, {T['identity']}", tick, FS_BR)
     bracket(axR, a["raw"], a["successful_source"], y_brackets[2],
-            f"{A['farkli_estimand_bas_kaynak_eksi_ham']:.2f},\ndifferent estimand", tick, FS_BR)
+            f"{loc_num(format(A['farkli_estimand_bas_kaynak_eksi_ham'], '.2f'))},\n{T['estimand']}", tick, FS_BR)
 
-    fig.text(0.5, 0.015, f"Spread {A['yayilim']:.2f} pts (terms rounded separately)",
+    fig.text(0.5, 0.015, T["spread"].format(v=loc_num(f"{A['yayilim']:.2f}")),
              ha="center", va="bottom", fontsize=FS_BR, style="italic", color=INK)
 
     outdir = Path(args.outdir)
@@ -329,9 +395,9 @@ def main():
                                           "not": None if q["n_ViT_to_CNN"] != q["n_CNN_to_ViT"]
                                           else "equal to CNN->ViT, single N printed"}
         printed[f"N_gosterim_{key}"] = {"gosterim": n_label(P, p)}
-        printed[f"asimetri_{key}"] = {"deger": q["asimetri_ort"], "gosterim": f"{q['asimetri_ort']:+.2f} pts",
+        printed[f"asimetri_{key}"] = {"deger": q["asimetri_ort"], "gosterim": f"{loc_num(format(q['asimetri_ort'], '+.2f'))} {T['unit']}", "satir": ROW_LETTERS[PROTOCOLS.index(p)],
                                       "kaynak": f"protokoller.{p}.asimetri_ort"}
-        printed[f"sd_{key}"] = {"deger": q["asimetri_sd"], "gosterim": f"\u00b1{q['asimetri_sd']:.2f}",
+        printed[f"sd_{key}"] = {"deger": q["asimetri_sd"], "gosterim": "\u00b1" + loc_num(f"{q['asimetri_sd']:.2f}"),
                                 "kaynak": f"protokoller.{p}.asimetri_sd"}
         printed[f"tohum_{key}"] = {"deger": q["asimetri_tohum_degerleri"], "gosterim": "open circles (not labelled)",
                                    "kaynak": f"protokoller.{p}.asimetri_tohum_degerleri"}
@@ -340,8 +406,8 @@ def main():
     for k, where in (("yayilim", "bottom line"),
                      ("ozdeslik_terimi_ham_eksi_hedef_dogru", "bracket target_correct..raw"),
                      ("farkli_estimand_bas_kaynak_eksi_ham", "bracket raw..successful_source"),
-                     ("artik_takdir_her_ikisi_eksi_hedef", "bracket target_correct..both_correct")):
-        printed[k] = {"deger": A[k], "gosterim": f"{A[k]:.2f}", "yer": where, "kaynak": f"ayrisim.{k}"}
+                     ("artik_takdir_her_ikisi_eksi_hedef", "connector between rows B (target_correct) and C (both_correct), mean bar to mean bar")):
+        printed[k] = {"deger": A[k], "gosterim": loc_num(f"{A[k]:.2f}"), "yer": where, "kaynak": f"ayrisim.{k}"}
     printed["denklem_numarasi"] = {"deger": eqn,
                                    "gosterim": "sekle BASILMIYOR (baslik \\eqref tasir); .aux'taki numara yalniz kayit icin",
                                    "kaynak": f"{aux} \\newlabel{{{args.eq_key}}}",
@@ -351,10 +417,19 @@ def main():
 
     kanit = {
         "sekil": args.name,
-        "surum": 2,
+        "surum": 3,
+        "dil": LANG,
+        "degisiklik_2026_10_04": [
+            "row letters A-D on both panels (left: box corner, right: y tick labels)",
+            "panel letters (a)/(b)",
+            "3.91 term moved from the bracket stack to a connector between rows B and C (mean bar to mean bar); 9.21 and 5.79 brackets unchanged (author decision pending)",
+            "per-row mean and SD labels moved beside the row (side with more free axis length) to free the B-C gap",
+            "all text >= 8 pt; width 8.89 cm (3.5 in), height 10.0 cm",
+            "--lang tr: Turkish labels, decimal comma, thousands dot, output to paper/figures/final_tr",
+        ],
         "betik": "paper/figures/fig_protocol_sets.py",
         "onceki_betik": "paper/figures/fig_protocol_sets_v1.py",
-        "komut": "docker exec -w /workspace adeb_eval python paper/figures/fig_protocol_sets.py",
+        "komut": "docker exec -w /workspace adeb_eval python paper/figures/fig_protocol_sets.py --lang " + LANG,
         "uretim_zamani_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "veri": str(data_path),
         "veri_sha256": hashlib.sha256(data_path.read_bytes()).hexdigest(),
@@ -366,15 +441,15 @@ def main():
         "yerlesim": {
             "secim": "tek sutun",
             "genislik_cm": args.width_cm, "yukseklik_cm": args.height_cm, "dpi": args.dpi,
-            "en_kucuk_yazi_pt": min(FS_NAME, FS_N, FS_VAL, FS_SD, FS_BR),
-            "gerekce": ("IEEE Access column width 8.8 cm as the other transfer figures. One row per set; "
+            "en_kucuk_yazi_pt": min(FS_NAME, FS_N, FS_VAL, FS_SD, FS_BR, FS_ROW, FS_PANEL),
+            "satir_etiketi_yonu": label_side,
+            "gerekce": ("IEEE Access column width 3.5 in as the other journal figures. One row per set; "
                         "values on a horizontal axis because they are not monotone in the nesting order. "
-                        "Height raised from 7.2 to 9.4 cm to stack the three brackets above the axis "
-                        "without overlap at >=7 pt."),
+                        "Height 10.0 cm: brackets above the axis and >= 8 pt text without overlap."),
             "dikdortgenler": "schematic, NOT area-proportional to N; nesting drawn for CNN->ViT",
             "tohum_noktalari": "vertical offsets of seed points are for visibility only, same order in every row",
             "yon_anahtari": ("'N: CNN->ViT / ViT->CNN' placed once under the left header instead of inside each box: "
-                             "the full string does not fit the inner boxes at >=7 pt"),
+                             "the full string does not fit the inner boxes at >=8 pt"),
             "font": "DejaVu Sans (as in scripts/generate_journal_figs_c1.py), pdf.fonttype 42",
             "dolgular": dict(zip(PROTOCOLS, FILLS)),
         },
@@ -404,6 +479,7 @@ def main():
                           f"vs spread {A['yayilim']:.2f}: each term rounded from unrounded means "
                           "(printed as 'terms rounded separately')."),
         "eski_surum_tasindi": moved,
+        "dizindeki_eski_surumler": sorted({f.name.split(".")[0] for f in outdir.glob(f"{args.name}_v*.pdf")}),
     }
     with io.open(outdir / f"{args.name}.kanit.json", "w", encoding="utf-8", newline="\n") as fh:
         json.dump(kanit, fh, indent=2, ensure_ascii=False)

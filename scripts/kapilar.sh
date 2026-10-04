@@ -15,6 +15,13 @@
 #                                  okur; ieeeaccess.cls ozeti bir ay boyunca
 #                                  sessizce dusurmustu ve hepsi gecmisti.)
 #                                  Sinamasi: scripts/test_pdf_render.sh
+#   9 check_pdf_typeset.py         DERLENMIS PDF: govde Times mi, kalin ve
+#                                  italik gomulu mu, satirlar sutun kenarini
+#                                  asiyor mu, gunlukte 'T1/times undefined'
+#                                  var mi. (2026-10-04: sinif 'times' ailesini
+#                                  hic tanimlamiyordu; govde bir ay Computer
+#                                  Modern'di, kalin/italik hic basilmadi, bes
+#                                  tablo sutunu asti; sekiz kapi da gecmisti.)
 set -u
 cd "$(dirname "$0")/.." || exit 1
 DEX=(docker exec -w /workspace adeb_eval python)
@@ -28,6 +35,7 @@ KAPILAR=(
   "check_en_tr_mirror.py:EN/TR ayna"
   "gonderim_tutarlilik.py:gonderim"
   "check_pdf_render.py:PDF render"
+  "check_pdf_typeset.py:PDF dizgi"
 )
 
 kalan=0
@@ -43,7 +51,7 @@ done
 
 echo "----------------------------------------------------------------------"
 if [ "$kalan" -eq 0 ]; then
-    echo "SEKIZ KAPI DA GECTI"
+    echo "DOKUZ KAPI DA GECTI"
 else
     echo "KALAN KAPI: $kalan"
 fi

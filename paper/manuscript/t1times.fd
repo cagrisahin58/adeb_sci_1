@@ -1,0 +1,30 @@
+%% t1times.fd -- font definitions for the `times' family in T1 encoding
+%% that ieeeaccess.cls selects (\def\timesfont{times}, NewLetters math
+%% symbol font T1/times/n/it) but never declares. Without this file LaTeX
+%% falls back to Computer Modern for the body (main.log: "Font shape
+%% `T1/times/m/n' undefined") and no bold or italic face is ever set.
+%% The metrics and outlines ship with the template: t1-times.tfm,
+%% t1-times-italic.tfm, t1-times-bold.tfm, t1-times-bolditalic.tfm,
+%% mapped by t1-times.map (loaded by the class with \pdfmapfile).
+%% Added 2026-10-04 after the render audit (raporlar/hakem_lecun_2026-10-04).
+\ProvidesFile{t1times.fd}[2026/10/04 T1/times font definitions for ieeeaccess.cls]
+\DeclareFontFamily{T1}{times}{}
+\DeclareFontShape{T1}{times}{n}{n}{<-> t1-times}{}
+\DeclareFontShape{T1}{times}{n}{it}{<-> t1-times-italic}{}
+\DeclareFontShape{T1}{times}{b}{n}{<-> t1-times-bold}{}
+\DeclareFontShape{T1}{times}{b}{it}{<-> t1-times-bolditalic}{}
+% standard series/shape names map onto the four shipped faces
+\DeclareFontShape{T1}{times}{m}{n}{<-> ssub * times/n/n}{}
+\DeclareFontShape{T1}{times}{m}{it}{<-> ssub * times/n/it}{}
+\DeclareFontShape{T1}{times}{m}{sl}{<-> ssub * times/n/it}{}
+\DeclareFontShape{T1}{times}{n}{sl}{<-> ssub * times/n/it}{}
+\DeclareFontShape{T1}{times}{bx}{n}{<-> ssub * times/b/n}{}
+\DeclareFontShape{T1}{times}{bx}{it}{<-> ssub * times/b/it}{}
+\DeclareFontShape{T1}{times}{bx}{sl}{<-> ssub * times/b/it}{}
+\DeclareFontShape{T1}{times}{b}{sl}{<-> ssub * times/b/it}{}
+% no small-caps face ships with the template; fall back to upright
+\DeclareFontShape{T1}{times}{m}{sc}{<-> ssub * times/n/n}{}
+\DeclareFontShape{T1}{times}{n}{sc}{<-> ssub * times/n/n}{}
+\DeclareFontShape{T1}{times}{b}{sc}{<-> ssub * times/b/n}{}
+\DeclareFontShape{T1}{times}{bx}{sc}{<-> ssub * times/b/n}{}
+\endinput

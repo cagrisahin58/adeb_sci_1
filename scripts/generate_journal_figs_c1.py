@@ -5,20 +5,31 @@ metinde degisiklik gerekmez: paper/figures/final/<ad>.pdf
 
 Uretilenler:
   fig1_robustness_comparison   temiz/PGD/AA cubuklari, 3 tohum hata cubuklu
-  fig2_epsilon_sweep           epsilon taramasi, +-1 std bantli
+  fig2_epsilon_sweep           epsilon taramasi, 3 kosum ort. +-1 SD hata cubugu
   fig3_transfer_heatmap        3x3 kosullu (hedef-dogru) transfer isi haritasi
-  fig4b_gradient_distribution  ornek basina gradyan L2 dagilimi
-  fig4_gradient_comparison     ayni girdilerde gradyan enerji haritalari
-  fig5b_attention_entropy      katman basina CLS attention entropisi (temiz/adv)
+  fig4b_gradient_distribution  ornek basina gradyan L2 normu ECDF'si (3 cift, log-x)
+  fig4_gradient_comparison     ayni girdilerde gradyan enerji haritalari (cift 1)
+  fig5_attention_comparison    CLS dikkat haritalari, tum satirlarda ortak olcek
+  fig5b_attention_entropy      (a) entropi farki %95 GA + TOST marji, (b) CLS TV
   fig_tsne_features            penultimate t-SNE (her model KENDI beyaz kutusu)
   fig_adversarial_examples     ornek gorseller (en yakin komsu buyutme)
 
-Kullanim: python scripts/generate_journal_figs_c1.py [--only ad1 ad2]
+2026-10-04 (hakem paneli, mercek D Y3/Y4/Y5, kucuk 1/14/15): fig2, fig4,
+fig5maps ve fig5b son sutun genisliginde (3.5 in) cizilir, olceklenmez;
+yazi 8 pt, eksen etiketi 9 pt; CNN/ViT renkleri esit parlaklikta oldugu icin
+her yerde isaretci + cizgi stili cifti (STY). Bu dort sekil PDF + PNG +
+<ad>.kanit.json yazar (veri yolu, sha256, git, okunan degerler).
+
+Kullanim: python scripts/generate_journal_figs_c1.py [--only ad1 ad2] [--lang tr]
 """
 import argparse
 import csv
+import datetime as dt
+import hashlib
+import io
 import json
 import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -30,6 +41,8 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.text  # noqa: E402,F401
+import matplotlib.ticker  # noqa: E402,F401
 import numpy as np  # noqa: E402
 import torch  # noqa: E402
 import torch.nn as nn  # noqa: E402
@@ -89,6 +102,14 @@ LANGS = {
         "cap_adv": "adversarial",
         "att_clean": "clean", "att_adv": "adversarial", "att_diff": "difference",
         "block": "block",
+        # 2026-10-04 eklenen etiketler
+        "eps0": "0\n(clean)", "train_eps": "AT budget",
+        "cnn2": "ResNet-18\n(AT)", "vit2": "ViT-Tiny\n(AT)",
+        "ecdf_y": "Cumulative fraction", "layer": "Layer", "layer_x": "ViT layer",
+        "gmap_cbar": "Gradient energy\n(per-map max = 1)",
+        "attn_cbar": "Attention weight", "diff_cbar": r"Adv. $-$ clean",
+        "dent_y": r"$\Delta$ entropy (nats)", "tost": "TOST margin",
+        "tv_y": "Displacement (TV)", "ci95": "mean, 95% CI", "msd": r"mean $\pm$ SD",
     },
     "tr": {
         "classes": ["uçak", "otomobil", "kuş", "kedi", "geyik", "köpek",
@@ -107,19 +128,113 @@ LANGS = {
         "cap_adv": "çekişmeli",
         "att_clean": "temiz", "att_adv": "çekişmeli", "att_diff": "fark",
         "block": "blok",
+        "eps0": "0\n(temiz)", "train_eps": "AT bütçesi",
+        "cnn2": "ResNet-18\n(AT)", "vit2": "ViT-Tiny\n(AT)",
+        "ecdf_y": "Birikimli oran", "layer": "Katman", "layer_x": "ViT katmanı",
+        "gmap_cbar": "Gradyan enerjisi\n(harita maks. = 1)",
+        "attn_cbar": "Dikkat ağırlığı", "diff_cbar": r"Çekişmeli $-$ temiz",
+        "dent_y": r"$\Delta$ entropi (nat)", "tost": "TOST marjı",
+        "tv_y": "Yer değiştirme (TV)", "ci95": "ortalama, %95 GA", "msd": r"ortalama $\pm$ SS",
     },
 }
 L = LANGS["en"]
+LANG = "en"
 CLASSES = L["classes"]
+SCRIPT_REL = "scripts/generate_journal_figs_c1.py"
 
+# Son sutun genisligi (IEEE Access): tek sutun 3.5 in, cift sutun 7.16 in.
+# Yeni sekiller bu genislikte cizilir ve bbox kirpmasi yapilmaz, boylece
+# \includegraphics[width=\columnwidth] olceklemez ve 8 pt yazi 8 pt basilir.
+FIG_W1, FIG_W2 = 3.5, 7.16
 plt.rcParams.update({
-    "font.size": 9, "axes.labelsize": 10, "axes.titlesize": 10,
-    "legend.fontsize": 8, "xtick.labelsize": 9, "ytick.labelsize": 9,
-    "figure.dpi": 150, "savefig.bbox": "tight",
+    "font.size": 8, "axes.labelsize": 9, "axes.titlesize": 9,
+    "legend.fontsize": 8, "xtick.labelsize": 8, "ytick.labelsize": 8,
+    "axes.linewidth": 0.6, "xtick.major.width": 0.6, "ytick.major.width": 0.6,
+    "lines.linewidth": 1.2, "lines.markersize": 4,
+    "figure.dpi": 150,
+    # "standard": tam figsize. Eski sekiller (fig1, fig3, tsne, adv) kendi
+    # savefig cagrilarinda bbox_inches="tight" ile eski davranisi korur.
+    "savefig.bbox": "standard",
     # 2026-09-29: Type 3 font gomulmesin. Uretilen alti PDF'in hepsinde
     # /Type3 izi vardi; IEEE PDF eXpress bunu isaretler. 42 = TrueType.
     "pdf.fonttype": 42, "ps.fonttype": 42,
 })
+# CNN mavisi ile ViT kirmizisi esit goreli parlaklikta (0.160/0.160): gri
+# tonlamada ayni gri. Her cizimde renk + isaretci + cizgi stili birlikte.
+STY = {
+    "cnn": {"color": C_CNN, "marker": "o", "ls": "-"},
+    "vit": {"color": C_VIT, "marker": "s", "ls": "--"},
+    "wrn": {"color": C_WRN, "marker": "^", "ls": ":"},
+}
+MIN_FONT_PT = 8.0
+
+
+def _git_info():
+    def run(*args):
+        try:
+            return subprocess.run(["git", "-c", f"safe.directory={ROOT}", "-C", str(ROOT), *args],
+                                  capture_output=True, text=True, timeout=20).stdout.strip()
+        except Exception:
+            return ""
+    return {"commit": run("rev-parse", "HEAD") or "unknown",
+            "branch": run("rev-parse", "--abbrev-ref", "HEAD") or "unknown",
+            "betik_kirli": bool(run("status", "--porcelain", "--", SCRIPT_REL))}
+
+
+def _sha(rel):
+    return hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
+
+
+def _min_font(fig):
+    sizes = [t.get_fontsize() for t in fig.findobj(matplotlib.text.Text)
+             if t.get_text().strip() and t.get_visible()]
+    return min(sizes) if sizes else None
+
+
+class _VirgulFormatter(matplotlib.ticker.ScalarFormatter):
+    """TR metin ondalik virgul kullanir ("13,57", "4,9 nat"); eksen sayilari da."""
+
+    def __call__(self, x, pos=None):
+        return super().__call__(x, pos).replace(".", ",")
+
+
+def _tr_virgul(fig):
+    for ax in fig.axes:
+        for axis in (ax.xaxis, ax.yaxis):
+            if type(axis.get_major_formatter()) is matplotlib.ticker.ScalarFormatter:
+                axis.set_major_formatter(_VirgulFormatter())
+
+
+def _save(fig, name, sources, values, notes=None, extra_names=()):
+    """PDF + PNG (300 dpi) + <ad>.kanit.json; Type 3 ve 8 pt alti yazi denetimi."""
+    if LANG == "tr":
+        _tr_virgul(fig)
+    w, h = (float(v) for v in fig.get_size_inches())
+    fmin = _min_font(fig)
+    if fmin is not None and fmin < MIN_FONT_PT - 1e-6:
+        raise SystemExit(f"{name}: {fmin} pt yazi var (< {MIN_FONT_PT})")
+    pdf, png = OUT / f"{name}.pdf", OUT / f"{name}.png"
+    fig.savefig(pdf, metadata={"CreationDate": None, "ModDate": None})
+    fig.savefig(png, dpi=300)
+    for extra in extra_names:
+        fig.savefig(OUT / f"{extra}.pdf", metadata={"CreationDate": None, "ModDate": None})
+    plt.close(fig)
+    if b"/Type3" in pdf.read_bytes():
+        raise SystemExit(f"Type 3 font in {pdf}")
+    kanit = {
+        "sekil": name, "dil": LANG, "betik": SCRIPT_REL,
+        "komut": "docker exec -w /workspace adeb_eval python " + " ".join([SCRIPT_REL] + sys.argv[1:]),
+        "uretim_zamani_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "git": _git_info(), "cihaz": str(DEVICE), "tohum": FIG_SEED,
+        "boyut_in": [w, h], "en_kucuk_yazi_pt": fmin,
+        "kaynaklar": {rel: _sha(rel) for rel in sources},
+        "degerler": values, "notlar": notes or [],
+        "ek_ciktilar": [f"{e}.pdf" for e in extra_names],
+    }
+    with io.open(OUT / f"{name}.kanit.json", "w", encoding="utf-8", newline="\n") as fh:
+        json.dump(kanit, fh, indent=2, ensure_ascii=False)
+        fh.write("\n")
+    print(f"{name}.pdf/.png/.kanit.json ({w:.2f}x{h:.2f} in, min {fmin} pt)")
 
 
 def jload(rel):
@@ -195,48 +310,70 @@ def fig1():
     ax.text(float(np.mean(xw)), 95, L["ref"], ha="center", fontsize=8, color="#444")
     ax.legend(loc="center", bbox_to_anchor=(0.5, -0.24), ncol=3, frameon=False)
     ax.spines[["top", "right"]].set_visible(False)
-    fig.savefig(OUT / "fig1_robustness_comparison.pdf")
+    fig.savefig(OUT / "fig1_robustness_comparison.pdf", bbox_inches="tight")
     plt.close(fig)
     print("fig1_robustness_comparison.pdf")
 
 
 # ---------------------------------------------------------------- fig 2 ------
 def fig2():
+    # Kategorik x ekseni (esit aralikli 0, 2, 4, 8, 16 /255) korunur; eps=0
+    # noktasi PGD degil TEMIZ dogruluktur ve eksende "0 (clean)" diye yazar.
     grid = [0.0, 2 / 255, 4 / 255, 8 / 255, 16 / 255]
-    lbl = ["0", "2/255", "4/255", "8/255", "16/255"]
+    lbl = [L["eps0"], "2/255", "4/255", "8/255", "16/255"]
+    srcs = [f"results/c1_sweep/pair{p}/{m}/{m}_robustness_results.csv"
+            for p in PAIRS for m in ("resnet18", "vit_tiny")] + ["results/wrn_eval/wrn_eval_summary.json"]
     sw = {p: {m: read_eval_csv(f"results/c1_sweep/pair{p}/{m}/{m}_robustness_results.csv")
               for m in ("resnet18", "vit_tiny")} for p in PAIRS}
 
-    def series(model):
-        out = [ms([sw[p][model][("clean", 0.0)] for p in PAIRS])]
+    def per_pair(model):
+        rows = [[sw[p][model][("clean", 0.0)] for p in PAIRS]]
         for e in grid[1:]:
-            out.append(ms([sw[p][model][("pgd", round(e, 5))] for p in PAIRS]))
-        return np.array([m for m, _ in out]), np.array([s for _, s in out])
+            rows.append([sw[p][model][("pgd", round(e, 5))] for p in PAIRS])
+        return np.array(rows)                       # (eps, pair)
 
     wrn = jload("results/wrn_eval/wrn_eval_summary.json")["results"]
-    wv = [wrn["clean"]["accuracy"], wrn["pgd10_eps0.00784"]["accuracy"], wrn["pgd10_eps0.01569"]["accuracy"],
-          wrn["pgd10_eps0.03137"]["accuracy"], wrn["pgd10_eps0.06275"]["accuracy"]]
+    wkeys = ["clean", "pgd10_eps0.00784", "pgd10_eps0.01569", "pgd10_eps0.03137", "pgd10_eps0.06275"]
+    wv = [wrn[k]["accuracy"] for k in wkeys]
 
-    fig, ax = plt.subplots(figsize=(5.2, 3.0))
+    fig, ax = plt.subplots(figsize=(FIG_W1, 2.55), layout="constrained")
     xi = np.arange(len(grid))
-    for model, color, marker, lab in (("resnet18", C_CNN, "o-", "ResNet-18 (AT)"),
-                                      ("vit_tiny", C_VIT, "s-", "ViT-Tiny (AT)")):
-        m, s = series(model)
-        ax.fill_between(xi, m - s, m + s, color=color, alpha=0.18, lw=0)
-        ax.plot(xi, m, marker, color=color, label=lab)
-    ax.plot(xi, wv, "^--", color=C_WRN, alpha=0.9, label=L["wrn"])
-    ax.axvline(3, color="black", lw=0.7, ls=":", alpha=0.6)
-    ax.text(3.05, 5, r"$\epsilon$=8/255", fontsize=8)
+    # eps=0 (temiz) ile PGD noktalarini ayiran ince cizgi; 8/255 egitim butcesi
+    ax.axvline(0.5, color="#c6c6c6", lw=0.6, zorder=0)
+    ax.axvline(3, color="black", lw=0.6, ls=(0, (1, 2)), zorder=0)
+    vals = {}
+    for model, key, lab in (("resnet18", "cnn", "ResNet-18 (AT)"), ("vit_tiny", "vit", "ViT-Tiny (AT)")):
+        a = per_pair(model)
+        m, s = a.mean(1), a.std(1, ddof=1)
+        st = STY[key]
+        ax.errorbar(xi, m, yerr=s, color=st["color"], marker=st["marker"], ls=st["ls"], ms=4,
+                    capsize=2, elinewidth=0.8, capthick=0.8, label=lab, zorder=3)
+        vals[model] = {"eps_etiket": ["0 (clean)", "2/255", "4/255", "8/255", "16/255"],
+                       "tohum_degerleri": a.tolist(), "ortalama": m.tolist(), "sd_n-1": s.tolist(),
+                       "en_buyuk_sd": float(s.max())}
+    st = STY["wrn"]
+    ax.plot(xi, wv, color=st["color"], marker=st["marker"], ls=st["ls"], ms=4, label=L["wrn"], zorder=2)
+    vals["wrn_28_10"] = {"anahtarlar": wkeys, "deger": wv, "not": "tek checkpoint, SD yok"}
+    vals["fark_cnn_eksi_vit"] = (np.array(vals["resnet18"]["ortalama"])
+                                 - np.array(vals["vit_tiny"]["ortalama"])).round(4).tolist()
+    ax.text(3.08, 2, L["train_eps"], fontsize=8, ha="left", va="bottom")
     ax.set_xticks(xi)
     ax.set_xticklabels(lbl)
+    ax.set_xlim(-0.3, len(grid) - 0.7)
     ax.set_xlabel(L["eps_x"])
     ax.set_ylabel(L["acc"])
     ax.set_ylim(0, 95)
-    ax.legend(frameon=False)
+    h, lab_ = ax.get_legend_handles_labels()
+    order = [lab_.index(n) for n in ("ResNet-18 (AT)", "ViT-Tiny (AT)", L["wrn"])]
+    ax.legend([h[i] for i in order], [lab_[i] for i in order], loc="lower left", handlelength=2.6, borderaxespad=0.2,
+              frameon=True, framealpha=1.0, facecolor="white", edgecolor="none")
     ax.spines[["top", "right"]].set_visible(False)
-    fig.savefig(OUT / "fig2_epsilon_sweep.pdf")
-    plt.close(fig)
-    print("fig2_epsilon_sweep.pdf")
+    _save(fig, "fig2_epsilon_sweep", srcs, vals, notes=[
+        "x ekseni kategorik (esit aralik), lineer epsilon degil",
+        "eps=0 noktasi temiz dogruluk (CSV satiri Attack=clean, Epsilon=0)",
+        "hata cubugu: 3 tohum cifti uzerinden +-1 SD (ddof=1); cogu nokta isaretciden dar",
+        "tarama kosusu (results/c1_sweep) Tablo 1'in kosusundan ayridir; 8/255 noktasi Tablo 1 ile birebir ayni degildir",
+    ])
 
 
 # ---------------------------------------------------------------- fig 3 ------
@@ -261,87 +398,234 @@ def fig3():
     ax.set_xlabel(L["target"])
     ax.set_ylabel(L["source"])
     fig.colorbar(im, ax=ax, shrink=0.85, label=L["cond_cbar"])
-    fig.savefig(OUT / "fig3_transfer_heatmap.pdf")
+    fig.savefig(OUT / "fig3_transfer_heatmap.pdf", bbox_inches="tight")
     plt.close(fig)
     print("fig3_transfer_heatmap.pdf")
 
 
 # ------------------------------------------------------------- fig 5b --------
+C_DENT, C_TV = "#0f62fe", "#e66100"   # CVD-guvenli, farkli parlaklik (mavi/turuncu)
+
+
 def fig5b():
-    ec = np.array([jload(f"results/c1_c4/pair{p}/c4_summary.json")["vit"]["attention"]["entropy_clean_mean"]
-                   for p in PAIRS])
-    ea = np.array([jload(f"results/c1_c4/pair{p}/c4_summary.json")["vit"]["attention"]["entropy_adv_mean"]
-                   for p in PAIRS])
-    x = np.arange(1, ec.shape[1] + 1)
-    fig, ax = plt.subplots(figsize=(4.6, 3.0))
-    for arr, color, lab, marker in ((ec, "#1a7f37", L["clean"], "o-"), (ea, C_VIT, L["adv"], "s--")):
-        m, s = arr.mean(0), arr.std(0, ddof=1)
-        ax.fill_between(x, m - s, m + s, color=color, alpha=0.18, lw=0)
-        ax.plot(x, m, marker, color=color, label=lab, ms=4)
-    ax.set_xlabel(L["blk_x"])
-    ax.set_ylabel(L["ent_y"])
-    ax.set_xticks(x)
-    ax.legend(frameon=False)
-    ax.spines[["top", "right"]].set_visible(False)
-    fig.savefig(OUT / "fig5b_attention_entropy.pdf")
-    plt.close(fig)
-    print("fig5b_attention_entropy.pdf")
+    """(a) Delta entropi (cekismeli - temiz), 3 kosum ort. ve %95 GA (t, df=2),
+    +-TOST marji; (b) CLS dikkat yer degistirmesi (TV), ort. +- SD.
+
+    TOST marji (ARGS.tost_margin, varsayilan 0.05 nat) bir analiz parametresidir,
+    sonuc dosyasinda kayitli degildir; degeri 04_experiments.tex'teki on-tanimli
+    marjdan gelir ve kanit dosyasina parametre olarak yazilir."""
+    from scipy import stats
+
+    srcs = [f"results/c1_c4/pair{p}/c4_summary.json" for p in PAIRS]
+    att = [jload(s)["vit"]["attention"] for s in srcs]
+    ec = np.array([a["entropy_clean_mean"] for a in att])          # (run, layer)
+    ea = np.array([a["entropy_adv_mean"] for a in att])
+    ed = np.array([a["entropy_delta_mean"] for a in att])
+    tv = np.array([a["displacement_mean"] for a in att])
+    nrun, nl = ed.shape
+    # Kendi icinde tutarlilik: delta = adv - clean (ayni orneklerin ortalamasi)
+    gap = float(np.abs(ed - (ea - ec)).max())
+    if gap > 1e-5:
+        raise SystemExit(f"fig5b: entropy_delta_mean != adv - clean (en buyuk fark {gap:.2e})")
+    x = np.arange(1, nl + 1)
+    dm = ed.mean(0)
+    dsd = ed.std(0, ddof=1)
+    tcrit = float(stats.t.ppf(0.975, df=nrun - 1))
+    half = tcrit * dsd / np.sqrt(nrun)
+    tm, tsd = tv.mean(0), tv.std(0, ddof=1)
+    marg = float(ARGS.tost_margin)
+
+    fig, (axa, axb) = plt.subplots(2, 1, figsize=(FIG_W1, 3.6), sharex=True, layout="constrained")
+    axa.axhline(0, color="#8d8d8d", lw=0.6, zorder=0)
+    for yv in (-marg, marg):
+        axa.axhline(yv, color="black", lw=0.8, ls=(0, (4, 2)), zorder=1)
+    axa.errorbar(x, dm, yerr=half, color=C_DENT, marker="o", ls="-", ms=3.5, capsize=2,
+                 elinewidth=0.8, capthick=0.8, label=L["ci95"], zorder=3)
+    axa.plot([], [], color="black", lw=0.8, ls=(0, (4, 2)), label=L["tost"])
+    lim = 1.6 * marg
+    axa.set_ylim(-lim, lim)
+    axa.set_ylabel(L["dent_y"])
+    axa.legend(frameon=False, loc="upper center", ncol=2, bbox_to_anchor=(0.5, 1.0),
+               handlelength=2.4, columnspacing=1.2)
+    axa.spines[["top", "right"]].set_visible(False)
+    axa.set_title("(a)", loc="left", fontsize=9, fontweight="bold", pad=2)
+
+    axb.errorbar(x, tm, yerr=tsd, color=C_TV, marker="s", ls="--", ms=3.5, capsize=2,
+                 elinewidth=0.8, capthick=0.8, label=L["msd"], zorder=3)
+    axb.set_ylim(0, None)
+    axb.set_ylabel(L["tv_y"])
+    axb.set_xlabel(L["layer_x"])
+    axb.set_xticks(x)
+    axb.legend(frameon=False, loc="upper left", handlelength=2.4)
+    axb.spines[["top", "right"]].set_visible(False)
+    axb.set_title("(b)", loc="left", fontsize=9, fontweight="bold", pad=2)
+
+    lay_clean, lay_adv = ec.mean(0), ea.mean(0)
+    vals = {
+        "anahtarlar": {"entropi_temiz": "vit.attention.entropy_clean_mean",
+                       "entropi_cekismeli": "vit.attention.entropy_adv_mean",
+                       "delta": "vit.attention.entropy_delta_mean",
+                       "tv": "vit.attention.displacement_mean"},
+        "kosum_sayisi": nrun, "n_ornek_kosum_basina": [jload(s)["n_samples"] for s in srcs],
+        "delta_kosum": ed.tolist(), "delta_ort": dm.tolist(), "delta_sd": dsd.tolist(),
+        "delta_ga95_t_df2": [[float(a), float(b)] for a, b in zip(dm - half, dm + half)],
+        "t_kritik": tcrit, "en_buyuk_mutlak_delta_ort": float(np.abs(dm).max()),
+        "en_buyuk_mutlak_ga_ucu": float(np.abs(np.concatenate([dm - half, dm + half])).max()),
+        "tum_ga_marj_icinde": bool(np.all(np.abs(np.concatenate([dm - half, dm + half])) < marg)),
+        "tost_marji_parametre": marg,
+        "tv_kosum": tv.tolist(), "tv_ort": tm.tolist(), "tv_sd": tsd.tolist(),
+        "katman_ortalamasi_entropi_temiz": lay_clean.tolist(),
+        "katman_ortalamasi_entropi_cekismeli": lay_adv.tolist(),
+        "genel_ortalama_temiz": float(lay_clean.mean()),
+        "genel_ortalama_cekismeli": float(lay_adv.mean()),
+        "katman_ortalamasi_temiz_aralik": [float(lay_clean.min()), float(lay_clean.max())],
+    }
+    _save(fig, "fig5b_attention_entropy", srcs, vals, notes=[
+        "(a) %95 GA kosum duzeyinde t araligi (df=2); TOST %5 duzeyinde %90 GA'ya karsilik gelir, bu yuzden %95 GA daha tutucudur",
+        "TOST p degerleri bu sekilden ya da herhangi bir sonuc dosyasindan okunmaz; metindeki p=0.006 icin artefakt bulunamadi",
+        "(b) TV = 0.5 * sum |a_adv - a_clean| CLS satiri uzerinde (experiments/c1_c4_attention_features.py:191), ornek ortalamasi; hata cubugu kosumlar arasi SD",
+    ])
 
 
 # ------------------------------------------------------- gradyan figurleri ---
 def _grads(model, images, labels):
+    """ORNEK BASINA kaybin girdi gradyani.
+
+    2026-10-04 duzeltmesi (mercek D, Y3): eskiden nn.CrossEntropyLoss() (parti
+    ORTALAMASI) kullaniliyordu; 50'lik partide her gradyan 1/50 olcekleniyor ve
+    eksendeki "per-sample" ifadesi yanlis oluyordu. reduction="sum" ile her
+    ornegin gradyani yalniz kendi kaybinin gradyanidir (eval kipinde ornekler
+    arasi etkilesim yok), src/analysis/gradient_analysis.py:37 ile ayni tanim."""
     images = images.clone().requires_grad_(True)
-    loss = nn.CrossEntropyLoss()(model(images), labels)
+    loss = nn.CrossEntropyLoss(reduction="sum")(model(images), labels)
     return torch.autograd.grad(loss, images)[0].detach()
 
 
-def fig4():
-    rn, vt = c1_model("resnet18", 1), c1_model("vit_tiny", 1)
-    _, loader = get_cifar10_loaders(data_dir="./data", test_batch_size=50)
-    norms = {"ResNet-18 (AT)": [], "ViT-Tiny (AT)": []}
-    seen = 0
-    first = None
-    for images, labels in loader:
-        if seen >= 500:
-            break
-        images, labels = images.to(DEVICE), labels.to(DEVICE)
-        gr, gv = _grads(rn, images, labels), _grads(vt, images, labels)
-        norms["ResNet-18 (AT)"].append(gr.flatten(1).norm(dim=1).cpu().numpy())
-        norms["ViT-Tiny (AT)"].append(gv.flatten(1).norm(dim=1).cpu().numpy())
-        if first is None:
-            first = (images[:4].cpu(), gr[:4].cpu(), gv[:4].cpu())
-        seen += labels.size(0)
+GRAD_N, GRAD_BS = 500, 50   # results/c1_gradient ile ayni: ilk 500 test ornegi, 50'lik parti
+N_MAPS = 4
 
-    fig, ax = plt.subplots(figsize=(4.4, 3.0))
-    for lab, color in (("ResNet-18 (AT)", C_CNN), ("ViT-Tiny (AT)", C_VIT)):
-        v = np.concatenate(norms[lab])
-        ax.hist(v, bins=40, alpha=0.55, color=color, label=f"{lab} ({L[chr(39)+chr(39) if False else chr(109)+chr(101)+chr(97)+chr(110)]} {v.mean():.3f})")
-    ax.set_xlabel(L["gnorm_x"])
-    ax.set_ylabel(L["count"])
-    ax.legend(frameon=False)
-    ax.spines[["top", "right"]].set_visible(False)
-    fig.savefig(OUT / "fig4b_gradient_distribution.pdf")
-    plt.close(fig)
-    print("fig4b_gradient_distribution.pdf")
 
-    imgs, gr, gv = first
-    fig, axes = plt.subplots(3, 4, figsize=(5.4, 4.2))
-    for k in range(4):
+def _plot_gradmaps(imgs, gr, gv):
+    """3 x N_MAPS izgara (girdi / ResNet / ViT) + gradyan satirlarini kaplayan
+    ortak 0-1 renk cubugu. Elle yerlesim (inc): satirlar esit aralikli kalir."""
+    # gap_r 0.10: 9 pt dikey satir etiketleri ("ResNet-18", "ViT-Tiny") birbirine degmesin
+    W, msz, gap, gap_r, left, bot, top = FIG_W1, 0.54, 0.05, 0.10, 0.42, 0.05, 0.05
+    H = bot + 3 * msz + 2 * gap_r + top
+    fig = plt.figure(figsize=(W, H))
+    axes = np.empty((3, N_MAPS), dtype=object)
+    for r in range(3):
+        y = bot + (2 - r) * (msz + gap_r)
+        for k in range(N_MAPS):
+            axes[r, k] = fig.add_axes([(left + k * (msz + gap)) / W, y / H, msz / W, msz / H])
+    x_cb = left + N_MAPS * msz + (N_MAPS - 1) * gap + 0.06
+    cax = fig.add_axes([x_cb / W, bot / H, 0.07 / W, (2 * msz + gap_r) / H])
+    maxima = {"resnet18": [], "vit_tiny": []}
+    im = None
+    for k in range(N_MAPS):
         axes[0, k].imshow(imgs[k].permute(1, 2, 0).numpy(), interpolation="nearest")
-        for r, g, color in ((1, gr, "CNN"), (2, gv, "ViT")):
-            e = (g[k] ** 2).sum(0).numpy()
-            e = e / (e.max() + 1e-12)
-            axes[r, k].imshow(e, cmap="inferno", interpolation="nearest")
+        for r, g, m in ((1, gr, "resnet18"), (2, gv, "vit_tiny")):
+            e = (g[k] ** 2).sum(0).numpy()          # piksel basina kanallar toplami g^2
+            maxima[m].append(float(e.max()))
+            e = e / (e.max() + 1e-12)               # harita basina maks. = 1
+            im = axes[r, k].imshow(e, cmap="inferno", vmin=0, vmax=1, interpolation="nearest")
         for r in range(3):
             axes[r, k].set_xticks([])
             axes[r, k].set_yticks([])
-    for r, lab in enumerate([L["input"], "ResNet-18 (AT)", "ViT-Tiny (AT)"]):
-        axes[r, 0].set_ylabel(lab, fontsize=8)
-    fig.tight_layout()
-    fig.savefig(OUT / "fig4_gradient_comparison.pdf")
-    fig.savefig(OUT / "fig4a_gradient_visualization.pdf")
-    plt.close(fig)
-    print("fig4_gradient_comparison.pdf + fig4a_gradient_visualization.pdf")
+    for r, lab in enumerate([L["input"], L["cnn2"], L["vit2"]]):
+        axes[r, 0].set_ylabel(lab, fontsize=9)
+    cb = fig.colorbar(im, cax=cax)
+    cb.set_label(L["gmap_cbar"], fontsize=8)
+    cb.set_ticks([0, 0.5, 1])
+    cb.ax.tick_params(labelsize=8, width=0.6)
+    return fig, maxima
+
+
+def fig4():
+    _, loader = get_cifar10_loaders(data_dir="./data", test_batch_size=GRAD_BS)
+    norms = {"resnet18": {}, "vit_tiny": {}}
+    first = None
+    for p in PAIRS:
+        rn, vt = c1_model("resnet18", p), c1_model("vit_tiny", p)
+        acc = {"resnet18": [], "vit_tiny": []}
+        seen = 0
+        for images, labels in loader:
+            if seen >= GRAD_N:
+                break
+            keep = min(labels.size(0), GRAD_N - seen)
+            images, labels = images[:keep].to(DEVICE), labels[:keep].to(DEVICE)
+            gr, gv = _grads(rn, images, labels), _grads(vt, images, labels)
+            acc["resnet18"].append(gr.flatten(1).norm(dim=1).cpu().numpy())
+            acc["vit_tiny"].append(gv.flatten(1).norm(dim=1).cpu().numpy())
+            if p == 1 and first is None:
+                first = (images[:N_MAPS].cpu(), labels[:N_MAPS].cpu(), gr[:N_MAPS].cpu(), gv[:N_MAPS].cpu())
+            seen += keep
+        for m in acc:
+            norms[m][p] = np.concatenate(acc[m])
+        del rn, vt
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+
+    # --- kaynakla karsilastirma: results/c1_gradient/pair*/gradient_summary.json
+    gsrc = [f"results/c1_gradient/pair{p}/gradient_summary.json" for p in PAIRS]
+    keymap = {"resnet18": "ResNet18_AT", "vit_tiny": "ViT_Tiny_AT"}
+    karsi = {}
+    uyusmazlik = []
+    for p, src in zip(PAIRS, gsrc):
+        g = jload(src)
+        for m, k in keymap.items():
+            ref = float(g["statistics"][k]["l2_norm_mean"])
+            got = float(norms[m][p].mean())
+            rel = abs(got - ref) / ref
+            karsi[f"pair{p}/{m}"] = {"hesaplanan_ort": got, "kaynak_l2_norm_mean": ref,
+                                     "goreli_fark": rel, "n": int(norms[m][p].size),
+                                     "kaynak_n": g["statistics"][k].get("n_samples"),
+                                     "medyan": float(np.median(norms[m][p])),
+                                     "min": float(norms[m][p].min()), "max": float(norms[m][p].max())}
+            if rel > 1e-3:
+                uyusmazlik.append(f"pair{p}/{m}: {got:.5f} vs {ref:.5f} (goreli {rel:.2e})")
+    if uyusmazlik:
+        print("UYARI fig4b: hesaplanan ortalamalar gradient_summary.json ile uyusmuyor:\n  "
+              + "\n  ".join(uyusmazlik))
+
+    fig, ax = plt.subplots(figsize=(FIG_W1, 2.45), layout="constrained")
+    for m, key, lab in (("resnet18", "cnn", "ResNet-18 (AT)"), ("vit_tiny", "vit", "ViT-Tiny (AT)")):
+        st = STY[key]
+        for i, p in enumerate(PAIRS):
+            v = np.sort(norms[m][p])
+            y = np.arange(1, v.size + 1) / v.size
+            ax.step(v, y, where="post", color=st["color"], ls=st["ls"], lw=1.0,
+                    label=lab if i == 0 else None)
+    ax.set_xscale("log")
+    ax.set_ylim(0, 1.02)
+    ax.set_xlabel(L["gnorm_x"])
+    ax.set_ylabel(L["ecdf_y"])
+    ax.legend(frameon=False, loc="upper left", handlelength=2.6)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.grid(True, which="major", axis="x", color="#e0e0e0", lw=0.5)
+    _save(fig, "fig4b_gradient_distribution",
+          gsrc + [f"models/c1/{d}/{'resnet18' if d.startswith('resnet') else 'vit_tiny'}/adv/adversarial_training/best.pth"
+                  for d in ("resnet18_s1001", "resnet18_s1002", "resnet18_s1003",
+                            "vit_tiny_s2001", "vit_tiny_s2002", "vit_tiny_s2003")],
+          {"kayip": "CrossEntropyLoss(reduction='sum'), ornek basina gradyan",
+           "orneklem": f"ilk {GRAD_N} CIFAR-10 test ornegi (shuffle=False), parti {GRAD_BS}, her cift icin ayni",
+           "ciftler": PAIRS, "karsilastirma": karsi, "uyusmazliklar": uyusmazlik,
+           "esik_goreli": 1e-3},
+          notes=["her cizgi bir tohum cifti (3 cift x 2 mimari); lejantta sayi yok",
+                 "ECDF basamak fonksiyonu, log-x"])
+
+    # --- gradyan enerji haritalari (cift 1, ilk dort test goruntusu) ---------
+    imgs, labs, gr, gv = first
+    fig, maxima = _plot_gradmaps(imgs, gr, gv)
+    _save(fig, "fig4_gradient_comparison",
+          ["models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+           "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"],
+          {"cift": 1, "goruntu_indeksleri": list(range(N_MAPS)),
+           "etiketler": [int(v) for v in labs], "siniflar": [LANGS["en"]["classes"][int(v)] for v in labs],
+           "enerji": "sum_c g_c(x,y)^2, g = ornek basina CE kaybinin girdi gradyani",
+           "olcek": "her harita kendi maksimumuna bolunur (0-1); renk cubugu ortak 0-1",
+           "harita_maksimumlari_ham": maxima},
+          notes=["haritalar arasi mutlak buyukluk KARSILASTIRILAMAZ (harita basina normalize)"],
+          extra_names=("fig4a_gradient_visualization",))
 
 
 # --------------------------------------------------------------- t-SNE -------
@@ -381,7 +665,7 @@ def figtsne():
         ax.set_xticks([])
         ax.set_yticks([])
     fig.tight_layout()
-    fig.savefig(OUT / "fig_tsne_features.pdf")
+    fig.savefig(OUT / "fig_tsne_features.pdf", bbox_inches="tight")
     plt.close(fig)
     print("fig_tsne_features.pdf")
 
@@ -415,9 +699,53 @@ def figadv():
             axes[r, c].set_yticks([])
         axes[r, 0].set_ylabel(name, fontsize=7)
     fig.tight_layout()
-    fig.savefig(OUT / "fig_adversarial_examples.pdf")
+    fig.savefig(OUT / "fig_adversarial_examples.pdf", bbox_inches="tight")
     plt.close(fig)
     print("fig_adversarial_examples.pdf")
+
+
+def _plot_attnmaps(cm, am, layers, vmax, dmax):
+    """Satir = katman; sutunlar temiz / cekismeli / fark. Ortak vmax ve ortak
+    simetrik +-dmax; iki renk cubugu ucer satirin tam boyunda, hizmet ettikleri
+    sutunlarin sagina. Elle yerlesim (inc): constrained layout tek sutunluk fark
+    renk cubugunu kisa birakiyordu."""
+    W, msz, gap_c, gap_r, top_t, bot, left = FIG_W1, 0.53, 0.05, 0.06, 0.22, 0.05, 0.36
+    H = top_t + 3 * msz + 2 * gap_r + bot
+    x_map = [left, left + msz + gap_c, None]
+    x_cb1 = x_map[1] + msz + gap_c
+    x_map[2] = x_cb1 + 0.07 + 0.60          # cb1 tik etiketleri + etiketi icin bosluk
+    x_cb2 = x_map[2] + msz + gap_c
+    fig = plt.figure(figsize=(W, H))
+    axes = np.empty((len(layers), 3), dtype=object)
+    for r in range(len(layers)):
+        y = bot + (len(layers) - 1 - r) * (msz + gap_r)
+        for c in range(3):
+            axes[r, c] = fig.add_axes([x_map[c] / W, y / H, msz / W, msz / H])
+    y_lo, y_hi = bot / H, (bot + 3 * msz + 2 * gap_r) / H
+    cax1 = fig.add_axes([x_cb1 / W, y_lo, 0.07 / W, y_hi - y_lo])
+    cax2 = fig.add_axes([x_cb2 / W, y_lo, 0.07 / W, y_hi - y_lo])
+    ims = {}
+    for r, l in enumerate(layers):
+        d = am[l] - cm[l]
+        for c, (arr, title, kw) in enumerate([
+            (cm[l], L["att_clean"], {"cmap": "viridis", "vmin": 0, "vmax": vmax}),
+            (am[l], L["att_adv"], {"cmap": "viridis", "vmin": 0, "vmax": vmax}),
+            (d, L["att_diff"], {"cmap": "coolwarm", "vmin": -dmax, "vmax": dmax}),
+        ]):
+            ims[c] = axes[r, c].imshow(arr, interpolation="nearest", **kw)
+            if r == 0:
+                axes[r, c].set_title(title, fontsize=9)
+            axes[r, c].set_xticks([])
+            axes[r, c].set_yticks([])
+        # iki satirli etiket: "Katman 12" 9 pt'de harita yuksekligine sigmiyor
+        axes[r, 0].set_ylabel(f"{L['layer']}\n{l + 1}", fontsize=9, linespacing=1.3)
+    cb1 = fig.colorbar(ims[1], cax=cax1)
+    cb2 = fig.colorbar(ims[2], cax=cax2)
+    for cb, lab in ((cb1, L["attn_cbar"]), (cb2, L["diff_cbar"])):
+        cb.set_label(lab, fontsize=8, labelpad=2)
+        cb.ax.tick_params(labelsize=8, width=0.6, length=2)
+        cb.ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(3))
+    return fig
 
 
 # ------------------------------------------------------ attention haritalari -
@@ -432,26 +760,30 @@ def fig5maps():
     with torch.no_grad():
         ca, aa = vit.get_attention_maps(images), vit.get_attention_maps(adv)
     cm, am = ca["cls_maps"][0].cpu().numpy(), aa["cls_maps"][0].cpu().numpy()
+    with torch.no_grad():
+        pred_c, pred_a = int(vit(images[:1]).argmax(1)), int(vit(adv[:1]).argmax(1))
 
+    # 2026-10-04 (mercek D, Y4): satir basina ayri olcek yerine TUM satirlar
+    # icin ortak vmax (temiz/cekismeli) ve ortak simetrik +-dmax (fark).
+    # Boylece satirlar arasi doygunluk karsilastirilabilir.
     layers = [0, 5, 11]
-    fig, axes = plt.subplots(len(layers), 3, figsize=(4.6, 4.4))
-    for r, l in enumerate(layers):
-        d = am[l] - cm[l]
-        vmax = max(cm[l].max(), am[l].max())
-        for c, (arr, title, kw) in enumerate([
-            (cm[l], L["att_clean"], {"cmap": "viridis", "vmin": 0, "vmax": vmax}),
-            (am[l], L["att_adv"], {"cmap": "viridis", "vmin": 0, "vmax": vmax}),
-            (d, L["att_diff"], {"cmap": "coolwarm", "vmin": -np.abs(d).max(), "vmax": np.abs(d).max()}),
-        ]):
-            axes[r, c].imshow(arr, interpolation="nearest", **kw)
-            if r == 0:
-                axes[r, c].set_title(title, fontsize=8)
-            axes[r, c].set_xticks([])
-            axes[r, c].set_yticks([])
-        axes[r, 0].set_ylabel(f"{L['block']} {l + 1}", fontsize=8)
-    fig.tight_layout()
-    fig.savefig(OUT / "fig5_attention_comparison.pdf")
-    plt.close(fig)
+    vmax = float(max(cm[layers].max(), am[layers].max()))
+    dmax = float(np.abs(am[layers] - cm[layers]).max())
+    fig = _plot_attnmaps(cm, am, layers, vmax, dmax)
+    tv_img = [float(0.5 * np.abs(am[l] - cm[l]).sum()) for l in range(cm.shape[0])]
+    _save(fig, "fig5_attention_comparison",
+          ["models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"],
+          {"cift": 1, "goruntu_indeksi": 0, "etiket": int(labels[0]),
+           "sinif": LANGS["en"]["classes"][int(labels[0])],
+           "tahmin_temiz": LANGS["en"]["classes"][pred_c], "tahmin_cekismeli": LANGS["en"]["classes"][pred_a],
+           "saldiri": "PGD-10, eps=8/255, alpha=2/255, 16'lik ilk test partisi uzerinde, tohum 42",
+           "katmanlar_1tabanli": [l + 1 for l in layers],
+           "ortak_vmax_dikkat": vmax, "ortak_dmax_fark": dmax,
+           "satir_maks_dikkat": [float(max(cm[l].max(), am[l].max())) for l in layers],
+           "satir_maks_mutlak_fark": [float(np.abs(am[l] - cm[l]).max()) for l in layers],
+           "bu_goruntu_tv_tum_katmanlar": tv_img},
+          notes=["tek goruntu (ilk test ornegi), ornek degil illustrasyon",
+                 "cls_maps: CLS satiri, basliklar uzerinden ortalama, 14x14 yama izgarasi (vit.get_attention_maps)"])
 
     fig, axes = plt.subplots(1, 2, figsize=(3.4, 1.9))
     vmax = max(cm[11].max(), am[11].max())
@@ -461,20 +793,25 @@ def fig5maps():
         ax.set_xticks([])
         ax.set_yticks([])
     fig.tight_layout()
-    fig.savefig(OUT / "fig5a_attention_comparison.pdf")
+    fig.savefig(OUT / "fig5a_attention_comparison.pdf", bbox_inches="tight")
     plt.close(fig)
-    print("fig5_attention_comparison.pdf + fig5a_attention_comparison.pdf")
+    print("fig5a_attention_comparison.pdf (makalede kullanilmiyor)")
 
 
 ALL = {"fig1": fig1, "fig2": fig2, "fig3": fig3, "fig5b": fig5b,
        "fig4": fig4, "tsne": figtsne, "adv": figadv, "fig5maps": fig5maps}
+ARGS = argparse.Namespace(tost_margin=0.05)
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="+", default=list(ALL))
     ap.add_argument("--lang", choices=["en", "tr"], default="en")
+    ap.add_argument("--tost-margin", type=float, default=0.05,
+                    help="fig5b esdegerlik marji (nat); metindeki on-tanimli +-0.05, sonuc dosyasinda yok")
     args = ap.parse_args()
+    ARGS = args
     L = LANGS[args.lang]
+    LANG = args.lang
     CLASSES = L["classes"]
     if args.lang != "en":
         OUT = ROOT / f"paper/figures/final_{args.lang}"

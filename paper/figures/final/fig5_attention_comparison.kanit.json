@@ -1,0 +1,67 @@
+{
+  "sekil": "fig5_attention_comparison",
+  "dil": "en",
+  "betik": "scripts/generate_journal_figs_c1.py",
+  "komut": "docker exec -w /workspace adeb_eval python scripts/generate_journal_figs_c1.py --only fig4 fig5maps",
+  "uretim_zamani_utc": "2026-10-04T02:30:44+00:00",
+  "git": {
+    "commit": "ded2356188280d4aba2712f048879f60f7a353ed",
+    "branch": "q1",
+    "betik_kirli": true
+  },
+  "cihaz": "cpu",
+  "tohum": 42,
+  "boyut_in": [
+    3.5,
+    1.9800000000000002
+  ],
+  "en_kucuk_yazi_pt": 8.0,
+  "kaynaklar": {
+    "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth": "07677f5e8838862953ebbadf4a93b02dedc3d885025e156c5f0d72a2cfa2b939"
+  },
+  "degerler": {
+    "cift": 1,
+    "goruntu_indeksi": 0,
+    "etiket": 3,
+    "sinif": "cat",
+    "tahmin_temiz": "cat",
+    "tahmin_cekismeli": "dog",
+    "saldiri": "PGD-10, eps=8/255, alpha=2/255, 16'lik ilk test partisi uzerinde, tohum 42",
+    "katmanlar_1tabanli": [
+      1,
+      6,
+      12
+    ],
+    "ortak_vmax_dikkat": 0.03035113401710987,
+    "ortak_dmax_fark": 0.004785079509019852,
+    "satir_maks_dikkat": [
+      0.009988400153815746,
+      0.03035113401710987,
+      0.013684980571269989
+    ],
+    "satir_maks_mutlak_fark": [
+      0.000572228105738759,
+      0.003933994565159082,
+      0.004785079509019852
+    ],
+    "bu_goruntu_tv_tum_katmanlar": [
+      0.015658989548683167,
+      0.0409814789891243,
+      0.061159517616033554,
+      0.02809295803308487,
+      0.03899218142032623,
+      0.03291364014148712,
+      0.0693410187959671,
+      0.03336919844150543,
+      0.051414184272289276,
+      0.04466759040951729,
+      0.04940854758024216,
+      0.04922104626893997
+    ]
+  },
+  "notlar": [
+    "tek goruntu (ilk test ornegi), ornek degil illustrasyon",
+    "cls_maps: CLS satiri, basliklar uzerinden ortalama, 14x14 yama izgarasi (vit.get_attention_maps)"
+  ],
+  "ek_ciktilar": []
+}

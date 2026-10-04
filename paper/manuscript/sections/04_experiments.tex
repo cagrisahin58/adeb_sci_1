@@ -38,7 +38,7 @@ ViT-Tiny & AT & 5.7M & 73.53$\pm$0.55 & 36.31$\pm$0.42 & 32.69$\pm$0.22 & \textb
 \end{tabular}
 \end{table}
 
-The CNN holds an \emph{absolute} robustness advantage under every attack: ResNet-18 AT reaches $37.93\pm0.14\%$ robust accuracy under AutoAttack against $29.14\pm0.40\%$ for ViT-Tiny AT. Because both models of a pair are evaluated on the same 10{,}000 samples with per-sample outcomes logged, McNemar's paired test applies within each run and favors the CNN in all three pairs ($p < 10^{-84}$ under AutoAttack, $p < 10^{-120}$ under PGD-10). Seed-level variation for the adversarially trained pair is at most 0.55 points on any reported accuracy, so the ordering is not run-to-run noise; the undefended baselines vary more under FGSM (up to 1.8 points), but no claim rests on them. The CNN also retains higher clean accuracy ($85.78$ vs $73.53\%$, a 12.3-point gap), reflecting the difficulty of training ViTs on small datasets from scratch; Table~\ref{tab:conditional} separates that contribution from conditional susceptibility. AutoAttack falls below PGD-10 for both architectures (6.2 points for ResNet-18, 3.6 for ViT-Tiny). The WideResNet-28-10 reference~\cite{gowal2020uncovering}, at 62.76\%, shows how far capacity, extra training data and a stronger recipe jointly push robustness beyond the architectural choice; we keep it separate from the matched pair throughout.
+The CNN holds an \emph{absolute} robustness advantage under every attack: ResNet-18 AT reaches $37.93\pm0.14\%$ robust accuracy under AutoAttack against $29.14\pm0.40\%$ for ViT-Tiny AT. Because both models of a pair are evaluated on the same 10{,}000 samples with per-sample outcomes logged, McNemar's paired test applies within each run and favors the CNN in all three pairs ($p < 2\times10^{-84}$ under AutoAttack, $p < 2\times10^{-120}$ under PGD-10). Seed-level variation for the adversarially trained pair is at most 0.55 points on any reported accuracy, so the ordering is not run-to-run noise; the undefended baselines vary more under FGSM (up to 1.8 points), but no claim rests on them. The CNN also retains higher clean accuracy ($85.78$ vs $73.53\%$, a 12.3-point gap), reflecting the difficulty of training ViTs on small datasets from scratch; Table~\ref{tab:conditional} separates that contribution from conditional susceptibility. AutoAttack falls below PGD-10 for both architectures (6.2 points for ResNet-18, 3.6 for ViT-Tiny). The WideResNet-28-10 reference~\cite{gowal2020uncovering}, at 62.76\%, shows how far capacity, extra training data and a stronger recipe jointly push robustness beyond the architectural choice; we keep it separate from the matched pair throughout.
 
 \begin{table}[!t]
 \centering
@@ -54,7 +54,8 @@ The CNN holds an \emph{absolute} robustness advantage under every attack: ResNet
 ResNet-18 AT & \textbf{48.58}$\pm$0.80 & \textbf{55.78}$\pm$0.23 & \textbf{59.86}$\pm$0.35 & \textbf{51.89}$\pm$0.49 \\
 ViT-Tiny AT & 55.53$\pm$0.50 & 60.37$\pm$0.33 & 46.11$\pm$0.59 & 41.15$\pm$0.39 \\
 \midrule
-\multicolumn{5}{l}{\textit{Earlier single run, validation split seen during clean pre-training ($n$=7{,}260)}} \\
+\multicolumn{5}{l}{\textit{Earlier single run ($n$=7{,}260); validation split}} \\
+\multicolumn{5}{l}{\textit{seen during clean pre-training}} \\
 ResNet-18 AT & 52.15 & 58.16 & \textbf{54.92} & \textbf{48.15} \\
 ViT-Tiny AT & 52.33 & \textbf{56.46} & 49.61 & 45.33 \\
 \bottomrule
@@ -70,7 +71,7 @@ Figure~\ref{fig:epsilon_sweep} shows PGD-10 robust accuracy across perturbation 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig2_epsilon_sweep.pdf}
-\caption{PGD-10 robust accuracy vs.\ perturbation budget ($\eps$), measured on the full test set. Both AT architectures degrade with similar shapes as epsilon increases, with the CNN maintaining a consistent margin.}
+\caption{PGD-10 robust accuracy against the perturbation budget $\eps$ on the full test set (mean over three runs; the $\pm$1 std error bars are narrower than the markers). The horizontal axis is categorical and $\eps=0$ is clean accuracy. The sweep is a separate PGD-10 evaluation, so its $8/255$ point differs from Table~\ref{tab:main_results} by at most $0.08$ points. The CNN's margin over the ViT is not constant: it is widest at the small budgets and narrows at $16/255$.}
 \label{fig:epsilon_sweep}
 \end{figure}
 
@@ -89,16 +90,18 @@ We craft PGD-10 adversarial examples on a source model and evaluate them on a ta
 \label{tab:transfer_protocols}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccc}
 \toprule
-\textbf{Protocol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Diff.} & \textbf{Diff.}$^{\ddagger}$ \\
+\textbf{Protocol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Diff.\ (pp)}$^{\ddagger}$ \\
 \midrule
-Unconditioned (raw) & 41.02$\pm$0.55 & 27.45$\pm$0.27 & $+$13.57$\pm$0.33 & $+$8.27 \\
-Target-correct & 19.87$\pm$0.18 & 15.51$\pm$0.59 & $+$4.36$\pm$0.44 & $+$0.63 \\
-Both-correct & 18.25$\pm$0.17 & 9.98$\pm$0.31 & $+$8.27$\pm$0.23 & $+$5.33 \\
-Successful-source & 36.39$\pm$0.76 & 17.02$\pm$0.52 & $+$19.37$\pm$1.27 & $+$11.17 \\
+Unconditioned (raw) & 41.02$\pm$0.55 & 27.45$\pm$0.27 & $+$13.57$\pm$0.33 \\
+Target-correct & 19.87$\pm$0.18 & 15.51$\pm$0.59 & $+$4.36$\pm$0.44 \\
+Both-correct & 18.25$\pm$0.17 & 9.98$\pm$0.31 & $+$8.27$\pm$0.23 \\
+Successful-source & 36.39$\pm$0.76 & 17.02$\pm$0.52 & $+$19.37$\pm$1.27 \\
 \bottomrule
-\multicolumn{5}{l}{\scriptsize $^{\ddagger}$Single run, validation split seen during clean pre-training.}
+\multicolumn{4}{l}{\scriptsize $^{\ddagger}$On a single earlier run whose validation split was seen during}\\
+\multicolumn{4}{l}{\scriptsize \phantom{$^{\ddagger}$}clean pre-training the same differences were $+$8.27, $+$0.63,}\\
+\multicolumn{4}{l}{\scriptsize \phantom{$^{\ddagger}$}$+$5.33 and $+$11.17 (top to bottom).}
 \end{tabular}
 \end{table}
 
@@ -110,7 +113,7 @@ Successful-source & 36.39$\pm$0.76 & 17.02$\pm$0.52 & $+$19.37$\pm$1.27 & $+$11.
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig_protocol_sets.pdf}
-\caption{Nested evaluation sets of the four transfer protocols in the CNN$\rightarrow$ViT direction (left; boxes are schematic and not area-proportional, $N$ is the mean over three seed pairs) and the asymmetry, CNN$\rightarrow$ViT minus ViT$\rightarrow$CNN, that each protocol measures on the same models and data (right; mean $\pm$ SD of the paired within-seed difference over three seed pairs, individual seed pairs as open markers). The ViT$\rightarrow$CNN sets nest in the same order ($N = 10{,}000$, $8{,}579$, $7{,}061$ and $3{,}814$); the unconditioned and both-correct sets are identical in the two directions, the other two are not. Brackets mark the decomposition of the $15.01$-point spread: the $9.21$-point term is the closed-form term of Equation~\eqref{eq:raw_identity}, the $5.79$-point term belongs to a protocol that estimates a different quantity, and $3.91$ points separate the two endorsed protocols (terms rounded separately).}
+\caption{Nested evaluation sets of the four transfer protocols in the CNN$\rightarrow$ViT direction (left; boxes are schematic and not area-proportional, $N$ is the mean over three seed pairs) and the asymmetry, CNN$\rightarrow$ViT minus ViT$\rightarrow$CNN, that each protocol measures on the same models and data (right; mean $\pm$ SD of the paired within-seed difference over three seed pairs, individual seed pairs as open markers). The ViT$\rightarrow$CNN sets nest in the same order ($N$ = 10,000, 8,579, 7,061 and 3,814); the unconditioned and both-correct sets are identical in the two directions, the other two are not. Brackets mark the decomposition of the $15.01$-point spread: the $9.21$-point term is the closed-form term of Equation~\eqref{eq:raw_identity}, the $5.79$-point term belongs to a protocol that estimates a different quantity, and $3.91$ points separate the two endorsed protocols (terms rounded separately).}
 \label{fig:protocol_sets}
 \end{figure}
 
@@ -148,7 +151,7 @@ What remains dataset-specific is the proportionality factor, not the mechanism. 
 
 \begin{table}[!t]
 \centering
-\caption{$3\times3$ transfer matrix (PGD-10, $\eps$=8/255, full test set; mean$\pm$std over three seed pairs; the WideResNet column and row use the single external checkpoint). Raw = unconditioned fooling rate, Cond. = target-correct conditioned rate. Diagonal entries are white-box attacks.}
+\caption{$3\times3$ transfer matrix (PGD-10, $\eps$=8/255, full test set; mean$\pm$std over three seed pairs; the WideResNet column and row use the single external checkpoint). Raw = unconditioned fooling rate, Cond. = target-correct conditioned rate. Diagonal entries are white-box attacks. The attacks for this matrix were generated in a separate run (attack seed 42); the cells it shares with Tables~\ref{tab:conditional} and~\ref{tab:transfer_protocols} differ from them by at most $0.06$ points, within the attack-initialization variance of Section~\ref{subsec:statistics_results}.}
 \label{tab:transfer_matrix}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -169,14 +172,10 @@ WRN-28-10 & WRN-28-10 & 33.03 & 25.16 \\
 \end{tabular}
 \end{table}
 
-Figure~\ref{fig:transfer_heatmap} shows the conditioned matrix. The third architecture also reframes the asymmetry itself. Averaged over the two foreign sources, incoming conditioned transfer is $18.50\%$ for the ResNet target, $19.04\%$ for the ViT target, and $10.57\%$ for the WideResNet target, which tracks each target's own white-box conditioned fooling rate ($48.52$, $55.57$ and $25.16\%$) with $r = 0.986$ over the three targets. On this evidence the CNN$\rightarrow$ViT advantage is better read as a property of the weaker target than as evidence that CNN-crafted perturbations are intrinsically more transferable: the most robust target absorbs attacks from both families almost equally well. With only three targets, the correlation can only be suggestive.
+The third architecture also reframes the asymmetry itself. Averaged over the two foreign sources, incoming conditioned transfer is $18.50\%$ for the ResNet target, $19.04\%$ for the ViT target, and $10.57\%$ for the WideResNet target, which tracks each target's own white-box conditioned fooling rate ($48.52$, $55.57$ and $25.16\%$) with $r = 0.986$ over the three targets. On this evidence the CNN$\rightarrow$ViT advantage is better read as a property of the weaker target than as evidence that CNN-crafted perturbations are intrinsically more transferable: the most robust target absorbs attacks from both families almost equally well. With only three targets, the correlation can only be suggestive.
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{../figures/final/fig3_transfer_heatmap.pdf}
-\caption{Conditioned (target-correct) transfer fooling rates, mean over three seed pairs. Off-diagonal asymmetry under this protocol is $+4.4$ points; Table~\ref{tab:transfer_protocols} shows how far the same quantity moves under other protocols.}
-\label{fig:transfer_heatmap}
-\end{figure}
+% Isi haritasi sekli (fig3_transfer_heatmap) 2026-10-04'te kaldirildi: Tablo 4'un Kos.
+% sutununu ayni sayfada yineliyordu (hakem paneli, mercek D Y6). Betik ve PDF duruyor.
 
 % ----------------------------------------------------------------------------
 % 4.3 Second dataset (E1)
@@ -219,25 +218,27 @@ This result carries two qualifications. The two adversarial bands held with marg
 
 CIFAR-10 and CIFAR-100 both place the two architectures far apart in clean accuracy (about $12$ and $21$ points). SVHN~\cite{netzer2011reading} does not (Table~\ref{tab:cifar100_results} reports the CIFAR-100 absolutes for comparison): adversarially trained under the same recipe, the ResNet reaches $94.27\pm0.70\%$ clean and the ViT $92.42\pm0.56\%$, a gap of $1.85$ points. Robust accuracies are $55.52\pm0.64$ and $52.30\pm0.10$ under PGD-10. Our account is most specific about this regime, and what it implies runs against the CIFAR results: with the clean-accuracy gap nearly closed, the direction itself should become a matter of protocol.
 
-\begin{table}[!t]
+\begin{table*}[!t]
 \centering
-\caption{SVHN transfer asymmetry under the four protocols (PGD-10, $\eps$=8/255, full test set $n$=26{,}032; mean$\pm$std over two seed pairs; two architectures only, so no third-architecture control). Unlike CIFAR-10 and CIFAR-100, the sign is not the same in all four rows.}
-\label{tab:svhn_protocols}
+\caption{Transfer asymmetry (CNN$\rightarrow$ViT minus ViT$\rightarrow$CNN, percentage points) under the four conditioning protocols in every setting of this paper (PGD-10; $\eps$=8/255 under $L_\infty$, $\eps$=0.5 under $L_2$; full test sets). Settings with three seed pairs give the mean$\pm$std across pairs; SVHN has two pairs, so both values are printed instead of a standard deviation. Spread is the per-pair range over the four protocols, averaged over pairs. The two endorsed protocols, target-correct and both-correct, agree in sign within every setting; the sign changes across protocols only on SVHN, where all four estimates lie within three points of zero.}
+\label{tab:protocol_settings}
 \footnotesize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Protocol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Diff.} \\
+\textbf{Protocol} & \textbf{CIFAR-10, $L_\infty$} & \textbf{CIFAR-100, $L_\infty$} & \textbf{SVHN, $L_\infty$} & \textbf{CIFAR-10, $L_2$} \\
+ & 3 pairs, $n$=10,000 & 3 pairs, $n$=10,000 & 2 pairs, $n$=26,032 & 3 pairs, $n$=10,000 \\
 \midrule
-Unconditioned (raw) & 31.89 & 31.49 & $+$0.39$\pm$0.08 \\
-Target-correct & 26.32 & 27.33 & $-$1.00$\pm$0.22 \\
-Both-correct & 25.36 & 25.70 & $-$0.35$\pm$0.01 \\
-Successful-source & 61.38 & 58.69 & $+$2.70$\pm$0.40 \\
+Unconditioned (raw) & $+$13.57$\pm$0.33 & $+$18.53$\pm$0.71 & $+$0.33 / $+$0.45 & $+$13.03$\pm$0.81 \\
+Target-correct & $+$4.36$\pm$0.44 & $+$4.96$\pm$1.01 & $-$1.16 / $-$0.85 & $+$2.12$\pm$0.18 \\
+Both-correct & $+$8.27$\pm$0.23 & $+$10.92$\pm$0.34 & $-$0.34 / $-$0.36 & $+$4.07$\pm$0.36 \\
+Successful-source & $+$19.37$\pm$1.27 & $+$17.50$\pm$0.92 & $+$2.98 / $+$2.41 & $+$12.06$\pm$0.23 \\
+\midrule
+Spread (max $-$ min) & 15.01$\pm$0.84 & 13.83$\pm$1.30 & 4.14 / 3.26 & 10.92$\pm$0.82 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
-When the architectures are matched, the protocol decides the sign. Two of the four protocols report a CNN advantage and two report a ViT advantage (Table~\ref{tab:svhn_protocols}). The two protocols we endorse for directional claims, target-correct and both-correct, agree with each other and both favor the ViT; the sign change separates them from the unconditioned rate and the successful-source rate. The unconditioned reversal follows arithmetically from Equation~\eqref{eq:raw_identity}: the ViT target's clean error exceeds the CNN's by about two points here, which is enough to carry a $-1.00$ conditioned difference to $+0.39$ raw. Reporting a raw rate can therefore flip the sign of a published comparison, and the identity says in advance when it will. Under the both-correct protocol, which we treat as primary because it scores both directions on identical samples, the difference is $-0.35$ points, with a sign-flip permutation $p$ of $0.105$ and TOST equivalence \emph{accepted} at all three margins, including the tightest one we test ($\pm1$ point, $p=0.0007$). That acceptance needs one qualification. SVHN was run with two seed pairs, so the quoted interval $[-0.76, +0.07]$ averages the endpoints of two per-seed bootstraps and no across-run interval is available: with two runs the run-to-run standard deviation is estimated from a single contrast and carries no information. The equivalence therefore rests on the within-run comparison and on the close agreement of the two runs ($-0.34$ and $-0.36$); two runs cannot bound the run-to-run variation. A study reporting only the successful-source rate would announce a $2.70$-point CNN advantage on SVHN; one reporting only the target-correct rate would announce a $1.00$-point ViT advantage.
+When the architectures are matched, the protocol decides the sign. Two of the four protocols report a CNN advantage and two report a ViT advantage (Table~\ref{tab:protocol_settings}). The two protocols we endorse for directional claims, target-correct and both-correct, agree with each other and both favor the ViT; the sign change separates them from the unconditioned rate and the successful-source rate. The unconditioned reversal follows arithmetically from Equation~\eqref{eq:raw_identity}: the ViT target's clean error exceeds the CNN's by about two points here, which is enough to carry a $-1.00$ conditioned difference to $+0.39$ raw. Reporting a raw rate can therefore flip the sign of a published comparison, and the identity says in advance when it will. Under the both-correct protocol, which we treat as primary because it scores both directions on identical samples, the difference is $-0.35$ points, with a sign-flip permutation $p$ of $0.105$ and TOST equivalence \emph{accepted} at all three margins, including the tightest one we test ($\pm1$ point, $p=0.0007$). That acceptance needs one qualification. SVHN was run with two seed pairs, so the quoted interval $[-0.76, +0.07]$ averages the endpoints of two per-seed bootstraps and no across-run interval is available: with two runs the run-to-run standard deviation is estimated from a single contrast and carries no information. The equivalence therefore rests on the within-run comparison and on the close agreement of the two runs ($-0.34$ and $-0.36$); two runs cannot bound the run-to-run variation. A study reporting only the successful-source rate would announce a $2.70$-point CNN advantage on SVHN; one reporting only the target-correct rate would announce a $1.00$-point ViT advantage.
 
 This behavior is consistent with the mechanism. The protocol spread on SVHN is $3.70\pm0.62$ points, against $15.01\pm0.84$ on CIFAR-10 and $13.83\pm1.30$ on CIFAR-100, roughly four times smaller than the two CIFAR values while the clean-accuracy gaps are $1.85$, $\approx12$ and $\approx21$ points. The relation is not monotone across the three: the largest gap does not produce the largest spread, and CIFAR-100 sits slightly below CIFAR-10. What separates the datasets here is the near-matched pair. Once the spread is small enough it no longer clears the asymmetry itself, so the sign becomes a property of the protocol and not of the architectures. The direction we reported as stable in Section~\ref{subsec:transfer} is stable \emph{in the regime where the two models differ in clean accuracy}, which is the regime both CIFAR datasets happen to occupy.
 
@@ -253,7 +254,7 @@ Everything so far is measured inside one threat model. To test whether the proto
 
 \begin{table}[!t]
 \centering
-\caption{Same checkpoints, $L_2$ budget ($\eps$=0.5; mean$\pm$std over three seed pairs). PGD-L2 uses the full test set; AutoAttack-L2 uses a pre-registered $5{,}000$-sample subset, so its clean column differs slightly from the full-set value and the two are not drawn from the same samples.}
+\caption{Same checkpoints, $L_2$ budget ($\eps$=0.5; mean$\pm$std over three seed pairs). PGD-L2 uses the full test set; AutoAttack-L2 uses a pre-registered 5,000-sample subset, so its clean column differs slightly from the full-set value and the two are not drawn from the same samples.}
 \label{tab:l2_results}
 \footnotesize
 \begin{tabular}{lcccc}
@@ -266,7 +267,7 @@ ViT-Tiny AT & 73.53 & 51.72$\pm$0.23 & 73.61 & 49.85$\pm$0.20 \\
 \end{tabular}
 \end{table}
 
-Under the changed norm the protocol spread shrinks to $10.92$ points, against $15.01$ under $\Linf$, yet stays far above both the two-point floor the pre-registration set and the run-to-run standard deviation, and the sign is positive in all twelve measurements, so the first two registered predictions hold. The third prediction, that the deviation of unconditioned from conditioned rates would rise with the target's clean error, cannot fail once Equation~\eqref{eq:raw_identity} holds: the deviation \emph{is} $e\,(1 - r_{\text{cond}})$, so it rises with $e$ by construction, and the fitted slope of $+0.914$ estimates $1 - r_{\text{cond}}$ rather than testing anything. In any case we report the slope rather than a correlation, because the eighteen directions take only seven distinct target-error values, six of them the same fixed WideResNet. The prediction was registered before the identity was written down and now serves as an out-of-sample check on it, the same status it has in Section~\ref{subsec:cifar100}. The four protocols (Table~\ref{tab:l2_results}) report asymmetries of $+13.03\pm0.81$ (unconditioned), $+2.12\pm0.18$ (target-correct), $+4.07\pm0.36$ (both-correct) and $+12.06\pm0.23$ (successful-source). Absolute robustness keeps the CNN-over-ViT ordering under both attacks, with McNemar $p<10^{-57}$ in every seed pair.
+Under the changed norm the protocol spread shrinks to $10.92$ points, against $15.01$ under $\Linf$, yet stays far above both the two-point floor the pre-registration set and the run-to-run standard deviation, and the sign is positive in all twelve measurements, so the first two registered predictions hold. The third prediction, that the deviation of unconditioned from conditioned rates would rise with the target's clean error, cannot fail once Equation~\eqref{eq:raw_identity} holds: the deviation \emph{is} $e\,(1 - r_{\text{cond}})$, so it rises with $e$ by construction, and the fitted slope of $+0.914$ estimates $1 - r_{\text{cond}}$ rather than testing anything. In any case we report the slope rather than a correlation, because the eighteen directions take only seven distinct target-error values, six of them the same fixed WideResNet. The prediction was registered before the identity was written down and now serves as an out-of-sample check on it, the same status it has in Section~\ref{subsec:cifar100}. The four protocols (Table~\ref{tab:protocol_settings}) report asymmetries of $+13.03\pm0.81$ (unconditioned), $+2.12\pm0.18$ (target-correct), $+4.07\pm0.36$ (both-correct) and $+12.06\pm0.23$ (successful-source). Absolute robustness (Table~\ref{tab:l2_results}) keeps the CNN-over-ViT ordering under both attacks, with McNemar $p<10^{-57}$ in every seed pair.
 
 The measured slope agrees with the value the identity predicts. Conditioned rates are far lower under this $L_2$ budget than under $\Linf$ (roughly $2$ to $9\%$ against $9$ to $22\%$), so the identity predicts a \emph{steeper} slope, and the measured $0.914$ sits where it should, against $0.762$ on the same models under $\Linf$. The proportionality factor depends on the attack budget, as Section~\ref{subsubsec:matrix} states.
 
@@ -280,7 +281,7 @@ To characterize architectural differences in input sensitivity, we analyze the g
 
 \begin{table}[!t]
 \centering
-\caption{Gradient characteristics computed from per-sample loss gradients ($n$=500 test samples per run; mean$\pm$std over three runs).}
+\caption{Gradient characteristics computed from per-sample loss gradients ($n$=500 test samples per run; mean$\pm$std over three runs). Bold marks the larger of the two adversarially trained models; the native control is a single checkpoint, so no standard deviation applies.}
 \label{tab:gradient}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
@@ -288,11 +289,11 @@ To characterize architectural differences in input sensitivity, we analyze the g
 \toprule
 \textbf{Metric} & \textbf{ResNet-18 AT} & \textbf{ViT-Tiny AT} & \textbf{ViT (native)$^\ddagger$} \\
 \midrule
-Hoyer sparsity & \textbf{0.4928}$\pm$0.0120 & 0.4561$\pm$0.0055 & 0.405 \\
-Gini coefficient & \textbf{0.6498}$\pm$0.0089 & 0.6099$\pm$0.0051 & 0.571 \\
-Frac.\ $<$1\% of max & \textbf{34.8\%}$\pm$2.1 & 26.8\%$\pm$0.9 & 17.9\% \\
-Alignment (absolute) & 0.0378$\pm$0.0009 & \textbf{0.0562}$\pm$0.0004 & 0.079 \\
-Alignment (signed) & 0.0014 & 0.0005 & -- \\
+Hoyer sparsity & \textbf{0.4928}$\pm$0.0120 & 0.4561$\pm$0.0055 & 0.4046 \\
+Gini coefficient & \textbf{0.6498}$\pm$0.0089 & 0.6099$\pm$0.0051 & 0.5712 \\
+Fraction $<$1\% of max & \textbf{0.3477}$\pm$0.0210 & 0.2682$\pm$0.0090 & 0.1785 \\
+Alignment (absolute) & 0.0378$\pm$0.0009 & \textbf{0.0562}$\pm$0.0004 & 0.0794 \\
+Alignment (signed) & 0.0010$\pm$0.0003 & 0.0004$\pm$0.0001 & -- \\
 \bottomrule
 \multicolumn{4}{l}{\scriptsize $^\ddagger$CIFAR-native ViT control (4$\times$4 patches, 5.4M params); a single}\\
 \multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}checkpoint predating the fixed-split protocol, selected on the}\\
@@ -300,7 +301,7 @@ Alignment (signed) & 0.0014 & 0.0005 & -- \\
 \end{tabular}
 \end{table}
 
-Across all three scale-invariant sparsity measures, CNN gradients are sparser than ViT gradients, and the ordering reproduces in every run with seed-level standard deviations at least three times smaller than the gap. This is the one place where our two units of inference disagree, so we report both. Within a run, where the same 500 samples are measured under both models, per-sample paired tests reject the null on all three measures in all three runs (Wilcoxon signed-rank, Holm-corrected $p<10^{-11}$ throughout, paired Cohen's $d$ between 0.32 and 1.23); that establishes that these checkpoints differ on these images. At the run level, which is the unit an architectural claim needs and the unit Table~\ref{tab:spatial} uses, three paired runs give raw $p$ of $0.036$, $0.042$ and $0.067$ for Gini, the sub-1\% fraction and Hoyer, which Holm correction across the three measures raises to $0.108$. The ordering is consistent three runs out of three on every measure and the gap is several times the run-to-run standard deviation, but with three runs it does not clear $\alpha=0.05$ after a correction that is conservative here because the three measures are near-collinear. We therefore report the sparsity result as reproducible and not as significant. The alignment difference below does reach run-level significance ($p=0.0009$), and it is the gradient result we carry into the discussion on that basis. The ordering is a product of adversarial training, not of architecture: in the clean-trained counterparts of the same runs the \emph{ViT} is the sparser model (Hoyer $0.380\pm0.009$ versus $0.347\pm0.002$), so adversarial training sparsifies CNN gradients far more strongly, in line with the sparser feature attributions that Chalasani et al.~\cite{chalasani2020concise} report for adversarially trained models. The native-resolution ViT control is less sparse than the upsampled ViT on every measure, so the ordering is not an artifact of the $32\rightarrow224$ upsampling. Cross-sample alignment is higher for the ViT in absolute cosine, and the clean-trained pair already shows this gap ($0.058$ versus $0.029$), so this gap is architectural and predates the defense. The \emph{signed} mean cosine is near zero for both models ($\leq0.0014$): samples share sensitivity axes without sharing a consistent direction, so the alignment gap is not evidence for cheap universal perturbations.
+Across all three scale-invariant sparsity measures, CNN gradients are sparser than ViT gradients, and the ordering reproduces in every run with seed-level standard deviations at least three times smaller than the gap. This is the one place where our two units of inference disagree, so we report both. Within a run, where the same 500 samples are measured under both models, per-sample paired tests reject the null on all three measures in all three runs (Wilcoxon signed-rank, Holm-corrected $p<10^{-11}$ throughout, paired Cohen's $d$ between 0.32 and 1.23); that establishes that these checkpoints differ on these images. At the run level, which is the unit an architectural claim needs and the unit Table~\ref{tab:spatial} uses, three paired runs give raw $p$ of $0.036$, $0.042$ and $0.067$ for Gini, the sub-1\% fraction and Hoyer, which Holm correction across the three measures raises to $0.108$. The ordering is consistent three runs out of three on every measure and the gap is several times the run-to-run standard deviation, but with three runs it does not clear $\alpha=0.05$ after a correction that is conservative here because the three measures are near-collinear. We therefore report the sparsity result as reproducible and not as significant. The alignment difference below does reach run-level significance ($p=0.0009$), and it is the gradient result we carry into the discussion on that basis. The ordering is a product of adversarial training, not of architecture: in the clean-trained counterparts of the same runs the \emph{ViT} is the sparser model (Hoyer $0.380\pm0.009$ versus $0.347\pm0.002$), so adversarial training sparsifies CNN gradients far more strongly, in line with the sparser feature attributions that Chalasani et al.~\cite{chalasani2020concise} report for adversarially trained models. The native-resolution ViT control is less sparse than the upsampled ViT on every measure, so the ordering is not an artifact of the $32\rightarrow224$ upsampling. Cross-sample alignment is higher for the ViT in absolute cosine, and the clean-trained pair already shows this gap ($0.058$ versus $0.029$), so this gap is architectural and predates the defense. The \emph{signed} mean cosine is near zero for both models ($\leq0.0014$ in every run): samples share sensitivity axes without sharing a consistent direction, so the alignment gap is not evidence for cheap universal perturbations.
 
 These gradient results are also the one part of our analysis that is insensitive to which checkpoint set is used: every quantity in Table~\ref{tab:gradient} reproduces the \emph{ordering} measured on our earlier single-run checkpoints, although in six of the eight cases the value itself moves by more than the seed-level standard deviation reported here. The contrast with the conditional decomposition of Section~\ref{subsec:robustness} is therefore about direction, not magnitude: there the attribution between clean accuracy and conditional sensitivity changed between checkpoint sets, whereas here no gradient-structure difference changes sign.
 
@@ -316,16 +317,16 @@ Sparsity measures answer how \emph{many} gradient components are large, not whet
 \centering
 \caption{Spatial locality of input gradients ($n$=500 samples per run; mean$\pm$std over three runs). Paired differences are computed on the same samples. Inference is at the run level: $p$ is a one-sample $t$-test on the three per-run mean differences, Holm-corrected across the four measures, so that the unit of inference matches the unit of the claim. Lower area and entropy mean more localized; higher Moran's $I$ means more clustered.}
 \label{tab:spatial}
-\footnotesize
+\scriptsize
 \setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Measure} & \textbf{ResNet-18} & \textbf{ViT-Tiny} & \textbf{Diff.} & \textbf{$p$} \\
+\textbf{Measure} & \textbf{ResNet-18} & \textbf{ViT-Tiny} & \textbf{Diff.\ (R$-$V)} & \textbf{$p$ (Holm)} \\
 \midrule
-Area for 50\% energy & 0.0378$\pm$0.0017 & 0.0397$\pm$0.0010 & $-$0.0019 & 0.54 \\
-Area for 90\% energy & 0.2345$\pm$0.0078 & 0.2570$\pm$0.0067 & $-$0.0224 & 0.40 \\
-Spatial entropy (nat) & 5.2014$\pm$0.0387 & 5.2524$\pm$0.0197 & $-$0.0509 & 0.54 \\
-Moran's $I$ & 0.4141$\pm$0.0132 & 0.3941$\pm$0.0024 & $+$0.0200 & 0.47 \\
+Area for 50\% energy & 0.0378$\pm$0.0017 & 0.0397$\pm$0.0010 & $-$0.0019$\pm$0.0027 & 0.54 \\
+Area for 90\% energy & 0.2345$\pm$0.0078 & 0.2570$\pm$0.0067 & $-$0.0224$\pm$0.0133 & 0.40 \\
+Spatial entropy (nat) & 5.2014$\pm$0.0387 & 5.2524$\pm$0.0197 & $-$0.0509$\pm$0.0580 & 0.54 \\
+Moran's $I$ & 0.4141$\pm$0.0132 & 0.3941$\pm$0.0024 & $+$0.0200$\pm$0.0156 & 0.47 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -335,7 +336,7 @@ The result is negative (Table~\ref{tab:spatial}). None of the four measures show
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig4b_gradient_distribution.pdf}
-\caption{Distribution of per-sample gradient $L_2$ norms for both architectures. The magnitude maps for the same inputs are shown in Figure~\ref{fig:gradient_heatmap}.}
+\caption{Empirical distribution of per-sample input-gradient $L_2$ norms (per-sample cross-entropy loss, the first $500$ test images, one curve per training run, three runs per architecture; logarithmic axis). Magnitude maps for four of these inputs are shown in Figure~\ref{fig:gradient_heatmap}.}
 \label{fig:gradient_analysis}
 \end{figure}
 
@@ -344,7 +345,7 @@ Figure~\ref{fig:gradient_analysis} adds the distribution of per-sample gradient 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig4_gradient_comparison.pdf}
-\caption{Input-gradient magnitude maps for the same test images under both models. CNN gradients place more of their mass on fewer components (Table~\ref{tab:gradient}); Table~\ref{tab:spatial} shows that this is not accompanied by a difference in spatial arrangement, so the panels should be read as sparsity and not as localization.}
+\caption{Input-gradient magnitude maps for the same test images under both models (seed pair 1; the first four test images; each map is scaled to its own maximum, so magnitudes are not comparable across panels). CNN gradients place more of their mass on fewer components (Table~\ref{tab:gradient}); Table~\ref{tab:spatial} shows that this is not accompanied by a difference in spatial arrangement, so the panels should be read as sparsity and not as localization.}
 \label{fig:gradient_heatmap}
 \end{figure}
 
@@ -360,23 +361,24 @@ We next measure where adversarial damage accumulates along depth, extending laye
 
 \begin{table}[!t]
 \centering
-\caption{Block-wise clean-to-adversarial cosine similarity under each model's own white-box PGD-10 attack ($n$=1000 per run; mean over three runs). All summaries are taken at the residual block output, so the ViT and CNN columns are measured at equivalent points; the ViT columns differ only in how a block's tokens are aggregated. Figures for the MLP sub-block output are given in the text.}
+\caption{Block-wise clean-to-adversarial cosine similarity under each model's own white-box PGD-10 attack ($n$=1000 per run; mean over three runs). All summaries are taken at the residual block output, so the ViT and CNN columns are measured at equivalent points; the ViT columns differ only in how a block's tokens are aggregated. Figures for the MLP sub-block output are given in the text. Run-to-run standard deviations are at most 0.0061 in the ViT columns and 0.0181 in the ResNet column (stage 4, block 1); bold marks the minimum of each column.}
 \label{tab:feature_degradation}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{lccc|lc}
+\begin{tabular}{lccc@{\hspace{9pt}}lc}
 \toprule
-\multicolumn{4}{c|}{\textbf{ViT-Tiny AT}} & \multicolumn{2}{c}{\textbf{ResNet-18 AT}} \\
-\textbf{Blk} & \textbf{CLS} & \textbf{Patch mean} & \textbf{All tokens} & \textbf{Block} & \textbf{Cosine} \\
+\multicolumn{4}{c}{\textbf{ViT-Tiny AT}} & \multicolumn{2}{c}{\textbf{ResNet-18 AT}} \\
+\cmidrule(lr){1-4} \cmidrule(lr){5-6}
+\textbf{Block} & \textbf{CLS} & \textbf{Patch mean} & \textbf{All tokens} & \textbf{Stage.block} & \textbf{Cosine} \\
 \midrule
-1 & 0.9993 & 0.9980 & 0.9927 & layer1.0 & 0.9951 \\
-2 & 0.9950 & 0.9959 & 0.9901 & layer1.1 & 0.9918 \\
-3 & 0.9902 & 0.9940 & 0.9881 & layer2.0 & 0.9879 \\
-4 & 0.9873 & 0.9919 & 0.9861 & layer2.1 & 0.9853 \\
-5 & 0.9845 & 0.9904 & 0.9847 & layer3.0 & 0.9753 \\
-6 & 0.9814 & 0.9894 & 0.9835 & layer3.1 & 0.9607 \\
-7 & 0.9782 & 0.9885 & 0.9826 & layer4.0 & \textbf{0.8777} \\
-8 & 0.9743 & 0.9875 & 0.9816 & layer4.1 & 0.9108 \\
+1 & 0.9993 & 0.9980 & 0.9927 & 1.1 & 0.9951 \\
+2 & 0.9950 & 0.9959 & 0.9901 & 1.2 & 0.9918 \\
+3 & 0.9902 & 0.9940 & 0.9881 & 2.1 & 0.9879 \\
+4 & 0.9873 & 0.9919 & 0.9861 & 2.2 & 0.9853 \\
+5 & 0.9845 & 0.9904 & 0.9847 & 3.1 & 0.9753 \\
+6 & 0.9814 & 0.9894 & 0.9835 & 3.2 & 0.9607 \\
+7 & 0.9782 & 0.9885 & 0.9826 & 4.1 & \textbf{0.8777} \\
+8 & 0.9743 & 0.9875 & 0.9816 & 4.2 & 0.9108 \\
 9 & 0.9703 & \textbf{0.9870} & 0.9809 & & \\
 10 & 0.9661 & 0.9872 & 0.9805 & & \\
 11 & \textbf{0.9604} & 0.9874 & \textbf{0.9803} & & \\
@@ -389,23 +391,23 @@ The architectures differ less in \emph{whether} damage accumulates than in \emph
 
 The aggregation choice also changes the measured profile substantially. At their respective minima the CLS pathway drifts about three times as far as the patch-token mean ($0.9604$ versus $0.9870$, a ratio of $3.05$ in $1-\cos$), and the two summaries place the minimum at different depths (block 11 versus block 9). Since the CLS token at the block output is what the classifier reads, this difference is itself a result: the perturbation concentrates on the classification pathway while the average patch representation is comparatively preserved. The tensor the summary is taken from matters as much as the aggregation. Read at the MLP sub-block output instead of the residual block output, the same three summaries give a CLS minimum of $0.9343$ at block 10, a patch-token minimum of $0.9840$ at block 8 and a ratio of $4.12$: the drift looks larger, the depths reorder, and the sub-block is not the tensor the classifier reads. Layer-wise drift curves from different papers are therefore not comparable unless both the aggregation and the tensor are stated.
 
-Table~\ref{tab:feature_degradation} reports the block-wise profiles. The attention measurement is negative. Adversarial perturbation does not measurably change the entropy of the CLS attention distribution: over $n=1000$ samples per run, the mean per-layer change is at most $0.005$ nats in absolute value against layer means near 4.9 nats, with a seed-level standard deviation of the same order. We state this as equivalence rather than as a failure to reject: with a margin of $\pm 0.05$ nats, one percent of the layer mean and fixed from the scale of the measure and not from the data, TOST accepts equivalence in all twelve layers, the weakest at $p=0.006$. What does grow with depth is the \emph{displacement} of the attention map, from $0.028$ total variation in the first layer to $0.084$ in the last, small in absolute terms, since total variation is bounded by 1. The attack therefore redirects attention slightly without broadening or sharpening it; Figure~\ref{fig:feature_degradation} plots the per-layer curves, which lie on top of each other. An earlier version of this analysis, computed on an 8-sample figure batch, suggested a visible attention effect that the larger measurement does not support, so any claim that adversarial attack degrades attention should be checked at this sample size before being made.
+Table~\ref{tab:feature_degradation} reports the block-wise profiles. The attention measurement is negative. Adversarial perturbation does not measurably change the entropy of the CLS attention distribution: over $n=1000$ samples per run, the mean per-layer change is at most $0.005$ nats in absolute value against layer means between $4.6$ and $5.1$ nats, with a seed-level standard deviation of the same order. We state this as equivalence rather than as a failure to reject: with a margin of $\pm 0.05$ nats, one percent of the layer mean and fixed from the scale of the measure and not from the data, TOST accepts equivalence in all twelve layers, the weakest at $p=0.006$. What does grow with depth is the \emph{displacement} of the attention map, from $0.028$ total variation in the first layer to $0.084$ in the last, small in absolute terms, since total variation is bounded by 1. The attack therefore redirects attention slightly without broadening or sharpening it; Figure~\ref{fig:feature_degradation}(a) plots the per-layer change against the TOST margin, and panel (b) the displacement. An earlier version of this analysis, computed on an 8-sample figure batch, suggested a visible attention effect that the larger measurement does not support, so any claim that adversarial attack degrades attention should be checked at this sample size before being made.
 
 Drift magnitude does not predict attack success either. Splitting the samples by whether the attack flipped the prediction, the last-block cosine similarity of flipped and unflipped ViT samples is statistically indistinguishable ($0.9895$ versus $0.9877$); for the CNN there is a small difference in the expected direction ($0.9058$ versus $0.9143$). Feature drift is therefore a description of how the representation moves, not a sufficient statistic for whether the prediction changes.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig5_attention_comparison.pdf}
-\caption{CLS-token attention maps (post-softmax, head-averaged) across ViT layers under adversarial attack. Each row shows a different layer (1, 6, 12); columns show clean attention, adversarial attention, and their difference. A single sample is shown for illustration; the depth trend in attention displacement is reported quantitatively in the text over $n=1{,}000$ samples per run.}
+\caption{CLS-token attention maps (post-softmax, head-averaged) across ViT layers under adversarial attack. Each row shows a different layer (1, 6, 12); columns show clean attention, adversarial attention and their difference, with one shared color scale for the attention columns and one for the difference column. A single sample is shown for illustration (the first test image, seed pair 1); the depth trend in attention displacement is measured over $n$=1,000 samples per run in Figure~\ref{fig:feature_degradation}(b).}
 \label{fig:attention_layers}
 \end{figure}
 
-Figure~\ref{fig:attention_layers} visualizes CLS-token attention maps at layers 1, 6, and 12 for a representative sample. It agrees with the displacement measurement, since later layers move more, but single-sample panels of this kind are easy to over-read: the aggregate entropy change over 1{,}000 samples is null, so the visible differences reflect redirection and not diffusion. Attention-shift effects under patch perturbations~\cite{gu2022vision} and attacks that target the attention mechanism directly~\cite{fu2022patchfool} operate in a different regime from the $L_\infty$-bounded perturbations studied here.
+Figure~\ref{fig:attention_layers} visualizes CLS-token attention maps at layers 1, 6, and 12 for a representative sample. Under one shared color scale the deeper of the three displayed layers show the larger difference, in line with the aggregate displacement curve of Figure~\ref{fig:feature_degradation}(b), but single-sample panels of this kind are easy to over-read: the aggregate entropy change over 1{,}000 samples is null, so the visible differences reflect redirection and not diffusion. Attention-shift effects under patch perturbations~\cite{gu2022vision} and attacks that target the attention mechanism directly~\cite{fu2022patchfool} operate in a different regime from the $L_\infty$-bounded perturbations studied here.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final/fig5b_attention_entropy.pdf}
-\caption{Per-layer entropy of the CLS attention distribution for clean and adversarial inputs, $n=1{,}000$ samples per run, mean over three runs with $\pm$1 s.d. shading. The attention maps themselves are shown in Figure~\ref{fig:attention_layers}.}
+\caption{(a) Change in CLS attention entropy under attack (adversarial minus clean) per layer, mean over three runs with $95\%$ $t$ confidence intervals; the dashed lines mark the $\pm0.05$-nat TOST margin, and every interval lies inside it. (b) CLS attention displacement (total variation between the clean and adversarial maps) per layer, mean$\pm$std over runs. $n$=1,000 samples per run; single-sample maps are shown in Figure~\ref{fig:attention_layers}.}
 \label{fig:feature_degradation}
 \end{figure}
 
@@ -422,7 +424,7 @@ All transfer results so far use gradient attacks that treat the ViT as a generic
 
 \begin{table}[!t]
 \centering
-\caption{ViT$\rightarrow$CNN transfer under TGR~\cite{zhang2023tgr} and plain MI-FGSM at a matched budget ($n$=10{,}000 per run; mean$\pm$std over three runs).}
+\caption{ViT$\rightarrow$CNN transfer under Token Gradient Regularization (TGR)~\cite{zhang2023tgr} and plain momentum iterative FGSM (MI-FGSM) at a matched budget ($L_\infty$, $\eps$=8/255, 10 steps, $\alpha$=2/255; $n$=10,000 per run; mean$\pm$std over three runs).}
 \label{tab:tgr}
 \footnotesize
 \begin{tabular}{lcc}

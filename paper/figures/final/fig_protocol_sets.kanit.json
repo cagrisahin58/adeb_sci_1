@@ -1,34 +1,47 @@
 {
   "sekil": "fig_protocol_sets",
-  "surum": 2,
+  "surum": 3,
+  "dil": "en",
+  "degisiklik_2026_10_04": [
+    "row letters A-D on both panels (left: box corner, right: y tick labels)",
+    "panel letters (a)/(b)",
+    "3.91 term moved from the bracket stack to a connector between rows B and C (mean bar to mean bar); 9.21 and 5.79 brackets unchanged (author decision pending)",
+    "per-row mean and SD labels moved beside the row (side with more free axis length) to free the B-C gap",
+    "all text >= 8 pt; width 8.89 cm (3.5 in), height 10.0 cm",
+    "--lang tr: Turkish labels, decimal comma, thousands dot, output to paper/figures/final_tr"
+  ],
   "betik": "paper/figures/fig_protocol_sets.py",
   "onceki_betik": "paper/figures/fig_protocol_sets_v1.py",
-  "komut": "docker exec -w /workspace adeb_eval python paper/figures/fig_protocol_sets.py",
-  "uretim_zamani_utc": "2026-09-29T18:30:07+00:00",
+  "komut": "docker exec -w /workspace adeb_eval python paper/figures/fig_protocol_sets.py --lang en",
+  "uretim_zamani_utc": "2026-10-04T02:05:52+00:00",
   "veri": "results/q1/fig_protokol_kumeleri_veri.json",
   "veri_sha256": "c78882ef72f47ecbf84f556feb3bc1ca21cf5f42790fff4341b48089e9c8b003",
   "ust_kaynak": "results/c1_transfer/c1_transfer_summary.json",
   "ust_kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1",
   "ust_kaynak_sha256_kaynagi": "fig_protokol_kumeleri_veri.json: kaynak_sha256 (as recorded by the data script)",
   "git": {
-    "commit": "725e709dfe8b16631921c0bfc89cf8d14b76d3d9",
+    "commit": "ded2356188280d4aba2712f048879f60f7a353ed",
     "branch": "q1",
     "dirty_paths": [
-      "?? paper/figures/fig_protocol_sets.py",
-      "?? results/q1/fig_protokol_kumeleri_veri.json",
-      "?? scripts/fig_protokol_kumeleri_veri.py"
+      "M paper/figures/fig_protocol_sets.py"
     ]
   },
   "yerlesim": {
     "secim": "tek sutun",
-    "genislik_cm": 8.8,
-    "yukseklik_cm": 9.4,
+    "genislik_cm": 8.89,
+    "yukseklik_cm": 10.0,
     "dpi": 300,
-    "en_kucuk_yazi_pt": 7.0,
-    "gerekce": "IEEE Access column width 8.8 cm as the other transfer figures. One row per set; values on a horizontal axis because they are not monotone in the nesting order. Height raised from 7.2 to 9.4 cm to stack the three brackets above the axis without overlap at >=7 pt.",
+    "en_kucuk_yazi_pt": 8.0,
+    "satir_etiketi_yonu": {
+      "raw": "left",
+      "target_correct": "right",
+      "both_correct": "right",
+      "successful_source": "left"
+    },
+    "gerekce": "IEEE Access column width 3.5 in as the other journal figures. One row per set; values on a horizontal axis because they are not monotone in the nesting order. Height 10.0 cm: brackets above the axis and >= 8 pt text without overlap.",
     "dikdortgenler": "schematic, NOT area-proportional to N; nesting drawn for CNN->ViT",
     "tohum_noktalari": "vertical offsets of seed points are for visibility only, same order in every row",
-    "yon_anahtari": "'N: CNN->ViT / ViT->CNN' placed once under the left header instead of inside each box: the full string does not fit the inner boxes at >=7 pt",
+    "yon_anahtari": "'N: CNN->ViT / ViT->CNN' placed once under the left header instead of inside each box: the full string does not fit the inner boxes at >=8 pt",
     "font": "DejaVu Sans (as in scripts/generate_journal_figs_c1.py), pdf.fonttype 42",
     "dolgular": {
       "raw": "#EDF5FF",
@@ -54,6 +67,7 @@
     "asimetri_all": {
       "deger": 13.57,
       "gosterim": "+13.57 pts",
+      "satir": "A",
       "kaynak": "protokoller.raw.asimetri_ort"
     },
     "sd_all": {
@@ -86,6 +100,7 @@
     "asimetri_target_correct": {
       "deger": 4.36,
       "gosterim": "+4.36 pts",
+      "satir": "B",
       "kaynak": "protokoller.target_correct.asimetri_ort"
     },
     "sd_target_correct": {
@@ -118,6 +133,7 @@
     "asimetri_both_correct": {
       "deger": 8.27,
       "gosterim": "+8.27 pts",
+      "satir": "C",
       "kaynak": "protokoller.both_correct.asimetri_ort"
     },
     "sd_both_correct": {
@@ -150,6 +166,7 @@
     "asimetri_successful_source": {
       "deger": 19.37,
       "gosterim": "+19.37 pts",
+      "satir": "D",
       "kaynak": "protokoller.successful_source.asimetri_ort"
     },
     "sd_successful_source": {
@@ -192,15 +209,15 @@
     "artik_takdir_her_ikisi_eksi_hedef": {
       "deger": 3.91,
       "gosterim": "3.91",
-      "yer": "bracket target_correct..both_correct",
+      "yer": "connector between rows B (target_correct) and C (both_correct), mean bar to mean bar",
       "kaynak": "ayrisim.artik_takdir_her_ikisi_eksi_hedef"
     },
     "denklem_numarasi": {
       "deger": "11",
       "gosterim": "sekle BASILMIYOR (baslik \\eqref tasir); .aux'taki numara yalniz kayit icin",
       "kaynak": "paper/manuscript/main.aux \\newlabel{eq:raw_identity}",
-      "aux_sha256": "2a6160f986455c2ad422c24b2180cdc2b2157a10cd17b20a3b2f59a77fc87e49",
-      "aux_mtime_utc": "2026-09-29T18:25:38+00:00",
+      "aux_sha256": "4e6f9bf5d6956b9677a34cc94c98b4b67077aa6ec7ac49d44ae6a583149626dd",
+      "aux_mtime_utc": "2026-10-04T01:58:39+00:00",
       "not": "cross-reference, not a result; regenerate the figure if equations are renumbered"
     }
   },
@@ -228,5 +245,8 @@
     "no Type 3 font in PDF"
   ],
   "not_yuvarlama": "9.21 + 5.79 = 15.00 vs spread 15.01: each term rounded from unrounded means (printed as 'terms rounded separately').",
-  "eski_surum_tasindi": "fig_protocol_sets_v2"
+  "eski_surum_tasindi": null,
+  "dizindeki_eski_surumler": [
+    "fig_protocol_sets_v1"
+  ]
 }

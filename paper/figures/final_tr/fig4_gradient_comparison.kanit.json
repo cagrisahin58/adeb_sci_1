@@ -1,0 +1,66 @@
+{
+  "sekil": "fig4_gradient_comparison",
+  "dil": "tr",
+  "betik": "scripts/generate_journal_figs_c1.py",
+  "komut": "docker exec -w /workspace adeb_eval python scripts/generate_journal_figs_c1.py --lang tr --only fig4 fig5maps",
+  "uretim_zamani_utc": "2026-10-04T02:29:24+00:00",
+  "git": {
+    "commit": "ded2356188280d4aba2712f048879f60f7a353ed",
+    "branch": "q1",
+    "betik_kirli": true
+  },
+  "cihaz": "cpu",
+  "tohum": 42,
+  "boyut_in": [
+    3.5,
+    1.9200000000000002
+  ],
+  "en_kucuk_yazi_pt": 8.0,
+  "kaynaklar": {
+    "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth": "81459b646696cf7a267c4228b736e626540cd1ae9e377cfa9cc259c4d6b8929c",
+    "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth": "07677f5e8838862953ebbadf4a93b02dedc3d885025e156c5f0d72a2cfa2b939"
+  },
+  "degerler": {
+    "cift": 1,
+    "goruntu_indeksleri": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "etiketler": [
+      3,
+      8,
+      8,
+      0
+    ],
+    "siniflar": [
+      "cat",
+      "ship",
+      "ship",
+      "airplane"
+    ],
+    "enerji": "sum_c g_c(x,y)^2, g = ornek basina CE kaybinin girdi gradyani",
+    "olcek": "her harita kendi maksimumuna bolunur (0-1); renk cubugu ortak 0-1",
+    "harita_maksimumlari_ham": {
+      "resnet18": [
+        0.0072763701900839806,
+        0.0005323502118699253,
+        0.0048981583677232265,
+        0.01529715210199356
+      ],
+      "vit_tiny": [
+        0.019182682037353516,
+        0.002482198877260089,
+        0.03463201969861984,
+        0.006382967345416546
+      ]
+    }
+  },
+  "notlar": [
+    "haritalar arasi mutlak buyukluk KARSILASTIRILAMAZ (harita basina normalize)"
+  ],
+  "ek_ciktilar": [
+    "fig4a_gradient_visualization.pdf"
+  ]
+}

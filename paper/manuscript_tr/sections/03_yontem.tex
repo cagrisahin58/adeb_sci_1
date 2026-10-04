@@ -4,14 +4,14 @@
 \section{Yöntem}
 \label{sec:methodology}
 
-Şekil~\ref{fig:study_overview} tasarımı özetlemektedir. İki mimari, mimari başına üç bağımsız koşuyla tek bir eşleşmiş çekişmeli tarif altında eğitilmekte ve her değerlendirme tam test kümesinde örnek bazında kaydedilmektedir; böylece Bölüm~\ref{subsec:metrics}'teki dört koşullama protokolü hiçbir saldırı yeniden koşulmadan aynı kayıtlara uygulanabilmektedir. Aşağıdaki alt bölümler sırasıyla tehdit modelini, modelleri, saldırıları ve eğitim protokolünü sabitlemekte, ardından ölçümleri tanımlamaktadır.
+Şekil~\ref{fig:study_overview} tasarımı özetlemektedir. İki mimari, mimari başına üç bağımsız koşuyla tek bir eşleşmiş çekişmeli tarif altında eğitilmekte ve her değerlendirme tam test kümesinde örnek bazında kaydedilmektedir; böylece her analizin içinde Bölüm~\ref{subsec:metrics}'teki dört koşullama protokolü, saldırı yeniden koşulmadan aynı kayıtlara uygulanabilmektedir. Aşağıdaki alt bölümler sırasıyla tehdit modelini, modelleri, saldırıları ve eğitim protokolünü sabitlemekte, ardından ölçümleri tanımlamaktadır.
 
 % Genel bakis sekli (2026-09-29): bildirideki fig_b0_overview.png'nin aynisi;
 % etiketler Ingilizce (iki surumde ortak dosya). Sayi tasimaz.
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{../figures/final/fig_study_overview.png}
-\caption{Çalışmanın genel görünümü. Aynı CIFAR-10 bölmesi iki mimariyi, ResNet-18 ve ViT-Tiny'yi beslemekte; ikisi de mimari başına üç bağımsız koşuyla tek bir eşleşmiş çekişmeli tarif altında eğitilmekte ve her eğitimden önce ayrılmış bir doğrulama bölmesiyle seçilmektedir. Her değerlendirme tam test kümesinde örnek bazında kaydedilir; dört koşullama protokolünün aynı kayıtlara uygulanabilmesini sağlayan budur. Sağdaki beş ölçüm ailesi Bölüm~\ref{sec:experiments}'ün raporladıklarıdır.}
+\includegraphics[width=\textwidth]{../figures/final/fig_study_overview.pdf}
+\caption{Çalışmanın genel görünümü. Aynı CIFAR-10 bölmesi iki mimariyi, ResNet-18 ve ViT-Tiny'yi beslemekte; ikisi de mimari başına üç bağımsız koşuyla tek bir eşleşmiş çekişmeli tarif altında eğitilmekte ve her eğitimden önce ayrılmış bir doğrulama bölmesiyle seçilmektedir. Her değerlendirme tam test kümesinde örnek bazında kaydedilir; dört koşullama protokolünün aynı kayıtlara uygulanabilmesini sağlayan budur. Alt sıradaki beş ölçüm ailesi Bölüm~\ref{sec:experiments}'ün raporladıklarıdır; altlarındaki şerit yineleme ayarlarını ve kontrolleri sıralar.}
 \label{fig:study_overview}
 \end{figure*}
 

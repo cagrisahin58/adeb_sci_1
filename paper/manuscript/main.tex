@@ -13,6 +13,8 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{booktabs}
+% 2026-10-04: kaynakcadaki URL (timm) sutun disina tasiyordu; url paketi kirilabilir URL verir.
+\usepackage{url}
 
 % Sablonun (access.tex) kalin-matematik kurulumu. Bu blok OLMADAN
 % tablolardaki \textbf{$p$} "Extra }, or forgotten $" hatasi verir.
@@ -52,6 +54,8 @@
 % Altbilgideki yil sablonda 2023 sabit gelir; sinif \year{} komutunu sunar.
 % Cilt numarasini uretim doldurur, ona dokunulmaz.
 \year{2026}
+% Altbilgi cildi: sinif varsayilani 11 (2023). IEEE Access 2026 = cilt 14; uretim yine de doldurur.
+\vol{14}
 
 \title{The Measurement Protocol Decides the Conclusion: A Methodological Study
 of CNN and Vision Transformer Adversarial Robustness Comparisons}
@@ -60,7 +64,7 @@ of CNN and Vision Transformer Adversarial Robustness Comparisons}
 % i -> I yapar (Turkce'de i -> İ); "CAGRı SAHIN" / "YıLDıRıM" basiliyordu.
 % Bu yuzden buyuk harf ACIKCA yaziliyor: Cagri -> CAGRI, Sahin -> SAHİN (\.I),
 % Yildirim -> YILDIRIM.
-\author{\c{C}A\u{G}RI \c{S}AH\.IN\authorrefmark{1}\authorrefmark{2},
+\author{\c{C}A\u{G}RI \c{S}AH\.IN\authorrefmark{1,2},
 AND \"OZAL YILDIRIM\authorrefmark{2}}
 
 \address[1]{Department of Software Engineering, Mu\c{s} Alparslan University,
@@ -137,11 +141,11 @@ The authors used Claude (Anthropic) during the preparation of this work. The too
 % Biyografi basligini da sinif buyuk harfe cevirir ve {\i} yine buyumez;
 % adlar burada da ACIKCA buyuk harf (bkz. yazar bandi notu).
 \begin{IEEEbiographynophoto}{\c{C}A\u{G}RI \c{S}AH\.IN}
-received the B.Sc.\ degree in software engineering from F{\i}rat University, Elaz{\i}\u{g}, Turkey. He is currently pursuing the Ph.D.\ degree with the Department of Software Engineering, F{\i}rat University. His research interests include adversarial machine learning, deep learning security, and computer vision, with a focus on the robustness of neural network architectures against adversarial perturbations.
+received the B.Sc.\ degree in software engineering from F{\i}rat University, Elaz{\i}\u{g}, T\"urkiye. He is currently pursuing the Ph.D.\ degree with the Department of Software Engineering, F{\i}rat University. His research interests include adversarial machine learning, deep learning security, and computer vision, with a focus on the robustness of neural network architectures against adversarial perturbations.
 \end{IEEEbiographynophoto}
 
 \begin{IEEEbiographynophoto}{\"OZAL YILDIRIM}
-is with the Department of Software Engineering, F{\i}rat University, Elaz{\i}\u{g}, Turkey. His research interests include deep learning, computer vision, and biomedical signal processing.
+is with the Department of Software Engineering, F{\i}rat University, Elaz{\i}\u{g}, T\"urkiye. His research interests include deep learning, computer vision, and biomedical signal processing.
 \end{IEEEbiographynophoto}
 
 % ieeeaccess.cls son paragraftan sonra \EOD bekler; yoksa sinif hata verir.

@@ -206,12 +206,26 @@ for arch, lbl in (("resnet18", "ResNet"), ("vit_tiny", "ViT")):
     chk(f"E7 temiz sd {lbl}", o["test_clean"]["sd"])
     chk(f"E7 PGD {lbl}", o["test_pgd10"]["ort"])
 _prot = e7t["protocols"]
-for p, lbl in (("raw", "ham"), ("target_correct", "hedef-dogru"),
-               ("both_correct", "her-ikisi-dogru"), ("successful_source", "basarili-kaynak")):
-    chk(f"E7 {lbl} CNN->ViT", _prot[p]["CNN_to_ViT"]["mean"])
-    chk(f"E7 {lbl} ViT->CNN", _prot[p]["ViT_to_CNN"]["mean"])
+# 2026-10-04 (hakem paneli, mercek D Y1/Y9): Tablo 6 yerine protokol x ayar table*
+# (tab:protocol_settings). SVHN'de iki cift AYRI AYRI basilir (SD yok), yon bazinda
+# oranlar artik tabloda degil; fark ortalamalari metinde kalir.
+_PROTS = (("raw", "ham"), ("target_correct", "hedef-dogru"),
+          ("both_correct", "her-ikisi-dogru"), ("successful_source", "basarili-kaynak"))
+for p, lbl in _PROTS:
     chk(f"E7 {lbl} fark", abs(_prot[p]["diff"]["mean"]))
+    for k, v in enumerate(_prot[p]["diff"]["values"], 1):
+        chk(f"E7 {lbl} fark cift{k}", abs(v))
 chk("E7 protokol yayilimi", e7t["protocol_spread_pp"]["mean"])
+for k, v in enumerate(e7t["protocol_spread_pp"]["values"], 1):
+    chk(f"E7 yayilim cift{k}", v)
+# Ayni tablonun CIFAR-100 ve L2 sutunlari: fark ort, SD ve yayilim
+e1t = jl("results/q1/cifar100/transfer/e1_transfer_summary.json")
+for tag, d in (("E1", e1t), ("E6", e6t)):
+    for p, lbl in _PROTS:
+        chk(f"{tag} {lbl} fark", abs(d["protocols"][p]["diff"]["mean"]))
+        chk(f"{tag} {lbl} fark sd", d["protocols"][p]["diff"]["std"])
+    chk(f"{tag} protokol yayilimi", d["protocol_spread_pp"]["mean"])
+    chk(f"{tag} yayilim sd", d["protocol_spread_pp"]["std"])
 _bcp = e7t["both_correct_paired"]
 chk("E7 esli GA alt", abs(_bcp["ci_low"]["mean"]))
 chk("E7 esli GA ust", _bcp["ci_high"]["mean"])

@@ -38,7 +38,7 @@ ViT-Tiny & AT & 5,7M & 73,53$\pm$0,55 & 36,31$\pm$0,42 & 32,69$\pm$0,22 & \textb
 \end{tabular}
 \end{table}
 
-CNN her saldırı altında \emph{mutlak} bir gürbüzlük üstünlüğü taşımaktadır: ResNet-18 AT, AutoAttack altında $\%37{,}93\pm0{,}14$ gürbüz doğruluğa ulaşırken ViT-Tiny AT $\%29{,}14\pm0{,}40$'ta kalmaktadır. Bir çiftin iki modeli de aynı 10.000 örnekte, örnek bazında kayıtla değerlendirildiğinden her koşu içinde McNemar'ın eşleştirilmiş testi uygulanabilir ve üç çiftte de CNN lehinedir (AutoAttack altında $p < 10^{-84}$, PGD-10 altında $p < 10^{-120}$). Çekişmeli eğitilmiş çiftte tohum düzeyindeki değişim raporlanan hiçbir doğrulukta 0,55 puanı aşmaz; dolayısıyla sıralama koşudan koşuya gürültü değildir. Savunmasız temel modeller FGSM altında daha çok değişmektedir (1,8 puana kadar), ancak hiçbir iddia onlara dayanmamaktadır. CNN ayrıca daha yüksek temiz doğruluğu korumaktadır ($\%85{,}78$'e karşı $\%73{,}53$; 12,3 puanlık fark); bu, ViT'leri küçük veri kümelerinde sıfırdan eğitmenin güçlüğünü yansıtır; Tablo~\ref{tab:conditional} bu katkıyı koşullu duyarlılıktan ayırmaktadır. AutoAttack gürbüzlüğü iki mimaride de PGD-10'un altına düşmektedir (ResNet-18 için 6,2, ViT-Tiny için 3,6 puan). \%62{,}76'daki WideResNet-28-10 referansı~\cite{gowal2020uncovering}, kapasitenin, ek eğitim verisinin ve daha güçlü tarifin gürbüzlüğü mimari seçiminin ötesine ne kadar taşıdığını göstermektedir; bu modeli eşleşmiş çiftten ayrı tutuyoruz.
+CNN her saldırı altında \emph{mutlak} bir gürbüzlük üstünlüğü taşımaktadır: ResNet-18 AT, AutoAttack altında $\%37{,}93\pm0{,}14$ gürbüz doğruluğa ulaşırken ViT-Tiny AT $\%29{,}14\pm0{,}40$'ta kalmaktadır. Bir çiftin iki modeli de aynı 10.000 örnekte, örnek bazında kayıtla değerlendirildiğinden her koşu içinde McNemar'ın eşleştirilmiş testi uygulanabilir ve üç çiftte de CNN lehinedir (AutoAttack altında $p < 2\times10^{-84}$, PGD-10 altında $p < 2\times10^{-120}$). Çekişmeli eğitilmiş çiftte tohum düzeyindeki değişim raporlanan hiçbir doğrulukta 0,55 puanı aşmaz; dolayısıyla sıralama koşudan koşuya gürültü değildir. Savunmasız temel modeller FGSM altında daha çok değişmektedir (1,8 puana kadar), ancak hiçbir iddia onlara dayanmamaktadır. CNN ayrıca daha yüksek temiz doğruluğu korumaktadır ($\%85{,}78$'e karşı $\%73{,}53$; 12,3 puanlık fark); bu, ViT'leri küçük veri kümelerinde sıfırdan eğitmenin güçlüğünü yansıtır; Tablo~\ref{tab:conditional} bu katkıyı koşullu duyarlılıktan ayırmaktadır. AutoAttack gürbüzlüğü iki mimaride de PGD-10'un altına düşmektedir (ResNet-18 için 6,2, ViT-Tiny için 3,6 puan). \%62{,}76'daki WideResNet-28-10 referansı~\cite{gowal2020uncovering}, kapasitenin, ek eğitim verisinin ve daha güçlü tarifin gürbüzlüğü mimari seçiminin ötesine ne kadar taşıdığını göstermektedir; bu modeli eşleşmiş çiftten ayrı tutuyoruz.
 
 \begin{table}[!t]
 \centering
@@ -54,7 +54,8 @@ CNN her saldırı altında \emph{mutlak} bir gürbüzlük üstünlüğü taşım
 ResNet-18 AT & \textbf{48,58}$\pm$0,80 & \textbf{55,78}$\pm$0,23 & \textbf{59,86}$\pm$0,35 & \textbf{51,89}$\pm$0,49 \\
 ViT-Tiny AT & 55,53$\pm$0,50 & 60,37$\pm$0,33 & 46,11$\pm$0,59 & 41,15$\pm$0,39 \\
 \midrule
-\multicolumn{5}{l}{\textit{Önceki tek koşu, doğrulama bölmesi temiz ön eğitimde görülmüş ($n$=7.260)}} \\
+\multicolumn{5}{l}{\textit{Önceki tek koşu ($n$=7.260); doğrulama bölmesi}} \\
+\multicolumn{5}{l}{\textit{temiz ön eğitimde görülmüş}} \\
 ResNet-18 AT & 52,15 & 58,16 & \textbf{54,92} & \textbf{48,15} \\
 ViT-Tiny AT & 52,33 & \textbf{56,46} & 49,61 & 45,33 \\
 \bottomrule
@@ -70,7 +71,7 @@ Ayrıştırma, iki çarpan aynı yönü gösterdiğinde bile raporlanmaya değer
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final_tr/fig2_epsilon_sweep.pdf}
-\caption{Pertürbasyon bütçesine ($\eps$) göre PGD-10 gürbüz doğruluğu; tam test kümesi, üç koşu ortalaması ($\pm$1 std bantları). İki AT mimarisi de epsilon arttıkça benzer biçimlerle bozulmakta, CNN tutarlı bir marj korumaktadır.}
+\caption{Pertürbasyon bütçesi $\eps$'a göre PGD-10 gürbüz doğruluğu, tam test kümesi (üç koşu ortalaması; $\pm$1 std hata çubukları işaretçilerden dardır). Yatay eksen kategoriktir ve $\eps=0$ temiz doğruluktur. Tarama ayrı bir PGD-10 değerlendirmesidir; bu yüzden $8/255$ noktası Tablo~\ref{tab:main_results}'den en çok $0{,}08$ puan ayrılır. CNN'in ViT üzerindeki marjı sabit değildir: küçük bütçelerde en geniş, $16/255$'te daralmış hâldedir.}
 \label{fig:epsilon_sweep}
 \end{figure}
 
@@ -89,23 +90,25 @@ Her tohum çifti için, kaynak modelde PGD-10 çekişmeli örnekleri üretiyor v
 \label{tab:transfer_protocols}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{lcccc}
+\begin{tabular}{lccc}
 \toprule
-\textbf{Protokol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Fark} & \textbf{Fark}$^{\ddagger}$ \\
+\textbf{Protokol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Fark (puan)}$^{\ddagger}$ \\
 \midrule
-Koşulsuz (ham) & 41,02$\pm$0,55 & 27,45$\pm$0,27 & $+$13,57$\pm$0,33 & $+$8,27 \\
-Hedef doğru & 19,87$\pm$0,18 & 15,51$\pm$0,59 & $+$4,36$\pm$0,44 & $+$0,63 \\
-Her ikisi doğru & 18,25$\pm$0,17 & 9,98$\pm$0,31 & $+$8,27$\pm$0,23 & $+$5,33 \\
-Başarılı kaynak & 36,39$\pm$0,76 & 17,02$\pm$0,52 & $+$19,37$\pm$1,27 & $+$11,17 \\
+Koşulsuz (ham) & 41,02$\pm$0,55 & 27,45$\pm$0,27 & $+$13,57$\pm$0,33 \\
+Hedef doğru & 19,87$\pm$0,18 & 15,51$\pm$0,59 & $+$4,36$\pm$0,44 \\
+Her ikisi doğru & 18,25$\pm$0,17 & 9,98$\pm$0,31 & $+$8,27$\pm$0,23 \\
+Başarılı kaynak & 36,39$\pm$0,76 & 17,02$\pm$0,52 & $+$19,37$\pm$1,27 \\
 \bottomrule
-\multicolumn{5}{l}{\scriptsize $^{\ddagger}$Tek koşu; doğrulama bölmesi temiz ön eğitimde görülmüş.}
+\multicolumn{4}{l}{\scriptsize $^{\ddagger}$Doğrulama bölmesi temiz ön eğitimde görülmüş önceki tek koşuda}\\
+\multicolumn{4}{l}{\scriptsize \phantom{$^{\ddagger}$}aynı farklar yukarıdan aşağıya $+$8,27, $+$0,63, $+$5,33 ve}\\
+\multicolumn{4}{l}{\scriptsize \phantom{$^{\ddagger}$}$+$11,17 idi.}
 \end{tabular}
 \end{table}
 
 % Ic ice kosullama kumeleri sekli (2026-09-29); EN ile ortak dosya, etiketler Ingilizce.
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{../figures/final/fig_protocol_sets.pdf}
+\includegraphics[width=\columnwidth]{../figures/final_tr/fig_protocol_sets.pdf}
 \caption{Dört transfer protokolünün CNN$\rightarrow$ViT yönündeki iç içe değerlendirme kümeleri (solda; kutular şematiktir, alanla orantılı değildir; $N$ üç tohum çiftinin ortalamasıdır) ve her protokolün aynı modeller ve aynı veri üzerinde ölçtüğü asimetri, CNN$\rightarrow$ViT eksi ViT$\rightarrow$CNN (sağda; üç tohum çifti üzerinden eşleştirilmiş tohum-içi farkın ortalaması $\pm$ SS, tek tek tohum çiftleri içi boş işaretlerle). ViT$\rightarrow$CNN kümeleri aynı sırayla iç içedir ($N = 10.000$, $8.579$, $7.061$ ve $3.814$); koşulsuz ve her-ikisi-doğru kümeleri iki yönde aynıdır, diğer ikisi değildir. Köşeli ayraçlar $15{,}01$ puanlık yayılımın ayrışımını işaretler: $9{,}21$ puanlık terim Denklem~\eqref{eq:raw_identity}'in kapalı formdaki terimidir, $5{,}79$ puanlık terim farklı bir niceliği kestiren bir protokole aittir ve $3{,}91$ puan onaylanan iki protokolü birbirinden ayırır (terimler ayrı ayrı yuvarlanmıştır).}
 \label{fig:protocol_sets}
 \end{figure}
@@ -144,7 +147,7 @@ Veri kümesine özgü kalan şey mekanizma değil orantı çarpanıdır. $(1 - r
 
 \begin{table}[!t]
 \centering
-\caption{$3\times3$ transfer matrisi (PGD-10, $\eps$=8/255, tam test; üç tohum çifti üzerinden ortalama$\pm$std; WideResNet satır ve sütunu tek harici kontrol noktasını kullanır). Ham = koşulsuz yanıltma oranı, Koş. = hedef doğru koşullu oran. Köşegen girdileri beyaz kutu saldırılardır.}
+\caption{$3\times3$ transfer matrisi (PGD-10, $\eps$=8/255, tam test; üç tohum çifti üzerinden ortalama$\pm$std; WideResNet satır ve sütunu tek harici kontrol noktasını kullanır). Ham = koşulsuz yanıltma oranı, Koş. = hedef doğru koşullu oran. Köşegen girdileri beyaz kutu saldırılardır. Bu matrisin saldırıları ayrı bir koşuda üretilmiştir (saldırı tohumu 42); Tablo~\ref{tab:conditional} ve Tablo~\ref{tab:transfer_protocols} ile paylaştığı hücreler onlardan en çok $0{,}06$ puan ayrılır; bu fark Bölüm~\ref{subsec:statistics_results}'deki saldırı başlangıcı varyansının içindedir.}
 \label{tab:transfer_matrix}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -165,14 +168,9 @@ WRN-28-10 & WRN-28-10 & 33,03 & 25,16 \\
 \end{tabular}
 \end{table}
 
-Koşullanmış matris Şekil~\ref{fig:transfer_heatmap}'te verilmektedir. Üçüncü mimari, asimetrinin kendisini de yeniden çerçevelemektedir. İki yabancı kaynak üzerinden ortalandığında gelen koşullu transfer ResNet hedefi için \%18{,}50, ViT hedefi için \%19{,}04 ve WideResNet hedefi için \%10{,}57'dir; bu, her hedefin kendi beyaz kutu koşullu yanıltma oranını ($48{,}52$, $55{,}57$ ve $\%25{,}16$) üç hedef üzerinde $r = 0{,}986$ ile izler. Bu kanıta göre CNN$\rightarrow$ViT üstünlüğü, CNN'de üretilen pertürbasyonların içkin olarak daha transfer edilebilir olduğunun değil, daha zayıf hedefin bir özelliği olarak okunmalıdır: en gürbüz hedef, iki aileden gelen saldırıları neredeyse eşit ölçüde soğurmaktadır. Yalnızca üç hedefle bu korelasyon ancak yönlendirici olabilir.
+Üçüncü mimari, asimetrinin kendisini de yeniden çerçevelemektedir. İki yabancı kaynak üzerinden ortalandığında gelen koşullu transfer ResNet hedefi için \%18{,}50, ViT hedefi için \%19{,}04 ve WideResNet hedefi için \%10{,}57'dir; bu, her hedefin kendi beyaz kutu koşullu yanıltma oranını ($48{,}52$, $55{,}57$ ve $\%25{,}16$) üç hedef üzerinde $r = 0{,}986$ ile izler. Bu kanıta göre CNN$\rightarrow$ViT üstünlüğü, CNN'de üretilen pertürbasyonların içkin olarak daha transfer edilebilir olduğunun değil, daha zayıf hedefin bir özelliği olarak okunmalıdır: en gürbüz hedef, iki aileden gelen saldırıları neredeyse eşit ölçüde soğurmaktadır. Yalnızca üç hedefle bu korelasyon ancak yönlendirici olabilir.
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig3_transfer_heatmap.pdf}
-\caption{Koşullu (hedef doğru) transfer yanıltma oranları; üç tohum çifti ortalaması. Bu protokol altında köşegen dışı asimetri $+4{,}4$ puandır; Tablo~\ref{tab:transfer_protocols}, aynı büyüklüğün diğer protokoller altında ne kadar hareket ettiğini gösterir.}
-\label{fig:transfer_heatmap}
-\end{figure}
+% Isi haritasi sekli 2026-10-04'te kaldirildi (EN ile ayni gerekce; hakem paneli mercek D Y6).
 
 % ----------------------------------------------------------------------------
 % 4.3 Ikinci veri kumesi (E1)
@@ -215,25 +213,27 @@ Sonucun iki nitelemesi vardır; birincisi, iki çekişmeli bandın en yakın toh
 
 CIFAR-10 ve CIFAR-100, iki mimariyi temiz doğrulukta birbirinden hayli uzağa yerleştirmektedir (yaklaşık $12$ ve $21$ puan). SVHN~\cite{netzer2011reading} öyle değildir (karşılaştırma için CIFAR-100 mutlak değerleri Tablo~\ref{tab:cifar100_results}'te verilmektedir): aynı tarifle çekişmeli eğitildiklerinde ResNet $\%94{,}27\pm0{,}70$, ViT $\%92{,}42\pm0{,}56$ temiz doğruluğa ulaşmakta, yani fark $1{,}85$ puanda kalmaktadır. PGD-10 altındaki gürbüz doğruluklar $55{,}52\pm0{,}64$ ve $52{,}30\pm0{,}10$'dur. Açıklamamız en özgül öngörüsünü bu rejim için yapar ve bu öngörü CIFAR sonuçlarına ters düşer: temiz doğruluk farkı neredeyse kapandığında yönün kendisi protokole bağlı hale gelmelidir.
 
-\begin{table}[!t]
+\begin{table*}[!t]
 \centering
-\caption{SVHN'de dört protokol altında transfer asimetrisi (PGD-10, $\eps$=8/255, tam test kümesi $n$=26.032; iki tohum çiftinin ortalaması$\pm$std; yalnız iki mimari olduğu için üçüncü mimari kontrolü yoktur). CIFAR-10 ve CIFAR-100'den farklı olarak işaret dört satırda aynı değildir.}
-\label{tab:svhn_protocols}
+\caption{Bu makaledeki her ayarda dört koşullama protokolü altında transfer asimetrisi (CNN$\rightarrow$ViT eksi ViT$\rightarrow$CNN, yüzde puan; PGD-10; $L_\infty$ altında $\eps$=8/255, $L_2$ altında $\eps$=0{,}5; tam test kümeleri). Üç tohum çiftli ayarlarda çiftler üzerinden ortalama$\pm$std verilir; SVHN'de iki çift olduğundan standart sapma yerine iki değer ayrı ayrı basılır. Yayılım, çift başına dört protokol üzerindeki açıklığın çiftler üzerinden ortalamasıdır. Onaylanan iki protokol, hedef doğru ve her ikisi doğru, her ayarın içinde aynı işareti verir; protokoller arasında işaret yalnız SVHN'de değişir ve orada dört kestirimin tamamı sıfırın üç puan yakınındadır.}
+\label{tab:protocol_settings}
 \footnotesize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{lccc}
+\begin{tabular}{lcccc}
 \toprule
-\textbf{Protokol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Fark} \\
+\textbf{Protokol} & \textbf{CIFAR-10, $L_\infty$} & \textbf{CIFAR-100, $L_\infty$} & \textbf{SVHN, $L_\infty$} & \textbf{CIFAR-10, $L_2$} \\
+ & 3 çift, $n$=10.000 & 3 çift, $n$=10.000 & 2 çift, $n$=26.032 & 3 çift, $n$=10.000 \\
 \midrule
-Koşulsuz (ham) & 31,89 & 31,49 & $+$0,39$\pm$0,08 \\
-Hedef doğru & 26,32 & 27,33 & $-$1,00$\pm$0,22 \\
-Her ikisi doğru & 25,36 & 25,70 & $-$0,35$\pm$0,01 \\
-Başarılı kaynak & 61,38 & 58,69 & $+$2,70$\pm$0,40 \\
+Koşulsuz (ham) & $+$13,57$\pm$0,33 & $+$18,53$\pm$0,71 & $+$0,33 / $+$0,45 & $+$13,03$\pm$0,81 \\
+Hedef doğru & $+$4,36$\pm$0,44 & $+$4,96$\pm$1,01 & $-$1,16 / $-$0,85 & $+$2,12$\pm$0,18 \\
+Her ikisi doğru & $+$8,27$\pm$0,23 & $+$10,92$\pm$0,34 & $-$0,34 / $-$0,36 & $+$4,07$\pm$0,36 \\
+Başarılı kaynak & $+$19,37$\pm$1,27 & $+$17,50$\pm$0,92 & $+$2,98 / $+$2,41 & $+$12,06$\pm$0,23 \\
+\midrule
+Yayılım (en büyük $-$ en küçük) & 15,01$\pm$0,84 & 13,83$\pm$1,30 & 4,14 / 3,26 & 10,92$\pm$0,82 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{table*}
 
-Mimariler eşitlendiğinde işarete protokol karar vermektedir. Dört protokolün ikisi CNN üstünlüğü, ikisi ViT üstünlüğü bildirmektedir (Tablo~\ref{tab:svhn_protocols}). Yönlü iddialar için benimsediğimiz iki protokol, hedef doğru ile her ikisi doğru, birbiriyle uyuşmakta ve ikisi de ViT lehine çıkmaktadır; işaret değişimi bunları koşulsuz orandan ve başarılı kaynak oranından ayırmaktadır. Koşulsuz orandaki çevrilme Denklem~\eqref{eq:raw_identity}'den aritmetik olarak çıkar: burada ViT hedefinin temiz hatası CNN'inkini yaklaşık iki puan aşmaktadır ve bu, $-1{,}00$'lik koşullu farkı $+0{,}39$'luk ham farka taşımaya yetmektedir. Dolayısıyla ham oran raporlamak yayımlanmış bir karşılaştırmanın işaretini çevirebilir ve özdeşlik bunun ne zaman olacağını önceden söylemektedir. İki yönü özdeş örnekler üzerinde puanladığı için birincil saydığımız her ikisi doğru protokolünde fark $-0{,}35$ puandır; işaret çevirme permütasyon $p$ değeri $0{,}105$ ve TOST eşdeğerliği, denediğimiz en dar marj dahil ($\pm1$ puan, $p=0{,}0007$) üç marjın üçünde de \emph{kabul edilmektedir}. Kabul bir niteleme gerektirir. SVHN iki tohum çiftiyle koşulmuştur, dolayısıyla verilen $[-0{,}76;\ +0{,}07]$ aralığı iki tohumun bootstrap uçlarının ortalamasıdır ve koşumlar-arası bir aralık mevcut değildir: iki koşumla koşumlar-arası standart sapma tek bir karşıtlıktan kestirilir ve bilgi taşımaz. Eşdeğerlik bu yüzden koşum-içi karşılaştırmaya ve iki koşumun yakın uyuşmasına ($-0{,}34$ ve $-0{,}36$) dayanmaktadır; iki koşum koşumlar-arası değişimi sınırlayamaz. Yalnızca başarılı kaynak oranını raporlayan bir çalışma SVHN'de $2{,}70$ puanlık bir CNN üstünlüğü duyururdu; yalnızca hedef doğru oranını raporlayan bir çalışma ise $1{,}00$ puanlık bir ViT üstünlüğü.
+Mimariler eşitlendiğinde işarete protokol karar vermektedir. Dört protokolün ikisi CNN üstünlüğü, ikisi ViT üstünlüğü bildirmektedir (Tablo~\ref{tab:protocol_settings}). Yönlü iddialar için benimsediğimiz iki protokol, hedef doğru ile her ikisi doğru, birbiriyle uyuşmakta ve ikisi de ViT lehine çıkmaktadır; işaret değişimi bunları koşulsuz orandan ve başarılı kaynak oranından ayırmaktadır. Koşulsuz orandaki çevrilme Denklem~\eqref{eq:raw_identity}'den aritmetik olarak çıkar: burada ViT hedefinin temiz hatası CNN'inkini yaklaşık iki puan aşmaktadır ve bu, $-1{,}00$'lik koşullu farkı $+0{,}39$'luk ham farka taşımaya yetmektedir. Dolayısıyla ham oran raporlamak yayımlanmış bir karşılaştırmanın işaretini çevirebilir ve özdeşlik bunun ne zaman olacağını önceden söylemektedir. İki yönü özdeş örnekler üzerinde puanladığı için birincil saydığımız her ikisi doğru protokolünde fark $-0{,}35$ puandır; işaret çevirme permütasyon $p$ değeri $0{,}105$ ve TOST eşdeğerliği, denediğimiz en dar marj dahil ($\pm1$ puan, $p=0{,}0007$) üç marjın üçünde de \emph{kabul edilmektedir}. Kabul bir niteleme gerektirir. SVHN iki tohum çiftiyle koşulmuştur, dolayısıyla verilen $[-0{,}76;\ +0{,}07]$ aralığı iki tohumun bootstrap uçlarının ortalamasıdır ve koşumlar-arası bir aralık mevcut değildir: iki koşumla koşumlar-arası standart sapma tek bir karşıtlıktan kestirilir ve bilgi taşımaz. Eşdeğerlik bu yüzden koşum-içi karşılaştırmaya ve iki koşumun yakın uyuşmasına ($-0{,}34$ ve $-0{,}36$) dayanmaktadır; iki koşum koşumlar-arası değişimi sınırlayamaz. Yalnızca başarılı kaynak oranını raporlayan bir çalışma SVHN'de $2{,}70$ puanlık bir CNN üstünlüğü duyururdu; yalnızca hedef doğru oranını raporlayan bir çalışma ise $1{,}00$ puanlık bir ViT üstünlüğü.
 
 SVHN'deki davranış mekanizmayla tutarlıdır. SVHN'de protokol yayılımı $3{,}70\pm0{,}62$ puandır; CIFAR-10'da $15{,}01\pm0{,}84$, CIFAR-100'de $13{,}83\pm1{,}30$ puandır; temiz doğruluk farkları ise sırasıyla $1{,}85$, $\approx12$ ve $\approx21$ puandır. İlişki üçü arasında tekdüze değildir: en büyük fark en büyük yayılımı vermemekte, CIFAR-100 CIFAR-10'un bir miktar altında kalmaktadır. Veri kümelerini burada ayıran şey eşitlenmeye yakın çifttir. Yayılım yeterince küçüldüğünde ise asimetrinin kendisini aşamamakta ve işaret, mimarilerin değil protokolün bir özelliği haline gelmektedir. Bölüm~\ref{subsec:transfer}'de kararlı diye raporladığımız yön, \emph{iki modelin temiz doğrulukta ayrıştığı rejimde} kararlıdır ve her iki CIFAR veri kümesi de o rejimde bulunmaktadır.
 
@@ -262,7 +262,7 @@ ViT-Tiny AT & 73,53 & 51,72$\pm$0,23 & 73,61 & 49,85$\pm$0,20 \\
 \end{tabular}
 \end{table}
 
-Norm değişince protokol yayılımı $10{,}92$ puana küçülmekte ($\Linf$ altında $15{,}01$), ama hem ön kayıtın koyduğu iki puanlık tabanın hem de koşumlar arası standart sapmanın çok üstünde kalmakta ve işaret on iki ölçümün tamamında pozitif çıkmaktadır; kayıtlı ilk iki ön kestirim böylece tutmaktadır. Üçüncü kestirim, koşulsuz oranın koşullu orandan sapmasının hedefin temiz hatasıyla artacağı, Denklem~\eqref{eq:raw_identity} sağlandığı sürece yanlışlanamaz: sapma zaten $e\,(1 - r_{\text{koş}})$'dir, dolayısıyla $e$ ile yapısı gereği artar ve uydurulan $+0{,}914$ eğimi bir şeyi sınamak yerine $1 - r_{\text{koş}}$'u kestirmektedir. Her durumda korelasyon yerine eğimi raporluyoruz, çünkü on sekiz yön yalnızca yedi ayrık hedef hatası değeri almakta, bunların altısı aynı sabit WideResNet'ten gelmektedir. Ön kestirim özdeşlik yazılmadan önce kaydedilmişti ve şimdi özdeşliğin örneklem dışı bir sınaması işlevini görmektedir; ön kestirim Bölüm~\ref{subsec:cifar100}'te de aynı konumdadır. Dört protokolün (Tablo~\ref{tab:l2_results}) bildirdiği asimetriler $+13{,}03\pm0{,}81$ (koşulsuz), $+2{,}12\pm0{,}18$ (hedef doğru), $+4{,}07\pm0{,}36$ (her ikisi doğru) ve $+12{,}06\pm0{,}23$ (başarılı kaynak) şeklindedir. Mutlak gürbüzlük her iki saldırı altında da CNN'in ViT üzerindeki sıralamasını korumakta, McNemar $p<10^{-57}$ her tohum çiftinde sağlanmaktadır.
+Norm değişince protokol yayılımı $10{,}92$ puana küçülmekte ($\Linf$ altında $15{,}01$), ama hem ön kayıtın koyduğu iki puanlık tabanın hem de koşumlar arası standart sapmanın çok üstünde kalmakta ve işaret on iki ölçümün tamamında pozitif çıkmaktadır; kayıtlı ilk iki ön kestirim böylece tutmaktadır. Üçüncü kestirim, koşulsuz oranın koşullu orandan sapmasının hedefin temiz hatasıyla artacağı, Denklem~\eqref{eq:raw_identity} sağlandığı sürece yanlışlanamaz: sapma zaten $e\,(1 - r_{\text{koş}})$'dir, dolayısıyla $e$ ile yapısı gereği artar ve uydurulan $+0{,}914$ eğimi bir şeyi sınamak yerine $1 - r_{\text{koş}}$'u kestirmektedir. Her durumda korelasyon yerine eğimi raporluyoruz, çünkü on sekiz yön yalnızca yedi ayrık hedef hatası değeri almakta, bunların altısı aynı sabit WideResNet'ten gelmektedir. Ön kestirim özdeşlik yazılmadan önce kaydedilmişti ve şimdi özdeşliğin örneklem dışı bir sınaması işlevini görmektedir; ön kestirim Bölüm~\ref{subsec:cifar100}'te de aynı konumdadır. Dört protokolün (Tablo~\ref{tab:protocol_settings}) bildirdiği asimetriler $+13{,}03\pm0{,}81$ (koşulsuz), $+2{,}12\pm0{,}18$ (hedef doğru), $+4{,}07\pm0{,}36$ (her ikisi doğru) ve $+12{,}06\pm0{,}23$ (başarılı kaynak) şeklindedir. Mutlak gürbüzlük her iki saldırı altında da CNN'in ViT üzerindeki sıralamasını korumakta, McNemar $p<10^{-57}$ her tohum çiftinde sağlanmaktadır (Tablo~\ref{tab:l2_results}).
 
 Ölçülen eğim özdeşliğin öngördüğü değerle uyuşur. Koşullu oranlar bu $L_2$ bütçesi altında $\Linf$'dekinden çok daha düşüktür (kabaca $\%2$ ile $9$'a karşı $\%9$ ile $22$), dolayısıyla özdeşlik \emph{daha dik} bir eğim öngörür; ölçülen $0{,}914$ tam da olması gereken yerdedir; aynı modellerde $\Linf$ altında bu değer $0{,}762$ idi. Orantı çarpanı, Bölüm~\ref{subsubsec:matrix}'te belirtildiği gibi saldırı bütçesine bağlıdır.
 
@@ -276,7 +276,7 @@ Girdi duyarlılığındaki mimari farkları betimlemek için, iki mimarinin grad
 
 \begin{table}[!t]
 \centering
-\caption{Örnek başına kayıp gradyanlarından hesaplanan gradyan karakteristikleri (koşu başına $n$=500 test örneği; üç koşu üzerinden ortalama$\pm$std).}
+\caption{Örnek başına kayıp gradyanlarından hesaplanan gradyan karakteristikleri (koşu başına $n$=500 test örneği; üç koşu üzerinden ortalama$\pm$std). Kalın, çekişmeli eğitilmiş iki modelden büyük olanı gösterir; yerel kontrol tek kontrol noktasıdır, standart sapma uygulanmaz.}
 \label{tab:gradient}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
@@ -284,11 +284,11 @@ Girdi duyarlılığındaki mimari farkları betimlemek için, iki mimarinin grad
 \toprule
 \textbf{Metrik} & \textbf{ResNet-18 AT} & \textbf{ViT-Tiny AT} & \textbf{ViT (yerel)$^\ddagger$} \\
 \midrule
-Hoyer seyrekliği & \textbf{0,4928}$\pm$0,0120 & 0,4561$\pm$0,0055 & 0,405 \\
-Gini katsayısı & \textbf{0,6498}$\pm$0,0089 & 0,6099$\pm$0,0051 & 0,571 \\
-Maks.\ \%1 altı kesir & \textbf{\%34,8}$\pm$2,1 & \%26,8$\pm$0,9 & \%17,9 \\
-Hizalanma (mutlak) & 0,0378$\pm$0,0009 & \textbf{0,0562}$\pm$0,0004 & 0,079 \\
-Hizalanma (işaretli) & 0,0014 & 0,0005 & -- \\
+Hoyer seyrekliği & \textbf{0,4928}$\pm$0,0120 & 0,4561$\pm$0,0055 & 0,4046 \\
+Gini katsayısı & \textbf{0,6498}$\pm$0,0089 & 0,6099$\pm$0,0051 & 0,5712 \\
+Maks.\ \%1 altı kesir & \textbf{0,3477}$\pm$0,0210 & 0,2682$\pm$0,0090 & 0,1785 \\
+Hizalanma (mutlak) & 0,0378$\pm$0,0009 & \textbf{0,0562}$\pm$0,0004 & 0,0794 \\
+Hizalanma (işaretli) & 0,0010$\pm$0,0003 & 0,0004$\pm$0,0001 & -- \\
 \bottomrule
 \multicolumn{4}{l}{\scriptsize $^\ddagger$CIFAR'a özgü ViT kontrolü ($4\times4$ yama, büyütme yok; 5,4M parametre);}\\
 \multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}sabit bölme protokolünden önceye ait, test kümesinde seçilmiş tek kontrol noktası;}\\
@@ -296,7 +296,7 @@ Hizalanma (işaretli) & 0,0014 & 0,0005 & -- \\
 \end{tabular}
 \end{table}
 
-Üç ölçekten bağımsız seyreklik ölçüsünün üçünde de CNN gradyanları ViT gradyanlarından daha seyrektir ve sıralama, tohum düzeyi standart sapmaları farktan en az üç kat küçük kalarak her koşuda yeniden üretilmektedir. İki çıkarım birimimizin uyuşmadığı tek yer burasıdır, bu yüzden ikisini de raporluyoruz. Koşum içinde, aynı 500 örnek iki modelde de ölçüldüğünde, örnek başına eşleştirilmiş testler üç ölçüde de üç koşuda da sıfır hipotezini reddetmektedir (Wilcoxon işaretli sıra, baştan sona Holm düzeltmeli $p<10^{-11}$; eşleştirilmiş Cohen $d$ 0,32 ile 1,23 arasında); bu, bu kontrol noktalarının bu görüntülerde farklı olduğunu kurar. Mimari bir iddianın gerektirdiği ve Tablo~\ref{tab:spatial}'in kullandığı koşum düzeyinde ise üç eşleştirilmiş koşum Gini, \%1 altı kesir ve Hoyer için sırasıyla $0{,}036$, $0{,}042$ ve $0{,}067$ ham $p$ değeri vermekte, üç ölçü üzerinden Holm düzeltmesi bunları $0{,}108$'e çıkarmaktadır. Sıralama üç koşumun üçünde ve her ölçüde tutarlıdır ve açıklık koşumlar arası standart sapmanın birkaç katıdır; ancak üç koşumla, üç ölçünün neredeyse eşdoğrusal olması nedeniyle burada tutucu kalan bir düzeltmeden sonra $\alpha=0{,}05$ eşiğini geçmemektedir. Bu nedenle seyreklik sonucunu anlamlı değil yeniden üretilebilir olarak raporluyoruz. Aşağıdaki hizalanma farkı koşum düzeyinde anlamlılığa ulaşmaktadır ($p=0{,}0009$) ve tartışmaya bu temelde taşıdığımız gradyan sonucu odur. Sıralama mimarinin değil çekişmeli eğitimin ürünüdür: aynı koşuların temiz eğitilmiş karşılıklarında daha seyrek model \emph{ViT'tir} (Hoyer $0{,}380\pm0{,}009$'a karşı $0{,}347\pm0{,}002$); yani çekişmeli eğitim CNN gradyanlarını çok daha güçlü seyrekleştirmektedir; bu, Chalasani vd.'nin~\cite{chalasani2020concise} çekişmeli eğitilmiş modeller için bildirdiği daha seyrek öznitelik atıflarıyla uyumludur. Yerel çözünürlüklü ViT kontrolü her ölçüde büyütülmüş ViT'ten daha az seyrektir; dolayısıyla sıralama $32\rightarrow224$ büyütmenin artefaktı değildir. Örnekler arası hizalanma ViT'te mutlak kosinüste daha yüksektir ve temiz eğitilmiş çift bu farkı zaten göstermektedir ($0{,}058$'e karşı $0{,}029$); dolayısıyla bu fark mimariden gelir ve savunmadan önce de vardır. \emph{İşaretli} ortalama kosinüs ise iki modelde de sıfıra yakındır ($\leq0{,}0014$): örnekler duyarlılık eksenlerini paylaşır ama tutarlı bir yönü paylaşmaz; dolayısıyla hizalanma farkı ucuz evrensel pertürbasyonlar için kanıt sayılamaz.
+Üç ölçekten bağımsız seyreklik ölçüsünün üçünde de CNN gradyanları ViT gradyanlarından daha seyrektir ve sıralama, tohum düzeyi standart sapmaları farktan en az üç kat küçük kalarak her koşuda yeniden üretilmektedir. İki çıkarım birimimizin uyuşmadığı tek yer burasıdır, bu yüzden ikisini de raporluyoruz. Koşum içinde, aynı 500 örnek iki modelde de ölçüldüğünde, örnek başına eşleştirilmiş testler üç ölçüde de üç koşuda da sıfır hipotezini reddetmektedir (Wilcoxon işaretli sıra, baştan sona Holm düzeltmeli $p<10^{-11}$; eşleştirilmiş Cohen $d$ 0,32 ile 1,23 arasında); bu, bu kontrol noktalarının bu görüntülerde farklı olduğunu kurar. Mimari bir iddianın gerektirdiği ve Tablo~\ref{tab:spatial}'in kullandığı koşum düzeyinde ise üç eşleştirilmiş koşum Gini, \%1 altı kesir ve Hoyer için sırasıyla $0{,}036$, $0{,}042$ ve $0{,}067$ ham $p$ değeri vermekte, üç ölçü üzerinden Holm düzeltmesi bunları $0{,}108$'e çıkarmaktadır. Sıralama üç koşumun üçünde ve her ölçüde tutarlıdır ve açıklık koşumlar arası standart sapmanın birkaç katıdır; ancak üç koşumla, üç ölçünün neredeyse eşdoğrusal olması nedeniyle burada tutucu kalan bir düzeltmeden sonra $\alpha=0{,}05$ eşiğini geçmemektedir. Bu nedenle seyreklik sonucunu anlamlı değil yeniden üretilebilir olarak raporluyoruz. Aşağıdaki hizalanma farkı koşum düzeyinde anlamlılığa ulaşmaktadır ($p=0{,}0009$) ve tartışmaya bu temelde taşıdığımız gradyan sonucu odur. Sıralama mimarinin değil çekişmeli eğitimin ürünüdür: aynı koşuların temiz eğitilmiş karşılıklarında daha seyrek model \emph{ViT'tir} (Hoyer $0{,}380\pm0{,}009$'a karşı $0{,}347\pm0{,}002$); yani çekişmeli eğitim CNN gradyanlarını çok daha güçlü seyrekleştirmektedir; bu, Chalasani vd.'nin~\cite{chalasani2020concise} çekişmeli eğitilmiş modeller için bildirdiği daha seyrek öznitelik atıflarıyla uyumludur. Yerel çözünürlüklü ViT kontrolü her ölçüde büyütülmüş ViT'ten daha az seyrektir; dolayısıyla sıralama $32\rightarrow224$ büyütmenin artefaktı değildir. Örnekler arası hizalanma ViT'te mutlak kosinüste daha yüksektir ve temiz eğitilmiş çift bu farkı zaten göstermektedir ($0{,}058$'e karşı $0{,}029$); dolayısıyla bu fark mimariden gelir ve savunmadan önce de vardır. \emph{İşaretli} ortalama kosinüs ise iki modelde de sıfıra yakındır (her koşumda $\leq0{,}0014$): örnekler duyarlılık eksenlerini paylaşır ama tutarlı bir yönü paylaşmaz; dolayısıyla hizalanma farkı ucuz evrensel pertürbasyonlar için kanıt sayılamaz.
 
 Bu gradyan sonuçları, analizimizin hangi kontrol noktası kümesinin kullanıldığına duyarsız olan tek parçasıdır: Tablo~\ref{tab:gradient}'teki her büyüklük, önceki tek koşuluk kontrol noktalarında ölçülen \emph{sıralamayı} yeniden üretmektedir; sekiz niceliğin altısında değerin kendisi buradaki tohum düzeyi standart sapmadan fazla oynasa da hiçbir gradyan yapısı farkı işaret değiştirmemektedir; Bölüm~\ref{subsec:robustness}'in koşullu ayrıştırmasının aksine.
 
@@ -312,16 +312,16 @@ Seyreklik ölçüleri kaç gradyan bileşeninin büyük olduğunu yanıtlar; bu 
 \centering
 \caption{Girdi gradyanlarının mekansal lokalitesi (koşu başına $n$=500 örnek; üç koşu üzerinden ortalama$\pm$std). Eşleştirilmiş farklar aynı örnekler üzerinde hesaplanır. Çıkarım koşum düzeyindedir: $p$, üç koşumun ortalama farkları üzerinde tek örneklem $t$ testidir ve dört ölçüye Holm düzeltmesi uygulanmıştır; böylece çıkarımın birimi iddianın birimiyle eşleşir. Düşük alan ve entropi daha lokalize, yüksek Moran's $I$ daha kümeli demektir.}
 \label{tab:spatial}
-\footnotesize
+\scriptsize
 \setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{lcccc}
 \toprule
-\textbf{Ölçüt} & \textbf{ResNet-18} & \textbf{ViT-Tiny} & \textbf{Fark} & \textbf{$p$} \\
+\textbf{Ölçüt} & \textbf{ResNet-18} & \textbf{ViT-Tiny} & \textbf{Fark (R$-$V)} & \textbf{$p$ (Holm)} \\
 \midrule
-\%50 enerji alanı & 0,0378$\pm$0,0017 & 0,0397$\pm$0,0010 & $-$0,0019 & 0,54 \\
-\%90 enerji alanı & 0,2345$\pm$0,0078 & 0,2570$\pm$0,0067 & $-$0,0224 & 0,40 \\
-Mekansal entropi (nat) & 5,2014$\pm$0,0387 & 5,2524$\pm$0,0197 & $-$0,0509 & 0,54 \\
-Moran's $I$ & 0,4141$\pm$0,0132 & 0,3941$\pm$0,0024 & $+$0,0200 & 0,47 \\
+\%50 enerji alanı & 0,0378$\pm$0,0017 & 0,0397$\pm$0,0010 & $-$0,0019$\pm$0,0027 & 0,54 \\
+\%90 enerji alanı & 0,2345$\pm$0,0078 & 0,2570$\pm$0,0067 & $-$0,0224$\pm$0,0133 & 0,40 \\
+Mekansal entropi (nat) & 5,2014$\pm$0,0387 & 5,2524$\pm$0,0197 & $-$0,0509$\pm$0,0580 & 0,54 \\
+Moran's $I$ & 0,4141$\pm$0,0132 & 0,3941$\pm$0,0024 & $+$0,0200$\pm$0,0156 & 0,47 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -331,7 +331,7 @@ Sonuç negatiftir (Tablo~\ref{tab:spatial}). Dört ölçütün hiçbiri koşum d
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final_tr/fig4b_gradient_distribution.pdf}
-\caption{İki mimaride örnek başına gradyan $L_2$ normlarının dağılımı. Aynı girdiler için enerji haritaları Şekil~\ref{fig:gradient_heatmap}'te verilmektedir.}
+\caption{Örnek başına girdi gradyanı $L_2$ normlarının deneysel dağılımı (örnek başına çapraz entropi kaybı, ilk $500$ test görüntüsü, eğitim koşusu başına bir eğri, mimari başına üç koşu; logaritmik eksen). Bu girdilerden dördünün büyüklük haritaları Şekil~\ref{fig:gradient_heatmap}'te verilmektedir.}
 \label{fig:gradient_analysis}
 \end{figure}
 
@@ -340,7 +340,7 @@ Sonuç negatiftir (Tablo~\ref{tab:spatial}). Dört ölçütün hiçbiri koşum d
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final_tr/fig4_gradient_comparison.pdf}
-\caption{Aynı girdiler üzerinde CNN ve ViT gradyan enerji haritalarının karşılaştırması. Farklar Tablo~\ref{tab:gradient}'teki seyreklik ölçüleriyle nicelenir; Tablo~\ref{tab:spatial}, görünür yapının mekansal kümelenme farkına karşılık gelmediğini gösterir.}
+\caption{Aynı girdiler üzerinde CNN ve ViT gradyan enerji haritalarının karşılaştırması (tohum çifti 1; ilk dört test görüntüsü; her harita kendi en büyük değerine ölçeklendiğinden büyüklükler paneller arasında karşılaştırılamaz). Farklar Tablo~\ref{tab:gradient}'teki seyreklik ölçüleriyle nicelenir; Tablo~\ref{tab:spatial}, görünür yapının mekansal kümelenme farkına karşılık gelmediğini gösterir.}
 \label{fig:gradient_heatmap}
 \end{figure}
 
@@ -356,23 +356,24 @@ Sonuç negatiftir (Tablo~\ref{tab:spatial}). Dört ölçütün hiçbiri koşum d
 
 \begin{table}[!t]
 \centering
-\caption{Her modelin kendi beyaz kutu PGD-10 saldırısı altında blok bazlı temizden çekişmeliye kosinüs benzerliği (koşu başına $n$=1000; üç koşu üzerinden ortalama$\pm$std). ViT sütunları yalnızca blok jetonlarının nasıl toplandığında ayrışır.}
+\caption{Her modelin kendi beyaz kutu PGD-10 saldırısı altında blok bazlı temizden çekişmeliye kosinüs benzerliği (koşu başına $n$=1000; üç koşu üzerinden ortalama$\pm$std). ViT sütunları yalnızca blok jetonlarının nasıl toplandığında ayrışır. Koşumlar arası standart sapma ViT sütunlarında en çok 0,0061, ResNet sütununda en çok 0,0181'dir (aşama 4, blok 1); kalın her sütunun en küçük değerini gösterir.}
 \label{tab:feature_degradation}
 \footnotesize
 \setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{lccc|lc}
+\begin{tabular}{lccc@{\hspace{9pt}}lc}
 \toprule
-\multicolumn{4}{c|}{\textbf{ViT-Tiny AT}} & \multicolumn{2}{c}{\textbf{ResNet-18 AT}} \\
-\textbf{Blok} & \textbf{CLS} & \textbf{Yama ort.} & \textbf{Tüm jetonlar} & \textbf{Blok} & \textbf{Kosinüs} \\
+\multicolumn{4}{c}{\textbf{ViT-Tiny AT}} & \multicolumn{2}{c}{\textbf{ResNet-18 AT}} \\
+\cmidrule(lr){1-4} \cmidrule(lr){5-6}
+\textbf{Blok} & \textbf{CLS} & \textbf{Yama ort.} & \textbf{Tüm jetonlar} & \textbf{Aşama.blok} & \textbf{Kosinüs} \\
 \midrule
-1 & 0,9993 & 0,9980 & 0,9927 & layer1.0 & 0,9951 \\
-2 & 0,9950 & 0,9959 & 0,9901 & layer1.1 & 0,9918 \\
-3 & 0,9902 & 0,9940 & 0,9881 & layer2.0 & 0,9879 \\
-4 & 0,9873 & 0,9919 & 0,9861 & layer2.1 & 0,9853 \\
-5 & 0,9845 & 0,9904 & 0,9847 & layer3.0 & 0,9753 \\
-6 & 0,9814 & 0,9894 & 0,9835 & layer3.1 & 0,9607 \\
-7 & 0,9782 & 0,9885 & 0,9826 & layer4.0 & \textbf{0,8777} \\
-8 & 0,9743 & 0,9875 & 0,9816 & layer4.1 & 0,9108 \\
+1 & 0,9993 & 0,9980 & 0,9927 & 1.1 & 0,9951 \\
+2 & 0,9950 & 0,9959 & 0,9901 & 1.2 & 0,9918 \\
+3 & 0,9902 & 0,9940 & 0,9881 & 2.1 & 0,9879 \\
+4 & 0,9873 & 0,9919 & 0,9861 & 2.2 & 0,9853 \\
+5 & 0,9845 & 0,9904 & 0,9847 & 3.1 & 0,9753 \\
+6 & 0,9814 & 0,9894 & 0,9835 & 3.2 & 0,9607 \\
+7 & 0,9782 & 0,9885 & 0,9826 & 4.1 & \textbf{0,8777} \\
+8 & 0,9743 & 0,9875 & 0,9816 & 4.2 & 0,9108 \\
 9 & 0,9703 & \textbf{0,9870} & 0,9809 & & \\
 10 & 0,9661 & 0,9872 & 0,9805 & & \\
 11 & \textbf{0,9604} & 0,9874 & \textbf{0,9803} & & \\
@@ -385,23 +386,23 @@ Mimariler hasarın \emph{birikip birikmediğinde} değil \emph{nerede} biriktiğ
 
 Agregasyon seçimi de ölçülen profili belirgin biçimde değiştirmektedir. Kendi minimumlarında CLS yolu, yama jetonu ortalamasının yaklaşık üç katı kadar kaymakta ($0{,}9604$'e karşı $0{,}9870$; $1-\cos$ cinsinden oran $3{,}05$) ve iki özet minimumu farklı derinliklere yerleştirmektedir (blok 11'e karşı blok 9). Sınıflandırıcının okuduğu şey blok çıkışındaki CLS jetonu olduğundan bu farkın kendisi bir sonuçtur: pertürbasyon sınıflandırma yoluna yoğunlaşırken ortalama yama temsili görece korunmaktadır. Özetin alındığı tensör, en az agregasyon kadar önemlidir. Artık blok çıkışı yerine MLP alt-blok çıkışında okunduğunda aynı üç özet blok 10'da $0{,}9343$ CLS minimumu, blok 8'de $0{,}9840$ yama jetonu minimumu ve $4{,}12$ oranı vermektedir: kayma daha büyük görünmekte, derinlikler yer değiştirmekte ve alt blok, sınıflandırıcının okuduğu tensör olmamaktadır. Dolayısıyla farklı makalelerden katman bazlı kayma eğrileri, hem agregasyon hem de alındıkları tensör belirtilmedikçe karşılaştırılamaz.
 
-Blok bazlı profiller Tablo~\ref{tab:feature_degradation}'te verilmektedir. Dikkat ölçümü negatiftir. Çekişmeli pertürbasyon, CLS dikkat dağılımının entropisini ölçülebilir biçimde değiştirmemektedir: koşu başına $n=1000$ örnek üzerinde, katman başına ortalama entropi değişimi mutlak değerce en çok $0{,}005$ nattır (katman ortalamaları 4,9 nat civarındayken) ve tohum düzeyi standart sapma aynı mertebededir. Bunu reddedememe olarak değil eşdeğerlik olarak ifade ediyoruz: katman ortalamasının yüzde biri olan ve veriden değil ölçünün ölçeğinden sabitlenen $\pm 0{,}05$ nat marjıyla TOST, on iki katmanın on ikisinde de eşdeğerliği kabul etmektedir; en zayıfı $p=0{,}006$. Derinlikle büyüyen şey dikkat haritasının \emph{yer değiştirmesidir}: ilk katmanda $0{,}028$ toplam varyasyondan son katmanda $0{,}084$'e çıkmaktadır; toplam varyasyon 1 ile sınırlı olduğundan mutlak olarak küçüktür. Saldırı dikkatı hafifçe yeniden yönlendirmekte, ama ne genişletmekte ne keskinleştirmektedir; Şekil~\ref{fig:feature_degradation} üst üste binen katman başına eğrileri vermektedir. Analizin 8 örneklik bir figür partisiyle hesaplanan önceki bir sürümü, daha büyük ölçümün desteklemediği görünür bir dikkat etkisi izlenimi vermişti; dolayısıyla çekişmeli saldırının dikkati bozduğuna dair her iddia, dile getirilmeden önce bu örneklem boyutunda sınanmalıdır.
+Blok bazlı profiller Tablo~\ref{tab:feature_degradation}'te verilmektedir. Dikkat ölçümü negatiftir. Çekişmeli pertürbasyon, CLS dikkat dağılımının entropisini ölçülebilir biçimde değiştirmemektedir: koşu başına $n=1000$ örnek üzerinde, katman başına ortalama entropi değişimi mutlak değerce en çok $0{,}005$ nattır (katman ortalamaları $4{,}6$ ile $5{,}1$ nat arasındayken) ve tohum düzeyi standart sapma aynı mertebededir. Bunu reddedememe olarak değil eşdeğerlik olarak ifade ediyoruz: katman ortalamasının yüzde biri olan ve veriden değil ölçünün ölçeğinden sabitlenen $\pm 0{,}05$ nat marjıyla TOST, on iki katmanın on ikisinde de eşdeğerliği kabul etmektedir; en zayıfı $p=0{,}006$. Derinlikle büyüyen şey dikkat haritasının \emph{yer değiştirmesidir}: ilk katmanda $0{,}028$ toplam varyasyondan son katmanda $0{,}084$'e çıkmaktadır; toplam varyasyon 1 ile sınırlı olduğundan mutlak olarak küçüktür. Saldırı dikkatı hafifçe yeniden yönlendirmekte, ama ne genişletmekte ne keskinleştirmektedir; Şekil~\ref{fig:feature_degradation}(a) katman başına değişimi TOST marjıyla birlikte, (b) paneli ise yer değiştirmeyi vermektedir. Analizin 8 örneklik bir figür partisiyle hesaplanan önceki bir sürümü, daha büyük ölçümün desteklemediği görünür bir dikkat etkisi izlenimi vermişti; dolayısıyla çekişmeli saldırının dikkati bozduğuna dair her iddia, dile getirilmeden önce bu örneklem boyutunda sınanmalıdır.
 
 Kayma büyüklüğü saldırı başarısını da öngörmemektedir. Örnekler, saldırının tahmini devirip devirmediğine göre bölündüğünde, ViT'te devrilen ve devrilmeyen örneklerin son blok kosinüs benzerliği istatistiksel olarak ayırt edilemezdir ($0{,}9895$'e karşı $0{,}9877$); CNN'de beklenen yönde küçük bir fark vardır ($0{,}9058$'e karşı $0{,}9143$). Öznitelik kayması, bu yüzden, temsilin nasıl hareket ettiğinin bir betimlemesidir; tahminin değişip değişmeyeceğinin yeterli istatistiği değildir.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final_tr/fig5_attention_comparison.pdf}
-\caption{Çekişmeli saldırı altında ViT katmanları boyunca CLS jetonu dikkat haritaları (softmax sonrası, başlar üzerinden ortalanmış). Her satır farklı bir katmanı (1, 6, 12) gösterir; sütunlar temiz dikkat, çekişmeli dikkat ve farklarıdır. Gösterilen tek bir örnektir; dikkat kaymasındaki derinlik eğilimi metinde koşum başına $n=1000$ örnek üzerinden nicel olarak verilmektedir.}
+\caption{Çekişmeli saldırı altında ViT katmanları boyunca CLS jetonu dikkat haritaları (softmax sonrası, başlar üzerinden ortalanmış). Her satır farklı bir katmanı (1, 6, 12) gösterir; sütunlar temiz dikkat, çekişmeli dikkat ve farklarıdır; dikkat sütunları için bir, fark sütunu için bir ortak renk ölçeği kullanılmıştır. Gösterilen tek bir örnektir (ilk test görüntüsü, tohum çifti 1); dikkat kaymasındaki derinlik eğilimi koşum başına $n=1000$ örnek üzerinden Şekil~\ref{fig:feature_degradation}(b)'de ölçülmektedir.}
 \label{fig:attention_layers}
 \end{figure}
 
-Şekil~\ref{fig:attention_layers}, temsili bir örnek için 1., 6.\ ve 12.\ katmanlardaki CLS dikkat haritalarını görselleştirir. Yer değiştirme ölçümüyle uyumludur, çünkü geç katmanlar daha çok hareket eder; ancak bu türden tek örnekli paneller kolayca fazla yorumlanır: 1.000 örnek üzerindeki toplam entropi değişimi sıfırdır, yani görünür farklar yayılmayı değil yeniden yönlendirmeyi yansıtır. Yama pertürbasyonları altındaki dikkat kayması etkileri~\cite{gu2022vision} ve dikkat mekanizmasını doğrudan hedefleyen saldırılar~\cite{fu2022patchfool}, burada incelenen $L_\infty$ sınırlı pertürbasyonlardan farklı bir rejimde işler.
+Şekil~\ref{fig:attention_layers}, temsili bir örnek için 1., 6.\ ve 12.\ katmanlardaki CLS dikkat haritalarını görselleştirir. Ortak renk ölçeğinde gösterilen üç katmanın derin olanları daha büyük fark vermektedir ve bu, Şekil~\ref{fig:feature_degradation}(b)'deki toplu yer değiştirme eğrisiyle uyumludur; ancak bu türden tek örnekli paneller kolayca fazla yorumlanır: 1.000 örnek üzerindeki toplam entropi değişimi sıfırdır, yani görünür farklar yayılmayı değil yeniden yönlendirmeyi yansıtır. Yama pertürbasyonları altındaki dikkat kayması etkileri~\cite{gu2022vision} ve dikkat mekanizmasını doğrudan hedefleyen saldırılar~\cite{fu2022patchfool}, burada incelenen $L_\infty$ sınırlı pertürbasyonlardan farklı bir rejimde işler.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final_tr/fig5b_attention_entropy.pdf}
-\caption{Temiz ve çekişmeli girdiler için CLS dikkat dağılımının katman başına entropisi; koşum başına $n=1000$ örnek, üç koşum ortalaması ve $\pm$1 std bandı. Dikkat haritalarının kendisi Şekil~\ref{fig:attention_layers}'te verilmektedir.}
+\caption{(a) Saldırı altında CLS dikkat entropisindeki değişim (çekişmeli eksi temiz), katman başına, üç koşum ortalaması ve \%95 $t$ güven aralıkları; kesikli çizgiler $\pm0{,}05$ nat TOST marjını gösterir ve her aralık bu marjın içindedir. (b) CLS dikkat yer değiştirmesi (temiz ile çekişmeli haritalar arasındaki toplam varyasyon), katman başına, koşumlar üzerinden ortalama$\pm$std. Koşum başına $n=1000$ örnek; tek örnekli haritalar Şekil~\ref{fig:attention_layers}'te verilmektedir.}
 \label{fig:feature_degradation}
 \end{figure}
 

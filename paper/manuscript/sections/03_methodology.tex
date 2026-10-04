@@ -4,17 +4,16 @@
 \section{Methodology}
 \label{sec:methodology}
 
-Figure~\ref{fig:study_overview} summarizes the design. Two architectures are trained under one matched adversarial recipe with three independent runs each, and every evaluation is logged per sample on the full test set, so that the four conditioning protocols of Section~\ref{subsec:metrics} can be applied to the same records without re-running any attack. The subsections below fix the threat model, the models, the attacks and the training protocol in that order, and then define the measurements.
+Figure~\ref{fig:study_overview} summarizes the design. Two architectures are trained under one matched adversarial recipe with three independent runs each, and every evaluation is logged per sample on the full test set, so that, within each analysis, the four conditioning protocols of Section~\ref{subsec:metrics} can be applied to the same records without re-running the attack. The subsections below fix the threat model, the models, the attacks and the training protocol in that order, and then define the measurements.
 
-% Genel bakis sekli (2026-09-29): bildirideki fig_b0_overview.png'nin aynisi.
-% Sayi tasimaz; okur protokol tartismasina girmeden once mimariyi ve olcum
-% hattini gorur. Kaynak PNG 1647 px genis: 14 cm'de ~295 dpi (IEEE 300
-% onerisinin sinirinda; vektor/daha yuksek cozunurluklu yeniden uretim
-% kullanici tarafinda, bkz. paper/bildiri/mimari_figur_promptu.md).
+% Genel bakis sekli (2026-10-04): vektor TikZ, kaynak paper/figures/overview/
+% fig_study_overview.tex (derleme: bash paper/figures/overview/derle.sh). Yapay
+% zeka cizimi PNG (2026-09-29) paper/figures/arsiv/ altinda. Sayi tasimaz; her
+% etiket Bolum III kurulum olgusu ya da Bolum IV olcum ailesi adidir.
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.8\textwidth]{../figures/final/fig_study_overview.png}
-\caption{Study overview. The same CIFAR-10 split feeds two architectures, ResNet-18 and ViT-Tiny, which are trained under one matched adversarial recipe with three independent runs each and selected on a validation split held out before any training. Every evaluation is logged per sample on the full test set, which is what allows the four conditioning protocols to be applied to identical records. The five measurement families on the right are the ones Section~\ref{sec:experiments} reports.}
+\includegraphics[width=\textwidth]{../figures/final/fig_study_overview.pdf}
+\caption{Study overview. The same CIFAR-10 split feeds two architectures, ResNet-18 and ViT-Tiny, which are trained under one matched adversarial recipe with three independent runs each and selected on a validation split held out before any training. Every evaluation is logged per sample on the full test set, which is what allows the four conditioning protocols to be applied to identical records. The five measurement families in the bottom row are the ones Section~\ref{sec:experiments} reports; the strip beneath them lists the replication settings and controls.}
 \label{fig:study_overview}
 \end{figure*}
 

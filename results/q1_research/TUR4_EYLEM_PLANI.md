@@ -1,5 +1,53 @@
 # Tur 4 — ic hakemlik hukmu ve birlesik eylem plani (2026-08-29)
 
+> ## 2026-10-04 LECUN PANELI (16 ajan) + RENDER TEMELLI SEKIL/TABLO GECISI
+>
+> Kullanici istegi: "Yann LeCun hakemligi" (1 fable hukum, 5 opus mercek, 10 sonnet
+> toplayici) ve ardindan sekil/tablo/cizimlerin render alinarak elden gecirilmesi.
+> Raporlar: `raporlar/hakem_lecun_2026-10-04/` (00_LECUN_HUKUM.md, mercek_A..E, toplama_*).
+>
+> **Hukum: Major revision** (bes mercek de Major; yedi kirmizi bulgunun hepsi birincil
+> kaynakta dogrulandi). Bes engelleyici: B1 baslik/ozet literatur duzeyi iddia (onaylanan
+> iki protokol uc veri kumesinde de ayni isaret; hicbir yayin yeniden puanlanmadi);
+> B2 9,21+5,79 "ayrisim" tutarsiz (3,91 araligi 9,21'in icinde; uc ayri olgu olarak yazilmali);
+> B3 "zayif hedefin ozelligi" okumasi 3x3 matrisle celisiyor (kaynak etkisi +5,13, hedef
+> etkisi -2,03; Mahmood Tablo 1-2 ile masa basi sinanabilir); B4 veri/kod paragrafi bugun
+> yanlis (URL 404, 5,79/3,91/1,85 foyde yoktu, +0,470 egimi hicbir JSON'da yok, p=0,88 ve
+> 77,50 karantinadan); B5 PDF dizgisi bozuk + Sekil 1 beyan edilmemis yapay zeka rasteri.
+> On buyuk madde M1-M10 ve 14 kalemlik eylem plani (yaklasik 68 saat) hukum dosyasinda.
+>
+> **Bugun yapilanlar (sekil/tablo kapsami; metin kararlari kullanicida):**
+> - **Dizgi arizasi** (B5/R1): `ieeeaccess.cls` `times` ailesini hic tanimlamiyordu;
+>   govde bir aydir Computer Modern'di, KALIN ve ITALIK hic basilmiyordu, bes tablo sutunu
+>   asiyordu; sekiz kapi da geciyordu. `paper/manuscript/t1times.fd` (+ `T1times.fd` kopyasi)
+>   eklendi; govde TimesLTStd, kalin/italik gomulu; EN 24 -> 23 sayfa. **Dokuzuncu kapi**
+>   `scripts/check_pdf_typeset.py` (Times gomulu mu, sutun tasmasi, gunluk uyarisi), sinamasi
+>   `scripts/test_pdf_typeset.sh` (Kol 0 GECTI / Kol 1 KALDI).
+> - **Sekil 1**: yapay zeka PNG'si `paper/figures/arsiv/fig_study_overview_ai_2026-09-29.png`'ye;
+>   yerine vektor TikZ (`paper/figures/overview/fig_study_overview.tex`, derleme `derle.sh`,
+>   gercek CIFAR-10 test goruntuleri 0-3 `cifar_thumbs.py`), iki asamali egitim, yineleme
+>   seridi, Type 3 yok, tam genislik.
+> - **Tablolar**: Tablo 2 alt baslik iki satir; Tablo 3 besinci sutun dipnota (tasma);
+>   Tablo 4 basligi ayri kosu beyani (<=0,06 puan); **Tablo 6 (SVHN) yerine protokol x ayar
+>   table*** (`tab:protocol_settings`: CIFAR-10 Linf / CIFAR-100 / SVHN iki cift ayri /
+>   CIFAR-10 L2) ve 04:280'deki yanlis Tablo 7 gondermesi duzeltildi; Tablo 8 dort ondalik,
+>   isaretli hizalanma uc kosum ort±SD (0,0010/0,0004; eski hucreler tek kosumdu); Tablo 9
+>   Fark±SD ve "p (Holm)"; Tablo 10 dikey cizgi kalkti, "Stage.block", SD cumlesi; Tablo 11
+>   kisaltmalar ve butce; basliklarda matematik kipindeki binlik ayirici metin kipine.
+> - **Sekil 4 (isi haritasi) kaldirildi** (Tablo 4'u yineliyordu). Sekil 2/5/6/7/8 yeniden
+>   uretimi gorsel-uretici ajaninda (ortak renk olcegi, ECDF, Δentropi+TOST marji).
+> - McNemar sinirlari 04:41 duzeltildi (p < 2x10^-84, 2x10^-120); 03:7 "her analizin icinde";
+>   yazar isareti 1,2; biyografi Turkiye; url paketi; \vol{14}; sahin2026 ilk ad kumesi.
+> - **Referans foyu genisletildi** (kod-mimar): protokol x ayar, turetilmis sayilar (bc-tc
+>   t araligi [3,12; 4,70]), Tablo 8/9/10 ek sutunlari, entropi, epsilon taramasi, literal
+>   etiketleri. Sayi kapisi 158 -> 180 kontrol.
+>
+> **Kullanici karari bekleyen (metin duzeyi, hukum B1-B3, M1-M10):** baslik ve ozet
+> yeniden cercevesi; 9,21/5,79/3,91 ayrisiminin uc ayri olgu olarak yazilmasi (Sekil 3
+> sag panel ciftli uzakliklar); "zayif hedef" okumasinin kaynak-etkisi okumasina cevrilmesi
+> ve Mahmood masa basi analizi; +0,470 egimi (artefakt uret ya da sil); p=0,88 (temiz
+> kontrol noktalarinda olc ya da sil); secim kuralinin asimetriye etkisi; uzunluk/ek dosya.
+
 > ## 2026-10-02 KULLANICI KARARLARI + ACIK DEPO
 >
 > Kararlar (kullanici): (1) YZ beyani metni OK. (2) Gonderim icin YENI,
