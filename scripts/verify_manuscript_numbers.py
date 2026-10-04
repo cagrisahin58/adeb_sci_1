@@ -426,8 +426,8 @@ except Exception as _e:
 # --- 2026-10-04 (LeCun turu): YENI tablolar (tab:source_target, tab:external_pool),
 # yeni sekil (fig:spread_clean_gap) ve yeni metin sayilari. Kaynaklar, referans
 # foyunun (results/C1_REFERANS_FOYU.md) ayni bolumlerini ureten artefaktlardir.
-# Bu kontroller YALNIZ EN metninde aranir: TR aynasi ikinci geciste yazilacak.
-# TR esitlendiginde bu satirlar chk(...) bicimine cevrilmelidir (iki dil).
+# 2026-10-04 (TR ayna gecisi): bu kontroller chk(...) bicimine cevrildi; artik
+# IKI DILDE de aranir. chk_en tanimi bos kalan yalniz-EN blogu icin duruyor.
 # Mevcut chk(...) kontrollerinin hicbiri degistirilmedi.
 CHECKS_EN = []
 
@@ -451,38 +451,69 @@ try:
             for _al, _nd in (("kaynak_etkisi_farki_ResNet_eksi_ViT", 2), ("hedef_etkisi_farki_ViT_eksi_ResNet", 2),
                              ("asimetri_ResNettoViT_eksi_ViTtoResNet", 2), ("max_abs_artik", 2), ("R2", 4)):
                 _m, _s = _ms2(_d[_al]["degerler"])
-                chk_en(f"KH {_tg} {_pr} {_al} ort", abs(_m), _nd)
-                chk_en(f"KH {_tg} {_pr} {_al} sd", _s, _nd)
+                chk(f"KH {_tg} {_pr} {_al} ort", abs(_m), _nd)
+                chk(f"KH {_tg} {_pr} {_al} sd", _s, _nd)
         _d = _KH[_ds]["cift_basina"]["target_correct"]
         for _al in ("WRN_hedef_fark_ResNet_eksi_ViT", "WRN_kaynak_fark_ResNet_eksi_ViT"):
             _m, _s = _ms2(_d[_al]["degerler"])
-            chk_en(f"KH {_tg} sabit WRN {_al} ort", abs(_m))
-            chk_en(f"KH {_tg} sabit WRN {_al} sd", _s)
+            chk(f"KH {_tg} sabit WRN {_al} ort", abs(_m))
+            chk(f"KH {_tg} sabit WRN {_al} sd", _s)
     _d = _KH["CIFAR-10"]["ozet_matris"]["target_correct"]["sabit_WRN"]
     for _al in ("WRN_hedef_ResNetten", "WRN_hedef_ViTden", "WRN_kaynak_ResNete", "WRN_kaynak_ViTe"):
-        chk_en(f"KH C10 sabit WRN orani (ozet matris) {_al}", _d[_al])
+        chk(f"KH C10 sabit WRN orani (ozet matris) {_al}", _d[_al])
+    # Hakem gecisi (2026-10-04, M2): her-ikisi-dogru ve CIFAR-100 basarili-kaynak satirlari,
+    # sabit-WRN karsitliklari her kosullu protokolde.
+    for _ds, _tg, _prs in (("CIFAR-10", "C10", ("both_correct",)),
+                           ("CIFAR-100", "C100", ("both_correct", "successful_source"))):
+        for _pr in _prs:
+            _d = _KH[_ds]["cift_basina"][_pr]
+            for _al, _nd in (("kaynak_etkisi_farki_ResNet_eksi_ViT", 2), ("hedef_etkisi_farki_ViT_eksi_ResNet", 2),
+                             ("asimetri_ResNettoViT_eksi_ViTtoResNet", 2), ("max_abs_artik", 2), ("R2", 4)):
+                _m, _s = _ms2(_d[_al]["degerler"])
+                chk(f"KH {_tg} {_pr} {_al} ort", abs(_m), _nd)
+                chk(f"KH {_tg} {_pr} {_al} sd", _s, _nd)
+            for _al in ("WRN_hedef_fark_ResNet_eksi_ViT", "WRN_kaynak_fark_ResNet_eksi_ViT"):
+                _m, _s = _ms2(_d[_al]["degerler"])
+                chk(f"KH {_tg} {_pr} sabit WRN {_al} ort", abs(_m))
+                chk(f"KH {_tg} {_pr} sabit WRN {_al} sd", _s)
     # Mahmood 8x8 uydurmalari
     for _ds, _tg in (("CIFAR-10", "C10"), ("CIFAR-100", "C100")):
         _m8 = _KH["Mahmood2021"][_ds]
         _u, _a2 = _m8["uydurma"], _m8["ayni_cins_terimli_uydurma"]["uydurma"]
-        chk_en(f"Mahmood {_tg} toplamsal R2", _u["R2"], 4)
-        chk_en(f"Mahmood {_tg} toplamsal max artik", _u["max_abs_artik"])
-        chk_en(f"Mahmood {_tg} aile-terimli R2", _a2["R2"], 4)
-        chk_en(f"Mahmood {_tg} aile-terimli max artik", _a2["max_abs_artik"])
+        chk(f"Mahmood {_tg} toplamsal R2", _u["R2"], 4)
+        chk(f"Mahmood {_tg} toplamsal max artik", _u["max_abs_artik"])
+        chk(f"Mahmood {_tg} aile-terimli R2", _a2["R2"], 4)
+        chk(f"Mahmood {_tg} aile-terimli max artik", _a2["max_abs_artik"])
         _F1 = _m8["aile_duzeyi_farklar"]
         _F2 = _m8["ayni_cins_terimli_uydurma"]["aile_duzeyi_farklar"]
         for _k in ["CNN_vs_ViT_hibrit_haric"] + (["ResNet_vs_ViT"] if _ds == "CIFAR-100" else []):
             for _F, _fl in ((_F1, "toplamsal"), (_F2, "aile-terimli")):
-                chk_en(f"Mahmood {_tg} {_k} {_fl} kaynak", abs(_F[_k]["kaynak_etkisi_farki_CNN_eksi_ViT"]))
-                chk_en(f"Mahmood {_tg} {_k} {_fl} hedef", abs(_F[_k]["hedef_etkisi_farki_ViT_eksi_CNN"]))
+                chk(f"Mahmood {_tg} {_k} {_fl} kaynak", abs(_F[_k]["kaynak_etkisi_farki_CNN_eksi_ViT"]))
+                chk(f"Mahmood {_tg} {_k} {_fl} hedef", abs(_F[_k]["hedef_etkisi_farki_ViT_eksi_CNN"]))
     # Dis veri: Mahmood, anahtar cift ve yaklasim hatasi
     _MO = jl("results/q1/dis_veri/mahmood2021_ozdeslik.json")
     _ak = _MO["anahtar_cift_BiT-M-R50x1_ViT-L-16"]["CIFAR-10"]
     _pk = [k for k in _ak if k.startswith("p=1")][0]
-    chk_en("Mahmood anahtar cift protokol etkisi", abs(_ak[_pk]["protokol_etkisi_ham_eksi_bc_puan"]))
-    chk_en("Mahmood anahtar cift etki araligi alt", abs(_ak[_pk]["protokol_etkisi_aralik_puan"][0]))
-    chk_en("Mahmood anahtar cift etki araligi ust", abs(_ak[_pk]["protokol_etkisi_aralik_puan"][1]))
-    chk_en("Mahmood anahtar cift bc asimetrisi", abs(_ak["asimetri_bc_puan"]))
+    chk("Mahmood anahtar cift protokol etkisi", abs(_ak[_pk]["protokol_etkisi_ham_eksi_bc_puan"]))
+    chk("Mahmood anahtar cift etki araligi alt", abs(_ak[_pk]["protokol_etkisi_aralik_puan"][0]))
+    chk("Mahmood anahtar cift etki araligi ust", abs(_ak[_pk]["protokol_etkisi_aralik_puan"][1]))
+    chk("Mahmood anahtar cift bc asimetrisi", abs(_ak["asimetri_bc_puan"]))
+    _pkm = [k for k in _ak if k.startswith("p=p_min")][0]
+    chk("Mahmood anahtar cift protokol etkisi (p_min)", abs(_ak[_pkm]["protokol_etkisi_ham_eksi_bc_puan"]))
+    # Hakem gecisi: havuzda temiz dogrulugu yakin gurbuz ciftler (F3)
+    _HV0 = jl("results/q1/havuz_cifar10/havuz_protokoller.json")
+    for _a, _b in (("Carmon2019_WRN28_10", "Gowal2020_WRN28_10"), ("Debenedetti2022_XCiT_S12", "Gowal2020_WRN28_10"),
+                   ("ResNet18_AT", "Engstrom2019_RN50")):
+        _c = [c for c in _HV0["ciftler"] if c["cift"] == [_a, _b]][0]
+        chk(f"havuz {_a}/{_b} temiz fark", _c["temiz_dogruluk_farki_mutlak"])
+        chk(f"havuz {_a}/{_b} dort yayilim", _c["yayilim_dort_protokol"])
+    # Hakem gecisi: SVHN temiz dogruluklar kosum basina ve fark (foy: Turetilmis, Temiz dogruluk farki)
+    _sv = [e7["mimariler"][_m]["ozet"]["test_clean"]["degerler"] for _m in ("resnet18", "vit_tiny")]
+    for _i in range(2):
+        chk(f"SVHN temiz ResNet kosum{_i+1}", _sv[0][_i])
+        chk(f"SVHN temiz ViT kosum{_i+1}", _sv[1][_i])
+        chk(f"SVHN temiz fark kosum{_i+1}", _sv[0][_i] - _sv[1][_i])
+    chk("SVHN temiz fark ort", float(np.mean(np.array(_sv[0]) - np.array(_sv[1]))))
 
     # Standart egitimli hedeflerde oncul p (temiz ciftler)
     _TC = [jl(f"results/q1/temiz_ciftler/pair{_p}/havuz_protokoller.json") for _p in (1, 2, 3)]
@@ -495,44 +526,63 @@ try:
             _Ph.setdefault(_h, []).append(_v["p_adv_yanlis_verili_temiz_yanlis"])
             _Ah.setdefault(_h, []).append(abs(_v["ozdeslik_artigi_ham_eksi_ongoru"]))
     _allp = [x for v in _Ph.values() for x in v]
-    chk_en("temiz ciftler p en kucuk (4)", min(_allp), 4)
-    chk_en("temiz ciftler p en kucuk (3)", min(_allp), 3)
-    chk_en("temiz ciftler artik en buyuk", max(x for v in _Ah.values() for x in v))
-    chk_en("Standard WRN hedef p en buyuk", max(_Ph["Standard_WRN28_10"]), 4)
-    chk_en("ViT temiz hedef p en kucuk", min(_Ph["ViT_Tiny_clean"]), 4)
-    chk_en("ViT temiz hedef p en buyuk", max(_Ph["ViT_Tiny_clean"]), 4)
-    chk_en("ResNet temiz hedef p en kucuk", min(_Ph["ResNet18_clean"]), 4)
-    chk_en("Standard WRN hedef artik en buyuk", max(_Ah["Standard_WRN28_10"]))
-    chk_en("ResNet temiz hedef artik en buyuk", max(_Ah["ResNet18_clean"]))
+    chk("temiz ciftler p en kucuk (4)", min(_allp), 4)
+    chk("temiz ciftler p en kucuk (3)", min(_allp), 3)
+    chk("temiz ciftler artik en buyuk", max(x for v in _Ah.values() for x in v))
+    chk("Standard WRN hedef p en buyuk", max(_Ph["Standard_WRN28_10"]), 4)
+    chk("ViT temiz hedef p en kucuk", min(_Ph["ViT_Tiny_clean"]), 4)
+    chk("ViT temiz hedef p en buyuk", max(_Ph["ViT_Tiny_clean"]), 4)
+    chk("ResNet temiz hedef p en kucuk", min(_Ph["ResNet18_clean"]), 4)
+    chk("Standard WRN hedef artik en buyuk", max(_Ah["Standard_WRN28_10"]))
+    chk("ResNet temiz hedef artik en buyuk", max(_Ah["ResNet18_clean"]))
     _tur = {}
     for _t in _TC:
         for _c in _t["ciftler"]:
             _tur.setdefault(tuple(_c["cift"]), []).append(_c)
     for _ct, _cs in _tur.items():
         _m, _s = _ms2([_c["temiz_dogruluk_farki_mutlak"] for _c in _cs])
-        chk_en(f"temiz cift {_ct} temiz fark ort", _m)
-        chk_en(f"temiz cift {_ct} temiz fark sd", _s)
+        chk(f"temiz cift {_ct} temiz fark ort", _m)
+        chk(f"temiz cift {_ct} temiz fark sd", _s)
         _m, _s = _ms2([_c["yayilim_dort_protokol"] for _c in _cs])
-        chk_en(f"temiz cift {_ct} yayilim ort", _m)
-        chk_en(f"temiz cift {_ct} yayilim sd", _s)
+        chk(f"temiz cift {_ct} yayilim ort", _m)
+        chk(f"temiz cift {_ct} yayilim sd", _s)
+
+    # Hakem gecisi (M3): temiz ciftte toplamsal ayristirma ve sabit-Standard karsitliklari (foy M8.15)
+    _ks, _hs, _as = [], [], []
+    for _t in _TC:
+        _ta = _t["toplamsal_kaynak_hedef_hedef_dogru"]
+        _ks.append(_ta["kaynak_etkisi"]["ResNet18_clean"] - _ta["kaynak_etkisi"]["ViT_Tiny_clean"])
+        _hs.append(_ta["hedef_etkisi"]["ViT_Tiny_clean"] - _ta["hedef_etkisi"]["ResNet18_clean"])
+        _o = lambda y: _t["yonlu"][y]["oranlar"]["target_correct"]
+        _as.append((_o("Standard_WRN28_10->ResNet18_clean"), _o("Standard_WRN28_10->ViT_Tiny_clean"),
+                    _o("ResNet18_clean->Standard_WRN28_10"), _o("ViT_Tiny_clean->Standard_WRN28_10")))
+    for _ad, _v in (("temiz cift kaynak farki", _ks), ("temiz cift hedef farki", _hs)):
+        _m, _s = _ms2(_v)
+        chk(f"{_ad} ort", abs(_m))
+        chk(f"{_ad} sd", _s)
+    _as = np.array(_as)
+    for _j, _ad in enumerate(("Standard->ResNet", "Standard->ViT", "ResNet->Standard", "ViT->Standard")):
+        chk(f"temiz cift sabit-Standard {_ad}", _as[:, _j].mean())
+    chk("temiz cift sabit-Standard kaynak karsitligi", _ms2(_as[:, 2] - _as[:, 3])[0])
+    chk("temiz cift sabit-Standard hedef karsitligi", _ms2(_as[:, 0] - _as[:, 1])[0])
 
     # RobustBench havuzu
     _HV = jl("results/q1/havuz_cifar10/havuz_protokoller.json")
     _op = _HV["oncul_p_ozeti"]
-    chk_en("havuz p en kucuk", _op["p_min"], 4)
-    chk_en("havuz artik en buyuk", _op["ozdeslik_artigi_mutlak_max_puan"])
-    chk_en("havuz AT hedef p en kucuk", min(_op["p_hedef_bazinda"][m]["p_min"]
+    chk("havuz p en kucuk", _op["p_min"], 4)
+    chk("havuz artik en buyuk", _op["ozdeslik_artigi_mutlak_max_puan"])
+    chk("havuz AT hedef p en kucuk", min(_op["p_hedef_bazinda"][m]["p_min"]
                                            for m in _HV["modeller"] if m != "Standard_WRN28_10"), 4)
     _eg = _HV["egim_yayilim_temiz_fark"]
     for _ad, _tg in (("uc_protokol_bas_kaynak_haric", "uc"), ("dort_protokol", "dort")):
-        chk_en(f"havuz egim {_tg}", abs(_eg[_ad]["egim"]), 3)
-        chk_en(f"havuz egim {_tg} GA alt", abs(_eg[_ad]["egim_GA95_model_bootstrap"][0]), 3)
-        chk_en(f"havuz egim {_tg} GA ust", abs(_eg[_ad]["egim_GA95_model_bootstrap"][1]), 3)
-        chk_en(f"havuz egim {_tg} r", _eg[_ad]["pearson_r"], 3)
+        chk(f"havuz egim {_tg}", abs(_eg[_ad]["egim"]), 3)
+        chk(f"havuz egim {_tg} GA alt", abs(_eg[_ad]["egim_GA95_model_bootstrap"][0]), 3)
+        chk(f"havuz egim {_tg} GA ust", abs(_eg[_ad]["egim_GA95_model_bootstrap"][1]), 3)
+        chk(f"havuz egim {_tg} r", _eg[_ad]["pearson_r"], 3)
     _ta = _HV["toplamsal_kaynak_hedef_hedef_dogru"]
-    chk_en("havuz toplamsal R2", _ta["R2"], 4)
-    chk_en("havuz ViT_Tiny_AT kaynak etkisi", abs(_ta["kaynak_etkisi"]["ViT_Tiny_AT"]))
-    chk_en("havuz ViT_Tiny_AT hedef etkisi", abs(_ta["hedef_etkisi"]["ViT_Tiny_AT"]))
+    chk("havuz toplamsal R2", _ta["R2"], 4)
+    chk("havuz ViT_Tiny_AT kaynak etkisi", abs(_ta["kaynak_etkisi"]["ViT_Tiny_AT"]))
+    chk("havuz ViT_Tiny_AT hedef etkisi", abs(_ta["hedef_etkisi"]["ViT_Tiny_AT"]))
 
     # Secim kurali: son kontrol noktasi (foy: 'Secim kuralinin asimetriye etkisi', B)
     _SK = [jl(f"results/q1/son_kontrol_noktasi/pair{_p}/havuz_protokoller.json") for _p in (1, 2, 3)]
@@ -547,22 +597,22 @@ try:
     _son = np.array(_son)
     for _j, _ad in enumerate(("yayilim dort", "yayilim uc", "temiz fark", "tc asimetri")):
         _m, _s = _ms2(_son[:, _j])
-        chk_en(f"son ckpt {_ad} ort", abs(_m))
-        chk_en(f"son ckpt {_ad} sd", _s)
-    chk_en("son ckpt ss asimetri ort", _son[:, 4].mean())
-    chk_en("son ckpt p en kucuk", min(_t["oncul_p_ozeti"]["p_min"] for _t in _SK), 4)
-    chk_en("son ckpt artik en buyuk", max(_t["oncul_p_ozeti"]["ozdeslik_artigi_mutlak_max_puan"] for _t in _SK))
+        chk(f"son ckpt {_ad} ort", abs(_m))
+        chk(f"son ckpt {_ad} sd", _s)
+    chk("son ckpt ss asimetri ort", _son[:, 4].mean())
+    chk("son ckpt p en kucuk", min(_t["oncul_p_ozeti"]["p_min"] for _t in _SK), 4)
+    chk("son ckpt artik en buyuk", max(_t["oncul_p_ozeti"]["ozdeslik_artigi_mutlak_max_puan"] for _t in _SK))
     _c1y = np.array(tr["protocol_spread_pp"]["values"], dtype=float)
     _c1t = np.array([p["resnet"]["clean"] - p["vit"]["clean"] for p in _sd1], dtype=float)
     _m, _s = _ms2(_son[:, 0] - _c1y)
-    chk_en("son - secilen yayilim dort ort", abs(_m))
-    chk_en("son - secilen yayilim dort sd", _s)
+    chk("son - secilen yayilim dort ort", abs(_m))
+    chk("son - secilen yayilim dort sd", _s)
     _m, _s = _ms2(_son[:, 2] - _c1t)
-    chk_en("son - secilen temiz fark ort", abs(_m))
-    chk_en("son - secilen temiz fark sd", _s)
+    chk("son - secilen temiz fark ort", abs(_m))
+    chk("son - secilen temiz fark sd", _s)
     _m, _s = _ms2(_c1t)
-    chk_en("secilen temiz fark ort", _m)
-    chk_en("secilen temiz fark sd", _s)
+    chk("secilen temiz fark ort", _m)
+    chk("secilen temiz fark sd", _s)
 
     # Secim kurali: saklanan yorungeler (foy: 'Secim kuralinin asimetriye etkisi', A)
     _SE = jl("results/q1/secim_asimetri_etkisi.json")
@@ -577,79 +627,79 @@ try:
                                          _sn["asimetri"]["target_correct"] - _r["en_yakin_asimetri"]["target_correct"]))
         if _v["bilgi"]["dataset"] == "cifar10":
             _c10_tf += [_r["en_yakin_temiz_hata_farki_ViT_eksi_CNN"], _sn["temiz_hata_farki_ViT_eksi_CNN"]]
-    chk_en("yorunge C10 temiz fark en kucuk", min(_c10_tf))
+    chk("yorunge C10 temiz fark en kucuk", min(_c10_tf))
     for _k, _rows in _grup.items():
         _A = np.array(_rows)
         _m, _s = _ms2(_A[:, 0])
-        chk_en(f"yorunge {_k} yayilim Delta ort", abs(_m))
-        chk_en(f"yorunge {_k} yayilim Delta sd", _s)
+        chk(f"yorunge {_k} yayilim Delta ort", abs(_m))
+        chk(f"yorunge {_k} yayilim Delta sd", _s)
     _A = np.array(_grup[("cifar10", "ViT-Tiny")])
     _m, _s = _ms2(_A[:, 1])
-    chk_en("yorunge C10 ViT tc Delta ort", _m)
-    chk_en("yorunge C10 ViT tc Delta sd", _s)
+    chk("yorunge C10 ViT tc Delta ort", _m)
+    chk("yorunge C10 ViT tc Delta sd", _s)
 
     # Kosumlar arasi aralik (C1 secilmis) ve turetilmis protokol farklari
     for _p in ("raw", "target_correct", "both_correct", "successful_source"):
         _v = np.array(tr["protocols"][_p]["diff"]["values"], dtype=float)
-        chk_en(f"C1 kosumlar arasi aralik {_p}", _v.max() - _v.min())
+        chk(f"C1 kosumlar arasi aralik {_p}", _v.max() - _v.min())
     _T975 = 4.302652729911275
     for _tg, _sm in (("C10", tr), ("C100", e1t), ("L2", e6t)):
         _bt = (np.array(_sm["protocols"]["both_correct"]["diff"]["values"], dtype=float)
                - np.array(_sm["protocols"]["target_correct"]["diff"]["values"], dtype=float))
         _m, _s = _ms2(_bt)
         _y = _T975 * _s / np.sqrt(len(_bt))
-        chk_en(f"{_tg} bc-tc ort", _m)
-        chk_en(f"{_tg} bc-tc t alt", _m - _y)
-        chk_en(f"{_tg} bc-tc t ust", _m + _y)
+        chk(f"{_tg} bc-tc ort", _m)
+        chk(f"{_tg} bc-tc t alt", _m - _y)
+        chk(f"{_tg} bc-tc t ust", _m + _y)
     _bt = (np.array(e7t["protocols"]["both_correct"]["diff"]["values"], dtype=float)
            - np.array(e7t["protocols"]["target_correct"]["diff"]["values"], dtype=float))
     for _i, _x in enumerate(_bt, 1):
-        chk_en(f"SVHN bc-tc cift{_i}", _x)
+        chk(f"SVHN bc-tc cift{_i}", _x)
     _ss = (np.array(tr["protocols"]["successful_source"]["diff"]["values"], dtype=float)
            - np.array(tr["protocols"]["both_correct"]["diff"]["values"], dtype=float))
-    chk_en("C10 ss-bc ort", _ms2(_ss)[0])
-    chk_en("C10 ss-bc sd", _ms2(_ss)[1])
+    chk("C10 ss-bc ort", _ms2(_ss)[0])
+    chk("C10 ss-bc sd", _ms2(_ss)[1])
     _rt = (np.array(tr["protocols"]["raw"]["diff"]["values"], dtype=float)
            - np.array(tr["protocols"]["target_correct"]["diff"]["values"], dtype=float))
-    chk_en("C10 raw-tc sd", _ms2(_rt)[1])
+    chk("C10 raw-tc sd", _ms2(_rt)[1])
 
     # Uc-protokol egimi, SVHN dahil (foy: 'Uc-protokol egimi, SVHN dahil')
     _E3 = jl("results/q1/e3_uc_protokol_svhnli_fit.json")["sonuc"]
     _u = _E3["uc_protokol_svhn_dahil"]
-    chk_en("E3 SVHN dahil uc egim", _u["egim"], 3)
-    chk_en("E3 SVHN dahil uc GA alt", _u["egim_GA95_kume_bootstrap"][0], 3)
-    chk_en("E3 SVHN dahil uc GA ust", _u["egim_GA95_kume_bootstrap"][1], 3)
+    chk("E3 SVHN dahil uc egim", _u["egim"], 3)
+    chk("E3 SVHN dahil uc GA alt", _u["egim_GA95_kume_bootstrap"][0], 3)
+    chk("E3 SVHN dahil uc GA ust", _u["egim_GA95_kume_bootstrap"][1], 3)
     _o = _E3["ozdeslik_terimi_abs_ham_eksi_tc_ongoru_svhn_dahil"]
-    chk_en("E3 ozdeslik terimi egim", _o["egim"], 3)
-    chk_en("E3 ozdeslik terimi GA alt", _o["egim_GA95_kume_bootstrap"][0], 4)
-    chk_en("E3 ozdeslik terimi GA ust", _o["egim_GA95_kume_bootstrap"][1], 4)
+    chk("E3 ozdeslik terimi egim", _o["egim"], 3)
+    chk("E3 ozdeslik terimi GA alt", _o["egim_GA95_kume_bootstrap"][0], 4)
+    chk("E3 ozdeslik terimi GA ust", _o["egim_GA95_kume_bootstrap"][1], 4)
     _dp = _E3["dort_protokol_svhn_dahil"]
-    chk_en("E3 SVHN dahil dort egim", abs(_dp["egim"]), 3)
-    chk_en("E3 SVHN dahil dort GA alt", abs(_dp["egim_GA95_kume_bootstrap"][0]), 3)
-    chk_en("E3 SVHN dahil dort GA ust", abs(_dp["egim_GA95_kume_bootstrap"][1]), 3)
+    chk("E3 SVHN dahil dort egim", abs(_dp["egim"]), 3)
+    chk("E3 SVHN dahil dort GA alt", abs(_dp["egim_GA95_kume_bootstrap"][0]), 3)
+    chk("E3 SVHN dahil dort GA ust", abs(_dp["egim_GA95_kume_bootstrap"][1]), 3)
 
     # Dikkat entropisi TOST ve devrilen/devrilmeyen kosinus
     _C4T = jl("results/c1_c4/c4_entropy_tost.json")
-    chk_en("TOST en buyuk p", max(k["p_TOST"] for k in _C4T["entropi_TOST"]["katmanlar"]), 3)
-    chk_en("TOST temiz entropi en kucuk", min(k["temiz_entropi_ort"] for k in _C4T["entropi_TOST"]["katmanlar"]))
-    chk_en("TOST temiz entropi en buyuk", max(k["temiz_entropi_ort"] for k in _C4T["entropi_TOST"]["katmanlar"]))
+    chk("TOST en buyuk p", max(k["p_TOST"] for k in _C4T["entropi_TOST"]["katmanlar"]), 3)
+    chk("TOST temiz entropi en kucuk", min(k["temiz_entropi_ort"] for k in _C4T["entropi_TOST"]["katmanlar"]))
+    chk("TOST temiz entropi en buyuk", max(k["temiz_entropi_ort"] for k in _C4T["entropi_TOST"]["katmanlar"]))
     _kd = _C4T["son_blok_kosinus_devrilen_vs_devrilmeyen"]
-    chk_en("devrilen/devrilmeyen p ViT", _kd["ViT"]["eslesik_t_kosu_duzeyi"]["p_iki_yonlu"], 2)
-    chk_en("devrilen/devrilmeyen p ResNet", _kd["ResNet"]["eslesik_t_kosu_duzeyi"]["p_iki_yonlu"], 3)
+    chk("devrilen/devrilmeyen p ViT", _kd["ViT"]["eslesik_t_kosu_duzeyi"]["p_iki_yonlu"], 2)
+    chk("devrilen/devrilmeyen p ResNet", _kd["ResNet"]["eslesik_t_kosu_duzeyi"]["p_iki_yonlu"], 3)
 
     # Yayilim - temiz fark iliskisi, tum ciftler (fig:spread_clean_gap)
     _FG = jl("results/q1/fig_yayilim_temiz_fark_veri.json")["egim"]
     _e = _FG["uc_protokol_bas_kaynak_haric"]
-    chk_en("tum ciftler uc egim", _e["egim"], 3)
-    chk_en("tum ciftler uc r", _e["pearson_r"], 3)
-    chk_en("tum ciftler uc grup-birak en kucuk", min(_e["grup_birak_egimleri"].values()), 3)
-    chk_en("tum ciftler uc grup-birak en buyuk", max(_e["grup_birak_egimleri"].values()), 3)
+    chk("tum ciftler uc egim", _e["egim"], 3)
+    chk("tum ciftler uc r", _e["pearson_r"], 3)
+    chk("tum ciftler uc grup-birak en kucuk", min(_e["grup_birak_egimleri"].values()), 3)
+    chk("tum ciftler uc grup-birak en buyuk", max(_e["grup_birak_egimleri"].values()), 3)
     _e = _FG["dort_protokol"]
-    chk_en("tum ciftler dort egim", _e["egim"], 3)
-    chk_en("tum ciftler dort r", _e["pearson_r"], 3)
-    chk_en("tum ciftler parite en buyuk sapma", _FG["ozdeslik_paritesi"]["mutlak_sapma_max"])
-    chk_en("tum ciftler parite ort sapma", _FG["ozdeslik_paritesi"]["mutlak_sapma_ort"])
-    chk_en("tum ciftler uc=|raw-tc| sayisi", _FG["uc_protokol_yayilimi_vs_raw_tc_farki"]["esit_cift_sayisi_1e-9"], 0)
+    chk("tum ciftler dort egim", _e["egim"], 3)
+    chk("tum ciftler dort r", _e["pearson_r"], 3)
+    chk("tum ciftler parite en buyuk sapma", _FG["ozdeslik_paritesi"]["mutlak_sapma_max"])
+    chk("tum ciftler parite ort sapma", _FG["ozdeslik_paritesi"]["mutlak_sapma_ort"])
+    chk("tum ciftler uc=|raw-tc| sayisi", _FG["uc_protokol_yayilimi_vs_raw_tc_farki"]["esit_cift_sayisi_1e-9"], 0)
 except Exception as _e_:  # anahtar degisirse kapi SESSIZCE gecmesin
     _EN_HATA.append(f"{type(_e_).__name__}: {_e_}")
 

@@ -124,3 +124,24 @@ tabloları korunur, düzyazısı kısalır; TR aynası aynı yapıyı izler)
   bildirimi bu turda (yazara ek tur verildi). Hakem (yontem merceği) tek geçiş başlatıldı.
 - Açık depo kurucusu güncellendi (`scripts/acik_depo_kur.sh`: yeni betikler, results/wrn_eval, Mahmood PDF
   hariç); kopya 32 MB / 1079 dosya; föy kopyadan birebir yeniden üretiliyor.
+- 04.10 20:0x: Yazar ek turu: karantina literalleri çıktı (tek nitel cümle), kapak mektubu / öne çıkanlar /
+  beyanlar / veri bildirimi yeni omurgada; donanım cümlesi düzeltildi (C1 çiftleri 5060 Ti, Q1 ve havuz
+  5090). Commit ca41c4a (EN Faz 3).
+- 04.10 20:1x: **Hakem ikinci geçişi** (yöntem; `raporlar/hakem_lecun_2026-10-04/hakem_yontem_yeniden_yazim.md`):
+  yeni tablo/şekil hücrelerinin hepsi doğru; **F3**: "büyüklük temiz farkı izler, eşlenmiş çiftlerde küçülür"
+  yalnız üç protokollü yayılım (özdeşlik terimi) için doğru; dört protokollü yayılım eşlenmiş gürbüz çiftlerde
+  6–13 puan (başarılı-kaynak terimi). Kararlar: iddia daraltıldı, **başlık** "… An Exact Correction and a
+  Source-Effect Reading …" (Matched-Pair Prediction çıktı); M1 Şekil 3 altyazısı (11,10 + 3,91 = 15,01;
+  koşulsuz kestirim CIFAR-10'da içeride, CIFAR-100'de üst uç); M2 her-ikisi-doğru satırları tabloya; M3 temiz
+  çiftte ViT en zayıf kaynak, yön hedef terimiyle; M4 Mahmood CIFAR-100 6/12 işaret dönüşü; M5 gereklilik 2
+  p-aralığı sınırı; M6 öngörü = özdeşliğin sonucu, ölçülen içerik üç madde; M7 son kontrol noktası epokları,
+  "artefakt değil" yumuşatıldı; M8 ~40 gövde sayısı föye (kod-mimar), SVHN farkı 1,84. Yazara ve kod-mimara
+  verildi; TR ayna paralel sürüyor (hakem düzeltmeleri TR'ye ikinci mesajla yansıtılacak).
+- 04.10 21:xx: **Tur kapandı.** Hakem düzeltmeleri EN'e işlendi (F3 daraltma, yeni başlık, M1–M7, m1–m14;
+  son kontrol noktası epokları ViT 45/38/39 ve ResNet 71/76/77, seçilen 25/18/19 ve 51/56/57); föye
+  "Govde metnindeki diger sayilar (hakem M8)" bölümü (16 madde); üç yeni atıf (carmon2019unlabeled,
+  wong2020fast, engstrom2019robustness; arXiv doğrulandı); TR ayna cümle düzeyinde eşitlendi (edilgen çatı,
+  özet 248 sözcük, iddia kapısının iki muhafız dizesi edilgene çevrildi); sayı kapısı 426 kontrol iki dilde;
+  EN 25 sayfa, TR 25 sayfa; **DOKUZ KAPI GEÇİYOR**. Açık depo kopyası yeni artefaktlarla kurulabilir
+  (`scripts/acik_depo_kur.sh`); itme kullanıcıda. m15 (dört panel atfı) ve kapak mektubunun ATEEC bildirimi
+  kullanıcı onayı bekliyor; ATEEC kararı gelince "submitted" → "presented".

@@ -1141,6 +1141,299 @@ Tanim notu (artefakttan): 'devrilmeyen' grubu temizde zaten yanlis siniflanan or
 Yorum siniri: kosu duzeyi n = 3; ornek bazli test yok.
 
 
+## Govde metnindeki diger sayilar (hakem M8, 2026-10-04)
+
+_Kaynak: `results/q1/ozdeslik_kontrol.json; results/q1/c3_precision.json; results/c1_c3/c3_summary.json; results/q1/cifar10_l2/e6_onkestirim.json; results/c1_transfer/c1_transfer_summary.json; results/q1/cifar100/transfer/e1_transfer_summary.json; results/c1_addenda/pair*/mifgsm_transfer.json; results/c1_transfer/pair*/a2b_exclusive_subsets.json; results/q1/cifar100/transfer/pair*/a2b_class_balance_cifar100.json; results/q1/e1_cifar100_summary.json; logs/Q1_cifar100_clean_*.log; results/q1_research/E1_PILOT_KAPISI.md (kayitli bantlar); results/q1/e3_iki_kol_fit.json; results/q1/e3_surucu_ayristirma.json; results/q1/e3_asimetri_fit.json; results/q1/e2/e2_grid.json; results/q1/b8_secim_bandi.json; results/q1/variance_ratio.json; results/c1_seeds/c1_seed_summary.json; results/c1_gradient/pair*/gradient_summary.json; results/q1/cifar10_l2/e6_aa_l2_summary.json; results/q1/e7_svhn_summary.json; git (kayit ve pilot kapisi kayitlari); logs/C1_at_vit_200{1,2,3}.log; logs/C1_at_resnet_100{1,2,3}.log; results/q1/temiz_ciftler/pair{1,2,3}/havuz_protokoller.json; results/q1/havuz_cifar10/havuz_protokoller.json`_
+
+Hakem M8 (yontem mercegi), metinde foyde karsiligi olmayan yaklasik kirk sayi saptadi. Asagida her madde kendi alt basligindadir ve kendi artefaktindan okunur; 'Metin bicimi' sutunu sayinin metinde gececegi yuvarlamayi gosterir.
+
+
+### M8.1 Ozdeslik artiklari (36 yon)
+
+Artefakt: `results/q1/ozdeslik_kontrol.json`, uretim 2026-08-20T14:05:03.081817+00:00; yon sayisi 36.
+
+| Olcut | Tam deger | Metin bicimi | Artefakt alani |
+|---|---|---|---|
+| En buyuk mutlak artik (puan) | 0.41 | 0.41 | ozet/ARTIK_puan/mutlak_max |
+| Ortalama mutlak artik (puan) | 0.0947222 | 0.095 | ozet/ARTIK_puan/mutlak_ort |
+| Artik / sapma orani, en buyuk (%) | 1.388 | 1.39 | ozet/artigin_sapmaya_orani_yuzde/max |
+| Artik / sapma orani, ortalama (%) | 0.348944 | 0.35 | ozet/artigin_sapmaya_orani_yuzde/ort |
+| P(adv yanlis, verili temiz yanlis), en kucuk | 0.989014 | 0.989 | ozet/P_advyanlis_verili_temizyanlis/min |
+| P(adv yanlis, verili temiz yanlis), ortalama | 0.997261 | 0.997 | ozet/P_advyanlis_verili_temizyanlis/ort |
+
+
+### M8.2 Ham - kosullu egimleri (CIFAR-10 Linf, CIFAR-100 Linf, CIFAR-10 L2)
+
+| Ayar | Egim (metin bicimi) | Egim (tam) | Kesisim | Pearson r | Yon sayisi | Artefakt alani |
+|---|---|---|---|---|---|---|
+| CIFAR-10 Linf (ham - kosullu ~ hedef temiz hatasi) | 0.762 | 0.762482 | - | 0.997 | 6 | results/c1_c3/c3_summary.json raw_minus_cond_vs_target_error |
+| CIFAR-10 Linf (c3_precision, 4 ondalik) | 0.7625 | 0.7625 | 1.0892 | 0.9971 | 6 | results/q1/c3_precision.json veri_kumeleri/cifar10/RAPOR_EDILEN_n6 |
+| CIFAR-100 Linf | 0.656 | 0.6564 | 3.5007 | 0.9307 | 6 | results/q1/c3_precision.json veri_kumeleri/cifar100/RAPOR_EDILEN_n6 |
+| CIFAR-10 L2 | 0.914 | 0.913765 | 0.1030 | 0.9991 | 18 | results/q1/cifar10_l2/e6_onkestirim.json O1_yon |
+
+L2 on-kestirim noktalari: 18 yon, 7 ayri hedef temiz hatasi degeri (10.52, 13.95, 14.06, 14.63, 25.90, 26.53, 26.99); sabit WideResNet'e giden yon sayisi 6. Hedef hatasi araligi 10.52; 26.99.
+
+
+### M8.3 Her-ikisi-dogru farki icin kosum duzeyi t araligi (df=2)
+
+Kosum duzeyi t araligi: ortalama $\pm$ t(0.975; df=2) x SD / sqrt(3); uc kosum (cift) degerinden. Her ayar icin iki kaynak verilir: eslestirilmis fark (`both_correct_paired/diff_pp/values`, ornek duzeyinde hesaplanmis, metindeki aralik bundan gelir) ve tabloda yazili protokol farki (`protocols/both_correct/diff/values`, 2 ondalikli yuvarlanmis).
+
+| Ayar | Kaynak | Kosum degerleri | Ortalama | SD (ddof=1) | t(0.975; 2) | t araligi (metin bicimi) | t araligi (3 ondalik) |
+|---|---|---|---|---|---|---|---|
+| CIFAR-10 Linf | `c1_transfer_summary.json` both_correct_paired/diff_pp/values | 8.52 / 8.05 / 8.24 | 8.270 | 0.236 | 4.3027 | [7.68; 8.86] | [7.683; 8.857] |
+| CIFAR-10 Linf | `c1_transfer_summary.json` protocols/both_correct/diff/values | 8.51 / 8.05 / 8.24 | 8.267 | 0.231 | 4.3027 | [7.69; 8.84] | [7.692; 8.841] |
+| CIFAR-100 Linf | `e1_transfer_summary.json` both_correct_paired/diff_pp/values | 11.15 / 10.53 / 11.09 | 10.923 | 0.342 | 4.3027 | [10.07; 11.77] | [10.074; 11.773] |
+| CIFAR-100 Linf | `e1_transfer_summary.json` protocols/both_correct/diff/values | 11.15 / 10.53 / 11.09 | 10.923 | 0.342 | 4.3027 | [10.07; 11.77] | [10.074; 11.773] |
+
+
+### M8.4 MI-FGSM iki yonlu kontrol (alpha = eps/10)
+
+Saldiri (artefaktin kendi alani): MI-FGSM (mu=1.0, steps=10, alpha=eps/10); eps = 0.031373; tohum 42. Deger = kosullu (hedef-dogru) yaniltma orani (%), kosum basina; ortalama$\pm$SD uc kosum arasi (ddof=1).
+
+| Yon | Kosum degerleri (%) | Ortalama$\pm$SD | n kosullu (kosum 1 / 2 / 3) | Kosum basina %95 GA |
+|---|---|---|---|---|
+| CNN -> ViT | 18.72 / 19.14 / 19.37 | 19.07$\pm$0.33 | 7410 / 7347 / 7301 | [17.81; 19.61]; [18.25; 20.04]; [18.49; 20.29] |
+| ViT -> CNN | 15.03 / 15.22 / 16.01 | 15.42$\pm$0.52 | 8537 / 8594 / 8605 | [14.28; 15.80]; [14.48; 15.98]; [15.24; 16.79] |
+
+Yon farki (CNN -> ViT eksi ViT -> CNN), kosum basina: +3.69 / +3.92 / +3.35; ortalama$\pm$SD +3.65$\pm$0.28.
+
+Capraz kontrol, `results/c1_behavior_summary.json` mifgsm alani (ortalama, SD): ResNet18_AT->ViT_Tiny_AT: 19.07, 0.33; ViT_Tiny_AT->ResNet18_AT: 15.42, 0.52.
+
+
+### M8.5 Marjinal alt kumeler, bilesim terimleri, korunma oranlari ve bant marjlari
+
+#### Yalniz-hedef-dogru (marjinal) alt kumeler, CIFAR-10
+
+(kaynak: `results/c1_transfer/pair*/a2b_exclusive_subsets.json`): hedefin temizde dogru, kaynagin temizde yanlis bildigi ornekler; 'ortak dogru' ise her ikisinin dogru bildigi kume.
+
+| Yon | Marjinal alt kume boyutu | Yaniltma, marjinal (%) | Yaniltma, ortak dogru (%) | Ortak dogru ortalama (3 ondalik) | Boyut (kosum 1 / 2 / 3) | Marjinal yaniltma (kosum 1 / 2 / 3) | Ortak dogru yaniltma (kosum 1 / 2 / 3) |
+|---|---|---|---|---|---|---|---|
+| ViT -> CNN (hedef CNN) | 1517$\pm$102 | 41.2$\pm$0.8 | 10.0$\pm$0.3 | 9.983 | 1411 / 1527 / 1614 | 41.70 / 40.30 / 41.70 | 9.63 / 10.12 / 10.20 |
+| CNN -> ViT (hedef ViT) | 291$\pm$16 | 59.1$\pm$1.7 | 18.2$\pm$0.2 | 18.250 | 284 / 280 / 310 | 60.20 / 60.00 / 57.10 | 18.14 / 18.17 / 18.44 |
+
+Ortak dogru kume boyutu (kosum 1 / 2 / 3): 7126 / 7067 / 6991.
+
+
+#### Sinif bilesimi terimi, CIFAR-100
+
+(kaynak: `results/q1/cifar100/transfer/pair*/a2b_class_balance_cifar100.json` protokoller/*/AYRISTIRMA/bilesim_etkisi; puan, CNN -> ViT eksi ViT -> CNN asimetrisinin bilesim bileseni):
+
+| Protokol | Bilesim etkisi (kosum 1 / 2 / 3) | Ortalama$\pm$SD |
+|---|---|---|
+| Unconditioned (raw) | +0.000 / +0.000 / +0.000 | +0.000$\pm$0.000 |
+| Target-correct | -1.249 / -1.330 / -1.065 | -1.215$\pm$0.136 |
+| Both-correct | +0.000 / +0.000 / +0.000 | +0.000$\pm$0.000 |
+| Successful-source | +0.527 / +0.435 / +0.382 | +0.448$\pm$0.073 |
+
+
+#### Temiz on-egitim dogrulugunun adversarial egitimde korunmasi, CIFAR-100
+
+pay = adversarial egitimli modelin temiz test dogrulugu (`e1_cifar100_summary.json` mimariler/*/ozet/test_clean/ort); payda = ayni tohumun temiz on-egitim logundaki `Best test accuracy` satiri (`logs/Q1_cifar100_clean_*.log`), uc tohum ortalamasi.
+
+| Model | Temiz on-egitim, en iyi (tohum 1 / 2 / 3) | Ortalama | AT sonrasi temiz (ort) | Korunma orani |
+|---|---|---|---|---|
+| ResNet-18 | 79.25 / 79.30 / 80.30 | 79.617 | 63.86 | 0.802 |
+| ViT-Tiny | 47.45 / 48.50 / 50.35 | 48.767 | 43.17 | 0.885 |
+
+
+#### Kayitli bantlara marj, ViT-Tiny, CIFAR-100
+
+(bantlar `results/q1_research/E1_PILOT_KAPISI.md` 'Beklenen aralik' tablosundan okunur; deger = `e1_cifar100_summary.json` vit_tiny/ozet/*/degerler, tohum duzeyi):
+
+| Uc nokta | Kayitli bant (%) | Tohum degerleri | Alt kenara marj | Ust kenara marj | En yakin kenara marj (puan) |
+|---|---|---|---|---|---|
+| PGD-10 | 10-14 | 11.35 / 10.48 / 11.62 | +0.48 | +2.38 | +0.48 |
+| AutoAttack | 8-11 | 8.58 / 8.22 / 9.81 | +0.22 | +1.19 | +0.22 |
+| Temiz | 33-40 | 41.94 / 43.50 / 44.06 | +8.94 | -4.06 | bant disinda (marj negatif) |
+
+
+### M8.6 Iki kollu kalibrasyon (E3)
+
+| Kol ve uydurma | Egim | %95 GA (kume bootstrap) | Nokta | Kume | Artefakt alani |
+|---|---|---|---|---|---|
+| B (gozlemsel havuz), dort protokol | -0.528 | [-0.664; -0.418] | 18 | 6 | results/q1/e3_iki_kol_fit.json kollar/B/dort_protokol |
+| B (gozlemsel havuz), uc protokol (basarili-kaynak haric) | +0.431 | [+0.333; +0.633] | 18 | 6 | results/q1/e3_iki_kol_fit.json kollar/B/uc_protokol_bas_kaynak_haric |
+| A (kontrollu kol), uc protokol | +0.673 | [+0.602; +0.727] | 116 | 8 | results/q1/e3_iki_kol_fit.json kollar/A/uc_protokol_bas_kaynak_haric |
+| A (kontrollu kol), dort protokol | +0.273 | [+0.219; +0.371] | 116 | 8 | results/q1/e3_iki_kol_fit.json kollar/A/dort_protokol |
+| B, yalniz ana cift (WRN'siz), dort protokol | -0.100 | [-0.464; +0.092] | 6 | 6 | results/q1/e3_iki_kol_fit.json kollar/B_ana_cift/dort_protokol |
+
+Hedef-dogru ile basarili-kaynak arasi ortalama aciklik (B kolu, 18 yon): 23.77 puan (en buyuk 36.41); `results/q1/e3_surucu_ayristirma.json` protokol_cifti_ortalama_aciklik.
+
+Basarili-kaynagin dort protokolun ucu (en kucuk ya da en buyuk) oldugu yon sayisi: 16/18 (en kucuk 12, en buyuk 4); `protokol_uc_olma_sayilari`.
+
+Ayni yon listesinden (`results/q1/e3_asimetri_fit.json` ciftler/*/asimetri, 18 yon) yeniden hesap: en genis protokol cifti hedef-dogru ile basarili-kaynak olan yon sayisi 13/18; basarili-kaynagin uc oldugu yon sayisi 16/18.
+
+
+### M8.7 Secim izgarasi (CIFAR-10 18 hucre, 9 hucrelik sweep, CIFAR-100 epok acikligi)
+
+CIFAR-10 izgarasi (`results/q1/e2/e2_grid.json`): 18 hucre = bolme ['B', 'C'] x patience [0, 10, 20] x yumusatma k [1, 3, 5]; uc nokta: GERCEK 10k test PGD-10 (testcurve_*.npz).
+
+| Model | Protokol yayilimi, tohum basina aralik (puan) | Cekirdek (yumusatma haric) oran | Oran araligi (18 referans; en kucuk; en buyuk) | Orani 1'in altinda kalan referans | Tohum SD (referans protokolde) |
+|---|---|---|---|---|---|
+| ResNet-18 | [2.62; 2.85] | 1.092 | 0.671; 3.379 | 2/18 | 0.533 |
+| ViT-Tiny | [1.58; 2.09] | 1.416 | 0.631; 7.376 | 3/18 | 0.340 |
+
+CIFAR-100 ve CIFAR-10 icin 9 hucrelik (patience x yumusatma) secim yayilimi (`results/q1/b8_secim_bandi.json`):
+
+| Veri kumesi | Yayilim araligi (puan) | Yayilim ortalamasi (tam) | Yorunge sayisi | Ortalama (metin bicimi) |
+|---|---|---|---|---|
+| CIFAR-100 | [0.18; 1.83] | 0.8583 | 6 | 0.86 |
+| CIFAR-10 (bolme basina) | [0.54; 2.83] | 1.7542 | 12 | 1.75 |
+
+CIFAR-100 secim yolu ve sonuc (`results/q1/e1_cifar100_summary.json` mimariler/*/ozet):
+
+| Model | En iyi epok (tohum 1 / 2 / 3) | En iyi epok acikligi | Durma epogu (tohum 1 / 2 / 3) | Durma epogu acikligi | Test PGD-10 SD (tam) | Test PGD-10 SD (metin bicimi) |
+|---|---|---|---|---|---|---|
+| ResNet-18 | 32 / 24 / 49 | 25 | 52 / 44 / 69 | 25 | 0.321 | 0.32 |
+| ViT-Tiny | 7 / 11 / 20 | 13 | 27 / 31 / 40 | 13 | 0.596 | 0.60 |
+
+
+### M8.8 Varyans oranlari
+
+chi-kare araligi: n=3 -> df=2. Pay (protokol sd ortalamasi) sabit kabul edildi. Bir veya daha fazla protokolde GA 1'i iceriyorsa oran MANSETE KONAMAZ; makale bu yuzden mutlak yayilim dilini kullaniyor.
+
+| Protokol | Kosum SD | Oran %95 GA (2 ondalik) | Oran %95 GA (metin bicimi) | GA 1'i iceriyor mu |
+|---|---|---|---|---|
+| Unconditioned (raw) | 0.3308 | [3.15; 37.97] | [3.1; 38.0] | hayir |
+| Target-correct | 0.4355 | [2.39; 28.84] | [2.4; 28.8] | hayir |
+| Both-correct | 0.2312 | [4.50; 54.33] | [4.5; 54.3] | hayir |
+| Successful-source | 1.2682 | [0.82; 9.90] | [0.8; 9.9] | evet |
+
+| Olcut | Tam deger | Metin bicimi | Artefakt alani |
+|---|---|---|---|
+| Oran duyarlilik araligi, en kucuk | 5.16 | 5.2 | ORAN_ACIKLIGI/min |
+| Oran duyarlilik araligi, en buyuk | 32.62 | 32.6 | ORAN_ACIKLIGI/max |
+| Benzeri-benzeriyle (both-correct) sd/sd orani | 28.29 | 28.3 | ORAN_TANIMA_DUYARLI/sd_vs_sd/degerler/both_correct |
+| Basarili-kaynak chi-kare GA, alt | 0.82 | 0.8 | protokol_bazli/successful_source/oran_95_GA[0] |
+| Basarili-kaynak chi-kare GA, ust | 9.9 | 9.9 | protokol_bazli/successful_source/oran_95_GA[1] |
+
+
+### M8.9 GPU-saat (uc tohum hatti)
+
+| Olcut | Tam deger | Metin bicimi | Artefakt alani |
+|---|---|---|---|
+| Toplam saat (artefakt) | 21.68 | 21.7 | timing/total_hours |
+| Asama saniyelerinin toplami / 3600 | 21.6769 | 21.7 | timing/stage_seconds (20 asama) |
+
+
+### M8.10 Gradyan seyrekligi ve hizalanma, kosum duzeyi p
+
+Kosum duzeyi: uc kosumun (cift 1-3) ResNet18_AT ve ViT_Tiny_AT 500 ornek ortalamalari uzerinde eslestirilmis t testi (df=2, iki yonlu); Holm duzeltmesi yalniz uc olcek-bagimsiz seyreklik olcusu uzerinde (hizalanma ayri olcudur).
+
+| Olcu | ResNet-18 AT (kosum 1 / 2 / 3) | ViT-Tiny AT (kosum 1 / 2 / 3) | Fark ortalamasi (R-V) | t (df=2) | p ham (metin bicimi) | p ham (6 ondalik) | p Holm (uc olcu) |
+|---|---|---|---|---|---|---|---|
+| Gini | 0.6491 / 0.6590 / 0.6412 | 0.6136 / 0.6040 / 0.6121 | +0.0399 | +5.131 | 0.036 | 0.035945 | 0.108 |
+| Rel-esik (%1 alti) | 0.3451 / 0.3699 / 0.3282 | 0.2743 / 0.2578 / 0.2725 | +0.0795 | +4.722 | 0.042 | 0.042046 | 0.108 |
+| Hoyer | 0.4907 / 0.5058 / 0.4821 | 0.4587 / 0.4498 / 0.4599 | +0.0367 | +3.654 | 0.067 | 0.067401 | 0.108 |
+| Hizalanma (mutlak kosinus) | 0.0377 / 0.0370 / 0.0388 | 0.0557 / 0.0564 / 0.0565 | -0.0184 | -34.104 | 0.0009 | 0.000859 | - |
+
+Uc seyreklik olcusunun Holm duzeltilmis p'sinin en buyugu: 0.108.
+
+
+### M8.11 L2 AutoAttack McNemar siniri (`mcnemar_gurbuz`)
+
+| Cift | A / B | Yalniz A dogru | Yalniz B dogru | McNemar p (tam binom) |
+|---|---|---|---|---|
+| cift 1 | ResNet18_AT / ViT_Tiny_AT | 766 | 249 | 5.353e-59 |
+| cift 2 | ResNet18_AT / ViT_Tiny_AT | 800 | 272 | 2.729e-58 |
+| cift 3 | ResNet18_AT / ViT_Tiny_AT | 872 | 302 | 6.253e-62 |
+
+Uc cift icin ortak sinir: en buyuk p = 2.729e-58; p < 10^-57 (ceil kuralina gore; bkz. foyun HER-IKISI-DOGRU McNemar notu). Eksik cift: yok.
+
+
+### M8.12 SVHN temiz ve PGD-10 degerleri, temiz fark
+
+SVHN test kumesi n = 26032; iki tohum cifti (ResNet tohum 1001, 1002; ViT tohum 2001, 2002).
+
+| Model | Temiz (tohum 1 / 2) | Temiz, artefaktin ort / sd alani | PGD-10 (tohum 1 / 2) | PGD-10, artefaktin ort / sd alani |
+|---|---|---|---|---|
+| ResNet-18 AT | 94.76 / 93.77 | 94.27 / 0.70 | 55.98 / 55.07 | 55.52 / 0.64 |
+| ViT-Tiny AT | 92.82 / 92.03 | 92.42 / 0.56 | 52.37 / 52.23 | 52.30 / 0.10 |
+
+| Temiz dogruluk farki (ResNet - ViT, puan) | Deger | Metin bicimi (2 ondalik) |
+|---|---|---|
+| Cift 1 / cift 2 (tohum cifti basina) | +1.9400 / +1.7400 | +1.94 / +1.74 |
+| Ciftlerin fark ortalamasi | 1.8400 | 1.84 |
+| Tam hassasiyetli ortalamalar farki (ort ResNet - ort ViT, iki tohum degerinden) | 1.8400 | 1.84 |
+| Artefaktin 2 ondalikli `ort` alanlarinin farki (YUVARLANMIS ortalamalar) | 1.8500 | 1.85 |
+
+Not: iki tohum cifti icin dogru fark ortalamasi 1.84 puandir (iki yontem de bunu verir). 1.85 degeri yalniz yuvarlanmis ortalamalarin (94.27 - 92.42) farkindan cikar; tam hassasiyetli degildir. Metne ciftlerin fark ortalamasi olan 1.84 girmelidir.
+
+PGD-10 farki (ResNet - ViT): cift basina +3.61 / +2.84; ortalama 3.225 (artefakt ort alanlarindan 3.22).
+
+
+### M8.13 On kayit ile ilk sayi arasindaki sure
+
+Commit kimlikleri `results/q1_research/TUR4_EYLEM_PLANI.md` Faz 2B/2C maddesi 2.3'ten okunur (E1 ongoru kaydi `bb08868`, ilk sayi bildiren epok-5 pilot kapisi `aae9bfc`); sure git commit zamanlarindan hesaplanir. `results/q1/KOKEN.json` bu iki commit'in zamanini tasimaz.
+
+| Olcut | Deger |
+|---|---|
+| Ongoru kaydi commit zamani | bb08868: 2026-08-17T17:59:33+03:00 |
+| Pilot kapisi commit zamani | aae9bfc: 2026-08-17T19:05:11+03:00 |
+| Aradaki sure (dakika, tam) | 65.63 |
+| Metin bicimi (tam dakikaya yuvarlanmis) | 66 |
+
+
+### M8.14 Son kontrol noktasi epoklari (durma ve secilen epok)
+
+Kaynak: C1 adversarial egitim loglari (`logs/C1_at_vit_200{1,2,3}.log`, `logs/C1_at_resnet_100{1,2,3}.log`); ilerleme cubuklari (carriage return) ayrilarak 'Epoch N/100 - Loss' satirlari, 'Best model saved!' (secilen = en iyi dogrulama adversarial dogrulugunun epogu) ve 'Early stopping triggered at epoch N' (durma = son egitilen epok) okunur. Egitim bazi loglarda yeniden baslatilmistir ('Resuming'); epok sayaci devam eder.
+
+| Model | Tohum | Durma epogu | Secilen (en iyi) epok | Durma - secilen | Son sabir sayaci | En iyi val adv (%) | Logdaki son epok | Yeniden baslatma |
+|---|---|---|---|---|---|---|---|---|
+| ViT-Tiny AT | 2001 | 45 | 25 | 20 | 20/20 | 34.05 | 45 | 1 |
+| ViT-Tiny AT | 2002 | 38 | 18 | 20 | 20/20 | 34.35 | 38 | 0 |
+| ViT-Tiny AT | 2003 | 39 | 19 | 20 | 20/20 | 34.90 | 39 | 0 |
+| ResNet-18 AT | 1001 | 71 | 51 | 20 | 20/20 | 45.85 | 71 | 0 |
+| ResNet-18 AT | 1002 | 76 | 56 | 20 | 20/20 | 46.65 | 76 | 0 |
+| ResNet-18 AT | 1003 | 77 | 57 | 20 | 20/20 | 46.40 | 77 | 0 |
+
+ViT-Tiny AT: durma epoklari 45 / 38 / 39; secilen epoklar 25 / 18 / 19 (tohum sirasiyla).
+
+ResNet-18 AT: durma epoklari 71 / 76 / 77; secilen epoklar 51 / 56 / 57 (tohum sirasiyla).
+
+
+### M8.15 Temiz ciftlerde toplamsal kaynak-hedef ayristirmasi ve sabit-Standard karsitliklari
+
+Hedef-dogru oranlar (`toplamsal_kaynak_hedef_hedef_dogru`; 6 kosegen-disi hucre, mu + alpha_kaynak + beta_hedef, toplam-sifir kodlama, 1 artik serbestlik derecesi). Kaynak farki = alpha_ResNet18_clean - alpha_ViT_Tiny_clean; hedef farki = beta_ViT_Tiny_clean - beta_ResNet18_clean; asimetri = (ResNet18_clean -> ViT_Tiny_clean) eksi (ViT_Tiny_clean -> ResNet18_clean) hedef-dogru orani (`yonlu/*/oranlar/target_correct`); artik farki = asimetri - kaynak farki - hedef farki (burada hesaplanir). Ortalama$\pm$SD uc cift arasidir (ddof=1).
+
+| Olcut | Cift 1 / 2 / 3 | Ortalama$\pm$SD |
+|---|---|---|
+| Kaynak farki (ResNet - ViT) | +71.66 / +67.09 / +68.79 | +69.18$\pm$2.31 |
+| Hedef farki (ViT - ResNet) | -76.99 / -73.72 / -74.44 | -75.05$\pm$1.72 |
+| Asimetri (R->V eksi V->R) | -3.56 / -5.22 / -4.69 | -4.49$\pm$0.85 |
+| Artik farki (hesaplanan) | +1.77 / +1.41 / +0.96 | +1.38$\pm$0.40 |
+| R2 | 0.9994 / 0.9996 / 0.9998 | 0.9996$\pm$0.0002 |
+| En buyuk mutlak artik (puan) | 0.88 / 0.70 / 0.48 | 0.69$\pm$0.20 |
+| mu | 34.25 / 34.36 / 34.28 | 34.30$\pm$0.06 |
+
+| Model | Kaynak etkisi (cift 1 / 2 / 3) | Ortalama$\pm$SD | Hedef etkisi (cift 1 / 2 / 3) | Ortalama$\pm$SD |
+|---|---|---|---|---|
+| ResNet18_clean | +23.39 / +21.64 / +22.46 | +22.50$\pm$0.87 | +25.75 / +24.44 / +24.43 | +24.88$\pm$0.76 |
+| ViT_Tiny_clean | -48.27 / -45.45 / -46.33 | -46.68$\pm$1.44 | -51.23 / -49.28 / -50.01 | -50.17$\pm$0.99 |
+| Standard_WRN28_10 | +24.88 / +23.81 / +23.88 | +24.19$\pm$0.60 | +25.48 / +24.84 / +25.58 | +25.30$\pm$0.40 |
+
+Sabit-Standard karsitliklari (hedef-dogru oran, %; `yonlu/*/oranlar/target_correct`; fark = ResNet18_clean tarafi eksi ViT_Tiny_clean tarafi):
+
+| Karsitlik | Birinci taraf (cift 1 / 2 / 3) | Ortalama$\pm$SD | Ikinci taraf (cift 1 / 2 / 3) | Ortalama$\pm$SD | Fark (cift 1 / 2 / 3) | Fark ortalama$\pm$SD |
+|---|---|---|---|---|---|---|
+| Hedef Standard: ResNet18_clean->Standard ile ViT_Tiny_clean->Standard | 82.23 / 80.13 / 81.83 | 81.40$\pm$1.11 | 12.34 / 14.45 / 14.00 | 13.60$\pm$1.11 | +69.89 / +65.68 / +67.83 | +67.80$\pm$2.11 |
+| Kaynak Standard: Standard->ResNet18_clean ile Standard->ViT_Tiny_clean | 85.77 / 83.31 / 83.07 | 84.05$\pm$1.50 | 7.02 / 8.19 / 7.67 | 7.62$\pm$0.59 | +78.76 / +75.12 / +75.41 | +76.43$\pm$2.02 |
+
+
+### M8.16 Havuz: XCiT ve ViT-Tiny kaynak etkisi (foyde zaten var; aralik ifadeleri turetildi)
+
+Bu degerler foyun 'RobustBench havuzu' bolumundeki model etkileri tablosunda da vardir; burada metindeki aralik ifadeleri ayni artefakttan (`results/q1/havuz_cifar10/havuz_protokoller.json` toplamsal_kaynak_hedef_hedef_dogru) turetilir.
+
+| Olcut | Deger |
+|---|---|
+| R2 / hucre | 0.8955 / 56 |
+| ViT_Tiny_AT kaynak etkisi | -4.87 |
+| ViT_Tiny_AT hedef etkisi | -0.63 |
+| Debenedetti2022_XCiT_S12 kaynak etkisi | +3.06 |
+| Diger 6 gurbuz modelin kaynak etkisi araligi (ViT_Tiny_AT ve Standard haric) | +2.94; +3.65 |
+| Ayni 6 gurbuz modelin hedef etkisi araligi | -4.26; +2.76 |
+
+
 ## Sabit dizgeler (artefakttan OKUNMAYAN, elle tasinmis literaller)
 
 _Kaynak: `scripts/build_reference_sheet.py (satir numaralari calisma aninda bulunur)`_

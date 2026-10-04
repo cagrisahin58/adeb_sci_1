@@ -1,6 +1,6 @@
 # IEEE Access Pre-Submission Checklist
 
-**Manuscript:** The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact Correction and a Matched-Pair Prediction for CNN versus Vision Transformer Robustness Comparisons
+**Manuscript:** The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact Correction and a Source-Effect Reading for CNN versus Vision Transformer Robustness Comparisons
 
 **Target:** IEEE Access (Open Access, Single-Blind Review)
 

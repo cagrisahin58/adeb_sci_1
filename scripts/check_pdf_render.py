@@ -63,6 +63,9 @@ kontrol("INDEX TERMS ilk sayfada", "INDEX TERMS" in s1)
 kontrol("ABSTRACT basligi ilk sayfada", "ABSTRACT" in s1)
 # 2026-10-04: baslik LeCun turunda degisti (hukum B1).
 kontrol("baslik ilk sayfada", "The Conditioning Set Decides the Measured Transfer Asymmetry" in s1)
+# Hakem gecisi (2026-10-04): alt baslik "Source-Effect Reading" oldu; eski alt baslik
+# ("Matched-Pair Prediction") ayni on eki tasidigi icin ilk kontrol onu ayirt etmez.
+kontrol("alt baslik ilk sayfada", "Source-Effect Reading" in s1.replace("- ", "-"))
 
 # yazar bandi: buyuk harfli ad icinde kucuk dotless-i (ı) kalmis mi?
 band = s1[: s1.find("INTRODUCTION")] if "INTRODUCTION" in s1 else s1[:1500]

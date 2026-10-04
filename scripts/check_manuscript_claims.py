@@ -96,7 +96,7 @@ kontrol("D1. TR 'ucu de dogrulandi' ailesi YOK",
 kontrol("D2. EN E2 orani mutlak birimle sunuluyor",
         "deliberately not as a ratio to seed-level dispersion" in en)
 kontrol("D2. TR E2 orani mutlak birimle sunuluyor",
-        "bilinçli olarak tohum düzeyi yayılıma oran biçiminde vermiyoruz" in tr)
+        "bilinçli olarak tohum düzeyi yayılıma oran biçiminde verilmemektedir" in tr)
 
 # --- E: r=0,997 OZDESLIK olarak sunulmali, korelasyon olarak DEGIL (EK J) ---
 kontrol("E1. EN ozdeslik turetiliyor",
@@ -151,7 +151,7 @@ kontrol("G2. TR bayat 'tek veri kümesini kapsamaktadır' YOK",
 kontrol("I1. EN E6 korelasyon yerine egim gerekcesi duruyor",
         "we report the slope rather than a correlation" in en)
 kontrol("I1. TR E6 korelasyon yerine egim gerekcesi duruyor",
-        "korelasyon yerine eğimi raporluyoruz" in tr)
+        "korelasyon yerine eğim raporlanmaktadır" in tr)
 
 # --- T4: DENKLEM 1 CEBIR MUHAFIZI ---
 # p = P(adv yanlis | temiz yanlis) oldugu icin toplam olasilik yasasi

@@ -1571,6 +1571,565 @@ else:
 
 # <<< IKINCI DALGA SONU
 
+# ===========================================================================
+# GENISLETME 2026-10-04 (ucuncu dalga, hakem M8, yontem mercegi): govde metninde
+# foyde karsiligi olmayan sayilar. Her sayi artefakttan (json, log, git) okunur;
+# hicbir sayi elle yazilmaz. Mevcut bolumlere dokunulmaz. Karantina yollarindan
+# (results/run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA)
+# OKUNMAZ. Bolum 'Sabit dizgeler' bolumunden once eklenir.
+# ===========================================================================
+import glob as _m8glob
+import re as _m8re
+import subprocess as _m8sp
+from itertools import combinations as _m8comb
+
+sec("Govde metnindeki diger sayilar (hakem M8, 2026-10-04)",
+    "results/q1/ozdeslik_kontrol.json; results/q1/c3_precision.json; results/c1_c3/c3_summary.json; "
+    "results/q1/cifar10_l2/e6_onkestirim.json; results/c1_transfer/c1_transfer_summary.json; "
+    "results/q1/cifar100/transfer/e1_transfer_summary.json; results/c1_addenda/pair*/mifgsm_transfer.json; "
+    "results/c1_transfer/pair*/a2b_exclusive_subsets.json; results/q1/cifar100/transfer/pair*/a2b_class_balance_cifar100.json; "
+    "results/q1/e1_cifar100_summary.json; logs/Q1_cifar100_clean_*.log; results/q1_research/E1_PILOT_KAPISI.md (kayitli bantlar); "
+    "results/q1/e3_iki_kol_fit.json; results/q1/e3_surucu_ayristirma.json; results/q1/e3_asimetri_fit.json; "
+    "results/q1/e2/e2_grid.json; results/q1/b8_secim_bandi.json; results/q1/variance_ratio.json; "
+    "results/c1_seeds/c1_seed_summary.json; results/c1_gradient/pair*/gradient_summary.json; "
+    "results/q1/cifar10_l2/e6_aa_l2_summary.json; results/q1/e7_svhn_summary.json; git (kayit ve pilot kapisi kayitlari); "
+    "logs/C1_at_vit_200{1,2,3}.log; logs/C1_at_resnet_100{1,2,3}.log; results/q1/temiz_ciftler/pair{1,2,3}/havuz_protokoller.json; "
+    "results/q1/havuz_cifar10/havuz_protokoller.json")
+L.append("Hakem M8 (yontem mercegi), metinde foyde karsiligi olmayan yaklasik kirk sayi saptadi. Asagida her madde kendi alt "
+         "basligindadir ve kendi artefaktindan okunur; 'Metin bicimi' sutunu sayinin metinde gececegi yuvarlamayi gosterir.\n")
+
+
+def _oku(rel):
+    d = load(rel)
+    if d is None:
+        raise OSError(f"ARTEFAKT YOK: {rel}")
+    return d
+
+
+def _m8(ad, fn):
+    L.append(f"\n### {ad}\n")
+    try:
+        fn()
+    except (KeyError, TypeError, IndexError, ValueError, OSError, ZeroDivisionError, AttributeError) as e_:
+        _hata(e_)
+
+
+def _tam(x):
+    return f"{x:.6g}"
+
+
+# --- M8.1 Ozdeslik artiklari -------------------------------------------------------------
+def _m8_1():
+    oz = _oku("results/q1/ozdeslik_kontrol.json")
+    o = oz["ozet"]
+    L.append(f"Artefakt: `results/q1/ozdeslik_kontrol.json`, uretim {o['uretildi_utc']}; yon sayisi {o['n_yon']}.\n")
+    T(["Olcut", "Tam deger", "Metin bicimi", "Artefakt alani"], [
+        ["En buyuk mutlak artik (puan)", _tam(o["ARTIK_puan"]["mutlak_max"]), sg(o["ARTIK_puan"]["mutlak_max"], 2),
+         "ozet/ARTIK_puan/mutlak_max"],
+        ["Ortalama mutlak artik (puan)", _tam(o["ARTIK_puan"]["mutlak_ort"]), sg(o["ARTIK_puan"]["mutlak_ort"], 3),
+         "ozet/ARTIK_puan/mutlak_ort"],
+        ["Artik / sapma orani, en buyuk (%)", _tam(o["artigin_sapmaya_orani_yuzde"]["max"]),
+         sg(o["artigin_sapmaya_orani_yuzde"]["max"], 2), "ozet/artigin_sapmaya_orani_yuzde/max"],
+        ["Artik / sapma orani, ortalama (%)", _tam(o["artigin_sapmaya_orani_yuzde"]["ort"]),
+         sg(o["artigin_sapmaya_orani_yuzde"]["ort"], 2), "ozet/artigin_sapmaya_orani_yuzde/ort"],
+        ["P(adv yanlis, verili temiz yanlis), en kucuk", _tam(o["P_advyanlis_verili_temizyanlis"]["min"]),
+         sg(o["P_advyanlis_verili_temizyanlis"]["min"], 3), "ozet/P_advyanlis_verili_temizyanlis/min"],
+        ["P(adv yanlis, verili temiz yanlis), ortalama", _tam(o["P_advyanlis_verili_temizyanlis"]["ort"]),
+         sg(o["P_advyanlis_verili_temizyanlis"]["ort"], 3), "ozet/P_advyanlis_verili_temizyanlis/ort"]])
+
+
+_m8("M8.1 Ozdeslik artiklari (36 yon)", _m8_1)
+
+
+# --- M8.2 Egimler -------------------------------------------------------------------------
+def _m8_2():
+    cp = _oku("results/q1/c3_precision.json")["veri_kumeleri"]
+    c3s = _oku("results/c1_c3/c3_summary.json")["raw_minus_cond_vs_target_error"]
+    o1 = _oku("results/q1/cifar10_l2/e6_onkestirim.json")["O1_yon"]
+    nok = o1["noktalar"]
+    ayri = sorted({round(p_["e"], 2) for p_ in nok})
+    wrn = sum(1 for p_ in nok if p_["yon"].split("->")[1].startswith("WRN"))
+    T(["Ayar", "Egim (metin bicimi)", "Egim (tam)", "Kesisim", "Pearson r", "Yon sayisi", "Artefakt alani"], [
+        ["CIFAR-10 Linf (ham - kosullu ~ hedef temiz hatasi)", sg(c3s["slope"], 3), _tam(c3s["slope"]), "-",
+         sg(c3s["pearson_r"], 3), "6", "results/c1_c3/c3_summary.json raw_minus_cond_vs_target_error"],
+        ["CIFAR-10 Linf (c3_precision, 4 ondalik)", sg(cp["cifar10"]["RAPOR_EDILEN_n6"]["egim"], 4),
+         _tam(cp["cifar10"]["RAPOR_EDILEN_n6"]["egim"]), sg(cp["cifar10"]["RAPOR_EDILEN_n6"]["kesisim"], 4),
+         sg(cp["cifar10"]["RAPOR_EDILEN_n6"]["pearson_r"], 4), cp["cifar10"]["n_kosegen_disi"],
+         "results/q1/c3_precision.json veri_kumeleri/cifar10/RAPOR_EDILEN_n6"],
+        ["CIFAR-100 Linf", sg(cp["cifar100"]["RAPOR_EDILEN_n6"]["egim"], 3), _tam(cp["cifar100"]["RAPOR_EDILEN_n6"]["egim"]),
+         sg(cp["cifar100"]["RAPOR_EDILEN_n6"]["kesisim"], 4), sg(cp["cifar100"]["RAPOR_EDILEN_n6"]["pearson_r"], 4),
+         cp["cifar100"]["n_kosegen_disi"], "results/q1/c3_precision.json veri_kumeleri/cifar100/RAPOR_EDILEN_n6"],
+        ["CIFAR-10 L2", sg(o1["egim"], 3), _tam(o1["egim"]), sg(o1["kesisim"], 4), sg(o1["pearson_r"], 4), o1["n_yon"],
+         "results/q1/cifar10_l2/e6_onkestirim.json O1_yon"]])
+    L.append(f"L2 on-kestirim noktalari: {o1['n_yon']} yon, {len(ayri)} ayri hedef temiz hatasi degeri "
+             f"({', '.join(sg(x, 2) for x in ayri)}); sabit WideResNet'e giden yon sayisi {wrn}. "
+             f"Hedef hatasi araligi {mm(o1['hedef_hatasi_araligi'], 2)}.\n")
+
+
+_m8("M8.2 Ham - kosullu egimleri (CIFAR-10 Linf, CIFAR-100 Linf, CIFAR-10 L2)", _m8_2)
+
+
+# --- M8.3 Kosum duzeyi t araliklari ---------------------------------------------------------
+def _m8_3():
+    L.append("Kosum duzeyi t araligi: ortalama $\\pm$ t(0.975; df=2) x SD / sqrt(3); uc kosum (cift) degerinden. Her ayar icin iki "
+             "kaynak verilir: eslestirilmis fark (`both_correct_paired/diff_pp/values`, ornek duzeyinde hesaplanmis, metindeki aralik "
+             "bundan gelir) ve tabloda yazili protokol farki (`protocols/both_correct/diff/values`, 2 ondalikli yuvarlanmis).\n")
+    satir = []
+    for ad, rel in (("CIFAR-10 Linf", "results/c1_transfer/c1_transfer_summary.json"),
+                    ("CIFAR-100 Linf", "results/q1/cifar100/transfer/e1_transfer_summary.json")):
+        d = _oku(rel)
+        for kay, v in (("both_correct_paired/diff_pp/values", d["both_correct_paired"]["diff_pp"]["values"]),
+                       ("protocols/both_correct/diff/values", d["protocols"]["both_correct"]["diff"]["values"])):
+            m, s, lo, hi, tk = t_aralik(v)
+            satir.append([ad, f"`{rel.rsplit('/', 1)[-1]}` {kay}", uc(v, 2), sg(m, 3), sg(s, 3), f"{tk:.4f}",
+                          ga((lo, hi), 2, False), ga((lo, hi), 3, False)])
+    T(["Ayar", "Kaynak", "Kosum degerleri", "Ortalama", "SD (ddof=1)", "t(0.975; 2)", "t araligi (metin bicimi)", "t araligi (3 ondalik)"],
+      satir)
+
+
+_m8("M8.3 Her-ikisi-dogru farki icin kosum duzeyi t araligi (df=2)", _m8_3)
+
+
+# --- M8.4 MI-FGSM iki yonlu kontrol ----------------------------------------------------------
+def _m8_4():
+    ps = [_oku(f"results/c1_addenda/pair{p}/mifgsm_transfer.json") for p in PAIRS]
+    L.append(f"Saldiri (artefaktin kendi alani): {ps[0]['attack']}; eps = {ps[0]['eps']:.6f}; tohum {ps[0]['seed']}. "
+             "Deger = kosullu (hedef-dogru) yaniltma orani (%), kosum basina; ortalama$\\pm$SD uc kosum arasi (ddof=1).\n")
+    satir = []
+    degerler = {}
+    for s_, t_, lab in (("ResNet18_AT", "ViT_Tiny_AT", "CNN -> ViT"), ("ViT_Tiny_AT", "ResNet18_AT", "ViT -> CNN")):
+        r_ = [[x for x in d["results"] if x["source"] == s_ and x["target"] == t_][0] for d in ps]
+        v = [x["conditioned_fooling_rate"] for x in r_]
+        degerler[lab] = v
+        satir.append([lab, uc(v, 2), ortsd(v, 2), uc([x["n_conditioned"] for x in r_], 0),
+                      "; ".join(ga(x["ci95"], 2, False) for x in r_)])
+    T(["Yon", "Kosum degerleri (%)", "Ortalama$\\pm$SD", "n kosullu (kosum 1 / 2 / 3)", "Kosum basina %95 GA"], satir)
+    fk = [a_ - b_ for a_, b_ in zip(degerler["CNN -> ViT"], degerler["ViT -> CNN"])]
+    L.append(f"Yon farki (CNN -> ViT eksi ViT -> CNN), kosum basina: {uc(fk, 2, True)}; ortalama$\\pm$SD {ortsd(fk, 2, True)}.\n")
+    bs = load("results/c1_behavior_summary.json")
+    if bs and "mifgsm" in bs:
+        L.append("Capraz kontrol, `results/c1_behavior_summary.json` mifgsm alani (ortalama, SD): "
+                 + "; ".join(f"{k_}: {v_['mean']:.2f}, {v_['std']:.2f}" for k_, v_ in bs["mifgsm"].items()) + ".\n")
+
+
+_m8("M8.4 MI-FGSM iki yonlu kontrol (alpha = eps/10)", _m8_4)
+
+
+# --- M8.5 Marjinal alt kumeler, bilesim terimleri, korunma oranlari, bant marjlari -------------
+def _m8_5():
+    ex = [_oku(f"results/c1_transfer/pair{p}/a2b_exclusive_subsets.json") for p in PAIRS]
+    L.append("#### Yalniz-hedef-dogru (marjinal) alt kumeler, CIFAR-10\n\n(kaynak: `results/c1_transfer/pair*/a2b_exclusive_subsets.json`): "
+             "hedefin temizde dogru, kaynagin temizde yanlis bildigi ornekler; 'ortak dogru' ise her ikisinin dogru bildigi kume.\n")
+    satir = []
+    for yon, lab in (("ViT_to_CNN", "ViT -> CNN (hedef CNN)"), ("CNN_to_ViT", "CNN -> ViT (hedef ViT)")):
+        n = [e[yon]["n_excl_target_only"] for e in ex]
+        fe = [e[yon]["fooling_on_excl"] for e in ex]
+        fb = [e[yon]["fooling_on_both"] for e in ex]
+        satir.append([lab, ortsd(n, 0), ortsd(fe, 1), ortsd(fb, 1), sg(float(np.mean(fb)), 3), uc(n, 0), uc(fe, 2), uc(fb, 2)])
+    T(["Yon", "Marjinal alt kume boyutu", "Yaniltma, marjinal (%)", "Yaniltma, ortak dogru (%)", "Ortak dogru ortalama (3 ondalik)", "Boyut (kosum 1 / 2 / 3)",
+       "Marjinal yaniltma (kosum 1 / 2 / 3)", "Ortak dogru yaniltma (kosum 1 / 2 / 3)"], satir)
+    L.append("Ortak dogru kume boyutu (kosum 1 / 2 / 3): " + uc([e["n_both_correct"] for e in ex], 0) + ".\n")
+
+    a2b = [_oku(f"results/q1/cifar100/transfer/pair{p}/a2b_class_balance_cifar100.json") for p in PAIRS]
+    L.append("\n#### Sinif bilesimi terimi, CIFAR-100\n\n(kaynak: `results/q1/cifar100/transfer/pair*/a2b_class_balance_cifar100.json` "
+             "protokoller/*/AYRISTIRMA/bilesim_etkisi; puan, CNN -> ViT eksi ViT -> CNN asimetrisinin bilesim bileseni):\n")
+    satir = []
+    for k_, lab in PROTO:
+        v = [d["protokoller"][k_]["AYRISTIRMA"]["bilesim_etkisi"] for d in a2b]
+        satir.append([lab, uc(v, 3, True), ortsd(v, 3, True)])
+    T(["Protokol", "Bilesim etkisi (kosum 1 / 2 / 3)", "Ortalama$\\pm$SD"], satir)
+
+    e1 = _oku("results/q1/e1_cifar100_summary.json")
+    L.append("\n#### Temiz on-egitim dogrulugunun adversarial egitimde korunmasi, CIFAR-100\n\npay = adversarial egitimli modelin temiz "
+             "test dogrulugu (`e1_cifar100_summary.json` mimariler/*/ozet/test_clean/ort); payda = ayni tohumun temiz on-egitim "
+             "logundaki `Best test accuracy` satiri (`logs/Q1_cifar100_clean_*.log`), uc tohum ortalamasi.\n")
+    satir = []
+    for arch, lab, onek, sd_ in (("resnet18", "ResNet-18", "resnet18", (1001, 1002, 1003)),
+                                 ("vit_tiny", "ViT-Tiny", "vit_tiny", (2001, 2002, 2003))):
+        en = []
+        for s_ in sd_:
+            yol = os.path.join(ROOT, f"logs/Q1_cifar100_clean_{onek}_{s_}.log")
+            with open(yol, encoding="utf-8", errors="replace") as fh:
+                bul = _m8re.findall(r"Best test accuracy:\s*([\d.]+)%", fh.read())
+            en.append(float(bul[-1]))
+        pay = e1["mimariler"][arch]["ozet"]["test_clean"]["ort"]
+        satir.append([lab, uc(en, 2), sg(float(np.mean(en)), 3), sg(pay, 2), sg(pay / float(np.mean(en)), 3)])
+    T(["Model", "Temiz on-egitim, en iyi (tohum 1 / 2 / 3)", "Ortalama", "AT sonrasi temiz (ort)", "Korunma orani"], satir)
+
+    md_yol = os.path.join(ROOT, "results/q1_research/E1_PILOT_KAPISI.md")
+    with open(md_yol, encoding="utf-8") as fh:
+        md = fh.read()
+
+    def bant(ad):
+        m = _m8re.search(r"\|\s*" + _m8re.escape(ad) + r"\s*\|\s*%(\d+)-(\d+)\s*\|", md)
+        return float(m.group(1)), float(m.group(2))
+
+    L.append("\n#### Kayitli bantlara marj, ViT-Tiny, CIFAR-100\n\n(bantlar `results/q1_research/E1_PILOT_KAPISI.md` 'Beklenen aralik' "
+             "tablosundan okunur; deger = `e1_cifar100_summary.json` vit_tiny/ozet/*/degerler, tohum duzeyi):\n")
+    satir = []
+    for ad, anah, lab in (("PGD-10 (test)", "test_pgd10", "PGD-10"), ("AutoAttack", "test_autoattack", "AutoAttack"),
+                          ("Temiz (test)", "test_clean", "Temiz")):
+        lo, hi = bant(ad)
+        v = e1["mimariler"]["vit_tiny"]["ozet"][anah]["degerler"]
+        alt, ust = min(v) - lo, hi - max(v)
+        satir.append([lab, f"{sg(lo, 0)}-{sg(hi, 0)}", uc(v, 2), sg(alt, 2, True), sg(ust, 2, True),
+                      sg(min(alt, ust), 2, True) if min(alt, ust) >= 0 else "bant disinda (marj negatif)"])
+    T(["Uc nokta", "Kayitli bant (%)", "Tohum degerleri", "Alt kenara marj", "Ust kenara marj", "En yakin kenara marj (puan)"], satir)
+
+
+_m8("M8.5 Marjinal alt kumeler, bilesim terimleri, korunma oranlari ve bant marjlari", _m8_5)
+
+
+# --- M8.6 Iki kollu kalibrasyon ----------------------------------------------------------------
+def _m8_6():
+    f = _oku("results/q1/e3_iki_kol_fit.json")["kollar"]
+    satir = []
+    for kol, blk, lab in (("B", "dort_protokol", "B (gozlemsel havuz), dort protokol"),
+                          ("B", "uc_protokol_bas_kaynak_haric", "B (gozlemsel havuz), uc protokol (basarili-kaynak haric)"),
+                          ("A", "uc_protokol_bas_kaynak_haric", "A (kontrollu kol), uc protokol"),
+                          ("A", "dort_protokol", "A (kontrollu kol), dort protokol"),
+                          ("B_ana_cift", "dort_protokol", "B, yalniz ana cift (WRN'siz), dort protokol")):
+        e = f[kol][blk]
+        satir.append([lab, sg(e["egim"], 3, True), ga(e["egim_GA95"], 3), f[kol]["n_nokta"], f[kol]["n_kume"],
+                      f"results/q1/e3_iki_kol_fit.json kollar/{kol}/{blk}"])
+    T(["Kol ve uydurma", "Egim", "%95 GA (kume bootstrap)", "Nokta", "Kume", "Artefakt alani"], satir)
+    sa = _oku("results/q1/e3_surucu_ayristirma.json")
+    ak = sa["protokol_cifti_ortalama_aciklik"]["target_correct vs successful_source"]
+    L.append(f"Hedef-dogru ile basarili-kaynak arasi ortalama aciklik (B kolu, {sa['n_cift']} yon): {sg(ak['ort_aciklik'], 2)} puan "
+             f"(en buyuk {sg(ak['max_aciklik'], 2)}); `results/q1/e3_surucu_ayristirma.json` protokol_cifti_ortalama_aciklik.\n")
+    uo = sa["protokol_uc_olma_sayilari"]["successful_source"]
+    L.append(f"Basarili-kaynagin dort protokolun ucu (en kucuk ya da en buyuk) oldugu yon sayisi: {uo['min'] + uo['max']}/{sa['n_cift']} "
+             f"(en kucuk {uo['min']}, en buyuk {uo['max']}); `protokol_uc_olma_sayilari`.\n")
+    fa = _oku("results/q1/e3_asimetri_fit.json")["ciftler"]
+    P4 = [k for k, _ in PROTO]
+    gen = 0
+    ss_uc = 0
+    for c in fa:
+        a_ = c["asimetri"]
+        g = max(_m8comb(P4, 2), key=lambda pr: abs(a_[pr[0]] - a_[pr[1]]))
+        gen += set(g) == {"target_correct", "successful_source"}
+        ss_uc += (min(a_, key=a_.get) == "successful_source") + (max(a_, key=a_.get) == "successful_source")
+    L.append(f"Ayni yon listesinden (`results/q1/e3_asimetri_fit.json` ciftler/*/asimetri, {len(fa)} yon) yeniden hesap: en genis protokol "
+             f"cifti hedef-dogru ile basarili-kaynak olan yon sayisi {gen}/{len(fa)}; basarili-kaynagin uc oldugu yon sayisi {ss_uc}/{len(fa)}.\n")
+
+
+_m8("M8.6 Iki kollu kalibrasyon (E3)", _m8_6)
+
+
+# --- M8.7 Secim izgarasi ------------------------------------------------------------------------
+def _m8_7():
+    e2 = _oku("results/q1/e2/e2_grid.json")
+    b8 = _oku("results/q1/b8_secim_bandi.json")["veri_kumeleri"]
+    e1 = _oku("results/q1/e1_cifar100_summary.json")
+    iz = e2["izgara"]
+    L.append(f"CIFAR-10 izgarasi (`results/q1/e2/e2_grid.json`): {iz['hucre_sayisi']} hucre = bolme {iz['bolmeler']} x patience "
+             f"{iz['patience']} x yumusatma k {iz['yumusatma_k']}; uc nokta: {iz['uc_nokta']}.\n")
+    satir = []
+    for arch, lab in (("resnet18", "ResNet-18"), ("vit_tiny", "ViT-Tiny")):
+        m = e2["mimariler"][arch]
+        rd = m["REFERANS_DUYARLILIGI"]
+        satir.append([lab, ga(m["protokol_yayilim_araligi"], 2, False), sg(m["cekirdek_k1"]["oran"], 3),
+                      f"{sg(rd['oran_min'], 3)}; {sg(rd['oran_max'], 3)}", f"{rd['birin_altinda_referans_sayisi']}/{rd['toplam_referans']}",
+                      sg(m["tohum_sd_referans_protokolde"], 3)])
+    T(["Model", "Protokol yayilimi, tohum basina aralik (puan)", "Cekirdek (yumusatma haric) oran", "Oran araligi (18 referans; en kucuk; en buyuk)",
+       "Orani 1'in altinda kalan referans", "Tohum SD (referans protokolde)"], satir)
+    L.append("CIFAR-100 ve CIFAR-10 icin 9 hucrelik (patience x yumusatma) secim yayilimi (`results/q1/b8_secim_bandi.json`):\n")
+    satir = []
+    for ds, lab in (("cifar100", "CIFAR-100"), ("cifar10", "CIFAR-10 (bolme basina)")):
+        v = b8[ds]
+        satir.append([lab, ga(v["yayilim_araligi"], 2, False), sg(v["yayilim_ort"], 4), len(v["yorungeler"]),
+                      sg(v["yayilim_ort"], 2)])
+    T(["Veri kumesi", "Yayilim araligi (puan)", "Yayilim ortalamasi (tam)", "Yorunge sayisi", "Ortalama (metin bicimi)"], satir)
+    L.append("CIFAR-100 secim yolu ve sonuc (`results/q1/e1_cifar100_summary.json` mimariler/*/ozet):\n")
+    satir = []
+    for arch, lab in (("resnet18", "ResNet-18"), ("vit_tiny", "ViT-Tiny")):
+        o = e1["mimariler"][arch]["ozet"]
+        satir.append([lab, uc(o["en_iyi_epok"]["degerler"], 0), o["en_iyi_epok"]["aciklik"], uc(o["durma_epogu"]["degerler"], 0),
+                      o["durma_epogu"]["aciklik"], sg(o["test_pgd10"]["sd"], 3), sg(o["test_pgd10"]["sd"], 2)])
+    T(["Model", "En iyi epok (tohum 1 / 2 / 3)", "En iyi epok acikligi", "Durma epogu (tohum 1 / 2 / 3)", "Durma epogu acikligi",
+       "Test PGD-10 SD (tam)", "Test PGD-10 SD (metin bicimi)"], satir)
+
+
+_m8("M8.7 Secim izgarasi (CIFAR-10 18 hucre, 9 hucrelik sweep, CIFAR-100 epok acikligi)", _m8_7)
+
+
+# --- M8.8 Varyans oranlari -----------------------------------------------------------------------
+def _m8_8():
+    vr = _oku("results/q1/variance_ratio.json")
+    g = vr["ORAN_GUVEN_ARALIGI_chi2"]
+    L.append(f"chi-kare araligi: {g['aciklama']}\n")
+    satir = []
+    for k_, lab in PROTO:
+        p_ = g["protokol_bazli"][k_]
+        satir.append([lab, sg(p_["kosum_sd"], 4), ga(p_["oran_95_GA"], 2, False), ga(p_["oran_95_GA"], 1, False),
+                      "evet" if p_["GA_birimi_iceriyor_mu"] else "hayir"])
+    T(["Protokol", "Kosum SD", "Oran %95 GA (2 ondalik)", "Oran %95 GA (metin bicimi)", "GA 1'i iceriyor mu"], satir)
+    oa = vr["ORAN_ACIKLIGI"]
+    sd2 = vr["ORAN_TANIMA_DUYARLI"]["sd_vs_sd"]["degerler"]
+    T(["Olcut", "Tam deger", "Metin bicimi", "Artefakt alani"], [
+        ["Oran duyarlilik araligi, en kucuk", _tam(oa["min"]), sg(oa["min"], 1), "ORAN_ACIKLIGI/min"],
+        ["Oran duyarlilik araligi, en buyuk", _tam(oa["max"]), sg(oa["max"], 1), "ORAN_ACIKLIGI/max"],
+        ["Benzeri-benzeriyle (both-correct) sd/sd orani", _tam(sd2["both_correct"]), sg(sd2["both_correct"], 1),
+         "ORAN_TANIMA_DUYARLI/sd_vs_sd/degerler/both_correct"],
+        ["Basarili-kaynak chi-kare GA, alt", _tam(g["protokol_bazli"]["successful_source"]["oran_95_GA"][0]),
+         sg(g["protokol_bazli"]["successful_source"]["oran_95_GA"][0], 1), "protokol_bazli/successful_source/oran_95_GA[0]"],
+        ["Basarili-kaynak chi-kare GA, ust", _tam(g["protokol_bazli"]["successful_source"]["oran_95_GA"][1]),
+         sg(g["protokol_bazli"]["successful_source"]["oran_95_GA"][1], 1), "protokol_bazli/successful_source/oran_95_GA[1]"]])
+
+
+_m8("M8.8 Varyans oranlari", _m8_8)
+
+
+# --- M8.9 GPU-saat -------------------------------------------------------------------------------
+def _m8_9():
+    tm = _oku("results/c1_seeds/c1_seed_summary.json")["timing"]
+    toplam = sum(tm["stage_seconds"].values()) / 3600.0
+    T(["Olcut", "Tam deger", "Metin bicimi", "Artefakt alani"], [
+        ["Toplam saat (artefakt)", _tam(tm["total_hours"]), sg(tm["total_hours"], 1), "timing/total_hours"],
+        ["Asama saniyelerinin toplami / 3600", _tam(toplam), sg(toplam, 1), f"timing/stage_seconds ({len(tm['stage_seconds'])} asama)"]])
+
+
+_m8("M8.9 GPU-saat (uc tohum hatti)", _m8_9)
+
+
+# --- M8.10 Gradyan, kosum duzeyi p -----------------------------------------------------------------
+def _m8_10():
+    dos = sorted(_m8glob.glob(os.path.join(ROOT, "results/c1_gradient/pair*/gradient_summary.json")))
+    if len(dos) != 3:
+        raise OSError(f"ARTEFAKT YOK: results/c1_gradient/pair*/gradient_summary.json ({len(dos)} dosya)")
+    S_ = []
+    for f_ in dos:
+        with open(f_, encoding="utf-8") as fh:
+            S_.append(json.load(fh)["statistics"])
+    L.append("Kosum duzeyi: uc kosumun (cift 1-3) ResNet18_AT ve ViT_Tiny_AT 500 ornek ortalamalari uzerinde eslestirilmis t testi "
+             "(df=2, iki yonlu); Holm duzeltmesi yalniz uc olcek-bagimsiz seyreklik olcusu uzerinde (hizalanma ayri olcudur).\n")
+    olc = (("sparsity_gini", "Gini"), ("sparsity_rel_threshold", "Rel-esik (%1 alti)"), ("sparsity_hoyer", "Hoyer"),
+           ("gradient_alignment", "Hizalanma (mutlak kosinus)"))
+    p = {}
+    ist = {}
+    for k_, _ in olc:
+        R_ = np.array([s["ResNet18_AT"][k_] for s in S_])
+        V_ = np.array([s["ViT_Tiny_AT"][k_] for s in S_])
+        t_ = stats.ttest_rel(R_, V_)
+        p[k_] = float(t_.pvalue)
+        ist[k_] = (R_, V_, float(t_.statistic))
+    hk = [k_ for k_, _ in olc[:3]]
+    ph = holm([p[k_] for k_ in hk])
+    satir = []
+    for k_, lab in olc:
+        R_, V_, t_ = ist[k_]
+        if k_ in hk:
+            pm, pol = sg(p[k_], 3), sg(float(ph[hk.index(k_)]), 3)
+        else:
+            pm, pol = sg(p[k_], 4), "-"
+        satir.append([lab, uc(R_, 4), uc(V_, 4), sg(float((R_ - V_).mean()), 4, True), f"{t_:+.3f}", pm, sg(p[k_], 6), pol])
+    T(["Olcu", "ResNet-18 AT (kosum 1 / 2 / 3)", "ViT-Tiny AT (kosum 1 / 2 / 3)", "Fark ortalamasi (R-V)", "t (df=2)",
+       "p ham (metin bicimi)", "p ham (6 ondalik)", "p Holm (uc olcu)"], satir)
+    L.append(f"Uc seyreklik olcusunun Holm duzeltilmis p'sinin en buyugu: {sg(float(max(ph)), 3)}.\n")
+
+
+_m8("M8.10 Gradyan seyrekligi ve hizalanma, kosum duzeyi p", _m8_10)
+
+
+# --- M8.11 L2 McNemar siniri -------------------------------------------------------------------------
+def _m8_11():
+    e6 = _oku("results/q1/cifar10_l2/e6_aa_l2_summary.json")
+    mc = e6["mcnemar_gurbuz"]
+    satir = [[f"cift {m['cift']}", f"{m['a']} / {m['b']}", m["yalniz_a_dogru"], m["yalniz_b_dogru"], f"{m['p']:.3e}"] for m in mc]
+    T(["Cift", "A / B", "Yalniz A dogru", "Yalniz B dogru", "McNemar p (tam binom)"], satir)
+    ust = max(m["p"] for m in mc)
+    L.append(f"Uc cift icin ortak sinir: en buyuk p = {ust:.3e}; p < 10^-{int(-np.ceil(np.log10(ust)))} "
+             "(ceil kuralina gore; bkz. foyun HER-IKISI-DOGRU McNemar notu). Eksik cift: "
+             f"{e6['eksik_ciftler'] if e6['eksik_ciftler'] else 'yok'}.\n")
+
+
+_m8("M8.11 L2 AutoAttack McNemar siniri (`mcnemar_gurbuz`)", _m8_11)
+
+
+# --- M8.12 SVHN ----------------------------------------------------------------------------------------
+def _m8_12():
+    e7 = _oku("results/q1/e7_svhn_summary.json")["mimariler"]
+    R_, V_ = e7["resnet18"], e7["vit_tiny"]
+    sr, sv = sorted(R_["tohumlar"]), sorted(V_["tohumlar"])
+    cr = [R_["tohumlar"][s]["test_clean"] for s in sr]
+    cv = [V_["tohumlar"][s]["test_clean"] for s in sv]
+    pr = [R_["tohumlar"][s]["test_pgd10"] for s in sr]
+    pv = [V_["tohumlar"][s]["test_pgd10"] for s in sv]
+    L.append(f"SVHN test kumesi n = {R_['tohumlar'][sr[0]]['test_n']}; iki tohum cifti (ResNet tohum {', '.join(sr)}; ViT tohum {', '.join(sv)}).\n")
+    T(["Model", "Temiz (tohum 1 / 2)", "Temiz, artefaktin ort / sd alani", "PGD-10 (tohum 1 / 2)", "PGD-10, artefaktin ort / sd alani"], [
+        ["ResNet-18 AT", uc(cr, 2), f"{sg(R_['ozet']['test_clean']['ort'], 2)} / {sg(R_['ozet']['test_clean']['sd'], 2)}",
+         uc(pr, 2), f"{sg(R_['ozet']['test_pgd10']['ort'], 2)} / {sg(R_['ozet']['test_pgd10']['sd'], 2)}"],
+        ["ViT-Tiny AT", uc(cv, 2), f"{sg(V_['ozet']['test_clean']['ort'], 2)} / {sg(V_['ozet']['test_clean']['sd'], 2)}",
+         uc(pv, 2), f"{sg(V_['ozet']['test_pgd10']['ort'], 2)} / {sg(V_['ozet']['test_pgd10']['sd'], 2)}"]])
+    gf = [a_ - b_ for a_, b_ in zip(cr, cv)]
+    gm = float(np.mean(cr)) - float(np.mean(cv))
+    gy = R_["ozet"]["test_clean"]["ort"] - V_["ozet"]["test_clean"]["ort"]
+    pg = [a_ - b_ for a_, b_ in zip(pr, pv)]
+    T(["Temiz dogruluk farki (ResNet - ViT, puan)", "Deger", "Metin bicimi (2 ondalik)"], [
+        ["Cift 1 / cift 2 (tohum cifti basina)", uc(gf, 4, True), uc(gf, 2, True)],
+        ["Ciftlerin fark ortalamasi", sg(float(np.mean(gf)), 4), sg(float(np.mean(gf)), 2)],
+        ["Tam hassasiyetli ortalamalar farki (ort ResNet - ort ViT, iki tohum degerinden)", sg(gm, 4), sg(gm, 2)],
+        ["Artefaktin 2 ondalikli `ort` alanlarinin farki (YUVARLANMIS ortalamalar)", sg(gy, 4), sg(gy, 2)]])
+    L.append(f"Not: iki tohum cifti icin dogru fark ortalamasi {sg(float(np.mean(gf)), 2)} puandir (iki yontem de bunu verir). "
+             f"{sg(gy, 2)} degeri yalniz yuvarlanmis ortalamalarin ({sg(R_['ozet']['test_clean']['ort'], 2)} - "
+             f"{sg(V_['ozet']['test_clean']['ort'], 2)}) farkindan cikar; tam hassasiyetli degildir. Metne ciftlerin fark ortalamasi olan 1.84 girmelidir.\n")
+    L.append(f"PGD-10 farki (ResNet - ViT): cift basina {uc(pg, 2, True)}; ortalama {sg(float(np.mean(pg)), 3)} "
+             f"(artefakt ort alanlarindan {sg(R_['ozet']['test_pgd10']['ort'] - V_['ozet']['test_pgd10']['ort'], 2)}).\n")
+
+
+_m8("M8.12 SVHN temiz ve PGD-10 degerleri, temiz fark", _m8_12)
+
+
+# --- M8.13 On kayit suresi ------------------------------------------------------------------------------
+def _m8_13():
+    yol = os.path.join(ROOT, "results/q1_research/TUR4_EYLEM_PLANI.md")
+    with open(yol, encoding="utf-8") as fh:
+        md = fh.read()
+    m = _m8re.search(r"kayit\s+`([0-9a-f]{7,40})`.*?pilot kapisi\s+`([0-9a-f]{7,40})`", md, _m8re.S)
+    if not m:
+        raise ValueError("TUR4_EYLEM_PLANI.md icinde kayit/pilot kapisi commit kimlikleri bulunamadi")
+    kay, pil = m.group(1), m.group(2)
+    L.append(f"Commit kimlikleri `results/q1_research/TUR4_EYLEM_PLANI.md` Faz 2B/2C maddesi 2.3'ten okunur (E1 ongoru kaydi `{kay}`, "
+             f"ilk sayi bildiren epok-5 pilot kapisi `{pil}`); sure git commit zamanlarindan hesaplanir. `results/q1/KOKEN.json` bu "
+             "iki commit'in zamanini tasimaz.\n")
+    from datetime import datetime
+    zam = {}
+    for h_ in (kay, pil):
+        r_ = _m8sp.run(["git", "-c", f"safe.directory={ROOT}", "show", "-s", "--format=%cI", h_], cwd=ROOT,
+                       capture_output=True, text=True)
+        if r_.returncode != 0 or not r_.stdout.strip():
+            raise OSError(f"ARTEFAKT YOK: git commit zamani okunamadi ({h_}): {r_.stderr.strip()[:120]}")
+        zam[h_] = datetime.fromisoformat(r_.stdout.strip())
+    dk = (zam[pil] - zam[kay]).total_seconds() / 60.0
+    T(["Olcut", "Deger"], [["Ongoru kaydi commit zamani", f"{kay}: {zam[kay].isoformat()}"],
+                           ["Pilot kapisi commit zamani", f"{pil}: {zam[pil].isoformat()}"],
+                           ["Aradaki sure (dakika, tam)", sg(dk, 2)], ["Metin bicimi (tam dakikaya yuvarlanmis)", sg(dk, 0)]])
+
+
+_m8("M8.13 On kayit ile ilk sayi arasindaki sure", _m8_13)
+
+
+# --- M8.14 Son kontrol noktasi epoklari ------------------------------------------------------------------
+def _m8_14():
+    L.append("Kaynak: C1 adversarial egitim loglari (`logs/C1_at_vit_200{1,2,3}.log`, `logs/C1_at_resnet_100{1,2,3}.log`); ilerleme "
+             "cubuklari (carriage return) ayrilarak 'Epoch N/100 - Loss' satirlari, 'Best model saved!' (secilen = en iyi dogrulama "
+             "adversarial dogrulugunun epogu) ve 'Early stopping triggered at epoch N' (durma = son egitilen epok) okunur. Egitim bazi "
+             "loglarda yeniden baslatilmistir ('Resuming'); epok sayaci devam eder.\n")
+    satir = []
+    ozet = {}
+    for ad, onek, sd_ in (("ViT-Tiny AT", "C1_at_vit_", (2001, 2002, 2003)), ("ResNet-18 AT", "C1_at_resnet_", (1001, 1002, 1003))):
+        for s_ in sd_:
+            yol = os.path.join(ROOT, f"logs/{onek}{s_}.log")
+            with open(yol, encoding="utf-8", errors="replace") as fh:
+                parca = _m8re.split(r"[\r\n]+", fh.read())
+            cur = en_iyi = dur = son = sayac = None
+            en_iyi_acc = None
+            resume = 0
+            for ln in parca:
+                m = _m8re.match(r"Epoch (\d+)/(\d+) - Loss", ln)
+                if m:
+                    cur = int(m.group(1))
+                    son = cur
+                    continue
+                m = _m8re.search(r"Best model saved! Adv accuracy: ([\d.]+)%", ln)
+                if m:
+                    en_iyi, en_iyi_acc = cur, float(m.group(1))
+                    continue
+                m = _m8re.search(r"No improvement \((\d+)/(\d+)\)", ln)
+                if m:
+                    sayac = f"{m.group(1)}/{m.group(2)}"
+                    continue
+                m = _m8re.search(r"Early stopping triggered at epoch (\d+)", ln)
+                if m:
+                    dur = int(m.group(1))
+                if ln.startswith("Resuming from epoch"):
+                    resume += 1
+            if dur is None or en_iyi is None:
+                raise ValueError(f"{yol}: durma ya da en iyi epok okunamadi")
+            satir.append([ad, s_, dur, en_iyi, dur - en_iyi, sayac, sg(en_iyi_acc, 2), son, resume])
+            ozet.setdefault(ad, []).append((dur, en_iyi))
+    T(["Model", "Tohum", "Durma epogu", "Secilen (en iyi) epok", "Durma - secilen", "Son sabir sayaci", "En iyi val adv (%)",
+       "Logdaki son epok", "Yeniden baslatma"], satir)
+    for ad, v in ozet.items():
+        L.append(f"{ad}: durma epoklari {uc([a_ for a_, _ in v], 0)}; secilen epoklar {uc([b_ for _, b_ in v], 0)} (tohum sirasiyla).\n")
+
+
+_m8("M8.14 Son kontrol noktasi epoklari (durma ve secilen epok)", _m8_14)
+
+
+# --- M8.15 Temiz ciftlerde toplamsal kaynak-hedef ayristirmasi --------------------------------------------
+def _m8_15():
+    TC_ = [_oku(f"results/q1/temiz_ciftler/pair{p}/havuz_protokoller.json") for p in PAIRS]
+    R_, V_, W_ = "ResNet18_clean", "ViT_Tiny_clean", "Standard_WRN28_10"
+    L.append("Hedef-dogru oranlar (`toplamsal_kaynak_hedef_hedef_dogru`; 6 kosegen-disi hucre, mu + alpha_kaynak + beta_hedef, toplam-sifir "
+             "kodlama, 1 artik serbestlik derecesi). Kaynak farki = alpha_ResNet18_clean - alpha_ViT_Tiny_clean; hedef farki = beta_ViT_Tiny_clean "
+             "- beta_ResNet18_clean; asimetri = (ResNet18_clean -> ViT_Tiny_clean) eksi (ViT_Tiny_clean -> ResNet18_clean) hedef-dogru orani "
+             "(`yonlu/*/oranlar/target_correct`); artik farki = asimetri - kaynak farki - hedef farki (burada hesaplanir). "
+             "Ortalama$\\pm$SD uc cift arasidir (ddof=1).\n")
+    ks, hs, asm, art, r2, mx, mu = [], [], [], [], [], [], []
+    for t in TC_:
+        ta = t["toplamsal_kaynak_hedef_hedef_dogru"]
+        ks.append(ta["kaynak_etkisi"][R_] - ta["kaynak_etkisi"][V_])
+        hs.append(ta["hedef_etkisi"][V_] - ta["hedef_etkisi"][R_])
+        y = t["yonlu"]
+        a = y[f"{R_}->{V_}"]["oranlar"]["target_correct"] - y[f"{V_}->{R_}"]["oranlar"]["target_correct"]
+        asm.append(a)
+        art.append(a - ks[-1] - hs[-1])
+        r2.append(ta["R2"])
+        mx.append(ta["artik_max_mutlak"])
+        mu.append(ta["mu"])
+    T(["Olcut", "Cift 1 / 2 / 3", "Ortalama$\\pm$SD"], [
+        ["Kaynak farki (ResNet - ViT)", uc(ks, 2, True), ortsd(ks, 2, True)],
+        ["Hedef farki (ViT - ResNet)", uc(hs, 2, True), ortsd(hs, 2, True)],
+        ["Asimetri (R->V eksi V->R)", uc(asm, 2, True), ortsd(asm, 2, True)],
+        ["Artik farki (hesaplanan)", uc(art, 2, True), ortsd(art, 2, True)],
+        ["R2", uc(r2, 4), ortsd(r2, 4)],
+        ["En buyuk mutlak artik (puan)", uc(mx, 2), ortsd(mx, 2)],
+        ["mu", uc(mu, 2), ortsd(mu, 2)]])
+    satir = []
+    for m_ in (R_, V_, W_):
+        ka = [t["toplamsal_kaynak_hedef_hedef_dogru"]["kaynak_etkisi"][m_] for t in TC_]
+        he = [t["toplamsal_kaynak_hedef_hedef_dogru"]["hedef_etkisi"][m_] for t in TC_]
+        satir.append([m_, uc(ka, 2, True), ortsd(ka, 2, True), uc(he, 2, True), ortsd(he, 2, True)])
+    T(["Model", "Kaynak etkisi (cift 1 / 2 / 3)", "Ortalama$\\pm$SD", "Hedef etkisi (cift 1 / 2 / 3)", "Ortalama$\\pm$SD"], satir)
+    L.append("Sabit-Standard karsitliklari (hedef-dogru oran, %; `yonlu/*/oranlar/target_correct`; fark = ResNet18_clean tarafi eksi ViT_Tiny_clean tarafi):\n")
+    satir = []
+    for lab, a_, b_ in (("Hedef Standard: ResNet18_clean->Standard ile ViT_Tiny_clean->Standard", f"{R_}->{W_}", f"{V_}->{W_}"),
+                        ("Kaynak Standard: Standard->ResNet18_clean ile Standard->ViT_Tiny_clean", f"{W_}->{R_}", f"{W_}->{V_}")):
+        x = [t["yonlu"][a_]["oranlar"]["target_correct"] for t in TC_]
+        z = [t["yonlu"][b_]["oranlar"]["target_correct"] for t in TC_]
+        fk = [p_ - q_ for p_, q_ in zip(x, z)]
+        satir.append([lab, uc(x, 2), ortsd(x, 2), uc(z, 2), ortsd(z, 2), uc(fk, 2, True), ortsd(fk, 2, True)])
+    T(["Karsitlik", "Birinci taraf (cift 1 / 2 / 3)", "Ortalama$\\pm$SD", "Ikinci taraf (cift 1 / 2 / 3)", "Ortalama$\\pm$SD",
+       "Fark (cift 1 / 2 / 3)", "Fark ortalama$\\pm$SD"], satir)
+
+
+_m8("M8.15 Temiz ciftlerde toplamsal kaynak-hedef ayristirmasi ve sabit-Standard karsitliklari", _m8_15)
+
+
+# --- M8.16 Havuz: XCiT ve ViT kaynak etkisi -----------------------------------------------------------------
+def _m8_16():
+    HV_ = _oku("results/q1/havuz_cifar10/havuz_protokoller.json")
+    ta = HV_["toplamsal_kaynak_hedef_hedef_dogru"]
+    rob = [m_ for m_ in HV_["modeller"] if m_ not in ("Standard_WRN28_10", "ViT_Tiny_AT")]
+    ka = {m_: ta["kaynak_etkisi"][m_] for m_ in rob}
+    he = {m_: ta["hedef_etkisi"][m_] for m_ in rob}
+    L.append("Bu degerler foyun 'RobustBench havuzu' bolumundeki model etkileri tablosunda da vardir; burada metindeki aralik ifadeleri "
+             "ayni artefakttan (`results/q1/havuz_cifar10/havuz_protokoller.json` toplamsal_kaynak_hedef_hedef_dogru) turetilir.\n")
+    T(["Olcut", "Deger"], [
+        ["R2 / hucre", f"{sg(ta['R2'], 4)} / {ta['n_hucre']}"],
+        ["ViT_Tiny_AT kaynak etkisi", sg(ta["kaynak_etkisi"]["ViT_Tiny_AT"], 2, True)],
+        ["ViT_Tiny_AT hedef etkisi", sg(ta["hedef_etkisi"]["ViT_Tiny_AT"], 2, True)],
+        ["Debenedetti2022_XCiT_S12 kaynak etkisi", sg(ta["kaynak_etkisi"]["Debenedetti2022_XCiT_S12"], 2, True)],
+        [f"Diger {len(rob)} gurbuz modelin kaynak etkisi araligi (ViT_Tiny_AT ve Standard haric)",
+         f"{sg(min(ka.values()), 2, True)}; {sg(max(ka.values()), 2, True)}"],
+        [f"Ayni {len(rob)} gurbuz modelin hedef etkisi araligi", f"{sg(min(he.values()), 2, True)}; {sg(max(he.values()), 2, True)}"]])
+
+
+_m8("M8.16 Havuz: XCiT ve ViT-Tiny kaynak etkisi (foyde zaten var; aralik ifadeleri turetildi)", _m8_16)
+
+# <<< UCUNCU DALGA SONU (hakem M8)
+
 # --- 8. Sabit dizgeler -----------------------------------------------------------
 sec("Sabit dizgeler (artefakttan OKUNMAYAN, elle tasinmis literaller)",
     "scripts/build_reference_sheet.py (satir numaralari calisma aninda bulunur)")

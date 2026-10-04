@@ -1,7 +1,7 @@
 HIGHLIGHTS
 
 Manuscript: The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
-Correction and a Matched-Pair Prediction for CNN versus Vision Transformer
+Correction and a Source-Effect Reading for CNN versus Vision Transformer
 Robustness Comparisons
 
 Revised 2026-10-04. All figures come from results/C1_REFERANS_FOYU.md
@@ -24,15 +24,17 @@ Revised 2026-10-04. All figures come from results/C1_REFERANS_FOYU.md
    successful-source protocol estimates a different quantity and lies
    11.10 points above both-correct.
 
-4. The direction is a source effect: additive fits give source terms of
+4. The direction is a source effect of this ViT-Tiny: additive fits give source terms of
    +5.13 (CIFAR-10) and +9.54 points (CIFAR-100) against target terms of
    -2.03 and -6.19; ViT-crafted examples also transfer worse to a fixed
    WideResNet-28-10 (8.65% against 12.48%).
 
-5. The magnitude follows the clean-accuracy gap: the spread is 3.70 points
-   on SVHN (1.85-point gap), 0.19 points for a standard-trained pair 0.47
-   points apart, and over 28 pairs of an eight-model pool the
-   three-protocol spread rises by 0.872 points per point of gap. The last
+5. The identity term follows the clean-accuracy gap: the three-protocol
+   spread is 1.49 and 1.30 points on SVHN (1.84-point gap), 0.19 points
+   for a standard-trained pair 0.47 points apart, and over 28 pairs of an
+   eight-model pool it rises by 0.872 points per point of gap. The
+   successful-source excess does not shrink (four-protocol spread 9.03
+   points for two robust WideResNets 0.21 points apart). The last
    checkpoint moves the spread from 15.01 to 12.84 points.
 
 6. The CNN leads in absolute robustness under AutoAttack (37.93 +/- 0.14%

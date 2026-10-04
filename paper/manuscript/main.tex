@@ -60,7 +60,7 @@
 % 2026-10-04 (LeCun turu, hukum B1): baslik makalenin gercekten gosterdigi
 % seye indirildi; eski baslik literatur duzeyi bir iddia tasiyordu.
 \title{The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
-Correction and a Matched-Pair Prediction for CNN versus Vision Transformer
+Correction and a Source-Effect Reading for CNN versus Vision Transformer
 Robustness Comparisons}
 
 % Yazar bandi sablonda buyuk harftir. \uppercase Turkce {\i}'yi buyutmez ve
@@ -94,7 +94,9 @@ AND \"OZAL YILDIRIM\authorrefmark{2}}
 % ----------------------------------------------------------------------------
 % 2026-10-04 (LeCun turu): ozet yeni omurgaya gore yeniden kuruldu. Sayilarin
 % kaynagi results/C1_REFERANS_FOYU.md:
-% REF: Transfer asimetrisi, dort protokol, ayarlar (4.4-19.4; SVHN 3.70)
+% REF: Transfer asimetrisi, dort protokol, ayarlar (4.4-19.4)
+% REF: Yayilim - temiz fark iliskisi, grup araliklari (SVHN uc protokol 1.30; 1.49)
+% REF: RobustBench havuzu, cift basina (Carmon2019/Gowal2020: fark 0.21, dort protokol 9.03)
 % REF: Secim kuralinin asimetriye etkisi, B (kosum araliklari 0.63/0.86/0.46/2.41 -> en cok 2.4)
 % REF: Turetilmis (9.21; 11.10; 3.91 [3.12; 4.70])
 % REF: Dis veri: Mahmood (p_min 0.989014) ve ozdeslik_kontrol.json (0.989-1.000)
@@ -103,7 +105,7 @@ AND \"OZAL YILDIRIM\authorrefmark{2}}
 % REF: RobustBench havuzu (28 cift, uc protokol egimi +0.872)
 % REF: Secim kuralinin asimetriye etkisi, B (yayilim degisimi -2.16)
 \begin{abstract}
-CNN-versus-ViT transfer studies state which samples they score but rarely vary this conditioning set, leaving its weight unknown. We measure it on adversarially trained ResNet-18 and ViT-Tiny (three runs each, full CIFAR-10 test set, per-sample logging, validation split held out before training). With models, data and attack fixed, four conditioning protocols place the CNN-to-ViT transfer asymmetry between 4.4 and 19.4 points, whereas retraining moves it by at most 2.4 points (run-to-run SD 0.23 to 1.27). Three separate facts describe this range. The law of total probability predicts the 9.21 points between the unconditioned and target-correct estimates exactly; its premise $p$, that a clean-misclassified sample stays misclassified, measures 0.989 to 1.000 on adversarially trained targets but falls to 0.88 on standard-trained ones, where assuming $p=1$ errs by up to 1.6 points. The successful-source protocol estimates a different quantity, 11.10 points above both-correct. The two protocols we endorse differ by 3.91 points (run-level 95\% interval [3.12, 4.70]). The direction is a source effect: additive fits to target-correct matrices give source terms of $+5.13$ (CIFAR-10) and $+9.54$ points (CIFAR-100) against target terms of $-2.03$ and $-6.19$. The magnitude follows the clean-accuracy gap: the spread falls to 3.70 points for near-matched SVHN models and to 0.19 for a standard-trained pair 0.47 points apart, and over 28 pairs of an eight-model pool the identity term grows by 0.87 points per point of gap. Checkpoint selection moves the spread by about two points. Three further readings fail under direct measurement; we close with reporting requirements.
+CNN-versus-ViT transfer studies state which samples they score, but those we review never vary this conditioning set. We measure its weight on adversarially trained ResNet-18 and ViT-Tiny (three runs each, full CIFAR-10 test set, per-sample logging). With models, data and attack fixed, four conditioning protocols place the CNN-to-ViT transfer asymmetry between 4.4 and 19.4 points, whereas retraining moves it by at most 2.4 points (run-to-run SD 0.23 to 1.27). The unconditioned estimate lies 9.21 points above the target-correct one, where the law of total probability places it; the premise $p$, that clean-misclassified samples stay misclassified, is 0.989 to 1.000 on our adversarially trained targets but falls to 0.88 on standard-trained ones, where assuming $p=1$ errs by up to 1.6 points. The two protocols we endorse differ by 3.91 points (run-level 95\% interval [3.12, 4.70]), and successful-source scoring, a different estimand, lies 11.10 points above both-correct. The direction is a source effect of this ViT-Tiny: additive fits to target-correct matrices give source terms of $+5.13$ (CIFAR-10) and $+9.54$ points (CIFAR-100) against target terms of $-2.03$ and $-6.19$. The identity term follows the clean-accuracy gap: the three-protocol spread is 1.49 and 1.30 points on near-matched SVHN, 0.19 for a standard-trained pair 0.47 points apart, and rises 0.87 points per point of gap over 28 pool pairs, whereas the successful-source excess does not shrink (9.03 points for two robust WideResNets 0.21 points apart). Checkpoint selection moves the spread by about two points. Three further readings fail direct measurement; we close with reporting requirements.
 \end{abstract}
 
 \begin{IEEEkeywords}
