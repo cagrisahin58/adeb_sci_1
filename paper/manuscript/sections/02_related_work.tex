@@ -1,6 +1,10 @@
 % ============================================================================
 % SECTION 2: RELATED WORK
 % ============================================================================
+% 2026-10-04 (LeCun turu): II-A ve II-B ders kitabi paragraflari kisaltildi
+% (iki denklem cikti, tum atiflar korundu); II-F'de "no controlled estimate"
+% ve "rarely reported" dili "rarely varied" olarak duzeltildi, TRADES atfi
+% ozdeslik cumlesine baglandi.
 \section{Related Work}
 \label{sec:related_work}
 
@@ -10,9 +14,7 @@
 \subsection{Adversarial Attacks}
 \label{subsec:attacks}
 
-Adversarial attacks aim to find minimal perturbations that cause misclassification. The Fast Gradient Sign Method (FGSM)~\cite{goodfellow2015explaining} generates perturbations in a single step by following the sign of the loss gradient, with the perturbation magnitude bounded under the $\Linf$ norm. Projected Gradient Descent (PGD)~\cite{madry2018towards} extends FGSM through iterative optimization, taking multiple gradient-sign steps and projecting back onto the $\eps$-ball after each step (formal definitions in Section~\ref{subsec:attack_methods}).
-
-The Carlini \& Wagner (C\&W) attack~\cite{carlini2017towards} formulates adversarial example generation as an optimization problem, often achieving higher success rates but at increased computational cost. More recently, AutoAttack~\cite{croce2020reliable} combines multiple attack strategies (APGD-CE, APGD-T, FAB-T, Square Attack) to provide a reliable robustness evaluation, becoming the de facto standard for benchmarking.
+Adversarial attacks search for small perturbations that cause misclassification. The Fast Gradient Sign Method (FGSM)~\cite{goodfellow2015explaining} takes a single step along the sign of the loss gradient within an $\Linf$ budget, and Projected Gradient Descent (PGD)~\cite{madry2018towards} iterates that step with a projection back onto the $\eps$-ball (Section~\ref{subsec:attack_methods}). The Carlini \& Wagner attack~\cite{carlini2017towards} casts the search as an optimization problem, and AutoAttack~\cite{croce2020reliable}, an ensemble of APGD-CE, APGD-T, FAB-T and Square Attack, has become the de facto standard for reliable robustness evaluation.
 
 % ----------------------------------------------------------------------------
 % 2.2 Defense Mechanisms
@@ -20,18 +22,7 @@ The Carlini \& Wagner (C\&W) attack~\cite{carlini2017towards} formulates adversa
 \subsection{Defense Mechanisms}
 \label{subsec:defenses}
 
-Adversarial training (AT)~\cite{madry2018towards} remains the most effective defense, training models on adversarial examples generated during each batch:
-\begin{equation}
-    \min_\theta \mathbb{E}_{(x,y) \sim \mathcal{D}} \left[ \max_{\|\delta\|_\infty \leq \eps} \mathcal{L}(f_\theta(x + \delta), y) \right]
-\end{equation}
-
-TRADES~\cite{zhang2019theoretically} provides a theoretically-grounded trade-off between natural accuracy and robustness:
-\begin{equation}
-    \mathcal{L}_{\text{TRADES}} = \mathcal{L}_{CE}(f(x), y) + \beta \cdot \text{KL}(f(x) \| f(x_{adv}))
-\end{equation}
-where $\beta$ controls the trade-off parameter.
-
-MART~\cite{wang2020improving} addresses the issue of misclassified examples by emphasizing them during training. Other approaches include input transformation~\cite{guo2018countering}, certified defenses via randomized smoothing~\cite{cohen2019certified}, and ensemble methods~\cite{tramer2018ensemble}. Recent advances in certified robustness include Adaptive Randomized Smoothing~\cite{lyu2024adaptive}, which extends randomized smoothing to certify test-time adaptive, multi-step models.
+Adversarial training~\cite{madry2018towards}, which minimizes the loss on worst-case perturbations generated during training, remains the most effective empirical defense. TRADES~\cite{zhang2019theoretically} splits the robust error into a natural and a boundary term and trades the two off explicitly, and MART~\cite{wang2020improving} gives misclassified examples more weight during training. Other defenses transform the input~\cite{guo2018countering}, certify robustness by randomized smoothing~\cite{cohen2019certified}, which Adaptive Randomized Smoothing~\cite{lyu2024adaptive} extends to test-time adaptive, multi-step models, or rely on ensembles~\cite{tramer2018ensemble}.
 
 % ----------------------------------------------------------------------------
 % 2.3 CNN Robustness Studies
@@ -71,6 +62,6 @@ Mahmood et al.~\cite{mahmood2021robustness} measured transfer between CNNs and V
 
 While individual studies have examined CNN and ViT robustness separately, and the pitfalls of unfair CNN and transformer comparisons have been highlighted before~\cite{pinto2022impartial, bai2021transformers}, existing comparative work typically reports robustness scores in isolation, often with inconsistent perturbation budgets, attack configurations, or model scales, and rarely pairs the comparison with behavioral analysis. A recent study in this journal compares ViT and CNN adversarial robustness directly~\cite{ali2024adversarial}; our work differs by evaluating on the full test set with AutoAttack and paired statistics, by controlling transfer measurement for clean-accuracy differences, and by accompanying the comparison with gradient- and feature-level behavioral analyses.
 
-The evaluation-methodology literature has repeatedly shown that how robustness is measured decides what is concluded: Carlini et al.~\cite{carlini2019evaluating} catalog the failure modes of robustness evaluation, and Tram\`er et al.~\cite{tramer2020adaptive} show that defenses judged robust under fixed attacks fall to adaptive ones. That work concerns attack strength, that is, whether the measurement is strong enough. The question we ask is orthogonal: with attack strength held fixed, how much does the \emph{conditioning set} alone move the conclusion? Conditioning transfer evaluation on samples the models classify correctly is established practice~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend}, and individual papers pick one conditioning set and proceed. Yu et al.\ vary the scoring rule too, but along a different axis, and we know of no controlled estimate of how much the choice of conditioning set matters. We supply one by varying only the protocol with everything else held fixed. The confound in unconditioned rates then takes the form of an identity, $r_{\text{raw}} - r_{\text{cond}} = e\,(1 - r_{\text{cond}})$, which turns a known qualitative caveat into a correction that can be applied directly to published results.
+The evaluation-methodology literature has repeatedly shown that how robustness is measured decides what is concluded: Carlini et al.~\cite{carlini2019evaluating} catalog the failure modes of robustness evaluation, and Tram\`er et al.~\cite{tramer2020adaptive} show that defenses judged robust under fixed attacks fall to adaptive ones. That work concerns attack strength, that is, whether the measurement is strong enough. The question we ask is orthogonal: with attack strength held fixed, how much does the \emph{conditioning set} alone move the conclusion? Conditioning transfer evaluation on samples the models classify correctly is established practice~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend}, and each of these studies states its conditioning set and proceeds with it; Yu et al.\ vary the scoring rule, but along a different axis. None of the studies cited here varies the conditioning set on fixed models, which is the design we use. The confound in unconditioned rates then follows from the law of total probability: when samples the target misclassifies stay misclassified, $r_{\text{raw}} - r_{\text{cond}} = e\,(1 - r_{\text{cond}})$, the transfer analogue of the natural-plus-boundary decomposition of TRADES~\cite{zhang2019theoretically}. In the transfer setting the premise of that decomposition is an empirical quantity, which we measure, and the relation turns a known qualitative caveat into a correction that applies to published raw rates wherever the premise holds.
 
 The same design lets us test three readings that architecture comparisons tend to suggest: that CNN gradients are spatially more localized, that adversarial perturbation degrades ViT attention, and that transformer-specific transfer attacks~\cite{zhang2023tgr, naseer2022improving} improve cross-architecture transfer. Only the third is claimed in the cited work; the first two are interpretations. We measure each directly, and none holds in our setting.

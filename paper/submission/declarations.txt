@@ -1,12 +1,13 @@
 DECLARATIONS AND STATEMENTS
 ============================
 
-Manuscript: The Measurement Protocol Decides the Conclusion: A Methodological
-Study of CNN and Vision Transformer Adversarial Robustness Comparisons
+Manuscript: The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
+Correction and a Matched-Pair Prediction for CNN versus Vision Transformer
+Robustness Comparisons
 
 Target: IEEE Access
 
-Date: 2026-10-02 (revised)
+Date: 2026-10-04 (revised)
 
 ---
 
@@ -25,7 +26,11 @@ The analysis pipeline, the scripts that generate every table and figure in
 the manuscript, the per-sample evaluation records, the fixed
 validation-split indices and the seed lists are publicly available at
 https://github.com/cagrisahin58/cnn-vit-robustness-protocols
-(MIT license for the code, CC BY 4.0 for the records). Together they
+(MIT license for the code, CC BY 4.0 for the records). The per-sample
+records include the transfer runs of the clean-trained model pairs, of the
+eight-model RobustBench pool and of the last-checkpoint re-scoring, and the
+repository also holds a machine-read copy of Tables 1 and 2 of Mahmood et
+al. (ICCV 2021) with the scripts that decompose and re-score them. Together they
 reproduce every number reported in the paper: all four conditioning
 protocols are computed from the per-sample records, so the protocol
 comparison can be repeated without retraining. Trained checkpoints total

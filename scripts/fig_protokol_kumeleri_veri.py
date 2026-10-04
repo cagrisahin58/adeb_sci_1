@@ -55,6 +55,9 @@ veri["ayrisim"] = {
     "ozdeslik_terimi_ham_eksi_hedef_dogru": round(a["raw"] - a["target_correct"], 2),
     "farkli_estimand_bas_kaynak_eksi_ham": round(a["successful_source"] - a["raw"], 2),
     "artik_takdir_her_ikisi_eksi_hedef": round(a["both_correct"] - a["target_correct"], 2),
+    # 2026-10-04 (hakem B2): sag panel uc IKILI UZAKLIK gosterir; ucuncusu
+    # basarili-kaynak eksi her-ikisi-dogru (foyde "ss - bc" satiri, +11.10).
+    "bas_kaynak_eksi_her_ikisi_dogru": round(a["successful_source"] - a["both_correct"], 2),
 }
 # ic icelik dogrulamasi: n'ler yon basina azalan olmali
 n1 = [veri["protokoller"][p]["n_CNN_to_ViT"] for p in P]

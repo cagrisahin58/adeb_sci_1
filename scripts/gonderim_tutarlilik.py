@@ -65,7 +65,10 @@ def jl(p):
 print("=== 1. BASLIK UYUMU ===")
 print(f"  makale: {BASLIK[:78]}...")
 # baslik LaTeX kacislari tasiyabilir; sadelestirerek karsilastir
-_sade = re.sub(r"[^a-zA-Z0-9 ]", "", BASLIK).lower()
+# 2026-10-04: baslik ve belgeler AYNI bicimde sadelestirilir. Once baslikta
+# harf-disi karakter SILINIYOR, belgelerde BOSLUGA cevriliyordu; kisa cizgili
+# bir baslik ("Matched-Pair") bu yuzden hicbir belgede bulunamiyordu.
+_sade = " ".join(re.sub(r"[^a-zA-Z0-9 ]", " ", BASLIK).lower().split())
 for f in ("cover_letter.tex", "highlights.txt", "declarations.txt",
           "pre_submission_checklist.md"):
     _mt = re.sub(r"[^a-zA-Z0-9 ]", " ", metinler[f]).lower()

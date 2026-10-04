@@ -1,0 +1,157 @@
+{
+  "sekil": "fig_spread_clean_gap",
+  "dil": "tr",
+  "surum": 1,
+  "betik": "paper/figures/fig_yayilim_temiz_fark.py",
+  "komut": "docker exec -w /workspace adeb_eval python paper/figures/fig_yayilim_temiz_fark.py --lang tr",
+  "uretim_zamani_utc": "2026-10-04T15:45:55+00:00",
+  "veri": "results/q1/fig_yayilim_temiz_fark_veri.json",
+  "veri_sha256": "b82aa8b88db19ca8fe95163572dfedb2acbbe835dbb71a20defdc9b7fa4f89c5",
+  "veri_uretildi_utc": "2026-10-04T15:43:37+00:00",
+  "veri_betigi": "scripts/fig_yayilim_temiz_fark_veri.py",
+  "ust_kaynaklar_sha256": {
+    "results/c1_seeds/c1_seed_summary.json": "7b9b3ce499d7501439c78aee47937e19b13f1f920d880bcd3a1e3664185a1b2b",
+    "results/c1_transfer/c1_transfer_summary.json": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1",
+    "results/q1/e1_cifar100_summary.json": "fd48de12015b3f42038d9cb751d49b68e1f7fa4bdab65420e87e35a035d73e6f",
+    "results/q1/cifar100/transfer/e1_transfer_summary.json": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430",
+    "results/q1/e7_svhn_summary.json": "18e29ddedea998e3f63c839ff520c8388bb12c50a9f0a30084f3ef8ac79bc01e",
+    "results/q1/svhn/transfer/e7_transfer_summary.json": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4",
+    "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672",
+    "results/c1_c3/pair1/havuz_protokoller.json": "ec2eabd3b7715ee6f194173a9a33214d7fd29b109033467bf0ca9a029a74b3a3",
+    "results/c1_c3/pair2/havuz_protokoller.json": "583aa8537c6d30be3e053ee35b5a703bb3b02a7a93c5d65b29c2b0c0f3a9812e",
+    "results/c1_c3/pair3/havuz_protokoller.json": "918795b4924afcd985a61a6d49dffe4a2e82f1bfd1fc8eade3089c622f1d5264",
+    "results/q1/temiz_ciftler/pair1/havuz_protokoller.json": "8e352632b63be7127b885c072cc0510f285d87f4bf0a315d87deb7e60a86d23f",
+    "results/q1/temiz_ciftler/pair2/havuz_protokoller.json": "3763659c0f031048bcb274982622943828798d35b321ef41de3fb1e12a92bc26",
+    "results/q1/temiz_ciftler/pair3/havuz_protokoller.json": "d345d5ac33dd8b9a3d658bb9603faf93b2bd2d21a35bd1999aeeec50335277dc",
+    "results/q1/son_kontrol_noktasi/pair1/havuz_protokoller.json": "dbf86a862414c5f4d72f05b8c2b118b1e62f06aed52d2d9aad48b74e798c98e0",
+    "results/q1/son_kontrol_noktasi/pair2/havuz_protokoller.json": "2382349586c6245fecca1d59ec58b12c7760dd6de88a512e249aca49f2d57df8",
+    "results/q1/son_kontrol_noktasi/pair3/havuz_protokoller.json": "2de56ffabee73467d43f960dbb5b944e1383d603ae33e94e85649bc57318e5d2",
+    "results/q1/havuz_cifar10/havuz_protokoller.json": "23992b9eb3ee7e98d4fe570add79727ed4d53137058e3e366270b8af3431028e"
+  },
+  "ust_kaynaklar_sha256_kaynagi": "fig_yayilim_temiz_fark_veri.json: kaynaklar (as recorded by the data script)",
+  "git": {
+    "commit": "1bce221500721d014ca5db8964195ef7a460891c",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "?? paper/figures/fig_yayilim_temiz_fark.py"
+    ]
+  },
+  "yerlesim": {
+    "boyut_in": [
+      3.5,
+      4.9
+    ],
+    "dpi": 300,
+    "en_kucuk_yazi_pt": 8.0,
+    "font": "DejaVu Sans, pdf.fonttype 42",
+    "gruplar": {
+      "CIFAR-10 Linf, AT cifti": {
+        "lejant": "CIFAR-10 $L_\\infty$ AT",
+        "renk": "#E69F00",
+        "isaretci": "o"
+      },
+      "CIFAR-10 L2, AT cifti": {
+        "lejant": "CIFAR-10 $L_2$ AT",
+        "renk": "#009E73",
+        "isaretci": "^"
+      },
+      "CIFAR-100 Linf, AT cifti": {
+        "lejant": "CIFAR-100 AT",
+        "renk": "#56B4E9",
+        "isaretci": "s"
+      },
+      "SVHN Linf, AT cifti": {
+        "lejant": "SVHN AT",
+        "renk": "#F0E442",
+        "isaretci": "D"
+      },
+      "CIFAR-10 Linf, WRN-28-10 referansiyla": {
+        "lejant": "WRN-28-10 referanslı",
+        "renk": "#0072B2",
+        "isaretci": "v"
+      },
+      "CIFAR-10 Linf, standart egitimli modeller": {
+        "lejant": "standart eğitim",
+        "renk": "#D55E00",
+        "isaretci": "P"
+      },
+      "CIFAR-10 Linf, son kontrol noktasi": {
+        "lejant": "son kontrol noktası",
+        "renk": "#CC79A7",
+        "isaretci": "X"
+      },
+      "CIFAR-10 Linf, RobustBench havuzu": {
+        "lejant": "RobustBench havuzu",
+        "renk": "#A8A8A8",
+        "isaretci": "h"
+      }
+    },
+    "ozdeslik_isaretcisi": "open black ring, ms 2.3, same x as the measured point (panel a only)",
+    "egim_cizgisi": "none (slope reported in the reference sheet, not drawn)"
+  },
+  "okunan_degerler": {
+    "nokta_sayisi": 60,
+    "grup_sayilari": {
+      "CIFAR-10 Linf, AT cifti": 3,
+      "CIFAR-10 L2, AT cifti": 3,
+      "CIFAR-100 Linf, AT cifti": 3,
+      "SVHN Linf, AT cifti": 2,
+      "CIFAR-10 Linf, WRN-28-10 referansiyla": 6,
+      "CIFAR-10 Linf, standart egitimli modeller": 9,
+      "CIFAR-10 Linf, son kontrol noktasi": 9,
+      "CIFAR-10 Linf, RobustBench havuzu": 25
+    },
+    "x_temiz_fark_mutlak": {
+      "min": 0.21,
+      "max": 22.3
+    },
+    "a_y_yayilim_uc": {
+      "min": 0.1597,
+      "max": 21.2462
+    },
+    "a_y_ozdeslik_ongorusu_mutlak": {
+      "min": 0.1697,
+      "max": 21.1062
+    },
+    "b_y_bas_kaynak_eksi_bc": {
+      "min": -35.8358,
+      "max": 19.673
+    },
+    "ozdeslik_paritesi_sapma_max": 1.090000000000007,
+    "ozdeslik_paritesi_sapma_max_kaynak": "recomputed from points == egim.ozdeslik_paritesi.mutlak_sapma_max",
+    "uc_protokol_yayilimi_esit_raw_tc_farki": {
+      "esit_cift_sayisi_1e-9": 57,
+      "n": 60,
+      "NOT": "uc-protokol yayilimi, bc arada kaldiginda |raw-tc| asimetri farkina esittir (hukum M1)"
+    },
+    "cizilmeyen_egim_ozetleri": {
+      "dort_protokol": {
+        "egim": 0.092266258662672,
+        "pearson_r": 0.05323011887120916,
+        "spearman_rho": 0.1284245623784385,
+        "n_cift": 60
+      },
+      "uc_protokol_bas_kaynak_haric": {
+        "egim": 0.7962843775357658,
+        "pearson_r": 0.9571440955207516,
+        "spearman_rho": 0.9618227285357046,
+        "n_cift": 60
+      }
+    }
+  },
+  "havuz_var": true,
+  "tekrar_olculen_ciftler": [],
+  "tekrar_notu": "pairs listed together are the same two checkpoints measured in two runs; the data file keeps both, the figure draws both; group counts and slopes count them twice",
+  "denetimler": [
+    "n_nokta == len(noktalar)",
+    "every source path under results/c1_* or results/q1/*",
+    "every group has a legend entry (unknown group -> error)",
+    "temiz_fark_mutlak == |temiz_a - temiz_b| (1e-6)",
+    "yayilim_uc == max-min of raw/tc/bc asymmetries (1e-9)",
+    "bas_kaynak_eksi_bc_asimetri == ss - bc; raw_eksi_tc_asimetri_olculen == raw - tc (1e-9)",
+    "identity parity max deviation recomputed == stored (1e-9)",
+    "no text overlap, all text inside the figure, legend clear of both axes, all text >= 8 pt",
+    "no Type 3 font in PDF"
+  ],
+  "eski_surum_tasindi": null
+}

@@ -31,6 +31,8 @@ for f in results/C1_REFERANS_FOYU.md results/c1_eval_summary.json \
          results/c1_behavior_summary.json results/c1_c45_summary.json; do
     [ -f "$f" ] && cp "$f" "$OUT/results/"
 done
+# WRN-28-10 referans degerlendirmesi (epsilon taramasi ve Tablo 1 referans satiri foyde bunu okur)
+[ -d results/wrn_eval ] && cp -r results/wrn_eval "$OUT/results/" && echo "  + results/wrn_eval"
 for p in results/q1/*; do
     b=$(basename "$p")
     case "$b" in adv_archive|_*) echo "  - results/q1/$b (haric)"; continue;; esac
@@ -45,11 +47,16 @@ cp -r src "$OUT/src"
 [ -d cli ] && cp -r cli "$OUT/cli"
 for f in scripts/build_reference_sheet.py scripts/generate_journal_figs_c1.py \
          scripts/fig_protokol_kumeleri_veri.py scripts/q1_e3_figur.py \
-         scripts/verify_manuscript_numbers.py scripts/check_manuscript_claims.py; do
+         scripts/verify_manuscript_numbers.py scripts/check_manuscript_claims.py \
+         scripts/fig_yayilim_temiz_fark_veri.py scripts/q1_havuz_analiz_hepsi.sh \
+         scripts/dis_veri_mahmood.py scripts/q1_havuz_indir.py \
+         scripts/q1_son_kontrol_noktasi_run.sh scripts/q1_temiz_ve_havuz_run.sh; do
     [ -f "$f" ] && cp "$f" "$OUT/scripts/"
 done
 cp experiments/*.py "$OUT/experiments/"
-cp paper/figures/fig_protocol_sets.py "$OUT/paper/figures/"
+cp paper/figures/fig_protocol_sets.py paper/figures/fig_yayilim_temiz_fark.py "$OUT/paper/figures/"
+# Mahmood ve ark. makalesinin PDF'i (telif) depoya girmez; programla okunmus metin ve JSON'lar girer.
+rm -f "$OUT/results/q1/dis_veri/mahmood2021.pdf"
 cp data/val_split_indices*.json "$OUT/data/"
 # configs: root:root sahipli, okunamayan dosyalar (ornegin cifar10_trades_v3.yaml,
 # makalede kullanilmayan TRADES denemesi) atlanir ve adlari yazilir.
@@ -93,7 +100,7 @@ same per-sample outcome records.
 | Path | Content |
 |---|---|
 | `results/c1_*` | CIFAR-10 campaign: per-sample clean/robust flags for every test image, model and seed; transfer, gradient, attention and depth-profile records; aggregated summaries |
-| `results/q1/` | CIFAR-100 and SVHN replications, the L2 check, the checkpoint-selection ablation and the pre-registered pool fits |
+| `results/q1/` | CIFAR-100 and SVHN replications, the L2 check, the checkpoint-selection ablation and the pre-registered pool fits; `temiz_ciftler/` (standard-trained pairs with the RobustBench `Standard` WideResNet), `havuz_cifar10/` (eight-model RobustBench pool), `son_kontrol_noktasi/` (last-checkpoint pairs), `dis_veri/` (Mahmood et al. 2021 tables parsed from the paper text), `kaynak_hedef_ayristirma.json`, `secim_asimetri_etkisi.json`, `fig_yayilim_temiz_fark_veri.json` |
 | `results/C1_REFERANS_FOYU.md` | Generated reference sheet. Every number in the paper is taken from this file |
 | `src/analysis/protokoller.py` | The single definition of the four conditioning protocols (raw, target-correct, both-correct, successful-source) |
 | `scripts/build_reference_sheet.py` | Regenerates the reference sheet from the records |

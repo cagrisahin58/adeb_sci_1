@@ -1,7 +1,14 @@
 {
   "sekil": "fig_protocol_sets",
-  "surum": 3,
+  "surum": 4,
   "dil": "en",
+  "degisiklik_2026_10_04_v4": [
+    "reviewer B2: bracket stack above the axis (9.21, 5.79) removed; it implied a partition of the spread",
+    "three pairwise distances drawn as connectors between adjacent rows: A-B raw vs target_correct (identity term), B-C target_correct vs both_correct (endorsed pair), C-D both_correct vs successful_source (different estimand, new data field ayrisim.bas_kaynak_eksi_her_ikisi_dogru)",
+    "connector label position chosen automatically from fixed candidates; rejected if it overlaps any text or data mark; final all-pairs text overlap and in-figure check",
+    "bottom line: 'terms rounded separately' replaced by the named endpoints; endpoints checked as max/min",
+    "left panel, row letters A-D and panel letters unchanged; equation number still not printed"
+  ],
   "degisiklik_2026_10_04": [
     "row letters A-D on both panels (left: box corner, right: y tick labels)",
     "panel letters (a)/(b)",
@@ -13,17 +20,19 @@
   "betik": "paper/figures/fig_protocol_sets.py",
   "onceki_betik": "paper/figures/fig_protocol_sets_v1.py",
   "komut": "docker exec -w /workspace adeb_eval python paper/figures/fig_protocol_sets.py --lang en",
-  "uretim_zamani_utc": "2026-10-04T02:05:52+00:00",
+  "uretim_zamani_utc": "2026-10-04T15:40:12+00:00",
   "veri": "results/q1/fig_protokol_kumeleri_veri.json",
-  "veri_sha256": "c78882ef72f47ecbf84f556feb3bc1ca21cf5f42790fff4341b48089e9c8b003",
+  "veri_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f",
   "ust_kaynak": "results/c1_transfer/c1_transfer_summary.json",
   "ust_kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1",
   "ust_kaynak_sha256_kaynagi": "fig_protokol_kumeleri_veri.json: kaynak_sha256 (as recorded by the data script)",
   "git": {
-    "commit": "ded2356188280d4aba2712f048879f60f7a353ed",
+    "commit": "b350a14bb73fc370b7b4aa6d848b806552b5ab86",
     "branch": "q1",
     "dirty_paths": [
-      "M paper/figures/fig_protocol_sets.py"
+      "M paper/figures/fig_protocol_sets.py",
+      " M results/q1/fig_protokol_kumeleri_veri.json",
+      " M scripts/fig_protokol_kumeleri_veri.py"
     ]
   },
   "yerlesim": {
@@ -35,10 +44,10 @@
     "satir_etiketi_yonu": {
       "raw": "left",
       "target_correct": "right",
-      "both_correct": "right",
+      "both_correct": "left",
       "successful_source": "left"
     },
-    "gerekce": "IEEE Access column width 3.5 in as the other journal figures. One row per set; values on a horizontal axis because they are not monotone in the nesting order. Height 10.0 cm: brackets above the axis and >= 8 pt text without overlap.",
+    "gerekce": "IEEE Access column width 3.5 in as the other journal figures. One row per set; values on a horizontal axis because they are not monotone in the nesting order. Height: rows spaced so the three connector labels sit between rows with >= 8 pt text and no overlap (checked).",
     "dikdortgenler": "schematic, NOT area-proportional to N; nesting drawn for CNN->ViT",
     "tohum_noktalari": "vertical offsets of seed points are for visibility only, same order in every row",
     "yon_anahtari": "'N: CNN->ViT / ViT->CNN' placed once under the left header instead of inside each box: the full string does not fit the inner boxes at >=8 pt",
@@ -66,7 +75,7 @@
     },
     "asimetri_all": {
       "deger": 13.57,
-      "gosterim": "+13.57 pts",
+      "gosterim": "+13.57",
       "satir": "A",
       "kaynak": "protokoller.raw.asimetri_ort"
     },
@@ -99,7 +108,7 @@
     },
     "asimetri_target_correct": {
       "deger": 4.36,
-      "gosterim": "+4.36 pts",
+      "gosterim": "+4.36",
       "satir": "B",
       "kaynak": "protokoller.target_correct.asimetri_ort"
     },
@@ -132,7 +141,7 @@
     },
     "asimetri_both_correct": {
       "deger": 8.27,
-      "gosterim": "+8.27 pts",
+      "gosterim": "+8.27",
       "satir": "C",
       "kaynak": "protokoller.both_correct.asimetri_ort"
     },
@@ -165,7 +174,7 @@
     },
     "asimetri_successful_source": {
       "deger": 19.37,
-      "gosterim": "+19.37 pts",
+      "gosterim": "+19.37",
       "satir": "D",
       "kaynak": "protokoller.successful_source.asimetri_ort"
     },
@@ -191,33 +200,71 @@
     "yayilim": {
       "deger": 15.01,
       "gosterim": "15.01",
-      "yer": "bottom line",
+      "yer": "bottom line (successful_source minus target_correct, checked as max/min)",
       "kaynak": "ayrisim.yayilim"
     },
     "ozdeslik_terimi_ham_eksi_hedef_dogru": {
       "deger": 9.21,
       "gosterim": "9.21",
-      "yer": "bracket target_correct..raw",
+      "etiket": "identity term",
+      "yer": "connector between rows A (raw) and B (target_correct), mean bar to mean bar",
+      "etiket_yerlesimi": {
+        "metin": "9.21\nidentity\nterm",
+        "yer": "right of the horizontal segment",
+        "ha": "left",
+        "va": "center",
+        "ofset_pt": [
+          3,
+          0
+        ]
+      },
       "kaynak": "ayrisim.ozdeslik_terimi_ham_eksi_hedef_dogru"
-    },
-    "farkli_estimand_bas_kaynak_eksi_ham": {
-      "deger": 5.79,
-      "gosterim": "5.79",
-      "yer": "bracket raw..successful_source",
-      "kaynak": "ayrisim.farkli_estimand_bas_kaynak_eksi_ham"
     },
     "artik_takdir_her_ikisi_eksi_hedef": {
       "deger": 3.91,
       "gosterim": "3.91",
+      "etiket": "endorsed pair",
       "yer": "connector between rows B (target_correct) and C (both_correct), mean bar to mean bar",
+      "etiket_yerlesimi": {
+        "metin": "3.91\nendorsed pair",
+        "yer": "right of the horizontal segment",
+        "ha": "left",
+        "va": "center",
+        "ofset_pt": [
+          3,
+          0
+        ]
+      },
       "kaynak": "ayrisim.artik_takdir_her_ikisi_eksi_hedef"
+    },
+    "bas_kaynak_eksi_her_ikisi_dogru": {
+      "deger": 11.1,
+      "gosterim": "11.10",
+      "etiket": "different estimand",
+      "yer": "connector between rows C (both_correct) and D (successful_source), mean bar to mean bar",
+      "etiket_yerlesimi": {
+        "metin": "11.10\ndifferent\nestimand",
+        "yer": "centred above the horizontal segment",
+        "ha": "center",
+        "va": "bottom",
+        "ofset_pt": [
+          0,
+          2
+        ]
+      },
+      "kaynak": "ayrisim.bas_kaynak_eksi_her_ikisi_dogru"
+    },
+    "farkli_estimand_bas_kaynak_eksi_ham": {
+      "deger": 5.79,
+      "basildi": false,
+      "not": "v4: no longer drawn (successful_source vs raw bracket removed, reviewer B2)"
     },
     "denklem_numarasi": {
       "deger": "11",
       "gosterim": "sekle BASILMIYOR (baslik \\eqref tasir); .aux'taki numara yalniz kayit icin",
       "kaynak": "paper/manuscript/main.aux \\newlabel{eq:raw_identity}",
-      "aux_sha256": "4e6f9bf5d6956b9677a34cc94c98b4b67077aa6ec7ac49d44ae6a583149626dd",
-      "aux_mtime_utc": "2026-10-04T01:58:39+00:00",
+      "aux_sha256": "9144a0848f68c1dd48b271a75b4845ed0d5bf6c9f261cd5f26444d08cd2a7474",
+      "aux_mtime_utc": "2026-10-04T02:33:53+00:00",
       "not": "cross-reference, not a result; regenerate the figure if equations are renumbered"
     }
   },
@@ -237,15 +284,17 @@
     "N non-increasing along nesting, both directions",
     "raw and both_correct: same N in both directions",
     "mean and SD(n-1) of asimetri_tohum_degerleri == asimetri_ort / asimetri_sd within 0.0051",
-    "ayrisim terms == differences of protocol means within rounding (<=0.0101)",
+    "ayrisim terms (incl. bas_kaynak_eksi_her_ikisi_dogru) == differences of protocol means within rounding (<=0.0101)",
     "mean per-seed spread recomputed from seed values == tohum_basina_ortalama_yayilim (<=0.0051)",
     "tohum_basina_ortalama_yayilim == yayilim",
-    "order target_correct <= both_correct <= raw <= successful_source (bracket layout)",
-    "equation number read from compiled .aux",
+    "spread endpoints: max = successful_source, min = target_correct (bottom line names them)",
+    "three connector values > 0 (labels are unsigned distances); connectors join adjacent rows",
+    "no text overlaps another text or a data mark; all text inside the figure; all text >= 8 pt",
+    "equation number read from compiled .aux (record only, not printed)",
     "no Type 3 font in PDF"
   ],
-  "not_yuvarlama": "9.21 + 5.79 = 15.00 vs spread 15.01: each term rounded from unrounded means (printed as 'terms rounded separately').",
-  "eski_surum_tasindi": null,
+  "not_toplam": "B-C 3.91 + C-D 11.10 = 15.01 vs spread 15.01 (telescoping identity, not a decomposition claim; each term rounded from unrounded means)",
+  "eski_surum_tasindi": "fig_protocol_sets_v1",
   "dizindeki_eski_surumler": [
     "fig_protocol_sets_v1"
   ]

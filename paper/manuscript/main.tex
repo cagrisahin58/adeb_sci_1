@@ -57,8 +57,11 @@
 % Altbilgi cildi: sinif varsayilani 11 (2023). IEEE Access 2026 = cilt 14; uretim yine de doldurur.
 \vol{14}
 
-\title{The Measurement Protocol Decides the Conclusion: A Methodological Study
-of CNN and Vision Transformer Adversarial Robustness Comparisons}
+% 2026-10-04 (LeCun turu, hukum B1): baslik makalenin gercekten gosterdigi
+% seye indirildi; eski baslik literatur duzeyi bir iddia tasiyordu.
+\title{The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
+Correction and a Matched-Pair Prediction for CNN versus Vision Transformer
+Robustness Comparisons}
 
 % Yazar bandi sablonda buyuk harftir. \uppercase Turkce {\i}'yi buyutmez ve
 % i -> I yapar (Turkce'de i -> İ); "CAGRı SAHIN" / "YıLDıRıM" basiliyordu.
@@ -89,8 +92,18 @@ AND \"OZAL YILDIRIM\authorrefmark{2}}
 % ve anahtar kelimesizdi. Kapilar .tex okudugu icin yakalamadi; artik
 % scripts/check_pdf_render.py PDF metnini denetliyor.
 % ----------------------------------------------------------------------------
+% 2026-10-04 (LeCun turu): ozet yeni omurgaya gore yeniden kuruldu. Sayilarin
+% kaynagi results/C1_REFERANS_FOYU.md:
+% REF: Transfer asimetrisi, dort protokol, ayarlar (4.4-19.4; SVHN 3.70)
+% REF: Secim kuralinin asimetriye etkisi, B (kosum araliklari 0.63/0.86/0.46/2.41 -> en cok 2.4)
+% REF: Turetilmis (9.21; 11.10; 3.91 [3.12; 4.70])
+% REF: Dis veri: Mahmood (p_min 0.989014) ve ozdeslik_kontrol.json (0.989-1.000)
+% REF: Standart egitimli hedeflerde oncul p (0.8774 -> 0.88; artik 1.58 -> 1.6; 0.47 fark / 0.19 yayilim)
+% REF: Kaynak-hedef toplamsal ayristirma (+5.13/-2.03; +9.54/-6.19)
+% REF: RobustBench havuzu (28 cift, uc protokol egimi +0.872)
+% REF: Secim kuralinin asimetriye etkisi, B (yayilim degisimi -2.16)
 \begin{abstract}
-Comparisons of adversarial robustness across architecture families reach conflicting conclusions, usually attributed to models, training recipes, or datasets. We show that much of the disagreement comes from the measurement protocol. On adversarially trained ResNet-18 and ViT-Tiny pairs, three runs each, with full-test-set per-sample logging and a validation split held out before training, we fix models, data, threat model and attack budget and vary only how transfer is scored. Across four conditioning protocols the measured CNN-to-ViT transfer asymmetry ranges from 4.4 to 19.4 points on CIFAR-10, whereas retraining both architectures moves it by under 1.5 points. The 15.01-point spread has two parts: an identity we derive removes 9.21 points in closed form, and 5.79 points come from a protocol that estimates a different quantity. What survives is 3.91 points of discretion between the two protocols we endorse. The identity equates the deviation of unconditioned from conditioned rates with the target's clean error scaled by one minus the conditioned rate, on a premise we measure rather than assume. Replicating on CIFAR-100 preserves the sign in all twelve measurements. On SVHN, where the same recipe leaves the architectures 1.85 points apart in clean accuracy, the protocol decides the sign as well as the size: two report a CNN advantage and two a ViT advantage, though the two we endorse agree. Varying only the checkpoint-selection rule adds a fourth, rarely reported, source of variance. Three further readings do not hold under direct measurement; we close with reporting requirements for cross-architecture robustness studies.
+CNN-versus-ViT transfer studies state which samples they score but rarely vary this conditioning set, leaving its weight unknown. We measure it on adversarially trained ResNet-18 and ViT-Tiny (three runs each, full CIFAR-10 test set, per-sample logging, validation split held out before training). With models, data and attack fixed, four conditioning protocols place the CNN-to-ViT transfer asymmetry between 4.4 and 19.4 points, whereas retraining moves it by at most 2.4 points (run-to-run SD 0.23 to 1.27). Three separate facts describe this range. The law of total probability predicts the 9.21 points between the unconditioned and target-correct estimates exactly; its premise $p$, that a clean-misclassified sample stays misclassified, measures 0.989 to 1.000 on adversarially trained targets but falls to 0.88 on standard-trained ones, where assuming $p=1$ errs by up to 1.6 points. The successful-source protocol estimates a different quantity, 11.10 points above both-correct. The two protocols we endorse differ by 3.91 points (run-level 95\% interval [3.12, 4.70]). The direction is a source effect: additive fits to target-correct matrices give source terms of $+5.13$ (CIFAR-10) and $+9.54$ points (CIFAR-100) against target terms of $-2.03$ and $-6.19$. The magnitude follows the clean-accuracy gap: the spread falls to 3.70 points for near-matched SVHN models and to 0.19 for a standard-trained pair 0.47 points apart, and over 28 pairs of an eight-model pool the identity term grows by 0.87 points per point of gap. Checkpoint selection moves the spread by about two points. Three further readings fail under direct measurement; we close with reporting requirements.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -119,7 +132,9 @@ Adversarial robustness, convolutional neural networks, evaluation methodology, d
 % scripts/acik_depo_kur.sh). Kapsam vaatle ayni: analiz kodu + ornek bazinda
 % kayitlar + bolme indeksleri + tohumlar; kontrol noktalari (40 GB) istek
 % uzerine. Uc yerdeki dil ayni: simdiki zaman, ayni kapsam (burasi, §6, TR).
-The experiments in this study use the CIFAR-10 and CIFAR-100 datasets~\cite{krizhevsky2009learning} and the SVHN dataset~\cite{netzer2011reading}, all of which are publicly available. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench, gowal2020uncovering}. The analysis pipeline, the scripts that generate every table and figure in this paper, the per-sample evaluation records, the fixed validation-split indices and the seed lists are publicly available at \texttt{https://github.com/cagrisahin58/cnn-vit-robustness-protocols}; together they reproduce every number reported here, and because the four conditioning protocols are all computed from the per-sample records, the protocol comparison can be repeated without retraining. Trained checkpoints total about $40$~GB and are available from the authors on request.
+The experiments in this study use the CIFAR-10 and CIFAR-100 datasets~\cite{krizhevsky2009learning} and the SVHN dataset~\cite{netzer2011reading}, all of which are publicly available. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench, gowal2020uncovering}. % 2026-10-04 (LeCun turu): depo kapsamina yeni artefaktlar eklendi (temiz ciftler,
+% RobustBench havuzu, son kontrol noktasi, Mahmood tablolari ve betikleri).
+The analysis pipeline, the scripts that generate every table and figure in this paper, the per-sample evaluation records, the fixed validation-split indices and the seed lists are publicly available at \texttt{https://github.com/cagrisahin58/cnn-vit-robustness-protocols}. The per-sample records include the transfer runs of the clean-trained model pairs, of the eight-model RobustBench pool and of the last-checkpoint re-scoring, and the repository also holds a machine-read copy of Tables~1 and~2 of Mahmood et al.~\cite{mahmood2021robustness} together with the scripts that decompose and re-score them. Together these reproduce every number reported here, and because the four conditioning protocols are all computed from the per-sample records, the protocol comparison can be repeated without retraining. Trained checkpoints total about $40$~GB and are available from the authors on request.
 
 % ----------------------------------------------------------------------------
 % ACKNOWLEDGMENT

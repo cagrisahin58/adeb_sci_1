@@ -105,5 +105,22 @@ tabloları korunur, düzyazısı kısalır; TR aynası aynı yapıyı izler)
   AT hedeflerde ≥0,985), p=1 artığı en çok 0,35 puan; yayılım–temiz fark eğimi üç protokolde +0,872
   [+0,534; +1,274], r 0,944; dört protokolde +0,559 [−0,205; +4,582] (anlamsız); işaret dönen tek çift
   ViT_Tiny_AT/Standard (1/28). **Föy genişletildi** (kod-mimar, sekiz yeni bölüm), dokuz kapı geçiyor.
-  Tüm çiftler (havuzun C1 ile çakışan üç çifti çıkarılınca 60 nokta): üç protokol eğimi ≈ +0,80
-  (r ≈ 0,96), özdeşlik paritesi r 0,9996, en büyük sapma 1,09 (standart hedef).
+  Tüm çiftler (havuzun C1 ile çakışan üç çifti çıkarılınca 60 nokta): üç protokol eğimi +0,796
+  (r 0,957), özdeşlik paritesi r 0,9996, en büyük sapma 1,09 (standart hedef); 57/60 çiftte üç
+  protokol yayılımı = |raw−tc|.
+- 04.10 19:2x: **Şekiller** (gorsel-uretici): `paper/figures/fig_yayilim_temiz_fark.py` →
+  `final/fig_spread_clean_gap.*` (iki panel, 60 çift, içi boş özdeşlik öngörüsü) ve Şekil 3 sağ paneli
+  ikili uzaklıklarla (9,21 özdeşlik terimi / 3,91 onaylanan ikili / 11,10 farklı nicelik; ayrışım
+  parantezleri kalktı; `bas_kaynak_eksi_her_ikisi_dogru` alanı veri betiğine eklendi). Denklem numarası
+  şekle basılmaz kuralı sürüyor. Eski Şekil 3 sürümü `paper/figures/arsiv/fig_protocol_sets_v3_2026-10-03.*`.
+- 04.10 19:4x: **Faz 3 metin** (makale-yazari): EN el yazması yeni omurgada; başlık, 249 kelimelik özet,
+  dört katkı, yeni `tab:protocol_masks` (§3, `eq:general_identity` + `eq:raw_identity` oraya taşındı),
+  §4 A–H sırası, yeni `tab:source_target` (table*), `tab:external_pool`, `fig:spread_clean_gap`; §4-G
+  davranışsal ölçümler tek alt bölüm; §5 Mahmood kısmi uzlaşma + sekiz maddelik gereklilik listesi;
+  §6 sentez. 24 sayfa, 0 hata; ayna dışındaki sekiz kapı geçiyor; `verify_manuscript_numbers.py`'ye
+  yalnız-EN 180 yeni kontrol (`chk_en`; TR eşitlenince `chk`'ye çevrilecek); `gonderim_tutarlilik.py`
+  başlık normalizasyonu düzeltildi; `check_pdf_render.py` başlık dizesi güncellendi. Kararlar: karantina
+  literalleri (Tablo 2 alt blok, Tablo 3 ‡) ÇIKAR, tek nitel cümle; kapak mektubu/öne çıkanlar/veri
+  bildirimi bu turda (yazara ek tur verildi). Hakem (yontem merceği) tek geçiş başlatıldı.
+- Açık depo kurucusu güncellendi (`scripts/acik_depo_kur.sh`: yeni betikler, results/wrn_eval, Mahmood PDF
+  hariç); kopya 32 MB / 1079 dosya; föy kopyadan birebir yeniden üretiliyor.
