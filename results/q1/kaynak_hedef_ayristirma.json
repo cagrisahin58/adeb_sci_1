@@ -1,0 +1,3376 @@
+{
+ "uretildi_utc": "2026-10-04T15:21:58.090312+00:00",
+ "kaynaklar": {
+  "results/c1_c3/c3_summary.json": "bc13df4bcd92693991bbf307bd0b12261933b90ef91be60336ef13673c3351f7",
+  "results/c1_c3/pair1/transfer_matrix.json": "7f5930cf82b6deedb1d783eabf90fde09d94f099e76cf3dae92b38b84cbada37",
+  "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "4ab6327af108db96b00d93ce172ea381e93543659f396ce899619440a933d65f",
+  "results/c1_c3/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6046fdfbf0aceaa08cf5767f1f1f4c3454f5a508c904cc39293f0722992aa568",
+  "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "33c836743e64dcae73a839c3639dea0aa10eb57766b33babbf1cb64d79f41ada",
+  "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "a7a27254c2186629314847bcfaec99881b8ce531bdf50fbe2809bbd1331afd3b",
+  "results/c1_c3/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "ac3879d70aa85949cb09078d2fedb24888ad7a85f04b7acfc14bcdcb17e84c31",
+  "results/c1_c3/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "10ae079258683cbb52e285627045a2f9cf66e678dc3e91e4593b8b1e4a6f5943",
+  "results/c1_c3/pair2/transfer_matrix.json": "377629f534f4f426f3e70c025ac408dab1c14042eae8cbcf7ca719cb5042cb74",
+  "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "38939c7023deb1313f0041f211b5904453e078684685f9f3cbeb02e2d76d890f",
+  "results/c1_c3/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "f10199e89bcdb84ef460d37f8e5e05c26c5b0535fb96c2b2b03e1e0bc7144e02",
+  "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "1123604cfd72e0af53836eb0b25643f6087b243fe5d4596cfd3d2fec33c1dbc6",
+  "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "377bbdda2113d708280e4aa01df14636d2bb1b87bbcbe603938fe6955f15cbb0",
+  "results/c1_c3/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2401ea4d90fb935adec2034bc03a58372f22da63bfe1260fb53a7c5ef89e0a97",
+  "results/c1_c3/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "1216b107ac089607aac26473f40a79f6d3e02eb1f406b5de8176052f3819a5b7",
+  "results/c1_c3/pair3/transfer_matrix.json": "0412463b039952088eee3046b27a16fd75d35ae7fcbf424696934835bb379502",
+  "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "49dac26602ab34bd131792ce824790379e4403d56bfe93a9416f06e911faf18e",
+  "results/c1_c3/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "4ead6c8e750931f4f0e762a5a7161b31f2987624947a930b32fad319ccfb8fe3",
+  "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "71ec8342534569b482edd9b99b278c690c4a721b8f40995b4b679442523d674b",
+  "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "10e41f5b95b9dc552278fcb5776836e8787df724999c260967dd85f9f3b7f1c0",
+  "results/c1_c3/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2098213d3f941809e5e5edd23e52c1fb80e9a96290e3438b7ac98f9921d79a05",
+  "results/c1_c3/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "d346e249e0ff89bce78c89b36ebf12cae5cac024082d85f03440c1167bdd2d70",
+  "results/q1/cifar100/transfer/e1_c3_summary.json": "00cd9a7f4cbe8d8f62d6fe2898e9907ecf2db1d602d39e03d0757feab54ba67c",
+  "results/q1/cifar100/transfer/pair1/transfer_matrix.json": "df1f36f2c92028f16428239b9f396d40aefffeef9437864ccb91e48a60dab1f0",
+  "results/q1/cifar100/transfer/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "74e6aa46f440cd194920be558a331de5d659605d0c8dd3e03f61d61322dc4df9",
+  "results/q1/cifar100/transfer/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "a3e529682be88a5153edf10c4e26126704ddefc0d9114dc149459aa067356d64",
+  "results/q1/cifar100/transfer/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "2382b4f6dbdad97bdd3cb4ce618e3b42249fa63997a2fb2d8f097272cc819bc0",
+  "results/q1/cifar100/transfer/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "29788d55449ff4243f2413a4e162d9c2028e018907ca026ade83a0cf5c8289c9",
+  "results/q1/cifar100/transfer/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2fa1b61216ab9cbe5a6100bb74edbe163842214437c0dcea669f49f7adb4910d",
+  "results/q1/cifar100/transfer/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "844e5eab95f6d88ad888f511efae9536e50cda9c0f94cee21ac7085ade54562b",
+  "results/q1/cifar100/transfer/pair2/transfer_matrix.json": "fca1afff944cdd88652ea5a5a6b397c7443f00900e23c0da3bf687f612e71f1a",
+  "results/q1/cifar100/transfer/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "de5727e4f1b10f847d8a19fdb10f1f23a1e253c29eb84828bf7f4cccd0905371",
+  "results/q1/cifar100/transfer/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "ede1ee6effcb6fab01ab1d9997466bb0c63e480ff9b7c90c6ec0d933367d40f5",
+  "results/q1/cifar100/transfer/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "5b87180c005de37d3763b73f245d2d6a00de8faaeb3b0259ecf3c5dcd2143298",
+  "results/q1/cifar100/transfer/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "f0b98f21c9773d8455267465ea3ca665e047a3ba285f7407e45d2811927195f2",
+  "results/q1/cifar100/transfer/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "d8a4da4d4c8befc1bf6d014fb9206a9f9ec4ee249289561a3852714c18d6250d",
+  "results/q1/cifar100/transfer/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "059bd5e76cb8e95eef66b78c6586d3d4b380bfb45d8369b5652f9754c11916ea",
+  "results/q1/cifar100/transfer/pair3/transfer_matrix.json": "4d25249c0c6352423e0cbf8ee0eba17387d5cc160f1a4ab078840ab50c2af1d2",
+  "results/q1/cifar100/transfer/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "d7ed3cd07f83815d358e1e7a5651baeee330f3fc30c7b00475393cedc1e43d6f",
+  "results/q1/cifar100/transfer/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6ae5fffe8448c5fd8d2d361b1f14ee5ecb747ade7b329d97d3867f12daea640b",
+  "results/q1/cifar100/transfer/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "9e79d48b45db19453f24b7b2be954ef7e39322111453c3c803dbb17e57c19975",
+  "results/q1/cifar100/transfer/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "25baff4a438f3d1eba8997eac8a649a9302a39e06a1afcbe9ec6c4fa9b8f64ea",
+  "results/q1/cifar100/transfer/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "e217c87a23d714b746041ad662490839f48707ad0f1f9ef0dedc0d0a5b22fa4b",
+  "results/q1/cifar100/transfer/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "556726410a3765c0ed3d55d2672dfce8d4de8e8b1c6b48b07321ca69999d3d33",
+  "results/q1/dis_veri/mahmood2021_tablolar.json": "5ba2b8663117fd753d4d1cf1036ea76af0293a43228e84a105626806d59807fd"
+ },
+ "yontem": "oran(s->t) = mu + alpha_s + beta_t + eps, kosegen disi hucreler, toplam-sifir (etki kodlamasi), numpy lstsq. 3x3'te 6 hucre, 5 parametre, 1 artik serbestlik derecesi. Ozet matris: uc tohum ortalamasi (c3_summary 'cond' = hedef-dogru). Cift basina: transfer_matrix.json ve per_sample npz; bc ve ss protokolleri src/analysis/protokoller.py maskeleriyle npz'den hesaplanir; ciftler arasi SD ddof=1 (n=3). Kaynak farki = alpha_ResNet - alpha_ViT; hedef farki = beta_ViT - beta_ResNet; toplamlari artik farkiyla birlikte ResNet->ViT eksi ViT->ResNet asimetrisine esittir. Mahmood: 8x8 bc matrisi, ayni model; aile duzeyi farklar alpha/beta aile ortalamalarinin farki.",
+ "birim": "yuzde puan",
+ "sonuc": {
+  "CIFAR-10": {
+   "ozet_matris_kaynagi": "results/c1_c3/c3_summary.json",
+   "ozet_matris": {
+    "target_correct": {
+     "uydurma": {
+      "mu": 16.03555555555556,
+      "alpha_kaynak": {
+       "ResNet18_AT": 1.870000000000001,
+       "ViT_Tiny_AT": -3.2622222222222232,
+       "WRN_28_10": 1.3922222222222222
+      },
+      "beta_hedef": {
+       "ResNet18_AT": 3.397777777777778,
+       "ViT_Tiny_AT": 1.3733333333333362,
+       "WRN_28_10": -4.771111111111114
+      },
+      "artiklar": {
+       "ResNet18_AT->ViT_Tiny_AT": 0.6511111111111063,
+       "ResNet18_AT->WRN_28_10": -0.6511111111111134,
+       "ViT_Tiny_AT->ResNet18_AT": -0.6511111111111152,
+       "ViT_Tiny_AT->WRN_28_10": 0.6511111111111116,
+       "WRN_28_10->ResNet18_AT": 0.6511111111111099,
+       "WRN_28_10->ViT_Tiny_AT": -0.651111111111117
+      },
+      "uydurulan": {
+       "ResNet18_AT->ViT_Tiny_AT": 19.278888888888897,
+       "ResNet18_AT->WRN_28_10": 13.134444444444448,
+       "ViT_Tiny_AT->ResNet18_AT": 16.171111111111117,
+       "ViT_Tiny_AT->WRN_28_10": 8.002222222222223,
+       "WRN_28_10->ResNet18_AT": 20.82555555555556,
+       "WRN_28_10->ViT_Tiny_AT": 18.80111111111112
+      },
+      "max_abs_artik": 0.651111111111117,
+      "R2": 0.9781892053219975,
+      "n_hucre": 6,
+      "ayni_cins_gamma": null,
+      "parametre_sayisi": 5,
+      "artik_serbestlik": 1,
+      "tasarim_rank": 5
+     },
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": 5.132222222222224,
+     "hedef_etkisi_farki_ViT_eksi_ResNet": -2.0244444444444416,
+     "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+      "asimetri": 4.410000000000002,
+      "kaynak_farki": 5.132222222222224,
+      "hedef_farki": -2.0244444444444416,
+      "artik_farki": 1.3022222222222215,
+      "toplam_kontrol": 4.410000000000004
+     },
+     "sabit_WRN": {
+      "WRN_hedef_ResNetten": 12.483333333333334,
+      "WRN_hedef_ViTden": 8.653333333333334,
+      "WRN_hedef_fark_ResNet_eksi_ViT": 3.83,
+      "WRN_kaynak_ResNete": 21.47666666666667,
+      "WRN_kaynak_ViTe": 18.150000000000002,
+      "WRN_kaynak_fark_ResNet_eksi_ViT": 3.326666666666668
+     },
+     "marjinaller": {
+      "gelen_ort_ResNet": 18.498333333333335,
+      "gelen_ort_ViT": 19.040000000000003,
+      "giden_ort_ResNet": 16.20666666666667,
+      "giden_ort_ViT": 12.086666666666668
+     }
+    },
+    "raw_duyarlilik": {
+     "uydurma": {
+      "mu": 30.13944444444446,
+      "alpha_kaynak": {
+       "ResNet18_AT": 1.593333333333337,
+       "ViT_Tiny_AT": -2.8744444444444444,
+       "WRN_28_10": 1.2811111111111073
+      },
+      "beta_hedef": {
+       "ResNet18_AT": 0.6988888888888874,
+       "ViT_Tiny_AT": 8.82666666666668,
+       "WRN_28_10": -9.525555555555568
+      },
+      "artiklar": {
+       "ResNet18_AT->ViT_Tiny_AT": 0.5138888888888502,
+       "ResNet18_AT->WRN_28_10": -0.5138888888888964,
+       "ViT_Tiny_AT->ResNet18_AT": -0.5138888888888999,
+       "ViT_Tiny_AT->WRN_28_10": 0.5138888888888893,
+       "WRN_28_10->ResNet18_AT": 0.5138888888888786,
+       "WRN_28_10->ViT_Tiny_AT": -0.5138888888889142
+      },
+      "uydurulan": {
+       "ResNet18_AT->ViT_Tiny_AT": 40.55944444444448,
+       "ResNet18_AT->WRN_28_10": 22.207222222222228,
+       "ViT_Tiny_AT->ResNet18_AT": 27.963888888888903,
+       "ViT_Tiny_AT->WRN_28_10": 17.739444444444445,
+       "WRN_28_10->ResNet18_AT": 32.119444444444454,
+       "WRN_28_10->ViT_Tiny_AT": 40.24722222222225
+      },
+      "max_abs_artik": 0.5138888888889142,
+      "R2": 0.9963796445785642,
+      "n_hucre": 6,
+      "ayni_cins_gamma": null,
+      "parametre_sayisi": 5,
+      "artik_serbestlik": 1,
+      "tasarim_rank": 5
+     },
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": 4.467777777777782,
+     "hedef_etkisi_farki_ViT_eksi_ResNet": 8.127777777777792,
+     "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+      "asimetri": 13.623333333333328,
+      "kaynak_farki": 4.467777777777782,
+      "hedef_farki": 8.127777777777792,
+      "artik_farki": 1.0277777777777501,
+      "toplam_kontrol": 13.623333333333324
+     },
+     "sabit_WRN": {
+      "WRN_hedef_ResNetten": 21.69333333333333,
+      "WRN_hedef_ViTden": 18.253333333333334,
+      "WRN_hedef_fark_ResNet_eksi_ViT": 3.4399999999999977,
+      "WRN_kaynak_ResNete": 32.63333333333333,
+      "WRN_kaynak_ViTe": 39.733333333333334,
+      "WRN_kaynak_fark_ResNet_eksi_ViT": -7.100000000000001
+     },
+     "marjinaller": {
+      "gelen_ort_ResNet": 30.041666666666668,
+      "gelen_ort_ViT": 40.403333333333336,
+      "giden_ort_ResNet": 31.383333333333333,
+      "giden_ort_ViT": 22.851666666666667
+     }
+    }
+   },
+   "cift_basina": {
+    "raw": {
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": {
+      "ortalama": 4.467777777777783,
+      "sd_ciftler_arasi": 0.09714441330842077,
+      "degerler": [
+       4.436666666666668,
+       4.576666666666674,
+       4.390000000000007
+      ]
+     },
+     "hedef_etkisi_farki_ViT_eksi_ResNet": {
+      "ortalama": 8.127777777777792,
+      "sd_ciftler_arasi": 0.33056069090315815,
+      "degerler": [
+       7.746666666666675,
+       8.336666666666682,
+       8.300000000000017
+      ]
+     },
+     "asimetri_ResNettoViT_eksi_ViTtoResNet": {
+      "ortalama": 13.62333333333334,
+      "sd_ciftler_arasi": 0.37859388972002156,
+      "degerler": [
+       13.190000000000001,
+       13.890000000000008,
+       13.790000000000006
+      ]
+     },
+     "artik_farki": {
+      "ortalama": 1.0277777777777632,
+      "sd_ciftler_arasi": 0.06431980283736002,
+      "degerler": [
+       1.0066666666666535,
+       0.9766666666666524,
+       1.0999999999999837
+      ]
+     },
+     "max_abs_artik": {
+      "ortalama": 0.5138888888889094,
+      "sd_ciftler_arasi": 0.032159901418683336,
+      "degerler": [
+       0.5033333333333445,
+       0.48833333333335815,
+       0.5500000000000256
+      ]
+     },
+     "R2": {
+      "ortalama": 0.9963748894680844,
+      "sd_ciftler_arasi": 0.0004000236049357399,
+      "degerler": [
+       0.9964128677376933,
+       0.9967545695229396,
+       0.9959572311436202
+      ]
+     },
+     "WRN_hedef_fark_ResNet_eksi_ViT": {
+      "ortalama": 3.44,
+      "sd_ciftler_arasi": 0.1552417469626014,
+      "degerler": [
+       3.4299999999999997,
+       3.6000000000000014,
+       3.289999999999999
+      ]
+     },
+     "WRN_kaynak_fark_ResNet_eksi_ViT": {
+      "ortalama": -7.100000000000001,
+      "sd_ciftler_arasi": 0.32186953878862073,
+      "degerler": [
+       -6.740000000000002,
+       -7.359999999999999,
+       -7.200000000000003
+      ]
+     },
+     "WRN_hedef_ResNetten": {
+      "ortalama": 21.69333333333334,
+      "sd_ciftler_arasi": 0.09073771725877638,
+      "degerler": [
+       21.61,
+       21.790000000000003,
+       21.68
+      ]
+     },
+     "WRN_hedef_ViTden": {
+      "ortalama": 18.253333333333334,
+      "sd_ciftler_arasi": 0.11846237095944581,
+      "degerler": [
+       18.18,
+       18.19,
+       18.39
+      ]
+     },
+     "WRN_kaynak_ResNete": {
+      "ortalama": 32.63333333333333,
+      "sd_ciftler_arasi": 0.14153915830374816,
+      "degerler": [
+       32.71,
+       32.47,
+       32.72
+      ]
+     },
+     "WRN_kaynak_ViTe": {
+      "ortalama": 39.733333333333334,
+      "sd_ciftler_arasi": 0.2494660965609008,
+      "degerler": [
+       39.45,
+       39.83,
+       39.92
+      ]
+     },
+     "cift_basina_tam": [
+      {
+       "uydurma": {
+        "mu": 29.950000000000006,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.4833333333333327,
+         "ViT_Tiny_AT": -2.953333333333336,
+         "WRN_28_10": 1.470000000000003
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 0.7866666666666655,
+         "ViT_Tiny_AT": 8.53333333333334,
+         "WRN_28_10": -9.320000000000006
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.5033333333333161,
+         "ResNet18_AT->WRN_28_10": -0.5033333333333374,
+         "ViT_Tiny_AT->ResNet18_AT": -0.5033333333333374,
+         "ViT_Tiny_AT->WRN_28_10": 0.5033333333333374,
+         "WRN_28_10->ResNet18_AT": 0.5033333333333232,
+         "WRN_28_10->ViT_Tiny_AT": -0.5033333333333445
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 39.96666666666668,
+         "ResNet18_AT->WRN_28_10": 22.113333333333337,
+         "ViT_Tiny_AT->ResNet18_AT": 27.783333333333335,
+         "ViT_Tiny_AT->WRN_28_10": 17.676666666666662,
+         "WRN_28_10->ResNet18_AT": 32.20666666666668,
+         "WRN_28_10->ViT_Tiny_AT": 39.95333333333335
+        },
+        "max_abs_artik": 0.5033333333333445,
+        "R2": 0.9964128677376933,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 4.436666666666668,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": 7.746666666666675,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 13.190000000000001,
+        "kaynak_farki": 4.436666666666668,
+        "hedef_farki": 7.746666666666675,
+        "artik_farki": 1.0066666666666535,
+        "toplam_kontrol": 13.189999999999998
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 21.61,
+        "WRN_hedef_ViTden": 18.18,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 3.4299999999999997,
+        "WRN_kaynak_ResNete": 32.71,
+        "WRN_kaynak_ViTe": 39.45,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": -6.740000000000002
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 29.994999999999997,
+        "gelen_ort_ViT": 39.96,
+        "giden_ort_ResNet": 31.04,
+        "giden_ort_ViT": 22.729999999999997
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 30.105000000000015,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.6300000000000072,
+         "ViT_Tiny_AT": -2.946666666666667,
+         "WRN_28_10": 1.31666666666666
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 0.5599999999999954,
+         "ViT_Tiny_AT": 8.896666666666677,
+         "WRN_28_10": -9.456666666666672
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.4883333333333084,
+         "ResNet18_AT->WRN_28_10": -0.4883333333333475,
+         "ViT_Tiny_AT->ResNet18_AT": -0.48833333333334394,
+         "ViT_Tiny_AT->WRN_28_10": 0.4883333333333262,
+         "WRN_28_10->ResNet18_AT": 0.4883333333333262,
+         "WRN_28_10->ViT_Tiny_AT": -0.48833333333335815
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 40.631666666666696,
+         "ResNet18_AT->WRN_28_10": 22.27833333333335,
+         "ViT_Tiny_AT->ResNet18_AT": 27.71833333333334,
+         "ViT_Tiny_AT->WRN_28_10": 17.701666666666675,
+         "WRN_28_10->ResNet18_AT": 31.981666666666673,
+         "WRN_28_10->ViT_Tiny_AT": 40.31833333333336
+        },
+        "max_abs_artik": 0.48833333333335815,
+        "R2": 0.9967545695229396,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 4.576666666666674,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": 8.336666666666682,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 13.890000000000008,
+        "kaynak_farki": 4.576666666666674,
+        "hedef_farki": 8.336666666666682,
+        "artik_farki": 0.9766666666666524,
+        "toplam_kontrol": 13.890000000000008
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 21.790000000000003,
+        "WRN_hedef_ViTden": 18.19,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 3.6000000000000014,
+        "WRN_kaynak_ResNete": 32.47,
+        "WRN_kaynak_ViTe": 39.83,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": -7.359999999999999
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 29.849999999999998,
+        "gelen_ort_ViT": 40.475,
+        "giden_ort_ResNet": 31.455000000000005,
+        "giden_ort_ViT": 22.71
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 30.36333333333335,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.6666666666666725,
+         "ViT_Tiny_AT": -2.7233333333333345,
+         "WRN_28_10": 1.056666666666662
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 0.7499999999999968,
+         "ViT_Tiny_AT": 9.050000000000013,
+         "WRN_28_10": -9.80000000000001
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.5499999999999687,
+         "ResNet18_AT->WRN_28_10": -0.5500000000000114,
+         "ViT_Tiny_AT->ResNet18_AT": -0.5500000000000149,
+         "ViT_Tiny_AT->WRN_28_10": 0.5499999999999972,
+         "WRN_28_10->ResNet18_AT": 0.54999999999999,
+         "WRN_28_10->ViT_Tiny_AT": -0.5500000000000256
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 41.080000000000034,
+         "ResNet18_AT->WRN_28_10": 22.23000000000001,
+         "ViT_Tiny_AT->ResNet18_AT": 28.39000000000001,
+         "ViT_Tiny_AT->WRN_28_10": 17.840000000000003,
+         "WRN_28_10->ResNet18_AT": 32.17000000000001,
+         "WRN_28_10->ViT_Tiny_AT": 40.47000000000003
+        },
+        "max_abs_artik": 0.5500000000000256,
+        "R2": 0.9959572311436202,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 4.390000000000007,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": 8.300000000000017,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 13.790000000000006,
+        "kaynak_farki": 4.390000000000007,
+        "hedef_farki": 8.300000000000017,
+        "artik_farki": 1.0999999999999837,
+        "toplam_kontrol": 13.790000000000006
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 21.68,
+        "WRN_hedef_ViTden": 18.39,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 3.289999999999999,
+        "WRN_kaynak_ResNete": 32.72,
+        "WRN_kaynak_ViTe": 39.92,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": -7.200000000000003
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 30.279999999999998,
+        "gelen_ort_ViT": 40.775000000000006,
+        "giden_ort_ResNet": 31.655,
+        "giden_ort_ViT": 23.115
+       }
+      }
+     ]
+    },
+    "target_correct": {
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": {
+      "ortalama": 5.134456069363757,
+      "sd_ciftler_arasi": 0.08720349055541458,
+      "degerler": [
+       5.091342567986702,
+       5.234818709834116,
+       5.07720693027045
+      ]
+     },
+     "hedef_etkisi_farki_ViT_eksi_ResNet": {
+      "ortalama": -2.0267955716408292,
+      "sd_ciftler_arasi": 0.5106208827831561,
+      "degerler": [
+       -1.5537826771716001,
+       -1.9584614258048512,
+       -2.5681426119460373
+      ]
+     },
+     "asimetri_ResNettoViT_eksi_ViTtoResNet": {
+      "ortalama": 4.40885773829812,
+      "sd_ciftler_arasi": 0.44992627386179024,
+      "degerler": [
+       4.806819311729827,
+       4.499106257609464,
+       3.920647645555068
+      ]
+     },
+     "artik_farki": {
+      "ortalama": 1.3011972405751937,
+      "sd_ciftler_arasi": 0.09838506758215242,
+      "degerler": [
+       1.2692594209147252,
+       1.2227489735802006,
+       1.4115833272306553
+      ]
+     },
+     "max_abs_artik": {
+      "ortalama": 0.6505986202876078,
+      "sd_ciftler_arasi": 0.04919253379107756,
+      "degerler": [
+       0.6346297104573733,
+       0.6113744867901101,
+       0.7057916636153401
+      ]
+     },
+     "R2": {
+      "ortalama": 0.9782136295564102,
+      "sd_ciftler_arasi": 0.003168616690301324,
+      "degerler": [
+       0.9791108578072724,
+       0.9808368825878475,
+       0.9746931482741106
+      ]
+     },
+     "WRN_hedef_fark_ResNet_eksi_ViT": {
+      "ortalama": 3.833258828788555,
+      "sd_ciftler_arasi": 0.17349323531805938,
+      "degerler": [
+       3.82208314707197,
+       4.01206973625391,
+       3.6656236030397853
+      ]
+     },
+     "WRN_kaynak_fark_ResNet_eksi_ViT": {
+      "ortalama": 3.3279928122160336,
+      "sd_ciftler_arasi": 0.5921470970943388,
+      "degerler": [
+       2.8230420980863364,
+       3.181210399385062,
+       3.979725939176703
+      ]
+     },
+     "WRN_hedef_ResNetten": {
+      "ortalama": 12.486961704663983,
+      "sd_ciftler_arasi": 0.10140558477735213,
+      "degerler": [
+       12.393831023692444,
+       12.594993294590969,
+       12.472060795708538
+      ]
+     },
+     "WRN_hedef_ViTden": {
+      "ortalama": 8.65370287587543,
+      "sd_ciftler_arasi": 0.13238977532347504,
+      "degerler": [
+       8.571747876620474,
+       8.58292355833706,
+       8.806437192668753
+      ]
+     },
+     "WRN_kaynak_ResNete": {
+      "ortalama": 21.478857132195582,
+      "sd_ciftler_arasi": 0.3138543346391041,
+      "degerler": [
+       21.190113623052596,
+       21.43355829648592,
+       21.812899477048227
+      ]
+     },
+     "WRN_kaynak_ViTe": {
+      "ortalama": 18.150864319979547,
+      "sd_ciftler_arasi": 0.2810443959145166,
+      "degerler": [
+       18.36707152496626,
+       18.252347897100858,
+       17.833173537871524
+      ]
+     },
+     "cift_basina_tam": [
+      {
+       "uydurma": {
+        "mu": 15.86268894507919,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.7283686963474292,
+         "ViT_Tiny_AT": -3.362973871639273,
+         "WRN_28_10": 1.6346051752918438
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 3.058189792224202,
+         "ViT_Tiny_AT": 1.5044071150526017,
+         "WRN_28_10": -4.562596907276804
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.6346297104573537,
+         "ResNet18_AT->WRN_28_10": -0.6346297104573733,
+         "ViT_Tiny_AT->ResNet18_AT": -0.6346297104573715,
+         "ViT_Tiny_AT->WRN_28_10": 0.6346297104573599,
+         "WRN_28_10->ResNet18_AT": 0.6346297104573608,
+         "WRN_28_10->ViT_Tiny_AT": -0.6346297104573715
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 19.09546475647922,
+         "ResNet18_AT->WRN_28_10": 13.028460734149817,
+         "ViT_Tiny_AT->ResNet18_AT": 15.557904865664119,
+         "ViT_Tiny_AT->WRN_28_10": 7.937118166163114,
+         "WRN_28_10->ResNet18_AT": 20.555483912595236,
+         "WRN_28_10->ViT_Tiny_AT": 19.00170123542363
+        },
+        "max_abs_artik": 0.6346297104573733,
+        "R2": 0.9791108578072724,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 5.091342567986702,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -1.5537826771716001,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 4.806819311729827,
+        "kaynak_farki": 5.091342567986702,
+        "hedef_farki": -1.5537826771716001,
+        "artik_farki": 1.2692594209147252,
+        "toplam_kontrol": 4.806819311729827
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 12.393831023692444,
+        "WRN_hedef_ViTden": 8.571747876620474,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 3.82208314707197,
+        "WRN_kaynak_ResNete": 21.190113623052596,
+        "WRN_kaynak_ViTe": 18.36707152496626,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 2.8230420980863364
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 18.05669438912967,
+        "gelen_ort_ViT": 19.048582995951417,
+        "giden_ort_ResNet": 16.06196274531451,
+        "giden_ort_ViT": 11.747511515913612
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 16.040823334877906,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.8999444831113608,
+         "ViT_Tiny_AT": -3.3348742267227554,
+         "WRN_28_10": 1.4349297436113946
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 3.3464307312065213,
+         "ViT_Tiny_AT": 1.3879693054016702,
+         "WRN_28_10": -4.734400036608191
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.6113744867900905,
+         "ResNet18_AT->WRN_28_10": -0.6113744867901065,
+         "ViT_Tiny_AT->ResNet18_AT": -0.6113744867901101,
+         "ViT_Tiny_AT->WRN_28_10": 0.6113744867900994,
+         "WRN_28_10->ResNet18_AT": 0.6113744867900976,
+         "WRN_28_10->ViT_Tiny_AT": -0.6113744867901083
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 19.328737123390937,
+         "ResNet18_AT->WRN_28_10": 13.206367781381076,
+         "ViT_Tiny_AT->ResNet18_AT": 16.052379839361674,
+         "ViT_Tiny_AT->WRN_28_10": 7.97154907154696,
+         "WRN_28_10->ResNet18_AT": 20.822183809695822,
+         "WRN_28_10->ViT_Tiny_AT": 18.863722383890966
+        },
+        "max_abs_artik": 0.6113744867901101,
+        "R2": 0.9808368825878475,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 5.234818709834116,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -1.9584614258048512,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 4.499106257609464,
+        "kaynak_farki": 5.234818709834116,
+        "hedef_farki": -1.9584614258048512,
+        "artik_farki": 1.2227489735802006,
+        "toplam_kontrol": 4.499106257609466
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 12.594993294590969,
+        "WRN_hedef_ViTden": 8.58292355833706,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 4.01206973625391,
+        "WRN_kaynak_ResNete": 21.43355829648592,
+        "WRN_kaynak_ViTe": 18.252347897100858,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 3.181210399385062
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 18.437281824528743,
+        "gelen_ort_ViT": 19.09622975364094,
+        "giden_ort_ResNet": 16.267552452386,
+        "giden_ort_ViT": 12.011964455454311
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 16.207497704307045,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.9843271664061328,
+         "ViT_Tiny_AT": -3.0928797638643175,
+         "WRN_28_10": 1.1085525974581847
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 3.79105751166767,
+         "ViT_Tiny_AT": 1.2229148997216326,
+         "WRN_28_10": -5.013972411389302
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.7057916636153188,
+         "ResNet18_AT->WRN_28_10": -0.7057916636153383,
+         "ViT_Tiny_AT->ResNet18_AT": -0.7057916636153365,
+         "ViT_Tiny_AT->WRN_28_10": 0.7057916636153294,
+         "WRN_28_10->ResNet18_AT": 0.7057916636153259,
+         "WRN_28_10->ViT_Tiny_AT": -0.7057916636153401
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 19.41473977043481,
+         "ResNet18_AT->WRN_28_10": 13.177852459323876,
+         "ViT_Tiny_AT->ResNet18_AT": 16.905675452110398,
+         "ViT_Tiny_AT->WRN_28_10": 8.100645529053423,
+         "WRN_28_10->ResNet18_AT": 21.1071078134329,
+         "WRN_28_10->ViT_Tiny_AT": 18.538965201486864
+        },
+        "max_abs_artik": 0.7057916636153401,
+        "R2": 0.9746931482741106,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 5.07720693027045,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -2.5681426119460373,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 3.920647645555068,
+        "kaynak_farki": 5.07720693027045,
+        "hedef_farki": -2.5681426119460373,
+        "artik_farki": 1.4115833272306553,
+        "toplam_kontrol": 3.9206476455550683
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 12.472060795708538,
+        "WRN_hedef_ViTden": 8.806437192668753,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 3.6656236030397853,
+        "WRN_kaynak_ResNete": 21.812899477048227,
+        "WRN_kaynak_ViTe": 17.833173537871524,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 3.979725939176703
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 19.006391632771646,
+        "gelen_ort_ViT": 18.976852485960826,
+        "giden_ort_ResNet": 16.296296114879333,
+        "giden_ort_ViT": 12.503160490581907
+       }
+      }
+     ]
+    },
+    "both_correct": {
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": {
+      "ortalama": 6.764415696814058,
+      "sd_ciftler_arasi": 0.3509333206177039,
+      "degerler": [
+       6.370548111696224,
+       6.878854401247362,
+       7.043844577498588
+      ]
+     },
+     "hedef_etkisi_farki_ViT_eksi_ResNet": {
+      "ortalama": -0.5331979225906845,
+      "sd_ciftler_arasi": 0.5855079253797635,
+      "degerler": [
+       0.03460539663501594,
+       -0.4992646034964663,
+       -1.1349345609106032
+      ]
+     },
+     "asimetri_ResNettoViT_eksi_ViTtoResNet": {
+      "ortalama": 8.302533042025159,
+      "sd_ciftler_arasi": 0.16286537964494732,
+      "degerler": [
+       8.490036486107213,
+       8.221310315551152,
+       8.196252324417108
+      ]
+     },
+     "artik_farki": {
+      "ortalama": 2.071315267801784,
+      "sd_ciftler_arasi": 0.22312049883995538,
+      "degerler": [
+       2.0848829777759725,
+       1.8417205178002565,
+       2.287342307829123
+      ]
+     },
+     "max_abs_artik": {
+      "ortalama": 1.0356576339009014,
+      "sd_ciftler_arasi": 0.11156024941997768,
+      "degerler": [
+       1.0424414888879951,
+       0.920860258900138,
+       1.1436711539145712
+      ]
+     },
+     "R2": {
+      "ortalama": 0.9642898924066947,
+      "sd_ciftler_arasi": 0.007233681618230206,
+      "degerler": [
+       0.9643793934217044,
+       0.9714784082381377,
+       0.957011875560242
+      ]
+     },
+     "WRN_hedef_fark_ResNet_eksi_ViT": {
+      "ortalama": 4.69310042901227,
+      "sd_ciftler_arasi": 0.37972511824726896,
+      "degerler": [
+       4.285665133920252,
+       5.037133883447105,
+       4.756502269669456
+      ]
+     },
+     "WRN_kaynak_fark_ResNet_eksi_ViT": {
+      "ortalama": 2.6045131903924763,
+      "sd_ciftler_arasi": 0.722966661536951,
+      "degerler": [
+       2.050277581140964,
+       2.340985121296729,
+       3.4222768687397362
+      ]
+     },
+     "WRN_hedef_ResNetten": {
+      "ortalama": 9.328182619888098,
+      "sd_ciftler_arasi": 0.28662771229738665,
+      "degerler": [
+       9.028530155290719,
+       9.599712368168746,
+       9.356305336204834
+      ]
+     },
+     "WRN_hedef_ViTden": {
+      "ortalama": 4.635082190875829,
+      "sd_ciftler_arasi": 0.09518020426999989,
+      "degerler": [
+       4.742865021370467,
+       4.562578484721641,
+       4.599803066535378
+      ]
+     },
+     "WRN_kaynak_ResNete": {
+      "ortalama": 19.648480737358103,
+      "sd_ciftler_arasi": 0.29821020285322164,
+      "degerler": [
+       19.477549055013842,
+       19.475071907957815,
+       19.992821249102658
+      ]
+     },
+     "WRN_kaynak_ViTe": {
+      "ortalama": 17.04396754696563,
+      "sd_ciftler_arasi": 0.43541524572638696,
+      "degerler": [
+       17.427271473872878,
+       17.134086786661086,
+       16.57054438036292
+      ]
+     },
+     "cift_basina_tam": [
+      {
+       "uydurma": {
+        "mu": 13.069948384267343,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.6583830677096805,
+         "ViT_Tiny_AT": -4.712165043986544,
+         "WRN_28_10": 3.0537819762768637
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 2.3113772055816515,
+         "ViT_Tiny_AT": 2.3459826022166674,
+         "WRN_28_10": -4.6573598077983185
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 1.042441488887981,
+         "ResNet18_AT->WRN_28_10": -1.0424414888879863,
+         "ViT_Tiny_AT->ResNet18_AT": -1.0424414888879916,
+         "ViT_Tiny_AT->WRN_28_10": 1.0424414888879858,
+         "WRN_28_10->ResNet18_AT": 1.0424414888879845,
+         "WRN_28_10->ViT_Tiny_AT": -1.0424414888879951
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 17.074314054193692,
+         "ResNet18_AT->WRN_28_10": 10.070971644178705,
+         "ViT_Tiny_AT->ResNet18_AT": 10.669160545862452,
+         "ViT_Tiny_AT->WRN_28_10": 3.7004235324824815,
+         "WRN_28_10->ResNet18_AT": 18.435107566125858,
+         "WRN_28_10->ViT_Tiny_AT": 18.469712962760873
+        },
+        "max_abs_artik": 1.0424414888879951,
+        "R2": 0.9643793934217044,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 6.370548111696224,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": 0.03460539663501594,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 8.490036486107213,
+        "kaynak_farki": 6.370548111696224,
+        "hedef_farki": 0.03460539663501594,
+        "artik_farki": 2.0848829777759725,
+        "toplam_kontrol": 8.490036486107213
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 9.028530155290719,
+        "WRN_hedef_ViTden": 4.742865021370467,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 4.285665133920252,
+        "WRN_kaynak_ResNete": 19.477549055013842,
+        "WRN_kaynak_ViTe": 17.427271473872878,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 2.050277581140964
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 14.552134055994152,
+        "gelen_ort_ViT": 17.772013508477276,
+        "giden_ort_ResNet": 13.572642849186195,
+        "giden_ort_ViT": 7.184792039172464
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 13.209325832560925,
+        "alpha_kaynak": {
+         "ResNet18_AT": 2.085318326163236,
+         "ViT_Tiny_AT": -4.793536075084126,
+         "WRN_28_10": 2.70821774892089
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 2.636668067575875,
+         "ViT_Tiny_AT": 2.1374034640794086,
+         "WRN_28_10": -4.7740715316552835
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.9208602589001238,
+         "ResNet18_AT->WRN_28_10": -0.9208602589001309,
+         "ViT_Tiny_AT->ResNet18_AT": -0.9208602589001327,
+         "ViT_Tiny_AT->WRN_28_10": 0.9208602589001265,
+         "WRN_28_10->ResNet18_AT": 0.9208602589001238,
+         "WRN_28_10->ViT_Tiny_AT": -0.920860258900138
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 17.43204762280357,
+         "ResNet18_AT->WRN_28_10": 10.520572627068876,
+         "ViT_Tiny_AT->ResNet18_AT": 11.052457825052674,
+         "ViT_Tiny_AT->WRN_28_10": 3.6417182258215144,
+         "WRN_28_10->ResNet18_AT": 18.55421164905769,
+         "WRN_28_10->ViT_Tiny_AT": 18.054947045561224
+        },
+        "max_abs_artik": 0.920860258900138,
+        "R2": 0.9714784082381377,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 6.878854401247362,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -0.4992646034964663,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 8.221310315551152,
+        "kaynak_farki": 6.878854401247362,
+        "hedef_farki": -0.4992646034964663,
+        "artik_farki": 1.8417205178002565,
+        "toplam_kontrol": 8.221310315551152
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 9.599712368168746,
+        "WRN_hedef_ViTden": 4.562578484721641,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 5.037133883447105,
+        "WRN_kaynak_ResNete": 19.475071907957815,
+        "WRN_kaynak_ViTe": 17.134086786661086,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 2.340985121296729
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 14.803334737055177,
+        "gelen_ort_ViT": 17.74349733418239,
+        "giden_ort_ResNet": 13.97631012493622,
+        "giden_ort_ViT": 7.347088025437091
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 13.209403589356576,
+        "alpha_kaynak": {
+         "ResNet18_AT": 2.2175192678273024,
+         "ViT_Tiny_AT": -4.826325309671285,
+         "WRN_28_10": 2.6088060418439825
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 3.0309404639875397,
+         "ViT_Tiny_AT": 1.8960059030769365,
+         "WRN_28_10": -4.926946367064476
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 1.1436711539145534,
+         "ResNet18_AT->WRN_28_10": -1.1436711539145676,
+         "ViT_Tiny_AT->ResNet18_AT": -1.1436711539145694,
+         "ViT_Tiny_AT->WRN_28_10": 1.1436711539145623,
+         "WRN_28_10->ResNet18_AT": 1.1436711539145605,
+         "WRN_28_10->ViT_Tiny_AT": -1.1436711539145712
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 17.322928760260815,
+         "ResNet18_AT->WRN_28_10": 10.499976490119401,
+         "ViT_Tiny_AT->ResNet18_AT": 11.41401874367283,
+         "ViT_Tiny_AT->WRN_28_10": 3.4561319126208154,
+         "WRN_28_10->ResNet18_AT": 18.849150095188097,
+         "WRN_28_10->ViT_Tiny_AT": 17.714215534277493
+        },
+        "max_abs_artik": 1.1436711539145712,
+        "R2": 0.957011875560242,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 7.043844577498588,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -1.1349345609106032,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 8.196252324417108,
+        "kaynak_farki": 7.043844577498588,
+        "hedef_farki": -1.1349345609106032,
+        "artik_farki": 2.287342307829123,
+        "toplam_kontrol": 8.196252324417108
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 9.356305336204834,
+        "WRN_hedef_ViTden": 4.599803066535378,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 4.756502269669456,
+        "WRN_kaynak_ResNete": 19.992821249102658,
+        "WRN_kaynak_ViTe": 16.57054438036292,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 3.4222768687397362
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 15.13158441943046,
+        "gelen_ort_ViT": 17.518572147269147,
+        "giden_ort_ResNet": 13.911452625190101,
+        "giden_ort_ViT": 7.435075328146819
+       }
+      }
+     ]
+    },
+    "successful_source": "yok (ornek bazli kayitta source_adv_wrong alani yok)"
+   },
+   "npz_json_tutarlilik_kontrolu": {
+    "pair1": {
+     "max_abs_npz_raw_eksi_json": 3.552713678800501e-15,
+     "max_abs_npz_tc_eksi_json_cond": 0.0038310236924434804
+    },
+    "pair2": {
+     "max_abs_npz_raw_eksi_json": 7.105427357601002e-15,
+     "max_abs_npz_tc_eksi_json_cond": 0.0049932945909691995
+    },
+    "pair3": {
+     "max_abs_npz_raw_eksi_json": 3.552713678800501e-15,
+     "max_abs_npz_tc_eksi_json_cond": 0.003562807331247697
+    }
+   }
+  },
+  "CIFAR-100": {
+   "ozet_matris_kaynagi": "results/q1/cifar100/transfer/e1_c3_summary.json",
+   "ozet_matris": {
+    "target_correct": {
+     "uydurma": {
+      "mu": 25.532222222222227,
+      "alpha_kaynak": {
+       "ResNet18_AT": 1.1877777777777754,
+       "ViT_Tiny_AT": -8.350000000000001,
+       "WRN_28_10": 7.162222222222226
+      },
+      "beta_hedef": {
+       "ResNet18_AT": 4.333333333333332,
+       "ViT_Tiny_AT": -1.8522222222222182,
+       "WRN_28_10": -2.481111111111114
+      },
+      "artiklar": {
+       "ResNet18_AT->ViT_Tiny_AT": 0.8022222222222126,
+       "ResNet18_AT->WRN_28_10": -0.8022222222222197,
+       "ViT_Tiny_AT->ResNet18_AT": -0.8022222222222233,
+       "ViT_Tiny_AT->WRN_28_10": 0.8022222222222197,
+       "WRN_28_10->ResNet18_AT": 0.8022222222222197,
+       "WRN_28_10->ViT_Tiny_AT": -0.8022222222222304
+      },
+      "uydurulan": {
+       "ResNet18_AT->ViT_Tiny_AT": 24.867777777777786,
+       "ResNet18_AT->WRN_28_10": 24.238888888888887,
+       "ViT_Tiny_AT->ResNet18_AT": 21.515555555555558,
+       "ViT_Tiny_AT->WRN_28_10": 14.701111111111112,
+       "WRN_28_10->ResNet18_AT": 37.027777777777786,
+       "WRN_28_10->ViT_Tiny_AT": 30.842222222222233
+      },
+      "max_abs_artik": 0.8022222222222304,
+      "R2": 0.9871187443343161,
+      "n_hucre": 6,
+      "ayni_cins_gamma": null,
+      "parametre_sayisi": 5,
+      "artik_serbestlik": 1,
+      "tasarim_rank": 5
+     },
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": 9.537777777777777,
+     "hedef_etkisi_farki_ViT_eksi_ResNet": -6.185555555555551,
+     "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+      "asimetri": 4.9566666666666634,
+      "kaynak_farki": 9.537777777777777,
+      "hedef_farki": -6.185555555555551,
+      "artik_farki": 1.604444444444436,
+      "toplam_kontrol": 4.956666666666662
+     },
+     "sabit_WRN": {
+      "WRN_hedef_ResNetten": 23.436666666666667,
+      "WRN_hedef_ViTden": 15.503333333333332,
+      "WRN_hedef_fark_ResNet_eksi_ViT": 7.933333333333335,
+      "WRN_kaynak_ResNete": 37.830000000000005,
+      "WRN_kaynak_ViTe": 30.040000000000003,
+      "WRN_kaynak_fark_ResNet_eksi_ViT": 7.790000000000003
+     },
+     "marjinaller": {
+      "gelen_ort_ResNet": 29.27166666666667,
+      "gelen_ort_ViT": 27.855,
+      "giden_ort_ResNet": 24.553333333333335,
+      "giden_ort_ViT": 18.108333333333334
+     }
+    },
+    "raw_duyarlilik": {
+     "uydurma": {
+      "mu": 57.33333333333334,
+      "alpha_kaynak": {
+       "ResNet18_AT": 1.0399999999999965,
+       "ViT_Tiny_AT": -5.435555555555557,
+       "WRN_28_10": 4.3955555555555605
+      },
+      "beta_hedef": {
+       "ResNet18_AT": -2.123333333333338,
+       "ViT_Tiny_AT": 8.592222222222233,
+       "WRN_28_10": -6.468888888888895
+      },
+      "artiklar": {
+       "ResNet18_AT->ViT_Tiny_AT": 0.6711111111110881,
+       "ResNet18_AT->WRN_28_10": -0.6711111111111165,
+       "ViT_Tiny_AT->ResNet18_AT": -0.6711111111111165,
+       "ViT_Tiny_AT->WRN_28_10": 0.6711111111111165,
+       "WRN_28_10->ResNet18_AT": 0.6711111111111023,
+       "WRN_28_10->ViT_Tiny_AT": -0.6711111111111308
+      },
+      "uydurulan": {
+       "ResNet18_AT->ViT_Tiny_AT": 66.96555555555557,
+       "ResNet18_AT->WRN_28_10": 51.904444444444444,
+       "ViT_Tiny_AT->ResNet18_AT": 49.77444444444445,
+       "ViT_Tiny_AT->WRN_28_10": 45.428888888888885,
+       "WRN_28_10->ResNet18_AT": 59.60555555555557,
+       "WRN_28_10->ViT_Tiny_AT": 70.32111111111114
+      },
+      "max_abs_artik": 0.6711111111111308,
+      "R2": 0.9945698275998854,
+      "n_hucre": 6,
+      "ayni_cins_gamma": null,
+      "parametre_sayisi": 5,
+      "artik_serbestlik": 1,
+      "tasarim_rank": 5
+     },
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": 6.4755555555555535,
+     "hedef_etkisi_farki_ViT_eksi_ResNet": 10.715555555555571,
+     "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+      "asimetri": 18.533333333333324,
+      "kaynak_farki": 6.4755555555555535,
+      "hedef_farki": 10.715555555555571,
+      "artik_farki": 1.3422222222222047,
+      "toplam_kontrol": 18.53333333333333
+     },
+     "sabit_WRN": {
+      "WRN_hedef_ResNetten": 51.23333333333333,
+      "WRN_hedef_ViTden": 46.1,
+      "WRN_hedef_fark_ResNet_eksi_ViT": 5.133333333333326,
+      "WRN_kaynak_ResNete": 60.27666666666667,
+      "WRN_kaynak_ViTe": 69.65,
+      "WRN_kaynak_fark_ResNet_eksi_ViT": -9.373333333333335
+     },
+     "marjinaller": {
+      "gelen_ort_ResNet": 54.69,
+      "gelen_ort_ViT": 68.64333333333333,
+      "giden_ort_ResNet": 59.43499999999999,
+      "giden_ort_ViT": 47.60166666666667
+     }
+    }
+   },
+   "cift_basina": {
+    "raw": {
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": {
+      "ortalama": 6.475555555555556,
+      "sd_ciftler_arasi": 0.3772169039062203,
+      "degerler": [
+       6.066666666666665,
+       6.810000000000003,
+       6.5500000000000025
+      ]
+     },
+     "hedef_etkisi_farki_ViT_eksi_ResNet": {
+      "ortalama": 10.715555555555575,
+      "sd_ciftler_arasi": 0.9653113103687953,
+      "degerler": [
+       11.79666666666668,
+       10.410000000000032,
+       9.940000000000012
+      ]
+     },
+     "asimetri_ResNettoViT_eksi_ViTtoResNet": {
+      "ortalama": 18.53333333333333,
+      "sd_ciftler_arasi": 0.7111493045298818,
+      "degerler": [
+       19.22,
+       18.58,
+       17.799999999999997
+      ]
+     },
+     "artik_farki": {
+      "ortalama": 1.3422222222222022,
+      "sd_ciftler_arasi": 0.02795499027867931,
+      "degerler": [
+       1.356666666666655,
+       1.359999999999964,
+       1.309999999999988
+      ]
+     },
+     "max_abs_artik": {
+      "ortalama": 0.671111111111145,
+      "sd_ciftler_arasi": 0.01397749513934714,
+      "degerler": [
+       0.6783333333333701,
+       0.6800000000000352,
+       0.6550000000000296
+      ]
+     },
+     "R2": {
+      "ortalama": 0.9945686969374283,
+      "sd_ciftler_arasi": 0.0002627304723774907,
+      "degerler": [
+       0.9947928109362129,
+       0.9942795608941678,
+       0.9946337189819044
+      ]
+     },
+     "WRN_hedef_fark_ResNet_eksi_ViT": {
+      "ortalama": 5.133333333333328,
+      "sd_ciftler_arasi": 0.38135722535876265,
+      "degerler": [
+       4.709999999999994,
+       5.449999999999996,
+       5.239999999999995
+      ]
+     },
+     "WRN_kaynak_fark_ResNet_eksi_ViT": {
+      "ortalama": -9.373333333333335,
+      "sd_ciftler_arasi": 0.9473295801004689,
+      "degerler": [
+       -10.439999999999998,
+       -9.050000000000011,
+       -8.629999999999995
+      ]
+     },
+     "WRN_hedef_ResNetten": {
+      "ortalama": 51.23333333333333,
+      "sd_ciftler_arasi": 0.24664414311581298,
+      "degerler": [
+       51.349999999999994,
+       51.4,
+       50.949999999999996
+      ]
+     },
+     "WRN_hedef_ViTden": {
+      "ortalama": 46.1,
+      "sd_ciftler_arasi": 0.48280430818293196,
+      "degerler": [
+       46.64,
+       45.95,
+       45.71
+      ]
+     },
+     "WRN_kaynak_ResNete": {
+      "ortalama": 60.276666666666664,
+      "sd_ciftler_arasi": 0.15502687938978393,
+      "degerler": [
+       60.39,
+       60.099999999999994,
+       60.34
+      ]
+     },
+     "WRN_kaynak_ViTe": {
+      "ortalama": 69.65,
+      "sd_ciftler_arasi": 1.025865488258571,
+      "degerler": [
+       70.83,
+       69.15,
+       68.97
+      ]
+     },
+     "cift_basina_tam": [
+      {
+       "uydurma": {
+        "mu": 57.868333333333354,
+        "alpha_kaynak": {
+         "ResNet18_AT": 0.8300000000000013,
+         "ViT_Tiny_AT": -5.236666666666664,
+         "WRN_28_10": 4.406666666666663
+        },
+        "beta_hedef": {
+         "ResNet18_AT": -2.5633333333333344,
+         "ViT_Tiny_AT": 9.233333333333345,
+         "WRN_28_10": -6.670000000000011
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.678333333333299,
+         "ResNet18_AT->WRN_28_10": -0.6783333333333559,
+         "ViT_Tiny_AT->ResNet18_AT": -0.6783333333333559,
+         "ViT_Tiny_AT->WRN_28_10": 0.6783333333333275,
+         "WRN_28_10->ResNet18_AT": 0.6783333333333204,
+         "WRN_28_10->ViT_Tiny_AT": -0.6783333333333701
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 67.9316666666667,
+         "ResNet18_AT->WRN_28_10": 52.02833333333335,
+         "ViT_Tiny_AT->ResNet18_AT": 50.06833333333336,
+         "ViT_Tiny_AT->WRN_28_10": 45.96166666666667,
+         "WRN_28_10->ResNet18_AT": 59.71166666666668,
+         "WRN_28_10->ViT_Tiny_AT": 71.50833333333337
+        },
+        "max_abs_artik": 0.6783333333333701,
+        "R2": 0.9947928109362129,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 6.066666666666665,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": 11.79666666666668,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 19.22,
+        "kaynak_farki": 6.066666666666665,
+        "hedef_farki": 11.79666666666668,
+        "artik_farki": 1.356666666666655,
+        "toplam_kontrol": 19.22
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 51.349999999999994,
+        "WRN_hedef_ViTden": 46.64,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 4.709999999999994,
+        "WRN_kaynak_ResNete": 60.39,
+        "WRN_kaynak_ViTe": 70.83,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": -10.439999999999998
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 54.89,
+        "gelen_ort_ViT": 69.72,
+        "giden_ort_ResNet": 59.98,
+        "giden_ort_ViT": 48.015
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 57.076666666666696,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.1733333333333424,
+         "ViT_Tiny_AT": -5.6366666666666605,
+         "WRN_28_10": 4.463333333333318
+        },
+        "beta_hedef": {
+         "ResNet18_AT": -2.1200000000000063,
+         "ViT_Tiny_AT": 8.290000000000026,
+         "WRN_28_10": -6.1700000000000195
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.6799999999999358,
+         "ResNet18_AT->WRN_28_10": -0.680000000000021,
+         "ViT_Tiny_AT->ResNet18_AT": -0.6800000000000281,
+         "ViT_Tiny_AT->WRN_28_10": 0.6799999999999926,
+         "WRN_28_10->ResNet18_AT": 0.6799999999999855,
+         "WRN_28_10->ViT_Tiny_AT": -0.6800000000000352
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 66.54000000000006,
+         "ResNet18_AT->WRN_28_10": 52.08000000000002,
+         "ViT_Tiny_AT->ResNet18_AT": 49.32000000000003,
+         "ViT_Tiny_AT->WRN_28_10": 45.27000000000001,
+         "WRN_28_10->ResNet18_AT": 59.42000000000001,
+         "WRN_28_10->ViT_Tiny_AT": 69.83000000000004
+        },
+        "max_abs_artik": 0.6800000000000352,
+        "R2": 0.9942795608941678,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 6.810000000000003,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": 10.410000000000032,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 18.58,
+        "kaynak_farki": 6.810000000000003,
+        "hedef_farki": 10.410000000000032,
+        "artik_farki": 1.359999999999964,
+        "toplam_kontrol": 18.58
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 51.4,
+        "WRN_hedef_ViTden": 45.95,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 5.449999999999996,
+        "WRN_kaynak_ResNete": 60.099999999999994,
+        "WRN_kaynak_ViTe": 69.15,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": -9.050000000000011
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 54.37,
+        "gelen_ort_ViT": 68.185,
+        "giden_ort_ResNet": 59.31,
+        "giden_ort_ViT": 47.295
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 57.055000000000014,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.1166666666666705,
+         "ViT_Tiny_AT": -5.433333333333332,
+         "WRN_28_10": 4.316666666666661
+        },
+        "beta_hedef": {
+         "ResNet18_AT": -1.686666666666667,
+         "ViT_Tiny_AT": 8.253333333333345,
+         "WRN_28_10": -6.566666666666677
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.6549999999999727,
+         "ResNet18_AT->WRN_28_10": -0.6550000000000082,
+         "ViT_Tiny_AT->ResNet18_AT": -0.6550000000000153,
+         "ViT_Tiny_AT->WRN_28_10": 0.654999999999994,
+         "WRN_28_10->ResNet18_AT": 0.654999999999994,
+         "WRN_28_10->ViT_Tiny_AT": -0.6550000000000296
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 66.42500000000003,
+         "ResNet18_AT->WRN_28_10": 51.605000000000004,
+         "ViT_Tiny_AT->ResNet18_AT": 49.93500000000002,
+         "ViT_Tiny_AT->WRN_28_10": 45.05500000000001,
+         "WRN_28_10->ResNet18_AT": 59.68500000000001,
+         "WRN_28_10->ViT_Tiny_AT": 69.62500000000003
+        },
+        "max_abs_artik": 0.6550000000000296,
+        "R2": 0.9946337189819044,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 6.5500000000000025,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": 9.940000000000012,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 17.799999999999997,
+        "kaynak_farki": 6.5500000000000025,
+        "hedef_farki": 9.940000000000012,
+        "artik_farki": 1.309999999999988,
+        "toplam_kontrol": 17.800000000000004
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 50.949999999999996,
+        "WRN_hedef_ViTden": 45.71,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 5.239999999999995,
+        "WRN_kaynak_ResNete": 60.34,
+        "WRN_kaynak_ViTe": 68.97,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": -8.629999999999995
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 54.81,
+        "gelen_ort_ViT": 68.025,
+        "giden_ort_ResNet": 59.015,
+        "giden_ort_ViT": 47.495000000000005
+       }
+      }
+     ]
+    },
+    "target_correct": {
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": {
+      "ortalama": 9.539641179786503,
+      "sd_ciftler_arasi": 0.637253824895831,
+      "degerler": [
+       8.822391563429735,
+       10.040593702136857,
+       9.755938273792918
+      ]
+     },
+     "hedef_etkisi_farki_ViT_eksi_ResNet": {
+      "ortalama": -6.187231437312519,
+      "sd_ciftler_arasi": 0.9327661598750013,
+      "degerler": [
+       -6.095826992378788,
+       -7.1623348807774665,
+       -5.303532438781304
+      ]
+     },
+     "asimetri_ResNettoViT_eksi_ViTtoResNet": {
+      "ortalama": 4.956790080022898,
+      "sd_ciftler_arasi": 1.0175602270896489,
+      "degerler": [
+       4.210804028886713,
+       4.543616822679152,
+       6.11594938850283
+      ]
+     },
+     "artik_farki": {
+      "ortalama": 1.604380337548914,
+      "sd_ciftler_arasi": 0.1040490090722512,
+      "degerler": [
+       1.4842394578357663,
+       1.6653580013197598,
+       1.6635435534912162
+      ]
+     },
+     "max_abs_artik": {
+      "ortalama": 0.802190168774473,
+      "sd_ciftler_arasi": 0.05202450453612555,
+      "degerler": [
+       0.7421197289178991,
+       0.8326790006598905,
+       0.8317717767456294
+      ]
+     },
+     "R2": {
+      "ortalama": 0.9871301653515724,
+      "sd_ciftler_arasi": 0.0014827241997128246,
+      "degerler": [
+       0.9888084404387051,
+       0.9865843119728468,
+       0.9859977436431653
+      ]
+     },
+     "WRN_hedef_fark_ResNet_eksi_ViT": {
+      "ortalama": 7.935260842237586,
+      "sd_ciftler_arasi": 0.5361006319683204,
+      "degerler": [
+       7.3381521055939665,
+       8.375235700817095,
+       8.092394720301696
+      ]
+     },
+     "WRN_kaynak_fark_ResNet_eksi_ViT": {
+      "ortalama": 7.791611774861444,
+      "sd_ciftler_arasi": 0.9481758122627912,
+      "degerler": [
+       7.5800664502145665,
+       8.827692882097235,
+       6.96707599227253
+      ]
+     },
+     "WRN_hedef_ResNetten": {
+      "ortalama": 23.439136811229833,
+      "sd_ciftler_arasi": 0.376575308359915,
+      "degerler": [
+       23.64864864864865,
+       23.66436203645506,
+       23.004399748585794
+      ]
+     },
+     "WRN_hedef_ViTden": {
+      "ortalama": 15.503875968992249,
+      "sd_ciftler_arasi": 0.7235555838984872,
+      "degerler": [
+       16.310496543054683,
+       15.289126335637965,
+       14.912005028284097
+      ]
+     },
+     "WRN_kaynak_ResNete": {
+      "ortalama": 37.83237166874667,
+      "sd_ciftler_arasi": 0.9027226333246556,
+      "degerler": [
+       38.36213607348591,
+       38.34493426140758,
+       36.79004467134652
+      ]
+     },
+     "WRN_kaynak_ViTe": {
+      "ortalama": 30.040759893885227,
+      "sd_ciftler_arasi": 0.6599411955750896,
+      "degerler": [
+       30.78206962327134,
+       29.517241379310345,
+       29.82296867907399
+      ]
+     },
+     "cift_basina_tam": [
+      {
+       "uydurma": {
+        "mu": 26.057834268361667,
+        "alpha_kaynak": {
+         "ResNet18_AT": 0.7611039525402225,
+         "ViT_Tiny_AT": -8.061287610889512,
+         "WRN_28_10": 7.300183658349289
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 4.261998417857069,
+         "ViT_Tiny_AT": -1.8338285745217184,
+         "WRN_28_10": -2.4281698433353505
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.7421197289178743,
+         "ResNet18_AT->WRN_28_10": -0.7421197289178885,
+         "ViT_Tiny_AT->ResNet18_AT": -0.742119728917892,
+         "ViT_Tiny_AT->WRN_28_10": 0.7421197289178778,
+         "WRN_28_10->ResNet18_AT": 0.7421197289178778,
+         "WRN_28_10->ViT_Tiny_AT": -0.7421197289178991
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 24.98510964638017,
+         "ResNet18_AT->WRN_28_10": 24.390768377566538,
+         "ViT_Tiny_AT->ResNet18_AT": 22.258545075329224,
+         "ViT_Tiny_AT->WRN_28_10": 15.568376814136805,
+         "WRN_28_10->ResNet18_AT": 37.62001634456803,
+         "WRN_28_10->ViT_Tiny_AT": 31.52418935218924
+        },
+        "max_abs_artik": 0.7421197289178991,
+        "R2": 0.9888084404387051,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 8.822391563429735,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -6.095826992378788,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 4.210804028886713,
+        "kaynak_farki": 8.822391563429735,
+        "hedef_farki": -6.095826992378788,
+        "artik_farki": 1.4842394578357663,
+        "toplam_kontrol": 4.210804028886713
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 23.64864864864865,
+        "WRN_hedef_ViTden": 16.310496543054683,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 7.3381521055939665,
+        "WRN_kaynak_ResNete": 38.36213607348591,
+        "WRN_kaynak_ViTe": 30.78206962327134,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 7.5800664502145665
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 29.93928070994862,
+        "gelen_ort_ViT": 28.254649499284692,
+        "giden_ort_ResNet": 24.68793901197335,
+        "giden_ort_ViT": 18.913460944733007
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 25.52043698379592,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.4277605592761984,
+         "ViT_Tiny_AT": -8.612833142860659,
+         "WRN_28_10": 7.185072583584461
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 4.8067456933673185,
+         "ViT_Tiny_AT": -2.3555891874101476,
+         "WRN_28_10": -2.451156505957171
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.8326790006598692,
+         "ResNet18_AT->WRN_28_10": -0.832679000659887,
+         "ViT_Tiny_AT->ResNet18_AT": -0.8326790006598905,
+         "ViT_Tiny_AT->WRN_28_10": 0.8326790006598728,
+         "WRN_28_10->ResNet18_AT": 0.8326790006598799,
+         "WRN_28_10->ViT_Tiny_AT": -0.8326790006598905
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 24.592608355661973,
+         "ResNet18_AT->WRN_28_10": 24.497041037114947,
+         "ViT_Tiny_AT->ResNet18_AT": 21.71434953430258,
+         "ViT_Tiny_AT->WRN_28_10": 14.456447334978092,
+         "WRN_28_10->ResNet18_AT": 37.5122552607477,
+         "WRN_28_10->ViT_Tiny_AT": 30.349920379970236
+        },
+        "max_abs_artik": 0.8326790006598905,
+        "R2": 0.9865843119728468,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 10.040593702136857,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -7.1623348807774665,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 4.543616822679152,
+        "kaynak_farki": 10.040593702136857,
+        "hedef_farki": -7.1623348807774665,
+        "artik_farki": 1.6653580013197598,
+        "toplam_kontrol": 4.54361682267915
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 23.66436203645506,
+        "WRN_hedef_ViTden": 15.289126335637965,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 8.375235700817095,
+        "WRN_kaynak_ResNete": 38.34493426140758,
+        "WRN_kaynak_ViTe": 29.517241379310345,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 8.827692882097235
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 29.613302397525135,
+        "gelen_ort_ViT": 27.471264367816094,
+        "giden_ort_ResNet": 24.544824696388453,
+        "giden_ort_ViT": 18.08539843464033
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 25.019282163076802,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.3735127203547635,
+         "ViT_Tiny_AT": -8.382425553438154,
+         "WRN_28_10": 7.00891283308339
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 3.93007789844073,
+         "ViT_Tiny_AT": -1.373454540340574,
+         "WRN_28_10": -2.556623358100156
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.8317717767455974,
+         "ResNet18_AT->WRN_28_10": -0.8317717767456152,
+         "ViT_Tiny_AT->ResNet18_AT": -0.8317717767456188,
+         "ViT_Tiny_AT->WRN_28_10": 0.8317717767456045,
+         "WRN_28_10->ResNet18_AT": 0.8317717767455974,
+         "WRN_28_10->ViT_Tiny_AT": -0.8317717767456294
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 25.01934034309099,
+         "ResNet18_AT->WRN_28_10": 23.83617152533141,
+         "ViT_Tiny_AT->ResNet18_AT": 20.566934508079378,
+         "ViT_Tiny_AT->WRN_28_10": 14.080233251538493,
+         "WRN_28_10->ResNet18_AT": 35.958272894600924,
+         "WRN_28_10->ViT_Tiny_AT": 30.65474045581962
+        },
+        "max_abs_artik": 0.8317717767456294,
+        "R2": 0.9859977436431653,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 9.755938273792918,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -5.303532438781304,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 6.11594938850283,
+        "kaynak_farki": 9.755938273792918,
+        "hedef_farki": -5.303532438781304,
+        "artik_farki": 1.6635435534912162,
+        "toplam_kontrol": 6.1159493885028295
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 23.004399748585794,
+        "WRN_hedef_ViTden": 14.912005028284097,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 8.092394720301696,
+        "WRN_kaynak_ResNete": 36.79004467134652,
+        "WRN_kaynak_ViTe": 29.82296867907399,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 6.96707599227253
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 28.26260370134014,
+        "gelen_ort_ViT": 27.83704039945529,
+        "giden_ort_ResNet": 24.42775593421119,
+        "giden_ort_ViT": 17.32358387980893
+       }
+      }
+     ]
+    },
+    "both_correct": {
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": {
+      "ortalama": 11.790361181127453,
+      "sd_ciftler_arasi": 0.8307511588863927,
+      "degerler": [
+       11.819684348628904,
+       12.606062531205575,
+       10.945336663547886
+      ]
+     },
+     "hedef_etkisi_farki_ViT_eksi_ResNet": {
+      "ortalama": -2.8476994220875262,
+      "sd_ciftler_arasi": 0.9345166950115106,
+      "degerler": [
+       -2.623086661639815,
+       -3.8740535494987376,
+       -2.045958055124025
+      ]
+     },
+     "asimetri_ResNettoViT_eksi_ViTtoResNet": {
+      "ortalama": 10.923256318700417,
+      "sd_ciftler_arasi": 0.342922747334904,
+      "degerler": [
+       11.152219873150104,
+       10.528992878942015,
+       11.088556204009134
+      ]
+     },
+     "artik_farki": {
+      "ortalama": 1.9805945596604875,
+      "sd_ciftler_arasi": 0.19728580495065748,
+      "degerler": [
+       1.9556221861610137,
+       1.7969838972351777,
+       2.189177595585271
+      ]
+     },
+     "max_abs_artik": {
+      "ortalama": 0.9902972798302597,
+      "sd_ciftler_arasi": 0.09864290247533368,
+      "degerler": [
+       0.9778110930805219,
+       0.8984919486176004,
+       1.0945887977926567
+      ]
+     },
+     "R2": {
+      "ortalama": 0.9851034741667313,
+      "sd_ciftler_arasi": 0.00348327440668516,
+      "degerler": [
+       0.9862543627445894,
+       0.987865662602247,
+       0.9811903971533574
+      ]
+     },
+     "WRN_hedef_fark_ResNet_eksi_ViT": {
+      "ortalama": 9.809766621466967,
+      "sd_ciftler_arasi": 1.0275362234266219,
+      "degerler": [
+       9.864062162467885,
+       10.809078633970405,
+       8.75615906796261
+      ]
+     },
+     "WRN_kaynak_fark_ResNet_eksi_ViT": {
+      "ortalama": 4.828293981748025,
+      "sd_ciftler_arasi": 0.7497819991652566,
+      "degerler": [
+       4.5787088478008435,
+       5.671037446733919,
+       4.23513565070931
+      ]
+     },
+     "WRN_hedef_ResNetten": {
+      "ortalama": 18.32578192685516,
+      "sd_ciftler_arasi": 0.8410370232502677,
+      "degerler": [
+       18.718502519798417,
+       18.89862327909887,
+       17.360219981668195
+      ]
+     },
+     "WRN_hedef_ViTden": {
+      "ortalama": 8.516015305388194,
+      "sd_ciftler_arasi": 0.3899748511048638,
+      "degerler": [
+       8.854440357330532,
+       8.089544645128466,
+       8.604060913705585
+      ]
+     },
+     "WRN_kaynak_ResNete": {
+      "ortalama": 32.010688186278195,
+      "sd_ciftler_arasi": 0.7548206517159378,
+      "degerler": [
+       32.6133909287257,
+       32.25460396924728,
+       31.164069660861593
+      ]
+     },
+     "WRN_kaynak_ViTe": {
+      "ortalama": 27.18239420453017,
+      "sd_ciftler_arasi": 0.758034064911686,
+      "degerler": [
+       28.034682080924856,
+       26.583566522513358,
+       26.928934010152282
+      ]
+     },
+     "cift_basina_tam": [
+      {
+       "uydurma": {
+        "mu": 20.684827524470304,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.7831548827130728,
+         "ViT_Tiny_AT": -10.036529465915832,
+         "WRN_28_10": 8.25337458320276
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 2.6973777279721327,
+         "ViT_Tiny_AT": 0.07429106633231747,
+         "WRN_28_10": -2.7716687943044502
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.9778110930804971,
+         "ResNet18_AT->WRN_28_10": -0.9778110930805077,
+         "ViT_Tiny_AT->ResNet18_AT": -0.9778110930805166,
+         "ViT_Tiny_AT->WRN_28_10": 0.9778110930805095,
+         "WRN_28_10->ResNet18_AT": 0.9778110930805042,
+         "WRN_28_10->ViT_Tiny_AT": -0.9778110930805219
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 22.542273473515696,
+         "ResNet18_AT->WRN_28_10": 19.696313612878924,
+         "ViT_Tiny_AT->ResNet18_AT": 13.345675786526606,
+         "ViT_Tiny_AT->WRN_28_10": 7.876629264250022,
+         "WRN_28_10->ResNet18_AT": 31.635579835645196,
+         "WRN_28_10->ViT_Tiny_AT": 29.012493174005378
+        },
+        "max_abs_artik": 0.9778110930805219,
+        "R2": 0.9862543627445894,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 11.819684348628904,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -2.623086661639815,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 11.152219873150104,
+        "kaynak_farki": 11.819684348628904,
+        "hedef_farki": -2.623086661639815,
+        "artik_farki": 1.9556221861610137,
+        "toplam_kontrol": 11.152219873150102
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 18.718502519798417,
+        "WRN_hedef_ViTden": 8.854440357330532,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 9.864062162467885,
+        "WRN_kaynak_ResNete": 32.6133909287257,
+        "WRN_kaynak_ViTe": 28.034682080924856,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 4.5787088478008435
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 22.490627811085893,
+        "gelen_ort_ViT": 25.777383323760525,
+        "giden_ort_ResNet": 21.119293543197305,
+        "giden_ort_ViT": 10.61115252538831
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 20.314901773976977,
+        "alpha_kaynak": {
+         "ResNet18_AT": 2.5071815549549914,
+         "ViT_Tiny_AT": -10.098880976250584,
+         "WRN_28_10": 7.591699421295592
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 3.449510825357123,
+         "ViT_Tiny_AT": -0.4245427241416145,
+         "WRN_28_10": -3.0249681012155087
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 0.8984919486175826,
+         "ResNet18_AT->WRN_28_10": -0.8984919486175862,
+         "ViT_Tiny_AT->ResNet18_AT": -0.8984919486175951,
+         "ViT_Tiny_AT->WRN_28_10": 0.8984919486175809,
+         "WRN_28_10->ResNet18_AT": 0.8984919486175826,
+         "WRN_28_10->ViT_Tiny_AT": -0.8984919486176004
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 22.397540604790354,
+         "ResNet18_AT->WRN_28_10": 19.797115227716457,
+         "ViT_Tiny_AT->ResNet18_AT": 13.665531623083517,
+         "ViT_Tiny_AT->WRN_28_10": 7.191052696510885,
+         "WRN_28_10->ResNet18_AT": 31.356112020629695,
+         "WRN_28_10->ViT_Tiny_AT": 27.48205847113096
+        },
+        "max_abs_artik": 0.8984919486176004,
+        "R2": 0.987865662602247,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 12.606062531205575,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -3.8740535494987376,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 10.528992878942015,
+        "kaynak_farki": 12.606062531205575,
+        "hedef_farki": -3.8740535494987376,
+        "artik_farki": 1.7969838972351777,
+        "toplam_kontrol": 10.528992878942015
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 18.89862327909887,
+        "WRN_hedef_ViTden": 8.089544645128466,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 10.809078633970405,
+        "WRN_kaynak_ResNete": 32.25460396924728,
+        "WRN_kaynak_ViTe": 26.583566522513358,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 5.671037446733919
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 22.5108218218566,
+        "gelen_ort_ViT": 24.939799537960646,
+        "giden_ort_ResNet": 21.097327916253406,
+        "giden_ort_ViT": 10.428292159797195
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 19.883691046102257,
+        "alpha_kaynak": {
+         "ResNet18_AT": 1.6646446716426022,
+         "ViT_Tiny_AT": -9.280691991905284,
+         "WRN_28_10": 7.616047320262682
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 2.5697424967040225,
+         "ViT_Tiny_AT": 0.5237844415799974,
+         "WRN_28_10": -3.09352693828402
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 1.0945887977926247,
+         "ResNet18_AT->WRN_28_10": -1.0945887977926425,
+         "ViT_Tiny_AT->ResNet18_AT": -1.094588797792646,
+         "ViT_Tiny_AT->WRN_28_10": 1.094588797792631,
+         "WRN_28_10->ResNet18_AT": 1.0945887977926283,
+         "WRN_28_10->ViT_Tiny_AT": -1.0945887977926567
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 22.072120159324857,
+         "ResNet18_AT->WRN_28_10": 18.454808779460837,
+         "ViT_Tiny_AT->ResNet18_AT": 13.172741550900994,
+         "ViT_Tiny_AT->WRN_28_10": 7.509472115912954,
+         "WRN_28_10->ResNet18_AT": 30.069480863068964,
+         "WRN_28_10->ViT_Tiny_AT": 28.02352280794494
+        },
+        "max_abs_artik": 1.0945887977926567,
+        "R2": 0.9811903971533574,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 10.945336663547886,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -2.045958055124025,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 11.088556204009134,
+        "kaynak_farki": 10.945336663547886,
+        "hedef_farki": -2.045958055124025,
+        "artik_farki": 2.189177595585271,
+        "toplam_kontrol": 11.088556204009132
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 17.360219981668195,
+        "WRN_hedef_ViTden": 8.604060913705585,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 8.75615906796261,
+        "WRN_kaynak_ResNete": 31.164069660861593,
+        "WRN_kaynak_ViTe": 26.928934010152282,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 4.23513565070931
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 21.62111120698497,
+        "gelen_ort_ViT": 25.047821483634884,
+        "giden_ort_ResNet": 20.263464469392837,
+        "giden_ort_ViT": 10.341106833406966
+       }
+      }
+     ]
+    },
+    "successful_source": {
+     "kaynak_etkisi_farki_ResNet_eksi_ViT": {
+      "ortalama": 20.822459314043385,
+      "sd_ciftler_arasi": 1.4273423094437876,
+      "degerler": [
+       20.611645958891415,
+       22.343484006938297,
+       19.51224797630044
+      ]
+     },
+     "hedef_etkisi_farki_ViT_eksi_ResNet": {
+      "ortalama": -8.116843517564105,
+      "sd_ciftler_arasi": 2.2254468354833405,
+      "degerler": [
+       -8.702992321768258,
+       -9.990549169380825,
+       -5.656989061543231
+      ]
+     },
+     "asimetri_ResNettoViT_eksi_ViTtoResNet": {
+      "ortalama": 17.50112833596299,
+      "sd_ciftler_arasi": 0.9182101651078108,
+      "degerler": [
+       16.84196942914603,
+       17.111512364622246,
+       18.549903214120693
+      ]
+     },
+     "artik_farki": {
+      "ortalama": 4.795512539483711,
+      "sd_ciftler_arasi": 0.1235482363648097,
+      "degerler": [
+       4.933315792022871,
+       4.7585775270647765,
+       4.694644299363485
+      ]
+     },
+     "max_abs_artik": {
+      "ortalama": 2.3977562697418784,
+      "sd_ciftler_arasi": 0.0617741181824005,
+      "degerler": [
+       2.466657896011455,
+       2.379288763532408,
+       2.347322149681773
+      ]
+     },
+     "R2": {
+      "ortalama": 0.9830012753563079,
+      "sd_ciftler_arasi": 0.0008495254104804125,
+      "degerler": [
+       0.9827455414699404,
+       0.9839492907967617,
+       0.9823089938022215
+      ]
+     },
+     "WRN_hedef_fark_ResNet_eksi_ViT": {
+      "ortalama": 16.026946774559672,
+      "sd_ciftler_arasi": 1.4162066781207239,
+      "degerler": [
+       15.678330166868538,
+       17.58490647987354,
+       14.817603676936947
+      ]
+     },
+     "WRN_kaynak_fark_ResNet_eksi_ViT": {
+      "ortalama": 12.912356057047825,
+      "sd_ciftler_arasi": 2.2863872909842637,
+      "degerler": [
+       13.636308113791138,
+       14.749126696445607,
+       10.351633360906732
+      ]
+     },
+     "WRN_hedef_ResNetten": {
+      "ortalama": 27.485207599783305,
+      "sd_ciftler_arasi": 0.9322752851061605,
+      "degerler": [
+       27.77929527451516,
+       28.23497563616676,
+       26.44135188866799
+      ]
+     },
+     "WRN_hedef_ViTden": {
+      "ortalama": 11.458260825223627,
+      "sd_ciftler_arasi": 0.7394689457531081,
+      "degerler": [
+       12.100965107646623,
+       10.650069156293222,
+       11.623748211731044
+      ]
+     },
+     "WRN_kaynak_ResNete": {
+      "ortalama": 63.7411771869289,
+      "sd_ciftler_arasi": 2.5168033876037,
+      "degerler": [
+       65.28768426058012,
+       65.09877704609596,
+       60.837070254110614
+      ]
+     },
+     "WRN_kaynak_ViTe": {
+      "ortalama": 50.82882112988108,
+      "sd_ciftler_arasi": 0.7155816258351196,
+      "degerler": [
+       51.651376146788984,
+       50.349650349650354,
+       50.48543689320388
+      ]
+     },
+     "cift_basina_tam": [
+      {
+       "uydurma": {
+        "mu": 34.430362518010966,
+        "alpha_kaynak": {
+         "ResNet18_AT": -0.8902113686933371,
+         "ViT_Tiny_AT": -21.50185732758475,
+         "WRN_28_10": 22.392068696278088
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 5.998595150279643,
+         "ViT_Tiny_AT": -2.7043971714886155,
+         "WRN_28_10": -3.2941979787910274
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 2.4666578960114265,
+         "ResNet18_AT->WRN_28_10": -2.4666578960114407,
+         "ViT_Tiny_AT->ResNet18_AT": -2.4666578960114443,
+         "ViT_Tiny_AT->WRN_28_10": 2.4666578960114354,
+         "WRN_28_10->ResNet18_AT": 2.4666578960114265,
+         "WRN_28_10->ViT_Tiny_AT": -2.466657896011455
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 30.835753977829015,
+         "ResNet18_AT->WRN_28_10": 30.2459531705266,
+         "ViT_Tiny_AT->ResNet18_AT": 18.927100340705856,
+         "ViT_Tiny_AT->WRN_28_10": 9.634307211635187,
+         "WRN_28_10->ResNet18_AT": 62.821026364568695,
+         "WRN_28_10->ViT_Tiny_AT": 54.11803404280044
+        },
+        "max_abs_artik": 2.466657896011455,
+        "R2": 0.9827455414699404,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 20.611645958891415,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -8.702992321768258,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 16.84196942914603,
+        "kaynak_farki": 20.611645958891415,
+        "hedef_farki": -8.702992321768258,
+        "artik_farki": 4.933315792022871,
+        "toplam_kontrol": 16.841969429146026
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 27.77929527451516,
+        "WRN_hedef_ViTden": 12.100965107646623,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 15.678330166868538,
+        "WRN_kaynak_ResNete": 65.28768426058012,
+        "WRN_kaynak_ViTe": 51.651376146788984,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 13.636308113791138
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 40.874063352637265,
+        "gelen_ort_ViT": 42.47689401031471,
+        "giden_ort_ResNet": 30.540853574177802,
+        "giden_ort_ViT": 14.280703776170517
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 34.10284411978149,
+        "alpha_kaynak": {
+         "ResNet18_AT": 0.3109361925918636,
+         "ViT_Tiny_AT": -22.032547814346433,
+         "WRN_28_10": 21.72161162175457
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 6.895032541027523,
+         "ViT_Tiny_AT": -3.095516628353302,
+         "WRN_28_10": -3.7995159126742206
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 2.3792887635324007,
+         "ResNet18_AT->WRN_28_10": -2.3792887635323723,
+         "ViT_Tiny_AT->ResNet18_AT": -2.379288763532376,
+         "ViT_Tiny_AT->WRN_28_10": 2.3792887635323883,
+         "WRN_28_10->ResNet18_AT": 2.3792887635323794,
+         "WRN_28_10->ViT_Tiny_AT": -2.379288763532408
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 31.318263684020046,
+         "ResNet18_AT->WRN_28_10": 30.61426439969913,
+         "ViT_Tiny_AT->ResNet18_AT": 18.965328846462576,
+         "ViT_Tiny_AT->WRN_28_10": 8.270780392760834,
+         "WRN_28_10->ResNet18_AT": 62.71948828256358,
+         "WRN_28_10->ViT_Tiny_AT": 52.72893911318276
+        },
+        "max_abs_artik": 2.379288763532408,
+        "R2": 0.9839492907967617,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 22.343484006938297,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -9.990549169380825,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 17.111512364622246,
+        "kaynak_farki": 22.343484006938297,
+        "hedef_farki": -9.990549169380825,
+        "artik_farki": 4.7585775270647765,
+        "toplam_kontrol": 17.11151236462225
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 28.23497563616676,
+        "WRN_hedef_ViTden": 10.650069156293222,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 17.58490647987354,
+        "WRN_kaynak_ResNete": 65.09877704609596,
+        "WRN_kaynak_ViTe": 50.349650349650354,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 14.749126696445607
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 40.84240856451308,
+        "gelen_ort_ViT": 42.0236013986014,
+        "giden_ort_ResNet": 30.966264041859603,
+        "giden_ort_ViT": 13.618054619611712
+       }
+      },
+      {
+       "uydurma": {
+        "mu": 33.35055719991735,
+        "alpha_kaynak": {
+         "ResNet18_AT": -0.3450045444371237,
+         "ViT_Tiny_AT": -19.857252520737564,
+         "WRN_28_10": 20.202257065174688
+        },
+        "beta_hedef": {
+         "ResNet18_AT": 4.936933839336858,
+         "ViT_Tiny_AT": -0.7200552222063737,
+         "WRN_28_10": -4.216878617130484
+        },
+        "artiklar": {
+         "ResNet18_AT->ViT_Tiny_AT": 2.3473221496817303,
+         "ResNet18_AT->WRN_28_10": -2.3473221496817445,
+         "ViT_Tiny_AT->ResNet18_AT": -2.347322149681755,
+         "ViT_Tiny_AT->WRN_28_10": 2.3473221496817445,
+         "WRN_28_10->ResNet18_AT": 2.347322149681723,
+         "WRN_28_10->ViT_Tiny_AT": -2.347322149681773
+        },
+        "uydurulan": {
+         "ResNet18_AT->ViT_Tiny_AT": 32.28549743327385,
+         "ResNet18_AT->WRN_28_10": 28.788674038349736,
+         "ViT_Tiny_AT->ResNet18_AT": 18.43023851851664,
+         "ViT_Tiny_AT->WRN_28_10": 9.2764260620493,
+         "WRN_28_10->ResNet18_AT": 58.48974810442889,
+         "WRN_28_10->ViT_Tiny_AT": 52.832759042885655
+        },
+        "max_abs_artik": 2.347322149681773,
+        "R2": 0.9823089938022215,
+        "n_hucre": 6,
+        "ayni_cins_gamma": null,
+        "parametre_sayisi": 5,
+        "artik_serbestlik": 1,
+        "tasarim_rank": 5
+       },
+       "kaynak_etkisi_farki_ResNet_eksi_ViT": 19.51224797630044,
+       "hedef_etkisi_farki_ViT_eksi_ResNet": -5.656989061543231,
+       "asimetri_ayristirmasi_ResNettoViT_eksi_ViTtoResNet": {
+        "asimetri": 18.549903214120693,
+        "kaynak_farki": 19.51224797630044,
+        "hedef_farki": -5.656989061543231,
+        "artik_farki": 4.694644299363485,
+        "toplam_kontrol": 18.549903214120693
+       },
+       "sabit_WRN": {
+        "WRN_hedef_ResNetten": 26.44135188866799,
+        "WRN_hedef_ViTden": 11.623748211731044,
+        "WRN_hedef_fark_ResNet_eksi_ViT": 14.817603676936947,
+        "WRN_kaynak_ResNete": 60.837070254110614,
+        "WRN_kaynak_ViTe": 50.48543689320388,
+        "WRN_kaynak_fark_ResNet_eksi_ViT": 10.351633360906732
+       },
+       "marjinaller": {
+        "gelen_ort_ResNet": 38.45999331147275,
+        "gelen_ort_ViT": 42.55912823807973,
+        "giden_ort_ResNet": 30.537085735811786,
+        "giden_ort_ViT": 13.853332290282964
+       }
+      }
+     ]
+    }
+   },
+   "npz_json_tutarlilik_kontrolu": {
+    "pair1": {
+     "max_abs_npz_raw_eksi_json": 7.105427357601002e-15,
+     "max_abs_npz_tc_eksi_json_cond": 0.003574653588668042
+    },
+    "pair2": {
+     "max_abs_npz_raw_eksi_json": 7.105427357601002e-15,
+     "max_abs_npz_tc_eksi_json_cond": 0.004934261407576912
+    },
+    "pair3": {
+     "max_abs_npz_raw_eksi_json": 7.105427357601002e-15,
+     "max_abs_npz_tc_eksi_json_cond": 0.00483726866623968
+    }
+   }
+  },
+  "Mahmood2021": {
+   "CIFAR-10": {
+    "protokol": "both_correct (Mahmood Denklem 3), m = 1000; kosegen (bagimsiz kopya) haric 56 hucre",
+    "uydurma": {
+     "mu": 31.762500000000006,
+     "alpha_kaynak": {
+      "ViT-B-32": 18.556250000000016,
+      "ViT-B-16": 10.09374999999999,
+      "ViT-L-16": 8.79166666666667,
+      "ViT-R50": 12.660416666666643,
+      "BiT-M-R50x1": -16.622916666666654,
+      "BiT-M-R101x3": -10.312499999999988,
+      "ResNet-56": -11.320833333333345,
+      "ResNet-164": -11.845833333333333
+     },
+     "beta_hedef": {
+      "ViT-B-32": -3.5687500000000276,
+      "ViT-B-16": 8.093750000000023,
+      "ViT-L-16": 4.579166666666677,
+      "ViT-R50": -12.939583333333358,
+      "BiT-M-R50x1": 12.777083333333353,
+      "BiT-M-R101x3": 7.350000000000001,
+      "ResNet-56": -9.008333333333338,
+      "ResNet-164": -7.28333333333333
+     },
+     "artiklar": {
+      "ViT-B-32->ViT-B-16": 25.687499999999943,
+      "ViT-B-32->ViT-L-16": 20.602083333333297,
+      "ViT-B-32->ViT-R50": -2.4791666666666643,
+      "ViT-B-32->BiT-M-R50x1": -2.295833333333377,
+      "ViT-B-32->BiT-M-R101x3": 4.331249999999976,
+      "ViT-B-32->ResNet-56": -22.71041666666668,
+      "ViT-B-32->ResNet-164": -23.1354166666667,
+      "ViT-B-16->ViT-B-32": 18.812500000000036,
+      "ViT-B-16->ViT-L-16": 42.46458333333334,
+      "ViT-B-16->ViT-R50": -6.3166666666666345,
+      "ViT-B-16->BiT-M-R50x1": -11.233333333333348,
+      "ViT-B-16->BiT-M-R101x3": -4.206249999999997,
+      "ViT-B-16->ResNet-56": -18.947916666666657,
+      "ViT-B-16->ResNet-164": -20.572916666666664,
+      "ViT-L-16->ViT-B-32": 18.61458333333335,
+      "ViT-L-16->ViT-B-16": 29.752083333333303,
+      "ViT-L-16->ViT-R50": 2.6854166666666828,
+      "ViT-L-16->BiT-M-R50x1": -10.831250000000026,
+      "ViT-L-16->BiT-M-R101x3": -3.204166666666673,
+      "ViT-L-16->ResNet-56": -18.545833333333334,
+      "ViT-L-16->ResNet-164": -18.47083333333335,
+      "ViT-R50->ViT-B-32": -1.2541666666666202,
+      "ViT-R50->ViT-B-16": 5.583333333333329,
+      "ViT-R50->ViT-L-16": 2.4979166666666686,
+      "ViT-R50->BiT-M-R50x1": 3.799999999999997,
+      "ViT-R50->BiT-M-R101x3": 6.227083333333347,
+      "ViT-R50->ResNet-56": -8.714583333333312,
+      "ViT-R50->ResNet-164": -8.139583333333327,
+      "BiT-M-R50x1->ViT-B-32": -7.070833333333326,
+      "BiT-M-R50x1->ViT-B-16": -12.333333333333377,
+      "BiT-M-R50x1->ViT-L-16": -14.01875000000003,
+      "BiT-M-R50x1->ViT-R50": 2.500000000000008,
+      "BiT-M-R50x1->BiT-M-R101x3": 28.910416666666645,
+      "BiT-M-R50x1->ResNet-56": 0.8687499999999861,
+      "BiT-M-R50x1->ResNet-164": 1.1437499999999776,
+      "BiT-M-R101x3->ViT-B-32": -9.281249999999995,
+      "BiT-M-R101x3->ViT-B-16": -9.243750000000038,
+      "BiT-M-R101x3->ViT-L-16": -12.329166666666698,
+      "BiT-M-R101x3->ViT-R50": -1.3104166666666588,
+      "BiT-M-R101x3->BiT-M-R50x1": 41.67291666666664,
+      "BiT-M-R101x3->ResNet-56": -4.641666666666679,
+      "BiT-M-R101x3->ResNet-164": -4.866666666666687,
+      "ResNet-56->ViT-B-32": -10.272916666666633,
+      "ResNet-56->ViT-B-16": -19.535416666666684,
+      "ResNet-56->ViT-L-16": -19.720833333333335,
+      "ResNet-56->ViT-R50": 2.1979166666666963,
+      "ResNet-56->BiT-M-R50x1": -10.718750000000014,
+      "ResNet-56->BiT-M-R101x3": -15.991666666666664,
+      "ResNet-56->ResNet-164": 74.04166666666667,
+      "ResNet-164->ViT-B-32": -9.547916666666644,
+      "ResNet-164->ViT-B-16": -19.9104166666667,
+      "ResNet-164->ViT-L-16": -19.49583333333335,
+      "ResNet-164->ViT-R50": 2.7229166666666824,
+      "ResNet-164->BiT-M-R50x1": -10.39375000000003,
+      "ResNet-164->BiT-M-R101x3": -16.066666666666677,
+      "ResNet-164->ResNet-56": 72.69166666666666
+     },
+     "uydurulan": {
+      "ViT-B-32->ViT-B-16": 58.41250000000005,
+      "ViT-B-32->ViT-L-16": 54.8979166666667,
+      "ViT-B-32->ViT-R50": 37.37916666666666,
+      "ViT-B-32->BiT-M-R50x1": 63.095833333333374,
+      "ViT-B-32->BiT-M-R101x3": 57.668750000000024,
+      "ViT-B-32->ResNet-56": 41.31041666666668,
+      "ViT-B-32->ResNet-164": 43.0354166666667,
+      "ViT-B-16->ViT-B-32": 38.287499999999966,
+      "ViT-B-16->ViT-L-16": 46.43541666666667,
+      "ViT-B-16->ViT-R50": 28.916666666666636,
+      "ViT-B-16->BiT-M-R50x1": 54.63333333333335,
+      "ViT-B-16->BiT-M-R101x3": 49.20625,
+      "ViT-B-16->ResNet-56": 32.847916666666656,
+      "ViT-B-16->ResNet-164": 34.572916666666664,
+      "ViT-L-16->ViT-B-32": 36.98541666666665,
+      "ViT-L-16->ViT-B-16": 48.6479166666667,
+      "ViT-L-16->ViT-R50": 27.614583333333318,
+      "ViT-L-16->BiT-M-R50x1": 53.331250000000026,
+      "ViT-L-16->BiT-M-R101x3": 47.904166666666676,
+      "ViT-L-16->ResNet-56": 31.545833333333334,
+      "ViT-L-16->ResNet-164": 33.27083333333335,
+      "ViT-R50->ViT-B-32": 40.85416666666662,
+      "ViT-R50->ViT-B-16": 52.51666666666667,
+      "ViT-R50->ViT-L-16": 49.00208333333333,
+      "ViT-R50->BiT-M-R50x1": 57.2,
+      "ViT-R50->BiT-M-R101x3": 51.77291666666665,
+      "ViT-R50->ResNet-56": 35.41458333333331,
+      "ViT-R50->ResNet-164": 37.13958333333333,
+      "BiT-M-R50x1->ViT-B-32": 11.570833333333326,
+      "BiT-M-R50x1->ViT-B-16": 23.233333333333377,
+      "BiT-M-R50x1->ViT-L-16": 19.71875000000003,
+      "BiT-M-R50x1->ViT-R50": 2.199999999999992,
+      "BiT-M-R50x1->BiT-M-R101x3": 22.489583333333353,
+      "BiT-M-R50x1->ResNet-56": 6.131250000000014,
+      "BiT-M-R50x1->ResNet-164": 7.856250000000022,
+      "BiT-M-R101x3->ViT-B-32": 17.881249999999994,
+      "BiT-M-R101x3->ViT-B-16": 29.54375000000004,
+      "BiT-M-R101x3->ViT-L-16": 26.029166666666697,
+      "BiT-M-R101x3->ViT-R50": 8.510416666666659,
+      "BiT-M-R101x3->BiT-M-R50x1": 34.22708333333337,
+      "BiT-M-R101x3->ResNet-56": 12.441666666666679,
+      "BiT-M-R101x3->ResNet-164": 14.166666666666687,
+      "ResNet-56->ViT-B-32": 16.872916666666633,
+      "ResNet-56->ViT-B-16": 28.535416666666684,
+      "ResNet-56->ViT-L-16": 25.020833333333336,
+      "ResNet-56->ViT-R50": 7.502083333333303,
+      "ResNet-56->BiT-M-R50x1": 33.218750000000014,
+      "ResNet-56->BiT-M-R101x3": 27.791666666666664,
+      "ResNet-56->ResNet-164": 13.15833333333333,
+      "ResNet-164->ViT-B-32": 16.347916666666645,
+      "ResNet-164->ViT-B-16": 28.0104166666667,
+      "ResNet-164->ViT-L-16": 24.49583333333335,
+      "ResNet-164->ViT-R50": 6.977083333333317,
+      "ResNet-164->BiT-M-R50x1": 32.69375000000003,
+      "ResNet-164->BiT-M-R101x3": 27.266666666666676,
+      "ResNet-164->ResNet-56": 10.908333333333337
+     },
+     "max_abs_artik": 74.04166666666667,
+     "R2": 0.3680977115303843,
+     "n_hucre": 56,
+     "ayni_cins_gamma": null,
+     "parametre_sayisi": 15,
+     "artik_serbestlik": 41,
+     "tasarim_rank": 15
+    },
+    "ayni_cins_terimli_uydurma": {
+     "cins": {
+      "ViT-B-32": "ViT",
+      "ViT-B-16": "ViT",
+      "ViT-L-16": "ViT",
+      "ViT-R50": "ViT",
+      "BiT-M-R50x1": "BiT",
+      "BiT-M-R101x3": "BiT",
+      "ResNet-56": "ResNet",
+      "ResNet-164": "ResNet"
+     },
+     "uydurma": {
+      "mu": 19.56793478260865,
+      "alpha_kaynak": {
+       "ViT-B-32": 11.442753623188391,
+       "ViT-B-16": 2.980253623188415,
+       "ViT-L-16": 1.6781702898550768,
+       "ViT-R50": 5.5469202898550805,
+       "BiT-M-R50x1": -9.509420289855086,
+       "BiT-M-R101x3": -3.1990036231884154,
+       "ResNet-56": -4.207336956521761,
+       "ResNet-164": -4.732336956521701
+      },
+      "beta_hedef": {
+       "ViT-B-32": -10.682246376811582,
+       "ViT-B-16": 0.9802536231884222,
+       "ViT-L-16": -2.5343297101449336,
+       "ViT-R50": -20.05307971014493,
+       "BiT-M-R50x1": 19.890579710144923,
+       "BiT-M-R101x3": 14.46349637681158,
+       "ResNet-56": -1.8948369565217489,
+       "ResNet-164": -0.16983695652172925
+      },
+      "artiklar": {
+       "ViT-B-32->ViT-B-16": 9.428079710144871,
+       "ViT-B-32->ViT-L-16": 4.34266304347824,
+       "ViT-B-32->ViT-R50": -18.738586956521765,
+       "ViT-B-32->BiT-M-R50x1": 9.898731884058037,
+       "ViT-B-32->BiT-M-R101x3": 16.525815217391383,
+       "ViT-B-32->ResNet-56": -10.515851449275289,
+       "ViT-B-32->ResNet-164": -10.94085144927531,
+       "ViT-B-16->ViT-B-32": 2.553079710144864,
+       "ViT-B-16->ViT-L-16": 26.205163043478215,
+       "ViT-B-16->ViT-R50": -22.576086956521785,
+       "ViT-B-16->BiT-M-R50x1": 0.9612318840580087,
+       "ViT-B-16->BiT-M-R101x3": 7.98831521739136,
+       "ViT-B-16->ResNet-56": -6.753351449275316,
+       "ViT-B-16->ResNet-164": -8.378351449275328,
+       "ViT-L-16->ViT-B-32": 2.3551630434782,
+       "ViT-L-16->ViT-B-16": 13.492663043478203,
+       "ViT-L-16->ViT-R50": -13.574003623188457,
+       "ViT-L-16->BiT-M-R50x1": 1.363315217391353,
+       "ViT-L-16->BiT-M-R101x3": 8.990398550724692,
+       "ViT-L-16->ResNet-56": -6.351268115941977,
+       "ViT-L-16->ResNet-164": -6.276268115941992,
+       "ViT-R50->ViT-B-32": -17.513586956521806,
+       "ViT-R50->ViT-B-16": -10.676086956521807,
+       "ViT-R50->ViT-L-16": -13.761503623188446,
+       "ViT-R50->BiT-M-R50x1": 15.994565217391347,
+       "ViT-R50->BiT-M-R101x3": 18.42164855072469,
+       "ViT-R50->ResNet-56": 3.47998188405802,
+       "ViT-R50->ResNet-164": 4.054981884058002,
+       "BiT-M-R50x1->ViT-B-32": 5.123731884058019,
+       "BiT-M-R50x1->ViT-B-16": -0.13876811594198557,
+       "BiT-M-R50x1->ViT-L-16": -1.8241847826086284,
+       "BiT-M-R50x1->ViT-R50": 14.694565217391368,
+       "BiT-M-R50x1->BiT-M-R101x3": -15.802989130434803,
+       "BiT-M-R50x1->ResNet-56": -1.1636775362318126,
+       "BiT-M-R50x1->ResNet-164": -0.8886775362318318,
+       "BiT-M-R101x3->ViT-B-32": 2.9133152173913484,
+       "BiT-M-R101x3->ViT-B-16": 2.9508152173913444,
+       "BiT-M-R101x3->ViT-L-16": -0.13460144927530138,
+       "BiT-M-R101x3->ViT-R50": 10.884148550724696,
+       "BiT-M-R101x3->BiT-M-R50x1": -3.040489130434807,
+       "BiT-M-R101x3->ResNet-56": -6.674094202898485,
+       "BiT-M-R101x3->ResNet-164": -6.8990942028985,
+       "ResNet-56->ViT-B-32": 1.9216485507246936,
+       "ResNet-56->ViT-B-16": -7.340851449275309,
+       "ResNet-56->ViT-L-16": -7.526268115941954,
+       "ResNet-56->ViT-R50": 14.392481884058043,
+       "ResNet-56->BiT-M-R50x1": -12.751177536231808,
+       "ResNet-56->BiT-M-R101x3": -18.024094202898468,
+       "ResNet-56->ResNet-164": 29.328260869565185,
+       "ResNet-164->ViT-B-32": 2.646648550724634,
+       "ResNet-164->ViT-B-16": -7.715851449275371,
+       "ResNet-164->ViT-L-16": -7.301268115942015,
+       "ResNet-164->ViT-R50": 14.917481884057981,
+       "ResNet-164->BiT-M-R50x1": -12.426177536231872,
+       "ResNet-164->BiT-M-R101x3": -18.09909420289853,
+       "ResNet-164->ResNet-56": 27.978260869565133
+      },
+      "uydurulan": {
+       "ViT-B-32->ViT-B-16": 74.67192028985512,
+       "ViT-B-32->ViT-L-16": 71.15733695652176,
+       "ViT-B-32->ViT-R50": 53.63858695652176,
+       "ViT-B-32->BiT-M-R50x1": 50.90126811594196,
+       "ViT-B-32->BiT-M-R101x3": 45.47418478260862,
+       "ViT-B-32->ResNet-56": 29.11585144927529,
+       "ViT-B-32->ResNet-164": 30.84085144927531,
+       "ViT-B-16->ViT-B-32": 54.54692028985514,
+       "ViT-B-16->ViT-L-16": 62.69483695652179,
+       "ViT-B-16->ViT-R50": 45.176086956521786,
+       "ViT-B-16->BiT-M-R50x1": 42.43876811594199,
+       "ViT-B-16->BiT-M-R101x3": 37.01168478260864,
+       "ViT-B-16->ResNet-56": 20.653351449275316,
+       "ViT-B-16->ResNet-164": 22.37835144927533,
+       "ViT-L-16->ViT-B-32": 53.2448369565218,
+       "ViT-L-16->ViT-B-16": 64.9073369565218,
+       "ViT-L-16->ViT-R50": 43.87400362318846,
+       "ViT-L-16->BiT-M-R50x1": 41.13668478260865,
+       "ViT-L-16->BiT-M-R101x3": 35.70960144927531,
+       "ViT-L-16->ResNet-56": 19.351268115941977,
+       "ViT-L-16->ResNet-164": 21.076268115941993,
+       "ViT-R50->ViT-B-32": 57.11358695652181,
+       "ViT-R50->ViT-B-16": 68.77608695652181,
+       "ViT-R50->ViT-L-16": 65.26150362318845,
+       "ViT-R50->BiT-M-R50x1": 45.00543478260865,
+       "ViT-R50->BiT-M-R101x3": 39.57835144927531,
+       "ViT-R50->ResNet-56": 23.22001811594198,
+       "ViT-R50->ResNet-164": 24.945018115942,
+       "BiT-M-R50x1->ViT-B-32": -0.623731884058019,
+       "BiT-M-R50x1->ViT-B-16": 11.038768115941986,
+       "BiT-M-R50x1->ViT-L-16": 7.5241847826086286,
+       "BiT-M-R50x1->ViT-R50": -9.994565217391369,
+       "BiT-M-R50x1->BiT-M-R101x3": 67.2029891304348,
+       "BiT-M-R50x1->ResNet-56": 8.163677536231813,
+       "BiT-M-R50x1->ResNet-164": 9.888677536231832,
+       "BiT-M-R101x3->ViT-B-32": 5.686684782608651,
+       "BiT-M-R101x3->ViT-B-16": 17.349184782608656,
+       "BiT-M-R101x3->ViT-L-16": 13.8346014492753,
+       "BiT-M-R101x3->ViT-R50": -3.6841485507246965,
+       "BiT-M-R101x3->BiT-M-R50x1": 78.94048913043481,
+       "BiT-M-R101x3->ResNet-56": 14.474094202898485,
+       "BiT-M-R101x3->ResNet-164": 16.1990942028985,
+       "ResNet-56->ViT-B-32": 4.678351449275306,
+       "ResNet-56->ViT-B-16": 16.34085144927531,
+       "ResNet-56->ViT-L-16": 12.826268115941954,
+       "ResNet-56->ViT-R50": -4.692481884058044,
+       "ResNet-56->BiT-M-R50x1": 35.25117753623181,
+       "ResNet-56->BiT-M-R101x3": 29.82409420289847,
+       "ResNet-56->ResNet-164": 57.87173913043482,
+       "ResNet-164->ViT-B-32": 4.153351449275366,
+       "ResNet-164->ViT-B-16": 15.815851449275371,
+       "ResNet-164->ViT-L-16": 12.301268115942015,
+       "ResNet-164->ViT-R50": -5.217481884057982,
+       "ResNet-164->BiT-M-R50x1": 34.72617753623187,
+       "ResNet-164->BiT-M-R101x3": 29.29909420289853,
+       "ResNet-164->ResNet-56": 55.62173913043486
+      },
+      "max_abs_artik": 29.328260869565185,
+      "R2": 0.7851545798683892,
+      "n_hucre": 56,
+      "ayni_cins_gamma": 42.68097826086966,
+      "parametre_sayisi": 16,
+      "artik_serbestlik": 40,
+      "tasarim_rank": 16
+     },
+     "aile_duzeyi_farklar": {
+      "CNN_vs_ViT_hibrit_haric": {
+       "kaynak_etkisi_farki_CNN_eksi_ViT": -10.779083635265701,
+       "hedef_etkisi_farki_ViT_eksi_CNN": -12.15112469806762
+      },
+      "CNN_vs_ViT_hibrit_dahil": {
+       "kaynak_etkisi_farki_CNN_eksi_ViT": -10.82404891304348,
+       "hedef_etkisi_farki_ViT_eksi_CNN": -16.144701086956513
+      },
+      "BiT_vs_ViT": {
+       "kaynak_etkisi_farki_CNN_eksi_ViT": -11.721271135265713,
+       "hedef_etkisi_farki_ViT_eksi_CNN": -21.255812198067616
+      },
+      "ResNet_vs_ViT": {
+       "kaynak_etkisi_farki_CNN_eksi_ViT": -9.836896135265693,
+       "hedef_etkisi_farki_ViT_eksi_CNN": -3.0464371980676255
+      }
+     },
+     "not": "Toplamsal model Mahmood matrisinde cins-ici blok yapisini tasiyamaz (dusuk R2); ayni-cins gostergesi eklenmis duyarlilik uydurmasi."
+    },
+    "aile_duzeyi_farklar": {
+     "CNN_vs_ViT_hibrit_haric": {
+      "kaynak_etkisi_farki_CNN_eksi_ViT": -25.00607638888889,
+      "hedef_etkisi_farki_ViT_eksi_CNN": 2.0758680555555524
+     },
+     "CNN_vs_ViT_hibrit_dahil": {
+      "kaynak_etkisi_farki_CNN_eksi_ViT": -25.05104166666666,
+      "hedef_etkisi_farki_ViT_eksi_CNN": -1.917708333333343
+     },
+     "BiT_vs_ViT": {
+      "kaynak_etkisi_farki_CNN_eksi_ViT": -25.94826388888888,
+      "hedef_etkisi_farki_ViT_eksi_CNN": -7.028819444444453
+     },
+     "ResNet_vs_ViT": {
+      "kaynak_etkisi_farki_CNN_eksi_ViT": -24.063888888888897,
+      "hedef_etkisi_farki_ViT_eksi_CNN": 11.180555555555557
+     }
+    },
+    "aileler_arasi_cift_ayristirmasi_CNNtoViT_eksi_ViTtoCNN": {
+     "BiT-M-R50x1 vs ViT-B-32": {
+      "asimetri": -56.3,
+      "kaynak_farki": -35.179166666666674,
+      "hedef_farki": -16.34583333333338,
+      "artik_farki": -4.774999999999949,
+      "toplam_kontrol": -56.300000000000004
+     },
+     "BiT-M-R50x1 vs ViT-B-16": {
+      "asimetri": -32.5,
+      "kaynak_farki": -26.716666666666644,
+      "hedef_farki": -4.68333333333333,
+      "artik_farki": -1.100000000000028,
+      "toplam_kontrol": -32.5
+     },
+     "BiT-M-R50x1 vs ViT-L-16": {
+      "asimetri": -36.8,
+      "kaynak_farki": -25.414583333333326,
+      "hedef_farki": -8.197916666666675,
+      "artik_farki": -3.1875000000000036,
+      "toplam_kontrol": -36.8
+     },
+     "BiT-M-R50x1 vs ViT-R50": {
+      "asimetri": -56.3,
+      "kaynak_farki": -29.283333333333296,
+      "hedef_farki": -25.71666666666671,
+      "artik_farki": -1.2999999999999892,
+      "toplam_kontrol": -56.3
+     },
+     "BiT-M-R101x3 vs ViT-B-32": {
+      "asimetri": -53.4,
+      "kaynak_farki": -28.868750000000006,
+      "hedef_farki": -10.91875000000003,
+      "artik_farki": -13.61249999999997,
+      "toplam_kontrol": -53.400000000000006
+     },
+     "BiT-M-R101x3 vs ViT-B-16": {
+      "asimetri": -24.7,
+      "kaynak_farki": -20.40624999999998,
+      "hedef_farki": 0.7437500000000217,
+      "artik_farki": -5.0375000000000405,
+      "toplam_kontrol": -24.7
+     },
+     "BiT-M-R101x3 vs ViT-L-16": {
+      "asimetri": -31.000000000000004,
+      "kaynak_farki": -19.104166666666657,
+      "hedef_farki": -2.770833333333324,
+      "artik_farki": -9.125000000000025,
+      "toplam_kontrol": -31.000000000000007
+     },
+     "BiT-M-R101x3 vs ViT-R50": {
+      "asimetri": -50.8,
+      "kaynak_farki": -22.97291666666663,
+      "hedef_farki": -20.28958333333336,
+      "artik_farki": -7.537500000000006,
+      "toplam_kontrol": -50.8
+     },
+     "ResNet-56 vs ViT-B-32": {
+      "asimetri": -12.000000000000002,
+      "kaynak_farki": -29.87708333333336,
+      "hedef_farki": 5.43958333333331,
+      "artik_farki": 12.437500000000048,
+      "toplam_kontrol": -12.000000000000002
+     },
+     "ResNet-56 vs ViT-B-16": {
+      "asimetri": -4.9,
+      "kaynak_farki": -21.414583333333333,
+      "hedef_farki": 17.10208333333336,
+      "artik_farki": -0.587500000000027,
+      "toplam_kontrol": -4.899999999999999
+     },
+     "ResNet-56 vs ViT-L-16": {
+      "asimetri": -7.7,
+      "kaynak_farki": -20.112500000000015,
+      "hedef_farki": 13.587500000000016,
+      "artik_farki": -1.1750000000000007,
+      "toplam_kontrol": -7.699999999999999
+     },
+     "ResNet-56 vs ViT-R50": {
+      "asimetri": -17.0,
+      "kaynak_farki": -23.98124999999999,
+      "hedef_farki": -3.93125000000002,
+      "artik_farki": 10.912500000000009,
+      "toplam_kontrol": -17.0
+     },
+     "ResNet-164 vs ViT-B-32": {
+      "asimetri": -13.099999999999998,
+      "kaynak_farki": -30.40208333333335,
+      "hedef_farki": 3.714583333333302,
+      "artik_farki": 13.587500000000055,
+      "toplam_kontrol": -13.099999999999994
+     },
+     "ResNet-164 vs ViT-B-16": {
+      "asimetri": -5.9,
+      "kaynak_farki": -21.939583333333324,
+      "hedef_farki": 15.377083333333353,
+      "artik_farki": 0.6624999999999659,
+      "toplam_kontrol": -5.900000000000006
+     },
+     "ResNet-164 vs ViT-L-16": {
+      "asimetri": -9.8,
+      "kaynak_farki": -20.637500000000003,
+      "hedef_farki": 11.862500000000008,
+      "artik_farki": -1.0250000000000021,
+      "toplam_kontrol": -9.799999999999997
+     },
+     "ResNet-164 vs ViT-R50": {
+      "asimetri": -19.3,
+      "kaynak_farki": -24.506249999999977,
+      "hedef_farki": -5.656250000000028,
+      "artik_farki": 10.86250000000001,
+      "toplam_kontrol": -19.299999999999997
+     }
+    },
+    "sabit_ucuncu_model_BiT-M-R50x1_vs_ViT-L-16": {
+     "ViT-B-32": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -51.1,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": -14.700000000000003
+     },
+     "ViT-B-16": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -67.5,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": -45.50000000000001
+     },
+     "ViT-R50": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -25.6,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": 9.5
+     },
+     "BiT-M-R101x3": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": 6.699999999999996,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": 62.2
+     },
+     "ResNet-56": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -6.0,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": 17.2
+     },
+     "ResNet-164": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -5.800000000000001,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": 17.3
+     }
+    }
+   },
+   "CIFAR-100": {
+    "protokol": "both_correct (Mahmood Denklem 3), m = 1000; kosegen (bagimsiz kopya) haric 56 hucre",
+    "uydurma": {
+     "mu": 37.471428571428575,
+     "alpha_kaynak": {
+      "ViT-B-32": 16.681250000000034,
+      "ViT-B-16": 9.127083333333308,
+      "ViT-L-16": 9.618750000000006,
+      "ViT-R50": 8.433333333333305,
+      "BiT-M-R50x1": -15.404166666666661,
+      "BiT-M-R101x3": -8.272916666666658,
+      "ResNet-56": -11.47916666666667,
+      "ResNet-164": -8.70416666666666
+     },
+     "beta_hedef": {
+      "ViT-B-32": 4.268749999999975,
+      "ViT-B-16": 14.18958333333336,
+      "ViT-L-16": 8.431250000000006,
+      "ViT-R50": -3.7666666666666795,
+      "BiT-M-R50x1": 11.470833333333335,
+      "BiT-M-R101x3": 7.78958333333333,
+      "ResNet-56": -20.554166666666667,
+      "ResNet-164": -21.829166666666666
+     },
+     "artiklar": {
+      "ViT-B-32->ViT-B-16": 20.15773809523803,
+      "ViT-B-32->ViT-L-16": 21.01607142857138,
+      "ViT-B-32->ViT-R50": 1.8139880952380736,
+      "ViT-B-32->BiT-M-R50x1": -5.123511904761941,
+      "ViT-B-32->BiT-M-R101x3": -0.8422619047619406,
+      "ViT-B-32->ResNet-56": -18.698511904761943,
+      "ViT-B-32->ResNet-164": -18.32351190476195,
+      "ViT-B-16->ViT-B-32": 20.432738095238136,
+      "ViT-B-16->ViT-L-16": 38.17023809523811,
+      "ViT-B-16->ViT-R50": -4.231845238095204,
+      "ViT-B-16->BiT-M-R50x1": -13.569345238095224,
+      "ViT-B-16->BiT-M-R101x3": -6.4880952380952195,
+      "ViT-B-16->ResNet-56": -17.044345238095218,
+      "ViT-B-16->ResNet-164": -17.269345238095227,
+      "ViT-L-16->ViT-B-32": 16.44107142857144,
+      "ViT-L-16->ViT-B-16": 27.020238095238057,
+      "ViT-L-16->ViT-R50": 4.776488095238101,
+      "ViT-L-16->BiT-M-R50x1": -10.96101190476191,
+      "ViT-L-16->BiT-M-R101x3": -4.879761904761914,
+      "ViT-L-16->ResNet-56": -16.636011904761915,
+      "ViT-L-16->ResNet-164": -15.761011904761922,
+      "ViT-R50->ViT-B-32": 1.4264880952381418,
+      "ViT-R50->ViT-B-16": 4.905654761904756,
+      "ViT-R50->ViT-L-16": 7.963988095238108,
+      "ViT-R50->BiT-M-R50x1": 6.724404761904779,
+      "ViT-R50->BiT-M-R101x3": 7.505654761904786,
+      "ViT-R50->ResNet-56": -14.350595238095217,
+      "ViT-R50->ResNet-164": -14.175595238095225,
+      "BiT-M-R50x1->ViT-B-32": -8.63601190476189,
+      "BiT-M-R50x1->ViT-B-16": -11.256845238095273,
+      "BiT-M-R50x1->ViT-L-16": -14.99851190476192,
+      "BiT-M-R50x1->ViT-R50": -0.10059523809523441,
+      "BiT-M-R50x1->BiT-M-R101x3": 26.643154761904757,
+      "BiT-M-R50x1->ResNet-56": 3.386904761904754,
+      "BiT-M-R50x1->ResNet-164": 4.961904761904745,
+      "BiT-M-R101x3->ViT-B-32": -8.567261904761892,
+      "BiT-M-R101x3->ViT-B-16": -4.388095238095275,
+      "BiT-M-R101x3->ViT-L-16": -11.32976190476192,
+      "BiT-M-R101x3->ViT-R50": -1.9318452380952351,
+      "BiT-M-R101x3->BiT-M-R50x1": 33.33065476190475,
+      "BiT-M-R101x3->ResNet-56": -2.9443452380952477,
+      "BiT-M-R101x3->ResNet-164": -4.169345238095256,
+      "ResNet-56->ViT-B-32": -10.161011904761878,
+      "ResNet-56->ViT-B-16": -17.981845238095264,
+      "ResNet-56->ViT-L-16": -19.12351190476191,
+      "ResNet-56->ViT-R50": 0.47440476190477554,
+      "ResNet-56->BiT-M-R50x1": -6.0630952380952365,
+      "ResNet-56->BiT-M-R101x3": -11.881845238095238,
+      "ResNet-56->ResNet-164": 64.73690476190475,
+      "ResNet-164->ViT-B-32": -10.936011904761884,
+      "ResNet-164->ViT-B-16": -18.45684523809527,
+      "ResNet-164->ViT-L-16": -21.698511904761922,
+      "ResNet-164->ViT-R50": -0.8005952380952337,
+      "ResNet-164->BiT-M-R50x1": -4.338095238095242,
+      "ResNet-164->BiT-M-R101x3": -10.056845238095242,
+      "ResNet-164->ResNet-56": 66.28690476190476
+     },
+     "uydurulan": {
+      "ViT-B-32->ViT-B-16": 68.34226190476197,
+      "ViT-B-32->ViT-L-16": 62.583928571428615,
+      "ViT-B-32->ViT-R50": 50.38601190476193,
+      "ViT-B-32->BiT-M-R50x1": 65.62351190476194,
+      "ViT-B-32->BiT-M-R101x3": 61.94226190476194,
+      "ViT-B-32->ResNet-56": 33.59851190476194,
+      "ViT-B-32->ResNet-164": 32.32351190476195,
+      "ViT-B-16->ViT-B-32": 50.86726190476186,
+      "ViT-B-16->ViT-L-16": 55.02976190476189,
+      "ViT-B-16->ViT-R50": 42.831845238095205,
+      "ViT-B-16->BiT-M-R50x1": 58.069345238095224,
+      "ViT-B-16->BiT-M-R101x3": 54.38809523809522,
+      "ViT-B-16->ResNet-56": 26.044345238095218,
+      "ViT-B-16->ResNet-164": 24.769345238095227,
+      "ViT-L-16->ViT-B-32": 51.35892857142856,
+      "ViT-L-16->ViT-B-16": 61.27976190476194,
+      "ViT-L-16->ViT-R50": 43.3235119047619,
+      "ViT-L-16->BiT-M-R50x1": 58.56101190476191,
+      "ViT-L-16->BiT-M-R101x3": 54.879761904761914,
+      "ViT-L-16->ResNet-56": 26.536011904761914,
+      "ViT-L-16->ResNet-164": 25.261011904761922,
+      "ViT-R50->ViT-B-32": 50.17351190476186,
+      "ViT-R50->ViT-B-16": 60.094345238095244,
+      "ViT-R50->ViT-L-16": 54.33601190476189,
+      "ViT-R50->BiT-M-R50x1": 57.375595238095215,
+      "ViT-R50->BiT-M-R101x3": 53.69434523809522,
+      "ViT-R50->ResNet-56": 25.350595238095217,
+      "ViT-R50->ResNet-164": 24.075595238095225,
+      "BiT-M-R50x1->ViT-B-32": 26.33601190476189,
+      "BiT-M-R50x1->ViT-B-16": 36.25684523809527,
+      "BiT-M-R50x1->ViT-L-16": 30.49851190476192,
+      "BiT-M-R50x1->ViT-R50": 18.300595238095234,
+      "BiT-M-R50x1->BiT-M-R101x3": 29.856845238095243,
+      "BiT-M-R50x1->ResNet-56": 1.5130952380952465,
+      "BiT-M-R50x1->ResNet-164": 0.238095238095255,
+      "BiT-M-R101x3->ViT-B-32": 33.46726190476189,
+      "BiT-M-R101x3->ViT-B-16": 43.388095238095275,
+      "BiT-M-R101x3->ViT-L-16": 37.62976190476192,
+      "BiT-M-R101x3->ViT-R50": 25.431845238095235,
+      "BiT-M-R101x3->BiT-M-R50x1": 40.66934523809525,
+      "BiT-M-R101x3->ResNet-56": 8.644345238095248,
+      "BiT-M-R101x3->ResNet-164": 7.369345238095256,
+      "ResNet-56->ViT-B-32": 30.26101190476188,
+      "ResNet-56->ViT-B-16": 40.18184523809526,
+      "ResNet-56->ViT-L-16": 34.42351190476191,
+      "ResNet-56->ViT-R50": 22.225595238095224,
+      "ResNet-56->BiT-M-R50x1": 37.463095238095235,
+      "ResNet-56->BiT-M-R101x3": 33.78184523809524,
+      "ResNet-56->ResNet-164": 4.163095238095245,
+      "ResNet-164->ViT-B-32": 33.036011904761885,
+      "ResNet-164->ViT-B-16": 42.95684523809527,
+      "ResNet-164->ViT-L-16": 37.19851190476192,
+      "ResNet-164->ViT-R50": 25.000595238095233,
+      "ResNet-164->BiT-M-R50x1": 40.23809523809524,
+      "ResNet-164->BiT-M-R101x3": 36.55684523809524,
+      "ResNet-164->ResNet-56": 8.213095238095242
+     },
+     "max_abs_artik": 66.28690476190476,
+     "R2": 0.4508003365076114,
+     "n_hucre": 56,
+     "ayni_cins_gamma": null,
+     "parametre_sayisi": 15,
+     "artik_serbestlik": 41,
+     "tasarim_rank": 15
+    },
+    "ayni_cins_terimli_uydurma": {
+     "cins": {
+      "ViT-B-32": "ViT",
+      "ViT-B-16": "ViT",
+      "ViT-L-16": "ViT",
+      "ViT-R50": "ViT",
+      "BiT-M-R50x1": "BiT",
+      "BiT-M-R101x3": "BiT",
+      "ResNet-56": "ResNet",
+      "ResNet-164": "ResNet"
+     },
+     "uydurma": {
+      "mu": 26.029347826086934,
+      "alpha_kaynak": {
+       "ViT-B-32": 10.00670289855072,
+       "ViT-B-16": 2.4525362318840616,
+       "ViT-L-16": 2.944202898550732,
+       "ViT-R50": 1.758786231884055,
+       "BiT-M-R50x1": -8.729619565217392,
+       "BiT-M-R101x3": -1.5983695652173995,
+       "ResNet-56": -4.804619565217397,
+       "ResNet-164": -2.029619565217379
+      },
+      "beta_hedef": {
+       "ViT-B-32": -2.4057971014492727,
+       "ViT-B-16": 7.515036231884069,
+       "ViT-L-16": 1.7567028985507211,
+       "ViT-R50": -10.441213768115945,
+       "BiT-M-R50x1": 18.145380434782602,
+       "BiT-M-R101x3": 14.464130434782607,
+       "ResNet-56": -13.879619565217398,
+       "ResNet-164": -15.154619565217383
+      },
+      "artiklar": {
+       "ViT-B-32->ViT-B-16": 4.901630434782589,
+       "ViT-B-32->ViT-L-16": 5.759963768115938,
+       "ViT-B-32->ViT-R50": -13.442119565217396,
+       "ViT-B-32->BiT-M-R50x1": 6.3185688405797436,
+       "ViT-B-32->BiT-M-R101x3": 10.599818840579736,
+       "ViT-B-32->ResNet-56": -7.2564311594202575,
+       "ViT-B-32->ResNet-164": -6.8814311594202735,
+       "ViT-B-16->ViT-B-32": 5.176630434782581,
+       "ViT-B-16->ViT-L-16": 22.914130434782592,
+       "ViT-B-16->ViT-R50": -19.487952898550738,
+       "ViT-B-16->BiT-M-R50x1": -2.1272644927535964,
+       "ViT-B-16->BiT-M-R101x3": 4.953985507246394,
+       "ViT-B-16->ResNet-56": -5.602264492753598,
+       "ViT-B-16->ResNet-164": -5.827264492753612,
+       "ViT-L-16->ViT-B-32": 1.1849637681159066,
+       "ViT-L-16->ViT-B-16": 11.764130434782572,
+       "ViT-L-16->ViT-R50": -10.479619565217405,
+       "ViT-L-16->BiT-M-R50x1": 0.48106884057973076,
+       "ViT-L-16->BiT-M-R101x3": 6.562318840579728,
+       "ViT-L-16->ResNet-56": -5.193931159420266,
+       "ViT-L-16->ResNet-164": -4.318931159420282,
+       "ViT-R50->ViT-B-32": -13.829619565217406,
+       "ViT-R50->ViT-B-16": -10.350452898550742,
+       "ViT-R50->ViT-L-16": -7.292119565217405,
+       "ViT-R50->BiT-M-R50x1": 18.166485507246406,
+       "ViT-R50->BiT-M-R101x3": 18.947735507246406,
+       "ViT-R50->ResNet-56": -2.908514492753591,
+       "ViT-R50->ResNet-164": -2.73351449275361,
+       "BiT-M-R50x1->ViT-B-32": 2.806068840579732,
+       "BiT-M-R50x1->ViT-B-16": 0.18523550724638937,
+       "BiT-M-R50x1->ViT-L-16": -3.5564311594202636,
+       "BiT-M-R50x1->ViT-R50": 11.341485507246404,
+       "BiT-M-R50x1->BiT-M-R101x3": -15.311141304347842,
+       "BiT-M-R50x1->ResNet-56": 1.4798913043478574,
+       "BiT-M-R50x1->ResNet-164": 3.054891304347845,
+       "BiT-M-R101x3->ViT-B-32": 2.8748188405797386,
+       "BiT-M-R101x3->ViT-B-16": 7.053985507246399,
+       "BiT-M-R101x3->ViT-L-16": 0.11231884057974639,
+       "BiT-M-R101x3->ViT-R50": 9.510235507246412,
+       "BiT-M-R101x3->BiT-M-R50x1": -8.623641304347828,
+       "BiT-M-R101x3->ResNet-56": -4.851358695652135,
+       "BiT-M-R101x3->ResNet-164": -6.0763586956521545,
+       "ResNet-56->ViT-B-32": 1.2810688405797386,
+       "ResNet-56->ViT-B-16": -6.539764492753605,
+       "ResNet-56->ViT-L-16": -7.6814311594202564,
+       "ResNet-56->ViT-R50": 11.916485507246408,
+       "ResNet-56->BiT-M-R50x1": -7.9701086956521365,
+       "ResNet-56->BiT-M-R101x3": -13.788858695652145,
+       "ResNet-56->ResNet-164": 22.782608695652158,
+       "ResNet-164->ViT-B-32": 0.5060688405797222,
+       "ResNet-164->ViT-B-16": -7.014764492753621,
+       "ResNet-164->ViT-L-16": -10.256431159420274,
+       "ResNet-164->ViT-R50": 10.64148550724639,
+       "ResNet-164->BiT-M-R50x1": -6.245108695652156,
+       "ResNet-164->BiT-M-R101x3": -11.963858695652164,
+       "ResNet-164->ResNet-56": 24.332608695652155
+      },
+      "uydurulan": {
+       "ViT-B-32->ViT-B-16": 83.59836956521741,
+       "ViT-B-32->ViT-L-16": 77.84003623188406,
+       "ViT-B-32->ViT-R50": 65.6421195652174,
+       "ViT-B-32->BiT-M-R50x1": 54.18143115942026,
+       "ViT-B-32->BiT-M-R101x3": 50.500181159420265,
+       "ViT-B-32->ResNet-56": 22.156431159420258,
+       "ViT-B-32->ResNet-164": 20.881431159420274,
+       "ViT-B-16->ViT-B-32": 66.12336956521742,
+       "ViT-B-16->ViT-L-16": 70.28586956521741,
+       "ViT-B-16->ViT-R50": 58.08795289855074,
+       "ViT-B-16->BiT-M-R50x1": 46.627264492753596,
+       "ViT-B-16->BiT-M-R101x3": 42.946014492753605,
+       "ViT-B-16->ResNet-56": 14.602264492753598,
+       "ViT-B-16->ResNet-164": 13.327264492753612,
+       "ViT-L-16->ViT-B-32": 66.61503623188409,
+       "ViT-L-16->ViT-B-16": 76.53586956521742,
+       "ViT-L-16->ViT-R50": 58.579619565217406,
+       "ViT-L-16->BiT-M-R50x1": 47.11893115942027,
+       "ViT-L-16->BiT-M-R101x3": 43.43768115942027,
+       "ViT-L-16->ResNet-56": 15.093931159420267,
+       "ViT-L-16->ResNet-164": 13.818931159420282,
+       "ViT-R50->ViT-B-32": 65.42961956521741,
+       "ViT-R50->ViT-B-16": 75.35045289855074,
+       "ViT-R50->ViT-L-16": 69.5921195652174,
+       "ViT-R50->BiT-M-R50x1": 45.93351449275359,
+       "ViT-R50->BiT-M-R101x3": 42.252264492753596,
+       "ViT-R50->ResNet-56": 13.908514492753591,
+       "ViT-R50->ResNet-164": 12.63351449275361,
+       "BiT-M-R50x1->ViT-B-32": 14.893931159420267,
+       "BiT-M-R50x1->ViT-B-16": 24.81476449275361,
+       "BiT-M-R50x1->ViT-L-16": 19.056431159420264,
+       "BiT-M-R50x1->ViT-R50": 6.858514492753596,
+       "BiT-M-R50x1->BiT-M-R101x3": 71.81114130434784,
+       "BiT-M-R50x1->ResNet-56": 3.420108695652143,
+       "BiT-M-R50x1->ResNet-164": 2.145108695652155,
+       "BiT-M-R101x3->ViT-B-32": 22.02518115942026,
+       "BiT-M-R101x3->ViT-B-16": 31.9460144927536,
+       "BiT-M-R101x3->ViT-L-16": 26.187681159420254,
+       "BiT-M-R101x3->ViT-R50": 13.989764492753588,
+       "BiT-M-R101x3->BiT-M-R50x1": 82.62364130434783,
+       "BiT-M-R101x3->ResNet-56": 10.551358695652135,
+       "BiT-M-R101x3->ResNet-164": 9.276358695652155,
+       "ResNet-56->ViT-B-32": 18.818931159420263,
+       "ResNet-56->ViT-B-16": 28.739764492753604,
+       "ResNet-56->ViT-L-16": 22.981431159420257,
+       "ResNet-56->ViT-R50": 10.783514492753591,
+       "ResNet-56->BiT-M-R50x1": 39.370108695652135,
+       "ResNet-56->BiT-M-R101x3": 35.688858695652144,
+       "ResNet-56->ResNet-164": 46.11739130434785,
+       "ResNet-164->ViT-B-32": 21.59393115942028,
+       "ResNet-164->ViT-B-16": 31.51476449275362,
+       "ResNet-164->ViT-L-16": 25.756431159420274,
+       "ResNet-164->ViT-R50": 13.55851449275361,
+       "ResNet-164->BiT-M-R50x1": 42.145108695652155,
+       "ResNet-164->BiT-M-R101x3": 38.46385869565216,
+       "ResNet-164->ResNet-56": 50.167391304347845
+      },
+      "max_abs_artik": 24.332608695652155,
+      "R2": 0.8425064037071052,
+      "n_hucre": 56,
+      "ayni_cins_gamma": 40.04728260869569,
+      "parametre_sayisi": 16,
+      "artik_serbestlik": 40,
+      "tasarim_rank": 16
+     },
+     "aile_duzeyi_farklar": {
+      "CNN_vs_ViT_hibrit_haric": {
+       "kaynak_etkisi_farki_CNN_eksi_ViT": -9.425037741545896,
+       "hedef_etkisi_farki_ViT_eksi_CNN": 1.3948294082125638
+      },
+      "CNN_vs_ViT_hibrit_dahil": {
+       "kaynak_etkisi_farki_CNN_eksi_ViT": -8.581114130434784,
+       "hedef_etkisi_farki_ViT_eksi_CNN": -1.7876358695652157
+      },
+      "BiT_vs_ViT": {
+       "kaynak_etkisi_farki_CNN_eksi_ViT": -10.298475241545901,
+       "hedef_etkisi_farki_ViT_eksi_CNN": -14.016108091787434
+      },
+      "ResNet_vs_ViT": {
+       "kaynak_etkisi_farki_CNN_eksi_ViT": -8.551600241545891,
+       "hedef_etkisi_farki_ViT_eksi_CNN": 16.80576690821256
+      }
+     },
+     "not": "Toplamsal model Mahmood matrisinde cins-ici blok yapisini tasiyamaz (dusuk R2); ayni-cins gostergesi eklenmis duyarlilik uydurmasi."
+    },
+    "aile_duzeyi_farklar": {
+     "CNN_vs_ViT_hibrit_haric": {
+      "kaynak_etkisi_farki_CNN_eksi_ViT": -22.77413194444445,
+      "hedef_etkisi_farki_ViT_eksi_CNN": 14.743923611111114
+     },
+     "CNN_vs_ViT_hibrit_dahil": {
+      "kaynak_etkisi_farki_CNN_eksi_ViT": -21.930208333333326,
+      "hedef_etkisi_farki_ViT_eksi_CNN": 11.561458333333333
+     },
+     "BiT_vs_ViT": {
+      "kaynak_etkisi_farki_CNN_eksi_ViT": -23.647569444444443,
+      "hedef_etkisi_farki_ViT_eksi_CNN": -0.667013888888885
+     },
+     "ResNet_vs_ViT": {
+      "kaynak_etkisi_farki_CNN_eksi_ViT": -21.900694444444447,
+      "hedef_etkisi_farki_ViT_eksi_CNN": 30.154861111111114
+     }
+    },
+    "aileler_arasi_cift_ayristirmasi_CNNtoViT_eksi_ViTtoCNN": {
+     "BiT-M-R50x1 vs ViT-B-32": {
+      "asimetri": -42.8,
+      "kaynak_farki": -32.085416666666696,
+      "hedef_farki": -7.20208333333336,
+      "artik_farki": -3.5124999999999496,
+      "toplam_kontrol": -42.80000000000001
+     },
+     "BiT-M-R50x1 vs ViT-B-16": {
+      "asimetri": -19.5,
+      "kaynak_farki": -24.53124999999997,
+      "hedef_farki": 2.718750000000025,
+      "artik_farki": 2.3124999999999503,
+      "toplam_kontrol": -19.499999999999996
+     },
+     "BiT-M-R50x1 vs ViT-L-16": {
+      "asimetri": -32.1,
+      "kaynak_farki": -25.022916666666667,
+      "hedef_farki": -3.0395833333333293,
+      "artik_farki": -4.0375000000000085,
+      "toplam_kontrol": -32.10000000000001
+     },
+     "BiT-M-R50x1 vs ViT-R50": {
+      "asimetri": -45.89999999999999,
+      "kaynak_farki": -23.837499999999967,
+      "hedef_farki": -15.237500000000015,
+      "artik_farki": -6.8250000000000135,
+      "toplam_kontrol": -45.89999999999999
+     },
+     "BiT-M-R101x3 vs ViT-B-32": {
+      "asimetri": -36.2,
+      "kaynak_farki": -24.954166666666694,
+      "hedef_farki": -3.5208333333333552,
+      "artik_farki": -7.724999999999952,
+      "toplam_kontrol": -36.2
+     },
+     "BiT-M-R101x3 vs ViT-B-16": {
+      "asimetri": -8.899999999999999,
+      "kaynak_farki": -17.399999999999967,
+      "hedef_farki": 6.40000000000003,
+      "artik_farki": 2.0999999999999446,
+      "toplam_kontrol": -8.899999999999991
+     },
+     "BiT-M-R101x3 vs ViT-L-16": {
+      "asimetri": -23.7,
+      "kaynak_farki": -17.891666666666666,
+      "hedef_farki": 0.6416666666666755,
+      "artik_farki": -6.450000000000006,
+      "toplam_kontrol": -23.699999999999996
+     },
+     "BiT-M-R101x3 vs ViT-R50": {
+      "asimetri": -37.7,
+      "kaynak_farki": -16.70624999999996,
+      "hedef_farki": -11.55625000000001,
+      "artik_farki": -9.437500000000021,
+      "toplam_kontrol": -37.69999999999999
+     },
+     "ResNet-56 vs ViT-B-32": {
+      "asimetri": 5.200000000000001,
+      "kaynak_farki": -28.160416666666706,
+      "hedef_farki": 24.822916666666643,
+      "artik_farki": 8.537500000000065,
+      "toplam_kontrol": 5.200000000000003
+     },
+     "ResNet-56 vs ViT-B-16": {
+      "asimetri": 13.2,
+      "kaynak_farki": -20.606249999999978,
+      "hedef_farki": 34.74375000000003,
+      "artik_farki": -0.9375000000000462,
+      "toplam_kontrol": 13.200000000000003
+     },
+     "ResNet-56 vs ViT-L-16": {
+      "asimetri": 5.4,
+      "kaynak_farki": -21.097916666666677,
+      "hedef_farki": 28.985416666666673,
+      "artik_farki": -2.4874999999999936,
+      "toplam_kontrol": 5.400000000000002
+     },
+     "ResNet-56 vs ViT-R50": {
+      "asimetri": 11.7,
+      "kaynak_farki": -19.912499999999973,
+      "hedef_farki": 16.787499999999987,
+      "artik_farki": 14.824999999999992,
+      "toplam_kontrol": 11.700000000000006
+     },
+     "ResNet-164 vs ViT-B-32": {
+      "asimetri": 8.100000000000001,
+      "kaynak_farki": -25.385416666666693,
+      "hedef_farki": 26.09791666666664,
+      "artik_farki": 7.387500000000067,
+      "toplam_kontrol": 8.100000000000016
+     },
+     "ResNet-164 vs ViT-B-16": {
+      "asimetri": 17.0,
+      "kaynak_farki": -17.83124999999997,
+      "hedef_farki": 36.018750000000026,
+      "artik_farki": -1.1875000000000426,
+      "toplam_kontrol": 17.000000000000014
+     },
+     "ResNet-164 vs ViT-L-16": {
+      "asimetri": 6.0,
+      "kaynak_farki": -18.322916666666664,
+      "hedef_farki": 30.26041666666667,
+      "artik_farki": -5.9375,
+      "toplam_kontrol": 6.000000000000007
+     },
+     "ResNet-164 vs ViT-R50": {
+      "asimetri": 14.299999999999999,
+      "kaynak_farki": -17.137499999999967,
+      "hedef_farki": 18.062499999999986,
+      "artik_farki": 13.374999999999991,
+      "toplam_kontrol": 14.30000000000001
+     }
+    },
+    "sabit_ucuncu_model_BiT-M-R50x1_vs_ViT-L-16": {
+     "ViT-B-32": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -50.099999999999994,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": -23.099999999999994
+     },
+     "ViT-B-16": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -63.3,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": -48.7
+     },
+     "ViT-R50": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -29.900000000000002,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": 1.7999999999999972
+     },
+     "BiT-M-R101x3": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": 6.5,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": 47.7
+     },
+     "ResNet-56": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -5.0,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": 16.099999999999998
+     },
+     "ResNet-164": {
+      "sabit_hedef_k_BiTten_eksi_ViTL16dan": -4.3,
+      "sabit_kaynak_k_BiTe_eksi_ViTL16ya": 20.4
+     }
+    }
+   }
+  }
+ }
+}

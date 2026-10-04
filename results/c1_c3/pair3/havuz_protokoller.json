@@ -1,0 +1,389 @@
+{
+ "uretildi_utc": "2026-10-04T15:39:52+00:00",
+ "klasor": "results/c1_c3/pair3",
+ "modeller": [
+  "ResNet18_AT",
+  "ViT_Tiny_AT",
+  "WRN_28_10"
+ ],
+ "temiz_dogruluk": {
+  "ResNet18_AT": 86.05,
+  "ViT_Tiny_AT": 73.01,
+  "WRN_28_10": 89.48
+ },
+ "kaynaklar": {
+  "results/c1_c3/pair3/transfer_matrix.json": "0412463b039952088eee3046b27a16fd75d35ae7fcbf424696934835bb379502",
+  "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "ad3ff90a26fe4df75e23e3e1a8a028ed5455d07f6f1c8957373b4f261af0a808",
+  "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "49dac26602ab34bd131792ce824790379e4403d56bfe93a9416f06e911faf18e",
+  "results/c1_c3/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "4ead6c8e750931f4f0e762a5a7161b31f2987624947a930b32fad319ccfb8fe3",
+  "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "71ec8342534569b482edd9b99b278c690c4a721b8f40995b4b679442523d674b",
+  "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "5ac823751e41c44a86019667290b62d08266ddfa2097c6eb70df08660916043b",
+  "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "10e41f5b95b9dc552278fcb5776836e8787df724999c260967dd85f9f3b7f1c0",
+  "results/c1_c3/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2098213d3f941809e5e5edd23e52c1fb80e9a96290e3438b7ac98f9921d79a05",
+  "results/c1_c3/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "d346e249e0ff89bce78c89b36ebf12cae5cac024082d85f03440c1167bdd2d70",
+  "results/c1_c3/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4"
+ },
+ "tohum": 42,
+ "yontem": "src/analysis/protokoller.py dort protokol; p = P(adv yanlis | temiz yanlis); ozdeslik r_raw = e*p + r_tc*(1-e); yayilim = max-min asimetri; OLS + model bootstrap; toplamsal ayristirma hedef-dogru oranlarda, toplam-sifir kisiti, kosegen haric",
+ "yonlu": {
+  "ResNet18_AT->ResNet18_AT": {
+   "oranlar": {
+    "raw": 56.24,
+    "target_correct": 49.14584543869843,
+    "both_correct": 49.14584543869843,
+    "successful_source": 100.0
+   },
+   "successful_source_loose": 100.0,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 8605,
+    "both_correct": 8605,
+    "successful_source": 4229
+   },
+   "hedef_temiz_hata_e": 13.950000000000001,
+   "hedef_temiz_dogruluk": 86.05,
+   "kaynak_temiz_dogruluk": 86.05000000000001,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 49.14584543869843,
+   "p_adv_yanlis_verili_temiz_yanlis": 1.0,
+   "n_temiz_yanlis": 1395,
+   "ozdeslik_tam_ongoru_ham": 56.24,
+   "ozdeslik_tam_artik_kontrol": 0.0,
+   "ozdeslik_p1_ongoru_ham": 56.24,
+   "ozdeslik_artigi_ham_eksi_ongoru": 0.0,
+   "ham_eksi_tc": 7.094154561301572
+  },
+  "ResNet18_AT->ViT_Tiny_AT": {
+   "oranlar": {
+    "raw": 41.63,
+    "target_correct": 20.12053143405013,
+    "both_correct": 18.46659991417537,
+    "successful_source": 35.62277580071174
+   },
+   "successful_source_loose": 37.78846153846154,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 7301,
+    "both_correct": 6991,
+    "successful_source": 2810
+   },
+   "hedef_temiz_hata_e": 26.99,
+   "hedef_temiz_dogruluk": 73.01,
+   "kaynak_temiz_dogruluk": 86.05000000000001,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 49.14584543869843,
+   "p_adv_yanlis_verili_temiz_yanlis": 0.9981474620229714,
+   "n_temiz_yanlis": 2699,
+   "ozdeslik_tam_ongoru_ham": 41.629999999999995,
+   "ozdeslik_tam_artik_kontrol": 7.105427357601002e-15,
+   "ozdeslik_p1_ongoru_ham": 41.67999999999999,
+   "ozdeslik_artigi_ham_eksi_ongoru": -0.04999999999999005,
+   "ham_eksi_tc": 21.509468565949874
+  },
+  "ResNet18_AT->WRN_28_10": {
+   "oranlar": {
+    "raw": 21.68,
+    "target_correct": 12.472060795708538,
+    "both_correct": 9.356305336204834,
+    "successful_source": 19.222082810539522
+   },
+   "successful_source_loose": 24.043715846994534,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 8948,
+    "both_correct": 8358,
+    "successful_source": 3985
+   },
+   "hedef_temiz_hata_e": 10.52,
+   "hedef_temiz_dogruluk": 89.48,
+   "kaynak_temiz_dogruluk": 86.05000000000001,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 49.14584543869843,
+   "p_adv_yanlis_verili_temiz_yanlis": 1.0,
+   "n_temiz_yanlis": 1052,
+   "ozdeslik_tam_ongoru_ham": 21.68,
+   "ozdeslik_tam_artik_kontrol": 0.0,
+   "ozdeslik_p1_ongoru_ham": 21.68,
+   "ozdeslik_artigi_ham_eksi_ongoru": 0.0,
+   "ham_eksi_tc": 9.207939204291462
+  },
+  "ViT_Tiny_AT->ResNet18_AT": {
+   "oranlar": {
+    "raw": 27.839999999999996,
+    "target_correct": 16.19988378849506,
+    "both_correct": 10.270347589758261,
+    "successful_source": 17.61866452131939
+   },
+   "successful_source_loose": 24.948530787946847,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 8605,
+    "both_correct": 6991,
+    "successful_source": 3729
+   },
+   "hedef_temiz_hata_e": 13.950000000000001,
+   "hedef_temiz_dogruluk": 86.05,
+   "kaynak_temiz_dogruluk": 73.00999999999999,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 55.07464730858786,
+   "p_adv_yanlis_verili_temiz_yanlis": 0.996415770609319,
+   "n_temiz_yanlis": 1395,
+   "ozdeslik_tam_ongoru_ham": 27.840000000000003,
+   "ozdeslik_tam_artik_kontrol": -7.105427357601002e-15,
+   "ozdeslik_p1_ongoru_ham": 27.89,
+   "ozdeslik_artigi_ham_eksi_ongoru": -0.05000000000000426,
+   "ham_eksi_tc": 11.640116211504935
+  },
+  "ViT_Tiny_AT->ViT_Tiny_AT": {
+   "oranlar": {
+    "raw": 67.2,
+    "target_correct": 55.07464730858786,
+    "both_correct": 55.07464730858786,
+    "successful_source": 100.0
+   },
+   "successful_source_loose": 100.0,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 7301,
+    "both_correct": 7301,
+    "successful_source": 4021
+   },
+   "hedef_temiz_hata_e": 26.99,
+   "hedef_temiz_dogruluk": 73.01,
+   "kaynak_temiz_dogruluk": 73.00999999999999,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 55.07464730858786,
+   "p_adv_yanlis_verili_temiz_yanlis": 1.0,
+   "n_temiz_yanlis": 2699,
+   "ozdeslik_tam_ongoru_ham": 67.2,
+   "ozdeslik_tam_artik_kontrol": 0.0,
+   "ozdeslik_p1_ongoru_ham": 67.2,
+   "ozdeslik_artigi_ham_eksi_ongoru": 0.0,
+   "ham_eksi_tc": 12.12535269141214
+  },
+  "ViT_Tiny_AT->WRN_28_10": {
+   "oranlar": {
+    "raw": 18.39,
+    "target_correct": 8.806437192668753,
+    "both_correct": 4.599803066535378,
+    "successful_source": 7.690302398331596
+   },
+   "successful_source_loose": 13.3215859030837,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 8948,
+    "both_correct": 7109,
+    "successful_source": 3836
+   },
+   "hedef_temiz_hata_e": 10.52,
+   "hedef_temiz_dogruluk": 89.48,
+   "kaynak_temiz_dogruluk": 73.00999999999999,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 55.07464730858786,
+   "p_adv_yanlis_verili_temiz_yanlis": 0.9990494296577946,
+   "n_temiz_yanlis": 1052,
+   "ozdeslik_tam_ongoru_ham": 18.39,
+   "ozdeslik_tam_artik_kontrol": 0.0,
+   "ozdeslik_p1_ongoru_ham": 18.4,
+   "ozdeslik_artigi_ham_eksi_ongoru": -0.00999999999999801,
+   "ham_eksi_tc": 9.583562807331248
+  },
+  "WRN_28_10->ResNet18_AT": {
+   "oranlar": {
+    "raw": 32.72,
+    "target_correct": 21.812899477048227,
+    "both_correct": 19.992821249102658,
+    "successful_source": 64.92917847025495
+   },
+   "successful_source_loose": 67.19681908548708,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 8605,
+    "both_correct": 8358,
+    "successful_source": 1765
+   },
+   "hedef_temiz_hata_e": 13.950000000000001,
+   "hedef_temiz_dogruluk": 86.05,
+   "kaynak_temiz_dogruluk": 89.48,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 25.156459544032185,
+   "p_adv_yanlis_verili_temiz_yanlis": 1.0,
+   "n_temiz_yanlis": 1395,
+   "ozdeslik_tam_ongoru_ham": 32.72,
+   "ozdeslik_tam_artik_kontrol": 0.0,
+   "ozdeslik_p1_ongoru_ham": 32.72,
+   "ozdeslik_artigi_ham_eksi_ongoru": 0.0,
+   "ham_eksi_tc": 10.907100522951772
+  },
+  "WRN_28_10->ViT_Tiny_AT": {
+   "oranlar": {
+    "raw": 39.92,
+    "target_correct": 17.833173537871524,
+    "both_correct": 16.57054438036292,
+    "successful_source": 46.50967199327166
+   },
+   "successful_source_loose": 49.022447501810284,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 7301,
+    "both_correct": 7109,
+    "successful_source": 1189
+   },
+   "hedef_temiz_hata_e": 26.99,
+   "hedef_temiz_dogruluk": 73.01,
+   "kaynak_temiz_dogruluk": 89.48,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 25.156459544032185,
+   "p_adv_yanlis_verili_temiz_yanlis": 0.9966654316413487,
+   "n_temiz_yanlis": 2699,
+   "ozdeslik_tam_ongoru_ham": 39.92,
+   "ozdeslik_tam_artik_kontrol": 0.0,
+   "ozdeslik_p1_ongoru_ham": 40.01,
+   "ozdeslik_artigi_ham_eksi_ongoru": -0.0899999999999963,
+   "ham_eksi_tc": 22.086826462128478
+  },
+  "WRN_28_10->WRN_28_10": {
+   "oranlar": {
+    "raw": 33.03,
+    "target_correct": 25.156459544032185,
+    "both_correct": 25.156459544032185,
+    "successful_source": 100.0
+   },
+   "successful_source_loose": 100.0,
+   "paydalar": {
+    "raw": 10000,
+    "target_correct": 8948,
+    "both_correct": 8948,
+    "successful_source": 2251
+   },
+   "hedef_temiz_hata_e": 10.52,
+   "hedef_temiz_dogruluk": 89.48,
+   "kaynak_temiz_dogruluk": 89.48,
+   "kaynak_beyaz_kutu_basari_temiz_dogru": 25.156459544032185,
+   "p_adv_yanlis_verili_temiz_yanlis": 1.0,
+   "n_temiz_yanlis": 1052,
+   "ozdeslik_tam_ongoru_ham": 33.03,
+   "ozdeslik_tam_artik_kontrol": 0.0,
+   "ozdeslik_p1_ongoru_ham": 33.03,
+   "ozdeslik_artigi_ham_eksi_ongoru": 0.0,
+   "ham_eksi_tc": 7.873540455967817
+  }
+ },
+ "ciftler": [
+  {
+   "cift": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT"
+   ],
+   "yon_ileri": "ResNet18_AT->ViT_Tiny_AT",
+   "asimetri_ileri_eksi_geri": {
+    "raw": 13.790000000000006,
+    "target_correct": 3.920647645555068,
+    "both_correct": 8.196252324417108,
+    "successful_source": 18.004111279392355
+   },
+   "yayilim_dort_protokol": 14.083463633837287,
+   "yayilim_uc_protokol_bas_kaynak_haric": 9.869352354444938,
+   "temiz_dogruluk_farki_mutlak": 13.039999999999992,
+   "onaylanan_ikili_ayni_isaret": true,
+   "isaret_degisiyor_mu_dort_protokol": false
+  },
+  {
+   "cift": [
+    "ResNet18_AT",
+    "WRN_28_10"
+   ],
+   "yon_ileri": "ResNet18_AT->WRN_28_10",
+   "asimetri_ileri_eksi_geri": {
+    "raw": -11.04,
+    "target_correct": -9.340838681339688,
+    "both_correct": -10.636515912897824,
+    "successful_source": -45.707095659715435
+   },
+   "yayilim_dort_protokol": 36.366256978375745,
+   "yayilim_uc_protokol_bas_kaynak_haric": 1.6991613186603107,
+   "temiz_dogruluk_farki_mutlak": 3.430000000000007,
+   "onaylanan_ikili_ayni_isaret": true,
+   "isaret_degisiyor_mu_dort_protokol": false
+  },
+  {
+   "cift": [
+    "ViT_Tiny_AT",
+    "WRN_28_10"
+   ],
+   "yon_ileri": "ViT_Tiny_AT->WRN_28_10",
+   "asimetri_ileri_eksi_geri": {
+    "raw": -21.53,
+    "target_correct": -9.026736345202771,
+    "both_correct": -11.970741313827544,
+    "successful_source": -38.81936959494006
+   },
+   "yayilim_dort_protokol": 29.792633249737293,
+   "yayilim_uc_protokol_bas_kaynak_haric": 12.50326365479723,
+   "temiz_dogruluk_farki_mutlak": 16.47,
+   "onaylanan_ikili_ayni_isaret": true,
+   "isaret_degisiyor_mu_dort_protokol": false
+  }
+ ],
+ "egim_yayilim_temiz_fark": {
+  "dort_protokol": {
+   "egim": -0.8972005462528734,
+   "kesisim": 36.598713285173325,
+   "R2": 0.2805916843717158,
+   "pearson_r": -0.5297090563429288,
+   "n_cift": 3,
+   "egim_GA95_model_bootstrap": [
+    -0.8972005462528734,
+    -0.8972005462528734
+   ],
+   "bootstrap_gecerli_ornek": 462,
+   "NOT": "ciftler modelleri paylasir; GA model birak-tut bootstrap'indan, cift sayisi serbestlik derecesi DEGILDIR"
+  },
+  "uc_protokol_bas_kaynak_haric": {
+   "egim": 0.8332233461847418,
+   "kesisim": -1.1248665651409753,
+   "R2": 0.9995773819413438,
+   "pearson_r": 0.9997886686402001,
+   "n_cift": 3,
+   "egim_GA95_model_bootstrap": [
+    0.8332233461847418,
+    0.8332233461847418
+   ],
+   "bootstrap_gecerli_ornek": 409,
+   "NOT": "ciftler modelleri paylasir; GA model birak-tut bootstrap'indan, cift sayisi serbestlik derecesi DEGILDIR"
+  }
+ },
+ "oncul_p_ozeti": {
+  "n_yon": 6,
+  "p_min": 0.996415770609319,
+  "p_max": 1.0,
+  "p_hedef_bazinda": {
+   "ResNet18_AT": {
+    "p_min": 0.996415770609319,
+    "p_max": 1.0,
+    "hedef_temiz_dogruluk": 86.05
+   },
+   "ViT_Tiny_AT": {
+    "p_min": 0.9966654316413487,
+    "p_max": 0.9981474620229714,
+    "hedef_temiz_dogruluk": 73.01
+   },
+   "WRN_28_10": {
+    "p_min": 0.9990494296577946,
+    "p_max": 1.0,
+    "hedef_temiz_dogruluk": 89.48
+   }
+  },
+  "ozdeslik_artigi_mutlak_max_puan": 0.0899999999999963,
+  "ozdeslik_artigi_mutlak_ort_puan": 0.03333333333333144
+ },
+ "toplamsal_kaynak_hedef_hedef_dogru": {
+  "mu": 16.207497704307045,
+  "kaynak_etkisi": {
+   "ResNet18_AT": 1.9843271664060917,
+   "ViT_Tiny_AT": -3.0928797638643157,
+   "WRN_28_10": 1.1085525974582247
+  },
+  "hedef_etkisi": {
+   "ResNet18_AT": 3.791057511667685,
+   "ViT_Tiny_AT": 1.2229148997216046,
+   "WRN_28_10": -5.013972411389289
+  },
+  "artik_max_mutlak": 0.7057916636153863,
+  "artik_rms": 0.705791663615331,
+  "R2": 0.9746931482741107,
+  "n_hucre": 6
+ }
+}

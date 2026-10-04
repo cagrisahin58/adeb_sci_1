@@ -1,0 +1,3521 @@
+
+===== SAYFA 1 =====
+On the Robustness of Vision Transformers to Adversarial Examples
+Kaleel Mahmood
+Department of Computer Science and Engineering
+University of Connecticut, CT, 06269, USA kaleel.mahmood@uconn.edu
+Rigel Mahmood
+Department of Computer Science and Engineering
+University of Connecticut, CT, 06269, USA
+Marten Van Dijk
+CWI, Amsterdam
+The Netherlands
+Abstract
+Recent advances in attention-based networks have
+shown that Vision Transformers can achieve state-of-the-art
+or near state-of-the-art results on many image classiﬁcation
+tasks. This puts transformers in the unique position of being
+a promising alternative to traditional convolutional neural
+networks (CNNs). While CNNs have been carefully stud-
+ied with respect to adversarial attacks, the same cannot be
+said of Vision Transformers. In this paper, we study the
+robustness of Vision Transformers to adversarial examples.
+Our analyses of transformer security is divided into three
+parts. First, we test the transformer under standard white-
+box and black-box attacks. Second, we study the transfer-
+ability of adversarial examples between CNNs and trans-
+formers. We show that adversarial examples do not readily
+transfer between CNNs and transformers. Based on this
+ﬁnding, we analyze the security of a simple ensemble de-
+fense of CNNs and transformers. By creating a new attack,
+the self-attention blended gradient attack, we show that
+such an ensemble is not secure under a white-box adver-
+sary. However, under a black-box adversary, we show that
+an ensemble can achieve unprecedented robustness without
+sacriﬁcing clean accuracy. Our analysis for this work is
+done using six types of white-box attacks and two types of
+black-box attacks. Our study encompasses multiple Vision
+Transformers, Big Transfer Models and CNN architectures
+trained on CIFAR-10, CIFAR-100 and ImageNet.
+1. Introduction
+For
+vision
+tasks,
+convolutional
+neural
+networks
+(CNNs) [20] are the de facto architecture [37, 19].
+On
+the other hand, in natural language processing (NLP),
+attention-based transformers are one of the most commonly
+used models [35]. Based on the success of transformers in
+NLP, various works have attempted to apply self-attention
+(both with and without CNNs) to image processing
+tasks
+[4, 36].
+In particular, in [12], the training of
+self-attention transformers is achieved by processing the
+image in patches. The training in [12] is unique in that the
+transformer is ﬁrst trained on the dataset ImageNet-21K
+(or JFT) before training on a smaller dataset, to achieve
+near state-of-the-art results on ImageNet, CIFAR-10 and
+CIFAR-100.
+These types of transformers are referred
+to as Vision Transformers (ViT) [12]. It is important to
+note that the same kind of training regime can be applied
+to CNNs. In [19], they also propose training on a large
+dataset (ImageNet-21K or JFT) and ﬁne tuning on a
+smaller dataset. Using this approach, CNNs are also able
+to achieve state-of-the-art results on ImageNet, CIFAR-10
+and CIFAR-100. CNNs trained in this manner are referred
+to as Big Transfer Models (BiT-M) [19].
+While CNNs are popular for vision tasks, they are not
+without deﬁciencies. It has been widely documented that
+CNNs are vulnerable to adversarial examples [33, 14]. Ad-
+versarial examples are benign input images to which small
+perturbations are added. This perturbation causes the CNN
+to misclassify the image with high conﬁdence.
+Broadly
+speaking, an attacker creates an adversarial example using
+one of two threat models. Under a white-box adversary [5],
+the attacker has access to the CNN’s parameters (architec-
+ture and trained weights). The adversary can directly obtain
+gradient information from the model to create an adversarial
+example. The other type of threat is a black-box adversary.
+In this scenario, the attacker does not know the CNN’s pa-
+rameters or architecture but can repeatedly query the CNN,
+or build their own synthetic CNN to estimate gradient infor-
+mation and generate adversarial examples.
+It has also been shown that adversarial examples gener-
+ated using CNNs exhibit transferability [28, 21, 29]. Here,
+transferability refers to the fact that adversarial examples
+crafted to fool one CNN are often misclassiﬁed by other
+CNNs as well. Overall, CNNs have an expansive body of
+arXiv:2104.02610v2  [cs.CV]  5 Jun 2021
+
+===== SAYFA 2 =====
+literature related to adversarial attacks [6, 11, 10] and de-
+fenses [23, 5, 34]. In contrast, Vision Transformers have
+not been closely studied in the adversarial context. In this
+work, we investigate how the advent of Vision Transformers
+advance the ﬁeld of adversarial machine learning. Here we
+speciﬁcally focus on image based adversarial attacks. Our
+paper is organized as follows: In section 2 we ﬁrst discuss
+some related NLP work. We then break our analysis of Vi-
+sion Transformers into several related questions:
+Do Vision Transformers provide any improvement in se-
+curity over CNNs under a white-box adversary? We explore
+this question in section 3 by attacking Vision Transform-
+ers, Big Transfer Models and conventional CNNs (ResNets)
+with six standard white-box adversarial machine learning
+attacks. We show that under a white-box adversary, Vision
+Transformers are just as vulnerable (insecure) as other mod-
+els. In section 4, we further delve into white-box attacks
+and ask: How transferable are adversarial examples be-
+tween Visions Transformers and other models? We perform
+a transferability study with eight CIFAR-10 and CIFAR-
+100 models (this includes four Vision Transformers, two
+Big Transfer Models, and two ResNets). We also study
+the transferability of ImageNet Vision Transformers using
+seven models (three Vision Transformers, two Big Trans-
+fer Models, and two ResNets). From our experiments we
+observe an interesting phenomenon. The transferability be-
+tween Vision Transformers and other non-transformer mod-
+els is unexpectedly low.
+How can the transferability phenomena be leveraged to
+provide security? This is the topic of our ﬁnal question
+in sections 5 and 6. We further break this question down
+into white-box and black-box analyses. First, we consider
+a white-box adversary. We develop a new white-box attack
+called the Self-Attention blended Gradient Attack (SAGA).
+Using SAGA, we show it is not possible to leverage the
+transferability phenomena to achieve white-box security.
+However, achieving black-box security is still possible. To
+demonstrate this, we consider a black-box attacker that can
+leverage transfer style [29] and query-based attacks [8]. We
+show under this threat model, a simple ensemble of Vision
+Transformers and Big Transfer Models can achieve an un-
+precedent level of robustness, without sacriﬁcing clean ac-
+curacy. Finally, in section 7, we offer concluding remarks.
+2. Related Work
+The transformer has been well studied from an adversar-
+ial perspective for NLP applications e.g., [18, 31, 17, 15].
+The work in [18] analyzes two popular self-attentive archi-
+tectures: (a) Transformer for neural machine translation,
+and (b) BERT for sentiment and entailment classiﬁcation,
+and proposes algorithms to generate more natural adversar-
+ial examples that preserve the semantics. Theoretical expla-
+nations are also provided in [18] to support the claim that
+self-attentive structures are more robust to small adversarial
+perturbations in NLP as compared to LSTM based architec-
+tures. The work in [31] analyzes the complex relationship
+between self-attention layers including cross-non-linearity
+and cross-position, and develops a robustness veriﬁcation
+algorithm for Transformers. The authors do not use large-
+scale pre-trained models such as BERT because they are too
+challenging to be tightly veriﬁed with their approach. The
+work in [17] studies large pre-trained Transformer models
+in NLP such as BERT. One of the conjectures drawn by the
+authors of [17] is that since Transformer models are pre-
+trained with large amounts of data (e.g., BERT is trained on
+3 billion tokens), this may aid robustness. It is also men-
+tioned that perhaps the self-supervised training may also
+contribute to this robustness. The work in [15] proposes a
+self-attention attribution method to interpret the information
+interactions inside a transformer. The authors use BERT as
+an example to conduct experiments to identify the important
+attention heads, and extract the most salient dependencies
+in each layer to construct an attribution tree. This infor-
+mation is used to extract adversarial patterns to implement
+non-targeted attacks towards BERT.
+Thus, as stated above a good body of work has been de-
+voted to the adversarial exploration of the Transformer for
+NLP applications. To our best knowledge, we are the ﬁrst
+to provide an in-depth analysis of the adversarial properties
+of a Transformer from a vision perspective.
+3. White-Box Attacks on Vision Transformers
+Do Vision Transformers provide any improvement in se-
+curity over CNNs under a white-box adversary? We exper-
+imentally analyze Vision Transformers to answer this ques-
+tion. It may seem unorthodox to start with experiments.
+However, the most expedient way to directly determine the
+security of the transformer is through attacks and analyses
+of those attacks. We start with a white-box adversary be-
+cause it represents the strongest possible adversary.
+3.1. Adversarial Model, Considered Classiﬁers and
+White-Box Attack Selection
+Adversarial Model: In this section, our adversary has
+knowledge of the model architecture and trained parame-
+ters of the model. We assume the adversary can perturb the
+original input x to create xadv within a certain amount ϵ
+according to ∥x−xadv∥∞≤ϵ. For CIFAR-10 and CIFAR-
+100, the ϵ = 0.031 and for ImageNet ϵ = 0.062, where x
+is an n × m color image such that x ∈[0, 1]n×m×3. The
+adversary succeeds if they are able to create an input xadv
+within this bound ϵ that is misclassiﬁed by the classiﬁer (un-
+targeted attack). When we measure security, we do so by
+taking a set of clean test examples that are correctly identi-
+ﬁed by the classiﬁer. Using this set of clean examples we
+generate adversarial examples using one of the six attacks.
+
+===== SAYFA 3 =====
+We then measure what percent of examples the classiﬁer
+still correctly identiﬁes. As Vision Transformers are rela-
+tively new, we experiment with a wide range of attacks and
+models. Below, we list the attacks and models we use. We
+also give our justiﬁcation for including them in this paper.
+White-Box Attacks:
+We run six different types of
+white-box attacks on our models. We begin with one of the
+most basic, the Fast Gradient Sign Method (FGSM) [13]
+as an initial test of robustness. We further build upon this
+by testing stronger multi-step attacks, the Momentum Iter-
+ative Method (MIM) [11], and Projected Gradient Descent
+(PGD) [24]. We also test the newest iterative attack which
+uses a variable step size in each iteration, Auto Projected
+Gradient Descent (APGD) [10]. Aside from the previously
+mentioned attacks, there are two other possible attack di-
+rections. To craft an extremely small, almost imperceptible
+adversarial noise, the Carlini and Wagner (C & W) attack is
+often of interest [6].
+Lastly, it is possible for some white-box attacks to fail
+if gradient masking or an obfuscation of the gradient oc-
+curs [2]. It is important to note this does not actually mean
+the classiﬁer is secure, it merely means the gradient for the
+classiﬁer was not estimated properly. There are attacks de-
+signed to overcome gradient masking, such as the Back-
+ward Pass Differentiable Approximation (BPDA) [2]. We
+use BPDA here to ensure gradient masking is not occur-
+ring in the self-attention layers, or any other part of the
+Vision Transformer. Due to the limited space, we cannot
+give detailed descriptions of each white-box attack here. We
+urge interested readers to examine the supplemental mate-
+rial where we provide descriptions of each attack.
+Classiﬁer Models:
+When considering Vision Trans-
+formers, there are several different types of model variants.
+To begin, the patch size of the transformer needs to be cho-
+sen. To test different patch sizes, in our study we include
+both patch size 32 (ViT-B-32) and patch size 16 (ViT-B-
+16). The ”B” in the model refers to the model complex-
+ity [12]. ”B” models contain 12 layers and ”L” models con-
+tain 24 layers. Since model complexity is another factor
+that can affect security [24], we also test across model com-
+plexity (ViT-B-16 and ViT-L-16). It is also possible to use
+the self-attention layers ﬁrst and then use a conventional
+CNN (ResNet) on top. This conﬁguration is denoted as
+ViT-R50. Experimenting across patch size, model complex-
+ity and with the hybrid conﬁguration gives us four Vision
+Transformer models.
+For the Big Transfer Models [19], we vary across model
+complexity (BiT-M-R50 and BiT-M-R101x3). We do the
+same for conventional ResNets (ResNet-56 and ResNet-
+164 [16]). Overall for CIFAR-10 and CIFAR-100, this gives
+us a total of 8 models to attack: ViT-B-32, ViT-B-16, ViT-L-
+16, ViT-R50, BiT-M-R50, BiT-M-R101x3, ResNet-56 and
+ResNet-164. For ImageNet, we run a slight variation of the
+above set, attacking 7 models: ViT-B-16, ViT-L-16 (image
+size 224), ViT-L-16 (image size 512), BiT-M-R50, BiT-M-
+R152x4, ResNet-50 and ResNet-152. For ImageNet, we
+mainly focus on more complex models (e.g., testing two
+types of ViT-L-16 instead of ViT-B-32). We do this because
+the more complex Vision Transformers are better indicative
+of state-of-the-art performance on ImageNet. We provide
+full descriptions of the architectures and training parame-
+ters for our models in the supplemental material.
+3.2. White-Box Attack Analysis
+We report the results of our six white-box attacks for
+CIFAR-10 and ImageNet in Table 3.1. The robust accu-
+racy (percent of samples correctly identiﬁed by the classi-
+ﬁer) is reported in Table 3.1 using 1000 examples for each
+attack. For this set of attacks, CIFAR-10 and CIFAR-100
+follow extremely similar trends. As a result, for brevity, we
+provide our CIFAR-100 white-box attack results in the sup-
+plementary material.
+Overall, based on the results in Table 3.1, we can deﬁni-
+tively answer the original question posed at the start of the
+this section. Vision Transformers do not provide any ad-
+ditional security over Big Transfer Models or conventional
+CNNs. We can clearly see this across all datasets, indicat-
+ing Vision Transformers have no robustness (i.e. 0%) for
+the C&W and APGD attacks. Likewise, Vision Transform-
+ers have less than 6% robustness across all the datasets for
+the PGD and MIM attacks. While this result may seem ex-
+pected, it is an important step in understanding the complete
+security picture of Vision Transformers. Now that we know
+Vision Transformers are not robust to white-box attacks, we
+can consider the next important question on transferability.
+4. Vision Transformers Transferability Study
+How transferable are the adversarial examples created
+by Vision Transformers? It was shown in Section 3 that
+white-box attacks are extremely effective at creating exam-
+ples that fool Vision Transformers. We further expand on
+the previous analyses and now examine the transferability
+of adversarial examples misclassiﬁed by Vision Transform-
+ers. Here, transferability refers to the occurrence of adver-
+sarial examples that are misclassiﬁed by multiple (i.e., more
+than one) classiﬁer. The transferability of adversarial exam-
+ples has been well documented for different CNN architec-
+tures. In the literature, the transferability of adversarial ex-
+amples was ﬁrst observed in [33]. Consequent studies have
+shown the transferability of adversarial examples between
+CNNs on the MNIST dataset in [30] and on the ImageNet
+dataset in [22]. However, to the best of our knowledge,
+there have been no large-scale studies on the transferabil-
+ity between CNNs and Visions Transformers at this time.
+We provide detailed evaluation and analyses on this aspect
+in this section.
+
+===== SAYFA 4 =====
+Table 1. White-box attacks on Vision Transformers, Big Transfer Models and ResNets. The attacks are done using the l∞norm with
+ϵ = 0.031 for CIFAR-10 and ϵ = 0.062 for ImageNet. The white-box attack results for CIFAR-100 follow an extremely similar trend
+to CIFAR-10. Hence for brevity, CIFAR-100 white-box attack results are given in the supplementary material. In this Table the robust
+accuracy is given for each corresponding attack. The last column ”Acc” refers to the clean accuracy of the model.
+CIFAR-10
+FGSM
+PGD
+BPDA
+MIM
+C&W
+APGD
+Acc
+ViT-B-32
+37.9%
+1.8%
+17.6%
+4.4%
+0.0%
+0.0%
+98.6%
+ViT-B-16
+39.5%
+0.0%
+20.3%
+0.3%
+0.0%
+0.0%
+98.9%
+ViT-L-16
+56.3%
+1.2%
+28.7%
+5.9%
+0.0%
+0.0%
+99.1%
+ViT-R50
+40.8%
+0.1%
+13.4%
+0.2%
+0.0%
+0.0%
+98.6%
+BiT-M-R50x1
+66.0%
+0.0%
+14.9%
+0.0%
+0.0%
+0.0%
+97.5%
+BiT-M-R101x3
+85.2%
+0.0%
+17.1%
+0.0%
+0.0%
+0.0%
+98.7%
+ResNet-56
+23.0%
+0.0%
+5.0%
+0.0%
+0.0%
+0.0%
+92.8%
+ResNet-164
+29.0%
+0.0%
+5.4%
+0.0%
+0.0%
+0.0%
+93.8%
+ImageNet
+FGSM
+PGD
+BPDA
+MIM
+C&W
+APGD
+Acc
+ViT-B-16
+23.1%
+0.0%
+7.3%
+0.0%
+0.0%
+0.0%
+80.3%
+ViT-L-16 (224)
+27.9%
+0.0%
+8.4%
+0.0%
+0.0%
+0.0%
+82.0%
+ViT-L-16 (512)
+29.8%
+0.0%
+8.4%
+0.0%
+0.0%
+0.0%
+85.4%
+BiT-M-R50x1
+28.7%
+0.0%
+3.5%
+0.0%
+0.0%
+0.0%
+79.9%
+BiT-M-R152x4
+60.9%
+0.0%
+15.2%
+0.0%
+0.0%
+0.0%
+85.3%
+ResNet-50
+11.8%
+0.0%
+1.4%
+0.0%
+0.0%
+0.0%
+74.5%
+ResNet-152
+18.1%
+0.0%
+2.7%
+0.0%
+0.0%
+0.0%
+77.0%
+4.1. Measuring Transferability
+Formally, we can deﬁne non-targeted transferability as
+follows: We start with a classiﬁer Ci and correctly identiﬁed
+input/label pair (x, y). An attack ACi is used to generate an
+adversarial example xadv with respect to classiﬁer Ci:
+xadv = ACi(x, y)
+(1)
+The adversarial example xadv is then said to transfer from
+classiﬁer to Ci to n −1 other classiﬁers if and only if:
+∀n
+j=1 [{Cj(x) = y} ∧{Cj(xadv)̸ = y}]
+(2)
+Equation 2 states that each classiﬁer Cj must correctly clas-
+sify x and must misclassify xadv. Assuming two classiﬁers
+(n = 2) and a set of m examples that are correctly classiﬁed
+by both, we can deﬁne the transferability from Ci to Cj as
+follows:
+ti,j = 1
+m
+m
+X
+k=1
+
+1
+if Cj(ACi(xk, yk))̸ = yk,
+0
+otherwise.
+(3)
+A high transferability between classiﬁers indicates that
+they have a shared vulnerability to the same set of adver-
+sarial examples. On the other hand, a low transferability
+may indicate a possible avenue for security. This is due to
+the fact that the same set of adversarial examples are not
+misclassiﬁed by both classiﬁers.
+4.2. Transferability Study Setup
+To properly study the transferability between Vision
+Transformers,
+Big Transfer Models and conventional
+CNNs, we use the same 8 models for CIFAR-10 and
+CIFAR-100 as mentioned in Section 3.1. For ImageNet,
+we also use the same 7 models listed in Section 3.1. For
+our transferability study, we consider all possible pairs of
+classiﬁers. For each pair of classiﬁers (i, j), we ﬁnd a set
+of m = 1000 examples that both classiﬁers correctly iden-
+tify. We then measure the transferability between the pair of
+classiﬁers using Equation 3. It is important to note that the
+transferability measurement will be affected by the choice
+of white-box attack ACi used to generate the adversarial
+examples. It has been shown that MIM, PGD and FGSM
+are good candidates for creating highly transferable exam-
+ples [25]. As a result, for every pair of classiﬁers (i, j), we
+test all three attacks and report the highest transferability
+result. For these attacks, we use the same ϵ and l∞norm
+as described in Section 3.1. Additional experimental details
+are provided in our supplementary material.
+In Table 2, we show the transferability results for
+CIFAR-10, CIFAR-100 and ImageNet. The top row of the
+table corresponds to the model which was used to generate
+the adversarial examples, Ci in Equation 3. The ﬁrst col-
+umn in the table corresponds to the model which was used
+to predict the labels of the adversarial examples. The model
+in the ﬁrst column is Cj in Equation 3. In the special case
+when i = j, we train an independent copy of model i to
+generate adversarial examples for CIFAR-10 and CIFAR-
+100. For ImageNet, due to the high computational cost of
+model training, we forgo the i = j measurement. It can
+clearly be seen from the other datasets we study and in the
+literature [22] that copies of the same model (i = j) already
+
+===== SAYFA 5 =====
+have high transferability. We also graphically represent the
+results of Table 2 in Figure 1 for the CIFAR-10 dataset.
+4.3. Analysis of Transferability Study
+From Table 2 and Figure 1, we can see a very interest-
+ing phenomenon. The transferability between Vision Trans-
+formers and Big Transfer Models is extremely low. For
+example, consider ViT-L-16 and BiT-M-50x1. Adversar-
+ial examples generated using BiT-50x1 are misclassiﬁed
+by ViT-L-16 less than 16% of the time across all datasets
+(5.7%, 15.5% and 11.8% for CIFAR-10, CIFAR-100 and
+ImageNet respectively). Likewise, less than half the time
+BiT-M-50x1 is fooled by adversarial examples generated
+using ViT-L-16 (42.5%, 47.6% and 34.3% for CIFAR-10,
+CIFAR-100 and ImageNet).
+Broadly speaking, we can consider the ViT models, BiT
+models and ResNets each as a model genus. In general, the
+phenomenon of low transferability mostly occurs between
+model genusus, but not within model genusus. That is to
+say, adversarial examples generated by one BiT model will
+likely transfer to a different BiT model, but not to a ViT
+model or ResNet. Visually, we can see this result repre-
+sented for CIFAR-10 in Figure 1. The x-axis represents dif-
+ferent models used to generate the adversarial examples and
+the y-axis represents the model used to evaluate those ad-
+versarial examples. The z-axis is used to measure the trans-
+ferability. For clarity, the bars in the plot are color coded.
+Green, blue and light blue bars represent the transferability
+measurements between models of different genusus (green
+is ViT/ResNet transferability, blue is ViT/BiT transferabil-
+ity and light blue is BiT/ResNet transferability). Pink, red,
+and orange bars represent the transferability between mod-
+els of the same genus. Pink is the transferability between
+ViT models, red is the transferability between BiT models
+and orange is the transferability between ResNet models.
+It is important to note while the low transferability phe-
+nomenon is a generally observed trend, it is not an absolute
+rule. For example, the transferability between Big Transfer
+models (BiT-M-R50x1 and BiT-M-152x4) for ImageNet is
+also relatively low (28% and 24.9%). However, the most
+important factor is that the low transferability phenomenon
+does happen across multiple datasets and for multiple dif-
+ferent pairs of models. The usefulness of these observations
+may not be apparent immediately. Nevertheless, they have
+serious security implications which we elaborate on subse-
+quently.
+5. White-Box Security and Transferability
+How can the transferability phenomena be leveraged to
+provide security? From section 4, we know that the trans-
+ferability of adversarial examples between different model
+genusus is generally low. Therefore, we propose testing an
+ensemble of different models as a defense. To further clarify
+Figure 1. Visual representation of Table 2 for CIFAR-10. The x-
+axis corresponds to the model used to generate the adversarial ex-
+amples. The y-axis corresponds to the model used to evaluate the
+adversarial examples. The z-axis measures transferability between
+the two models. The bars are color coded based on the two models.
+Pink, red, and orange bars represent the transferability between
+models of the same genus. Green, blue and light blue bars repre-
+sent the transferability measurements between models of different
+genusus.
+the original question, we break it down into two parts: Can
+an ensemble defense provide security against a white-box
+adversary, and can an ensemble provide security against a
+black-box adversary? In this section we answer the white-
+box question by proposing a novel attack that simultane-
+ously breaks both Transformers and CNNs. In Section 6,
+we investigate the black-box question.
+We ﬁrst deﬁne our base case ensemble defense.
+Ensemble Models: In this paper, we have already ex-
+amined multiple Vision Transformers, Big Transfer Models
+and ResNets. The simplest ensemble would be to choose
+two types of classiﬁers from this group. Therefore, as a base
+case we use the most complex BiT model and ViT model.
+For CIFAR-10 and CIFAR-100 datasets, the ensemble is
+comprised of ViT-L-16 and BiT-M-101x3. For ImageNet,
+this ensemble is made up of ViT-L-16 (image size 512) and
+BiT-M-152x4. Here, we do not consider ResNets as they
+have signiﬁcantly less clean accuracy and we do not want
+to pay such a security cost. In the supplementary material,
+we do provide some ResNet ensemble experiments for the
+sake of completeness.
+Ensemble Output: In our ensemble defense, there are
+several possible ways to combine the output of the models.
+Here we consider three ways commonly found in the lit-
+erature, majority voting [27], absolute consensus [26] and
+random selection [32]. Majority voting is a weak method
+of evaluating adversarial examples because not every clas-
+siﬁer must be fooled, resulting in diminishing returns as the
+number of classiﬁers increases. The alternative to major-
+ity voting is absolute consensus [26]. In this setup, if ev-
+
+===== SAYFA 6 =====
+Table 2. Transferability results for CIFAR-10, CIFAR-100 and ImageNet. The ﬁrst column in each table represents the model used to
+generate the adversarial examples, Ci. The top row in each table represents the model used to evaluate the adversarial examples, Cj. Each
+entry is the maximum transferability computed using Ci and Cj over three different attacks, FGSM, PGD and MIM using Equation 3.
+CIFAR-10
+ViT-B-32
+ViT-B-16
+ViT-L-16
+R50-ViT
+BiT-50x1
+BiT-101x3
+ResNet-56
+ResNet-164
+ViT-B-32
+95.8%
+84.1%
+75.5%
+34.9%
+60.8%
+62.0%
+18.6%
+19.9%
+ViT-B-16
+57.1%
+99.6%
+88.9%
+22.6%
+43.4%
+45.0%
+13.9%
+14.0%
+ViT-L-16
+55.6%
+78.4%
+89.6%
+30.3%
+42.5%
+44.7%
+13.0%
+14.8%
+R50-ViT
+39.6%
+58.1%
+51.5%
+98.3%
+61.0%
+58.0%
+26.7%
+29.0%
+BiT-50x1
+4.5%
+10.9%
+5.7%
+4.7%
+100.0%
+51.4%
+7.0%
+9.0%
+BiT-101x3
+8.6%
+20.3%
+13.7%
+7.2%
+75.9%
+100.0%
+7.8%
+9.3%
+ResNet-56
+6.6%
+9.0%
+5.3%
+9.7%
+22.5%
+11.8%
+85.9%
+87.2%
+ResNet-164
+6.8%
+8.1%
+5.0%
+9.7%
+22.3%
+11.2%
+83.6%
+85.7%
+CIFAR-100
+ViT-B-32
+ViT-B-16
+ViT-L-16
+R50-ViT
+BiT-50x1
+BiT-101x3
+ResNet-56
+ResNet-164
+ViT-B-32
+96.2%
+88.5%
+83.6%
+52.2%
+60.5%
+61.1%
+14.9%
+14.0%
+ViT-B-16
+71.3%
+99.3%
+93.2%
+38.6%
+44.5%
+47.9%
+9.0%
+7.5%
+ViT-L-16
+67.8%
+88.3%
+94.2%
+48.1%
+47.6%
+50.0%
+9.9%
+9.5%
+R50-ViT
+51.6%
+65.0%
+62.3%
+98.9%
+64.1%
+61.2%
+11.0%
+9.9%
+BiT-50x1
+17.7%
+25.0%
+15.5%
+18.2%
+100.0%
+56.5%
+4.9%
+5.2%
+BiT-101x3
+24.9%
+39.0%
+26.3%
+23.5%
+74.0%
+99.0%
+5.7%
+3.2%
+ResNet-56
+20.1%
+22.2%
+15.3%
+22.7%
+31.4%
+21.9%
+70.8%
+68.9%
+ResNet-164
+22.1%
+24.5%
+15.5%
+24.2%
+35.9%
+26.5%
+74.5%
+79.2%
+ImageNet
+ViT-B-16
+ViT-L-16
+ViT-L-16 (512)
+BiT-50x1
+BiT-152x4
+ResNet-50
+ResNet-152
+ViT-B-16
++
+89.1%
+39.6%
+40.8%
+27.4%
+44.0%
+40.1%
+ViT-L-16
+90.9%
++
+64.5%
+40.0%
+26.9%
+43.7%
+40.8%
+ViT-L-16 (512)
+28.0%
+43.4%
++
+34.3%
+26.3%
+28.4%
+23.2%
+BiT-50x1
+9.8%
+8.4%
+11.8%
++
+24.9%
+24.7%
+18.7%
+BiT-152x4
+8.2%
+7.6%
+13.5%
+28.0%
++
+15.1%
+12.0%
+ResNet-50
+23.8%
+18.8%
+24.7%
+55.3%
+24.4%
++
+86.7%
+ResNet-152
+25.9%
+22.1%
+26.6%
+54.1%
+26.8%
+89.4%
++
+ery classiﬁer does not agree on the same class label then
+the sample is marked as adversarial. Absolute consensus
+removes the diminishing returns disadvantage of majority
+voting, though at the cost of clean accuracy. In absolute
+consensus, it is typical that many clean samples are marked
+as adversarial [26]. Due to this, we use random selection in
+all our ensemble defenses for the remainder of the paper. In
+random selection, a single model is selected randomly and
+used to evaluate the input at run time.
+5.1. The Self-Attention Gradient Attack
+Attack Motivation:
+A na¨ıve approach would be to
+assume that an ensemble defense would provide security
+against a white-box adversary if only the low transferabil-
+ity results in Section 3 and Section 4 were taken into ac-
+count. Consider the following analysis: Let us focus on
+the ImageNet models ViT-L-16 (image size 512) and BiT-
+M-152x4. From Section 4, we know a white-box MIM at-
+tack has a 100% attack success rate (0% robust accuracy)
+on ViT-L-16 (see Table 2). Now let us introduce an addi-
+tional model, BiT-M-152x4 into the ensemble with ViT-L-
+16. From Section 4 Table 2, we know the adversarial exam-
+ples generated from ViT-L-16 will be misclassiﬁed by BiT-
+M-152x4 only 26.3% of the time. If we make an ensem-
+ble of ViT-L-16 and BiT-M-152x4 with random selection,
+this means the attack success rate on average would drop to
+63.15%. It seems as if we went from 0% robust accuracy
+using only ViT-L-16 to 36.85% robust accuracy just by us-
+ing an ensemble with random selection. However, this is not
+the case as the adversarial examples we are using only come
+from attacking one model. We demonstrate the ﬂaws in this
+type of analysis by proposing a new attack which generates
+adversarial examples that are simultaneously misclassifed
+by both Vision Transformers and CNNs. We call this new
+attack, the Self-Attention Gradient Attack (SAGA).
+Mathematical Description: To derive SAGA, we as-
+sume the same white-box adversary we detailed in Sec-
+tion 3. Such an adversary has knowledge of the models
+and trained parameters in an ensemble defense. Instead of
+focusing completely on optimizing over one of the models,
+SAGA focuses on breaking multiple models at once. As-
+sume we are given an ensemble with a set of Vision Trans-
+formers V and a set of CNNs K. The goal of the attacker is
+to craft an adversarial example xadv from x within perturba-
+
+===== SAYFA 7 =====
+tion bounds ϵ that is misclassifed by all members v ∈V and
+k ∈K. We can iteratively compute the adversarial example
+as follows:
+x(i+1)
+adv
+= x(i)
+adv + ϵs ∗sign(Gblend(x(i)
+adv))
+(4)
+where x(1)
+adv = x and ϵs is the step size for the attack. Fur-
+ther, we deﬁne Gblend(x(i)
+adv) as follows:
+Gblend(x(i)
+adv) =
+X
+k∈K
+αk
+∂Lk
+∂x(i)
+adv
++
+X
+v∈V
+αvφv ⊙∂Lv
+∂x(i)
+adv
+(5)
+In Equation 5, the ﬁrst summation is for the models in set K
+which are CNNs. ∂Lk/∂x(i)
+adv is the partial derivative of the
+loss function of the kth CNN with respect to the adversarial
+input x(i)
+adv. Each model k has an associated weighting fac-
+tor αk. In a more reﬁned approach, αk could be optimized
+over as well, but here we simply leave αk as a hyperparam-
+eter in the attack. Note that PGD [24] without randomized
+start is a special case of our attack when V = ∅, K has ex-
+actly one element and a1 = 1. However, when attacking an
+ensemble, V̸ = ∅and hence we have a second term.
+In Equation 5, the second term1 αvφv ⊙∂Lv/∂x(i)
+adv is
+used to craft adversarial examples that are misclassiﬁed by
+the Vision Transformers in the ensemble. Here ∂Lv/∂x(i)
+adv
+is the loss function of the transformer with respect to the ad-
+versarial input. Likewise, αv is a weighting factor selected
+by the attacker to balance the emphasis on different models.
+We also bring in one additional term which is speciﬁc to
+Vision Transformers, φv. The term φv is the self-attention
+map associated with the vth transformer in the ensemble.
+The self-attention φv is computed using attention roll-
+out [1] and is deﬁned as:
+φv =
+ nl
+Y
+l=1
+" nh
+X
+i=1
+(0.5W (att)
+l,i
++ 0.5I)
+#!
+⊙x.
+(6)
+where nh is the number of attention heads per layer, nl is the
+number of attention layers, W (att)
+l,i
+is the attention weight
+matrix in each attention head, I is the identity matrix and
+x is the input image. This technique takes into account the
+attention ﬂow from each layer of the transformer to the next
+layer, including the effect of skip connections. The attention
+values from the different attention heads within the same
+layer are averaged, and the attention values are recursively
+multiplied between different layers.
+Experimental Results: We demonstrate the SAGA re-
+sults by attacking a simple ensemble of Vision Transform-
+ers and Big Transfer Models for CIFAR-10, CIFAR-100 and
+ImageNet. We use 1000 clean correctly identiﬁed examples
+with the same attack parameters as described in Section 3.
+1⊙is the element wise Hadamard product; x in (5) and (6) is an image
+matrix and the partial derivative w.r.t x in (5) is represented as a matix.
+ImageNet
+CIFAR-100
+CIFAR-10
+SAGA
+91.8%
+84.4%
+74.0%
+Single MIM
+63.2%
+75.0%
+72.4%
+Basic
+71.6%
+73.7%
+52.5%
+0.0%
+20.0%
+40.0%
+60.0%
+80.0%
+100.0%
+Figure 2. Attack success rate of the Self-Attention Gradient Attack
+(SAGA), the Single MIM attack and Basic attack on an ensemble
+containing one ViT-L-16 model and one BiT-M-R101x3 model (or
+BiT-M-R152x4 for ImageNet). For full descriptions of each attack
+see Section 5.1.
+For CIFAR-10 and CIFAR-100, we use Bit-M-R101x3 and
+ViT-L-16. For ImageNet, we use Bit-M-R152x4 and ViT-L-
+16. We also test two other simple attacks which are denoted
+in Figure 2 as ’Basic’ and ’Single MIM’. The basic attack
+is a combination of the model gradients without weighted
+coefﬁcients and self-attention included. The single MIM
+attack is the best transfer attack on the ensemble as reported
+from Table 2.
+Here we use MIM as opposed to FGSM
+or PGD in the ’Single MIM’ attack as we experimentally
+found MIM samples to transfer better.
+The main contribution of this attack is to demonstrate
+that Vision Transformer/Big Transfer type of ensembles are
+not secure under a white-box adversary. This is precisely
+what is shown in Figure 2. SAGA has an attack success rate
+of 74.0%, 84.4% and 91.8% on the ensemble for CIFAR-
+10, CIFAR-100 and ImageNet, respectively. In Figure 2,
+we also show SAGA outperforms the two other white-box
+multi-model attacks across all datasets. For brevity, many
+details are omitted here such as the hyperparameter selec-
+tion for SAGA and attacks on Transformer/ResNet ensem-
+bles. We provide this information fully in the supplemen-
+tary material.
+6. Black-Box Security and Transferability
+In this section, we consider the transferability phenom-
+ena and its security implications under a black-box adver-
+sarial model. We once again use an ensemble of classi-
+ﬁers with random selection as described in Section 5. From
+Section 5.1, we know that such an ensemble is not secure
+against white-box adversaries. Using attacks like SAGA,
+an adversary can blend the gradients of different models
+and the self-attention of Transformers. This results in a high
+percentage of adversarial examples that are misclassiﬁed by
+all the classiﬁers. However, this type of attack relies heav-
+
+===== SAYFA 8 =====
+ily on the white-box capabilities of the adversary. Without
+knowledge of the models in the ensemble and their trained
+parameters, this type of attack would not work. This brings
+up a new possibility. Can transferability (through an en-
+semble) provide security when individual model gradients
+are not available to the attacker?
+6.1. Black-Box Attack Parameters and Adversarial
+Model
+Adversarial Model: In this section we consider two of
+the main types of black-box adversaries, query-based [3]
+and transfer-based adversaries [29]. For the query based
+adversary, we test one of the most recent attacks, the RayS
+attack [8]. In this attack, the adversary generates an ad-
+versarial example by repeatedly querying the defense and
+adjusting the noise accordingly. For the transfer attack, we
+implement the Adaptive Black-Box Attack [26]. This attack
+is a stronger version of the Papernot attack originally pro-
+posed in [29]. Here the attacker has access to a percentage
+of the original training data, query access to the defense and
+the ability to train a synthetic model to generate adversarial
+examples. In this attack, the adversary queries the defense
+to obtain labels for the training data. It then uses the data la-
+beled by the defense to train an independent classiﬁer (syn-
+thetic model). A white-box attack is then performed on the
+trained synthetic model. The resulting adversarial examples
+are then tested on the defense.
+Attack Parameters: For all black-box attacks, we use
+the same basic set of constraints as described in section 3.1.
+The noise the adversary can generate is bounded by the
+l∞norm with ϵ = 0.031 for CIFAR-10/CIFAR-100 and
+ϵ = 0.062 for ImageNet. For the RayS attack, we give the
+adversary a budget of 10, 000 queries per sample. For the
+Adaptive attack, we give the adversary 100% of the training
+data. For the synthetic model in this attack, we used ViT-
+B-32 pre-trained on ImageNet-21K. We also experimented
+with CNN based synthetic models, however these did not
+perform as well on our ensemble defense. It should also
+be noted the 100% strength attack requires a huge amount
+of computation. Due to this we only show the results for
+CIFAR-10 for the Adaptive attack. For RayS, we show re-
+sults for all three datasets.
+6.2. Black-Box Attack Analysis
+In Figure 3, we show the results graphically for the RayS
+and Adaptive attack.
+We consider three different model
+conﬁgurations. We test an ensemble of one Vision Trans-
+former (ViT-L-16) and one Big Transfer Model (BiT-M-
+101x3 for CIFAR-10/CIFAR-100 and BiT-M-152x4 for Im-
+ageNet). We also test a single ViT-L model and a single
+CNN (ResNet-56 for CIFAR-10/CIFAR-100 and ResNet-
+50 for ImageNet).
+While slightly redundant, we do test
+other ensemble conﬁgurations (and individual Big Transfer
+RayS CIFAR-10
+RayS CIFAR-100
+RayS ImageNet
+Adaptive
+CIFAR-10
+ViT/BiT
+81.0%
+82.0%
+58.0%
+57.0%
+ViT-L-16
+14.5%
+9.0%
+25.9%
+30.8%
+ResNet
+0.8%
+0.3%
+3.1%
+3.6%
+0.0%
+20.0%
+40.0%
+60.0%
+80.0%
+100.0%
+Figure 3. Robust accuracy (higher is better) of different model con-
+ﬁgurations under black-box attacks. Here ViT/BiT is an ensem-
+ble containing a Vision Transformer (ViT-L-16) and a Big Trans-
+fer Model (BiT-M-101x3 for CIFAR-10/CIFAR-100 and Bit-M-
+R152x4 for ImageNet.
+Models) in the supplementary material for those interested.
+The robust accuracy (percent of adversarial samples cor-
+rectly identiﬁed by the defense) are shown in Figure 3 for
+each attack. Here we observe the most signiﬁcant result
+of our paper: a simple ensemble including a Vision Trans-
+former and Big Transfer model drastically improves secu-
+rity.
+For RayS, we observe an increase of 66.5%, 73%
+and 32.1% in robust accuracy for CIFAR-10, CIFAR-100
+and ImageNet respectively. For the CIFAR-10 Adaptive at-
+tack, even when the adversary has 100% of the training data,
+query access and a synthetic model pre-trained on the same
+dataset as the defense (ImageNet-21K), we can still achieve
+a robust accuracy of 57%. For the Adaptive attack that rep-
+resents an improvement of 26.2% over a single model.
+We also stress that this improvement does not come at
+the cost of clean accuracy. The average clean accuracy of
+the ensemble is 98.2%, 92.83% and 85.37% for CIFAR-10,
+CIFAR-100 and ImageNet respectively. By leveraging the
+low transferability phenomena we previously studied, we
+are able to create a defense that achieves near state-of-the-
+art performance on clean data and gives signiﬁcant black-
+box robustness.
+7. Conclusion
+The introduction of Vision Transformers represents new
+opportunities for the ﬁeld of adversarial machine learning.
+By analyzing these new models, we are the ﬁrst to uncover
+several intriguing properties: First, using six different at-
+tacks, we showed individual Vision Transformers are just as
+vulnerable as their CNN counterparts to white-box adver-
+saries. Second, we studied the transferability of adversar-
+ial examples between Vision Transformers and other model
+genusus using eight different models for CIFAR-10/CIFAR-
+100 and seven different models for ImageNet.
+We demonstrated that the transferability between differ-
+
+===== SAYFA 9 =====
+ent model genusus are in general, remarkably low. We then
+showed this phenomena does not yield white-box security
+by developing a new white-box attack, the Self-Attention
+Gradient Attack (SAGA). Finally, we showed that under
+a black-box adversary, the transferability phenomena can
+be used to achieve robustness. Using a two model ensem-
+ble, we demonstrated robustness to black-box adversarial
+attacks. This included improving the robust accuracy by
+as much as 60% in some cases, all while maintaining near
+state-of-the-art clean accuracy on CIFAR-10, CIFAR-100
+and ImageNet. Through our comprehensive experiments
+and analyses, we show how Vision Transformers advance
+security in the ﬁeld of adversarial machine learning.
+References
+[1] Samira Abnar and Willem Zuidema. Quantifying attention
+ﬂow in transformers.
+In Proceedings of the 58th Annual
+Meeting of the Association for Computational Linguistics,
+pages 4190–4197, 2020.
+[2] Anish Athalye, Nicholas Carlini, and David Wagner. Obfus-
+cated gradients give a false sense of security: Circumventing
+defenses to adversarial examples. In Proceedings of the 35th
+International Conference on Machine Learning, pages 274–
+283, 2018.
+[3] Wieland Brendel, Jonas Rauber, and Matthias Bethge.
+Decision-based adversarial attacks: Reliable attacks against
+black-box machine learning models, 2018.
+[4] Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas
+Usunier, Alexander Kirillov, and Sergey Zagoruyko. End-
+to-end object detection with transformers. Lecture Notes in
+Computer Science, page 213–229, 2020.
+[5] Nicholas Carlini, Anish Athalye, Nicolas Papernot, Wieland
+Brendel, Jonas Rauber, Dimitris Tsipras, Ian Goodfellow,
+Aleksander Madry, and Alexey Kurakin. On evaluating ad-
+versarial robustness, 2019.
+[6] Nicholas Carlini and David Wagner. Towards evaluating the
+robustness of neural networks. In 2017 ieee symposium on
+security and privacy (sp), pages 39–57. IEEE, 2017.
+[7] Nicholas Carlini and David A. Wagner. Towards Evaluating
+the Robustness of Neural Networks. CoRR, 2016.
+[8] Jinghui Chen and Quanquan Gu.
+Rays: A ray searching
+method for hard-label adversarial attack. In Proceedings of
+the 26th ACM SIGKDD International Conference on Knowl-
+edge Discovery & Data Mining, pages 1739–1747, 2020.
+[9] Jean-Baptiste Cordonnier, Andreas Loukas, and Martin
+Jaggi. On the relationship between self-attention and con-
+volutional layers. In International Conference on Learning
+Representations, 2020.
+[10] Francesco Croce and Matthias Hein.
+Reliable evalua-
+tion of adversarial robustness with an ensemble of diverse
+parameter-free attacks. In International Conference on Ma-
+chine Learning, pages 2206–2216. PMLR, 2020.
+[11] Yinpeng Dong, Fangzhou Liao, Tianyu Pang, Hang Su, Jun
+Zhu, Xiaolin Hu, and Jianguo Li. Boosting adversarial at-
+tacks with momentum. In Proceedings of the IEEE confer-
+ence on computer vision and pattern recognition (CVPR),
+pages 9185–9193, 2018.
+[12] Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov,
+Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner,
+Mostafa Dehghani, Matthias Minderer, Georg Heigold, Syl-
+vain Gelly, Jakob Uszkoreit, and Neil Houlsby. An image is
+worth 16x16 words: Transformers for image recognition at
+scale. In International Conference on Learning Representa-
+tions, 2021.
+[13] Ian Goodfellow, Jonathon Shlens, and Christian Szegedy.
+Explaining and harnessing adversarial examples. In Inter-
+national Conference on Learning Representations, 2015.
+[14] Ian J Goodfellow, Jonathon Shlens, and Christian Szegedy.
+Explaining and harnessing adversarial examples.
+arXiv
+preprint arXiv:1412.6572, 2014.
+[15] Yaru Hao, Li Dong, Furu Wei, and Ke Xu. Self-attention at-
+tribution: Interpreting information interactions inside trans-
+former. arXiv preprint arXiv:2004.11207, 2020.
+[16] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+Identity mappings in deep residual networks. In European
+conference on computer vision, pages 630–645. Springer,
+2016.
+[17] Dan Hendrycks,
+Xiaoyuan Liu,
+Eric Wallace,
+Adam
+Dziedzic, Rishabh Krishnan, and Dawn Song.
+Pretrained
+transformers improve out-of-distribution robustness. In Pro-
+ceedings of the 58th Annual Meeting of the Association for
+Computational Linguistics, pages 2744–2751, July 2020.
+[18] Yu-Lun Hsieh, Minhao Cheng, Da-Cheng Juan, Wei Wei,
+Wen-Lian Hsu, and Cho-Jui Hsieh. On the robustness of self-
+attentive models. In Proceedings of the 57th Annual Meet-
+ing of the Association for Computational Linguistics, pages
+1520–1529, 2019.
+[19] Alexander Kolesnikov, Lucas Beyer, Xiaohua Zhai, Joan
+Puigcerver, Jessica Yung, Sylvain Gelly, and Neil Houlsby.
+Big transfer (bit): General visual representation learning.
+Lecture Notes in Computer Science, page 491–507, 2020.
+[20] Y. LeCun, B. Boser, J. S. Denker, D. Henderson, R. E.
+Howard, W. Hubbard, and L. D. Jackel. Backpropagation
+applied to handwritten zip code recognition. Neural Com-
+put., 1(4):541–551, Dec. 1989.
+[21] Yanpei Liu, Xinyun Chen, Chang Liu, and Dawn Song.
+Delving into transferable adversarial examples and black-
+box attacks. arXiv preprint arXiv:1611.02770, 2016.
+[22] Yanpei Liu, Xinyun Chen, Chang Liu, and Dawn Song.
+Delving into transferable adversarial examples and black-
+box attacks. CoRR, abs/1611.02770, 2016.
+[23] Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt,
+Dimitris Tsipras, and Adrian Vladu. Towards deep learn-
+ing models resistant to adversarial attacks. In International
+Conference on Learning Representations, 2018.
+[24] Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt,
+Dimitris Tsipras, and Adrian Vladu. Towards deep learning
+models resistant to adversarial attacks. International Confer-
+ence on Learn- ing Representations (ICLR), 2018.
+[25] Kaleel Mahmood, Deniz Gurevin, Marten van Dijk, and
+Phuong Ha Nguyen. Beware the black-box: on the robust-
+ness of recent defenses to adversarial examples, 2020.
+
+===== SAYFA 10 =====
+[26] Kaleel Mahmood, Phuong Ha Nguyen, Lam M. Nguyen,
+Thanh Nguyen, and Marten van Dijk. Buzz: Buffer zones
+for defending adversarial examples in image classiﬁcation,
+2020.
+[27] Tianyu Pang, Kun Xu, Chao Du, Ning Chen, and Jun Zhu.
+Improving Adversarial Robustness via Promoting Ensemble
+Diversity. In ICML, pages 4970–4979, 2019.
+[28] Nicolas Papernot, Patrick McDaniel, and Ian Goodfellow.
+Transferability in machine learning: from phenomena to
+black-box attacks using adversarial samples. arXiv preprint
+arXiv:1605.07277, 2016.
+[29] Nicolas Papernot,
+Patrick McDaniel,
+Ian Goodfellow,
+Somesh Jha, Z Berkay Celik, and Ananthram Swami. Prac-
+tical black-box attacks against machine learning. In 2017
+ACM Asia Conference on Computer and Communications
+Security, ASIA CCS 2017, pages 506–519. Association for
+Computing Machinery, Inc, 2017.
+[30] Nicolas Papernot, Patrick D. McDaniel, and Ian J. Good-
+fellow. Transferability in machine learning: from phenom-
+ena to black-box attacks using adversarial samples. CoRR,
+abs/1605.07277, 2016.
+[31] Zhouxing Shi, Huan Zhang, Kai-Wei Chang, Minlie Huang,
+and Cho-Jui Hsieh. Robustness veriﬁcation for transformers.
+In ICLR, 2020.
+[32] Siwakorn Srisakaokul, Zexuan Zhong, Yuhao Zhang, Wei
+Yang, and Tao Xie.
+Muldef: Multi-model-based defense
+against adversarial examples for neural networks.
+arXiv
+preprint arXiv:1809.00065, 2018.
+[33] Christian Szegedy, Wojciech Zaremba, Ilya Sutskever, Joan
+Bruna, Dumitru Erhan, Ian Goodfellow, and Rob Fergus. In-
+triguing properties of neural networks, 2014.
+[34] Florian Tramer, Nicholas Carlini, Wieland Brendel, and
+Aleksander Madry. On adaptive attacks to adversarial ex-
+ample defenses. Advances in Neural Information Processing
+Systems, 33, 2020.
+[35] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszko-
+reit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, and Illia
+Polosukhin. Attention is all you need, 2017.
+[36] Huiyu Wang, Yukun Zhu, Bradley Green, Hartwig Adam,
+Alan Yuille, and Liang-Chieh Chen. Axial-deeplab: Stand-
+alone axial-attention for panoptic segmentation. In European
+Conference on Computer Vision, pages 108–126. Springer,
+2020.
+[37] Qizhe Xie, Minh-Thang Luong, Eduard Hovy, and Quoc V.
+Le. Self-training with noisy student improves imagenet clas-
+siﬁcation, 2020.
+[38] Jingfeng Zhang, Xilie Xu, Bo Han, Gang Niu, Lizhen Cui,
+Masashi Sugiyama, and Mohan Kankanhalli. Attacks which
+do not kill training make adversarial learning stronger. In In-
+ternational Conference on Machine Learning, pages 11278–
+11287. PMLR, 2020.
+
+===== SAYFA 11 =====
+ON THE ROBUSTNESS OF VISION
+TRANSFORMERS TO ADVERSARIAL
+EXAMPLES SUPPLEMENTAL
+MATERIAL
+A. Supplementary Material Organization
+In this section, we brieﬂy describe the organization of
+our supplementary material so that readers can ﬁnd perti-
+nent material with ease. Overall our supplementary material
+provides more white-box experiments, more black-box ex-
+periments, results for adversarial training of Vision Trans-
+formers and further investigation of the transferability phe-
+nomena observed in the main paper.
+White-Box and Black-Box Attacks: We start with full
+descriptions of the white-box attack used in this paper and
+their corresponding parameters in section B. In this section,
+we also provide the CIFAR-100 white-box attack results
+not given in the main paper (due to brevity as well as re-
+dundancy). Aside from the conventional white-box attacks,
+we also give more details for the Self-Attention Gradient
+Attack (SAGA) in section C. We follow up our white-box
+type of attack sections with a full description of the black-
+box adversarial model and attack parameters in section D.
+In this section we also include black-box attack experimen-
+tal results on individual models (Vision Transformers, Big
+Transfer Models and ResNets) for RayS. In addition, we
+further provide a series of hyperparameter experiments used
+to ﬁne-tune the transfer based black-box attack (also known
+as the adaptive black-box attack). The results of these hy-
+perparameter experiments reveal some very interesting im-
+plications for the design of future black-box attacks.
+Decision Region Graphs and Transferability: In sec-
+tion E we delve further into the transferability phenomena.
+We start by discussing recent work that mathematical shows
+the equivalence between Transformers and CNNs. We then
+empirical show how the conditions under which this equiva-
+lence happens does not likely occur for Vision Transformers
+and other CNNs. We demonstrate this empirical by graph-
+ing the decision regions for different Vision Transformers
+and CNNs for CIFAR-10, CIFAR-100 and ImageNet.
+Adversarial Trained Vision Transformers: One topic
+that is a major part of the ﬁeld of adversarial machine learn-
+ing, but we didn’t have space to cover is adversarial training.
+Can Vision Transformers be adversarial trained as well as
+CNNs? We answer this question by experimenting with dif-
+ferent adversarial training techniques on Vision Transform-
+ers and CNNs for CIFAR-10 and CIFAR-100 in section F.
+Lastly in section G we provide some additional numerical
+tables for our results that are not of extreme importance, but
+may assist anyone wishing to replicate our results.
+B. White-Box Attacks
+In this section, we mathematically deﬁne the white-box
+adversarial model. We also give detailed descriptions of the
+white-box attacks tested in this paper. Along with the attack
+descriptions, we also list the parameters we choose for each
+white-box attack.
+B.1. White-Box Adversarial Model
+Mathematical Description: Formally, we can mathe-
+matically describe our adversarial model follows: We start
+with a classiﬁer C with (trained) parameters θ. Given input
+x, the classiﬁer outputs label y such that C(x, θ) = y. The
+goal of the adversary is to create an adversarial sample xadv
+from x such that:
+C(xadv, θ)̸ = y
+(7)
+where xadv is created from x using attack A. That is xadv ≜
+A(x) and xadv is subject to the following constraint:
+∥x −xadv∥p ≤ϵ
+(8)
+where p is the type of norm used to measure the distance
+between x and xadv and ϵ is the maximum allowed distance
+between x and xadv. Finally, there is one additional con-
+straint. The image must be within a valid pixel range:
+x ∈[pmin, pmax]n×m×r
+(9)
+where in equation 9, pmin and pmax refer to the minimum
+and maximum pixel values of a valid image, n and m refer
+to the size of the image and r represents the number of color
+channels in the image.
+Adversarial Capabilities: In the white-box adversarial
+model the adversary has knowledge of C, θ, x and y. Here
+C represents the type of classiﬁer (e.g. CNN) and classiﬁer
+architecture (e.g. ResNet-56). They also know the trained
+parameters of the classiﬁer θ. For a CNN or Transformer
+this would be the weights and biases of the classiﬁer model.
+Lastly, the adversary has a clean example x and correspond-
+ing class label y. In this paper, we focus on the untargeted
+attack model. This means the adversary succeeds if and
+only if equation 7, equation 8 and equation 9 all hold true.
+B.2. Types of White-Box Attacks
+In a white-box attack, the adversary crafts xadv from x
+using technique A. The choice of A can heavily affect the
+success rate of the attack (the percent of samples that are
+misclassiﬁed by C). From the literature, there are many
+different techniques to craft white-box attacks. Below we
+describe each of the attacks we test in this paper:
+1. Fast Gradient Sign Method - The Fast Gradient Sign
+Method (FGSM) [13] creates adversarial examples
+
+===== SAYFA 12 =====
+through the addition of non-random noise in the di-
+rection of the gradients of the loss function:
+xadv = x + ϵ ∗sign(∇xL(x, y; θ))
+(10)
+where L is the loss function of the classiﬁer C. Note
+that in Equation 10, only the sign of the loss function
+is used and the magnitude of the second term is dic-
+tated by ϵ, which is a small perturbation added to the
+image x. It is also important to note that this is a single
+step attack. The adversary only backpropagates on the
+model once to obtain the gradient of the loss function
+and then applies this directly to x.
+2. Projected Gradient Descent - Projected Gradient
+Descent (PGD) [24] is a multi-step variant of the
+FGSM algorithm.
+It attempts to ﬁnd the minimum
+bounded perturbation that maximizes the loss of a
+model through initializing a random perturbation in a
+ball of radius d with center x. A gradient step is taken
+in the direction of the greatest loss and the perturbation
+is then projected back into this ball. The k-step PGD
+algorithm initializes x0 = x and the perturbed image
+xi in the ith step is computed as:
+xi = P(xi−1 + α ∗sign(∇xL(xi−1; y; θ)))
+(11)
+where P is the projection function that projects the ad-
+versarial data back into the ϵ-ball centered at xi−1 if
+necessary, and α is the step size. The bounds on the
+projection are deﬁned by the lp norm.
+3. Backward
+Pass
+Differentiable
+Approximation
+-
+Backward
+Pass
+Differentiable
+Approximation
+(BPDA) [2] is an attack designed to overcome non-
+differentiable functions that would ordinarily prevent
+the use of backpropagation to generate adversarial
+examples.
+BPDA is capable of creating effective
+adversarial examples for those cases in which the de-
+fense employs gradient masking or another technique
+in which the gradient is obfuscated. The gradient can
+be obfuscated in one of three ways: shattered gradi-
+ents, stochastic gradients, and exploding/vanishing
+gradients. Shattered gradients in a defense either in-
+troduce numerical instability or cause a gradient to be
+nonexistent or incorrect [2]. Stochastic gradients are
+generally a result of randomized defenses. Exploding
+and vanishing gradients generally occur in recurrent
+neural networks.
+For a neural network f(·)
+=
+f 1...j with a non-
+differentiable layer f i(·), the ﬁrst step of BPDA is to
+ﬁnd a differentiable function g(x) that approximates f i.
+The gradient of the network f, ∇xf(x), is then approx-
+imated by performing a forward pass through f(·), and
+then only on the backward pass replacing f i(x) by
+g(x). Adversarial examples are generated using a sim-
+ilar approach to PGD [24].
+4. Momentum Iterative Method - A subset of gradient
+descent approaches, the Momentum Iterative Method
+(MIM) [11] applies a velocity vector in the direction
+of the gradient of the loss function across iterations.
+Momentum is used to create the gradient:
+x′
+i = clipx,ϵ(x′
+i−1 + ϵ
+r ∗sign(g(i)))
+(12)
+Since MIM takes into account previous gradients, it
+is able to overcome narrow valleys, small bumps, and
+local minima and maxima. Speciﬁcally, the momen-
+tum algorithm gathers the gradients of t iterations with
+a decay factor µ. The adversarial example x∗
+t is per-
+turbed in the direction of the accumulated gradient
+with a step size of α. Note that if µ = 0, the MIM
+algorithm degenerates to iterative FGSM.
+For targeted attacks, the aim of ﬁnding an adversarial
+example misclassiﬁed as a target class y∗is to min-
+imize the loss function J(x∗, y∗). The accumulated
+gradient is derived as follows:
+gt+1 = µ ∗gt +
+J(x∗
+t , y∗)
+||∇xJ(x∗
+t , y∗)||1
+(13)
+For a targeted attack with an L∞norm bound, the ad-
+versarial computation becomes:
+x∗
+t+1 = x∗
+t −α ∗sign(gt+1)
+(14)
+5. Carlini and Wagner Attack - The aim of the Carlini
+and Wagner (C&W) attack [7] is to perturb an image
+by a minimal delta such that the image will be misclas-
+siﬁed. The following objective function is used to ﬁnd
+the adversarial noise:
+min ||1
+2(tanh(ω) + 1) −x||2
+2 + c · f(1
+2(tanh(ω) + 1))
+(15)
+f(x′) = max(max{Z(x′)i : i̸ = t} −Z(x′)t, −κ)
+(16)
+where f is the best objective function, ω is the pertur-
+bation, t is the chosen target class, κ is a constant that
+controls the conﬁdence with which the sample is mis-
+classiﬁed, Z(x′) is the output from the logits layer, and
+c is a constant chosen through binary search. C&W is
+an iterative attack because the objective of the C&W
+attack is formulated as an optimization problem, as
+given by Equation 15.
+6. Auto Projected Gradient Descent - Auto Projected
+Gradient Descent (APGD) [10] is an automated ver-
+sion of PGD in which the step size is not ﬁxed, but
+
+===== SAYFA 13 =====
+instead changes adaptatively. In APGD, the total iter-
+ations are divided into an exploration phase and an ex-
+ploitation phase. A larger step size is used in the for-
+mer phase, allowing for quicker exploration, while a
+smaller step size is used in the latter phase to ﬁne-tune
+the maximization of the loss function. The choice of
+step size in APGD is determined by a budget of Niter
+iterations and the cumulative progress of optimization,
+as deﬁned by two conditions in equations 17 and 18:
+wj−1
+X
+i=wj−1
+1f(x(i+1))>f(x(i)) < ρ ∗(wj −wj−1),
+(17)
+η(wj−1) ≡η(wj) ∧f (wj−1)
+max
+≡f (wj)
+max
+(18)
+where wj are the checkpoints at which the algorithm
+can reduce the step size by a factor of 2 and f k
+max is the
+highest objective value reached in the ﬁrst k iterations.
+If one of the above two conditions is met, then the step
+size at iteration k = wj is halved and η(k) := η(wj)/2
+for every k = wj +1, ..., wj+1. A version of the Auto-
+PGD which uses cross-entropy is referred to as APGD-
+CE. This attack was shown to be the best performing
+attack of the different APGD variatons [10]. There-
+fore, we use APGD-CE in our white-box attacks.
+C. Self-Attention Gradient Attack (SAGA)
+In the main paper we introduced the Self-Attention Gra-
+dient Attack (SAGA). Here, we provide some additional ex-
+perimental results and parameters related to our attack.
+SAGA Adversarial Images: In ﬁgure 4 and ﬁgure 5
+we show some examples of the adversarial images gener-
+ated by SAGA for CIFAR-10 and ImageNet. We generate
+these images from a defense comprised of ViT-L-16 and
+BiT-M-R101x3 for CIFAR-10 and ViT-L-16 and BiT-M-
+R152x4 for ImageNet. In the attack we use the l∞norm
+and ϵ = 0.031 for CIFAR-10 and ϵ = 0.062 for ImageNet.
+From these ﬁgures, it is clear that just like other white-box
+attacks, SAGA is capable of creating adversarial examples
+with minimal visual perturbations.
+SAGA Hyperparameters: In the main paper we men-
+tioned that the scaling factors αk must be chosen carefully
+for each model when running SAGA. In table 6 we give
+the α values and the corresponding robust accuracies for
+each attack. From the table, it can clearly be seen that sim-
+ple averaging (α1 = 0.5α2 = 0.5) does not yield a high
+attack success rate (low robust accuracy).
+For example,
+for the Bit/ViT defense for CIFAR-10 the robust accuracy
+with simple averaging yields an average robust accuracy of
+47.5%. However, when each α is ﬁne-tuned properly, it
+yields a robust accuracy of only 26% (an attack success rate
+of 74%).
+It is also worth noting that some α values are very dif-
+ferent in value. For example, α1 = 0.998 for ViT-L-16 but
+only 2e −4 for BiT-M-R101x3 for SAGA for CIFAR-10.
+A natural question would be, why do we even need to take
+into account the gradient for BiT-M-R101x3, couldn’t it be
+0? The simple answer to this question is even though some-
+times the α values are small, they are critical to crafting ad-
+versarial examples that are misclassiﬁed by BOTH models.
+For empirical proof that a single gradient does not sufﬁce,
+one needs only to look again at the transferability results in
+table 2 in the main paper.
+ResNet SAGA Results: In the main paper we tested Vi-
+sion Transformer/Big Transfer Model combinations. SAGA
+can also can work on other Vision Transformer/CNN com-
+binations as well. In table 6 we demonstrate a proof of con-
+cept of this by attacking a ViT-L-16/ResNet-164 pair for
+CIFAR-10. Here we can see that just like that ViT/BiT com-
+bination, the ViT/ResNet combination is not secure against
+SAGA as the robust accuracy is only 15%.
+D. Black-Box Attacks
+In this section, we mathematically deﬁne the black-box
+adversarial model. We also give detailed descriptions of the
+black-box attacks tested in this paper. Along with the attack
+descriptions, we also list the parameters we choose for each
+attack. Unlike section B where a single adversarial model
+sufﬁces, here we break the black-box adversarial model into
+two distinct types: query based and transfer based models.
+Before we discuss the differences, it is important to note
+the basic commonality between the two threat models. A
+successful attack is still deﬁned the same for all threat mod-
+els. Speciﬁcally, the three conditions we previously deﬁned
+must hold. First, the adversarial sample must be misclas-
+siﬁed (equation 7). Second, the adversarial sample xadv
+must be within a certain distance of the original sample x
+(equation 8). Third, the adversarial sample must have pix-
+els within a valid range (equation 9).
+The other commonality between the two black-box ad-
+versarial models are the components that make up the de-
+fense: a classiﬁer C with trained parameters θ. In contrast
+to the white-box adversary, we will also explicitly deﬁne ad-
+ditional training components. We deﬁne the training sam-
+ples that C was trained on to obtain θ as the set (X, Y ). Let
+us also deﬁne the pre-training dataset as (X
+′, Y
+′). Here the
+pre-training dataset is only applicable to Vision Transform-
+ers and Big Transfer Models where the pre-training dataset
+(X
+′, Y
+′) is ImageNet-21K and the training dataset (X, Y )
+is either CIFAR-10, CIFAR-100 or ImageNet.
+D.1. Query Based Adversarial Model
+Adversarial Capabilities: For the query based adver-
+sarial model the attacker lacks knowledge of θ, the speciﬁc
+
+===== SAYFA 14 =====
+Table 3. White-box attacks on Vision Transformers, Big Transfer Models and ResNets. The attacks are done using the l∞norm with
+ϵ = 0.031 for CIFAR-10 and ϵ = 0.062 for ImageNet. In this table the robust accuracy is given for each corresponding attack. The last
+column ”Acc” refers to the clean accuracy of the model. In the main paper part of this table was also presented (see table 3.1) but without
+CIFAR-100 results for brevity. The table here represents the full white-box attack results.
+CIFAR-10
+FGSM
+PGD
+BPDA
+MIM
+C&W
+APGD
+Acc
+ViT-B-32
+37.9%
+1.8%
+17.6%
+4.4%
+0.0%
+0.0%
+98.6%
+ViT-B-16
+39.5%
+0.0%
+20.3%
+0.3%
+0.0%
+0.0%
+98.9%
+ViT-L-16
+56.3%
+1.2%
+28.7%
+5.9%
+0.0%
+0.0%
+99.1%
+ViT-R50
+40.8%
+0.1%
+13.4%
+0.2%
+0.0%
+0.0%
+98.6%
+BiT-M-R50x1
+66.0%
+0.0%
+14.9%
+0.0%
+0.0%
+0.0%
+97.5%
+BiT-M-R101x3
+85.2%
+0.0%
+17.1%
+0.0%
+0.0%
+0.0%
+98.7%
+ResNet-56
+23.0%
+0.0%
+5.0%
+0.0%
+0.0%
+0.0%
+92.8%
+ResNet-164
+29.0%
+0.0%
+5.4%
+0.0%
+0.0%
+0.0%
+93.8%
+CIFAR-100
+FGSM
+PGD
+BPDA
+MIM
+C&W
+APGD
+Acc
+ViT-B-32
+20.8%
+1.9%
+13.4%
+3.1%
+0.0%
+0.0%
+91.7%
+ViT-B-16
+20.4%
+0.0%
+11.9%
+0.5%
+0.0%
+0.0%
+92.8%
+ViT-L-16
+33.0%
+1.6%
+15.1%
+4.7%
+0.0%
+0.0%
+94.0%
+ViT-R50
+22.0%
+0.2%
+9.7%
+0.4%
+0.0%
+0.0%
+91.8%
+BiT-M-R50x1
+36.0%
+0.0%
+7.0%
+0.0%
+0.0%
+0.0%
+87.4%
+BiT-M-R101x3
+1.2%
+0.0%
+0.4%
+0.0%
+0.0%
+0.0%
+91.8%
+ResNet-56
+6.0%
+0.2%
+3.3%
+0.4%
+0.0%
+0.0%
+71.6%
+ResNet-164
+7.6%
+0.3%
+3.7%
+0.9%
+0.0%
+0.0%
+74.2%
+ImageNet
+FGSM
+PGD
+BPDA
+MIM
+C&W
+APGD
+Acc
+ViT-B-16
+23.1%
+0.0%
+7.3%
+0.0%
+0.0%
+0.0%
+80.3%
+ViT-L-16 (224)
+27.9%
+0.0%
+8.4%
+0.0%
+0.0%
+0.0%
+82.0%
+ViT-L-16 (512)
+29.8%
+0.0%
+8.4%
+0.0%
+0.0%
+0.0%
+85.4%
+BiT-M-R50x1
+28.7%
+0.0%
+3.5%
+0.0%
+0.0%
+0.0%
+79.9%
+BiT-M-R152x4
+60.9%
+0.0%
+15.2%
+0.0%
+0.0%
+0.0%
+85.3%
+ResNet-50
+11.8%
+0.0%
+1.4%
+0.0%
+0.0%
+0.0%
+74.5%
+ResNet-152
+18.1%
+0.0%
+2.7%
+0.0%
+0.0%
+0.0%
+77.0%
+Table 4. White-box attack parameters for CIFAR-10.
+Attack
+Parameters
+FGSM
+ϵ = 0.031
+PGD
+ϵ = 0.031, ϵstep = 0.00155, steps = 20
+BPDA
+ϵ = 0.031, steps = 100, max iterations = 100, learning rate = 0.5
+MIM
+ϵ = 0.031, ϵstep = 0.00155, decay factor = 1.0
+CW
+conﬁdence = 50, step size = 0.00155, steps = 30
+APGD
+ϵ = 0.031, number of restarts = 1, ρ = 0.75, n2 queries = 5000
+classiﬁer architecture C, the training set (X, Y ) and the pre-
+training set (X
+′, Y
+′). The adversary starts with a clean ex-
+ample x and is able to query the classiﬁer C, with differ-
+ent perturbations (e.g. x + ϵ).The adversarial model here
+is constrained by the fact that for each example x, only a
+ﬁxed number of queries q can be done on C. In this threat
+model the type of response from the classiﬁer C also mat-
+ters. When the adversary queries C, the defense can return
+either the hard label (class label only) or the corresponding
+probability vector. To narrow our scope of study, in this pa-
+per we consider the adversary which only has access to the
+hard label.
+Attack Setup and Discussion: To test query based ad-
+versaries we use the RayS attack [8]. We use 1000 clean
+examples for CIFAR-10 and ImageNet. In our attacks we
+set the query budget q to be 10, 000 for each sample. We
+use ϵ = 0.031 for CIFAR-10 and ϵ = 0.062 for ImageNet
+in conjunction with the l∞norm. Due to the high compu-
+tational complexity of the attack, we only test single mod-
+els for CIFAR-10 and ImageNet. We omit CIFAR-100 and
+BiT-M-R152x4. Our attack results are shown in table 7. In
+general, it can be seen single models are not robust to the
+RayS attack as no model has more than 30% robust accu-
+racy.
+
+===== SAYFA 15 =====
+Table 5. White-box attack parameters for ImageNet.
+Attack
+Parameters
+FGSM
+ϵ = 0.062
+PGD
+ϵ = 0.062, ϵstep = 0.0031, steps = 20
+BPDA
+ϵ = 0.062, steps = 100, max iterations = 100, learning rate = 0.5
+MIM
+ϵ = 0.062, ϵstep = 0.0031, decay factor = 1.0
+CW
+conﬁdence = 50, step size = 0.0031, steps = 30
+APGD
+ϵ = 0.062, number of restarts = 1, ρ = 0.75, n2 queries = 5000
+Figure 4. Adversarial images generated using SAGA on CIFAR-10. The top row of images are the the clean images generated from the
+CIFAR-10 test set. The bottom row of images are the adversarial images generated using SAGA with the l∞norm and ϵ = 0.031.
+These images correspond to SAGA when the models are ViT-L-16 and BiT-M-R101x3. Visually, there is very little perceivable difference
+between the clean and adversarial images generated by SAGA.
+D.2. Transfer Based Adversarial Model
+Adversarial Capabilities: The transfer based adversary
+is granted a wide range of abilities. Speciﬁcally, a transfer
+based adversary may know part or all of the original train-
+ing data (X, Y ) for C. They may also have access to the
+pre-training data (X
+′, Y
+′). Unlike query based adversaries,
+the transfer based adversary is not restricted in terms of the
+number of queries made to C. The only thing not given
+to the adversary is the architecture classiﬁer for C and the
+trained parameters θ. The general strategy for the trans-
+fer based adversary is as follows: the attacker starts with an
+untrained classiﬁer S. Note S is often referred to as the syn-
+thetic model. If the adversary has access to the pre-training
+data, they start by training S with (X
+′, Y
+′). The adversary
+then queries C to label the training set X. They then trains
+S on (X, ˆY ), where ˆY are the hard class labels obtained
+from C. Once S has been trained, a white-box attack A can
+be run on S to generate adversarial examples. These exam-
+ples are then applied to C in the hopes that the adversarial
+samples are able to ”transfer” from S to C.
+Attack Setup and Discussion: For a transfer attack sev-
+eral components must be selected. These components in-
+clude the synthetic architecture S, the percent of training
+data (X, Y ) visible to the adversary, and the type of white-
+box attack A that will be used on S to generate adversarial
+examples. Ideally, we want to test under the strongest pos-
+sible adversary. This means a careful choice of S and using
+100% of the training data. However, as these experiments
+are time consuming (each attack requires training a syn-
+thetic model from scratch) we ﬁrst conduct several smaller
+scale experiments to help us choose the hyperparameters for
+the main attack. These results are show in table D.2 and ﬁg-
+ure 6. For A we use MIM attack to generate samples with S.
+We set the maximum perturbation ϵ = 0.031 for CIFAR-10
+and experiment with a range of different synthetic models
+S.
+From the hyperparameter experiments we can notice a
+few interesting results. First of all when attacking a Vision
+Transformer like ViT-L-16, the choice of synthetic model
+greatly effects the robust accuracy. Even when only 10%
+of the data is available if S is a Vision Transformer (ViT-B-
+32) and it is pre-trained on ImageNet-21K, the robust accu-
+racy is only of ViT-L-16 is only 53%. If the attacker uses
+a synthetic model that is NOT pre-trained (but still ViT-B-
+32) the robust accuracy is 92.4%. Now this brings up a new
+dilemma for the attacker. Originally, in attacks on CNNs the
+architecture of the synthetic model did not greatly effect the
+performance of the attack [29]. Likely this is in part do the
+fact that these attacks were transferring samples from CNNs
+to other CNNs. However, the same result doesn’t hold for
+Vision Transformers. Using a CNN (like VGG-16) does not
+give a very high attack success rate. We can see that when
+we do a 100% strength attack on ViT-L-16 using VGG-16,
+the robust accuracy is still 46.8%. Compare this result to
+the same attack with ResNet-56 and it can be seen that the
+robust accuracy is only 4.8%.
+In our hyperparameter experiments our main goal was to
+ﬁnd a good set of parameters for attacking Vision Trans-
+former based defenses.
+In that respect, our experiments
+accomplish this. We can see using a pre-trained ViT-B-32
+with even just 10% of the training data gives good attack re-
+sults. However, our experiments also uncover a much more
+
+===== SAYFA 16 =====
+Figure 5. Adversarial images generated using SAGA on ImageNet. The top row of images are the the clean images generated from the
+ImageNet validation set. The bottom row of images are the adversarial images generated using SAGA with the l∞norm and ϵ = 0.062.
+These images correspond to SAGA when the models are ViT-L-16 and BiT-M-R152x4. Visually, there is very little perceivable difference
+between the clean and adversarial images generated by SAGA.
+Table 6. Self-Attention Gradient Attack (SAGA) results for CIFAR-10, CIFAR-100 and ImageNet. In the table α1 represents the coefﬁcient
+used to scale the gradient of the ViT model and α2 represents the coefﬁcient used to scale the gradient of the respective CNN. In the table
+ViT corresponds to ViT-L-16 and BiT corresponds to BiT-M-R101x3 for CIFAR-10 and CIFAR-100 and BiT-M-R152x4 for ImageNet.
+ResNet corresponds to ResNet-164.
+CIFAR-10
+α1
+α2
+Robust Acc ViT
+Robust Acc CNN
+Average Robust Acc
+ViT/BiT
+0.5
+0.5
+94.9%
+0.1%
+47.5%
+ViT/BiT
+0.9998
+2.00E-04
+27.3%
+24.7%
+26.0%
+ViT/ResNet
+0.5
+0.5
+7.3%
+38.3%
+22.8%
+ViT/ResNet
+0.01
+0.99
+15.1%
+14.8%
+15.0%
+CIFAR-100
+α1
+α2
+Robust Acc ViT
+Robust Acc CNN
+Average Robust Acc
+ViT/BiT
+0.5
+0.5
+3.7%
+48.9%
+26.3%
+ViT/BiT
+0.9985
+0.0015
+16.7%
+14.5%
+15.6%
+ImageNet
+α1
+α2
+Robust Acc ViT
+Robust Acc CNN
+Average Robust Acc
+ViT/BiT
+0.5
+0.5
+56.7%
+0.2%
+28.5%
+ViT/BiT
+0.99
+0.01
+13.3%
+12.0%
+12.7%
+interesting concept. Unlike with CNNs where the choice
+of architecture was not critical in the transfer attack, initial
+experiments show Vision Transformers mandate a careful
+choice of synthetic model S. By merely using Vision Trans-
+formers in a defense, the transfer based attacker is put at a
+new disadvantage. While it is beyond the scope of this work
+to explore this notion further, it does pose an interesting new
+challenge for black-box attack designers.
+E. Discussion on White-Box and Transfer At-
+tacks on the Vision Transformer
+The Vision transformer as reported in [12] is an encoder-
+based architecture. This architecture is an adaptation of the
+Transformer architecture popular in Natural Language Pro-
+cessing applications. While the original Transformer from
+Vaswani et al. [35] used both encoders and decoders for
+sequence-to-sequence applications, the Vision transformer
+is only Encoder-based. The input image to be fed to the
+transformer is divided into equal-size patches. Then the se-
+quence of these patches passes through an embedding layer.
+Positional encoding is added to the embedding vector feed-
+ing to a layer of encoders. The output dimension of each
+encoder matches the input dimension, which makes it easy
+to stack these encoders. The output from the last encoder is
+fed to a linear network layer acting as a classiﬁer.
+The building blocks of an encoder are the “Attention”
+network, followed by Batch Normalization with skip con-
+nections. Many attention blocks are used in parallel (simi-
+lar to feature maps in CNNs), which are referred to as the
+“multi-headed self-attention network”. The self-attention
+block uses three linear networks of query, key and value
+parametrized by Wk, Wq, and Wv matrices. The query and
+the key correspond to the positions of the input patches in
+
+===== SAYFA 17 =====
+Table 7. RayS attack on single classiﬁers for CIFAR-10 and ImageNet. The robust accuracy for each model is reported in the table.
+RayS CIFAR-10
+ResNet-56
+0.8%
+ResNet-164
+0.0%
+ViT-B-16
+8.2%
+ViT-B-32
+11.1%
+ViT-L-16
+14.5%
+R50-ViT-B-16
+22.9%
+BiT-M-R50x1
+0.9%
+BiT-M-R101x3
+3.7%
+RayS ImageNet
+ResNet-50
+3.1%
+ResNet-152
+2.7%
+ViT-B-16-224
+1.6%
+ViT-L-16
+25.9%
+ViT-L-16-224
+3.3%
+BiT-M-R50x1
+3.1%
+Table 8. Results of CIFAR-10 hyperparameter experiments for transfer attacks using different strength attacks and different synthetic
+models.
+Defense Model
+Synthetic Model
+Attack Strength
+Robust Acc
+ViT-B-16
+VGG-16
+10.0%
+79.9%
+ViT-B-16
+VGG-16
+100.0%
+46.8%
+ViT-L-16
+VGG-16
+10.0%
+84.4%
+ViT-L-16
+ViT-B-32
+10.0%
+92.4%
+ViT-L-16
+ViT-B-32 (ImageNet-21K)
+10.0%
+53.0%
+ResNet-56
+VGG-16
+10.0%
+22.6%
+ResNet-56
+VGG-16
+100.0%
+4.8%
+BiT-M-R101x3
+VGG-16
+10.0%
+66.1%
+image X for which we are interested in computing the atten-
+tion with respect to each other. Once we have computed the
+self-attention of the entire input set, we turn it into a proba-
+bility distribution by the Softmax function. An encoder uses
+multiple attention computations in parallel, where each at-
+tention block is referred to as an attention head. Let N be
+the number of p x p patches in an n x m image, and e be
+the embedding size for each patch, then the positionally en-
+coded input to the encoder is:
+Xp = X + P
+(19)
+where X, P ∈RN×e, and P is the positional encoding for
+the image patches. The computation for each attention head
+i in terms of key, query and value networks can be described
+as:
+Ki = XpWk,i
+(20)
+Qi = XpWq,i
+(21)
+Vi = XpWv,i
+(22)
+The self-attention Ai in an attention head i with nh number
+of heads is computed as:
+Ai = [softmax(QiKT
+i )/nh]Vi
+(23)
+The output from all attention heads is concatenated and
+passed through a linear layer parameterized by Wo, as
+shown below:
+MA = [concati∈nh[Ai]]Wo + bo
+(24)
+In a transformer, the multi-headed self-attention passes
+through a batch normalization layer with the input being
+added to the output of batch normalization in a ResNet-like
+manner. Then, it further passes through a linear, and an-
+other batch normalization layer. Thus, the output of the ﬁrst
+encoder Enc as a function of the position encoded input,
+Xp , can be described as:
+Enc(Xp) = batchnorm([[batchnorm(MA)+
+Xp]Wl + bl]) + [batchnorm(MA) + Xp]
+(25)
+where Wl and bl are the parameters of the linear network
+of the encoder. After passing the input through a series of
+encoders, a classiﬁer is connected to the last output of the
+ﬁnal encoder, as:
+y = Classifier(Enc(. . . Enc(Xp) . . .))
+(26)
+
+===== SAYFA 18 =====
+10%
+100%
+10%
+10%
+100%
+10%
+10%
+10%
+0.0%
+10.0%
+20.0%
+30.0%
+40.0%
+50.0%
+60.0%
+70.0%
+80.0%
+90.0%
+100.0%
+ResNet-56
+ResNet-56
+BiT-M-R101x3
+ViT-B-16
+ViT-B-16
+ViT-L-16
+ViT-L-16
+ViT-L-16
+VGG-16
+VGG-16
+VGG-16
+VGG-16
+VGG-16
+VGG-16
+ViT-B-32
+ViT-B-32
+(ImageNet-
+21K)
+Figure 6. Black-box transfer attack hyperparameter experimental results for CIFAR-10. The text in red on top of the bars indicates the
+strength of the attack (what percent of the training data is available to the adversary). The bars themselves represent the robust accuracy
+of the model under attack. The horizontal text represents the type of synthetic model S, used in the attack. The vertical text represents the
+model being attacked. This experiment is important because it indicates which type of synthetic model works best when doing the actual
+attack.
+For any differentiable loss function L, operating on the
+output of the transformer as given by equation 26, the com-
+putation of ∂L/∂x = ∇x(L) requires that all components
+of equation 26 be differentiable with respect to the input
+x. Since equations 20 - 25 that contribute to equation 26
+including the batch normalization are all closed-form dif-
+ferentiable with respect to position encoded input Xp, and
+since Xp is a simple function of x, ∇x(L) can be computed.
+Thus an adversarial image can be efﬁciently created using a
+white-box attack formulation. We conﬁrm this empirically,
+as all white-box attacks successfully compromise the clas-
+siﬁer accuracies, resulting in zero robust accuracy for many
+white-box attacks.
+E.1. Transfer Attacks
+From a black box adversarial robustness point of view,
+one category of attacks is referred to as transfer attacks.
+Here a new network model is created (referred to as the syn-
+thetic model) and trained either on the same dataset as the
+model under attack, or creating training data from querying
+the input-output behavior of the target model. One funda-
+mental question to ask is how the transformer-based mod-
+els behave with respect to transfer attacks from a CNN-
+based synthetic model and vice versa. An equivalency of
+the Transformer model with the CNN based models un-
+der some simpliﬁed assumptions was presented in [9]. The
+multi-headed attention at pixel q for attention head h is ex-
+pressed as (this is similar to our development in equation
+24):
+MA(X)q,: =
+X
+h∈[Nh]
+(
+X
+k
+softmax(Ah
+q,:)kXk,:)W (h)+bout
+(27)
+For the h-th attention head, the attention probability is one
+when k = q −f(h) and zero otherwise. The layer’s output
+at pixel q is then shown to be equal to:
+MA(X)q =
+X
+h∈[Nh]
+Xq−f(h),:W (h) + bout
+(28)
+The above can be seen to be equivalent to the convolution
+operation. The development in [9] as shown above demon-
+strates an equivalence in the Transformer and the CNN.
+Here we mean equivalence in the sense that the transformer
+can equivalently perform a k×k convolution if an appropri-
+ate value matrix Wv is chosen in an attention head. Whether
+a transformer actually learns the appropriate Wv to perform
+the equivalent convolution can only be answered empiri-
+cally. Part of this empirical answer is given in the following
+subsection where we study the decision regions created by
+Transformers and CNNs.
+E.2. Decision Region Graphs
+One way to visually comprehend the transferability be-
+tween different models is to examine their decision region
+graphs. A decision region graph can be a visual representa-
+tion of the different classiﬁcation regions of a model using
+a color coded 2-D graph. Decision region graphs for CNNs
+trained on ImageNet were originally shown in [22].
+For every dataset and model in this paper, we construct
+the decision region graph. Formally, we can describe the
+generation of the graph as follows: Each graph is con-
+structed with respect to a single image I. For every model,
+we use the same image I to build the graph (i.e. we use
+sample 49443 from the validation set of ImageNet). Every
+point on the graph corresponds to a class label for the given
+
+===== SAYFA 19 =====
+image. The origin (x = 0, y = 0) corresponds to the orig-
+inal (unperturbed) image. Outside the origin, the image is
+perturbed according to the following equation:
+I′ = I + x · g + y · r
+(29)
+where I′ represents the new perturbed image, I represents
+the original image, g represents the gradient of the image
+with respect to the loss function of the model, and r rep-
+resents a random noise orthogonal to g. In equation 29, x
+and y represent coordinates on the graph which control the
+magnitude of the adversarial noise g and random noise r.
+The decision region graphs may be slightly difﬁcult to
+grasp at ﬁrst but it comes with a natural intuitive explana-
+tion. The origin of the graph represents the unperturbed
+image I with the correct class label. As we move in the
+x direction on the graph, we increase the magnitude of the
+adversarial noise g that is added to I. This is analogous
+to an FGSM attack using I in which we keep increasing
+the size of the step (ϵ in equation 10). As we move in the
+y direction on the graph, this represents adding more and
+more random noise to I. When we move in both the x and
+y directions, it represents a combination of adding random
+noise and adversarial noise to the image. The last compo-
+nent of the graph, color, represents the class label that the
+model produces based on the perturbed input I′. Essen-
+tially, a decision region graph gives intuition about how the
+model classiﬁes images that are noisy and adversarial. The
+decision region graphs for CIFAR-10, CIFAR-100 and Im-
+ageNet are shown in ﬁgures 7, 8 and 9.
+Decision Region Graph Analysis: In ﬁgure 7, the cor-
+rect class label is represented by the color red. As we can
+see at the origin, all models correctly classify the sample. It
+can be noted that for the ResNets (ResNet-56 and ResNet-
+164), their robustness is quite limited. We can see for both
+these models there is only a small red sphere around the ori-
+gin. As we move to larger and larger perturbations, the im-
+age quickly becomes misclassiﬁed (the blue regions). For
+the Vision Transformers and Big Transfer Models, we can
+see that they are much more tolerant of noise. For exam-
+ple, if we consider moving along the y axis (adding random
+noise), none of the Vision Transformers misclassify the im-
+age.
+For ﬁgures 8 and 9, we can see a similar trend applies. In
+ﬁgure 8, light blue represents the correct class label and in
+ﬁgure 9, dark blue represents the correct class label. In gen-
+eral, for both these ﬁgures we see the Vision Transformers
+tend to handle random noise well (see along the y axis) and
+the ResNets are very sensitive to perturbations. It should
+also be noted in ﬁgure 9, the graph for BiT-M-R152x4 is
+completely dark blue. This means that despite large per-
+turbations, the model never fails to correctly classify the
+image I. This should not be completely surprising as BiT-
+M-R152x4 is one of the most complex models (in terms
+of number of parameters) that we experiment with.
+We
+mention complexity because it has been previously noted
+that model complexity alone helps thwart adversarial at-
+tacks [24].
+There is one other important take away, the landscape of
+the decision regions themselves are very different between
+model genuses. In ﬁgure 7, for the ResNet models we can
+see a small sphere of red surrounded by blue, for the Vi-
+sion Transformers we can see large red regions around the
+y axis and large light blue regions as we move in the x direc-
+tion. While we cannot directly make conjectures based on
+visualizations, the graphs do tend to support our main ﬁnd-
+ings. Speciﬁcally, we know from the results in table 2 that
+the transferability between different models genuses is low.
+The decision region graphs lend credence to this claim by
+visually showing that the decisions regions between Vision
+Transformers, ResNets and Big Transfer Models do indeed
+look very different. Thus, we conjecture that even though
+a Vision Transformer is capable of implementing convolu-
+tions as described in [9], in practice we observe that this
+may not be the case due to differing patterns of decision
+boundaries.
+F. Friendly Adversarial Training Defense for
+Vision Transformers
+Friendly Adversarial Training (FAT) [38] was recently
+proposed to improve the adversarial defense of deep net-
+works. It is a simple training technique that uses less strong
+adversarial examples by employing an early stopping of the
+PGD algorithm. By incorporating another parameter, τ, in
+the PGD k-step algorithm (referred to as PGD-K-τ), the
+step amount τ by which the adversarial example crosses
+the decision boundary can be easily controlled. The pseu-
+docode for the FAT algorithm [38] is described below:
+while K > 0 do
+if arg maxi f(ex)̸ = y and τ = 0 then
+break
+else if arg maxi f(ex)̸ = y then
+τ ←−τ −1
+end if
+ex ←−P(α sign(∇exl(f(ex), y)) + ex)
+K ←−K −1
+end while
+As can be easily seen from the pseudocode, if K = τ,
+the PGD-K-τ algorithm becomes equivalent to the standard
+PGD k-step algorithm. The application of FAT for creating
+adversarial defense for ResNets had a slightly better robust
+accuracy than e.g., Madry training, and a relatively lower
+drop in clean accuracy [38]. For example, with FAT on the
+
+===== SAYFA 20 =====
+Figure 7. Vision Transformer, Big Transfer Model and ResNet decision regions for CIFAR-10.
+Figure 8. Vision Transformer, Big Transfer Model and ResNet decision regions for CIFAR-100.
+WRN-30-10, the clean accuracy dropped from around 95%
+to around 89%, resulting in a robust accuracy of around
+46% when the PGD-20 attack was used.
+We evaluate the performance of different Transformer-
+based networks for different values of τ. The results are
+presented in Table 9. From Table 9, it can be seen that the
+adversarial robustness of the Vision Transformers with re-
+spect to FAT is similar to the ResNet-based architectures.
+For example, for ViT-L-16 with τ = 1, the clean accuracy
+drops from 99.1% to 94.2%. The adversarial robustness in
+this case is approximately 47%.
+
+===== SAYFA 21 =====
+Table 9. FAT defense accuracy for ViT-B-32, ViT-B-16, ViT-L-16, and ResNet-164 architectures on CIFAR-10 and CIFAR-100. The
+leftmost column in the table lists the model being tested; each model includes a subset of τ parameters for τ = 0, 1, 2, 10. The top row in
+the table lists the attacks run, from FGSM to APGD. The last column in the table lists the clean accuracy of the tested model.
+CIFAR-10
+FGSM
+PGD
+BPDA
+MIM
+C&W
+APGD
+Acc
+ViT-B-32
+37.9%
+1.8%
+17.6%
+4.4%
+0.0%
+0.0%
+98.6%
+τ = 0
+30.8%
+17.5%
+14.5%
+17.3%
+1.5%
+1.5%
+95.5%
+τ = 1
+33.9%
+32.2%
+16.4%
+23.6%
+9.7%
+5.9%
+93.2%
+τ = 2
+37.8%
+40.3%
+23.6%
+31.4%
+20.8%
+13.9%
+90.8%
+τ = 10
+42.6%
+51.1%
+33.3%
+38.8%
+34.1%
+29.4%
+78.9%
+ViT-B-16
+39.5%
+0.0%
+20.3%
+0.3%
+0.0%
+0.0%
+98.9%
+τ = 0
+42.3%
+34.0%
+19.2%
+29.0%
+9.4%
+4.1%
+95.9%
+τ = 1
+43.2%
+41.1%
+26.3%
+33.7%
+19.3%
+13.7%
+93.8%
+τ = 2
+62.3%
+25.4%
+33.9%
+25.1%
+6.7%
+5.4%
+93.8%
+τ = 10
+43.1%
+52.3%
+36.8%
+40.2%
+35.0%
+33.7%
+73.3%
+ViT-L-16
+56.3%
+1.2%
+28.70%
+5.9%
+0.0%
+0.0%
+99.1%
+τ = 0
+51.7%
+43.6%
+29.2%
+39.3%
+20.6%
+15.4%
+95.7%
+τ = 1
+49.1%
+47.0%
+31.9%
+39.4%
+26.8%
+19.6%
+94.2%
+τ = 2
+57.4%
+48.8%
+33.5%
+40.2%
+29.4%
+21.8%
+92.4%
+τ = 10
+49.5%
+55.4%
+33.7%
+45.8%
+37.7%
+33.6%
+85.3%
+ResNet-164
+14.4%
+3.0%
+9.0%
+2.2%
+0.1%
+0.0%
+93.2%
+τ = 0
+47.7%
+50.8%
+39.5%
+42.5%
+34.6%
+27.0%
+90.3%
+τ = 1
+53.0%
+56.2%
+47.2%
+49.0%
+42.7%
+34.4%
+88.0%
+τ = 2
+56.2%
+61.3%
+50.0%
+51.9%
+46.9%
+37.8%
+86.4%
+τ = 10
+60.4%
+64.8%
+55.6%
+57.6%
+51.9%
+44.5%
+79.9%
+CIFAR-100
+FGSM
+PGD
+BPDA
+MIM
+C&W
+APGD
+Acc
+ViT-B-32
+20.8%
+1.9%
+13.4%
+3.1%
+0.0%
+0.0%
+91.7%
+τ = 0
+16.2%
+6.9%
+9.7%
+7.6%
+0.7%
+1.2%
+87.6%
+τ = 1
+21.6%
+16.5%
+9.3%
+12.8%
+5.2%
+2.9%
+81.3%
+τ = 2
+24.4%
+23.0%
+12.3%
+17.5%
+10.1%
+5.4%
+76.1%
+τ = 10
+26.4%
+31.9%
+20.5%
+24.3%
+20.1%
+18.3%
+58.6%
+ViT-B-16
+20.4%
+0.0%
+11.9%
+0.5%
+0.0%
+0.0%
+92.8%
+τ = 0
+16.6%
+8.0%
+7.6%
+7.5%
+0.5%
+0.3%
+87.5%
+τ = 1
+23.9%
+20.0%
+9.3%
+15.7%
+8.5%
+4.8%
+82.0%
+τ = 2
+26.0%
+25.0%
+12.8%
+18.4%
+13.3%
+8.4%
+77.0%
+τ = 10
+25.1%
+29.0%
+20.4%
+22.7%
+16.5%
+16.1%
+54.2%
+ViT-L-16
+33.0%
+1.6%
+15.1%
+4.7%
+0.0%
+0.0%
+94.0%
+τ = 0
+28.6%
+19.1%
+13.1%
+17.7%
+5.3%
+5.2%
+87.7%
+τ = 1
+27.7%
+22.6%
+14.3%
+18.1%
+11.4%
+6.7%
+83.0%
+τ = 2
+30.2%
+26.5%
+16.7%
+22.0%
+16.0%
+9.7%
+80.0%
+τ = 10
+31.4%
+32.0%
+23.0%
+24.0%
+20.2%
+15.3%
+64.1%
+ResNet-164
+7.6%
+0.3%
+3.7%
+0.9%
+0.0%
+0.0%
+74.2%
+τ = 0
+18.2%
+16.1%
+13.5%
+12.2%
+9.7%
+6.8%
+70.8%
+τ = 1
+23.5%
+24.4%
+19.3%
+18.4%
+17.3%
+10.7%
+66.8%
+τ = 2
+35.3%
+32.3%
+25.2%
+26.3%
+24.7%
+17.6%
+61.8%
+τ = 10
+45.6%
+43.2%
+34.5%
+35.7%
+28.9%
+27.2%
+55.0%
+
+===== SAYFA 22 =====
+Figure 9. Vision Transformer, Big Transfer Model and ResNet decision regions for ImageNet.
+G. Additional Tables And Codes
+In this section we provide full numerical tables for some
+of the charts and ﬁgures presented in our paper. Each table
+is captioned with a description of which part of the main
+paper that it corresponds to.
+We also provide code to replicate our results.
+Code
+for the ViT/BiT defense, the RayS attack, Adaptive at-
+tack and SAGA for CIFAR-10 can be found on Github:
+https://github.com/MetaMain/ViTRobust.
+
+===== SAYFA 23 =====
+Table 10. Full transferability results for CIFAR-10. The ﬁrst column in each table represents the model used to generate the adversarial
+examples, Ci. The top row in each table represents the model used to evaluate the adversarial examples, Cj. Each entry represents 1 −ti,j
+(the robust accuracy) computed using equation 3 with Ci, Cj and either FGSM, PGD or MIM. For PGD and MIM we use only 10 steps to
+avoid overﬁtting the example to a paticular model. Based on these results we take the maximum transferability across all attacks and report
+the result in table 2. We also visually show the maximum transerability ti,j in ﬁgure 1.
+FGSM
+ViT-B-32
+ViT-B-16
+ViT-L-16
+R50-ViT-B-16
+BiT-M-R50x1
+BiT-M-R101x3
+ResNet-56
+ResNet-164
+ViT-B-32
+43.4%
+55.3%
+61.1%
+76.6%
+67.7%
+68.9%
+83.3%
+83.3%
+ViT-B-16
+68.7%
+41.3%
+56.9%
+80.3%
+73.0%
+73.7%
+86.1%
+86.0%
+ViT-L-16
+74.8%
+61.6%
+59.5%
+82.7%
+78.5%
+80.1%
+88.5%
+88.5%
+R50-ViT-B-16
+82.6%
+75.9%
+79.9%
+51.4%
+72.2%
+74.1%
+81.9%
+82.0%
+BiT-M-R50x1
+96.0%
+94.0%
+95.9%
+95.6%
+69.5%
+86.0%
+94.0%
+93.8%
+BiT-M-R101x3
+97.4%
+94.4%
+86.3%
+96.2%
+86.1%
+88.0%
+95.5%
+94.7%
+ResNet-56
+93.4%
+92.4%
+94.7%
+91.2%
+82.0%
+91.2%
+41.9%
+43.0%
+ResNet-164
+93.2%
+92.4%
+95.3%
+90.9%
+82.9%
+91.7%
+45.1%
+47.1%
+PGD
+ViT-B-32
+ViT-B-16
+ViT-L-16
+R50-ViT-B-16
+BiT-M-R50x1
+BiT-M-R101x3
+ResNet-56
+ResNet-164
+ViT-B-32
+4.2%
+49.1%
+72.2%
+93.4%
+70.4%
+74.3%
+93.0%
+92.9%
+ViT-B-16
+90.4%
+0.4%
+53.9%
+97.1%
+83.3%
+85.1%
+96.1%
+95.9%
+ViT-L-16
+85.9%
+32.4%
+10.4%
+94.4%
+82.1%
+81.7%
+95.7%
+95.5%
+R50-ViT-B-16
+93.7%
+84.5%
+91.3%
+6.6%
+69.7%
+75.3%
+90.3%
+88.9%
+BiT-M-R101x3
+99.6%
+97.5%
+86.3%
+98.7%
+58.0%
+0.0%
+97.3%
+96.8%
+BiT-M-R50x1
+99.9%
+98.5%
+99.4%
+99.5%
+0.0%
+85.9%
+98.2%
+97.8%
+ResNet-56
+99.0%
+97.9%
+98.6%
+98.4%
+93.9%
+96.9%
+28.0%
+28.7%
+ResNet-164
+98.7%
+98.3%
+99.1%
+98.1%
+92.6%
+96.1%
+28.7%
+32.5%
+MIM
+ViT-B-32
+ViT-B-16
+ViT-L-16
+R50-ViT-B-16
+BiT-M-R50x1
+BiT-M-R101x3
+ResNet-56
+ResNet-164
+ViT-B-32
+4.9%
+15.9%
+24.5%
+65.1%
+39.2%
+38.0%
+81.4%
+80.1%
+ViT-B-16
+42.9%
+0.9%
+11.1%
+77.4%
+56.6%
+55.0%
+86.9%
+86.0%
+ViT-L-16
+44.4%
+21.6%
+13.4%
+69.7%
+57.5%
+55.3%
+87.0%
+85.2%
+R50-ViT-B-16
+60.4%
+41.9%
+48.5%
+1.7%
+39.0%
+42.0%
+73.3%
+71.0%
+BiT-M-R50x1
+95.5%
+89.1%
+94.3%
+95.3%
+0.0%
+48.6%
+93.0%
+91.0%
+BiT-M-R101x3
+91.4%
+79.7%
+88.0%
+92.8%
+24.1%
+0.1%
+92.2%
+90.7%
+ResNet-56
+94.2%
+91.0%
+94.8%
+90.3%
+77.5%
+88.2%
+14.1%
+12.8%
+ResNet-164
+94.2%
+91.9%
+95.0%
+90.3%
+77.7%
+88.8%
+16.4%
+14.3%
+
+===== SAYFA 24 =====
+Table 11. Full transferability results for CIFAR-100. The ﬁrst column in each table represents the model used to generate the adversarial
+examples, Ci. The top row in each table represents the model used to evaluate the adversarial examples, Cj. Each entry represents 1 −ti,j
+(the robust accuracy) computed using equation 3 with Ci, Cj and either FGSM, PGD or MIM. For PGD and MIM we use only 10 steps to
+avoid overﬁtting the example to a paticular model. Based on these results we take the maximum transferability across all attacks and report
+the result in table 2.
+FGSM
+ViT-B-32
+ViT-B-16
+ViT-L-16
+R50-ViT-B-16
+BiT-M-R50x1
+BiT-M-R101x3
+ResNet-56
+ResNet-164
+ViT-B-32
+27.9%
+40.2%
+41.7%
+59.2%
+55.8%
+57.4%
+85.1%
+86.0%
+ViT-B-16
+50.7%
+25.3%
+36.7%
+64.9%
+61.4%
+59.9%
+91.0%
+92.5%
+ViT-L-16
+57.0%
+41.7%
+37.8%
+65.7%
+64.7%
+65.1%
+90.1%
+90.5%
+R50-ViT-B-16
+66.3%
+60.6%
+64.3%
+30.8%
+56.1%
+61.2%
+90.8%
+91.4%
+BiT-M-R50x1
+87.3%
+83.1%
+87.2%
+86.0%
+44.5%
+68.8%
+96.3%
+96.6%
+BiT-M-R101x3
+85.5%
+83.3%
+85.8%
+86.4%
+70.4%
+67.0%
+96.2%
+97.8%
+ResNet-56
+79.9%
+77.8%
+84.7%
+77.3%
+68.6%
+78.1%
+38.0%
+40.8%
+ResNet-164
+77.9%
+75.5%
+84.5%
+75.8%
+64.9%
+75.7%
+36.1%
+33.2%
+PGD
+ViT-B-32
+ViT-B-16
+ViT-L-16
+R50-ViT-B-16
+BiT-M-R50x1
+BiT-M-R101x3
+ResNet-56
+ResNet-164
+ViT-B-32
+3.8%
+36.4%
+53.5%
+80.9%
+67.7%
+68.5%
+93.3%
+95.0%
+ViT-B-16
+78.6%
+0.7%
+36.1%
+90.3%
+78.9%
+80.2%
+97.2%
+97.6%
+ViT-L-16
+72.2%
+17.9%
+5.8%
+85.0%
+76.6%
+75.2%
+96.1%
+96.2%
+R50-ViT-B-16
+85.6%
+75.5%
+82.3%
+2.2%
+62.7%
+68.5%
+94.3%
+95.3%
+BiT-M-R50x1
+96.1%
+94.7%
+97.8%
+96.1%
+0.0%
+76.9%
+97.5%
+98.7%
+BiT-M-R101x3
+94.8%
+91.7%
+95.2%
+94.1%
+52.3%
+1.0%
+97.9%
+97.9%
+ResNet-56
+91.6%
+91.0%
+94.5%
+89.4%
+82.0%
+89.9%
+51.2%
+56.6%
+ResNet-164
+89.2%
+89.0%
+92.8%
+88.5%
+78.4%
+85.7%
+43.6%
+39.4%
+MIM
+ViT-B-32
+ViT-B-16
+ViT-L-16
+R50-ViT-B-16
+BiT-M-R50x1
+BiT-M-R101x3
+ResNet-56
+ResNet-164
+ViT-B-32
+4.4%
+11.5%
+16.4%
+47.8%
+39.5%
+38.9%
+86.1%
+87.4%
+ViT-B-16
+28.7%
+0.9%
+6.8%
+61.4%
+55.5%
+52.1%
+91.4%
+93.3%
+ViT-L-16
+32.2%
+11.7%
+7.5%
+51.9%
+52.4%
+50.0%
+91.3%
+90.5%
+R50-ViT-B-16
+48.4%
+35.0%
+37.7%
+1.1%
+35.9%
+38.8%
+89.0%
+90.1%
+BiT-M-R50x1
+82.3%
+75.0%
+84.5%
+81.8%
+0.1%
+43.5%
+95.1%
+94.8%
+BiT-M-R101x3
+75.1%
+61.0%
+73.7%
+76.5%
+26.0%
+1.2%
+94.3%
+96.8%
+ResNet-56
+81.4%
+80.5%
+86.4%
+78.9%
+69.3%
+79.5%
+29.2%
+31.1%
+ResNet-164
+78.3%
+77.2%
+84.8%
+76.5%
+64.1%
+73.5%
+25.5%
+20.8%
+
+===== SAYFA 25 =====
+Table 12. Full transferability results for ImageNet. The ﬁrst column in each table represents the model used to generate the adversarial
+examples, Ci. The top row in each table represents the model used to evaluate the adversarial examples, Cj. Each entry represents 1 −ti,j
+(the robust accuracy) computed using equation 3 with Ci, Cj and either FGSM, PGD or MIM. For PGD and MIM we use only 10 steps to
+avoid overﬁtting the example to a paticular model. Based on these results we take the maximum transferability across all attacks and report
+the result in table 2. Note due to the complexity of training ImageNet models we do not train independent copies of the model to measure
+self-transferability (when i = j).
+FGSM
+ViT-B-16
+ViT-L-16 (224)
+ViT-L-16 (512)
+BiT-M-R50x1
+BiT-M-R152x4
+ResNet-50
+ResNet-152
+ViT-B-16
++
+40.8%
+67.3%
+63.2%
+73.2%
+56.0%
+63.6%
+ViT-L-16 (224)
+40.1%
++
+59.6%
+63.7%
+75.4%
+57.6%
+61.7%
+ViT-L-16 (512)
+77.8%
+69.3%
++
+74.6%
+77.7%
+74.5%
+78.4%
+BiT-M-R50x1
+90.6%
+91.6%
+89.4%
++
+83.3%
+81.2%
+83.5%
+BiT-M-R152x4
+93.0%
+93.9%
+89.8%
+83.4%
++
+86.8%
+90.1%
+ResNet-50
+77.8%
+82.3%
+79.1%
+61.6%
+79.2%
++
+46.7%
+ResNet-152
+75.6%
+78.8%
+77.9%
+61.0%
+78.1%
+40.7%
++
+PGD
+ViT-B-16
+ViT-L-16 (224)
+ViT-L-16 (512)
+BiT-M-R50x1
+BiT-M-R152x4
+ResNet-50
+ResNet-152
+ViT-B-16
++
+36.1%
+81.1%
+83.1%
+89.7%
+79.0%
+81.7%
+ViT-L-16 (224)
+22.7%
++
+62.6%
+83.2%
+88.8%
+80.4%
+80.6%
+ViT-L-16 (512)
+89.6%
+83.5%
++
+84.3%
+87.6%
+87.6%
+89.9%
+BiT-M-R50x1
+96.5%
+96.8%
+95.8%
++
+90.6%
+89.2%
+91.4%
+BiT-M-R152x4
+91.8%
+97.3%
+94.2%
+85.4%
++
+93.0%
+95.2%
+ResNet-50
+92.7%
+94.2%
+91.8%
+77.8%
+92.7%
++
+42.2%
+ResNet-152
+91.1%
+93.3%
+90.5%
+77.4%
+90.9%
+30.1%
++
+MIM
+ViT-B-16
+ViT-L-16 (224)
+ViT-L-16 (512)
+BiT-M-R50x1
+BiT-M-R152x4
+ResNet-50
+ResNet-152
+ViT-B-16
++
+10.9%
+60.4%
+59.2%
+72.6%
+56.6%
+59.9%
+ViT-L-16 (224)
+9.1%
++
+35.5%
+60.0%
+73.1%
+56.3%
+59.2%
+ViT-L-16 (512)
+72.0%
+56.6%
++
+65.7%
+73.7%
+71.6%
+76.8%
+BiT-M-R50x1
+90.2%
+91.6%
+88.2%
++
+75.1%
+75.3%
+81.3%
+BiT-M-R152x4
+96.2%
+92.4%
+86.5%
+72.0%
++
+84.9%
+88.0%
+ResNet-50
+76.2%
+81.2%
+75.3%
+44.7%
+75.6%
++
+13.3%
+ResNet-152
+74.1%
+77.9%
+73.4%
+45.9%
+73.2%
+10.6%
++

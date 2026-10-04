@@ -1,0 +1,70 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 10000,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "ResNet18_AT",
+    "ViT_Tiny_AT",
+    "WRN_28_10"
+  ],
+  "results": {
+    "ResNet18_AT->ResNet18_AT": {
+      "raw_fooling": 57.7,
+      "cond_fooling": 51.09,
+      "n_cond": 8648,
+      "target_clean_acc": 86.48
+    },
+    "ResNet18_AT->ViT_Tiny_AT": {
+      "raw_fooling": 39.02,
+      "cond_fooling": 20.03,
+      "n_cond": 7613,
+      "target_clean_acc": 76.13
+    },
+    "ResNet18_AT->WRN_28_10": {
+      "raw_fooling": 21.41,
+      "cond_fooling": 12.17,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    },
+    "ViT_Tiny_AT->ResNet18_AT": {
+      "raw_fooling": 26.23,
+      "cond_fooling": 14.77,
+      "n_cond": 8648,
+      "target_clean_acc": 86.48
+    },
+    "ViT_Tiny_AT->ViT_Tiny_AT": {
+      "raw_fooling": 68.29,
+      "cond_fooling": 58.35,
+      "n_cond": 7613,
+      "target_clean_acc": 76.13
+    },
+    "ViT_Tiny_AT->WRN_28_10": {
+      "raw_fooling": 17.8,
+      "cond_fooling": 8.15,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    },
+    "WRN_28_10->ResNet18_AT": {
+      "raw_fooling": 32.14,
+      "cond_fooling": 21.54,
+      "n_cond": 8648,
+      "target_clean_acc": 86.48
+    },
+    "WRN_28_10->ViT_Tiny_AT": {
+      "raw_fooling": 37.9,
+      "cond_fooling": 18.6,
+      "n_cond": 7613,
+      "target_clean_acc": 76.13
+    },
+    "WRN_28_10->WRN_28_10": {
+      "raw_fooling": 33.03,
+      "cond_fooling": 25.16,
+      "n_cond": 8948,
+      "target_clean_acc": 89.48
+    }
+  }
+}

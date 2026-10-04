@@ -76,6 +76,11 @@ def main():
                     help="PAIRS yerine acik model listesi (tekrarlanabilir); "
                          "verilirse tek kosu yapilir ve --out-dir kullanilir")
     ap.add_argument("--out-dir", type=str, default=None)
+    # 2026-10-04 (LeCun plani Faz 2): birden cok RobustBench modeli, kendi adiyla.
+    # AD[:TAKMA_AD]; verilirse VARSAYILAN referans (WRN_28_10) otomatik EKLENMEZ,
+    # havuz tamamen acik listeden kurulur. Yalniz --model ile birlikte anlamli.
+    ap.add_argument("--rb-model", action="append", default=None, metavar="AD[:TAKMA_AD]",
+                    help="RobustBench modeli ekle (tekrarlanabilir); varsayilan referansi kapatir")
     # E6: tehdit modeli ekseni. VARSAYILAN linf -> eski davranis birebir korunur.
     ap.add_argument("--norm", choices=["linf", "l2"], default="linf")
     args = ap.parse_args()
@@ -89,6 +94,8 @@ def main():
     # spec olarak kendi referansimiz (or. DenseNet121_ref:densenet121:...) verilir
     # ve WRN otomatik eklenmez. PAIRS modunda referans zorunludur.
     has_rb = bool(args.rb_ref) or args.dataset in ("cifar10", "cifar100")
+    if args.rb_model:
+        has_rb = False  # acik RobustBench listesi verildi; varsayilan referans eklenmez
     wrn = load_wrn(device, dataset=args.dataset, rb_name=args.rb_ref) if has_rb else None
     if wrn is None and not args.model:
         raise SystemExit(f"{args.dataset}: RobustBench referansi yok; PAIRS modu "
@@ -118,6 +125,9 @@ def main():
                 models[name] = load_local(mtype, mpath, device)
             if wrn is not None:
                 models["WRN_28_10"] = wrn
+            for spec in (args.rb_model or []):
+                rb_name, _, alias = spec.partition(":")
+                models[alias or rb_name] = load_wrn(device, dataset=args.dataset, rb_name=rb_name)
         else:
             models = {
                 "ResNet18_AT": load_local("resnet18", f"models/c1/resnet18_s{rs}/resnet18/adv/adversarial_training/best.pth", device),

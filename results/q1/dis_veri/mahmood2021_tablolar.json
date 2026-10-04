@@ -1,0 +1,603 @@
+{
+ "uretildi_utc": "2026-10-04T15:19:52.494046+00:00",
+ "kaynaklar": {
+  "results/q1/dis_veri/mahmood2021_metin.txt": "8708d73912d244ea3e6dbe8825c413ab707f14e32be87b00d053a45b473eeb2c"
+ },
+ "yontem": "PDF'den cikarilmis metin sayfa ayiraclarina bolunur; Tablo 1 (s.4), Ek Tablo 3 (s.14) ve Tablo 2 (s.6) hucreleri satir basina tek deger bicimindedir ve regex ^(\\d+(\\.\\d+)?)%$ ile okunur. Elle verilen yalniz aile etiketi ve Tablo 2 kisaltma -> Tablo 1 ad eslemesidir (sira ile assert).",
+ "kunye": "Mahmood, Mahmood, van Dijk. On the Robustness of Vision Transformers to Adversarial Examples. ICCV 2021, arXiv:2104.02610",
+ "model_adlari": [
+  "ViT-B-32",
+  "ViT-B-16",
+  "ViT-L-16",
+  "ViT-R50",
+  "BiT-M-R50x1",
+  "BiT-M-R101x3",
+  "ResNet-56",
+  "ResNet-164"
+ ],
+ "tablo2_kisa_adlar": [
+  "ViT-B-32",
+  "ViT-B-16",
+  "ViT-L-16",
+  "R50-ViT",
+  "BiT-50x1",
+  "BiT-101x3",
+  "ResNet-56",
+  "ResNet-164"
+ ],
+ "ad_esleme_tablo2_tablo1": {
+  "R50-ViT": "ViT-R50",
+  "BiT-50x1": "BiT-M-R50x1",
+  "BiT-101x3": "BiT-M-R101x3"
+ },
+ "aile": {
+  "ViT-B-32": "ViT",
+  "ViT-B-16": "ViT",
+  "ViT-L-16": "ViT",
+  "ViT-R50": "hibrit",
+  "BiT-M-R50x1": "CNN",
+  "BiT-M-R101x3": "CNN",
+  "ResNet-56": "CNN",
+  "ResNet-164": "CNN"
+ },
+ "temiz_dogruluk_yuzde": {
+  "CIFAR-10": {
+   "ViT-B-32": 98.6,
+   "ViT-B-16": 98.9,
+   "ViT-L-16": 99.1,
+   "ViT-R50": 98.6,
+   "BiT-M-R50x1": 97.5,
+   "BiT-M-R101x3": 98.7,
+   "ResNet-56": 92.8,
+   "ResNet-164": 93.8
+  },
+  "CIFAR-100": {
+   "ViT-B-32": 91.7,
+   "ViT-B-16": 92.8,
+   "ViT-L-16": 94.0,
+   "ViT-R50": 91.8,
+   "BiT-M-R50x1": 87.4,
+   "BiT-M-R101x3": 91.8,
+   "ResNet-56": 71.6,
+   "ResNet-164": 74.2
+  },
+  "CIFAR-100_kaynak_notu": "Ana metin Tablo 1'de YOK; ek malzeme Tablo 3 (sayfa 14) iceriyor ve oradan okundu."
+ },
+ "beyaz_kutu_saglam_dogruluk_yuzde": {
+  "sutunlar": [
+   "FGSM",
+   "PGD",
+   "BPDA",
+   "MIM",
+   "C&W",
+   "APGD",
+   "Acc"
+  ],
+  "CIFAR-10_tablo1": [
+   {
+    "model": "ViT-B-32",
+    "FGSM": 37.9,
+    "PGD": 1.8,
+    "BPDA": 17.6,
+    "MIM": 4.4,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 98.6
+   },
+   {
+    "model": "ViT-B-16",
+    "FGSM": 39.5,
+    "PGD": 0.0,
+    "BPDA": 20.3,
+    "MIM": 0.3,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 98.9
+   },
+   {
+    "model": "ViT-L-16",
+    "FGSM": 56.3,
+    "PGD": 1.2,
+    "BPDA": 28.7,
+    "MIM": 5.9,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 99.1
+   },
+   {
+    "model": "ViT-R50",
+    "FGSM": 40.8,
+    "PGD": 0.1,
+    "BPDA": 13.4,
+    "MIM": 0.2,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 98.6
+   },
+   {
+    "model": "BiT-M-R50x1",
+    "FGSM": 66.0,
+    "PGD": 0.0,
+    "BPDA": 14.9,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 97.5
+   },
+   {
+    "model": "BiT-M-R101x3",
+    "FGSM": 85.2,
+    "PGD": 0.0,
+    "BPDA": 17.1,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 98.7
+   },
+   {
+    "model": "ResNet-56",
+    "FGSM": 23.0,
+    "PGD": 0.0,
+    "BPDA": 5.0,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 92.8
+   },
+   {
+    "model": "ResNet-164",
+    "FGSM": 29.0,
+    "PGD": 0.0,
+    "BPDA": 5.4,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 93.8
+   }
+  ],
+  "CIFAR-100_ek_tablo3": [
+   {
+    "model": "ViT-B-32",
+    "FGSM": 20.8,
+    "PGD": 1.9,
+    "BPDA": 13.4,
+    "MIM": 3.1,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 91.7
+   },
+   {
+    "model": "ViT-B-16",
+    "FGSM": 20.4,
+    "PGD": 0.0,
+    "BPDA": 11.9,
+    "MIM": 0.5,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 92.8
+   },
+   {
+    "model": "ViT-L-16",
+    "FGSM": 33.0,
+    "PGD": 1.6,
+    "BPDA": 15.1,
+    "MIM": 4.7,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 94.0
+   },
+   {
+    "model": "ViT-R50",
+    "FGSM": 22.0,
+    "PGD": 0.2,
+    "BPDA": 9.7,
+    "MIM": 0.4,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 91.8
+   },
+   {
+    "model": "BiT-M-R50x1",
+    "FGSM": 36.0,
+    "PGD": 0.0,
+    "BPDA": 7.0,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 87.4
+   },
+   {
+    "model": "BiT-M-R101x3",
+    "FGSM": 1.2,
+    "PGD": 0.0,
+    "BPDA": 0.4,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 91.8
+   },
+   {
+    "model": "ResNet-56",
+    "FGSM": 6.0,
+    "PGD": 0.2,
+    "BPDA": 3.3,
+    "MIM": 0.4,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 71.6
+   },
+   {
+    "model": "ResNet-164",
+    "FGSM": 7.6,
+    "PGD": 0.3,
+    "BPDA": 3.7,
+    "MIM": 0.9,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 74.2
+   }
+  ],
+  "ImageNet_tablo1": [
+   {
+    "model": "ViT-B-16",
+    "FGSM": 23.1,
+    "PGD": 0.0,
+    "BPDA": 7.3,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 80.3
+   },
+   {
+    "model": "ViT-L-16 (224)",
+    "FGSM": 27.9,
+    "PGD": 0.0,
+    "BPDA": 8.4,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 82.0
+   },
+   {
+    "model": "ViT-L-16 (512)",
+    "FGSM": 29.8,
+    "PGD": 0.0,
+    "BPDA": 8.4,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 85.4
+   },
+   {
+    "model": "BiT-M-R50x1",
+    "FGSM": 28.7,
+    "PGD": 0.0,
+    "BPDA": 3.5,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 79.9
+   },
+   {
+    "model": "BiT-M-R152x4",
+    "FGSM": 60.9,
+    "PGD": 0.0,
+    "BPDA": 15.2,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 85.3
+   },
+   {
+    "model": "ResNet-50",
+    "FGSM": 11.8,
+    "PGD": 0.0,
+    "BPDA": 1.4,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 74.5
+   },
+   {
+    "model": "ResNet-152",
+    "FGSM": 18.1,
+    "PGD": 0.0,
+    "BPDA": 2.7,
+    "MIM": 0.0,
+    "C&W": 0.0,
+    "APGD": 0.0,
+    "Acc": 77.0
+   }
+  ],
+  "ek_tablo3_CIFAR-10_ile_tablo1_ayni_mi": true
+ },
+ "transfer_matrisleri_yuzde": {
+  "yorum": "satir = kaynak C_i (cekismeli ornegi ureten), sutun = hedef C_j (degerlendiren). Hucre = FGSM/PGD/MIM'in en buyugu, m = 1000 HER IKISI DOGRU ornek (Denklem 3).",
+  "CIFAR-10": {
+   "ViT-B-32": {
+    "ViT-B-32": 95.8,
+    "ViT-B-16": 84.1,
+    "ViT-L-16": 75.5,
+    "ViT-R50": 34.9,
+    "BiT-M-R50x1": 60.8,
+    "BiT-M-R101x3": 62.0,
+    "ResNet-56": 18.6,
+    "ResNet-164": 19.9
+   },
+   "ViT-B-16": {
+    "ViT-B-32": 57.1,
+    "ViT-B-16": 99.6,
+    "ViT-L-16": 88.9,
+    "ViT-R50": 22.6,
+    "BiT-M-R50x1": 43.4,
+    "BiT-M-R101x3": 45.0,
+    "ResNet-56": 13.9,
+    "ResNet-164": 14.0
+   },
+   "ViT-L-16": {
+    "ViT-B-32": 55.6,
+    "ViT-B-16": 78.4,
+    "ViT-L-16": 89.6,
+    "ViT-R50": 30.3,
+    "BiT-M-R50x1": 42.5,
+    "BiT-M-R101x3": 44.7,
+    "ResNet-56": 13.0,
+    "ResNet-164": 14.8
+   },
+   "ViT-R50": {
+    "ViT-B-32": 39.6,
+    "ViT-B-16": 58.1,
+    "ViT-L-16": 51.5,
+    "ViT-R50": 98.3,
+    "BiT-M-R50x1": 61.0,
+    "BiT-M-R101x3": 58.0,
+    "ResNet-56": 26.7,
+    "ResNet-164": 29.0
+   },
+   "BiT-M-R50x1": {
+    "ViT-B-32": 4.5,
+    "ViT-B-16": 10.9,
+    "ViT-L-16": 5.7,
+    "ViT-R50": 4.7,
+    "BiT-M-R50x1": 100.0,
+    "BiT-M-R101x3": 51.4,
+    "ResNet-56": 7.0,
+    "ResNet-164": 9.0
+   },
+   "BiT-M-R101x3": {
+    "ViT-B-32": 8.6,
+    "ViT-B-16": 20.3,
+    "ViT-L-16": 13.7,
+    "ViT-R50": 7.2,
+    "BiT-M-R50x1": 75.9,
+    "BiT-M-R101x3": 100.0,
+    "ResNet-56": 7.8,
+    "ResNet-164": 9.3
+   },
+   "ResNet-56": {
+    "ViT-B-32": 6.6,
+    "ViT-B-16": 9.0,
+    "ViT-L-16": 5.3,
+    "ViT-R50": 9.7,
+    "BiT-M-R50x1": 22.5,
+    "BiT-M-R101x3": 11.8,
+    "ResNet-56": 85.9,
+    "ResNet-164": 87.2
+   },
+   "ResNet-164": {
+    "ViT-B-32": 6.8,
+    "ViT-B-16": 8.1,
+    "ViT-L-16": 5.0,
+    "ViT-R50": 9.7,
+    "BiT-M-R50x1": 22.3,
+    "BiT-M-R101x3": 11.2,
+    "ResNet-56": 83.6,
+    "ResNet-164": 85.7
+   }
+  },
+  "CIFAR-100": {
+   "ViT-B-32": {
+    "ViT-B-32": 96.2,
+    "ViT-B-16": 88.5,
+    "ViT-L-16": 83.6,
+    "ViT-R50": 52.2,
+    "BiT-M-R50x1": 60.5,
+    "BiT-M-R101x3": 61.1,
+    "ResNet-56": 14.9,
+    "ResNet-164": 14.0
+   },
+   "ViT-B-16": {
+    "ViT-B-32": 71.3,
+    "ViT-B-16": 99.3,
+    "ViT-L-16": 93.2,
+    "ViT-R50": 38.6,
+    "BiT-M-R50x1": 44.5,
+    "BiT-M-R101x3": 47.9,
+    "ResNet-56": 9.0,
+    "ResNet-164": 7.5
+   },
+   "ViT-L-16": {
+    "ViT-B-32": 67.8,
+    "ViT-B-16": 88.3,
+    "ViT-L-16": 94.2,
+    "ViT-R50": 48.1,
+    "BiT-M-R50x1": 47.6,
+    "BiT-M-R101x3": 50.0,
+    "ResNet-56": 9.9,
+    "ResNet-164": 9.5
+   },
+   "ViT-R50": {
+    "ViT-B-32": 51.6,
+    "ViT-B-16": 65.0,
+    "ViT-L-16": 62.3,
+    "ViT-R50": 98.9,
+    "BiT-M-R50x1": 64.1,
+    "BiT-M-R101x3": 61.2,
+    "ResNet-56": 11.0,
+    "ResNet-164": 9.9
+   },
+   "BiT-M-R50x1": {
+    "ViT-B-32": 17.7,
+    "ViT-B-16": 25.0,
+    "ViT-L-16": 15.5,
+    "ViT-R50": 18.2,
+    "BiT-M-R50x1": 100.0,
+    "BiT-M-R101x3": 56.5,
+    "ResNet-56": 4.9,
+    "ResNet-164": 5.2
+   },
+   "BiT-M-R101x3": {
+    "ViT-B-32": 24.9,
+    "ViT-B-16": 39.0,
+    "ViT-L-16": 26.3,
+    "ViT-R50": 23.5,
+    "BiT-M-R50x1": 74.0,
+    "BiT-M-R101x3": 99.0,
+    "ResNet-56": 5.7,
+    "ResNet-164": 3.2
+   },
+   "ResNet-56": {
+    "ViT-B-32": 20.1,
+    "ViT-B-16": 22.2,
+    "ViT-L-16": 15.3,
+    "ViT-R50": 22.7,
+    "BiT-M-R50x1": 31.4,
+    "BiT-M-R101x3": 21.9,
+    "ResNet-56": 70.8,
+    "ResNet-164": 68.9
+   },
+   "ResNet-164": {
+    "ViT-B-32": 22.1,
+    "ViT-B-16": 24.5,
+    "ViT-L-16": 15.5,
+    "ViT-R50": 24.2,
+    "BiT-M-R50x1": 35.9,
+    "BiT-M-R101x3": 26.5,
+    "ResNet-56": 74.5,
+    "ResNet-164": 79.2
+   }
+  },
+  "ImageNet": {
+   "sutunlar": [
+    "ViT-B-16",
+    "ViT-L-16",
+    "ViT-L-16 (512)",
+    "BiT-50x1",
+    "BiT-152x4",
+    "ResNet-50",
+    "ResNet-152"
+   ],
+   "matris_satir_kaynak": [
+    [
+     null,
+     89.1,
+     39.6,
+     40.8,
+     27.4,
+     44.0,
+     40.1
+    ],
+    [
+     90.9,
+     null,
+     64.5,
+     40.0,
+     26.9,
+     43.7,
+     40.8
+    ],
+    [
+     28.0,
+     43.4,
+     null,
+     34.3,
+     26.3,
+     28.4,
+     23.2
+    ],
+    [
+     9.8,
+     8.4,
+     11.8,
+     null,
+     24.9,
+     24.7,
+     18.7
+    ],
+    [
+     8.2,
+     7.6,
+     13.5,
+     28.0,
+     null,
+     15.1,
+     12.0
+    ],
+    [
+     23.8,
+     18.8,
+     24.7,
+     55.3,
+     24.4,
+     null,
+     86.7
+    ],
+    [
+     25.9,
+     22.1,
+     26.6,
+     54.1,
+     26.8,
+     89.4,
+     null
+    ]
+   ],
+   "not": "'+' = olculmedi (i = j), None olarak yazildi"
+  }
+ },
+ "yon_dogrulamasi": {
+  "tablo2_basligi": "first column = model used to generate the adversarial examples, C_i; top row = model used to evaluate, C_j",
+  "bolum_4_2_metni_celisiyor_mu": true,
+  "bolum_4_2_alinti": "The top row of the table corresponds to the model which was used to generate the adversarial examples",
+  "bolum_4_3_anlati_BiT_to_ViTL16": [
+   5.7,
+   15.5,
+   11.8
+  ],
+  "bolum_4_3_anlati_ViTL16_to_BiT": [
+   42.5,
+   47.6,
+   34.3
+  ],
+  "anlati_alinti_1": "Adversar- ial examples generated using BiT-50x1 are misclassiﬁed by ViT-L-16 less than 16% of the time across all datasets (5.",
+  "anlati_alinti_2": "Likewise, less than half the time BiT-M-50x1 is fooled by adversarial examples generated using ViT-L-16 (42.5%, 47.6% and 34.3% for CIFAR-10, CIFAR-100 and ImageNet)",
+  "hucre_kontrolleri": {
+   "CIFAR-10 M[BiT-50x1][ViT-L-16] == anlati BiT->ViT-L-16": true,
+   "CIFAR-100 M[BiT-50x1][ViT-L-16] == anlati": true,
+   "ImageNet M[BiT-50x1][ViT-L-16 (512)] == anlati": true,
+   "CIFAR-10 M[ViT-L-16][BiT-50x1] == anlati ViT-L-16->BiT": true,
+   "CIFAR-100 M[ViT-L-16][BiT-50x1] == anlati": true,
+   "ImageNet M[ViT-L-16 (512)][BiT-50x1] == anlati": true,
+   "ImageNet M[ViT-L-16 (512)][BiT-152x4] == sayfa 7 (ViT-L-16 -> BiT-M-152x4)": true
+  },
+  "sonuc_satir_kaynak": true,
+  "hukum": "Bolum 4.3 anlatisi ve sayfa 7 orneginin yedi hucresi de 'satir = kaynak' okumasiyla birebir tutuyor; Bolum 4.2'deki 'ust satir = kaynak' cumlesi baslik ve anlatiyla celisen bir yazim hatasidir."
+ },
+ "kosegen_notu": {
+  "alinti": "In the special case when i = j, we train an independent copy of model i to generate adversarial examples for CIFAR-10 and CIFAR- 100.",
+  "hukum": "Kosegen beyaz kutu DEGILDIR: i = j icin bagimsiz egitilmis ikinci kopyaya transferdir. Ayristirmalarda kosegen kullanilmaz."
+ },
+ "protokol_alinti": "we ﬁnd a set of m = 1000 examples that both classiﬁers correctly iden- tify",
+ "on_egitim_alinti": "pre-training dataset (X ′, Y ′) is ImageNet-21K and the training dataset (X, Y ) is either CIFAR-10, CIFAR-100 or ImageNet.",
+ "sayfalar": {
+  "tablo1": 4,
+  "tablo2": 6,
+  "ek_tablo3": 14,
+  "anlati": 5
+ },
+ "baslik_alintilari": {
+  "tablo1": "Table 1. White-box attacks on Vision Transformers, Big Transfer Models and ResNets. The attacks are done using the l∞norm with ϵ = 0.031 for CIFAR-10 and ϵ = 0.062 for ImageNet. The white-box attack results for CIFAR-100 follow an extremely similar trend to CIFAR-10. Hence for brevity, CIFAR-100 white-box attack results are given in the supplementary material. In this Table the robust accuracy is given for each corresponding attack. The last column ”Acc” refers to the clean accuracy of the model.",
+  "tablo2": "Table 2. Transferability results for CIFAR-10, CIFAR-100 and ImageNet. The ﬁrst column in each table represents the model used to generate the adversarial examples, Ci. The top row in each table represents the model used to evaluate the adversarial examples, Cj. Each entry is the maximum transferability computed using Ci and Cj over three different attacks, FGSM, PGD and MIM using Equation 3.",
+  "ek_tablo3": "Table 3. White-box attacks on Vision Transformers, Big Transfer Models and ResNets. The attacks are done using the l∞norm with ϵ = 0.031 for CIFAR-10 and ϵ = 0.062 for ImageNet. In this table the robust accuracy is given for each corresponding attack. The last column ”Acc” refers to the clean accuracy of the model. In the main paper part of this table was also presented (see table 3.1) but without CIFAR-100 results for brevity. The table here represents the full white-box attack results."
+ }
+}
