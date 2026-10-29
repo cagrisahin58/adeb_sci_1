@@ -1,0 +1,96 @@
+{
+ "MI": {
+  "json_attack": "mi",
+  "json_alpha": 0.003137254901960784,
+  "json_steps": 10,
+  "json_sources": [
+   "ResNet18_AT_s1001",
+   "ViT_Tiny_AT_s2001",
+   "WRN_28_10"
+  ],
+  "hucreler": {
+   "ResNet18_AT_s1001_linf_max": 0.03137257695198059,
+   "ResNet18_AT_s1001->ResNet18_AT_s1001": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 48,
+    "bagimsiz_yaniltma_sayisi": 48
+   },
+   "ResNet18_AT_s1001->ViT_Tiny_AT_s2001": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 33,
+    "bagimsiz_yaniltma_sayisi": 33
+   },
+   "ResNet18_AT_s1001->WRN_28_10": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 19,
+    "bagimsiz_yaniltma_sayisi": 19
+   },
+   "ViT_Tiny_AT_s2001_linf_max": 0.03137257695198059,
+   "ViT_Tiny_AT_s2001->ResNet18_AT_s1001": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 26,
+    "bagimsiz_yaniltma_sayisi": 26
+   },
+   "ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 61,
+    "bagimsiz_yaniltma_sayisi": 61
+   },
+   "ViT_Tiny_AT_s2001->WRN_28_10": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 17,
+    "bagimsiz_yaniltma_sayisi": 17
+   },
+   "WRN_28_10_linf_max": 0.03137257695198059,
+   "WRN_28_10->ResNet18_AT_s1001": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 34,
+    "bagimsiz_yaniltma_sayisi": 34
+   },
+   "WRN_28_10->ViT_Tiny_AT_s2001": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 33,
+    "bagimsiz_yaniltma_sayisi": 33
+   },
+   "WRN_28_10->WRN_28_10": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 35,
+    "bagimsiz_yaniltma_sayisi": 35
+   }
+  }
+ },
+ "TGR": {
+  "json_attack": "tgr",
+  "json_alpha": 0.00784313725490196,
+  "json_steps": 10,
+  "json_sources": [
+   "ViT_Tiny_AT_s2001"
+  ],
+  "hucreler": {
+   "ViT_Tiny_AT_s2001_linf_max": 0.03137257695198059,
+   "ViT_Tiny_AT_s2001->ResNet18_AT_s1001": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 27,
+    "bagimsiz_yaniltma_sayisi": 27
+   },
+   "ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 46,
+    "bagimsiz_yaniltma_sayisi": 46
+   },
+   "ViT_Tiny_AT_s2001->WRN_28_10": {
+    "farkli_ornek": 0,
+    "matris_yaniltma_sayisi": 14,
+    "bagimsiz_yaniltma_sayisi": 14
+   }
+  }
+ },
+ "TGR_duz_MI_farki": {
+  "ResNet18_AT_s1001": 3,
+  "ViT_Tiny_AT_s2001": 15,
+  "WRN_28_10": 3
+ },
+ "TGR_matris_kaynak_dosyalari": [
+  "per_sample_ViT_Tiny_AT_s2001"
+ ]
+}

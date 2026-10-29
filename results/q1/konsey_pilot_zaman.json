@@ -1,0 +1,175 @@
+{
+  "tarih": "2026-10-29 03:32:38",
+  "yontem": "50 olculen iterasyon (5 isinma), AT batch 64, temiz batch 128; epok = iterasyon x (48000/batch) + val temiz + val PGD-10 (5/20 batch olceklenmis)",
+  "t_V_at_epok_s": 125.8,
+  "t_V_temiz_epok_s": 13.4,
+  "t_R_at_epok_s": 142.7,
+  "t_R224_IN_at_epok_s": 142.7,
+  "t_R224_scr_at_epok_s": 142.5,
+  "t_Rc_temiz_epok_s": 15.5,
+  "t_R224_IN_temiz_epok_s": 15.5,
+  "t_R224_scr_temiz_epok_s": 15.5,
+  "W_sa": {
+    "80": 20.47,
+    "70": 18.19,
+    "60": 15.9
+  },
+  "egitim_payi_sa": 38.15,
+  "secilen_tavan": 80,
+  "r224_at_epok_esigi_s": 365.0,
+  "r224_esik_asildi": false,
+  "egitim_baslamaz": false,
+  "kural": "W(80)<=38.15 -> 80; degilse W(70) -> 70; degilse W(60) -> 60; hicbiri tutmazsa ya da R224 AT epogu > 365 s ise egitim baslamaz, karar kullaniciya",
+  "kosu_basina_beklenen_sa_tavanda": {
+    "V_IN": 2.91,
+    "R224_IN": 3.3,
+    "R224_scr": 4.03
+  },
+  "c1_vit_karsilastirma": "C1 ViT AT epogu 179-182 s (TIMING.md), E2 medyan ust 219 s (KONSEY_PLANI §4); t_V bu aralikla karsilastirilmali",
+  "paylasim_uyarilari": [
+    "V_IN: olcumden once 3774 MiB bellek baska surecte (histo-sparse-adv olabilir); kullanim orneklerine bakiniz",
+    "R224_IN: olcumden once 3767 MiB bellek baska surecte (histo-sparse-adv olabilir); kullanim orneklerine bakiniz",
+    "R224_scr: olcumden once 3772 MiB bellek baska surecte (histo-sparse-adv olabilir); kullanim orneklerine bakiniz"
+  ],
+  "olcum_sismis_olabilir": false,
+  "paylasimda_iki_kat_yavaslama_W_sa": {
+    "80": 40.94,
+    "70": 36.38,
+    "60": 31.8
+  },
+  "paylasim_notu": "Pilot bos GPU'da olculdu. E2 kampanyasinda ayni ViT-Tiny AT iterasyonu yaklasik 0.32 s idi (logs/Q1_e2_at_vit_tiny_2001.log); egitim GPU paylasilarak kosulursa sureler iki katina cikabilir ve tavan 80'de W pay 38.15 sa'i asar. Bekci kurali pilot degerine baglidir (plan §4 B3); defterdeki gercek sureler izlenmelidir.",
+  "parcalar": {
+    "V_IN": {
+      "hucre": "V_IN",
+      "tip": "vit_tiny_in1k",
+      "nvidia_smi_once": {
+        "zaman": "2026-10-29 03:18:23",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 3774,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 2,
+        "surecler": "(listelenmedi)"
+      },
+      "baska_is_kullanim_ornekleri_yuzde": [
+        2,
+        1,
+        1,
+        2,
+        1
+      ],
+      "nvidia_smi_at_sonrasi": {
+        "zaman": "2026-10-29 03:18:53",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 8635,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 97,
+        "surecler": "1381, [N/A]"
+      },
+      "nvidia_smi_sonra": {
+        "zaman": "2026-10-29 03:18:58",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 12649,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 91,
+        "surecler": "1381, [N/A]"
+      },
+      "at_iterasyon_s": 0.1614,
+      "temiz_iterasyon_s": 0.0343,
+      "val_temiz_s": 0.57,
+      "val_pgd10_s_olceklenmis": 4.16,
+      "at_iterasyon_epok": 750,
+      "temiz_iterasyon_epok": 375,
+      "t_at_epok_s": 125.8,
+      "t_temiz_epok_s": 13.4,
+      "tepe_bellek_gib": 3.8
+    },
+    "R224_IN": {
+      "hucre": "R224_IN",
+      "tip": "resnet18_224_in1k",
+      "nvidia_smi_once": {
+        "zaman": "2026-10-29 03:19:34",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 3767,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 1,
+        "surecler": "(listelenmedi)"
+      },
+      "baska_is_kullanim_ornekleri_yuzde": [
+        2,
+        1,
+        1,
+        2,
+        1
+      ],
+      "nvidia_smi_at_sonrasi": {
+        "zaman": "2026-10-29 03:20:06",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 7953,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 96,
+        "surecler": "1510, [N/A]"
+      },
+      "nvidia_smi_sonra": {
+        "zaman": "2026-10-29 03:20:12",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 10769,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 98,
+        "surecler": "1510, [N/A]"
+      },
+      "at_iterasyon_s": 0.1839,
+      "temiz_iterasyon_s": 0.0405,
+      "val_temiz_s": 0.32,
+      "val_pgd10_s_olceklenmis": 4.45,
+      "at_iterasyon_epok": 750,
+      "temiz_iterasyon_epok": 375,
+      "t_at_epok_s": 142.7,
+      "t_temiz_epok_s": 15.5,
+      "tepe_bellek_gib": 3.0
+    },
+    "R224_scr": {
+      "hucre": "R224_scr",
+      "tip": "resnet18_224",
+      "nvidia_smi_once": {
+        "zaman": "2026-10-29 03:20:15",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 3772,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 1,
+        "surecler": "(listelenmedi)"
+      },
+      "baska_is_kullanim_ornekleri_yuzde": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "nvidia_smi_at_sonrasi": {
+        "zaman": "2026-10-29 03:20:47",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 8009,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 96,
+        "surecler": "(listelenmedi)"
+      },
+      "nvidia_smi_sonra": {
+        "zaman": "2026-10-29 03:20:52",
+        "gpu": "NVIDIA GeForce RTX 5090",
+        "bellek_kullanilan_mib": 10813,
+        "bellek_toplam_mib": 32607,
+        "kullanim_yuzde": 98,
+        "surecler": "(listelenmedi)"
+      },
+      "at_iterasyon_s": 0.1837,
+      "temiz_iterasyon_s": 0.0404,
+      "val_temiz_s": 0.31,
+      "val_pgd10_s_olceklenmis": 4.43,
+      "at_iterasyon_epok": 750,
+      "temiz_iterasyon_epok": 375,
+      "t_at_epok_s": 142.5,
+      "t_temiz_epok_s": 15.5,
+      "tepe_bellek_gib": 3.0
+    }
+  }
+}

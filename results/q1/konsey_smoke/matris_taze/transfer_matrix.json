@@ -1,0 +1,200 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 200,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "R224_scr_smoke",
+    "ViT_Tiny_AT_s2001",
+    "V_IN_smoke",
+    "Sehwag2021Proxy_R18",
+    "Debenedetti2022Light_XCiT-S12"
+  ],
+  "results": {
+    "R224_scr_smoke->R224_scr_smoke": {
+      "raw_fooling": 94.5,
+      "cond_fooling": 82.81,
+      "n_cond": 64,
+      "target_clean_acc": 32.0
+    },
+    "R224_scr_smoke->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 25.5,
+      "cond_fooling": 6.33,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "R224_scr_smoke->V_IN_smoke": {
+      "raw_fooling": 14.0,
+      "cond_fooling": 6.59,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "R224_scr_smoke->Sehwag2021Proxy_R18": {
+      "raw_fooling": 15.5,
+      "cond_fooling": 3.45,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "R224_scr_smoke->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 9.5,
+      "cond_fooling": 2.73,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "ViT_Tiny_AT_s2001->R224_scr_smoke": {
+      "raw_fooling": 75.5,
+      "cond_fooling": 26.56,
+      "n_cond": 64,
+      "target_clean_acc": 32.0
+    },
+    "ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 67.0,
+      "cond_fooling": 58.23,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "ViT_Tiny_AT_s2001->V_IN_smoke": {
+      "raw_fooling": 26.5,
+      "cond_fooling": 19.78,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "ViT_Tiny_AT_s2001->Sehwag2021Proxy_R18": {
+      "raw_fooling": 23.0,
+      "cond_fooling": 11.49,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "ViT_Tiny_AT_s2001->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 20.0,
+      "cond_fooling": 12.57,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "V_IN_smoke->R224_scr_smoke": {
+      "raw_fooling": 70.0,
+      "cond_fooling": 6.25,
+      "n_cond": 64,
+      "target_clean_acc": 32.0
+    },
+    "V_IN_smoke->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 21.5,
+      "cond_fooling": 0.63,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "V_IN_smoke->V_IN_smoke": {
+      "raw_fooling": 100.0,
+      "cond_fooling": 100.0,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "V_IN_smoke->Sehwag2021Proxy_R18": {
+      "raw_fooling": 14.0,
+      "cond_fooling": 1.15,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "V_IN_smoke->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 8.5,
+      "cond_fooling": 0.55,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Sehwag2021Proxy_R18->R224_scr_smoke": {
+      "raw_fooling": 71.5,
+      "cond_fooling": 12.5,
+      "n_cond": 64,
+      "target_clean_acc": 32.0
+    },
+    "Sehwag2021Proxy_R18->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 38.0,
+      "cond_fooling": 21.52,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Sehwag2021Proxy_R18->V_IN_smoke": {
+      "raw_fooling": 29.5,
+      "cond_fooling": 22.53,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Sehwag2021Proxy_R18->Sehwag2021Proxy_R18": {
+      "raw_fooling": 42.0,
+      "cond_fooling": 33.33,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Sehwag2021Proxy_R18->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 26.5,
+      "cond_fooling": 19.67,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Debenedetti2022Light_XCiT-S12->R224_scr_smoke": {
+      "raw_fooling": 73.0,
+      "cond_fooling": 17.19,
+      "n_cond": 64,
+      "target_clean_acc": 32.0
+    },
+    "Debenedetti2022Light_XCiT-S12->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 40.0,
+      "cond_fooling": 24.05,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Debenedetti2022Light_XCiT-S12->V_IN_smoke": {
+      "raw_fooling": 34.5,
+      "cond_fooling": 28.02,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Debenedetti2022Light_XCiT-S12->Sehwag2021Proxy_R18": {
+      "raw_fooling": 28.5,
+      "cond_fooling": 17.82,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 42.0,
+      "cond_fooling": 36.61,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    }
+  },
+  "attack": "pgd",
+  "sources": [
+    "R224_scr_smoke",
+    "ViT_Tiny_AT_s2001",
+    "V_IN_smoke",
+    "Sehwag2021Proxy_R18",
+    "Debenedetti2022Light_XCiT-S12"
+  ],
+  "cache_adv": "results/q1/konsey_smoke/adv_onbellek",
+  "per_source_seed": true,
+  "model_specs": {
+    "R224_scr_smoke": [
+      "resnet18_224",
+      "models/q1/konsey_smoke/r_scr/resnet18_224/clean/best.pth"
+    ],
+    "ViT_Tiny_AT_s2001": [
+      "vit_tiny",
+      "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+    ],
+    "V_IN_smoke": [
+      "vit_tiny_in1k",
+      "models/q1/konsey_smoke/v_in/vit_tiny_in1k/clean/best.pth"
+    ],
+    "Sehwag2021Proxy_R18": [
+      "robustbench",
+      "Sehwag2021Proxy_R18"
+    ],
+    "Debenedetti2022Light_XCiT-S12": [
+      "robustbench",
+      "Debenedetti2022Light_XCiT-S12"
+    ]
+  }
+}

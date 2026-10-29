@@ -1,0 +1,193 @@
+{
+  "testler": {
+    "r224_scr_girdi_hatti_vscr_ile_ayni": {
+      "vscr_resize": "Upsample(size=(224, 224), mode='bilinear')",
+      "r224_scr_resize": "Upsample(size=(224, 224), mode='bilinear')",
+      "ayni_tip_ve_ayar": true,
+      "cikti_birebir": true,
+      "r224_scr_tampon_sayisi": 0,
+      "vscr_tampon_sayisi": 0,
+      "GECTI": true
+    },
+    "v_in_mimari_vscr_ile_ayni": {
+      "GECTI": true,
+      "anahtar_sayisi": 152,
+      "parametre_vscr": 5526346,
+      "parametre_v_in": 5526346
+    },
+    "agirlik_yukleme_deit_tiny_in1k": {
+      "init_key": "deit_tiny_in1k",
+      "timm_name": "deit_tiny_patch16_224.fb_in1k",
+      "source_file": "models/timm_agirliklar/deit_tiny_patch16_224.fb_in1k/model.safetensors",
+      "source_sha256": "21d4764d94f6c3ffdb6da3581115a0a1ee2d505537d96883b540e54766407c9e",
+      "n_loaded": 150,
+      "n_target_keys": 152,
+      "missing_nonhead": [],
+      "unexpected_nonhead": [],
+      "shape_mismatch": [],
+      "head_keys_skipped": [
+        "head.bias",
+        "head.weight"
+      ],
+      "torch_missing_after_load": [
+        "head.bias",
+        "head.weight"
+      ],
+      "pretrained_cfg_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "pretrained_cfg_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "wrapper_mean": [
+        0.48500001430511475,
+        0.4560000002384186,
+        0.4059999883174896
+      ],
+      "wrapper_std": [
+        0.2290000021457672,
+        0.2240000069141388,
+        0.22499999403953552
+      ],
+      "norm_matches_cfg": true,
+      "degisen_tensor_sayisi": 150,
+      "GECTI": true
+    },
+    "agirlik_yukleme_resnet18_a1_in1k": {
+      "init_key": "resnet18_a1_in1k",
+      "timm_name": "resnet18.a1_in1k",
+      "source_file": "models/timm_agirliklar/resnet18.a1_in1k/model.safetensors",
+      "source_sha256": "80c49dee3da4822c009c5a7fe591e9223c5a2cfcf95a4067ca4dfb5a7b89c612",
+      "n_loaded": 120,
+      "n_target_keys": 122,
+      "missing_nonhead": [],
+      "unexpected_nonhead": [],
+      "shape_mismatch": [],
+      "head_keys_skipped": [
+        "fc.bias",
+        "fc.weight"
+      ],
+      "torch_missing_after_load": [
+        "fc.bias",
+        "fc.weight"
+      ],
+      "pretrained_cfg_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "pretrained_cfg_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "wrapper_mean": [
+        0.48500001430511475,
+        0.4560000002384186,
+        0.4059999883174896
+      ],
+      "wrapper_std": [
+        0.2290000021457672,
+        0.2240000069141388,
+        0.22499999403953552
+      ],
+      "norm_matches_cfg": true,
+      "degisen_tensor_sayisi": 120,
+      "GECTI": true
+    },
+    "uyumsuz_tip_reddi": {
+      "GECTI": true,
+      "mesaj": "--init-weights resnet18_a1_in1k yalniz ('resnet18_224_in1k',) ile kullanilir (K3: IN normalizasyonu IN baslatmali tipte); verilen: resnet18_224"
+    },
+    "normalizasyon_vit_tiny_in1k": {
+      "pretrained_cfg_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "pretrained_cfg_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "sarmalayici_mean": [
+        0.48500001430511475,
+        0.4560000002384186,
+        0.4059999883174896
+      ],
+      "sarmalayici_std": [
+        0.2290000021457672,
+        0.2240000069141388,
+        0.22499999403953552
+      ],
+      "ileri_gecis_elle_normalizasyonla_ayni": true,
+      "checkpointte_tampon": [
+        "resize.mean",
+        "resize.std"
+      ],
+      "GECTI": true
+    },
+    "normalizasyon_resnet18_224_in1k": {
+      "pretrained_cfg_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "pretrained_cfg_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "sarmalayici_mean": [
+        0.48500001430511475,
+        0.4560000002384186,
+        0.4059999883174896
+      ],
+      "sarmalayici_std": [
+        0.2290000021457672,
+        0.2240000069141388,
+        0.22499999403953552
+      ],
+      "ileri_gecis_elle_normalizasyonla_ayni": true,
+      "checkpointte_tampon": [
+        "resize.mean",
+        "resize.std"
+      ],
+      "GECTI": true
+    },
+    "cikis_sekilleri": {
+      "resnet18_224": [
+        4,
+        10
+      ],
+      "resnet18_224_in1k": [
+        4,
+        10
+      ],
+      "vit_tiny_in1k": [
+        4,
+        10
+      ],
+      "GECTI": true
+    },
+    "kayit_yukleme_turu": {
+      "GECTI": true,
+      "ayni_cikti": true,
+      "normalizasyonlu_ckpt_scr_tipine_yuklenmez": true
+    },
+    "c1_vit_yukleme": {
+      "GECTI": true,
+      "yol": "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+    }
+  },
+  "parametre": {
+    "resnet18_224": 11181642,
+    "vit_tiny_in1k": 5526346,
+    "vit_tiny": 5526346
+  },
+  "hepsi_gecti": true
+}

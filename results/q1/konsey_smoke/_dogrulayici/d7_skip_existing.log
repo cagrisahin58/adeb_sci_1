@@ -1,0 +1,16 @@
+  WRN_28_10->WRN_28_10: raw=36.00 cond=28.89
+custom kaydedildi: results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz
+  ResNet18_AT_s1001: butun hucreler mevcut, kaynak atlandi
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1001: raw=29.00 cond=17.44
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001: raw=62.00 cond=51.90 (mevcut hucre)
+  ViT_Tiny_AT_s2001->WRN_28_10: raw=15.00 cond=5.56 (mevcut hucre)
+  WRN_28_10: butun hucreler mevcut, kaynak atlandi
+onbelleksiz yeniden uretilen hucre ile ilk hucre arasindaki farkli ornek sayisi: {'target_clean_correct': 0, 'target_adv_wrong': 2, 'source_clean_correct': 0, 'source_adv_wrong': 0}
+  WRN_28_10->WRN_28_10: raw=37.00 cond=30.00
+custom kaydedildi: results/q1/konsey_smoke/_dogrulayici/d7_onbellekli
+  ResNet18_AT_s1001: butun hucreler mevcut, kaynak atlandi
+  ViT_Tiny_AT_s2001: onbellekten (100, 3, 32, 32)
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1001: raw=29.00 cond=17.44
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001: raw=61.00 cond=50.63 (mevcut hucre)
+  ViT_Tiny_AT_s2001->WRN_28_10: raw=16.00 cond=6.67 (mevcut hucre)
+onbellekli yeniden uretilen hucre ile ilk hucre arasindaki farkli ornek sayisi: {'target_clean_correct': 0, 'target_adv_wrong': 0, 'source_clean_correct': 0, 'source_adv_wrong': 0}

@@ -1,0 +1,54 @@
+{
+  "tarih": "2026-10-29 03:12:12",
+  "timm": {
+    "deit_tiny_patch16_224.fb_in1k": {
+      "yol": "models/timm_agirliklar/deit_tiny_patch16_224.fb_in1k/model.safetensors",
+      "bayt": 22883348,
+      "sha256": "21d4764d94f6c3ffdb6da3581115a0a1ee2d505537d96883b540e54766407c9e"
+    },
+    "resnet18.a1_in1k": {
+      "yol": "models/timm_agirliklar/resnet18.a1_in1k/model.safetensors",
+      "bayt": 46807446,
+      "sha256": "80c49dee3da4822c009c5a7fe591e9223c5a2cfcf95a4067ca4dfb5a7b89c612"
+    }
+  },
+  "robustbench": {
+    "Sehwag2021Proxy_R18": {
+      "yol": "models/robustbench_zoo/cifar10/Linf/Sehwag2021Proxy_R18.pt",
+      "onceden_vardi": false,
+      "bayt": 44763573,
+      "sha256": "cc35dcef82a738dc40e814a52c84fe98b65c7f54a6dcacad1469cc58eb9d0de8",
+      "parametre": 11173962,
+      "sure_s": 6.9,
+      "durum": "OK"
+    },
+    "Addepalli2022Efficient_RN18": {
+      "yol": "models/robustbench_zoo/cifar10/Linf/Addepalli2022Efficient_RN18.pt",
+      "onceden_vardi": false,
+      "bayt": 44778553,
+      "sha256": "a8fd58136e2e1ed78fd87f9fb105d4786b40db4bf5611aaec6db47729bc93f13",
+      "parametre": 11173962,
+      "sure_s": 6.8,
+      "durum": "OK"
+    },
+    "Rade2021Helper_R18_ddpm": {
+      "yol": "models/robustbench_zoo/cifar10/Linf/Rade2021Helper_R18_ddpm.pt",
+      "onceden_vardi": false,
+      "bayt": 50261042,
+      "sha256": "1d70d209474ea94c57db877824780f4a928bd97c6f3034a31eb4249209a35511",
+      "parametre": 12548426,
+      "sure_s": 7.2,
+      "durum": "OK"
+    }
+  },
+  "xcit": {
+    "hub": "/root/.cache/torch/hub/checkpoints/debenedetti2022light-xcit-s-cifar10-linf.pth.tar",
+    "hub_var": true,
+    "kopya": "models/robustbench_zoo/cifar10/Linf/Debenedetti2022Light_XCiT-S12.pth.tar",
+    "kopya_var": true,
+    "sha256_hub": "20c1be6fd4aff3aeb6cf7049d2a0a6eb43e61735bcdd9210f0e9caf545d9de8d",
+    "sha256_kopya": "20c1be6fd4aff3aeb6cf7049d2a0a6eb43e61735bcdd9210f0e9caf545d9de8d",
+    "bayt": 103647475,
+    "ozdes": true
+  }
+}

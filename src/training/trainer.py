@@ -37,6 +37,9 @@ class Trainer:
         save_last: bool = True,
         verbose: bool = True,
         save_every: int = 0,
+        optimizer_name: str = "auto",
+        lr_schedule: str = "cosine",
+        max_train_batches: int = 0,
     ):
         """
         Initialize the trainer.
@@ -67,6 +70,8 @@ class Trainer:
         self.save_last = save_last
         self.verbose = verbose
         self.save_every = save_every
+        # Konsey B1: smoke/pilot icin epok basina en fazla N egitim batch'i (0 = sinirsiz)
+        self.max_train_batches = max_train_batches
 
         # Device
         self.device = device or (
@@ -80,6 +85,19 @@ class Trainer:
         # Optimizer - use AdamW for ViT models, SGD for CNNs
         if optimizer is not None:
             self.optimizer = optimizer
+        elif optimizer_name == "adamw":
+            # Konsey B1: iyileyici bayrakla zorlanir (sinif adina bakilmaz);
+            # ViT temiz tarifiyle ayni AdamW agirlik azaltmasi (0.05), LR tavani yok
+            self.optimizer = optim.AdamW(self.model.parameters(), lr=lr, weight_decay=0.05)
+            if self.verbose:
+                print(f"Using AdamW optimizer (forced, lr={lr}, wd=0.05)")
+        elif optimizer_name == "sgd":
+            self.optimizer = optim.SGD(self.model.parameters(), lr=lr,
+                                       momentum=momentum, weight_decay=weight_decay)
+            if self.verbose:
+                print(f"Using SGD optimizer (forced, lr={lr})")
+        elif optimizer_name != "auto":
+            raise ValueError(f"Bilinmeyen optimizer_name: {optimizer_name}")
         else:
             # Check if model is a ViT (by checking class name or module name)
             model_name = model.__class__.__name__.lower()
@@ -104,11 +122,18 @@ class Trainer:
                     weight_decay=weight_decay,
                 )
 
-        # Scheduler
-        self.scheduler = scheduler or optim.lr_scheduler.CosineAnnealingLR(
-            self.optimizer,
-            T_max=epochs,
-        )
+        # Scheduler (varsayilan: cosine, T_max=epochs -- eski davranis)
+        if scheduler is not None:
+            self.scheduler = scheduler
+        elif lr_schedule == "cosine":
+            self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
+                self.optimizer,
+                T_max=epochs,
+            )
+        elif lr_schedule == "constant":
+            self.scheduler = optim.lr_scheduler.LambdaLR(self.optimizer, lambda _e: 1.0)
+        else:
+            raise ValueError(f"Bilinmeyen lr_schedule: {lr_schedule}")
 
         # Training state
         self.best_acc = 0.0
@@ -141,7 +166,9 @@ class Trainer:
                 leave=True,
             )
 
-        for inputs, labels in iterator:
+        for b_idx, (inputs, labels) in enumerate(iterator):
+            if self.max_train_batches and b_idx >= self.max_train_batches:
+                break
             inputs, labels = inputs.to(self.device), labels.to(self.device)
 
             self.optimizer.zero_grad()
@@ -163,8 +190,10 @@ class Trainer:
                     "acc": 100.0 * correct / total,
                 })
 
+        n_batches = (min(self.max_train_batches, len(self.train_loader))
+                     if self.max_train_batches else len(self.train_loader))
         return {
-            "train_loss": running_loss / len(self.train_loader),
+            "train_loss": running_loss / n_batches,
             "train_acc": 100.0 * correct / total,
         }
 

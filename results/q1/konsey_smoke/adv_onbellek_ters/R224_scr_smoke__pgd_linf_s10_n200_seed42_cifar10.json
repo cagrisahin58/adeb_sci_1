@@ -1,0 +1,15 @@
+{
+  "attack": "pgd",
+  "norm": "linf",
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "seed": 42,
+  "n_samples": 200,
+  "dataset": "cifar10",
+  "per_source_seed": true,
+  "source": "R224_scr_smoke",
+  "source_type": "resnet18_224",
+  "source_ref": "models/q1/konsey_smoke/r_scr/resnet18_224/clean/best.pth",
+  "source_sha256": "d9f0d9dc65a54f3203925c3c27597407f0639e3dd3b79136afdf961a1e33dea3"
+}

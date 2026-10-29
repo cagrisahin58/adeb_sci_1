@@ -456,3 +456,5 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error -cd "\\wsl.localhost\Ubuntu
 | `results/q1_research/E3_YENIDEN_TASARIM.md` | E3 tasarımı ve ön-kayıt sapma beyanı |
 | `results/q1_research/E7_KOSUM_ONCESI_KONTROL.md` | E7 kontrol listesi ve SVHN tuzağı |
 | `results/C1_REFERANS_FOYU.md` | KARANTINA: dışarı çıkan sayıların tek kaynağı (**Q1'i henüz kapsamıyor — açık borç**) |
+- 29.10.2026: tez notu 06.10 okundu (TEZ_OTURUMUNDAN_NOT_2026-10-06.md); kaynak-hedef ayrisamazligi konsey planina girdi.
+- 29.10.2026: konsey turu; plan raporlar/konsey_2026-10-29/KONSEY_PLANI.md, ön kayıt ON_KAYIT_2026-10-29.md (donduruldu), runbook KONSEY_RUNBOOK.md; sıradaki iş B2 (kullanıcı).

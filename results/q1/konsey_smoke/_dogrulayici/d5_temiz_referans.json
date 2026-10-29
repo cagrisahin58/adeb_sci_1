@@ -1,0 +1,41 @@
+{
+ "c1_vit_tiny_temiz": {
+  "dosyalar": {
+   "models/c1/vit_tiny_s2001/vit_tiny/clean/best.pth": {
+    "accuracy": 81.9,
+    "epoch": 187
+   },
+   "models/c1/vit_tiny_s2002/vit_tiny/clean/best.pth": {
+    "accuracy": 83.85,
+    "epoch": 184
+   },
+   "models/c1/vit_tiny_s2003/vit_tiny/clean/best.pth": {
+    "accuracy": 83.25,
+    "epoch": 190
+   }
+  },
+  "ortalama": 83.0
+ },
+ "c1_resnet18_temiz": {
+  "dosyalar": {
+   "models/c1/resnet18_s1001/resnet18/clean/best.pth": {
+    "accuracy": 95.75,
+    "epoch": 196
+   },
+   "models/c1/resnet18_s1002/resnet18/clean/best.pth": {
+    "accuracy": 95.95,
+    "epoch": 183
+   },
+   "models/c1/resnet18_s1003/resnet18/clean/best.pth": {
+    "accuracy": 96.55,
+    "epoch": 181
+   }
+  },
+  "ortalama": 96.0833
+ },
+ "smoke": {
+  "models/q1/konsey_smoke/r_in/resnet18_224_in1k/clean/best.pth": 79.25,
+  "models/q1/konsey_smoke/r_scr/resnet18_224/clean/best.pth": 34.45,
+  "models/q1/konsey_smoke/v_in/vit_tiny_in1k/clean/best.pth": 92.85
+ }
+}

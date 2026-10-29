@@ -1,0 +1,16 @@
+=== 1. --skip-existing --cache-adv olmadan reddedilmeli
+--skip-existing yalniz --cache-adv ile birlikte kullanilabilir (yarida kalan satirin ayni cekismeli orneklerle tamamlanmasi icin)
+rc=1; klasor olustu mu: HAYIR
+=== 2. adversarial_trainer ve denetim betigi derleniyor mu
+derleme_tamam
+bash_sozdizimi_tamam
+=== 3. B6 maskeleme betigi smoke (V_IN_smoke: AA n=50, matris_ekle n=200)
+V_IN_smoke: PGD10=0.00 AA=0.00 fark=+0.00 isaretli=False maske_uyusmaz=0
+isaretli: yok -> results/q1/konsey_smoke/b6_maskeleme_smoke.json
+rc=0
+=== 4. B6 betigi, AA'dan uzun n istenince hata vermeli
+HATA: V_IN_smoke: orneklem kisa (AA 50, matris 200, istenen 1000)
+isaretli: yok -> /tmp/t2_b6_uzun.json
+rc=1
+=== 5. kuyruk --dry-run (gercek pilot)
+rc=0; satir: 42

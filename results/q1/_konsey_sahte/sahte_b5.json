@@ -1,0 +1,366 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "meta": {
+  "betik": "experiments/q1_konsey_ayrisim.py",
+  "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "hucre_tablosu": "/workspace/results/q1/_konsey_sahte/sahte_hucre_tablosu_b5.json",
+  "hucre_tablosu_sha256": "e4d56de0c8d3123d6fa2b20a5c4878caee6c2aa91c57d7a0ed34e62e3c39b11c",
+  "mod": "b5",
+  "matris_dizinleri": [
+   "results/c1_c3/pair1",
+   "results/q1/son_kontrol_noktasi/pair1",
+   "results/c1_c3/pair2",
+   "results/q1/son_kontrol_noktasi/pair2",
+   "results/c1_c3/pair3",
+   "results/q1/son_kontrol_noktasi/pair3"
+  ],
+  "uretildi_utc": "2026-10-29T03:44:17.313329+00:00",
+  "delta": 0.1,
+  "delta_duyarlilik": 0.06,
+  "alfa": 0.05,
+  "bootstrap_B": 2000,
+  "bootstrap_tohum": 20261029,
+  "panel_en_az": 1,
+  "maskeleme_isaretli": [],
+  "numpy": "1.26.4"
+ },
+ "veri": {
+  "pgd": {
+   "n_goruntu": 10000,
+   "modeller": [
+    "Gowal2020Uncovering_28_10_extra",
+    "ResNet18_AT_s1001",
+    "ResNet18_AT_s1002",
+    "ResNet18_AT_s1003",
+    "ViT_Tiny_AT_s2001",
+    "ViT_Tiny_AT_s2002",
+    "ViT_Tiny_AT_s2003"
+   ],
+   "hucre_sayisi": 25,
+   "cakismalar": [
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/c1_c3/pair2",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/c1_c3/pair3",
+     "ozdes": true
+    }
+   ],
+   "tutarlilik": {
+    "hedef_maskesi_tutarli": true,
+    "tutarsiz_hedefler": []
+   },
+   "girdi_sha256": {
+    "results/c1_c3/pair1/transfer_matrix.json": "7f5930cf82b6deedb1d783eabf90fde09d94f099e76cf3dae92b38b84cbada37",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "e3048cac9c87af4c05a2a731dbd4fd89bdad7c559608fcceb166c77de5a81027",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "4ab6327af108db96b00d93ce172ea381e93543659f396ce899619440a933d65f",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6046fdfbf0aceaa08cf5767f1f1f4c3454f5a508c904cc39293f0722992aa568",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "33c836743e64dcae73a839c3639dea0aa10eb57766b33babbf1cb64d79f41ada",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "767ca5d3b185e3f953debb40e7a6dbf6c343e6abcfdb0d2ed49bf543e11fd750",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "a7a27254c2186629314847bcfaec99881b8ce531bdf50fbe2809bbd1331afd3b",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "ac3879d70aa85949cb09078d2fedb24888ad7a85f04b7acfc14bcdcb17e84c31",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "10ae079258683cbb52e285627045a2f9cf66e678dc3e91e4593b8b1e4a6f5943",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+    "results/c1_c3/pair2/transfer_matrix.json": "377629f534f4f426f3e70c025ac408dab1c14042eae8cbcf7ca719cb5042cb74",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "1ec59fab5d86d3f84fe28701cf9faf43168dc6e94e8676bffd721ed14d952f73",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "38939c7023deb1313f0041f211b5904453e078684685f9f3cbeb02e2d76d890f",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "f10199e89bcdb84ef460d37f8e5e05c26c5b0535fb96c2b2b03e1e0bc7144e02",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "1123604cfd72e0af53836eb0b25643f6087b243fe5d4596cfd3d2fec33c1dbc6",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "56d90a604df21462ed54a83789bcfebbd5407f8c354faca81beb55a8b0764f49",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "377bbdda2113d708280e4aa01df14636d2bb1b87bbcbe603938fe6955f15cbb0",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2401ea4d90fb935adec2034bc03a58372f22da63bfe1260fb53a7c5ef89e0a97",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "1216b107ac089607aac26473f40a79f6d3e02eb1f406b5de8176052f3819a5b7",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+    "results/c1_c3/pair3/transfer_matrix.json": "0412463b039952088eee3046b27a16fd75d35ae7fcbf424696934835bb379502",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "ad3ff90a26fe4df75e23e3e1a8a028ed5455d07f6f1c8957373b4f261af0a808",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "49dac26602ab34bd131792ce824790379e4403d56bfe93a9416f06e911faf18e",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "4ead6c8e750931f4f0e762a5a7161b31f2987624947a930b32fad319ccfb8fe3",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "71ec8342534569b482edd9b99b278c690c4a721b8f40995b4b679442523d674b",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "5ac823751e41c44a86019667290b62d08266ddfa2097c6eb70df08660916043b",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "10e41f5b95b9dc552278fcb5776836e8787df724999c260967dd85f9f3b7f1c0",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2098213d3f941809e5e5edd23e52c1fb80e9a96290e3438b7ac98f9921d79a05",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "d346e249e0ff89bce78c89b36ebf12cae5cac024082d85f03440c1167bdd2d70",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4"
+   }
+  },
+  "mi": {
+   "n_goruntu": 10000,
+   "modeller": [
+    "Gowal2020Uncovering_28_10_extra",
+    "ResNet18_AT_s1001",
+    "ResNet18_AT_s1002",
+    "ResNet18_AT_s1003",
+    "ViT_Tiny_AT_s2001",
+    "ViT_Tiny_AT_s2002",
+    "ViT_Tiny_AT_s2003"
+   ],
+   "hucre_sayisi": 25,
+   "cakismalar": [
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/q1/son_kontrol_noktasi/pair1",
+     "atlanan": "results/q1/son_kontrol_noktasi/pair2",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/q1/son_kontrol_noktasi/pair1",
+     "atlanan": "results/q1/son_kontrol_noktasi/pair3",
+     "ozdes": true
+    }
+   ],
+   "tutarlilik": {
+    "hedef_maskesi_tutarli": true,
+    "tutarsiz_hedefler": []
+   },
+   "girdi_sha256": {
+    "results/q1/son_kontrol_noktasi/pair1/transfer_matrix.json": "d5a647569f5bc082bfd873b46457694109a4b8241a3862c004d27db86a024bcd",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "2c15ac8b35dc76ba53e92117e29eaf9494e769672c62eebc3d5f99a7d89836c8",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "f7b62fadab0f5a231872449e1a5a58901f35d8cfd84c720074b98a4d5526d142",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "29b3be1f61fcb1b90c8e25578225293cee3fc414701f6fabf79a6a0a0dd4e9b3",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "b0deffb5f7c6e287e305dfe89c8adcfee66bd286f0eafe0b51c5f6e101bc2698",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "4e9a849d7dbe7f522c3e833772c1999b5b959fd0a7e218c3402fcbf2990c7e98",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "850478e7be0a7f1a298d1e0881c50d5059284c99b2775ac146acaaa17fcad2c3",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "afbc5377f12b5f61fb68271fa633f25ca710fe8ae501f9bf5ee0f09570d39967",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "eef3ee8d1e8bdcbeaf040d783fcffacdcc1c7576796314f8c9a966e1ca5e1dac",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+    "results/q1/son_kontrol_noktasi/pair2/transfer_matrix.json": "99be8147ff89cbfcd4bff040e07aa29de6a4345d4bda00981bd271dac5180053",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "7ce00b2baac1d36ffd72b7f121307eb09e35043cb471e923eda5a6bcbf33bf83",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "87526a1b51a959997a43ff2702ac39a4d595e4d72e9e3d230679d2a54f5f4120",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "197d681aff71ad6ecfe2de69325340e380839997e37a1342f2a365fbe7582087",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "47e2f07b72a449dd6fc4391421f76a09f5db5b08e38716db9ba996c161785618",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "172d06829fc8527c40d7ed8cc18867de03a9e899d47f2b132697d61b723f5034",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "9a5e414a38526eae9d7e3b525b08f688b3e19ffde79dd9f979aa59f9b2cb8298",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "18309a7bd0661066da428f653d52522aeab51c4d32843a350687fa9c5f5b2102",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "39438c176b44ebc1c76cb383a7cd342e9349bcf5f67f661f724a91374fc26932",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+    "results/q1/son_kontrol_noktasi/pair3/transfer_matrix.json": "e7283079893a478fabfca74e5526ffbf1fa546efa2cd4a94a16949abbf3a7305",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "8c9b0d1208f51fa21e8aa8fb03ab700a38d568ee158a5c30e64c4ebe5b8b277f",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "cdbc0e7edfe6305cf8f94809c8fc916fcbd4c4175391572ebfae5f393782fe48",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "84e9c1608c6ae3a9e9401ac76ea1e10376f848b4b5934083c554785d29b5ef45",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "3f6d01758764a9a8ac5692d288de8d2c7b49f4ea5c20e2b366f4995834ead454",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "c3c82a2a5619e2cd0dbf3d67d2f1e70217926db541097749b571c460c14527f6",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "77f6809ffd370918fe0bb4c39c1a43dea8a676d2a267c7b60293f4e3cb0f4526",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "5dcd38ac7ab49174443b7641072738d057012aa6642bad89c40ee9018a62ec25",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "548f1421e4866d29ed35f47ff8759690dc2c682d927783863148b6409ef9ef40",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32"
+   }
+  }
+ },
+ "panel": {
+  "birincil": [
+   "Gowal2020Uncovering_28_10_extra"
+  ],
+  "birincil_eksik": [],
+  "ikincil": []
+ },
+ "b5": {
+  "saldirilar": [
+   "mi",
+   "pgd"
+  ],
+  "izinli": {
+   "CNN": [
+    "pgd",
+    "mi"
+   ],
+   "ViT": [
+    "pgd",
+    "mi",
+    "tgr"
+   ]
+  },
+  "tanim": "S_k(m) = ort_{c in P} log T_k(m->c); G_k = ort_R S_k - ort_V S_k; korunma orani = G_best/G_PGD; en iyi saldiri her kaynak icin panelde en yuksek S_k'yi veren izinli saldiri, capraz uydurmali bolunmus yari secimle (cift yarida sec, tek yarida degerlendir ve tersi).",
+  "birincil_C1-R32_V-scr": {
+   "R": [
+    "ResNet18_AT_s1001",
+    "ResNet18_AT_s1002",
+    "ResNet18_AT_s1003"
+   ],
+   "V": [
+    "ViT_Tiny_AT_s2001",
+    "ViT_Tiny_AT_s2002",
+    "ViT_Tiny_AT_s2003"
+   ],
+   "kaynaklar": {
+    "ResNet18_AT_s1001": {
+     "S_tam": {
+      "pgd": 2.517198850728438,
+      "mi": 2.517198850728438
+     },
+     "S_pgd_yari": 2.516704183896107,
+     "S_best_yari": 2.514074905269373,
+     "secilen_cift_tek": [
+      "mi",
+      "pgd"
+     ],
+     "secilen_tam_orneklem": "pgd",
+     "S_best_tam": 2.517198850728438
+    },
+    "ResNet18_AT_s1002": {
+     "S_tam": {
+      "pgd": 2.533299377417847,
+      "mi": 2.5090503221645326
+     },
+     "S_pgd_yari": 2.532640792332857,
+     "S_best_yari": 2.532640792332857,
+     "secilen_cift_tek": [
+      "pgd",
+      "pgd"
+     ],
+     "secilen_tam_orneklem": "pgd",
+     "S_best_tam": 2.533299377417847
+    },
+    "ResNet18_AT_s1003": {
+     "S_tam": {
+      "pgd": 2.523491006319327,
+      "mi": 2.4989999863110315
+     },
+     "S_pgd_yari": 2.5232231431114025,
+     "S_best_yari": 2.5232231431114025,
+     "secilen_cift_tek": [
+      "pgd",
+      "pgd"
+     ],
+     "secilen_tam_orneklem": "pgd",
+     "S_best_tam": 2.523491006319327
+    },
+    "ViT_Tiny_AT_s2001": {
+     "S_tam": {
+      "pgd": 2.1484716647453275,
+      "mi": 2.0599182674038823
+     },
+     "S_pgd_yari": 2.148229573832212,
+     "S_best_yari": 2.148229573832212,
+     "secilen_cift_tek": [
+      "pgd",
+      "pgd"
+     ],
+     "secilen_tam_orneklem": "pgd",
+     "S_best_tam": 2.1484716647453275
+    },
+    "ViT_Tiny_AT_s2002": {
+     "S_tam": {
+      "pgd": 2.1497745965257433,
+      "mi": 2.1678396039233823
+     },
+     "S_pgd_yari": 2.1495034598716116,
+     "S_best_yari": 2.1326842802971964,
+     "secilen_cift_tek": [
+      "mi",
+      "pgd"
+     ],
+     "secilen_tam_orneklem": "mi",
+     "S_best_tam": 2.1678396039233823
+    },
+    "ViT_Tiny_AT_s2003": {
+     "S_tam": {
+      "pgd": 2.1754829532359503,
+      "mi": 2.0976585953867293
+     },
+     "S_pgd_yari": 2.1752803699937013,
+     "S_best_yari": 2.1752803699937013,
+     "secilen_cift_tek": [
+      "pgd",
+      "pgd"
+     ],
+     "secilen_tam_orneklem": "pgd",
+     "S_best_tam": 2.1754829532359503
+    }
+   },
+   "G_PGD": 0.3665182385476138,
+   "G_best": 0.37124820553017424,
+   "oran": 1.0129051340017994,
+   "duyarlilik_tam_orneklem_secim": {
+    "G_PGD": 0.36675333998619664,
+    "G_best": 0.36073167085365077,
+    "oran": 0.9835811471198258
+   },
+   "bootstrap": {
+    "B": 2000,
+    "gecerli": 2000,
+    "ci90": [
+     0.9577540953870701,
+     1.0560229112517434
+    ],
+    "ci95": [
+     0.9394776156219788,
+     1.0692289093582554
+    ],
+    "G_PGD_ci90": [
+     0.33272533019383765,
+     0.40049673517545065
+    ],
+    "yontem": "yuzdelik; tohumlar hucre icinde yerine koyarak, goruntuler ortak agirlikla; secim her kopyada yeniden"
+   },
+   "karar": "destek"
+  },
+  "betimsel": {
+   "R224-scr_V-scr": {
+    "R": [],
+    "V": [
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003"
+    ],
+    "kaynaklar": {
+     "ViT_Tiny_AT_s2001": {
+      "S_tam": {
+       "pgd": 2.1484716647453275,
+       "mi": 2.0599182674038823
+      },
+      "S_pgd_yari": 2.148229573832212,
+      "S_best_yari": 2.148229573832212,
+      "secilen_cift_tek": [
+       "pgd",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "pgd",
+      "S_best_tam": 2.1484716647453275
+     },
+     "ViT_Tiny_AT_s2002": {
+      "S_tam": {
+       "pgd": 2.1497745965257433,
+       "mi": 2.1678396039233823
+      },
+      "S_pgd_yari": 2.1495034598716116,
+      "S_best_yari": 2.1326842802971964,
+      "secilen_cift_tek": [
+       "mi",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "mi",
+      "S_best_tam": 2.1678396039233823
+     },
+     "ViT_Tiny_AT_s2003": {
+      "S_tam": {
+       "pgd": 2.1754829532359503,
+       "mi": 2.0976585953867293
+      },
+      "S_pgd_yari": 2.1752803699937013,
+      "S_best_yari": 2.1752803699937013,
+      "secilen_cift_tek": [
+       "pgd",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "pgd",
+      "S_best_tam": 2.1754829532359503
+     }
+    },
+    "hata": "hucrede PGD verisi tam olan kaynak < 2"
+   },
+   "R224-IN_V-IN": {
+    "R": [],
+    "V": [],
+    "kaynaklar": {},
+    "hata": "hucrede PGD verisi tam olan kaynak < 2"
+   }
+  },
+  "not": "B5 ayri ailedir (tek sinama), Holm'a girmez; F_B2 ve F_B4 kararlarini degistirmez."
+ }
+}

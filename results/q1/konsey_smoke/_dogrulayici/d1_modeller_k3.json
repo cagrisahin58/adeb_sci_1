@@ -1,0 +1,142 @@
+{
+ "vscr_resize_tipi": "Upsample",
+ "rscr_resize_tipi": "Upsample",
+ "vscr_resize_repr": "Upsample(size=(224, 224), mode='bilinear')",
+ "rscr_resize_repr": "Upsample(size=(224, 224), mode='bilinear')",
+ "rscr_vscr_resize_torch_equal": true,
+ "rscr_state_dict_resize_anahtarlari": [],
+ "vscr_state_dict_resize_anahtarlari": [],
+ "rscr_forward_eq_elle_upsample": true,
+ "vscr_forward_eq_elle_upsample": true,
+ "resnet18_224_in1k": {
+  "resize_tipi": "ResizeNormalize",
+  "normalize": true,
+  "mean": [
+   0.485,
+   0.456,
+   0.406
+  ],
+  "std": [
+   0.229,
+   0.224,
+   0.225
+  ],
+  "state_dict_resize_anahtarlari": [
+   "resize.mean",
+   "resize.std"
+  ],
+  "forward_eq_elle_norm_maxabs": 0.0
+ },
+ "vit_tiny_in1k": {
+  "resize_tipi": "ResizeNormalize",
+  "normalize": true,
+  "mean": [
+   0.485,
+   0.456,
+   0.406
+  ],
+  "std": [
+   0.229,
+   0.224,
+   0.225
+  ],
+  "state_dict_resize_anahtarlari": [
+   "resize.mean",
+   "resize.std"
+  ],
+  "forward_eq_elle_norm_maxabs": 0.0,
+  "get_features_normli_maxabs": 0.0
+ },
+ "vscr_resize_normalize_var_mi": false,
+ "rscr_resize_normalize_var_mi": false,
+ "vin_vscr_govde_ayni": true,
+ "vin_govde_anahtar_sayisi": 152,
+ "yukleme_deit": {
+  "rapor_n_loaded": 150,
+  "rapor_n_target_keys": 152,
+  "rapor_missing_nonhead": [],
+  "rapor_unexpected_nonhead": [],
+  "rapor_shape_mismatch": [],
+  "rapor_head_keys_skipped": [
+   "head.bias",
+   "head.weight"
+  ],
+  "rapor_norm_matches_cfg": true,
+  "rapor_source_sha256_ilk12": "21d4764d94f6",
+  "bagimsiz_kaynak_anahtar_sayisi": 152,
+  "bagimsiz_govde_esit_tensor": 150,
+  "bagimsiz_govde_farkli": [],
+  "bagimsiz_kaynakta_olup_hedefte_olmayan": [],
+  "bagimsiz_hedefte_olup_kaynakta_olmayan_bas_disi": [],
+  "bagimsiz_bas_atlanan": [
+   "head.bias",
+   "head.weight"
+  ],
+  "hedef_bas_sekli": [
+   [
+    10,
+    192
+   ],
+   [
+    10
+   ]
+  ]
+ },
+ "yukleme_resnet18_a1": {
+  "rapor_n_loaded": 120,
+  "rapor_n_target_keys": 122,
+  "rapor_missing_nonhead": [],
+  "rapor_unexpected_nonhead": [],
+  "rapor_shape_mismatch": [],
+  "rapor_head_keys_skipped": [
+   "fc.bias",
+   "fc.weight"
+  ],
+  "rapor_norm_matches_cfg": true,
+  "rapor_source_sha256_ilk12": "80c49dee3da4",
+  "bagimsiz_kaynak_anahtar_sayisi": 122,
+  "bagimsiz_govde_esit_tensor": 120,
+  "bagimsiz_govde_farkli": [],
+  "bagimsiz_kaynakta_olup_hedefte_olmayan": [],
+  "bagimsiz_hedefte_olup_kaynakta_olmayan_bas_disi": [],
+  "bagimsiz_bas_atlanan": [
+   "fc.bias",
+   "fc.weight"
+  ],
+  "hedef_bas_sekli": [
+   [
+    10,
+    512
+   ],
+   [
+    10
+   ]
+  ]
+ },
+ "uyumsuz_tip_reddi": {
+  "resnet18_a1_in1k->resnet18_224": "ValueError",
+  "deit_tiny_in1k->vit_tiny": "ValueError",
+  "deit_tiny_in1k->resnet18_224_in1k": "ValueError"
+ },
+ "in_ckpt_scr_tipine_strict": "RuntimeError: Error(s) in loading state_dict for CIFAR10ResNet18R224:",
+ "smoke_ckpt_yukleme": {
+  "vit_tiny_in1k": {
+   "yuklendi": true,
+   "resize_anahtarlari": [
+    "resize.mean",
+    "resize.std"
+   ]
+  },
+  "resnet18_224_in1k": {
+   "yuklendi": true,
+   "resize_anahtarlari": [
+    "resize.mean",
+    "resize.std"
+   ]
+  },
+  "resnet18_224": {
+   "yuklendi": true,
+   "resize_anahtarlari": []
+  }
+ }
+}

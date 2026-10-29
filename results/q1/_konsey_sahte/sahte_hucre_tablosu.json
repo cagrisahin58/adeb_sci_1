@@ -1,0 +1,170 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "aciklama": "SAHTE hucre tablosu: yalniz kod sinamasi icin; gercek_kimlik alani modelin ne oldugunu soyler.",
+ "modeller": {
+  "ViT_Tiny_AT_s2001": {
+   "hucre": "V-scr",
+   "tohum": 2001,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2001 best"
+  },
+  "ViT_Tiny_AT_s2002": {
+   "hucre": "V-scr",
+   "tohum": 2002,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2002 best"
+  },
+  "ViT_Tiny_AT_s2003": {
+   "hucre": "V-scr",
+   "tohum": 2003,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2003 best"
+  },
+  "SAHTE_V_IN_a": {
+   "hucre": "V-IN",
+   "tohum": 1,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2001 son kontrol noktasi"
+  },
+  "SAHTE_V_IN_b": {
+   "hucre": "V-IN",
+   "tohum": 2,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2002 son kontrol noktasi"
+  },
+  "SAHTE_R224_scr_a": {
+   "hucre": "R224-scr",
+   "tohum": 1,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1001 best"
+  },
+  "SAHTE_R224_scr_b": {
+   "hucre": "R224-scr",
+   "tohum": 2,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1002 best"
+  },
+  "SAHTE_R224_IN_a": {
+   "hucre": "R224-IN",
+   "tohum": 1,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1001 son kontrol noktasi"
+  },
+  "SAHTE_R224_IN_b": {
+   "hucre": "R224-IN",
+   "tohum": 2,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1002 son kontrol noktasi"
+  },
+  "ResNet18_AT_s1003": {
+   "hucre": "C1-R32",
+   "tohum": 1003,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1003 best"
+  },
+  "SAHTE_C1R32_b": {
+   "hucre": "C1-R32",
+   "tohum": 1004,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1003 son kontrol noktasi"
+  },
+  "SAHTE_ikincil_Vl3": {
+   "hucre": "ikincil_panel",
+   "tohum": null,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": true,
+   "gercek_kimlik": "C1 ViT s2003 son kontrol noktasi"
+  },
+  "Gowal2020Uncovering_28_10_extra": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "SAHTE",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "gercek_kimlik": "RobustBench Gowal2020 (C1 C3 referansi)"
+  }
+ },
+ "b2_tohum_ciftleri": [
+  [
+   "ResNet18_AT_s1003",
+   "ViT_Tiny_AT_s2003"
+  ],
+  [
+   "SAHTE_C1R32_b",
+   "ViT_Tiny_AT_s2001"
+  ]
+ ],
+ "s4_ciftleri": [
+  [
+   "SAHTE_R224_scr_a",
+   "ViT_Tiny_AT_s2001"
+  ],
+  [
+   "SAHTE_R224_scr_b",
+   "ViT_Tiny_AT_s2002"
+  ],
+  [
+   "SAHTE_R224_IN_a",
+   "SAHTE_V_IN_a"
+  ],
+  [
+   "SAHTE_R224_IN_b",
+   "SAHTE_V_IN_b"
+  ]
+ ],
+ "dizin_takma_ad_esleme": {
+  "results/c1_c3/pair1": {
+   "ResNet18_AT": "SAHTE_R224_scr_a",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2001",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/q1/son_kontrol_noktasi/pair1": {
+   "ResNet18_AT": "SAHTE_R224_IN_a",
+   "ViT_Tiny_AT": "SAHTE_V_IN_a",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/c1_c3/pair2": {
+   "ResNet18_AT": "SAHTE_R224_scr_b",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2002",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/q1/son_kontrol_noktasi/pair2": {
+   "ResNet18_AT": "SAHTE_R224_IN_b",
+   "ViT_Tiny_AT": "SAHTE_V_IN_b",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/c1_c3/pair3": {
+   "ResNet18_AT": "ResNet18_AT_s1003",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2003",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/q1/son_kontrol_noktasi/pair3": {
+   "ResNet18_AT": "SAHTE_C1R32_b",
+   "ViT_Tiny_AT": "SAHTE_ikincil_Vl3",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  }
+ }
+}

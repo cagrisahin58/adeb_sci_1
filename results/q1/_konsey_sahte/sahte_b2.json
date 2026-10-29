@@ -1,0 +1,771 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "meta": {
+  "betik": "experiments/q1_konsey_ayrisim.py",
+  "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "hucre_tablosu": "/workspace/results/q1/_konsey_sahte/sahte_hucre_tablosu.json",
+  "hucre_tablosu_sha256": "1d7a90905df164665aabdd66b23a871371b38f05ca52e422faf8916bc6cc7d98",
+  "mod": "b2",
+  "matris_dizinleri": [
+   "results/c1_c3/pair1",
+   "results/q1/son_kontrol_noktasi/pair1",
+   "results/c1_c3/pair2",
+   "results/q1/son_kontrol_noktasi/pair2",
+   "results/c1_c3/pair3",
+   "results/q1/son_kontrol_noktasi/pair3"
+  ],
+  "uretildi_utc": "2026-10-29T03:44:16.186767+00:00",
+  "delta": 0.1,
+  "delta_duyarlilik": 0.06,
+  "alfa": 0.05,
+  "bootstrap_B": 2000,
+  "bootstrap_tohum": 20261029,
+  "panel_en_az": 1,
+  "maskeleme_isaretli": [],
+  "numpy": "1.26.4"
+ },
+ "veri": {
+  "n_goruntu": 10000,
+  "modeller": [
+   "Gowal2020Uncovering_28_10_extra",
+   "ResNet18_AT_s1003",
+   "SAHTE_C1R32_b",
+   "SAHTE_R224_IN_a",
+   "SAHTE_R224_IN_b",
+   "SAHTE_R224_scr_a",
+   "SAHTE_R224_scr_b",
+   "SAHTE_V_IN_a",
+   "SAHTE_V_IN_b",
+   "SAHTE_ikincil_Vl3",
+   "ViT_Tiny_AT_s2001",
+   "ViT_Tiny_AT_s2002",
+   "ViT_Tiny_AT_s2003"
+  ],
+  "hucre_sayisi": 49,
+  "cakismalar": [
+   {
+    "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+    "kullanilan": "results/c1_c3/pair1",
+    "atlanan": "results/q1/son_kontrol_noktasi/pair1",
+    "ozdes": true
+   },
+   {
+    "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+    "kullanilan": "results/c1_c3/pair1",
+    "atlanan": "results/c1_c3/pair2",
+    "ozdes": true
+   },
+   {
+    "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+    "kullanilan": "results/c1_c3/pair1",
+    "atlanan": "results/q1/son_kontrol_noktasi/pair2",
+    "ozdes": true
+   },
+   {
+    "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+    "kullanilan": "results/c1_c3/pair1",
+    "atlanan": "results/c1_c3/pair3",
+    "ozdes": true
+   },
+   {
+    "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+    "kullanilan": "results/c1_c3/pair1",
+    "atlanan": "results/q1/son_kontrol_noktasi/pair3",
+    "ozdes": true
+   }
+  ],
+  "tutarlilik": {
+   "hedef_maskesi_tutarli": true,
+   "tutarsiz_hedefler": []
+  },
+  "tablo_disi_modeller": [],
+  "girdi_sha256": {
+   "results/c1_c3/pair1/transfer_matrix.json": "7f5930cf82b6deedb1d783eabf90fde09d94f099e76cf3dae92b38b84cbada37",
+   "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "e3048cac9c87af4c05a2a731dbd4fd89bdad7c559608fcceb166c77de5a81027",
+   "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "4ab6327af108db96b00d93ce172ea381e93543659f396ce899619440a933d65f",
+   "results/c1_c3/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6046fdfbf0aceaa08cf5767f1f1f4c3454f5a508c904cc39293f0722992aa568",
+   "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "33c836743e64dcae73a839c3639dea0aa10eb57766b33babbf1cb64d79f41ada",
+   "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "767ca5d3b185e3f953debb40e7a6dbf6c343e6abcfdb0d2ed49bf543e11fd750",
+   "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "a7a27254c2186629314847bcfaec99881b8ce531bdf50fbe2809bbd1331afd3b",
+   "results/c1_c3/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "ac3879d70aa85949cb09078d2fedb24888ad7a85f04b7acfc14bcdcb17e84c31",
+   "results/c1_c3/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "10ae079258683cbb52e285627045a2f9cf66e678dc3e91e4593b8b1e4a6f5943",
+   "results/c1_c3/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+   "results/q1/son_kontrol_noktasi/pair1/transfer_matrix.json": "d5a647569f5bc082bfd873b46457694109a4b8241a3862c004d27db86a024bcd",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "2c15ac8b35dc76ba53e92117e29eaf9494e769672c62eebc3d5f99a7d89836c8",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "f7b62fadab0f5a231872449e1a5a58901f35d8cfd84c720074b98a4d5526d142",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "29b3be1f61fcb1b90c8e25578225293cee3fc414701f6fabf79a6a0a0dd4e9b3",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "b0deffb5f7c6e287e305dfe89c8adcfee66bd286f0eafe0b51c5f6e101bc2698",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "4e9a849d7dbe7f522c3e833772c1999b5b959fd0a7e218c3402fcbf2990c7e98",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "850478e7be0a7f1a298d1e0881c50d5059284c99b2775ac146acaaa17fcad2c3",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "afbc5377f12b5f61fb68271fa633f25ca710fe8ae501f9bf5ee0f09570d39967",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "eef3ee8d1e8bdcbeaf040d783fcffacdcc1c7576796314f8c9a966e1ca5e1dac",
+   "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+   "results/c1_c3/pair2/transfer_matrix.json": "377629f534f4f426f3e70c025ac408dab1c14042eae8cbcf7ca719cb5042cb74",
+   "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "1ec59fab5d86d3f84fe28701cf9faf43168dc6e94e8676bffd721ed14d952f73",
+   "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "38939c7023deb1313f0041f211b5904453e078684685f9f3cbeb02e2d76d890f",
+   "results/c1_c3/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "f10199e89bcdb84ef460d37f8e5e05c26c5b0535fb96c2b2b03e1e0bc7144e02",
+   "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "1123604cfd72e0af53836eb0b25643f6087b243fe5d4596cfd3d2fec33c1dbc6",
+   "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "56d90a604df21462ed54a83789bcfebbd5407f8c354faca81beb55a8b0764f49",
+   "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "377bbdda2113d708280e4aa01df14636d2bb1b87bbcbe603938fe6955f15cbb0",
+   "results/c1_c3/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2401ea4d90fb935adec2034bc03a58372f22da63bfe1260fb53a7c5ef89e0a97",
+   "results/c1_c3/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "1216b107ac089607aac26473f40a79f6d3e02eb1f406b5de8176052f3819a5b7",
+   "results/c1_c3/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+   "results/q1/son_kontrol_noktasi/pair2/transfer_matrix.json": "99be8147ff89cbfcd4bff040e07aa29de6a4345d4bda00981bd271dac5180053",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "7ce00b2baac1d36ffd72b7f121307eb09e35043cb471e923eda5a6bcbf33bf83",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "87526a1b51a959997a43ff2702ac39a4d595e4d72e9e3d230679d2a54f5f4120",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "197d681aff71ad6ecfe2de69325340e380839997e37a1342f2a365fbe7582087",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "47e2f07b72a449dd6fc4391421f76a09f5db5b08e38716db9ba996c161785618",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "172d06829fc8527c40d7ed8cc18867de03a9e899d47f2b132697d61b723f5034",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "9a5e414a38526eae9d7e3b525b08f688b3e19ffde79dd9f979aa59f9b2cb8298",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "18309a7bd0661066da428f653d52522aeab51c4d32843a350687fa9c5f5b2102",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "39438c176b44ebc1c76cb383a7cd342e9349bcf5f67f661f724a91374fc26932",
+   "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+   "results/c1_c3/pair3/transfer_matrix.json": "0412463b039952088eee3046b27a16fd75d35ae7fcbf424696934835bb379502",
+   "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "ad3ff90a26fe4df75e23e3e1a8a028ed5455d07f6f1c8957373b4f261af0a808",
+   "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "49dac26602ab34bd131792ce824790379e4403d56bfe93a9416f06e911faf18e",
+   "results/c1_c3/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "4ead6c8e750931f4f0e762a5a7161b31f2987624947a930b32fad319ccfb8fe3",
+   "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "71ec8342534569b482edd9b99b278c690c4a721b8f40995b4b679442523d674b",
+   "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "5ac823751e41c44a86019667290b62d08266ddfa2097c6eb70df08660916043b",
+   "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "10e41f5b95b9dc552278fcb5776836e8787df724999c260967dd85f9f3b7f1c0",
+   "results/c1_c3/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2098213d3f941809e5e5edd23e52c1fb80e9a96290e3438b7ac98f9921d79a05",
+   "results/c1_c3/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "d346e249e0ff89bce78c89b36ebf12cae5cac024082d85f03440c1167bdd2d70",
+   "results/c1_c3/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+   "results/q1/son_kontrol_noktasi/pair3/transfer_matrix.json": "e7283079893a478fabfca74e5526ffbf1fa546efa2cd4a94a16949abbf3a7305",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "8c9b0d1208f51fa21e8aa8fb03ab700a38d568ee158a5c30e64c4ebe5b8b277f",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "cdbc0e7edfe6305cf8f94809c8fc916fcbd4c4175391572ebfae5f393782fe48",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "84e9c1608c6ae3a9e9401ac76ea1e10376f848b4b5934083c554785d29b5ef45",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "3f6d01758764a9a8ac5692d288de8d2c7b49f4ea5c20e2b366f4995834ead454",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "c3c82a2a5619e2cd0dbf3d67d2f1e70217926db541097749b571c460c14527f6",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "77f6809ffd370918fe0bb4c39c1a43dea8a676d2a267c7b60293f4e3cb0f4526",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "5dcd38ac7ab49174443b7641072738d057012aa6642bad89c40ee9018a62ec25",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "548f1421e4866d29ed35f47ff8759690dc2c682d927783863148b6409ef9ef40",
+   "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32"
+  }
+ },
+ "panel": {
+  "birincil": [
+   "Gowal2020Uncovering_28_10_extra"
+  ],
+  "birincil_eksik": [],
+  "ikincil": [
+   "SAHTE_ikincil_Vl3"
+  ]
+ },
+ "b2": {
+  "hucreler": {
+   "C1-R32": [
+    "ResNet18_AT_s1003",
+    "SAHTE_C1R32_b"
+   ],
+   "V-scr": [
+    "ViT_Tiny_AT_s2001",
+    "ViT_Tiny_AT_s2002",
+    "ViT_Tiny_AT_s2003"
+   ]
+  },
+  "tohum_ciftleri": [
+   [
+    "ResNet18_AT_s1003",
+    "ViT_Tiny_AT_s2003"
+   ],
+   [
+    "SAHTE_C1R32_b",
+    "ViT_Tiny_AT_s2001"
+   ]
+  ],
+  "model_tablosu": {
+   "Gowal2020Uncovering_28_10_extra": {
+    "eksik_hucreler": [
+     "panelde kendisinden baska uye yok"
+    ]
+   },
+   "ResNet18_AT_s1003": {
+    "yari_log": {
+     "sigma": -0.7572710416104502,
+     "rho": -0.11094144337169864,
+     "S": 2.5232231431114025,
+     "omega": 3.89479231481494,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -0.756957249425728,
+     "rho": -0.11066710292050352,
+     "S": 2.523491006319327,
+     "omega": 3.89479231481494,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.050641498604308,
+     "rho": -0.38456484943298286,
+     "S": -1.9487384688857403,
+     "omega": -0.03416950662932848,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -20.00863173725316,
+     "rho": -14.648583225600062,
+     "S": 12.471371164595345,
+     "omega": 49.14584543869843,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_C1R32_b": {
+    "yari_log": {
+     "sigma": -0.7952728645842994,
+     "rho": -0.13769530058763757,
+     "S": 2.4985982487455227,
+     "omega": 3.9335292106491098,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -0.7948068656761231,
+     "rho": -0.13738429540470243,
+     "S": 2.4989999863110315,
+     "omega": 3.9335292106491098,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.1115596475048335,
+     "rho": -0.45026915332479256,
+     "S": -1.9768044658403607,
+     "omega": 0.0434851119397391,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -21.265286383113242,
+     "rho": -16.558101610883497,
+     "S": 12.169475711376975,
+     "omega": 51.08695652173913,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_R224_IN_a": {
+    "yari_log": {
+     "sigma": -0.7680868353907783,
+     "rho": -0.11984760029775154,
+     "S": 2.516860427794101,
+     "omega": 3.9209937383873896,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -0.7677062916580897,
+     "rho": -0.11958087620344804,
+     "S": 2.517198850728438,
+     "omega": 3.9209937383873896,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.0733599817018424,
+     "rho": -0.4154899866620606,
+     "S": -1.9559943833687359,
+     "omega": 0.018022668968680523,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -20.579596597836876,
+     "rho": -15.633872425822114,
+     "S": 12.393050904122653,
+     "omega": 50.45055452865065,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_R224_IN_b": {
+    "yari_log": {
+     "sigma": -0.7845008948432421,
+     "rho": -0.13610687341162575,
+     "S": 2.5085760048985737,
+     "omega": 3.9256162240416947,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -0.7842594237743963,
+     "rho": -0.13639008330825098,
+     "S": 2.5090503221645326,
+     "omega": 3.9256162240416947,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.095540310831802,
+     "rho": -0.4409881217949567,
+     "S": -1.9654256449322474,
+     "omega": 0.027373762091348855,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -20.968373758186818,
+     "rho": -16.20996327622654,
+     "S": 12.292319168974926,
+     "omega": 50.68430132259919,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_R224_scr_a": {
+    "yari_log": {
+     "sigma": -0.7586197501045021,
+     "rho": -0.1006009419292111,
+     "S": 2.516704183896107,
+     "omega": 3.8619435015735633,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -0.7581623103784243,
+     "rho": -0.10049291364411772,
+     "S": 2.517198850728438,
+     "omega": 3.8619435015735633,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.041047739042155,
+     "rho": -0.3505545757962895,
+     "S": -1.9561498461419338,
+     "omega": -0.0977702056451869,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -19.564761051291093,
+     "rho": -13.60384163006078,
+     "S": 12.392871052787765,
+     "omega": 47.55769005505447,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_R224_scr_b": {
+    "yari_log": {
+     "sigma": -0.7584568857377234,
+     "rho": -0.132148430069154,
+     "S": 2.532640792332857,
+     "omega": 3.888714122033729,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -0.7577858052161415,
+     "rho": -0.13194095669837003,
+     "S": 2.533299377417847,
+     "omega": 3.888714122033729,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.0506043706025168,
+     "rho": -0.40614151458035547,
+     "S": -1.9379130083102627,
+     "omega": -0.04608681514293394,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -19.989983804733114,
+     "rho": -14.85625487041633,
+     "S": 12.593854919523523,
+     "omega": 48.848033511752384,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_V_IN_a": {
+    "yari_log": {
+     "sigma": -1.1639556695697881,
+     "rho": 0.0023649121206297252,
+     "S": 2.0598853374059,
+     "omega": 4.103714750509685,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -1.164000941594045,
+     "rho": 0.0023909905737520276,
+     "S": 2.0599182674038823,
+     "omega": 4.103714750509685,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.6282881141250383,
+     "rho": -0.5101665107017412,
+     "S": -2.4635842537720913,
+     "omega": 0.4290572901249844,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -29.469655960122914,
+     "rho": -24.318299648989253,
+     "S": 7.845205153420183,
+     "omega": 60.56485355648535,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_V_IN_b": {
+    "yari_log": {
+     "sigma": -1.074756340019165,
+     "rho": -0.03436037720932705,
+     "S": 2.167447311621502,
+     "omega": 4.042546181043879,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -1.0745945654666436,
+     "rho": -0.034638930210445285,
+     "S": 2.1678396039233823,
+     "omega": 4.042546181043879,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.4894700019781548,
+     "rho": -0.46717928511695206,
+     "S": -2.3462597544176025,
+     "omega": 0.2806769246799667,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -27.134508589643847,
+     "rho": -21.437805458895774,
+     "S": 8.74010542885251,
+     "omega": 56.9712173224188,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_ikincil_Vl3": {
+    "yari_log": {
+     "sigma": -1.1356742482192135,
+     "rho": -0.016624073489202695,
+     "S": 2.0976612515613917,
+     "omega": 4.066417599136251,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -1.135362419549391,
+     "rho": -0.01581262130263328,
+     "S": 2.0976585953867293,
+     "omega": 4.066417599136251,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.5730657803529116,
+     "rho": -0.48183753292362697,
+     "S": -2.4225264088890217,
+     "omega": 0.33705772991602545,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -28.37853941479274,
+     "rho": -22.73997736565557,
+     "S": 8.147160557083513,
+     "omega": 58.34756337843163,
+     "panel_n": 1
+    }
+   },
+   "ViT_Tiny_AT_s2001": {
+    "yari_log": {
+     "sigma": -1.0943170323760838,
+     "rho": -0.035046286344585065,
+     "S": 2.148229573832212,
+     "omega": 4.02231063415937,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -1.0941971016747107,
+     "rho": -0.03510812427046961,
+     "S": 2.1484716647453275,
+     "omega": 4.02231063415937,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.5014939233714795,
+     "rho": -0.4490902527141676,
+     "S": -2.3673281920123195,
+     "omega": 0.23426389196023079,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -27.023716586069895,
+     "rho": -20.878610520943276,
+     "S": 8.571299963450212,
+     "omega": 55.829959514170035,
+     "panel_n": 1
+    }
+   },
+   "ViT_Tiny_AT_s2002": {
+    "yari_log": {
+     "sigma": -1.0967053128431226,
+     "rho": -0.042370619357462,
+     "S": 2.1495034598716116,
+     "omega": 4.022108965759873,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -1.0965776749347205,
+     "rho": -0.042475134351320776,
+     "S": 2.1497745965257433,
+     "omega": 4.022108965759873,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.5043901030435634,
+     "rho": -0.45767467386596594,
+     "S": -2.3659321611085042,
+     "omega": 0.2338073773175228,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -27.070054684347063,
+     "rho": -20.993578291282724,
+     "S": 8.582445750342767,
+     "omega": 55.818701510820745,
+     "panel_n": 1
+    }
+   },
+   "ViT_Tiny_AT_s2003": {
+    "yari_log": {
+     "sigma": -1.0887339210007547,
+     "rho": -0.07798165591690642,
+     "S": 2.1752803699937013,
+     "omega": 4.00868948882928,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -1.0886304175888064,
+     "rho": -0.07799733307990664,
+     "S": 2.1754829532359503,
+     "omega": 4.00868948882928,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.4894046030666659,
+     "rho": -0.48415388058585984,
+     "S": -2.3377070577716594,
+     "omega": 0.20368720551908454,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -26.795189220231357,
+     "rho": -20.89099774854266,
+     "S": 8.806020943088443,
+     "omega": 55.07464730858786,
+     "panel_n": 1
+    }
+   }
+  },
+  "F_B2": {
+   "K-a": {
+    "ciftler": [
+     [
+      "ResNet18_AT_s1003",
+      "ViT_Tiny_AT_s2003"
+     ],
+     [
+      "SAHTE_C1R32_b",
+      "ViT_Tiny_AT_s2001"
+     ]
+    ],
+    "D": [
+     0.34794277311770117,
+     0.3503686749133106
+    ],
+    "simetrik_pay": [
+     0.3314628793903045,
+     0.29904416779178444
+    ],
+    "yonlu_pay": [
+     0.01647989372739611,
+     0.05132450712152625
+    ],
+    "ozdeslik_artik_max": 5.551115123125783e-16,
+    "q": [
+     0.9526361947979822,
+     0.8535128543263035
+    ],
+    "sinama": {
+     "degerler": [
+      0.9526361947979822,
+      0.8535128543263035
+     ],
+     "n": 2,
+     "ort": 0.9030745245621429,
+     "sd": 0.07009078622138697,
+     "se": 0.04956167023583935,
+     "df": 1,
+     "ci90": [
+      0.5901544540345479,
+      1.2159945950897377
+     ],
+     "ci95": [
+      0.2733337954660353,
+      1.5328152536582504
+     ]
+    },
+    "p_tek_H0_q_le_0.5": 0.038943611907698794,
+    "ongoru_her_tohumda_q_ge_0.75": true,
+    "payda_kucuk_tohumlar": []
+   },
+   "K-b": {
+    "degerler": [
+     -0.035046286344585065,
+     -0.042370619357462,
+     -0.07798165591690642
+    ],
+    "n": 3,
+    "ort": -0.051799520539651166,
+    "sd": 0.022968230737380944,
+    "se": 0.013260714199036325,
+    "df": 2,
+    "ci90": [
+     -0.09052061478605289,
+     -0.01307842629324945
+    ],
+    "ci95": [
+     -0.1088557686858552,
+     0.005256727606552866
+    ],
+    "tost_p": 0.03402657443734958,
+    "tost_p_alt": 0.03402657443734958,
+    "tost_p_ust": 0.0037724734491601476
+   },
+   "K-c": {
+    "vit_ciftleri": [
+     [
+      "ViT_Tiny_AT_s2001",
+      "ViT_Tiny_AT_s2002"
+     ],
+     [
+      "ViT_Tiny_AT_s2001",
+      "ViT_Tiny_AT_s2003"
+     ],
+     [
+      "ViT_Tiny_AT_s2002",
+      "ViT_Tiny_AT_s2003"
+     ]
+    ],
+    "eksik_hucreler": [
+     "ViT_Tiny_AT_s2001<->ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2001<->ViT_Tiny_AT_s2003",
+     "ViT_Tiny_AT_s2002<->ViT_Tiny_AT_s2003"
+    ],
+    "not": "Tur ici ViT hucreleri yok; K-c hesaplanamadi."
+   },
+   "p_ham": [
+    0.038943611907698794,
+    0.03402657443734958,
+    null
+   ],
+   "p_holm": [
+    0.10207972331204873,
+    0.10207972331204873,
+    1.0
+   ],
+   "p_1_sayilan_hesaplanamayan": [
+    2
+   ],
+   "karar": {
+    "K-a": "kararsiz",
+    "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": true,
+    "K-b": "kararsiz",
+    "K-b_ham_ci90_delta_icinde": true,
+    "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+    "K-c": "hesaplanamadi"
+   },
+   "duyarlilik_delta_0.06": {
+    "delta": 0.06,
+    "p_holm": [
+     0.11683083572309638,
+     0.5993521275089373,
+     1.0
+    ],
+    "karar": {
+     "K-a": "kararsiz",
+     "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": true,
+     "K-b": "kararsiz",
+     "K-b_ham_ci90_delta_icinde": false,
+     "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+     "K-c": "hesaplanamadi"
+    }
+   },
+   "not": "K-a p tek yonlu t (H0: ort q <= 0,50); K-b p TOST'un buyuk tek yonlu p'si; K-c p hiyerarsik bootstrap (H0: Delta_w <= 0). Destek Holm sonrasi, curutme ham aralikla okunur; ON_KAYIT §5 karar ilkesi."
+  },
+  "duyarlilik": {
+   "tam_log": {
+    "q_ort": 0.9035865816090585,
+    "q": [
+     0.9530617617162299,
+     0.8541114015018871
+    ],
+    "rho_V": {
+     "degerler": [
+      -0.03510812427046961,
+      -0.042475134351320776,
+      -0.07799733307990664
+     ],
+     "n": 3,
+     "ort": -0.05186019723389901,
+     "sd": 0.022933177103431037,
+     "se": 0.013240475974039273,
+     "df": 2,
+     "ci90": [
+      -0.09052219615513735,
+      -0.013198198312660676
+     ],
+     "ci95": [
+      -0.10882936732607526,
+      0.005108972858277251
+     ]
+    }
+   },
+   "yari_logit": {
+    "q_ort": 1.0632537099095427,
+    "q": [
+     1.1280168039251186,
+     0.9984906158939669
+    ],
+    "rho_V": {
+     "degerler": [
+      -0.4490902527141676,
+      -0.45767467386596594,
+      -0.48415388058585984
+     ],
+     "n": 3,
+     "ort": -0.4636396023886644,
+     "sd": 0.0182770287271155,
+     "se": 0.010552247455586658,
+     "df": 2,
+     "ci90": [
+      -0.49445201279932066,
+      -0.4328271919780082
+     ],
+     "ci95": [
+      -0.5090422587078736,
+      -0.41823694606945533
+     ]
+    }
+   },
+   "yari_oran": {
+    "q_ort": 1.7259594941392034,
+    "q": [
+     1.8515440743308018,
+     1.600374913947605
+    ],
+    "rho_V": {
+     "degerler": [
+      -20.878610520943276,
+      -20.993578291282724,
+      -20.89099774854266
+     ],
+     "n": 3,
+     "ort": -20.921062186922885,
+     "sd": 0.06310546644740712,
+     "se": 0.0364339580407474,
+     "df": 2,
+     "ci90": [
+      -21.027448819037147,
+      -20.814675554808623
+     ],
+     "ci95": [
+      -21.07782485594054,
+      -20.76429951790523
+     ]
+    }
+   },
+   "panel_jackknife": {},
+   "ikincil_panel": {
+    "panel": [
+     "SAHTE_ikincil_Vl3"
+    ],
+    "eksik": "('ResNet18_AT_s1003', 'SAHTE_ikincil_Vl3')"
+   }
+  },
+  "tur_ici_resnet_log_tau": {}
+ }
+}

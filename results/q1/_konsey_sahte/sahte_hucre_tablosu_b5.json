@@ -1,0 +1,102 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "aciklama": "B5 kod yolu sinamasi; SAHTE saldiri etiketi",
+ "modeller": {
+  "Gowal2020Uncovering_28_10_extra": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "SAHTE",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "gercek_kimlik": "RobustBench Gowal2020"
+  },
+  "ResNet18_AT_s1001": {
+   "hucre": "C1-R32",
+   "tohum": 1001,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1001"
+  },
+  "ViT_Tiny_AT_s2001": {
+   "hucre": "V-scr",
+   "tohum": 2001,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2001"
+  },
+  "ResNet18_AT_s1002": {
+   "hucre": "C1-R32",
+   "tohum": 1002,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1002"
+  },
+  "ViT_Tiny_AT_s2002": {
+   "hucre": "V-scr",
+   "tohum": 2002,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2002"
+  },
+  "ResNet18_AT_s1003": {
+   "hucre": "C1-R32",
+   "tohum": 1003,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1003"
+  },
+  "ViT_Tiny_AT_s2003": {
+   "hucre": "V-scr",
+   "tohum": 2003,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2003"
+  }
+ },
+ "dizin_takma_ad_esleme": {
+  "results/c1_c3/pair1": {
+   "ResNet18_AT": "ResNet18_AT_s1001",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2001",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/q1/son_kontrol_noktasi/pair1": {
+   "ResNet18_AT": "ResNet18_AT_s1001",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2001",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/c1_c3/pair2": {
+   "ResNet18_AT": "ResNet18_AT_s1002",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2002",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/q1/son_kontrol_noktasi/pair2": {
+   "ResNet18_AT": "ResNet18_AT_s1002",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2002",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/c1_c3/pair3": {
+   "ResNet18_AT": "ResNet18_AT_s1003",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2003",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  },
+  "results/q1/son_kontrol_noktasi/pair3": {
+   "ResNet18_AT": "ResNet18_AT_s1003",
+   "ViT_Tiny_AT": "ViT_Tiny_AT_s2003",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  }
+ },
+ "dizin_saldiri_esleme": {
+  "results/c1_c3/pair1": "pgd",
+  "results/q1/son_kontrol_noktasi/pair1": "mi",
+  "results/c1_c3/pair2": "pgd",
+  "results/q1/son_kontrol_noktasi/pair2": "mi",
+  "results/c1_c3/pair3": "pgd",
+  "results/q1/son_kontrol_noktasi/pair3": "mi"
+ }
+}

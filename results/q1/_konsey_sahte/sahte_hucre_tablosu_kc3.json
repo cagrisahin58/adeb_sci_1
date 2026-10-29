@@ -1,0 +1,74 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "aciklama": "K-c uc tohumlu kod yolu sinamasi; SAHTE (havuz modelleri sahte V-scr tohumu sayildi)",
+ "modeller": {
+  "SAHTE_Va": {
+   "hucre": "V-scr",
+   "tohum": 1,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "havuz ViT_Tiny_AT (C1 s2001)"
+  },
+  "SAHTE_Vb": {
+   "hucre": "V-scr",
+   "tohum": 2,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "havuz ResNet18_AT (C1 s1001)"
+  },
+  "SAHTE_Vc": {
+   "hucre": "V-scr",
+   "tohum": 3,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "havuz Debenedetti2022_XCiT_S12"
+  },
+  "Wong2020Fast": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "SAHTE",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "gercek_kimlik": "havuz Wong2020_PRN18"
+  },
+  "Engstrom2019Robustness": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "SAHTE",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "gercek_kimlik": "havuz Engstrom2019_RN50"
+  },
+  "Carmon2019Unlabeled": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "SAHTE",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "gercek_kimlik": "havuz Carmon2019_WRN28_10"
+  },
+  "Gowal2020Uncovering_28_10_extra": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "SAHTE",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "gercek_kimlik": "havuz Gowal2020_WRN28_10"
+  }
+ },
+ "b2_tohum_ciftleri": [],
+ "dizin_takma_ad_esleme": {
+  "results/q1/havuz_cifar10": {
+   "ViT_Tiny_AT": "SAHTE_Va",
+   "ResNet18_AT": "SAHTE_Vb",
+   "Debenedetti2022_XCiT_S12": "SAHTE_Vc",
+   "Wong2020_PRN18": "Wong2020Fast",
+   "Engstrom2019_RN50": "Engstrom2019Robustness",
+   "Carmon2019_WRN28_10": "Carmon2019Unlabeled",
+   "Gowal2020_WRN28_10": "Gowal2020Uncovering_28_10_extra"
+  }
+ }
+}

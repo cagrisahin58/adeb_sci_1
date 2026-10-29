@@ -1,0 +1,571 @@
+{
+ "kaynak": "results/q1/havuz_cifar10/havuz_protokoller.json",
+ "panel": [
+  "Wong2020_PRN18",
+  "Engstrom2019_RN50",
+  "Carmon2019_WRN28_10",
+  "Gowal2020_WRN28_10"
+ ],
+ "tanim": "P2 masa kontrolu: sabit panel karsisinda kaynak gucu S(m) ve hedef duyarliligi T(m).\n\nGirdi yalniz results/q1/havuz_cifar10/havuz_protokoller.json (karantina disi, C1 sonrasi).\nS(m, P) = mean_{k in P, k != m} r(m -> k); T(m, P) = mean_{k in P, k != m} r(k -> m).\nPanel P = dis gurbuz CNN'ler (Wong2020_PRN18, Engstrom2019_RN50, Carmon2019_WRN28_10, Gowal2020_WRN28_10).\nIki model arasindaki kaynak karsitligi d_k = r(a->k) - r(b->k), k in P; ortalama, SD (ddof=1), t (df = |P|-1).\nModel gerektirmez; toplamsal uydurma ya da etkilesimsizlik varsayimi yoktur.\nCalistirma: python raporlar/konsey_2026-10-29/_P2_panel_masa.py  (depo kokunden; numpy gerekmez)",
+ "S": {
+  "raw": {
+   "ResNet18_AT": {
+    "ort": 27.393,
+    "n_panel": 4,
+    "degerler": [
+     36.13,
+     29.38,
+     22.45,
+     21.61
+    ]
+   },
+   "ViT_Tiny_AT": {
+    "ort": 22.215,
+    "n_panel": 4,
+    "degerler": [
+     29.18,
+     23.14,
+     18.36,
+     18.18
+    ]
+   },
+   "Standard_WRN28_10": {
+    "ort": 13.65,
+    "n_panel": 4,
+    "degerler": [
+     17.72,
+     13.83,
+     11.41,
+     11.64
+    ]
+   },
+   "Wong2020_PRN18": {
+    "ort": 25.613,
+    "n_panel": 3,
+    "degerler": [
+     31.31,
+     23.25,
+     22.28
+    ]
+   },
+   "Engstrom2019_RN50": {
+    "ort": 28.727,
+    "n_panel": 3,
+    "degerler": [
+     37.0,
+     25.27,
+     23.91
+    ]
+   },
+   "Carmon2019_WRN28_10": {
+    "ort": 30.93,
+    "n_panel": 3,
+    "degerler": [
+     33.76,
+     31.12,
+     27.91
+    ]
+   },
+   "Debenedetti2022_XCiT_S12": {
+    "ort": 29.003,
+    "n_panel": 4,
+    "degerler": [
+     34.89,
+     30.62,
+     25.56,
+     24.94
+    ]
+   },
+   "Gowal2020_WRN28_10": {
+    "ort": 30.937,
+    "n_panel": 3,
+    "degerler": [
+     33.11,
+     30.67,
+     29.03
+    ]
+   }
+  },
+  "target_correct": {
+   "ResNet18_AT": {
+    "ort": 17.054,
+    "n_panel": 4,
+    "degerler": [
+     23.374,
+     18.902,
+     13.547,
+     12.394
+    ]
+   },
+   "ViT_Tiny_AT": {
+    "ort": 11.108,
+    "n_panel": 4,
+    "degerler": [
+     15.119,
+     11.755,
+     8.987,
+     8.572
+    ]
+   },
+   "Standard_WRN28_10": {
+    "ort": 1.36,
+    "n_panel": 4,
+    "degerler": [
+     1.488,
+     1.218,
+     1.36,
+     1.375
+    ]
+   },
+   "Wong2020_PRN18": {
+    "ort": 16.241,
+    "n_panel": 3,
+    "degerler": [
+     21.131,
+     14.45,
+     13.143
+    ]
+   },
+   "Engstrom2019_RN50": {
+    "ort": 18.695,
+    "n_panel": 3,
+    "degerler": [
+     24.442,
+     16.68,
+     14.964
+    ]
+   },
+   "Carmon2019_WRN28_10": {
+    "ort": 20.285,
+    "n_panel": 3,
+    "degerler": [
+     20.542,
+     20.878,
+     19.435
+    ]
+   },
+   "Debenedetti2022_XCiT_S12": {
+    "ort": 18.827,
+    "n_panel": 4,
+    "degerler": [
+     21.91,
+     20.28,
+     17.003,
+     16.115
+    ]
+   },
+   "Gowal2020_WRN28_10": {
+    "ort": 20.34,
+    "n_panel": 3,
+    "degerler": [
+     19.786,
+     20.361,
+     20.872
+    ]
+   }
+  },
+  "both_correct": {
+   "ResNet18_AT": {
+    "ort": 13.74,
+    "n_panel": 4,
+    "degerler": [
+     20.865,
+     15.402,
+     9.663,
+     9.029
+    ]
+   },
+   "ViT_Tiny_AT": {
+    "ort": 6.63,
+    "n_panel": 4,
+    "degerler": [
+     10.138,
+     6.885,
+     4.755,
+     4.743
+    ]
+   },
+   "Standard_WRN28_10": {
+    "ort": 1.285,
+    "n_panel": 4,
+    "degerler": [
+     1.437,
+     1.168,
+     1.192,
+     1.344
+    ]
+   },
+   "Wong2020_PRN18": {
+    "ort": 12.004,
+    "n_panel": 3,
+    "degerler": [
+     16.77,
+     10.007,
+     9.235
+    ]
+   },
+   "Engstrom2019_RN50": {
+    "ort": 16.197,
+    "n_panel": 3,
+    "degerler": [
+     22.55,
+     13.815,
+     12.226
+    ]
+   },
+   "Carmon2019_WRN28_10": {
+    "ort": 18.811,
+    "n_panel": 3,
+    "degerler": [
+     19.253,
+     19.303,
+     17.878
+    ]
+   },
+   "Debenedetti2022_XCiT_S12": {
+    "ort": 17.153,
+    "n_panel": 4,
+    "degerler": [
+     20.758,
+     18.652,
+     14.999,
+     14.202
+    ]
+   },
+   "Gowal2020_WRN28_10": {
+    "ort": 18.604,
+    "n_panel": 3,
+    "degerler": [
+     18.298,
+     18.416,
+     19.099
+    ]
+   }
+  }
+ },
+ "T": {
+  "raw": {
+   "ResNet18_AT": {
+    "ort": 34.795,
+    "n_panel": 4,
+    "degerler": [
+     37.34,
+     35.67,
+     33.34,
+     32.83
+    ]
+   },
+   "ViT_Tiny_AT": {
+    "ort": 40.12,
+    "n_panel": 4,
+    "degerler": [
+     41.71,
+     39.82,
+     39.57,
+     39.38
+    ]
+   },
+   "Standard_WRN28_10": {
+    "ort": 29.572,
+    "n_panel": 4,
+    "degerler": [
+     31.84,
+     29.49,
+     28.46,
+     28.5
+    ]
+   },
+   "Wong2020_PRN18": {
+    "ort": 34.623,
+    "n_panel": 3,
+    "degerler": [
+     37.0,
+     33.76,
+     33.11
+    ]
+   },
+   "Engstrom2019_RN50": {
+    "ort": 31.033,
+    "n_panel": 3,
+    "degerler": [
+     31.31,
+     31.12,
+     30.67
+    ]
+   },
+   "Carmon2019_WRN28_10": {
+    "ort": 25.85,
+    "n_panel": 3,
+    "degerler": [
+     23.25,
+     25.27,
+     29.03
+    ]
+   },
+   "Debenedetti2022_XCiT_S12": {
+    "ort": 25.265,
+    "n_panel": 4,
+    "degerler": [
+     24.17,
+     24.55,
+     25.9,
+     26.44
+    ]
+   },
+   "Gowal2020_WRN28_10": {
+    "ort": 24.7,
+    "n_panel": 3,
+    "degerler": [
+     22.28,
+     23.91,
+     27.91
+    ]
+   }
+  },
+  "target_correct": {
+   "ResNet18_AT": {
+    "ort": 23.644,
+    "n_panel": 4,
+    "degerler": [
+     26.637,
+     24.657,
+     21.952,
+     21.331
+    ]
+   },
+   "ViT_Tiny_AT": {
+    "ort": 19.298,
+    "n_panel": 4,
+    "degerler": [
+     21.511,
+     18.907,
+     18.516,
+     18.259
+    ]
+   },
+   "Standard_WRN28_10": {
+    "ort": 25.834,
+    "n_panel": 4,
+    "degerler": [
+     28.265,
+     25.754,
+     24.668,
+     24.647
+    ]
+   },
+   "Wong2020_PRN18": {
+    "ort": 21.59,
+    "n_panel": 3,
+    "degerler": [
+     24.442,
+     20.542,
+     19.786
+    ]
+   },
+   "Engstrom2019_RN50": {
+    "ort": 20.79,
+    "n_panel": 3,
+    "degerler": [
+     21.131,
+     20.878,
+     20.361
+    ]
+   },
+   "Carmon2019_WRN28_10": {
+    "ort": 17.334,
+    "n_panel": 3,
+    "degerler": [
+     14.45,
+     16.68,
+     20.872
+    ]
+   },
+   "Debenedetti2022_XCiT_S12": {
+    "ort": 17.025,
+    "n_panel": 4,
+    "degerler": [
+     15.823,
+     16.234,
+     17.722,
+     18.321
+    ]
+   },
+   "Gowal2020_WRN28_10": {
+    "ort": 15.847,
+    "n_panel": 3,
+    "degerler": [
+     13.143,
+     14.964,
+     19.435
+    ]
+   }
+  },
+  "both_correct": {
+   "ResNet18_AT": {
+    "ort": 21.294,
+    "n_panel": 4,
+    "degerler": [
+     22.814,
+     22.355,
+     20.397,
+     19.61
+    ]
+   },
+   "ViT_Tiny_AT": {
+    "ort": 17.945,
+    "n_panel": 4,
+    "degerler": [
+     19.445,
+     17.543,
+     17.473,
+     17.317
+    ]
+   },
+   "Standard_WRN28_10": {
+    "ort": 21.6,
+    "n_panel": 4,
+    "degerler": [
+     23.253,
+     21.584,
+     20.921,
+     20.643
+    ]
+   },
+   "Wong2020_PRN18": {
+    "ort": 20.034,
+    "n_panel": 3,
+    "degerler": [
+     22.55,
+     19.253,
+     18.298
+    ]
+   },
+   "Engstrom2019_RN50": {
+    "ort": 18.163,
+    "n_panel": 3,
+    "degerler": [
+     16.77,
+     19.303,
+     18.416
+    ]
+   },
+   "Carmon2019_WRN28_10": {
+    "ort": 14.307,
+    "n_panel": 3,
+    "degerler": [
+     10.007,
+     13.815,
+     19.099
+    ]
+   },
+   "Debenedetti2022_XCiT_S12": {
+    "ort": 14.052,
+    "n_panel": 4,
+    "degerler": [
+     11.278,
+     13.303,
+     15.745,
+     15.882
+    ]
+   },
+   "Gowal2020_WRN28_10": {
+    "ort": 13.113,
+    "n_panel": 3,
+    "degerler": [
+     9.235,
+     12.226,
+     17.878
+    ]
+   }
+  }
+ },
+ "karsitlik": {
+  "raw": {
+   "kaynak_karsitligi_R_eksi_V": {
+    "ort": 5.177,
+    "sd_panel": 1.684,
+    "t_df3": 6.15,
+    "degerler": [
+     6.95,
+     6.24,
+     4.09,
+     3.43
+    ]
+   },
+   "hedef_karsitligi_V_eksi_R": {
+    "ort": 5.325,
+    "sd_panel": 1.24,
+    "t_df3": 8.59,
+    "degerler": [
+     4.37,
+     4.15,
+     6.23,
+     6.55
+    ]
+   },
+   "panel_ongorusu_asimetri": 10.502,
+   "gozlenen_cift_asimetrisi_R_to_V_eksi_V_to_R": 13.19,
+   "fark_gozlenen_eksi_ongoru": 2.688,
+   "ViT_kaynak_XCiT_hedef": 18.76,
+   "ResNet_kaynak_XCiT_hedef": 22.38
+  },
+  "target_correct": {
+   "kaynak_karsitligi_R_eksi_V": {
+    "ort": 5.946,
+    "sd_panel": 2.098,
+    "t_df3": 5.67,
+    "degerler": [
+     8.255,
+     7.147,
+     4.56,
+     3.822
+    ]
+   },
+   "hedef_karsitligi_V_eksi_R": {
+    "ort": -4.346,
+    "sd_panel": 1.295,
+    "t_df3": -6.71,
+    "degerler": [
+     -5.126,
+     -5.75,
+     -3.436,
+     -3.072
+    ]
+   },
+   "panel_ongorusu_asimetri": 1.6,
+   "gozlenen_cift_asimetrisi_R_to_V_eksi_V_to_R": 4.807,
+   "fark_gozlenen_eksi_ongoru": 3.207,
+   "ViT_kaynak_XCiT_hedef": 9.805,
+   "ResNet_kaynak_XCiT_hedef": 13.813
+  },
+  "both_correct": {
+   "kaynak_karsitligi_R_eksi_V": {
+    "ort": 7.109,
+    "sd_panel": 3.049,
+    "t_df3": 4.66,
+    "degerler": [
+     10.727,
+     8.517,
+     4.908,
+     4.286
+    ]
+   },
+   "hedef_karsitligi_V_eksi_R": {
+    "ort": -3.349,
+    "sd_panel": 1.07,
+    "t_df3": -6.26,
+    "degerler": [
+     -3.368,
+     -4.812,
+     -2.924,
+     -2.293
+    ]
+   },
+   "panel_ongorusu_asimetri": 3.76,
+   "gozlenen_cift_asimetrisi_R_to_V_eksi_V_to_R": 8.49,
+   "fark_gozlenen_eksi_ongoru": 4.73,
+   "ViT_kaynak_XCiT_hedef": 5.28,
+   "ResNet_kaynak_XCiT_hedef": 10.09
+  }
+ }
+}

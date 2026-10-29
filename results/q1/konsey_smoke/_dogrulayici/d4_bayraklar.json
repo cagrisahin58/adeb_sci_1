@@ -1,0 +1,644 @@
+{
+ "kuyruk": [
+  {
+   "etiket": "temiz",
+   "komut": "python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2101 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2101 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "vit_tiny_in1k",
+    "init_weights": "deit_tiny_in1k",
+    "optimizer_name": "adamw",
+    "lr_schedule": "cosine",
+    "epochs": 30,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "seed": 2101,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/V_IN_s2101",
+    "resume": true,
+    "save_every": 0
+   }
+  },
+  {
+   "etiket": "denetim",
+   "komut": "python scripts/konsey_b3_denetim.py temiz --takma V_IN_s2101",
+   "durum": "OK"
+  },
+  {
+   "etiket": "AT",
+   "komut": "python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2101/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2101 -o models/q1/konsey/V_IN_s2101 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "vit_tiny_in1k",
+    "optimizer_name": "adamw",
+    "epochs": 100,
+    "lr": 0.001,
+    "batch_size": 64,
+    "seed": 2101,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/V_IN_s2101",
+    "resume": true,
+    "stop_epoch": 80,
+    "patience": 20,
+    "save_every": 10,
+    "pretrained": "models/q1/konsey/V_IN_s2101/vit_tiny_in1k/clean/best.pth",
+    "defense": "adversarial_training",
+    "grad_clip": 10.0,
+    "vit_lr_cap": 0.001,
+    "eps": 0.03137254901960784,
+    "alpha": 0.00784313725490196,
+    "steps": 10,
+    "lr_warmup": 0,
+    "eps_warmup": 0
+   }
+  },
+  {
+   "etiket": "izleme",
+   "komut": "python scripts/konsey_b3_denetim.py cokus --takma V_IN_s2101",
+   "durum": "OK"
+  },
+  {
+   "etiket": "ozet",
+   "komut": "python scripts/konsey_b3_denetim.py ozet --takma V_IN_s2101 --tavan 80",
+   "durum": "OK"
+  },
+  {
+   "etiket": "temiz",
+   "komut": "python -m cli.main train clean -m resnet18_224_in1k --init-weights resnet18_a1_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 1301 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_IN_s1301 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "resnet18_224_in1k",
+    "init_weights": "resnet18_a1_in1k",
+    "optimizer_name": "adamw",
+    "lr_schedule": "cosine",
+    "epochs": 30,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "seed": 1301,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/R224_IN_s1301",
+    "resume": true,
+    "save_every": 0
+   }
+  },
+  {
+   "etiket": "denetim",
+   "komut": "python scripts/konsey_b3_denetim.py temiz --takma R224_IN_s1301",
+   "durum": "OK"
+  },
+  {
+   "etiket": "AT",
+   "komut": "python -m cli.main train adversarial -m resnet18_224_in1k -d adversarial_training -p models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1301 -o models/q1/konsey/R224_IN_s1301 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "resnet18_224_in1k",
+    "optimizer_name": "adamw",
+    "epochs": 100,
+    "lr": 0.001,
+    "batch_size": 64,
+    "seed": 1301,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/R224_IN_s1301",
+    "resume": true,
+    "stop_epoch": 80,
+    "patience": 20,
+    "save_every": 10,
+    "pretrained": "models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/clean/best.pth",
+    "defense": "adversarial_training",
+    "grad_clip": 10.0,
+    "vit_lr_cap": 0.001,
+    "eps": 0.03137254901960784,
+    "alpha": 0.00784313725490196,
+    "steps": 10,
+    "lr_warmup": 0,
+    "eps_warmup": 0
+   }
+  },
+  {
+   "etiket": "izleme",
+   "komut": "python scripts/konsey_b3_denetim.py cokus --takma R224_IN_s1301",
+   "durum": "OK"
+  },
+  {
+   "etiket": "ozet",
+   "komut": "python scripts/konsey_b3_denetim.py ozet --takma R224_IN_s1301 --tavan 80",
+   "durum": "OK"
+  },
+  {
+   "etiket": "temiz",
+   "komut": "python -m cli.main train clean -m resnet18_224 --init-weights none --optimizer adamw --lr-schedule cosine -e 200 --lr 0.001 -b 128 --seed 1201 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_scr_s1201 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "resnet18_224",
+    "init_weights": "none",
+    "optimizer_name": "adamw",
+    "lr_schedule": "cosine",
+    "epochs": 200,
+    "lr": 0.001,
+    "batch_size": 128,
+    "seed": 1201,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/R224_scr_s1201",
+    "resume": true,
+    "save_every": 0
+   }
+  },
+  {
+   "etiket": "AT",
+   "komut": "python -m cli.main train adversarial -m resnet18_224 -d adversarial_training -p models/q1/konsey/R224_scr_s1201/resnet18_224/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1201 -o models/q1/konsey/R224_scr_s1201 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "resnet18_224",
+    "optimizer_name": "adamw",
+    "epochs": 100,
+    "lr": 0.001,
+    "batch_size": 64,
+    "seed": 1201,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/R224_scr_s1201",
+    "resume": true,
+    "stop_epoch": 80,
+    "patience": 20,
+    "save_every": 10,
+    "pretrained": "models/q1/konsey/R224_scr_s1201/resnet18_224/clean/best.pth",
+    "defense": "adversarial_training",
+    "grad_clip": 10.0,
+    "vit_lr_cap": 0.001,
+    "eps": 0.03137254901960784,
+    "alpha": 0.00784313725490196,
+    "steps": 10,
+    "lr_warmup": 0,
+    "eps_warmup": 0
+   }
+  },
+  {
+   "etiket": "ozet",
+   "komut": "python scripts/konsey_b3_denetim.py ozet --takma R224_scr_s1201 --tavan 80",
+   "durum": "OK"
+  },
+  {
+   "etiket": "temiz",
+   "komut": "python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2102 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2102 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "vit_tiny_in1k",
+    "init_weights": "deit_tiny_in1k",
+    "optimizer_name": "adamw",
+    "lr_schedule": "cosine",
+    "epochs": 30,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "seed": 2102,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/V_IN_s2102",
+    "resume": true,
+    "save_every": 0
+   }
+  },
+  {
+   "etiket": "denetim",
+   "komut": "python scripts/konsey_b3_denetim.py temiz --takma V_IN_s2102",
+   "durum": "OK"
+  },
+  {
+   "etiket": "AT",
+   "komut": "python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2102/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2102 -o models/q1/konsey/V_IN_s2102 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "vit_tiny_in1k",
+    "optimizer_name": "adamw",
+    "epochs": 100,
+    "lr": 0.001,
+    "batch_size": 64,
+    "seed": 2102,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/V_IN_s2102",
+    "resume": true,
+    "stop_epoch": 80,
+    "patience": 20,
+    "save_every": 10,
+    "pretrained": "models/q1/konsey/V_IN_s2102/vit_tiny_in1k/clean/best.pth",
+    "defense": "adversarial_training",
+    "grad_clip": 10.0,
+    "vit_lr_cap": 0.001,
+    "eps": 0.03137254901960784,
+    "alpha": 0.00784313725490196,
+    "steps": 10,
+    "lr_warmup": 0,
+    "eps_warmup": 0
+   }
+  },
+  {
+   "etiket": "izleme",
+   "komut": "python scripts/konsey_b3_denetim.py cokus --takma V_IN_s2102",
+   "durum": "OK"
+  },
+  {
+   "etiket": "ozet",
+   "komut": "python scripts/konsey_b3_denetim.py ozet --takma V_IN_s2102 --tavan 80",
+   "durum": "OK"
+  },
+  {
+   "etiket": "temiz",
+   "komut": "python -m cli.main train clean -m resnet18_224_in1k --init-weights resnet18_a1_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 1302 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_IN_s1302 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "resnet18_224_in1k",
+    "init_weights": "resnet18_a1_in1k",
+    "optimizer_name": "adamw",
+    "lr_schedule": "cosine",
+    "epochs": 30,
+    "lr": 0.0001,
+    "batch_size": 128,
+    "seed": 1302,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/R224_IN_s1302",
+    "resume": true,
+    "save_every": 0
+   }
+  },
+  {
+   "etiket": "denetim",
+   "komut": "python scripts/konsey_b3_denetim.py temiz --takma R224_IN_s1302",
+   "durum": "OK"
+  },
+  {
+   "etiket": "AT",
+   "komut": "python -m cli.main train adversarial -m resnet18_224_in1k -d adversarial_training -p models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1302 -o models/q1/konsey/R224_IN_s1302 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "resnet18_224_in1k",
+    "optimizer_name": "adamw",
+    "epochs": 100,
+    "lr": 0.001,
+    "batch_size": 64,
+    "seed": 1302,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/R224_IN_s1302",
+    "resume": true,
+    "stop_epoch": 80,
+    "patience": 20,
+    "save_every": 10,
+    "pretrained": "models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/clean/best.pth",
+    "defense": "adversarial_training",
+    "grad_clip": 10.0,
+    "vit_lr_cap": 0.001,
+    "eps": 0.03137254901960784,
+    "alpha": 0.00784313725490196,
+    "steps": 10,
+    "lr_warmup": 0,
+    "eps_warmup": 0
+   }
+  },
+  {
+   "etiket": "izleme",
+   "komut": "python scripts/konsey_b3_denetim.py cokus --takma R224_IN_s1302",
+   "durum": "OK"
+  },
+  {
+   "etiket": "ozet",
+   "komut": "python scripts/konsey_b3_denetim.py ozet --takma R224_IN_s1302 --tavan 80",
+   "durum": "OK"
+  },
+  {
+   "etiket": "temiz",
+   "komut": "python -m cli.main train clean -m resnet18_224 --init-weights none --optimizer adamw --lr-schedule cosine -e 200 --lr 0.001 -b 128 --seed 1202 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_scr_s1202 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "resnet18_224",
+    "init_weights": "none",
+    "optimizer_name": "adamw",
+    "lr_schedule": "cosine",
+    "epochs": 200,
+    "lr": 0.001,
+    "batch_size": 128,
+    "seed": 1202,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/R224_scr_s1202",
+    "resume": true,
+    "save_every": 0
+   }
+  },
+  {
+   "etiket": "AT",
+   "komut": "python -m cli.main train adversarial -m resnet18_224 -d adversarial_training -p models/q1/konsey/R224_scr_s1202/resnet18_224/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1202 -o models/q1/konsey/R224_scr_s1202 --resume",
+   "durum": "OK",
+   "ozet": {
+    "model": "resnet18_224",
+    "optimizer_name": "adamw",
+    "epochs": 100,
+    "lr": 0.001,
+    "batch_size": 64,
+    "seed": 1202,
+    "val_indices": "data/val_split_indices.json",
+    "output_dir": "models/q1/konsey/R224_scr_s1202",
+    "resume": true,
+    "stop_epoch": 80,
+    "patience": 20,
+    "save_every": 10,
+    "pretrained": "models/q1/konsey/R224_scr_s1202/resnet18_224/clean/best.pth",
+    "defense": "adversarial_training",
+    "grad_clip": 10.0,
+    "vit_lr_cap": 0.001,
+    "eps": 0.03137254901960784,
+    "alpha": 0.00784313725490196,
+    "steps": 10,
+    "lr_warmup": 0,
+    "eps_warmup": 0
+   }
+  },
+  {
+   "etiket": "ozet",
+   "komut": "python scripts/konsey_b3_denetim.py ozet --takma R224_scr_s1202 --tavan 80",
+   "durum": "OK"
+  }
+ ],
+ "runbook": [
+  {
+   "komut_basi": "python experiments/c1_c3_transfer_matrix.py",
+   "arguman_sayisi": 40,
+   "durum": "OK",
+   "ozet": {
+    "model": [
+     "ResNet18_AT_s1001:resnet18:models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+     "ResNet18_AT_s1002:resnet18:models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+     "ResNet18_AT_s1003:resnet18:models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2001:vit_tiny:models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2002:vit_tiny:models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2003:vit_tiny:models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth"
+    ],
+    "rb_model": [
+     "Wong2020Fast",
+     "Engstrom2019Robustness",
+     "Carmon2019Unlabeled",
+     "Gowal2020Uncovering_28_10_extra",
+     "Sehwag2021Proxy_R18",
+     "Addepalli2022Efficient_RN18",
+     "Rade2021Helper_R18_ddpm",
+     "Debenedetti2022Light_XCiT-S12"
+    ],
+    "sources": null,
+    "attack": "pgd",
+    "cache_adv": "results/q1/konsey_adv_onbellek",
+    "skip_existing": false,
+    "out_dir": "results/q1/konsey_b2_panel",
+    "n_samples": 10000,
+    "seed": 42,
+    "dataset": "cifar10"
+   }
+  },
+  {
+   "komut_basi": "python experiments/q1_konsey_ayrisim.py",
+   "arguman_sayisi": 10,
+   "durum": "OK",
+   "ozet": {
+    "mod": "b2",
+    "matris_dizini": [
+     "results/q1/konsey_b2_panel"
+    ],
+    "hucre_tablosu": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+    "cikti": "results/q1/konsey_ayrisim_b2.json"
+   }
+  },
+  {
+   "komut_basi": "bash scripts/konsey_b3_kuyruk.sh",
+   "arguman_sayisi": 5,
+   "durum": "OK"
+  },
+  {
+   "komut_basi": "bash scripts/konsey_b3_kuyruk.sh",
+   "arguman_sayisi": 5,
+   "durum": "OK"
+  },
+  {
+   "komut_basi": "python experiments/c1_c3_transfer_matrix.py",
+   "arguman_sayisi": 53,
+   "durum": "OK",
+   "ozet": {
+    "model": [
+     "ResNet18_AT_s1001:resnet18:models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+     "ResNet18_AT_s1002:resnet18:models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+     "ResNet18_AT_s1003:resnet18:models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2001:vit_tiny:models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2002:vit_tiny:models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2003:vit_tiny:models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth",
+     "V_IN_s2101:vit_tiny_in1k:models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/best.pth",
+     "V_IN_s2102:vit_tiny_in1k:models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/best.pth",
+     "R224_IN_s1301:resnet18_224_in1k:models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/best.pth",
+     "R224_IN_s1302:resnet18_224_in1k:models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/best.pth",
+     "R224_scr_s1201:resnet18_224:models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/best.pth",
+     "R224_scr_s1202:resnet18_224:models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/best.pth"
+    ],
+    "rb_model": [
+     "Wong2020Fast",
+     "Engstrom2019Robustness",
+     "Carmon2019Unlabeled",
+     "Gowal2020Uncovering_28_10_extra",
+     "Sehwag2021Proxy_R18",
+     "Addepalli2022Efficient_RN18",
+     "Rade2021Helper_R18_ddpm",
+     "Debenedetti2022Light_XCiT-S12"
+    ],
+    "sources": null,
+    "attack": "pgd",
+    "cache_adv": "results/q1/konsey_adv_onbellek",
+    "skip_existing": true,
+    "out_dir": "results/q1/konsey_b4_matris",
+    "n_samples": 10000,
+    "seed": 42,
+    "dataset": "cifar10"
+   }
+  },
+  {
+   "komut_basi": "python experiments/c1_c3_transfer_matrix.py",
+   "arguman_sayisi": 63,
+   "durum": "OK",
+   "ozet": {
+    "model": [
+     "ResNet18_AT_s1001:resnet18:models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+     "ResNet18_AT_s1002:resnet18:models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+     "ResNet18_AT_s1003:resnet18:models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2001:vit_tiny:models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2002:vit_tiny:models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2003:vit_tiny:models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth",
+     "V_IN_s2101:vit_tiny_in1k:models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/best.pth",
+     "V_IN_s2102:vit_tiny_in1k:models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/best.pth",
+     "R224_IN_s1301:resnet18_224_in1k:models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/best.pth",
+     "R224_IN_s1302:resnet18_224_in1k:models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/best.pth",
+     "R224_scr_s1201:resnet18_224:models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/best.pth",
+     "R224_scr_s1202:resnet18_224:models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/best.pth"
+    ],
+    "rb_model": [
+     "Wong2020Fast",
+     "Engstrom2019Robustness",
+     "Carmon2019Unlabeled",
+     "Gowal2020Uncovering_28_10_extra",
+     "Sehwag2021Proxy_R18",
+     "Addepalli2022Efficient_RN18",
+     "Rade2021Helper_R18_ddpm"
+    ],
+    "sources": [
+     "ResNet18_AT_s1001",
+     "ResNet18_AT_s1002",
+     "ResNet18_AT_s1003",
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003",
+     "V_IN_s2101",
+     "V_IN_s2102",
+     "R224_IN_s1301",
+     "R224_IN_s1302",
+     "R224_scr_s1201",
+     "R224_scr_s1202"
+    ],
+    "attack": "mi",
+    "cache_adv": null,
+    "skip_existing": false,
+    "out_dir": "results/q1/konsey_b5_saldiri/mi",
+    "n_samples": 10000,
+    "seed": 42,
+    "dataset": "cifar10"
+   }
+  },
+  {
+   "komut_basi": "python experiments/c1_c3_transfer_matrix.py",
+   "arguman_sayisi": 63,
+   "durum": "OK",
+   "ozet": {
+    "model": [
+     "ResNet18_AT_s1001:resnet18:models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+     "ResNet18_AT_s1002:resnet18:models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+     "ResNet18_AT_s1003:resnet18:models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2001:vit_tiny:models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2002:vit_tiny:models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth",
+     "ViT_Tiny_AT_s2003:vit_tiny:models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth",
+     "V_IN_s2101:vit_tiny_in1k:models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/best.pth",
+     "V_IN_s2102:vit_tiny_in1k:models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/best.pth",
+     "R224_IN_s1301:resnet18_224_in1k:models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/best.pth",
+     "R224_IN_s1302:resnet18_224_in1k:models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/best.pth",
+     "R224_scr_s1201:resnet18_224:models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/best.pth",
+     "R224_scr_s1202:resnet18_224:models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/best.pth"
+    ],
+    "rb_model": [
+     "Wong2020Fast",
+     "Engstrom2019Robustness",
+     "Carmon2019Unlabeled",
+     "Gowal2020Uncovering_28_10_extra",
+     "Sehwag2021Proxy_R18",
+     "Addepalli2022Efficient_RN18",
+     "Rade2021Helper_R18_ddpm"
+    ],
+    "sources": [
+     "ResNet18_AT_s1001",
+     "ResNet18_AT_s1002",
+     "ResNet18_AT_s1003",
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003",
+     "V_IN_s2101",
+     "V_IN_s2102",
+     "R224_IN_s1301",
+     "R224_IN_s1302",
+     "R224_scr_s1201",
+     "R224_scr_s1202"
+    ],
+    "attack": "tgr",
+    "cache_adv": null,
+    "skip_existing": false,
+    "out_dir": "results/q1/konsey_b5_saldiri/tgr",
+    "n_samples": 10000,
+    "seed": 42,
+    "dataset": "cifar10"
+   }
+  },
+  {
+   "komut_basi": "python experiments/run_autoattack_run2.py",
+   "arguman_sayisi": 20,
+   "durum": "OK",
+   "ozet": {
+    "model": [
+     "V_IN_s2101:vit_tiny_in1k:models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/best.pth",
+     "V_IN_s2102:vit_tiny_in1k:models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/best.pth",
+     "R224_IN_s1301:resnet18_224_in1k:models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/best.pth",
+     "R224_IN_s1302:resnet18_224_in1k:models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/best.pth",
+     "R224_scr_s1201:resnet18_224:models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/best.pth",
+     "R224_scr_s1202:resnet18_224:models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/best.pth"
+    ],
+    "output_dir": "results/q1/konsey_b6_aa",
+    "n_samples": 1000,
+    "seed": 42,
+    "dataset": "cifar10"
+   }
+  },
+  {
+   "komut_basi": "python experiments/q1_konsey_ayrisim.py",
+   "arguman_sayisi": 10,
+   "durum": "OK",
+   "ozet": {
+    "mod": "b4",
+    "matris_dizini": [
+     "results/q1/konsey_b4_matris"
+    ],
+    "hucre_tablosu": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+    "cikti": "results/q1/konsey_ayrisim_b4.json"
+   }
+  },
+  {
+   "komut_basi": "python experiments/q1_konsey_ayrisim.py",
+   "arguman_sayisi": 14,
+   "durum": "OK",
+   "ozet": {
+    "mod": "b5",
+    "matris_dizini": [
+     "results/q1/konsey_b4_matris",
+     "results/q1/konsey_b5_saldiri/mi",
+     "results/q1/konsey_b5_saldiri/tgr"
+    ],
+    "hucre_tablosu": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+    "cikti": "results/q1/konsey_ayrisim_b5.json"
+   }
+  }
+ ],
+ "takma_ad": {
+  "k5_eksik_tabloda": [],
+  "tabloda_fazla": [],
+  "c1_yol_uyusmazligi": {},
+  "c1_yol_diskte_var": {
+   "ResNet18_AT_s1001": true,
+   "ResNet18_AT_s1002": true,
+   "ResNet18_AT_s1003": true,
+   "ViT_Tiny_AT_s2001": true,
+   "ViT_Tiny_AT_s2002": true,
+   "ViT_Tiny_AT_s2003": true
+  },
+  "yeni_tablo_yolu_k5_kalibi": {
+   "V_IN_s2101": true,
+   "V_IN_s2102": true,
+   "R224_IN_s1301": true,
+   "R224_IN_s1302": true,
+   "R224_scr_s1201": true,
+   "R224_scr_s1202": true
+  },
+  "runbook_model_k5_disi": [],
+  "runbook_rb_k5_disi": [],
+  "runbook_yol_tip_uyusmazligi": [],
+  "kuyruk_sirasi": [
+   "V_IN_s2101",
+   "R224_IN_s1301",
+   "R224_scr_s1201",
+   "V_IN_s2102",
+   "R224_IN_s1302",
+   "R224_scr_s1202"
+  ],
+  "kuyruk_k5_disi": [],
+  "s4_ciftleri_k5_ici": true,
+  "b2_ciftleri_k5_ici": true
+ },
+ "runbook_satir_ici_komut_sayisi": 1,
+ "OZET": {
+  "kuyruk_komut": 26,
+  "kuyruk_hata": [],
+  "runbook_komut": 10,
+  "runbook_hata": []
+ }
+}

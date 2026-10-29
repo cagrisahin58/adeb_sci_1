@@ -1,0 +1,216 @@
+{
+ "imagenet/Linf": [
+  [
+   "Wong2020Fast",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Crop288"
+  ],
+  [
+   "Engstrom2019Robustness",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Salman2020Do_R50",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Salman2020Do_R18",
+   "'model': lambda: normalize_model(pt_models.resnet18(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Salman2020Do_50_2",
+   "'model': lambda: normalize_model(pt_models.wide_resnet50_2(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Standard_R50",
+   "'model': lambda: normalize_model(pt_models.resnet50(pretrained=True), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Debenedetti2022Light_XCiT-S12",
+   "'model': (lambda: timm.create_model( 'debenedetti2020light_xcit_s_imagenet_linf', pretrained=True)),",
+   ""
+  ],
+  [
+   "Debenedetti2022Light_XCiT-M12",
+   "'model': (lambda: timm.create_model( 'debenedetti2020light_xcit_m_imagenet_linf', pretrained=True)),",
+   ""
+  ],
+  [
+   "Debenedetti2022Light_XCiT-L12",
+   "'model': (lambda: timm.create_model( 'debenedetti2020light_xcit_l_imagenet_linf', pretrained=True)),",
+   ""
+  ],
+  [
+   "Singh2023Revisiting_ViT-S-ConvStem",
+   "'model': lambda: get_convstem_models('vit_s_cvst'),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Singh2023Revisiting_ViT-B-ConvStem",
+   "'model': lambda: get_convstem_models('vit_b_cvst'),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Singh2023Revisiting_ConvNeXt-T-ConvStem",
+   "'model': lambda: get_convstem_models('convnext_t_cvst'),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Singh2023Revisiting_ConvNeXt-S-ConvStem",
+   "'model': lambda: get_convstem_models('convnext_s_cvst'),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Singh2023Revisiting_ConvNeXt-B-ConvStem",
+   "'model': lambda: get_convstem_models('convnext_b_cvst'),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Singh2023Revisiting_ConvNeXt-L-ConvStem",
+   "'model': lambda: get_convstem_models('convnext_l_cvst'),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Liu2023Comprehensive_ConvNeXt-B",
+   "'model': lambda: normalize_model( timm.create_model('convnext_base', pretrained=False), mu, sigma),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Liu2023Comprehensive_ConvNeXt-L",
+   "'model': lambda: normalize_model( timm.create_model('convnext_large', pretrained=False), mu, sigma),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Liu2023Comprehensive_Swin-B",
+   "'model': lambda: normalize_model(timm.create_model( 'swin_base_patch4_window7_224', pretrained=False), mu, sigma),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Liu2023Comprehensive_Swin-L",
+   "'model': lambda: normalize_model(timm.create_model( 'swin_large_patch4_window7_224', pretrained=False), mu, sigma),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Peng2023Robust",
+   "'model': lambda: get_robustarch_model('ra_wrn101_2'), # TODO: check device calls.",
+   "Res256Crop224"
+  ],
+  [
+   "Bai2024MixedNUTS",
+   "'model': lambda: get_nonlin_mixed_classifier('imagenet'), # TODO: check device calls.",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Chen2024Data_WRN_50_2",
+   "'model': lambda: pt_models.resnet50(width_per_group=64 * 2),",
+   "Res256Crop224"
+  ],
+  [
+   "Mo2022When_Swin-B",
+   "'model': lambda: normalize_model(timm.create_model( 'swin_base_patch4_window7_224', pretrained=False, ), mu, sigma),",
+   "Res224"
+  ],
+  [
+   "Mo2022When_ViT-B",
+   "'model': lambda: normalize_model(timm.create_model( 'vit_base_patch16_224', pretrained=False, ), mu, sigma),",
+   "Res224"
+  ],
+  [
+   "Amini2024MeanSparse_ConvNeXt-L",
+   "'model': lambda: get_sparse_model( normalize_model(timm.create_model('convnext_large', pretrained=False), mu, sigma), dataset='imagenet-Linf'),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Amini2024MeanSparse_Swin-L",
+   "'model': lambda: get_sparse_model('swin-l', dataset='imagenet-Linf'),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "RodriguezMunoz2024Characterizing_Swin-B",
+   "'model': lambda: normalize_model(timm.create_model( 'swin_base_patch4_window7_224', pretrained=False), mu, sigma),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "RodriguezMunoz2024Characterizing_Swin-L",
+   "'model': lambda: normalize_model(timm.create_model( 'swin_large_patch4_window7_224', pretrained=False), mu, sigma),",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Xu2024MIMIR_Swin-B",
+   "def build_swin_base(): model = SwinTransformer( img_size=224, patch_size=4, in_chans=3, embed_dim=128, depths=[2, 2, 18, 2], num_heads=[4, 8, 16, 32], window_si",
+   "BicubicRes256Crop224"
+  ],
+  [
+   "Xu2024MIMIR_Swin-L",
+   "def build_swin_large(): model = SwinTransformer( img_size=224, patch_size=4, in_chans=3, embed_dim=192, depths=[2, 2, 18, 2], num_heads=[6, 12, 24, 48], window_",
+   "BicubicRes256Crop224"
+  ]
+ ],
+ "imagenet/corruptions": [
+  [
+   "Erichson2022NoisyMix",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Erichson2022NoisyMix_new",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Geirhos2018_SIN",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Geirhos2018_SIN_IN",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Geirhos2018_SIN_IN_IN",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Hendrycks2020Many",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Hendrycks2020AugMix",
+   "'model': lambda: normalize_model(pt_models.resnet50(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Salman2020Do_50_2_Linf",
+   "'model': lambda: normalize_model(pt_models.wide_resnet50_2(), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "Standard_R50",
+   "'model': lambda: normalize_model(pt_models.resnet50(pretrained=True), mu, sigma),",
+   "Res256Crop224"
+  ],
+  [
+   "AlexNet",
+   "'model': (lambda: timm.create_model( 'alexnet', pretrained=True)),",
+   "Res256Crop224"
+  ],
+  [
+   "Tian2022Deeper_DeiT-S",
+   "'model': (lambda: timm.create_model( 'tian2022deeper_deit_s_imagenet_corruptions', pretrained=True)),",
+   "Res256Crop224"
+  ],
+  [
+   "Tian2022Deeper_DeiT-B",
+   "'model': (lambda: timm.create_model( 'tian2022deeper_deit_b_imagenet_corruptions', pretrained=True)),",
+   "Res256Crop224"
+  ]
+ ]
+}

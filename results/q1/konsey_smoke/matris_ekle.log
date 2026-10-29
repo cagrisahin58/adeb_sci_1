@@ -1,0 +1,32 @@
+custom temiz dogruluk: R224_scr_smoke=32.00, ViT_Tiny_AT_s2001=79.00, V_IN_smoke=91.00, Sehwag2021Proxy_R18=87.00, Debenedetti2022Light_XCiT-S12=91.50
+  R224_scr_smoke: onbellekten (200, 3, 32, 32)
+  R224_scr_smoke->R224_scr_smoke: raw=94.50 cond=82.81 (mevcut hucre)
+  R224_scr_smoke->ViT_Tiny_AT_s2001: raw=25.50 cond=6.33 (mevcut hucre)
+  R224_scr_smoke->V_IN_smoke: raw=14.00 cond=6.59
+  R224_scr_smoke->Sehwag2021Proxy_R18: raw=15.50 cond=3.45 (mevcut hucre)
+  R224_scr_smoke->Debenedetti2022Light_XCiT-S12: raw=9.50 cond=2.73
+  ViT_Tiny_AT_s2001: onbellekten (200, 3, 32, 32)
+  ViT_Tiny_AT_s2001->R224_scr_smoke: raw=75.50 cond=26.56 (mevcut hucre)
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001: raw=67.00 cond=58.23 (mevcut hucre)
+  ViT_Tiny_AT_s2001->V_IN_smoke: raw=26.50 cond=19.78
+  ViT_Tiny_AT_s2001->Sehwag2021Proxy_R18: raw=23.00 cond=11.49 (mevcut hucre)
+  ViT_Tiny_AT_s2001->Debenedetti2022Light_XCiT-S12: raw=20.00 cond=12.57
+  V_IN_smoke: onbellege yazildi results/q1/konsey_smoke/adv_onbellek/V_IN_smoke__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  V_IN_smoke->R224_scr_smoke: raw=70.00 cond=6.25
+  V_IN_smoke->ViT_Tiny_AT_s2001: raw=21.50 cond=0.63
+  V_IN_smoke->V_IN_smoke: raw=100.00 cond=100.00
+  V_IN_smoke->Sehwag2021Proxy_R18: raw=14.00 cond=1.15
+  V_IN_smoke->Debenedetti2022Light_XCiT-S12: raw=8.50 cond=0.55
+  Sehwag2021Proxy_R18: onbellekten (200, 3, 32, 32)
+  Sehwag2021Proxy_R18->R224_scr_smoke: raw=71.50 cond=12.50 (mevcut hucre)
+  Sehwag2021Proxy_R18->ViT_Tiny_AT_s2001: raw=38.00 cond=21.52 (mevcut hucre)
+  Sehwag2021Proxy_R18->V_IN_smoke: raw=29.50 cond=22.53
+  Sehwag2021Proxy_R18->Sehwag2021Proxy_R18: raw=42.00 cond=33.33 (mevcut hucre)
+  Sehwag2021Proxy_R18->Debenedetti2022Light_XCiT-S12: raw=26.50 cond=19.67
+  Debenedetti2022Light_XCiT-S12: onbellege yazildi results/q1/konsey_smoke/adv_onbellek/Debenedetti2022Light_XCiT-S12__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  Debenedetti2022Light_XCiT-S12->R224_scr_smoke: raw=73.00 cond=17.19
+  Debenedetti2022Light_XCiT-S12->ViT_Tiny_AT_s2001: raw=40.00 cond=24.05
+  Debenedetti2022Light_XCiT-S12->V_IN_smoke: raw=34.50 cond=28.02
+  Debenedetti2022Light_XCiT-S12->Sehwag2021Proxy_R18: raw=28.50 cond=17.82
+  Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-S12: raw=42.00 cond=36.61
+custom kaydedildi: results/q1/konsey_smoke/matris_ekle

@@ -1,0 +1,42 @@
+Usage: python -m cli.main train clean [OPTIONS]
+
+  Train a model with clean data.
+
+Options:
+  -m, --model TEXT                Model name (e.g., resnet18, vit_tiny)
+                                  [required]
+  --dataset [cifar10|cifar100|svhn]
+                                  Egitim veri kumesi (num_classes kumeden
+                                  turer)
+  -e, --epochs INTEGER            Number of training epochs
+  --lr FLOAT                      Learning rate
+  -b, --batch-size INTEGER        Training batch size
+  --data-dir TEXT                 Data directory
+  -o, --output-dir TEXT           Output directory for checkpoints
+  --seed INTEGER                  Random seed
+  --device TEXT                   Device (auto, cuda, cpu)
+  --val-indices TEXT              Sabit validasyon indeksleri JSON'u (rev2 C1
+                                  leak fix): bu ornekler egitimden CIKARILIR
+                                  ve model secimi val seti uzerinden yapilir
+                                  (test seti egitim/secime hic girmez)
+  --save-every INTEGER            Her N epokta periyodik checkpoint (E3
+                                  kalibrasyon yorungeleri); 0=kapali
+  --resume                        Checkpoint dizinindeki last.pth'tan devam et
+                                  (kesinti sonrasi)
+  --timm-pretrained               Modeli ImageNet on-egitimli agirliklarla
+                                  baslat (ViT-Small tarifi: pretrained + kisa
+                                  temiz finetune)
+  --optimizer [auto|adamw|sgd]    auto = eski davranis (sinif adinda vit ->
+                                  AdamW, degilse SGD); adamw/sgd = sinif adina
+                                  bakmadan zorla (konsey B3)
+  --init-weights [none|deit_tiny_in1k|resnet18_a1_in1k]
+                                  Govdeyi ImageNet agirliklariyla baslat (bas
+                                  haric); yalniz uyumlu IN tipleriyle:
+                                  deit_tiny_in1k -> vit_tiny_in1k,
+                                  resnet18_a1_in1k -> resnet18_224_in1k
+  --lr-schedule [cosine|constant]
+                                  Temiz asama LR cizelgesi (varsayilan cosine,
+                                  T_max=epochs: eski davranis)
+  --max-train-batches INTEGER     Epok basina en fazla N egitim batch'i
+                                  (yalniz smoke); 0 = sinirsiz
+  --help                          Show this message and exit.

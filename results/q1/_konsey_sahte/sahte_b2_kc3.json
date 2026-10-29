@@ -1,0 +1,561 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "meta": {
+  "betik": "experiments/q1_konsey_ayrisim.py",
+  "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "hucre_tablosu": "/workspace/results/q1/_konsey_sahte/sahte_hucre_tablosu_kc3.json",
+  "hucre_tablosu_sha256": "cd1e87f01a3b5cc0bf0e0fe104d244d4496bda084c89f3e0a5c19669c47bfe6f",
+  "mod": "b2",
+  "matris_dizinleri": [
+   "results/q1/havuz_cifar10"
+  ],
+  "uretildi_utc": "2026-10-29T13:28:49.771181+00:00",
+  "delta": 0.1,
+  "delta_duyarlilik": 0.06,
+  "alfa": 0.05,
+  "bootstrap_B": 2000,
+  "bootstrap_tohum": 20261029,
+  "panel_en_az": 4,
+  "maskeleme_isaretli": [],
+  "numpy": "1.26.4"
+ },
+ "veri": {
+  "n_goruntu": 10000,
+  "modeller": [
+   "Carmon2019Unlabeled",
+   "Engstrom2019Robustness",
+   "Gowal2020Uncovering_28_10_extra",
+   "SAHTE_Va",
+   "SAHTE_Vb",
+   "SAHTE_Vc",
+   "Standard_WRN28_10",
+   "Wong2020Fast"
+  ],
+  "hucre_sayisi": 64,
+  "cakismalar": [],
+  "tutarlilik": {
+   "hedef_maskesi_tutarli": true,
+   "tutarsiz_hedefler": []
+  },
+  "tablo_disi_modeller": [
+   "Standard_WRN28_10"
+  ],
+  "girdi_sha256": {
+   "results/q1/havuz_cifar10/transfer_matrix.json": "bc4154f8baff52eba20391dfb98c56404455917f7265edd789743fabb9d09a44",
+   "results/q1/havuz_cifar10/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "58f39c122a36d229d36cf5aee32fd10fc4a67fb1427b9b2dc1d90ab564770c1a",
+   "results/q1/havuz_cifar10/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "cbaccca8545a30aa2896b6ac5bc720469506158837f3c64f556714d18f63afeb",
+   "results/q1/havuz_cifar10/per_sample_ResNet18_AT_to_Standard_WRN28_10.npz": "c070e7f934c3d02fccf75bd933e60dd16790ff4815919fc434be5d235beed3fc",
+   "results/q1/havuz_cifar10/per_sample_ResNet18_AT_to_Wong2020_PRN18.npz": "7e3b9737674d346008cbe98e1bb27a94dc18dddf5439fa469026f078fe3fd475",
+   "results/q1/havuz_cifar10/per_sample_ResNet18_AT_to_Engstrom2019_RN50.npz": "bfb2a23471980edd5698aabcdbb101d508359b0c29d2f532d695b9e5e12516c5",
+   "results/q1/havuz_cifar10/per_sample_ResNet18_AT_to_Carmon2019_WRN28_10.npz": "335144bcc7218368a2dda797624ac83997e4f0178d2664a9b56d8a6cb4788613",
+   "results/q1/havuz_cifar10/per_sample_ResNet18_AT_to_Debenedetti2022_XCiT_S12.npz": "2f7cda3eeda22ef3bd9198641bf097fce86abbfe939f4d990e19248d627a2258",
+   "results/q1/havuz_cifar10/per_sample_ResNet18_AT_to_Gowal2020_WRN28_10.npz": "47746bf1206473b77c008d1ad3704344849d2c7797795c40ec79258513683101",
+   "results/q1/havuz_cifar10/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "38d8ab2afcb2b1b6da5a19c3e7bf375606ae7097cbc9faa44879d8b3eaaab268",
+   "results/q1/havuz_cifar10/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "33d55559580664787f5bda25beef2176bbfc6a2b45edf25fc686ae9fa76b7ad6",
+   "results/q1/havuz_cifar10/per_sample_ViT_Tiny_AT_to_Standard_WRN28_10.npz": "abf1fa0e88f13bfa08cb093c874bd948ede538b1a4625da58a9fb9a236e55130",
+   "results/q1/havuz_cifar10/per_sample_ViT_Tiny_AT_to_Wong2020_PRN18.npz": "af788a3725dcb1082fe6fa9fd0024a17fc57decbff18bc6c4db92aa71211fa0e",
+   "results/q1/havuz_cifar10/per_sample_ViT_Tiny_AT_to_Engstrom2019_RN50.npz": "f9237595f6567e1a451cb47819cab7e723a1b0d8f462d2bf6071ebc1278b7aed",
+   "results/q1/havuz_cifar10/per_sample_ViT_Tiny_AT_to_Carmon2019_WRN28_10.npz": "5a7c94526b473dd99c0bdd8183d462604f4fb7b0b4f0bb5b975574fc2a9c4f75",
+   "results/q1/havuz_cifar10/per_sample_ViT_Tiny_AT_to_Debenedetti2022_XCiT_S12.npz": "0fefa87c80fa929458f858e60a40d5f1e7e37d30c9e27c17ec6ffa19adf20389",
+   "results/q1/havuz_cifar10/per_sample_ViT_Tiny_AT_to_Gowal2020_WRN28_10.npz": "1161dbca0987f659163d56cd06c0db668aafdf6fd7866d8671e4430ac0c1f59c",
+   "results/q1/havuz_cifar10/per_sample_Standard_WRN28_10_to_ResNet18_AT.npz": "ab08c4a0119627eefb9f8c4b9bb70d4e45186647b3a00738d2b0b893740c080a",
+   "results/q1/havuz_cifar10/per_sample_Standard_WRN28_10_to_ViT_Tiny_AT.npz": "9f99eb0e9f889130e6bee4a98b6029a116e1ba5210f40835ca17c03dcc45c016",
+   "results/q1/havuz_cifar10/per_sample_Standard_WRN28_10_to_Standard_WRN28_10.npz": "d454ad826321d9e3293132258867b5801a86d23e3a42d6fea14ace9c3fefb962",
+   "results/q1/havuz_cifar10/per_sample_Standard_WRN28_10_to_Wong2020_PRN18.npz": "76226d430be76f25ca01a763ebfe0ef70212c8f3b61a23239516b015a4244cc1",
+   "results/q1/havuz_cifar10/per_sample_Standard_WRN28_10_to_Engstrom2019_RN50.npz": "197440d9d323aa2372620f4a0ff68f2afdef51b850f2406cc85fe18b8ec9bb14",
+   "results/q1/havuz_cifar10/per_sample_Standard_WRN28_10_to_Carmon2019_WRN28_10.npz": "dfa5d6dd9bc3ee7216d350eb63fbd15c9591226e0740ce7ee118b48fab11bdb5",
+   "results/q1/havuz_cifar10/per_sample_Standard_WRN28_10_to_Debenedetti2022_XCiT_S12.npz": "2e01554bbf4f87b303d2bdc65175a18a9e6b43a289a9c86f933998c794dda476",
+   "results/q1/havuz_cifar10/per_sample_Standard_WRN28_10_to_Gowal2020_WRN28_10.npz": "fc231507ed5235f75946637d442b1f1f5a9c147a06c468e62e690da1f543b600",
+   "results/q1/havuz_cifar10/per_sample_Wong2020_PRN18_to_ResNet18_AT.npz": "bc4a4bcf0f78d1fd58a6ede309059f9dbd1fbfd29bebb376c2e8cc0b210374e4",
+   "results/q1/havuz_cifar10/per_sample_Wong2020_PRN18_to_ViT_Tiny_AT.npz": "ee656b87612da8409040493826265179f7ffe1956678260145c944c5549bb6e7",
+   "results/q1/havuz_cifar10/per_sample_Wong2020_PRN18_to_Standard_WRN28_10.npz": "bf36775eaa5070c2f25fe61828ccd527053d83178f1808c189a9de6391748370",
+   "results/q1/havuz_cifar10/per_sample_Wong2020_PRN18_to_Wong2020_PRN18.npz": "7978a1f119f0f525cb7bfdc3bbcd29e59838b4d2d91343deeffb2a655ed68c75",
+   "results/q1/havuz_cifar10/per_sample_Wong2020_PRN18_to_Engstrom2019_RN50.npz": "7a6be80336cba9299c364250649c3ce83a35bff9268385b5d60a0b18509eaead",
+   "results/q1/havuz_cifar10/per_sample_Wong2020_PRN18_to_Carmon2019_WRN28_10.npz": "9073528ba2d6e9a32618514287c99d7f67d6a9ea1b207ff539974653659bc551",
+   "results/q1/havuz_cifar10/per_sample_Wong2020_PRN18_to_Debenedetti2022_XCiT_S12.npz": "d94290e73891709123f6e9348b87b7912c95ab9faabb932699a972744e9efbfd",
+   "results/q1/havuz_cifar10/per_sample_Wong2020_PRN18_to_Gowal2020_WRN28_10.npz": "0f65c6bcace60e72a33240e457c14c988dd8a3f6581017ff62163dd289d6b80e",
+   "results/q1/havuz_cifar10/per_sample_Engstrom2019_RN50_to_ResNet18_AT.npz": "3b159ee91c1240948bf0e657322090bb04d414107a2cf111cb92871ead5c15fb",
+   "results/q1/havuz_cifar10/per_sample_Engstrom2019_RN50_to_ViT_Tiny_AT.npz": "cf45d0a9d70ec9423da75b2a3cd440f9990e32c26844fea87ed2ceb92848cc91",
+   "results/q1/havuz_cifar10/per_sample_Engstrom2019_RN50_to_Standard_WRN28_10.npz": "d5981572b13a99a38861975332a1bbba961b3475174487260f51f4b8b5b3bb1d",
+   "results/q1/havuz_cifar10/per_sample_Engstrom2019_RN50_to_Wong2020_PRN18.npz": "24ad42e3ccb5f487d7b8d473d36e64e81659b9e0568f18557826782ae8ccdb28",
+   "results/q1/havuz_cifar10/per_sample_Engstrom2019_RN50_to_Engstrom2019_RN50.npz": "5a0dbcd46629b0d1159a9454d223c8c97bf3349937a40efceec87f331360cdf5",
+   "results/q1/havuz_cifar10/per_sample_Engstrom2019_RN50_to_Carmon2019_WRN28_10.npz": "e87254784b45eaa4ba87f278ed2e2d4bfd5ab4a28720650930fc1a81abb583eb",
+   "results/q1/havuz_cifar10/per_sample_Engstrom2019_RN50_to_Debenedetti2022_XCiT_S12.npz": "4722dbb1365c1f18a5c91327e88915d39177923d1a4b82dd030bc4e963e5ace3",
+   "results/q1/havuz_cifar10/per_sample_Engstrom2019_RN50_to_Gowal2020_WRN28_10.npz": "cc2c24d92fe62a211691838734706d8c591d3aa3ff00d6c4c6de0431dddbf818",
+   "results/q1/havuz_cifar10/per_sample_Carmon2019_WRN28_10_to_ResNet18_AT.npz": "75c877a4c176153e61343242f6156ca2c1e954e371dd4e698e727da68f9cefe6",
+   "results/q1/havuz_cifar10/per_sample_Carmon2019_WRN28_10_to_ViT_Tiny_AT.npz": "73d61ab7aa26ab9209cb92990e8bcf523ae3f11ea285fba05e19f56160306e56",
+   "results/q1/havuz_cifar10/per_sample_Carmon2019_WRN28_10_to_Standard_WRN28_10.npz": "7286f7b8955954132952d8dafb0d0d0ce274ccb604e93b6fb5ce3aa4acebcdbb",
+   "results/q1/havuz_cifar10/per_sample_Carmon2019_WRN28_10_to_Wong2020_PRN18.npz": "b26ace892d374e8c83083f2f16b6309e7e2b509b537c845601bf9c62bc23dbf5",
+   "results/q1/havuz_cifar10/per_sample_Carmon2019_WRN28_10_to_Engstrom2019_RN50.npz": "1c6f70c9364268d4d94f95b6df8551308baa7902b494ebee67aa50731c1908ee",
+   "results/q1/havuz_cifar10/per_sample_Carmon2019_WRN28_10_to_Carmon2019_WRN28_10.npz": "9daa7deef81450f2e06fe6491d7b8b0885b2e39c758c3773eef99eb69f5f4b94",
+   "results/q1/havuz_cifar10/per_sample_Carmon2019_WRN28_10_to_Debenedetti2022_XCiT_S12.npz": "51503f9cb8888c10bc571cd4413d69143aec8007ba1a5fc21acb91ffbb83e24d",
+   "results/q1/havuz_cifar10/per_sample_Carmon2019_WRN28_10_to_Gowal2020_WRN28_10.npz": "91f4d5c1aece2ae4d5fb9a722006e17e55d18f988942ee2486df15a44a9eae90",
+   "results/q1/havuz_cifar10/per_sample_Debenedetti2022_XCiT_S12_to_ResNet18_AT.npz": "be94a23f636e26d763bd794f4195929a8cb0bdd73908ea9d053544918ec886b9",
+   "results/q1/havuz_cifar10/per_sample_Debenedetti2022_XCiT_S12_to_ViT_Tiny_AT.npz": "4e4b27b27940ed0db621345b1dce943aee96cd57eec74a3a348707b1db884256",
+   "results/q1/havuz_cifar10/per_sample_Debenedetti2022_XCiT_S12_to_Standard_WRN28_10.npz": "87a06c1790e037b2fdcbfe5f2ba3a3b2ee74a56a4077ef0300b0056b3f39b858",
+   "results/q1/havuz_cifar10/per_sample_Debenedetti2022_XCiT_S12_to_Wong2020_PRN18.npz": "572b5749779960b2703774332400db88432d1356676979d82e4e20ed107057c5",
+   "results/q1/havuz_cifar10/per_sample_Debenedetti2022_XCiT_S12_to_Engstrom2019_RN50.npz": "eb4c9616f1c86344796a786b00810f3d1c23bd9139c3c62f55d88b7ccc8e363f",
+   "results/q1/havuz_cifar10/per_sample_Debenedetti2022_XCiT_S12_to_Carmon2019_WRN28_10.npz": "edab8460c1c2d8a43d2425babd51c1c13496eb212ee4ff958b07f9d7cf94e743",
+   "results/q1/havuz_cifar10/per_sample_Debenedetti2022_XCiT_S12_to_Debenedetti2022_XCiT_S12.npz": "209c021c375c8a593334eb0e52f94c5cc34178c0ac0e1aa9b3148fdfb87407db",
+   "results/q1/havuz_cifar10/per_sample_Debenedetti2022_XCiT_S12_to_Gowal2020_WRN28_10.npz": "6be59e1c7840dd82e5c8812d291d71aed283681a6710351ff0c6cface4871d36",
+   "results/q1/havuz_cifar10/per_sample_Gowal2020_WRN28_10_to_ResNet18_AT.npz": "7e3eb836ec30236644f3329671a3c3af9c1d358a6ad8263722e3a01a3f50c64c",
+   "results/q1/havuz_cifar10/per_sample_Gowal2020_WRN28_10_to_ViT_Tiny_AT.npz": "a94c0dfd37377beb8ac41e0dbb4e0b2342646be6ff604f7068f4a43664993fce",
+   "results/q1/havuz_cifar10/per_sample_Gowal2020_WRN28_10_to_Standard_WRN28_10.npz": "8807258a4f6cae9ad5331a87b20c8fff1c9caa3a4162e2fadba89aed474f0882",
+   "results/q1/havuz_cifar10/per_sample_Gowal2020_WRN28_10_to_Wong2020_PRN18.npz": "819af2e5365b98c3add904d5409284da2cb34c2809b550e2b4b96f45169e5cf7",
+   "results/q1/havuz_cifar10/per_sample_Gowal2020_WRN28_10_to_Engstrom2019_RN50.npz": "081f7d62aceb04002d4378f40259953abd239d44d35343a52ff7ae28d87c566d",
+   "results/q1/havuz_cifar10/per_sample_Gowal2020_WRN28_10_to_Carmon2019_WRN28_10.npz": "d37a7236be0e4da49bee90dfb96c1ae409636bb5946858010d2afbe1a68e3042",
+   "results/q1/havuz_cifar10/per_sample_Gowal2020_WRN28_10_to_Debenedetti2022_XCiT_S12.npz": "2fe18d6631c89b6707595f48b2f34159a4ca8bd3452b0f09c20d7f2ecfe726e5",
+   "results/q1/havuz_cifar10/per_sample_Gowal2020_WRN28_10_to_Gowal2020_WRN28_10.npz": "1ba20dcee8bb596cb25528e6a8bc87d71209e753009781b1d348736e3b4ba015"
+  }
+ },
+ "panel": {
+  "birincil": [
+   "Wong2020Fast",
+   "Engstrom2019Robustness",
+   "Carmon2019Unlabeled",
+   "Gowal2020Uncovering_28_10_extra"
+  ],
+  "birincil_eksik": [],
+  "ikincil": []
+ },
+ "b2": {
+  "hucreler": {
+   "C1-R32": [],
+   "V-scr": [
+    "SAHTE_Va",
+    "SAHTE_Vb",
+    "SAHTE_Vc"
+   ]
+  },
+  "tohum_ciftleri": [],
+  "model_tablosu": {
+   "Carmon2019Unlabeled": {
+    "yari_log": {
+     "sigma": -0.5193014896284401,
+     "rho": 0.007758484934761537,
+     "S": 3.009331706072248,
+     "omega": 3.356079805227598,
+     "panel_n": 3
+    },
+    "tam_log": {
+     "sigma": -0.5190998488386791,
+     "rho": 0.008221988618458465,
+     "S": 3.009409496678161,
+     "omega": 3.356079805227598,
+     "panel_n": 3
+    },
+    "yari_logit": {
+     "sigma": -0.697866827814605,
+     "rho": 0.0707635437488261,
+     "S": -1.3690958782721858,
+     "omega": -0.9111453240926278,
+     "panel_n": 3
+    },
+    "yari_oran": {
+     "sigma": -13.033563343175253,
+     "rho": 3.3811026647724263,
+     "S": 20.284701050285385,
+     "omega": 28.676552569963203,
+     "panel_n": 3
+    }
+   },
+   "Engstrom2019Robustness": {
+    "yari_log": {
+     "sigma": -0.5655896363166684,
+     "rho": -0.05813963362323863,
+     "S": 2.904980489145805,
+     "omega": 3.6290408900432256,
+     "panel_n": 3
+    },
+    "tam_log": {
+     "sigma": -0.5654731605541256,
+     "rho": -0.0584522831373658,
+     "S": 2.905386292568751,
+     "omega": 3.6290408900432256,
+     "panel_n": 3
+    },
+    "yari_logit": {
+     "sigma": -0.7772560825986321,
+     "rho": -0.11435919456234478,
+     "S": -1.4919063916578426,
+     "omega": -0.5032950527755833,
+     "panel_n": 3
+    },
+    "yari_oran": {
+     "sigma": -15.100158294899302,
+     "rho": -3.5720960363689658,
+     "S": 18.694356494450457,
+     "omega": 37.67666321957945,
+     "panel_n": 3
+    }
+   },
+   "Gowal2020Uncovering_28_10_extra": {
+    "yari_log": {
+     "sigma": -0.5210654088496056,
+     "rho": 0.08344391748248059,
+     "S": 3.01218004407394,
+     "omega": 3.2286623798460745,
+     "panel_n": 3
+    },
+    "tam_log": {
+     "sigma": -0.5209471146538656,
+     "rho": 0.08361785537440936,
+     "S": 3.012336772612174,
+     "omega": 3.2286623798460745,
+     "panel_n": 3
+    },
+    "yari_logit": {
+     "sigma": -0.6925566159328489,
+     "rho": 0.1905626919136521,
+     "S": -1.3655699911190489,
+     "omega": -1.0855421486504047,
+     "panel_n": 3
+    },
+    "yari_oran": {
+     "sigma": -12.605796515781044,
+     "rho": 6.413981137553675,
+     "S": 20.339403459131457,
+     "omega": 25.245864997764865,
+     "panel_n": 3
+    }
+   },
+   "SAHTE_Va": {
+    "yari_log": {
+     "sigma": -1.0862472391720903,
+     "rho": 0.04340965808587016,
+     "S": 2.380409974763995,
+     "omega": 4.02231063415937,
+     "panel_n": 4
+    },
+    "tam_log": {
+     "sigma": -1.0859276585230253,
+     "rho": 0.042926905195120324,
+     "S": 2.3810940950558663,
+     "omega": 4.02231063415937,
+     "panel_n": 4
+    },
+    "yari_logit": {
+     "sigma": -1.5344992385398448,
+     "rho": -0.26527715780670036,
+     "S": -2.106574890661384,
+     "omega": 0.23426389196023079,
+     "panel_n": 4
+    },
+    "yari_oran": {
+     "sigma": -29.424979324417315,
+     "rho": -14.213722160640163,
+     "S": 11.10727403493948,
+     "omega": 55.829959514170035,
+     "panel_n": 4
+    }
+   },
+   "SAHTE_Vb": {
+    "yari_log": {
+     "sigma": -0.6942912009426071,
+     "rho": -0.018167952001493126,
+     "S": 2.80315481803716,
+     "omega": 3.8619435015735633,
+     "panel_n": 4
+    },
+    "tam_log": {
+     "sigma": -0.6938930388945731,
+     "rho": -0.01792144592594158,
+     "S": 2.803552890244849,
+     "omega": 3.8619435015735633,
+     "panel_n": 4
+    },
+    "yari_logit": {
+     "sigma": -0.9938187002478346,
+     "rho": -0.16984811643251013,
+     "S": -1.6136088730564686,
+     "omega": -0.0977702056451869,
+     "panel_n": 4
+    },
+    "yari_oran": {
+     "sigma": -20.142554913565384,
+     "rho": -7.541013878886098,
+     "S": 17.053344304914376,
+     "omega": 47.55769005505447,
+     "panel_n": 4
+    }
+   },
+   "SAHTE_Vc": {
+    "yari_log": {
+     "sigma": -0.6088773445766095,
+     "rho": -0.09567725066557059,
+     "S": 2.9273233237351963,
+     "omega": 3.48908433446044,
+     "panel_n": 4
+    },
+    "tam_log": {
+     "sigma": -0.6086424295329083,
+     "rho": -0.09519900064348674,
+     "S": 2.9274422769652864,
+     "omega": 3.48908433446044,
+     "panel_n": 4
+    },
+    "yari_logit": {
+     "sigma": -0.8154928472662631,
+     "rho": -0.10274980736717358,
+     "S": -1.4688321746075657,
+     "omega": -0.7192443457834188,
+     "panel_n": 4
+    },
+    "yari_oran": {
+     "sigma": -15.164111952456608,
+     "rho": -1.1311860818272517,
+     "S": 18.826873367493732,
+     "omega": 32.7559404841217,
+     "panel_n": 4
+    }
+   },
+   "Wong2020Fast": {
+    "yari_log": {
+     "sigma": -0.6556017795028202,
+     "rho": -0.033062768794003494,
+     "S": 2.7653976183265545,
+     "omega": 3.740157749588908,
+     "panel_n": 3
+    },
+    "tam_log": {
+     "sigma": -0.6555341633261004,
+     "rho": -0.03338756085550202,
+     "S": 2.76575397547395,
+     "omega": 3.740157749588908,
+     "panel_n": 3
+    },
+    "yari_logit": {
+     "sigma": -0.9016937333639059,
+     "rho": -0.14696704110013342,
+     "S": -1.6616579227604706,
+     "omega": -0.318479638189871,
+     "panel_n": 3
+    },
+    "yari_oran": {
+     "sigma": -17.403371473769127,
+     "rho": -6.222987765957135,
+     "S": 16.240218484654818,
+     "omega": 42.104631629469644,
+     "panel_n": 3
+    }
+   }
+  },
+  "F_B2": {
+   "K-a": {
+    "ciftler": [],
+    "D": [],
+    "simetrik_pay": [],
+    "yonlu_pay": [],
+    "ozdeslik_artik_max": null,
+    "q": [],
+    "sinama": {
+     "degerler": [],
+     "n": 0,
+     "ort": null,
+     "not": "n < 2: aralik ve sinama tanimsiz"
+    },
+    "p_tek_H0_q_le_0.5": null,
+    "ongoru_her_tohumda_q_ge_0.75": null,
+    "payda_kucuk_tohumlar": []
+   },
+   "K-b": {
+    "degerler": [
+     0.04340965808587016,
+     -0.018167952001493126,
+     -0.09567725066557059
+    ],
+    "n": 3,
+    "ort": -0.023478514860397853,
+    "sd": 0.06969536286523434,
+    "se": 0.040238636511511695,
+    "df": 2,
+    "ci90": [
+     -0.14097475324717898,
+     0.09401772352638328
+    ],
+    "ci95": [
+     -0.19661139408590447,
+     0.1496543643651088
+    ],
+    "tost_p": 0.0987824725295181,
+    "tost_p_alt": 0.0987824725295181,
+    "tost_p_ust": 0.045902759924371046
+   },
+   "K-c": {
+    "vit_ciftleri": [
+     [
+      "SAHTE_Va",
+      "SAHTE_Vb"
+     ],
+     [
+      "SAHTE_Va",
+      "SAHTE_Vc"
+     ],
+     [
+      "SAHTE_Vb",
+      "SAHTE_Vc"
+     ]
+    ],
+    "log_tau_tur_ici": {
+     "SAHTE_Va|SAHTE_Vb": -1.0997377864598374,
+     "SAHTE_Va|SAHTE_Vc": -1.0995553073869462,
+     "SAHTE_Vb|SAHTE_Vc": -0.7964868931099272
+    },
+    "sigma_V": {
+     "SAHTE_Va": -1.0862472391720903,
+     "SAHTE_Vb": -0.6942912009426071,
+     "SAHTE_Vc": -0.6088773445766095
+    },
+    "Delta_w": -0.20212140075513463,
+    "bootstrap": {
+     "B": 2000,
+     "ci90": [
+      -0.3325419545173645,
+      -0.1266331911087036
+     ],
+     "ci95": [
+      -0.3414890691637993,
+      -0.120956227183342
+     ],
+     "yeniden_cekilen_tek_tohumlu_ornek": 284,
+     "yontem": "tohumlar yerine koyarak, goruntuler ortak agirlikla; ozdes kokenli tohum ciftleri disarida"
+    },
+    "p_tek_H0_Delta_le_0": 1.0,
+    "ongoru_Delta_ge_0.30": false
+   },
+   "p_ham": [
+    null,
+    0.0987824725295181,
+    1.0
+   ],
+   "p_holm": [
+    1.0,
+    0.2963474175885543,
+    1.0
+   ],
+   "p_1_sayilan_hesaplanamayan": [
+    0
+   ],
+   "karar": {
+    "K-a": "hesaplanamadi",
+    "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": null,
+    "K-b": "kararsiz",
+    "K-b_ham_ci90_delta_icinde": false,
+    "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+    "K-c": "curutuldu",
+    "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+   },
+   "duyarlilik_delta_0.06": {
+    "delta": 0.06,
+    "p_holm": [
+     1.0,
+     0.6898207156423015,
+     1.0
+    ],
+    "karar": {
+     "K-a": "hesaplanamadi",
+     "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": null,
+     "K-b": "kararsiz",
+     "K-b_ham_ci90_delta_icinde": false,
+     "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+     "K-c": "curutuldu",
+     "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+    }
+   },
+   "not": "K-a p tek yonlu t (H0: ort q <= 0,50); K-b p TOST'un buyuk tek yonlu p'si; K-c p hiyerarsik bootstrap (H0: Delta_w <= 0). Destek Holm sonrasi, curutme ham aralikla okunur; ON_KAYIT §5 karar ilkesi."
+  },
+  "duyarlilik": {
+   "tam_log": {
+    "q_ort": null,
+    "q": [],
+    "rho_V": {
+     "degerler": [
+      0.042926905195120324,
+      -0.01792144592594158,
+      -0.09519900064348674
+     ],
+     "n": 3,
+     "ort": -0.023397847124769333,
+     "sd": 0.06922560720934001,
+     "se": 0.039967422957127755,
+     "df": 2,
+     "ci90": [
+      -0.1401021458435524,
+      0.09330645159401373
+     ],
+     "ci95": [
+      -0.1953637886101753,
+      0.14856809436063664
+     ]
+    }
+   },
+   "yari_logit": {
+    "q_ort": null,
+    "q": [],
+    "rho_V": {
+     "degerler": [
+      -0.26527715780670036,
+      -0.16984811643251013,
+      -0.10274980736717358
+     ],
+     "n": 3,
+     "ort": -0.1792916938687947,
+     "sd": 0.08167417447589852,
+     "se": 0.04715460661950047,
+     "df": 2,
+     "ci90": [
+      -0.3169824652450729,
+      -0.04160092249251654
+     ],
+     "ci95": [
+      -0.3821815907579362,
+      0.023598203020346764
+     ]
+    }
+   },
+   "yari_oran": {
+    "q_ort": null,
+    "q": [],
+    "rho_V": {
+     "degerler": [
+      -14.213722160640163,
+      -7.541013878886098,
+      -1.1311860818272517
+     ],
+     "n": 3,
+     "ort": -7.628640707117838,
+     "sd": 6.541708217975627,
+     "se": 3.7768570006082154,
+     "df": 2,
+     "ci90": [
+      -18.657008687958612,
+      3.3997272737229354
+     ],
+     "ci95": [
+      -23.87914479045676,
+      8.621863376221082
+     ]
+    }
+   },
+   "panel_jackknife": {
+    "Wong2020Fast": {
+     "q_ort": null,
+     "rho_V_ort": -0.03168328541011779
+    },
+    "Engstrom2019Robustness": {
+     "q_ort": null,
+     "rho_V_ort": -0.03477621335136615
+    },
+    "Carmon2019Unlabeled": {
+     "q_ort": null,
+     "rho_V_ort": -0.025114009255017528
+    },
+    "Gowal2020Uncovering_28_10_extra": {
+     "q_ort": null,
+     "rho_V_ort": -0.0023405514250899504
+    }
+   }
+  },
+  "tur_ici_resnet_log_tau": {}
+ }
+}

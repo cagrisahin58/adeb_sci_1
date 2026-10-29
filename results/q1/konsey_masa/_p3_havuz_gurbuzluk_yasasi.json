@@ -1,0 +1,1519 @@
+{
+ "uretildi_utc": "2026-10-29T03:44:45.206422+00:00",
+ "betik": "raporlar/konsey_2026-10-29/_p3_havuz_gurbuzluk_yasasi.py",
+ "tanim": "A_ij = (i->j) - (j->i) oran (puan); rho = 100 - kosegen ham oran (beyaz kutu PGD-10 dogrulugu, havuz kosusu).",
+ "sonuc": {
+  "target_correct": {
+   "AT7": {
+    "modeller": [
+     "ResNet18_AT",
+     "ViT_Tiny_AT",
+     "Wong2020_PRN18",
+     "Engstrom2019_RN50",
+     "Carmon2019_WRN28_10",
+     "Debenedetti2022_XCiT_S12",
+     "Gowal2020_WRN28_10"
+    ],
+    "rho_pgd10_dogruluk": {
+     "ResNet18_AT": 44.769999999999996,
+     "ViT_Tiny_AT": 32.730000000000004,
+     "Wong2020_PRN18": 48.25000000000001,
+     "Engstrom2019_RN50": 54.24,
+     "Carmon2019_WRN28_10": 63.97,
+     "Debenedetti2022_XCiT_S12": 60.56,
+     "Gowal2020_WRN28_10": 66.89
+    },
+    "kappa": 0.3732278637037679,
+    "R2_kesisimsiz": 0.9504768931059174,
+    "isaret_uyumu": "21/21",
+    "model_potansiyel_artigi": {
+     "ResNet18_AT": -1.2921100658071187,
+     "ViT_Tiny_AT": 0.6674212833238561,
+     "Wong2020_PRN18": 0.011875608989605078,
+     "Engstrom2019_RN50": -0.07264511054599579,
+     "Carmon2019_WRN28_10": -0.1430561790191675,
+     "Debenedetti2022_XCiT_S12": 1.0896819837104474,
+     "Gowal2020_WRN28_10": -0.2611675206516264
+    },
+    "ciftler": [
+     {
+      "i": "ResNet18_AT",
+      "j": "ViT_Tiny_AT",
+      "A": 4.806819311729827,
+      "rho_farki": 12.039999999999992,
+      "ongoru": 4.493663478993363
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Wong2020_PRN18",
+      "A": -3.2628618479410036,
+      "rho_farki": -3.480000000000011,
+      "ongoru": -1.2988329656891164
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -5.755845576038208,
+      "rho_farki": -9.470000000000006,
+      "ongoru": -3.5344678692746845
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -8.40484449234529,
+      "rho_farki": -19.200000000000003,
+      "ongoru": -7.165974983112346
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -9.14587130763969,
+      "rho_farki": -15.790000000000006,
+      "ongoru": -5.8932679678824975
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -8.936847200508096,
+      "rho_farki": -22.120000000000005,
+      "ongoru": -8.255800345127348
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Wong2020_PRN18",
+      "A": -6.392680488394937,
+      "rho_farki": -15.520000000000003,
+      "ongoru": -5.792496444682479
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -7.152315200538139,
+      "rho_farki": -21.509999999999998,
+      "ongoru": -8.028131348268047
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -9.529010481296428,
+      "rho_farki": -31.239999999999995,
+      "ongoru": -11.659638462105708
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -10.870189104699431,
+      "rho_farki": -27.83,
+      "ongoru": -10.386931446875861
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -9.687361435120415,
+      "rho_farki": -34.16,
+      "ongoru": -12.749463824120712
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Engstrom2019_RN50",
+      "A": -3.31140003112057,
+      "rho_farki": -5.989999999999995,
+      "ongoru": -2.235634903585568
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Carmon2019_WRN28_10",
+      "A": -6.092585176528502,
+      "rho_farki": -15.719999999999992,
+      "ongoru": -5.8671420174232285
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -6.087462370098999,
+      "rho_farki": -12.309999999999995,
+      "ongoru": -4.594435002193381
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Gowal2020_WRN28_10",
+      "A": -6.643815387929449,
+      "rho_farki": -18.639999999999993,
+      "ongoru": -6.956967379438232
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Carmon2019_WRN28_10",
+      "A": -4.198183775650595,
+      "rho_farki": -9.729999999999997,
+      "ongoru": -3.6315071138376607
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -4.046741063428318,
+      "rho_farki": -6.32,
+      "ongoru": -2.3588000986078135
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Gowal2020_WRN28_10",
+      "A": -5.396557309609813,
+      "rho_farki": -12.649999999999999,
+      "ongoru": -4.721332475852663
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": 0.7185086182928231,
+      "rho_farki": 3.4099999999999966,
+      "ongoru": 1.2727070152298474
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.4373815675540236,
+      "rho_farki": -2.9200000000000017,
+      "ongoru": -1.089825362015003
+     },
+     {
+      "i": "Debenedetti2022_XCiT_S12",
+      "j": "Gowal2020_WRN28_10",
+      "A": -2.2057862185156267,
+      "rho_farki": -6.329999999999998,
+      "ongoru": -2.3625323772448503
+     }
+    ],
+    "ViT_disarida_kappa": 0.4429098886572305,
+    "ViT_ciftleri_dis_ornek_ongoru": [
+     {
+      "es": "ResNet18_AT",
+      "gozlenen_ViT_eksi_es": -4.806819311729827,
+      "ongorulen_ViTsiz_kappa": -5.332635059433052,
+      "artik": 0.5258157477032253
+     },
+     {
+      "es": "Wong2020_PRN18",
+      "gozlenen_ViT_eksi_es": -6.392680488394937,
+      "ongorulen_ViTsiz_kappa": -6.873961471960219,
+      "artik": 0.4812809835652816
+     },
+     {
+      "es": "Engstrom2019_RN50",
+      "gozlenen_ViT_eksi_es": -7.152315200538139,
+      "ongorulen_ViTsiz_kappa": -9.526991705017029,
+      "artik": 2.37467650447889
+     },
+     {
+      "es": "Carmon2019_WRN28_10",
+      "gozlenen_ViT_eksi_es": -9.529010481296428,
+      "ongorulen_ViTsiz_kappa": -13.83650492165188,
+      "artik": 4.307494440355452
+     },
+     {
+      "es": "Debenedetti2022_XCiT_S12",
+      "gozlenen_ViT_eksi_es": -10.870189104699431,
+      "ongorulen_ViTsiz_kappa": -12.326182201330724,
+      "artik": 1.4559930966312926
+     },
+     {
+      "es": "Gowal2020_WRN28_10",
+      "gozlenen_ViT_eksi_es": -9.687361435120415,
+      "ongorulen_ViTsiz_kappa": -15.129801796530993,
+      "artik": 5.442440361410577
+     }
+    ],
+    "ViT_ciftleri_artik_ortalama": 2.431283522357453,
+    "ViT_ciftleri_artik_mutlak_en_buyuk": 5.442440361410577
+   },
+   "hepsi8": {
+    "modeller": [
+     "ResNet18_AT",
+     "ViT_Tiny_AT",
+     "Standard_WRN28_10",
+     "Wong2020_PRN18",
+     "Engstrom2019_RN50",
+     "Carmon2019_WRN28_10",
+     "Debenedetti2022_XCiT_S12",
+     "Gowal2020_WRN28_10"
+    ],
+    "rho_pgd10_dogruluk": {
+     "ResNet18_AT": 44.769999999999996,
+     "ViT_Tiny_AT": 32.730000000000004,
+     "Standard_WRN28_10": 0.0,
+     "Wong2020_PRN18": 48.25000000000001,
+     "Engstrom2019_RN50": 54.24,
+     "Carmon2019_WRN28_10": 63.97,
+     "Debenedetti2022_XCiT_S12": 60.56,
+     "Gowal2020_WRN28_10": 66.89
+    },
+    "kappa": 0.4329464794094001,
+    "R2_kesisimsiz": 0.9090790621204868,
+    "isaret_uyumu": "28/28",
+    "model_potansiyel_artigi": {
+     "ResNet18_AT": 1.6086171094872501,
+     "ViT_Tiny_AT": 1.6907158980191603,
+     "Standard_WRN28_10": -1.6436193005457973,
+     "Wong2020_PRN18": 0.9976457642486223,
+     "Engstrom2019_RN50": 0.0063752471678498734,
+     "Carmon2019_WRN28_10": -1.2438596043529966,
+     "Debenedetti2022_XCiT_S12": 0.24637213234742739,
+     "Gowal2020_WRN28_10": -1.6622472463715159
+    },
+    "ciftler": [
+     {
+      "i": "ResNet18_AT",
+      "j": "ViT_Tiny_AT",
+      "A": 4.806819311729827,
+      "rho_farki": 12.039999999999992,
+      "ongoru": 5.212675612089174
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Standard_WRN28_10",
+      "A": 37.83184713646589,
+      "rho_farki": 44.769999999999996,
+      "ongoru": 19.383013883158842
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Wong2020_PRN18",
+      "A": -3.2628618479410036,
+      "rho_farki": -3.480000000000011,
+      "ongoru": -1.5066537483447173
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -5.755845576038208,
+      "rho_farki": -9.470000000000006,
+      "ongoru": -4.100003160007022
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -8.40484449234529,
+      "rho_farki": -19.200000000000003,
+      "ongoru": -8.312572404660484
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -9.14587130763969,
+      "rho_farki": -15.790000000000006,
+      "ongoru": -6.8362249098744305
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -8.936847200508096,
+      "rho_farki": -22.120000000000005,
+      "ongoru": -9.576776124535932
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Standard_WRN28_10",
+      "A": 14.526157457044498,
+      "rho_farki": 32.730000000000004,
+      "ongoru": 14.170338271069667
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Wong2020_PRN18",
+      "A": -6.392680488394937,
+      "rho_farki": -15.520000000000003,
+      "ongoru": -6.719329360433891
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -7.152315200538139,
+      "rho_farki": -21.509999999999998,
+      "ongoru": -9.312678772096195
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -9.529010481296428,
+      "rho_farki": -31.239999999999995,
+      "ongoru": -13.525248016749657
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -10.870189104699431,
+      "rho_farki": -27.83,
+      "ongoru": -12.048900521963605
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -9.687361435120415,
+      "rho_farki": -34.16,
+      "ongoru": -14.789451736625107
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Wong2020_PRN18",
+      "A": -26.777575877913726,
+      "rho_farki": -48.25000000000001,
+      "ongoru": -20.88966763150356
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Engstrom2019_RN50",
+      "A": -24.53640774621621,
+      "rho_farki": -54.24,
+      "ongoru": -23.483017043165862
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Carmon2019_WRN28_10",
+      "A": -23.30741057372571,
+      "rho_farki": -63.97,
+      "ongoru": -27.695586287819324
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -23.698266476542308,
+      "rho_farki": -60.56,
+      "ongoru": -26.219238793033274
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -23.27194105390334,
+      "rho_farki": -66.89,
+      "ongoru": -28.959790007694775
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Engstrom2019_RN50",
+      "A": -3.31140003112057,
+      "rho_farki": -5.989999999999995,
+      "ongoru": -2.5933494116623046
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Carmon2019_WRN28_10",
+      "A": -6.092585176528502,
+      "rho_farki": -15.719999999999992,
+      "ongoru": -6.805918656315766
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -6.087462370098999,
+      "rho_farki": -12.309999999999995,
+      "ongoru": -5.329571161529714
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Gowal2020_WRN28_10",
+      "A": -6.643815387929449,
+      "rho_farki": -18.639999999999993,
+      "ongoru": -8.070122376191215
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Carmon2019_WRN28_10",
+      "A": -4.198183775650595,
+      "rho_farki": -9.729999999999997,
+      "ongoru": -4.212569244653462
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -4.046741063428318,
+      "rho_farki": -6.32,
+      "ongoru": -2.736221749867409
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Gowal2020_WRN28_10",
+      "A": -5.396557309609813,
+      "rho_farki": -12.649999999999999,
+      "ongoru": -5.4767729645289105
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": 0.7185086182928231,
+      "rho_farki": 3.4099999999999966,
+      "ongoru": 1.4763474947860529
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.4373815675540236,
+      "rho_farki": -2.9200000000000017,
+      "ongoru": -1.264203719875449
+     },
+     {
+      "i": "Debenedetti2022_XCiT_S12",
+      "j": "Gowal2020_WRN28_10",
+      "A": -2.2057862185156267,
+      "rho_farki": -6.329999999999998,
+      "ongoru": -2.740551214661502
+     }
+    ],
+    "ViT_disarida_kappa": 0.4501840064294288,
+    "ViT_ciftleri_dis_ornek_ongoru": [
+     {
+      "es": "ResNet18_AT",
+      "gozlenen_ViT_eksi_es": -4.806819311729827,
+      "ongorulen_ViTsiz_kappa": -5.420215437410319,
+      "artik": 0.6133961256804925
+     },
+     {
+      "es": "Standard_WRN28_10",
+      "gozlenen_ViT_eksi_es": 14.526157457044498,
+      "ongorulen_ViTsiz_kappa": 14.734522530435207,
+      "artik": -0.2083650733907092
+     },
+     {
+      "es": "Wong2020_PRN18",
+      "gozlenen_ViT_eksi_es": -6.392680488394937,
+      "ongorulen_ViTsiz_kappa": -6.986855779784737,
+      "artik": 0.5941752913897993
+     },
+     {
+      "es": "Engstrom2019_RN50",
+      "gozlenen_ViT_eksi_es": -7.152315200538139,
+      "ongorulen_ViTsiz_kappa": -9.683457978297012,
+      "artik": 2.5311427777588733
+     },
+     {
+      "es": "Carmon2019_WRN28_10",
+      "gozlenen_ViT_eksi_es": -9.529010481296428,
+      "ongorulen_ViTsiz_kappa": -14.063748360855353,
+      "artik": 4.534737879558925
+     },
+     {
+      "es": "Debenedetti2022_XCiT_S12",
+      "gozlenen_ViT_eksi_es": -10.870189104699431,
+      "ongorulen_ViTsiz_kappa": -12.528620898931003,
+      "artik": 1.6584317942315714
+     },
+     {
+      "es": "Gowal2020_WRN28_10",
+      "gozlenen_ViT_eksi_es": -9.687361435120415,
+      "ongorulen_ViTsiz_kappa": -15.378285659629286,
+      "artik": 5.690924224508871
+     }
+    ],
+    "ViT_ciftleri_artik_ortalama": 2.202063288533975,
+    "ViT_ciftleri_artik_mutlak_en_buyuk": 5.690924224508871
+   }
+  },
+  "both_correct": {
+   "AT7": {
+    "modeller": [
+     "ResNet18_AT",
+     "ViT_Tiny_AT",
+     "Wong2020_PRN18",
+     "Engstrom2019_RN50",
+     "Carmon2019_WRN28_10",
+     "Debenedetti2022_XCiT_S12",
+     "Gowal2020_WRN28_10"
+    ],
+    "rho_pgd10_dogruluk": {
+     "ResNet18_AT": 44.769999999999996,
+     "ViT_Tiny_AT": 32.730000000000004,
+     "Wong2020_PRN18": 48.25000000000001,
+     "Engstrom2019_RN50": 54.24,
+     "Carmon2019_WRN28_10": 63.97,
+     "Debenedetti2022_XCiT_S12": 60.56,
+     "Gowal2020_WRN28_10": 66.89
+    },
+    "kappa": 0.49807348246779876,
+    "R2_kesisimsiz": 0.9470056008959379,
+    "isaret_uyumu": "21/21",
+    "model_potansiyel_artigi": {
+     "ResNet18_AT": -0.5918691187150643,
+     "ViT_Tiny_AT": 0.38312288913174364,
+     "Wong2020_PRN18": -0.7925630443821164,
+     "Engstrom2019_RN50": 0.32051665629031983,
+     "Carmon2019_WRN28_10": -0.04750875539336952,
+     "Debenedetti2022_XCiT_S12": 1.7159924208839796,
+     "Gowal2020_WRN28_10": -0.9876910478154924
+    },
+    "ciftler": [
+     {
+      "i": "ResNet18_AT",
+      "j": "ViT_Tiny_AT",
+      "A": 8.490036486107213,
+      "rho_farki": 12.039999999999992,
+      "ongoru": 5.996804728912293
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Wong2020_PRN18",
+      "A": -1.9490254872563675,
+      "rho_farki": -3.480000000000011,
+      "ongoru": -1.7332957189879452
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -6.95239254839888,
+      "rho_farki": -9.470000000000006,
+      "ongoru": -4.716755878970057
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -10.733173076923078,
+      "rho_farki": -19.200000000000003,
+      "ongoru": -9.563010863381738
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -11.315315315315317,
+      "rho_farki": -15.790000000000006,
+      "ongoru": -7.864580288166546
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -10.581437342000724,
+      "rho_farki": -22.120000000000005,
+      "ongoru": -11.01738543218771
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Wong2020_PRN18",
+      "A": -9.307237397916078,
+      "rho_farki": -15.520000000000003,
+      "ongoru": -7.730100447900238
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -10.657691768335436,
+      "rho_farki": -21.509999999999998,
+      "ongoru": -10.71356060788235
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -12.717721868952172,
+      "rho_farki": -31.239999999999995,
+      "ongoru": -15.559815592294031
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -14.447201543975739,
+      "rho_farki": -27.83,
+      "ongoru": -13.861385017078838
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -12.574107265958911,
+      "rho_farki": -34.16,
+      "ongoru": -17.014190161100004
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Engstrom2019_RN50",
+      "A": -5.780203423468123,
+      "rho_farki": -5.989999999999995,
+      "ongoru": -2.983460159982112
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Carmon2019_WRN28_10",
+      "A": -9.246070726915521,
+      "rho_farki": -15.719999999999992,
+      "ongoru": -7.829715144393792
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -9.48012232415902,
+      "rho_farki": -12.309999999999995,
+      "ongoru": -6.1312845691786
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Gowal2020_WRN28_10",
+      "A": -9.062961141170684,
+      "rho_farki": -18.639999999999993,
+      "ongoru": -9.284089713199766
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Carmon2019_WRN28_10",
+      "A": -5.488163938287597,
+      "rho_farki": -9.729999999999997,
+      "ongoru": -4.84625498441168
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -5.349357841404501,
+      "rho_farki": -6.32,
+      "ongoru": -3.147824409196488
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Gowal2020_WRN28_10",
+      "A": -6.190081666469405,
+      "rho_farki": -12.649999999999999,
+      "ongoru": -6.300629553217654
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": 0.7459260959375715,
+      "rho_farki": 3.4099999999999966,
+      "ongoru": 1.698430575215192
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.2207644038790662,
+      "rho_farki": -2.9200000000000017,
+      "ongoru": -1.4543745688059733
+     },
+     {
+      "i": "Debenedetti2022_XCiT_S12",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.6802854183450346,
+      "rho_farki": -6.329999999999998,
+      "ongoru": -3.152805144021165
+     }
+    ],
+    "ViT_disarida_kappa": 0.5709083766222608,
+    "ViT_ciftleri_dis_ornek_ongoru": [
+     {
+      "es": "ResNet18_AT",
+      "gozlenen_ViT_eksi_es": -8.490036486107213,
+      "ongorulen_ViTsiz_kappa": -6.873736854532015,
+      "artik": -1.616299631575198
+     },
+     {
+      "es": "Wong2020_PRN18",
+      "gozlenen_ViT_eksi_es": -9.307237397916078,
+      "ongorulen_ViTsiz_kappa": -8.860498005177488,
+      "artik": -0.4467393927385892
+     },
+     {
+      "es": "Engstrom2019_RN50",
+      "gozlenen_ViT_eksi_es": -10.657691768335436,
+      "ongorulen_ViTsiz_kappa": -12.280239181144829,
+      "artik": 1.6225474128093929
+     },
+     {
+      "es": "Carmon2019_WRN28_10",
+      "gozlenen_ViT_eksi_es": -12.717721868952172,
+      "ongorulen_ViTsiz_kappa": -17.835177685679426,
+      "artik": 5.117455816727254
+     },
+     {
+      "es": "Debenedetti2022_XCiT_S12",
+      "gozlenen_ViT_eksi_es": -14.447201543975739,
+      "ongorulen_ViTsiz_kappa": -15.888380121397518,
+      "artik": 1.4411785774217787
+     },
+     {
+      "es": "Gowal2020_WRN28_10",
+      "gozlenen_ViT_eksi_es": -12.574107265958911,
+      "ongorulen_ViTsiz_kappa": -19.502230145416426,
+      "artik": 6.928122879457515
+     }
+    ],
+    "ViT_ciftleri_artik_ortalama": 2.174377610350359,
+    "ViT_ciftleri_artik_mutlak_en_buyuk": 6.928122879457515
+   },
+   "hepsi8": {
+    "modeller": [
+     "ResNet18_AT",
+     "ViT_Tiny_AT",
+     "Standard_WRN28_10",
+     "Wong2020_PRN18",
+     "Engstrom2019_RN50",
+     "Carmon2019_WRN28_10",
+     "Debenedetti2022_XCiT_S12",
+     "Gowal2020_WRN28_10"
+    ],
+    "rho_pgd10_dogruluk": {
+     "ResNet18_AT": 44.769999999999996,
+     "ViT_Tiny_AT": 32.730000000000004,
+     "Standard_WRN28_10": 0.0,
+     "Wong2020_PRN18": 48.25000000000001,
+     "Engstrom2019_RN50": 54.24,
+     "Carmon2019_WRN28_10": 63.97,
+     "Debenedetti2022_XCiT_S12": 60.56,
+     "Gowal2020_WRN28_10": 66.89
+    },
+    "kappa": 0.40362332504539894,
+    "R2_kesisimsiz": 0.8975662874199906,
+    "isaret_uyumu": "28/28",
+    "model_potansiyel_artigi": {
+     "ResNet18_AT": 0.6620490618392358,
+     "ViT_Tiny_AT": -1.7676604468760124,
+     "Standard_WRN28_10": 0.7159073419360162,
+     "Wong2020_PRN18": -0.7983071577306646,
+     "Engstrom2019_RN50": 0.193447311481725,
+     "Carmon2019_WRN28_10": 0.09892043739912018,
+     "Debenedetti2022_XCiT_S12": 1.5791789522829343,
+     "Gowal2020_WRN28_10": -0.6835355003323543
+    },
+    "ciftler": [
+     {
+      "i": "ResNet18_AT",
+      "j": "ViT_Tiny_AT",
+      "A": 8.490036486107213,
+      "rho_farki": 12.039999999999992,
+      "ongoru": 4.8596248335466
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Standard_WRN28_10",
+      "A": 32.98969072164949,
+      "rho_farki": 44.769999999999996,
+      "ongoru": 18.07021626228251
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Wong2020_PRN18",
+      "A": -1.9490254872563675,
+      "rho_farki": -3.480000000000011,
+      "ongoru": -1.4046091711579929
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -6.95239254839888,
+      "rho_farki": -9.470000000000006,
+      "ongoru": -3.82231288817993
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -10.733173076923078,
+      "rho_farki": -19.200000000000003,
+      "ongoru": -7.749567840871661
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -11.315315315315317,
+      "rho_farki": -15.790000000000006,
+      "ongoru": -6.373212302466852
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -10.581437342000724,
+      "rho_farki": -22.120000000000005,
+      "ongoru": -8.928147950004226
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Standard_WRN28_10",
+      "A": 9.827705031013096,
+      "rho_farki": 32.730000000000004,
+      "ongoru": 13.210591428735908
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Wong2020_PRN18",
+      "A": -9.307237397916078,
+      "rho_farki": -15.520000000000003,
+      "ongoru": -6.264234004704593
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -10.657691768335436,
+      "rho_farki": -21.509999999999998,
+      "ongoru": -8.68193772172653
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -12.717721868952172,
+      "rho_farki": -31.239999999999995,
+      "ongoru": -12.60919267441826
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -14.447201543975739,
+      "rho_farki": -27.83,
+      "ongoru": -11.232837136013451
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -12.574107265958911,
+      "rho_farki": -34.16,
+      "ongoru": -13.787772783550826
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Wong2020_PRN18",
+      "A": -21.815501781107972,
+      "rho_farki": -48.25000000000001,
+      "ongoru": -19.4748254334405
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Engstrom2019_RN50",
+      "A": -20.415388246400756,
+      "rho_farki": -54.24,
+      "ongoru": -21.89252915046244
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Carmon2019_WRN28_10",
+      "A": -19.72960586617782,
+      "rho_farki": -63.97,
+      "ongoru": -25.81978410315417
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -20.105335470574765,
+      "rho_farki": -60.56,
+      "ongoru": -24.44342856474936
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -19.299253302699597,
+      "rho_farki": -66.89,
+      "ongoru": -26.998364212286734
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Engstrom2019_RN50",
+      "A": -5.780203423468123,
+      "rho_farki": -5.989999999999995,
+      "ongoru": -2.4177037170219378
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Carmon2019_WRN28_10",
+      "A": -9.246070726915521,
+      "rho_farki": -15.719999999999992,
+      "ongoru": -6.344958669713668
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -9.48012232415902,
+      "rho_farki": -12.309999999999995,
+      "ongoru": -4.968603131308859
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Gowal2020_WRN28_10",
+      "A": -9.062961141170684,
+      "rho_farki": -18.639999999999993,
+      "ongoru": -7.523538778846234
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Carmon2019_WRN28_10",
+      "A": -5.488163938287597,
+      "rho_farki": -9.729999999999997,
+      "ongoru": -3.9272549526917304
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -5.349357841404501,
+      "rho_farki": -6.32,
+      "ongoru": -2.5508994142869215
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Gowal2020_WRN28_10",
+      "A": -6.190081666469405,
+      "rho_farki": -12.649999999999999,
+      "ongoru": -5.105835061824296
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": 0.7459260959375715,
+      "rho_farki": 3.4099999999999966,
+      "ongoru": 1.376355538404809
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.2207644038790662,
+      "rho_farki": -2.9200000000000017,
+      "ongoru": -1.1785801091325656
+     },
+     {
+      "i": "Debenedetti2022_XCiT_S12",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.6802854183450346,
+      "rho_farki": -6.329999999999998,
+      "ongoru": -2.554935647537375
+     }
+    ],
+    "ViT_disarida_kappa": 0.4002326061841533,
+    "ViT_ciftleri_dis_ornek_ongoru": [
+     {
+      "es": "ResNet18_AT",
+      "gozlenen_ViT_eksi_es": -8.490036486107213,
+      "ongorulen_ViTsiz_kappa": -4.8188005784572026,
+      "artik": -3.6712359076500105
+     },
+     {
+      "es": "Standard_WRN28_10",
+      "gozlenen_ViT_eksi_es": 9.827705031013096,
+      "ongorulen_ViTsiz_kappa": 13.099613200407338,
+      "artik": -3.2719081693942424
+     },
+     {
+      "es": "Wong2020_PRN18",
+      "gozlenen_ViT_eksi_es": -9.307237397916078,
+      "ongorulen_ViTsiz_kappa": -6.21161004797806,
+      "artik": -3.0956273499380176
+     },
+     {
+      "es": "Engstrom2019_RN50",
+      "gozlenen_ViT_eksi_es": -10.657691768335436,
+      "ongorulen_ViTsiz_kappa": -8.609003359021136,
+      "artik": -2.0486884093143
+     },
+     {
+      "es": "Carmon2019_WRN28_10",
+      "gozlenen_ViT_eksi_es": -12.717721868952172,
+      "ongorulen_ViTsiz_kappa": -12.503266617192947,
+      "artik": -0.2144552517592242
+     },
+     {
+      "es": "Debenedetti2022_XCiT_S12",
+      "gozlenen_ViT_eksi_es": -14.447201543975739,
+      "ongorulen_ViTsiz_kappa": -11.138473430104986,
+      "artik": -3.308728113870753
+     },
+     {
+      "es": "Gowal2020_WRN28_10",
+      "gozlenen_ViT_eksi_es": -12.574107265958911,
+      "ongorulen_ViTsiz_kappa": -13.671945827250676,
+      "artik": 1.0978385612917645
+     }
+    ],
+    "ViT_ciftleri_artik_ortalama": -2.073257805804969,
+    "ViT_ciftleri_artik_mutlak_en_buyuk": 3.6712359076500105
+   }
+  },
+  "raw": {
+   "AT7": {
+    "modeller": [
+     "ResNet18_AT",
+     "ViT_Tiny_AT",
+     "Wong2020_PRN18",
+     "Engstrom2019_RN50",
+     "Carmon2019_WRN28_10",
+     "Debenedetti2022_XCiT_S12",
+     "Gowal2020_WRN28_10"
+    ],
+    "rho_pgd10_dogruluk": {
+     "ResNet18_AT": 44.769999999999996,
+     "ViT_Tiny_AT": 32.730000000000004,
+     "Wong2020_PRN18": 48.25000000000001,
+     "Engstrom2019_RN50": 54.24,
+     "Carmon2019_WRN28_10": 63.97,
+     "Debenedetti2022_XCiT_S12": 60.56,
+     "Gowal2020_WRN28_10": 66.89
+    },
+    "kappa": 0.6803451556028205,
+    "R2_kesisimsiz": 0.9650543858885147,
+    "isaret_uyumu": "21/21",
+    "model_potansiyel_artigi": {
+     "ResNet18_AT": 1.6019465611536676,
+     "ViT_Tiny_AT": -1.4852691939598082,
+     "Wong2020_PRN18": -0.1585117232012983,
+     "Engstrom2019_RN50": 0.6219350804520968,
+     "Carmon2019_WRN28_10": -0.6121089978490603,
+     "Debenedetti2022_XCiT_S12": 1.9235822684708428,
+     "Gowal2020_WRN28_10": -1.8915739950664405
+    },
+    "ciftler": [
+     {
+      "i": "ResNet18_AT",
+      "j": "ViT_Tiny_AT",
+      "A": 13.190000000000001,
+      "rho_farki": 12.039999999999992,
+      "ongoru": 8.191355673457954
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Wong2020_PRN18",
+      "A": -1.2100000000000009,
+      "rho_farki": -3.480000000000011,
+      "ongoru": -2.367601141497823
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -6.290000000000003,
+      "rho_farki": -9.470000000000006,
+      "ongoru": -6.442868623558714
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -10.889999999999997,
+      "rho_farki": -19.200000000000003,
+      "ongoru": -13.062626987574156
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -11.84,
+      "rho_farki": -15.790000000000006,
+      "ongoru": -10.74265000696854
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -11.219999999999999,
+      "rho_farki": -22.120000000000005,
+      "ongoru": -15.049234841934393
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Wong2020_PRN18",
+      "A": -12.530000000000001,
+      "rho_farki": -15.520000000000003,
+      "ongoru": -10.558956814955776
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -16.68,
+      "rho_farki": -21.509999999999998,
+      "ongoru": -14.634224297016667
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -21.209999999999997,
+      "rho_farki": -31.239999999999995,
+      "ongoru": -21.253982661032108
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -22.400000000000006,
+      "rho_farki": -27.83,
+      "ongoru": -18.934005680426495
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -21.199999999999996,
+      "rho_farki": -34.16,
+      "ongoru": -23.240590515392345
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Engstrom2019_RN50",
+      "A": -5.690000000000001,
+      "rho_farki": -5.989999999999995,
+      "ongoru": -4.075267482060891
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Carmon2019_WRN28_10",
+      "A": -10.509999999999998,
+      "rho_farki": -15.719999999999992,
+      "ongoru": -10.695025846076332
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -10.720000000000002,
+      "rho_farki": -12.309999999999995,
+      "ongoru": -8.375048865470717
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Gowal2020_WRN28_10",
+      "A": -10.829999999999998,
+      "rho_farki": -18.639999999999993,
+      "ongoru": -12.681633700436569
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Carmon2019_WRN28_10",
+      "A": -5.849999999999998,
+      "rho_farki": -9.729999999999997,
+      "ongoru": -6.619758364015441
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -6.070000000000004,
+      "rho_farki": -6.32,
+      "ongoru": -4.299781383409826
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Gowal2020_WRN28_10",
+      "A": -6.759999999999998,
+      "rho_farki": -12.649999999999999,
+      "ongoru": -8.606366218375678
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": 0.3400000000000034,
+      "rho_farki": 3.4099999999999966,
+      "ongoru": 2.3199769806056154
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.120000000000001,
+      "rho_farki": -2.9200000000000017,
+      "ongoru": -1.986607854360237
+     },
+     {
+      "i": "Debenedetti2022_XCiT_S12",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.5,
+      "rho_farki": -6.329999999999998,
+      "ongoru": -4.306584834965853
+     }
+    ],
+    "ViT_disarida_kappa": 0.6120740176287499,
+    "ViT_ciftleri_dis_ornek_ongoru": [
+     {
+      "es": "ResNet18_AT",
+      "gozlenen_ViT_eksi_es": -13.190000000000001,
+      "ongorulen_ViTsiz_kappa": -7.369371172250144,
+      "artik": -5.820628827749857
+     },
+     {
+      "es": "Wong2020_PRN18",
+      "gozlenen_ViT_eksi_es": -12.530000000000001,
+      "ongorulen_ViTsiz_kappa": -9.4993887535982,
+      "artik": -3.0306112464018007
+     },
+     {
+      "es": "Engstrom2019_RN50",
+      "gozlenen_ViT_eksi_es": -16.68,
+      "ongorulen_ViTsiz_kappa": -13.16571211919441,
+      "artik": -3.5142878808055897
+     },
+     {
+      "es": "Carmon2019_WRN28_10",
+      "gozlenen_ViT_eksi_es": -21.209999999999997,
+      "ongorulen_ViTsiz_kappa": -19.121192310722144,
+      "artik": -2.0888076892778535
+     },
+     {
+      "es": "Debenedetti2022_XCiT_S12",
+      "gozlenen_ViT_eksi_es": -22.400000000000006,
+      "ongorulen_ViTsiz_kappa": -17.03401991060811,
+      "artik": -5.365980089391897
+     },
+     {
+      "es": "Gowal2020_WRN28_10",
+      "gozlenen_ViT_eksi_es": -21.199999999999996,
+      "ongorulen_ViTsiz_kappa": -20.908448442198093,
+      "artik": -0.29155155780190256
+     }
+    ],
+    "ViT_ciftleri_artik_ortalama": -3.351977881904817,
+    "ViT_ciftleri_artik_mutlak_en_buyuk": 5.820628827749857
+   },
+   "hepsi8": {
+    "modeller": [
+     "ResNet18_AT",
+     "ViT_Tiny_AT",
+     "Standard_WRN28_10",
+     "Wong2020_PRN18",
+     "Engstrom2019_RN50",
+     "Carmon2019_WRN28_10",
+     "Debenedetti2022_XCiT_S12",
+     "Gowal2020_WRN28_10"
+    ],
+    "rho_pgd10_dogruluk": {
+     "ResNet18_AT": 44.769999999999996,
+     "ViT_Tiny_AT": 32.730000000000004,
+     "Standard_WRN28_10": 0.0,
+     "Wong2020_PRN18": 48.25000000000001,
+     "Engstrom2019_RN50": 54.24,
+     "Carmon2019_WRN28_10": 63.97,
+     "Debenedetti2022_XCiT_S12": 60.56,
+     "Gowal2020_WRN28_10": 66.89
+    },
+    "kappa": 0.3731771862780768,
+    "R2_kesisimsiz": 0.7394332954471486,
+    "isaret_uyumu": "27/28",
+    "model_potansiyel_artigi": {
+     "ResNet18_AT": 0.428074714773067,
+     "ViT_Tiny_AT": -9.130121962438892,
+     "Standard_WRN28_10": 4.640217344442563,
+     "Wong2020_PRN18": -1.9168318934746436,
+     "Engstrom2019_RN50": 0.28908676071967776,
+     "Carmon2019_WRN28_10": 1.5443227382339904,
+     "Debenedetti2022_XCiT_S12": 3.0956069434422324,
+     "Gowal2020_WRN28_10": 1.049645354302005
+    },
+    "ciftler": [
+     {
+      "i": "ResNet18_AT",
+      "j": "ViT_Tiny_AT",
+      "A": 13.190000000000001,
+      "rho_farki": 12.039999999999992,
+      "ongoru": 4.493053322788041
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Standard_WRN28_10",
+      "A": 26.74,
+      "rho_farki": 44.769999999999996,
+      "ongoru": 16.707142629669494
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Wong2020_PRN18",
+      "A": -1.2100000000000009,
+      "rho_farki": -3.480000000000011,
+      "ongoru": -1.2986566082477113
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -6.290000000000003,
+      "rho_farki": -9.470000000000006,
+      "ongoru": -3.5339879540533894
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -10.889999999999997,
+      "rho_farki": -19.200000000000003,
+      "ongoru": -7.165001976539076
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -11.84,
+      "rho_farki": -15.790000000000006,
+      "ongoru": -5.892467771330835
+     },
+     {
+      "i": "ResNet18_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -11.219999999999999,
+      "rho_farki": -22.120000000000005,
+      "ongoru": -8.25467936047106
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Standard_WRN28_10",
+      "A": -6.719999999999999,
+      "rho_farki": 32.730000000000004,
+      "ongoru": 12.214089306881455
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Wong2020_PRN18",
+      "A": -12.530000000000001,
+      "rho_farki": -15.520000000000003,
+      "ongoru": -5.7917099310357525
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Engstrom2019_RN50",
+      "A": -16.68,
+      "rho_farki": -21.509999999999998,
+      "ongoru": -8.02704127684143
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Carmon2019_WRN28_10",
+      "A": -21.209999999999997,
+      "rho_farki": -31.239999999999995,
+      "ongoru": -11.658055299327117
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -22.400000000000006,
+      "rho_farki": -27.83,
+      "ongoru": -10.385521094118877
+     },
+     {
+      "i": "ViT_Tiny_AT",
+      "j": "Gowal2020_WRN28_10",
+      "A": -21.199999999999996,
+      "rho_farki": -34.16,
+      "ongoru": -12.747732683259102
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Wong2020_PRN18",
+      "A": -14.120000000000005,
+      "rho_farki": -48.25000000000001,
+      "ongoru": -18.005799237917206
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Engstrom2019_RN50",
+      "A": -15.659999999999998,
+      "rho_farki": -54.24,
+      "ongoru": -20.241130583722885
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Carmon2019_WRN28_10",
+      "A": -17.05,
+      "rho_farki": -63.97,
+      "ongoru": -23.872144606208572
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -17.769999999999996,
+      "rho_farki": -60.56,
+      "ongoru": -22.59961040100033
+     },
+     {
+      "i": "Standard_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -16.859999999999996,
+      "rho_farki": -66.89,
+      "ongoru": -24.961821990140557
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Engstrom2019_RN50",
+      "A": -5.690000000000001,
+      "rho_farki": -5.989999999999995,
+      "ongoru": -2.235331345805678
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Carmon2019_WRN28_10",
+      "A": -10.509999999999998,
+      "rho_farki": -15.719999999999992,
+      "ongoru": -5.8663453682913635
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -10.720000000000002,
+      "rho_farki": -12.309999999999995,
+      "ongoru": -4.5938111630831235
+     },
+     {
+      "i": "Wong2020_PRN18",
+      "j": "Gowal2020_WRN28_10",
+      "A": -10.829999999999998,
+      "rho_farki": -18.639999999999993,
+      "ongoru": -6.956022752223348
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Carmon2019_WRN28_10",
+      "A": -5.849999999999998,
+      "rho_farki": -9.729999999999997,
+      "ongoru": -3.6310140224856857
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": -6.070000000000004,
+      "rho_farki": -6.32,
+      "ongoru": -2.3584798172774453
+     },
+     {
+      "i": "Engstrom2019_RN50",
+      "j": "Gowal2020_WRN28_10",
+      "A": -6.759999999999998,
+      "rho_farki": -12.649999999999999,
+      "ongoru": -4.720691406417671
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Debenedetti2022_XCiT_S12",
+      "A": 0.3400000000000034,
+      "rho_farki": 3.4099999999999966,
+      "ongoru": 1.2725342052082405
+     },
+     {
+      "i": "Carmon2019_WRN28_10",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.120000000000001,
+      "rho_farki": -2.9200000000000017,
+      "ongoru": -1.0896773839319849
+     },
+     {
+      "i": "Debenedetti2022_XCiT_S12",
+      "j": "Gowal2020_WRN28_10",
+      "A": -1.5,
+      "rho_farki": -6.329999999999998,
+      "ongoru": -2.3622115891402253
+     }
+    ],
+    "ViT_disarida_kappa": 0.341275037458644,
+    "ViT_ciftleri_dis_ornek_ongoru": [
+     {
+      "es": "ResNet18_AT",
+      "gozlenen_ViT_eksi_es": -13.190000000000001,
+      "ongorulen_ViTsiz_kappa": -4.1089514510020715,
+      "artik": -9.08104854899793
+     },
+     {
+      "es": "Standard_WRN28_10",
+      "gozlenen_ViT_eksi_es": -6.719999999999999,
+      "ongorulen_ViTsiz_kappa": 11.16993197602142,
+      "artik": -17.88993197602142
+     },
+     {
+      "es": "Wong2020_PRN18",
+      "gozlenen_ViT_eksi_es": -12.530000000000001,
+      "ongorulen_ViTsiz_kappa": -5.296588581358156,
+      "artik": -7.233411418641845
+     },
+     {
+      "es": "Engstrom2019_RN50",
+      "gozlenen_ViT_eksi_es": -16.68,
+      "ongorulen_ViTsiz_kappa": -7.340826055735432,
+      "artik": -9.339173944264568
+     },
+     {
+      "es": "Carmon2019_WRN28_10",
+      "gozlenen_ViT_eksi_es": -21.209999999999997,
+      "ongorulen_ViTsiz_kappa": -10.661432170208037,
+      "artik": -10.54856782979196
+     },
+     {
+      "es": "Debenedetti2022_XCiT_S12",
+      "gozlenen_ViT_eksi_es": -22.400000000000006,
+      "ongorulen_ViTsiz_kappa": -9.497684292474062,
+      "artik": -12.902315707525943
+     },
+     {
+      "es": "Gowal2020_WRN28_10",
+      "gozlenen_ViT_eksi_es": -21.199999999999996,
+      "ongorulen_ViTsiz_kappa": -11.657955279587279,
+      "artik": -9.542044720412717
+     }
+    ],
+    "ViT_ciftleri_artik_ortalama": -10.933784877950911,
+    "ViT_ciftleri_artik_mutlak_en_buyuk": 17.88993197602142
+   }
+  }
+ }
+}

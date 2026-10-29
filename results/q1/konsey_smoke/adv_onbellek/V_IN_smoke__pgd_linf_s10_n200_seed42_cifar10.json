@@ -1,0 +1,15 @@
+{
+  "attack": "pgd",
+  "norm": "linf",
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "seed": 42,
+  "n_samples": 200,
+  "dataset": "cifar10",
+  "per_source_seed": true,
+  "source": "V_IN_smoke",
+  "source_type": "vit_tiny_in1k",
+  "source_ref": "models/q1/konsey_smoke/v_in/vit_tiny_in1k/clean/best.pth",
+  "source_sha256": "a45074a9fbc20ea400e3d886b3f525e1b2143f0c3a9b55f568451aa1ea606202"
+}

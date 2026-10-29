@@ -1,0 +1,90 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 200,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "ResNet18_AT_s1001",
+    "ViT_Tiny_AT_s2001",
+    "V_IN_smoke",
+    "WRN_28_10"
+  ],
+  "results": {
+    "ViT_Tiny_AT_s2001->ResNet18_AT_s1001": {
+      "raw_fooling": 26.0,
+      "cond_fooling": 15.91,
+      "n_cond": 176,
+      "target_clean_acc": 88.0
+    },
+    "ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 48.0,
+      "cond_fooling": 34.18,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "ViT_Tiny_AT_s2001->V_IN_smoke": {
+      "raw_fooling": 22.0,
+      "cond_fooling": 14.29,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "ViT_Tiny_AT_s2001->WRN_28_10": {
+      "raw_fooling": 13.5,
+      "cond_fooling": 5.46,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "V_IN_smoke->ResNet18_AT_s1001": {
+      "raw_fooling": 14.5,
+      "cond_fooling": 3.41,
+      "n_cond": 176,
+      "target_clean_acc": 88.0
+    },
+    "V_IN_smoke->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 23.0,
+      "cond_fooling": 3.16,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "V_IN_smoke->V_IN_smoke": {
+      "raw_fooling": 92.5,
+      "cond_fooling": 91.76,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "V_IN_smoke->WRN_28_10": {
+      "raw_fooling": 8.5,
+      "cond_fooling": 1.09,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    }
+  },
+  "attack": "tgr",
+  "sources": [
+    "ViT_Tiny_AT_s2001",
+    "V_IN_smoke"
+  ],
+  "cache_adv": null,
+  "per_source_seed": false,
+  "model_specs": {
+    "ResNet18_AT_s1001": [
+      "resnet18",
+      "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth"
+    ],
+    "ViT_Tiny_AT_s2001": [
+      "vit_tiny",
+      "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+    ],
+    "V_IN_smoke": [
+      "vit_tiny_in1k",
+      "models/q1/konsey_smoke/v_in/vit_tiny_in1k/clean/best.pth"
+    ],
+    "WRN_28_10": [
+      "robustbench",
+      "default"
+    ]
+  }
+}

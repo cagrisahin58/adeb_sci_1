@@ -33,8 +33,22 @@ def train():
 @click.option("--timm-pretrained", is_flag=True, default=False,
               help="Modeli ImageNet on-egitimli agirliklarla baslat "
                    "(ViT-Small tarifi: pretrained + kisa temiz finetune)")
+@click.option("--optimizer", "optimizer_name", type=click.Choice(["auto", "adamw", "sgd"]),
+              default="auto",
+              help="auto = eski davranis (sinif adinda vit -> AdamW, degilse SGD); "
+                   "adamw/sgd = sinif adina bakmadan zorla (konsey B3)")
+@click.option("--init-weights", type=click.Choice(["none", "deit_tiny_in1k", "resnet18_a1_in1k"]),
+              default="none",
+              help="Govdeyi ImageNet agirliklariyla baslat (bas haric); yalniz uyumlu "
+                   "IN tipleriyle: deit_tiny_in1k -> vit_tiny_in1k, "
+                   "resnet18_a1_in1k -> resnet18_224_in1k")
+@click.option("--lr-schedule", type=click.Choice(["cosine", "constant"]), default="cosine",
+              help="Temiz asama LR cizelgesi (varsayilan cosine, T_max=epochs: eski davranis)")
+@click.option("--max-train-batches", type=int, default=0,
+              help="Epok basina en fazla N egitim batch'i (yalniz smoke); 0 = sinirsiz")
 def clean(model, dataset, epochs, lr, batch_size, data_dir, output_dir, seed, device,
-          val_indices, save_every, resume, timm_pretrained):
+          val_indices, save_every, resume, timm_pretrained, optimizer_name, init_weights,
+          lr_schedule, max_train_batches):
     """Train a model with clean data."""
     from src.utils.seed import set_seed
     from src.utils.device import get_device
@@ -55,6 +69,20 @@ def clean(model, dataset, epochs, lr, batch_size, data_dir, output_dir, seed, de
                                        pretrained=timm_pretrained)
     if timm_pretrained:
         click.echo("ImageNet on-egitimli agirliklarla baslatildi")
+    if init_weights != "none":
+        import json as _json
+        from src.models.r224 import load_imagenet_init
+        rep = load_imagenet_init(model_instance, init_weights, model)
+        click.echo("INIT_WEIGHTS_RAPORU " + _json.dumps(
+            {k: rep[k] for k in ("init_key", "timm_name", "source_file", "source_sha256",
+                                 "n_loaded", "n_target_keys", "missing_nonhead",
+                                 "unexpected_nonhead", "shape_mismatch", "head_keys_skipped",
+                                 "pretrained_cfg_mean", "pretrained_cfg_std",
+                                 "norm_matches_cfg")}))
+    elif model in ("vit_tiny_in1k", "resnet18_224_in1k"):
+        click.echo(f"UYARI: {model} IN normalizasyonlu tiptir ama --init-weights none "
+                   f"(rastgele baslatma); K3 demeti bozulur, bilerek mi?")
+    click.echo(f"Optimizer: {optimizer_name}, LR schedule: {lr_schedule}")
     click.echo(f"Model parameters: {model_instance.count_parameters():,}")
 
     # Load data
@@ -88,6 +116,9 @@ def clean(model, dataset, epochs, lr, batch_size, data_dir, output_dir, seed, de
         lr=lr,
         checkpoint_dir=str(checkpoint_dir),
         save_every=save_every,
+        optimizer_name=optimizer_name,
+        lr_schedule=lr_schedule,
+        max_train_batches=max_train_batches,
     )
     if resume:
         click.echo("Resume mode: last.pth varsa kaldigi epoch'tan devam edilecek")
@@ -141,10 +172,19 @@ def clean(model, dataset, epochs, lr, batch_size, data_dir, output_dir, seed, de
               help="Ilk N epokta lineer LR isinmasi, sonra cosine; 0=kapali")
 @click.option("--vit-lr-cap", type=float, default=1e-3,
               help="ViT'lerde LR ust siniri (0 = sinirsiz; kalibrasyon deneyleri icin)")
+@click.option("--optimizer", "optimizer_name", type=click.Choice(["auto", "adamw", "sgd"]),
+              default="auto",
+              help="auto = eski davranis (sinif adinda vit -> AdamW wd 0.05, degilse SGD); "
+                   "adamw/sgd = zorla (konsey B3: dort hucrede adamw)")
+@click.option("--stop-epoch", type=int, default=0,
+              help="Egitimi bu epokta durdur, LR cizelgesi -e uzerinden kalsin "
+                   "(konsey bekcisi AT tavani); 0 = kapali")
+@click.option("--max-train-batches", type=int, default=0,
+              help="Epok basina en fazla N egitim batch'i (yalniz smoke); 0 = sinirsiz")
 def adversarial(model, dataset, defense, pretrained, epochs, lr, batch_size, eps, alpha,
                 steps, beta, data_dir, output_dir, seed, device, patience, val_split,
                 resume, val_indices, save_every, grad_clip, eps_warmup, lr_warmup,
-                vit_lr_cap):
+                vit_lr_cap, optimizer_name, stop_epoch, max_train_batches):
     """Train a model with adversarial defense."""
     from src.utils.seed import set_seed
     from src.utils.device import get_device
@@ -222,7 +262,12 @@ def adversarial(model, dataset, defense, pretrained, epochs, lr, batch_size, eps
         vit_lr_cap=(vit_lr_cap if vit_lr_cap > 0 else None),
         eps_warmup_epochs=eps_warmup,
         lr_warmup_epochs=lr_warmup,
+        optimizer_name=optimizer_name,
+        stop_epoch=stop_epoch,
+        max_train_batches=max_train_batches,
     )
+    click.echo(f"Optimizer: {optimizer_name}; stop_epoch: {stop_epoch or 'kapali'} "
+               f"(LR cizelgesi {epochs} epok uzerinden)")
     if save_every > 0:
         click.echo(f"Periyodik checkpoint: her {save_every} epokta epochs/ altina")
     if eps_warmup > 0:

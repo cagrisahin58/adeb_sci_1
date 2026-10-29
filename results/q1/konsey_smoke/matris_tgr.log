@@ -1,0 +1,11 @@
+TGR yalniz ViT kaynaklarinda; kaynak olarak atlanan: ['ResNet18_AT_s1001', 'WRN_28_10']
+custom temiz dogruluk: ResNet18_AT_s1001=88.00, ViT_Tiny_AT_s2001=79.00, V_IN_smoke=91.00, WRN_28_10=91.50
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1001: raw=26.00 cond=15.91
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001: raw=48.00 cond=34.18
+  ViT_Tiny_AT_s2001->V_IN_smoke: raw=22.00 cond=14.29
+  ViT_Tiny_AT_s2001->WRN_28_10: raw=13.50 cond=5.46
+  V_IN_smoke->ResNet18_AT_s1001: raw=14.50 cond=3.41
+  V_IN_smoke->ViT_Tiny_AT_s2001: raw=23.00 cond=3.16
+  V_IN_smoke->V_IN_smoke: raw=92.50 cond=91.76
+  V_IN_smoke->WRN_28_10: raw=8.50 cond=1.09
+custom kaydedildi: results/q1/konsey_smoke/matris_tgr

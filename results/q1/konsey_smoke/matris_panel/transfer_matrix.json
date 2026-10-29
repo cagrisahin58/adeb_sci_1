@@ -1,0 +1,508 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 200,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "ViT_Tiny_AT_s2001",
+    "Wong2020Fast",
+    "Engstrom2019Robustness",
+    "Carmon2019Unlabeled",
+    "Gowal2020Uncovering_28_10_extra",
+    "Sehwag2021Proxy_R18",
+    "Addepalli2022Efficient_RN18",
+    "Rade2021Helper_R18_ddpm",
+    "Debenedetti2022Light_XCiT-S12"
+  ],
+  "results": {
+    "ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 67.0,
+      "cond_fooling": 58.23,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "ViT_Tiny_AT_s2001->Wong2020Fast": {
+      "raw_fooling": 28.0,
+      "cond_fooling": 16.28,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "ViT_Tiny_AT_s2001->Engstrom2019Robustness": {
+      "raw_fooling": 18.5,
+      "cond_fooling": 10.44,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "ViT_Tiny_AT_s2001->Carmon2019Unlabeled": {
+      "raw_fooling": 17.0,
+      "cond_fooling": 8.29,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "ViT_Tiny_AT_s2001->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 15.0,
+      "cond_fooling": 7.1,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "ViT_Tiny_AT_s2001->Sehwag2021Proxy_R18": {
+      "raw_fooling": 23.0,
+      "cond_fooling": 11.49,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "ViT_Tiny_AT_s2001->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 22.5,
+      "cond_fooling": 12.43,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "ViT_Tiny_AT_s2001->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 21.0,
+      "cond_fooling": 11.24,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "ViT_Tiny_AT_s2001->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 20.0,
+      "cond_fooling": 12.57,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Wong2020Fast->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 38.5,
+      "cond_fooling": 22.15,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Wong2020Fast->Wong2020Fast": {
+      "raw_fooling": 54.0,
+      "cond_fooling": 46.51,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "Wong2020Fast->Engstrom2019Robustness": {
+      "raw_fooling": 31.5,
+      "cond_fooling": 24.73,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Wong2020Fast->Carmon2019Unlabeled": {
+      "raw_fooling": 23.0,
+      "cond_fooling": 14.92,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "Wong2020Fast->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 21.0,
+      "cond_fooling": 13.66,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Wong2020Fast->Sehwag2021Proxy_R18": {
+      "raw_fooling": 29.0,
+      "cond_fooling": 18.39,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Wong2020Fast->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 28.5,
+      "cond_fooling": 19.21,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "Wong2020Fast->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 26.0,
+      "cond_fooling": 16.85,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "Wong2020Fast->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 24.5,
+      "cond_fooling": 17.49,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Engstrom2019Robustness->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 36.0,
+      "cond_fooling": 18.99,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Engstrom2019Robustness->Wong2020Fast": {
+      "raw_fooling": 39.0,
+      "cond_fooling": 29.07,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "Engstrom2019Robustness->Engstrom2019Robustness": {
+      "raw_fooling": 49.0,
+      "cond_fooling": 43.96,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Engstrom2019Robustness->Carmon2019Unlabeled": {
+      "raw_fooling": 25.0,
+      "cond_fooling": 17.13,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "Engstrom2019Robustness->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 23.5,
+      "cond_fooling": 16.39,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Engstrom2019Robustness->Sehwag2021Proxy_R18": {
+      "raw_fooling": 30.5,
+      "cond_fooling": 20.11,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Engstrom2019Robustness->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 31.0,
+      "cond_fooling": 22.03,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "Engstrom2019Robustness->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 28.0,
+      "cond_fooling": 19.1,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "Engstrom2019Robustness->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 26.0,
+      "cond_fooling": 19.13,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Carmon2019Unlabeled->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 36.5,
+      "cond_fooling": 19.62,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Carmon2019Unlabeled->Wong2020Fast": {
+      "raw_fooling": 33.5,
+      "cond_fooling": 22.67,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "Carmon2019Unlabeled->Engstrom2019Robustness": {
+      "raw_fooling": 29.0,
+      "cond_fooling": 21.98,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Carmon2019Unlabeled->Carmon2019Unlabeled": {
+      "raw_fooling": 37.0,
+      "cond_fooling": 30.39,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "Carmon2019Unlabeled->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 27.5,
+      "cond_fooling": 20.77,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Carmon2019Unlabeled->Sehwag2021Proxy_R18": {
+      "raw_fooling": 29.5,
+      "cond_fooling": 18.97,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Carmon2019Unlabeled->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 29.5,
+      "cond_fooling": 20.34,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "Carmon2019Unlabeled->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 29.5,
+      "cond_fooling": 20.79,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "Carmon2019Unlabeled->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 26.5,
+      "cond_fooling": 19.67,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Gowal2020Uncovering_28_10_extra->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 36.5,
+      "cond_fooling": 19.62,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Gowal2020Uncovering_28_10_extra->Wong2020Fast": {
+      "raw_fooling": 33.5,
+      "cond_fooling": 22.67,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "Gowal2020Uncovering_28_10_extra->Engstrom2019Robustness": {
+      "raw_fooling": 30.0,
+      "cond_fooling": 23.08,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Gowal2020Uncovering_28_10_extra->Carmon2019Unlabeled": {
+      "raw_fooling": 29.0,
+      "cond_fooling": 21.55,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 34.5,
+      "cond_fooling": 28.42,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Gowal2020Uncovering_28_10_extra->Sehwag2021Proxy_R18": {
+      "raw_fooling": 29.5,
+      "cond_fooling": 18.97,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Gowal2020Uncovering_28_10_extra->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 31.0,
+      "cond_fooling": 22.03,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "Gowal2020Uncovering_28_10_extra->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 29.0,
+      "cond_fooling": 20.22,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "Gowal2020Uncovering_28_10_extra->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 27.0,
+      "cond_fooling": 20.22,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Sehwag2021Proxy_R18->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 38.5,
+      "cond_fooling": 22.15,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Sehwag2021Proxy_R18->Wong2020Fast": {
+      "raw_fooling": 38.5,
+      "cond_fooling": 28.49,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "Sehwag2021Proxy_R18->Engstrom2019Robustness": {
+      "raw_fooling": 33.5,
+      "cond_fooling": 26.92,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Sehwag2021Proxy_R18->Carmon2019Unlabeled": {
+      "raw_fooling": 28.0,
+      "cond_fooling": 20.44,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "Sehwag2021Proxy_R18->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 25.0,
+      "cond_fooling": 18.03,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Sehwag2021Proxy_R18->Sehwag2021Proxy_R18": {
+      "raw_fooling": 42.0,
+      "cond_fooling": 33.33,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Sehwag2021Proxy_R18->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 32.0,
+      "cond_fooling": 23.16,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "Sehwag2021Proxy_R18->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 31.0,
+      "cond_fooling": 22.47,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "Sehwag2021Proxy_R18->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 26.5,
+      "cond_fooling": 19.67,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Addepalli2022Efficient_RN18->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 39.0,
+      "cond_fooling": 22.78,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Addepalli2022Efficient_RN18->Wong2020Fast": {
+      "raw_fooling": 38.0,
+      "cond_fooling": 27.91,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "Addepalli2022Efficient_RN18->Engstrom2019Robustness": {
+      "raw_fooling": 33.5,
+      "cond_fooling": 26.92,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Addepalli2022Efficient_RN18->Carmon2019Unlabeled": {
+      "raw_fooling": 28.5,
+      "cond_fooling": 20.99,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "Addepalli2022Efficient_RN18->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 24.0,
+      "cond_fooling": 16.94,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Addepalli2022Efficient_RN18->Sehwag2021Proxy_R18": {
+      "raw_fooling": 31.0,
+      "cond_fooling": 20.69,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Addepalli2022Efficient_RN18->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 41.5,
+      "cond_fooling": 33.9,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "Addepalli2022Efficient_RN18->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 31.0,
+      "cond_fooling": 22.47,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "Addepalli2022Efficient_RN18->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 26.5,
+      "cond_fooling": 19.67,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Rade2021Helper_R18_ddpm->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 38.0,
+      "cond_fooling": 21.52,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Rade2021Helper_R18_ddpm->Wong2020Fast": {
+      "raw_fooling": 38.0,
+      "cond_fooling": 27.91,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "Rade2021Helper_R18_ddpm->Engstrom2019Robustness": {
+      "raw_fooling": 33.5,
+      "cond_fooling": 26.92,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Rade2021Helper_R18_ddpm->Carmon2019Unlabeled": {
+      "raw_fooling": 29.0,
+      "cond_fooling": 21.55,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "Rade2021Helper_R18_ddpm->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 25.0,
+      "cond_fooling": 18.03,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Rade2021Helper_R18_ddpm->Sehwag2021Proxy_R18": {
+      "raw_fooling": 33.0,
+      "cond_fooling": 22.99,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Rade2021Helper_R18_ddpm->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 33.5,
+      "cond_fooling": 24.86,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "Rade2021Helper_R18_ddpm->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 37.0,
+      "cond_fooling": 29.21,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "Rade2021Helper_R18_ddpm->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 28.0,
+      "cond_fooling": 21.31,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Debenedetti2022Light_XCiT-S12->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 39.5,
+      "cond_fooling": 23.42,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Debenedetti2022Light_XCiT-S12->Wong2020Fast": {
+      "raw_fooling": 35.0,
+      "cond_fooling": 24.42,
+      "n_cond": 172,
+      "target_clean_acc": 86.0
+    },
+    "Debenedetti2022Light_XCiT-S12->Engstrom2019Robustness": {
+      "raw_fooling": 29.0,
+      "cond_fooling": 21.98,
+      "n_cond": 182,
+      "target_clean_acc": 91.0
+    },
+    "Debenedetti2022Light_XCiT-S12->Carmon2019Unlabeled": {
+      "raw_fooling": 28.0,
+      "cond_fooling": 20.44,
+      "n_cond": 181,
+      "target_clean_acc": 90.5
+    },
+    "Debenedetti2022Light_XCiT-S12->Gowal2020Uncovering_28_10_extra": {
+      "raw_fooling": 24.5,
+      "cond_fooling": 17.49,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Debenedetti2022Light_XCiT-S12->Sehwag2021Proxy_R18": {
+      "raw_fooling": 28.0,
+      "cond_fooling": 17.24,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Debenedetti2022Light_XCiT-S12->Addepalli2022Efficient_RN18": {
+      "raw_fooling": 29.5,
+      "cond_fooling": 20.34,
+      "n_cond": 177,
+      "target_clean_acc": 88.5
+    },
+    "Debenedetti2022Light_XCiT-S12->Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 28.5,
+      "cond_fooling": 19.66,
+      "n_cond": 178,
+      "target_clean_acc": 89.0
+    },
+    "Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 42.0,
+      "cond_fooling": 36.61,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    }
+  }
+}

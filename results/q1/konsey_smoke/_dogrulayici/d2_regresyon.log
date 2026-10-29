@@ -1,0 +1,69 @@
+== ESKI (HEAD) kod: results/q1/konsey_smoke/_dogrulayici/eski_kod/experiments/c1_c3_transfer_matrix.py
+custom temiz dogruluk: ResNet18_AT_s1001=88.00, ViT_Tiny_AT_s2001=79.00, WRN_28_10=91.50
+  ResNet18_AT_s1001->ResNet18_AT_s1001: raw=56.00 cond=50.00
+  ResNet18_AT_s1001->ViT_Tiny_AT_s2001: raw=36.50 cond=19.62
+  ResNet18_AT_s1001->WRN_28_10: raw=20.50 cond=13.11
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1001: raw=26.00 cond=15.91
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001: raw=66.50 cond=57.59
+  ViT_Tiny_AT_s2001->WRN_28_10: raw=14.50 cond=6.56
+  WRN_28_10->ResNet18_AT_s1001: raw=33.50 cond=24.43
+  WRN_28_10->ViT_Tiny_AT_s2001: raw=36.50 cond=19.62
+  WRN_28_10->WRN_28_10: raw=35.00 cond=28.96
+custom kaydedildi: results/q1/konsey_smoke/_dogrulayici/reg_eski
+SRC_PAKETI /workspace/results/q1/konsey_smoke/_dogrulayici/eski_kod/src/__init__.py
+R224_YUKLU False
+== YENI (calisma agaci) kod: experiments/c1_c3_transfer_matrix.py
+custom temiz dogruluk: ResNet18_AT_s1001=88.00, ViT_Tiny_AT_s2001=79.00, WRN_28_10=91.50
+  ResNet18_AT_s1001->ResNet18_AT_s1001: raw=56.00 cond=50.00
+  ResNet18_AT_s1001->ViT_Tiny_AT_s2001: raw=36.50 cond=19.62
+  ResNet18_AT_s1001->WRN_28_10: raw=20.50 cond=13.11
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1001: raw=26.00 cond=15.91
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001: raw=66.50 cond=57.59
+  ViT_Tiny_AT_s2001->WRN_28_10: raw=14.50 cond=6.56
+  WRN_28_10->ResNet18_AT_s1001: raw=33.50 cond=24.43
+  WRN_28_10->ViT_Tiny_AT_s2001: raw=36.50 cond=19.62
+  WRN_28_10->WRN_28_10: raw=35.00 cond=28.96
+custom kaydedildi: results/q1/konsey_smoke/_dogrulayici/reg_yeni
+SRC_PAKETI /workspace/src/__init__.py
+R224_YUKLU True
+{
+ "A": "results/q1/konsey_smoke/_dogrulayici/reg_eski",
+ "B": "results/q1/konsey_smoke/_dogrulayici/reg_yeni",
+ "json_anahtarlari_A": [
+  "alpha",
+  "eps",
+  "models",
+  "n_samples",
+  "norm",
+  "pair",
+  "results",
+  "seed",
+  "steps"
+ ],
+ "json_anahtarlari_B": [
+  "alpha",
+  "eps",
+  "models",
+  "n_samples",
+  "norm",
+  "pair",
+  "results",
+  "seed",
+  "steps"
+ ],
+ "json_anahtar_kumesi_ayni": true,
+ "ust_alan_farklari": {},
+ "hucre_sayisi": [
+  9,
+  9
+ ],
+ "hucre_deger_farklari": {},
+ "npz_sayisi": [
+  9,
+  9
+ ],
+ "npz_adlari_ayni": true,
+ "karsilastirilan_dizi": 36,
+ "dizi_farklari": {},
+ "BIREBIR": true
+}

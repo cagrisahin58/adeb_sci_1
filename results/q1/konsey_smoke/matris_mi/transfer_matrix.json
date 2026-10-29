@@ -1,0 +1,54 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 200,
+  "eps": 0.03137254901960784,
+  "alpha": 0.003137254901960784,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "ResNet18_AT_s1001",
+    "ViT_Tiny_AT_s2001",
+    "Sehwag2021Proxy_R18"
+  ],
+  "results": {
+    "ResNet18_AT_s1001->ResNet18_AT_s1001": {
+      "raw_fooling": 50.5,
+      "cond_fooling": 43.75,
+      "n_cond": 176,
+      "target_clean_acc": 88.0
+    },
+    "ResNet18_AT_s1001->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 36.0,
+      "cond_fooling": 18.99,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "ResNet18_AT_s1001->Sehwag2021Proxy_R18": {
+      "raw_fooling": 27.0,
+      "cond_fooling": 16.09,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    }
+  },
+  "attack": "mi",
+  "sources": [
+    "ResNet18_AT_s1001"
+  ],
+  "cache_adv": null,
+  "per_source_seed": false,
+  "model_specs": {
+    "ResNet18_AT_s1001": [
+      "resnet18",
+      "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth"
+    ],
+    "ViT_Tiny_AT_s2001": [
+      "vit_tiny",
+      "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+    ],
+    "Sehwag2021Proxy_R18": [
+      "robustbench",
+      "Sehwag2021Proxy_R18"
+    ]
+  }
+}

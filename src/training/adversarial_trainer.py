@@ -55,6 +55,9 @@ class AdversarialTrainer:
         vit_lr_cap: Optional[float] = 1e-3,
         eps_warmup_epochs: int = 0,
         lr_warmup_epochs: int = 0,
+        optimizer_name: str = "auto",
+        stop_epoch: int = 0,
+        max_train_batches: int = 0,
     ):
         """
         Initialize the adversarial trainer.
@@ -97,6 +100,15 @@ class AdversarialTrainer:
                 artar (SVHN 8/255 ve ViT-S kararsizligi sigortasi).
                 DEGERLENDIRME her zaman tam eps'te yapilir.
             lr_warmup_epochs: Ilk N epokta lineer LR isinmasi (sonra cosine).
+            optimizer_name: "auto" (eski davranis: sinif adinda vit -> AdamW,
+                degilse SGD), "adamw" (zorla; wd 0.05, LR tavani yok) ya da
+                "sgd" (zorla). Konsey B3'te dort hucrede AdamW zorlanir.
+            stop_epoch: >0 ise egitim bu epokta durur (konsey bekcisinin AT
+                tavani) ama LR cizelgesi `epochs` uzerinden kurulur; boylece
+                C1 ViT tarifinin cosine T_max=100 cizelgesi tavanla bozulmaz.
+                0 = kapali (eski davranis).
+            max_train_batches: >0 ise epok basina en fazla N egitim batch'i
+                (yalniz smoke/pilot icin). 0 = sinirsiz.
         """
         self.model = model
         self.train_loader = train_loader
@@ -149,6 +161,17 @@ class AdversarialTrainer:
         # Optimizer - use AdamW for ViT models, SGD for CNNs
         if optimizer is not None:
             self.optimizer = optimizer
+        elif optimizer_name == "adamw":
+            self.optimizer = optim.AdamW(self.model.parameters(), lr=lr, weight_decay=0.05)
+            if self.verbose:
+                print(f"Using AdamW optimizer (forced, lr={lr}, wd=0.05)")
+        elif optimizer_name == "sgd":
+            self.optimizer = optim.SGD(self.model.parameters(), lr=lr,
+                                       momentum=momentum, weight_decay=weight_decay)
+            if self.verbose:
+                print(f"Using SGD optimizer (forced, lr={lr})")
+        elif optimizer_name != "auto":
+            raise ValueError(f"Bilinmeyen optimizer_name: {optimizer_name}")
         else:
             model_name = model.__class__.__name__.lower()
             is_vit = 'vit' in model_name or 'vision' in model_name or 'transformer' in model_name
@@ -188,6 +211,9 @@ class AdversarialTrainer:
             self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
                 self.optimizer, T_max=epochs,
             )
+
+        self.stop_epoch = stop_epoch
+        self.max_train_batches = max_train_batches
 
         # Training state
         self.best_adv_acc = 0.0
@@ -231,7 +257,9 @@ class AdversarialTrainer:
                 leave=True,
             )
 
-        for inputs, labels in iterator:
+        for b_idx, (inputs, labels) in enumerate(iterator):
+            if self.max_train_batches and b_idx >= self.max_train_batches:
+                break
             inputs, labels = inputs.to(self.device), labels.to(self.device)
 
             self.optimizer.zero_grad()
@@ -259,8 +287,11 @@ class AdversarialTrainer:
                     "loss": running_loss / (len(iterator) if hasattr(iterator, '__len__') else 1),
                 })
 
+        # Smoke kipinde (max_train_batches > 0) yalniz kosulan batch'lere bol
+        n_batches = (min(self.max_train_batches, len(self.train_loader))
+                     if self.max_train_batches else len(self.train_loader))
         return {
-            "train_loss": running_loss / len(self.train_loader),
+            "train_loss": running_loss / n_batches,
         }
 
     @torch.no_grad()
@@ -435,7 +466,9 @@ class AdversarialTrainer:
         if start_epoch > 0:
             self.current_epoch = start_epoch - 1
 
-        for epoch in range(start_epoch, self.epochs):
+        end_epoch = (min(self.epochs, self.stop_epoch) if self.stop_epoch > 0
+                     else self.epochs)
+        for epoch in range(start_epoch, end_epoch):
             self.current_epoch = epoch
 
             # eps-warmup: EGITIM saldirisi ilk N epokta lineer buyuyen eps
@@ -545,11 +578,16 @@ class AdversarialTrainer:
 
         # Tamamlanma isareti: orkestrasyon scripti bu dosyaya bakarak
         # egitimin bittigini (kesintiye ugramadigini) anlar
-        (self.checkpoint_dir / "TRAINING_COMPLETE").write_text(
-            f"epochs_run={self.current_epoch + 1}\n"
-            f"early_stopped={self.early_stopped}\n"
-            f"best_adv_acc={self.best_adv_acc:.4f}\n"
-        )
+        marker = (f"epochs_run={self.current_epoch + 1}\n"
+                  f"early_stopped={self.early_stopped}\n"
+                  f"best_adv_acc={self.best_adv_acc:.4f}\n")
+        if self.stop_epoch > 0:
+            # Konsey bekcisi: tavanla mi durdu? (eski marker bicimi korunur,
+            # yalniz stop_epoch verildiginde iki satir eklenir)
+            at_cap = (not self.early_stopped) and self.current_epoch + 1 >= self.stop_epoch
+            marker += (f"stop_epoch={self.stop_epoch}\n"
+                       f"stopped_at_cap={at_cap}\n")
+        (self.checkpoint_dir / "TRAINING_COMPLETE").write_text(marker)
 
         elapsed_time = time.time() - start_time
         if self.verbose:

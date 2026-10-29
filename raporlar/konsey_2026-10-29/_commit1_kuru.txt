@@ -1,0 +1,932 @@
+ayrisim  4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389
+hucre    2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500
+govde    46ab58fb4843a30265f44c04c8fc4831b7a3601df57aa520da1efd7e03a663a5
+ozetler Dondurma ekiyle ayni
+HEAD: 4972738 (dondurma eki: 4972738)
+=== yok sayilan (git check-ignore) aday dosya sayisi: 1
+=== eklenecek dosya listesi
+arsiv/b2_yardimci/_konsey_commit1.sh
+cli/train.py
+experiments/c1_c3_transfer_matrix.py
+experiments/q1_etkilesim_simetri_masa.py
+experiments/q1_konsey_ayrisim.py
+experiments/q1_konsey_masa.py
+experiments/q1_konsey_masa_yeniden_kos.py
+experiments/q1_konsey_sahte_sinama.py
+raporlar/konsey_2026-10-29/00_durum_dosyasi.md
+raporlar/konsey_2026-10-29/01_masa_testi.md
+raporlar/konsey_2026-10-29/01_oneri_P1_mudahale.md
+raporlar/konsey_2026-10-29/01_oneri_P2_dis_gecerlilik.md
+raporlar/konsey_2026-10-29/01_oneri_P3_kuram_olcum.md
+raporlar/konsey_2026-10-29/02_literatur.md
+raporlar/konsey_2026-10-29/03_hakem_R1_istatistik.md
+raporlar/konsey_2026-10-29/03_hakem_R2_ml_hakem.md
+raporlar/konsey_2026-10-29/03_hakem_R3_uygulanabilirlik.md
+raporlar/konsey_2026-10-29/04_masa_cozumlemeleri.md
+raporlar/konsey_2026-10-29/05_kod_raporu.md
+raporlar/konsey_2026-10-29/KONSEY_PLANI.md
+raporlar/konsey_2026-10-29/KONSEY_RUNBOOK.md
+raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md
+raporlar/konsey_2026-10-29/ON_KAYIT_TASLAGI.md
+raporlar/konsey_2026-10-29/_P2_panel_logit.json
+raporlar/konsey_2026-10-29/_P2_panel_logit.py
+raporlar/konsey_2026-10-29/_P2_panel_logit_ayri.json
+raporlar/konsey_2026-10-29/_P2_panel_logit_ayri.py
+raporlar/konsey_2026-10-29/_P2_panel_masa.json
+raporlar/konsey_2026-10-29/_P2_panel_masa.py
+raporlar/konsey_2026-10-29/_commit1_kuru.txt
+raporlar/konsey_2026-10-29/_p3_carpimsal_yasa_masa.json
+raporlar/konsey_2026-10-29/_p3_carpimsal_yasa_masa.py
+raporlar/konsey_2026-10-29/_p3_havuz_gurbuzluk_yasasi.json
+raporlar/konsey_2026-10-29/_p3_havuz_gurbuzluk_yasasi.py
+raporlar/konsey_2026-10-29/_p3_potansiyel_masa.json
+raporlar/konsey_2026-10-29/_p3_potansiyel_masa.py
+raporlar/konsey_2026-10-29/_p3_yorunge_gurbuzluk_masa.json
+raporlar/konsey_2026-10-29/_p3_yorunge_gurbuzluk_masa.py
+raporlar/konsey_2026-10-29/_rb_imagenet_P2.json
+raporlar/konsey_2026-10-29/_rb_imagenet_P2.py
+raporlar/konsey_2026-10-29/_rb_liste.json
+raporlar/konsey_2026-10-29/_rb_liste.py
+raporlar/konsey_2026-10-29/_sentez_r_tau_masa.py
+raporlar/konsey_2026-10-29/_xcit_param.py
+raporlar/konsey_2026-10-29/hucre_tablosu.json
+results/q1/_konsey_sahte/kc3_sinama.py
+results/q1/_konsey_sahte/sahte_b2.json
+results/q1/_konsey_sahte/sahte_b2_kc.json
+results/q1/_konsey_sahte/sahte_b2_kc3.json
+results/q1/_konsey_sahte/sahte_b4.json
+results/q1/_konsey_sahte/sahte_b4_maskeleme_SAHTE_V_IN_a.json
+results/q1/_konsey_sahte/sahte_b4_maskeleme_ViT_Tiny_AT_s2003.json
+results/q1/_konsey_sahte/sahte_b5.json
+results/q1/_konsey_sahte/sahte_hucre_tablosu.json
+results/q1/_konsey_sahte/sahte_hucre_tablosu_b5.json
+results/q1/_konsey_sahte/sahte_hucre_tablosu_kc.json
+results/q1/_konsey_sahte/sahte_hucre_tablosu_kc3.json
+results/q1/etkilesim_simetri_masa.json
+results/q1/konsey_masa/_P2_panel_logit.json
+results/q1/konsey_masa/_P2_panel_logit_ayri.json
+results/q1/konsey_masa/_P2_panel_masa.json
+results/q1/konsey_masa/_dogrulayici/bagimsiz_yeniden_hesap.json
+results/q1/konsey_masa/_dogrulayici/bagimsiz_yeniden_hesap.py
+results/q1/konsey_masa/_dogrulayici/delta_kaynagi.json
+results/q1/konsey_masa/_dogrulayici/delta_kaynagi.py
+results/q1/konsey_masa/_dogrulayici/denetim1.sh
+results/q1/konsey_masa/_dogrulayici/denetim2.sh
+results/q1/konsey_masa/_dogrulayici/denetim3.sh
+results/q1/konsey_masa/_dogrulayici/dogrulayici_ayrisim_masa.json
+results/q1/konsey_masa/_dogrulayici/istatistik_sinama.json
+results/q1/konsey_masa/_dogrulayici/istatistik_sinama.py
+results/q1/konsey_masa/_dogrulayici/karsilastir.py
+results/q1/konsey_masa/_dogrulayici/karsilastirma.json
+results/q1/konsey_masa/_dogrulayici/kos_masa.sh
+results/q1/konsey_masa/_dogrulayici/sahte_gorulmus.py
+results/q1/konsey_masa/_dogrulayici/sema.py
+results/q1/konsey_masa/_dogrulayici/smoke_icerik.py
+results/q1/konsey_masa/_dogrulayici/tur2_kos.sh
+results/q1/konsey_masa/_p3_carpimsal_yasa_masa.json
+results/q1/konsey_masa/_p3_havuz_gurbuzluk_yasasi.json
+results/q1/konsey_masa/_p3_potansiyel_masa.json
+results/q1/konsey_masa/_p3_yorunge_gurbuzluk_masa.json
+results/q1/konsey_masa/_rb_imagenet_P2.json
+results/q1/konsey_masa/_rb_liste.json
+results/q1/konsey_masa/konsey_ayrisim_masa.json
+results/q1/konsey_masa/konsey_masa_cozumlemeleri.json
+results/q1/konsey_masa/yeniden_kos_karsilastirma.json
+results/q1/konsey_pilot_zaman.json
+results/q1/konsey_pilot_zaman_parca_R224_IN.json
+results/q1/konsey_pilot_zaman_parca_R224_scr.json
+results/q1/konsey_pilot_zaman_parca_V_IN.json
+results/q1/konsey_sahte_2x2_sinama.json
+results/q1/konsey_sentez_r_tau_masa.json
+results/q1/konsey_smoke/_dogrulayici/d1_modeller_k3.json
+results/q1/konsey_smoke/_dogrulayici/d1_modeller_k3.py
+results/q1/konsey_smoke/_dogrulayici/d2_calistir.py
+results/q1/konsey_smoke/_dogrulayici/d2_eski_kod_cikar.sh
+results/q1/konsey_smoke/_dogrulayici/d2_karsilastir.py
+results/q1/konsey_smoke/_dogrulayici/d2_regresyon.log
+results/q1/konsey_smoke/_dogrulayici/d2_regresyon.sh
+results/q1/konsey_smoke/_dogrulayici/d2_regresyon_karsilastirma.json
+results/q1/konsey_smoke/_dogrulayici/d2b_tesaduf.py
+results/q1/konsey_smoke/_dogrulayici/d3_mi_tgr.json
+results/q1/konsey_smoke/_dogrulayici/d3_mi_tgr.log
+results/q1/konsey_smoke/_dogrulayici/d3_mi_tgr.sh
+results/q1/konsey_smoke/_dogrulayici/d3_mi_tgr_bagimsiz.py
+results/q1/konsey_smoke/_dogrulayici/d4_bayraklar.json
+results/q1/konsey_smoke/_dogrulayici/d4_bayraklar.py
+results/q1/konsey_smoke/_dogrulayici/d4_bayraklar.sh
+results/q1/konsey_smoke/_dogrulayici/d4_help_adversarial.txt
+results/q1/konsey_smoke/_dogrulayici/d4_help_clean.txt
+results/q1/konsey_smoke/_dogrulayici/d4_kuyruk_dry_run.txt
+results/q1/konsey_smoke/_dogrulayici/d4_ozet_goster.py
+results/q1/konsey_smoke/_dogrulayici/d5_temiz_referans.json
+results/q1/konsey_smoke/_dogrulayici/d5_temiz_referans.py
+results/q1/konsey_smoke/_dogrulayici/d6_kaldi_atlama.sh
+results/q1/konsey_smoke/_dogrulayici/d7_onbellek/ResNet18_AT_s1001__pgd_linf_s10_n100_seed42_cifar10.json
+results/q1/konsey_smoke/_dogrulayici/d7_onbellek/ViT_Tiny_AT_s2001__pgd_linf_s10_n100_seed42_cifar10.json
+results/q1/konsey_smoke/_dogrulayici/d7_onbellek/WRN_28_10__pgd_linf_s10_n100_seed42_cifar10.json
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/cells_meta.json
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/ilk_per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/transfer_matrix.json
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/cells_meta.json
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/ilk_per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/transfer_matrix.json
+results/q1/konsey_smoke/_dogrulayici/d7_skip_existing.log
+results/q1/konsey_smoke/_dogrulayici/d7_skip_existing.sh
+results/q1/konsey_smoke/_dogrulayici/mi100/cells_meta.json
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/mi100/transfer_matrix.json
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/reg_eski/transfer_matrix.json
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/reg_yeni/transfer_matrix.json
+results/q1/konsey_smoke/_dogrulayici/t2_aa_bak.py
+results/q1/konsey_smoke/_dogrulayici/t2_c1_ilk_epok.py
+results/q1/konsey_smoke/_dogrulayici/t2_gecmis_kontrol.py
+results/q1/konsey_smoke/_dogrulayici/t2_kuyruk/sahte_egitici.py
+results/q1/konsey_smoke/_dogrulayici/t2_kuyruk/sinama.log
+results/q1/konsey_smoke/_dogrulayici/t2_kuyruk/sinama.sh
+results/q1/konsey_smoke/_dogrulayici/t2_sinamalar.log
+results/q1/konsey_smoke/_dogrulayici/t2_sinamalar.sh
+results/q1/konsey_smoke/_dogrulayici/tgr100/cells_meta.json
+results/q1/konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/_dogrulayici/tgr100/transfer_matrix.json
+results/q1/konsey_smoke/aa.log
+results/q1/konsey_smoke/aa/autoattack_results.csv
+results/q1/konsey_smoke/aa/autoattack_summary.json
+results/q1/konsey_smoke/aa/per_sample_V_IN_smoke.npz
+results/q1/konsey_smoke/adv_onbellek/Debenedetti2022Light_XCiT-S12__pgd_linf_s10_n200_seed42_cifar10.json
+results/q1/konsey_smoke/adv_onbellek/R224_scr_smoke__pgd_linf_s10_n200_seed42_cifar10.json
+results/q1/konsey_smoke/adv_onbellek/Sehwag2021Proxy_R18__pgd_linf_s10_n200_seed42_cifar10.json
+results/q1/konsey_smoke/adv_onbellek/V_IN_smoke__pgd_linf_s10_n200_seed42_cifar10.json
+results/q1/konsey_smoke/adv_onbellek/ViT_Tiny_AT_s2001__pgd_linf_s10_n200_seed42_cifar10.json
+results/q1/konsey_smoke/adv_onbellek_ters/R224_scr_smoke__pgd_linf_s10_n200_seed42_cifar10.json
+results/q1/konsey_smoke/adv_onbellek_ters/Sehwag2021Proxy_R18__pgd_linf_s10_n200_seed42_cifar10.json
+results/q1/konsey_smoke/adv_onbellek_ters/ViT_Tiny_AT_s2001__pgd_linf_s10_n200_seed42_cifar10.json
+results/q1/konsey_smoke/b6_maskeleme_smoke.json
+results/q1/konsey_smoke/denetim_yardimcisi.txt
+results/q1/konsey_smoke/egitim_r_in.log
+results/q1/konsey_smoke/egitim_r_in_at.log
+results/q1/konsey_smoke/egitim_r_scr.log
+results/q1/konsey_smoke/egitim_v_in.log
+results/q1/konsey_smoke/egitim_v_rand.log
+results/q1/konsey_smoke/indirmeler.json
+results/q1/konsey_smoke/karsilastirma_ekle_taze.json
+results/q1/konsey_smoke/karsilastirma_uc_taze_ortak.json
+results/q1/konsey_smoke/karsilastirma_uc_tekrar.json
+results/q1/konsey_smoke/karsilastirma_uc_ters.json
+results/q1/konsey_smoke/kuyruk_dry_run.txt
+results/q1/konsey_smoke/matris_ekle.log
+results/q1/konsey_smoke/matris_ekle/cells_meta.json
+results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_ekle/transfer_matrix.json
+results/q1/konsey_smoke/matris_mi.log
+results/q1/konsey_smoke/matris_mi/cells_meta.json
+results/q1/konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_mi/transfer_matrix.json
+results/q1/konsey_smoke/matris_panel.log
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Addepalli2022Efficient_RN18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Carmon2019Unlabeled.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Engstrom2019Robustness.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Gowal2020Uncovering_28_10_extra.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Rade2021Helper_R18_ddpm.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Wong2020Fast.npz
+results/q1/konsey_smoke/matris_panel/transfer_matrix.json
+results/q1/konsey_smoke/matris_taze.log
+results/q1/konsey_smoke/matris_taze/cells_meta.json
+results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz
+results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_taze/transfer_matrix.json
+results/q1/konsey_smoke/matris_ters.log
+results/q1/konsey_smoke/matris_ters/cells_meta.json
+results/q1/konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_ters/transfer_matrix.json
+results/q1/konsey_smoke/matris_tgr.log
+results/q1/konsey_smoke/matris_tgr/cells_meta.json
+results/q1/konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_WRN_28_10.npz
+results/q1/konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz
+results/q1/konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/matris_tgr/transfer_matrix.json
+results/q1/konsey_smoke/matris_uc.log
+results/q1/konsey_smoke/matris_uc/cells_meta.json
+results/q1/konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_uc/transfer_matrix.json
+results/q1/konsey_smoke/matris_uc_tekrar.log
+results/q1/konsey_smoke/matris_uc_tekrar/cells_meta.json
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+results/q1/konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/matris_uc_tekrar/transfer_matrix.json
+results/q1/konsey_smoke/mi_tgr_esitlik.json
+results/q1/konsey_smoke/mi_tgr_esitlik.log
+results/q1/konsey_smoke/modeller.json
+results/q1/konsey_smoke/regresyon/eski.log
+results/q1/konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/eski/transfer_matrix.json
+results/q1/konsey_smoke/regresyon/eski2.log
+results/q1/konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/eski2/transfer_matrix.json
+results/q1/konsey_smoke/regresyon/karsilastirma_eski_eski2.json
+results/q1/konsey_smoke/regresyon/karsilastirma_eski_yeni.json
+results/q1/konsey_smoke/regresyon/yeni.log
+results/q1/konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+results/q1/konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+results/q1/konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_WRN_28_10.npz
+results/q1/konsey_smoke/regresyon/yeni/transfer_matrix.json
+results/q1_research/BEKLEYEN_SEKIL_GOREVI_2026-10-29.md
+results/q1_research/DEVAM_TALIMATI.md
+scripts/konsey_b3_denetim.py
+scripts/konsey_b3_kuyruk.sh
+scripts/konsey_b6_maskeleme.py
+scripts/konsey_indir.py
+scripts/konsey_pilot_zaman.py
+scripts/konsey_smoke_egitim.sh
+scripts/konsey_smoke_karsilastir.py
+scripts/konsey_smoke_matris.sh
+scripts/konsey_smoke_mi_esit.py
+scripts/konsey_smoke_modeller.py
+scripts/konsey_smoke_regresyon.sh
+src/models/__init__.py
+src/models/r224.py
+src/training/adversarial_trainer.py
+src/training/trainer.py
+=== dosya sayisi: 461, toplam boyut: 3576816 bayt (3492 KiB)
+=== en buyuk dosya: 608296	results/q1/etkilesim_simetri_masa.json
+=== KURU KOSU: git add --dry-run (commit yapilmaz)
+add 'cli/train.py'
+add 'experiments/c1_c3_transfer_matrix.py'
+add 'results/q1_research/DEVAM_TALIMATI.md'
+add 'src/models/__init__.py'
+add 'src/training/adversarial_trainer.py'
+add 'src/training/trainer.py'
+add 'arsiv/b2_yardimci/_konsey_commit1.sh'
+add 'experiments/q1_etkilesim_simetri_masa.py'
+add 'experiments/q1_konsey_ayrisim.py'
+add 'experiments/q1_konsey_masa.py'
+add 'experiments/q1_konsey_masa_yeniden_kos.py'
+add 'experiments/q1_konsey_sahte_sinama.py'
+add 'raporlar/konsey_2026-10-29/00_durum_dosyasi.md'
+add 'raporlar/konsey_2026-10-29/01_masa_testi.md'
+add 'raporlar/konsey_2026-10-29/01_oneri_P1_mudahale.md'
+add 'raporlar/konsey_2026-10-29/01_oneri_P2_dis_gecerlilik.md'
+add 'raporlar/konsey_2026-10-29/01_oneri_P3_kuram_olcum.md'
+add 'raporlar/konsey_2026-10-29/02_literatur.md'
+add 'raporlar/konsey_2026-10-29/03_hakem_R1_istatistik.md'
+add 'raporlar/konsey_2026-10-29/03_hakem_R2_ml_hakem.md'
+add 'raporlar/konsey_2026-10-29/03_hakem_R3_uygulanabilirlik.md'
+add 'raporlar/konsey_2026-10-29/04_masa_cozumlemeleri.md'
+add 'raporlar/konsey_2026-10-29/05_kod_raporu.md'
+add 'raporlar/konsey_2026-10-29/KONSEY_PLANI.md'
+add 'raporlar/konsey_2026-10-29/KONSEY_RUNBOOK.md'
+add 'raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md'
+add 'raporlar/konsey_2026-10-29/ON_KAYIT_TASLAGI.md'
+add 'raporlar/konsey_2026-10-29/_P2_panel_logit.json'
+add 'raporlar/konsey_2026-10-29/_P2_panel_logit.py'
+add 'raporlar/konsey_2026-10-29/_P2_panel_logit_ayri.json'
+add 'raporlar/konsey_2026-10-29/_P2_panel_logit_ayri.py'
+add 'raporlar/konsey_2026-10-29/_P2_panel_masa.json'
+add 'raporlar/konsey_2026-10-29/_P2_panel_masa.py'
+add 'raporlar/konsey_2026-10-29/_commit1_kuru.txt'
+add 'raporlar/konsey_2026-10-29/_p3_carpimsal_yasa_masa.json'
+add 'raporlar/konsey_2026-10-29/_p3_carpimsal_yasa_masa.py'
+add 'raporlar/konsey_2026-10-29/_p3_havuz_gurbuzluk_yasasi.json'
+add 'raporlar/konsey_2026-10-29/_p3_havuz_gurbuzluk_yasasi.py'
+add 'raporlar/konsey_2026-10-29/_p3_potansiyel_masa.json'
+add 'raporlar/konsey_2026-10-29/_p3_potansiyel_masa.py'
+add 'raporlar/konsey_2026-10-29/_p3_yorunge_gurbuzluk_masa.json'
+add 'raporlar/konsey_2026-10-29/_p3_yorunge_gurbuzluk_masa.py'
+add 'raporlar/konsey_2026-10-29/_rb_imagenet_P2.json'
+add 'raporlar/konsey_2026-10-29/_rb_imagenet_P2.py'
+add 'raporlar/konsey_2026-10-29/_rb_liste.json'
+add 'raporlar/konsey_2026-10-29/_rb_liste.py'
+add 'raporlar/konsey_2026-10-29/_sentez_r_tau_masa.py'
+add 'raporlar/konsey_2026-10-29/_xcit_param.py'
+add 'raporlar/konsey_2026-10-29/hucre_tablosu.json'
+add 'results/q1/_konsey_sahte/kc3_sinama.py'
+add 'results/q1/_konsey_sahte/sahte_b2.json'
+add 'results/q1/_konsey_sahte/sahte_b2_kc.json'
+add 'results/q1/_konsey_sahte/sahte_b2_kc3.json'
+add 'results/q1/_konsey_sahte/sahte_b4.json'
+add 'results/q1/_konsey_sahte/sahte_b4_maskeleme_SAHTE_V_IN_a.json'
+add 'results/q1/_konsey_sahte/sahte_b4_maskeleme_ViT_Tiny_AT_s2003.json'
+add 'results/q1/_konsey_sahte/sahte_b5.json'
+add 'results/q1/_konsey_sahte/sahte_hucre_tablosu.json'
+add 'results/q1/_konsey_sahte/sahte_hucre_tablosu_b5.json'
+add 'results/q1/_konsey_sahte/sahte_hucre_tablosu_kc.json'
+add 'results/q1/_konsey_sahte/sahte_hucre_tablosu_kc3.json'
+add 'results/q1/etkilesim_simetri_masa.json'
+add 'results/q1/konsey_masa/_P2_panel_logit.json'
+add 'results/q1/konsey_masa/_P2_panel_logit_ayri.json'
+add 'results/q1/konsey_masa/_P2_panel_masa.json'
+add 'results/q1/konsey_masa/_dogrulayici/bagimsiz_yeniden_hesap.json'
+add 'results/q1/konsey_masa/_dogrulayici/bagimsiz_yeniden_hesap.py'
+add 'results/q1/konsey_masa/_dogrulayici/delta_kaynagi.json'
+add 'results/q1/konsey_masa/_dogrulayici/delta_kaynagi.py'
+add 'results/q1/konsey_masa/_dogrulayici/denetim1.sh'
+add 'results/q1/konsey_masa/_dogrulayici/denetim2.sh'
+add 'results/q1/konsey_masa/_dogrulayici/denetim3.sh'
+add 'results/q1/konsey_masa/_dogrulayici/dogrulayici_ayrisim_masa.json'
+add 'results/q1/konsey_masa/_dogrulayici/istatistik_sinama.json'
+add 'results/q1/konsey_masa/_dogrulayici/istatistik_sinama.py'
+add 'results/q1/konsey_masa/_dogrulayici/karsilastir.py'
+add 'results/q1/konsey_masa/_dogrulayici/karsilastirma.json'
+add 'results/q1/konsey_masa/_dogrulayici/kos_masa.sh'
+add 'results/q1/konsey_masa/_dogrulayici/sahte_gorulmus.py'
+add 'results/q1/konsey_masa/_dogrulayici/sema.py'
+add 'results/q1/konsey_masa/_dogrulayici/smoke_icerik.py'
+add 'results/q1/konsey_masa/_dogrulayici/tur2_kos.sh'
+add 'results/q1/konsey_masa/_p3_carpimsal_yasa_masa.json'
+add 'results/q1/konsey_masa/_p3_havuz_gurbuzluk_yasasi.json'
+add 'results/q1/konsey_masa/_p3_potansiyel_masa.json'
+add 'results/q1/konsey_masa/_p3_yorunge_gurbuzluk_masa.json'
+add 'results/q1/konsey_masa/_rb_imagenet_P2.json'
+add 'results/q1/konsey_masa/_rb_liste.json'
+add 'results/q1/konsey_masa/konsey_ayrisim_masa.json'
+add 'results/q1/konsey_masa/konsey_masa_cozumlemeleri.json'
+add 'results/q1/konsey_masa/yeniden_kos_karsilastirma.json'
+add 'results/q1/konsey_pilot_zaman.json'
+add 'results/q1/konsey_pilot_zaman_parca_R224_IN.json'
+add 'results/q1/konsey_pilot_zaman_parca_R224_scr.json'
+add 'results/q1/konsey_pilot_zaman_parca_V_IN.json'
+add 'results/q1/konsey_sahte_2x2_sinama.json'
+add 'results/q1/konsey_sentez_r_tau_masa.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d1_modeller_k3.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d1_modeller_k3.py'
+add 'results/q1/konsey_smoke/_dogrulayici/d2_calistir.py'
+add 'results/q1/konsey_smoke/_dogrulayici/d2_eski_kod_cikar.sh'
+add 'results/q1/konsey_smoke/_dogrulayici/d2_karsilastir.py'
+add 'results/q1/konsey_smoke/_dogrulayici/d2_regresyon.log'
+add 'results/q1/konsey_smoke/_dogrulayici/d2_regresyon.sh'
+add 'results/q1/konsey_smoke/_dogrulayici/d2_regresyon_karsilastirma.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d2b_tesaduf.py'
+add 'results/q1/konsey_smoke/_dogrulayici/d3_mi_tgr.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d3_mi_tgr.log'
+add 'results/q1/konsey_smoke/_dogrulayici/d3_mi_tgr.sh'
+add 'results/q1/konsey_smoke/_dogrulayici/d3_mi_tgr_bagimsiz.py'
+add 'results/q1/konsey_smoke/_dogrulayici/d4_bayraklar.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d4_bayraklar.py'
+add 'results/q1/konsey_smoke/_dogrulayici/d4_bayraklar.sh'
+add 'results/q1/konsey_smoke/_dogrulayici/d4_help_adversarial.txt'
+add 'results/q1/konsey_smoke/_dogrulayici/d4_help_clean.txt'
+add 'results/q1/konsey_smoke/_dogrulayici/d4_kuyruk_dry_run.txt'
+add 'results/q1/konsey_smoke/_dogrulayici/d4_ozet_goster.py'
+add 'results/q1/konsey_smoke/_dogrulayici/d5_temiz_referans.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d5_temiz_referans.py'
+add 'results/q1/konsey_smoke/_dogrulayici/d6_kaldi_atlama.sh'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellek/ResNet18_AT_s1001__pgd_linf_s10_n100_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellek/ViT_Tiny_AT_s2001__pgd_linf_s10_n100_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellek/WRN_28_10__pgd_linf_s10_n100_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/cells_meta.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/ilk_per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbellekli/transfer_matrix.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/cells_meta.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/ilk_per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_onbelleksiz/transfer_matrix.json'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_skip_existing.log'
+add 'results/q1/konsey_smoke/_dogrulayici/d7_skip_existing.sh'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/cells_meta.json'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/mi100/transfer_matrix.json'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_eski/transfer_matrix.json'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/reg_yeni/transfer_matrix.json'
+add 'results/q1/konsey_smoke/_dogrulayici/t2_aa_bak.py'
+add 'results/q1/konsey_smoke/_dogrulayici/t2_c1_ilk_epok.py'
+add 'results/q1/konsey_smoke/_dogrulayici/t2_gecmis_kontrol.py'
+add 'results/q1/konsey_smoke/_dogrulayici/t2_kuyruk/sahte_egitici.py'
+add 'results/q1/konsey_smoke/_dogrulayici/t2_kuyruk/sinama.log'
+add 'results/q1/konsey_smoke/_dogrulayici/t2_kuyruk/sinama.sh'
+add 'results/q1/konsey_smoke/_dogrulayici/t2_sinamalar.log'
+add 'results/q1/konsey_smoke/_dogrulayici/t2_sinamalar.sh'
+add 'results/q1/konsey_smoke/_dogrulayici/tgr100/cells_meta.json'
+add 'results/q1/konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/_dogrulayici/tgr100/transfer_matrix.json'
+add 'results/q1/konsey_smoke/aa.log'
+add 'results/q1/konsey_smoke/aa/autoattack_results.csv'
+add 'results/q1/konsey_smoke/aa/autoattack_summary.json'
+add 'results/q1/konsey_smoke/aa/per_sample_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/adv_onbellek/Debenedetti2022Light_XCiT-S12__pgd_linf_s10_n200_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/adv_onbellek/R224_scr_smoke__pgd_linf_s10_n200_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/adv_onbellek/Sehwag2021Proxy_R18__pgd_linf_s10_n200_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/adv_onbellek/V_IN_smoke__pgd_linf_s10_n200_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/adv_onbellek/ViT_Tiny_AT_s2001__pgd_linf_s10_n200_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/adv_onbellek_ters/R224_scr_smoke__pgd_linf_s10_n200_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/adv_onbellek_ters/Sehwag2021Proxy_R18__pgd_linf_s10_n200_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/adv_onbellek_ters/ViT_Tiny_AT_s2001__pgd_linf_s10_n200_seed42_cifar10.json'
+add 'results/q1/konsey_smoke/b6_maskeleme_smoke.json'
+add 'results/q1/konsey_smoke/denetim_yardimcisi.txt'
+add 'results/q1/konsey_smoke/egitim_r_in.log'
+add 'results/q1/konsey_smoke/egitim_r_in_at.log'
+add 'results/q1/konsey_smoke/egitim_r_scr.log'
+add 'results/q1/konsey_smoke/egitim_v_in.log'
+add 'results/q1/konsey_smoke/egitim_v_rand.log'
+add 'results/q1/konsey_smoke/indirmeler.json'
+add 'results/q1/konsey_smoke/karsilastirma_ekle_taze.json'
+add 'results/q1/konsey_smoke/karsilastirma_uc_taze_ortak.json'
+add 'results/q1/konsey_smoke/karsilastirma_uc_tekrar.json'
+add 'results/q1/konsey_smoke/karsilastirma_uc_ters.json'
+add 'results/q1/konsey_smoke/kuyruk_dry_run.txt'
+add 'results/q1/konsey_smoke/matris_ekle.log'
+add 'results/q1/konsey_smoke/matris_ekle/cells_meta.json'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_ekle/transfer_matrix.json'
+add 'results/q1/konsey_smoke/matris_mi.log'
+add 'results/q1/konsey_smoke/matris_mi/cells_meta.json'
+add 'results/q1/konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_mi/transfer_matrix.json'
+add 'results/q1/konsey_smoke/matris_panel.log'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Addepalli2022Efficient_RN18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Carmon2019Unlabeled.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Engstrom2019Robustness.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Gowal2020Uncovering_28_10_extra.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Rade2021Helper_R18_ddpm.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Wong2020Fast.npz'
+add 'results/q1/konsey_smoke/matris_panel/transfer_matrix.json'
+add 'results/q1/konsey_smoke/matris_taze.log'
+add 'results/q1/konsey_smoke/matris_taze/cells_meta.json'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_taze/transfer_matrix.json'
+add 'results/q1/konsey_smoke/matris_ters.log'
+add 'results/q1/konsey_smoke/matris_ters/cells_meta.json'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_ters/transfer_matrix.json'
+add 'results/q1/konsey_smoke/matris_tgr.log'
+add 'results/q1/konsey_smoke/matris_tgr/cells_meta.json'
+add 'results/q1/konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz'
+add 'results/q1/konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/matris_tgr/transfer_matrix.json'
+add 'results/q1/konsey_smoke/matris_uc.log'
+add 'results/q1/konsey_smoke/matris_uc/cells_meta.json'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_uc/transfer_matrix.json'
+add 'results/q1/konsey_smoke/matris_uc_tekrar.log'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/cells_meta.json'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/matris_uc_tekrar/transfer_matrix.json'
+add 'results/q1/konsey_smoke/mi_tgr_esitlik.json'
+add 'results/q1/konsey_smoke/mi_tgr_esitlik.log'
+add 'results/q1/konsey_smoke/modeller.json'
+add 'results/q1/konsey_smoke/regresyon/eski.log'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/eski/transfer_matrix.json'
+add 'results/q1/konsey_smoke/regresyon/eski2.log'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/eski2/transfer_matrix.json'
+add 'results/q1/konsey_smoke/regresyon/karsilastirma_eski_eski2.json'
+add 'results/q1/konsey_smoke/regresyon/karsilastirma_eski_yeni.json'
+add 'results/q1/konsey_smoke/regresyon/yeni.log'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_WRN_28_10.npz'
+add 'results/q1/konsey_smoke/regresyon/yeni/transfer_matrix.json'
+add 'results/q1_research/BEKLEYEN_SEKIL_GOREVI_2026-10-29.md'
+add 'scripts/konsey_b3_denetim.py'
+add 'scripts/konsey_b3_kuyruk.sh'
+add 'scripts/konsey_b6_maskeleme.py'
+add 'scripts/konsey_indir.py'
+add 'scripts/konsey_pilot_zaman.py'
+add 'scripts/konsey_smoke_egitim.sh'
+add 'scripts/konsey_smoke_karsilastir.py'
+add 'scripts/konsey_smoke_matris.sh'
+add 'scripts/konsey_smoke_mi_esit.py'
+add 'scripts/konsey_smoke_modeller.py'
+add 'scripts/konsey_smoke_regresyon.sh'
+add 'src/models/r224.py'

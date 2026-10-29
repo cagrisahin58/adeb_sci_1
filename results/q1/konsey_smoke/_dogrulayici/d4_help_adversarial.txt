@@ -1,0 +1,56 @@
+Usage: python -m cli.main train adversarial [OPTIONS]
+
+  Train a model with adversarial defense.
+
+Options:
+  -m, --model TEXT                Model name  [required]
+  --dataset [cifar10|cifar100|svhn]
+                                  Egitim veri kumesi (num_classes kumeden
+                                  turer)
+  -d, --defense [adversarial_training|trades|mart]
+                                  Defense method
+  -p, --pretrained TEXT           Path to pretrained model
+  -e, --epochs INTEGER            Number of training epochs
+  --lr FLOAT                      Learning rate
+  -b, --batch-size INTEGER        Training batch size
+  --eps FLOAT                     Perturbation epsilon
+  --alpha FLOAT                   PGD step size
+  --steps INTEGER                 PGD steps
+  --beta FLOAT                    TRADES/MART beta parameter
+  --data-dir TEXT                 Data directory
+  -o, --output-dir TEXT           Output directory
+  --seed INTEGER                  Random seed
+  --device TEXT                   Device
+  --patience INTEGER              Early stopping patience (0=disabled)
+  --val-split INTEGER             Egitim setinden ayrilacak validasyon ornegi
+                                  sayisi; model secimi bu set uzerinden
+                                  yapilir (0 = eski davranis: test setiyle
+                                  secim, selection leakage icerir)
+  --resume                        Checkpoint dizinindeki last.pth'tan devam et
+                                  (kesinti sonrasi). last.pth yoksa sifirdan
+                                  baslar.
+  --val-indices TEXT              Sabit validasyon indeksleri JSON'u (rev2 C1
+                                  leak fix): split seed'den turetilmez, tum
+                                  seed'ler ayni val setini paylasir
+  --save-every INTEGER            Her N epokta periyodik checkpoint (E3
+                                  kalibrasyon yorungeleri;
+                                  checkpoint_dir/epochs/ altina yalniz
+                                  agirlik); 0=kapali
+  --grad-clip FLOAT               Gradyan kirpma L2 max-norm (ViT-Small icin
+                                  1.0 onerilir)
+  --eps-warmup INTEGER            Ilk N epokta egitim eps'i 0->hedef lineer
+                                  isinir (SVHN 8/255 ve ViT-S kararsizlik
+                                  sigortasi); 0=kapali
+  --lr-warmup INTEGER             Ilk N epokta lineer LR isinmasi, sonra
+                                  cosine; 0=kapali
+  --vit-lr-cap FLOAT              ViT'lerde LR ust siniri (0 = sinirsiz;
+                                  kalibrasyon deneyleri icin)
+  --optimizer [auto|adamw|sgd]    auto = eski davranis (sinif adinda vit ->
+                                  AdamW wd 0.05, degilse SGD); adamw/sgd =
+                                  zorla (konsey B3: dort hucrede adamw)
+  --stop-epoch INTEGER            Egitimi bu epokta durdur, LR cizelgesi -e
+                                  uzerinden kalsin (konsey bekcisi AT tavani);
+                                  0 = kapali
+  --max-train-batches INTEGER     Epok basina en fazla N egitim batch'i
+                                  (yalniz smoke); 0 = sinirsiz
+  --help                          Show this message and exit.

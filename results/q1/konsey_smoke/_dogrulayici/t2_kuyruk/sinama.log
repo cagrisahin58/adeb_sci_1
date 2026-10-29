@@ -1,0 +1,126 @@
+=== Senaryo A: normal akis (V_IN ilk epok 90, R224_IN 80, R224_scr 35)
+  kosu 1 (args: ): rc=0; son satir: [2026-10-29 04:07:02] KUYRUK TAMAM; toplam egitim 0.00 sa (pay 38.15 sa). Defter: results/q1/konsey_b3_defter.tsv
+  cagri sirasi:
+    clean V_IN_s2101 lr=0.0001
+    adversarial V_IN_s2101 lr=0.001
+    clean R224_IN_s1301 lr=0.0001
+    clean R224_scr_s1201 lr=0.001
+    adversarial R224_IN_s1301 lr=0.001
+    adversarial R224_scr_s1201 lr=0.001
+    clean V_IN_s2102 lr=0.0001
+    adversarial V_IN_s2102 lr=0.001
+    clean R224_IN_s1302 lr=0.0001
+    adversarial R224_IN_s1302 lr=0.001
+    clean R224_scr_s1202 lr=0.001
+    adversarial R224_scr_s1202 lr=0.001
+  defter denetim satirlari:
+    V_IN_s2101 denetim_temiz GECTI | V_IN_s2101 ilk_epok_val=90.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+64.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2101 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_IN_s1301 denetim_temiz ERTELENDI | R224_IN_s1301 ilk_epok_val=80.00; referans (R224_scr temiz ilk epok, -) henuz yok
+    R224_IN_s1301 denetim_temiz GECTI | R224_IN_s1301 ilk_epok_val=80.00 (last.pth history.test_acc[0]) ref=35.00 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+45.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1301 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_scr_s1201 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    V_IN_s2102 denetim_temiz GECTI | V_IN_s2102 ilk_epok_val=90.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+64.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2102 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_IN_s1302 denetim_temiz GECTI | R224_IN_s1302 ilk_epok_val=80.00 (last.pth history.test_acc[0]) ref=35.00 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+45.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1302 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_scr_s1202 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+=== Senaryo B: R224_IN KALDI (ilk epok 38 < 35 + 5), ayni komutla yeniden, sonra duzeltilmis kosu
+  kosu 1 (args: ): rc=3; son satir: DUR: temiz asama denetimi KALDI (R224_IN_s1301); AT baslamaz, yukleme/normalizasyon hatasi aranmali, duzeltilmis kosu ayni tohumla yeniden baslar (ON_KAYIT §4)
+  kosu 2 (args: ): rc=3; son satir: DUR: temiz asama denetimi KALDI (R224_IN_s1301); AT baslamaz, yukleme/normalizasyon hatasi aranmali, duzeltilmis kosu ayni tohumla yeniden baslar (ON_KAYIT §4)
+  R224_IN_s1301 AT klasoru var mi: HAYIR
+  kosu 3 (args: ): rc=0; son satir: [2026-10-29 04:07:32] KUYRUK TAMAM; toplam egitim 0.00 sa (pay 38.15 sa). Defter: results/q1/konsey_b3_defter.tsv
+  cagri sirasi:
+    clean V_IN_s2101 lr=0.0001
+    adversarial V_IN_s2101 lr=0.001
+    clean R224_IN_s1301 lr=0.0001
+    clean R224_scr_s1201 lr=0.001
+    clean R224_IN_s1301 lr=0.0001
+    adversarial R224_IN_s1301 lr=0.001
+    adversarial R224_scr_s1201 lr=0.001
+    clean V_IN_s2102 lr=0.0001
+    adversarial V_IN_s2102 lr=0.001
+    clean R224_IN_s1302 lr=0.0001
+    adversarial R224_IN_s1302 lr=0.001
+    clean R224_scr_s1202 lr=0.001
+    adversarial R224_scr_s1202 lr=0.001
+  defter denetim satirlari:
+    V_IN_s2101 denetim_temiz GECTI | V_IN_s2101 ilk_epok_val=90.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+64.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2101 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_IN_s1301 denetim_temiz ERTELENDI | R224_IN_s1301 ilk_epok_val=38.00; referans (R224_scr temiz ilk epok, -) henuz yok
+    R224_IN_s1301 denetim_temiz KALDI | R224_IN_s1301 ilk_epok_val=38.00 (last.pth history.test_acc[0]) ref=35.00 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+3.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1301 denetim_temiz KALDI | R224_IN_s1301 ilk_epok_val=38.00 (last.pth history.test_acc[0]) ref=35.00 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+3.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1301 denetim_temiz GECTI | R224_IN_s1301 ilk_epok_val=80.00 (last.pth history.test_acc[0]) ref=35.00 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+45.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1301 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_scr_s1201 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    V_IN_s2102 denetim_temiz GECTI | V_IN_s2102 ilk_epok_val=90.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+64.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2102 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_IN_s1302 denetim_temiz GECTI | R224_IN_s1302 ilk_epok_val=80.00 (last.pth history.test_acc[0]) ref=35.00 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+45.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1302 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_scr_s1202 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+=== Senaryo C: V_IN KALDI (ilk epok 28 < C1 ViT ilk epok ort. + 5), iki kez
+  kosu 1 (args: ): rc=3; son satir: DUR: temiz asama denetimi KALDI (V_IN_s2101); AT baslamaz, yukleme/normalizasyon hatasi aranmali, duzeltilmis kosu ayni tohumla yeniden baslar (ON_KAYIT §4)
+  kosu 2 (args: ): rc=3; son satir: DUR: temiz asama denetimi KALDI (V_IN_s2101); AT baslamaz, yukleme/normalizasyon hatasi aranmali, duzeltilmis kosu ayni tohumla yeniden baslar (ON_KAYIT §4)
+  cagri sirasi:
+    clean V_IN_s2101 lr=0.0001
+  defter denetim satirlari:
+    V_IN_s2101 denetim_temiz KALDI | V_IN_s2101 ilk_epok_val=28.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+2.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2101 denetim_temiz KALDI | V_IN_s2101 ilk_epok_val=28.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+2.78 esik=+5; betimsel best_val=95.00
+=== Senaryo D: A tamamlandiktan sonra --in-at-lr 0.0005 (cokus kurali sonrasi yeniden baslatma)
+  kosu 11 (args: --in-at-lr 0.0005): rc=0; son satir: [2026-10-29 04:07:52] KUYRUK TAMAM; toplam egitim 0.00 sa (pay 38.15 sa). Defter: results/q1/konsey_b3_defter.tsv
+  cagri sirasi:
+    adversarial V_IN_s2101 lr=0.0005
+    adversarial R224_IN_s1301 lr=0.0005
+    adversarial V_IN_s2102 lr=0.0005
+    adversarial R224_IN_s1302 lr=0.0005
+  defter denetim satirlari:
+    V_IN_s2101 denetim_temiz GECTI | V_IN_s2101 ilk_epok_val=90.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+64.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2101 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_IN_s1301 denetim_temiz ERTELENDI | R224_IN_s1301 ilk_epok_val=80.00; referans (R224_scr temiz ilk epok, -) henuz yok
+    R224_IN_s1301 denetim_temiz GECTI | R224_IN_s1301 ilk_epok_val=80.00 (last.pth history.test_acc[0]) ref=35.00 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+45.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1301 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_scr_s1201 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    V_IN_s2102 denetim_temiz GECTI | V_IN_s2102 ilk_epok_val=90.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+64.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2102 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_IN_s1302 denetim_temiz GECTI | R224_IN_s1302 ilk_epok_val=80.00 (last.pth history.test_acc[0]) ref=35.00 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+45.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1302 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_scr_s1202 at_ozet OK | AT_lr=0.001 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    V_IN_s2101 AT_tasindi TASINDI | AT lr 0.001 -> 0.0005 (ON_KAYIT §4 cokus kurali); eski klasor models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training__lr0.001_20261029040738
+    V_IN_s2101 denetim_temiz GECTI | V_IN_s2101 ilk_epok_val=90.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+64.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2101 at_ozet OK | AT_lr=0.0005 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_IN_s1301 AT_tasindi TASINDI | AT lr 0.001 -> 0.0005 (ON_KAYIT §4 cokus kurali); eski klasor models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training__lr0.001_20261029040741
+    R224_IN_s1301 denetim_temiz GECTI | R224_IN_s1301 ilk_epok_val=80.00 (last.pth history.test_acc[0]) ref=35.00 (n=2, R224_scr temiz ilk epok, R224_scr_s1201 R224_scr_s1202) fark=+45.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1301 at_ozet OK | AT_lr=0.0005 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    V_IN_s2102 AT_tasindi TASINDI | AT lr 0.001 -> 0.0005 (ON_KAYIT §4 cokus kurali); eski klasor models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training__lr0.001_20261029040745
+    V_IN_s2102 denetim_temiz GECTI | V_IN_s2102 ilk_epok_val=90.00 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+64.78 esik=+5; betimsel best_val=95.00
+    V_IN_s2102 at_ozet OK | AT_lr=0.0005 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+    R224_IN_s1302 AT_tasindi TASINDI | AT lr 0.001 -> 0.0005 (ON_KAYIT §4 cokus kurali); eski klasor models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training__lr0.001_20261029040748
+    R224_IN_s1302 denetim_temiz GECTI | R224_IN_s1302 ilk_epok_val=80.00 (last.pth history.test_acc[0]) ref=35.00 (n=2, R224_scr temiz ilk epok, R224_scr_s1201 R224_scr_s1202) fark=+45.00 esik=+5; betimsel best_val=95.00
+    R224_IN_s1302 at_ozet OK | AT_lr=0.0005 secilen_epok=41 kosulan_epok=61 erken_durma=True tavanda_durdu=False val_pgd=45.00 kirpilmis_olabilir=False
+  AT klasorleri ve at_lr.txt:
+    R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/ lr=0.0005
+    R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training__lr0.001_20261029040741/ lr=0.001
+    R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/ lr=0.0005
+    R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training__lr0.001_20261029040748/ lr=0.001
+    R224_scr_s1201/resnet18_224/adv/adversarial_training/ lr=0.001
+    R224_scr_s1202/resnet18_224/adv/adversarial_training/ lr=0.001
+    V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/ lr=0.0005
+    V_IN_s2101/vit_tiny_in1k/adv/adversarial_training__lr0.001_20261029040738/ lr=0.001
+    V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/ lr=0.0005
+    V_IN_s2102/vit_tiny_in1k/adv/adversarial_training__lr0.001_20261029040745/ lr=0.001
+=== Senaryo D2: ayni komut tekrar (hicbir sey kosmamali)
+  kosu 12 (args: --in-at-lr 0.0005): rc=0; son satir: [2026-10-29 04:07:58] KUYRUK TAMAM; toplam egitim 0.00 sa (pay 38.15 sa). Defter: results/q1/konsey_b3_defter.tsv
+  cagri sayisi: 0
+=== Senaryo E: --dry-run
+# KURU KOSU (--dry-run): komutlar yalniz basilir, hicbir sey calismaz
+# pilot: results/q1/konsey_pilot_zaman.json  tavan: 80  egitim payi: 38.15 sa  disk esigi: 15 GB  IN AT lr: 0.001  R224_scr AT lr: 0.001
+# her asamadan once: df -BG /workspace (< 15 GB ise dur) ve nvidia-smi kaydi
+# IN kosularinda AT'den once denetim her baslatmada yeniden yapilir; GECTI olmadan AT baslamaz
+## V_IN_s2101
+[temiz] python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2101 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2101 --resume   # atla: models/q1/konsey/V_IN_s2101/vit_tiny_in1k/clean/TRAINING_COMPLETE varsa
+[denetim] python scripts/konsey_b3_denetim.py temiz --takma V_IN_s2101   # ilk epok val >= C1 ViT ilk epok ort. + 5; KALDI ise dur (kod 3)
+[AT-on] models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/at_lr.txt (yoksa 0.001) != 0.001 ise klasor adversarial_training__lr<eski>_<zaman> adiyla tasinir
+[AT]    python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2101/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2101 -o models/q1/konsey/V_IN_s2101 --resume   # atla: models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/TRAINING_COMPLETE varsa
+[izleme] her 5 dk: python scripts/konsey_b3_denetim.py cokus --takma V_IN_s2101   # 5. epok val PGD < %15 ise egitim durdurulur (kod 5); yeniden baslatma: --in-at-lr 0.0005
+[ozet]  python scripts/konsey_b3_denetim.py ozet --takma V_IN_s2101 --tavan 80
+## R224_IN_s1301

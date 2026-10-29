@@ -1,0 +1,38 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "aciklama": "K-c kod yolu sinamasi; SAHTE",
+ "modeller": {
+  "SAHTE_Va": {
+   "hucre": "V-scr",
+   "tohum": 1,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ViT s2001 best"
+  },
+  "SAHTE_Vb": {
+   "hucre": "V-scr",
+   "tohum": 2,
+   "aile": "SAHTE",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "gercek_kimlik": "C1 ResNet s1001 best"
+  },
+  "Gowal2020Uncovering_28_10_extra": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "SAHTE",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "gercek_kimlik": "RobustBench Gowal2020"
+  }
+ },
+ "b2_tohum_ciftleri": [],
+ "dizin_takma_ad_esleme": {
+  "results/c1_c3/pair1": {
+   "ViT_Tiny_AT": "SAHTE_Va",
+   "ResNet18_AT": "SAHTE_Vb",
+   "WRN_28_10": "Gowal2020Uncovering_28_10_extra"
+  }
+ }
+}

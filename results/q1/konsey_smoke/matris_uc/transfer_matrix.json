@@ -1,0 +1,92 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 200,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "R224_scr_smoke",
+    "ViT_Tiny_AT_s2001",
+    "Sehwag2021Proxy_R18"
+  ],
+  "results": {
+    "R224_scr_smoke->R224_scr_smoke": {
+      "raw_fooling": 94.5,
+      "cond_fooling": 82.81,
+      "n_cond": 64,
+      "target_clean_acc": 32.0
+    },
+    "R224_scr_smoke->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 25.5,
+      "cond_fooling": 6.33,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "R224_scr_smoke->Sehwag2021Proxy_R18": {
+      "raw_fooling": 15.5,
+      "cond_fooling": 3.45,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "ViT_Tiny_AT_s2001->R224_scr_smoke": {
+      "raw_fooling": 75.5,
+      "cond_fooling": 26.56,
+      "n_cond": 64,
+      "target_clean_acc": 32.0
+    },
+    "ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 67.0,
+      "cond_fooling": 58.23,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "ViT_Tiny_AT_s2001->Sehwag2021Proxy_R18": {
+      "raw_fooling": 23.0,
+      "cond_fooling": 11.49,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    },
+    "Sehwag2021Proxy_R18->R224_scr_smoke": {
+      "raw_fooling": 71.5,
+      "cond_fooling": 12.5,
+      "n_cond": 64,
+      "target_clean_acc": 32.0
+    },
+    "Sehwag2021Proxy_R18->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 38.0,
+      "cond_fooling": 21.52,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "Sehwag2021Proxy_R18->Sehwag2021Proxy_R18": {
+      "raw_fooling": 42.0,
+      "cond_fooling": 33.33,
+      "n_cond": 174,
+      "target_clean_acc": 87.0
+    }
+  },
+  "attack": "pgd",
+  "sources": [
+    "R224_scr_smoke",
+    "ViT_Tiny_AT_s2001",
+    "Sehwag2021Proxy_R18"
+  ],
+  "cache_adv": "results/q1/konsey_smoke/adv_onbellek",
+  "per_source_seed": true,
+  "model_specs": {
+    "R224_scr_smoke": [
+      "resnet18_224",
+      "models/q1/konsey_smoke/r_scr/resnet18_224/clean/best.pth"
+    ],
+    "ViT_Tiny_AT_s2001": [
+      "vit_tiny",
+      "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+    ],
+    "Sehwag2021Proxy_R18": [
+      "robustbench",
+      "Sehwag2021Proxy_R18"
+    ]
+  }
+}

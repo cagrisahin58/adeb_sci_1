@@ -1,0 +1,318 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "meta": {
+  "betik": "experiments/q1_konsey_ayrisim.py",
+  "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "hucre_tablosu": "/workspace/results/q1/_konsey_sahte/sahte_hucre_tablosu_kc.json",
+  "hucre_tablosu_sha256": "a806f67cb8f05e45ab653fec4d9188b1cb89064b8caee7ffada524e322f87c32",
+  "mod": "b2",
+  "matris_dizinleri": [
+   "results/c1_c3/pair1"
+  ],
+  "uretildi_utc": "2026-10-29T03:44:17.071246+00:00",
+  "delta": 0.1,
+  "delta_duyarlilik": 0.06,
+  "alfa": 0.05,
+  "bootstrap_B": 2000,
+  "bootstrap_tohum": 20261029,
+  "panel_en_az": 1,
+  "maskeleme_isaretli": [],
+  "numpy": "1.26.4"
+ },
+ "veri": {
+  "n_goruntu": 10000,
+  "modeller": [
+   "Gowal2020Uncovering_28_10_extra",
+   "SAHTE_Va",
+   "SAHTE_Vb"
+  ],
+  "hucre_sayisi": 9,
+  "cakismalar": [],
+  "tutarlilik": {
+   "hedef_maskesi_tutarli": true,
+   "tutarsiz_hedefler": []
+  },
+  "tablo_disi_modeller": [],
+  "girdi_sha256": {
+   "results/c1_c3/pair1/transfer_matrix.json": "7f5930cf82b6deedb1d783eabf90fde09d94f099e76cf3dae92b38b84cbada37",
+   "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "e3048cac9c87af4c05a2a731dbd4fd89bdad7c559608fcceb166c77de5a81027",
+   "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "4ab6327af108db96b00d93ce172ea381e93543659f396ce899619440a933d65f",
+   "results/c1_c3/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6046fdfbf0aceaa08cf5767f1f1f4c3454f5a508c904cc39293f0722992aa568",
+   "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "33c836743e64dcae73a839c3639dea0aa10eb57766b33babbf1cb64d79f41ada",
+   "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "767ca5d3b185e3f953debb40e7a6dbf6c343e6abcfdb0d2ed49bf543e11fd750",
+   "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "a7a27254c2186629314847bcfaec99881b8ce531bdf50fbe2809bbd1331afd3b",
+   "results/c1_c3/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "ac3879d70aa85949cb09078d2fedb24888ad7a85f04b7acfc14bcdcb17e84c31",
+   "results/c1_c3/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "10ae079258683cbb52e285627045a2f9cf66e678dc3e91e4593b8b1e4a6f5943",
+   "results/c1_c3/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4"
+  }
+ },
+ "panel": {
+  "birincil": [
+   "Gowal2020Uncovering_28_10_extra"
+  ],
+  "birincil_eksik": [],
+  "ikincil": []
+ },
+ "b2": {
+  "hucreler": {
+   "C1-R32": [],
+   "V-scr": [
+    "SAHTE_Va",
+    "SAHTE_Vb"
+   ]
+  },
+  "tohum_ciftleri": [],
+  "model_tablosu": {
+   "Gowal2020Uncovering_28_10_extra": {
+    "eksik_hucreler": [
+     "panelde kendisinden baska uye yok"
+    ]
+   },
+   "SAHTE_Va": {
+    "yari_log": {
+     "sigma": -1.0943170323760838,
+     "rho": -0.035046286344585065,
+     "S": 2.148229573832212,
+     "omega": 4.02231063415937,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -1.0941971016747107,
+     "rho": -0.03510812427046961,
+     "S": 2.1484716647453275,
+     "omega": 4.02231063415937,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.5014939233714795,
+     "rho": -0.4490902527141676,
+     "S": -2.3673281920123195,
+     "omega": 0.23426389196023079,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -27.023716586069895,
+     "rho": -20.878610520943276,
+     "S": 8.571299963450212,
+     "omega": 55.829959514170035,
+     "panel_n": 1
+    }
+   },
+   "SAHTE_Vb": {
+    "yari_log": {
+     "sigma": -0.7586197501045021,
+     "rho": -0.1006009419292111,
+     "S": 2.516704183896107,
+     "omega": 3.8619435015735633,
+     "panel_n": 1
+    },
+    "tam_log": {
+     "sigma": -0.7581623103784243,
+     "rho": -0.10049291364411772,
+     "S": 2.517198850728438,
+     "omega": 3.8619435015735633,
+     "panel_n": 1
+    },
+    "yari_logit": {
+     "sigma": -1.041047739042155,
+     "rho": -0.3505545757962895,
+     "S": -1.9561498461419338,
+     "omega": -0.0977702056451869,
+     "panel_n": 1
+    },
+    "yari_oran": {
+     "sigma": -19.564761051291093,
+     "rho": -13.60384163006078,
+     "S": 12.392871052787765,
+     "omega": 47.55769005505447,
+     "panel_n": 1
+    }
+   }
+  },
+  "F_B2": {
+   "K-a": {
+    "ciftler": [],
+    "D": [],
+    "simetrik_pay": [],
+    "yonlu_pay": [],
+    "ozdeslik_artik_max": null,
+    "q": [],
+    "sinama": {
+     "degerler": [],
+     "n": 0,
+     "ort": null,
+     "not": "n < 2: aralik ve sinama tanimsiz"
+    },
+    "p_tek_H0_q_le_0.5": null,
+    "ongoru_her_tohumda_q_ge_0.75": null,
+    "payda_kucuk_tohumlar": []
+   },
+   "K-b": {
+    "degerler": [
+     -0.035046286344585065,
+     -0.1006009419292111
+    ],
+    "n": 2,
+    "ort": -0.06782361413689808,
+    "sd": 0.04635414150223764,
+    "se": 0.03277732779231301,
+    "df": 1,
+    "ci90": [
+     -0.2747715171367411,
+     0.1391242888629449
+    ],
+    "ci95": [
+     -0.484299051779173,
+     0.3486518235053768
+    ],
+    "tost_p": 0.25294487087490025,
+    "tost_p_alt": 0.25294487087490025,
+    "tost_p_ust": 0.06139566467279148
+   },
+   "K-c": {
+    "vit_ciftleri": [
+     [
+      "SAHTE_Va",
+      "SAHTE_Vb"
+     ]
+    ],
+    "log_tau_tur_ici": {
+     "SAHTE_Va|SAHTE_Vb": -1.0997377864598374
+    },
+    "sigma_V": {
+     "SAHTE_Va": -1.0943170323760838,
+     "SAHTE_Vb": -0.7586197501045021
+    },
+    "Delta_w": -0.17326939521954454,
+    "bootstrap": {
+     "B": 2000,
+     "ci90": [
+      -0.19857940673828126,
+      -0.1470176637172699
+     ],
+     "ci95": [
+      -0.20354365855455397,
+      -0.14216485917568208
+     ],
+     "yeniden_cekilen_tek_tohumlu_ornek": 2029,
+     "yontem": "tohumlar yerine koyarak, goruntuler ortak agirlikla; ozdes kokenli tohum ciftleri disarida"
+    },
+    "p_tek_H0_Delta_le_0": 1.0,
+    "ongoru_Delta_ge_0.30": false
+   },
+   "p_ham": [
+    null,
+    0.25294487087490025,
+    1.0
+   ],
+   "p_holm": [
+    1.0,
+    0.7588346126247008,
+    1.0
+   ],
+   "p_1_sayilan_hesaplanamayan": [
+    0
+   ],
+   "karar": {
+    "K-a": "hesaplanamadi",
+    "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": null,
+    "K-b": "kararsiz",
+    "K-b_ham_ci90_delta_icinde": false,
+    "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+    "K-c": "curutuldu",
+    "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+   },
+   "duyarlilik_delta_0.06": {
+    "delta": 0.06,
+    "p_holm": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "karar": {
+     "K-a": "hesaplanamadi",
+     "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": null,
+     "K-b": "kararsiz",
+     "K-b_ham_ci90_delta_icinde": false,
+     "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+     "K-c": "curutuldu",
+     "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+    }
+   },
+   "not": "K-a p tek yonlu t (H0: ort q <= 0,50); K-b p TOST'un buyuk tek yonlu p'si; K-c p hiyerarsik bootstrap (H0: Delta_w <= 0). Destek Holm sonrasi, curutme ham aralikla okunur; ON_KAYIT §5 karar ilkesi."
+  },
+  "duyarlilik": {
+   "tam_log": {
+    "q_ort": null,
+    "q": [],
+    "rho_V": {
+     "degerler": [
+      -0.03510812427046961,
+      -0.10049291364411772
+     ],
+     "n": 2,
+     "ort": -0.06780051895729367,
+     "sd": 0.046234027952560694,
+     "se": 0.032692394686824056,
+     "df": 1,
+     "ci90": [
+      -0.274212175433699,
+      0.13861113751911167
+     ],
+     "ci95": [
+      -0.48319677917232495,
+      0.3475957412577376
+     ]
+    }
+   },
+   "yari_logit": {
+    "q_ort": null,
+    "q": [],
+    "rho_V": {
+     "degerler": [
+      -0.4490902527141676,
+      -0.3505545757962895
+     ],
+     "n": 2,
+     "ort": -0.3998224142552286,
+     "sd": 0.06967524533743835,
+     "se": 0.049267838458939034,
+     "df": 1,
+     "ci90": [
+      -0.7108873039563226,
+      -0.0887575245541346
+     ],
+     "ci95": [
+      -1.025829656635971,
+      0.22618482812551388
+     ]
+    }
+   },
+   "yari_oran": {
+    "q_ort": null,
+    "q": [],
+    "rho_V": {
+     "degerler": [
+      -20.878610520943276,
+      -13.60384163006078
+     ],
+     "n": 2,
+     "ort": -17.241226075502027,
+     "sd": 5.1440384143079525,
+     "se": 3.637384445441248,
+     "df": 1,
+     "ci90": [
+      -40.20676762782006,
+      5.7243154768160025
+     ],
+     "ci95": [
+      -63.45857754439204,
+      28.97612539338799
+     ]
+    }
+   },
+   "panel_jackknife": {}
+  },
+  "tur_ici_resnet_log_tau": {}
+ }
+}

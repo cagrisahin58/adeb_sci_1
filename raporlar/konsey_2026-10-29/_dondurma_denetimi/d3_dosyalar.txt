@@ -1,0 +1,546 @@
+=== konsey_smoke (adv_onbellek* haric, ilk iki duzey dizinler + dosyalar) ===
+2026-10-29 06:45 1034 konsey_smoke/_dogrulayici/d2_regresyon.sh
+2026-10-29 06:52 1121 konsey_smoke/_dogrulayici/d6_kaldi_atlama.sh
+2026-10-29 06:45 11251 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/cw.cpython-312.pyc
+2026-10-04 20:01 11253 konsey_smoke/_dogrulayici/eski_kod/src/training/trainer.py
+2026-10-29 06:27 1135 konsey_smoke/matris_uc.log
+2026-10-29 06:30 1152 konsey_smoke/matris_ters.log
+2026-10-29 06:45 11657 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/spatial.cpython-312.pyc
+2026-10-29 06:45 1168 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/__init__.cpython-312.pyc
+2026-10-29 06:30 1168 konsey_smoke/aa.log
+2026-10-29 06:48 1180 konsey_smoke/_dogrulayici/tgr100/transfer_matrix.json
+2026-10-04 20:01 1187 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__init__.py
+2026-10-29 06:54 1221 konsey_smoke/_dogrulayici/d7_skip_existing.log
+2026-10-29 06:29 1226 konsey_smoke/matris_mi/transfer_matrix.json
+2026-10-29 06:45 1250 konsey_smoke/_dogrulayici/eski_kod/src/models/__pycache__/__init__.cpython-312.pyc
+2026-10-29 06:45 1292 konsey_smoke/_dogrulayici/eski_kod/src/utils/__pycache__/seed.cpython-312.pyc
+2026-10-29 06:52 1327 konsey_smoke/_dogrulayici/d5_temiz_referans.py
+2026-10-04 20:01 1342 konsey_smoke/_dogrulayici/eski_kod/src/models/__init__.py
+2026-10-04 20:01 14024 konsey_smoke/_dogrulayici/eski_kod/src/data/datasets.py
+2026-10-29 06:32 14323 konsey_smoke/matris_panel/transfer_matrix.json
+2026-10-29 06:45 14457 konsey_smoke/_dogrulayici/eski_kod/src/data/__pycache__/datasets.cpython-312.pyc
+2026-10-04 20:01 14459 konsey_smoke/_dogrulayici/eski_kod/src/analysis/gradient_analysis.py
+2026-10-29 07:07 14776 konsey_smoke/_dogrulayici/t2_kuyruk/sinama.log
+2026-10-29 06:53 1485 konsey_smoke/_dogrulayici/d7_skip_existing.sh
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/ilk_per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbellekli/per_sample_WRN_28_10_to_WRN_28_10.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/ilk_per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+2026-10-29 06:54 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:53 1494 konsey_smoke/_dogrulayici/d7_onbelleksiz/per_sample_WRN_28_10_to_WRN_28_10.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:47 1494 konsey_smoke/_dogrulayici/mi100/per_sample_WRN_28_10_to_WRN_28_10.npz
+2026-10-29 06:48 1494 konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:48 1494 konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:48 1494 konsey_smoke/_dogrulayici/tgr100/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-04 20:01 15729 konsey_smoke/_dogrulayici/eski_kod/src/models/vit.py
+2026-10-04 20:01 16126 konsey_smoke/_dogrulayici/eski_kod/src/analysis/transfer_analysis.py
+2026-10-29 07:08 1628 konsey_smoke/_dogrulayici/t2_sinamalar.sh
+2026-10-04 20:01 163 konsey_smoke/_dogrulayici/eski_kod/src/training/__init__.py
+2026-10-29 06:46 1654 konsey_smoke/_dogrulayici/reg_eski/transfer_matrix.json
+2026-10-29 06:46 1654 konsey_smoke/_dogrulayici/reg_yeni/transfer_matrix.json
+2026-10-29 06:25 1654 konsey_smoke/regresyon/eski/transfer_matrix.json
+2026-10-29 06:25 1654 konsey_smoke/regresyon/eski2/transfer_matrix.json
+2026-10-29 06:25 1654 konsey_smoke/regresyon/yeni/transfer_matrix.json
+2026-10-04 20:01 1692 konsey_smoke/_dogrulayici/eski_kod/src/utils/device.py
+2026-10-29 07:04 1841 konsey_smoke/_dogrulayici/t2_kuyruk/sahte_egitici.py
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_eski/per_sample_WRN_28_10_to_WRN_28_10.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:46 1894 konsey_smoke/_dogrulayici/reg_yeni/per_sample_WRN_28_10_to_WRN_28_10.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_R224_scr_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_V_IN_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_V_IN_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_V_IN_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_R224_scr_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_V_IN_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_ekle/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_mi/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Addepalli2022Efficient_RN18_to_Wong2020Fast.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Carmon2019Unlabeled_to_Wong2020Fast.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Debenedetti2022Light_XCiT-S12_to_Wong2020Fast.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Engstrom2019Robustness_to_Wong2020Fast.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Gowal2020Uncovering_28_10_extra_to_Wong2020Fast.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Rade2021Helper_R18_ddpm_to_Wong2020Fast.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Sehwag2021Proxy_R18_to_Wong2020Fast.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_ViT_Tiny_AT_s2001_to_Wong2020Fast.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Addepalli2022Efficient_RN18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Carmon2019Unlabeled.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Engstrom2019Robustness.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Gowal2020Uncovering_28_10_extra.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Rade2021Helper_R18_ddpm.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:32 1894 konsey_smoke/matris_panel/per_sample_Wong2020Fast_to_Wong2020Fast.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_R224_scr_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_V_IN_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Debenedetti2022Light_XCiT-S12_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_V_IN_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_V_IN_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_R224_scr_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_V_IN_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_Debenedetti2022Light_XCiT-S12.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz
+2026-10-29 06:28 1894 konsey_smoke/matris_taze/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:30 1894 konsey_smoke/matris_ters/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_ResNet18_AT_s1001.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_V_IN_smoke.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_tgr/per_sample_V_IN_smoke_to_WRN_28_10.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_V_IN_smoke.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:29 1894 konsey_smoke/matris_tgr/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_R224_scr_smoke_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_Sehwag2021Proxy_R18_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_R224_scr_smoke.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_Sehwag2021Proxy_R18.npz
+2026-10-29 06:27 1894 konsey_smoke/matris_uc_tekrar/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski/per_sample_WRN_28_10_to_WRN_28_10.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/eski2/per_sample_WRN_28_10_to_WRN_28_10.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_ResNet18_AT_s1001_to_WRN_28_10.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_ViT_Tiny_AT_s2001_to_WRN_28_10.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_ResNet18_AT_s1001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_ViT_Tiny_AT_s2001.npz
+2026-10-29 06:25 1894 konsey_smoke/regresyon/yeni/per_sample_WRN_28_10_to_WRN_28_10.npz
+2026-10-29 06:12 1974 konsey_smoke/indirmeler.json
+2026-10-29 06:54 201 konsey_smoke/_dogrulayici/d7_onbellekli/cells_meta.json
+2026-10-29 06:28 201 konsey_smoke/matris_ekle/cells_meta.json
+2026-10-29 06:28 201 konsey_smoke/matris_taze/cells_meta.json
+2026-10-29 06:30 201 konsey_smoke/matris_ters/cells_meta.json
+2026-10-29 06:27 201 konsey_smoke/matris_uc/cells_meta.json
+2026-10-29 06:27 201 konsey_smoke/matris_uc_tekrar/cells_meta.json
+2026-10-29 06:28 2017 konsey_smoke/matris_taze.log
+2026-10-29 06:53 202 konsey_smoke/_dogrulayici/d7_onbelleksiz/cells_meta.json
+2026-10-29 06:47 202 konsey_smoke/_dogrulayici/mi100/cells_meta.json
+2026-10-29 06:47 202 konsey_smoke/_dogrulayici/tgr100/cells_meta.json
+2026-10-29 06:28 202 konsey_smoke/matris_mi/cells_meta.json
+2026-10-29 06:29 202 konsey_smoke/matris_tgr/cells_meta.json
+2026-10-29 06:45 2041 konsey_smoke/_dogrulayici/d2_karsilastir.py
+2026-10-29 06:29 2085 konsey_smoke/matris_tgr/transfer_matrix.json
+2026-10-29 06:54 2141 konsey_smoke/_dogrulayici/d7_onbelleksiz/transfer_matrix.json
+2026-10-29 06:47 2141 konsey_smoke/_dogrulayici/mi100/transfer_matrix.json
+2026-10-29 06:54 2186 konsey_smoke/_dogrulayici/d7_onbellekli/transfer_matrix.json
+2026-10-04 20:01 22207 konsey_smoke/_dogrulayici/eski_kod/src/training/adversarial_trainer.py
+2026-10-29 06:27 2247 konsey_smoke/matris_uc/transfer_matrix.json
+2026-10-29 06:27 2247 konsey_smoke/matris_uc_tekrar/transfer_matrix.json
+2026-10-29 06:46 2250 konsey_smoke/_dogrulayici/d2_regresyon.log
+2026-10-29 06:30 2252 konsey_smoke/matris_ters/transfer_matrix.json
+2026-10-29 06:51 22814 konsey_smoke/_dogrulayici/d4_bayraklar.json
+2026-10-04 20:01 23108 konsey_smoke/_dogrulayici/eski_kod/src/analysis/visualization.py
+2026-10-29 06:29 234 konsey_smoke/karsilastirma_ekle_taze.json
+2026-10-29 06:29 235 konsey_smoke/karsilastirma_uc_tekrar.json
+2026-10-29 06:28 2355 konsey_smoke/matris_ekle.log
+2026-10-29 06:25 238 konsey_smoke/regresyon/karsilastirma_eski_yeni.json
+2026-10-29 06:25 239 konsey_smoke/regresyon/karsilastirma_eski_eski2.json
+2026-10-29 06:48 2401 konsey_smoke/_dogrulayici/d3_mi_tgr.json
+2026-10-29 06:16 24061 konsey_smoke/egitim_r_scr.log
+2026-10-29 06:45 24250 konsey_smoke/_dogrulayici/eski_kod/src/models/__pycache__/vit.cpython-312.pyc
+2026-10-29 06:30 243 konsey_smoke/aa/autoattack_results.csv
+2026-10-29 06:15 24353 konsey_smoke/egitim_v_rand.log
+2026-10-29 06:51 2454 konsey_smoke/_dogrulayici/d4_help_clean.txt
+2026-10-29 06:15 24592 konsey_smoke/egitim_r_in.log
+2026-10-29 06:14 24844 konsey_smoke/egitim_v_in.log
+2026-10-29 06:27 250 konsey_smoke/mi_tgr_esitlik.log
+2026-10-04 20:01 2507 konsey_smoke/_dogrulayici/eski_kod/src/utils/load_model_auto.py
+2026-10-29 06:27 258 konsey_smoke/mi_tgr_esitlik.json
+2026-10-04 20:01 264 konsey_smoke/_dogrulayici/eski_kod/src/utils/__init__.py
+2026-10-04 20:01 2683 konsey_smoke/_dogrulayici/eski_kod/src/models/registry.py
+2026-10-04 20:01 2814 konsey_smoke/_dogrulayici/eski_kod/src/attacks/registry.py
+2026-10-04 20:01 2865 konsey_smoke/_dogrulayici/eski_kod/src/defenses/registry.py
+2026-10-29 06:45 2870 konsey_smoke/_dogrulayici/eski_kod/src/utils/__pycache__/device.cpython-312.pyc
+2026-10-04 20:01 2935 konsey_smoke/_dogrulayici/eski_kod/src/attacks/fgsm.py
+2026-10-04 20:01 2978 konsey_smoke/_dogrulayici/eski_kod/src/defenses/base.py
+2026-10-29 07:06 3009 konsey_smoke/_dogrulayici/t2_kuyruk/sinama.sh
+2026-10-04 20:01 3110 konsey_smoke/_dogrulayici/eski_kod/src/models/base.py
+2026-10-29 06:45 3119 konsey_smoke/_dogrulayici/eski_kod/src/utils/__pycache__/load_model_auto.cpython-312.pyc
+2026-10-29 06:44 3122 konsey_smoke/_dogrulayici/d1_modeller_k3.json
+2026-10-29 06:51 3278 konsey_smoke/_dogrulayici/d4_help_adversarial.txt
+2026-10-29 06:30 332 konsey_smoke/aa/aa_chunk_V_IN_smoke_Linf_eps0.03137_s42_n50_000.npz
+2026-10-29 06:29 337 konsey_smoke/matris_mi.log
+2026-10-29 06:48 3467 konsey_smoke/_dogrulayici/d3_mi_tgr.log
+2026-10-29 06:24 352 konsey_smoke/denetim_yardimcisi.txt
+2026-10-04 20:01 3549 konsey_smoke/_dogrulayici/eski_kod/src/utils/checkpoint.py
+2026-10-04 20:01 3670 konsey_smoke/_dogrulayici/eski_kod/src/utils/config.py
+2026-10-04 20:01 3772 konsey_smoke/_dogrulayici/eski_kod/src/analysis/protokoller.py
+2026-10-04 20:01 3843 konsey_smoke/_dogrulayici/eski_kod/src/attacks/base.py
+2026-10-04 20:01 403 konsey_smoke/_dogrulayici/eski_kod/src/analysis/__init__.py
+2026-10-29 06:16 4051 konsey_smoke/egitim_r_in_at.log
+2026-10-29 06:45 4061 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/fgsm.cpython-312.pyc
+2026-10-29 06:45 4134 konsey_smoke/_dogrulayici/eski_kod/src/utils/__pycache__/checkpoint.cpython-312.pyc
+2026-10-04 20:01 4181 konsey_smoke/_dogrulayici/eski_kod/src/models/efficientnet.py
+2026-10-04 20:01 4250 konsey_smoke/_dogrulayici/eski_kod/src/defenses/trades.py
+2026-10-29 06:45 4283 konsey_smoke/_dogrulayici/eski_kod/src/models/__pycache__/registry.cpython-312.pyc
+2026-10-29 06:45 4456 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/registry.cpython-312.pyc
+2026-10-04 20:01 4473 konsey_smoke/_dogrulayici/eski_kod/src/defenses/adversarial_training.py
+2026-10-04 20:01 4510 konsey_smoke/_dogrulayici/eski_kod/src/models/densenet.py
+2026-10-04 20:01 4524 konsey_smoke/_dogrulayici/eski_kod/src/data/transforms.py
+2026-10-29 06:30 459 konsey_smoke/karsilastirma_uc_ters.json
+2026-10-29 06:45 462 konsey_smoke/_dogrulayici/eski_kod/src/utils/__pycache__/__init__.cpython-312.pyc
+2026-10-04 20:01 4651 konsey_smoke/_dogrulayici/eski_kod/src/models/resnet.py
+2026-10-29 06:47 4652 konsey_smoke/_dogrulayici/d3_mi_tgr_bagimsiz.py
+2026-10-29 06:13 4783 konsey_smoke/modeller.json
+2026-10-04 20:01 485 konsey_smoke/_dogrulayici/eski_kod/src/evaluation/__init__.py
+2026-10-29 06:45 4907 konsey_smoke/_dogrulayici/eski_kod/src/models/__pycache__/base.cpython-312.pyc
+2026-10-04 20:01 4955 konsey_smoke/_dogrulayici/eski_kod/src/models/robustbench.py
+2026-10-04 20:01 5161 konsey_smoke/_dogrulayici/eski_kod/src/attacks/autoattack.py
+2026-10-29 06:28 5190 konsey_smoke/matris_ekle/transfer_matrix.json
+2026-10-29 06:28 5190 konsey_smoke/matris_taze/transfer_matrix.json
+2026-10-29 06:29 522 konsey_smoke/karsilastirma_uc_taze_ortak.json
+2026-10-29 06:45 5385 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/base.cpython-312.pyc
+2026-10-04 20:01 5454 konsey_smoke/_dogrulayici/eski_kod/src/defenses/mart.py
+2026-10-29 06:30 568 konsey_smoke/aa/autoattack_summary.json
+2026-10-04 20:01 570 konsey_smoke/_dogrulayici/eski_kod/src/utils/seed.py
+2026-10-04 20:01 5704 konsey_smoke/_dogrulayici/eski_kod/src/defenses/tta.py
+2026-10-04 20:01 5782 konsey_smoke/_dogrulayici/eski_kod/src/evaluation/metrics.py
+2026-10-29 06:45 590 konsey_smoke/_dogrulayici/d2_calistir.py
+2026-10-29 07:00 593 konsey_smoke/_dogrulayici/t2_aa_bak.py
+2026-10-04 20:01 6088 konsey_smoke/_dogrulayici/eski_kod/src/evaluation/evaluator.py
+2026-10-29 06:32 6116 konsey_smoke/matris_panel.log
+2026-10-29 06:46 617 konsey_smoke/_dogrulayici/d2_regresyon_karsilastirma.json
+2026-10-29 06:46 620 konsey_smoke/_dogrulayici/d2b_tesaduf.py
+2026-10-29 06:45 6270 konsey_smoke/_dogrulayici/eski_kod/src/models/__pycache__/efficientnet.cpython-312.pyc
+2026-10-29 06:45 6286 konsey_smoke/_dogrulayici/eski_kod/src/models/__pycache__/robustbench.cpython-312.pyc
+2026-10-29 06:30 640 konsey_smoke/aa/per_sample_V_IN_smoke.npz
+2026-10-29 07:08 641 konsey_smoke/b6_maskeleme_smoke.json
+2026-10-29 06:45 6442 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/autoattack.cpython-312.pyc
+2026-10-29 06:25 647 konsey_smoke/regresyon/eski.log
+2026-10-29 06:25 647 konsey_smoke/regresyon/yeni.log
+2026-10-29 06:25 648 konsey_smoke/regresyon/eski2.log
+2026-10-29 06:51 6550 konsey_smoke/_dogrulayici/d4_kuyruk_dry_run.txt
+2026-10-29 06:58 669 konsey_smoke/_dogrulayici/t2_gecmis_kontrol.py
+2026-10-29 06:59 670 konsey_smoke/_dogrulayici/t2_c1_ilk_epok.py
+2026-10-29 06:45 6735 konsey_smoke/_dogrulayici/eski_kod/src/data/__pycache__/transforms.cpython-312.pyc
+2026-10-29 06:29 674 konsey_smoke/matris_tgr.log
+2026-10-29 06:45 683 konsey_smoke/_dogrulayici/d2_eski_kod_cikar.sh
+2026-10-29 06:45 6935 konsey_smoke/_dogrulayici/eski_kod/src/utils/__pycache__/config.cpython-312.pyc
+2026-10-04 20:01 7087 konsey_smoke/_dogrulayici/eski_kod/src/attacks/pgd.py
+2026-10-04 20:01 709 konsey_smoke/_dogrulayici/eski_kod/src/__init__.py
+2026-10-29 06:44 7123 konsey_smoke/_dogrulayici/d1_modeller_k3.py
+2026-10-04 20:01 7264 konsey_smoke/_dogrulayici/eski_kod/src/attacks/deepfool.py
+2026-10-29 06:50 731 konsey_smoke/_dogrulayici/d4_ozet_goster.py
+2026-10-29 06:49 745 konsey_smoke/_dogrulayici/d4_bayraklar.sh
+2026-10-29 07:08 746 konsey_smoke/_dogrulayici/t2_sinamalar.log
+2026-10-29 06:45 7690 konsey_smoke/_dogrulayici/eski_kod/src/models/__pycache__/densenet.cpython-312.pyc
+2026-10-29 07:08 7897 konsey_smoke/kuyruk_dry_run.txt
+2026-10-29 06:45 791 konsey_smoke/_dogrulayici/eski_kod/src/data/__pycache__/__init__.cpython-312.pyc
+2026-10-04 20:01 792 konsey_smoke/_dogrulayici/eski_kod/src/data/__init__.py
+2026-10-04 20:01 8052 konsey_smoke/_dogrulayici/eski_kod/src/attacks/cw.py
+2026-10-04 20:01 816 konsey_smoke/_dogrulayici/eski_kod/src/defenses/__init__.py
+2026-10-29 06:27 846 konsey_smoke/matris_uc_tekrar.log
+2026-10-29 06:47 850 konsey_smoke/_dogrulayici/d3_mi_tgr.sh
+2026-10-29 06:45 8527 konsey_smoke/_dogrulayici/eski_kod/src/models/__pycache__/resnet.cpython-312.pyc
+2026-10-04 20:01 8734 konsey_smoke/_dogrulayici/eski_kod/src/defenses/purification.py
+2026-10-04 20:01 8860 konsey_smoke/_dogrulayici/eski_kod/src/attacks/spatial.py
+2026-10-29 06:51 8903 konsey_smoke/_dogrulayici/d4_bayraklar.py
+2026-10-29 06:45 906 konsey_smoke/_dogrulayici/eski_kod/src/__pycache__/__init__.cpython-312.pyc
+2026-10-04 20:01 9063 konsey_smoke/_dogrulayici/eski_kod/src/evaluation/reporters.py
+2026-10-29 06:45 9275 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/deepfool.cpython-312.pyc
+2026-10-29 06:45 9392 konsey_smoke/_dogrulayici/eski_kod/src/attacks/__pycache__/pgd.cpython-312.pyc
+2026-10-04 20:01 9425 konsey_smoke/_dogrulayici/eski_kod/src/analysis/attention_analysis.py
+2026-10-04 20:01 9625 konsey_smoke/_dogrulayici/eski_kod/experiments/c1_c3_transfer_matrix.py
+2026-10-29 06:52 982 konsey_smoke/_dogrulayici/d5_temiz_referans.json
+=== konsey_smoke onbellek dizinleri ===
+konsey_smoke/adv_onbellek
+konsey_smoke/_dogrulayici/d7_onbellek
+konsey_smoke/adv_onbellek_ters
+=== konsey_masa ===
+2026-10-29 06:28 10292 konsey_masa/_dogrulayici/karsilastirma.json
+2026-10-29 06:28 1091 konsey_masa/_dogrulayici/sahte_gorulmus.py
+2026-10-29 06:29 1100 konsey_masa/_dogrulayici/denetim1.sh
+2026-10-29 06:27 11644 konsey_masa/_dogrulayici/bagimsiz_yeniden_hesap.json
+2026-10-29 06:44 11904 konsey_masa/_P2_panel_logit.json
+2026-10-29 06:30 1194 konsey_masa/_dogrulayici/denetim2.sh
+2026-10-29 06:44 14975 konsey_masa/_rb_liste.json
+2026-10-29 06:44 1600 konsey_masa/_P2_panel_logit_ayri.json
+2026-10-29 06:30 1839 konsey_masa/_dogrulayici/delta_kaynagi.py
+2026-10-29 06:44 20011 konsey_masa/_p3_carpimsal_yasa_masa.json
+2026-10-29 06:44 231960 konsey_masa/_p3_potansiyel_masa.json
+2026-10-29 06:24 356 konsey_masa/_dogrulayici/sema.py
+2026-10-29 06:31 3886 konsey_masa/_dogrulayici/istatistik_sinama.py
+2026-10-29 06:44 41628 konsey_masa/_p3_havuz_gurbuzluk_yasasi.json
+2026-10-29 06:27 6429 konsey_masa/_dogrulayici/bagimsiz_yeniden_hesap.py
+2026-10-29 06:44 6439 konsey_masa/_rb_imagenet_P2.json
+2026-10-29 06:24 65852 konsey_masa/_dogrulayici/dogrulayici_ayrisim_masa.json
+2026-10-29 06:44 65908 konsey_masa/konsey_ayrisim_masa.json
+2026-10-29 06:28 6847 konsey_masa/_dogrulayici/karsilastir.py
+2026-10-29 06:32 705 konsey_masa/_dogrulayici/denetim3.sh
+2026-10-29 06:44 73749 konsey_masa/_p3_yorunge_gurbuzluk_masa.json
+2026-10-29 06:44 751 konsey_masa/_dogrulayici/tur2_kos.sh
+2026-10-29 06:44 7593 konsey_masa/yeniden_kos_karsilastirma.json
+2026-10-29 06:30 765 konsey_masa/_dogrulayici/delta_kaynagi.json
+2026-10-29 06:24 787 konsey_masa/_dogrulayici/kos_masa.sh
+2026-10-29 06:22 80508 konsey_masa/konsey_masa_cozumlemeleri.json
+2026-10-29 06:33 834 konsey_masa/_dogrulayici/smoke_icerik.py
+2026-10-29 06:31 835 konsey_masa/_dogrulayici/istatistik_sinama.json
+2026-10-29 06:44 9190 konsey_masa/_P2_panel_masa.json
+=== _konsey_sahte ===
+2026-10-29 06:44 15998 _konsey_sahte/sahte_b5.json
+2026-10-29 16:28 1865 _konsey_sahte/sahte_hucre_tablosu_kc3.json
+2026-10-29 16:28 21230 _konsey_sahte/sahte_b2_kc3.json
+2026-10-29 06:44 25103 _konsey_sahte/sahte_b2.json
+2026-10-29 06:44 2696 _konsey_sahte/sahte_hucre_tablosu_b5.json
+2026-10-29 16:29 3046 _konsey_sahte/kc3_sinama.py
+2026-10-29 06:44 4060 _konsey_sahte/sahte_hucre_tablosu.json
+2026-10-29 06:44 42939 _konsey_sahte/sahte_b4.json
+2026-10-29 06:44 43487 _konsey_sahte/sahte_b4_maskeleme_SAHTE_V_IN_a.json
+2026-10-29 06:44 44706 _konsey_sahte/sahte_b4_maskeleme_ViT_Tiny_AT_s2003.json
+2026-10-29 06:44 8185 _konsey_sahte/sahte_b2_kc.json
+2026-10-29 06:44 841 _konsey_sahte/sahte_hucre_tablosu_kc.json
+=== konsey_sahte_2x2_sinama.json ve diger konsey_* ===
+-rw-r--r--  1 firat firat  5696 2026-10-29 06:32 konsey_pilot_zaman.json
+-rw-r--r--  1 firat firat  1071 2026-10-29 06:20 konsey_pilot_zaman_parca_R224_IN.json
+-rw-r--r--  1 firat firat  1073 2026-10-29 06:20 konsey_pilot_zaman_parca_R224_scr.json
+-rw-r--r--  1 firat firat  1064 2026-10-29 06:18 konsey_pilot_zaman_parca_V_IN.json
+-rw-r--r--  1 firat firat 99784 2026-10-29 06:44 konsey_sahte_2x2_sinama.json
+-rw-r--r--  1 firat firat 10543 2026-10-29 05:47 konsey_sentez_r_tau_masa.json
+
+konsey_masa:
+total 588
+drwxr-xr-x  3 firat firat   4096 2026-10-29 06:44 .
+drwxr-xr-x 19 firat firat   4096 2026-10-29 06:21 ..
+-rw-r--r--  1 firat firat  11904 2026-10-29 06:44 _P2_panel_logit.json
+-rw-r--r--  1 firat firat   1600 2026-10-29 06:44 _P2_panel_logit_ayri.json
+-rw-r--r--  1 firat firat   9190 2026-10-29 06:44 _P2_panel_masa.json
+drwxr-xr-x  2 firat firat   4096 2026-10-29 06:44 _dogrulayici
+-rw-r--r--  1 firat firat  20011 2026-10-29 06:44 _p3_carpimsal_yasa_masa.json
+-rw-r--r--  1 firat firat  41628 2026-10-29 06:44 _p3_havuz_gurbuzluk_yasasi.json
+-rw-r--r--  1 firat firat 231960 2026-10-29 06:44 _p3_potansiyel_masa.json
+-rw-r--r--  1 firat firat  73749 2026-10-29 06:44 _p3_yorunge_gurbuzluk_masa.json
+-rw-r--r--  1 firat firat   6439 2026-10-29 06:44 _rb_imagenet_P2.json
+-rw-r--r--  1 firat firat  14975 2026-10-29 06:44 _rb_liste.json
+-rw-r--r--  1 firat firat  65908 2026-10-29 06:44 konsey_ayrisim_masa.json
+-rw-r--r--  1 firat firat  80508 2026-10-29 06:22 konsey_masa_cozumlemeleri.json
+-rw-r--r--  1 firat firat   7593 2026-10-29 06:44 yeniden_kos_karsilastirma.json
+
+konsey_smoke:
+total 268
+drwxr-xr-x 15 firat firat  4096 2026-10-29 07:08 .
+drwxr-xr-x 19 firat firat  4096 2026-10-29 06:21 ..
+drwxr-xr-x 11 firat firat  4096 2026-10-29 07:08 _dogrulayici
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:30 aa
+-rw-r--r--  1 firat firat  1168 2026-10-29 06:30 aa.log
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:28 adv_onbellek
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:30 adv_onbellek_ters
+-rw-r--r--  1 firat firat   641 2026-10-29 07:08 b6_maskeleme_smoke.json
+-rw-r--r--  1 firat firat   352 2026-10-29 06:24 denetim_yardimcisi.txt
+-rw-r--r--  1 firat firat 24592 2026-10-29 06:15 egitim_r_in.log
+-rw-r--r--  1 firat firat  4051 2026-10-29 06:16 egitim_r_in_at.log
+-rw-r--r--  1 firat firat 24061 2026-10-29 06:16 egitim_r_scr.log
+-rw-r--r--  1 firat firat 24844 2026-10-29 06:14 egitim_v_in.log
+-rw-r--r--  1 firat firat 24353 2026-10-29 06:15 egitim_v_rand.log
+-rw-r--r--  1 firat firat  1974 2026-10-29 06:12 indirmeler.json
+-rw-r--r--  1 firat firat   234 2026-10-29 06:29 karsilastirma_ekle_taze.json
+-rw-r--r--  1 firat firat   522 2026-10-29 06:29 karsilastirma_uc_taze_ortak.json
+-rw-r--r--  1 firat firat   235 2026-10-29 06:29 karsilastirma_uc_tekrar.json
+-rw-r--r--  1 firat firat   459 2026-10-29 06:30 karsilastirma_uc_ters.json
+-rw-r--r--  1 firat firat  7897 2026-10-29 07:08 kuyruk_dry_run.txt
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:28 matris_ekle
+-rw-r--r--  1 firat firat  2355 2026-10-29 06:28 matris_ekle.log
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:29 matris_mi
+-rw-r--r--  1 firat firat   337 2026-10-29 06:29 matris_mi.log
+drwxr-xr-x  2 firat firat 12288 2026-10-29 06:32 matris_panel
+-rw-r--r--  1 firat firat  6116 2026-10-29 06:32 matris_panel.log
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:28 matris_taze
+-rw-r--r--  1 firat firat  2017 2026-10-29 06:28 matris_taze.log
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:30 matris_ters
+-rw-r--r--  1 firat firat  1152 2026-10-29 06:30 matris_ters.log
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:29 matris_tgr
+-rw-r--r--  1 firat firat   674 2026-10-29 06:29 matris_tgr.log
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:27 matris_uc
+-rw-r--r--  1 firat firat  1135 2026-10-29 06:27 matris_uc.log
+drwxr-xr-x  2 firat firat  4096 2026-10-29 06:27 matris_uc_tekrar
+-rw-r--r--  1 firat firat   846 2026-10-29 06:27 matris_uc_tekrar.log
+-rw-r--r--  1 firat firat   258 2026-10-29 06:27 mi_tgr_esitlik.json
+-rw-r--r--  1 firat firat   250 2026-10-29 06:27 mi_tgr_esitlik.log
+-rw-r--r--  1 firat firat  4783 2026-10-29 06:13 modeller.json
+drwxr-xr-x  5 firat firat  4096 2026-10-29 06:25 regresyon
+=== results/q1 altinda konsey adli baska ogeler ===
+_konsey_sahte
+konsey_masa
+konsey_pilot_zaman.json
+konsey_pilot_zaman_parca_R224_IN.json
+konsey_pilot_zaman_parca_R224_scr.json
+konsey_pilot_zaman_parca_V_IN.json
+konsey_sahte_2x2_sinama.json
+konsey_sentez_r_tau_masa.json
+konsey_smoke
+=== taslagin ilk yaziminin ve diger dosyalarin zamanlari ===
+2026-10-29 07:10:35.809068600 +0300 /home/firat/projects/adeb_sci_1/raporlar/konsey_2026-10-29/ON_KAYIT_TASLAGI.md
+2026-10-29 16:34:04.194583300 +0300 /home/firat/projects/adeb_sci_1/raporlar/konsey_2026-10-29/KONSEY_PLANI.md

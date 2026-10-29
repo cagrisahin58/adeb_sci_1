@@ -1,0 +1,3218 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "aciklama": "Kod sinamasi. Hucre etiketleri SAHTEDIR; sayilar hicbir hipotez icin kanit degildir.",
+ "sahte_hucre_tablosu": "results/q1/_konsey_sahte/sahte_hucre_tablosu.json",
+ "birim_sinamalari": {
+  "holm": {
+   "girdi": [
+    0.01,
+    0.04,
+    0.03
+   ],
+   "cikti": [
+    0.03,
+    0.06,
+    0.06
+   ],
+   "beklenen": [
+    0.03,
+    0.06,
+    0.06
+   ],
+   "gecti": true
+  },
+  "birlesik_t": {
+   "karsitlik_p_iki": 0.8305030739493546,
+   "scipy_p": 0.8305030739493546,
+   "gecti": true
+  },
+  "welch": {
+   "p": 0.887227371992688,
+   "scipy_p": 0.887227371992688,
+   "gecti": true
+  },
+  "etkilesim_carpani": {
+   "carpan": 1.35400640077266,
+   "beklenen": 1.35400640077266,
+   "df": 5,
+   "gecti": true
+  },
+  "tost_aralik_denkligi": {
+   "ci90": [
+    -0.016963244057526958,
+    0.01946324405752696
+   ],
+   "tost_p": 0.0005192825653729578,
+   "gecti": true
+  },
+  "holm_eksik_p_1": {
+   "cikti": [
+    0.03,
+    1.0,
+    0.04
+   ],
+   "beklenen": [
+    0.03,
+    1.0,
+    0.04
+   ],
+   "p1_indeks": [
+    1
+   ],
+   "gecti": true
+  },
+  "H1_ortusme_ayrik": {
+   "A_sigma_scr": -0.05750000000000022,
+   "ci90": [
+    -0.07017773466477187,
+    -0.04482226533522857
+   ],
+   "p_holm": 0.000262778780375159,
+   "karar": "curutuldu (esdeger)",
+   "bolge": "O2",
+   "gecti": true
+  },
+  "H2_ortusme_ayrik": {
+   "I_sigma": 0.049499999999999766,
+   "ci90": [
+    0.040743615852984465,
+    0.05825638414701507
+   ],
+   "p_holm": 9.125707713764086e-05,
+   "H1": "destek",
+   "H2": "curutuldu (esdeger)",
+   "H3": "destek (esdeger, Holm sonrasi TOST p < 0,05)",
+   "bolge": "O3",
+   "gecti": true
+  },
+  "sonuc_haritasi_kapsam": {
+   "bilesim": 240,
+   "bolgeler": [
+    "O1",
+    "O2",
+    "O3",
+    "O3-varyant",
+    "O5",
+    "O5a"
+   ],
+   "gecti": true
+  },
+  "K-b_negatif_curutme": {
+   "karar": "curutuldu (negatif yon)",
+   "gecti": true
+  },
+  "K-a_payda_kurali": {
+   "karar": "kararsiz (payda kucuk: bir tohumda D_s <= 0,10)",
+   "gecti": true
+  }
+ },
+ "b2": {
+  "SINAMA_SONUC_DEGIL": true,
+  "meta": {
+   "betik": "experiments/q1_konsey_ayrisim.py",
+   "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+   "hucre_tablosu": "/workspace/results/q1/_konsey_sahte/sahte_hucre_tablosu.json",
+   "hucre_tablosu_sha256": "1d7a90905df164665aabdd66b23a871371b38f05ca52e422faf8916bc6cc7d98",
+   "mod": "b2",
+   "matris_dizinleri": [
+    "results/c1_c3/pair1",
+    "results/q1/son_kontrol_noktasi/pair1",
+    "results/c1_c3/pair2",
+    "results/q1/son_kontrol_noktasi/pair2",
+    "results/c1_c3/pair3",
+    "results/q1/son_kontrol_noktasi/pair3"
+   ],
+   "uretildi_utc": "2026-10-29T03:44:16.186767+00:00",
+   "delta": 0.1,
+   "delta_duyarlilik": 0.06,
+   "alfa": 0.05,
+   "bootstrap_B": 2000,
+   "bootstrap_tohum": 20261029,
+   "panel_en_az": 1,
+   "maskeleme_isaretli": [],
+   "numpy": "1.26.4"
+  },
+  "veri": {
+   "n_goruntu": 10000,
+   "modeller": [
+    "Gowal2020Uncovering_28_10_extra",
+    "ResNet18_AT_s1003",
+    "SAHTE_C1R32_b",
+    "SAHTE_R224_IN_a",
+    "SAHTE_R224_IN_b",
+    "SAHTE_R224_scr_a",
+    "SAHTE_R224_scr_b",
+    "SAHTE_V_IN_a",
+    "SAHTE_V_IN_b",
+    "SAHTE_ikincil_Vl3",
+    "ViT_Tiny_AT_s2001",
+    "ViT_Tiny_AT_s2002",
+    "ViT_Tiny_AT_s2003"
+   ],
+   "hucre_sayisi": 49,
+   "cakismalar": [
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/q1/son_kontrol_noktasi/pair1",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/c1_c3/pair2",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/q1/son_kontrol_noktasi/pair2",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/c1_c3/pair3",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/q1/son_kontrol_noktasi/pair3",
+     "ozdes": true
+    }
+   ],
+   "tutarlilik": {
+    "hedef_maskesi_tutarli": true,
+    "tutarsiz_hedefler": []
+   },
+   "tablo_disi_modeller": [],
+   "girdi_sha256": {
+    "results/c1_c3/pair1/transfer_matrix.json": "7f5930cf82b6deedb1d783eabf90fde09d94f099e76cf3dae92b38b84cbada37",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "e3048cac9c87af4c05a2a731dbd4fd89bdad7c559608fcceb166c77de5a81027",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "4ab6327af108db96b00d93ce172ea381e93543659f396ce899619440a933d65f",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6046fdfbf0aceaa08cf5767f1f1f4c3454f5a508c904cc39293f0722992aa568",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "33c836743e64dcae73a839c3639dea0aa10eb57766b33babbf1cb64d79f41ada",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "767ca5d3b185e3f953debb40e7a6dbf6c343e6abcfdb0d2ed49bf543e11fd750",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "a7a27254c2186629314847bcfaec99881b8ce531bdf50fbe2809bbd1331afd3b",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "ac3879d70aa85949cb09078d2fedb24888ad7a85f04b7acfc14bcdcb17e84c31",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "10ae079258683cbb52e285627045a2f9cf66e678dc3e91e4593b8b1e4a6f5943",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+    "results/q1/son_kontrol_noktasi/pair1/transfer_matrix.json": "d5a647569f5bc082bfd873b46457694109a4b8241a3862c004d27db86a024bcd",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "2c15ac8b35dc76ba53e92117e29eaf9494e769672c62eebc3d5f99a7d89836c8",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "f7b62fadab0f5a231872449e1a5a58901f35d8cfd84c720074b98a4d5526d142",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "29b3be1f61fcb1b90c8e25578225293cee3fc414701f6fabf79a6a0a0dd4e9b3",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "b0deffb5f7c6e287e305dfe89c8adcfee66bd286f0eafe0b51c5f6e101bc2698",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "4e9a849d7dbe7f522c3e833772c1999b5b959fd0a7e218c3402fcbf2990c7e98",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "850478e7be0a7f1a298d1e0881c50d5059284c99b2775ac146acaaa17fcad2c3",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "afbc5377f12b5f61fb68271fa633f25ca710fe8ae501f9bf5ee0f09570d39967",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "eef3ee8d1e8bdcbeaf040d783fcffacdcc1c7576796314f8c9a966e1ca5e1dac",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+    "results/c1_c3/pair2/transfer_matrix.json": "377629f534f4f426f3e70c025ac408dab1c14042eae8cbcf7ca719cb5042cb74",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "1ec59fab5d86d3f84fe28701cf9faf43168dc6e94e8676bffd721ed14d952f73",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "38939c7023deb1313f0041f211b5904453e078684685f9f3cbeb02e2d76d890f",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "f10199e89bcdb84ef460d37f8e5e05c26c5b0535fb96c2b2b03e1e0bc7144e02",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "1123604cfd72e0af53836eb0b25643f6087b243fe5d4596cfd3d2fec33c1dbc6",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "56d90a604df21462ed54a83789bcfebbd5407f8c354faca81beb55a8b0764f49",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "377bbdda2113d708280e4aa01df14636d2bb1b87bbcbe603938fe6955f15cbb0",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2401ea4d90fb935adec2034bc03a58372f22da63bfe1260fb53a7c5ef89e0a97",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "1216b107ac089607aac26473f40a79f6d3e02eb1f406b5de8176052f3819a5b7",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+    "results/q1/son_kontrol_noktasi/pair2/transfer_matrix.json": "99be8147ff89cbfcd4bff040e07aa29de6a4345d4bda00981bd271dac5180053",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "7ce00b2baac1d36ffd72b7f121307eb09e35043cb471e923eda5a6bcbf33bf83",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "87526a1b51a959997a43ff2702ac39a4d595e4d72e9e3d230679d2a54f5f4120",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "197d681aff71ad6ecfe2de69325340e380839997e37a1342f2a365fbe7582087",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "47e2f07b72a449dd6fc4391421f76a09f5db5b08e38716db9ba996c161785618",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "172d06829fc8527c40d7ed8cc18867de03a9e899d47f2b132697d61b723f5034",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "9a5e414a38526eae9d7e3b525b08f688b3e19ffde79dd9f979aa59f9b2cb8298",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "18309a7bd0661066da428f653d52522aeab51c4d32843a350687fa9c5f5b2102",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "39438c176b44ebc1c76cb383a7cd342e9349bcf5f67f661f724a91374fc26932",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+    "results/c1_c3/pair3/transfer_matrix.json": "0412463b039952088eee3046b27a16fd75d35ae7fcbf424696934835bb379502",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "ad3ff90a26fe4df75e23e3e1a8a028ed5455d07f6f1c8957373b4f261af0a808",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "49dac26602ab34bd131792ce824790379e4403d56bfe93a9416f06e911faf18e",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "4ead6c8e750931f4f0e762a5a7161b31f2987624947a930b32fad319ccfb8fe3",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "71ec8342534569b482edd9b99b278c690c4a721b8f40995b4b679442523d674b",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "5ac823751e41c44a86019667290b62d08266ddfa2097c6eb70df08660916043b",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "10e41f5b95b9dc552278fcb5776836e8787df724999c260967dd85f9f3b7f1c0",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2098213d3f941809e5e5edd23e52c1fb80e9a96290e3438b7ac98f9921d79a05",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "d346e249e0ff89bce78c89b36ebf12cae5cac024082d85f03440c1167bdd2d70",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+    "results/q1/son_kontrol_noktasi/pair3/transfer_matrix.json": "e7283079893a478fabfca74e5526ffbf1fa546efa2cd4a94a16949abbf3a7305",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "8c9b0d1208f51fa21e8aa8fb03ab700a38d568ee158a5c30e64c4ebe5b8b277f",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "cdbc0e7edfe6305cf8f94809c8fc916fcbd4c4175391572ebfae5f393782fe48",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "84e9c1608c6ae3a9e9401ac76ea1e10376f848b4b5934083c554785d29b5ef45",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "3f6d01758764a9a8ac5692d288de8d2c7b49f4ea5c20e2b366f4995834ead454",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "c3c82a2a5619e2cd0dbf3d67d2f1e70217926db541097749b571c460c14527f6",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "77f6809ffd370918fe0bb4c39c1a43dea8a676d2a267c7b60293f4e3cb0f4526",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "5dcd38ac7ab49174443b7641072738d057012aa6642bad89c40ee9018a62ec25",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "548f1421e4866d29ed35f47ff8759690dc2c682d927783863148b6409ef9ef40",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32"
+   }
+  },
+  "panel": {
+   "birincil": [
+    "Gowal2020Uncovering_28_10_extra"
+   ],
+   "birincil_eksik": [],
+   "ikincil": [
+    "SAHTE_ikincil_Vl3"
+   ]
+  },
+  "b2": {
+   "hucreler": {
+    "C1-R32": [
+     "ResNet18_AT_s1003",
+     "SAHTE_C1R32_b"
+    ],
+    "V-scr": [
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003"
+    ]
+   },
+   "tohum_ciftleri": [
+    [
+     "ResNet18_AT_s1003",
+     "ViT_Tiny_AT_s2003"
+    ],
+    [
+     "SAHTE_C1R32_b",
+     "ViT_Tiny_AT_s2001"
+    ]
+   ],
+   "model_tablosu": {
+    "Gowal2020Uncovering_28_10_extra": {
+     "eksik_hucreler": [
+      "panelde kendisinden baska uye yok"
+     ]
+    },
+    "ResNet18_AT_s1003": {
+     "yari_log": {
+      "sigma": -0.7572710416104502,
+      "rho": -0.11094144337169864,
+      "S": 2.5232231431114025,
+      "omega": 3.89479231481494,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.756957249425728,
+      "rho": -0.11066710292050352,
+      "S": 2.523491006319327,
+      "omega": 3.89479231481494,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.050641498604308,
+      "rho": -0.38456484943298286,
+      "S": -1.9487384688857403,
+      "omega": -0.03416950662932848,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -20.00863173725316,
+      "rho": -14.648583225600062,
+      "S": 12.471371164595345,
+      "omega": 49.14584543869843,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_C1R32_b": {
+     "yari_log": {
+      "sigma": -0.7952728645842994,
+      "rho": -0.13769530058763757,
+      "S": 2.4985982487455227,
+      "omega": 3.9335292106491098,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7948068656761231,
+      "rho": -0.13738429540470243,
+      "S": 2.4989999863110315,
+      "omega": 3.9335292106491098,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.1115596475048335,
+      "rho": -0.45026915332479256,
+      "S": -1.9768044658403607,
+      "omega": 0.0434851119397391,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -21.265286383113242,
+      "rho": -16.558101610883497,
+      "S": 12.169475711376975,
+      "omega": 51.08695652173913,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_R224_IN_a": {
+     "yari_log": {
+      "sigma": -0.7680868353907783,
+      "rho": -0.11984760029775154,
+      "S": 2.516860427794101,
+      "omega": 3.9209937383873896,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7677062916580897,
+      "rho": -0.11958087620344804,
+      "S": 2.517198850728438,
+      "omega": 3.9209937383873896,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.0733599817018424,
+      "rho": -0.4154899866620606,
+      "S": -1.9559943833687359,
+      "omega": 0.018022668968680523,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -20.579596597836876,
+      "rho": -15.633872425822114,
+      "S": 12.393050904122653,
+      "omega": 50.45055452865065,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_R224_IN_b": {
+     "yari_log": {
+      "sigma": -0.7845008948432421,
+      "rho": -0.13610687341162575,
+      "S": 2.5085760048985737,
+      "omega": 3.9256162240416947,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7842594237743963,
+      "rho": -0.13639008330825098,
+      "S": 2.5090503221645326,
+      "omega": 3.9256162240416947,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.095540310831802,
+      "rho": -0.4409881217949567,
+      "S": -1.9654256449322474,
+      "omega": 0.027373762091348855,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -20.968373758186818,
+      "rho": -16.20996327622654,
+      "S": 12.292319168974926,
+      "omega": 50.68430132259919,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_R224_scr_a": {
+     "yari_log": {
+      "sigma": -0.7586197501045021,
+      "rho": -0.1006009419292111,
+      "S": 2.516704183896107,
+      "omega": 3.8619435015735633,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7581623103784243,
+      "rho": -0.10049291364411772,
+      "S": 2.517198850728438,
+      "omega": 3.8619435015735633,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.041047739042155,
+      "rho": -0.3505545757962895,
+      "S": -1.9561498461419338,
+      "omega": -0.0977702056451869,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -19.564761051291093,
+      "rho": -13.60384163006078,
+      "S": 12.392871052787765,
+      "omega": 47.55769005505447,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_R224_scr_b": {
+     "yari_log": {
+      "sigma": -0.7584568857377234,
+      "rho": -0.132148430069154,
+      "S": 2.532640792332857,
+      "omega": 3.888714122033729,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7577858052161415,
+      "rho": -0.13194095669837003,
+      "S": 2.533299377417847,
+      "omega": 3.888714122033729,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.0506043706025168,
+      "rho": -0.40614151458035547,
+      "S": -1.9379130083102627,
+      "omega": -0.04608681514293394,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -19.989983804733114,
+      "rho": -14.85625487041633,
+      "S": 12.593854919523523,
+      "omega": 48.848033511752384,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_V_IN_a": {
+     "yari_log": {
+      "sigma": -1.1639556695697881,
+      "rho": 0.0023649121206297252,
+      "S": 2.0598853374059,
+      "omega": 4.103714750509685,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.164000941594045,
+      "rho": 0.0023909905737520276,
+      "S": 2.0599182674038823,
+      "omega": 4.103714750509685,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.6282881141250383,
+      "rho": -0.5101665107017412,
+      "S": -2.4635842537720913,
+      "omega": 0.4290572901249844,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -29.469655960122914,
+      "rho": -24.318299648989253,
+      "S": 7.845205153420183,
+      "omega": 60.56485355648535,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_V_IN_b": {
+     "yari_log": {
+      "sigma": -1.074756340019165,
+      "rho": -0.03436037720932705,
+      "S": 2.167447311621502,
+      "omega": 4.042546181043879,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0745945654666436,
+      "rho": -0.034638930210445285,
+      "S": 2.1678396039233823,
+      "omega": 4.042546181043879,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.4894700019781548,
+      "rho": -0.46717928511695206,
+      "S": -2.3462597544176025,
+      "omega": 0.2806769246799667,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -27.134508589643847,
+      "rho": -21.437805458895774,
+      "S": 8.74010542885251,
+      "omega": 56.9712173224188,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_ikincil_Vl3": {
+     "yari_log": {
+      "sigma": -1.1356742482192135,
+      "rho": -0.016624073489202695,
+      "S": 2.0976612515613917,
+      "omega": 4.066417599136251,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.135362419549391,
+      "rho": -0.01581262130263328,
+      "S": 2.0976585953867293,
+      "omega": 4.066417599136251,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.5730657803529116,
+      "rho": -0.48183753292362697,
+      "S": -2.4225264088890217,
+      "omega": 0.33705772991602545,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -28.37853941479274,
+      "rho": -22.73997736565557,
+      "S": 8.147160557083513,
+      "omega": 58.34756337843163,
+      "panel_n": 1
+     }
+    },
+    "ViT_Tiny_AT_s2001": {
+     "yari_log": {
+      "sigma": -1.0943170323760838,
+      "rho": -0.035046286344585065,
+      "S": 2.148229573832212,
+      "omega": 4.02231063415937,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0941971016747107,
+      "rho": -0.03510812427046961,
+      "S": 2.1484716647453275,
+      "omega": 4.02231063415937,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.5014939233714795,
+      "rho": -0.4490902527141676,
+      "S": -2.3673281920123195,
+      "omega": 0.23426389196023079,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -27.023716586069895,
+      "rho": -20.878610520943276,
+      "S": 8.571299963450212,
+      "omega": 55.829959514170035,
+      "panel_n": 1
+     }
+    },
+    "ViT_Tiny_AT_s2002": {
+     "yari_log": {
+      "sigma": -1.0967053128431226,
+      "rho": -0.042370619357462,
+      "S": 2.1495034598716116,
+      "omega": 4.022108965759873,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0965776749347205,
+      "rho": -0.042475134351320776,
+      "S": 2.1497745965257433,
+      "omega": 4.022108965759873,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.5043901030435634,
+      "rho": -0.45767467386596594,
+      "S": -2.3659321611085042,
+      "omega": 0.2338073773175228,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -27.070054684347063,
+      "rho": -20.993578291282724,
+      "S": 8.582445750342767,
+      "omega": 55.818701510820745,
+      "panel_n": 1
+     }
+    },
+    "ViT_Tiny_AT_s2003": {
+     "yari_log": {
+      "sigma": -1.0887339210007547,
+      "rho": -0.07798165591690642,
+      "S": 2.1752803699937013,
+      "omega": 4.00868948882928,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0886304175888064,
+      "rho": -0.07799733307990664,
+      "S": 2.1754829532359503,
+      "omega": 4.00868948882928,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.4894046030666659,
+      "rho": -0.48415388058585984,
+      "S": -2.3377070577716594,
+      "omega": 0.20368720551908454,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -26.795189220231357,
+      "rho": -20.89099774854266,
+      "S": 8.806020943088443,
+      "omega": 55.07464730858786,
+      "panel_n": 1
+     }
+    }
+   },
+   "F_B2": {
+    "K-a": {
+     "ciftler": [
+      [
+       "ResNet18_AT_s1003",
+       "ViT_Tiny_AT_s2003"
+      ],
+      [
+       "SAHTE_C1R32_b",
+       "ViT_Tiny_AT_s2001"
+      ]
+     ],
+     "D": [
+      0.34794277311770117,
+      0.3503686749133106
+     ],
+     "simetrik_pay": [
+      0.3314628793903045,
+      0.29904416779178444
+     ],
+     "yonlu_pay": [
+      0.01647989372739611,
+      0.05132450712152625
+     ],
+     "ozdeslik_artik_max": 5.551115123125783e-16,
+     "q": [
+      0.9526361947979822,
+      0.8535128543263035
+     ],
+     "sinama": {
+      "degerler": [
+       0.9526361947979822,
+       0.8535128543263035
+      ],
+      "n": 2,
+      "ort": 0.9030745245621429,
+      "sd": 0.07009078622138697,
+      "se": 0.04956167023583935,
+      "df": 1,
+      "ci90": [
+       0.5901544540345479,
+       1.2159945950897377
+      ],
+      "ci95": [
+       0.2733337954660353,
+       1.5328152536582504
+      ]
+     },
+     "p_tek_H0_q_le_0.5": 0.038943611907698794,
+     "ongoru_her_tohumda_q_ge_0.75": true,
+     "payda_kucuk_tohumlar": []
+    },
+    "K-b": {
+     "degerler": [
+      -0.035046286344585065,
+      -0.042370619357462,
+      -0.07798165591690642
+     ],
+     "n": 3,
+     "ort": -0.051799520539651166,
+     "sd": 0.022968230737380944,
+     "se": 0.013260714199036325,
+     "df": 2,
+     "ci90": [
+      -0.09052061478605289,
+      -0.01307842629324945
+     ],
+     "ci95": [
+      -0.1088557686858552,
+      0.005256727606552866
+     ],
+     "tost_p": 0.03402657443734958,
+     "tost_p_alt": 0.03402657443734958,
+     "tost_p_ust": 0.0037724734491601476
+    },
+    "K-c": {
+     "vit_ciftleri": [
+      [
+       "ViT_Tiny_AT_s2001",
+       "ViT_Tiny_AT_s2002"
+      ],
+      [
+       "ViT_Tiny_AT_s2001",
+       "ViT_Tiny_AT_s2003"
+      ],
+      [
+       "ViT_Tiny_AT_s2002",
+       "ViT_Tiny_AT_s2003"
+      ]
+     ],
+     "eksik_hucreler": [
+      "ViT_Tiny_AT_s2001<->ViT_Tiny_AT_s2002",
+      "ViT_Tiny_AT_s2001<->ViT_Tiny_AT_s2003",
+      "ViT_Tiny_AT_s2002<->ViT_Tiny_AT_s2003"
+     ],
+     "not": "Tur ici ViT hucreleri yok; K-c hesaplanamadi."
+    },
+    "p_ham": [
+     0.038943611907698794,
+     0.03402657443734958,
+     null
+    ],
+    "p_holm": [
+     0.10207972331204873,
+     0.10207972331204873,
+     1.0
+    ],
+    "p_1_sayilan_hesaplanamayan": [
+     2
+    ],
+    "karar": {
+     "K-a": "kararsiz",
+     "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": true,
+     "K-b": "kararsiz",
+     "K-b_ham_ci90_delta_icinde": true,
+     "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+     "K-c": "hesaplanamadi"
+    },
+    "duyarlilik_delta_0.06": {
+     "delta": 0.06,
+     "p_holm": [
+      0.11683083572309638,
+      0.5993521275089373,
+      1.0
+     ],
+     "karar": {
+      "K-a": "kararsiz",
+      "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": true,
+      "K-b": "kararsiz",
+      "K-b_ham_ci90_delta_icinde": false,
+      "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+      "K-c": "hesaplanamadi"
+     }
+    },
+    "not": "K-a p tek yonlu t (H0: ort q <= 0,50); K-b p TOST'un buyuk tek yonlu p'si; K-c p hiyerarsik bootstrap (H0: Delta_w <= 0). Destek Holm sonrasi, curutme ham aralikla okunur; ON_KAYIT §5 karar ilkesi."
+   },
+   "duyarlilik": {
+    "tam_log": {
+     "q_ort": 0.9035865816090585,
+     "q": [
+      0.9530617617162299,
+      0.8541114015018871
+     ],
+     "rho_V": {
+      "degerler": [
+       -0.03510812427046961,
+       -0.042475134351320776,
+       -0.07799733307990664
+      ],
+      "n": 3,
+      "ort": -0.05186019723389901,
+      "sd": 0.022933177103431037,
+      "se": 0.013240475974039273,
+      "df": 2,
+      "ci90": [
+       -0.09052219615513735,
+       -0.013198198312660676
+      ],
+      "ci95": [
+       -0.10882936732607526,
+       0.005108972858277251
+      ]
+     }
+    },
+    "yari_logit": {
+     "q_ort": 1.0632537099095427,
+     "q": [
+      1.1280168039251186,
+      0.9984906158939669
+     ],
+     "rho_V": {
+      "degerler": [
+       -0.4490902527141676,
+       -0.45767467386596594,
+       -0.48415388058585984
+      ],
+      "n": 3,
+      "ort": -0.4636396023886644,
+      "sd": 0.0182770287271155,
+      "se": 0.010552247455586658,
+      "df": 2,
+      "ci90": [
+       -0.49445201279932066,
+       -0.4328271919780082
+      ],
+      "ci95": [
+       -0.5090422587078736,
+       -0.41823694606945533
+      ]
+     }
+    },
+    "yari_oran": {
+     "q_ort": 1.7259594941392034,
+     "q": [
+      1.8515440743308018,
+      1.600374913947605
+     ],
+     "rho_V": {
+      "degerler": [
+       -20.878610520943276,
+       -20.993578291282724,
+       -20.89099774854266
+      ],
+      "n": 3,
+      "ort": -20.921062186922885,
+      "sd": 0.06310546644740712,
+      "se": 0.0364339580407474,
+      "df": 2,
+      "ci90": [
+       -21.027448819037147,
+       -20.814675554808623
+      ],
+      "ci95": [
+       -21.07782485594054,
+       -20.76429951790523
+      ]
+     }
+    },
+    "panel_jackknife": {},
+    "ikincil_panel": {
+     "panel": [
+      "SAHTE_ikincil_Vl3"
+     ],
+     "eksik": "('ResNet18_AT_s1003', 'SAHTE_ikincil_Vl3')"
+    }
+   },
+   "tur_ici_resnet_log_tau": {}
+  }
+ },
+ "b4": {
+  "SINAMA_SONUC_DEGIL": true,
+  "meta": {
+   "betik": "experiments/q1_konsey_ayrisim.py",
+   "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+   "hucre_tablosu": "/workspace/results/q1/_konsey_sahte/sahte_hucre_tablosu.json",
+   "hucre_tablosu_sha256": "1d7a90905df164665aabdd66b23a871371b38f05ca52e422faf8916bc6cc7d98",
+   "mod": "b4",
+   "matris_dizinleri": [
+    "results/c1_c3/pair1",
+    "results/q1/son_kontrol_noktasi/pair1",
+    "results/c1_c3/pair2",
+    "results/q1/son_kontrol_noktasi/pair2",
+    "results/c1_c3/pair3",
+    "results/q1/son_kontrol_noktasi/pair3"
+   ],
+   "uretildi_utc": "2026-10-29T03:44:16.217165+00:00",
+   "delta": 0.1,
+   "delta_duyarlilik": 0.06,
+   "alfa": 0.05,
+   "bootstrap_B": 2000,
+   "bootstrap_tohum": 20261029,
+   "panel_en_az": 1,
+   "maskeleme_isaretli": [],
+   "numpy": "1.26.4"
+  },
+  "veri": {
+   "n_goruntu": 10000,
+   "modeller": [
+    "Gowal2020Uncovering_28_10_extra",
+    "ResNet18_AT_s1003",
+    "SAHTE_C1R32_b",
+    "SAHTE_R224_IN_a",
+    "SAHTE_R224_IN_b",
+    "SAHTE_R224_scr_a",
+    "SAHTE_R224_scr_b",
+    "SAHTE_V_IN_a",
+    "SAHTE_V_IN_b",
+    "SAHTE_ikincil_Vl3",
+    "ViT_Tiny_AT_s2001",
+    "ViT_Tiny_AT_s2002",
+    "ViT_Tiny_AT_s2003"
+   ],
+   "hucre_sayisi": 49,
+   "cakismalar": [
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/q1/son_kontrol_noktasi/pair1",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/c1_c3/pair2",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/q1/son_kontrol_noktasi/pair2",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/c1_c3/pair3",
+     "ozdes": true
+    },
+    {
+     "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+     "kullanilan": "results/c1_c3/pair1",
+     "atlanan": "results/q1/son_kontrol_noktasi/pair3",
+     "ozdes": true
+    }
+   ],
+   "tutarlilik": {
+    "hedef_maskesi_tutarli": true,
+    "tutarsiz_hedefler": []
+   },
+   "tablo_disi_modeller": [],
+   "girdi_sha256": {
+    "results/c1_c3/pair1/transfer_matrix.json": "7f5930cf82b6deedb1d783eabf90fde09d94f099e76cf3dae92b38b84cbada37",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "e3048cac9c87af4c05a2a731dbd4fd89bdad7c559608fcceb166c77de5a81027",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "4ab6327af108db96b00d93ce172ea381e93543659f396ce899619440a933d65f",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6046fdfbf0aceaa08cf5767f1f1f4c3454f5a508c904cc39293f0722992aa568",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "33c836743e64dcae73a839c3639dea0aa10eb57766b33babbf1cb64d79f41ada",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "767ca5d3b185e3f953debb40e7a6dbf6c343e6abcfdb0d2ed49bf543e11fd750",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "a7a27254c2186629314847bcfaec99881b8ce531bdf50fbe2809bbd1331afd3b",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "ac3879d70aa85949cb09078d2fedb24888ad7a85f04b7acfc14bcdcb17e84c31",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "10ae079258683cbb52e285627045a2f9cf66e678dc3e91e4593b8b1e4a6f5943",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+    "results/q1/son_kontrol_noktasi/pair1/transfer_matrix.json": "d5a647569f5bc082bfd873b46457694109a4b8241a3862c004d27db86a024bcd",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "2c15ac8b35dc76ba53e92117e29eaf9494e769672c62eebc3d5f99a7d89836c8",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "f7b62fadab0f5a231872449e1a5a58901f35d8cfd84c720074b98a4d5526d142",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "29b3be1f61fcb1b90c8e25578225293cee3fc414701f6fabf79a6a0a0dd4e9b3",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "b0deffb5f7c6e287e305dfe89c8adcfee66bd286f0eafe0b51c5f6e101bc2698",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "4e9a849d7dbe7f522c3e833772c1999b5b959fd0a7e218c3402fcbf2990c7e98",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "850478e7be0a7f1a298d1e0881c50d5059284c99b2775ac146acaaa17fcad2c3",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "afbc5377f12b5f61fb68271fa633f25ca710fe8ae501f9bf5ee0f09570d39967",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "eef3ee8d1e8bdcbeaf040d783fcffacdcc1c7576796314f8c9a966e1ca5e1dac",
+    "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+    "results/c1_c3/pair2/transfer_matrix.json": "377629f534f4f426f3e70c025ac408dab1c14042eae8cbcf7ca719cb5042cb74",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "1ec59fab5d86d3f84fe28701cf9faf43168dc6e94e8676bffd721ed14d952f73",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "38939c7023deb1313f0041f211b5904453e078684685f9f3cbeb02e2d76d890f",
+    "results/c1_c3/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "f10199e89bcdb84ef460d37f8e5e05c26c5b0535fb96c2b2b03e1e0bc7144e02",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "1123604cfd72e0af53836eb0b25643f6087b243fe5d4596cfd3d2fec33c1dbc6",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "56d90a604df21462ed54a83789bcfebbd5407f8c354faca81beb55a8b0764f49",
+    "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "377bbdda2113d708280e4aa01df14636d2bb1b87bbcbe603938fe6955f15cbb0",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2401ea4d90fb935adec2034bc03a58372f22da63bfe1260fb53a7c5ef89e0a97",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "1216b107ac089607aac26473f40a79f6d3e02eb1f406b5de8176052f3819a5b7",
+    "results/c1_c3/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+    "results/q1/son_kontrol_noktasi/pair2/transfer_matrix.json": "99be8147ff89cbfcd4bff040e07aa29de6a4345d4bda00981bd271dac5180053",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "7ce00b2baac1d36ffd72b7f121307eb09e35043cb471e923eda5a6bcbf33bf83",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "87526a1b51a959997a43ff2702ac39a4d595e4d72e9e3d230679d2a54f5f4120",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "197d681aff71ad6ecfe2de69325340e380839997e37a1342f2a365fbe7582087",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "47e2f07b72a449dd6fc4391421f76a09f5db5b08e38716db9ba996c161785618",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "172d06829fc8527c40d7ed8cc18867de03a9e899d47f2b132697d61b723f5034",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "9a5e414a38526eae9d7e3b525b08f688b3e19ffde79dd9f979aa59f9b2cb8298",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "18309a7bd0661066da428f653d52522aeab51c4d32843a350687fa9c5f5b2102",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "39438c176b44ebc1c76cb383a7cd342e9349bcf5f67f661f724a91374fc26932",
+    "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+    "results/c1_c3/pair3/transfer_matrix.json": "0412463b039952088eee3046b27a16fd75d35ae7fcbf424696934835bb379502",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "ad3ff90a26fe4df75e23e3e1a8a028ed5455d07f6f1c8957373b4f261af0a808",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "49dac26602ab34bd131792ce824790379e4403d56bfe93a9416f06e911faf18e",
+    "results/c1_c3/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "4ead6c8e750931f4f0e762a5a7161b31f2987624947a930b32fad319ccfb8fe3",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "71ec8342534569b482edd9b99b278c690c4a721b8f40995b4b679442523d674b",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "5ac823751e41c44a86019667290b62d08266ddfa2097c6eb70df08660916043b",
+    "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "10e41f5b95b9dc552278fcb5776836e8787df724999c260967dd85f9f3b7f1c0",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2098213d3f941809e5e5edd23e52c1fb80e9a96290e3438b7ac98f9921d79a05",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "d346e249e0ff89bce78c89b36ebf12cae5cac024082d85f03440c1167bdd2d70",
+    "results/c1_c3/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+    "results/q1/son_kontrol_noktasi/pair3/transfer_matrix.json": "e7283079893a478fabfca74e5526ffbf1fa546efa2cd4a94a16949abbf3a7305",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "8c9b0d1208f51fa21e8aa8fb03ab700a38d568ee158a5c30e64c4ebe5b8b277f",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "cdbc0e7edfe6305cf8f94809c8fc916fcbd4c4175391572ebfae5f393782fe48",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "84e9c1608c6ae3a9e9401ac76ea1e10376f848b4b5934083c554785d29b5ef45",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "3f6d01758764a9a8ac5692d288de8d2c7b49f4ea5c20e2b366f4995834ead454",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "c3c82a2a5619e2cd0dbf3d67d2f1e70217926db541097749b571c460c14527f6",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "77f6809ffd370918fe0bb4c39c1a43dea8a676d2a267c7b60293f4e3cb0f4526",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "5dcd38ac7ab49174443b7641072738d057012aa6642bad89c40ee9018a62ec25",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "548f1421e4866d29ed35f47ff8759690dc2c682d927783863148b6409ef9ef40",
+    "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32"
+   }
+  },
+  "panel": {
+   "birincil": [
+    "Gowal2020Uncovering_28_10_extra"
+   ],
+   "birincil_eksik": [],
+   "ikincil": [
+    "SAHTE_ikincil_Vl3"
+   ]
+  },
+  "b4": {
+   "hucreler": {
+    "V-scr": [
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003"
+    ],
+    "V-IN": [
+     "SAHTE_V_IN_a",
+     "SAHTE_V_IN_b"
+    ],
+    "R224-scr": [
+     "SAHTE_R224_scr_a",
+     "SAHTE_R224_scr_b"
+    ],
+    "R224-IN": [
+     "SAHTE_R224_IN_a",
+     "SAHTE_R224_IN_b"
+    ]
+   },
+   "model_tablosu": {
+    "Gowal2020Uncovering_28_10_extra": {
+     "eksik_hucreler": [
+      "panelde kendisinden baska uye yok"
+     ]
+    },
+    "ResNet18_AT_s1003": {
+     "yari_log": {
+      "sigma": -0.7572710416104502,
+      "rho": -0.11094144337169864,
+      "S": 2.5232231431114025,
+      "omega": 3.89479231481494,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.756957249425728,
+      "rho": -0.11066710292050352,
+      "S": 2.523491006319327,
+      "omega": 3.89479231481494,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.050641498604308,
+      "rho": -0.38456484943298286,
+      "S": -1.9487384688857403,
+      "omega": -0.03416950662932848,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -20.00863173725316,
+      "rho": -14.648583225600062,
+      "S": 12.471371164595345,
+      "omega": 49.14584543869843,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_C1R32_b": {
+     "yari_log": {
+      "sigma": -0.7952728645842994,
+      "rho": -0.13769530058763757,
+      "S": 2.4985982487455227,
+      "omega": 3.9335292106491098,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7948068656761231,
+      "rho": -0.13738429540470243,
+      "S": 2.4989999863110315,
+      "omega": 3.9335292106491098,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.1115596475048335,
+      "rho": -0.45026915332479256,
+      "S": -1.9768044658403607,
+      "omega": 0.0434851119397391,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -21.265286383113242,
+      "rho": -16.558101610883497,
+      "S": 12.169475711376975,
+      "omega": 51.08695652173913,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_R224_IN_a": {
+     "yari_log": {
+      "sigma": -0.7680868353907783,
+      "rho": -0.11984760029775154,
+      "S": 2.516860427794101,
+      "omega": 3.9209937383873896,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7677062916580897,
+      "rho": -0.11958087620344804,
+      "S": 2.517198850728438,
+      "omega": 3.9209937383873896,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.0733599817018424,
+      "rho": -0.4154899866620606,
+      "S": -1.9559943833687359,
+      "omega": 0.018022668968680523,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -20.579596597836876,
+      "rho": -15.633872425822114,
+      "S": 12.393050904122653,
+      "omega": 50.45055452865065,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_R224_IN_b": {
+     "yari_log": {
+      "sigma": -0.7845008948432421,
+      "rho": -0.13610687341162575,
+      "S": 2.5085760048985737,
+      "omega": 3.9256162240416947,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7842594237743963,
+      "rho": -0.13639008330825098,
+      "S": 2.5090503221645326,
+      "omega": 3.9256162240416947,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.095540310831802,
+      "rho": -0.4409881217949567,
+      "S": -1.9654256449322474,
+      "omega": 0.027373762091348855,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -20.968373758186818,
+      "rho": -16.20996327622654,
+      "S": 12.292319168974926,
+      "omega": 50.68430132259919,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_R224_scr_a": {
+     "yari_log": {
+      "sigma": -0.7586197501045021,
+      "rho": -0.1006009419292111,
+      "S": 2.516704183896107,
+      "omega": 3.8619435015735633,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7581623103784243,
+      "rho": -0.10049291364411772,
+      "S": 2.517198850728438,
+      "omega": 3.8619435015735633,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.041047739042155,
+      "rho": -0.3505545757962895,
+      "S": -1.9561498461419338,
+      "omega": -0.0977702056451869,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -19.564761051291093,
+      "rho": -13.60384163006078,
+      "S": 12.392871052787765,
+      "omega": 47.55769005505447,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_R224_scr_b": {
+     "yari_log": {
+      "sigma": -0.7584568857377234,
+      "rho": -0.132148430069154,
+      "S": 2.532640792332857,
+      "omega": 3.888714122033729,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7577858052161415,
+      "rho": -0.13194095669837003,
+      "S": 2.533299377417847,
+      "omega": 3.888714122033729,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.0506043706025168,
+      "rho": -0.40614151458035547,
+      "S": -1.9379130083102627,
+      "omega": -0.04608681514293394,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -19.989983804733114,
+      "rho": -14.85625487041633,
+      "S": 12.593854919523523,
+      "omega": 48.848033511752384,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_V_IN_a": {
+     "yari_log": {
+      "sigma": -1.1639556695697881,
+      "rho": 0.0023649121206297252,
+      "S": 2.0598853374059,
+      "omega": 4.103714750509685,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.164000941594045,
+      "rho": 0.0023909905737520276,
+      "S": 2.0599182674038823,
+      "omega": 4.103714750509685,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.6282881141250383,
+      "rho": -0.5101665107017412,
+      "S": -2.4635842537720913,
+      "omega": 0.4290572901249844,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -29.469655960122914,
+      "rho": -24.318299648989253,
+      "S": 7.845205153420183,
+      "omega": 60.56485355648535,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_V_IN_b": {
+     "yari_log": {
+      "sigma": -1.074756340019165,
+      "rho": -0.03436037720932705,
+      "S": 2.167447311621502,
+      "omega": 4.042546181043879,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0745945654666436,
+      "rho": -0.034638930210445285,
+      "S": 2.1678396039233823,
+      "omega": 4.042546181043879,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.4894700019781548,
+      "rho": -0.46717928511695206,
+      "S": -2.3462597544176025,
+      "omega": 0.2806769246799667,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -27.134508589643847,
+      "rho": -21.437805458895774,
+      "S": 8.74010542885251,
+      "omega": 56.9712173224188,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_ikincil_Vl3": {
+     "yari_log": {
+      "sigma": -1.1356742482192135,
+      "rho": -0.016624073489202695,
+      "S": 2.0976612515613917,
+      "omega": 4.066417599136251,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.135362419549391,
+      "rho": -0.01581262130263328,
+      "S": 2.0976585953867293,
+      "omega": 4.066417599136251,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.5730657803529116,
+      "rho": -0.48183753292362697,
+      "S": -2.4225264088890217,
+      "omega": 0.33705772991602545,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -28.37853941479274,
+      "rho": -22.73997736565557,
+      "S": 8.147160557083513,
+      "omega": 58.34756337843163,
+      "panel_n": 1
+     }
+    },
+    "ViT_Tiny_AT_s2001": {
+     "yari_log": {
+      "sigma": -1.0943170323760838,
+      "rho": -0.035046286344585065,
+      "S": 2.148229573832212,
+      "omega": 4.02231063415937,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0941971016747107,
+      "rho": -0.03510812427046961,
+      "S": 2.1484716647453275,
+      "omega": 4.02231063415937,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.5014939233714795,
+      "rho": -0.4490902527141676,
+      "S": -2.3673281920123195,
+      "omega": 0.23426389196023079,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -27.023716586069895,
+      "rho": -20.878610520943276,
+      "S": 8.571299963450212,
+      "omega": 55.829959514170035,
+      "panel_n": 1
+     }
+    },
+    "ViT_Tiny_AT_s2002": {
+     "yari_log": {
+      "sigma": -1.0967053128431226,
+      "rho": -0.042370619357462,
+      "S": 2.1495034598716116,
+      "omega": 4.022108965759873,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0965776749347205,
+      "rho": -0.042475134351320776,
+      "S": 2.1497745965257433,
+      "omega": 4.022108965759873,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.5043901030435634,
+      "rho": -0.45767467386596594,
+      "S": -2.3659321611085042,
+      "omega": 0.2338073773175228,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -27.070054684347063,
+      "rho": -20.993578291282724,
+      "S": 8.582445750342767,
+      "omega": 55.818701510820745,
+      "panel_n": 1
+     }
+    },
+    "ViT_Tiny_AT_s2003": {
+     "yari_log": {
+      "sigma": -1.0887339210007547,
+      "rho": -0.07798165591690642,
+      "S": 2.1752803699937013,
+      "omega": 4.00868948882928,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0886304175888064,
+      "rho": -0.07799733307990664,
+      "S": 2.1754829532359503,
+      "omega": 4.00868948882928,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.4894046030666659,
+      "rho": -0.48415388058585984,
+      "S": -2.3377070577716594,
+      "omega": 0.20368720551908454,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -26.795189220231357,
+      "rho": -20.89099774854266,
+      "S": 8.806020943088443,
+      "omega": 55.07464730858786,
+      "panel_n": 1
+     }
+    }
+   },
+   "F_B4": {
+    "degerler": {
+     "sigma": {
+      "V-scr": [
+       -1.0943170323760838,
+       -1.0967053128431226,
+       -1.0887339210007547
+      ],
+      "V-IN": [
+       -1.1639556695697881,
+       -1.074756340019165
+      ],
+      "R224-scr": [
+       -0.7586197501045021,
+       -0.7584568857377234
+      ],
+      "R224-IN": [
+       -0.7680868353907783,
+       -0.7845008948432421
+      ]
+     },
+     "rho": {
+      "V-scr": [
+       -0.035046286344585065,
+       -0.042370619357462,
+       -0.07798165591690642
+      ],
+      "V-IN": [
+       0.0023649121206297252,
+       -0.03436037720932705
+      ],
+      "R224-scr": [
+       -0.1006009419292111,
+       -0.132148430069154
+      ],
+      "R224-IN": [
+       -0.11984760029775154,
+       -0.13610687341162575
+      ]
+     },
+     "omega": {
+      "V-scr": [
+       4.02231063415937,
+       4.022108965759873,
+       4.00868948882928
+      ],
+      "V-IN": [
+       4.103714750509685,
+       4.042546181043879
+      ],
+      "R224-scr": [
+       3.8619435015735633,
+       3.888714122033729
+      ],
+      "R224-IN": [
+       3.9209937383873896,
+       3.9256162240416947
+      ]
+     }
+    },
+    "karsitliklar": {
+     "H1": {
+      "kestirim": -0.3347137708188743,
+      "hucre_ort": {
+       "V-scr": -1.093252088739987,
+       "R224-scr": -0.7585383179211127
+      },
+      "hucre_n": {
+       "V-scr": 3,
+       "R224-scr": 2
+      },
+      "katsayi": {
+       "V-scr": 1.0,
+       "R224-scr": -1.0
+      },
+      "sp_birlesik": 0.028797419446089947,
+      "se": 0.026288327047602315,
+      "df": 5,
+      "carpan": 0.9128709291752768,
+      "t": -12.732410480620624,
+      "ci90": [
+       -0.3876860214737919,
+       -0.28174152016395676
+      ],
+      "ci95": [
+       -0.40229006681670765,
+       -0.267137474821041
+      ],
+      "p_tek_kucuk": 2.657283297188117e-05,
+      "p_tek_buyuk": 0.9999734271670281,
+      "p_iki": 5.314566594376234e-05,
+      "tost_p": 0.9998531995317441,
+      "tost_p_alt": 0.9998531995317441,
+      "tost_p_ust": 7.382511064486952e-06,
+      "welch": {
+       "se": 0.002363348210249183,
+       "df": 2.004751746049615,
+       "ci90": [
+        -0.341603571612355,
+        -0.32782397002539365
+       ],
+       "ci95": [
+        -0.34485937540271067,
+        -0.324568166235038
+       ]
+      }
+     },
+     "H2": {
+      "kestirim": -0.008348368858592137,
+      "hucre_ort": {
+       "V-IN": -1.1193560047944766,
+       "V-scr": -1.093252088739987,
+       "R224-IN": -0.7762938651170102,
+       "R224-scr": -0.7585383179211127
+      },
+      "hucre_n": {
+       "V-IN": 2,
+       "V-scr": 3,
+       "R224-IN": 2,
+       "R224-scr": 2
+      },
+      "katsayi": {
+       "V-IN": 1.0,
+       "V-scr": -1.0,
+       "R224-IN": -1.0,
+       "R224-scr": 1.0
+      },
+      "sp_birlesik": 0.028797419446089947,
+      "se": 0.03899189025574086,
+      "df": 5,
+      "carpan": 1.35400640077266,
+      "t": -0.2141052614745444,
+      "ci90": [
+       -0.08691891389160251,
+       0.07022217617441824
+      ],
+      "ci95": [
+       -0.10858021368712419,
+       0.09188347596993991
+      ],
+      "p_tek_kucuk": 0.41946125459385375,
+      "p_tek_buyuk": 0.5805387454061463,
+      "p_iki": 0.8389225091877075,
+      "tost_p": 0.0327584708736417,
+      "tost_p_alt": 0.0327584708736417,
+      "tost_p_ust": 0.0194800335754429,
+      "welch": {
+       "se": 0.04541003027702477,
+       "df": 1.073448957784755,
+       "ci90": [
+        -0.2639701461302061,
+        0.2472734084130218
+       ],
+       "ci95": [
+        -0.4999174738765052,
+        0.48322073615932093
+       ]
+      }
+     },
+     "H3": {
+      "kestirim": 0.08827733488493568,
+      "hucre_ort": {
+       "V-scr": -0.051799520539651166,
+       "R224-scr": -0.11637468599918255,
+       "V-IN": -0.015997732544348664,
+       "R224-IN": -0.12797723685468865
+      },
+      "hucre_n": {
+       "V-scr": 3,
+       "R224-scr": 2,
+       "V-IN": 2,
+       "R224-IN": 2
+      },
+      "katsayi": {
+       "V-scr": 0.5,
+       "R224-scr": -0.5,
+       "V-IN": 0.5,
+       "R224-IN": -0.5
+      },
+      "sp_birlesik": 0.021722139257731296,
+      "se": 0.014705957796721627,
+      "df": 5,
+      "carpan": 0.67700320038633,
+      "t": 6.0028279766051815,
+      "ci90": [
+       0.058644118548347675,
+       0.11791055122152369
+      ],
+      "ci95": [
+       0.050474466897048834,
+       0.1260802028728225
+      ],
+      "p_tek_kucuk": 0.9990788754498665,
+      "p_tek_buyuk": 0.0009211245501334897,
+      "p_iki": 0.0018422491002669794,
+      "tost_p": 0.23076514935984446,
+      "tost_p_alt": 2.5868605994294747e-05,
+      "tost_p_ust": 0.23076514935984446,
+      "welch": {
+       "se": 0.014386932027830243,
+       "df": 3.5075162744890442,
+       "ci90": [
+        0.05632644265764619,
+        0.12022822711222517
+       ],
+       "ci95": [
+        0.04602064451345099,
+        0.13053402525642038
+       ]
+      }
+     }
+    },
+    "p_ham": [
+     2.657283297188117e-05,
+     0.8389225091877075,
+     0.23076514935984446
+    ],
+    "p_holm": [
+     7.971849891564351e-05,
+     0.8389225091877075,
+     0.4615302987196889
+    ],
+    "p_1_sayilan_hesaplanamayan": [],
+    "karar": {
+     "delta": 0.1,
+     "p_holm": [
+      7.971849891564351e-05,
+      0.8389225091877075,
+      0.4615302987196889
+     ],
+     "H1": "destek",
+     "H1_ongoru_buyuklugu_tuttu (A <= -0,20)": true,
+     "H1_esdeger": false,
+     "H2": "curutuldu (esdeger)",
+     "H2_ongoru_buyuklugu_tuttu (I >= +0,10)": false,
+     "H2_esdeger": true,
+     "H2_negatif_anlamli_holm": false,
+     "H2_logit_kestirim": -0.021825423446540926,
+     "H3": "kararsiz",
+     "H3_ham_ci90_delta_icinde": false,
+     "sonuc_bolgesi": "O3",
+     "O4_niteleme": false,
+     "sonuc_kurali": "sira: O2 > O5 > O1 > O3 > O3-varyant > O5a; O4 ek niteleme"
+    },
+    "not": "H1 tek yonlu (H0: A >= 0), H2 iki yonlu, H3 TOST +-0,10; birlesik varyans dort hucre. Omega tam orneklem w'den (ON_KAYIT §2).",
+    "maskeleme_kurali": {
+     "isaretli": [],
+     "uygulanan_bolge": "O3",
+     "not": "B6'da isaretli model verilmedi (--maskeleme-isaretli)"
+    }
+   },
+   "duyarlilik": {
+    "delta_0.06": {
+     "delta": 0.06,
+     "p_holm": [
+      7.971849891564351e-05,
+      1.0,
+      1.0
+     ],
+     "H1": "destek",
+     "H1_ongoru_buyuklugu_tuttu (A <= -0,20)": true,
+     "H1_esdeger": false,
+     "H2": "kararsiz",
+     "H2_ongoru_buyuklugu_tuttu (I >= +0,10)": false,
+     "H2_esdeger": false,
+     "H2_negatif_anlamli_holm": false,
+     "H2_logit_kestirim": -0.021825423446540926,
+     "H3": "curutuldu",
+     "H3_ham_ci90_delta_icinde": false,
+     "sonuc_bolgesi": "O5a",
+     "O4_niteleme": true,
+     "sonuc_kurali": "sira: O2 > O5 > O1 > O3 > O3-varyant > O5a; O4 ek niteleme"
+    },
+    "tam_log": {
+     "H1": {
+      "kestirim": -0.3351610069354629,
+      "ci90": [
+       -0.38826492561619674,
+       -0.2820570882547291
+      ],
+      "ci95": [
+       -0.4029052708292419,
+       -0.26741674304168395
+      ]
+     },
+     "H2": {
+      "kestirim": -0.008153888878638438,
+      "ci90": [
+       -0.08691972915442032,
+       0.07061195139714345
+      ],
+      "ci95": [
+       -0.108634870358329,
+       0.09232709260105212
+      ]
+     },
+     "H3": {
+      "kestirim": 0.08810912393742387,
+      "ci90": [
+       0.058388261980662784,
+       0.11782998589418496
+      ],
+      "ci95": [
+       0.05019444710059245,
+       0.1260238007742553
+      ]
+     }
+    },
+    "yari_logit": {
+     "H1": {
+      "kestirim": -0.4526034883382335,
+      "ci90": [
+       -0.5350862327655314,
+       -0.3701207439109356
+      ],
+      "ci95": [
+       -0.5578260960851309,
+       -0.3473808805913361
+      ]
+     },
+     "H2": {
+      "kestirim": -0.021825423446540926,
+      "ci90": [
+       -0.1441671043331859,
+       0.10051625744010405
+      ],
+      "ci95": [
+       -0.1778957723227011,
+       0.13424492542961924
+      ]
+     },
+     "H3": {
+      "kestirim": -0.07286270044058996,
+      "ci90": [
+       -0.10875984054747348,
+       -0.036965560333706425
+      ],
+      "ci95": [
+       -0.11865640819035236,
+       -0.02706899269082754
+      ]
+     }
+    },
+    "yari_oran": {
+     "H1": {
+      "kestirim": -7.185614402204003,
+      "ci90": [
+       -8.595127253466867,
+       -5.7761015509411395
+      ],
+      "ci95": [
+       -8.983719192392806,
+       -5.387509612015199
+      ]
+     },
+     "H2": {
+      "kestirim": -0.342482694667531,
+      "ci90": [
+       -2.433128109683039,
+       1.748162720347977
+      ],
+      "ci95": [
+       -3.009503099595065,
+       2.324537710260003
+      ]
+     },
+     "H3": {
+      "kestirim": -6.823574319801259,
+      "ci90": [
+       -8.202260830965805,
+       -5.444887808636714
+      ],
+      "ci95": [
+       -8.58235418312252,
+       -5.064794456479998
+      ]
+     }
+    },
+    "welch": {
+     "H1": {
+      "se": 0.002363348210249183,
+      "df": 2.004751746049615,
+      "ci90": [
+       -0.341603571612355,
+       -0.32782397002539365
+      ],
+      "ci95": [
+       -0.34485937540271067,
+       -0.324568166235038
+      ]
+     },
+     "H2": {
+      "se": 0.04541003027702477,
+      "df": 1.073448957784755,
+      "ci90": [
+       -0.2639701461302061,
+       0.2472734084130218
+      ],
+      "ci95": [
+       -0.4999174738765052,
+       0.48322073615932093
+      ]
+     },
+     "H3": {
+      "se": 0.014386932027830243,
+      "df": 3.5075162744890442,
+      "ci90": [
+       0.05632644265764619,
+       0.12022822711222517
+      ],
+      "ci95": [
+       0.04602064451345099,
+       0.13053402525642038
+      ]
+     }
+    },
+    "panel_jackknife": {},
+    "hiyerarsik_bootstrap": {
+     "H1": {
+      "B": 2000,
+      "ci90": [
+       -0.3598339259624481,
+       -0.3098997861146927
+      ],
+      "ci95": [
+       -0.36403210312128065,
+       -0.3054636538028717
+      ]
+     },
+     "H2": {
+      "B": 2000,
+      "ci90": [
+       -0.0710163801908493,
+       0.05292506217956543
+      ],
+      "ci95": [
+       -0.0801202267408371,
+       0.061779275536537136
+      ]
+     },
+     "H3": {
+      "B": 2000,
+      "ci90": [
+       0.04175651865079999,
+       0.13446968793869016
+      ],
+      "ci95": [
+       0.03298563737189397,
+       0.14298422882566228
+      ]
+     }
+    }
+   },
+   "ikincil": {
+    "S1": {
+     "sigma": {
+      "kestirim": 0.01773363517626203,
+      "hucre_ort": {
+       "R224-scr": -0.7585383179211127,
+       "C1-R32": -0.7762719530973747
+      },
+      "hucre_n": {
+       "R224-scr": 2,
+       "C1-R32": 2
+      },
+      "katsayi": {
+       "R224-scr": 1.0,
+       "C1-R32": -1.0
+      },
+      "sp_birlesik": 0.01900108598302827,
+      "se": 0.01900108598302827,
+      "df": 2,
+      "carpan": 1.0,
+      "t": 0.9332958754095253,
+      "ci90": [
+       -0.03774926190527584,
+       0.0732165322577999
+      ],
+      "ci95": [
+       -0.06402143929580566,
+       0.09948870964832972
+      ],
+      "p_tek_kucuk": 0.7754036166274438,
+      "p_tek_buyuk": 0.22459638337255616,
+      "p_iki": 0.4491927667451123,
+      "tost_p": 0.024712799246615045,
+      "tost_p_alt": 0.012535738111518868,
+      "tost_p_ust": 0.024712799246615045,
+      "welch": {
+       "se": 0.01900108598302827,
+       "df": 1.0000367344282437,
+       "ci90": [
+        -0.10222703028615218,
+        0.13769430063867624
+       ],
+       "ci95": [
+        -0.22367709728426685,
+        0.25914436763679094
+       ]
+      }
+     },
+     "rho": {
+      "kestirim": 0.00794368598048556,
+      "hucre_ort": {
+       "R224-scr": -0.11637468599918255,
+       "C1-R32": -0.12431837197966811
+      },
+      "hucre_n": {
+       "R224-scr": 2,
+       "C1-R32": 2
+      },
+      "katsayi": {
+       "R224-scr": 1.0,
+       "C1-R32": -1.0
+      },
+      "sp_birlesik": 0.020682195748219563,
+      "se": 0.020682195748219563,
+      "df": 2,
+      "carpan": 1.0,
+      "t": 0.38408329933582586,
+      "ci90": [
+       -0.05244802737440573,
+       0.06833539933537686
+      ],
+      "ci95": [
+       -0.08104462001170128,
+       0.0969319919726724
+      ],
+      "p_tek_kucuk": 0.6310469209583536,
+      "p_tek_buyuk": 0.3689530790416464,
+      "p_iki": 0.7379061580832929,
+      "tost_p": 0.023474926252219454,
+      "tost_p_alt": 0.017402942153571632,
+      "tost_p_ust": 0.023474926252219454,
+      "welch": {
+       "se": 0.020682195748219563,
+       "df": 1.9480273536094406,
+       "ci90": [
+        -0.05356130291685339,
+        0.06944867487782451
+       ],
+       "ci95": [
+        -0.08335894392130605,
+        0.09924631588227717
+       ]
+      }
+     },
+     "ongoru_ikisi_de_esdeger": true,
+     "not": "birlesik varyans iki hucre (df = n1 + n2 - 2)"
+    },
+    "S2": {
+     "kestirim": 0.0358017879953025,
+     "hucre_ort": {
+      "V-IN": -0.015997732544348664,
+      "V-scr": -0.051799520539651166
+     },
+     "hucre_n": {
+      "V-IN": 2,
+      "V-scr": 3
+     },
+     "katsayi": {
+      "V-IN": 1.0,
+      "V-scr": -1.0
+     },
+     "sp_birlesik": 0.021722139257731296,
+     "se": 0.019829509447879926,
+     "df": 5,
+     "carpan": 0.9128709291752768,
+     "t": 1.8054802661358955,
+     "ci90": [
+      -0.0041556327616397645,
+      0.07575920875224476
+     ],
+     "ci95": [
+      -0.01517158880099631,
+      0.08677516479160131
+     ],
+     "p_tek_kucuk": 0.9345843403130214,
+     "p_tek_buyuk": 0.0654156596869786,
+     "p_iki": 0.1308313193739572,
+     "tost_p": 0.011506437137408398,
+     "tost_p_alt": 0.0005068537833256004,
+     "tost_p_ust": 0.011506437137408398,
+     "welch": {
+      "se": 0.022650237529897626,
+      "df": 2.0378716997905046,
+      "ci90": [
+       -0.029505943715030923,
+       0.10110951970563592
+      ],
+      "ci95": [
+       -0.05993914779628686,
+       0.13154272378689186
+      ]
+     },
+     "ongoru_negatif": false
+    },
+    "S3": {
+     "V_baslatma": {
+      "kestirim": 0.055427436193940416,
+      "hucre_ort": {
+       "V-IN": 4.0731304657767815,
+       "V-scr": 4.017703029582841
+      },
+      "hucre_n": {
+       "V-IN": 2,
+       "V-scr": 3
+      },
+      "katsayi": {
+       "V-IN": 1.0,
+       "V-scr": -1.0
+      },
+      "sp_birlesik": 0.021733384009010828,
+      "se": 0.01983977445442882,
+      "df": 5,
+      "carpan": 0.9128709291752768,
+      "t": 2.7937533423706533,
+      "ci90": [
+       0.015449330952249554,
+       0.09540554143563128
+      ],
+      "ci95": [
+       0.0044276723582643285,
+       0.1064272000296165
+      ],
+      "p_tek_kucuk": 0.9808625923286536,
+      "p_tek_buyuk": 0.019137407671346418,
+      "p_iki": 0.038274815342692836,
+      "tost_p": 0.03729592858174024,
+      "tost_p_alt": 0.00027185756798209226,
+      "tost_p_ust": 0.03729592858174024,
+      "welch": {
+       "se": 0.03091460562632022,
+       "df": 1.043660209179176,
+       "ci90": [
+        -0.12647983066140078,
+        0.23733470304928161
+       ],
+       "ci95": [
+        -0.3005986226348074,
+        0.41145349502268824
+       ]
+      }
+     },
+     "R224_baslatma": {
+      "kestirim": 0.04797616941089622,
+      "hucre_ort": {
+       "R224-IN": 3.9233049812145424,
+       "R224-scr": 3.875328811803646
+      },
+      "hucre_n": {
+       "R224-IN": 2,
+       "R224-scr": 2
+      },
+      "katsayi": {
+       "R224-IN": 1.0,
+       "R224-scr": -1.0
+      },
+      "sp_birlesik": 0.021733384009010828,
+      "se": 0.021733384009010828,
+      "df": 5,
+      "carpan": 1.0,
+      "t": 2.207487310351896,
+      "ci90": [
+       0.004182349316517009,
+       0.09176998950527543
+      ],
+      "ci95": [
+       -0.007891272749575753,
+       0.10384361157136819
+      ],
+      "p_tek_kucuk": 0.9608240777633492,
+      "p_tek_buyuk": 0.039175922236650784,
+      "p_iki": 0.07835184447330157,
+      "tost_p": 0.03105026274719719,
+      "tost_p_alt": 0.0005205650659112493,
+      "tost_p_ust": 0.03105026274719719,
+      "welch": {
+       "se": 0.013583385931409998,
+       "df": 1.0595769655104683,
+       "ci90": [
+        -0.030053294692517787,
+        0.1260056335143102
+       ],
+       "ci95": [
+        -0.10329198479135068,
+        0.19924432361314312
+       ]
+      }
+     },
+     "etkilesim": {
+      "kestirim": 0.007451266783044197,
+      "hucre_ort": {
+       "V-IN": 4.0731304657767815,
+       "V-scr": 4.017703029582841,
+       "R224-IN": 3.9233049812145424,
+       "R224-scr": 3.875328811803646
+      },
+      "hucre_n": {
+       "V-IN": 2,
+       "V-scr": 3,
+       "R224-IN": 2,
+       "R224-scr": 2
+      },
+      "katsayi": {
+       "V-IN": 1.0,
+       "V-scr": -1.0,
+       "R224-IN": -1.0,
+       "R224-scr": 1.0
+      },
+      "sp_birlesik": 0.021733384009010828,
+      "se": 0.029427141058650835,
+      "df": 5,
+      "carpan": 1.35400640077266,
+      "t": 0.2532106930874861,
+      "ci90": [
+       -0.05184584593903159,
+       0.06674837950511998
+      ],
+      "ci95": [
+       -0.06819360749703121,
+       0.0830961410631196
+      ],
+      "p_tek_kucuk": 0.5949065887632341,
+      "p_tek_buyuk": 0.4050934112367659,
+      "p_iki": 0.8101868224735318,
+      "tost_p": 0.012760915869616505,
+      "tost_p_alt": 0.007363082469504123,
+      "tost_p_ust": 0.012760915869616505,
+      "welch": {
+       "se": 0.03376716177579242,
+       "df": 1.4329285549891084,
+       "ci90": [
+        -0.12366728166286808,
+        0.13856981522895648
+       ],
+       "ci95": [
+        -0.20958217395083248,
+        0.22448470751692087
+       ]
+      }
+     },
+     "ongoru_omega_VIN_lt_Vscr": false
+    },
+    "S4": [
+     {
+      "cift": [
+       "SAHTE_R224_scr_a",
+       "ViT_Tiny_AT_s2001"
+      ],
+      "tam": {
+       "T_ij": 19.730094466936574,
+       "T_ji": 14.923275155206747,
+       "w_i": 47.55769005505447,
+       "w_j": 55.829959514170035,
+       "asimetri_puan": 4.806819311729827,
+       "log_oran": 0.279223022897789,
+       "log_w_potansiyel": 0.16036713258580676,
+       "r": 0.11885589031198224,
+       "log_tau": -1.0995934713076787,
+       "potansiyel_payi": 0.5743334876956402
+      },
+      "bolunmus_yari": {
+       "r": 0.11915392115524517,
+       "log_tau": -1.099737786459837,
+       "log_w_potansiyel": 0.16065171476493442,
+       "log_oran": 0.2798056359201796
+      },
+      "potansiyel_payi_yari": 0.5741546778949216
+     },
+     {
+      "cift": [
+       "SAHTE_R224_scr_b",
+       "ViT_Tiny_AT_s2002"
+      ],
+      "tam": {
+       "T_ij": 19.940111610181027,
+       "T_ji": 15.441005352571564,
+       "w_i": 48.848033511752384,
+       "w_j": 55.818701510820745,
+       "asimetri_puan": 4.499106257609464,
+       "log_oran": 0.25570670583362315,
+       "log_w_potansiyel": 0.13339484372614396,
+       "r": 0.12231186210747919,
+       "log_tau": -1.0905315349946312,
+       "potansiyel_payi": 0.521671276829705
+      },
+      "bolunmus_yari": {
+       "r": 0.12215663382486783,
+       "log_tau": -1.0907833862631393,
+       "log_w_potansiyel": 0.1334028417610715,
+       "log_oran": 0.25555947558593933
+      },
+      "potansiyel_payi_yari": 0.5220031127987305
+     },
+     {
+      "cift": [
+       "SAHTE_R224_IN_a",
+       "SAHTE_V_IN_a"
+      ],
+      "tam": {
+       "T_ij": 19.142259414225943,
+       "T_ji": 14.660351201478743,
+       "w_i": 50.45055452865065,
+       "w_j": 60.56485355648535,
+       "asimetri_puan": 4.4819082127472,
+       "log_oran": 0.26675177316189486,
+       "log_w_potansiyel": 0.1827210121222956,
+       "r": 0.08403076103959925,
+       "log_tau": -1.1938317052513736,
+       "potansiyel_payi": 0.6849851828778661
+      },
+      "bolunmus_yari": {
+       "r": 0.08403280344459632,
+       "log_tau": -1.193780686981396,
+       "log_w_potansiyel": 0.18276546429208224,
+       "log_oran": 0.2667982677366786
+      },
+      "potansiyel_payi_yari": 0.6850324248449242
+     },
+     {
+      "cift": [
+       "SAHTE_R224_IN_b",
+       "SAHTE_V_IN_b"
+      ],
+      "tam": {
+       "T_ij": 19.052020068655928,
+       "T_ji": 14.882116158711902,
+       "w_i": 50.68430132259919,
+       "w_j": 56.9712173224188,
+       "asimetri_puan": 4.169903909944026,
+       "log_oran": 0.24701290203966839,
+       "log_w_potansiyel": 0.11692995700218477,
+       "r": 0.13008294503748363,
+       "log_tau": -1.1604145172623994,
+       "potansiyel_payi": 0.4733759088559945
+      },
+      "bolunmus_yari": {
+       "r": 0.13009720426968033,
+       "log_tau": -1.1604638351798777,
+       "log_w_potansiyel": 0.11703566878829184,
+       "log_oran": 0.24713287305797216
+      },
+      "potansiyel_payi_yari": 0.47357386065283896
+     }
+    ],
+    "S5": {
+     "ciftler": [
+      {
+       "cift": [
+        "SAHTE_R224_scr_a",
+        "ViT_Tiny_AT_s2001"
+       ],
+       "asimetriler": {
+        "raw": 13.190000000000001,
+        "target_correct": 4.806819311729827,
+        "both_correct": 8.490036486107213
+       },
+       "yayilim_uc": 8.383180688270174,
+       "temiz_fark_mutlak": 11.27000000000001,
+       "ongoru": 8.960920000000009,
+       "sapma": -0.5777393117298342
+      },
+      {
+       "cift": [
+        "SAHTE_R224_scr_b",
+        "ViT_Tiny_AT_s2002"
+       ],
+       "asimetriler": {
+        "raw": 13.890000000000008,
+        "target_correct": 4.499106257609464,
+        "both_correct": 8.221310315551152
+       },
+       "yayilim_uc": 9.390893742390544,
+       "temiz_fark_mutlak": 12.470000000000013,
+       "ongoru": 9.916120000000012,
+       "sapma": -0.525226257609468
+      },
+      {
+       "cift": [
+        "SAHTE_R224_IN_a",
+        "SAHTE_V_IN_a"
+       ],
+       "asimetriler": {
+        "raw": 11.990000000000002,
+        "target_correct": 4.4819082127472,
+        "both_correct": 7.5017111567419565
+       },
+       "yayilim_uc": 7.508091787252802,
+       "temiz_fark_mutlak": 10.079999999999998,
+       "ongoru": 8.013679999999999,
+       "sapma": -0.5055882127471971
+      },
+      {
+       "cift": [
+        "SAHTE_R224_IN_b",
+        "SAHTE_V_IN_b"
+       ],
+       "asimetriler": {
+        "raw": 12.66,
+        "target_correct": 4.169903909944026,
+        "both_correct": 7.8361286774814385
+       },
+       "yayilim_uc": 8.490096090055975,
+       "temiz_fark_mutlak": 11.210000000000008,
+       "ongoru": 8.913160000000007,
+       "sapma": -0.4230639099440321
+      }
+     ],
+     "ozet": {
+      "degerler": [
+       -0.5777393117298342,
+       -0.525226257609468,
+       -0.5055882127471971,
+       -0.4230639099440321
+      ],
+      "n": 4,
+      "ort": -0.5079044230076328,
+      "sd": 0.06423974658439309,
+      "se": 0.032119873292196545,
+      "df": 3,
+      "ci90": [
+       -0.5834941583439559,
+       -0.4323146876713097
+      ],
+      "ci95": [
+       -0.6101241950925824,
+       -0.40568465092268324
+      ],
+      "ongoru_ort_sapma_bant_icinde": true,
+      "curutme_ci90_bant_disinda": false
+     },
+     "egim_kesisim": [
+      0.796,
+      -0.01
+     ]
+    },
+    "S6": {
+     "panel": [
+      "SAHTE_ikincil_Vl3"
+     ],
+     "eksik_hucre": "('ViT_Tiny_AT_s2001', 'SAHTE_ikincil_Vl3')"
+    },
+    "S7": {
+     "modeller": [
+      "Gowal2020Uncovering_28_10_extra",
+      "SAHTE_R224_scr_b",
+      "ViT_Tiny_AT_s2002"
+     ],
+     "K": 3,
+     "delta_potansiyel": {
+      "Gowal2020Uncovering_28_10_extra": -0.058173016475538665,
+      "SAHTE_R224_scr_b": 0.08476835463134076,
+      "ViT_Tiny_AT_s2002": -0.026595338155802024
+     },
+     "G_potansiyel_payi": 0.9897760279104512,
+     "G_rastgele_beklenti_2_bolu_K": 0.6666666666666666,
+     "dolasim_rms": 0.01079294103772544,
+     "r_rms": 0.10674068287505625,
+     "r_matrisi": [
+      [
+       0.0,
+       -0.132148430069154,
+       -0.042370619357462
+      ],
+      [
+       0.132148430069154,
+       0.0,
+       0.1221566338248683
+      ],
+      [
+       0.042370619357462,
+       -0.12215663382486808,
+       0.0
+      ]
+     ],
+     "dolasim_matrisi": [
+      [
+       0.0,
+       0.010792941037725434,
+       -0.010792941037725365
+      ],
+      [
+       -0.010792941037725434,
+       0.0,
+       0.010792941037725517
+      ],
+      [
+       0.010792941037725365,
+       -0.010792941037725295,
+       0.0
+      ]
+     ]
+    }
+   }
+  }
+ },
+ "b2_kc_yolu": {
+  "SINAMA_SONUC_DEGIL": true,
+  "meta": {
+   "betik": "experiments/q1_konsey_ayrisim.py",
+   "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+   "hucre_tablosu": "/workspace/results/q1/_konsey_sahte/sahte_hucre_tablosu_kc.json",
+   "hucre_tablosu_sha256": "a806f67cb8f05e45ab653fec4d9188b1cb89064b8caee7ffada524e322f87c32",
+   "mod": "b2",
+   "matris_dizinleri": [
+    "results/c1_c3/pair1"
+   ],
+   "uretildi_utc": "2026-10-29T03:44:17.071246+00:00",
+   "delta": 0.1,
+   "delta_duyarlilik": 0.06,
+   "alfa": 0.05,
+   "bootstrap_B": 2000,
+   "bootstrap_tohum": 20261029,
+   "panel_en_az": 1,
+   "maskeleme_isaretli": [],
+   "numpy": "1.26.4"
+  },
+  "veri": {
+   "n_goruntu": 10000,
+   "modeller": [
+    "Gowal2020Uncovering_28_10_extra",
+    "SAHTE_Va",
+    "SAHTE_Vb"
+   ],
+   "hucre_sayisi": 9,
+   "cakismalar": [],
+   "tutarlilik": {
+    "hedef_maskesi_tutarli": true,
+    "tutarsiz_hedefler": []
+   },
+   "tablo_disi_modeller": [],
+   "girdi_sha256": {
+    "results/c1_c3/pair1/transfer_matrix.json": "7f5930cf82b6deedb1d783eabf90fde09d94f099e76cf3dae92b38b84cbada37",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "e3048cac9c87af4c05a2a731dbd4fd89bdad7c559608fcceb166c77de5a81027",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "4ab6327af108db96b00d93ce172ea381e93543659f396ce899619440a933d65f",
+    "results/c1_c3/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6046fdfbf0aceaa08cf5767f1f1f4c3454f5a508c904cc39293f0722992aa568",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "33c836743e64dcae73a839c3639dea0aa10eb57766b33babbf1cb64d79f41ada",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "767ca5d3b185e3f953debb40e7a6dbf6c343e6abcfdb0d2ed49bf543e11fd750",
+    "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "a7a27254c2186629314847bcfaec99881b8ce531bdf50fbe2809bbd1331afd3b",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "ac3879d70aa85949cb09078d2fedb24888ad7a85f04b7acfc14bcdcb17e84c31",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "10ae079258683cbb52e285627045a2f9cf66e678dc3e91e4593b8b1e4a6f5943",
+    "results/c1_c3/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4"
+   }
+  },
+  "panel": {
+   "birincil": [
+    "Gowal2020Uncovering_28_10_extra"
+   ],
+   "birincil_eksik": [],
+   "ikincil": []
+  },
+  "b2": {
+   "hucreler": {
+    "C1-R32": [],
+    "V-scr": [
+     "SAHTE_Va",
+     "SAHTE_Vb"
+    ]
+   },
+   "tohum_ciftleri": [],
+   "model_tablosu": {
+    "Gowal2020Uncovering_28_10_extra": {
+     "eksik_hucreler": [
+      "panelde kendisinden baska uye yok"
+     ]
+    },
+    "SAHTE_Va": {
+     "yari_log": {
+      "sigma": -1.0943170323760838,
+      "rho": -0.035046286344585065,
+      "S": 2.148229573832212,
+      "omega": 4.02231063415937,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -1.0941971016747107,
+      "rho": -0.03510812427046961,
+      "S": 2.1484716647453275,
+      "omega": 4.02231063415937,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.5014939233714795,
+      "rho": -0.4490902527141676,
+      "S": -2.3673281920123195,
+      "omega": 0.23426389196023079,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -27.023716586069895,
+      "rho": -20.878610520943276,
+      "S": 8.571299963450212,
+      "omega": 55.829959514170035,
+      "panel_n": 1
+     }
+    },
+    "SAHTE_Vb": {
+     "yari_log": {
+      "sigma": -0.7586197501045021,
+      "rho": -0.1006009419292111,
+      "S": 2.516704183896107,
+      "omega": 3.8619435015735633,
+      "panel_n": 1
+     },
+     "tam_log": {
+      "sigma": -0.7581623103784243,
+      "rho": -0.10049291364411772,
+      "S": 2.517198850728438,
+      "omega": 3.8619435015735633,
+      "panel_n": 1
+     },
+     "yari_logit": {
+      "sigma": -1.041047739042155,
+      "rho": -0.3505545757962895,
+      "S": -1.9561498461419338,
+      "omega": -0.0977702056451869,
+      "panel_n": 1
+     },
+     "yari_oran": {
+      "sigma": -19.564761051291093,
+      "rho": -13.60384163006078,
+      "S": 12.392871052787765,
+      "omega": 47.55769005505447,
+      "panel_n": 1
+     }
+    }
+   },
+   "F_B2": {
+    "K-a": {
+     "ciftler": [],
+     "D": [],
+     "simetrik_pay": [],
+     "yonlu_pay": [],
+     "ozdeslik_artik_max": null,
+     "q": [],
+     "sinama": {
+      "degerler": [],
+      "n": 0,
+      "ort": null,
+      "not": "n < 2: aralik ve sinama tanimsiz"
+     },
+     "p_tek_H0_q_le_0.5": null,
+     "ongoru_her_tohumda_q_ge_0.75": null,
+     "payda_kucuk_tohumlar": []
+    },
+    "K-b": {
+     "degerler": [
+      -0.035046286344585065,
+      -0.1006009419292111
+     ],
+     "n": 2,
+     "ort": -0.06782361413689808,
+     "sd": 0.04635414150223764,
+     "se": 0.03277732779231301,
+     "df": 1,
+     "ci90": [
+      -0.2747715171367411,
+      0.1391242888629449
+     ],
+     "ci95": [
+      -0.484299051779173,
+      0.3486518235053768
+     ],
+     "tost_p": 0.25294487087490025,
+     "tost_p_alt": 0.25294487087490025,
+     "tost_p_ust": 0.06139566467279148
+    },
+    "K-c": {
+     "vit_ciftleri": [
+      [
+       "SAHTE_Va",
+       "SAHTE_Vb"
+      ]
+     ],
+     "log_tau_tur_ici": {
+      "SAHTE_Va|SAHTE_Vb": -1.0997377864598374
+     },
+     "sigma_V": {
+      "SAHTE_Va": -1.0943170323760838,
+      "SAHTE_Vb": -0.7586197501045021
+     },
+     "Delta_w": -0.17326939521954454,
+     "bootstrap": {
+      "B": 2000,
+      "ci90": [
+       -0.19857940673828126,
+       -0.1470176637172699
+      ],
+      "ci95": [
+       -0.20354365855455397,
+       -0.14216485917568208
+      ],
+      "yeniden_cekilen_tek_tohumlu_ornek": 2029,
+      "yontem": "tohumlar yerine koyarak, goruntuler ortak agirlikla; ozdes kokenli tohum ciftleri disarida"
+     },
+     "p_tek_H0_Delta_le_0": 1.0,
+     "ongoru_Delta_ge_0.30": false
+    },
+    "p_ham": [
+     null,
+     0.25294487087490025,
+     1.0
+    ],
+    "p_holm": [
+     1.0,
+     0.7588346126247008,
+     1.0
+    ],
+    "p_1_sayilan_hesaplanamayan": [
+     0
+    ],
+    "karar": {
+     "K-a": "hesaplanamadi",
+     "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": null,
+     "K-b": "kararsiz",
+     "K-b_ham_ci90_delta_icinde": false,
+     "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+     "K-c": "curutuldu",
+     "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+    },
+    "duyarlilik_delta_0.06": {
+     "delta": 0.06,
+     "p_holm": [
+      1.0,
+      1.0,
+      1.0
+     ],
+     "karar": {
+      "K-a": "hesaplanamadi",
+      "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": null,
+      "K-b": "kararsiz",
+      "K-b_ham_ci90_delta_icinde": false,
+      "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+      "K-c": "curutuldu",
+      "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+     }
+    },
+    "not": "K-a p tek yonlu t (H0: ort q <= 0,50); K-b p TOST'un buyuk tek yonlu p'si; K-c p hiyerarsik bootstrap (H0: Delta_w <= 0). Destek Holm sonrasi, curutme ham aralikla okunur; ON_KAYIT §5 karar ilkesi."
+   },
+   "duyarlilik": {
+    "tam_log": {
+     "q_ort": null,
+     "q": [],
+     "rho_V": {
+      "degerler": [
+       -0.03510812427046961,
+       -0.10049291364411772
+      ],
+      "n": 2,
+      "ort": -0.06780051895729367,
+      "sd": 0.046234027952560694,
+      "se": 0.032692394686824056,
+      "df": 1,
+      "ci90": [
+       -0.274212175433699,
+       0.13861113751911167
+      ],
+      "ci95": [
+       -0.48319677917232495,
+       0.3475957412577376
+      ]
+     }
+    },
+    "yari_logit": {
+     "q_ort": null,
+     "q": [],
+     "rho_V": {
+      "degerler": [
+       -0.4490902527141676,
+       -0.3505545757962895
+      ],
+      "n": 2,
+      "ort": -0.3998224142552286,
+      "sd": 0.06967524533743835,
+      "se": 0.049267838458939034,
+      "df": 1,
+      "ci90": [
+       -0.7108873039563226,
+       -0.0887575245541346
+      ],
+      "ci95": [
+       -1.025829656635971,
+       0.22618482812551388
+      ]
+     }
+    },
+    "yari_oran": {
+     "q_ort": null,
+     "q": [],
+     "rho_V": {
+      "degerler": [
+       -20.878610520943276,
+       -13.60384163006078
+      ],
+      "n": 2,
+      "ort": -17.241226075502027,
+      "sd": 5.1440384143079525,
+      "se": 3.637384445441248,
+      "df": 1,
+      "ci90": [
+       -40.20676762782006,
+       5.7243154768160025
+      ],
+      "ci95": [
+       -63.45857754439204,
+       28.97612539338799
+      ]
+     }
+    },
+    "panel_jackknife": {}
+   },
+   "tur_ici_resnet_log_tau": {}
+  }
+ },
+ "b5_yolu": {
+  "SINAMA_SONUC_DEGIL": true,
+  "meta": {
+   "betik": "experiments/q1_konsey_ayrisim.py",
+   "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+   "hucre_tablosu": "/workspace/results/q1/_konsey_sahte/sahte_hucre_tablosu_b5.json",
+   "hucre_tablosu_sha256": "e4d56de0c8d3123d6fa2b20a5c4878caee6c2aa91c57d7a0ed34e62e3c39b11c",
+   "mod": "b5",
+   "matris_dizinleri": [
+    "results/c1_c3/pair1",
+    "results/q1/son_kontrol_noktasi/pair1",
+    "results/c1_c3/pair2",
+    "results/q1/son_kontrol_noktasi/pair2",
+    "results/c1_c3/pair3",
+    "results/q1/son_kontrol_noktasi/pair3"
+   ],
+   "uretildi_utc": "2026-10-29T03:44:17.313329+00:00",
+   "delta": 0.1,
+   "delta_duyarlilik": 0.06,
+   "alfa": 0.05,
+   "bootstrap_B": 2000,
+   "bootstrap_tohum": 20261029,
+   "panel_en_az": 1,
+   "maskeleme_isaretli": [],
+   "numpy": "1.26.4"
+  },
+  "veri": {
+   "pgd": {
+    "n_goruntu": 10000,
+    "modeller": [
+     "Gowal2020Uncovering_28_10_extra",
+     "ResNet18_AT_s1001",
+     "ResNet18_AT_s1002",
+     "ResNet18_AT_s1003",
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003"
+    ],
+    "hucre_sayisi": 25,
+    "cakismalar": [
+     {
+      "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+      "kullanilan": "results/c1_c3/pair1",
+      "atlanan": "results/c1_c3/pair2",
+      "ozdes": true
+     },
+     {
+      "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+      "kullanilan": "results/c1_c3/pair1",
+      "atlanan": "results/c1_c3/pair3",
+      "ozdes": true
+     }
+    ],
+    "tutarlilik": {
+     "hedef_maskesi_tutarli": true,
+     "tutarsiz_hedefler": []
+    },
+    "girdi_sha256": {
+     "results/c1_c3/pair1/transfer_matrix.json": "7f5930cf82b6deedb1d783eabf90fde09d94f099e76cf3dae92b38b84cbada37",
+     "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "e3048cac9c87af4c05a2a731dbd4fd89bdad7c559608fcceb166c77de5a81027",
+     "results/c1_c3/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "4ab6327af108db96b00d93ce172ea381e93543659f396ce899619440a933d65f",
+     "results/c1_c3/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "6046fdfbf0aceaa08cf5767f1f1f4c3454f5a508c904cc39293f0722992aa568",
+     "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "33c836743e64dcae73a839c3639dea0aa10eb57766b33babbf1cb64d79f41ada",
+     "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "767ca5d3b185e3f953debb40e7a6dbf6c343e6abcfdb0d2ed49bf543e11fd750",
+     "results/c1_c3/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "a7a27254c2186629314847bcfaec99881b8ce531bdf50fbe2809bbd1331afd3b",
+     "results/c1_c3/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "ac3879d70aa85949cb09078d2fedb24888ad7a85f04b7acfc14bcdcb17e84c31",
+     "results/c1_c3/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "10ae079258683cbb52e285627045a2f9cf66e678dc3e91e4593b8b1e4a6f5943",
+     "results/c1_c3/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+     "results/c1_c3/pair2/transfer_matrix.json": "377629f534f4f426f3e70c025ac408dab1c14042eae8cbcf7ca719cb5042cb74",
+     "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "1ec59fab5d86d3f84fe28701cf9faf43168dc6e94e8676bffd721ed14d952f73",
+     "results/c1_c3/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "38939c7023deb1313f0041f211b5904453e078684685f9f3cbeb02e2d76d890f",
+     "results/c1_c3/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "f10199e89bcdb84ef460d37f8e5e05c26c5b0535fb96c2b2b03e1e0bc7144e02",
+     "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "1123604cfd72e0af53836eb0b25643f6087b243fe5d4596cfd3d2fec33c1dbc6",
+     "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "56d90a604df21462ed54a83789bcfebbd5407f8c354faca81beb55a8b0764f49",
+     "results/c1_c3/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "377bbdda2113d708280e4aa01df14636d2bb1b87bbcbe603938fe6955f15cbb0",
+     "results/c1_c3/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2401ea4d90fb935adec2034bc03a58372f22da63bfe1260fb53a7c5ef89e0a97",
+     "results/c1_c3/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "1216b107ac089607aac26473f40a79f6d3e02eb1f406b5de8176052f3819a5b7",
+     "results/c1_c3/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4",
+     "results/c1_c3/pair3/transfer_matrix.json": "0412463b039952088eee3046b27a16fd75d35ae7fcbf424696934835bb379502",
+     "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "ad3ff90a26fe4df75e23e3e1a8a028ed5455d07f6f1c8957373b4f261af0a808",
+     "results/c1_c3/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "49dac26602ab34bd131792ce824790379e4403d56bfe93a9416f06e911faf18e",
+     "results/c1_c3/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "4ead6c8e750931f4f0e762a5a7161b31f2987624947a930b32fad319ccfb8fe3",
+     "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "71ec8342534569b482edd9b99b278c690c4a721b8f40995b4b679442523d674b",
+     "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "5ac823751e41c44a86019667290b62d08266ddfa2097c6eb70df08660916043b",
+     "results/c1_c3/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "10e41f5b95b9dc552278fcb5776836e8787df724999c260967dd85f9f3b7f1c0",
+     "results/c1_c3/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "2098213d3f941809e5e5edd23e52c1fb80e9a96290e3438b7ac98f9921d79a05",
+     "results/c1_c3/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "d346e249e0ff89bce78c89b36ebf12cae5cac024082d85f03440c1167bdd2d70",
+     "results/c1_c3/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "d922672d9c0857c04a99d1f953fad73bce5d15f753d37bac8fd19473ac9e4ca4"
+    }
+   },
+   "mi": {
+    "n_goruntu": 10000,
+    "modeller": [
+     "Gowal2020Uncovering_28_10_extra",
+     "ResNet18_AT_s1001",
+     "ResNet18_AT_s1002",
+     "ResNet18_AT_s1003",
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003"
+    ],
+    "hucre_sayisi": 25,
+    "cakismalar": [
+     {
+      "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+      "kullanilan": "results/q1/son_kontrol_noktasi/pair1",
+      "atlanan": "results/q1/son_kontrol_noktasi/pair2",
+      "ozdes": true
+     },
+     {
+      "hucre": "Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra",
+      "kullanilan": "results/q1/son_kontrol_noktasi/pair1",
+      "atlanan": "results/q1/son_kontrol_noktasi/pair3",
+      "ozdes": true
+     }
+    ],
+    "tutarlilik": {
+     "hedef_maskesi_tutarli": true,
+     "tutarsiz_hedefler": []
+    },
+    "girdi_sha256": {
+     "results/q1/son_kontrol_noktasi/pair1/transfer_matrix.json": "d5a647569f5bc082bfd873b46457694109a4b8241a3862c004d27db86a024bcd",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "2c15ac8b35dc76ba53e92117e29eaf9494e769672c62eebc3d5f99a7d89836c8",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "f7b62fadab0f5a231872449e1a5a58901f35d8cfd84c720074b98a4d5526d142",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_ResNet18_AT_to_WRN_28_10.npz": "29b3be1f61fcb1b90c8e25578225293cee3fc414701f6fabf79a6a0a0dd4e9b3",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "b0deffb5f7c6e287e305dfe89c8adcfee66bd286f0eafe0b51c5f6e101bc2698",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "4e9a849d7dbe7f522c3e833772c1999b5b959fd0a7e218c3402fcbf2990c7e98",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "850478e7be0a7f1a298d1e0881c50d5059284c99b2775ac146acaaa17fcad2c3",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ResNet18_AT.npz": "afbc5377f12b5f61fb68271fa633f25ca710fe8ae501f9bf5ee0f09570d39967",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "eef3ee8d1e8bdcbeaf040d783fcffacdcc1c7576796314f8c9a966e1ca5e1dac",
+     "results/q1/son_kontrol_noktasi/pair1/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+     "results/q1/son_kontrol_noktasi/pair2/transfer_matrix.json": "99be8147ff89cbfcd4bff040e07aa29de6a4345d4bda00981bd271dac5180053",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "7ce00b2baac1d36ffd72b7f121307eb09e35043cb471e923eda5a6bcbf33bf83",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "87526a1b51a959997a43ff2702ac39a4d595e4d72e9e3d230679d2a54f5f4120",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_ResNet18_AT_to_WRN_28_10.npz": "197d681aff71ad6ecfe2de69325340e380839997e37a1342f2a365fbe7582087",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "47e2f07b72a449dd6fc4391421f76a09f5db5b08e38716db9ba996c161785618",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "172d06829fc8527c40d7ed8cc18867de03a9e899d47f2b132697d61b723f5034",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "9a5e414a38526eae9d7e3b525b08f688b3e19ffde79dd9f979aa59f9b2cb8298",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ResNet18_AT.npz": "18309a7bd0661066da428f653d52522aeab51c4d32843a350687fa9c5f5b2102",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "39438c176b44ebc1c76cb383a7cd342e9349bcf5f67f661f724a91374fc26932",
+     "results/q1/son_kontrol_noktasi/pair2/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32",
+     "results/q1/son_kontrol_noktasi/pair3/transfer_matrix.json": "e7283079893a478fabfca74e5526ffbf1fa546efa2cd4a94a16949abbf3a7305",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ResNet18_AT.npz": "8c9b0d1208f51fa21e8aa8fb03ab700a38d568ee158a5c30e64c4ebe5b8b277f",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_ViT_Tiny_AT.npz": "cdbc0e7edfe6305cf8f94809c8fc916fcbd4c4175391572ebfae5f393782fe48",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_ResNet18_AT_to_WRN_28_10.npz": "84e9c1608c6ae3a9e9401ac76ea1e10376f848b4b5934083c554785d29b5ef45",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ResNet18_AT.npz": "3f6d01758764a9a8ac5692d288de8d2c7b49f4ea5c20e2b366f4995834ead454",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_ViT_Tiny_AT.npz": "c3c82a2a5619e2cd0dbf3d67d2f1e70217926db541097749b571c460c14527f6",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_ViT_Tiny_AT_to_WRN_28_10.npz": "77f6809ffd370918fe0bb4c39c1a43dea8a676d2a267c7b60293f4e3cb0f4526",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ResNet18_AT.npz": "5dcd38ac7ab49174443b7641072738d057012aa6642bad89c40ee9018a62ec25",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_ViT_Tiny_AT.npz": "548f1421e4866d29ed35f47ff8759690dc2c682d927783863148b6409ef9ef40",
+     "results/q1/son_kontrol_noktasi/pair3/per_sample_WRN_28_10_to_WRN_28_10.npz": "fd201c2facbbd3066282519eb1326dcf5f36b72ba2994a7b23772c76b4aabf32"
+    }
+   }
+  },
+  "panel": {
+   "birincil": [
+    "Gowal2020Uncovering_28_10_extra"
+   ],
+   "birincil_eksik": [],
+   "ikincil": []
+  },
+  "b5": {
+   "saldirilar": [
+    "mi",
+    "pgd"
+   ],
+   "izinli": {
+    "CNN": [
+     "pgd",
+     "mi"
+    ],
+    "ViT": [
+     "pgd",
+     "mi",
+     "tgr"
+    ]
+   },
+   "tanim": "S_k(m) = ort_{c in P} log T_k(m->c); G_k = ort_R S_k - ort_V S_k; korunma orani = G_best/G_PGD; en iyi saldiri her kaynak icin panelde en yuksek S_k'yi veren izinli saldiri, capraz uydurmali bolunmus yari secimle (cift yarida sec, tek yarida degerlendir ve tersi).",
+   "birincil_C1-R32_V-scr": {
+    "R": [
+     "ResNet18_AT_s1001",
+     "ResNet18_AT_s1002",
+     "ResNet18_AT_s1003"
+    ],
+    "V": [
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003"
+    ],
+    "kaynaklar": {
+     "ResNet18_AT_s1001": {
+      "S_tam": {
+       "pgd": 2.517198850728438,
+       "mi": 2.517198850728438
+      },
+      "S_pgd_yari": 2.516704183896107,
+      "S_best_yari": 2.514074905269373,
+      "secilen_cift_tek": [
+       "mi",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "pgd",
+      "S_best_tam": 2.517198850728438
+     },
+     "ResNet18_AT_s1002": {
+      "S_tam": {
+       "pgd": 2.533299377417847,
+       "mi": 2.5090503221645326
+      },
+      "S_pgd_yari": 2.532640792332857,
+      "S_best_yari": 2.532640792332857,
+      "secilen_cift_tek": [
+       "pgd",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "pgd",
+      "S_best_tam": 2.533299377417847
+     },
+     "ResNet18_AT_s1003": {
+      "S_tam": {
+       "pgd": 2.523491006319327,
+       "mi": 2.4989999863110315
+      },
+      "S_pgd_yari": 2.5232231431114025,
+      "S_best_yari": 2.5232231431114025,
+      "secilen_cift_tek": [
+       "pgd",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "pgd",
+      "S_best_tam": 2.523491006319327
+     },
+     "ViT_Tiny_AT_s2001": {
+      "S_tam": {
+       "pgd": 2.1484716647453275,
+       "mi": 2.0599182674038823
+      },
+      "S_pgd_yari": 2.148229573832212,
+      "S_best_yari": 2.148229573832212,
+      "secilen_cift_tek": [
+       "pgd",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "pgd",
+      "S_best_tam": 2.1484716647453275
+     },
+     "ViT_Tiny_AT_s2002": {
+      "S_tam": {
+       "pgd": 2.1497745965257433,
+       "mi": 2.1678396039233823
+      },
+      "S_pgd_yari": 2.1495034598716116,
+      "S_best_yari": 2.1326842802971964,
+      "secilen_cift_tek": [
+       "mi",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "mi",
+      "S_best_tam": 2.1678396039233823
+     },
+     "ViT_Tiny_AT_s2003": {
+      "S_tam": {
+       "pgd": 2.1754829532359503,
+       "mi": 2.0976585953867293
+      },
+      "S_pgd_yari": 2.1752803699937013,
+      "S_best_yari": 2.1752803699937013,
+      "secilen_cift_tek": [
+       "pgd",
+       "pgd"
+      ],
+      "secilen_tam_orneklem": "pgd",
+      "S_best_tam": 2.1754829532359503
+     }
+    },
+    "G_PGD": 0.3665182385476138,
+    "G_best": 0.37124820553017424,
+    "oran": 1.0129051340017994,
+    "duyarlilik_tam_orneklem_secim": {
+     "G_PGD": 0.36675333998619664,
+     "G_best": 0.36073167085365077,
+     "oran": 0.9835811471198258
+    },
+    "bootstrap": {
+     "B": 2000,
+     "gecerli": 2000,
+     "ci90": [
+      0.9577540953870701,
+      1.0560229112517434
+     ],
+     "ci95": [
+      0.9394776156219788,
+      1.0692289093582554
+     ],
+     "G_PGD_ci90": [
+      0.33272533019383765,
+      0.40049673517545065
+     ],
+     "yontem": "yuzdelik; tohumlar hucre icinde yerine koyarak, goruntuler ortak agirlikla; secim her kopyada yeniden"
+    },
+    "karar": "destek"
+   },
+   "betimsel": {
+    "R224-scr_V-scr": {
+     "R": [],
+     "V": [
+      "ViT_Tiny_AT_s2001",
+      "ViT_Tiny_AT_s2002",
+      "ViT_Tiny_AT_s2003"
+     ],
+     "kaynaklar": {
+      "ViT_Tiny_AT_s2001": {
+       "S_tam": {
+        "pgd": 2.1484716647453275,
+        "mi": 2.0599182674038823
+       },
+       "S_pgd_yari": 2.148229573832212,
+       "S_best_yari": 2.148229573832212,
+       "secilen_cift_tek": [
+        "pgd",
+        "pgd"
+       ],
+       "secilen_tam_orneklem": "pgd",
+       "S_best_tam": 2.1484716647453275
+      },
+      "ViT_Tiny_AT_s2002": {
+       "S_tam": {
+        "pgd": 2.1497745965257433,
+        "mi": 2.1678396039233823
+       },
+       "S_pgd_yari": 2.1495034598716116,
+       "S_best_yari": 2.1326842802971964,
+       "secilen_cift_tek": [
+        "mi",
+        "pgd"
+       ],
+       "secilen_tam_orneklem": "mi",
+       "S_best_tam": 2.1678396039233823
+      },
+      "ViT_Tiny_AT_s2003": {
+       "S_tam": {
+        "pgd": 2.1754829532359503,
+        "mi": 2.0976585953867293
+       },
+       "S_pgd_yari": 2.1752803699937013,
+       "S_best_yari": 2.1752803699937013,
+       "secilen_cift_tek": [
+        "pgd",
+        "pgd"
+       ],
+       "secilen_tam_orneklem": "pgd",
+       "S_best_tam": 2.1754829532359503
+      }
+     },
+     "hata": "hucrede PGD verisi tam olan kaynak < 2"
+    },
+    "R224-IN_V-IN": {
+     "R": [],
+     "V": [],
+     "kaynaklar": {},
+     "hata": "hucrede PGD verisi tam olan kaynak < 2"
+    }
+   },
+   "not": "B5 ayri ailedir (tek sinama), Holm'a girmez; F_B2 ve F_B4 kararlarini degistirmez."
+  }
+ },
+ "b4_maskeleme_yolu": {
+  "ViT_Tiny_AT_s2003": {
+   "isaretli": [
+    "ViT_Tiny_AT_s2003"
+   ],
+   "hucreler": {
+    "V-scr": [
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002"
+    ],
+    "V-IN": [
+     "SAHTE_V_IN_a",
+     "SAHTE_V_IN_b"
+    ],
+    "R224-scr": [
+     "SAHTE_R224_scr_a",
+     "SAHTE_R224_scr_b"
+    ],
+    "R224-IN": [
+     "SAHTE_R224_IN_a",
+     "SAHTE_R224_IN_b"
+    ]
+   },
+   "karar": {
+    "delta": 0.1,
+    "p_holm": [
+     0.0006964147002612581,
+     0.8997030014873044,
+     0.7086659236779078
+    ],
+    "H1": "destek",
+    "H1_ongoru_buyuklugu_tuttu (A <= -0,20)": true,
+    "H1_esdeger": false,
+    "H2": "kararsiz",
+    "H2_ongoru_buyuklugu_tuttu (I >= +0,10)": false,
+    "H2_esdeger": false,
+    "H2_negatif_anlamli_holm": false,
+    "H2_logit_kestirim": -0.01731295339958905,
+    "H3": "kararsiz",
+    "H3_ham_ci90_delta_icinde": false,
+    "sonuc_bolgesi": "O5a",
+    "O4_niteleme": false,
+    "sonuc_kurali": "sira: O2 > O5 > O1 > O3 > O3-varyant > O5a; O4 ek niteleme"
+   },
+   "karsitliklar": {
+    "H1": {
+     "kestirim": -0.3369728546884905,
+     "ci90": [
+      -0.4053569377777381,
+      -0.2685887715992428
+     ],
+     "ci95": [
+      -0.42603397014216426,
+      -0.24791173923481669
+     ]
+    },
+    "H2": {
+     "kestirim": -0.006089284988975985,
+     "ci90": [
+      -0.10279898274423861,
+      0.09062041276628664
+     ],
+     "ci95": [
+      -0.13204072234363753,
+      0.11986215236568556
+     ]
+    },
+    "H3": {
+     "kestirim": 0.0948228687292495,
+     "ci90": [
+      0.06732493375948574,
+      0.12232080369901326
+     ],
+     "ci95": [
+      0.05901048885302049,
+      0.1306352486054785
+     ]
+    }
+   },
+   "degisen_hipotezler": [
+    "H2"
+   ],
+   "kural": "degisen hipotezin manset cumlesi kararsiz sayilir; H1 degisirse bolge O5",
+   "uygulanan_bolge": "O5a"
+  },
+  "SAHTE_V_IN_a": {
+   "isaretli": [
+    "SAHTE_V_IN_a"
+   ],
+   "hucreler": {
+    "V-scr": [
+     "ViT_Tiny_AT_s2001",
+     "ViT_Tiny_AT_s2002",
+     "ViT_Tiny_AT_s2003"
+    ],
+    "V-IN": [
+     "SAHTE_V_IN_b"
+    ],
+    "R224-scr": [
+     "SAHTE_R224_scr_a",
+     "SAHTE_R224_scr_b"
+    ],
+    "R224-IN": [
+     "SAHTE_R224_IN_a",
+     "SAHTE_R224_IN_b"
+    ]
+   },
+   "hata": "isaretliler cikinca n < 2 olan hucre: {'V-IN': 1}; ilgili hipotezler manset disi (O5)",
+   "degisen_hipotezler": [
+    "H2",
+    "H3"
+   ],
+   "kural": "degisen hipotezin manset cumlesi kararsiz sayilir; H1 degisirse bolge O5",
+   "uygulanan_bolge": "O5a"
+  }
+ },
+ "ozdeslik_artik_max_Ka": 5.551115123125783e-16
+}

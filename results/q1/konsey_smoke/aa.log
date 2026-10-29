@@ -1,0 +1,36 @@
+Device: cuda
+Seed: 42, n_samples: 50
+
+Loading cifar10...
+
+============================================================
+Evaluating: V_IN_smoke
+============================================================
+  Clean accuracy: 94.00%
+  Chunk 1/1: samples 0-50
+setting parameters for standard version
+using standard version including apgd-ce, apgd-t, fab-t, square.
+initial accuracy: 94.00%
+apgd-ce - 1/1 - 47 out of 47 successfully perturbed
+robust accuracy after APGD-CE: 0.00% (total time 2.3 s)
+max Linf perturbation: 0.03137, nan in tensor: 0, max: 1.00000, min: 0.00000
+robust accuracy: 0.00%
+
+  Results for V_IN_smoke:
+    Clean Accuracy: 94.00%
+    AutoAttack Accuracy: 0.00%
+
+============================================================
+AUTOATTACK RUN2 EVALUATION SUMMARY
+============================================================
+
+Epsilon: 0.0314 (8/255)
+Samples: 50
+
+--------------------------------------------------
+Model                     Clean        AutoAttack  
+--------------------------------------------------
+V_IN_smoke                94.00%       0.00%
+--------------------------------------------------
+
+Results saved to results/q1/konsey_smoke/aa
