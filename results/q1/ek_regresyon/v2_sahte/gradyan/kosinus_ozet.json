@@ -1,0 +1,56 @@
+{
+ "betik": "experiments/q1_ek_gradyan_kosinus.py",
+ "betik_sha256": "c82a66d196c38f23d688f610caf6ffceab0c01e7ebfa68e5358f832014043eed",
+ "veri_kumesi": "imagenetv2",
+ "n": 8,
+ "modeller": [
+  "SahteA",
+  "SahteB"
+ ],
+ "model_specs": {
+  "SahteA": [
+   "resnet18_224",
+   "/tmp/ek_v2_fziff583/SahteA.pth"
+  ],
+  "SahteB": [
+   "resnet18_224",
+   "/tmp/ek_v2_fziff583/SahteB.pth"
+  ]
+ },
+ "c_tum": [
+  [
+   1.0,
+   -0.012106657028198242
+  ],
+  [
+   -0.012106657028198242,
+   1.0
+  ]
+ ],
+ "c_iki_model_dogru": [
+  [
+   1.0,
+   NaN
+  ],
+  [
+   NaN,
+   1.0
+  ]
+ ],
+ "n_iki_model_dogru": {
+  "SahteA|SahteB": 0
+ },
+ "log_gradyan_normu_ort": {
+  "SahteA": -5.039757251739502,
+  "SahteB": -5.079555511474609
+ },
+ "temiz_dogruluk_yuzde": {
+  "SahteA": 0.0,
+  "SahteB": 0.0
+ },
+ "nan_kosinus_sayisi": 0,
+ "tanim": "c_ij = ort_x cos(grad_x CE(f_i(x), y), grad_x CE(f_j(x), y)); eval, fp32, [0,1] uzayi",
+ "uretildi_utc": "2026-10-30T03:42:31.260786+00:00",
+ "imagenetv2_liste_sha256": "9d4d6df2e5cabe3bdffa7060c8bcc483b691e81f34edf13b36447109c2184cdb",
+ "on_isleme": "BicubicRes256Crop224"
+}

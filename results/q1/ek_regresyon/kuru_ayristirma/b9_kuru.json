@@ -1,0 +1,1081 @@
+{
+ "SINAMA_SONUC_DEGIL": true,
+ "meta": {
+  "betik": "experiments/q1_konsey_ayrisim.py",
+  "betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "hucre_tablosu": "/workspace/raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+  "hucre_tablosu_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+  "mod": "b2",
+  "matris_dizinleri": [
+   "/tmp/ek_kuru_tq1976uz/b9"
+  ],
+  "uretildi_utc": "2026-10-30T03:43:13.163496+00:00",
+  "delta": 0.1,
+  "delta_duyarlilik": 0.06,
+  "alfa": 0.05,
+  "bootstrap_B": 200,
+  "bootstrap_tohum": 20261029,
+  "panel_en_az": 5,
+  "maskeleme_isaretli": [],
+  "numpy": "1.26.4"
+ },
+ "veri": {
+  "n_goruntu": 400,
+  "modeller": [
+   "C100_Addepalli2022Efficient_RN18",
+   "C100_Debenedetti2022Light_XCiT-S12",
+   "C100_Hendrycks2019Using",
+   "C100_Jia2022LAS-AT_34_10",
+   "C100_Pang2022Robustness_WRN28_10",
+   "C100_Rade2021Helper_R18_ddpm",
+   "C100_ResNet18_AT_s1001",
+   "C100_ResNet18_AT_s1002",
+   "C100_ResNet18_AT_s1003",
+   "C100_Rice2020Overfitting",
+   "C100_Sehwag2021Proxy",
+   "C100_ViT_Tiny_AT_s2001",
+   "C100_ViT_Tiny_AT_s2002",
+   "C100_ViT_Tiny_AT_s2003",
+   "C100_Wang2023Better_WRN-28-10"
+  ],
+  "hucre_sayisi": 225,
+  "cakismalar": [],
+  "tutarlilik": {
+   "hedef_maskesi_tutarli": true,
+   "tutarsiz_hedefler": []
+  },
+  "tablo_disi_modeller": [],
+  "girdi_sha256": {
+   "/tmp/ek_kuru_tq1976uz/b9/transfer_matrix.json": "472ebe0af46947a8b61364c39c14f21b4b5e6de3a52695dcefac8b7286de7a9a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_ResNet18_AT_s1001.npz": "639d6778a2c1ad2f26d34f2f3f17e57721de9bc3fb9b9f5074742191b445926a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_ResNet18_AT_s1002.npz": "2fb77afc21aece13e885f9422109926a0074221a6bb127dd268730afeb11a148",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_ResNet18_AT_s1003.npz": "1cbd927571967e2bfa3ccf0b0f00c357469afa897f2aca4cf3a1256b8f721691",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_ViT_Tiny_AT_s2001.npz": "7052609c674dc92a0c6dc901150e68ee92d976ee3686379a8fece097289ab2c8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_ViT_Tiny_AT_s2002.npz": "d0a19f5e5f6b6581cfbc17ea4174e368d2333605672655ca45df641a1fa1a0ed",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_ViT_Tiny_AT_s2003.npz": "8cd05ba1511992cbf908182c5eae7c87e0b4d990f8d348ca0e89fd21e270d02f",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Rice2020Overfitting.npz": "41d7ef66d783c67425db24d08485226be3054c1bc71f6b120373d40cd2e631fc",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Rade2021Helper_R18_ddpm.npz": "a3327af54b34dc8738f87ac3d06afe4c8954da75858e4b39657d4a04a41b497d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Addepalli2022Efficient_RN18.npz": "be3f77f1ba7eebd92a2da7c837ca4c2b07e258f9e8154835195ac9d9ccc14ed8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Sehwag2021Proxy.npz": "270ee1f1a76005c6bbc087dae1c9cc3e405904eadbe17eca74beb04bd6a6c6a3",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Pang2022Robustness_WRN28_10.npz": "09e7327b145431ddbd2563c126dd1ec198de523c03d1e9e6fca8eef6efab87e4",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Wang2023Better_WRN-28-10.npz": "6f4212ca71ca85368f767f95afd22563bf04e3bd20e387e7ff30569cec40d83b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Jia2022LAS-AT_34_10.npz": "17eb407c5abfcdd11b30775822187c99bddb2f541c4adc032e3850c733e26280",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Debenedetti2022Light_XCiT-S12.npz": "09b6076c545b22ae5d46858cc280524e4d48762a06ca32244168345218423f0d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1001_to_C100_Hendrycks2019Using.npz": "8f66df4380f7611b0f6a5762bd86de4f3584f9c9003b0746042f00a156148d33",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_ResNet18_AT_s1001.npz": "610277b417980164b38969648fa47c6979137ef3ac180807a55a00730282b5a9",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_ResNet18_AT_s1002.npz": "e719679cf42bd13eac4f611ee04c95eb17054f15cd1569822c7007d923dd89c8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_ResNet18_AT_s1003.npz": "f956de2d9cdea8a59a44d9a86174cc56cb8c5d1dc22953037f02845d8b44fa13",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_ViT_Tiny_AT_s2001.npz": "44ccdf41f2de9b1f7124f08b1f272c3ad4eb173e02b134b7755d6c122d9a00bb",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_ViT_Tiny_AT_s2002.npz": "9589ce2c81dcb4d95bc0a482471478da1a97b7d79b7548a525f6e2c0d5d05f17",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_ViT_Tiny_AT_s2003.npz": "d59d435d7f3196375acd8a94b23dce37dfd85e1685f188a842542bab20e37b6d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Rice2020Overfitting.npz": "5a5a61393e4833a7de531e507fc3facde02fb6ed0ba95d832f7bcc0c7d2840f1",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Rade2021Helper_R18_ddpm.npz": "1c1df9a15657eeceb8020153b093f0607bcec575810f5c440a367c748cadb0bc",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Addepalli2022Efficient_RN18.npz": "a7b4c4679497f4198f19859108f6ec736bdb73aa0a882d8014babd66271fe3de",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Sehwag2021Proxy.npz": "d74e296d8aadf586982eb95763f6d60da0f2203dc5c1cf477347b41e7f158767",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Pang2022Robustness_WRN28_10.npz": "6356a7b2dd886fd79fb4643119423cb09d70cddc776bf8dc4edb0d6a54e844f1",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Wang2023Better_WRN-28-10.npz": "f1c52cb6703056902b89e8dd3040d29b97a797a9f7d334f50780623f5abe045a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Jia2022LAS-AT_34_10.npz": "51a42d8cee22f5e44e4c57f73b6b830d6731cbd172b1a52edba2bf8733baa9be",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Debenedetti2022Light_XCiT-S12.npz": "0e7836d4ff33188ccb1088dfcfc1c0495c4db3452fbf776e895f9aba39c17c8a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1002_to_C100_Hendrycks2019Using.npz": "8e7666af8ada7215a62075a3b9779ceded774ce877763d9118fe1d6826314fba",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_ResNet18_AT_s1001.npz": "2ef859a0df5c8c85aa7311d694c9e843bab6729f317b6bae446c466b770814be",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_ResNet18_AT_s1002.npz": "624924b21ca39a22d4bc6562f5a1b873d4b23bc4342d971cb2cfc5bac9a77bd7",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_ResNet18_AT_s1003.npz": "c97891e3cb1858cfacb520d9b1b594be507c79b449c0ebf7ff29a730f8aaaa5a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_ViT_Tiny_AT_s2001.npz": "e0be71719f126cb1ba6cf623c2ddde1e1e8d13f85b75c4a6796087c5f6d81c57",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_ViT_Tiny_AT_s2002.npz": "64aac245817e1e97ac9101a702c79d71b4d5ff97564ff330f316207a228bbd74",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_ViT_Tiny_AT_s2003.npz": "ba59b624e4030dc88931d6945bd93b21a0d7db268e1c48a010ace17d8a2dee6e",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Rice2020Overfitting.npz": "d933d30fbfae89c8910cf7d329bed8552151a821a39a23b9b50fdae735a651d2",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Rade2021Helper_R18_ddpm.npz": "cbea881cdeb23c9ed00f700fe33021e98836b0c61333ed8513db4bb0c048b27a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Addepalli2022Efficient_RN18.npz": "87829f671b52c1b1e3f291066ff855aba00f9b03342fad462b11bbd29f3fc416",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Sehwag2021Proxy.npz": "2bcd3d01ea62e9d327ec4da0f9205e6272ce9aeaf1124953c1fef690d957507b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Pang2022Robustness_WRN28_10.npz": "4289f105ea9e5fd490e7427142077d9805f1d94e6214f8f3d0f0623cc7093fb8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Wang2023Better_WRN-28-10.npz": "a1403d50941372530d804af50deecdcb34e0450e982a7bd02077c9b4250dd3cb",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Jia2022LAS-AT_34_10.npz": "b7050803a1846ed4fc7c90b201328439b3fe59d888e799e52396f704b7bec491",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Debenedetti2022Light_XCiT-S12.npz": "ee0ac52a13c6635d21aaba61007e80c0adf8104002cf0a68eab3c631052291d9",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ResNet18_AT_s1003_to_C100_Hendrycks2019Using.npz": "4b5cb09cf27908eaa6201fb24139cb668f598e27aae77a162b08bf72b045d81d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ResNet18_AT_s1001.npz": "d0a2e8b0049f4c6b085943da82c15bf0e8ccc3e8f247f079bcdef329e9345d31",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ResNet18_AT_s1002.npz": "ecb97041bc9c563ce2647013135852ef06749567a8744fa7c00bd64d2f49ce40",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ResNet18_AT_s1003.npz": "093880d0631d1457299785c477cea6e4fa2c4aa8fcab9c2172c3bda8a8473537",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ViT_Tiny_AT_s2001.npz": "ca38857575ecb638c81862f8d4b68858fedb9d2ebe51ba2537078b51fe408a8c",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ViT_Tiny_AT_s2002.npz": "c7e80a4d1666a35ead01d5b2846902202c12f157447ae77f93202fc5607e79f3",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ViT_Tiny_AT_s2003.npz": "579899aca8df7796b2ca3ca5ff4a8713e8a8f08b1b7538c8003d5971cd33274d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Rice2020Overfitting.npz": "849ad9c24076aacfb123a18d1ffb97ee06ee102387ed1b59d8a79cfa7f848581",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Rade2021Helper_R18_ddpm.npz": "28752f85693bc3ca9e26e61ed463667708be99e84703061d121f7c43eb6b3362",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Addepalli2022Efficient_RN18.npz": "5b0c27926bf6cada655e0abd2d79e459e4756d713c958e5dcad839217e67698b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Sehwag2021Proxy.npz": "1faf6db77488edad7fe4d526698b87eac3702524e678e9f7941a6d04fc7a1f07",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Pang2022Robustness_WRN28_10.npz": "5779163b6c616813757f5535eedff0b3c235a1ecd430737f4f86568486311305",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Wang2023Better_WRN-28-10.npz": "3cc7d0681d1261f2a637f771397001470ff4807fd4bd6476cb697aedabc87330",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Jia2022LAS-AT_34_10.npz": "9c4591a292d26f8d9ec3b4831609fb2a20297e7085fbe2e19dc6ba0cfc7ea8a7",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Debenedetti2022Light_XCiT-S12.npz": "69c6185571dac16c4e736f6294f54e6963d5f2b11f446d76d4a3ef300ff6eb6d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Hendrycks2019Using.npz": "ba0d245272e4ac2cd3d4ece380efab50765a196e0295cb9d64b54ef6e61454e6",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ResNet18_AT_s1001.npz": "f7bcdbea85e90cf6b69c6fe2be960a3fc1863a7bdd8f31767aedf2bfd8d42c57",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ResNet18_AT_s1002.npz": "ce9ff981fd21a82e8f6dd86e315e6fec488fc1306158a18b2f71daec57d9aea5",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ResNet18_AT_s1003.npz": "714575cd2d506d53ef05f76012764cda1f62f7b857325c9cddb2d0ce3e65d9d4",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ViT_Tiny_AT_s2001.npz": "9b33ef153010452974964878318c68aba4364db8b492062fc12a927bfabaf748",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ViT_Tiny_AT_s2002.npz": "761094f536888991e49f5f7d6fb5ad7429d534db8865f13ed8dd3441ddb83d9c",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ViT_Tiny_AT_s2003.npz": "e983a8baac518618cf2f56d0c5fe46497474b169e581bfc828b322d4110109ff",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Rice2020Overfitting.npz": "13adf12b423829f5a7b0301f7a6e191ed80427b45a307ab747569c7bf746d7d1",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Rade2021Helper_R18_ddpm.npz": "a6a4774eff39c2d4e0a220f9dee5639398ca3cecae4bf0c465944b3a8f71bf44",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Addepalli2022Efficient_RN18.npz": "7ede7f0ef194996c9c49f802b7081590b157aee779181d892dbaa662bca07139",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Sehwag2021Proxy.npz": "cebad9c039cc8b988011d4efe3cabbffd459a806ebeae3d792834b0e921c4794",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Pang2022Robustness_WRN28_10.npz": "8df81e47b6dc72986a44cc091ad24df15caa9f7527dfdcb72d1a1d2836fcff77",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Wang2023Better_WRN-28-10.npz": "76965793f3ed47f2c91c16e42752b737e89f2834a510ddb4d8278170e94439eb",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Jia2022LAS-AT_34_10.npz": "f41dadb4c37748b0c1bfc50775102eecf2344ab83969be2dd0ffdaca891c4aeb",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Debenedetti2022Light_XCiT-S12.npz": "347ce94077d4fd6e4a9c72170d4feb48ac64034cdb97ec8729c6d8e0fdb0ffe1",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Hendrycks2019Using.npz": "da41b17ee50b6dfbce9c3364bb60ddd5e2dfe5dbe4ed375e5ce018dd03e35ad5",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ResNet18_AT_s1001.npz": "a49937a21defed843ad3e55406b6cad197ffb000e5ad40d95c3d5e7eaac26849",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ResNet18_AT_s1002.npz": "2261b925172ed32dc34362b802aeffc1200357d0edec39b415333b35cd698a3d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ResNet18_AT_s1003.npz": "7bfa6f8e109d8d97017fee8df86e0c79c2759ff3393a92983320f3d18bd26784",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ViT_Tiny_AT_s2001.npz": "1a9ebd37bd923f2fa615eecd038340fc00b5581c18d5b3ac418d37b2f5ae1a39",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ViT_Tiny_AT_s2002.npz": "a2689e4219ef7d3d10fcbcb9d93d6cb4fc4fc3b79b1bcbb0b117aa442310593c",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ViT_Tiny_AT_s2003.npz": "ee739fc58cc0dab092c201147b1a5f1e0995344e05c5e5fe41385382d92f97ad",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Rice2020Overfitting.npz": "ab0fdd03bdb530763aa42cfae76a27b3af1169dd8858a045282992090060311d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Rade2021Helper_R18_ddpm.npz": "44422e7e1659ff6462e388e1d237c25ccdf0273c20cd01ec8235ae7cf9ba22a6",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Addepalli2022Efficient_RN18.npz": "a189eb4bb99a019b9a4d6495400517a1da394fff1f1d01fd6522d73d19652367",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Sehwag2021Proxy.npz": "a271184364ea641b316ea5ad8709461af97c60088d6fc7ee0a0812a2ba0a1ace",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Pang2022Robustness_WRN28_10.npz": "2149f0e6fe6b88f42d2d9de724797296ff1002d0abe3b00ed12a12a8f09bab96",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Wang2023Better_WRN-28-10.npz": "beef05730bee011e9a200bfa4e196acb11741147c34ae21bc126e11703800918",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Jia2022LAS-AT_34_10.npz": "b25c17fedda0eef7a7dc406951f53bceea22e24461f009703c0f258ae114c25b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Debenedetti2022Light_XCiT-S12.npz": "09fbed74cd21c17e2e5affadbe8aba0da7aa916826233bcdbb317cb5349d75c4",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Hendrycks2019Using.npz": "7953613777f459546aa6b182949361b204e1b972cff373547fad57ebe8a436eb",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_ResNet18_AT_s1001.npz": "1b7e9c143d628e10f25f43d9308fa8fb26ddd674ca3cac62037a222943692086",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_ResNet18_AT_s1002.npz": "14f1b636ce01da8273cf7cfa584ae622950db99dfe8f7a85acfc80133424ef52",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_ResNet18_AT_s1003.npz": "1f78bb22628a31af22540d665d97f733056b1d8f0747371dfa52ff3a34e4950b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_ViT_Tiny_AT_s2001.npz": "de80a8594c9649d30729b6ec581e5b9f112fabfc8ce8908244fb31c9bf51c440",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_ViT_Tiny_AT_s2002.npz": "dd3cf99484eacfae787e74fb416e5eca73ced6c2b1e99527c66252cc22627ca7",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_ViT_Tiny_AT_s2003.npz": "1a2d1ace267bc0260dc525f318ffd8bee08842c0e3e96b577f2f0b37b5e50e1d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Rice2020Overfitting.npz": "d6f0218323222d9f9d34d5fa09c97bfd7ba246acff8cffe7647588efbcd52cbc",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Rade2021Helper_R18_ddpm.npz": "0fba04a9bf43aecd6739b624a07e40496f3a0d33ab250d55259f8dab6e80d4d0",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Addepalli2022Efficient_RN18.npz": "100bfbd01305967691beac760b1aa20dc509a9e3c1e7c921c61e247161734157",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Sehwag2021Proxy.npz": "fe7b196df7c03028edb4f54bff286d542b931b7f45fbcae9983380a72afc321a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Pang2022Robustness_WRN28_10.npz": "af7c9d82bcedc3f83e9ec7e6237afa5475d6c58bc835198a53ec2a578fb16434",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Wang2023Better_WRN-28-10.npz": "1256e4afae4f6af311fc60be0caa15b546db881d0d65360877e4741f14f92afd",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Jia2022LAS-AT_34_10.npz": "37e266a39dd4d118c118ce5072ff034abe2d5b718f3cec18c50736ee73826313",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Debenedetti2022Light_XCiT-S12.npz": "b3c97ac841e2ae1e71e14e7c4fe39485ea8cd53985de8546495f3a52413da064",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rice2020Overfitting_to_C100_Hendrycks2019Using.npz": "6d47f5fabcb73885a58f82e363f266d51de00bb37afd58a88dafacdd2fe4e0ec",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ResNet18_AT_s1001.npz": "f3791ed5206402b7bd0307bfe7ebc4824d0e5625b571bed4090c92380198673f",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ResNet18_AT_s1002.npz": "29d80f911e780425778f85b4a6e142c30bcda8e4a6a6221dc8a0d434ca821063",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ResNet18_AT_s1003.npz": "de4bb8c164f3d31361cba3fefb0d78e3c4e53d32092b8f6f22648b93bf9bed4d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ViT_Tiny_AT_s2001.npz": "d7ea42edc599167055b547272c65e2327dc2213f55c053e9877dc16905b80733",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ViT_Tiny_AT_s2002.npz": "20ee4693635dc4e91e3ec7b0e75b341a8560d6bb703771e208e427fed059cd4d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ViT_Tiny_AT_s2003.npz": "328333d79c7e4ea66d97fe8edde9553c3d7519dc2fbaba0ad78c657ef02468b6",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Rice2020Overfitting.npz": "bc0605af15a4b664ad9abec43eb4ba4f9de4e59c64a8624a58c9e212f2a7b63d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Rade2021Helper_R18_ddpm.npz": "6bb63c436f877d8d05c823d338e5c481565a1730613552b208a2755215236a4a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Addepalli2022Efficient_RN18.npz": "e6c9c9d7eb41e53a5d03ebaefe03be2438f893aea4a240a0c0083ba447cdd52e",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Sehwag2021Proxy.npz": "2c744e5b86b864372349667cff279fd8e23c67bcd2c513f87a6462800b64ca0a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Pang2022Robustness_WRN28_10.npz": "efcb0f113e707cbfee26e9ed5d5619f6b4bca0dd80810edd555242da845d1724",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Wang2023Better_WRN-28-10.npz": "f4b21925e8dceb61d1706f6de2444bdde6e509b81a62bc2da8d4b14a36f708f4",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Jia2022LAS-AT_34_10.npz": "1a64f2cad2370b9a13f1d48a389ff33cd2628388bdfdca6cacac1216419b9816",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Debenedetti2022Light_XCiT-S12.npz": "03f13094bdac6c6da4e5511a281a296910fb5791541045e7484068b8ae1721f8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Hendrycks2019Using.npz": "0436fb67bb3ff819dfd578ffa035cfde9a3647a1a0d623e2d079bf4a5f1b1948",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ResNet18_AT_s1001.npz": "af5423f7fbe050c21372f5a2f4b56d9a7895d60bedfc101081ba68fccccec5b0",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ResNet18_AT_s1002.npz": "27c26338ba8518b718ef46fe8eb9ba029c8db65533366f2f60bb408873a18d3d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ResNet18_AT_s1003.npz": "f2163683768554841fb83b0280bbcd2b52f9436ee418254da5d20fa6e6898718",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ViT_Tiny_AT_s2001.npz": "1da44c2574b0e6876c2fd9f191b3eede6d11c2c277e6055961258d5707ebed72",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ViT_Tiny_AT_s2002.npz": "74599be2dc3217fec4fc86e6b749a37d7af62e9d0b6e555cc3ea6c2b3aebbef9",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ViT_Tiny_AT_s2003.npz": "5bb8bfbfe4ceec2ed745a9b37ccda37c4a0c5f7cc6d4de3c935dccad301c8d6a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Rice2020Overfitting.npz": "64dde1969cf9a9be92b62c7d9f86e281e500ea201842c607333194f223585591",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Rade2021Helper_R18_ddpm.npz": "92d67a5001a06ce30879e79ec7e8a8c65b7321940b438042a915498efda4b066",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Addepalli2022Efficient_RN18.npz": "30941889cd0de5b0083fd33eec7de2b89f2ec5e0590c500a6d24164e3bef4941",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Sehwag2021Proxy.npz": "d6e85c7a0abdca6cbe42f9b23572d7f8698954f2d954dffa388954439a6d55a2",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Pang2022Robustness_WRN28_10.npz": "65a1d355bdb600b133e03e8c2e07c336fbb400faf0c8ce31b699e0316a92718e",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Wang2023Better_WRN-28-10.npz": "d3ecc80b236b0a9edf36645ba9c87329a7ca0bb9841730657d14cc5445817d32",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Jia2022LAS-AT_34_10.npz": "c646c2878ac0b554f09f59cde012ff0b3f82a356b9cd95c46405cc6dde73d0ba",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Debenedetti2022Light_XCiT-S12.npz": "6aea5aedb40e6f821b19cfcb316dd92516b0ff23a89738b11b7b33dc91f2c8c3",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Hendrycks2019Using.npz": "6069a819fde1978f6252c539e34e8eaf4fcacd66b044123704e0b1a8e0be0bf1",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_ResNet18_AT_s1001.npz": "2dfaf2808ea19be677e74d32470b36f44533629f791eb268af5b71cd57824fef",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_ResNet18_AT_s1002.npz": "11e1135c48e10282f87ee1e4080654eaf021241ab3a47ffc2c7f168244e881a5",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_ResNet18_AT_s1003.npz": "ec85c8081bca6b48efda58c50312727b4b7c187759ceab91ff223bde969755dc",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_ViT_Tiny_AT_s2001.npz": "b43c74ea3cfba3180d929b4c326de0bb3b7d3c3b65e8ae35ab125de7438092ec",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_ViT_Tiny_AT_s2002.npz": "53a5de6c554fb3928d6040f3fa654714369b813ddcf79b3b45e2a308dd5afd0a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_ViT_Tiny_AT_s2003.npz": "dcfb28dc969f4e15c4556a750d202806764d27d7519a35b72c66605b294984dc",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Rice2020Overfitting.npz": "f5aec228f15631edf7e0bc83e04217201d61a321dfa56815652f6dac8ca6e14c",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Rade2021Helper_R18_ddpm.npz": "eb6d350fdced157af185e6595be582aa3e9ae07115aef42d80dd960c8b8ca097",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Addepalli2022Efficient_RN18.npz": "53877124859e90eea90a2d0de94a5936bb20212023425472e74b19c727ffff17",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Sehwag2021Proxy.npz": "29401f448bf3b0d91ca503bf3e715d3c496f60b913648c7ca82d6ef227a409e6",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Pang2022Robustness_WRN28_10.npz": "f2547c40179b4e3df5cf166c956e0528df275b9b71b2baac4a345594b5239e11",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Wang2023Better_WRN-28-10.npz": "7fd9c0af09c7e37e6277ff792ef0fd5abd5852cd02ec05d173e827be0f528c13",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Jia2022LAS-AT_34_10.npz": "6daedd3988a4a56485c5f164062f87a5c703504020798a3988dfda3cb9a653ce",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Debenedetti2022Light_XCiT-S12.npz": "57aa29bfbfa8eb966ec88ff2ddbc06d675c2ea45c7628d618cf331a9682de218",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Sehwag2021Proxy_to_C100_Hendrycks2019Using.npz": "56f9a4c8a651b182e71a67a7443bc7eb9f42780804b12dd7bc2d7bcbd15fc3e8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ResNet18_AT_s1001.npz": "b4c4a26b2ebf6bdd24495585c0ce581b9f8b363cc7b555079a68b7e66f90f2d8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ResNet18_AT_s1002.npz": "c67d7971942f39c5a1635af3973a071e4a9294354c9eb51fd5c4ae9a7efe5db2",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ResNet18_AT_s1003.npz": "a7da29093543da028ec6ed44ee3ef60e158078e47eaca6c6aed3a8011be0a4f9",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ViT_Tiny_AT_s2001.npz": "efbd75156f7df788fedfca7fe0d32d8dc150dce73f60c3043e538412b65b77d1",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ViT_Tiny_AT_s2002.npz": "1f3aff383bcfbdd5f12d758f2d3384f9d5625e4728d90811070494b4a46eeb7a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ViT_Tiny_AT_s2003.npz": "9afba8ae5109ce8786040fcbecca7541b2d4235a436daac63545190ab2c3fe0d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Rice2020Overfitting.npz": "5292674d56890ce9f753d4db38a37135a60930c9e35d66eb3be5207961c26b96",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Rade2021Helper_R18_ddpm.npz": "e880026a77ef9ef16317356224d24641b12fd3deb6ad33306e4d1aa8d413b34b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Addepalli2022Efficient_RN18.npz": "e8b2e2549f60b920e1424da11b984b541495a81181272ec18b4a4206a7b92e08",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Sehwag2021Proxy.npz": "f067c88407b4cc56c8048220850d3b0976ca53dcf68698ee0b4fd9ef30deba44",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Pang2022Robustness_WRN28_10.npz": "c33145bc66569a1d0337abecf18e3a2348f5b0ec40f55c509bccb1534c63139d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Wang2023Better_WRN-28-10.npz": "4eee885830e9ee22b2ccc4b089c38e44e0d07ac8c4907d77d20ced1f65871512",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Jia2022LAS-AT_34_10.npz": "444210725d45c694f103adbda8c899be867fa29170fdd19a26aa734ecc2c3e34",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Debenedetti2022Light_XCiT-S12.npz": "f997aa96dea2c5aa8b0a76bbdda30aa9e3ebf5680c47d8de795b4e968200b47f",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Hendrycks2019Using.npz": "2ff5ff812d06c98a6bab18966486f787d9dfc7c6c005e0b337cefcf8979f61ca",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ResNet18_AT_s1001.npz": "ff0b4d090a966bffca9e8dbce739e61557aba9cc36a2b8d239bcd954e77a5efe",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ResNet18_AT_s1002.npz": "c4633aff17ac88e2f445bb4ba847b5abd4d27e95cc88a26afa4ef3515175cb76",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ResNet18_AT_s1003.npz": "18490e53810c1550f6089b400055fac18246d24748a148f96c5fb4d543af59ea",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ViT_Tiny_AT_s2001.npz": "998e824ff023e7cf683d65be94ef079dcf5993ff4ab81fae658c468129f0fe5e",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ViT_Tiny_AT_s2002.npz": "ce73a7cf8fc0513dcce550dd69b2f574e6229a272616b4def237721d02fe28d3",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ViT_Tiny_AT_s2003.npz": "31055ea3c2ba15164196b11deebbdd2c6756e717fc114be1ff4b2ef3c5417615",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Rice2020Overfitting.npz": "0a0bd213ece4af97b5745c1c508cf6d815d9a1c7c33c2db7b52a94daa58fbf92",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Rade2021Helper_R18_ddpm.npz": "9a6a56d41c357bda49d5079616063d5ba3238b6d454d2002763544da09b9a55b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Addepalli2022Efficient_RN18.npz": "d6c6098fe7c53488a228fff62248809af23299ff8b4ced21d8012b6652bea34d",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Sehwag2021Proxy.npz": "912280a819290f6110d64c66d931dad426719f151f17589073b386f1c0116923",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Pang2022Robustness_WRN28_10.npz": "be079c3a80db8e907a34bfd5923af244d90686ad2fef933d9abace9ada74501b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Wang2023Better_WRN-28-10.npz": "28fc04f7143056717c17d225909852c7cab7d2bf5f8abd753c48c1c29c3b9baa",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Jia2022LAS-AT_34_10.npz": "a63c254c336fe7588e87234fac1f56d8049f36c46a5d2125779ba23d0316c80a",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Debenedetti2022Light_XCiT-S12.npz": "9e0982174bc8ab56bdd2205d1429fdc64e91bf84d0c32db782cd2c09cfd7bee0",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Hendrycks2019Using.npz": "652131f5f00982927b8ca821691e48a1dfae742072326e9c3a432d1fe3683f04",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ResNet18_AT_s1001.npz": "42d59b329283f4a1b032140625784a74224cb550e90ec0957d805704b6dabf97",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ResNet18_AT_s1002.npz": "8e03479d0814ae48f2cf5caad4291fe93bf6c51ac138352b81eb0bce0fe4b6b5",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ResNet18_AT_s1003.npz": "56e30cf2ce6f5ea2521d0fff75c531449a7528fd049f639bba16cd6ebdf5b452",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ViT_Tiny_AT_s2001.npz": "79f56118515f97389abd50dab90f418326831a36318e6c7681c68f0b087b4f57",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ViT_Tiny_AT_s2002.npz": "1763228b8539369d542e6e56f0116db2887afc848deff9ae2debefea75dcfa32",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ViT_Tiny_AT_s2003.npz": "0708772667c5d160b84d9c66a37b65b9f55dab1a5fc955246f648ece1261d193",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Rice2020Overfitting.npz": "4a3f6878fb61310550ec3cbd4679533ece1d456a3ca870ffc2ed91a8a183788e",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Rade2021Helper_R18_ddpm.npz": "0e9fbaa0e538ecf71c687831bc913f111e570ff8149a21c7977c123e79a6be64",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Addepalli2022Efficient_RN18.npz": "ab30557b8433de0a164a0d8bc63fe4091c86b303701d5279a7c79c8bc0274963",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Sehwag2021Proxy.npz": "4b7fefec231cd2a99cb393c1ad90a18ee45b0c4a4bf92c7e5c74d60af4318252",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Pang2022Robustness_WRN28_10.npz": "1f02edba8acfd171b37d117548809a03c2f981a2b74a0b500b939d31e899d682",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Wang2023Better_WRN-28-10.npz": "542ffd91306e8dc6e4917fc6f434a120b4bc61d2573851b7f5bac5a04466ed57",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Jia2022LAS-AT_34_10.npz": "98abdae2a15eecdd73d0414fe7d38024f217e2016c9e1e926800434054117640",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Debenedetti2022Light_XCiT-S12.npz": "52488aae6c7b66a087f8ced5057667c30ffd8e616205a672dfd6f83cdc9e0668",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Hendrycks2019Using.npz": "fb2b7f8ef7931b346c5ac1ecd2425b6d32f7d9c04405668e9b0f405aab974f19",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ResNet18_AT_s1001.npz": "574999b246a6e4d68acaf7108a956ec8fbcf825528b31dc90cb78b1fb28cfe75",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ResNet18_AT_s1002.npz": "0e2a866ab5eb54c5acc2a1aaf837a195612ac8f8fda0dc3339680290ebd23d6e",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ResNet18_AT_s1003.npz": "4c2e63faf37e220a8d44b2a5a3dda6f77802a37da1cdffa0d4a6091cc4b40a34",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ViT_Tiny_AT_s2001.npz": "f83d616c5bc6a5fa935ddd0c9bd61e3c8c9275a1ea62915f0bf7e7a92b7008b9",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ViT_Tiny_AT_s2002.npz": "e24db87ceb1b75f0c98b705e378f9e0eb427659de701eba97faf4ed02b7cd4a8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ViT_Tiny_AT_s2003.npz": "a2d2c1b7c0e647ea1b43f0d2347cfc2b05b3b55fdaae8d1b503cd72a1bc28dd5",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Rice2020Overfitting.npz": "91525da0f51c2cce31089903ef1ea865afa6675386e721e410aee23031bee739",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Rade2021Helper_R18_ddpm.npz": "b305553ecb5998fab9b40857ed76df82c1d04a4dbf3d2668064b280e2ac86905",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Addepalli2022Efficient_RN18.npz": "4de3a2f58424600616bbda7d31a848e97089e6663f5c477040ff4eca794a70d8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Sehwag2021Proxy.npz": "7c40a70c660d92f26f6c33cb706644b45fc9e2b2b6dc68d02fba310c1bec7cd9",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Pang2022Robustness_WRN28_10.npz": "7f0a522fe7f4633e8d71b7626c2be0b76f75acf6d05e1d8cd8fe04cbbe233685",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Wang2023Better_WRN-28-10.npz": "94b5f862eafa5e3805802f448986e51f7a2ebc90b04d4a9c4faff43c4bd0bb09",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Jia2022LAS-AT_34_10.npz": "c45b2da9dfd60726df2a7efc33ea28392180c0a098862c2c2e67890996c40b1b",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Debenedetti2022Light_XCiT-S12.npz": "a99892f32ac14a91a6001cd53a146679b0386fef808001f09ac809b3b21c028e",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Hendrycks2019Using.npz": "2b3da30d4df00ba990be07c39a742d2e0b1c2c22c8e363575f52c302469f27c7",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_ResNet18_AT_s1001.npz": "f8c3ec7b52395f19a532608c0ff56ee88f3b2242bcd245c47db787794faf8ee8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_ResNet18_AT_s1002.npz": "1a6d0b689423ccf280240437d0593840c81edc38d239e248d5154d3932407e89",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_ResNet18_AT_s1003.npz": "9ac767dc811b8b96ed6050bf59732bbd3ce3aa2bd5bc7b07e3853fa15aee6b28",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_ViT_Tiny_AT_s2001.npz": "7e6be1b53b7e2aaeaf75d83644642fc707c9e615d9da5d43600152a4dc97cd19",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_ViT_Tiny_AT_s2002.npz": "6c2f6290da26eaf06cd1a37147e685060ea09c3f3bdae9070f8ec51f68e672dd",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_ViT_Tiny_AT_s2003.npz": "4aff44d28f1a15d49764a00bcaba9f513d529b121162ee800611f53e980a57a9",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Rice2020Overfitting.npz": "ee30221e3a2767390de9f4791280127073722386f8fbb9ad9285c23e79a186b1",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Rade2021Helper_R18_ddpm.npz": "7a2a2d6324652cef3e76b1e0cbe0e711547d880cd1fa1a67a00ce08b28d1e6e9",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Addepalli2022Efficient_RN18.npz": "2b8e9437f997c3a7b7ac9dfca0d5aae03219b6edc908e37cac2f4f10a28ac7fe",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Sehwag2021Proxy.npz": "0b100ac5b266da75e9100d6d9d84d4de1361b4d9370b90e7fb3ff091f1114d14",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Pang2022Robustness_WRN28_10.npz": "be13cf137e704fb25ce90e51b564e208ae8bdc3670b91dd199dc5ebfcc4e5e41",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Wang2023Better_WRN-28-10.npz": "b2bbad534c9309497b13e2f16c7002da8c200529213d8f1838b885312d8285d8",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Jia2022LAS-AT_34_10.npz": "d0ca257fcf62e6618a3385d06c4c99d0258950114802d13230b80cd1c6f220ba",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Debenedetti2022Light_XCiT-S12.npz": "f98ed567d532635080854501b922a735470ab023b360510f4c7dcad356ce70bd",
+   "/tmp/ek_kuru_tq1976uz/b9/per_sample_C100_Hendrycks2019Using_to_C100_Hendrycks2019Using.npz": "9f8639ed53aaa8115dedc4440f816c25519452f40f3a7c0e80c58efbee03d560"
+  }
+ },
+ "panel": {
+  "birincil": [
+   "C100_Rice2020Overfitting",
+   "C100_Rade2021Helper_R18_ddpm",
+   "C100_Addepalli2022Efficient_RN18",
+   "C100_Sehwag2021Proxy",
+   "C100_Pang2022Robustness_WRN28_10",
+   "C100_Wang2023Better_WRN-28-10",
+   "C100_Jia2022LAS-AT_34_10"
+  ],
+  "birincil_eksik": [],
+  "ikincil": [
+   "C100_Debenedetti2022Light_XCiT-S12",
+   "C100_Hendrycks2019Using"
+  ]
+ },
+ "b2": {
+  "hucreler": {
+   "C1-R32": [
+    "C100_ResNet18_AT_s1001",
+    "C100_ResNet18_AT_s1002",
+    "C100_ResNet18_AT_s1003"
+   ],
+   "V-scr": [
+    "C100_ViT_Tiny_AT_s2001",
+    "C100_ViT_Tiny_AT_s2002",
+    "C100_ViT_Tiny_AT_s2003"
+   ]
+  },
+  "tohum_ciftleri": [
+   [
+    "C100_ResNet18_AT_s1001",
+    "C100_ViT_Tiny_AT_s2001"
+   ],
+   [
+    "C100_ResNet18_AT_s1002",
+    "C100_ViT_Tiny_AT_s2002"
+   ],
+   [
+    "C100_ResNet18_AT_s1003",
+    "C100_ViT_Tiny_AT_s2003"
+   ]
+  ],
+  "model_tablosu": {
+   "C100_Addepalli2022Efficient_RN18": {
+    "yari_log": {
+     "sigma": -0.6501068426302479,
+     "rho": 0.028969587585528627,
+     "S": 3.2858160521499458,
+     "omega": 3.935955771639774,
+     "panel_n": 6
+    },
+    "tam_log": {
+     "sigma": -0.647503986070201,
+     "rho": 0.03193803794748148,
+     "S": 3.294399167078598,
+     "omega": 3.935955771639774,
+     "panel_n": 6
+    },
+    "yari_logit": {
+     "sigma": -1.1169897159798319,
+     "rho": 0.20529039584902672,
+     "S": -1.0000328166522767,
+     "omega": 0.04845238338594654,
+     "panel_n": 6
+    },
+    "yari_oran": {
+     "sigma": -25.44911932782577,
+     "rho": 5.061710638272451,
+     "S": 27.168110769340792,
+     "omega": 51.21107266435986,
+     "panel_n": 6
+    }
+   },
+   "C100_Debenedetti2022Light_XCiT-S12": {
+    "yari_log": {
+     "sigma": -0.7828363008145793,
+     "rho": 0.6262893738668873,
+     "S": 2.8523910140658417,
+     "omega": 3.4923227814981095,
+     "panel_n": 7
+    },
+    "tam_log": {
+     "sigma": -0.772988127654089,
+     "rho": 0.6147010990501443,
+     "S": 2.8744025805886975,
+     "omega": 3.4923227814981095,
+     "panel_n": 7
+    },
+    "yari_logit": {
+     "sigma": -1.188423330132345,
+     "rho": 1.1194849642535842,
+     "S": -1.5529368425887777,
+     "omega": -0.7144245790072301,
+     "panel_n": 7
+    },
+    "yari_oran": {
+     "sigma": -24.130982129058655,
+     "rho": 24.924919608123023,
+     "S": 17.994111660929775,
+     "omega": 32.86219081272085,
+     "panel_n": 7
+    }
+   },
+   "C100_Hendrycks2019Using": {
+    "yari_log": {
+     "sigma": -0.7959558927776261,
+     "rho": 0.8880802722157225,
+     "S": 2.7083759729283767,
+     "omega": 3.4195465203303517,
+     "panel_n": 7
+    },
+    "tam_log": {
+     "sigma": -0.7957560934770009,
+     "rho": 0.8929553282834739,
+     "S": 2.7125075001491212,
+     "omega": 3.4195465203303517,
+     "panel_n": 7
+    },
+    "yari_logit": {
+     "sigma": -1.193381661088309,
+     "rho": 1.4659727363447905,
+     "S": -1.731139059590345,
+     "omega": -0.8209805520698301,
+     "panel_n": 7
+    },
+    "yari_oran": {
+     "sigma": -23.742685582719417,
+     "rho": 31.238575321884362,
+     "S": 15.225580350388338,
+     "omega": 30.555555555555557,
+     "panel_n": 7
+    }
+   },
+   "C100_Jia2022LAS-AT_34_10": {
+    "yari_log": {
+     "sigma": -0.7313701661397736,
+     "rho": 1.028902608911468,
+     "S": 2.7888791766610046,
+     "omega": 3.4590169525509813,
+     "panel_n": 6
+    },
+    "tam_log": {
+     "sigma": -0.7323013351788417,
+     "rho": 0.9923473364133603,
+     "S": 2.808886971918483,
+     "omega": 3.4590169525509813,
+     "panel_n": 6
+    },
+    "yari_logit": {
+     "sigma": -1.1445015745793945,
+     "rho": 1.685322143158744,
+     "S": -1.628177686829814,
+     "omega": -0.7636370583144901,
+     "panel_n": 6
+    },
+    "yari_oran": {
+     "sigma": -23.647203873609733,
+     "rho": 35.47407677795233,
+     "S": 17.012276609367547,
+     "omega": 31.785714285714285,
+     "panel_n": 6
+    }
+   },
+   "C100_Pang2022Robustness_WRN28_10": {
+    "yari_log": {
+     "sigma": -0.655288038594092,
+     "rho": -0.6466494928614026,
+     "S": 3.5655414978126427,
+     "omega": 4.253409256851787,
+     "panel_n": 6
+    },
+    "tam_log": {
+     "sigma": -0.6525120168853696,
+     "rho": -0.6283143978296276,
+     "S": 3.5666084399499813,
+     "omega": 4.253409256851787,
+     "panel_n": 6
+    },
+    "yari_logit": {
+     "sigma": -1.2633161326321702,
+     "rho": -1.1750636346709968,
+     "S": -0.5921517630642752,
+     "omega": 0.8637726975907085,
+     "panel_n": 6
+    },
+    "yari_oran": {
+     "sigma": -29.022734540085928,
+     "rho": -25.74307298301811,
+     "S": 35.80750154798348,
+     "omega": 70.34482758620689,
+     "panel_n": 6
+    }
+   },
+   "C100_Rade2021Helper_R18_ddpm": {
+    "yari_log": {
+     "sigma": -0.5603172181341569,
+     "rho": -0.4987193776150525,
+     "S": 3.584409416314199,
+     "omega": 4.267226278755422,
+     "panel_n": 6
+    },
+    "tam_log": {
+     "sigma": -0.5608976695935073,
+     "rho": -0.4953758742337089,
+     "S": 3.589450688459945,
+     "omega": 4.267226278755422,
+     "panel_n": 6
+    },
+    "yari_logit": {
+     "sigma": -1.1467393128896828,
+     "rho": -1.0221412588879966,
+     "S": -0.5601125066015186,
+     "omega": 0.9111493323737364,
+     "panel_n": 6
+    },
+    "yari_oran": {
+     "sigma": -26.887172718097958,
+     "rho": -23.37984037979038,
+     "S": 36.60393361267923,
+     "omega": 71.32352941176471,
+     "panel_n": 6
+    }
+   },
+   "C100_ResNet18_AT_s1001": {
+    "yari_log": {
+     "sigma": -0.6393357960604296,
+     "rho": -0.16518242030614447,
+     "S": 3.3916274159065067,
+     "omega": 3.9608131695975777,
+     "panel_n": 7
+    },
+    "tam_log": {
+     "sigma": -0.6305039346355011,
+     "rho": -0.1393676793233347,
+     "S": 3.3939211627940247,
+     "omega": 3.9608131695975777,
+     "panel_n": 7
+    },
+    "yari_logit": {
+     "sigma": -1.0964540564514467,
+     "rho": -0.08815790963526904,
+     "S": -0.857146131963453,
+     "omega": 0.10008345855698264,
+     "panel_n": 7
+    },
+    "yari_oran": {
+     "sigma": -24.91779333191421,
+     "rho": -0.46203238379061984,
+     "S": 29.90077645403104,
+     "omega": 52.5,
+     "panel_n": 7
+    }
+   },
+   "C100_ResNet18_AT_s1002": {
+    "yari_log": {
+     "sigma": -0.6325946981005429,
+     "rho": -0.16551122262053022,
+     "S": 3.3985329150235866,
+     "omega": 4.024864004795222,
+     "panel_n": 7
+    },
+    "tam_log": {
+     "sigma": -0.6315480196136348,
+     "rho": -0.15637542531770152,
+     "S": 3.401380950813074,
+     "omega": 4.024864004795222,
+     "panel_n": 7
+    },
+    "yari_logit": {
+     "sigma": -1.115042418834491,
+     "rho": -0.15460004202575062,
+     "S": -0.8425134281512565,
+     "omega": 0.24005402346252633,
+     "panel_n": 7
+    },
+    "yari_oran": {
+     "sigma": -25.741203199718584,
+     "rho": -2.995692389006442,
+     "S": 30.344196588834578,
+     "omega": 55.972696245733786,
+     "panel_n": 7
+    }
+   },
+   "C100_ResNet18_AT_s1003": {
+    "yari_log": {
+     "sigma": -0.8278799385768913,
+     "rho": 0.33532101071624093,
+     "S": 2.952831557878853,
+     "omega": 3.743687690608931,
+     "panel_n": 7
+    },
+    "tam_log": {
+     "sigma": -0.8240680010417509,
+     "rho": 0.34124117459667186,
+     "S": 2.960052669427772,
+     "omega": 3.743687690608931,
+     "panel_n": 7
+    },
+    "yari_logit": {
+     "sigma": -1.2834820121801553,
+     "rho": 0.6870574130774023,
+     "S": -1.4317817490484972,
+     "omega": -0.31237468504215243,
+     "panel_n": 7
+    },
+    "yari_oran": {
+     "sigma": -26.954052236122546,
+     "rho": 15.936239132899107,
+     "S": 19.66538179147784,
+     "omega": 42.25352112676056,
+     "panel_n": 7
+    }
+   },
+   "C100_Rice2020Overfitting": {
+    "yari_log": {
+     "sigma": -0.6733591372509813,
+     "rho": 0.021391729083356778,
+     "S": 3.268775814872357,
+     "omega": 3.926516012730713,
+     "panel_n": 6
+    },
+    "tam_log": {
+     "sigma": -0.6678434335718694,
+     "rho": 0.025361330460701808,
+     "S": 3.2789213664718297,
+     "omega": 3.926516012730713,
+     "panel_n": 6
+    },
+    "yari_logit": {
+     "sigma": -1.1414850354276491,
+     "rho": 0.20384638317714482,
+     "S": -1.0195726424237266,
+     "omega": 0.029199154692262346,
+     "panel_n": 6
+    },
+    "yari_oran": {
+     "sigma": -25.643147300456913,
+     "rho": 5.363769289075539,
+     "S": 26.929247404649992,
+     "omega": 50.72992700729927,
+     "panel_n": 6
+    }
+   },
+   "C100_Sehwag2021Proxy": {
+    "yari_log": {
+     "sigma": -0.6778863063863765,
+     "rho": 0.6138906367937981,
+     "S": 3.0263861381612713,
+     "omega": 3.5819360334956047,
+     "panel_n": 6
+    },
+    "tam_log": {
+     "sigma": -0.6748678570095668,
+     "rho": 0.6138485144064549,
+     "S": 3.0350833476004397,
+     "omega": 3.5819360334956047,
+     "panel_n": 6
+    },
+    "yari_logit": {
+     "sigma": -1.0909029368802334,
+     "rho": 1.150531972619258,
+     "S": -1.341731915763287,
+     "omega": -0.5778363340489507,
+     "panel_n": 6
+    },
+    "yari_oran": {
+     "sigma": -23.31946753209282,
+     "rho": 26.652457714625122,
+     "S": 21.01459686720934,
+     "omega": 35.94306049822064,
+     "panel_n": 6
+    }
+   },
+   "C100_ViT_Tiny_AT_s2001": {
+    "yari_log": {
+     "sigma": -0.6354794434491575,
+     "rho": 0.037490637124148386,
+     "S": 3.2941472398026326,
+     "omega": 3.964759301509089,
+     "panel_n": 7
+    },
+    "tam_log": {
+     "sigma": -0.6358232099119613,
+     "rho": 0.04722724234852845,
+     "S": 3.2953044266816325,
+     "omega": 3.964759301509089,
+     "panel_n": 7
+    },
+    "yari_logit": {
+     "sigma": -1.0995016538203015,
+     "rho": 0.17495912931786337,
+     "S": -0.9917522488088741,
+     "omega": 0.10840929850718517,
+     "panel_n": 7
+    },
+    "yari_oran": {
+     "sigma": -25.329539756692498,
+     "rho": 4.062677794802821,
+     "S": 27.226674939956027,
+     "omega": 52.707581227436826,
+     "panel_n": 7
+    }
+   },
+   "C100_ViT_Tiny_AT_s2002": {
+    "yari_log": {
+     "sigma": -0.6794067245192843,
+     "rho": -0.40480349832842966,
+     "S": 3.471367026458795,
+     "omega": 4.229195506390632,
+     "panel_n": 7
+    },
+    "tam_log": {
+     "sigma": -0.6777037394223301,
+     "rho": -0.39331501872790886,
+     "S": 3.473695027709483,
+     "omega": 4.229195506390632,
+     "panel_n": 7
+    },
+    "yari_logit": {
+     "sigma": -1.3050675636537563,
+     "rho": -0.7442716653432004,
+     "S": -0.7377027613117968,
+     "omega": 0.7843631888316073,
+     "panel_n": 7
+    },
+    "yari_oran": {
+     "sigma": -30.344416806645782,
+     "rho": -16.580799671827133,
+     "S": 32.53353662331772,
+     "omega": 68.66197183098592,
+     "panel_n": 7
+    }
+   },
+   "C100_ViT_Tiny_AT_s2003": {
+    "yari_log": {
+     "sigma": -0.5937273885650075,
+     "rho": -0.3874918792036417,
+     "S": 3.548390552850677,
+     "omega": 4.229447047078664,
+     "panel_n": 7
+    },
+    "tam_log": {
+     "sigma": -0.5948855816626973,
+     "rho": -0.3831694903669412,
+     "S": 3.551440421288632,
+     "omega": 4.229447047078664,
+     "panel_n": 7
+    },
+    "yari_logit": {
+     "sigma": -1.178808862042814,
+     "rho": -0.7301593939878803,
+     "S": -0.618500195378515,
+     "omega": 0.7851660792801967,
+     "panel_n": 7
+    },
+    "yari_oran": {
+     "sigma": -27.683146323520504,
+     "rho": -16.646270536940932,
+     "S": 35.2275425389999,
+     "omega": 68.67924528301886,
+     "panel_n": 7
+    }
+   },
+   "C100_Wang2023Better_WRN-28-10": {
+    "yari_log": {
+     "sigma": -0.6452618780903766,
+     "rho": -0.5477856918976964,
+     "S": 3.5252063294996248,
+     "omega": 4.259128498350727,
+     "panel_n": 6
+    },
+    "tam_log": {
+     "sigma": -0.6438851639355071,
+     "rho": -0.5398049471646623,
+     "S": 3.5300273606508714,
+     "omega": 4.259128498350727,
+     "panel_n": 6
+    },
+    "yari_logit": {
+     "sigma": -1.263417906380199,
+     "rho": -1.0477860012451798,
+     "S": -0.6589704957417488,
+     "omega": 0.8831907834478103,
+     "panel_n": 6
+    },
+    "yari_oran": {
+     "sigma": -29.378042064034123,
+     "rho": -23.42910105711696,
+     "S": 34.230320990915956,
+     "omega": 70.74829931972789,
+     "panel_n": 6
+    }
+   }
+  },
+  "F_B2": {
+   "K-a": {
+    "ciftler": [
+     [
+      "C100_ResNet18_AT_s1001",
+      "C100_ViT_Tiny_AT_s2001"
+     ],
+     [
+      "C100_ResNet18_AT_s1002",
+      "C100_ViT_Tiny_AT_s2002"
+     ],
+     [
+      "C100_ResNet18_AT_s1003",
+      "C100_ViT_Tiny_AT_s2003"
+     ]
+    ],
+    "D": [
+     0.09748017610387416,
+     -0.07283411143520846,
+     -0.5955589949718241
+    ],
+    "simetrik_pay": [
+     -0.0038563526112720403,
+     0.04681202641874138,
+     -0.23415255001188384
+    ],
+    "yonlu_pay": [
+     0.10133652871514642,
+     -0.11964613785394972,
+     -0.36140644495994134
+    ],
+    "ozdeslik_artik_max": 1.1102230246251565e-15,
+    "q": [
+     -0.039560377970211495,
+     -0.6427211851192044,
+     0.3931643245904826
+    ],
+    "sinama": {
+     "degerler": [
+      -0.039560377970211495,
+      -0.6427211851192044,
+      0.3931643245904826
+     ],
+     "n": 3,
+     "ort": -0.09637241283297776,
+     "sd": 0.5202743533805608,
+     "se": 0.3003805379767253,
+     "df": 2,
+     "ci90": [
+      -0.9734792523444482,
+      0.7807344266784926
+     ],
+     "ci95": [
+      -1.3888055545061304,
+      1.196060728840175
+     ]
+    },
+    "p_tek_H0_q_le_0.5": null,
+    "ongoru_her_tohumda_q_ge_0.75": false,
+    "payda_kucuk_tohumlar": [
+     0,
+     1,
+     2
+    ]
+   },
+   "K-b": {
+    "degerler": [
+     0.037490637124148386,
+     -0.40480349832842966,
+     -0.3874918792036417
+    ],
+    "n": 3,
+    "ort": -0.25160158013597433,
+    "sd": 0.25051078938732546,
+    "se": 0.144632471687678,
+    "df": 2,
+    "ci90": [
+     -0.6739263119151715,
+     0.17072315164322288
+    ],
+    "ci95": [
+     -0.8739048792456621,
+     0.3707017189737134
+    ],
+    "tost_p": 0.79772735586912,
+    "tost_p_alt": 0.79772735586912,
+    "tost_p_ust": 0.06781141152900799
+   },
+   "K-c": {
+    "vit_ciftleri": [
+     [
+      "C100_ViT_Tiny_AT_s2001",
+      "C100_ViT_Tiny_AT_s2002"
+     ],
+     [
+      "C100_ViT_Tiny_AT_s2001",
+      "C100_ViT_Tiny_AT_s2003"
+     ],
+     [
+      "C100_ViT_Tiny_AT_s2002",
+      "C100_ViT_Tiny_AT_s2003"
+     ]
+    ],
+    "log_tau_tur_ici": {
+     "C100_ViT_Tiny_AT_s2001|C100_ViT_Tiny_AT_s2002": -0.7402423995379074,
+     "C100_ViT_Tiny_AT_s2001|C100_ViT_Tiny_AT_s2003": -0.6046077860056999,
+     "C100_ViT_Tiny_AT_s2002|C100_ViT_Tiny_AT_s2003": -0.6742415184541093
+    },
+    "sigma_V": {
+     "C100_ViT_Tiny_AT_s2001": -0.6354794434491575,
+     "C100_ViT_Tiny_AT_s2002": -0.6794067245192843,
+     "C100_ViT_Tiny_AT_s2003": -0.5937273885650075
+    },
+    "Delta_w": -0.036826049154755736,
+    "bootstrap": {
+     "B": 200,
+     "ci90": [
+      -0.16192846596240998,
+      0.07791565656661961
+     ],
+     "ci95": [
+      -0.20261220932006835,
+      0.11903735697269442
+     ],
+     "yeniden_cekilen_tek_tohumlu_ornek": 29,
+     "yontem": "tohumlar yerine koyarak, goruntuler ortak agirlikla; ozdes kokenli tohum ciftleri disarida"
+    },
+    "p_tek_H0_Delta_le_0": 0.7114427860696517,
+    "ongoru_Delta_ge_0.30": false
+   },
+   "p_ham": [
+    null,
+    0.79772735586912,
+    0.7114427860696517
+   ],
+   "p_holm": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "p_1_sayilan_hesaplanamayan": [
+    0
+   ],
+   "karar": {
+    "K-a": "kararsiz (payda kucuk: bir tohumda D_s <= 0,10)",
+    "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": false,
+    "K-b": "kararsiz",
+    "K-b_ham_ci90_delta_icinde": false,
+    "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+    "K-c": "curutuldu",
+    "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+   },
+   "duyarlilik_delta_0.06": {
+    "delta": 0.06,
+    "p_holm": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "karar": {
+     "K-a": "kararsiz (payda kucuk: bir tohumda D_s <= 0,10)",
+     "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": false,
+     "K-b": "kararsiz",
+     "K-b_ham_ci90_delta_icinde": false,
+     "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+     "K-c": "kararsiz",
+     "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+    }
+   },
+   "not": "K-a p tek yonlu t (H0: ort q <= 0,50); K-b p TOST'un buyuk tek yonlu p'si; K-c p hiyerarsik bootstrap (H0: Delta_w <= 0). Destek Holm sonrasi, curutme ham aralikla okunur; ON_KAYIT §5 karar ilkesi."
+  },
+  "duyarlilik": {
+   "tam_log": {
+    "q_ort": -0.0655984347671864,
+    "q": [
+     0.05393886967013223,
+     -0.6382674271679379,
+     0.3875332531962465
+    ],
+    "rho_V": {
+     "degerler": [
+      0.04722724234852845,
+      -0.39331501872790886,
+      -0.3831694903669412
+     ],
+     "n": 3,
+     "ort": -0.2430857555821072,
+     "sd": 0.2514696015665427,
+     "se": 0.14518604215745137,
+     "df": 2,
+     "ci90": [
+      -0.6670269051507534,
+      0.18085539398653888
+     ],
+     "ci95": [
+      -0.8677708761846444,
+      0.38159936502043
+     ]
+    }
+   },
+   "yari_logit": {
+    "q_ort": -0.5538956506054572,
+    "q": [
+     0.022640853478855246,
+     -1.8130324951593915,
+     0.1287046898641649
+    ],
+    "rho_V": {
+     "degerler": [
+      0.17495912931786337,
+      -0.7442716653432004,
+      -0.7301593939878803
+     ],
+     "n": 3,
+     "ort": -0.43315731000440577,
+     "sd": 0.5266915528857453,
+     "se": 0.3040855098384871,
+     "df": 2,
+     "ci90": [
+      -1.3210826139278435,
+      0.45476799391903194
+     ],
+     "ci95": [
+      -1.7415316589720151,
+      0.8752170389632037
+     ]
+    }
+   },
+   "yari_oran": {
+    "q_ort": -0.6651441538556054,
+    "q": [
+     0.15397561484150007,
+     -2.1025576358283313,
+     -0.04685044057998501
+    ],
+    "rho_V": {
+     "degerler": [
+      4.062677794802821,
+      -16.580799671827133,
+      -16.646270536940932
+     ],
+     "n": 3,
+     "ort": -9.721464137988415,
+     "sd": 11.93746196752245,
+     "se": 6.892096880390007,
+     "df": 2,
+     "ci90": [
+      -29.84628764714047,
+      10.40335937116364
+     ],
+     "ci95": [
+      -39.37576359372874,
+      19.93283531775191
+     ]
+    }
+   },
+   "panel_jackknife": {
+    "C100_Rice2020Overfitting": {
+     "q_ort": -0.18928926203712285,
+     "rho_V_ort": -0.24809100008072957
+    },
+    "C100_Rade2021Helper_R18_ddpm": {
+     "q_ort": -0.12841461285891279,
+     "rho_V_ort": -0.33284103108895235
+    },
+    "C100_Addepalli2022Efficient_RN18": {
+     "q_ort": -0.028816587901221657,
+     "rho_V_ort": -0.26971156492560705
+    },
+    "C100_Sehwag2021Proxy": {
+     "q_ort": -0.19606442764602194,
+     "rho_V_ort": -0.1616285812831852
+    },
+    "C100_Pang2022Robustness_WRN28_10": {
+     "q_ort": -0.10542369118089863,
+     "rho_V_ort": -0.3218047925983576
+    },
+    "C100_Wang2023Better_WRN-28-10": {
+     "q_ort": -0.06780341523614626,
+     "rho_V_ort": -0.3166612402580128
+    },
+    "C100_Jia2022LAS-AT_34_10": {
+     "q_ort": -0.040529696935793814,
+     "rho_V_ort": -0.11047285071697564
+    }
+   },
+   "ikincil_panel": {
+    "panel": [
+     "C100_Debenedetti2022Light_XCiT-S12",
+     "C100_Hendrycks2019Using"
+    ],
+    "q": [
+     2.853537659027831,
+     0.8327434907671455,
+     0.36656610266158335
+    ],
+    "rho_V": [
+     -0.9579608366676362,
+     -1.10205883430358,
+     -1.2668905559016503
+    ]
+   }
+  },
+  "tur_ici_resnet_log_tau": {
+   "C100_ResNet18_AT_s1001|C100_ResNet18_AT_s1002": -0.6511622263590727,
+   "C100_ResNet18_AT_s1001|C100_ResNet18_AT_s1003": -0.684270233095846,
+   "C100_ResNet18_AT_s1002|C100_ResNet18_AT_s1003": -0.7564682720513511
+  }
+ }
+}

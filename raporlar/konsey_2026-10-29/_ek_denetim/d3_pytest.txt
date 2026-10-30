@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.1.1, pluggy-1.5.0 -- /usr/bin/python
+hypothesis profile 'default' -> database=DirectoryBasedExampleDatabase('/workspace/.hypothesis/examples')
+rootdir: /workspace
+configfile: pyproject.toml
+plugins: anyio-4.8.0, flakefinder-1.1.0, xdoctest-1.0.2, shard-0.1.2, xdist-3.6.1, hypothesis-5.35.1, rerunfailures-15.0
+collecting ... collected 21 items
+Running 21 items in this shard: tests/test_q1_ek.py::test_mantel_pozitif_iliski_yakalanir, tests/test_q1_ek.py::test_mantel_bagimsizda_birinci_tur_hata_kontrol_altinda, tests/test_q1_ek.py::test_mantel_ortak_etiket_permutasyonuna_degismez, tests/test_q1_ek.py::test_ana_etki_artigi_toplamsal_matrisi_sifirlar, tests/test_q1_ek.py::test_ana_etki_karistiricisi_ham_mantelde_var_artikta_yok, tests/test_q1_ek.py::test_ana_etki_artigi_cift_duzeyi_iliskiyi_korur, tests/test_q1_ek.py::test_mantel_K_kucukse_tanimsiz, tests/test_q1_ek.py::test_girdi_gradyani_dogrusal_modelde_analitik_degere_esit, tests/test_q1_ek.py::test_cift_kosinus_ozdes_ve_ters_model, tests/test_q1_ek.py::test_dondurulmus_betik_sha_denetimi_degisiklikte_durur, tests/test_q1_ek.py::test_log_tau_matrisi_formulle_ayni, tests/test_q1_ek.py::test_mantel_kos_uctan_uca, tests/test_q1_ek.py::test_b9_dondurulmus_b2_yolunu_cagirir, tests/test_q1_ek.py::test_b8_betimsel_A_sigma_dondurulmus_islevlerle_tutarli, tests/test_q1_ek.py::test_b8_etiket_kurallari, tests/test_q1_ek.py::test_b10_aile_alti_sinama_ve_kurallar, tests/test_q1_ek.py::test_v2_secim_sinif_sirali_ve_belirlenimci, tests/test_q1_ek.py::test_v2_loader_robustbench_onislemesiyle_ayni, tests/test_q1_ek.py::test_f16_onbellek_geri_kurulumu_yaricap_icinde, tests/test_q1_ek.py::test_varsayilanlar_ek_on_kayitla_uyumlu, tests/test_q1_ek.py::test_v2_loader_bicubic_robustbench_tanimiyla_ayni
+
+tests/test_q1_ek.py::test_mantel_pozitif_iliski_yakalanir PASSED         [  4%]
+tests/test_q1_ek.py::test_mantel_bagimsizda_birinci_tur_hata_kontrol_altinda PASSED [  9%]
+tests/test_q1_ek.py::test_mantel_ortak_etiket_permutasyonuna_degismez PASSED [ 14%]
+tests/test_q1_ek.py::test_ana_etki_artigi_toplamsal_matrisi_sifirlar PASSED [ 19%]
+tests/test_q1_ek.py::test_ana_etki_karistiricisi_ham_mantelde_var_artikta_yok PASSED [ 23%]
+tests/test_q1_ek.py::test_ana_etki_artigi_cift_duzeyi_iliskiyi_korur PASSED [ 28%]
+tests/test_q1_ek.py::test_mantel_K_kucukse_tanimsiz PASSED               [ 33%]
+tests/test_q1_ek.py::test_girdi_gradyani_dogrusal_modelde_analitik_degere_esit PASSED [ 38%]
+tests/test_q1_ek.py::test_cift_kosinus_ozdes_ve_ters_model PASSED        [ 42%]
+tests/test_q1_ek.py::test_dondurulmus_betik_sha_denetimi_degisiklikte_durur PASSED [ 47%]
+tests/test_q1_ek.py::test_log_tau_matrisi_formulle_ayni PASSED           [ 52%]
+tests/test_q1_ek.py::test_mantel_kos_uctan_uca PASSED                    [ 57%]
+tests/test_q1_ek.py::test_b9_dondurulmus_b2_yolunu_cagirir PASSED        [ 61%]
+tests/test_q1_ek.py::test_b8_betimsel_A_sigma_dondurulmus_islevlerle_tutarli PASSED [ 66%]
+tests/test_q1_ek.py::test_b8_etiket_kurallari PASSED                     [ 71%]
+tests/test_q1_ek.py::test_b10_aile_alti_sinama_ve_kurallar PASSED        [ 76%]
+tests/test_q1_ek.py::test_v2_secim_sinif_sirali_ve_belirlenimci PASSED   [ 80%]
+tests/test_q1_ek.py::test_v2_loader_robustbench_onislemesiyle_ayni PASSED [ 85%]
+tests/test_q1_ek.py::test_f16_onbellek_geri_kurulumu_yaricap_icinde PASSED [ 90%]
+tests/test_q1_ek.py::test_varsayilanlar_ek_on_kayitla_uyumlu PASSED      [ 95%]
+tests/test_q1_ek.py::test_v2_loader_bicubic_robustbench_tanimiyla_ayni PASSED [100%]
+
+============================== 21 passed in 7.47s ==============================

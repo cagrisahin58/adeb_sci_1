@@ -1,0 +1,89 @@
+# KURU KOSU (--dry-run): komutlar yalniz basilir, hicbir sey calismaz, dosya yazilmaz
+# kok: /workspace   zaman: 2026-10-30 01:46:38
+# durum defteri (gercek kosuda): results/q1/konsey_zincir_durum.tsv ; log: logs/konsey_zincir.log
+== 1. B2 bitisi (isaret: results/q1/konsey_b2_panel/transfer_matrix.json ve logs/konsey_b2.log icinde 'custom kaydedildi: results/q1/konsey_b2_panel')
+[2026-10-30 01:46:38] ATLA B2_bekle (B2 bitmis)
+== 2. B2 cozumlemesi (isaret: results/q1/konsey_ayrisim_b2.json)
+  [B2_cozumleme] durum: BEKLIYOR (bitis isareti yok)
+  [B2_cozumleme] komut: python experiments/q1_konsey_ayrisim.py --mod b2 \
+  --matris-dizini results/q1/konsey_b2_panel \
+  --hucre-tablosu raporlar/konsey_2026-10-29/hucre_tablosu.json \
+  --cikti results/q1/konsey_ayrisim_b2.json
+== 3. B3 on denetimi ve 4. B3 kuyrugu (isaret: logs/konsey_b3_kuyruk.log son satiri 'KUYRUK TAMAM' ve 6 AT TRAINING_COMPLETE; su an 0/6)
+  [B3_on_denetim] nvidia-smi kullanim (5 ornek ort.) < %10 olana dek 120 s aralikla en cok 2 sa beklenir, olmazsa kod 8; nvidia-smi calismazsa yoklama atlanir ve loga yazilir
+  [B3_on_denetim] df -BG --output=avail /workspace < 30 GB ise kod 4; df calismazsa atlanir ve loga yazilir
+  [B3_on_denetim] su an (bilgi): nvidia-smi calisiyor, kullanim 1%, bos disk 54G
+  [B3_kuru] komut: bash scripts/konsey_b3_kuyruk.sh --dry-run --pilot results/q1/konsey_pilot_zaman.json > logs/konsey_b3_kuru_kosu.log 2>&1
+  [B3_kuyruk] komut: bash scripts/konsey_b3_kuyruk.sh --pilot results/q1/konsey_pilot_zaman.json 2>&1 | tee -a logs/konsey_b3_kuyruk.log
+  [B3_kuyruk] kod 5 ise bir kez: bash scripts/konsey_b3_kuyruk.sh --pilot results/q1/konsey_pilot_zaman.json --in-at-lr 0.0005 2>&1 | tee -a logs/konsey_b3_kuyruk.log
+  [B3_kuyruk] kod 2/3/4/6 (ya da ikinci kez 5) ise zincir ayni kodla durur
+  [B3_cokus_izleme] kuyruk kosarken her 300 s: python scripts/konsey_b3_denetim.py cokus --takma V_IN_s2101 (degisen cikti loga; TAMAM/COKUS gorulunce biter)
+  [B3_kuyruk] durum: BEKLIYOR (bitis isareti yok)
+== 5. B4 son matris (isaret: results/q1/konsey_b4_matris/transfer_matrix.json, 400 npz, logs/konsey_b4.log icinde 'custom kaydedildi: results/q1/konsey_b4_matris'; su an 0 npz)
+  [B4] kopya komutu: mkdir -p results/q1/konsey_b4_matris && cp -n results/q1/konsey_b2_panel/per_sample_*.npz results/q1/konsey_b2_panel/cells_meta.json results/q1/konsey_b4_matris/
+  [B4] on kosul b3_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B4] durum: BEKLIYOR (bitis isareti yok)
+  [B4] komut: python experiments/c1_c3_transfer_matrix.py --dataset cifar10 --n-samples 10000 --seed 42 \
+  --model ResNet18_AT_s1001:resnet18:models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth \
+  --model ResNet18_AT_s1002:resnet18:models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth \
+  --model ResNet18_AT_s1003:resnet18:models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth \
+  --model ViT_Tiny_AT_s2001:vit_tiny:models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth \
+  --model ViT_Tiny_AT_s2002:vit_tiny:models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth \
+  --model ViT_Tiny_AT_s2003:vit_tiny:models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth \
+  --model V_IN_s2101:vit_tiny_in1k:models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/best.pth \
+  --model V_IN_s2102:vit_tiny_in1k:models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/best.pth \
+  --model R224_IN_s1301:resnet18_224_in1k:models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/best.pth \
+  --model R224_IN_s1302:resnet18_224_in1k:models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/best.pth \
+  --model R224_scr_s1201:resnet18_224:models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/best.pth \
+  --model R224_scr_s1202:resnet18_224:models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/best.pth \
+  --rb-model Wong2020Fast --rb-model Engstrom2019Robustness --rb-model Carmon2019Unlabeled \
+  --rb-model Gowal2020Uncovering_28_10_extra --rb-model Sehwag2021Proxy_R18 \
+  --rb-model Addepalli2022Efficient_RN18 --rb-model Rade2021Helper_R18_ddpm \
+  --rb-model Debenedetti2022Light_XCiT-S12 \
+  --cache-adv results/q1/konsey_adv_onbellek --skip-existing --out-dir results/q1/konsey_b4_matris > logs/konsey_b4.log 2>&1
+== 6. B6 AutoAttack (isaret: results/q1/konsey_b6_aa/autoattack_summary.json)
+  [B6_AA] on kosul b3_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B6_AA] durum: BEKLIYOR (bitis isareti yok)
+  [B6_AA] komut: python experiments/run_autoattack_run2.py --n-samples 1000 --seed 42 \
+  --model V_IN_s2101:vit_tiny_in1k:models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/best.pth \
+  --model V_IN_s2102:vit_tiny_in1k:models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/best.pth \
+  --model R224_IN_s1301:resnet18_224_in1k:models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/best.pth \
+  --model R224_IN_s1302:resnet18_224_in1k:models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/best.pth \
+  --model R224_scr_s1201:resnet18_224:models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/best.pth \
+  --model R224_scr_s1202:resnet18_224:models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/best.pth \
+  --output-dir results/q1/konsey_b6_aa > logs/konsey_b6_aa.log 2>&1
+== 7. B5 MI-PGD ve TGR (isaret: results/q1/konsey_b5_saldiri/mi/transfer_matrix.json, results/q1/konsey_b5_saldiri/tgr/transfer_matrix.json)
+  [B5] M12="--model ResNet18_AT_s1001:resnet18:models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth  --model ResNet18_AT_s1002:resnet18:models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth  --model ResNet18_AT_s1003:resnet18:models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth  --model ViT_Tiny_AT_s2001:vit_tiny:models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth  --model ViT_Tiny_AT_s2002:vit_tiny:models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth  --model ViT_Tiny_AT_s2003:vit_tiny:models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth  --model V_IN_s2101:vit_tiny_in1k:models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/best.pth  --model V_IN_s2102:vit_tiny_in1k:models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/best.pth  --model R224_IN_s1301:resnet18_224_in1k:models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/best.pth  --model R224_IN_s1302:resnet18_224_in1k:models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/best.pth  --model R224_scr_s1201:resnet18_224:models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/best.pth  --model R224_scr_s1202:resnet18_224:models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/best.pth"
+  [B5] P7="--rb-model Wong2020Fast --rb-model Engstrom2019Robustness --rb-model Carmon2019Unlabeled  --rb-model Gowal2020Uncovering_28_10_extra --rb-model Sehwag2021Proxy_R18  --rb-model Addepalli2022Efficient_RN18 --rb-model Rade2021Helper_R18_ddpm"
+  [B5] S12="--sources ResNet18_AT_s1001 ResNet18_AT_s1002 ResNet18_AT_s1003 ViT_Tiny_AT_s2001 ViT_Tiny_AT_s2002 ViT_Tiny_AT_s2003 V_IN_s2101 V_IN_s2102 R224_IN_s1301 R224_IN_s1302 R224_scr_s1201 R224_scr_s1202"
+  [B5_MI] on kosul b3_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B5_MI] durum: BEKLIYOR (bitis isareti yok)
+  [B5_MI] komut: python experiments/c1_c3_transfer_matrix.py --dataset cifar10 --n-samples 10000 --seed 42 $M12 $P7 $S12 --attack mi --out-dir results/q1/konsey_b5_saldiri/mi > logs/konsey_b5_mi.log 2>&1
+  [B5_TGR] on kosul b3_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B5_TGR] durum: BEKLIYOR (bitis isareti yok)
+  [B5_TGR] komut: python experiments/c1_c3_transfer_matrix.py --dataset cifar10 --n-samples 10000 --seed 42 $M12 $P7 $S12 --attack tgr --out-dir results/q1/konsey_b5_saldiri/tgr > logs/konsey_b5_tgr.log 2>&1
+== 8. B6 maskeleme (isaret: results/q1/konsey_b6_maskeleme.json)
+  [B6_maskeleme] on kosul b4_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B6_maskeleme] on kosul b6aa_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B6_maskeleme] durum: BEKLIYOR (bitis isareti yok)
+  [B6_maskeleme] komut: python scripts/konsey_b6_maskeleme.py \
+  --aa-dizini results/q1/konsey_b6_aa --matris-dizini results/q1/konsey_b4_matris --n 1000 \
+  --cikti results/q1/konsey_b6_maskeleme.json
+  [B6_maskeleme] gercek kosuda 'maskeleme_isaretli_arg' bos degilse B4 cozumlemesinin sonuna eklenir
+== 9. B4 cozumlemesi (isaret: results/q1/konsey_ayrisim_b4.json) ve B5 cozumlemesi (isaret: results/q1/konsey_ayrisim_b5.json)
+  [B4_cozumleme] on kosul b4_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B4_cozumleme] on kosul b6m_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B4_cozumleme] durum: BEKLIYOR (bitis isareti yok)
+  [B4_cozumleme] komut: python experiments/q1_konsey_ayrisim.py --mod b4 \
+  --matris-dizini results/q1/konsey_b4_matris \
+  --hucre-tablosu raporlar/konsey_2026-10-29/hucre_tablosu.json \
+  --cikti results/q1/konsey_ayrisim_b4.json
+  [B5_cozumleme] on kosul b4_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B5_cozumleme] on kosul b5mi_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B5_cozumleme] on kosul b5tgr_bitti henuz saglanmiyor (gercek kosuda o adim once biter)
+  [B5_cozumleme] durum: BEKLIYOR (bitis isareti yok)
+  [B5_cozumleme] komut: python experiments/q1_konsey_ayrisim.py --mod b5 --matris-dizini results/q1/konsey_b4_matris --matris-dizini results/q1/konsey_b5_saldiri/mi --matris-dizini results/q1/konsey_b5_saldiri/tgr --hucre-tablosu raporlar/konsey_2026-10-29/hucre_tablosu.json --cikti results/q1/konsey_ayrisim_b5.json
+== 10. chown ve son satir
+  [chown] komut (cikista her durumda): chown -R 1000:1000 /workspace/results/q1 /workspace/models/q1 /workspace/logs
+  [son] hata yoksa logs/konsey_zincir.log sonuna 'ZINCIR TAMAM', varsa 'ZINCIR EKSIK: ...' ve kod 9
+# KURU KOSU BITTI

@@ -1,0 +1,38 @@
+{
+ "surum": "2026-10-30",
+ "aciklama": "Ek on kayit B9 (CIFAR-100 paneli) icin takma ad -> hucre, tohum, aile, panel uyeligi. Sema dondurulmus hucre_tablosu.json ile birebir aynidir ve experiments/q1_konsey_ayrisim.py --mod b2 tarafindan degistirilmeden okunur. Takma adlar C100_ onekiyle CIFAR-10 adlarindan ayrilir; matris kosusunda --model C100_...:TIP:YOL ve --rb-model RB_ADI:C100_RB_ADI ile verilir. Bu tablo B9 sonuclari gorulmeden ON_KAYIT_EK_B8_B10_2026-10-30.md ile dondurulur.",
+ "hucreler": {
+  "C1-R32": "C1 CIFAR-100 ResNet-18 AT, 32x32 girdi (mevcut, E1 secim kurali)",
+  "V-scr": "C1 CIFAR-100 ViT-Tiny AT, 32->224, rastgele baslatma (mevcut, E1 secim kurali)",
+  "V-IN": "B9'da kullanilmaz",
+  "R224-scr": "B9'da kullanilmaz",
+  "R224-IN": "B9'da kullanilmaz",
+  "panel": "birincil panel P9: ImageNet on egitimsiz gurbuz CNN (RobustBench CIFAR-100 Linf), yedi uye",
+  "ikincil_panel": "ikincil panel: Debenedetti2022Light_XCiT-S12 ve Hendrycks2019Using (ikisi de ImageNet on egitimli, RobustBench CIFAR-100 Linf)"
+ },
+ "modeller": {
+  "C100_ResNet18_AT_s1001": {"hucre": "C1-R32", "tohum": 1001, "aile": "CNN", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "models/q1/cifar100/resnet18_s1001/resnet18/adv/adversarial_training/best.pth"},
+  "C100_ResNet18_AT_s1002": {"hucre": "C1-R32", "tohum": 1002, "aile": "CNN", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "models/q1/cifar100/resnet18_s1002/resnet18/adv/adversarial_training/best.pth"},
+  "C100_ResNet18_AT_s1003": {"hucre": "C1-R32", "tohum": 1003, "aile": "CNN", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "models/q1/cifar100/resnet18_s1003/resnet18/adv/adversarial_training/best.pth"},
+  "C100_ViT_Tiny_AT_s2001": {"hucre": "V-scr", "tohum": 2001, "aile": "ViT", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "models/q1/cifar100/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"},
+  "C100_ViT_Tiny_AT_s2002": {"hucre": "V-scr", "tohum": 2002, "aile": "ViT", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "models/q1/cifar100/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth"},
+  "C100_ViT_Tiny_AT_s2003": {"hucre": "V-scr", "tohum": 2003, "aile": "ViT", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "models/q1/cifar100/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth"},
+  "C100_Rice2020Overfitting": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench cifar100 Linf Rice2020Overfitting (diskte: models/robustbench_zoo/cifar100/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/)"},
+  "C100_Rade2021Helper_R18_ddpm": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench cifar100 Linf Rade2021Helper_R18_ddpm (diskte: models/robustbench_zoo/cifar100/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/)"},
+  "C100_Addepalli2022Efficient_RN18": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench cifar100 Linf Addepalli2022Efficient_RN18 (diskte: models/robustbench_zoo/cifar100/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/)"},
+  "C100_Sehwag2021Proxy": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench cifar100 Linf Sehwag2021Proxy (diskte: models/robustbench_zoo/cifar100/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/)"},
+  "C100_Pang2022Robustness_WRN28_10": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench cifar100 Linf Pang2022Robustness_WRN28_10 (diskte: models/robustbench_zoo/cifar100/Linf/Pang2022Robustness_WRN28_10.pt)"},
+  "C100_Wang2023Better_WRN-28-10": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench cifar100 Linf Wang2023Better_WRN-28-10 (diskte: models/robustbench_zoo/cifar100/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/)"},
+  "C100_Jia2022LAS-AT_34_10": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench cifar100 Linf Jia2022LAS-AT_34_10 (diskte: models/robustbench_zoo/cifar100/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/)"},
+  "C100_Debenedetti2022Light_XCiT-S12": {"hucre": "ikincil_panel", "tohum": null, "aile": "XCiT", "birincil_panel": false, "ikincil_panel": true, "kontrol_noktasi": "RobustBench cifar100 Linf Debenedetti2022Light_XCiT-S12 (timm, GitHub surum baglantisi)"},
+  "C100_Hendrycks2019Using": {"hucre": "ikincil_panel", "tohum": null, "aile": "CNN", "birincil_panel": false, "ikincil_panel": true, "kontrol_noktasi": "RobustBench cifar100 Linf Hendrycks2019Using (diskte: models/robustbench_zoo/cifar100/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/)"}
+ },
+ "b2_tohum_ciftleri": [
+  ["C100_ResNet18_AT_s1001", "C100_ViT_Tiny_AT_s2001"],
+  ["C100_ResNet18_AT_s1002", "C100_ViT_Tiny_AT_s2002"],
+  ["C100_ResNet18_AT_s1003", "C100_ViT_Tiny_AT_s2003"]
+ ],
+ "s4_ciftleri": [],
+ "panel_dondurma": "Birincil panel P9 yedi uye olarak donduruldu (ON_KAYIT_EK_B8_B10_2026-10-30.md §4). Yedekler sirasiyla Chen2021LTD_WRN34_10 ve Cui2023Decoupled_WRN-28-10; yalniz yuklenemeyen uye taniminda (dondurulmus ON_KAYIT §2) ve T gorulmeden girer, tablo degisikligi sapma kaydina yazilir. Bilesim B9 sonuclarindan once sabittir.",
+ "eslesme_notu": "b2_tohum_ciftleri C1 CIFAR-100 cift numaralandirmasidir (pair1-3; ResNet tohumu 100k, ViT tohumu 200k). s4_ciftleri B9'da tanimsizdir (2x2 yoktur) ve bos birakilmistir; alan dondurulmus semayla ayni anahtar kumesini korumak icin vardir."
+}

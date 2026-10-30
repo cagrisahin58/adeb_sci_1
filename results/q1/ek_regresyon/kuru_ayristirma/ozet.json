@@ -1,0 +1,60 @@
+{
+ "SAHTE_VERI_SONUC_DEGIL": true,
+ "dondurulmus_betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+ "dondurulmus_betik_sha256_beklenen": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+ "hucre_tablosu_b9_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+ "hucre_tablosu_b8_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d",
+ "b9": {
+  "model_sayisi": 15,
+  "panel_birincil": 7,
+  "panel_ikincil": 2,
+  "hata": null,
+  "F_B2_var": true,
+  "F_B2_aile_buyuklugu": 3,
+  "dondurulmus_cikti_meta_sha": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "sarmalayici_temiz_dogruluk_model_sayisi": 15
+ },
+ "b8": {
+  "model_sayisi": 14,
+  "panel_birincil": 6,
+  "hata": null,
+  "ciftler": [
+   {
+    "cift": 1,
+    "cnn": "IN_Singh_ConvNeXt-T-CvSt",
+    "donusturucu": "IN_Singh_ViT-S-CvSt",
+    "satir": "IN",
+    "durum": "hesaplandi"
+   },
+   {
+    "cift": 2,
+    "cnn": "IN_Singh_ConvNeXt-B-CvSt",
+    "donusturucu": "IN_Singh_ViT-B-CvSt",
+    "satir": "IN",
+    "durum": "hesaplandi"
+   },
+   {
+    "cift": 3,
+    "cnn": "IN_Liu_ConvNeXt-B",
+    "donusturucu": "IN_Liu_Swin-B",
+    "satir": "scr",
+    "durum": "hesaplandi"
+   }
+  ],
+  "IN_satiri_ciftleri": [
+   1,
+   2
+  ],
+  "scr_satiri_ciftleri": [
+   3
+  ],
+  "IN_beklenti_esigi": -0.1,
+  "scr_beklenti_esigi": -0.2,
+  "IN_bootstrap_tohum": 20261030
+ },
+ "b8_dondurulmus_b2": {
+  "hata": null,
+  "F_B2_var": true
+ },
+ "GECTI": true
+}

@@ -1,0 +1,54 @@
+== tarih: 2026-10-30 06:38:29 +03
+== --help (konteyner, CPU)
+experiments/q1_ek_transfer_matrix.py --help -> rc=0, 54 satir; in-onisleme {BicubicRes256Crop224,Res256Crop224}
+experiments/q1_ek_ayrisim.py --help -> rc=0, 24 satir; 
+experiments/q1_ek_gradyan_kosinus.py gradyan --help -> rc=0, 25 satir; in-onisleme {BicubicRes256Crop224,Res256Crop224}
+experiments/q1_ek_gradyan_kosinus.py mantel --help -> rc=0, 16 satir; --perm PERM
+== ImageNetV2 canli sayim
+sinif klasoru: 1000
+toplam dosya: 10000
+klasor adlari 0-999 tam mi: 0 fark
+sinif basina dosya sayilari (benzersiz): 10 
+kok altinda baska oge: imagenetv2-matched-frequency-format-val 
+== sembolik baglar (depo)
+data/imagenetv2 -> /mnt/d/adeb_sci_1_veri/data/imagenetv2 (bag)
+models/robustbench_zoo/imagenet: klasor (bag degil)
+models/robustbench_zoo/cifar100: klasor (bag degil)
+model bag sayisi: 25, cozulen: 25, kirik: 0
+imagenet Linf: 15 oge; cifar100 Linf: 11 oge
+total   
+lrwxrwxrwx Addepalli2022Efficient_RN18.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Addepalli2022Efficient_RN18.pt
+lrwxrwxrwx Chen2021LTD_WRN34_10.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Chen2021LTD_WRN34_10.pt
+lrwxrwxrwx Cui2023Decoupled_WRN-28-10.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Cui2023Decoupled_WRN-28-10.pt
+lrwxrwxrwx Debenedetti2022Light_XCiT-S12.pth.tar -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Debenedetti2022Light_XCiT-S12.pth.tar
+lrwxrwxrwx Hendrycks2019Using.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Hendrycks2019Using.pt
+lrwxrwxrwx Jia2022LAS-AT_34_10.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Jia2022LAS-AT_34_10.pt
+-rw------- Pang2022Robustness_WRN28_10.pt  
+lrwxrwxrwx Rade2021Helper_R18_ddpm.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Rade2021Helper_R18_ddpm.pt
+lrwxrwxrwx Rice2020Overfitting.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Rice2020Overfitting.pt
+lrwxrwxrwx Sehwag2021Proxy.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Sehwag2021Proxy.pt
+lrwxrwxrwx Wang2023Better_WRN-28-10.pt -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/cifar100/Linf/Wang2023Better_WRN-28-10.pt
+data/imagenetv2 cozuluyor mu: evet
+== git takibi (bag ve veri depo disi kalmali)
+.gitignore:3:data/	data/imagenetv2
+?? models/robustbench_zoo/
+== dondurulmus dosyalar
+f25d9062c958a296353059639398f0a0a8eb18cd48182b1afa5ec4e3986140b7  experiments/c1_c3_transfer_matrix.py
+4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389  experiments/q1_konsey_ayrisim.py
+2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500  raporlar/konsey_2026-10-29/hucre_tablosu.json
+4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d  raporlar/konsey_2026-10-29/hucre_tablosu_b8.json
+be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd  raporlar/konsey_2026-10-29/hucre_tablosu_b9.json
+8d8b17b2d094e0d84ef8d018517da551d717483c25f33155beb5d2c76f20ce3d  raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md
+65fb45f5db0d4b5aa064a86e49269133a767827c44847dbd7f6b73427aa0c16f  scripts/konsey_tam_zincir.sh
+ek on kayit govdesi: d14d6915a71bc73fe9366ff3cc4b94f9b5f7ea50f0935dd46e7f2b80cd197c33
+?? scripts/konsey_tam_zincir.sh
+== ek kod dosyalari (kod eki adayi)
+43794a265886f86e88d0c86842b62f2c33d8316adcf2ce3661a6a561bcbd943a  experiments/q1_ek_transfer_matrix.py
+96b31ebf39ee82374ddb89ff74bd0d7f413b62e98ce30ff6ba091cd9114e562c  experiments/q1_ek_ayrisim.py
+c82a66d196c38f23d688f610caf6ffceab0c01e7ebfa68e5358f832014043eed  experiments/q1_ek_gradyan_kosinus.py
+0319542be13e2d0b72cc82901a51d027416f4eb361cf9571df89d5936d9ebe75  scripts/ek_indir.py
+7da6eba467254c85ae53a1be6af8d247e07d94184e63aa82c9affc75947da6ce  scripts/ek_regresyon.sh
+8026a4bac82f9ef330b0ef0bef3f6e16086d3da978cffc5ebae67fe7608a9557  scripts/ek_zincir_komutlari.sh
+e79ef6144ad7885124b4933d321dd4faa5a6f17fc4ffa9bc39f42dfa8c8528a5  scripts/ek_sahte_v2_smoke.py
+508eac1b14a885e172c0938b7f664a5423bb3113cff4f8ad669e28f4afde9b58  scripts/ek_kuru_ayristirma.py
+aaffe228c0c3c389b7a62fa6ac1df836e5204bee71492633e85739a4ca6b2715  tests/test_q1_ek.py

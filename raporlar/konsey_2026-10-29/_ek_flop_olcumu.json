@@ -1,0 +1,134 @@
+{
+ "uretildi_utc": "2026-10-30T01:57:22.472061+00:00",
+ "torch": "2.6.0a0+ecf3bae40a.nv25.01",
+ "timm": "1.0.27",
+ "birim": "GFLOP/goruntu (ileri gecis, 1 goruntu), param_M milyon parametre, fp32_MB = 4 bayt x parametre",
+ "modeller": {
+  "c1_resnet18": {
+   "girdi": 32,
+   "gflop": 1.111,
+   "param_M": 11.17,
+   "fp32_MB": 44.7
+  },
+  "c1_vit_tiny": {
+   "girdi": 32,
+   "gflop": 2.149,
+   "param_M": 5.53,
+   "fp32_MB": 22.1
+  },
+  "c1_resnet18_224": {
+   "girdi": 32,
+   "gflop": 3.627,
+   "param_M": 11.18,
+   "fp32_MB": 44.7
+  },
+  "rb_prn18": {
+   "girdi": 32,
+   "gflop": 1.111,
+   "param_M": 11.17,
+   "fp32_MB": 44.7
+  },
+  "rb_resnet50_cifar": {
+   "girdi": 32,
+   "gflop": 2.596,
+   "param_M": 23.52,
+   "fp32_MB": 94.1
+  },
+  "rb_wrn28_10": {
+   "girdi": 32,
+   "gflop": 10.487,
+   "param_M": 36.48,
+   "fp32_MB": 145.9
+  },
+  "rb_dmwrn28_10_c100": {
+   "girdi": 32,
+   "gflop": 10.487,
+   "param_M": 36.54,
+   "fp32_MB": 146.1
+  },
+  "rb_wrn34_10_c100": {
+   "girdi": 32,
+   "gflop": 13.318,
+   "param_M": 46.22,
+   "fp32_MB": 184.9
+  },
+  "rb_xcit_s12_cifar10": {
+   "girdi": 32,
+   "gflop": 3.128,
+   "param_M": 25.87,
+   "fp32_MB": 103.5
+  },
+  "tv_resnet18": {
+   "girdi": 224,
+   "gflop": 3.628,
+   "param_M": 11.69,
+   "fp32_MB": 46.8
+  },
+  "tv_resnet50": {
+   "girdi": 224,
+   "gflop": 8.178,
+   "param_M": 25.56,
+   "fp32_MB": 102.2
+  },
+  "tv_wide_resnet50_2": {
+   "girdi": 224,
+   "gflop": 22.796,
+   "param_M": 68.88,
+   "fp32_MB": 275.5
+  },
+  "ra_wrn101_2": {
+   "girdi": 224,
+   "gflop": 51.009,
+   "param_M": 104.07,
+   "fp32_MB": 416.3
+  },
+  "convnext_t_cvst": {
+   "girdi": 224,
+   "gflop": 9.175,
+   "param_M": 28.63,
+   "fp32_MB": 114.5
+  },
+  "convnext_b_cvst": {
+   "girdi": 224,
+   "gflop": 31.755,
+   "param_M": 88.75,
+   "fp32_MB": 355.0
+  },
+  "vit_s_cvst": {
+   "girdi": 224,
+   "gflop": 9.237,
+   "param_M": 22.78,
+   "fp32_MB": 91.1
+  },
+  "vit_b_cvst": {
+   "girdi": 224,
+   "gflop": 34.394,
+   "param_M": 87.15,
+   "fp32_MB": 348.6
+  },
+  "timm_convnext_base": {
+   "girdi": 224,
+   "gflop": 30.709,
+   "param_M": 88.59,
+   "fp32_MB": 354.4
+  },
+  "timm_swin_base_patch4_window7_224": {
+   "girdi": 224,
+   "gflop": 30.862,
+   "param_M": 87.77,
+   "fp32_MB": 351.1
+  },
+  "timm_vit_base_patch16_224": {
+   "girdi": 224,
+   "gflop": 33.697,
+   "param_M": 86.57,
+   "fp32_MB": 346.3
+  },
+  "timm_xcit_small_12_p16_224": {
+   "girdi": 224,
+   "gflop": 9.591,
+   "param_M": 26.25,
+   "fp32_MB": 105.0
+  }
+ }
+}

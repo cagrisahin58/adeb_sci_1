@@ -1,0 +1,51 @@
+{
+ "kalibrasyon": {
+  "havuz_toplam_gflop": 41.556,
+  "etkin_hiz_a_TFLOPs": 20.0,
+  "etkin_hiz_b_TFLOPs": 15.8
+ },
+ "oran_224_resnet18_e_gore": {
+  "tv_resnet50": 2.25,
+  "vit_s_cvst": 2.55,
+  "tv_wide_resnet50_2": 6.29,
+  "timm_swin_base_patch4_window7_224": 8.51,
+  "timm_vit_base_patch16_224": 9.29,
+  "ra_wrn101_2": 14.06
+ },
+ "B8_n1000": {
+  "model_sayisi": 14,
+  "toplam_gflop": 306.005,
+  "n": 1000,
+  "toplam_flop": 1.3770225e+16,
+  "dk_hiz_a": 11.5,
+  "dk_hiz_b": 14.6
+ },
+ "B8_n500": {
+  "model_sayisi": 14,
+  "toplam_gflop": 306.005,
+  "n": 500,
+  "toplam_flop": 6885112500000000.0,
+  "dk_hiz_a": 5.7,
+  "dk_hiz_b": 7.3
+ },
+ "B9_n10000": {
+  "model_sayisi": 15,
+  "toplam_gflop": 74.338,
+  "n": 10000,
+  "toplam_flop": 3.4195480000000004e+16,
+  "dk_hiz_a": 28.5,
+  "dk_hiz_b": 36.1
+ },
+ "B10_gradyan_dk_hiz_b": {
+  "imagenet_n1000": 0.97,
+  "cifar100_n10000": 2.36,
+  "cifar10_b4_n10000": 1.89
+ },
+ "B8_indirme_fp32_MB": 3284.5,
+ "B9_indirme_fp32_MB_pang_haric": 899.4,
+ "veri_bayt": {
+  "imagenette2-320": 341663724,
+  "imagewoof2-320": 328387740
+ },
+ "toplam_indirme_MB": 4854.0
+}

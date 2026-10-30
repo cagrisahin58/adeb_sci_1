@@ -1,0 +1,38 @@
+{
+ "onbellek_dosyalari": [
+  "SahteA__pgd_linf_s10_n8_seed42_imagenetv2_e4_a1_b4_f16.json",
+  "SahteA__pgd_linf_s10_n8_seed42_imagenetv2_e4_a1_b4_f16.npy",
+  "SahteB__pgd_linf_s10_n8_seed42_imagenetv2_e4_a1_b4_f16.json",
+  "SahteB__pgd_linf_s10_n8_seed42_imagenetv2_e4_a1_b4_f16.npy"
+ ],
+ "onbellek_dtype": "float16",
+ "eps_255": 4.0,
+ "alpha_255": 1.0,
+ "manifest_n": 8,
+ "normalizasyon": {
+  "SahteA": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  },
+  "SahteB": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  }
+ },
+ "on_isleme": "BicubicRes256Crop224",
+ "denetim_var": true,
+ "kosinus_c_tum": [
+  [
+   1.0,
+   -0.012106657028198242
+  ],
+  [
+   -0.012106657028198242,
+   1.0
+  ]
+ ],
+ "n_per_sample": 8,
+ "karsilastirma": true
+}

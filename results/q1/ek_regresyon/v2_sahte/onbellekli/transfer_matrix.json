@@ -1,0 +1,83 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 8,
+  "eps": 0.01568627450980392,
+  "alpha": 0.00392156862745098,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "SahteA",
+    "SahteB"
+  ],
+  "results": {
+    "SahteA->SahteA": {
+      "raw_fooling": 100.0,
+      "cond_fooling": NaN,
+      "n_cond": 0,
+      "target_clean_acc": 0.0
+    },
+    "SahteA->SahteB": {
+      "raw_fooling": 100.0,
+      "cond_fooling": NaN,
+      "n_cond": 0,
+      "target_clean_acc": 0.0
+    },
+    "SahteB->SahteA": {
+      "raw_fooling": 100.0,
+      "cond_fooling": NaN,
+      "n_cond": 0,
+      "target_clean_acc": 0.0
+    },
+    "SahteB->SahteB": {
+      "raw_fooling": 100.0,
+      "cond_fooling": NaN,
+      "n_cond": 0,
+      "target_clean_acc": 0.0
+    }
+  },
+  "attack": "pgd",
+  "sources": [
+    "SahteA",
+    "SahteB"
+  ],
+  "cache_adv": "/tmp/ek_v2_fziff583/onbellek",
+  "per_source_seed": true,
+  "model_specs": {
+    "SahteA": [
+      "resnet18_224",
+      "/tmp/ek_v2_fziff583/SahteA.pth"
+    ],
+    "SahteB": [
+      "resnet18_224",
+      "/tmp/ek_v2_fziff583/SahteB.pth"
+    ]
+  },
+  "ek_betik": "experiments/q1_ek_transfer_matrix.py",
+  "ek_betik_sha256": "43794a265886f86e88d0c86842b62f2c33d8316adcf2ce3661a6a561bcbd943a",
+  "eps_255": 4.0,
+  "alpha_255": 1.0,
+  "batch_size": 4,
+  "cache_f16": true,
+  "dataset": "imagenetv2",
+  "on_isleme": "BicubicRes256Crop224",
+  "manifest_liste_sha256": "9d4d6df2e5cabe3bdffa7060c8bcc483b691e81f34edf13b36447109c2184cdb",
+  "manifest_n": 8,
+  "v2_kok": "/tmp/ek_v2_fziff583/imagenetv2/imagenetv2-matched-frequency-format-val",
+  "normalizasyon": {
+    "SahteA": {
+      "normalizasyon_katmanlari": [],
+      "uc_kanalli_mean_std_tamponlari": [],
+      "model_ici_normalizasyon_var": false
+    },
+    "SahteB": {
+      "normalizasyon_katmanlari": [],
+      "uc_kanalli_mean_std_tamponlari": [],
+      "model_ici_normalizasyon_var": false
+    }
+  },
+  "temiz_dogruluk": {
+    "SahteA": 0.0,
+    "SahteB": 0.0
+  }
+}

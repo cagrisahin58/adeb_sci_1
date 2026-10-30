@@ -1,0 +1,27 @@
+{
+ "ortak_onisleme": "BicubicRes256Crop224",
+ "n": 8,
+ "modeller": {
+  "SahteA": {
+   "model": "/tmp/ek_v2_fziff583/SahteA.pth",
+   "temiz_dogruluk_ortak": 0.0
+  },
+  "SahteB": {
+   "model": "/tmp/ek_v2_fziff583/SahteB.pth",
+   "temiz_dogruluk_ortak": 0.0
+  }
+ },
+ "not": "Esik kurali (tasarim 2.5: kendi hatta >= %40, fark <= 3 puan) burada uygulanmaz; ek on kaydin metnine gore ana oturum okur.",
+ "normalizasyon": {
+  "SahteA": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  },
+  "SahteB": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  }
+ }
+}

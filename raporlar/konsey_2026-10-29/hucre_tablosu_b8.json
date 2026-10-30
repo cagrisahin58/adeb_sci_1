@@ -1,0 +1,37 @@
+{
+ "surum": "2026-10-30",
+ "aciklama": "Ek on kayit B8 (ImageNetV2 MatchedFrequency paneli, n = 2000, PGD-10 Linf eps 4/255) icin takma ad -> hucre, cift numarasi, aile, panel uyeligi. Sema dondurulmus hucre_tablosu.json ile birebir aynidir ve experiments/q1_konsey_ayrisim.py --mod b2 tarafindan degistirilmeden okunur. Hucre etiketleri yalniz kod yoludur: 'C1-R32' ayni tarifli ciftin CNN uyesi, 'V-scr' donusturucudur; 'tohum' alani cift numarasidir (Mo ViT-B icin 4, ciftsiz). B8 betimsel ve kesifseldir; betigin F_B2 karar etiketleri B8'de karar degildir. Bu tablo B8 sonuclari gorulmeden ON_KAYIT_EK_B8_B10_2026-10-30.md ile dondurulur.",
+ "hucreler": {
+  "C1-R32": "B8'de: ayni grup ve ayni tarifle egitilmis ciftin CNN uyesi (Singh ConvNeXt-T-ConvStem, Singh ConvNeXt-B-ConvStem, Liu ConvNeXt-B)",
+  "V-scr": "B8'de: donusturucu (Singh ViT-S-ConvStem, Singh ViT-B-ConvStem, Liu Swin-B; Mo ViT-B ciftsiz). Etiket adi kod yoludur, baslatmayi belirtmez: Singh ve Mo temiz on egitimli baslatmalidir (2x2'nin IN satirinin karsiligi), Liu cifti dolayli kanitla sifirdandir (scr satirinin karsiligi); ek on kayit §5.4",
+  "V-IN": "B8'de kullanilmaz",
+  "R224-scr": "B8'de kullanilmaz",
+  "R224-IN": "B8'de kullanilmaz",
+  "panel": "birincil panel P8: ImageNet Linf (eps 4/255) klasik gurbuz CNN, RobustBench imagenet Linf, alti uye",
+  "ikincil_panel": "ikincil panel: Debenedetti2022Light_XCiT-S12 (RobustBench imagenet Linf)"
+ },
+ "modeller": {
+  "IN_Singh_ConvNeXt-T-CvSt": {"hucre": "C1-R32", "tohum": 1, "aile": "CNN", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Singh2023Revisiting_ConvNeXt-T-ConvStem (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Singh_ConvNeXt-B-CvSt": {"hucre": "C1-R32", "tohum": 2, "aile": "CNN", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Singh2023Revisiting_ConvNeXt-B-ConvStem (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Liu_ConvNeXt-B": {"hucre": "C1-R32", "tohum": 3, "aile": "CNN", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Liu2023Comprehensive_ConvNeXt-B (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Singh_ViT-S-CvSt": {"hucre": "V-scr", "tohum": 1, "aile": "ViT", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Singh2023Revisiting_ViT-S-ConvStem (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Singh_ViT-B-CvSt": {"hucre": "V-scr", "tohum": 2, "aile": "ViT", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Singh2023Revisiting_ViT-B-ConvStem (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Liu_Swin-B": {"hucre": "V-scr", "tohum": 3, "aile": "Swin", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Liu2023Comprehensive_Swin-B (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Mo_ViT-B": {"hucre": "V-scr", "tohum": 4, "aile": "ViT", "birincil_panel": false, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Mo2022When_ViT-B (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Salman2020Do_R18": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Salman2020Do_R18 (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Salman2020Do_R50": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Salman2020Do_R50 (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Salman2020Do_50_2": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Salman2020Do_50_2 (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Engstrom2019Robustness": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Engstrom2019Robustness (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Chen2024Data_WRN_50_2": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Chen2024Data_WRN_50_2 (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Peng2023Robust": {"hucre": "panel", "tohum": null, "aile": "CNN", "birincil_panel": true, "ikincil_panel": false, "kontrol_noktasi": "RobustBench imagenet Linf Peng2023Robust (diskte: models/robustbench_zoo/imagenet/Linf/ -> /mnt/d/adeb_sci_1_veri/models/robustbench_zoo/imagenet/Linf/)"},
+  "IN_Debenedetti_XCiT-S12": {"hucre": "ikincil_panel", "tohum": null, "aile": "XCiT", "birincil_panel": false, "ikincil_panel": true, "kontrol_noktasi": "RobustBench imagenet Linf Debenedetti2022Light_XCiT-S12 (timm, GitHub surum baglantisi)"}
+ },
+ "b2_tohum_ciftleri": [
+  ["IN_Singh_ConvNeXt-T-CvSt", "IN_Singh_ViT-S-CvSt"],
+  ["IN_Singh_ConvNeXt-B-CvSt", "IN_Singh_ViT-B-CvSt"],
+  ["IN_Liu_ConvNeXt-B", "IN_Liu_Swin-B"]
+ ],
+ "s4_ciftleri": [],
+ "panel_dondurma": "Birincil panel P8 alti uye olarak donduruldu (ON_KAYIT_EK_B8_B10_2026-10-30.md §5.3). Yedek Wong2020Fast (IN_Wong2020Fast) yalniz bir P8 uyesi on isleme denetiminden ya da yukleme asamasindan gecemezse, ayni denetimden gecerek ve T gorulmeden girer; tablo degisikligi sapma kaydina yazilir. Bilesim B8 sonuclarindan once sabittir.",
+ "eslesme_notu": "b2_tohum_ciftleri ayni grup ve ayni tarifli CNN-donusturucu ciftleridir; 1 ve 2 Singh ve ark. (temiz modelden baslatilmis AT, IN satiri), 3 Liu ve ark. (dolayli kanitla sifirdan, scr satiri). IN satiri kestirimi yalniz 1 ve 2'ye dayanir; 3 ayri satirda verilir (ek on kayit §5.6). s4_ciftleri B8'de tanimsizdir ve bos birakilmistir; alan dondurulmus semayla ayni anahtar kumesini korumak icin vardir."
+}

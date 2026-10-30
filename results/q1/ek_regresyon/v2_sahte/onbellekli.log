@@ -1,0 +1,15 @@
+ImageNetV2: n=8 liste_sha256=9d4d6df2e5cabe3b onisleme=BicubicRes256Crop224
+custom temiz dogruluk: SahteA=0.00, SahteB=0.00
+  SahteA: onbellekten (8, 3, 224, 224)
+  SahteA->SahteA: raw=100.00 cond=nan
+  SahteA->SahteB: raw=100.00 cond=nan
+  SahteB: onbellekten (8, 3, 224, 224)
+  SahteB->SahteA: raw=100.00 cond=nan
+  SahteB->SahteB: raw=100.00 cond=nan
+custom kaydedildi: /workspace/results/q1/ek_regresyon/v2_sahte/onbellekli
+
+--- stderr ---
+/workspace/experiments/q1_ek_transfer_matrix.py:676: RuntimeWarning: Mean of empty slice.
+  "cond_fooling": round(float(100 * aw[cond].mean()), 2),
+/usr/local/lib/python3.12/dist-packages/numpy/core/_methods.py:129: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)

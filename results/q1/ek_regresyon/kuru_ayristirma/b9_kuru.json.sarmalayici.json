@@ -1,0 +1,78 @@
+{
+ "meta": {
+  "sarmalayici": "experiments/q1_ek_ayrisim.py",
+  "sarmalayici_sha256": "d264c4e584fcfb3c0e3dd9517cfe2cea4ea1fe564117c88459e2b9721027a641",
+  "dondurulmus_betik_sha256_dogrulandi": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "ozgun_matris_betigi_sha256_simdi": "f25d9062c958a296353059639398f0a0a8eb18cd48182b1afa5ec4e3986140b7",
+  "ozgun_matris_betigi_degismedi": true,
+  "mod": "b9",
+  "uretildi_utc": "2026-10-30T03:43:13.367613+00:00",
+  "numpy": "1.26.4",
+  "hucre_tablosu": "/workspace/raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+  "hucre_tablosu_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+  "dondurulmus_cagri_argv": [
+   "--mod",
+   "b2",
+   "--hucre-tablosu",
+   "/workspace/raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+   "--cikti",
+   "/workspace/results/q1/ek_regresyon/kuru_ayristirma/b9_kuru.json",
+   "--bootstrap",
+   "200",
+   "--panel-en-az",
+   "5",
+   "--matris-dizini",
+   "/tmp/ek_kuru_tq1976uz/b9",
+   "--sinama"
+  ],
+  "dondurulmus_cikti": "/workspace/results/q1/ek_regresyon/kuru_ayristirma/b9_kuru.json",
+  "dondurulmus_cikti_sha256": "8f1ab5be8cb53f1f81a181e7fe2d0820df84760dc61c89cdfdbbf8cdf290e0e1"
+ },
+ "temiz_dogruluk_yuzde": {
+  "C100_ResNet18_AT_s1001": 70.0,
+  "C100_ResNet18_AT_s1002": 73.25,
+  "C100_ResNet18_AT_s1003": 71.0,
+  "C100_ViT_Tiny_AT_s2001": 69.25,
+  "C100_ViT_Tiny_AT_s2002": 71.0,
+  "C100_ViT_Tiny_AT_s2003": 66.25,
+  "C100_Rice2020Overfitting": 68.5,
+  "C100_Rade2021Helper_R18_ddpm": 68.0,
+  "C100_Addepalli2022Efficient_RN18": 72.25,
+  "C100_Sehwag2021Proxy": 70.25,
+  "C100_Pang2022Robustness_WRN28_10": 72.5,
+  "C100_Wang2023Better_WRN-28-10": 73.5,
+  "C100_Jia2022LAS-AT_34_10": 70.0,
+  "C100_Debenedetti2022Light_XCiT-S12": 70.75,
+  "C100_Hendrycks2019Using": 72.0
+ },
+ "karistirici_notu": "E1: C1 ViT-Tiny CIFAR-100 temiz dogrulugu panelden belirgin dusuktur; w ve hedef-dogru payda farkli bir alt kumeye dayanir. Sinirlilik olarak yazilir; bu dosya yalniz bu kosudaki temiz dogruluklari betimsel verir.",
+ "dondurulmus_ozet": {
+  "panel": {
+   "birincil": [
+    "C100_Rice2020Overfitting",
+    "C100_Rade2021Helper_R18_ddpm",
+    "C100_Addepalli2022Efficient_RN18",
+    "C100_Sehwag2021Proxy",
+    "C100_Pang2022Robustness_WRN28_10",
+    "C100_Wang2023Better_WRN-28-10",
+    "C100_Jia2022LAS-AT_34_10"
+   ],
+   "birincil_eksik": [],
+   "ikincil": [
+    "C100_Debenedetti2022Light_XCiT-S12",
+    "C100_Hendrycks2019Using"
+   ]
+  },
+  "hata": null,
+  "karar": {
+   "K-a": "kararsiz (payda kucuk: bir tohumda D_s <= 0,10)",
+   "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": false,
+   "K-b": "kararsiz",
+   "K-b_ham_ci90_delta_icinde": false,
+   "K-b_eski_yalniz_pozitif_okuma_curutme": false,
+   "K-c": "curutuldu",
+   "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": false
+  }
+ },
+ "SINAMA_SONUC_DEGIL": true
+}
