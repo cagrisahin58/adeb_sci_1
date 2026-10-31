@@ -1,3 +1,5 @@
+Güncel devir: HANDOFF_2026-10-31.md (01.11.2026)
+
 # Konsey durum dosyası (29.10.2026)
 
 Hazırlayan: deney analisti (opus alt ajan). Bu dosya yalnız durum tespitidir; öneri içermez. Her sayı bir dosyaya bağlanmıştır; `FÖY` kısaltması `results/C1_REFERANS_FOYU.md` dosyasını, `HÜKÜM` `raporlar/hakem_lecun_2026-10-04/00_LECUN_HUKUM.md` dosyasını, `İKİNCİ` aynı klasördeki `hakem_yontem_yeniden_yazim.md` dosyasını gösterir. Karantinadaki klasörlerden (run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA) hiçbir sayı alınmamıştır. "Türetilmiş" diye işaretlenen satırlar bu dosya için artefakttan hesaplanmıştır, föyde yoktur.

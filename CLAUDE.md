@@ -56,7 +56,7 @@ CIFAR-10 uzerinde derin ogrenme modellerinin adversarial saldırılara karşı d
 
 ## Durum ve sayılar
 
-Sayı tabloları bu dosyada tutulmaz: geçerli tek kaynak `results/C1_REFERANS_FOYU.md`. Karantina: **C1 öncesi tüm koşular** (run1, run2, run3, `attention_analysis_run3`, `stat_addendum`, `rev2_blockA`); geçerli yollar yalnız `results/c1_*` ve `results/q1/*` (08.09.2026 netleştirmesi, tez CLAUDE.md ile aynı). Şubat 2026 durum tabloları ve faz listesi `DURUM_ARSIVI_2026-02.md` içinde (tarihsel). Güncel durum: son HANDOFF/plan dosyası ve `git log`. Ajan/skill kataloğu: `~/.claude/KATALOG.md`.
+Sayı tabloları bu dosyada tutulmaz: geçerli tek kaynak `results/C1_REFERANS_FOYU.md`. Karantina: **C1 öncesi tüm koşular** (run1, run2, run3, `attention_analysis_run3`, `stat_addendum`, `rev2_blockA`); geçerli yollar yalnız `results/c1_*` ve `results/q1/*` (08.09.2026 netleştirmesi, tez CLAUDE.md ile aynı). Şubat 2026 durum tabloları ve faz listesi `DURUM_ARSIVI_2026-02.md` içinde (tarihsel). Güncel durum: `HANDOFF_2026-10-31.md`, `BEKLEYEN_KARARLAR.md` ve `git log`. Ajan/skill kataloğu: `~/.claude/KATALOG.md`.
 
 ## Kritik Bilgiler
 

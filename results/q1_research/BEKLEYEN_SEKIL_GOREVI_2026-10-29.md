@@ -1,6 +1,6 @@
 # Bekleyen şekil görevi (kullanıcı, 29.10.2026)
 
-Durum: BEKLİYOR. Kullanıcının koşulu: "deney planlarsan bunlar bittikten sonra yaparsın, bunu kaydet ama". 29.10.2026'da konsey yeni deneyler planladığı için bu görev, o deneylerin sonuçları makaleye işlendikten sonra başlatılır.
+Durum: TAMAMLANDI (01.11.2026; visio-cizici Faz A-C, commit'ler 302d56c, 118e769, 5851c86; raporlar `raporlar/visio_2026-10-31/`; TR dilli şekiller ikinci tura kaldı, bkz. `HANDOFF_2026-10-31.md`). Eski durum satırı tarih kaydı olarak korunmuştur: BEKLİYOR. Kullanıcının koşulu: "deney planlarsan bunlar bittikten sonra yaparsın, bunu kaydet ama". 29.10.2026'da konsey yeni deneyler planladığı için bu görev, o deneylerin sonuçları makaleye işlendikten sonra başlatılır.
 
 Engel: Görev metni "/visio-cizici skill'ini yükle; skill yoksa ya da eksikse dur ve bunu söyle; skill'i kendi başına yeniden yazma" diyor. 29.10.2026 taramasında bu skill bulunamadı. Taranan yerler: C:/Users/cagri/.claude/skills, WSL ~/.claude/skills, C:/Users/cagri/projects/cc_duzen/skills, synced klasörleri ve eklentiler. Microsoft Visio kurulu görünüyor (AppData/Local/Microsoft/Visio var). Görev, skill kullanıcı tarafından kurulduktan sonra başlatılabilir.
 
