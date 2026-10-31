@@ -1,0 +1,936 @@
+{
+  "stem": "fig16_epsilon_sweep",
+  "uslup": 7,
+  "degerler": [
+    {
+      "etiket": "WRN-28-10 clean",
+      "deger": 89.48,
+      "kaynak": "results/wrn_eval/wrn_eval_summary.json",
+      "anahtar_yolu": "results.clean.accuracy",
+      "hesap": "read as stored; == 100 correct / n; == foy",
+      "foy_satiri": 360,
+      "kaynak_sha256": "0f0930ba2d9e32460a3f9b0c7bdfe5ef4cedc33350f5f1850c99a5bee9163375"
+    },
+    {
+      "etiket": "WRN-28-10 2/255",
+      "deger": 85.35000000000001,
+      "kaynak": "results/wrn_eval/wrn_eval_summary.json",
+      "anahtar_yolu": "results.pgd10_eps0.00784.accuracy",
+      "hesap": "read as stored; == 100 correct / n; == foy",
+      "foy_satiri": 361,
+      "kaynak_sha256": "0f0930ba2d9e32460a3f9b0c7bdfe5ef4cedc33350f5f1850c99a5bee9163375"
+    },
+    {
+      "etiket": "WRN-28-10 4/255",
+      "deger": 80.0,
+      "kaynak": "results/wrn_eval/wrn_eval_summary.json",
+      "anahtar_yolu": "results.pgd10_eps0.01569.accuracy",
+      "hesap": "read as stored; == 100 correct / n; == foy",
+      "foy_satiri": 362,
+      "kaynak_sha256": "0f0930ba2d9e32460a3f9b0c7bdfe5ef4cedc33350f5f1850c99a5bee9163375"
+    },
+    {
+      "etiket": "WRN-28-10 8/255",
+      "deger": 66.92,
+      "kaynak": "results/wrn_eval/wrn_eval_summary.json",
+      "anahtar_yolu": "results.pgd10_eps0.03137.accuracy",
+      "hesap": "read as stored; == 100 correct / n; == foy",
+      "foy_satiri": 363,
+      "kaynak_sha256": "0f0930ba2d9e32460a3f9b0c7bdfe5ef4cedc33350f5f1850c99a5bee9163375"
+    },
+    {
+      "etiket": "WRN-28-10 16/255",
+      "deger": 47.36,
+      "kaynak": "results/wrn_eval/wrn_eval_summary.json",
+      "anahtar_yolu": "results.pgd10_eps0.06275.accuracy",
+      "hesap": "read as stored; == 100 correct / n; == foy",
+      "foy_satiri": 364,
+      "kaynak_sha256": "0f0930ba2d9e32460a3f9b0c7bdfe5ef4cedc33350f5f1850c99a5bee9163375"
+    },
+    {
+      "etiket": "ResNet-18 AT clean pair 1",
+      "deger": 85.37,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=clean, Epsilon=0.0.Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT clean pair 2",
+      "deger": 85.94,
+      "kaynak": "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=clean, Epsilon=0.0.Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "276b3bad6c65d60292950f17ab3bb54a7caac6591e9d8c942843ecc5ec56dfca"
+    },
+    {
+      "etiket": "ResNet-18 AT clean pair 3",
+      "deger": 86.04,
+      "kaynak": "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=clean, Epsilon=0.0.Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "c8fef0b665339b70601ab279c1bb786c4375a0324a60329dab821b16d6bbefd2"
+    },
+    {
+      "etiket": "ResNet-18 AT clean mean",
+      "deger": 85.78333333333333,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 360,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT clean SD",
+      "deger": 0.36143233576055794,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 360,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 2/255 pair 1",
+      "deger": 77.18,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[0].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 2/255 pair 2",
+      "deger": 77.29,
+      "kaynak": "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[0].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "276b3bad6c65d60292950f17ab3bb54a7caac6591e9d8c942843ecc5ec56dfca"
+    },
+    {
+      "etiket": "ResNet-18 AT 2/255 pair 3",
+      "deger": 77.42,
+      "kaynak": "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[0].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "c8fef0b665339b70601ab279c1bb786c4375a0324a60329dab821b16d6bbefd2"
+    },
+    {
+      "etiket": "ResNet-18 AT 2/255 mean",
+      "deger": 77.29666666666667,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 361,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 2/255 SD",
+      "deger": 0.12013880860626472,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 361,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 4/255 pair 1",
+      "deger": 66.89,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[1].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 4/255 pair 2",
+      "deger": 66.98,
+      "kaynak": "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[1].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "276b3bad6c65d60292950f17ab3bb54a7caac6591e9d8c942843ecc5ec56dfca"
+    },
+    {
+      "etiket": "ResNet-18 AT 4/255 pair 3",
+      "deger": 66.33,
+      "kaynak": "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[1].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "c8fef0b665339b70601ab279c1bb786c4375a0324a60329dab821b16d6bbefd2"
+    },
+    {
+      "etiket": "ResNet-18 AT 4/255 mean",
+      "deger": 66.73333333333333,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 362,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 4/255 SD",
+      "deger": 0.3521836642056742,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 362,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 8/255 pair 1",
+      "deger": 44.86,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[2].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 8/255 pair 2",
+      "deger": 43.99,
+      "kaynak": "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[2].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "276b3bad6c65d60292950f17ab3bb54a7caac6591e9d8c942843ecc5ec56dfca"
+    },
+    {
+      "etiket": "ResNet-18 AT 8/255 pair 3",
+      "deger": 43.73,
+      "kaynak": "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[2].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "c8fef0b665339b70601ab279c1bb786c4375a0324a60329dab821b16d6bbefd2"
+    },
+    {
+      "etiket": "ResNet-18 AT 8/255 mean",
+      "deger": 44.193333333333335,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 363,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 8/255 SD",
+      "deger": 0.59180514811324,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 363,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 16/255 pair 1",
+      "deger": 20.56,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[3].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 16/255 pair 2",
+      "deger": 20.45,
+      "kaynak": "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[3].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "276b3bad6c65d60292950f17ab3bb54a7caac6591e9d8c942843ecc5ec56dfca"
+    },
+    {
+      "etiket": "ResNet-18 AT 16/255 pair 3",
+      "deger": 20.12,
+      "kaynak": "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[3].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "c8fef0b665339b70601ab279c1bb786c4375a0324a60329dab821b16d6bbefd2"
+    },
+    {
+      "etiket": "ResNet-18 AT 16/255 mean",
+      "deger": 20.376666666666665,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 364,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ResNet-18 AT 16/255 SD",
+      "deger": 0.22898325994127341,
+      "kaynak": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 364,
+      "kaynak_sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "etiket": "ViT-Tiny AT clean pair 1",
+      "deger": 74.1,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=clean, Epsilon=0.0.Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT clean pair 2",
+      "deger": 73.47,
+      "kaynak": "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=clean, Epsilon=0.0.Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "3db9892b20c6e7c9612fe2c8721b91a169c969480c51c6208faa4dd02ae7e8a1"
+    },
+    {
+      "etiket": "ViT-Tiny AT clean pair 3",
+      "deger": 73.01,
+      "kaynak": "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=clean, Epsilon=0.0.Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "e04d82bc9060f07e7a0cb013810203c6d260c8a536578da5e7d3b23590e4e8cd"
+    },
+    {
+      "etiket": "ViT-Tiny AT clean mean",
+      "deger": 73.52666666666667,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 360,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT clean SD",
+      "deger": 0.5472050194701502,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 360,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 2/255 pair 1",
+      "deger": 64.16,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[0].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 2/255 pair 2",
+      "deger": 64.23,
+      "kaynak": "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[0].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "3db9892b20c6e7c9612fe2c8721b91a169c969480c51c6208faa4dd02ae7e8a1"
+    },
+    {
+      "etiket": "ViT-Tiny AT 2/255 pair 3",
+      "deger": 63.92,
+      "kaynak": "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[0].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "e04d82bc9060f07e7a0cb013810203c6d260c8a536578da5e7d3b23590e4e8cd"
+    },
+    {
+      "etiket": "ViT-Tiny AT 2/255 mean",
+      "deger": 64.10333333333334,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 361,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 2/255 SD",
+      "deger": 0.16258331197676265,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 361,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 4/255 pair 1",
+      "deger": 53.94,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[1].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 4/255 pair 2",
+      "deger": 53.7,
+      "kaynak": "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[1].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "3db9892b20c6e7c9612fe2c8721b91a169c969480c51c6208faa4dd02ae7e8a1"
+    },
+    {
+      "etiket": "ViT-Tiny AT 4/255 pair 3",
+      "deger": 54.04,
+      "kaynak": "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[1].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "e04d82bc9060f07e7a0cb013810203c6d260c8a536578da5e7d3b23590e4e8cd"
+    },
+    {
+      "etiket": "ViT-Tiny AT 4/255 mean",
+      "deger": 53.89333333333333,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 362,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 4/255 SD",
+      "deger": 0.17473789896107986,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 362,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 8/255 pair 1",
+      "deger": 32.68,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[2].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 8/255 pair 2",
+      "deger": 32.47,
+      "kaynak": "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[2].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "3db9892b20c6e7c9612fe2c8721b91a169c969480c51c6208faa4dd02ae7e8a1"
+    },
+    {
+      "etiket": "ViT-Tiny AT 8/255 pair 3",
+      "deger": 32.83,
+      "kaynak": "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[2].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "e04d82bc9060f07e7a0cb013810203c6d260c8a536578da5e7d3b23590e4e8cd"
+    },
+    {
+      "etiket": "ViT-Tiny AT 8/255 mean",
+      "deger": 32.66,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 363,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 8/255 SD",
+      "deger": 0.18083141320025103,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 363,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 16/255 pair 1",
+      "deger": 12.22,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[3].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 16/255 pair 2",
+      "deger": 12.19,
+      "kaynak": "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[3].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "3db9892b20c6e7c9612fe2c8721b91a169c969480c51c6208faa4dd02ae7e8a1"
+    },
+    {
+      "etiket": "ViT-Tiny AT 16/255 pair 3",
+      "deger": 12.06,
+      "kaynak": "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "row Attack=pgd, Epsilon=eps_sweep[3].Accuracy",
+      "hesap": "read as stored",
+      "kaynak_sha256": "e04d82bc9060f07e7a0cb013810203c6d260c8a536578da5e7d3b23590e4e8cd"
+    },
+    {
+      "etiket": "ViT-Tiny AT 16/255 mean",
+      "deger": 12.156666666666666,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "mean; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 364,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "etiket": "ViT-Tiny AT 16/255 SD",
+      "deger": 0.08504900548115368,
+      "kaynak": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "anahtar_yolu": "Accuracy over the three pairs",
+      "hesap": "SD ddof=1; == foy (2 dp) (pairs 1-3: results/c1_sweep/pair1/<model>/<model>_robustness_results.csv, results/c1_sweep/pair2/<model>/<model>_robustness_results.csv, results/c1_sweep/pair3/<model>/<model>_robustness_results.csv)",
+      "foy_satiri": 364,
+      "kaynak_sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    }
+  ],
+  "records_sha256": null,
+  "betik": "paper/figures/charts/fig_epsilon_sweep.py --uslup 7",
+  "ortak_modul": "paper/figures/charts/_kart_ortak.py",
+  "veri_kurali_modulu": "paper/figures/konsey/konsey_ortak.py (imported unchanged)",
+  "girdiler_sha256": {
+    "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3",
+    "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv": "276b3bad6c65d60292950f17ab3bb54a7caac6591e9d8c942843ecc5ec56dfca",
+    "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv": "c8fef0b665339b70601ab279c1bb786c4375a0324a60329dab821b16d6bbefd2",
+    "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a",
+    "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv": "3db9892b20c6e7c9612fe2c8721b91a169c969480c51c6208faa4dd02ae7e8a1",
+    "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv": "e04d82bc9060f07e7a0cb013810203c6d260c8a536578da5e7d3b23590e4e8cd",
+    "results/wrn_eval/wrn_eval_summary.json": "0f0930ba2d9e32460a3f9b0c7bdfe5ef4cedc33350f5f1850c99a5bee9163375"
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 28,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results\\C1_REFERANS_FOYU.md",
+    "foy_sha256": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f",
+    "ayrinti": [
+      {
+        "ad": "source line cites the WRN file",
+        "aranan_metin": "results/wrn_eval/wrn_eval_summary.json",
+        "foy_satiri": 354,
+        "capa": "_Kaynak:",
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 clean mean",
+        "json_degeri": 85.78333333333333,
+        "foy_satiri": 360,
+        "capa": "| 0 (temiz) |",
+        "foy_en_yakin": 85.78,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 clean sd",
+        "json_degeri": 0.36143233576055794,
+        "foy_satiri": 360,
+        "capa": "| 0 (temiz) |",
+        "foy_en_yakin": 0.36,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 2/255 mean",
+        "json_degeri": 77.29666666666667,
+        "foy_satiri": 361,
+        "capa": "| 2/255 |",
+        "foy_en_yakin": 77.3,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 2/255 sd",
+        "json_degeri": 0.12013880860626472,
+        "foy_satiri": 361,
+        "capa": "| 2/255 |",
+        "foy_en_yakin": 0.12,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 4/255 mean",
+        "json_degeri": 66.73333333333333,
+        "foy_satiri": 362,
+        "capa": "| 4/255 |",
+        "foy_en_yakin": 66.73,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 4/255 sd",
+        "json_degeri": 0.3521836642056742,
+        "foy_satiri": 362,
+        "capa": "| 4/255 |",
+        "foy_en_yakin": 0.35,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 8/255 mean",
+        "json_degeri": 44.193333333333335,
+        "foy_satiri": 363,
+        "capa": "| 8/255 |",
+        "foy_en_yakin": 44.19,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 8/255 sd",
+        "json_degeri": 0.59180514811324,
+        "foy_satiri": 363,
+        "capa": "| 8/255 |",
+        "foy_en_yakin": 0.59,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 16/255 mean",
+        "json_degeri": 20.376666666666665,
+        "foy_satiri": 364,
+        "capa": "| 16/255 |",
+        "foy_en_yakin": 20.38,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "resnet18 16/255 sd",
+        "json_degeri": 0.22898325994127341,
+        "foy_satiri": 364,
+        "capa": "| 16/255 |",
+        "foy_en_yakin": 0.23,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny clean mean",
+        "json_degeri": 73.52666666666667,
+        "foy_satiri": 360,
+        "capa": "| 0 (temiz) |",
+        "foy_en_yakin": 73.53,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny clean sd",
+        "json_degeri": 0.5472050194701502,
+        "foy_satiri": 360,
+        "capa": "| 0 (temiz) |",
+        "foy_en_yakin": 0.55,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny 2/255 mean",
+        "json_degeri": 64.10333333333334,
+        "foy_satiri": 361,
+        "capa": "| 2/255 |",
+        "foy_en_yakin": 64.1,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny 2/255 sd",
+        "json_degeri": 0.16258331197676265,
+        "foy_satiri": 361,
+        "capa": "| 2/255 |",
+        "foy_en_yakin": 0.16,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny 4/255 mean",
+        "json_degeri": 53.89333333333333,
+        "foy_satiri": 362,
+        "capa": "| 4/255 |",
+        "foy_en_yakin": 53.89,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny 4/255 sd",
+        "json_degeri": 0.17473789896107986,
+        "foy_satiri": 362,
+        "capa": "| 4/255 |",
+        "foy_en_yakin": 0.17,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny 8/255 mean",
+        "json_degeri": 32.66,
+        "foy_satiri": 363,
+        "capa": "| 8/255 |",
+        "foy_en_yakin": 32.66,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny 8/255 sd",
+        "json_degeri": 0.18083141320025103,
+        "foy_satiri": 363,
+        "capa": "| 8/255 |",
+        "foy_en_yakin": 0.18,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny 16/255 mean",
+        "json_degeri": 12.156666666666666,
+        "foy_satiri": 364,
+        "capa": "| 16/255 |",
+        "foy_en_yakin": 12.16,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "vit_tiny 16/255 sd",
+        "json_degeri": 0.08504900548115368,
+        "foy_satiri": 364,
+        "capa": "| 16/255 |",
+        "foy_en_yakin": 0.09,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "WRN clean",
+        "json_degeri": 89.48,
+        "foy_satiri": 360,
+        "capa": "| 0 (temiz) |",
+        "foy_en_yakin": 89.48,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "WRN 2/255",
+        "json_degeri": 85.35000000000001,
+        "foy_satiri": 361,
+        "capa": "| 2/255 |",
+        "foy_en_yakin": 85.35,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "WRN 4/255",
+        "json_degeri": 80.0,
+        "foy_satiri": 362,
+        "capa": "| 4/255 |",
+        "foy_en_yakin": 80.0,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "WRN 8/255",
+        "json_degeri": 66.92,
+        "foy_satiri": 363,
+        "capa": "| 8/255 |",
+        "foy_en_yakin": 66.92,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "WRN 16/255",
+        "json_degeri": 47.36,
+        "foy_satiri": 364,
+        "capa": "| 16/255 |",
+        "foy_en_yakin": 47.36,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "WRN clean (line 19)",
+        "json_degeri": 89.48,
+        "foy_satiri": 19,
+        "capa": "WRN-28-10 (harici referans)",
+        "foy_en_yakin": 89.48,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "WRN PGD 8/255 (line 19)",
+        "json_degeri": 66.92,
+        "foy_satiri": 19,
+        "capa": "WRN-28-10 (harici referans)",
+        "foy_en_yakin": 66.92,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      }
+    ]
+  },
+  "okunan_anahtarlar": {
+    "results/c1_sweep/pair*/*/*_robustness_results.csv": [
+      "Model, Attack, Epsilon, Accuracy"
+    ],
+    "results/wrn_eval/wrn_eval_summary.json": [
+      "eps_sweep",
+      "results.{clean, pgd10_eps*}.{accuracy, correct, n}"
+    ]
+  },
+  "cizilen": {
+    "wrn": {
+      "mean": [
+        89.48,
+        85.35000000000001,
+        80.0,
+        66.92,
+        47.36
+      ]
+    },
+    "resnet18": {
+      "seeds": [
+        [
+          85.37,
+          85.94,
+          86.04
+        ],
+        [
+          77.18,
+          77.29,
+          77.42
+        ],
+        [
+          66.89,
+          66.98,
+          66.33
+        ],
+        [
+          44.86,
+          43.99,
+          43.73
+        ],
+        [
+          20.56,
+          20.45,
+          20.12
+        ]
+      ],
+      "mean": [
+        85.78333333333333,
+        77.29666666666667,
+        66.73333333333333,
+        44.193333333333335,
+        20.376666666666665
+      ],
+      "sd": [
+        0.36143233576055794,
+        0.12013880860626472,
+        0.3521836642056742,
+        0.59180514811324,
+        0.22898325994127341
+      ]
+    },
+    "vit_tiny": {
+      "seeds": [
+        [
+          74.1,
+          73.47,
+          73.01
+        ],
+        [
+          64.16,
+          64.23,
+          63.92
+        ],
+        [
+          53.94,
+          53.7,
+          54.04
+        ],
+        [
+          32.68,
+          32.47,
+          32.83
+        ],
+        [
+          12.22,
+          12.19,
+          12.06
+        ]
+      ],
+      "mean": [
+        73.52666666666667,
+        64.10333333333334,
+        53.89333333333333,
+        32.66,
+        12.156666666666666
+      ],
+      "sd": [
+        0.5472050194701502,
+        0.16258331197676265,
+        0.17473789896107986,
+        0.18083141320025103,
+        0.08504900548115368
+      ]
+    }
+  },
+  "notlar": [
+    "x is categorical (equal spacing), not a linear epsilon axis.",
+    "Error bars: +-1 SD over three seed pairs (ddof = 1); most are narrower than the mark.",
+    "The sweep runs (results/c1_sweep) are separate from Table I's runs; the 8/255 point is not identical to Table I (the sheet's consistency table below line 364).",
+    "WRN-28-10: one RobustBench checkpoint (Gowal2020), no SD."
+  ],
+  "kararlar": [
+    "Karar (duzeltme turu 2): the WRN-28-10 line label reads 'WRN-28-10 (one model)' in two lines (the card title and a longer note do not fit one 85 mm line), because WRN-28-10 is a single RobustBench checkpoint (foy line 356) and n = 3 did not hold for it.",
+    "Karar: ResNet-18 AT takes the r32 colour, because the C1 ResNet-18 is the 32-pixel CIFAR stem (palette label 'ResNet-18, CIFAR stem (R32)'); WRN-28-10 takes the robust CNN panel colour.",
+    "Karar: direct labels at the line ends replace the legend (style 7 direct labelling)."
+  ],
+  "git": {
+    "commit": "c315e09f6c03fe9b165e4fa3a5786f8448ae8c85",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "M paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+      "?? paper/figures/charts/_kart_ortak.py",
+      "?? paper/figures/charts/fig_epsilon_sweep.py"
+    ],
+    "izlenen_yollar": [
+      "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv",
+      "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv",
+      "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv",
+      "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv",
+      "results/wrn_eval/wrn_eval_summary.json",
+      "paper/figures/charts/_kart_ortak.py",
+      "paper/figures/charts/fig_epsilon_sweep.py",
+      "paper/figures/konsey/konsey_ortak.py",
+      "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+      "results/C1_REFERANS_FOYU.md"
+    ],
+    "kod_ve_foy_sha256": {
+      "paper/figures/charts/_kart_ortak.py": "d7769ae93310d3655dec79843e9586a03c19a9ab2622eab01a9c88b42710b82b",
+      "paper/figures/charts/fig_epsilon_sweep.py": "424a58b21be41e6462ec166ba1ea4eba59df8ff4a3e2ede7935b7117f6ddeac9",
+      "paper/figures/konsey/konsey_ortak.py": "798137ef5ad8aa2ca9f8ad4d17697e69733f9d606a522433eabe9449026f0579",
+      "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml": "7b99cc206514a16847a7797ecac447eb84b3b2e6f5249255a8deee2a8dd932eb",
+      "results/C1_REFERANS_FOYU.md": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f"
+    },
+    "not": "dirty_or_untracked lists every path above that is modified or untracked; until the scripts are committed, kod_ve_foy_sha256 is what pins the code and the sheet"
+  },
+  "venue": "ieee_access",
+  "tuval_mm": [
+    85.29,
+    62.0
+  ],
+  "karantina_istisnasi": {
+    "yol": "results/wrn_eval/wrn_eval_summary.json",
+    "foy_satirlari": [
+      19,
+      354,
+      360,
+      361,
+      362,
+      363,
+      364
+    ],
+    "gerekce": "the sheet cites this file (line 354) and prints its values"
+  }
+}

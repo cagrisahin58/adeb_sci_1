@@ -1,0 +1,12 @@
+# makale-yazari EN, 2026-10-31 komut gunlugu (Git Bash, Windows; WSL wsl.exe -d Ubuntu-22.04)
+wsl: bash /home/firat/derle_en_sarmal.sh   (PATH=/home/firat/.local/bin + scripts/derle_en.sh; derle_en.sh tek basina latexmk bulamiyor)
+python scratchpad/duzen_en.py               (03, 04, 07: yollar, yeni sekiller, tablo kaldirma, altyazilar; yedek scratchpad/yedek_en/)
+python scratchpad/cr_duzelt.py              (heredoc kaynakli \r -> CR hatasi duzeltildi, 03_methodology.tex)
+python scratchpad/kisalt2.py                (3.1 model cumleleri)
+python scratchpad/kisalt3.py                (04z pilot sure cumleleri)
+python scratchpad/altyazi_kisalt.py, altyazi_kisalt2.py   (altyazilar <= 60 sozcuk)
+python scratchpad/altyazi_say.py            (fig_qc E1 sozcuk sayimi ve kalin giris denetimi)
+python scratchpad/kontrol_listesi.py        (pre_submission_checklist.md)
+wsl: bash /home/firat/kapi_sarmal.sh        (scripts/kapilar.sh)
+wsl: bash /home/firat/kapi_ayrinti.sh       (verify_manuscript_numbers, check_manuscript_claims, check_en_tr_mirror ayrinti)
+python arsiv/b2_yardimci/_mk_y1_kelime_say.py paper/manuscript

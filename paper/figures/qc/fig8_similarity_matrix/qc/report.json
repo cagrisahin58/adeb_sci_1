@@ -1,0 +1,911 @@
+{
+  "generated": "2026-10-31T20:20:10.448263+00:00",
+  "scoring": "ayarli",
+  "venue": "ieee_access",
+  "venue_olcum": "olculdu",
+  "palette": "adeb_konsey_uslup_7",
+  "captions_from": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures\\qc\\main_en_duz.tex",
+  "settings": "paper\\figures\\qc\\qc_ayari_kart.yaml (qc section)",
+  "mapping": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures\\qc\\ESLEME.md",
+  "consistency": {
+    "passes": true,
+    "notes": [
+      "17 figures share one design system (palettes ['adeb_konsey_uslup_7', 'adeb_konsey_uslup_8'] compared by their colour bindings; 22 entity name(s) shared, none bound twice)"
+    ]
+  },
+  "figures": [
+    {
+      "stem": "fig8_similarity_matrix",
+      "score": 100.0,
+      "verdict": "PASS",
+      "checks": [
+        {
+          "code": "A1",
+          "title": "Placed scale within 2% of 1.000",
+          "points": 6,
+          "earned": 6,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "kind double: canvas 503.23pt, venue 503.23pt, scale 1.0000"
+        },
+        {
+          "code": "A2",
+          "title": "Minimum rendered type >= 8pt",
+          "points": 8,
+          "earned": 8,
+          "status": "PASS",
+          "blocking": true,
+          "detail": "smallest 8.00pt on 'V-scr'"
+        },
+        {
+          "code": "A3",
+          "title": "All sizes on the derived 3-step scale",
+          "points": 4,
+          "earned": 4,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "sizes [8.0, 9.0] [style 7 sizes [8.0, 8.4, 9.0, 9.6]]"
+        },
+        {
+          "code": "A4",
+          "title": "Height within the float budget (no tolerance)",
+          "points": 4,
+          "earned": 4,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "2.243in vs budget 6.509in"
+        },
+        {
+          "code": "A5",
+          "title": "No dead margin band over 6%",
+          "points": 4,
+          "earned": 4,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "margins balanced"
+        },
+        {
+          "code": "A6",
+          "title": "Panel frames aligned",
+          "points": 4,
+          "earned": 4,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "left edges [1.4, 169.7, 338.0], bottom edges [125.8]"
+        },
+        {
+          "code": "B1",
+          "title": "Every colour bound in the palette",
+          "points": 5,
+          "earned": 5,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "7 colours, all bound"
+        },
+        {
+          "code": "C1",
+          "title": "Fonts embedded, zero Type 3",
+          "points": 6,
+          "earned": 6,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "1 fonts, all embedded"
+        },
+        {
+          "code": "C2",
+          "title": "All four formats, PNG above the dpi floor",
+          "points": 4,
+          "earned": 4.0,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "have ['pdf', 'eps', 'svg', 'png'], PNG 600dpi"
+        },
+        {
+          "code": "C3",
+          "title": "Manuscript includes the vector asset",
+          "points": 4,
+          "earned": 4,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "includes ../figures/fig8_similarity_matrix.pdf"
+        },
+        {
+          "code": "C4",
+          "title": "Filename matches rendered figure number",
+          "points": 3,
+          "earned": 3,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "fig8_similarity_matrix renders as Figure 8"
+        },
+        {
+          "code": "C5",
+          "title": "Manifest present, no AI render, no icon fonts",
+          "points": 3,
+          "earned": 3,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "provenance=computed"
+        },
+        {
+          "code": "D1",
+          "title": "No dual axis",
+          "points": 4,
+          "earned": 4,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "built with figspec, which blocks twinx"
+        },
+        {
+          "code": "D2",
+          "title": "Axis conventions",
+          "points": 3,
+          "earned": 3,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "enforced by figspec at draw time"
+        },
+        {
+          "code": "D3",
+          "title": "Error-bar semantics declared",
+          "points": 3,
+          "earned": 3,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "no error bars drawn"
+        },
+        {
+          "code": "D4",
+          "title": "No text-on-text collisions",
+          "points": 5,
+          "earned": 5,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "clean"
+        },
+        {
+          "code": "D5",
+          "title": "No internal experiment codes in the artwork",
+          "points": 3,
+          "earned": 3,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "clean"
+        },
+        {
+          "code": "D6",
+          "title": "Sample size stated per panel, or exempt with a reason",
+          "points": 2,
+          "earned": 2,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "3 'n = ...' annotations for 3 of 4 panels; exempt:  (a key to the colour bins)"
+        },
+        {
+          "code": "E1",
+          "title": "Caption within the venue's word limit, with a bold lead-in",
+          "points": 4,
+          "earned": 4,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "53 words, 0 in mandatory sentences, 53 counted; limit 60 on ieee_access; lead-in yes"
+        },
+        {
+          "code": "E2",
+          "title": "Manifest states the figure's one-sentence message",
+          "points": 3,
+          "earned": 3,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "Symmetric similarity is block-structured by cell and family on all three data se..."
+        },
+        {
+          "code": "E3",
+          "title": "Structural comparison against the liked reference and the catalogue",
+          "points": 3,
+          "earned": 3.0,
+          "status": "PASS",
+          "blocking": false,
+          "detail": "4/4 richness items pass; distance to the liked reference 0.385 (2/5 on the disliked side); catalogue 9.31"
+        }
+      ],
+      "skipped": [
+        "B2-B5: no manifest entities, entity styles unknown"
+      ],
+      "warnings": [],
+      "tavan": {
+        "puan": 85,
+        "toplam": 85,
+        "yuzde": 100.0,
+        "sinir_90_puan": 76.5
+      },
+      "ayarli": {
+        "scoring": "ayarli",
+        "score": 100.0,
+        "verdict": "PASS",
+        "points": 85.0,
+        "total": 85,
+        "tavan": {
+          "puan": 85,
+          "toplam": 85,
+          "yuzde": 100.0,
+          "sinir_90_puan": 76.5
+        },
+        "blocking": [],
+        "checks": [
+          {
+            "code": "A1",
+            "title": "Placed scale within 2% of 1.000",
+            "points": 6,
+            "earned": 6,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "kind double: canvas 503.23pt, venue 503.23pt, scale 1.0000"
+          },
+          {
+            "code": "A2",
+            "title": "Minimum rendered type >= 8pt",
+            "points": 8,
+            "earned": 8,
+            "status": "PASS",
+            "blocking": true,
+            "detail": "smallest 8.00pt on 'V-scr'"
+          },
+          {
+            "code": "A3",
+            "title": "All sizes on the derived 3-step scale",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "sizes [8.0, 9.0] [style 7 sizes [8.0, 8.4, 9.0, 9.6]]"
+          },
+          {
+            "code": "A4",
+            "title": "Height within the float budget (no tolerance)",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "2.243in vs budget 6.509in"
+          },
+          {
+            "code": "A5",
+            "title": "No dead margin band over 6%",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "margins balanced"
+          },
+          {
+            "code": "A6",
+            "title": "Panel frames aligned",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "left edges [1.4, 169.7, 338.0], bottom edges [125.8]"
+          },
+          {
+            "code": "B1",
+            "title": "Every colour bound in the palette",
+            "points": 5,
+            "earned": 5,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "7 colours, all bound"
+          },
+          {
+            "code": "C1",
+            "title": "Fonts embedded, zero Type 3",
+            "points": 6,
+            "earned": 6,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "1 fonts, all embedded"
+          },
+          {
+            "code": "C2",
+            "title": "All four formats, PNG above the dpi floor",
+            "points": 4,
+            "earned": 4.0,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "have ['pdf', 'eps', 'svg', 'png'], PNG 600dpi"
+          },
+          {
+            "code": "C3",
+            "title": "Manuscript includes the vector asset",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "includes ../figures/fig8_similarity_matrix.pdf"
+          },
+          {
+            "code": "C4",
+            "title": "Filename matches rendered figure number",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "fig8_similarity_matrix renders as Figure 8"
+          },
+          {
+            "code": "C5",
+            "title": "Manifest present, no AI render, no icon fonts",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "provenance=computed"
+          },
+          {
+            "code": "D1",
+            "title": "No dual axis",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "built with figspec, which blocks twinx"
+          },
+          {
+            "code": "D2",
+            "title": "Axis conventions",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "enforced by figspec at draw time"
+          },
+          {
+            "code": "D3",
+            "title": "Error-bar semantics declared",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "no error bars drawn"
+          },
+          {
+            "code": "D4",
+            "title": "No text-on-text collisions",
+            "points": 5,
+            "earned": 5,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "clean"
+          },
+          {
+            "code": "D5",
+            "title": "No internal experiment codes in the artwork",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "clean"
+          },
+          {
+            "code": "D6",
+            "title": "Sample size stated per panel, or exempt with a reason",
+            "points": 2,
+            "earned": 2,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "3 'n = ...' annotations for 3 of 4 panels; exempt:  (a key to the colour bins)"
+          },
+          {
+            "code": "E1",
+            "title": "Caption within the venue's word limit, with a bold lead-in",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "53 words, 0 in mandatory sentences, 53 counted; limit 60 on ieee_access; lead-in yes"
+          },
+          {
+            "code": "E2",
+            "title": "Manifest states the figure's one-sentence message",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "Symmetric similarity is block-structured by cell and family on all three data se..."
+          },
+          {
+            "code": "E3",
+            "title": "Structural comparison against the liked reference and the catalogue",
+            "points": 3,
+            "earned": 3.0,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "4/4 richness items pass; distance to the liked reference 0.385 (2/5 on the disliked side); catalogue 9.31"
+          }
+        ],
+        "skipped": [
+          "B2-B5: no manifest entities, entity styles unknown"
+        ],
+        "warnings": []
+      },
+      "kati": {
+        "scoring": "kati",
+        "score": 100.0,
+        "verdict": "PASS",
+        "points": 85.0,
+        "total": 85,
+        "tavan": {
+          "puan": 85,
+          "toplam": 85,
+          "yuzde": 100.0,
+          "sinir_90_puan": 76.5
+        },
+        "blocking": [],
+        "checks": [
+          {
+            "code": "A1",
+            "title": "Placed scale within 2% of 1.000",
+            "points": 6,
+            "earned": 6,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "kind double: canvas 503.23pt, venue 503.23pt, scale 1.0000"
+          },
+          {
+            "code": "A2",
+            "title": "Minimum rendered type >= 8pt",
+            "points": 8,
+            "earned": 8,
+            "status": "PASS",
+            "blocking": true,
+            "detail": "smallest 8.00pt on 'V-scr'"
+          },
+          {
+            "code": "A3",
+            "title": "All sizes on the derived 3-step scale",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "sizes [8.0, 9.0]"
+          },
+          {
+            "code": "A4",
+            "title": "Height within the float budget (no tolerance)",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "2.243in vs budget 6.509in"
+          },
+          {
+            "code": "A5",
+            "title": "No dead margin band over 6%",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "margins balanced"
+          },
+          {
+            "code": "A6",
+            "title": "Panel frames aligned",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "left edges [1.4, 169.7, 338.0], bottom edges [125.8]"
+          },
+          {
+            "code": "B1",
+            "title": "Every colour bound in the palette",
+            "points": 5,
+            "earned": 5,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "7 colours, all bound"
+          },
+          {
+            "code": "C1",
+            "title": "Fonts embedded, zero Type 3",
+            "points": 6,
+            "earned": 6,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "1 fonts, all embedded"
+          },
+          {
+            "code": "C2",
+            "title": "All four formats, PNG above the dpi floor",
+            "points": 4,
+            "earned": 4.0,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "have ['pdf', 'eps', 'svg', 'png'], PNG 600dpi"
+          },
+          {
+            "code": "C3",
+            "title": "Manuscript includes the vector asset",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "includes ../figures/fig8_similarity_matrix.pdf"
+          },
+          {
+            "code": "C4",
+            "title": "Filename matches rendered figure number",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "fig8_similarity_matrix renders as Figure 8"
+          },
+          {
+            "code": "C5",
+            "title": "Manifest present, no AI render, no icon fonts",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "provenance=computed"
+          },
+          {
+            "code": "D1",
+            "title": "No dual axis",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "built with figspec, which blocks twinx"
+          },
+          {
+            "code": "D2",
+            "title": "Axis conventions",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "enforced by figspec at draw time"
+          },
+          {
+            "code": "D3",
+            "title": "Error-bar semantics declared",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "no error bars drawn"
+          },
+          {
+            "code": "D4",
+            "title": "No text-on-text collisions",
+            "points": 5,
+            "earned": 5,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "clean"
+          },
+          {
+            "code": "D5",
+            "title": "No internal experiment codes in the artwork",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "clean"
+          },
+          {
+            "code": "D6",
+            "title": "Sample size stated per panel, or exempt with a reason",
+            "points": 2,
+            "earned": 2,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "3 'n = ...' annotations for 3 of 4 panels; exempt:  (a key to the colour bins)"
+          },
+          {
+            "code": "E1",
+            "title": "Caption within the venue's word limit, with a bold lead-in",
+            "points": 4,
+            "earned": 4,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "53 words, 0 in mandatory sentences, 53 counted; limit 60 on ieee_access; lead-in yes"
+          },
+          {
+            "code": "E2",
+            "title": "Manifest states the figure's one-sentence message",
+            "points": 3,
+            "earned": 3,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "Symmetric similarity is block-structured by cell and family on all three data se..."
+          },
+          {
+            "code": "E3",
+            "title": "Structural comparison against the liked reference and the catalogue",
+            "points": 3,
+            "earned": 3.0,
+            "status": "PASS",
+            "blocking": false,
+            "detail": "4/4 richness items pass; distance to the liked reference 0.385 (2/5 on the disliked side); catalogue 9.31"
+          }
+        ],
+        "skipped": [
+          "B2-B5: no manifest entities, entity styles unknown"
+        ],
+        "warnings": []
+      },
+      "e3": {
+        "tur": "veri",
+        "maddeler": [
+          {
+            "olcut": "karakter_cm2",
+            "deger": 2.244,
+            "esik": {
+              "max": 4.5
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 229: en çok 4.5 karakter/cm²",
+            "gecti": true,
+            "uygulanmaz": null,
+            "not": ""
+          },
+          {
+            "olcut": "yazi_kutusu_alani",
+            "deger": 0.1227,
+            "esik": {
+              "max": 0.25
+            },
+            "siddet": "blok",
+            "kaynak": "beğenilen set ölçümü 30.10.2026, MF2 rapor bölüm 1 ve DV-M bölüm 6",
+            "gecti": true,
+            "uygulanmaz": null,
+            "not": ""
+          },
+          {
+            "olcut": "sayisal_oran",
+            "deger": 0.2653,
+            "esik": {
+              "max": 0.55
+            },
+            "siddet": "uyari",
+            "kaynak": "beğenilen set ölçümü 30.10.2026, MF2 rapor bölüm 1 ve DV-M bölüm 6",
+            "gecti": true,
+            "uygulanmaz": null,
+            "not": ""
+          },
+          {
+            "olcut": "veri_alani_payi",
+            "deger": null,
+            "esik": {
+              "min": 0.45
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 211 ve 230: veri ekseni şekil genişliğinin en az %45'i",
+            "gecti": null,
+            "uygulanmaz": "no data axis found (no ticked or labelled spine); declare the data width or a reason in denge_muafiyet",
+            "not": ""
+          },
+          {
+            "olcut": "ic_ice_derinlik",
+            "deger": 2,
+            "esik": {
+              "min": 3
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 225: her yöntem şemasında derinlik 3",
+            "gecti": null,
+            "uygulanmaz": "required of method schemes only (template ortak_satirli_katlar); the paper-level share counts data figures",
+            "not": "measured 2"
+          },
+          {
+            "olcut": "gomulu_gorsel",
+            "deger": 0,
+            "esik": {
+              "min": 1
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 226: her şematikte en az bir gömülü küçük görsel",
+            "gecti": null,
+            "uygulanmaz": "only for schematics (veri)",
+            "not": ""
+          },
+          {
+            "olcut": "yalniz_metin_kutu_orani",
+            "deger": null,
+            "esik": {
+              "max_exclusive": 0.5
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 226: kutuların yarısından azı yalnız metin",
+            "gecti": null,
+            "uygulanmaz": "only for schematics (veri)",
+            "not": ""
+          },
+          {
+            "olcut": "akis_ogesi",
+            "deger": 0,
+            "esik": {
+              "min": 1
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 228: süreç zinciri olan her şekilde akış öğesi",
+            "gecti": null,
+            "uygulanmaz": "no process chain declared",
+            "not": ""
+          },
+          {
+            "olcut": "akis_etiketi",
+            "deger": 0,
+            "esik": {
+              "min": 1
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 228: en az bir ok ne aktığını yazar ya da nicelik taşır",
+            "gecti": null,
+            "uygulanmaz": "no process chain declared",
+            "not": ""
+          },
+          {
+            "olcut": "gruplama_araci",
+            "deger": 3,
+            "esik": {
+              "min": 1
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 231: her çok panelli şekilde bir gruplama aracı (ton kartı, zemin bandı)",
+            "gecti": true,
+            "uygulanmaz": null,
+            "not": "4 panels (manifest); 0 tone card(s), 3 group frame(s)"
+          },
+          {
+            "olcut": "ton_kapsami_h",
+            "deger": 0.084,
+            "esik": {
+              "min": 0.85
+            },
+            "siddet": "blok",
+            "kaynak": "İSTEM satır 231: Üslup H veri şekillerinde ton en az 0.85 (yalnız Üslup H'nin hedefi, satır 245)",
+            "gecti": null,
+            "uygulanmaz": "style H data figures only (İSTEM line 245)",
+            "not": ""
+          }
+        ],
+        "begeni": {
+          "olcutler": {
+            "murekkep": {
+              "deger": 0.3058,
+              "begenilen": [
+                0.046,
+                0.272
+              ],
+              "begenilmeyen_medyan": 0.093,
+              "uzaklik": 0.15,
+              "begenilmeyen_tarafinda": false,
+              "kaynak": "20 sentezi satır 34"
+            },
+            "karakter_cm2": {
+              "deger": 2.244,
+              "begenilen": [
+                2.3,
+                4.3
+              ],
+              "begenilmeyen_medyan": 4.9,
+              "uzaklik": 0.093,
+              "begenilmeyen_tarafinda": false,
+              "kaynak": "20 sentezi satır 31"
+            },
+            "yazi_kutusu_alani": {
+              "deger": 0.1227,
+              "begenilen": [
+                0.131,
+                0.285
+              ],
+              "begenilmeyen_medyan": 0.253,
+              "uzaklik": 0.054,
+              "begenilmeyen_tarafinda": false,
+              "kaynak": "20 sentezi satır 31"
+            },
+            "ton": {
+              "deger": 0.084,
+              "begenilen": [
+                0.86,
+                0.924
+              ],
+              "begenilmeyen_medyan": 0.038,
+              "uzaklik": 0.944,
+              "begenilmeyen_tarafinda": true,
+              "kaynak": "20 sentezi satır 33 (13 veri şekli)"
+            },
+            "bos": {
+              "deger": 0.6101,
+              "begenilen": [
+                0.024,
+                0.046
+              ],
+              "begenilmeyen_medyan": 0.869,
+              "uzaklik": 0.685,
+              "begenilmeyen_tarafinda": true,
+              "kaynak": "20 sentezi satır 35"
+            },
+            "sayisal_oran": {
+              "deger": 0.2653,
+              "begenilen": null,
+              "begenilmeyen_medyan": null,
+              "uzaklik": null,
+              "kaynak": "20 sentezi satır 32: histopatolojide ölçülmedi; kara kutuda veri şekillerinde 0.23-0.58 (12 raporu satır 188), medyan verilmedi"
+            },
+            "veri_alani_payi": {
+              "deger": null,
+              "begenilen": null,
+              "begenilmeyen_medyan": null,
+              "uzaklik": null,
+              "kaynak": "20 sentezi satır 85: histopatolojide ölçülmedi; kara kutu tablo-grafiklerinde %11-30, medyan verilmedi"
+            }
+          },
+          "uzaklik": 0.385,
+          "olculen": 5,
+          "begenilmeyen_tarafinda": 2,
+          "uzak_durur": true
+        },
+        "katalog": {
+          "olcutler": {
+            "goruntu_payi": {
+              "deger": 0.0,
+              "aralik": [
+                0.0,
+                0.0
+              ],
+              "uzaklik": 0.0,
+              "birim": "mutlak"
+            },
+            "murekkep": {
+              "deger": 0.3058,
+              "aralik": [
+                0.05,
+                0.06
+              ],
+              "uzaklik": 24.58,
+              "birim": "aralik_genisligi"
+            },
+            "ton": {
+              "deger": 0.084,
+              "aralik": [
+                0.55,
+                0.62
+              ],
+              "uzaklik": 6.657,
+              "birim": "aralik_genisligi"
+            },
+            "bos": {
+              "deger": 0.6101,
+              "aralik": [
+                0.33,
+                0.37
+              ],
+              "uzaklik": 6.003,
+              "birim": "aralik_genisligi"
+            }
+          },
+          "uzaklik": 9.31
+        },
+        "ozet_satiri": "kar/cm² 2.24 [2.30-4.30] · yazı kutusu 0.12 [0.13-0.28] · sayısal 0.27 · veri alanı - · derinlik 2 · akış 0/0 etiketli · ton 0.08 [0.86-0.92] · mürekkep 0.306 | beğeniye uzaklık 0.39 (2/5 beğenilmeyen tarafında) | eşikler tamam",
+        "uslup_okuma": {
+          "secim": "7",
+          "kaynak": "uslup",
+          "uc_boyut": {
+            "projection": "isometric",
+            "angle_deg": 30.0,
+            "kaynak": "skill_varsayilani"
+          },
+          "sablon_yolu": "<skill>/styles/uslup_7/sablonlar.yaml",
+          "sablon_kaynagi": "katalog",
+          "uyarilar": [],
+          "notlar": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+ "canvas_mm": [
+  85.29,
+  118.0
+ ],
+ "cards": [
+  {
+   "letter": "",
+   "name": "Conditioning sets",
+   "title": "Conditioning sets",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    0.5,
+    84.79,
+    60.5
+   ]
+  },
+  {
+   "letter": "",
+   "name": "Measured asymmetry",
+   "title": "Measured asymmetry",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    62.1,
+    84.79,
+    117.5
+   ]
+  }
+ ],
+ "texts": 31,
+ "marks": 15,
+ "sizes_pt": [
+  8.0,
+  9.0
+ ],
+ "faces": [
+  "DejaVuSans-Bold.ttf",
+  "DejaVuSans-Oblique.ttf",
+  "DejaVuSans.ttf"
+ ],
+ "fallback_faces": [],
+ "min_text_clearance_mm": {
+  "Conditioning sets": 1.654,
+  "Measured asymmetry": 2.0
+ },
+ "min_axes_clearance_mm": {
+  "Measured asymmetry": 2.268
+ },
+ "tolerances_mm": {
+  "text_clear": 0.8,
+  "axes_clear": 0.8,
+  "card_gap": 1.5,
+  "overlap": 0.1
+ },
+ "a4": {
+  "height_mm": 118.0,
+  "budget_mm": 165.327,
+  "slack_mm": 47.327,
+  "qc_tolerance_pt": 1.0,
+  "within_budget": true,
+  "passes_qc_only_by_its_tolerance": false
+ },
+ "naming": {
+  "step": 4,
+  "kind": "serit",
+  "kind_drawn": "serit",
+  "types": [
+   "strip"
+  ],
+  "panels": {
+   "Conditioning sets": "strip",
+   "Measured asymmetry": "strip"
+  },
+  "badges": [],
+  "badge_suppressed": [],
+  "strips": [
+   {
+    "cards": [
+     "Conditioning sets"
+    ],
+    "baseline_mm": 5.757,
+    "row_top_mm": 0.5
+   },
+   {
+    "cards": [
+     "Measured asymmetry"
+    ],
+    "baseline_mm": 67.357,
+    "row_top_mm": 62.1
+   }
+  ],
+  "flows": []
+ },
+ "sample_size": {
+  "Conditioning sets": "exempt: set definitions with image counts",
+  "Measured asymmetry": "n"
+ },
+ "allowed": [],
+ "issues": [],
+ "verdict": "PASS"
+}

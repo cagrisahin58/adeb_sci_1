@@ -1,0 +1,702 @@
+{
+  "stem": "fig4_panel_members",
+  "uslup": 8,
+  "degerler": [
+    {
+      "etiket": "CIFAR row Addepalli2022Efficient_RN18",
+      "deger": {
+        "c10": "primary",
+        "c100": "primary",
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "hucre_tablosu:Addepalli2022Efficient_RN18; hucre_tablosu_b9:C100_Addepalli2022Efficient_RN18 -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "R18 dot Addepalli2022Efficient_RN18",
+      "deger": true,
+      "kaynak": "results/q1/konsey_ek_masa/a10_panel.json",
+      "anahtar_yolu": "mimari_dogrulama.modeller.Addepalli2022Efficient_RN18.resnet18_turevi",
+      "hesap": "dot drawn iff true; checked against reference sheet M12.3 table (a)",
+      "kaynak_sha256": "1de4530323bd26d5fe4dbfc0019aab17195a4a396c18b9217c67431bbe9f2fdd"
+    },
+    {
+      "etiket": "CIFAR row Rade2021Helper_R18_ddpm",
+      "deger": {
+        "c10": "primary",
+        "c100": "primary",
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "hucre_tablosu:Rade2021Helper_R18_ddpm; hucre_tablosu_b9:C100_Rade2021Helper_R18_ddpm -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "R18 dot Rade2021Helper_R18_ddpm",
+      "deger": true,
+      "kaynak": "results/q1/konsey_ek_masa/a10_panel.json",
+      "anahtar_yolu": "mimari_dogrulama.modeller.Rade2021Helper_R18_ddpm.resnet18_turevi",
+      "hesap": "dot drawn iff true; checked against reference sheet M12.3 table (a)",
+      "kaynak_sha256": "1de4530323bd26d5fe4dbfc0019aab17195a4a396c18b9217c67431bbe9f2fdd"
+    },
+    {
+      "etiket": "CIFAR row Wong2020Fast",
+      "deger": {
+        "c10": "primary",
+        "c100": null,
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "hucre_tablosu:Wong2020Fast -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "R18 dot Wong2020Fast",
+      "deger": true,
+      "kaynak": "results/q1/konsey_ek_masa/a10_panel.json",
+      "anahtar_yolu": "mimari_dogrulama.modeller.Wong2020Fast.resnet18_turevi",
+      "hesap": "dot drawn iff true; checked against reference sheet M12.3 table (a)",
+      "kaynak_sha256": "1de4530323bd26d5fe4dbfc0019aab17195a4a396c18b9217c67431bbe9f2fdd"
+    },
+    {
+      "etiket": "CIFAR row Engstrom2019Robustness",
+      "deger": {
+        "c10": "primary",
+        "c100": null,
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "hucre_tablosu:Engstrom2019Robustness -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "R18 dot Engstrom2019Robustness",
+      "deger": false,
+      "kaynak": "results/q1/konsey_ek_masa/a10_panel.json",
+      "anahtar_yolu": "mimari_dogrulama.modeller.Engstrom2019Robustness.resnet18_turevi",
+      "hesap": "dot drawn iff true; checked against reference sheet M12.3 table (a)",
+      "kaynak_sha256": "1de4530323bd26d5fe4dbfc0019aab17195a4a396c18b9217c67431bbe9f2fdd"
+    },
+    {
+      "etiket": "CIFAR row Carmon2019Unlabeled",
+      "deger": {
+        "c10": "primary",
+        "c100": null,
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "hucre_tablosu:Carmon2019Unlabeled -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "R18 dot Carmon2019Unlabeled",
+      "deger": false,
+      "kaynak": "results/q1/konsey_ek_masa/a10_panel.json",
+      "anahtar_yolu": "mimari_dogrulama.modeller.Carmon2019Unlabeled.resnet18_turevi",
+      "hesap": "dot drawn iff true; checked against reference sheet M12.3 table (a)",
+      "kaynak_sha256": "1de4530323bd26d5fe4dbfc0019aab17195a4a396c18b9217c67431bbe9f2fdd"
+    },
+    {
+      "etiket": "CIFAR row Gowal2020Uncovering_28_10_extra",
+      "deger": {
+        "c10": "primary",
+        "c100": null,
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "hucre_tablosu:Gowal2020Uncovering_28_10_extra -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "R18 dot Gowal2020Uncovering_28_10_extra",
+      "deger": false,
+      "kaynak": "results/q1/konsey_ek_masa/a10_panel.json",
+      "anahtar_yolu": "mimari_dogrulama.modeller.Gowal2020Uncovering_28_10_extra.resnet18_turevi",
+      "hesap": "dot drawn iff true; checked against reference sheet M12.3 table (a)",
+      "kaynak_sha256": "1de4530323bd26d5fe4dbfc0019aab17195a4a396c18b9217c67431bbe9f2fdd"
+    },
+    {
+      "etiket": "CIFAR row Sehwag2021Proxy_R18",
+      "deger": {
+        "c10": "primary",
+        "c100": null,
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "hucre_tablosu:Sehwag2021Proxy_R18 -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "R18 dot Sehwag2021Proxy_R18",
+      "deger": true,
+      "kaynak": "results/q1/konsey_ek_masa/a10_panel.json",
+      "anahtar_yolu": "mimari_dogrulama.modeller.Sehwag2021Proxy_R18.resnet18_turevi",
+      "hesap": "dot drawn iff true; checked against reference sheet M12.3 table (a)",
+      "kaynak_sha256": "1de4530323bd26d5fe4dbfc0019aab17195a4a396c18b9217c67431bbe9f2fdd"
+    },
+    {
+      "etiket": "CIFAR row Rice2020Overfitting",
+      "deger": {
+        "c10": null,
+        "c100": "primary",
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "anahtar_yolu": "hucre_tablosu_b9:C100_Rice2020Overfitting -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "etiket": "CIFAR row Sehwag2021Proxy",
+      "deger": {
+        "c10": null,
+        "c100": "primary",
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "anahtar_yolu": "hucre_tablosu_b9:C100_Sehwag2021Proxy -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "etiket": "CIFAR row Pang2022Robustness_WRN28_10",
+      "deger": {
+        "c10": null,
+        "c100": "primary",
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "anahtar_yolu": "hucre_tablosu_b9:C100_Pang2022Robustness_WRN28_10 -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "etiket": "CIFAR row Wang2023Better_WRN-28-10",
+      "deger": {
+        "c10": null,
+        "c100": "primary",
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "anahtar_yolu": "hucre_tablosu_b9:C100_Wang2023Better_WRN-28-10 -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "etiket": "CIFAR row Jia2022LAS-AT_34_10",
+      "deger": {
+        "c10": null,
+        "c100": "primary",
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "anahtar_yolu": "hucre_tablosu_b9:C100_Jia2022LAS-AT_34_10 -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "etiket": "CIFAR row Debenedetti2022Light_XCiT-S12",
+      "deger": {
+        "c10": "secondary",
+        "c100": "secondary",
+        "aile": "XCiT"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "hucre_tablosu:Debenedetti2022Light_XCiT-S12; hucre_tablosu_b9:C100_Debenedetti2022Light_XCiT-S12 -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "CIFAR row Hendrycks2019Using",
+      "deger": {
+        "c10": null,
+        "c100": "secondary",
+        "aile": "CNN"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "anahtar_yolu": "hucre_tablosu_b9:C100_Hendrycks2019Using -> modeller.<m>.{birincil_panel, ikincil_panel, aile}",
+      "hesap": "primary = birincil_panel, secondary = ikincil_panel; C100 keys in hucre_tablosu_b9.json",
+      "kaynak_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "etiket": "ImageNetV2 panel row Salman2020Do_R18",
+      "deger": {
+        "rol": "primary",
+        "aile": "CNN",
+        "robustbench": "RobustBench imagenet Linf Salman2020Do_R18"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "modeller.IN_Salman2020Do_R18.{birincil_panel, ikincil_panel, aile, kontrol_noktasi}",
+      "hesap": "row name = key without 'IN_'; RobustBench ID from kontrol_noktasi",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "ImageNetV2 panel row Salman2020Do_R50",
+      "deger": {
+        "rol": "primary",
+        "aile": "CNN",
+        "robustbench": "RobustBench imagenet Linf Salman2020Do_R50"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "modeller.IN_Salman2020Do_R50.{birincil_panel, ikincil_panel, aile, kontrol_noktasi}",
+      "hesap": "row name = key without 'IN_'; RobustBench ID from kontrol_noktasi",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "ImageNetV2 panel row Salman2020Do_50_2",
+      "deger": {
+        "rol": "primary",
+        "aile": "CNN",
+        "robustbench": "RobustBench imagenet Linf Salman2020Do_50_2"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "modeller.IN_Salman2020Do_50_2.{birincil_panel, ikincil_panel, aile, kontrol_noktasi}",
+      "hesap": "row name = key without 'IN_'; RobustBench ID from kontrol_noktasi",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "ImageNetV2 panel row Engstrom2019Robustness",
+      "deger": {
+        "rol": "primary",
+        "aile": "CNN",
+        "robustbench": "RobustBench imagenet Linf Engstrom2019Robustness"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "modeller.IN_Engstrom2019Robustness.{birincil_panel, ikincil_panel, aile, kontrol_noktasi}",
+      "hesap": "row name = key without 'IN_'; RobustBench ID from kontrol_noktasi",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "ImageNetV2 panel row Chen2024Data_WRN_50_2",
+      "deger": {
+        "rol": "primary",
+        "aile": "CNN",
+        "robustbench": "RobustBench imagenet Linf Chen2024Data_WRN_50_2"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "modeller.IN_Chen2024Data_WRN_50_2.{birincil_panel, ikincil_panel, aile, kontrol_noktasi}",
+      "hesap": "row name = key without 'IN_'; RobustBench ID from kontrol_noktasi",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "ImageNetV2 panel row Peng2023Robust",
+      "deger": {
+        "rol": "primary",
+        "aile": "CNN",
+        "robustbench": "RobustBench imagenet Linf Peng2023Robust"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "modeller.IN_Peng2023Robust.{birincil_panel, ikincil_panel, aile, kontrol_noktasi}",
+      "hesap": "row name = key without 'IN_'; RobustBench ID from kontrol_noktasi",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "ImageNetV2 panel row Debenedetti_XCiT-S12",
+      "deger": {
+        "rol": "secondary",
+        "aile": "XCiT",
+        "robustbench": "RobustBench imagenet Linf Debenedetti2022Light_XCiT-S12"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "modeller.IN_Debenedetti_XCiT-S12.{birincil_panel, ikincil_panel, aile, kontrol_noktasi}",
+      "hesap": "row name = key without 'IN_'; RobustBench ID from kontrol_noktasi",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "ImageNetV2 pair line 'ConvNeXt-T, ViT-S' under 'Singh, IN-init., CvSt'",
+      "deger": {
+        "cift": 1,
+        "cnn": "IN_Singh_ConvNeXt-T-CvSt",
+        "donusturucu": "IN_Singh_ViT-S-CvSt",
+        "satir": "IN",
+        "aile": [
+          "CNN",
+          "ViT"
+        ],
+        "robustbench": [
+          "RobustBench imagenet Linf Singh2023Revisiting_ConvNeXt-T-ConvStem",
+          "RobustBench imagenet Linf Singh2023Revisiting_ViT-S-ConvStem"
+        ]
+      },
+      "kaynak": "results/q1/konsey_b8_imagenetv2/b8_betimsel.json",
+      "anahtar_yolu": "ciftler[0].{cift, cnn, donusturucu, satir}",
+      "hesap": "same pairs and order as b8_dondurulmus_b2.json b2.F_B2.K-a.ciftler; row word IN -> 'IN-init.', scr -> 'scratch'; reference sheet M10.4 pair table",
+      "kaynak_sha256": "332d30789cc22180eed26f60f8544ef26263cdd32ff4b7255fec598439376da0"
+    },
+    {
+      "etiket": "ImageNetV2 pair line 'ConvNeXt-B, ViT-B' under 'Singh, IN-init., CvSt'",
+      "deger": {
+        "cift": 2,
+        "cnn": "IN_Singh_ConvNeXt-B-CvSt",
+        "donusturucu": "IN_Singh_ViT-B-CvSt",
+        "satir": "IN",
+        "aile": [
+          "CNN",
+          "ViT"
+        ],
+        "robustbench": [
+          "RobustBench imagenet Linf Singh2023Revisiting_ConvNeXt-B-ConvStem",
+          "RobustBench imagenet Linf Singh2023Revisiting_ViT-B-ConvStem"
+        ]
+      },
+      "kaynak": "results/q1/konsey_b8_imagenetv2/b8_betimsel.json",
+      "anahtar_yolu": "ciftler[1].{cift, cnn, donusturucu, satir}",
+      "hesap": "same pairs and order as b8_dondurulmus_b2.json b2.F_B2.K-a.ciftler; row word IN -> 'IN-init.', scr -> 'scratch'; reference sheet M10.4 pair table",
+      "kaynak_sha256": "332d30789cc22180eed26f60f8544ef26263cdd32ff4b7255fec598439376da0"
+    },
+    {
+      "etiket": "ImageNetV2 pair line 'ConvNeXt-B, Swin-B' under 'Liu, scratch'",
+      "deger": {
+        "cift": 3,
+        "cnn": "IN_Liu_ConvNeXt-B",
+        "donusturucu": "IN_Liu_Swin-B",
+        "satir": "scr",
+        "aile": [
+          "CNN",
+          "Swin"
+        ],
+        "robustbench": [
+          "RobustBench imagenet Linf Liu2023Comprehensive_ConvNeXt-B",
+          "RobustBench imagenet Linf Liu2023Comprehensive_Swin-B"
+        ]
+      },
+      "kaynak": "results/q1/konsey_b8_imagenetv2/b8_betimsel.json",
+      "anahtar_yolu": "ciftler[2].{cift, cnn, donusturucu, satir}",
+      "hesap": "same pairs and order as b8_dondurulmus_b2.json b2.F_B2.K-a.ciftler; row word IN -> 'IN-init.', scr -> 'scratch'; reference sheet M10.4 pair table",
+      "kaynak_sha256": "332d30789cc22180eed26f60f8544ef26263cdd32ff4b7255fec598439376da0"
+    },
+    {
+      "etiket": "ImageNetV2 unpaired line 'ViT-B'",
+      "deger": {
+        "model": "IN_Mo_ViT-B",
+        "aile": "ViT",
+        "robustbench": "RobustBench imagenet Linf Mo2022When_ViT-B"
+      },
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "modeller.IN_Mo_ViT-B (neither panel nor pair)",
+      "hesap": "unpaired = not panel, not in b2.F_B2.K-a.ciftler",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "count PanelCten",
+      "deger": 7,
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "count over drawn rows",
+      "hesap": "equals _icerik_study_overview.sayilar() count, checked against the reference sheet",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "count PanelChun",
+      "deger": 7,
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "anahtar_yolu": "count over drawn rows",
+      "hesap": "equals _icerik_study_overview.sayilar() count, checked against the reference sheet",
+      "kaynak_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "etiket": "count SecCten",
+      "deger": 1,
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "anahtar_yolu": "count over drawn rows",
+      "hesap": "equals _icerik_study_overview.sayilar() count, checked against the reference sheet",
+      "kaynak_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "etiket": "count SecChun",
+      "deger": 2,
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "anahtar_yolu": "count over drawn rows",
+      "hesap": "equals _icerik_study_overview.sayilar() count, checked against the reference sheet",
+      "kaynak_sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "etiket": "count PanelIN",
+      "deger": 6,
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "count over drawn rows",
+      "hesap": "equals _icerik_study_overview.sayilar() count, checked against the reference sheet",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "count SecIN",
+      "deger": 1,
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "count over drawn rows",
+      "hesap": "equals _icerik_study_overview.sayilar() count, checked against the reference sheet",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "count PairsIN",
+      "deger": 3,
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "count over drawn rows",
+      "hesap": "equals _icerik_study_overview.sayilar() count, checked against the reference sheet",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    },
+    {
+      "etiket": "count UnpairedIN",
+      "deger": 1,
+      "kaynak": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "anahtar_yolu": "count over drawn rows",
+      "hesap": "equals _icerik_study_overview.sayilar() count, checked against the reference sheet",
+      "kaynak_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    }
+  ],
+  "records_sha256": null,
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 29,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results\\C1_REFERANS_FOYU.md",
+    "foy_sha256": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f",
+    "ayrinti": [
+      {
+        "ad": "CIFAR-10 total == sum of groups",
+        "a": 20,
+        "b": 20,
+        "tolerans": 0,
+        "aciklama": "partition",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 total == sum of groups",
+        "a": 15,
+        "b": 15,
+        "tolerans": 0,
+        "aciklama": "partition",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 total == sum of groups",
+        "a": 14,
+        "b": 14,
+        "tolerans": 0,
+        "aciklama": "partition (pairs = CNN counterparts)",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-10 K = 20 (S7)",
+        "aranan_metin": "S7, Hodge (K = 20)",
+        "foy_satiri": 1569,
+        "capa": "| S7, Hodge",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 model count",
+        "aranan_metin": "| 15 | 0 | 0 | evet |",
+        "foy_satiri": 1826,
+        "capa": "| B9 | cifar100 |",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 model count",
+        "aranan_metin": "| 14 | 0 | 0 | evet |",
+        "foy_satiri": 1827,
+        "capa": "| B8 | imagenetv2 |",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-10 primary panel",
+        "aranan_metin": "panel 7 uyeli",
+        "foy_satiri": 1741,
+        "capa": "Havuz modellerinde sigma ve rho",
+        "eslesti": true
+      },
+      {
+        "ad": "V-scr runs",
+        "aranan_metin": "| V-scr | 3 |",
+        "foy_satiri": 1496,
+        "capa": "| V-scr |",
+        "eslesti": true
+      },
+      {
+        "ad": "V-IN runs",
+        "aranan_metin": "| V-IN | 2 |",
+        "foy_satiri": 1497,
+        "capa": "| V-IN |",
+        "eslesti": true
+      },
+      {
+        "ad": "R224-scr runs",
+        "aranan_metin": "| R224-scr | 2 |",
+        "foy_satiri": 1498,
+        "capa": "| R224-scr |",
+        "eslesti": true
+      },
+      {
+        "ad": "R224-IN runs",
+        "aranan_metin": "| R224-IN | 2 |",
+        "foy_satiri": 1499,
+        "capa": "| R224-IN |",
+        "eslesti": true
+      },
+      {
+        "ad": "R32 runs == K-a seed pairs (foy 1593)",
+        "a": 3,
+        "b": 3,
+        "tolerans": 0,
+        "aciklama": "count of ResNet seeds named on foy 1593",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 seed pairs (foy 1848)",
+        "a": 3,
+        "b": 3,
+        "tolerans": 0,
+        "aciklama": "count of ResNet seeds named on foy 1848",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 primary panel rows (foy 1873-1887)",
+        "a": 7,
+        "b": 7,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 secondary panel rows",
+        "a": 2,
+        "b": 2,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 primary panel rows (foy 1909-1922)",
+        "a": 6,
+        "b": 6,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 secondary panel rows",
+        "a": 1,
+        "b": 1,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pairs (foy 1930-1932)",
+        "a": 3,
+        "b": 3,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 unpaired transformer rows",
+        "a": 1,
+        "b": 1,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "R18 flag Wong2020Fast",
+        "aranan_metin": "| evet |",
+        "foy_satiri": 2312,
+        "capa": "| Wong2020Fast | ",
+        "eslesti": true
+      },
+      {
+        "ad": "R18 flag Engstrom2019Robustness",
+        "aranan_metin": "| hayir |",
+        "foy_satiri": 2313,
+        "capa": "| Engstrom2019Robustness | ",
+        "eslesti": true
+      },
+      {
+        "ad": "R18 flag Carmon2019Unlabeled",
+        "aranan_metin": "| hayir |",
+        "foy_satiri": 2314,
+        "capa": "| Carmon2019Unlabeled | ",
+        "eslesti": true
+      },
+      {
+        "ad": "R18 flag Gowal2020Uncovering_28_10_extra",
+        "aranan_metin": "| hayir |",
+        "foy_satiri": 2315,
+        "capa": "| Gowal2020Uncovering_28_10_extra | ",
+        "eslesti": true
+      },
+      {
+        "ad": "R18 flag Sehwag2021Proxy_R18",
+        "aranan_metin": "| evet |",
+        "foy_satiri": 2316,
+        "capa": "| Sehwag2021Proxy_R18 | ",
+        "eslesti": true
+      },
+      {
+        "ad": "R18 flag Addepalli2022Efficient_RN18",
+        "aranan_metin": "| evet |",
+        "foy_satiri": 2317,
+        "capa": "| Addepalli2022Efficient_RN18 | ",
+        "eslesti": true
+      },
+      {
+        "ad": "R18 flag Rade2021Helper_R18_ddpm",
+        "aranan_metin": "| evet |",
+        "foy_satiri": 2318,
+        "capa": "| Rade2021Helper_R18_ddpm | ",
+        "eslesti": true
+      },
+      {
+        "ad": "pair 1 row",
+        "aranan_metin": "| IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt | IN |",
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt |",
+        "eslesti": true
+      },
+      {
+        "ad": "pair 2 row",
+        "aranan_metin": "| IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt | IN |",
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt |",
+        "eslesti": true
+      },
+      {
+        "ad": "pair 3 row",
+        "aranan_metin": "| IN_Liu_ConvNeXt-B | IN_Liu_Swin-B | scr |",
+        "foy_satiri": 1932,
+        "capa": "| 3 | IN_Liu_ConvNeXt-B |",
+        "eslesti": true
+      }
+    ]
+  },
+  "okunan_anahtarlar": {
+    "raporlar/konsey_2026-10-29/hucre_tablosu.json": "modeller.<m>.{hucre, birincil_panel, ikincil_panel}",
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": "modeller.<m>.{hucre, birincil_panel, ikincil_panel}",
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": "modeller.<m>.{hucre, birincil_panel, ikincil_panel}",
+    "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "modeller_ortak",
+    "results/q1/konsey_b10_gradyan/mantel_cifar100.json": "modeller_ortak",
+    "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": "modeller_ortak",
+    "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": "b2.F_B2.K-a.ciftler",
+    "results/q1/konsey_ek_masa/a10_panel.json": "mimari_dogrulama.modeller.<m>.resnet18_turevi",
+    "results/q1/konsey_b8_imagenetv2/b8_betimsel.json": "ciftler[k].{cift, cnn, donusturucu, satir}"
+  },
+  "git": {
+    "commit": "c315e09f6c03fe9b165e4fa3a5786f8448ae8c85",
+    "branch": "q1",
+    "dirty_or_untracked": []
+  },
+  "betik": "paper/figures/visio/fig_panel_members.py --uslup 8",
+  "foy_sha256": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f",
+  "notlar": [],
+  "satir_sayisi": {
+    "cifar": 14,
+    "in_panel": 7,
+    "in_cift_satiri": 4
+  },
+  "r18_kaynagi": "results/q1/konsey_ek_masa/a10_panel.json mimari_dogrulama (CIFAR-10 primary panel only; no check exists for CIFAR-100 or ImageNet members, so no dot is drawn there)"
+}

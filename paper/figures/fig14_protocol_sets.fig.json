@@ -1,0 +1,126 @@
+{
+  "stem": "fig14_protocol_sets",
+  "builder": "figspec.export.save",
+  "figspec_version": "1.0.0",
+  "venue": "ieee_access",
+  "venue_olcum": "olculdu",
+  "palette": "adeb_konsey_uslup_7",
+  "palette_path": "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+  "uslup": 7,
+  "uslup_uc_boyut": "izometrik 30",
+  "uslup_uc_boyut_kaynagi": "skill_varsayilani",
+  "kind": "single",
+  "panels": [
+    1,
+    2
+  ],
+  "panels_n_exempt": {
+    "Conditioning sets": "set definitions with image counts"
+  },
+  "naming_step": 4,
+  "naming_kind": "serit",
+  "naming": {
+    "step": 4,
+    "kind": "serit",
+    "kind_drawn": "serit",
+    "types": [
+      "strip"
+    ],
+    "panels": {
+      "Conditioning sets": "strip",
+      "Measured asymmetry": "strip"
+    },
+    "badges": [],
+    "badge_suppressed": [],
+    "strips": [
+      {
+        "cards": [
+          "Conditioning sets"
+        ],
+        "baseline_mm": 5.757,
+        "row_top_mm": 0.5
+      },
+      {
+        "cards": [
+          "Measured asymmetry"
+        ],
+        "baseline_mm": 67.357,
+        "row_top_mm": 62.1
+      }
+    ],
+    "flows": []
+  },
+  "figsize_in": [
+    3.35787394492874,
+    4.645669291338583
+  ],
+  "geometry": {
+    "pdf_width_pt": 241.7669240349,
+    "expected_pdf_width_pt": 241.76692403486928,
+    "a1": {
+      "kind": "single",
+      "expected_pt": 241.767,
+      "width_pt": 241.767,
+      "scale": 1.0,
+      "ok": true,
+      "gate_points": 6,
+      "gate_blocks": false
+    }
+  },
+  "type_scale": {
+    "floor": 8.0,
+    "tick": 8.0,
+    "annot": 8.0,
+    "label": 9.0,
+    "title": 10.0,
+    "panel": 10.0
+  },
+  "font_sans": [
+    "DejaVu Sans",
+    "Open Sans"
+  ],
+  "font_fallback": [],
+  "entities": {},
+  "derived_colours": {
+    "#EAEAF2": {
+      "from": "card",
+      "tint": "kap",
+      "role": "fill"
+    }
+  },
+  "errorbar_kinds": [
+    "sd"
+  ],
+  "provenance": "computed",
+  "sources": [
+    {
+      "path": "results/q1/fig_protokol_kumeleri_veri.json",
+      "exists": true,
+      "sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "path": "results/c1_transfer/c1_transfer_summary.json",
+      "exists": true,
+      "sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "path": "paper/manuscript/sections/03_methodology.tex",
+      "exists": true,
+      "sha256": "474fb6e1314912c4060a1286fa65166e0a3c65c4ba2614f088e12f58ada3cea4"
+    }
+  ],
+  "message": "The measured asymmetry depends on the conditioning set: it is smallest on the target-correct set and largest on the successful-source set.",
+  "caption_hint": null,
+  "notes": null,
+  "git_rev": "c315e09",
+  "formats": {
+    "pdf": "fig14_protocol_sets.pdf",
+    "eps": "fig14_protocol_sets.eps",
+    "svg": "fig14_protocol_sets.svg",
+    "png": "fig14_protocol_sets.png"
+  },
+  "sablon": "tasarim_izgarasi",
+  "errorbar_tanimlari": {
+    "sd": "+-1 SD (ddof = 1) of the asymmetry over the three seed pairs (asimetri_sd)"
+  }
+}

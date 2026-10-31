@@ -1,0 +1,10 @@
+# makale-yazari TR ayna, 2026-10-31 komut gunlugu (Git Bash, Windows; WSL wsl.exe -d Ubuntu-22.04, MSYS_NO_PATHCONV=1)
+diff scratchpad/yedek_en/<bolum>.tex paper/manuscript/sections/<bolum>.tex > scratchpad/tr/diff_<bolum>.txt   (EN degisikliklerinin cikarilmasi; 04z icin git diff)
+wsl: gecici _tr_kapilar.sh   (check_manuscript_claims, q1_tr_decimal_check, check_abstract_body, check_en_tr_mirror, verify_manuscript_numbers; docker exec -w /workspace adeb_eval python -B); taban: ayna KALDI, TR_EKSIK 33
+Edit araci: paper/manuscript_tr/sections/03_yontem.tex, 04_deneyler.tex, 04z_hesaplama.tex, 07_ek.tex   (heredoc yok; Turkce karakterler icin Edit kullanildi)
+wsl: gecici _tr_derle.sh     (PATH=/home/firat/.local/bin:$PATH; cd paper/manuscript_tr; latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex) -> cikis 0, 27 sayfa, 0 uyari
+wsl: gecici _tr_kapilar.sh   (ikinci kosu) -> ayna GECTI, iddialar 45/45, TR_EKSIK 26
+python C:/Users/cagri/.claude/skills/akademik-turkce/scripts/tara.py <bolum>.tex --tur makale --bolum oto   (03, 04, 04z, 07: kesin ihlal yok)
+python arsiv/b2_yardimci/_mk_y1_kelime_say.py <git HEAD kopyasi> ve paper/manuscript_tr   (17445 -> 16824)
+wsl: bash -lc "cd /home/firat/projects/adeb_sci_1 && bash scripts/kapilar.sh" -> OZ-SINAMA VE DOKUZ KAPI GECTI
+rm paper/figures/visio_loglari/_tr_kapilar.sh _tr_derle.sh _tr_vmn_once.log   (gecici yardimcilar silindi)

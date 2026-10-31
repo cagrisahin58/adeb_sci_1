@@ -1,0 +1,23 @@
+{
+ "ajan": "derleme_qc_paket (gorsel-uretici rolu)",
+ "tarih": "2026-10-31",
+ "baslangic": "2026-10-31T22:47:21+03:00",
+ "bitis": "2026-10-31T23:02:00+03:00",
+ "durum": "tamam",
+ "rapor": "raporlar/visio_2026-10-31/10_derleme_qc_paket.md",
+ "komut_gunlugu": "paper/figures/visio_loglari/derleme_qc_paket_komutlar.log",
+ "adimlar": {
+  "1_derleme": {"EN": {"sayfa_once": 25, "sayfa_sonra": 25, "hata": 0, "tanimsiz_atif": 0, "tanimsiz_gonderme": 0, "overfull_hbox": 53, "govde_metninde_tasma": 0}, "TR": {"sayfa_once_00_once": 26, "sayfa_bu_adim_once": 27, "sayfa_sonra": 27, "hata": 0, "tanimsiz": 0, "overfull_hbox": 0}, "kapak": {"sayfa_00_once": 3, "sayfa_bu_adim_once": 2, "sayfa_sonra": 2, "hata": 0, "overfull": 0}},
+  "2_kapilar": "OZ-SINAMA VE DOKUZ KAPI GECTI, cikis 0 (10/10 GECTI satiri)",
+  "3_fig_qc": {"sekil": 17, "ayarli_PASS": 17, "ayarli_en_dusuk": 94.1, "kati_PASS": 17, "kati_en_dusuk": 94.4, "bloklayici": 0, "tutarlilik": "PASS"},
+  "4_zenginlik_makale": {"cok_panelli_pay": "PASS 0.8235", "derinlik3_veri_payi": "UYARI 0.1667", "goruntu_payi": "FAIL 0.0588 (gerekcesiz); gerekceyle uygulanmaz", "renk_anlam_tekligi": "PASS 0 (bos gecis)", "harfli_pay": "PASS 0.0588", "ardisik_ayni_ad": "PASS 2"},
+  "5_numara_ve_ad_takimi": "17/17 tutuyor (ESLEME, included_figures EN/TR, main.aux EN/TR, manifest/kanit/denetci stem, formats, QC klasoru)",
+  "6_drawing_drafts": {"klasor": "paper/submission/Drawing_drafts", "dosya": 30, "vsdx": 6, "kart_json": 22, "yollari_temizle": "51 dosya 0 alan", "yollari_tara_cikis": 0, "vsdx_yazar": "dc:creator ve cp:lastModifiedBy 'ÇAĞRI ŞAHİN' (6/6), Company bos"},
+  "7_sha": "22 dosyanin 21'i OK; results/C1_REFERANS_FOYU.md FAILED: c315e09 commit'i (Foy M13) 288 satir ekledi, 0 satir silmedi; bu ajan foye dokunmadi"
+ },
+ "kararlar": [
+  "fig_qc, zenginlik ve included_figures duz okuma kopyasi paper/figures/qc/main_en_duz.tex uzerinde kosuldu; main.tex \\input izlenmedigi icin sekil bulunmuyor",
+  "fig_qc'ye --palette verilmedi; proje ayarinin motor basina iki QC kopyasi (palette: + C4 ad semasi) VZ_PROJE_AYARI ile verildi",
+  "goruntu_payi icin 01_envanter.md bolum 3 satir 83'teki yazili gerekce --goruntu-gerekce ile verildi; gerekcesiz FAIL sonucu da saklandi"
+ ]
+}

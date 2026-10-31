@@ -16,7 +16,7 @@
 \section{Experiments}
 \label{sec:experiments}
 
-Unless a protocol is named, every transfer rate below is the target-correct rate $T_{ij}$, factored by Equation~\eqref{eq:decomp}; split-half log-scale estimates are primary, logit and ratio scales are sensitivities, and the decision rules are those of Table~\ref{tab:registry}.
+Unless a protocol is named, every transfer rate below is the target-correct rate $T_{ij}$, factored by Equation~\eqref{eq:decomp}; split-half log-scale estimates are primary, logit and ratio scales are sensitivities, and the decision rules are those of Figure~\ref{fig:registry_map}.
 
 % ----------------------------------------------------------------------------
 % A. Robustness of the pair
@@ -79,7 +79,7 @@ A two-model asymmetry cannot say why the ViT looks like a weak source against CN
 % FOY:TabloIII:160 (+4.36) ; Kaynak-hedef:390 (+4.41, uc modelli ayri kosu)
 \begin{table*}[!t]
 \centering
-\caption{Log-scale decomposition of the target-correct asymmetry between ResNet-18 and ViT-Tiny. Upper block: the three seed pairs, mean (run-to-run standard deviation); the matrices are those of the separate three-model attack run, hence $+4.41$ here against $+4.36$ in Table~\ref{tab:protocol_settings}. Lower block: seed-matched pairs of the two-by-two design (secondary analysis S4, descriptive, full sample). The log ratio is exactly the potential component plus the directional residual; the potential share, their ratio, is undefined (--) when the log ratio is near zero.}
+\caption{Log-scale decomposition of the target-correct asymmetry between ResNet-18 and ViT-Tiny. Upper block: the three seed pairs, mean (run-to-run standard deviation); the matrices are those of the separate three-model attack run, hence $+4.41$ here against $+4.36$ in Figure~\ref{fig:protocol_sets}. Lower block: seed-matched pairs of the two-by-two design (secondary analysis S4, descriptive, full sample). The log ratio is exactly the potential component plus the directional residual; the potential share, their ratio, is undefined (--) when the log ratio is near zero.}
 \label{tab:pair_decomposition}
 \scriptsize
 \setlength{\tabcolsep}{4pt}
@@ -138,7 +138,7 @@ Debenedetti2022 XCiT-S12 & 90.06 & 0.9940 & $-$0.609 & $-$0.096 & $-$0.561 & $-$
 
 % FOY:M9.5:1587,1593
 % FOY:M12.2:2290 (turetilmis 2q-1, t %90; on kayit disi)
-The registered panel family on CIFAR-10 has three tests, all decided after Holm correction (Table~\ref{tab:panel_tests}). The first, K-a, asks what share of the ViT's source gap against the seven-member CNN panel is symmetric. In the three seed pairs the gap $G_s$ is $0.391$, $0.387$ and $0.390$ log units; its symmetric part is $0.368$, $0.360$ and $0.367$ and its directional part $0.023$, $0.028$ and $0.023$. The mean symmetric share is $q = 0.936$ with a 90\% interval of $[0.925, 0.948]$, every seed clears the predicted $0.75$, and K-a is supported (Figure~\ref{fig:source_gap_split}a). In terms of the derived quantity $2q - 1$, the symmetric part exceeds the directional part by $0.873$ of the gap ($[0.849, 0.896]$).
+The registered panel family on CIFAR-10 has three tests, all decided after Holm correction (Table~\ref{tab:panel_tests}). The first, K-a, asks what share of the ViT's source gap against the seven-member CNN panel is symmetric. In the three seed pairs the gap $G_s$ is $0.391$, $0.387$ and $0.390$ log units; its symmetric part is $0.368$, $0.360$ and $0.367$ and its directional part $0.023$, $0.028$ and $0.023$. The mean symmetric share is $q = 0.936$ with a 90\% interval of $[0.925, 0.948]$, every seed clears the predicted $0.75$, and K-a is supported (CIFAR-10 panel of Figure~\ref{fig:source_gap_split}). In terms of the derived quantity $2q - 1$, the symmetric part exceeds the directional part by $0.873$ of the gap ($[0.849, 0.896]$).
 
 % FOY:M9.5:1588
 The second test, K-b, asks whether the ViT is a directionally weak source once similarity and vulnerability are removed. Its directional term is $\rho(\cellname{V-scr}) = +0.012$ (seeds $+0.025$, $+0.007$ and $+0.004$), with a 90\% interval of $[-0.007, +0.031]$ well inside the $\pm0.10$ equivalence band, and equivalence is supported (TOST, Holm $p = 2.73\times10^{-3}$). On this panel, on CIFAR-10 and on the log scale, then, ViT-Tiny's weak-source appearance against CNNs is carried by its dissimilarity to them, which holds in both directions.
@@ -192,21 +192,21 @@ Secondary panel & \multicolumn{5}{l}{XCiT-S12: $q_s$ 0.899, 0.825, 0.842; $\rho$
 \end{tabular}
 \end{table*}
 
-% Sekil: paper/figures/konsey/fig_source_gap_split.py (kanit fig_source_gap_split.kanit.json); taslak, visio-cizici turu bekliyor.
+% Sekil 7: paper/figures/fig7_source_gap_split.pdf (visio-cizici kart, Uslup 7; kanit fig7_source_gap_split.kanit.json).
 % FOY:M9.5:1593 ; M10.2:1848 ; M10.4:1930,1931,1932
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{../figures/konsey/fig_source_gap_split.pdf}
-\caption{Source gap of the transformer relative to its CNN counterpart, split into a symmetric part (the $\sigma$ difference) and a directional part, per seed pair on CIFAR-10 (a) and CIFAR-100 (b) and per same-recipe pair on ImageNetV2 (c); the symmetric share $q$ above each bar exceeds one when the directional part narrows the gap. The ImageNetV2 panel is descriptive, and its third pair has a gap below the registered $0.10$ threshold.}
+\includegraphics[width=\textwidth]{../figures/fig7_source_gap_split.pdf}
+\caption{\textbf{Source gap split into symmetric and directional parts.} Per seed pair on CIFAR-10 and CIFAR-100 and per same-recipe pair on ImageNetV2 (descriptive, open markers): green symmetric part, orange directional part, black diamond total $G$, share $q$ at the right. A dashed open part narrows the gap, so $q$ exceeds one; the third ImageNetV2 pair falls below the registered $0.10$ threshold.}
 \label{fig:source_gap_split}
 \end{figure*}
 
-% Sekil: paper/figures/konsey/fig_similarity_matrix.py (kanit fig_similarity_matrix.kanit.json); taslak, visio-cizici turu bekliyor.
+% Sekil 8: paper/figures/fig8_similarity_matrix.pdf (visio-cizici kart, Uslup 7; kanit fig8_similarity_matrix.kanit.json).
 % FOY:M9.5:1595 ; M10.2:1850
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{../figures/konsey/fig_similarity_matrix.pdf}
-\caption{Pairwise symmetric similarity $\log\simt_{ij}$ (split-half, log scale) for all models on CIFAR-10 (a), CIFAR-100 (b) and ImageNetV2 (c), ordered by family. Seeds of the scratch-trained ViT-Tiny form a block of high mutual similarity that is dissimilar to the CNN panel. Diagonal cells are undefined and left blank.}
+\includegraphics[width=\textwidth]{../figures/fig8_similarity_matrix.pdf}
+\caption{\textbf{Pairwise symmetric similarity.} $\log\simt_{ij}$ (split-half, log scale) for all models on CIFAR-10, CIFAR-100 and ImageNetV2, ordered by family; five shades at joint quintiles, the blue ramp not coding the ResNet (R224), dark grey diagonal cells undefined. Seeds of the scratch-trained ViT-Tiny form a block of high mutual similarity, dissimilar to the CNN panel.}
 \label{fig:similarity_matrix}
 \end{figure*}
 
@@ -217,7 +217,7 @@ Secondary panel & \multicolumn{5}{l}{XCiT-S12: $q_s$ 0.899, 0.825, 0.842; $\rho$
 \label{subsec:twobytwo}
 
 % FOY:M9.1:1452,1453,1454,1455,1456,1457,1470,1472,1485
-The two-by-two design of Table~\ref{tab:design} asks which part of the dissimilarity is architecture and which is initialization, with the input pipeline and the adversarial training recipe held equal across cells. All six new runs passed the registered manipulation checks. Each ImageNet-initialized run exceeded the scratch reference at the first clean epoch by $48.40$ to $69.38$ points, none triggered the collapse rule, and every run stopped early, well before the 80-epoch cap (Section~\ref{subsec:computational}).
+The two-by-two design of Figure~\ref{fig:design_recipe} asks which part of the dissimilarity is architecture and which is initialization, with the input pipeline and the adversarial training recipe held equal across cells. All six new runs passed the registered manipulation checks. Each ImageNet-initialized run exceeded the scratch reference at the first clean epoch by $48.40$ to $69.38$ points, none triggered the collapse rule, and every run stopped early, well before the 80-epoch cap (Section~\ref{subsec:computational}).
 
 % FOY:M9.2:1496,1497,1498,1499,1505,1506,1507,1508,1509,1510,1511,1512,1513
 Across the runs of Table~\ref{tab:cells}, only the scratch-trained ViT stands apart on clean accuracy ($73.01$ to $74.10\%$ against $83.39$ to $86.35\%$ in the other cells) and on vulnerability ($w$ of $55.12$ to $55.91\%$ against $47.73$ to $51.11\%$). On panel similarity the two ResNet cells are nearly identical, and ImageNet initialization moves only the ViT (Figure~\ref{fig:cells_interaction}).
@@ -314,12 +314,12 @@ $\delta = 0.06$, Holm $p$ & $4.09\times10^{-5}$ & $1.80\times10^{-3}$ & $2.13\ti
 \end{tabular}
 \end{table}
 
-% Sekil: paper/figures/konsey/fig_cells_interaction.py (kanit fig_cells_interaction.kanit.json); taslak, visio-cizici turu bekliyor.
+% Sekil 9: paper/figures/fig9_cells_interaction.pdf (visio-cizici kart, Uslup 7; kanit fig9_cells_interaction.kanit.json).
 % FOY:M9.3:1526,1527
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{../figures/konsey/fig_cells_interaction.pdf}
-\caption{Cell means (lines) and individual runs (markers) of the two-by-two design on CIFAR-10, split-half estimates on the log scale. (a) Panel similarity $\sigma$; (b) directional term $\rho$ with the $\pm0.10$ equivalence band; (c) vulnerability $\omega = \log w$. Open squares in (a) and (b) are the three 32-pixel ResNet-18 bridge runs; their per-run $\omega$ is not shown.}
+\includegraphics[width=\columnwidth]{../figures/fig9_cells_interaction.pdf}
+\caption{\textbf{Two-by-two cells on CIFAR-10.} Cell means (lines) and runs (markers), split-half, log scale. Panel similarity $\sigma$ (green title) gives $A(\sigma, \mathrm{scr}) = \Asig{scr}$ (H1) and $I(\sigma) = \Isig$ (H2); Direction $\rho$ (orange title) has the $\pm0.10$ equivalence band; Vulnerability $\omega = \log w$ has a grey title. R32 bridge runs sit on their own tick, and open markers are single runs.}
 \label{fig:cells_interaction}
 \end{figure}
 
@@ -364,12 +364,12 @@ Full-sample selection, ratio & 0.960 \\
 \end{tabular}
 \end{table}
 
-% Sekil: paper/figures/konsey/fig_attack_side.py (kanit fig_attack_side.kanit.json); taslak, visio-cizici turu bekliyor.
+% Sekil 10: paper/figures/fig10_attack_side.pdf (visio-cizici kart, Uslup 7; kanit fig10_attack_side.kanit.json).
 % FOY:M9.6:1635-1646
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{../figures/konsey/fig_attack_side.pdf}
-\caption{Panel-mean log transfer from each source under PGD-10, momentum PGD and, for ViT sources, token gradient regularization (TGR); filled markers are the attacks chosen by cross-fitted selection. TGR is never selected (Table~\ref{tab:attack_side}).}
+\includegraphics[width=\columnwidth]{../figures/fig10_attack_side.pdf}
+\caption{\textbf{Transfer by attack, per source.} Panel-mean log transfer $L(m)$ from each source under PGD-10, momentum PGD and, for ViT sources, token gradient regularization (TGR); filled markers are the attacks chosen by cross-fitted selection, and TGR is never chosen (Table~\ref{tab:attack_side}).}
 \label{fig:attack_side}
 \end{figure}
 
@@ -457,7 +457,7 @@ Alignment measured at one clean point is associated with similar transfer but is
 % FOY:M10.5:2009,2010,2011 (c ortalamalari) ; M11.2:2121,2131,2132,2133 (S10-3 satirlari, kesifsel, F_B10 disi)
 \begin{table}[!t]
 \centering
-\caption{Registered gradient family: Mantel tests of input-gradient cosine $c_{ij}$ against $\log\simt_{ij}$ (Spearman $\rS$, one-sided, $9{,}999$ permutations; Holm over six tests). ``Residual'' removes additive model main effects from both matrices; raw rows are test H10 and residual rows test H10k of Table~\ref{tab:registry}. S10-3 adds pair-type indicators to the residual fit; it was registered as exploratory in the addendum, specified after the results were seen, and is outside the family. Every one-sided $p$ equals the permutation floor of $10^{-4}$. Lower block: mean $c_{ij}$ by pair type (number of pairs), descriptive.}
+\caption{Registered gradient family: Mantel tests of input-gradient cosine $c_{ij}$ against $\log\simt_{ij}$ (Spearman $\rS$, one-sided, $9{,}999$ permutations; Holm over six tests). ``Residual'' removes additive model main effects from both matrices; raw rows are test H10 and residual rows test H10k of Figure~\ref{fig:registry_map}. S10-3 adds pair-type indicators to the residual fit; it was registered as exploratory in the addendum, specified after the results were seen, and is outside the family. Every one-sided $p$ equals the permutation floor of $10^{-4}$. Lower block: mean $c_{ij}$ by pair type (number of pairs), descriptive.}
 \label{tab:mantel}
 \scriptsize
 \setlength{\tabcolsep}{1.5pt}
@@ -484,12 +484,12 @@ ImageNetV2 & 0.218 & \multicolumn{2}{c}{0.187 (36)} & \multicolumn{2}{c}{0.318 (
 \end{tabular}
 \end{table}
 
-% Sekil: paper/figures/konsey/fig_gradient_alignment.py (kanit fig_gradient_alignment.kanit.json); taslak, visio-cizici turu bekliyor.
+% Sekil 11: paper/figures/fig11_gradient_alignment.pdf (visio-cizici kart, Uslup 7; kanit fig11_gradient_alignment.kanit.json).
 % FOY:M10.5:1970-1975
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{../figures/konsey/fig_gradient_alignment.pdf}
-\caption{Input-gradient cosine on clean images against pairwise symmetric similarity for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2, raw in (a) to (c) and with additive model main effects removed from both matrices in (d) to (f). The rank correlation is positive in all six panels, and the permutation $p$ is at its floor in every case (Table~\ref{tab:mantel}).}
+\includegraphics[width=\textwidth]{../figures/fig11_gradient_alignment.pdf}
+\caption{\textbf{Input-gradient alignment against similarity.} Cosine $c$ between input gradients on clean images against $\log\simt$ for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; top row, raw; bottom row, residual, with additive model main effects removed from both matrices. Each panel prints the Spearman $r$ and the number of pairs $n$, and every permutation $p$ is at its floor (Table~\ref{tab:mantel}).}
 \label{fig:gradient_alignment}
 \end{figure*}
 
@@ -510,12 +510,12 @@ The directional term also depends on the panel. Leaving out any one panel member
 
 For this ViT-Tiny, then, the symmetric dissimilarity holds on both CIFAR datasets and on every scale and panel tested, whereas the directional term is small only on the log scale, against a CNN panel and on CIFAR-10.
 
-% Sekil: paper/figures/konsey/fig_estimates_forest.py (kanit fig_estimates_forest.kanit.json); taslak, visio-cizici turu bekliyor.
+% Sekil 12: paper/figures/fig12_estimates_forest.pdf (visio-cizici kart, Uslup 7; kanit fig12_estimates_forest.kanit.json).
 % FOY:M9.3:1526,1527,1528 ; M9.4:1551 ; M9.5:1588,1603 ; M10.2:1839,1857 ; M10.4:1930-1939
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{../figures/konsey/fig_estimates_forest.pdf}
-\caption{Registered estimates with 90\% (thick) and 95\% (thin) intervals on the log scale and their logit-scale counterparts. (a) Architecture and interaction effects on panel similarity, with the descriptive ImageNetV2 pair estimates (open markers) for comparison. (b) Directional terms, with the $\pm0.10$ band registered for the log scale only. ImageNetV2 intervals cover image sampling only and are not comparable with the run-level intervals above.}
+\includegraphics[width=\columnwidth]{../figures/fig12_estimates_forest.pdf}
+\caption{\textbf{Registered estimates on two scales.} Upper card, Contrasts on panel similarity $\sigma$: H1, H2 and descriptive ImageNetV2 rows ($\bar{A}(\sigma, \mathrm{IN}) = \AbarIN$); lower card, Directional terms: K-b and H3 ($A(\rho) = \Arho$). Circles log, diamonds logit, open markers descriptive; thick and thin bars are 90\% and 95\% confidence intervals, over images only on ImageNetV2. The $\pm0.10$ band applies to log rows only.}
 \label{fig:estimates_forest}
 \end{figure}
 
@@ -526,7 +526,7 @@ For this ViT-Tiny, then, the symmetric dissimilarity holds on both CIFAR dataset
 \label{subsec:transfer}
 
 % FOY:TabloIII:159,160,161,162,163 ; M8.4:1195,1196
-Everything above uses one conditioning protocol, target-correct, whose rate $r_{\text{cond}} = T_{ij}$ is the quantity decomposed. Because outcomes are logged per image, the same attack runs can be scored under every protocol of Table~\ref{tab:protocol_masks}, and on the pair the choice alone moves the asymmetry from $+4.36\pm0.44$ points under target-correct to $+19.37\pm1.27$ under successful-source, a mean per-pair spread of $15.01\pm0.84$ points (Table~\ref{tab:protocol_settings}, Figure~\ref{fig:protocol_sets}). The direction is positive under all four protocols in all three seed pairs, and also under MI-FGSM (CNN$\rightarrow$ViT $19.07\pm0.33\%$ against ViT$\rightarrow$CNN $15.42\pm0.52\%$, target-correct). The CIFAR-100 and $L_2$ columns of Table~\ref{tab:protocol_settings} show the same spread and sign, and the predictions registered for them are evaluated in Appendix~\ref{app:registrations}.
+Everything above uses one conditioning protocol, target-correct, whose rate $r_{\text{cond}} = T_{ij}$ is the quantity decomposed. Because outcomes are logged per image, the same attack runs can be scored under every protocol of Figure~\ref{fig:protocol_sets}, and on the pair the choice alone moves the asymmetry from $+4.36\pm0.44$ points under target-correct to $+19.37\pm1.27$ under successful-source, a mean per-pair spread of $15.01\pm0.84$ points (Figures~\ref{fig:protocol_settings} and~\ref{fig:protocol_sets}). The direction is positive under all four protocols in all three seed pairs, and also under MI-FGSM (CNN$\rightarrow$ViT $19.07\pm0.33\%$ against ViT$\rightarrow$CNN $15.42\pm0.52\%$, target-correct). The CIFAR-100 and $L_2$ rows of Figure~\ref{fig:protocol_settings} show the same spread and sign (CIFAR-100: $13.83\pm1.30$ points), and the predictions registered for them are evaluated in Appendix~\ref{app:registrations}.
 
 % FOY:Ozdeslikte kullanilan p:641 ; M8.1:1153,1157,1158,1161,1162
 % FOY:Standart egitimli hedeflerde oncul p:868,869,870,871
@@ -549,43 +549,31 @@ Figure~\ref{fig:spread_clean_gap} places every measured pair on the clean-accura
 % FOY:TabloIII:159,160,161,162,163 ; 185 ; 199 ; Turetilmis:229,230 (SVHN)
 SVHN shows what happens when the pair is matched in clean accuracy. With clean gaps of $1.94$ and $1.74$ points in the two seed pairs, the sign of the asymmetry becomes a property of the protocol: target-correct gives $-1.16$ and $-0.85$ points and successful-source $+2.98$ and $+2.41$, while under both-correct the sign-flip permutation $p$ is $0.105$ and TOST accepts equivalence at margins of $\pm1$ to $\pm3$ points. Two seed pairs cannot bound run-to-run variation, so the equivalence rests on the within-run comparison and on the agreement of the two runs. Reported under one protocol only, this pair could crown either architecture as the stronger source.
 
-% FOY:TabloIII:159,160,161,162,163,164,165 (CIFAR-10, CIFAR-100, SVHN, L2 sutunlari)
-\begin{table*}[!t]
+% Sekil 13: paper/figures/fig13_protocol_settings.pdf (visio-cizici kart, Uslup 7; eski Tablo tab:protocol_settings yerine;
+% kanit fig13_protocol_settings.kanit.json, foy Tablo III satir 159-165). Altyazida sayi yok.
+\begin{figure}[!t]
 \centering
-\caption{Transfer asymmetry (CNN$\rightarrow$ViT minus ViT$\rightarrow$CNN, percentage points) of the ResNet-18 and ViT-Tiny pair under the four conditioning protocols in every setting (PGD-10; $\eps = 8/255$ under $L_\infty$, $\eps = 0.5$ under $L_2$; full test sets). Settings with three seed pairs give mean$\pm$SD across pairs; SVHN has two pairs, so both values are printed. Spread is the per-pair range over the four protocols, averaged over pairs.}
-\label{tab:protocol_settings}
-\footnotesize
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Protocol} & \textbf{CIFAR-10, $L_\infty$} & \textbf{CIFAR-100, $L_\infty$} & \textbf{SVHN, $L_\infty$} & \textbf{CIFAR-10, $L_2$} \\
- & 3 pairs, $n$=10,000 & 3 pairs, $n$=10,000 & 2 pairs, $n$=26,032 & 3 pairs, $n$=10,000 \\
-\midrule
-Unconditioned (raw) & $+$13.57$\pm$0.33 & $+$18.53$\pm$0.71 & $+$0.33 / $+$0.45 & $+$13.03$\pm$0.81 \\
-Target-correct & $+$4.36$\pm$0.44 & $+$4.96$\pm$1.01 & $-$1.16 / $-$0.85 & $+$2.12$\pm$0.18 \\
-Both-correct & $+$8.27$\pm$0.23 & $+$10.92$\pm$0.34 & $-$0.34 / $-$0.36 & $+$4.07$\pm$0.36 \\
-Successful-source & $+$19.37$\pm$1.27 & $+$17.50$\pm$0.92 & $+$2.98 / $+$2.41 & $+$12.06$\pm$0.23 \\
-\midrule
-Spread (max $-$ min) & 15.01$\pm$0.84 & 13.83$\pm$1.30 & 4.14 / 3.26 & 10.92$\pm$0.82 \\
-\bottomrule
-\end{tabular}
-\end{table*}
+\includegraphics[width=\columnwidth]{../figures/fig13_protocol_settings.pdf}
+\caption{\textbf{Protocol by setting.} Transfer asymmetry (CNN$\rightarrow$ViT minus ViT$\rightarrow$CNN, points) of the ResNet-18 and ViT-Tiny pair under the four conditioning protocols (PGD-10, full test sets), mean$\pm$SD over three seed pairs with the pairs as small markers; SVHN has two pairs and no mean. The spread column is the per-pair range over the four protocols, averaged over pairs.}
+\label{fig:protocol_settings}
+\end{figure}
 
-% Ic ice kosullama kumeleri sekli: paper/figures/konsey/fig_protocol_sets.py (v5, baglayici etiketleri "marginal subsets removed" ve "source robustness"), kanit fig_protocol_sets.kanit.json.
+% Sekil 14: paper/figures/fig14_protocol_sets.pdf (visio-cizici kart, Uslup 7; eski Tablo tab:protocol_masks maskeleri ust kartta; kanit fig14_protocol_sets.kanit.json).
 % REF: Tablo III: transfer protokolleri (N degerleri)
 % FOY:TabloIII:53,54,55,56 (N) ; 163 (15.01)
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{../figures/konsey/fig_protocol_sets.pdf}
-\caption{Nested evaluation sets of the four transfer protocols in the CNN$\rightarrow$ViT direction (a; schematic, not area-proportional; $N$ is the mean over three seed pairs) and the asymmetry each protocol yields on the same models and data (b; mean$\pm$SD of the within-pair difference, individual pairs as open markers). Connectors label the step between adjacent protocols: the identity term of Equation~\eqref{eq:raw_identity}, the marginal subsets that both-correct removes, and the source robustness that successful-source selects on.}
+\includegraphics[width=\columnwidth]{../figures/fig14_protocol_sets.pdf}
+\caption{\textbf{Conditioning sets and measured asymmetry.} Conditioning sets: nested evaluation sets in the CNN$\rightarrow$ViT direction (schematic, not area-proportional) with masks and $N$ averaged over seed pairs. Measured asymmetry: mean$\pm$SD of the within-pair difference, pairs as open markers; steps are the identity term of Equation~\eqref{eq:raw_identity}, the marginal subsets both-correct removes and the source robustness successful-source selects on.}
 \label{fig:protocol_sets}
 \end{figure}
 
-% Sekil: paper/figures/fig_yayilim_temiz_fark.py, veri results/q1/fig_yayilim_temiz_fark_veri.json.
+% Sekil 15: paper/figures/fig15_spread_clean_gap.pdf (visio-cizici kart, Uslup 7; veri results/q1/fig_yayilim_temiz_fark_veri.json, kanit fig15_spread_clean_gap.kanit.json).
 % REF: Yayilim - temiz fark iliskisi (tum ciftler): 60 nokta, 8 grup
 % FOY:Yayilim-temiz fark:1016,1030
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{../figures/final/fig_spread_clean_gap.pdf}
-\caption{Protocol spread against the absolute clean-accuracy gap for all $60$ measured model pairs. (a) Spread over the unconditioned, target-correct and both-correct protocols, with open rings marking the prediction of Equation~\eqref{eq:raw_identity} at $p = 1$; (b) successful-source minus both-correct asymmetry, the term that panel (a) leaves out. Markers separate the training settings, the last-checkpoint and standard-trained pairs and the RobustBench pool; pairs share models, so no fitted line is drawn.}
+\includegraphics[width=\columnwidth]{../figures/fig15_spread_clean_gap.pdf}
+\caption{\textbf{Protocol spread against the clean-accuracy gap.} All $60$ model pairs. Three-protocol spread (top): unconditioned, target-correct and both-correct, open rings for the identity prediction of Equation~\eqref{eq:raw_identity} at $p = 1$; Successful-source minus both-correct (bottom): the term the top card leaves out. Markers separate settings, last-checkpoint and standard-trained pairs and the RobustBench pool; no line is fitted, as pairs share models.}
 \label{fig:spread_clean_gap}
 \end{figure}

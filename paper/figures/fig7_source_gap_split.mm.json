@@ -1,0 +1,137 @@
+{
+ "canvas_mm": [
+  177.53,
+  69.0
+ ],
+ "cards": [
+  {
+   "letter": "",
+   "name": "CIFAR-10",
+   "title": "CIFAR-10",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    0.5,
+    57.343,
+    56.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-100",
+   "title": "CIFAR-100",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    60.343,
+    0.5,
+    117.187,
+    56.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "ImageNetV2, descriptive",
+   "title": "ImageNetV2, descriptive",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    120.187,
+    0.5,
+    177.03,
+    56.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "",
+   "title": "",
+   "tint": "white",
+   "naming": null,
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    58.5,
+    177.03,
+    68.5
+   ]
+  }
+ ],
+ "texts": 57,
+ "marks": 37,
+ "sizes_pt": [
+  8.0,
+  9.0
+ ],
+ "faces": [
+  "DejaVuSans-Oblique.ttf",
+  "DejaVuSans.ttf"
+ ],
+ "fallback_faces": [],
+ "min_text_clearance_mm": {
+  "": 2.037,
+  "CIFAR-10": 0.904,
+  "CIFAR-100": 0.904,
+  "ImageNetV2, descriptive": 0.92
+ },
+ "min_axes_clearance_mm": {
+  "": 1.0,
+  "CIFAR-10": 0.904,
+  "CIFAR-100": 0.904,
+  "ImageNetV2, descriptive": 0.92
+ },
+ "tolerances_mm": {
+  "text_clear": 0.8,
+  "axes_clear": 0.8,
+  "card_gap": 1.5,
+  "overlap": 0.1
+ },
+ "a4": {
+  "height_mm": 69.0,
+  "budget_mm": 165.327,
+  "slack_mm": 96.327,
+  "qc_tolerance_pt": 1.0,
+  "within_budget": true,
+  "passes_qc_only_by_its_tolerance": false
+ },
+ "naming": {
+  "step": 4,
+  "kind": "serit",
+  "kind_drawn": "serit",
+  "types": [
+   "strip"
+  ],
+  "panels": {
+   "CIFAR-10": "strip",
+   "CIFAR-100": "strip",
+   "ImageNetV2, descriptive": "strip",
+   "": "none"
+  },
+  "badges": [],
+  "badge_suppressed": [],
+  "strips": [
+   {
+    "cards": [
+     "CIFAR-10",
+     "CIFAR-100",
+     "ImageNetV2, descriptive"
+    ],
+    "baseline_mm": 5.757
+   }
+  ],
+  "flows": []
+ },
+ "sample_size": {
+  "CIFAR-10": "n",
+  "CIFAR-100": "n",
+  "ImageNetV2, descriptive": "n",
+  "": "exempt: a key to the marks"
+ },
+ "allowed": [],
+ "issues": [],
+ "verdict": "PASS"
+}

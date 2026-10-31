@@ -1,0 +1,124 @@
+{
+ "canvas_mm": [
+  85.29,
+  119.0
+ ],
+ "cards": [
+  {
+   "letter": "",
+   "name": "Three-protocol spread",
+   "title": "Three-protocol spread",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    0.5,
+    84.79,
+    48.4
+   ]
+  },
+  {
+   "letter": "",
+   "name": "Successful-source minus both-correct",
+   "title": "Successful-source minus both-correct",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    50.0,
+    84.79,
+    97.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "",
+   "title": "",
+   "tint": "white",
+   "naming": null,
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    99.5,
+    84.79,
+    118.5
+   ]
+  }
+ ],
+ "texts": 40,
+ "marks": 18,
+ "sizes_pt": [
+  8.0,
+  9.0
+ ],
+ "faces": [
+  "DejaVuSans.ttf"
+ ],
+ "fallback_faces": [],
+ "min_text_clearance_mm": {
+  "": 1.739,
+  "Successful-source minus both-correct": 1.198,
+  "Three-protocol spread": 1.198
+ },
+ "min_axes_clearance_mm": {
+  "": 0.9,
+  "Successful-source minus both-correct": 1.198,
+  "Three-protocol spread": 1.198
+ },
+ "tolerances_mm": {
+  "text_clear": 0.8,
+  "axes_clear": 0.8,
+  "card_gap": 1.5,
+  "overlap": 0.1
+ },
+ "a4": {
+  "height_mm": 119.0,
+  "budget_mm": 165.327,
+  "slack_mm": 46.327,
+  "qc_tolerance_pt": 1.0,
+  "within_budget": true,
+  "passes_qc_only_by_its_tolerance": false
+ },
+ "naming": {
+  "step": 4,
+  "kind": "serit",
+  "kind_drawn": "serit",
+  "types": [
+   "strip"
+  ],
+  "panels": {
+   "Three-protocol spread": "strip",
+   "Successful-source minus both-correct": "strip",
+   "": "none"
+  },
+  "badges": [],
+  "badge_suppressed": [],
+  "strips": [
+   {
+    "cards": [
+     "Three-protocol spread"
+    ],
+    "baseline_mm": 5.757,
+    "row_top_mm": 0.5
+   },
+   {
+    "cards": [
+     "Successful-source minus both-correct"
+    ],
+    "baseline_mm": 55.257,
+    "row_top_mm": 50.0
+   }
+  ],
+  "flows": []
+ },
+ "sample_size": {
+  "Three-protocol spread": "n",
+  "Successful-source minus both-correct": "n",
+  "": "exempt: a key to the marks"
+ },
+ "allowed": [],
+ "issues": [],
+ "verdict": "PASS"
+}

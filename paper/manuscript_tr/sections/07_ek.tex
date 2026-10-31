@@ -12,7 +12,9 @@
 % tab:tgr, tab:cifar100_results, tab:l2_results.
 % tab:feature_degradation'in "Tum jetonlar" sutunu EN ile birlikte dustu
 % (foy Tablo 10'da duruyor; metin yalniz CLS ve yama ortalamasini kullanir).
-% Sekiller final_tr surumleri (ayni betik, --lang tr, EN final ile ayni uretim).
+% 2026-10-31 visio-cizici Faz C (TR ayna): tab:feature_degradation kalkti (fig:feature_degradation alt karti);
+% sekiller artik EN ile ayni kurulu PDF'ler (fig16_epsilon_sweep, fig17_feature_degradation; Ingilizce
+% etiketli, TR dilli surum ikinci tur, plan 12.6). Eski final_tr surumlerine metinden gonderme yok.
 % Her sayi results/C1_REFERANS_FOYU.md'den; paragraf ustunde "% FOY:" yorumu.
 \appendices
 
@@ -25,8 +27,8 @@ CNN'in ViT üzerindeki üstünlüğü küçük bütçelerde en geniştir ($2/255
 % FOY:Epsilon taramasi:371,373 (Tablo I ile fark, 8/255)
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig2_epsilon_sweep.pdf}
-\caption{CIFAR-10 test kümesinde PGD-10 gürbüz doğruluğunun bütçe $\eps$'a göre değişimi; üç koşunun ortalaması verilmiş olup hata çubukları işaretçilerden dardır ve $\eps=0$ temiz doğruluğu göstermektedir. Bu ayrı değerlendirme $8/255$ bütçesinde Tablo~\ref{tab:main_results} değerlerinden en çok $0{,}08$ puan ayrılmaktadır.}
+\includegraphics[width=\columnwidth]{../figures/fig16_epsilon_sweep.pdf}
+\caption{\textbf{PGD-10 altında gürbüz doğruluk.} CIFAR-10 test kümesinde doğruluğun bütçe $\eps$'a göre değişimi; değerler üç tohum çifti üzerinden ortalama$\pm$SS olup hata çubukları işaretçilerden dardır. $\eps = 0$ temiz doğruluğu göstermekte, WRN-28-10 ise tek bir gürbüz RobustBench modelidir. Bu ayrı değerlendirme $8/255$ bütçesinde Tablo~\ref{tab:main_results} değerlerinden en çok $0{,}08$ puan ayrılmaktadır.}
 \label{fig:epsilon_sweep}
 \end{figure}
 
@@ -77,42 +79,13 @@ Moran $I$ & 0,4141$\pm$0,0132 & 0,3941$\pm$0,0024 & $+$0,0200$\pm$0,0156 & 0,47 
 % KAYNAK: eski 03_methodology.tex (Token Aggregation, Attention Metrics, Feature Degradation Metrics)
 % FOY:C4:110,111,113,120,122,123 ; Tablo 10:288-323 ; Dikkat entropisi:348,350
 % FOY:Dikkat entropisi TOST:1113,1138,1139
-Öznitelik kayması, modelin kendi PGD-10 saldırısı altında her artık blok çıkışında temizden çekişmeliye kosinüs benzerliği olarak ölçülmüştür (koşu başına $n = 1.000$). ViT'te kayma kademelidir ve öznitelik normlarını \%0,45 içinde bırakırken CNN'de son aşamanın ilk bloğunda yoğunlaşmakta ve $-\%13{,}14\pm1{,}89$ norm değişimiyle birlikte gelmektedir (Tablo~\ref{tab:feature_degradation}). Minimumlarında, yani 11. ve 9. bloklarda, CLS jetonu yama jetonu ortalamasının yaklaşık üç katı kaymaktadır. Başlar üzerinden ortalanmış CLS dikkatinin entropisi ise değişmemektedir. Katman başına en büyük değişim, temiz değerler $4{,}61$ ile $5{,}11$ nat arasındayken $0{,}0045$ nat olarak ölçülmüş ve $\pm0{,}05$ nat marjla koşu düzeyinde yapılan TOST, $12$ katmanın tamamında eşdeğerliği kabul etmiştir (Şekil~\ref{fig:feature_degradation}). Dikkat haritasının yer değiştirmesi derinlikle $0{,}028$ düzeyinden $0{,}084$ düzeyine büyümüştür. Dolayısıyla saldırı dikkati genişletmeden yeniden yönlendirmektedir. Son blok kayması yanıltılan ve yanıltılmayan görüntüleri ayırmamaktadır (koşu düzeyinde ViT için $p = 0{,}20$, CNN için $0{,}080$).
-
-% FOY:Tablo 10:288-299,300-303 (ViT), 317-324 (ResNet)
-\begin{table}[!t]
-\centering
-\caption{Her modelin kendi PGD-10 saldırısı altında artık blok çıkışlarında temizden çekişmeliye kosinüs benzerliği (koşu başına $n=1.000$; üç koşunun ortalaması).}
-\label{tab:feature_degradation}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{lcc@{\hspace{10pt}}lc}
-\toprule
-\multicolumn{3}{c}{\textbf{ViT-Tiny AT}} & \multicolumn{2}{c}{\textbf{ResNet-18 AT}} \\
-\cmidrule(lr){1-3} \cmidrule(lr){4-5}
-\textbf{Blok} & \textbf{CLS} & \textbf{Yama ort.} & \textbf{Aşama.blok} & \textbf{Kosinüs} \\
-\midrule
-1 & 0,9993 & 0,9980 & 1.1 & 0,9951 \\
-2 & 0,9950 & 0,9959 & 1.2 & 0,9918 \\
-3 & 0,9902 & 0,9940 & 2.1 & 0,9879 \\
-4 & 0,9873 & 0,9919 & 2.2 & 0,9853 \\
-5 & 0,9845 & 0,9904 & 3.1 & 0,9753 \\
-6 & 0,9814 & 0,9894 & 3.2 & 0,9607 \\
-7 & 0,9782 & 0,9885 & 4.1 & 0,8777 \\
-8 & 0,9743 & 0,9875 & 4.2 & 0,9108 \\
-9 & 0,9703 & 0,9870 & & \\
-10 & 0,9661 & 0,9872 & & \\
-11 & 0,9604 & 0,9874 & & \\
-12 & 0,9663 & 0,9915 & & \\
-\bottomrule
-\end{tabular}
-\end{table}
+Öznitelik kayması, modelin kendi PGD-10 saldırısı altında her artık blok çıkışında temizden çekişmeliye kosinüs benzerliği olarak ölçülmüştür (koşu başına $n = 1.000$). ViT'te kayma kademelidir ve öznitelik normlarını \%0,45 içinde bırakmaktadır. CNN'de ise kayma son aşamanın ilk bloğunda yoğunlaşmaktadır. Bu bloğun kosinüsü $0{,}8777$ olup bir önceki bloktaki $0{,}9607$ ve bir sonraki bloktaki $0{,}9108$ değerinin altında kalmakta, norm değişimi ise $-\%13{,}14\pm1{,}89$ olarak ölçülmektedir. Minimumlarında, yani 11. ve 9. bloklarda, CLS jetonu yama jetonu ortalamasının yaklaşık üç katı kaymaktadır. Başlar üzerinden ortalanmış CLS dikkatinin entropisi ise değişmemektedir. Katman başına en büyük değişim, temiz değerler $4{,}61$ ile $5{,}11$ nat arasındayken $0{,}0045$ nat olarak ölçülmüş ve $\pm0{,}05$ nat marjla koşu düzeyinde yapılan TOST, $12$ katmanın tamamında eşdeğerliği kabul etmiştir (Şekil~\ref{fig:feature_degradation} üst kartı). Dikkat haritasının yer değiştirmesi derinlikle $0{,}028$ düzeyinden $0{,}084$ düzeyine büyümüştür. Dolayısıyla saldırı dikkati genişletmeden yeniden yönlendirmektedir. Son blok kayması yanıltılan ve yanıltılmayan görüntüleri ayırmamaktadır (koşu düzeyinde ViT için $p = 0{,}20$, CNN için $0{,}080$).
 
 % FOY:Dikkat entropisi TOST:1113 ; Dikkat entropisi:334-345,350
 \begin{figure}[!t]
 \centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig5b_attention_entropy.pdf}
-\caption{(a) Saldırı altında ViT CLS dikkat entropisindeki katman başına değişim; üç koşunun ortalaması ve \%95 $t$ aralıkları kesikli çizgiyle gösterilen $\pm0{,}05$ nat eşdeğerlik marjının içinde kalmaktadır. (b) CLS dikkat haritasının katman başına toplam varyasyon yer değiştirmesi (koşular üzerinden ortalama$\pm$SS).}
+\includegraphics[width=\columnwidth]{../figures/fig17_feature_degradation.pdf}
+\caption{\textbf{Saldırı altında ViT-Tiny'nin öznitelik bozunması.} Üç koşu üzerinden katman başına değerler verilmiştir. Üst kart CLS dikkat entropisindeki değişimi, koşu düzeyindeki TOST'un \%90 aralıklarıyla birlikte gölgeli $\pm0{,}05$ nat marjının içinde göstermektedir. Orta kart CLS dikkatinin yer değiştirmesini (TV), Block-output cosine başlıklı alt kart ise saldırı altında CLS jetonu, yama jetonu ortalaması ve bütün jetonlar için blok çıkışı kosinüsünü vermektedir; bu iki kartta değerler ortalama$\pm$SS'dir. ViT'e kendi PGD-10 saldırısı uygulanmıştır.}
 \label{fig:feature_degradation}
 \end{figure}
 

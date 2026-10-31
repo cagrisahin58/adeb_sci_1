@@ -37,32 +37,39 @@
 
 ## 2. Length
 
-- [x] Page count: **25 pages** in `ieeeaccess.cls` (`main.pdf`, 2026-10-31). IEEE Access is a flat-APC journal without a hard page limit; the length follows from the registered design (panel tests, two-by-two design, attack side, three external panels).
+- [x] Page count: **26 pages** in `ieeeaccess.cls` (`main.pdf`, 2026-10-31; the last page carries only the second author biography). IEEE Access is a flat-APC journal without a hard page limit; the length follows from the registered design (panel tests, two-by-two design, attack side, three external panels).
 - [ ] Reviewer panel B18: the methodology section is above its word budget; repetitions are to be trimmed in the next manuscript round.
 
 ## 3. Figures and Tables
 
-- [x] 12 figures, all vector PDF; 18 table environments
-- [ ] **Flat figure paths for upload** (reviewer panel A13). The manuscript reads figures from `../figures/final/` (3 files) and `../figures/konsey/` (9 files); for the source ZIP they must be copied next to `main.tex` and the paths flattened.
-- [ ] Font size at least 6.5 pt in every figure and the arrow from (c) to (d) in the study overview (reviewer panel A12, visio-cizici round)
+- [x] 17 figures, all vector PDF; 13 table environments (2026-10-31 visio-cizici round: five new figures, Figures 2, 4, 5, 6 and 13; the design, conditioning-mask, registry, protocol-by-setting and block-output cosine tables were replaced by Figures 2, 14, 5, 13 and 17)
+- [ ] **Flat figure paths for upload** (reviewer panel A13). The manuscript reads all 17 figures from `../figures/` (installed files `fig1_study_overview.pdf` to `fig17_feature_degradation.pdf`); for the source ZIP they must be copied next to `main.tex` and the paths flattened.
+- [ ] Font size at least 6.5 pt in every figure and the arrow from (c) to (d) in the study overview (reviewer panel A12, visio-cizici round). Font size: all 17 redrawn figures passed the printed-PDF check at an 8.0 pt floor (`raporlar/visio_2026-10-31/05_visio_cizim.md`, `06_kart_cizim.md`); the arrow item is to be re-read against the new Figure 1, whose flow arrow runs from (c) to (e)
 - [ ] Grayscale readability check
 
-Figures used by the manuscript (2026-10-31):
+Figures used by the manuscript (2026-10-31, after the visio-cizici round; installation map `paper/figures/qc/ESLEME.md`):
 
-| Folder | File |
-|---|---|
-| figures/konsey | fig_study_overview.pdf |
-| figures/konsey | fig_decomposition_schematic.pdf |
-| figures/konsey | fig_similarity_matrix.pdf |
-| figures/konsey | fig_source_gap_split.pdf |
-| figures/konsey | fig_cells_interaction.pdf |
-| figures/konsey | fig_estimates_forest.pdf |
-| figures/konsey | fig_attack_side.pdf |
-| figures/konsey | fig_gradient_alignment.pdf |
-| figures/konsey | fig_protocol_sets.pdf |
-| figures/final | fig_spread_clean_gap.pdf |
-| figures/final | fig2_epsilon_sweep.pdf |
-| figures/final | fig5b_attention_entropy.pdf |
+| Figure | Folder | File |
+|---|---|---|
+| 1 | figures | fig1_study_overview.pdf |
+| 2 | figures | fig2_design_recipe.pdf |
+| 3 | figures | fig3_decomposition_schematic.pdf |
+| 4 | figures | fig4_panel_members.pdf |
+| 5 | figures | fig5_registry_map.pdf |
+| 6 | figures | fig6_prereg_chain.pdf |
+| 7 | figures | fig7_source_gap_split.pdf |
+| 8 | figures | fig8_similarity_matrix.pdf |
+| 9 | figures | fig9_cells_interaction.pdf |
+| 10 | figures | fig10_attack_side.pdf |
+| 11 | figures | fig11_gradient_alignment.pdf |
+| 12 | figures | fig12_estimates_forest.pdf |
+| 13 | figures | fig13_protocol_settings.pdf |
+| 14 | figures | fig14_protocol_sets.pdf |
+| 15 | figures | fig15_spread_clean_gap.pdf |
+| 16 | figures | fig16_epsilon_sweep.pdf |
+| 17 | figures | fig17_feature_degradation.pdf |
+
+The Turkish mirror (`paper/manuscript_tr`) uses the same 17 figure files with English labels and Turkish captions; Turkish-labelled figures follow in the second round (plan 12.6).
 
 ## 4. References
 

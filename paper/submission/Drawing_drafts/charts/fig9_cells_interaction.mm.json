@@ -1,0 +1,149 @@
+{
+ "canvas_mm": [
+  85.29,
+  121.0
+ ],
+ "cards": [
+  {
+   "letter": "",
+   "name": "Panel similarity σ",
+   "title": "Panel similarity σ",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    0.5,
+    84.79,
+    34.567
+   ]
+  },
+  {
+   "letter": "",
+   "name": "Direction ρ",
+   "title": "Direction ρ",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    36.167,
+    84.79,
+    70.233
+   ]
+  },
+  {
+   "letter": "",
+   "name": "Vulnerability ω = log w, w in %",
+   "title": "Vulnerability ω = log w, w in %",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    71.833,
+    84.79,
+    105.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "",
+   "title": "",
+   "tint": "white",
+   "naming": null,
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    107.5,
+    84.79,
+    120.5
+   ]
+  }
+ ],
+ "texts": 35,
+ "marks": 40,
+ "sizes_pt": [
+  8.0,
+  9.0
+ ],
+ "faces": [
+  "DejaVuSans.ttf"
+ ],
+ "fallback_faces": [],
+ "min_text_clearance_mm": {
+  "": 1.843,
+  "Direction ρ": 1.886,
+  "Panel similarity σ": 2.0,
+  "Vulnerability ω = log w, w in %": 2.0
+ },
+ "min_axes_clearance_mm": {
+  "": 1.0,
+  "Direction ρ": 1.886,
+  "Panel similarity σ": 2.0,
+  "Vulnerability ω = log w, w in %": 2.0
+ },
+ "tolerances_mm": {
+  "text_clear": 0.8,
+  "axes_clear": 0.8,
+  "card_gap": 1.5,
+  "overlap": 0.1
+ },
+ "a4": {
+  "height_mm": 121.0,
+  "budget_mm": 165.327,
+  "slack_mm": 44.327,
+  "qc_tolerance_pt": 1.0,
+  "within_budget": true,
+  "passes_qc_only_by_its_tolerance": false
+ },
+ "naming": {
+  "step": 4,
+  "kind": "renk",
+  "kind_drawn": "serit",
+  "types": [
+   "strip"
+  ],
+  "panels": {
+   "Panel similarity σ": "strip",
+   "Direction ρ": "strip",
+   "Vulnerability ω = log w, w in %": "strip",
+   "": "none"
+  },
+  "badges": [],
+  "badge_suppressed": [],
+  "strips": [
+   {
+    "cards": [
+     "Panel similarity σ"
+    ],
+    "baseline_mm": 5.757,
+    "row_top_mm": 0.5
+   },
+   {
+    "cards": [
+     "Direction ρ"
+    ],
+    "baseline_mm": 41.424,
+    "row_top_mm": 36.167
+   },
+   {
+    "cards": [
+     "Vulnerability ω = log w, w in %"
+    ],
+    "baseline_mm": 77.091,
+    "row_top_mm": 71.833
+   }
+  ],
+  "flows": []
+ },
+ "sample_size": {
+  "Panel similarity σ": "n",
+  "Direction ρ": "n",
+  "Vulnerability ω = log w, w in %": "n",
+  "": "exempt: a key to the marks"
+ },
+ "allowed": [],
+ "issues": [],
+ "verdict": "PASS"
+}

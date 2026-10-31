@@ -20,4 +20,6 @@ AutoAttack used the standard configuration (APGD-CE, APGD-T, FAB-T, Square), on 
 
 % FOY:M8.9:1315,1316
 % FOY:M9.1:1452,1453,1454,1455,1456,1457,1470,1485
-The three-seed training pipeline of the original pair took 21.7 GPU-hours. The six new runs took 17.79 hours for their clean and adversarial phases, against a pilot projection of 20.47 hours at the 80-epoch cap. Adversarial training stopped early in every run, after 36 to 58 epochs, with selected epochs between 16 and 38. Per-epoch times were 1.05 to 2.19 times those of the pilot, which was measured on an idle GPU. The GPU was at times shared with another process, but the logs do not establish the cause of the slowdown.
+% 2026-10-31 visio-cizici Faz C: pilot projeksiyonu (20.47 sa) ve epok basina sure orani (1.05-2.19)
+% sayfa butcesi icin cikti (plan 04 bolum 9.6); foyde M9.1 satirlarinda duruyor.
+The three-seed training pipeline of the original pair took 21.7 GPU-hours. The six new runs took 17.79 hours for their clean and adversarial phases (block B3 in Figure~\ref{fig:prereg_chain}), on a GPU at times shared with another process. Adversarial training stopped early in every run, after 36 to 58 epochs, with selected epochs between 16 and 38.

@@ -1,0 +1,836 @@
+{
+  "stem": "fig14_protocol_sets",
+  "uslup": 7,
+  "degerler": [
+    {
+      "etiket": "raw asimetri_ort",
+      "deger": 13.57,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.raw.asimetri_ort",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 53,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "raw asimetri_sd",
+      "deger": 0.33,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.raw.asimetri_sd",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 53,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "raw n_CNN_to_ViT",
+      "deger": 10000,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.raw.n_CNN_to_ViT",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 53,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "raw n_ViT_to_CNN",
+      "deger": 10000,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.raw.n_ViT_to_CNN",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 53,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "raw seed pair 1",
+      "deger": 13.2,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.raw.asimetri_tohum_degerleri[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 805,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "raw seed pair 2",
+      "deger": 13.69,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.raw.asimetri_tohum_degerleri[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 806,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "raw seed pair 3",
+      "deger": 13.83,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.raw.asimetri_tohum_degerleri[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 807,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "target_correct asimetri_ort",
+      "deger": 4.36,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.target_correct.asimetri_ort",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 54,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "target_correct asimetri_sd",
+      "deger": 0.44,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.target_correct.asimetri_sd",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 54,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "target_correct n_CNN_to_ViT",
+      "deger": 7353,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.target_correct.n_CNN_to_ViT",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 54,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "target_correct n_ViT_to_CNN",
+      "deger": 8579,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.target_correct.n_ViT_to_CNN",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 54,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "target_correct seed pair 1",
+      "deger": 4.83,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.target_correct.asimetri_tohum_degerleri[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 805,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "target_correct seed pair 2",
+      "deger": 4.28,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.target_correct.asimetri_tohum_degerleri[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 806,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "target_correct seed pair 3",
+      "deger": 3.97,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.target_correct.asimetri_tohum_degerleri[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 807,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "both_correct asimetri_ort",
+      "deger": 8.27,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.both_correct.asimetri_ort",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 55,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "both_correct asimetri_sd",
+      "deger": 0.23,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.both_correct.asimetri_sd",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 55,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "both_correct n_CNN_to_ViT",
+      "deger": 7061,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.both_correct.n_CNN_to_ViT",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 55,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "both_correct n_ViT_to_CNN",
+      "deger": 7061,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.both_correct.n_ViT_to_CNN",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 55,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "both_correct seed pair 1",
+      "deger": 8.51,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.both_correct.asimetri_tohum_degerleri[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 805,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "both_correct seed pair 2",
+      "deger": 8.05,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.both_correct.asimetri_tohum_degerleri[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 806,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "both_correct seed pair 3",
+      "deger": 8.24,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.both_correct.asimetri_tohum_degerleri[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 807,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "successful_source asimetri_ort",
+      "deger": 19.37,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.successful_source.asimetri_ort",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 56,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "successful_source asimetri_sd",
+      "deger": 1.27,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.successful_source.asimetri_sd",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 56,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "successful_source n_CNN_to_ViT",
+      "deger": 2831,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.successful_source.n_CNN_to_ViT",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 56,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "successful_source n_ViT_to_CNN",
+      "deger": 3814,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.successful_source.n_ViT_to_CNN",
+      "hesap": "read as stored; == foy",
+      "foy_satiri": 56,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "successful_source seed pair 1",
+      "deger": 20.8,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.successful_source.asimetri_tohum_degerleri[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 805,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "successful_source seed pair 2",
+      "deger": 18.91,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.successful_source.asimetri_tohum_degerleri[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 806,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "successful_source seed pair 3",
+      "deger": 18.39,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "protokoller.successful_source.asimetri_tohum_degerleri[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 807,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "raw n_CNN_to_ViT (mean over the three seed pairs)",
+      "deger": 10000.0,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.n_cond_CNN_to_ViT.mean",
+      "hesap": "printed as N, rounded; == fig_protokol_kumeleri_veri.json",
+      "foy_satiri": 53,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "raw n_ViT_to_CNN (mean over the three seed pairs)",
+      "deger": 10000.0,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.n_cond_ViT_to_CNN.mean",
+      "hesap": "printed as N, rounded; == fig_protokol_kumeleri_veri.json",
+      "foy_satiri": 53,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "target_correct n_CNN_to_ViT (mean over the three seed pairs)",
+      "deger": 7352.666666666667,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.n_cond_CNN_to_ViT.mean",
+      "hesap": "printed as N, rounded; == fig_protokol_kumeleri_veri.json",
+      "foy_satiri": 54,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "target_correct n_ViT_to_CNN (mean over the three seed pairs)",
+      "deger": 8578.666666666666,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.n_cond_ViT_to_CNN.mean",
+      "hesap": "printed as N, rounded; == fig_protokol_kumeleri_veri.json",
+      "foy_satiri": 54,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "both_correct n_CNN_to_ViT (mean over the three seed pairs)",
+      "deger": 7061.333333333333,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.n_cond_CNN_to_ViT.mean",
+      "hesap": "printed as N, rounded; == fig_protokol_kumeleri_veri.json",
+      "foy_satiri": 55,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "both_correct n_ViT_to_CNN (mean over the three seed pairs)",
+      "deger": 7061.333333333333,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.n_cond_ViT_to_CNN.mean",
+      "hesap": "printed as N, rounded; == fig_protokol_kumeleri_veri.json",
+      "foy_satiri": 55,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "successful_source n_CNN_to_ViT (mean over the three seed pairs)",
+      "deger": 2830.6666666666665,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.n_cond_CNN_to_ViT.mean",
+      "hesap": "printed as N, rounded; == fig_protokol_kumeleri_veri.json",
+      "foy_satiri": 56,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "successful_source n_ViT_to_CNN (mean over the three seed pairs)",
+      "deger": 3813.6666666666665,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.n_cond_ViT_to_CNN.mean",
+      "hesap": "printed as N, rounded; == fig_protokol_kumeleri_veri.json",
+      "foy_satiri": 56,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "connector identity term",
+      "deger": 9.21,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "ayrisim.ozdeslik_terimi_ham_eksi_hedef_dogru",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 212,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "connector marginal subsets removed",
+      "deger": 3.91,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "ayrisim.artik_takdir_her_ikisi_eksi_hedef",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 214,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    },
+    {
+      "etiket": "connector source robustness",
+      "deger": 11.1,
+      "kaynak": "results/q1/fig_protokol_kumeleri_veri.json",
+      "anahtar_yolu": "ayrisim.bas_kaynak_eksi_her_ikisi_dogru",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 215,
+      "kaynak_sha256": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f"
+    }
+  ],
+  "records_sha256": null,
+  "betik": "paper/figures/charts/fig_protocol_sets.py --uslup 7",
+  "ortak_modul": "paper/figures/charts/_kart_ortak.py",
+  "veri_kurali_modulu": "paper/figures/konsey/konsey_ortak.py (imported unchanged)",
+  "girdiler_sha256": {
+    "results/q1/fig_protokol_kumeleri_veri.json": "c56dbe3adcbf0fbbf2e43e9678491573c38474b0371344c7d18a2b666300750f",
+    "results/c1_transfer/c1_transfer_summary.json": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1",
+    "paper/manuscript/sections/03_methodology.tex": "474fb6e1314912c4060a1286fa65166e0a3c65c4ba2614f088e12f58ada3cea4"
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 36,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results\\C1_REFERANS_FOYU.md",
+    "foy_sha256": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f",
+    "ayrinti": [
+      {
+        "ad": "raw: asimetri_ort",
+        "json_degeri": 13.57,
+        "foy_satiri": 53,
+        "capa": "| Kosulsuz (ham) |",
+        "foy_en_yakin": 13.57,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "raw: asimetri_sd",
+        "json_degeri": 0.33,
+        "foy_satiri": 53,
+        "capa": "| Kosulsuz (ham) |",
+        "foy_en_yakin": 0.33,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "raw: n_CNN_to_ViT",
+        "json_degeri": 10000,
+        "foy_satiri": 53,
+        "capa": "| Kosulsuz (ham) |",
+        "foy_en_yakin": 10000.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "raw: n_ViT_to_CNN",
+        "json_degeri": 10000,
+        "foy_satiri": 53,
+        "capa": "| Kosulsuz (ham) |",
+        "foy_en_yakin": 10000.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "raw: seed pair 1",
+        "json_degeri": 13.2,
+        "foy_satiri": 805,
+        "capa": "| cift 1 |",
+        "foy_en_yakin": 13.2,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "raw: seed pair 2",
+        "json_degeri": 13.69,
+        "foy_satiri": 806,
+        "capa": "| cift 2 |",
+        "foy_en_yakin": 13.69,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "raw: seed pair 3",
+        "json_degeri": 13.83,
+        "foy_satiri": 807,
+        "capa": "| cift 3 |",
+        "foy_en_yakin": 13.83,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "target_correct: asimetri_ort",
+        "json_degeri": 4.36,
+        "foy_satiri": 54,
+        "capa": "| Hedef dogru |",
+        "foy_en_yakin": 4.36,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "target_correct: asimetri_sd",
+        "json_degeri": 0.44,
+        "foy_satiri": 54,
+        "capa": "| Hedef dogru |",
+        "foy_en_yakin": 0.44,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "target_correct: n_CNN_to_ViT",
+        "json_degeri": 7353,
+        "foy_satiri": 54,
+        "capa": "| Hedef dogru |",
+        "foy_en_yakin": 7353.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "target_correct: n_ViT_to_CNN",
+        "json_degeri": 8579,
+        "foy_satiri": 54,
+        "capa": "| Hedef dogru |",
+        "foy_en_yakin": 8579.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "target_correct: seed pair 1",
+        "json_degeri": 4.83,
+        "foy_satiri": 805,
+        "capa": "| cift 1 |",
+        "foy_en_yakin": 4.83,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "target_correct: seed pair 2",
+        "json_degeri": 4.28,
+        "foy_satiri": 806,
+        "capa": "| cift 2 |",
+        "foy_en_yakin": 4.28,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "target_correct: seed pair 3",
+        "json_degeri": 3.97,
+        "foy_satiri": 807,
+        "capa": "| cift 3 |",
+        "foy_en_yakin": 3.97,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "both_correct: asimetri_ort",
+        "json_degeri": 8.27,
+        "foy_satiri": 55,
+        "capa": "| Her ikisi dogru |",
+        "foy_en_yakin": 8.27,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "both_correct: asimetri_sd",
+        "json_degeri": 0.23,
+        "foy_satiri": 55,
+        "capa": "| Her ikisi dogru |",
+        "foy_en_yakin": 0.23,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "both_correct: n_CNN_to_ViT",
+        "json_degeri": 7061,
+        "foy_satiri": 55,
+        "capa": "| Her ikisi dogru |",
+        "foy_en_yakin": 7061.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "both_correct: n_ViT_to_CNN",
+        "json_degeri": 7061,
+        "foy_satiri": 55,
+        "capa": "| Her ikisi dogru |",
+        "foy_en_yakin": 7061.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "both_correct: seed pair 1",
+        "json_degeri": 8.51,
+        "foy_satiri": 805,
+        "capa": "| cift 1 |",
+        "foy_en_yakin": 8.51,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "both_correct: seed pair 2",
+        "json_degeri": 8.05,
+        "foy_satiri": 806,
+        "capa": "| cift 2 |",
+        "foy_en_yakin": 8.05,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "both_correct: seed pair 3",
+        "json_degeri": 8.24,
+        "foy_satiri": 807,
+        "capa": "| cift 3 |",
+        "foy_en_yakin": 8.24,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "successful_source: asimetri_ort",
+        "json_degeri": 19.37,
+        "foy_satiri": 56,
+        "capa": "| Basarili kaynak |",
+        "foy_en_yakin": 19.37,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "successful_source: asimetri_sd",
+        "json_degeri": 1.27,
+        "foy_satiri": 56,
+        "capa": "| Basarili kaynak |",
+        "foy_en_yakin": 1.27,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "successful_source: n_CNN_to_ViT",
+        "json_degeri": 2831,
+        "foy_satiri": 56,
+        "capa": "| Basarili kaynak |",
+        "foy_en_yakin": 2831.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "successful_source: n_ViT_to_CNN",
+        "json_degeri": 3814,
+        "foy_satiri": 56,
+        "capa": "| Basarili kaynak |",
+        "foy_en_yakin": 3814.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "successful_source: seed pair 1",
+        "json_degeri": 20.8,
+        "foy_satiri": 805,
+        "capa": "| cift 1 |",
+        "foy_en_yakin": 20.8,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "successful_source: seed pair 2",
+        "json_degeri": 18.91,
+        "foy_satiri": 806,
+        "capa": "| cift 2 |",
+        "foy_en_yakin": 18.91,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "successful_source: seed pair 3",
+        "json_degeri": 18.39,
+        "foy_satiri": 807,
+        "capa": "| cift 3 |",
+        "foy_en_yakin": 18.39,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "per-pair table columns",
+        "aranan_metin": "ort.$\\pm$SD",
+        "foy_satiri": 808,
+        "capa": "| ort.$\\pm$SD |",
+        "eslesti": true
+      },
+      {
+        "ad": "yayilim",
+        "json_degeri": 15.01,
+        "foy_satiri": 60,
+        "capa": "Protokol yayilimi",
+        "foy_en_yakin": 15.01,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "ozdeslik_terimi_ham_eksi_hedef_dogru",
+        "json_degeri": 9.21,
+        "foy_satiri": 212,
+        "capa": "| raw - tc",
+        "foy_en_yakin": 9.21,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "ozdeslik_terimi_ham_eksi_hedef_dogru == means",
+        "a": 9.21,
+        "b": 9.21,
+        "tolerans": 0.0101,
+        "aciklama": "connector distance from the protocol means (one rounding unit per operand)",
+        "eslesti": true
+      },
+      {
+        "ad": "artik_takdir_her_ikisi_eksi_hedef",
+        "json_degeri": 3.91,
+        "foy_satiri": 214,
+        "capa": "| bc - tc",
+        "foy_en_yakin": 3.91,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "artik_takdir_her_ikisi_eksi_hedef == means",
+        "a": 3.91,
+        "b": 3.9099999999999993,
+        "tolerans": 0.0101,
+        "aciklama": "connector distance from the protocol means (one rounding unit per operand)",
+        "eslesti": true
+      },
+      {
+        "ad": "bas_kaynak_eksi_her_ikisi_dogru",
+        "json_degeri": 11.1,
+        "foy_satiri": 215,
+        "capa": "| ss - bc",
+        "foy_en_yakin": 11.1,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "bas_kaynak_eksi_her_ikisi_dogru == means",
+        "a": 11.1,
+        "b": 11.100000000000001,
+        "tolerans": 0.0101,
+        "aciklama": "connector distance from the protocol means (one rounding unit per operand)",
+        "eslesti": true
+      }
+    ]
+  },
+  "okunan_anahtarlar": {
+    "results/q1/fig_protokol_kumeleri_veri.json": [
+      "protokoller.<p>.{asimetri_ort, asimetri_sd, asimetri_tohum_degerleri, n_CNN_to_ViT, n_ViT_to_CNN}",
+      "ayrisim.*",
+      "ic_icelik_tutuyor",
+      "kaynak",
+      "kaynak_sha256"
+    ],
+    "results/c1_transfer/c1_transfer_summary.json": [
+      "sha256 only (the source of DATA)"
+    ],
+    "paper/manuscript/sections/03_methodology.tex": [
+      "tab:protocol_masks rows (definitions printed in words, not numbers)"
+    ]
+  },
+  "cizilen": {
+    "raw": {
+      "ort": 13.57,
+      "sd": 0.33,
+      "tohumlar": [
+        13.2,
+        13.69,
+        13.83
+      ],
+      "n_CNN_to_ViT": 10000,
+      "n_ViT_to_CNN": 10000
+    },
+    "target_correct": {
+      "ort": 4.36,
+      "sd": 0.44,
+      "tohumlar": [
+        4.83,
+        4.28,
+        3.97
+      ],
+      "n_CNN_to_ViT": 7353,
+      "n_ViT_to_CNN": 8579
+    },
+    "both_correct": {
+      "ort": 8.27,
+      "sd": 0.23,
+      "tohumlar": [
+        8.51,
+        8.05,
+        8.24
+      ],
+      "n_CNN_to_ViT": 7061,
+      "n_ViT_to_CNN": 7061
+    },
+    "successful_source": {
+      "ort": 19.37,
+      "sd": 1.27,
+      "tohumlar": [
+        20.8,
+        18.91,
+        18.39
+      ],
+      "n_CNN_to_ViT": 2831,
+      "n_ViT_to_CNN": 3814
+    },
+    "ozdeslik_terimi_ham_eksi_hedef_dogru": 9.21,
+    "artik_takdir_her_ikisi_eksi_hedef": 3.91,
+    "bas_kaynak_eksi_her_ikisi_dogru": 11.1
+  },
+  "notlar": [
+    "The nested boxes are schematic, not area-proportional; the CNN->ViT nesting is drawn.",
+    "The spread (15.01 pts, successful-source minus target-correct, foy line 60) is checked but not printed; the caption carries it.",
+    "Mask wording: Table 2 (tab:protocol_masks) in words; the loose reading of successful-source is a sensitivity analysis and is not drawn."
+  ],
+  "kararlar": [
+    "Karar (duzeltme turu 2): the footnote says N is the mean over the three seed pairs (checked against c1_transfer_summary.json n_cond_*.mean), the SD line is drawn through annotate.errorbar (kind sd, recorded in the manifest), and '3.91' stands right of its step; the top card grows by 3 mm (height 118 mm, ceiling 120).",
+    "Karar: the three connector distances are printed as numbers on their steps and the terms (identity term, marginal subsets removed, source robustness) go to the caption, because at single-column width the term names collide with the row values at any height under the 120 mm ceiling; mean and SD stand in a value column right of the axis (data axis share stays above 0.45).",
+    "Karar: letters A-D and (a)/(b) are removed and the two cards are named by a title strip (plan section 8, rule branch 5), protocol names stand in the boxes and at the rows.",
+    "Karar: the sets are filled with the protocol family's four purples, because the blue scale of the council figure collides with R224's #0072B2 (plan 9.14).",
+    "Karar: the masks are written in words, because mathtext subscripts would print under the 8 pt floor (trap 6)."
+  ],
+  "git": {
+    "commit": "c315e09f6c03fe9b165e4fa3a5786f8448ae8c85",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "M paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+      "?? paper/figures/charts/_kart_ortak.py",
+      "?? paper/figures/charts/fig_protocol_sets.py"
+    ],
+    "izlenen_yollar": [
+      "results/q1/fig_protokol_kumeleri_veri.json",
+      "results/c1_transfer/c1_transfer_summary.json",
+      "paper/manuscript/sections/03_methodology.tex",
+      "paper/figures/charts/_kart_ortak.py",
+      "paper/figures/charts/fig_protocol_sets.py",
+      "paper/figures/konsey/fig_protocol_sets.py",
+      "paper/figures/konsey/konsey_ortak.py",
+      "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+      "results/C1_REFERANS_FOYU.md"
+    ],
+    "kod_ve_foy_sha256": {
+      "paper/figures/charts/_kart_ortak.py": "d7769ae93310d3655dec79843e9586a03c19a9ab2622eab01a9c88b42710b82b",
+      "paper/figures/charts/fig_protocol_sets.py": "0f5c508e80abaf216a1dbc7775f3bbe5f75bbdad5d158aa423c689fb3682e377",
+      "paper/figures/konsey/fig_protocol_sets.py": "7f6c9dc283adf7ad34f5473c8098a8bf79465394fde5e89f9ab766eb7b5a15d9",
+      "paper/figures/konsey/konsey_ortak.py": "798137ef5ad8aa2ca9f8ad4d17697e69733f9d606a522433eabe9449026f0579",
+      "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml": "7b99cc206514a16847a7797ecac447eb84b3b2e6f5249255a8deee2a8dd932eb",
+      "results/C1_REFERANS_FOYU.md": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f"
+    },
+    "not": "dirty_or_untracked lists every path above that is modified or untracked; until the scripts are committed, kod_ve_foy_sha256 is what pins the code and the sheet"
+  },
+  "venue": "ieee_access",
+  "tuval_mm": [
+    85.29,
+    118.0
+  ]
+}
