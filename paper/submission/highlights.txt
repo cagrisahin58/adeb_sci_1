@@ -1,44 +1,45 @@
 HIGHLIGHTS
 
-Manuscript: The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
-Correction and a Source-Effect Reading for CNN versus Vision Transformer
-Robustness Comparisons
+Manuscript: Less a Weak Source than a Different One: Vulnerability,
+Similarity and Direction in CNN-ViT Adversarial Transfer under an
+Architecture-by-Initialization Design
 
-Revised 2026-10-04. All figures come from results/C1_REFERANS_FOYU.md
-(3 seeds, full test set, eps = 8/255 unless stated).
+Revised 2026-10-31. Every number comes from results/C1_REFERANS_FOYU.md
+(31.10.2026 version); the source line of each highlight is given in the
+notes at the end of this file. Log-scale quantities; brackets are 90%
+intervals.
 
-1. On fixed adversarially trained ResNet-18 and ViT-Tiny models, four
-   conditioning protocols place the CNN-to-ViT transfer asymmetry between
-   +4.4 and +19.4 points (mean per-pair spread 15.01 +/- 0.84 points),
-   while retraining moves it across at most 2.41 points within any
-   protocol (standard deviations 0.23 to 1.27 points).
+1. Against a fixed panel of seven robust CNNs, a share of 0.936
+   [0.925, 0.948] of ViT-Tiny's CIFAR-10 source gap relative to ResNet-18
+   lies in symmetric dissimilarity, and the ViT's directional term
+   (+0.012) is equivalent to zero within the registered bound of +/-0.10.
 
-2. The 9.21 points between unconditioned and target-correct estimates are
-   predicted exactly by the law of total probability. Its premise p
-   measures 0.989 to 1.000 on adversarially trained targets and falls to
-   0.877 on standard-trained ones, where the p = 1 correction misses by up
-   to 1.58 points.
+2. In a pre-registered architecture-by-initialization design, the
+   scratch-trained ViT is less similar to the panel than a ResNet-18 on
+   the same input pipeline (-0.364 [-0.415, -0.314]), a contrast that
+   moves with the ViT's lower clean accuracy; ImageNet initialization
+   narrows it more for the ViT (+0.260).
 
-3. The two endorsed protocols, target-correct and both-correct, still
-   differ by 3.91 points (run-level 95% interval [3.12, 4.70]); the
-   successful-source protocol estimates a different quantity and lies
-   11.10 points above both-correct.
+3. On CIFAR-100 the symmetric share replicates (0.840), but equivalence of
+   the ViT's directional term is refuted (+0.143). On the logit scale the
+   directional term is strongly negative, so a small directional term is
+   limited to CIFAR-10, the log scale and a CNN panel.
 
-4. The direction is a source effect of this ViT-Tiny: additive fits give source terms of
-   +5.13 (CIFAR-10) and +9.54 points (CIFAR-100) against target terms of
-   -2.03 and -6.19; ViT-crafted examples also transfer worse to a fixed
-   WideResNet-28-10 (8.65% against 12.48%).
+4. The gap is retained under the best of PGD-10, momentum PGD and an
+   adapted token gradient regularization (0.960), AutoAttack flags none
+   of the new models for masking, and on ImageNetV2 transformers are only
+   descriptively less similar to the panel (-0.142).
 
-5. The identity term follows the clean-accuracy gap: the three-protocol
-   spread is 1.49 and 1.30 points on SVHN (1.84-point gap), 0.19 points
-   for a standard-trained pair 0.47 points apart, and over 28 pairs of an
-   eight-model pool it rises by 0.872 points per point of gap. The
-   successful-source excess does not shrink (four-protocol spread 9.03
-   points for two robust WideResNets 0.21 points apart). The last
-   checkpoint moves the spread from 15.01 to 12.84 points.
+5. On the same models the conditioning protocol moves the transfer
+   asymmetry from +4.36 to +19.37 points (mean per-pair spread
+   15.01 +/- 0.84), against run-to-run standard deviations of 0.23 to
+   1.27 points; in absolute terms the CNN leads under AutoAttack
+   (37.93 +/- 0.14% against 29.14 +/- 0.40%).
 
-6. The CNN leads in absolute robustness under AutoAttack (37.93 +/- 0.14%
-   against 29.14 +/- 0.40%), while three common readings fail under direct
-   measurement: none of four spatial-locality measures differs at the run
-   level, CLS attention entropy is equivalent in 12 of 12 layers, and a
-   ViT-specific transfer attack gives no gain over MI-FGSM.
+----------------------------------------------------------------------
+Source notes (internal; not part of the portal text)
+  1: FOY M9.5 lines 1587, 1588; panel and delta from ON_KAYIT Sec. 2-3, 5
+  2: FOY M9.3 lines 1526, 1527; clean accuracy M9.2 lines 1496, 1498
+  3: FOY M10.2 lines 1838, 1839; logit M9.5 line 1603, M10.2 line 1857
+  4: FOY M9.6 line 1624; M9.7 line 1673; M10.4 line 1938
+  5: FOY Table III lines 159-163; Table I lines 16, 17

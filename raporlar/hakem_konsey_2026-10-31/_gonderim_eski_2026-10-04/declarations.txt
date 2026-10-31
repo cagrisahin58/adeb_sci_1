@@ -1,0 +1,88 @@
+DECLARATIONS AND STATEMENTS
+============================
+
+Manuscript: The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
+Correction and a Source-Effect Reading for CNN versus Vision Transformer
+Robustness Comparisons
+
+Target: IEEE Access
+
+Date: 2026-10-04 (revised)
+
+---
+
+1. DATA AVAILABILITY STATEMENT
+
+The experiments in this study use the CIFAR-10 and CIFAR-100 datasets
+[Krizhevsky, 2009] and the SVHN dataset [Netzer et al., 2011], all of which
+are publicly available. Pre-trained WideResNet-28-10 weights were obtained
+from the RobustBench benchmark [Croce et al., 2021].
+
+---
+
+2. CODE AVAILABILITY STATEMENT
+
+The analysis pipeline, the scripts that generate every table and figure in
+the manuscript, the per-sample evaluation records, the fixed
+validation-split indices and the seed lists are publicly available at
+https://github.com/cagrisahin58/cnn-vit-robustness-protocols
+(MIT license for the code, CC BY 4.0 for the records). The per-sample
+records include the transfer runs of the clean-trained model pairs, of the
+eight-model RobustBench pool and of the last-checkpoint re-scoring, and the
+repository also holds a machine-read copy of Tables 1 and 2 of Mahmood et
+al. (ICCV 2021) with the scripts that decompose and re-score them. Together they
+reproduce every number reported in the paper: all four conditioning
+protocols are computed from the per-sample records, so the protocol
+comparison can be repeated without retraining. Trained checkpoints total
+about 40 GB and are available from the authors on reasonable request.
+
+---
+
+3. CONFLICT OF INTEREST
+
+The authors declare no conflict of interest.
+
+---
+
+4. FUNDING
+
+This research received no specific grant from any funding agency in the
+public, commercial, or not-for-profit sectors.
+
+---
+
+5. ETHICAL APPROVAL
+
+Not applicable. This study uses only publicly available benchmark datasets
+(CIFAR-10, CIFAR-100, SVHN) and does not involve human subjects, animals,
+or sensitive data.
+The research investigates adversarial vulnerabilities with the goal of
+improving deep learning security and robustness.
+
+---
+
+6. AUTHOR CONTRIBUTIONS (CRediT)
+
+Cagri Sahin:
+- Conceptualization
+- Methodology
+- Software
+- Validation
+- Formal analysis
+- Investigation
+- Data curation
+- Writing -- original draft
+- Visualization
+
+Ozal Yildirim:
+- Conceptualization
+- Methodology
+- Writing -- review & editing
+- Supervision
+- Project administration
+
+---
+
+7. CONSENT FOR PUBLICATION
+
+All authors consent to the publication of this manuscript in IEEE Access.

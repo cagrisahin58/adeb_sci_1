@@ -37,7 +37,10 @@ import pathlib
 import sys
 p = pathlib.Path(sys.argv[1])
 t = p.read_text(encoding="utf-8")
-e = "The Measurement Protocol Decides the Conclusion: A Methodological Study of CNN and Vision Transformer Adversarial Robustness Comparisons"
+# 2026-10-31: guncel baslik sabiti yeni O1 basligina cevrildi (kol 2026-10-04'ten
+# beri "guncel baslik bulunamadi" diyerek KOSULMUYORDU). Basligin ilk iki
+# satiri yeter; kapak mektubunda tek satirda durur.
+e = "Less a Weak Source than a Different One: Vulnerability, Similarity and Direction in CNN-ViT Adversarial Transfer"
 if e not in t:
     sys.exit("SINAMA HATASI: guncel baslik bulunamadi -- kol KOSULMADI")
 p.write_text(t.replace(e, "A Comparative Study of Convolutional and Transformer Architectures", 1), encoding="utf-8")

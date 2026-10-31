@@ -39,6 +39,21 @@ sed -i 's/preliminary results on one dataset and one model pair/results on our d
 MANUSCRIPT_ROOT="$TMP" python3 scripts/bildiri_tutarlilik.py 2>&1 | grep -E "tek veri kumesi|SONUC"
 sed -i 's/results on our data/preliminary results on one dataset and one model pair/' "$B"
 
+# 2026-10-31: KAT ESLEMESI ve BILINEN_FARKLAR kollari. Bozulan MAKALE kopyasi;
+# bildiri hic degismez.
+M="$TMP/paper/manuscript"
+echo
+echo "=== 3b) MAKALEDEN ust uc silinsin (19.37 -> 19.73), kat ifadesi yok -> KALMALI ==="
+find "$M" -name '*.tex' -exec sed -i 's/19\.37/19.73/g' {} +
+MANUSCRIPT_ROOT="$TMP" python3 scripts/bildiri_tutarlilik.py 2>&1 | grep -E "KAT ESLEMESI|SONUC"
+rm -rf "$M"; cp -r paper/manuscript "$M"
+
+echo
+echo "=== 3c) MAKALEDEN duzeltme beyani silinsin -> KALMALI ==="
+find "$M" -name '*.tex' -exec sed -i 's/corrects one claim/revisits one claim/g' {} +
+MANUSCRIPT_ROOT="$TMP" python3 scripts/bildiri_tutarlilik.py 2>&1 | grep -E "yon kararliligi|SONUC"
+rm -rf "$M"; cp -r paper/manuscript "$M"
+
 # --------------------------------------------------------------------------
 # ARTEFAKT KOLU: bildiri DOGRU, artefakt kayiyor. Kapi bunu gormek zorunda.
 # --------------------------------------------------------------------------

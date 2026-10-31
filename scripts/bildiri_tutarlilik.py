@@ -24,6 +24,15 @@ ust siniri 14,60'tan 19,37'ye tasidi, kapi yine "GECTI" dedi. Artik her
 otoriter deger ARTEFAKTTAN hesaplaniyor. Kapinin kendi oz-sinamasina da
 ucuncu bir kol eklendi: ARTEFAKTI bozup kapinin KALDIGI dogrulanir.
 
+2026-10-31 -- MAKALE O1 SURUMUNE GECTI, BILDIRI DEGISMEDI. Bildiri ATEEC
+2026'da degerlendirmede ve dokunulmaz; makalenin onceki surumuyle tutarli
+yazilmistir. Yeni surumde degisen tek tasiyici bicim "4.4-fold" ifadesidir:
+makale onu birakti ve uclari (+4.36 / +19.37) yaziyor. Kapi artik kat iddiasini
+bu iki uca ESLER (KAT ESLEMESI) ve bildiri ile makale arasindaki bilerek
+yapilmis farklari, makalede onlari beyan eden dizelerle birlikte
+BILINEN_FARKLAR listesinde tutar. Sayisal denetim (bildiri <-> artefakt)
+degismedi.
+
 Cikis kodu: uyusmazlik varsa 1, yoksa 0.
 """
 import json
@@ -122,8 +131,28 @@ _mk = re.search(r"(\d+\.\d+)-fold", en)
 print(f"  bildiride kat: {_bk.group(1) if _bk else 'YOK'}   "
       f"makalede kat: {_mk.group(1) if _mk else 'YOK'}   "
       f"otoriter: {KAT:.4f}")
+# 2026-10-31 KAT ESLEMESI (makalenin O1 surumu; bildiri DOKUNULMAZ, ATEEC'te
+# degerlendirmede). Makalenin 31.10 surumu "N-fold" ifadesini birakti: protokol
+# calismasi dorduncu katkiya indi ve uclari iki ondalikla yazar ("+4.36 to
+# +19.37", giris katki 4, IV-I, Tablo III). Bildirinin kat iddiasi bu iki
+# uctan TURETILIR (KAT = |ust| / |alt|). K2 kurali, yani "kat iddiasi tek
+# basina gezmez", bu durumda dayanaginin makalede durmasiyla saglanir: makale
+# iki ucu artefaktin iki ondalikli degerleriyle tasimali. Uclardan biri yoksa
+# ya da artefaktla tutmuyorsa kapi yine KALIR. Bildiri ile makalenin yeni
+# surumu arasindaki oteki bilinen farklar BILINEN_FARKLAR listesindedir.
+_uc_alt = f"{ALT:.2f}"
+_uc_ust = f"{UST:.2f}"
+_uc_desen = lambda v: r"(?<![\d.])" + re.escape(v) + r"(?!\d)"
 if _bk and not _mk:
-    uyusmaz.append(f"bildiri {_bk.group(1)} kat diyor, makalede kat iddiasi YOK")
+    _alt_var = re.search(_uc_desen(_uc_alt), en) is not None
+    _ust_var = re.search(_uc_desen(_uc_ust), en) is not None
+    print(f"  KAT ESLEMESI: makalede kat ifadesi yok; dayanak uclar "
+          f"{_uc_alt} {'VAR' if _alt_var else 'YOK'}, "
+          f"{_uc_ust} {'VAR' if _ust_var else 'YOK'} "
+          f"(|{_uc_ust}| / |{_uc_alt}| = {KAT:.4f})")
+    if not (_alt_var and _ust_var):
+        uyusmaz.append(f"bildiri {_bk.group(1)} kat diyor; makalede kat iddiasi "
+                       f"YOK ve dayanak uclar ({_uc_alt}, {_uc_ust}) da eksik")
 elif _bk and _mk and _bk.group(1) != _mk.group(1):
     uyusmaz.append(f"kat iddiasi iki belgede FARKLI: bildiri {_bk.group(1)}, "
                    f"makale {_mk.group(1)}")
@@ -161,6 +190,36 @@ for konu, anahtar in [("SVHN", "SVHN"), ("CIFAR-100", "CIFAR-100"),
                       ("on kayit", "pre-registration"), ("TGR", "TGR")]:
     print(f"  bildiri={'VAR' if anahtar in b else 'YOK':4s} "
           f"makale={'VAR' if anahtar in en else 'YOK':4s}  {konu}")
+
+# 2026-10-31 BILINEN FARKLAR: bildiri (ATEEC 2026, degerlendirmede, DOKUNULMAZ)
+# makalenin ONCEKI surumuyle yazildi; makalenin 31.10 O1 surumu onunla su
+# noktalarda bilerek ayrilir. Her fark, makalede onu beyan eden dizeyle
+# eslenir; dize makaleden duserse fark beyansiz kalir ve kapi KALIR.
+#   (fark, makalede aranan dize, gerekce)
+BILINEN_FARKLAR = [
+    ("onsurum beyani", "submitted to ATEEC 2026",
+     "makale bildiriyi onsurum olarak anar (giris son paragraf)"),
+    ("atif", "sahin2026behavioral",
+     "makale bildiriye atif yapar"),
+    ("yon kararliligi duzeltmesi", "corrects one claim",
+     "bildiri 'yon protokoller ve tohumlar boyunca kararli' der (tek veri "
+     "kumesi sinirlamasiyla); makale temiz dogruluk eslesince yonun kararli "
+     "olmadigini yazar ve bunu bildirinin duzeltilen iddiasi olarak beyan eder"),
+    ("baslik ve okuma cercevesi", "Less a Weak Source than a Different One",
+     "bildiri basligi davranissal karsilastirmadir; makale O1 manseti: ViT'nin "
+     "zayif kaynak gorunumu buyuk olcude simetrik benzemezliktir (bildiride "
+     "olmayan panel ve ayrisim; sayi catismasi yok, yukaridaki sayilar tutuyor)"),
+    ("kat ifadesi", f"{_uc_ust}",
+     "bildiri 'N-fold' der, makale uclari yazar (yukarida KAT ESLEMESI)"),
+]
+print()
+print("=== BILDIRI ILE MAKALENIN 31.10 SURUMU ARASINDA BILINEN FARKLAR ===")
+for fark, dize, gerekce in BILINEN_FARKLAR:
+    var = dize in en
+    print(f"  makalede beyan {'VAR' if var else 'YOK':4s} {fark}")
+    if not var:
+        uyusmaz.append(f"bilinen fark '{fark}' makalede beyansiz kaldi "
+                       f"(aranan: '{dize}'; {gerekce})")
 
 print()
 print(f"Bildiri: {len(b.splitlines())} satir, "

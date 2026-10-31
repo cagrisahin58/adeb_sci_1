@@ -1,0 +1,78 @@
+% ---------------------------------------------------------------------------
+% KAPAK MEKTUBU -- 2026-10-04'te LeCun turu omurgasina gore YENIDEN YAZILDI;
+% ayni gun yontem merceki hakem duzeltmeleri (F3, M2, m7, m9) ve yeni baslik islendi.
+% Ek REF: Yayilim - temiz fark iliskisi (SVHN 1.49 / 1.30); RobustBench havuzu (Carmon/Gowal 0.21 -> 9.03);
+%   Turetilmis, Temiz dogruluk farki (SVHN +1.94 / +1.74 -> 1.84).
+%
+% 2026-08-25 surumu "a substantial part ... comes from the measurement
+% protocol" cercevesini, 9,21/5,31/5,79 toplamli ayrisimi ve karantinadaki
+% onceki kontrol noktasi karsitligini tasiyordu (hakem hukmu B1, B2, B3).
+% Her sayi results/C1_REFERANS_FOYU.md'den gelir; bolum adlari asagida.
+%   Tablo I/II; Tablo III; Turetilmis; Secim kuralinin asimetriye etkisi (B);
+%   Dis veri: Mahmood (p 0.989); Standart egitimli hedeflerde oncul p;
+%   Kaynak-hedef toplamsal ayristirma; RobustBench havuzu; Transfer asimetrisi
+%   (SVHN 3.70); Dikkat entropisi TOST.
+% ---------------------------------------------------------------------------
+\documentclass[11pt]{letter}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+
+\signature{
+\c{C}a\u{g}r{\i} \c{S}ahin\\
+Department of Software Engineering\\
+Mu\c{s} Alparslan University, 49250 Mu\c{s}, Turkey\\
+Email: c.sahin@alparslan.edu.tr
+}
+
+\address{
+\c{C}a\u{g}r{\i} \c{S}ahin\\
+Department of Software Engineering\\
+Mu\c{s} Alparslan University\\
+49250 Mu\c{s}, Turkey
+}
+
+\begin{document}
+
+\begin{letter}{
+Editor-in-Chief\\
+IEEE Access\\
+IEEE Publishing Operations
+}
+
+\opening{Dear Editor,}
+
+We are pleased to submit our manuscript titled ``The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact Correction and a Source-Effect Reading for CNN versus Vision Transformer Robustness Comparisons'' for consideration as a Regular Article in \textit{IEEE Access}.
+
+Studies that compare the transferability of adversarial examples between CNNs and Vision Transformers state which samples they score, the conditioning set, but rarely vary it, so its weight in the conclusion has not been measured. The manuscript measures it on fixed models: adversarially trained ResNet-18 and ViT-Tiny on CIFAR-10, three independent training runs per architecture, per-sample logging on the full test set and a validation split held out before any training. The absolute ordering is not in question, since the CNN leads under AutoAttack ($37.93 \pm 0.14\%$ against $29.14 \pm 0.40\%$, McNemar significant in every run); the paper examines the transfer asymmetry between the two families. Its contributions are the following.
+
+\begin{enumerate}
+    \item With models, data and attack held fixed, four conditioning protocols place the CNN-to-ViT transfer asymmetry between $+4.4$ and $+19.4$ points (mean per-pair spread $15.01 \pm 0.84$ points), whereas retraining both architectures moves it across a range of at most $2.41$ points within any protocol, with standard deviations of $0.23$ to $1.27$ points. Three separate facts describe this range, and they do not add up to it: the $9.21$ points between the unconditioned and target-correct estimates, the successful-source protocol lying $11.10$ points above both-correct because it estimates a different quantity, and $3.91$ points (run-level 95\% interval $[3.12, 4.70]$) between the two protocols we endorse.
+    \item The $9.21$-point gap follows from the law of total probability, the transfer analogue of the TRADES decomposition. Its premise, the probability $p$ that a sample the target already misclassifies stays misclassified under the transferred perturbation, measures $0.989$ to $1.000$ on adversarially trained targets, where the closed-form correction is exact; on standard-trained targets $p$ falls to $0.877$ and the $p=1$ form misses by up to $1.58$ points, so the general form with a measured $p$ is required.
+    \item The direction of the asymmetry is a source effect of this ViT-Tiny. Additive source-plus-target fits to the target-correct transfer matrices give source terms of $+5.13$ (CIFAR-10) and $+9.54$ points (CIFAR-100) against target terms of $-2.03$ and $-6.19$: examples crafted on our ViT-Tiny transfer worse to every target, a fixed WideResNet-28-10 included, while the ViT is the less vulnerable target; the source term keeps its sign under every conditioned protocol, whereas the target term depends on the protocol. Applied to the published $8\times8$ matrices of Mahmood et al.\ (ICCV 2021), the same analysis shows that the conditioning protocol does not explain their opposite direction on CIFAR-10, and that their CIFAR-100 pairs sharing our direction reach it through the target term; the manuscript states this disagreement as an open question.
+    \item The part of the range that the identity carries follows the clean-accuracy gap of the pair and shrinks for matched pairs, as the identity predicts once $p$ is close to one; the successful-source excess does not. The three-protocol spread is $1.49$ and $1.30$ points on SVHN, where the two models are $1.84$ points apart in clean accuracy, and $0.19$ points for a standard-trained ResNet-18 and WideResNet-28-10 that are $0.47$ points apart; across the $28$ pairs of an eight-model pool built from RobustBench checkpoints, with no new training, it rises by $0.872$ points per point of gap. Two robust WideResNet-28-10 checkpoints only $0.21$ points apart, by contrast, still show a four-protocol spread of $9.03$ points. Re-scoring our pairs at their last checkpoint moves the spread from $15.01$ to $12.84$ points without changing the direction, so the checkpoint-selection rule is a measurable part of the result.
+    \item Three readings that architecture comparisons often suggest do not hold under direct measurement: CNN gradients are sparser but not more spatially localized, CLS attention entropy does not change under attack (run-level equivalence in all $12$ layers), and a ViT-specific transfer attack gives no gain over plain MI-FGSM at a matched budget. These negative results, and a prediction registered before measurement that failed, are reported in full.
+\end{enumerate}
+
+The manuscript closes with a numbered set of reporting requirements for cross-architecture robustness studies, the first two being to state the conditioning set of every transfer number and not to present unconditioned transfer rates as architecture comparisons. Every protocol estimate is recomputed from per-sample evaluation records, and the numbers in the text are checked against the released artifacts by scripts that are part of the release.
+
+We believe this work suits \textit{IEEE Access} because it is methodological rather than architecture-specific: its subject is how a widely used quantity is measured, and its correction applies to any study that compares transfer across model families. The journal's interdisciplinary readership and open-access model fit a contribution whose value lies in being adopted as reporting practice.
+
+As stated in the Acknowledgment of the manuscript, the authors used Claude (Anthropic) to assist with drafting and revising the text and with implementing the analysis and verification scripts. The study design, the experimental protocol and all conclusions are the authors', who verified every reported number against the released artifacts. All figures are produced by plotting scripts or, for the study overview, as a vector schematic; none is produced by an image-generation model.
+
+\textbf{Declarations:}
+\begin{itemize}
+    \item This manuscript is original work and has not been published elsewhere.
+    \item The manuscript is not under consideration by any other journal.
+    \item A preliminary subset of these results, limited to CIFAR-10, is under review as a conference paper (ATEEC 2026); the present manuscript is the extended version and cites it. Beyond the conference version, the journal version adds the CIFAR-100 and SVHN datasets, the $L_2$ threat model, the total-probability identity together with the measurement of its premise $p$, the additive source--target decomposition and its external test on the published matrices of Mahmood et al., standard-trained targets and an eight-model RobustBench pool, the analysis of the checkpoint-selection rule, the transformer-specific transfer attack and an analysis protocol registered before measurement, and it corrects one claim of the conference version.
+    \item All authors have reviewed and approved the final manuscript.
+    \item All experiments use the publicly available CIFAR-10, CIFAR-100, and SVHN datasets and standard evaluation protocols.
+    \item The authors declare no conflict of interest.
+    \item The analysis pipeline, the scripts that generate every table and figure, the per-sample evaluation records (including the clean-trained pairs, the RobustBench pool and the last-checkpoint re-scoring), a machine-read copy of the published tables of Mahmood et al.\ with the scripts that re-score them, the fixed validation-split indices, and the seed lists are publicly available at \texttt{https://github.com/cagrisahin58/cnn-vit-robustness-protocols}. Trained checkpoints total about $40$~GB and are available from the authors on request.
+\end{itemize}
+
+Thank you for considering our manuscript. We look forward to your editorial decision.
+
+\closing{Sincerely,}
+
+\end{letter}
+\end{document}

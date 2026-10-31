@@ -1,26 +1,25 @@
 % ---------------------------------------------------------------------------
-% KAPAK MEKTUBU -- 2026-10-04'te LeCun turu omurgasina gore YENIDEN YAZILDI;
-% ayni gun yontem merceki hakem duzeltmeleri (F3, M2, m7, m9) ve yeni baslik islendi.
-% Ek REF: Yayilim - temiz fark iliskisi (SVHN 1.49 / 1.30); RobustBench havuzu (Carmon/Gowal 0.21 -> 9.03);
-%   Turetilmis, Temiz dogruluk farki (SVHN +1.94 / +1.74 -> 1.84).
-%
-% 2026-08-25 surumu "a substantial part ... comes from the measurement
-% protocol" cercevesini, 9,21/5,31/5,79 toplamli ayrisimi ve karantinadaki
-% onceki kontrol noktasi karsitligini tasiyordu (hakem hukmu B1, B2, B3).
-% Her sayi results/C1_REFERANS_FOYU.md'den gelir; bolum adlari asagida.
-%   Tablo I/II; Tablo III; Turetilmis; Secim kuralinin asimetriye etkisi (B);
-%   Dis veri: Mahmood (p 0.989); Standart egitimli hedeflerde oncul p;
-%   Kaynak-hedef toplamsal ayristirma; RobustBench havuzu; Transfer asimetrisi
-%   (SVHN 3.70); Dikkat entropisi TOST.
+% KAPAK MEKTUBU -- 2026-10-31'de O1 manseti ve yeni basliga gore YENIDEN
+% YAZILDI (raporlar/konsey_2026-10-29/12_makale_revizyon_brifi.md Sec. 1-2,
+% 31.10 hakem paneli duzeltmeleriyle: raporlar/hakem_konsey_2026-10-31/
+% birlesik.md B1-B3, B6, B7, B9, B12). 2026-10-04 surumu eski "kosullama
+% kumesi" ve "kaynak etkisi" omurgasini tasiyordu; yedegi
+% raporlar/hakem_konsey_2026-10-31/_gonderim_eski_2026-10-04/.
+% Her sayi results/C1_REFERANS_FOYU.md'den (31.10.2026 surumu); her
+% paragrafin ustunde FOY satiri. Iddia siniri brif Sec. 2; "ilk kez",
+% "bildigimiz kadariyla", "novel" YOK (brif Sec. 2, Yenilik satiri).
+% ATEEC 2026 bildirisi: gonderildi, karar bekleniyor -> "under review"
+% (makale 01:48 ve references.bib sahin2026behavioral "submitted" ile tutarli).
 % ---------------------------------------------------------------------------
 \documentclass[11pt]{letter}
+\usepackage[T1]{fontenc}
 \usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
 
 \signature{
 \c{C}a\u{g}r{\i} \c{S}ahin\\
 Department of Software Engineering\\
-Mu\c{s} Alparslan University, 49250 Mu\c{s}, Turkey\\
+Mu\c{s} Alparslan University, 49250 Mu\c{s}, T\"urkiye\\
 Email: c.sahin@alparslan.edu.tr
 }
 
@@ -28,7 +27,7 @@ Email: c.sahin@alparslan.edu.tr
 \c{C}a\u{g}r{\i} \c{S}ahin\\
 Department of Software Engineering\\
 Mu\c{s} Alparslan University\\
-49250 Mu\c{s}, Turkey
+49250 Mu\c{s}, T\"urkiye
 }
 
 \begin{document}
@@ -41,36 +40,49 @@ IEEE Publishing Operations
 
 \opening{Dear Editor,}
 
-We are pleased to submit our manuscript titled ``The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact Correction and a Source-Effect Reading for CNN versus Vision Transformer Robustness Comparisons'' for consideration as a Regular Article in \textit{IEEE Access}.
+We submit the manuscript ``Less a Weak Source than a Different One: Vulnerability, Similarity and Direction in CNN-ViT Adversarial Transfer under an Architecture-by-Initialization Design'' for consideration as a Regular Article in \textit{IEEE Access}.
 
-Studies that compare the transferability of adversarial examples between CNNs and Vision Transformers state which samples they score, the conditioning set, but rarely vary it, so its weight in the conclusion has not been measured. The manuscript measures it on fixed models: adversarially trained ResNet-18 and ViT-Tiny on CIFAR-10, three independent training runs per architecture, per-sample logging on the full test set and a validation split held out before any training. The absolute ordering is not in question, since the CNN leads under AutoAttack ($37.93 \pm 0.14\%$ against $29.14 \pm 0.40\%$, McNemar significant in every run); the paper examines the transfer asymmetry between the two families. Its contributions are the following.
+% FOY:M9.5:1587,1588 (q 0.936 [0.925, 0.948]; rho(V-scr) +0.012)
+% KAYNAK: ON_KAYIT Sec. 2-3 (yedi uyeli panel), Sec. 5 (delta = 0.10)
+Adversarially trained Vision Transformers often look like weak transfer sources against CNNs: examples crafted on the ViT fool a CNN less often than examples crafted on the CNN fool the ViT. With one CNN and one ViT this asymmetry cannot be divided into a source part and a target part, so the common reading that the ViT crafts weaker examples has so far rested on a quantity that cannot decide it. The manuscript separates the two by factoring each log target-correct transfer rate into the target's white-box vulnerability, a symmetric pairwise similarity and a directional residual, and by averaging the last two over a fixed panel of seven robust CNNs from RobustBench. The title states the answer in quantitative form. On CIFAR-10, a share of $0.936$ (90\% interval $[0.925, 0.948]$) of ViT-Tiny's panel source gap relative to ResNet-18 lies in the symmetric term, where a pure source effect would give one half, and the ViT's directional term ($+0.012$) is equivalent to zero within the registered bound of $\pm0.10$. Most of what looks like a weak source is dissimilarity that runs in both directions.
 
-\begin{enumerate}
-    \item With models, data and attack held fixed, four conditioning protocols place the CNN-to-ViT transfer asymmetry between $+4.4$ and $+19.4$ points (mean per-pair spread $15.01 \pm 0.84$ points), whereas retraining both architectures moves it across a range of at most $2.41$ points within any protocol, with standard deviations of $0.23$ to $1.27$ points. Three separate facts describe this range, and they do not add up to it: the $9.21$ points between the unconditioned and target-correct estimates, the successful-source protocol lying $11.10$ points above both-correct because it estimates a different quantity, and $3.91$ points (run-level 95\% interval $[3.12, 4.70]$) between the two protocols we endorse.
-    \item The $9.21$-point gap follows from the law of total probability, the transfer analogue of the TRADES decomposition. Its premise, the probability $p$ that a sample the target already misclassifies stays misclassified under the transferred perturbation, measures $0.989$ to $1.000$ on adversarially trained targets, where the closed-form correction is exact; on standard-trained targets $p$ falls to $0.877$ and the $p=1$ form misses by up to $1.58$ points, so the general form with a measured $p$ is required.
-    \item The direction of the asymmetry is a source effect of this ViT-Tiny. Additive source-plus-target fits to the target-correct transfer matrices give source terms of $+5.13$ (CIFAR-10) and $+9.54$ points (CIFAR-100) against target terms of $-2.03$ and $-6.19$: examples crafted on our ViT-Tiny transfer worse to every target, a fixed WideResNet-28-10 included, while the ViT is the less vulnerable target; the source term keeps its sign under every conditioned protocol, whereas the target term depends on the protocol. Applied to the published $8\times8$ matrices of Mahmood et al.\ (ICCV 2021), the same analysis shows that the conditioning protocol does not explain their opposite direction on CIFAR-10, and that their CIFAR-100 pairs sharing our direction reach it through the target term; the manuscript states this disagreement as an open question.
-    \item The part of the range that the identity carries follows the clean-accuracy gap of the pair and shrinks for matched pairs, as the identity predicts once $p$ is close to one; the successful-source excess does not. The three-protocol spread is $1.49$ and $1.30$ points on SVHN, where the two models are $1.84$ points apart in clean accuracy, and $0.19$ points for a standard-trained ResNet-18 and WideResNet-28-10 that are $0.47$ points apart; across the $28$ pairs of an eight-model pool built from RobustBench checkpoints, with no new training, it rises by $0.872$ points per point of gap. Two robust WideResNet-28-10 checkpoints only $0.21$ points apart, by contrast, still show a four-protocol spread of $9.03$ points. Re-scoring our pairs at their last checkpoint moves the spread from $15.01$ to $12.84$ points without changing the direction, so the checkpoint-selection rule is a measurable part of the result.
-    \item Three readings that architecture comparisons often suggest do not hold under direct measurement: CNN gradients are sparser but not more spatially localized, CLS attention entropy does not change under attack (run-level equivalence in all $12$ layers), and a ViT-specific transfer attack gives no gain over plain MI-FGSM at a matched budget. These negative results, and a prediction registered before measurement that failed, are reported in full.
-\end{enumerate}
+% FOY:M9.8:1684-1686; M10.6:2022-2032 (SHA-256 kayitlari); M11.1:2078,2080
+% (K-a ve K-b hiyerarsik bootstrap, sonradan uretildi). Beyanlarin metni
+% makale 03_methodology.tex subsec:prereg ile ayni kapsamda.
+The study was designed so that this reading could fail. The original pair (three training runs per architecture, a validation split fixed before training, per-sample records on the full test set) is extended by six new runs that complete a two-by-two design crossing architecture with initialization, random or ImageNet, on a matched input pipeline and training recipe. Predictions, tests and decision rules were registered in advance: the main registration was frozen on 29 October 2026 before any of these runs, and an addendum covering CIFAR-100, ImageNetV2 and gradient alignment on 30 October 2026 before any of its matrices was computed. Every registered test ran through one frozen analysis script whose SHA-256 digest is recorded in each output. The manuscript also states what the registration does not cover. The CIFAR-10 panel tests extend a first seed that had already been seen, the architecture prediction was written with the pair's similarity gap known, the refutation rule for the ViT's directional term was widened to both signs after data had been seen, and one registered sensitivity analysis, a hierarchical bootstrap that the frozen script lacked, was computed by a separate script after the results and an internal review had been seen. Analyses outside the registration are labelled exploratory.
 
-The manuscript closes with a numbered set of reporting requirements for cross-architecture robustness studies, the first two being to state the conditioning set of every transfer number and not to present unconditioned transfer rates as architecture comparisons. Every protocol estimate is recomputed from per-sample evaluation records, and the numbers in the text are checked against the released artifacts by scripts that are part of the release.
+The first contribution is an identifiability result. In a two-model design the asymmetry identifies only a difference of potentials, and an additive source-plus-target fit in a family with a single ViT can load the similarity among the CNNs onto the ViT's source term. A fixed external panel combined with a multiplicative decomposition makes vulnerability, similarity and direction identifiable for each model. The decomposition is an accounting identity, related to the quasi-symmetry model of Caussinus and to the transferability analysis of Demontis et al.; we do not present it as a finding, and the paper's content lies in the values its terms take and in how they respond to an intervention.
 
-We believe this work suits \textit{IEEE Access} because it is methodological rather than architecture-specific: its subject is how a widely used quantity is measured, and its correction applies to any study that compares transfer across model families. The journal's interdisciplinary readership and open-access model fit a contribution whose value lies in being adopted as reporting practice.
+% FOY:M9.5:1589 (Delta_seed +0.566); M10.2:1838,1839,1842 (CIFAR-100 q 0.840;
+% rho(V-scr) +0.143, curutuldu; eski tek yonlu kuralla da curutme: evet)
+The second contribution is the measured size of these terms on two datasets. Besides the symmetric share and the directional term above, ViT seeds resemble each other more than they resemble the panel ($+0.566$ on the log similarity scale). On CIFAR-100 the symmetric share ($0.840$) and the seed similarity replicate, but the registered equivalence of the ViT's directional term is refuted ($+0.143$), and it is refuted under the original one-sided rule as well; on that dataset the ViT is also a directionally weaker source. The manuscript reports this refutation in the abstract and does not soften it.
 
-As stated in the Acknowledgment of the manuscript, the authors used Claude (Anthropic) to assist with drafting and revising the text and with implementing the analysis and verification scripts. The study design, the experimental protocol and all conclusions are the authors', who verified every reported number against the released artifacts. All figures are produced by plotting scripts or, for the study overview, as a vector schematic; none is produced by an image-generation model.
+% FOY:M9.3:1526,1527,1528 (H1 -0.364 [-0.415, -0.314]; H2 +0.260; H3 +0.003; Holm)
+% FOY:M9.2:1496,1498 (temiz dogruluk V-scr 73.53, R224-scr 85.73)
+% FOY:M9.6:1624 (korunma orani 0.960); M9.7:1673 (isaretli model yok)
+The third contribution is an intervention on the pair itself. Trained from scratch on the same pipeline, the ViT is less similar to the panel than a ResNet-18 ($-0.364$, with a 90\% interval of $[-0.415, -0.314]$); this contrast moves together with the ViT's lower clean accuracy ($73.53\%$ against $85.73\%$), which the design cannot separate from architecture, and the paper says so in the abstract. ImageNet initialization raises the ViT's panel similarity more than the ResNet's ($+0.260$), and, averaged over the two initializations, architecture leaves the log-scale directional term within the margin ($+0.003$); all three registered tests are supported after Holm correction. The gap is retained, at a fraction of $0.960$, when each source uses the best of PGD-10, momentum PGD and our adaptation of token gradient regularization, which transferred worse than PGD-10 from every ViT source, and the registered AutoAttack rule flags none of the six new models for gradient masking.
 
-\textbf{Declarations:}
-\begin{itemize}
-    \item This manuscript is original work and has not been published elsewhere.
-    \item The manuscript is not under consideration by any other journal.
-    \item A preliminary subset of these results, limited to CIFAR-10, is under review as a conference paper (ATEEC 2026); the present manuscript is the extended version and cites it. Beyond the conference version, the journal version adds the CIFAR-100 and SVHN datasets, the $L_2$ threat model, the total-probability identity together with the measurement of its premise $p$, the additive source--target decomposition and its external test on the published matrices of Mahmood et al., standard-trained targets and an eight-model RobustBench pool, the analysis of the checkpoint-selection rule, the transformer-specific transfer attack and an analysis protocol registered before measurement, and it corrects one claim of the conference version.
-    \item All authors have reviewed and approved the final manuscript.
-    \item All experiments use the publicly available CIFAR-10, CIFAR-100, and SVHN datasets and standard evaluation protocols.
-    \item The authors declare no conflict of interest.
-    \item The analysis pipeline, the scripts that generate every table and figure, the per-sample evaluation records (including the clean-trained pairs, the RobustBench pool and the last-checkpoint re-scoring), a machine-read copy of the published tables of Mahmood et al.\ with the scripts that re-score them, the fixed validation-split indices, and the seed lists are publicly available at \texttt{https://github.com/cagrisahin58/cnn-vit-robustness-protocols}. Trained checkpoints total about $40$~GB and are available from the authors on request.
-\end{itemize}
+% FOY:Tablo III:159,160,161,162,163 (+4.36 / +19.37; yayilim 15.01 +- 0.84;
+% kosum SD'leri 0.33, 0.44, 0.23, 1.27 -> en kucuk 0.23, en buyuk 1.27)
+% FOY:Dis veri:641; M8.1:1161 (p en kucuk 0.989)
+The fourth contribution concerns the measurement layer underneath. With models, data and attack held fixed, the conditioning protocol alone moves the asymmetry of the pair from $+4.36$ to $+19.37$ points (mean per-pair spread $15.01 \pm 0.84$ points), whereas independent training runs move it with standard deviations of $0.23$ to $1.27$ points within a protocol. Unconditioned and target-correct rates are linked by the law of total probability through a premise that measures at least $0.989$ on our adversarially trained targets, and on the scale $h = -\log(1-T)$ the two protocols differ only in the target potentials, up to a small adjustment term. This is why the decomposition is computed on one stated protocol.
 
-Thank you for considering our manuscript. We look forward to your editorial decision.
+% FOY:M9.5:1603 (logit rho(V-scr) -0.304); M10.2:1857 (CIFAR-100 logit -0.413);
+% M9.5:1606 (XCiT ikincil panel rho +0.198 / +0.202 / +0.204);
+% M10.4:1938,1939 (A^sigma_IN -0.142 [-0.197, -0.090], betimsel; Liu "belirsiz");
+% M10.5:1971,1973,1975 (ana etki artikli Spearman 0.944, 0.912, 0.893)
+% FOY:Tablo I:16,17 (AA 37.93 +- 0.14 / 29.14 +- 0.40)
+The claim has a definite boundary, and the abstract, introduction and conclusion state it in the same terms. A small directional term holds on the log scale, against a CNN panel and on CIFAR-10 only: on the logit scale the ViT's directional term is strongly negative, against a single transformer reference the scratch-trained ViT is a directionally weaker source, and on CIFAR-100 the equivalence is refuted. The architecture contrast compares whole packages, patch stem, attention and parameter count together. The ImageNetV2 evidence is descriptive and not a test of the two-by-two design: in two same-recipe CNN-transformer pairs the transformers are less similar to the panel ($-0.142$, 90\% image-bootstrap interval $[-0.197, -0.090]$), and the only scratch-trained ImageNet pair gives an uncertain estimate. Input-gradient cosine tracks pairwise similarity on three datasets (Spearman correlation $0.893$ to $0.944$ after additive model effects are removed); we read this as an association that a gradient-alignment account requires, not as evidence of a mechanism, and one ImageNet pair combines a near-zero cosine with above-median similarity. None of this concerns the absolute ordering, which favors the CNN under every attack (AutoAttack accuracy $37.93 \pm 0.14\%$ against $29.14 \pm 0.40\%$).
+
+We believe the manuscript suits \textit{IEEE Access} because its subject is how a widely reported quantity should be read, and the reporting requirements it closes with (state the conditioning set, measure target vulnerability separately from similarity, use models outside the compared pair, name the scale on which direction is read) apply to any study that compares adversarial transfer across model families. Every number in the text is recomputed from per-sample records and checked against the released artifacts by scripts that are part of the release.
+
+A preliminary version of this study, limited to CIFAR-10 and to the ResNet-18 and ViT-Tiny pair, has been submitted to ATEEC 2026 and is under review; the manuscript cites it and describes the overlap in its introduction. That version reports the conditional decomposition, the four-protocol comparison and the gradient and drift measurements. The journal version adds the vulnerability-similarity-direction decomposition with its fixed panel, the architecture-by-initialization design with six new training runs, the attack-side and masking checks, the CIFAR-100 and ImageNetV2 panels, the gradient-alignment test, the protocol identity with its measured premise and the registration of predictions before measurement. It also corrects one claim of the conference version: the direction of the asymmetry is not stable once the two architectures are matched in clean accuracy. We will declare the conference paper in the portal's prior-publication field and update its citation if the conference decision arrives during review.
+
+As stated in the Acknowledgment of the manuscript, the authors used Claude (Anthropic) to assist with drafting and revising the text and with implementing the analysis and verification scripts. The study design, the experimental protocol and all conclusions are the authors', who verified every reported number against the released artifacts. All figures are produced by plotting scripts or, for the schematics, drawn as vector graphics; none is produced by an image-generation model.
+
+The manuscript is original, has not been published elsewhere and is not under consideration by any other journal. Both authors have read and approved the submitted version and declare no conflict of interest. All datasets and RobustBench checkpoints used are public, and the analysis pipeline, per-sample records, registration documents, frozen analysis script and cell tables are available at \url{https://github.com/cagrisahin58/cnn-vit-robustness-protocols}; trained checkpoints are available from the authors on request.
+
+Thank you for considering our manuscript.
 
 \closing{Sincerely,}
 

@@ -1,0 +1,44 @@
+HIGHLIGHTS
+
+Manuscript: The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
+Correction and a Source-Effect Reading for CNN versus Vision Transformer
+Robustness Comparisons
+
+Revised 2026-10-04. All figures come from results/C1_REFERANS_FOYU.md
+(3 seeds, full test set, eps = 8/255 unless stated).
+
+1. On fixed adversarially trained ResNet-18 and ViT-Tiny models, four
+   conditioning protocols place the CNN-to-ViT transfer asymmetry between
+   +4.4 and +19.4 points (mean per-pair spread 15.01 +/- 0.84 points),
+   while retraining moves it across at most 2.41 points within any
+   protocol (standard deviations 0.23 to 1.27 points).
+
+2. The 9.21 points between unconditioned and target-correct estimates are
+   predicted exactly by the law of total probability. Its premise p
+   measures 0.989 to 1.000 on adversarially trained targets and falls to
+   0.877 on standard-trained ones, where the p = 1 correction misses by up
+   to 1.58 points.
+
+3. The two endorsed protocols, target-correct and both-correct, still
+   differ by 3.91 points (run-level 95% interval [3.12, 4.70]); the
+   successful-source protocol estimates a different quantity and lies
+   11.10 points above both-correct.
+
+4. The direction is a source effect of this ViT-Tiny: additive fits give source terms of
+   +5.13 (CIFAR-10) and +9.54 points (CIFAR-100) against target terms of
+   -2.03 and -6.19; ViT-crafted examples also transfer worse to a fixed
+   WideResNet-28-10 (8.65% against 12.48%).
+
+5. The identity term follows the clean-accuracy gap: the three-protocol
+   spread is 1.49 and 1.30 points on SVHN (1.84-point gap), 0.19 points
+   for a standard-trained pair 0.47 points apart, and over 28 pairs of an
+   eight-model pool it rises by 0.872 points per point of gap. The
+   successful-source excess does not shrink (four-protocol spread 9.03
+   points for two robust WideResNets 0.21 points apart). The last
+   checkpoint moves the spread from 15.01 to 12.84 points.
+
+6. The CNN leads in absolute robustness under AutoAttack (37.93 +/- 0.14%
+   against 29.14 +/- 0.40%), while three common readings fail under direct
+   measurement: none of four spatial-locality measures differs at the run
+   level, CLS attention entropy is equivalent in 12 of 12 layers, and a
+   ViT-specific transfer attack gives no gain over MI-FGSM.

@@ -1,67 +1,112 @@
 DECLARATIONS AND STATEMENTS
 ============================
 
-Manuscript: The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
-Correction and a Source-Effect Reading for CNN versus Vision Transformer
-Robustness Comparisons
+Manuscript: Less a Weak Source than a Different One: Vulnerability,
+Similarity and Direction in CNN-ViT Adversarial Transfer under an
+Architecture-by-Initialization Design
 
-Target: IEEE Access
+Target: IEEE Access (Regular Article)
 
-Date: 2026-10-04 (revised)
+Date: 2026-10-31 (revised; the 2026-10-04 version carried the previous
+title and is kept in raporlar/hakem_konsey_2026-10-31/_gonderim_eski_2026-10-04/)
+
+The scope of statements 1 and 2 is the same as the "Data and Code
+Availability" section of the manuscript (main.tex).
 
 ---
 
 1. DATA AVAILABILITY STATEMENT
 
-The experiments in this study use the CIFAR-10 and CIFAR-100 datasets
-[Krizhevsky, 2009] and the SVHN dataset [Netzer et al., 2011], all of which
-are publicly available. Pre-trained WideResNet-28-10 weights were obtained
-from the RobustBench benchmark [Croce et al., 2021].
+The study uses the public CIFAR-10 and CIFAR-100 [Krizhevsky, 2009], SVHN
+[Netzer et al., 2011] and ImageNetV2 MatchedFrequency [Recht et al., 2019]
+datasets. The panel checkpoints for CIFAR-10, CIFAR-100 and ImageNet come
+from the RobustBench benchmark [Croce et al., 2021]. The ImageNet
+initializations of the two-by-two design are the public DeiT-Tiny
+[Touvron et al., 2021] and ResNet-18 A1 [Wightman et al., 2021] weights
+distributed with the timm library.
 
 ---
 
 2. CODE AVAILABILITY STATEMENT
 
-The analysis pipeline, the scripts that generate every table and figure in
-the manuscript, the per-sample evaluation records, the fixed
-validation-split indices and the seed lists are publicly available at
+The analysis pipeline, the scripts behind every table and figure, the
+per-sample evaluation records, the validation-split indices and the seed
+lists are publicly available at
 https://github.com/cagrisahin58/cnn-vit-robustness-protocols
-(MIT license for the code, CC BY 4.0 for the records). The per-sample
-records include the transfer runs of the clean-trained model pairs, of the
-eight-model RobustBench pool and of the last-checkpoint re-scoring, and the
-repository also holds a machine-read copy of Tables 1 and 2 of Mahmood et
-al. (ICCV 2021) with the scripts that decompose and re-score them. Together they
-reproduce every number reported in the paper: all four conditioning
-protocols are computed from the per-sample records, so the protocol
-comparison can be repeated without retraining. Trained checkpoints total
-about 40 GB and are available from the authors on reasonable request.
+(MIT license for the code, CC BY 4.0 for the records). The repository
+also holds the pre-registration documents with their freeze records, the
+frozen analysis script, the cell tables whose SHA-256 digests the analysis
+outputs record, and a machine-read copy of Tables 1 and 2 of Mahmood et
+al. (ICCV 2021) with the scripts that re-score them. Since every protocol
+and decomposition term is computed from these records, all reported
+numbers can be reproduced without retraining. Trained checkpoints are
+available from the authors on request.
 
 ---
 
-3. CONFLICT OF INTEREST
+3. PRE-REGISTRATION
+
+Predictions, tests and decision rules for the panel tests, the
+architecture-by-initialization design, the attack-side test and the
+masking check were frozen on 29 October 2026 before any of the
+corresponding runs; an addendum covering CIFAR-100, ImageNetV2 and
+gradient alignment was frozen on 30 October 2026 before any of its
+matrices or gradients was computed. Both documents and their SHA-256
+freeze records are in the repository. The manuscript (Section III,
+"Pre-Registration") lists the data seen before registration, the two
+rules changed after data had been seen, and the one registered
+sensitivity analysis computed after the results had been seen; analyses
+outside the registration are labelled exploratory.
+
+---
+
+4. PRIOR PRESENTATION
+
+A preliminary version of this study, limited to CIFAR-10 and to the
+ResNet-18 and ViT-Tiny pair, has been submitted to ATEEC 2026 and is under
+review. The manuscript cites it, describes the overlap in its
+introduction and corrects one claim of that version. The overlap is
+declared in the cover letter and will be declared in the portal's
+prior-publication field.
+
+---
+
+5. CONFLICT OF INTEREST
 
 The authors declare no conflict of interest.
 
 ---
 
-4. FUNDING
+6. FUNDING
 
 This research received no specific grant from any funding agency in the
 public, commercial, or not-for-profit sectors.
 
 ---
 
-5. ETHICAL APPROVAL
+7. ETHICAL APPROVAL
 
 Not applicable. This study uses only publicly available benchmark datasets
-(CIFAR-10, CIFAR-100, SVHN) and does not involve human subjects, animals,
-or sensitive data.
-The research investigates adversarial vulnerabilities with the goal of
-improving deep learning security and robustness.
+(CIFAR-10, CIFAR-100, SVHN, ImageNetV2) and publicly released model
+checkpoints, and does not involve human subjects, animals, or sensitive
+data. The research measures adversarial vulnerability with the goal of
+improving how the robustness of deep learning models is evaluated.
 
 ---
 
-6. AUTHOR CONTRIBUTIONS (CRediT)
+8. USE OF GENERATIVE AI TOOLS
+
+As stated in the Acknowledgment of the manuscript, the authors used Claude
+(Anthropic) during the preparation of this work. The tool assisted with
+drafting and revising the manuscript text in all sections and with
+implementing the analysis and verification scripts released with the
+paper. The study design, the experimental protocol and all conclusions
+are the authors', who verified every reported number against the released
+artifacts. No figure was produced by an image-generation model.
+
+---
+
+9. AUTHOR CONTRIBUTIONS (CRediT)
 
 Cagri Sahin:
 - Conceptualization
@@ -83,6 +128,6 @@ Ozal Yildirim:
 
 ---
 
-7. CONSENT FOR PUBLICATION
+10. CONSENT FOR PUBLICATION
 
 All authors consent to the publication of this manuscript in IEEE Access.

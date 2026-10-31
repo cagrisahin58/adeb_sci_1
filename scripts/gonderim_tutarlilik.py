@@ -94,6 +94,14 @@ CURUK_IFADE = [
     ("vanishes entirely", "asimetrinin tamamen kayboldugu iddiasi CURUTULDU"),
     ("is symmetric", "kosullu transferin simetrik oldugu iddiasi CURUTULDU"),
     ("not a conference extension", "makale ARTIK bir konferans genisletmesidir"),
+    # 2026-10-31 (O1 manseti; yalniz liste eklemesi): makalenin yeni surumu
+    # eski "kaynak etkisi" okumasini CELISKI diye kaldirdi (brif 12 Sec. 4),
+    # hakem paneli eski O1 basligini (B2) ve "gerekli kosul" dilini (B3)
+    # reddetti. Bu ifadeler gonderim belgelerine geri donmemeli.
+    ("source effect of this ViT-Tiny", "O1 ile CELISKI: eski kaynak etkisi okumasi kalkti"),
+    ("direction is a source effect", "O1 ile CELISKI: eski kaynak etkisi okumasi kalkti"),
+    ("Not a Weak Source but", "eski O1 basligi; hakem paneli B2 ile degisti"),
+    ("necessary condition", "hakem paneli B3: gradyan hizalanmasi gerekli kosul DEGIL"),
 ]
 
 print("\n=== 2. KARANTINA VE CURUTULMUS IDDIA ===")
@@ -122,8 +130,12 @@ SAYILAR = [
     ("AA ViT", f"{seed['vit']['aa']['mean']:.2f}"),
     ("protokol yayilimi", f"{trs['protocol_spread_pp']['mean']:.2f}"),
     ("yayilim sd", f"{trs['protocol_spread_pp']['std']:.2f}"),
-    ("asimetri alt", f"{min(_d):.1f}"),
-    ("asimetri ust", f"{max(_d):.1f}"),
+    # 2026-10-31: .1f -> .2f (yalniz bicim eslemesi). Makalenin 31.10 surumu
+    # protokol uclarini iki ondalikla yazar (+4.36 / +19.37: giris katki 4,
+    # IV-I, Tablo III); tek ondalik, gonderim belgelerini makalede olmayan
+    # bir hassasiyete (+4.4 / +19.4) zorluyordu.
+    ("asimetri alt", f"{min(_d):.2f}"),
+    ("asimetri ust", f"{max(_d):.2f}"),
     ("kosum sd min", f"{vr['PAYDA_kosum_etkisi_AYNI_NICELIK']['sd_min']:.2f}"),
     ("kosum sd max", f"{vr['PAYDA_kosum_etkisi_AYNI_NICELIK']['sd_max']:.2f}"),
 ]

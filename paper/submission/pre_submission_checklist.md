@@ -1,247 +1,112 @@
 # IEEE Access Pre-Submission Checklist
 
-**Manuscript:** The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact Correction and a Source-Effect Reading for CNN versus Vision Transformer Robustness Comparisons
+**Manuscript:** Less a Weak Source than a Different One: Vulnerability, Similarity and Direction in CNN-ViT Adversarial Transfer under an Architecture-by-Initialization Design
 
-**Target:** IEEE Access (Open Access, Single-Blind Review)
+**Target:** IEEE Access (Open Access, Single-Blind Review), Regular Article
 
-**Date:** 2026-08-25 (revised after the C1 leak fix and the Q1 campaign; the 2026-02-16 version predates both)
+**Date:** 2026-10-31 (rewritten after the council round and the 31.10 reviewer panel; the 2026-10-04 version carried the previous title and the "conditioning set / source effect" framing and is kept in `raporlar/hakem_konsey_2026-10-31/_gonderim_eski_2026-10-04/`)
 
-> **2026-08-25 revizyonu.** Bu liste 2026-02-16'da yazıldı ve o tarih C1
-> sızıntı düzeltmesinden de Q1 kampanyasından da ÖNCEDİR. Aynı klasördeki
-> `cover_letter.tex`, `highlights.txt` ve `declarations.txt` o tarihte
-> karantinaya alınmış run2 sayılarını ve makalenin sonradan çürüttüğü bir
-> sonucu taşıyordu; üçü de yeniden yazıldı. Bu listenin bir maddesi de
-> olgusal olarak yanlıştı (konferans genişletmesi olmadığı yazıyordu) ve
-> düzeltildi.
->
-> Kapılar `paper/submission/` altını taramıyordu; bu yüzden ayrıca bir
-> kapı eklendi (`scripts/gonderim_tutarlilik.py`).
+> **2026-10-31 notu.** Makale bugün O1 manşetiyle yeniden yazıldı ve başlığı
+> değişti. Bu klasördeki dört belge (`cover_letter.tex`, `highlights.txt`,
+> `declarations.txt`, bu liste) yeni başlığa, yeni özete ve brif 12 §2'deki
+> iddia sınırına göre yeniden yazıldı; `suggested_reviewers.md` ve
+> `author_biographies.tex` güncellendi. Belgelerin makaleyle tutarlılığını
+> `scripts/gonderim_tutarlilik.py` (kapı 7) denetler. Aşağıdaki sayılar
+> 31.10.2026 19:15 tarihli `main.pdf` ve `main.bbl` üzerinden sayıldı.
 
 ---
 
 ## 1. Manuscript Format and Content
 
-- [x] IEEE Access LaTeX template used (`\documentclass[journal]{IEEEtran}`)
-- [x] Title concise and descriptive
-- [x] Abstract within word limit (IEEE Access: max 250 words) — 243 words (EN), 225 (TR); enforced by scripts/check_abstract_body.py
-- [x] Keywords provided (5 keywords)
-- [x] All 6 sections complete (Introduction, Related Work, Methodology, Experiments, Discussion, Conclusion)
-- [x] Acknowledgment section included
-- [x] **Author biographies included below references** (4 `\IEEEbiography` blocks present in `main.tex`)
-- [ ] **ORCID iDs for all authors** (submitting author MUST have ORCID linked to IEEE account)
-- [x] Double-column IEEE format
-- [x] References in IEEE style (`IEEEtran.bst`)
+- [x] IEEE Access LaTeX template (`ieeeaccess.cls`, mandatory)
+- [x] Title matches across manuscript, cover letter, highlights, declarations and this list (gate 7)
+- [x] Abstract within the 250-word limit: 249 words (EN), checked by `scripts/check_abstract_body.py` on 2026-10-31
+- [x] Abstract and Index Terms render in the PDF (gate 8, `check_pdf_render.py`)
+- [x] Index terms: 7 (adversarial robustness, transfer attacks, transferability, Vision Transformer, convolutional neural networks, pre-registration, evaluation methodology)
+- [x] Sections: Introduction, Related Work, Methodology, Experiments, Computational Details, Discussion, Conclusion, Appendix; Data and Code Availability; Acknowledgment
+- [x] Generative AI use disclosed in the Acknowledgment and in the cover letter
+- [ ] **Author biographies complete.** Two `IEEEbiographynophoto` blocks are present; the second author's degrees and years are missing (reviewer panel A13). Photos and the `IEEEbiography` environment are added after acceptance.
+- [ ] **ORCID iDs for all authors** (the submitting author must have ORCID linked to the IEEE account)
+- [x] References in IEEE style (`IEEEtran.bst`): 77 entries in `main.bbl`
 
-### ACTION REQUIRED:
-1. Add author biographies at the end of `main.tex` (before `\end{document}`)
-2. Ensure ORCID iD is linked to IEEE Author Portal account
+## 2. Length
 
----
-
-## 2. Page Count
-
-- [x] Page count verified — **24 pages** in the IEEE Access class (`ieeeaccess.cls`, mandatory template; was 21 in IEEEtran, the Access layout is wider; +1 page on 2026-09-29 for the study-overview figure and the nested-protocol-sets figure; -1 page on 2026-09-30 after the sentence-level style pass and citation-context corrections). IEEE Access is a flat-APC journal and publishes no hard page limit on its author page; the length follows from the three-dataset scope.
-- [x] **Abstract and Index Terms actually render in the PDF** — enforced by `scripts/check_pdf_render.py` (gate 8). In `ieeeaccess.cls` both must precede `\maketitle`; the 2026-09-01 migration kept the IEEEtran order and the PDF was silently abstract-less for a month. Source-level gates cannot see this.
-- [x] Author band capitalization correct in the PDF (Turkish dotless/dotted i; `\uppercase` cannot do it, names are written in explicit uppercase).
-- [ ] Excessive length justified by content (if over 20 pages)
-
-### ACTION REQUIRED:
-1. Compile LaTeX and count pages
-2. If over 20 pages, consider moving supplementary content to appendix or online repository
-
----
+- [x] Page count: **25 pages** in `ieeeaccess.cls` (`main.pdf`, 2026-10-31). IEEE Access is a flat-APC journal without a hard page limit; the length follows from the registered design (panel tests, two-by-two design, attack side, three external panels).
+- [ ] Reviewer panel B18: the methodology section is above its word budget; repetitions are to be trimmed in the next manuscript round.
 
 ## 3. Figures and Tables
 
-- [x] All 17 figures in PDF format (vector graphics)
-- [x] Figures referenced in text
-- [x] Figure captions are self-contained
-- [ ] **Figure resolution >= 300 DPI** (verify for any rasterized elements)
-- [ ] **Individual figure files ready** (PS, EPS, PDF, PNG, or TIF)
-- [ ] Color figures noted (no extra charge for IEEE Access, but ensure readability in grayscale)
+- [x] 12 figures, all vector PDF; 18 table environments
+- [ ] **Flat figure paths for upload** (reviewer panel A13). The manuscript reads figures from `../figures/final/` (3 files) and `../figures/konsey/` (9 files); for the source ZIP they must be copied next to `main.tex` and the paths flattened.
+- [ ] Font size at least 6.5 pt in every figure and the arrow from (c) to (d) in the study overview (reviewer panel A12, visio-cizici round)
+- [ ] Grayscale readability check
 
-### Figure Inventory (paper/figures/final/):
-| # | File | Description |
-|---|------|-------------|
-| 1 | fig1_robustness_comparison.pdf | Robustness comparison bar chart |
-| 2 | fig2_epsilon_sweep.pdf | Epsilon sweep curves |
-| 3 | fig3_transfer_heatmap.pdf | Transfer attack heatmap |
-| 4 | fig4_gradient_comparison.pdf | Combined gradient analysis |
-| 4a | fig4a_gradient_visualization.pdf | Gradient visualization |
-| 4b | fig4b_gradient_distribution.pdf | Gradient distribution |
-| 5 | fig5_attention_comparison.pdf | Attention comparison |
-| 5a | fig5a_attention_comparison.pdf | Attention map comparison |
-| 5b | fig5b_attention_entropy.pdf | Attention entropy |
-| 6 | feature_degradation.pdf | Feature degradation analysis |
-| 7 | adversarial_samples.pdf | Adversarial sample examples |
-| 8 | fig_adversarial_examples.pdf | Adversarial examples display |
-| 9 | gradient_comparison.pdf | Gradient comparison |
-| 10 | gradient_landscape.pdf | Gradient landscape |
-| 11 | gradient_samples_resnet.pdf | ResNet gradient samples |
-| 12 | gradient_norm_distribution.pdf | Gradient norm distribution |
-| 13 | fig_tsne_features.pdf | t-SNE feature visualization |
+Figures used by the manuscript (2026-10-31):
 
-### ACTION REQUIRED:
-1. Verify all figures compile correctly in the manuscript PDF
-2. Confirm no figures are duplicated or unused
-
----
+| Folder | File |
+|---|---|
+| figures/konsey | fig_study_overview.pdf |
+| figures/konsey | fig_decomposition_schematic.pdf |
+| figures/konsey | fig_similarity_matrix.pdf |
+| figures/konsey | fig_source_gap_split.pdf |
+| figures/konsey | fig_cells_interaction.pdf |
+| figures/konsey | fig_estimates_forest.pdf |
+| figures/konsey | fig_attack_side.pdf |
+| figures/konsey | fig_gradient_alignment.pdf |
+| figures/konsey | fig_protocol_sets.pdf |
+| figures/final | fig_spread_clean_gap.pdf |
+| figures/final | fig2_epsilon_sweep.pdf |
+| figures/final | fig5b_attention_entropy.pdf |
 
 ## 4. References
 
-- [x] 35+ references in `references.bib`
-- [x] Recent references included (2023-2025)
-- [x] Foundational works cited (Szegedy 2014, Goodfellow 2015, Madry 2018)
-- [x] IEEE style bibliography (`IEEEtran.bst`)
-- [x] **No unresolved citations** (latexmk: 0 undefined references, 0 citation errors, verified 2026-08-25)
-- [ ] **All DOIs verified** (recommended for IEEE)
-- [x] **No hallucinated references** (5 errors fixed in the 2026-07 review; the 3 references added 2026-08-25 were verified against arXiv/DBLP before being added)
-
-### ACTION REQUIRED:
-1. Compile and check for unresolved citation warnings
-2. Verify all references exist and are correctly formatted
-
----
+- [x] No unresolved citations in the last compilation
+- [x] Citation check of 2026-10-31 (`raporlar/atif_2026-10-31/rapor.md`); `sahin2026behavioral` (ATEEC 2026) cannot be verified externally until the proceedings appear
+- [ ] Reviewer panel B12: the keys of Awad, Springer and Zhang to be confirmed in the next citation round
+- [ ] DOIs added where available (recommended)
 
 ## 5. Declarations and Statements
 
-### Data Availability Statement
-**Status:** Needs to be added to manuscript or cover letter
-**Recommended text:**
-> The experiments in this study use the CIFAR-10 dataset, which is publicly available at https://www.cs.toronto.edu/~kriz/cifar.html. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark (https://robustbench.github.io/).
+- [x] Data availability: manuscript (Data and Code Availability) and `declarations.txt` §1, same scope (CIFAR-10, CIFAR-100, SVHN, ImageNetV2; RobustBench checkpoints; timm initializations)
+- [x] Code availability: public repository https://github.com/cagrisahin58/cnn-vit-robustness-protocols, including the pre-registration documents, the frozen analysis script and the cell tables; checkpoints on request
+- [x] Pre-registration statement: `declarations.txt` §3, consistent with Section III "Pre-Registration" of the manuscript
+- [x] Conflict of interest: none declared
+- [ ] Funding: "no specific grant" to be confirmed with the co-author
 
-### Code Availability Statement
-**Status:** Done (2026-10-02). Public repository https://github.com/cagrisahin58/cnn-vit-robustness-protocols (analysis pipeline, per-sample records, split indices, seed lists, verification scripts; checkpoints on request). Built by `scripts/acik_depo_kur.sh`; reference sheet regenerates byte-identically from the records.
-**Text in the manuscript:** present tense and the same scope in main.tex (Data and Code Availability), Section 6, the Turkish mirror, declarations.txt and the cover letter.
+## 6. Conference Extension and Overlap
 
-### Conflict of Interest
-**Status:** Declared in cover letter
-> The authors declare no conflict of interest.
+- [x] **Conference extension declared.** A preliminary version (CIFAR-10, the ResNet-18 and ViT-Tiny pair only) has been submitted to ATEEC 2026 and is under review. The manuscript cites it (Introduction, last paragraph), the cover letter and `declarations.txt` §4 declare it, and the manuscript corrects one claim of it. The portal's prior-publication field must be filled at upload.
+- [ ] If the ATEEC decision arrives before or during review: update `sahin2026behavioral` (status, proceedings data) and the sentence "submitted to ATEEC 2026" in the manuscript, the cover letter and `declarations.txt` together.
+- [ ] Similarity check (iThenticate) to be read against the conference version
+- [x] Consistency between the conference paper and the manuscript is monitored by `scripts/bildiri_tutarlilik.py` (gate 5); the conference paper itself is not edited.
 
-### Funding Statement
-**Status:** Needs verification
-> [If applicable: "This work was supported by..." / If no funding: "This research received no specific grant from any funding agency."]
+## 7. IEEE Access Portal
 
-### ACTION REQUIRED:
-1. Add Data Availability and Code Availability statements to the manuscript (after Conclusion, before References)
-2. Confirm funding status with co-author
+- [ ] IEEE Author Portal account and ORCID link
+- [ ] Article type "Regular Article"
+- [ ] APC source confirmed (standard IEEE Access APC; check member and institutional discounts at upload)
+- [ ] Suggested reviewers entered from `suggested_reviewers.md` after their affiliations and e-mail addresses are re-checked
 
----
+## 8. Copyright and Licensing
 
-## 6. IEEE Access Portal Requirements
+- [ ] Creative Commons license (CC BY 4.0) selected in the portal
+- [ ] IEEE electronic copyright form completed in production
 
-### Account Setup
-- [ ] IEEE Author Portal account created (https://ieee.authorportal.elsevier.com/ or ScholarOne)
-- [ ] ORCID iD linked to account
-- [ ] Affiliation information up to date
-
-### Submission Portal
-- **Portal:** IEEE Author Portal (formerly ScholarOne Manuscripts for some IEEE journals)
-- **URL:** https://ieee.atyponrex.com/ (IEEE Access specific)
-- [ ] Account verified and active
-
-### Article Type
-- [ ] "Regular Article" selected (not Brief, Letter, or Review)
-
-### Article Processing Charge (APC)
-- **Standard APC:** $2,160 USD (2025/2026 rate, plus applicable local taxes)
-- **IEEE Member discount:** 5% (IEEE member) or 20% (IEEE Society member)
-- **Low-income country discount:** Available if ALL authors are in eligible countries
-- [ ] APC funding confirmed or institutional agreement verified
-
-### ACTION REQUIRED:
-1. Create or verify IEEE Author Portal account
-2. Confirm APC payment source (institutional, grant, or personal)
-3. Check if Firat University has an IEEE open access agreement
-
----
-
-## 7. Copyright and Licensing
-
-- [ ] IEEE Electronic Copyright Form (eCF) prepared (signed upon acceptance)
-- [ ] Creative Commons license selected (IEEE Access uses CC BY 4.0)
-- [ ] All third-party content permissions obtained (if any figures/tables reproduced)
-
-### Notes:
-- IEEE Access articles are published under CC BY 4.0 license
-- No copyright transfer needed for open access (authors retain copyright)
-- The eCF is completed during the production process, not at submission
-
----
-
-## 8. Plagiarism and Overlap
-
-- [ ] Manuscript checked via plagiarism detection tool (iThenticate or Turnitin)
-- [ ] Similarity index below 35% (IEEE threshold, especially for conference-to-journal extensions)
-- [ ] **Conference extension declared.** This IS a conference extension: a preliminary subset (CIFAR-10 only; the same three runs per architecture) is under review at ATEEC 2026. The manuscript cites it and the cover letter declares it. IEEE's similarity threshold must be read with this in mind, and the portal's "previously presented" field must be filled.
-
-### ACTION REQUIRED:
-1. Run plagiarism check before submission
-2. IEEE will also run iThenticate during review
-
----
-
-## 9. Submission Files Checklist
+## 9. Submission Files
 
 | File | Format | Status |
-|------|--------|--------|
-| Manuscript PDF | PDF | [ ] Compile and verify |
-| LaTeX source | ZIP (main.tex + sections/ + references.bib) | [x] Ready |
-| Cover letter | PDF (from .tex) | [x] Written |
-| Figures | Individual PDF files | [x] 17 files ready |
-| Highlights | TXT | [x] Written |
-| Suggested reviewers | Internal reference | [x] Prepared |
-
-### ACTION REQUIRED:
-1. Compile `cover_letter.tex` to PDF
-2. Compile `main.tex` to PDF and verify
-3. Create ZIP of LaTeX source files
-4. Upload all files to IEEE portal
-
----
+|---|---|---|
+| Manuscript PDF | PDF | [x] compiled 2026-10-31 |
+| LaTeX source | ZIP (main.tex, macros_konsey.tex, sections/, references.bib, class files, figures) | [ ] figure paths to be flattened (A13) |
+| Cover letter | PDF from `cover_letter.tex` | [x] rewritten 2026-10-31 |
+| Highlights | TXT | [x] rewritten 2026-10-31 (optional for IEEE Access) |
+| Declarations | TXT | [x] rewritten 2026-10-31 |
+| Suggested reviewers | portal entry | [ ] re-check contact data |
 
 ## 10. Final Review Before Submit
 
-- [x] Title matches across manuscript and cover letter (both rewritten 2026-08-25); portal entry to be filled at upload
-- [ ] Author names and order: consistent in manuscript, portal, and cover letter
-- [ ] No tracked changes, TODO comments, or placeholder text in manuscript — **one TODO remains on purpose**: the repository URL in `main.tex` (Data and Code Availability). It is filled at submission, with an anonymous repository if the venue is double-blind.
-- [ ] No headers/footers from another journal
-- [ ] Line numbers NOT required (IEEE Access does not require line numbers)
-- [ ] Spell check completed
-- [ ] Grammar check completed
-- [x] All cross-references resolve (0 undefined, verified 2026-08-25)
-- [ ] All equations numbered correctly
-- [ ] Acronyms defined at first use
-
----
-
-## 11. Timeline
-
-| Step | Target Date | Status |
-|------|-------------|--------|
-| Submission package preparation | 2026-02-16 | In progress |
-| Author biographies added | 2026-02-17 | Pending |
-| LaTeX compilation check | 2026-02-17 | Pending |
-| Plagiarism check | 2026-02-17 | Pending |
-| ORCID and portal setup | 2026-02-17 | Pending |
-| APC confirmation | 2026-02-18 | Pending |
-| **Submission** | **2026-02-18** | **Pending** |
-| Expected review (4-6 weeks) | 2026-04-01 | -- |
-
----
-
-## Summary of Remaining Actions
-
-### Must Do Before Submission:
-1. **Add author biographies** to `main.tex` (IEEE Access mandatory requirement)
-2. **Link ORCID** to IEEE Author Portal account
-3. **Compile LaTeX** and verify PDF output (no errors, correct page count)
-4. **Add data/code availability statements** to manuscript
-5. **Confirm APC funding** ($2,160 USD)
-6. **Run plagiarism check**
-
-### Recommended:
-7. Add DOIs to all references where available
-8. Verify figure numbering matches text references
-9. Check all URLs in references are accessible
-10. Have co-author final review the manuscript
+- [x] Title identical across manuscript and submission documents (gate 7)
+- [ ] Author names and order consistent in manuscript, portal and cover letter
+- [ ] No TODO comments in the manuscript (reviewer panel A14: two `TODO(foy)` comments in `sections/07_appendix.tex`)
+- [ ] The reviewer panel's open items that need the reference sheet (A2-A6, A9, A10) are either completed or their sentences stay without numbers
+- [x] All gates run by `bash scripts/kapilar.sh`; see `raporlar/hakem_konsey_2026-10-31/gonderim_paketi_notu.md` for the 2026-10-31 state
