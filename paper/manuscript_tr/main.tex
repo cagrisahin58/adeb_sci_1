@@ -17,12 +17,18 @@
 \usepackage{subcaption}
 \usepackage{array}
 \usepackage{balance}
+% 2026-10-31: EN main.tex bm yukluyor; TR'de de bulunsun (ayna bolumler icin).
+\usepackage{bm}
 \usepackage{hyperref}
 
 % Ozel komutlar
 \newcommand{\eps}{\epsilon}
 \newcommand{\Linf}{L_\infty}
 \renewcommand{\IEEEkeywordsname}{Anahtar Kelimeler}
+% 2026-10-31 (konsey turu): konsey makrolari EN ile ORTAK dosyadan gelir
+% (\simt, \Asig, \Isig, \Arho, \Dseed, \Gk, \rS, \cellname, \AbarIN, \Ak).
+% Kopya tutulmaz; EN makrosu degisirse TR kendiliginden izler.
+\input{../manuscript/macros_konsey}
 
 % NOT: Bu surum, TR Dizin dergi gonderimi icin calisma taslagi formatidir
 % (IEEEtran). Secilen derginin kendi sablonuna aktarim gonderim asamasinda
@@ -32,9 +38,18 @@
 % ============================================================================
 % BELGE BILGISI
 % ============================================================================
-% 2026-10-04 (LeCun turu): baslik EN ile birlikte yeniden kuruldu.
-\title{Koşullama Kümesi Ölçülen Transfer Asimetrisini Belirler: CNN ile Görü Dönüştürücüsü Gürbüzlük Karşılaştırmaları için Kesin Bir Düzeltme ve Kaynak Etkisi Okuması\\
-{\normalsize\itshape The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact Correction and a Source-Effect Reading for CNN versus Vision Transformer Robustness Comparisons}}
+% 2026-10-31 (konsey turu): baslik EN ile birlikte yeniden kuruldu. EN:
+% "Less a Weak Source than a Different One: Vulnerability, Similarity and
+% Direction in CNN-ViT Adversarial Transfer under an
+% Architecture-by-Initialization Design". "Less ... than" nicelemesi
+% "Zayif Olmaktan Cok, Farkli Bir Kaynak" ile korunur; virgul "-mekten cok"
+% karsilastirmasini sabitler (eski "Zayif Bir Kaynaktan Cok Farkli Bir Kaynak"
+% "pek farkli" diye okunabiliyordu; 2026-10-31 TR duzeltme turu, bulgu 2).
+% Gerekce: simetrik pay iki veri kumesinde de baskin (0.936 ve 0.840);
+% CIFAR-100'de K-b curutuldu, FOY:M10.2:1839; XCiT ikincil panelinde rho +0.20,
+% FOY:M9.5:1606; cift ici r_RV +0.115, FOY:M9.9:1708.
+\title{Zayıf Olmaktan Çok, Farklı Bir Kaynak: Mimari \texorpdfstring{$\times$}{x} Başlatma Tasarımıyla CNN-ViT Çekişmeli Transferinde Kırılganlık, Benzerlik ve Yön\texorpdfstring{\\
+{\normalsize\itshape Less a Weak Source than a Different One: Vulnerability, Similarity and Direction in CNN-ViT Adversarial Transfer under an Architecture-by-Initialization Design}}{}}
 
 \author{Çağrı~Şahin ve~Özal~Yıldırım%
 \thanks{Çağrı Şahin, Muş Alparslan Üniversitesi Yazılım Mühendisliği Bölümü'ndedir (49250 Muş, Türkiye) ve ayrıca Fırat Üniversitesi Yazılım Mühendisliği Bölümü'nde doktora öğrencisidir (23119 Elazığ, Türkiye).}%
@@ -51,29 +66,53 @@
 % ----------------------------------------------------------------------------
 % OZ
 % ----------------------------------------------------------------------------
+% 2026-10-31 (konsey turu): oz EN ozetinin (hakem konseyi turu sonrasi, 249
+% kelime) aynasidir; cumle sirasi ve sayilar EN ile ayni. Sayilarin kaynagi
+% results/C1_REFERANS_FOYU.md (31.10.2026 surumu):
+% FOY:M9.5:1587,1588,1589 (q 0.936 [0.925, 0.948]; rho(V-scr) +0.012; Delta_seed +0.566)
+% FOY:M9.3:1526,1527,1528 (H1 -0.364 [-0.415, -0.314]; H2 +0.260 [0.186, 0.335]; H3 +0.003)
+% FOY:M9.6:1624,1625 (korunma orani 0.960 [0.941, 0.976])
+% FOY:M9.7:1673 (PGD-10 ile AA farki 3.20 ile 7.40 puan, isaretli model yok)
+% FOY:M10.2:1838,1839,1840 (CIFAR-100 q 0.840; rho(V-scr) +0.143; K-c destek)
+% FOY:M9.5:1603; M10.2:1857 (logit olcekte rho(V-scr) -0.304 ve -0.413, guclu negatif; sayi ozette yok)
+% FOY:M9.4:1551 (logit H3 -0.087; H3 bu yuzden "log" diye nitelenir)
+% FOY:M10.4:1938 (A^sigma_IN -0.142 [-0.197, -0.090], betimsel)
+% FOY:M10.5:1971,1973,1975 (ana etki artikli Spearman 0.944, 0.912, 0.893)
+% FOY:M9.2:1496,1498 (sifirdan ViT'nin dusuk temiz dogrulugu, karistirici)
+% KAYNAK: ON_KAYIT Sec. 2-3 (yedi uyeli panel); FOY:M9.2:1505-1513 (hucre basina iki ya da uc kosu)
 \begin{abstract}
-CNN ile ViT arasındaki transfer çalışmaları hangi örnekleri puanladıklarını belirtmekte, ancak incelenen çalışmaların hiçbiri bu koşullama kümesini değiştirmemektedir. Bu çalışmada kümenin ağırlığı çekişmeli eğitilmiş ResNet-18 ve ViT-Tiny modelleri üzerinde ölçülmüştür (her mimari için üç koşu, tam CIFAR-10 test kümesi, örnek bazında kayıt). Modeller, veri ve saldırı sabitken dört koşullama protokolü CNN'den ViT'e transfer asimetrisini $4{,}4$ ile $19{,}4$ puan arasına yerleştirmekte, yeniden eğitim aynı asimetriyi en çok $2{,}4$ puan oynatmaktadır (koşumlar arası standart sapma $0{,}23$ ile $1{,}27$). Koşulsuz kestirim, toplam olasılık yasasının öngördüğü yerde, hedef doğru kestirimin $9{,}21$ puan üstündedir. Temizde yanlış sınıflandırılan örneklerin yanlış kalacağını söyleyen öncül $p$, bu çalışmanın çekişmeli eğitilmiş hedeflerinde $0{,}989$ ile $1{,}000$ arasındadır; standart eğitilmiş hedeflerde ise $0{,}88$'e inmekte ve orada $p=1$ varsayımı $1{,}6$ puana kadar hata vermektedir. Onaylanan iki protokol $3{,}91$ puan ayrışmakta (koşum düzeyinde \%95 aralık $[3{,}12;\ 4{,}70]$), farklı bir niceliği kestiren başarılı kaynak puanlaması ise her ikisi doğru kestiriminin $11{,}10$ puan üstünde kalmaktadır. Yön bu ViT-Tiny modelinin bir kaynak etkisidir; hedef doğru matrislere yapılan toplamsal uydurmalar $-2{,}03$ ve $-6{,}19$ puanlık hedef terimlerine karşı $+5{,}13$ (CIFAR-10) ve $+9{,}54$ puanlık (CIFAR-100) kaynak terimleri vermektedir. Özdeşlik terimi temiz doğruluk farkını izlemektedir. Üç protokollü yayılım eşlenmeye yakın SVHN çiftlerinde $1{,}49$ ve $1{,}30$, aralarında $0{,}47$ puan bulunan standart eğitilmiş bir çiftte $0{,}19$ puandır ve havuzun $28$ çiftinde temiz farkın puanı başına $0{,}87$ puan artmaktadır. Başarılı kaynak fazlası küçülmemektedir (aralarında $0{,}21$ puan bulunan iki gürbüz WideResNet'te $9{,}03$ puan). Kontrol noktası seçimi yayılımı yaklaşık iki puan oynatmaktadır. Üç okuma daha doğrudan ölçümde doğrulanmamakta ve çalışma raporlama gereklilikleriyle sonuçlandırılmaktadır.
+Çekişmeli eğitilmiş ViT'ler CNN'lere karşı zayıf transfer kaynakları gibi görünmektedir, ancak iki model bu asimetriyi kaynak ile hedef arasında bölüştüremez. Bu çalışmada log ölçeğindeki hedef doğru transfer oranları hedef kırılganlığı, simetrik benzerlik ve yönlü artık terimlerine ayrılmış ve terimler yedi gürbüz ResNet ailesi CNN'den oluşan sabit bir panel üzerinden ortalanmıştır. Önceden kaydedilen öngörüler hücre başına iki ya da üç koşuyla sınanmıştır (köşeli parantezler, eğitim koşuları üzerinden hesaplanan ve test görüntüleri ile panele koşullu \%90 aralıklardır). CIFAR-10'da ViT-Tiny'nin ResNet-18'e göre panel kaynak açığının simetrik payı $0{,}936$ $[0{,}925;\ 0{,}948]$ olarak ölçülmüş, ViT'in yönlü terimi ($+0{,}012$) $\pm0{,}10$ sınırı içinde sıfıra eşdeğer bulunmuştur. Eşlenmiş bir hat üzerinde kurulan mimari $\times$ başlatma tasarımında sıfırdan eğitilmiş ViT panele ResNet'ten daha az benzemektedir ($-0{,}364$ $[-0{,}415;\ -0{,}314]$). Bu karşıtlık ViT'in daha düşük temiz doğruluğundan ayrıştırılamamaktadır. ImageNet başlatması farkı ViT'te daha çok daraltmakta ($+0{,}260$), başlatma üzerinden ortalandığında ise mimari log ölçeğindeki yönlü terimi $\pm0{,}10$ içinde bırakmaktadır ($+0{,}003$). Açık, PGD-10, momentumlu PGD ve uyarlanmış jeton gradyanı düzenlileştirmesinin en iyisi altında da korunmuş ($0{,}960$), AutoAttack maskeleme açısından yeni hiçbir modeli işaretlememiştir. CIFAR-100'de simetrik pay ($0{,}840$) yinelenmiş, ancak ViT'in yönlü terimine ilişkin eşdeğerlik çürütülmüştür ($+0{,}143$). Bu veri kümesinde ViT yönlü olarak da daha zayıf bir kaynaktır. Küçük yönlü terim yalnızca CIFAR-10'da, log ölçeğinde ve bir CNN panelinde geçerli olup logit ölçeğinde güçlü biçimde negatiftir. ImageNetV2'de aynı tarifle eğitilmiş iki çiftteki dönüştürücüler betimsel olarak panele daha az benzemekte ($-0{,}142$), girdi gradyanı kosinüsü ise üç veri kümesinde benzerliği izlemektedir (toplamsal model etkileri arındırıldıktan sonra Spearman $0{,}893$--$0{,}944$).
 \end{abstract}
 
 \begin{IEEEkeywords}
-Çekişmeli gürbüzlük, değerlendirme yöntembilimi, derin öğrenme güvenliği, evrişimli sinir ağları, görü dönüştürücüsü, tekrarlanabilirlik, transfer saldırıları
+Çekişmeli gürbüzlük, transfer saldırıları, transfer edilebilirlik, Görü Dönüştürücüsü, evrişimli sinir ağları, ön kayıt, değerlendirme yöntembilimi
 \end{IEEEkeywords}
 
 % ----------------------------------------------------------------------------
 % BOLUMLER
 % ----------------------------------------------------------------------------
+% 2026-10-31: 04z_hesaplama (EN 04z_computational, Bolum IV'un son alt
+% bolumu) ve 07_ek (EN 07_appendix, \appendices) EN ile ayni sirada; dosya
+% yoksa derleme kirilmasin diye \InputIfFileExists.
 \input{sections/01_giris}
 \input{sections/02_ilgili_calismalar}
 \input{sections/03_yontem}
 \input{sections/04_deneyler}
+\InputIfFileExists{sections/04z_hesaplama}{}{}
 \input{sections/05_tartisma}
 \input{sections/06_sonuc}
+\InputIfFileExists{sections/07_ek}{}{}
 
 % ----------------------------------------------------------------------------
 % VERI VE KOD ERISILEBILIRLIGI
 % ----------------------------------------------------------------------------
+% 2026-10-31 (konsey turu): EN "Data and Code Availability" ile esitlendi.
+% ImageNetV2, RobustBench CIFAR-100 ve ImageNet modelleri, timm ImageNet
+% baslatmalari eklendi; depo kapsamina on kayit dosyalari, dondurulmus
+% cozumleme betigi ve hucre tablolari eklendi. "yaklasik 40 GB" foyde
+% olmadigi icin EN gibi sayisiz yazildi.
 \section*{Veri ve Kod Erişilebilirliği}
-Bu çalışmadaki deneyler, herkese açık olan CIFAR-10 ve CIFAR-100 veri kümeleri~\cite{krizhevsky2009learning} ile SVHN veri kümesini~\cite{netzer2011reading} kullanmaktadır. Önceden eğitilmiş WideResNet-28-10 ağırlıkları RobustBench kıyaslamasından~\cite{croce2021robustbench, gowal2020uncovering} alınmıştır. Analiz hattı, bu makaledeki her tabloyu ve şekli üreten betikler, örnek bazında değerlendirme kayıtları, sabit doğrulama bölmesi indeksleri ve tohum listeleri \url{https://github.com/cagrisahin58/cnn-vit-robustness-protocols} adresinde herkese açıktır. Örnek bazındaki kayıtlar temiz eğitilmiş model çiftlerinin, sekiz modelli RobustBench havuzunun ve son kontrol noktası yeniden puanlamasının transfer koşularını da içermektedir; depoda ayrıca Mahmood vd.'nin~\cite{mahmood2021robustness} Tablo~1 ve Tablo~2'sinin makineyle okunmuş bir kopyası ile bu tabloları ayrıştıran ve yeniden puanlayan betikler bulunmaktadır. Bu malzeme burada raporlanan her sayıyı yeniden üretmeye yetmektedir ve dört koşullama protokolünün tamamı örnek bazındaki kayıtlardan hesaplandığı için protokol karşılaştırması yeniden eğitim gerektirmeden tekrarlanabilmektedir. Eğitilmiş kontrol noktaları yaklaşık $40$~GB tutmakta ve yazarlardan istek üzerine sağlanmaktadır.
+CIFAR-10 ve CIFAR-100~\cite{krizhevsky2009learning}, SVHN~\cite{netzer2011reading} ve ImageNetV2 MatchedFrequency~\cite{recht2019imagenet} veri kümeleri herkese açıktır. Panel kontrol noktaları RobustBench'ten~\cite{croce2021robustbench} alınmış, ImageNet başlatmaları için timm kütüphanesindeki herkese açık DeiT-Tiny~\cite{touvron2021training} ve ResNet-18 A1~\cite{wightman2021resnet} ağırlıkları kullanılmıştır. Analiz hattı, her tabloyu ve şekli üreten betikler, örnek bazındaki değerlendirme kayıtları, doğrulama bölmesi indeksleri ve tohum listeleri \url{https://github.com/cagrisahin58/cnn-vit-robustness-protocols} adresinde herkese açıktır. Depoda ayrıca dondurma kayıtlarıyla birlikte ön kayıt belgeleri, dondurulmuş çözümleme betiği, SHA-256 özetleri çözümleme çıktılarında kayıtlı olan hücre tabloları ve Mahmood vd.'nin~\cite{mahmood2021robustness} Tablo~1 ve Tablo~2'sinin makineyle okunmuş bir kopyası ile bu tabloları yeniden puanlayan betikler bulunmaktadır. Her protokol ve ayrışım terimi bu kayıtlardan hesaplandığı için raporlanan bütün sayılar yeniden eğitim gerektirmeden yeniden üretilebilmektedir. Eğitilmiş kontrol noktaları yazarlardan istek üzerine sağlanmaktadır.
 
 % ----------------------------------------------------------------------------
 % TESEKKUR
@@ -86,7 +125,8 @@ Yazarlar bu çalışmanın hazırlanması sırasında Claude (Anthropic) kullanm
 % ----------------------------------------------------------------------------
 % KAYNAKLAR
 % ----------------------------------------------------------------------------
-\balance
+% 2026-10-31: \balance kaldirildi; ikinci sutunda cagrildigi icin etkisizdi
+% ve kaynakcada Overfull \vbox uretiyordu.
 \bibliographystyle{IEEEtran}
 \bibliography{../manuscript/references}
 

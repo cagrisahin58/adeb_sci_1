@@ -1,277 +1,559 @@
 % ============================================================================
 % BOLUM 4: DENEYLER
 % ============================================================================
-% 2026-10-04 (LeCun turu): EN 04_experiments.tex ile cumle duzeyinde esitlendi.
-% Sira: A mutlak gurbuzluk -> B protokoller ve ozdeslik -> C kaynak etkisi ->
-% D ayarlar arasi + yayilim/temiz fark sekli -> E standart hedefler ve dis havuz
-% -> F secim kurali -> G uc okuma (gradyan, dikkat, TGR) -> H varyans kaynaklari.
-% Karantina literalleri (eski Tablo 2 alt blogu, Tablo 3 dipnotu) cikarildi.
-% Her sayi results/C1_REFERANS_FOYU.md'den.
+% 2026-10-31 (konsey turu, T3): EN 04_experiments.tex (2026-10-31, O1 manseti)
+% aynasi olarak yeniden yazildi. Sira EN ile ayni: A ciftin gurbuzlugu ->
+% B toplamsal bolusumden ayrisima -> C panel sinamalari (CIFAR-10, CIFAR-100)
+% -> D mimari x baslatma 2x2 -> E saldiri tarafi ve maskeleme -> F ImageNetV2
+% (betimsel) -> G gradyan hizalanmasi -> H olcek, panel ve veri kumesi
+% bagimliligi -> I protokol katmani.
+% Eski TR alt bolumleri (kaynak etkisi, ayarlar arasi, dis havuz, secim kurali,
+% uc okuma, varyans kaynaklari) EN ile birlikte dustu; uc okuma, secim kurali ve
+% kayitli ongoruler sections/07_ek.tex'e tasindi.
+% Her sayi results/C1_REFERANS_FOYU.md'den; paragraf ya da tablo ustundeki
+% "% FOY:<bolum>:<satir>" yorumlari EN ile ayni yerde korunmustur.
+% Terimler: paper/manuscript_tr/TERMINOLOJI.md (2026-10-31 konsey eki).
 \section{Deneyler}
 \label{sec:experiments}
 
+Aksi belirtilmedikçe aşağıdaki her transfer oranı hedef doğru oranı $T_{ij}$'dir ve Denklem~\eqref{eq:decomp} ile bileşenlerine ayrılmaktadır. Log ölçeğindeki bölünmüş yarı kestirimleri birincil, logit ve oran ölçekleri ise duyarlılık çözümlemesi olarak kullanılmış, karar kuralları Tablo~\ref{tab:registry} içinde verilenlerdir.
+
 % ----------------------------------------------------------------------------
-% A. Gurbuzluk karsilastirmasi
+% A. Ciftin gurbuzlugu
 % ----------------------------------------------------------------------------
-\subsection{Gürbüzlük Karşılaştırması}
+\subsection{Çiftin Gürbüzlüğü}
 \label{subsec:robustness}
 
-Tablo~\ref{tab:main_results} mutlak gürbüzlüğü vermektedir. Bu çalışmada eğitilen modellere ait her hücre, mimari başına üç bağımsız eğitim koşusunun ortalaması ve bu koşular üzerindeki standart sapmadır; her koşu 10.000 örneklik tam test kümesinde değerlendirilmiştir.
+% FOY:TabloI:14,15,16,17,19
+% FOY:TabloII:28,29,31
+% KAYNAK: CLAUDE.md (parametre sayilari 11.2M, 36.5M tasarim sabiti); ViT-Tiny 5.5M:
+% raporlar/konsey_2026-10-29/_ek_flop_olcumu.json (param_M 5.53, on sinifli baslik; birlesik.md m10)
+\begin{table*}[!t]
+\centering
+\caption{ResNet-18 ve ViT-Tiny çiftinin CIFAR-10'daki gürbüzlüğü ($\eps = 8/255$, tam test kümesi); mimari başına üç bağımsız eğitim koşusu üzerinden ortalama$\pm$SS. Son iki sütun koşullu yanıltma oranını, yani doğru sınıflandırılan test görüntülerinden saldırının yanılttığı payı vermektedir; PGD-10 altında bu oran çalışma boyunca kullanılan beyaz kutu kırılganlığı $w$'dir.}
+\label{tab:main_results}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{llcccccccc}
+\toprule
+\textbf{Model} & \textbf{Savunma} & \textbf{Param.} & \textbf{Temiz} & \textbf{FGSM} & \textbf{PGD-10} & \textbf{AA} & \textbf{Koşullu PGD-10 ($w$)} & \textbf{Koşullu AA} \\
+\midrule
+ResNet-18 & Yok & 11,2M & 95,25$\pm$0,15 & 40,29$\pm$1,77 & 0,03$\pm$0,03 & -- & -- & -- \\
+ResNet-18 & AT & 11,2M & 85,78$\pm$0,36 & 53,46$\pm$0,08 & 44,11$\pm$0,50 & 37,93$\pm$0,14 & 48,58$\pm$0,80 & 55,78$\pm$0,23 \\
+WRN-28-10 & AT$^\dagger$ & 36,5M & 89,48 & 70,91 & 66,92 & 62,76 & -- & -- \\
+ViT-Tiny & Yok & 5,5M & 80,09$\pm$0,60 & 6,10$\pm$1,47 & 0,05$\pm$0,05 & -- & -- & -- \\
+ViT-Tiny & AT & 5,5M & 73,53$\pm$0,55 & 36,31$\pm$0,42 & 32,69$\pm$0,22 & 29,14$\pm$0,40 & 55,53$\pm$0,50 & 60,37$\pm$0,33 \\
+\bottomrule
+\multicolumn{9}{p{0.96\textwidth}}{\scriptsize $^\dagger$Gowal vd.~\cite{gowal2020uncovering} tarafından yayımlanan ve RobustBench~\cite{croce2021robustbench} üzerinden alınan tek bir harici gürbüz kontrol noktası; temiz, FGSM ve PGD-10 değerleri bu çalışmanın tam test değerlendirmeleri, AA ise RobustBench tarafından bildirilen değerdir.}
+\end{tabular}
+\end{table*}
 
+% FOY:TabloI:16,17
+% FOY:TabloII:28,29,31
+% FOY:McNemar:43,44,45
+Mutlak üstünlük her saldırı altında CNN'dedir (Tablo~\ref{tab:main_results}). AutoAttack altında gürbüz doğruluk ResNet-18 AT için $\%37{,}93\pm0{,}14$, ViT-Tiny AT için $\%29{,}14\pm0{,}40$ olarak ölçülmüş ve tam test kümesinde görüntü bazında eşleştirilmiş McNemar testi üç tohum çiftinin her birinde CNN lehine sonuç vermiştir (AutoAttack altında $p \leq 1{,}2\times10^{-84}$, PGD-10 altında $p \leq 1{,}9\times10^{-120}$). Farkın bir kısmını temiz doğruluk açıklamakta, geri kalanı ise koşullu kırılganlıktan doğmaktadır. Her modelin doğru sınıflandırdığı görüntülerden PGD-10, CNN'de $\%48{,}58\pm0{,}80$, ViT'te ise $\%55{,}53\pm0{,}50$ oranında yanıltma üretmiş ve AutoAttack altında çarpanlara ayırma birebir tutmuştur ($85{,}78\times0{,}442 = 37{,}93$ ve $73{,}53\times0{,}396 = 29{,}14$). İki modelin de doğru sınıflandırdığı $7.061\pm68$ görüntüde PGD-10 altında CNN'in koruduğu doğruluk $\%59{,}86\pm0{,}35$, ViT'inki $\%46{,}11\pm0{,}59$'dur (AutoAttack altında $\%51{,}89$ ve $\%41{,}15$).
+
+% FOY:TabloI:19
+Koşullu PGD-10 sütunu ayrışımda kullanılan kırılganlık $w$ değerlerini vermektedir ve hedef olarak daha kırılgan model ViT'tir. Pertürbasyon bütçesi taraması ile çiftin gradyan, dikkat ve öznitelik kayması ölçümleri Ek~\ref{app:behavior} içinde verilmektedir.
+
+% ----------------------------------------------------------------------------
+% B. Toplamsal bolusumden ayrisima
+% ----------------------------------------------------------------------------
+\subsection{Toplamsal Bölüşümden Ayrışıma}
+\label{subsec:pair_decomposition}
+
+% FOY:Kaynak-hedef:390
+% FOY:TabloIII:54
+Hedef doğru protokolünde çiftin asimetrisi, yani CNN$\rightarrow$ViT eksi ViT$\rightarrow$CNN farkı, pozitiftir (Tablo~\ref{tab:pair_decomposition}). WideResNet referansını içeren üç modelli matrislere uydurulan toplamsal kaynak artı hedef modeli bu farkın $+5{,}13$ puanını kaynağa, $-2{,}03$ puanını ise hedefe yüklemektedir. Önerme~\ref{prop:identifiability}, bu bölüşümün neden bir kaynak etkisi olarak yorumlanamayacağını göstermektedir. CNN'ler arasında tek bir ViT bulunduğunda ViT'in kaynak terimi ile CNN ailesine benzerliği aynı karşıtlığa girmekte, toplamsal uydurma da aile benzerliğini iki terime birden yüklemektedir. Bu iki bileşeni ayırmak için sabit bir dış panel ve bundan sonra kullanılan çarpımsal ayrışım gerekmektedir.
+
+% FOY:M9.9:1703,1704,1705,1706,1707,1708,1709,1714,1715,1718,1720,1722
+% FOY:TabloII:28,29
+Çiftin kendisi üç terimden ikisini zaten ayırmaktadır (Tablo~\ref{tab:pair_decomposition}). Log asimetri $\log(T_{RV}/T_{VR}) = +0{,}251$ iki bileşenin toplamıdır. Bunlardan ilki, ViT'in daha kırılgan hedef olmasından gelen potansiyel bileşen $\log(w_V/w_R) = +0{,}136$'dır ($w$ değerleri $\%55{,}53$ ve $\%48{,}58$), ikincisi ise koşudan koşuya standart sapması $0{,}010$ olan yönlü artık $r_{RV} = +0{,}115$'tir. Potansiyel payı $0{,}541$ olduğundan CIFAR-10'da çiftin yönünün yaklaşık yarısını hedef kırılganlığı taşımaktadır. Bu pay CIFAR-100'de daha küçüktür ($0{,}283$) ve $r_{RV}$ burada $+0{,}154$ düzeyine çıkmıştır. Simetrik terim $\log\simt_{RV} = -1{,}083$ iki yöne eşit girdiği için iki modelli bir asimetride hiç görünmez. Bir tohum çifti için görüntü bootstrap'i $r_{RV}$ için $0{,}030$ standart sapma vermiştir. Bu değer koşudan koşuya yayılımın üç katıdır ve görüntüleri sabit tutan aşağıdaki koşu düzeyi aralıklar bu bileşeni içermemektedir.
+
+% FOY:M9.9:1726,1727,1728,1729,1739
+% FOY:M9.9:1745,1746,1747,1748,1749,1750,1751
+ViT'in CNN'lere karşı genel olarak neden zayıf bir kaynak gibi göründüğü sorusu ViT'in çift dışındaki modellerle ilişkisine ait olduğu için iki modelli bir asimetri bu soruyu yanıtlayamaz. Ön kayıt dondurulmadan önce sekiz modelli CIFAR-10 havuzu (Tablo~\ref{tab:external_pool}) üzerinde yapılan bir masa çözümlemesinde havuzdaki dört gürbüz CNN panel olarak alınmıştır. Bu panele karşı ViT'in ResNet-18'e göre kaynak açığı $0{,}422$ log birimi olarak bulunmuş, bunun $0{,}392$'si simetrik, $0{,}030$'u yönlü çıkmış ve simetrik pay $0{,}928$ olmuştur. Bu değerler öngörülerin biçimlenmesinde kullanılmış olup sınama niteliği taşımamaktadır. Model düzeyinde panel benzerliği $\sigma$, ViT-Tiny'yi öteki bütün modellerden uzağa yerleştirmektedir (gürbüz CNN'lerde $-0{,}694$ ile $-0{,}519$ arasındaki değerlere karşı $-1{,}086$), $\rho$ ise yedi modelin tamamında $-0{,}096$ ile $+0{,}083$ arasında kalmıştır. Dikkati evrişimli bileşenlerle birleştiren XCiT-S12, $\sigma$ bakımından CNN'lerin arasında yer almaktadır ($-0{,}609$). Dolayısıyla havuzdaki dikkat tabanlı diğer tek model bu düşük benzerliği paylaşmamaktadır.
+
+% FOY:M9.9:1703-1720 (ust blok), 1722 (dipnot)
+% FOY:M9.4:1575,1576,1577,1578 (alt blok, S4)
+% FOY:TabloIII:160 (+4.36) ; Kaynak-hedef:390 (+4.41, uc modelli ayri kosu)
+\begin{table*}[!t]
+\centering
+\caption{ResNet-18 ile ViT-Tiny arasındaki hedef doğru asimetrinin log ölçeğinde ayrışımı. Üst blok üç tohum çiftinin ortalamasını (koşudan koşuya standart sapma) vermektedir; matrisler ayrı yürütülen üç modelli saldırı koşusuna ait olduğundan buradaki değer $+4{,}41$, Tablo~\ref{tab:protocol_settings} içindeki değer ise $+4{,}36$'dır. Alt blok $2\times2$ tasarımın tohum eşleşmeli çiftlerini göstermektedir (ikincil çözümleme S4, betimsel, tam örneklem). Log oran tam olarak potansiyel bileşen ile yönlü artığın toplamıdır; ikisinin oranı olan potansiyel payı, log oran sıfıra yakın olduğunda tanımsızdır (--).}
+\label{tab:pair_decomposition}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Ayar} & \textbf{Asimetri (puan)} & \textbf{$\log(T_{RV}/T_{VR})$} & \textbf{$\log(w_V/w_R)$} & \textbf{$r_{RV}$} & \textbf{$\log\simt_{RV}$} & \textbf{Potansiyel payı} \\
+\midrule
+CIFAR-10, seçilen kontrol noktası & $+$4,41 (0,45) & $+$0,251 (0,032) & $+$0,136 (0,023) & $+$0,115 (0,010) & $-$1,083 (0,022) & 0,541 (0,029) \\
+CIFAR-10, son kontrol noktası & $+$4,64 (0,56) & $+$0,273 (0,029) & $+$0,144 (0,034) & $+$0,129 (0,044) & $-$1,170 (0,021) & 0,531 (0,134) \\
+CIFAR-100, seçilen kontrol noktası & $+$4,96 (1,02) & $+$0,215 (0,048) & $+$0,061 (0,020) & $+$0,154 (0,041) & $-$1,138 (0,023) & 0,283 (0,087) \\
+\midrule
+\multicolumn{7}{l}{\textit{$2\times2$ tasarım, tohum eşleşmeli çiftler (ResNet / ViT)}} \\
+\cellname{R224-scr} s1201 / \cellname{V-scr} s2001 & $+$4,18 & $+$0,248 & $+$0,125 & $+$0,123 & $-$1,141 & 0,504 \\
+\cellname{R224-scr} s1202 / \cellname{V-scr} s2002 & $+$4,43 & $+$0,266 & $+$0,142 & $+$0,124 & $-$1,142 & 0,534 \\
+\cellname{R224-IN} s1301 / \cellname{V-IN} s2101 & $-$1,28 & $-$0,056 & $-$0,002 & $-$0,054 & $-$0,753 & -- \\
+\cellname{R224-IN} s1302 / \cellname{V-IN} s2102 & $+$0,78 & $+$0,036 & $+$0,068 & $-$0,032 & $-$0,825 & -- \\
+\bottomrule
+\multicolumn{7}{p{0.96\textwidth}}{\scriptsize Tohum çifti 1 için görüntü bootstrap standart sapması (CIFAR-10, seçilen kontrol noktası; $B = 300$): $r_{RV}$ 0,030, $\log\simt_{RV}$ 0,016.}
+\end{tabular}
+\end{table*}
+
+% FOY:RobustBench havuzu:937,938,939,940,941,942,943,944 (temiz, p min)
+% FOY:M9.9:1745,1746,1747,1748,1749,1750,1751 (sigma, rho; masa 4 CNN ve B4 7 uyeli panel)
+% FOY:M9.9:1753 (Standard WRN satirinda sigma ve rho yok)
+% FOY:RobustBench havuzu:946 (56 yon, p ve artik)
 \begin{table}[!t]
 \centering
-\caption{CIFAR-10'da ana gürbüzlük sonuçları ($\eps = 8/255$); mimari başına üç bağımsız eğitim koşusu üzerinden ortalama$\pm$std. AA, standart takımla AutoAttack anlamına gelmektedir.}
-\label{tab:main_results}
+\caption{Sekiz modelli CIFAR-10 havuzu (PGD-10, $\eps = 8/255$, tam test kümesi). $p_{\min}$, her hedefe giren yönler üzerinden Denklem~\eqref{eq:general_identity} öncülü $p$'nin en küçük değeridir. $\sigma$ ve $\rho$, havuzdaki dört gürbüz CNN'e (masa çözümlemesi, ön kayıttan önce görülmüştür) ve yedi üyeli kayıtlı panele karşı bölünmüş yarı log kestirimleridir.}
+\label{tab:external_pool}
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \begin{tabular}{lcccccc}
 \toprule
-\textbf{Model} & \textbf{Savunma} & \textbf{Param.} & \textbf{Temiz} & \textbf{FGSM} & \textbf{PGD-10} & \textbf{AA} \\
+& & & \multicolumn{2}{c}{\textbf{4 CNN'li panel}} & \multicolumn{2}{c}{\textbf{7 üyeli panel}} \\
+\cmidrule(lr){4-5} \cmidrule(lr){6-7}
+\textbf{Model} & \textbf{Temiz} & \textbf{$p_{\min}$} & \textbf{$\sigma$} & \textbf{$\rho$} & \textbf{$\sigma$} & \textbf{$\rho$} \\
 \midrule
-\multicolumn{7}{l}{\textit{CNN Modelleri}} \\
-ResNet-18 & Yok & 11,2M & 95,25$\pm$0,15 & 40,29$\pm$1,77 & 0,03$\pm$0,03 & -- \\
-ResNet-18 & AT & 11,2M & 85,78$\pm$0,36 & 53,46$\pm$0,08 & 44,11$\pm$0,50 & \textbf{37,93$\pm$0,14} \\
-WRN-28-10 & AT$^\dagger$ & 36,5M & 89,48 & 70,91 & 66,92 & 62,76 \\
-\midrule
-\multicolumn{7}{l}{\textit{Görü Dönüştürücüsü Modelleri}} \\
-ViT-Tiny & Yok & 5,7M & 80,09$\pm$0,60 & 6,10$\pm$1,47 & 0,05$\pm$0,05 & -- \\
-ViT-Tiny & AT & 5,7M & 73,53$\pm$0,55 & 36,31$\pm$0,42 & 32,69$\pm$0,22 & \textbf{29,14$\pm$0,40} \\
+ResNet-18 AT (bu çalışma) & 85,37 & 0,9911 & $-$0,694 & $-$0,018 & $-$0,648 & $-$0,022 \\
+ViT-Tiny AT (bu çalışma) & 74,10 & 0,9919 & $-$1,086 & $+$0,043 & $-$1,015 & $+$0,025 \\
+Standard WRN-28-10 & 94,78 & 0,9330 & -- & -- & -- & -- \\
+Wong2020 PRN-18 & 83,34 & 0,9892 & $-$0,656 & $-$0,033 & $-$0,576 & $-$0,033 \\
+Engstrom2019 RN-50 & 87,03 & 0,9846 & $-$0,566 & $-$0,058 & $-$0,508 & $-$0,055 \\
+Carmon2019 WRN-28-10 & 89,69 & 0,9884 & $-$0,519 & $+$0,008 & $-$0,472 & $-$0,009 \\
+Gowal2020 WRN-28-10 & 89,48 & 0,9895 & $-$0,521 & $+$0,083 & $-$0,467 & $+$0,065 \\
+Debenedetti2022 XCiT-S12 & 90,06 & 0,9940 & $-$0,609 & $-$0,096 & $-$0,561 & $-$0,095 \\
 \bottomrule
-\multicolumn{7}{l}{\scriptsize $^\dagger$Gowal vd.'nin~\cite{gowal2020uncovering} RobustBench~\cite{croce2021robustbench} üzerinden dağıtılan gürbüz kontrol}\\
-\multicolumn{7}{l}{\scriptsize \phantom{$^\dagger$}noktası; tek harici kontrol noktası olduğundan standart sapma yoktur.}\\
-\multicolumn{7}{l}{\scriptsize \phantom{$^\dagger$}Temiz/FGSM/PGD-10: yerel tam test değerlendirmeleri; AA: RobustBench'in}\\
-\multicolumn{7}{l}{\scriptsize \phantom{$^\dagger$}raporladığı değer (bu model üzerinde AutoAttack yeniden koşulmamıştır).}
-\end{tabular}
-\end{table}
-
-CNN her saldırı altında \emph{mutlak} bir gürbüzlük üstünlüğü taşımaktadır: ResNet-18 AT, AutoAttack altında $\%37{,}93\pm0{,}14$ gürbüz doğruluğa ulaşırken ViT-Tiny AT $\%29{,}14\pm0{,}40$'ta kalmaktadır. Bir çiftin iki modeli de aynı 10.000 örnekte, örnek bazında kayıtla değerlendirildiğinden her koşu içinde McNemar'ın eşleştirilmiş testi uygulanabilmekte ve bu test üç çiftte de CNN lehine sonuç vermektedir (AutoAttack altında $p < 2\times10^{-84}$, PGD-10 altında $p < 2\times10^{-120}$). Çekişmeli eğitilmiş çiftte tohum düzeyindeki değişim raporlanan hiçbir doğrulukta 0,55 puanı aşmamaktadır; dolayısıyla sıralama koşudan koşuya gürültü değildir. CNN ayrıca daha yüksek bir temiz doğruluğu korumaktadır ($\%85{,}78$'e karşı $\%73{,}53$, 12,3 puanlık fark). Bu fark ViT'leri küçük veri kümelerinde sıfırdan eğitmenin güçlüğünü yansıtmaktadır; AutoAttack gürbüzlüğü de iki mimaride PGD-10'un altına düşmektedir (ResNet-18 için 6,2, ViT-Tiny için 3,6 puan). \%62{,}76'daki WideResNet-28-10 referansı~\cite{gowal2020uncovering}, kapasitenin, ek eğitim verisinin ve daha güçlü bir tarifin gürbüzlüğü mimari seçiminin ötesine birlikte ne kadar taşıdığını göstermektedir; bu model çalışma boyunca eşleşmiş çiftten ayrı tutulmaktadır.
-
-\begin{table}[!t]
-\centering
-\caption{Tam test kümesinde beyaz kutu gürbüzlüğünün koşullu ayrıştırması; üç koşu üzerinden ortalama$\pm$std.}
-\label{tab:conditional}
-\scriptsize
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{lcccc}
-\toprule
-& \multicolumn{2}{c}{\textbf{Koşullu yanıltma (\%)}} & \multicolumn{2}{c}{\textbf{Her ikisi doğru gürbüz (\%)}} \\
-\textbf{Model} & \textbf{PGD-10} & \textbf{AA} & \textbf{PGD-10} & \textbf{AA} \\
-\midrule
-ResNet-18 AT & \textbf{48,58}$\pm$0,80 & \textbf{55,78}$\pm$0,23 & \textbf{59,86}$\pm$0,35 & \textbf{51,89}$\pm$0,49 \\
-ViT-Tiny AT & 55,53$\pm$0,50 & 60,37$\pm$0,33 & 46,11$\pm$0,59 & 41,15$\pm$0,39 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Tablo~\ref{tab:conditional} mutlak skorları temiz doğruluk ve koşullu duyarlılık bileşenlerine ayırmaktadır (Bölüm~\ref{subsec:metrics}). Temizde yanlış sınıflandırılan girdiler gürbüz olmayan sayıldığından çarpanlara ayırma birebirdir ve AutoAttack için CNN'de $85{,}78 \times 0{,}442 = 37{,}93$, ViT'te $73{,}53 \times 0{,}396 = 29{,}14$ olarak okunmaktadır. İki çarpan da CNN lehinedir. CNN 12,3 puan daha yüksek bir temiz doğruluktan başlamakta \emph{ve} çözdüklerinin daha küçük bir kesrini kaybetmektedir; koşullu yanıltma PGD-10 altında $\%48{,}58$'e karşı $\%55{,}53$, AutoAttack altında $\%55{,}78$'e karşı $\%60{,}37$'dir. Çiftin iki modelinin de temizde doğru sınıflandırdığı $n=7.061\pm68$ örnekte, yani birebir eşleştirilmiş bir karşılaştırmada CNN 13,8 ve 10,7 puan öndedir (her koşuda McNemar $p<10^{-67}$; bu sınır söz konusu altkümede hesaplanmıştır ve yukarıda anılan tam küme sınırından zayıftır, aradaki fark büyük paydanın sağladığı kazançtır).
-
-% 2026-10-04 (koordinator karari): onceki kontrol noktasi ciftinin sayilari (karantina)
-% tablodan ve metinden cikarildi; yalniz nitel cumle kalir.
-İki çarpanın aynı yönü göstermesi zorunlu olmadığından ayrıştırma, çarpanlar uyuştuğunda bile raporlanmaya değerdir. Sabit bölme protokolünden önce eğitilmiş ve temiz ön eğitimin zaten gördüğü bir doğrulama bölmesiyle seçilmiş daha eski bir kontrol noktası çifti aynı mutlak sıralamayı vermiş, ancak temiz doğruluk ile koşullu duyarlılık arasındaki payı farklı dağıtmıştır (Bölüm~\ref{subsec:training}). Bu türden bir atıf bu nedenle tek bir eğitim koşusundan çıkarılmamalıdır; tek başına raporlanan mutlak skor da işi hangi çarpanın yaptığını gizlemektedir.
-
-Şekil~\ref{fig:epsilon_sweep}, $\eps \in \{2/255, 4/255, 8/255, 16/255\}$ bütçelerinde tam test kümesindeki PGD-10 gürbüz doğruluğunu göstermektedir.
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig2_epsilon_sweep.pdf}
-\caption{Pertürbasyon bütçesi $\eps$'a göre PGD-10 gürbüz doğruluğu, tam test kümesi (üç koşu ortalaması; $\pm$1 std hata çubukları işaretçilerden dardır). Yatay eksen kategoriktir ve $\eps=0$ temiz doğruluktur. Tarama ayrı bir PGD-10 değerlendirmesidir; bu yüzden $8/255$ noktası Tablo~\ref{tab:main_results}'den en çok $0{,}08$ puan ayrılır. CNN'in ViT üzerindeki marjı sabit değildir; küçük bütçelerde en geniş, $16/255$'te ise daralmış durumdadır.}
-\label{fig:epsilon_sweep}
-\end{figure}
-
-
-% ----------------------------------------------------------------------------
-% B. Protokoller ve ozdeslik
-% ----------------------------------------------------------------------------
-\subsection{Sabit Modeller Üzerinde Dört Koşullama Protokolü}
-\label{subsec:transfer}
-
-Her tohum çifti için PGD-10 çekişmeli örnekleri kaynak modelde üretilmiş ve tam test kümesinde bir hedef üzerinde değerlendirilmiştir. Sonuçlar örnek bazında kaydedildiğinden aynı saldırı koşusu, yeniden hesaplama gerekmeden Tablo~\ref{tab:protocol_masks}'teki her protokol altında puanlanabilmektedir; protokoller yalnızca paydaya hangi örneklerin girdiğinde ayrışmaktadır.
-
-\begin{table}[!t]
-\centering
-\caption{Koşulsuz oran ve üç yerleşik koşullama protokolü altında transfer asimetrisi (PGD-10, $\eps$=8/255, tam test kümesi; üç tohum çifti üzerinden ortalama$\pm$std).}
-\label{tab:transfer_protocols}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Protokol} & \textbf{CNN$\rightarrow$ViT} & \textbf{ViT$\rightarrow$CNN} & \textbf{Fark (puan)} \\
-\midrule
-Koşulsuz (ham) & 41,02$\pm$0,55 & 27,45$\pm$0,27 & $+$13,57$\pm$0,33 \\
-Hedef doğru & 19,87$\pm$0,18 & 15,51$\pm$0,59 & $+$4,36$\pm$0,44 \\
-Her ikisi doğru & 18,25$\pm$0,17 & 9,98$\pm$0,31 & $+$8,27$\pm$0,23 \\
-Başarılı kaynak & 36,39$\pm$0,76 & 17,02$\pm$0,52 & $+$19,37$\pm$1,27 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% Ic ice kosullama kumeleri sekli; TR surumu final_tr (surum 4: sag panelde uc ikili uzaklik).
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig_protocol_sets.pdf}
-\caption{Dört transfer protokolünün CNN$\rightarrow$ViT yönündeki iç içe değerlendirme kümeleri (a; kutular şematiktir ve alanla orantılı değildir, $N$ üç tohum çiftinin ortalamasıdır) ve her protokolün aynı modeller ve aynı veri üzerinde verdiği CNN$\rightarrow$ViT eksi ViT$\rightarrow$CNN asimetrisi (b; üç tohum çifti üzerinden çift içi eşleştirilmiş farkın ortalaması$\pm$SS, tek tek çiftler içi boş işaretçilerle). ViT$\rightarrow$CNN kümeleri aynı sırayla iç içedir ($N$ = 10.000, 8.579, 7.061 ve 3.814); koşulsuz ve her ikisi doğru kümeleri iki yönde aynıdır, diğer ikisi ise aynı değildir. (b) panelindeki bağlayıcılar üç ikili uzaklığı işaretlemektedir. CIFAR-10'da $15{,}01$ puanlık yayılım, başarılı kaynağın her ikisi doğru üzerindeki fazlası ($11{,}10$ puan, farklı bir nicelik) ile onaylanan ikili içindeki uzaklığın ($3{,}91$ puan) toplamıdır; koşulsuz kestirim bu aralığın içinde, Denklem~\eqref{eq:raw_identity}'in yerleştirdiği gibi hedef doğrunun $9{,}21$ puan üstünde yer almaktadır.}
-\label{fig:protocol_sets}
-\end{figure}
-
-% REF: Tablo III: transfer protokolleri (N degerleri, 15.01 +- 0.84, ~4.4 kat)
-% REF: Secim kuralinin asimetriye etkisi, B (kosumlar arasi araliklar 0.63 / 0.86 / 0.46 / 2.41)
-Paydalar protokoller arasında keskin biçimde değişmektedir. CNN$\rightarrow$ViT ve ViT$\rightarrow$CNN için paydalar sırasıyla koşulsuz durumda 10.000/10.000, hedef doğruda 7.353/8.579, her ikisi doğruda 7.061 ortak örnek ve başarılı kaynakta 2.831/3.814'tür. Aynı modeller ve aynı veri üzerinde asimetri $+4{,}36\pm0{,}44$ ile $+19{,}37\pm1{,}27$ puan arasında değişmekte, uç değerler arasında 4,4 katlık bir oran bulunmakta ve en büyük ile en küçük protokol kestirimi arasındaki çift başına ortalama yayılım $15{,}01\pm0{,}84$ puan olmaktadır. Yeniden eğitim aynı niceliği çok daha az oynatmaktadır. Üç eğitim çifti boyunca asimetri, tablodaki sırayla dört protokol altında $0{,}63$, $0{,}86$, $0{,}46$ ve $2{,}41$ puanlık aralıklara yayılmaktadır; dolayısıyla benzeri benzeriyle, yani aralığı aralıkla karşılaştıran ölçüt $15{,}01$ puana karşı en çok $2{,}41$ puandır. Fark sütunundaki standart sapma ($0{,}23$ ile $1{,}27$ puan) çift içi eşleştirilmiş farka aittir ve iki yön çiftler boyunca birlikte değiştiği için yön başına yayılımlardan geri hesaplanamamaktadır.
-
-% REF: Turetilmis, Protokol farklarinin farki (raw-tc +9.21+-0.76; ss-raw +5.79; ss-bc +11.10+-1.09; bc-tc +3.91+-0.32;
-%      C100 raw-tc +13.58, bc-tc +5.97; L2 bc-tc +1.95; SVHN bc-tc +0.82 / +0.49)
-% REF: Turetilmis, bc - tc kosum duzeyi %95 t araligi ([+3.12; +4.70]; C100 [+3.53; +8.40]; L2 [+1.33; +2.56])
-Yayılım tek bir nicelik değildir. CIFAR-10'da yayılım bitişik protokoller arasındaki iki uzaklığa ayrılmaktadır (Şekil~\ref{fig:protocol_sets}b). Başarılı kaynak kestirimi kaynağın kendi beyaz kutu başarısızlığına koşullandığı için farklı bir niceliği, yani zaten işe yaramış bir saldırının ne ölçüde taşındığını kestirmektedir ve her ikisi doğru kestiriminin $11{,}10\pm1{,}09$ puan üstündedir. Yönlü iddialar için onaylanan ve yalnızca kaynağın da doğru olmasının gerekip gerekmediğiyle ayrışan iki protokol, hedef doğru ve her ikisi doğru, birbirinden $3{,}91\pm0{,}32$ puan uzaktadır; koşum düzeyindeki \%95 $t$ aralığı $[3{,}12;\ 4{,}70]$'tir (iki serbestlik derecesi). Bu uzaklık çözümleyicinin takdirinden değil iki farklı kestirilen nicelik arasındaki farktan doğmaktadır ve aşağıda betimlenen marjinal altkümeler onu açıklamaktadır. Her çiftte hedef doğru en küçük, başarılı kaynak en büyük kestirim olduğundan iki uzaklık birlikte $15{,}01$ puanlık aralığı oluşturmaktadır. Koşulsuz kestirim bu aralığın içinde, hedef doğrunun $9{,}21\pm0{,}76$ puan üstünde ve başarılı kaynağın $5{,}79$ puan altında yer almaktadır; hedeflerin temiz hataları, koşullu oranlar ve ölçülen öncül $p$ bilindiğinde Denklem~\eqref{eq:raw_identity} onu tam bu konuma yerleştirmektedir (Bölüm~\ref{subsubsec:matrix}). Onaylanan uzaklık CIFAR-100'de $5{,}97$ puan (aralık $[3{,}53;\ 8{,}40]$), $L_2$ bütçesi altında $1{,}95$ puan ($[1{,}33;\ 2{,}56]$), iki SVHN çiftinde ise $0{,}82$ ve $0{,}49$ puandır. CIFAR-100'de koşulsuz kestirim aralığın üst ucudur ve $13{,}58$ puanlık özdeşlik terimi $13{,}83$ puanlık yayılımın neredeyse tamamını oluşturmaktadır.
-
-Protokol istatistiksel okumayı da değiştirmektedir. İki yönü aynı örnekler üzerinde puanlayan ve bu yüzden eşleştirilmiş çıkarımı destekleyen her ikisi doğru protokolünde fark $8{,}27\pm0{,}24$ puandır; bu değerin tablodaki $\pm0{,}23$'ten hafifçe ayrılmasının tek nedeni iki kestiricinin farklı olmasıdır. Her koşunun kendi eşleştirilmiş bootstrap güven aralığı vardır ($[7{,}61;\ 9{,}44]$, $[7{,}10;\ 9{,}01]$ ve $[7{,}28;\ 9{,}20]$). Uç noktaların ortalaması $[7{,}33;\ 9{,}22]$ aralığını vermektedir; bu aralık üç aralığın bir betimlemesidir ve kendi başına kapsama garantisi taşımamaktadır. Koşum düzeyinde çıkarım için koşumlar arası $t$ aralığı $[7{,}68;\ 8{,}86]$'dır. İşaret çevirme permütasyonunun $p$ değeri her tohumda $5\times10^{-5}$'in altındadır ve her aralık $\pm3$'ün tamamen dışında kaldığı için TOST üç marjın hiçbirinde ($\pm1$, $\pm2$ ve $\pm3$ puan) eşdeğerliği kuramamaktadır.
-
-% REF: Turetilmis, Basarili-kaynak: siki ve gevsek okuma (+14.60; 10.45; +4.77+-0.39)
-Protokol adları alt seçimleri de açık bırakmaktadır. Kaynağın temiz girdide zaten yanlış sınıflandırdığı örnekleri de içeri alan gevşek başarılı kaynak okumasında (Tablo~\ref{tab:protocol_masks}) ölçülen asimetri $+19{,}37$ puandan $+14{,}60$ puana, protokol yayılımı ise $15{,}01$ puandan $10{,}45$ puana inmektedir. Bu $4{,}77\pm0{,}39$ puanlık kayma, Tablo~\ref{tab:transfer_protocols}'teki herhangi bir protokolün koşumlar arası standart sapmasından üç kattan fazla büyüktür; diğer üç protokol ise yapısı gereği değişmemektedir.
-
-CIFAR-10'da kararlı olan yöndür. CNN'de üretilen örnekler ViT'e, dört protokolün dördünde, üç tohumun üçünde ve momentum tabanlı MI-FGSM~\cite{dong2018boosting} altında da tersinden daha iyi transfer olmaktadır ($19{,}07\pm0{,}33$'e karşı $\%15{,}42\pm0{,}52$, hedef doğru; bu iki yönlü kontrol başka yerde kullanılan $\alpha=2/255$ yerine saldırının kendi varsayılan adımı olan $\alpha=\eps/10$'u kullanmaktadır ve ViT$\rightarrow$CNN değerinin Tablo~\ref{tab:tgr}'deki eşleşmiş bütçeli değerden hafifçe ayrılmasının nedeni budur). Dolayısıyla etki PGD saldırısının kendisinin bir artefaktı değildir. Etkinin büyüklüğü ve anlamlılığı, onlarla birlikte de her türlü eşdeğerlik iddiası protokole bağlıdır.
-
-Onaylanan iki protokol arasındaki uzaklığın bileşimsel bir kaynağı vardır. Hedefin temizde çözdüğü ama kaynağın çözemediği örnekler ortak çözülenlerden üç-dört kat daha kırılgandır ($\%41{,}2\pm0{,}8$ ve $\%59{,}1\pm1{,}7$ yanıltmaya karşı $\%10{,}0$ ve $\%18{,}2$) ve bu marjinal altkümeler, iki model temiz doğrulukta ayrıştığı için boyutça beş kat farklıdır ($1.517\pm102$'ye karşı $291\pm16$). Hedef doğru koşullaması iki marjinal altkümeyi de içeri almakta ve bunların asimetrik boyutları iki oranı birbirine doğru çekmektedir; her ikisi doğru koşullaması ise onları dışarıda bırakmakta ve yönlü fark yeniden ortaya çıkmaktadır. Bu açıklama dört protokolün üçünü kapsamaktadır. Başarılı kaynak protokolü \emph{kaynağın} kendi gürbüzlüğüne göre seçim yapmaktadır; bu gürbüzlük çiftin temiz doğruluk farkının bir fonksiyonu olmadığından protokol ikinci, kısmen ters yönlü bir terim katmaktadır (Bölüm~\ref{subsubsec:spread_gap}).
-
-% ----------------------------------------------------------------------------
-% B.1 Uc mimarili kontrol ve oncul p
-% ----------------------------------------------------------------------------
-\subsubsection{Ham oranın ne kadarı hedefin temiz hatası?}
-\label{subsubsec:matrix}
-
-% REF: C3: WRN dahil 3x3 matris (r = 0.997; egim 0.762)
-% REF: Dis veri: Mahmood, "Ozdeslikte kullanilan p" (p_min 0.989014, results/q1/ozdeslik_kontrol.json)
-WideResNet-28-10 referansının hem kaynak hem hedef olarak eklenmesi her eğitim çifti için bir $3\times3$ matris vermektedir (Tablo~\ref{tab:transfer_matrix}); Denklem~\eqref{eq:raw_identity} bu matrisin altı köşegen dışı yönünde, temiz hataları birbirinden çok farklı hedeflere karşı sınanabilmektedir. Özdeşliğin öncülü bu çekişmeli eğitilmiş hedeflerde sıkı biçimde sağlanmaktadır. $36$ köşegen dışı yönde (iki veri kümesi, üç tohum çifti, üç hedef, iki kaynak) ölçülen $p$ değeri $0{,}989$ ile $1{,}000$ arasındadır. Bu nedenle $p=1$ biçimi ölçülen her koşulsuz oranı $0{,}41$ puan içinde yeniden üretmektedir; ortalama mutlak artık $0{,}095$ puandır ve artık, açıkladığı sapmanın en çok $\%1{,}39$'u kadardır. Bu artık puan cinsinden yeniden yazılmış öncül, yani $e\,(1-p)$ olduğundan ikinci bir doğrulama sayılmamaktadır; bilgi taşıyan nicelik $p$'nin kendisidir. Aynı sonuç sapma ile hedefin temiz hatası arasındaki bir korelasyon olarak ifade edilseydi ($r = 0{,}997$) eksik anlatılmış olurdu, çünkü bir niceliğin kendi baskın bileşeniyle bire yakın korelasyonu aritmetiktir.
-
-Veri kümesine özgü kalan şey orantı çarpanıdır. $(1 - r_{\text{koş}})$ saldırının ne kadar transfer edilebilir olduğuna bağlı olduğundan uydurulan eğim CIFAR-10'da hedef hatasının puanı başına $0{,}762$, CIFAR-100'de $0{,}656$ puandır. Bu eğim ölçülen hedefler üzerinden bir ortalamadır ve özdeşlik başka model havuzlarına her uygulandığında yeniden kestirilmelidir. Koşulsuz transfer oranları bu yüzden mimariler arası transfer edilebilirliği ölçmemekte, transfer edilebilirliği hedefin temiz zayıflığıyla birlikte, Denklem~\eqref{eq:raw_identity}'in açıkça gösterdiği bir oranda ölçmektedir.
-
-\begin{table}[!t]
-\centering
-\caption{$3\times3$ transfer matrisi (PGD-10, $\eps$=8/255, tam test kümesi; üç tohum çifti üzerinden ortalama$\pm$std; WideResNet satır ve sütunu tek harici kontrol noktasını kullanır). Ham = koşulsuz yanıltma oranı, Koş. = hedef doğru koşullu oran. Köşegen girdileri beyaz kutu saldırılardır. Bu matrisin saldırıları ayrı bir koşuda üretilmiştir (saldırı tohumu 42); Tablo~\ref{tab:conditional} ve Tablo~\ref{tab:transfer_protocols} ile paylaştığı hücreler onlardan en çok $0{,}06$ puan ayrılır ve bu fark Bölüm~\ref{subsec:statistics_results}'teki saldırı başlatma varyansının içindedir.}
-\label{tab:transfer_matrix}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{llcc}
-\toprule
-\textbf{Kaynak} & \textbf{Hedef} & \textbf{Ham (\%)} & \textbf{Koş.\ (\%)} \\
-\midrule
-ResNet-18 AT & ResNet-18 AT & 55,84$\pm$0,53 & 48,52$\pm$0,84 \\
-ResNet-18 AT & ViT-Tiny AT & 41,07$\pm$0,58 & 19,93$\pm$0,20 \\
-ResNet-18 AT & WRN-28-10 & 21,69$\pm$0,09 & 12,48$\pm$0,10 \\
-ViT-Tiny AT & ResNet-18 AT & 27,45$\pm$0,34 & 15,52$\pm$0,64 \\
-ViT-Tiny AT & ViT-Tiny AT & 67,34$\pm$0,18 & 55,57$\pm$0,44 \\
-ViT-Tiny AT & WRN-28-10 & 18,25$\pm$0,12 & 8,65$\pm$0,14 \\
-WRN-28-10 & ResNet-18 AT & 32,63$\pm$0,14 & 21,48$\pm$0,31 \\
-WRN-28-10 & ViT-Tiny AT & 39,73$\pm$0,25 & 18,15$\pm$0,28 \\
-WRN-28-10 & WRN-28-10 & 33,03 & 25,16 \\
-\bottomrule
+\multicolumn{7}{p{0.95\columnwidth}}{\scriptsize $56$ yönün tamamında $p$ değeri $[0{,}9330;\ 1{,}0000]$ aralığında kalmakta ve $p=1$ artığı en çok $0{,}35$ puan olmaktadır.}
 \end{tabular}
 \end{table}
 
 % ----------------------------------------------------------------------------
-% C. Kaynak etkisi
+% C. Panel sinamalari
 % ----------------------------------------------------------------------------
-\subsection{Hedef Zayıflığı Değil, Kaynak Etkisi}
-\label{subsec:source_target}
+\subsection{CIFAR-10 ve CIFAR-100'de Panel Sınamaları}
+\label{subsec:panel}
 
-Üç mimarili $3\times3$ matrisler yönün nereden geldiğini de göstermektedir. Bir CNN$\rightarrow$ViT üstünlüğü, CNN'de üretilen örneklerin herhangi bir hedefe daha iyi taşınmasından, yani bir kaynak etkisinden ya da ViT'in herhangi bir kaynak için daha kolay hedef olmasından, yani bir hedef etkisinden doğabilir. İki etki, her eğitim çiftinin altı köşegen dışı oranına protokol protokol uydurulan ve toplamı sıfır kodlama kullanan $r(s\rightarrow t) = \mu + \alpha_s + \beta_t + \varepsilon_{st}$ toplamsal modeliyle ayrılmıştır. Böylece asimetri, kaynak farkı $\alpha_{\text{CNN}} - \alpha_{\text{ViT}}$, hedef farkı $\beta_{\text{ViT}} - \beta_{\text{CNN}}$ ve bir artık farkının toplamına eşit olmaktadır. Altı hücre ve beş parametre tek bir artık serbestlik derecesi bıraktığından yüksek bir $R^2$ beklenen bir sonuçtur ve az kanıt taşımaktadır; uydurma her matrisi betimlemekte, hiçbir şeyi sınamamaktadır, aşağıdaki sabit üçüncü model karşıtlıkları ise hiçbir model gerektirmemektedir.
+% FOY:M9.5:1587,1593
+% FOY:M12.2:2290 (turetilmis 2q-1, t %90; on kayit disi)
+CIFAR-10'daki kayıtlı panel ailesi üç sınamadan oluşmakta ve hepsine Holm düzeltmesinden sonra karar verilmektedir (Tablo~\ref{tab:panel_tests}). İlk sınama olan K-a, ViT'in yedi üyeli CNN paneline karşı kaynak açığının ne kadarının simetrik olduğunu sormaktadır. Üç tohum çiftinde $G_s$ açığı $0{,}391$, $0{,}387$ ve $0{,}390$ log birimi olarak ölçülmüştür. Bu açığın simetrik kısmı $0{,}368$, $0{,}360$ ve $0{,}367$, yönlü kısmı ise $0{,}023$, $0{,}028$ ve $0{,}023$ olarak bulunmuştur. Ortalama simetrik pay $q = 0{,}936$, \%90 aralığı ise $[0{,}925;\ 0{,}948]$ olarak hesaplanmıştır. Her tohum öngörülen $0{,}75$ eşiğini aşmış ve K-a desteklenmiştir (Şekil~\ref{fig:source_gap_split}a). Türetilmiş $2q - 1$ niceliğiyle ifade edildiğinde simetrik kısım yönlü kısmı açığın $0{,}873$'ü kadar aşmaktadır ($[0{,}849;\ 0{,}896]$).
 
-% REF: Kaynak-hedef toplamsal ayristirma, CIFAR-10 ve CIFAR-100 cift basina ayristirma (tc, bc, ss, ham)
-% REF: Kaynak-hedef toplamsal ayristirma, sabit-WRN karsitliklari; C3: WRN dahil 3x3 matris (gelen transfer; r = 0.986)
-Kaynak terimi asimetriyi iki veri kümesinde de taşımaktadır (Tablo~\ref{tab:source_target}). CIFAR-10'da kaynak farkı $+5{,}13\pm0{,}09$, hedef farkı $-2{,}03\pm0{,}51$ puandır. ViT üzerinde üretilen örnekler daha kötü taşınmakta ve ViT iki hedefin \emph{daha az} kırılgan olanı olmaktadır; dolayısıyla hedef terimi ölçülen $+4{,}41\pm0{,}45$ puanlık asimetriye karşı çalışmaktadır. CIFAR-100 aynı örüntüyü daha büyük ölçekte yinelemektedir ($+9{,}54\pm0{,}64$'e karşı $-6{,}19\pm0{,}93$). Kaynak terimi puanlanabilen her protokolde işaretini korurken hedef terimi korumamaktadır. Her ikisi doğru protokolünde hedef farkı CIFAR-10'da sıfırdan ayırt edilemeyen $-0{,}53\pm0{,}59$, CIFAR-100'de $-2{,}85\pm0{,}93$ olurken kaynak farkı $+6{,}76\pm0{,}35$ ve $+11{,}79\pm0{,}83$'e çıkmaktadır; CIFAR-100 kayıtlarının izin verdiği başarılı kaynak protokolünde ise terimler $+20{,}82\pm1{,}43$ ve $-8{,}12\pm2{,}23$'tür. WideResNet aynı karşıtlıkları model gerektirmeden sağlamaktadır. Sabit bir hedef olarak WideResNet, ResNet'te üretilen örneklerin $\%12{,}48$'i, ViT'te üretilenlerin ise $\%8{,}65$'i ile kandırılmaktadır; yani ViT'te üretilen örnekler üçüncü bir mimariye bile daha kötü taşınmaktadır. Sabit bir kaynak olarak ise ResNet'i $\%21{,}48$, ViT'i $\%18{,}15$ oranında kandırmaktadır; dolayısıyla ViT üçüncü bir modelin pertürbasyonları için de daha zor hedeftir. Sabit model karşıtlıkları her ikisi doğru protokolünde de bu işaretleri korumakta (CIFAR-10'da $+4{,}69\pm0{,}38$ ve $-2{,}60\pm0{,}72$), hedef karşıtlığı ise iki veri kümesinde de her koşullu protokolde negatif kalmaktadır. Ham oranlarla puanlandığında aynı ayrıştırma CIFAR-10'da $+8{,}13$, CIFAR-100'de $+10{,}72$ puanlık bir hedef farkı vermektedir; koşulsuz oranlar ViT'in daha büyük temiz hatasını da saydığı için onu daha zayıf hedef gibi göstermektedir. Daha zayıf hedef okuması gelen transfer korelasyonuna da dayandırılamaz. Gelen koşullu transfer her hedefin kendi beyaz kutu koşullu yanıltma oranını izlemektedir (üç hedef üzerinde $r = 0{,}986$), ancak bu korelasyonu iki aileden gelen saldırıları da soğuran gürbüz WideResNet taşımaktadır ($\%10{,}57$ gelen transfer). ResNet ile ViT arasında gelen transfer yalnızca $0{,}54$ puan farklıdır ($\%18{,}50$'ye karşı $\%19{,}04$), asimetri ise $4{,}41$ puandır.
+% FOY:M9.5:1588
+İkinci sınama olan K-b, benzerlik ve kırılganlık çıkarıldıktan sonra ViT'in yönlü olarak zayıf bir kaynak olup olmadığını sormaktadır. ViT'in yönlü terimi $\rho(\cellname{V-scr}) = +0{,}012$'dir (tohumlarda $+0{,}025$, $+0{,}007$ ve $+0{,}004$). Bu terimin \%90 aralığı $[-0{,}007;\ +0{,}031]$ ile $\pm0{,}10$ eşdeğerlik bandının epey içinde kalmış ve eşdeğerlik desteklenmiştir (TOST, Holm $p = 2{,}73\times10^{-3}$). Bu panelde, CIFAR-10'da ve log ölçeğinde ViT-Tiny'nin CNN'lere karşı zayıf kaynak görünümü, iki yönde de geçerli olan farklılığından kaynaklanmaktadır.
 
-% REF: Kaynak-hedef toplamsal ayristirma, Mahmood ve ark. (2021) CIFAR-10 ve CIFAR-100 8x8 uydurmalari
-% REF: Dis veri: Mahmood ve ark., Aile duzeyi asimetri ve guclu kaynak ailesi sayimi (12/12; 6/6)
-Mahmood vd.'nin~\cite{mahmood2021robustness} $8\times8$ matrisleri, başka yerde eğitilmiş modeller üzerinde aynı ayrıştırmaya imkân vermektedir. Bu matrisler kendi her ikisi doğru protokolleri altında, çift başına $m=1000$ örnekle ve her hücrede FGSM, PGD ve MIM saldırılarının en güçlüsüyle ($\eps=0{,}031$) elde edilmiştir. Mahmood vd.'nin rejimi bu karşılaştırma için önemli olan her bakımdan buradakinden farklıdır. ViT ve BiT-M modelleri ImageNet-21k üzerinde ön eğitilmiş ve çekişmeli eğitim olmadan ince ayarlanmış, ResNet-56 ve ResNet-164 ise CIFAR üzerinde çekişmeli eğitim olmadan eğitilmiştir; köşegenleri de beyaz kutu saldırısı değil aynı modelin bağımsız eğitilmiş bir kopyası olduğundan dışarıda bırakılmıştır. Aile içi transfer aileler arası transferden çok daha güçlü olduğu için toplamsal model bu matrislere zayıf uymaktadır (CIFAR-10'da $R^2=0{,}368$, CIFAR-100'de $0{,}451$); aynı aile terimi $R^2$'yi $0{,}785$ ve $0{,}843$'e çıkarmaktadır. İki uydurmada da aile düzeyindeki kaynak farkı CIFAR-10'da ViT lehinedir (CNN eksi ViT olarak toplamsal uydurmada $-25{,}01$, aile terimiyle $-10{,}78$ puan) ve buradaki yönün tersini göstermektedir; melez ViT-R50'nin dışarıda bırakıldığı $12$ aileler arası çiftin tamamında da ViT daha güçlü kaynaktır. CIFAR-100'de ResNet-56 ve ResNet-164 bu çalışmanın yönünü göstermekte ve $6/6$ çiftte CNN$\rightarrow$ViT daha güçlü olmaktadır; ancak bu yönü hedef terimi taşımakta (toplamsal $+30{,}15$, aile terimiyle $+16{,}81$), kaynak terimi ise yine ViT lehine kalmaktadır ($-21{,}90$ ve $-8{,}55$). Orada yön buradakiyle uyuşmakta, mekanizma ise uyuşmamaktadır. Bölüm~\ref{subsec:findings} bu durumun açık bıraktığı soruyu tartışmaktadır.
+% FOY:M9.5:1589,1595
+Üçüncü sınama olan K-c, bu farklılığın aileye mi yoksa tek tek tohumlara mı ait olduğunu sormaktadır. Üç ViT tohumu birbirine panele olduğundan çok daha benzerdir ($\Dseed = +0{,}566$, bootstrap \%90 aralığı $[0{,}537;\ 0{,}604]$) ve sınama desteklenmiştir. ViT tohumları arasındaki ortalama ikili $\log\simt$ değeri $-0{,}443$, üç ResNet-18 tohumu arasındaki değer ise $-0{,}489$ olarak bulunmuştur. Dolayısıyla ViT koşuları ResNet koşuları kadar sıkı bir blok oluşturmakta ve bu blok CNN'lerden uzakta durmaktadır (Şekil~\ref{fig:similarity_matrix}). ViT'in kaynak olarak genel bir zayıflığı ViT tohumları arasındaki benzerliği de düşürecekken bu benzerlik ResNet tohumları arasındaki benzerlikle aynı düzeydedir.
 
-% REF: tablo hucrelerinin tamami "Kaynak-hedef toplamsal ayristirma" ve "Dis veri: Mahmood ve ark." bolumlerinden.
+% FOY:M10.2:1838,1839,1840,1844,1848,1850 ; M9.5:1593 (CIFAR-10 yonlu paylar 0.023-0.028)
+% FOY:TabloIII:185 (SVHN hedef-dogru asimetri)
+Aynı aile, yedi üyeli bir CIFAR-100 paneliyle CIFAR-100'de bağlayıcı bir yineleme olarak da ön kayda alınmıştır. K-a ve K-c yine desteklenmiş ($q = 0{,}840$, $[0{,}795;\ 0{,}885]$; $\Dseed = +0{,}519$, $[0{,}469;\ 0{,}599]$), aile içi değerler de tekrarlanmıştır (ViT tohumları arasında $-0{,}487$, ResNet tohumları arasında $-0{,}501$). K-b ise bu veri kümesinde yinelenmemiştir. Yönlü terim $+0{,}143$ ($[+0{,}101;\ +0{,}184]$), TOST $p$ değeri ise $0{,}953$ olarak elde edilmiştir. Bu terimin \%95 aralığı sıfırı dışarıda bırakmış ve kestirim $0{,}10$ değerini aşmıştır. Bu nedenle eşdeğerlik pozitif yönde çürütülmüştür ve CIFAR-100'de ViT yönlü olarak da daha zayıf bir kaynaktır. Kaynak açığının yönlü kısımları da buna uygun biçimde CIFAR-10'daki $0{,}023$ ile $0{,}028$ düzeyinden $0{,}059$, $0{,}064$ ve $0{,}085$ düzeyine büyümüştür. Simetrik kısımlar aynı büyüklükte kalırken $q$ değerinin düşmesinin nedeni budur. Yönlü terim veri kümesine bağlıdır. Bu terim CIFAR-100'de büyüktür, panelin koşulmadığı SVHN'de ise temiz doğruluk yakından eşleştiğinde çiftin hedef doğru asimetrisinin işareti değişmektedir (Bölüm~\ref{subsec:transfer}).
+
+% FOY:M10.3:1873,1874,1875,1876,1877,1878,1879,1884
+CIFAR-100'de ViT-Tiny yalnız $\%41{,}94$ ile $\%44{,}06$ arasında temiz doğruluğa ulaşırken bu değer ResNet-18'de $\%62{,}68$ ile $\%64{,}65$, panelde ise $\%53{,}82$ ile $\%72{,}57$ arasındadır. Bu nedenle ViT'in $w$ değeri ve hedef doğru paydaları çok daha küçük ve daha kolay bir görüntü altkümesine dayanmakta ve yönlü teriminin bir kısmı da temiz doğruluğu yansıtıyor olabilmektedir. Bu altkümeyi sabit tutacak olan her ikisi doğru sürümüyle söz konusu sınamalar henüz koşulmamıştır.
+
+% FOY:M11.1:2088,2090,2094,2096 (t ve hiyerarsik bootstrap araliklari, bootstrap p) ; 2105-2110 (kararlar)
+% FOY:M11.1:2082,2084 (B 2000) ; 2112,2114 (p tabani 1/(B+1), degisen sinama yok) ; 2078 (etiket: sonradan uretildi)
+Koşuları hücreler içinde, tüm modellerin paylaştığı görüntüleri ise ortak olarak yeniden örnekleyen hiyerarşik bir bootstrap ($B = 2.000$), CIFAR-10'da $q$ için $[0{,}894;\ 0{,}981]$, $\rho(\cellname{V-scr})$ için $[-0{,}021;\ +0{,}046]$ aralıklarını vermiştir ve bu aralıklar $t$ aralıklarından daha geniş çıkmıştır. CIFAR-100'de elde edilen $[0{,}800;\ 0{,}880]$ ve $[+0{,}106;\ +0{,}178]$ aralıkları ise biraz daha dar çıkmıştır. Bu aralıklar ve $p$ değerleri dondurulmuş karar kurallarına konulduğunda iki veri kümesinde de hiçbir karar değişmemiştir. İki aralık türü zıt yönlerde hata yapmaktadır. $t$ aralıkları görüntü örneklemesini dışarıda bırakmakta, hücre başına üç koşu üzerinden alınan bootstrap ise koşu bileşenini olduğundan küçük kestirmektedir. Bootstrap $p$ değerleri alttan $1/(B+1)$ ile sınırlıdır ve CIFAR-100'deki K-b dışındaki her sınamada bu tabana ulaşmıştır.
+
+% FOY:M9.5:1587,1588,1589 (CIFAR-10 sinamalari) ; 1601,1602,1603,1604,1605,1606 (duyarliliklar)
+% FOY:M10.2:1838,1839,1840,1844 (CIFAR-100 sinamalari) ; 1846,1856,1857,1858,1859,1860 (duyarliliklar)
+% FOY:M11.1:2088,2090,2094,2096 (hiyerarsik bootstrap %90) ; 2105-2110,2112,2114 (karar degismedi, Holm p) ; 2082 (B 2000)
+% FOY:M12.2:2290,2291 (turetilmis 2q-1 ve t %90; on kayit disi)
 \begin{table*}[!t]
 \centering
-\caption{Transfer matrislerinin toplamsal kaynak-hedef ayrıştırması (puan; köşegen dışı hücreler). Kaynak farkı $=\alpha_{\text{CNN}}-\alpha_{\text{ViT}}$ (pozitif değer CNN'de üretilen örneklerin daha iyi taşındığını gösterir); hedef farkı $=\beta_{\text{ViT}}-\beta_{\text{CNN}}$ (pozitif değer ViT'in daha kırılgan hedef olduğunu gösterir); asimetri $=$ CNN$\rightarrow$ViT eksi ViT$\rightarrow$CNN. Üst blok: bu çalışmanın $3\times3$ matrisleri (ResNet-18 AT, ViT-Tiny AT, WideResNet-28-10; standart eğitilmiş satırda her çiftin temiz eğitilmiş ResNet-18 ve ViT-Tiny modelleri ile RobustBench'in standart WideResNet-28-10 modeli), eğitim çifti ve protokol başına uydurulmuş, üç çift üzerinden ortalama$\pm$std. Matrisler Tablo~\ref{tab:transfer_matrix}'deki ayrı saldırı koşusundan geldiği için CIFAR-10 hedef doğru asimetrisi burada $4{,}41$, Tablo~\ref{tab:transfer_protocols}'te $4{,}36$'dır; altı hücre ve beş parametreyle $R^2$ sınamaz, yalnızca betimler. Orta blok: uydurma yapılmadan sabit üçüncü model olarak WideResNet; hedef olarak bir kaynak karşıtlığı (CNN'den gelen oran eksi ViT'ten gelen oran), kaynak olarak bir hedef karşıtlığı (ViT'e giden oran eksi CNN'e giden oran) verir. Alt blok: Mahmood vd.'nin~\cite{mahmood2021robustness} $8\times8$ her ikisi doğru matrisleri (standart eğitilmiş modeller, $m$=1000, köşegen hariç); aksi belirtilmedikçe melez ViT-R50 dışındaki CNN ve ViT aileleri, aynı aile terimli ve terimsiz uydurmalar.}
-\label{tab:source_target}
-\footnotesize
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{llccccc}
+\caption{ViT-Tiny için yedi üyeli CNN paneline karşı CIFAR-10'da ve bağlayıcı yineleme olarak CIFAR-100'de yürütülen kayıtlı panel sınamaları (bölünmüş yarı, log ölçeği; Holm düzeltmesi her veri kümesi içinde). K-a simetrik pay $q$'yu, K-b ViT'in yönlü terimini ($\pm0{,}10$ marjla TOST), K-c ise aile içi benzerliği (hiyerarşik bootstrap) sınamaktadır. K-a ve K-b, sabit test görüntülerine ve panele koşullu olarak üç tohum üzerinden $t$ aralıkları kullanmaktadır; K-c bootstrap'i ve hiyerarşik bootstrap satırı görüntüleri de yeniden örneklemektedir.}
+\label{tab:panel_tests}
+\scriptsize
+\setlength{\tabcolsep}{1.6pt}
+\begin{tabular}{lcccccccccc}
 \toprule
-\textbf{Veri} & \textbf{Protokol ya da uydurma} & \textbf{Kaynak farkı} & \textbf{Hedef farkı} & \textbf{Asimetri} & \textbf{En büyük $|$artık$|$} & \textbf{$R^2$} \\
+& \multicolumn{5}{c}{\textbf{CIFAR-10}} & \multicolumn{5}{c}{\textbf{CIFAR-100}} \\
+\cmidrule(lr){2-6} \cmidrule(lr){7-11}
+\textbf{Sınama} & \textbf{Kestirim} & \textbf{\%90 GA} & \textbf{\%95 GA} & \textbf{Holm $p$} & \textbf{Karar} & \textbf{Kestirim} & \textbf{\%90 GA} & \textbf{\%95 GA} & \textbf{Holm $p$} & \textbf{Karar} \\
 \midrule
-\multicolumn{7}{l}{\textit{Bu çalışmanın matrisleri, eğitim çifti başına toplamsal uydurma}} \\
-CIFAR-10 & Hedef doğru & $+$5,13$\pm$0,09 & $-$2,03$\pm$0,51 & $+$4,41$\pm$0,45 & 0,65$\pm$0,05 & 0,9782$\pm$0,0032 \\
-CIFAR-10 & Her ikisi doğru & $+$6,76$\pm$0,35 & $-$0,53$\pm$0,59 & $+$8,30$\pm$0,16 & 1,04$\pm$0,11 & 0,9643$\pm$0,0072 \\
-CIFAR-10 & Koşulsuz & $+$4,47$\pm$0,10 & $+$8,13$\pm$0,33 & $+$13,62$\pm$0,38 & 0,51$\pm$0,03 & 0,9964$\pm$0,0004 \\
-CIFAR-100 & Hedef doğru & $+$9,54$\pm$0,64 & $-$6,19$\pm$0,93 & $+$4,96$\pm$1,02 & 0,80$\pm$0,05 & 0,9871$\pm$0,0015 \\
-CIFAR-100 & Her ikisi doğru & $+$11,79$\pm$0,83 & $-$2,85$\pm$0,93 & $+$10,92$\pm$0,34 & 0,99$\pm$0,10 & 0,9851$\pm$0,0035 \\
-CIFAR-100 & Başarılı kaynak & $+$20,82$\pm$1,43 & $-$8,12$\pm$2,23 & $+$17,50$\pm$0,92 & 2,40$\pm$0,06 & 0,9830$\pm$0,0008 \\
-CIFAR-100 & Koşulsuz & $+$6,48$\pm$0,38 & $+$10,72$\pm$0,97 & $+$18,53$\pm$0,71 & 0,67$\pm$0,01 & 0,9946$\pm$0,0003 \\
-C10, standart eğitim & Hedef doğru & $+$69,18$\pm$2,31 & $-$75,05$\pm$1,72 & $-$4,49$\pm$0,85 & 0,69$\pm$0,20 & 0,9996$\pm$0,0002 \\
+K-a, $q$ & 0,936 & [0,925; 0,948] & [0,919; 0,953] & $1{,}26\times10^{-4}$ & destek & 0,840 & [0,795; 0,885] & [0,773; 0,906] & $2{,}05\times10^{-3}$ & destek \\
+K-b, $\rho(\cellname{V-scr})$ & $+$0,012 & [$-$0,007; $+$0,031] & [$-$0,016; $+$0,040] & $2{,}73\times10^{-3}$ & destek & $+$0,143 & [$+$0,101; $+$0,184] & [$+$0,082; $+$0,203] & 0,953 & çürütüldü ($+$) \\
+K-c, $\Dseed$ & $+$0,566 & [$+$0,537; $+$0,604] & [$+$0,533; $+$0,608] & $1{,}00\times10^{-3}$ & destek & $+$0,519 & [$+$0,469; $+$0,599] & [$+$0,463; $+$0,604] & $1{,}50\times10^{-3}$ & destek \\
+Öng.\ büyüklük & \multicolumn{5}{l}{K-a ($q_s \geq 0{,}75$), K-b (\%90 GA $\pm0{,}10$ içinde), K-c ($\Dseed \geq 0{,}30$): evet}
+ & \multicolumn{5}{l}{K-a, K-c: evet; K-b (\%90 GA $\pm0{,}10$ içinde): hayır} \\
 \midrule
-\multicolumn{7}{l}{\textit{Sabit üçüncü model olarak WideResNet-28-10, uydurma yok}} \\
-CIFAR-10 & Hedef doğru & $+$3,83$\pm$0,17 & $-$3,33$\pm$0,59 & -- & -- & -- \\
-CIFAR-10 & Her ikisi doğru & $+$4,69$\pm$0,38 & $-$2,60$\pm$0,72 & -- & -- & -- \\
-CIFAR-100 & Hedef doğru & $+$7,94$\pm$0,54 & $-$7,79$\pm$0,95 & -- & -- & -- \\
-CIFAR-100 & Her ikisi doğru & $+$9,81$\pm$1,03 & $-$4,83$\pm$0,75 & -- & -- & -- \\
-CIFAR-100 & Başarılı kaynak & $+$16,03$\pm$1,42 & $-$12,91$\pm$2,29 & -- & -- & -- \\
-C10, standart eğitim & Hedef doğru & $+$67,80$\pm$2,11 & $-$76,43$\pm$2,02 & -- & -- & -- \\
+\multicolumn{11}{l}{\textit{Duyarlılık çözümlemeleri}} \\
+$\delta = 0{,}06$ & \multicolumn{5}{l}{üçü de desteklendi} & \multicolumn{5}{l}{K-a, K-c desteklendi; K-b çürütüldü ($+$)} \\
+$2q-1$, türetilmiş & \multicolumn{5}{l}{$+$0,873 [$+$0,849; $+$0,896]} & \multicolumn{5}{l}{$+$0,679 [$+$0,589; $+$0,769]} \\
+Tam örneklem, log & \multicolumn{5}{l}{$q$ 0,937; $\rho$ $+$0,012 [$-$0,007; $+$0,031]} & \multicolumn{5}{l}{$q$ 0,840; $\rho$ $+$0,143 [$+$0,101; $+$0,184]} \\
+Logit ölçeği & \multicolumn{5}{l}{$q$ 1,101; $\rho$ $-$0,304 [$-$0,320; $-$0,289]} & \multicolumn{5}{l}{$q$ 1,026; $\rho$ $-$0,413 [$-$0,546; $-$0,280]} \\
+Oran ölçeği & \multicolumn{5}{l}{$q$ 1,542; $\rho$ $-$14,66 puan [$-$14,93; $-$14,39]} & \multicolumn{5}{l}{$q$ 1,216; $\rho$ $-$14,61 puan [$-$17,32; $-$11,89]} \\
+Hiy.\ bootstrap & \multicolumn{5}{l}{\%90 GA: $q$ [0,894; 0,981]; $\rho$ [$-$0,021; $+$0,046]; kararlar aynı} & \multicolumn{5}{l}{\%90 GA: $q$ [0,800; 0,880]; $\rho$ [$+$0,106; $+$0,178]; kararlar aynı} \\
+Panel jackknife & \multicolumn{5}{l}{$q$ 0,931 ile 0,941; $\rho$ $+$0,001 ile $+$0,022} & \multicolumn{5}{l}{$q$ 0,831 ile 0,847; $\rho$ $+$0,127 ile $+$0,150} \\
+İkincil panel & \multicolumn{5}{l}{XCiT-S12: $q_s$ 0,899, 0,825, 0,842; $\rho$ $+$0,198, $+$0,202, $+$0,204} & \multicolumn{5}{l}{XCiT-S12, Hendrycks: $q_s$ 0,799, 0,834, 0,771; $\rho$ $+$0,129, $+$0,136, $+$0,221} \\
+\bottomrule
+\multicolumn{11}{p{0.96\textwidth}}{\scriptsize Hiyerarşik bootstrap: koşular hücre içinde yeniden örneklenmiş, görüntüler ortak tutulmuştur, $B = 2.000$; ön kayıttan sonra üretilmiştir (Bölüm~\ref{subsec:prereg}). $2q-1$, K-a'nın doğrusal bir dönüşümüdür ve bir sınama değildir.}
+\end{tabular}
+\end{table*}
+
+% Sekil: paper/figures/konsey/fig_source_gap_split.py (kanit fig_source_gap_split.kanit.json); taslak, visio-cizici turu bekliyor.
+% FOY:M9.5:1593 ; M10.2:1848 ; M10.4:1930,1931,1932
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{../figures/konsey/fig_source_gap_split.pdf}
+\caption{Dönüştürücünün CNN karşılığına göre kaynak açığının simetrik kısım ($\sigma$ farkı) ve yönlü kısım olarak bölünmesi; CIFAR-10 (a) ve CIFAR-100 (b) için tohum çifti başına, ImageNetV2 (c) için aynı tarifle eğitilmiş çift başına. Her çubuğun üstündeki simetrik pay $q$, yönlü kısım açığı daralttığında birden büyük olmaktadır. ImageNetV2 paneli betimseldir ve üçüncü çiftinin açığı ön kayıttaki $0{,}10$ eşiğinin altındadır.}
+\label{fig:source_gap_split}
+\end{figure*}
+
+% Sekil: paper/figures/konsey/fig_similarity_matrix.py (kanit fig_similarity_matrix.kanit.json); taslak, visio-cizici turu bekliyor.
+% FOY:M9.5:1595 ; M10.2:1850
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{../figures/konsey/fig_similarity_matrix.pdf}
+\caption{CIFAR-10 (a), CIFAR-100 (b) ve ImageNetV2 (c) üzerindeki bütün modeller için ikili simetrik benzerlik $\log\simt_{ij}$ (bölünmüş yarı, log ölçeği); modeller aileye göre sıralanmıştır. Sıfırdan eğitilmiş ViT-Tiny tohumları, karşılıklı benzerliği yüksek ve CNN panelinden farklı bir blok oluşturmaktadır. Köşegen hücreler tanımsızdır ve boş bırakılmıştır.}
+\label{fig:similarity_matrix}
+\end{figure*}
+
+% ----------------------------------------------------------------------------
+% D. Mimari x baslatma (2x2)
+% ----------------------------------------------------------------------------
+\subsection{Mimari \texorpdfstring{$\times$}{x} Başlatma}
+\label{subsec:twobytwo}
+
+% FOY:M9.1:1452,1453,1454,1455,1456,1457,1470,1472,1485
+Tablo~\ref{tab:design} içindeki $2\times2$ tasarım, girdi hattı ve çekişmeli eğitim tarifi hücreler arasında eşit tutulduğunda farklılığın hangi kısmının mimariden, hangi kısmının başlatmadan geldiğini sormaktadır. Altı yeni koşunun tamamı kayıtlı manipülasyon denetimlerini geçmiştir. ImageNet ile başlatılan her koşu ilk temiz epokta sıfırdan eğitilen referansı $48{,}40$ ile $69{,}38$ puan aşmış, hiçbiri çöküş kuralını tetiklememiş ve her koşu 80 epokluk üst sınırın epey öncesinde erken durmuştur (Bölüm~\ref{subsec:computational}).
+
+% FOY:M9.2:1496,1497,1498,1499,1505,1506,1507,1508,1509,1510,1511,1512,1513
+Tablo~\ref{tab:cells} içindeki koşular arasında temiz doğrulukta (öteki hücrelerdeki $\%83{,}39$ ile $\%86{,}35$ arasındaki değerlere karşı $\%73{,}01$ ile $\%74{,}10$) ve kırılganlıkta ($w$ için $\%47{,}73$ ile $\%51{,}11$ arasındaki değerlere karşı $\%55{,}12$ ile $\%55{,}91$) yalnız sıfırdan eğitilen ViT ötekilerden ayrışmıştır. Panel benzerliğinde iki ResNet hücresi neredeyse özdeştir ve ImageNet ile başlatma yalnız ViT'i yerinden oynatmıştır (Şekil~\ref{fig:cells_interaction}).
+
+% FOY:M9.3:1526,1527,1528,1532,1534,1536
+% FOY:M9.4:1545,1549
+Kayıtlı $2\times2$ ailesinin her sınaması desteklenmiştir (Tablo~\ref{tab:fb4}). Eşlenmiş girdi hattıyla sıfırdan eğitildiğinde ViT, CNN paneline ResNet'ten daha az benzemektedir ($\Asig{scr} = -0{,}364$, \%90 aralığı $[-0{,}415;\ -0{,}314]$, Holm $p = 4{,}09\times10^{-5}$) ve bu fark öngörülen $-0{,}20$ büyüklüğünün ötesindedir (H1). ImageNet ile başlatma bu farkı ViT'te ResNet'tekinden daha çok daraltmış ($\Isig = +0{,}260$, $[+0{,}186;\ +0{,}335]$, Holm $p = 9{,}0\times10^{-4}$), destek kuralının gerektirdiği gibi etkileşim logit ölçeğinde de pozitif kalmıştır ($+0{,}354$; H2). Yönlü terimdeki mimari ana etkisi sıfıra eşdeğerdir ($\Arho = +0{,}003$, $[-0{,}020;\ +0{,}026]$; TOST Holm $p = 3{,}79\times10^{-4}$; H3). Bu birleşim, Bölüm~\ref{subsec:statistics} içinde tanımlanan kayıtlı sonuç bölgesi O1'e karşılık gelmektedir. Maskeleme kuralı hiçbir modeli işaretlemediği için (Bölüm~\ref{subsec:attack_side}) bölge bu kuraldan sonra da geçerliliğini korumuş, daha dar $\delta = 0{,}06$ marjı da aynı bölgeyi vermiştir.
+
+% FOY:M9.4:1550,1553,1554,1555
+% FOY:M12.3:2335,2336,2337,2351,2352,2353,2362-2368 (A10: ResNet-18 turevleri cikarilmis 3 uyeli panel; kesifsel, on kayit disi)
+H1 kestirimi kayıtlı her duyarlılık çözümlemesinde ayakta kalmıştır. Panel jackknife bu kestirimi $-0{,}376$ ile $-0{,}346$ arasında oynatmış, hiyerarşik bootstrap aralığı ise $[-0{,}393;\ -0{,}335]$ olmuştur. Hücreler arasındaki varyans birleştirmesini bırakan Welch aralıkları, yeni hücrelerde ikişer koşu bulunduğu için çok daha geniştir ($1{,}10$ serbestlik derecesinde $[-0{,}569;\ -0{,}160]$), ancak H1 ve H2 için yine de sıfırı dışarıda bırakmıştır. Dört ResNet-18 türevi çıkarılmış üç üyeli keşifsel bir panelde CIFAR-10'daki altı sınamanın hepsi yönünü ve kararını korumuş, sonuç bölgesi O1 olarak kalmış ve büyüklükler benzer çıkmıştır (Ek~\ref{app:exploratory}).
+
+% FOY:M9.2:1497 ; M9.4:1551,1552,1563
+% FOY:M12.1:2234,2235,2238,2251,2252,2255 (A2: rho basit etkileri ve etkilesim, log ve logit; kesifsel)
+% YON: [-0.116; -0.058] FOY:M9.4:1551
+H3'ün kapsamı, kararının ilk bakışta düşündürdüğünden daha dardır. Bu sınama iki başlatma satırı üzerinden ortalanmış mimari ana etkisinin eşdeğerliğine dayanmakta olup her hücrede küçük bir yönlü terim bulunduğu anlamına gelmemektedir. ImageNet ile başlatılan ViT'in hücre ortalaması $\rho = -0{,}118$ ile bandın dışındadır ve başlatma ViT'in yönlü terimini $-0{,}130$ değiştirmiştir ($[-0{,}161;\ -0{,}099]$; ikincil çözümleme S2, öngörüldüğü gibi). Ana etkinin ardında $\rho$ üzerindeki mimari basit etkileri sıfırdan eğitimde $+0{,}070$, ImageNet başlatmasında $-0{,}064$ olarak bulunmuştur. Bu iki etkinin farkı olan $-0{,}134$ hem log hem logit ölçeğinde negatiftir ve iki basit etki yalnız log ölçeğinde zıt işaretlidir (Tablo~\ref{tab:simple_effects}). Logit ölçeğinde H3 karşıtlığı $-0{,}087$ olarak hesaplanmıştır. Bu ölçekte \%95 aralığı sıfırı dışarıda bırakırken kestirim $\pm0{,}10$ içinde kaldığından kayıtlı kural bu ölçekte ne destek ne de çürütme kararı üretmektedir. Oran ölçeğinde aynı karşıtlık $-4{,}13$ puan çıkmıştır.
+
+% FOY:M9.4:1561,1562,1564,1565,1566,1568,1569,1575,1576
+% KAYNAK: ON_KAYIT Sec. 1 (sahte 2x2 sinamasinda C1 ViT ile C1 ResNet sigma farki
+% kayittan once gorulmustu; sayi foyde yok, sayisiz yazildi)
+Çiftin 32 piksellik ResNet-18'i ile tasarımın 224 piksellik ResNet-18'i panelle aynı biçimde ilişkilidir. $\sigma(\cellname{R224-scr}) - \sigma(\cellname{R32}) = -0{,}0003$ ($[-0{,}035;\ +0{,}034]$) ve $\rho$ farkı $-0{,}021$ ($[-0{,}064;\ +0{,}023]$) olarak bulunmuştur. Bu sonuç birleştirilmiş varyanslar altında değişmeyen bir köprüyle uyumludur, Welch \%90 aralığı altında ise uyumlu değildir ($\sigma$ için $[-0{,}120;\ +0{,}119]$; S1). H1, ön kayıttan önce görülen $\sigma$ açığını değil bu köprüyü sınamaktadır (Bölüm~\ref{subsec:prereg}). Başlatma ViT'in log kırılganlığını $-0{,}114$ ($[-0{,}151;\ -0{,}077]$), ResNet'inkini ise $-0{,}018$ değiştirmiştir (S3). İkincil panel olarak XCiT-S12 alındığında iki $\sigma$ karşıtlığı da işaretini korumuştur ($-0{,}284$ ve $+0{,}254$; S6). $20$ modelli artık matrisinde Hodge ayrışımı yönlü yapının $0{,}919$'unu model düzeyindeki potansiyellere yerleştirmiştir ve rastgele durumda bu değer $0{,}100$'dür (S7). Tohum eşleşmeli çiftler (S4, Tablo~\ref{tab:pair_decomposition}) sıfırdan eğitim satırında çiftin potansiyel payını tekrarlamıştır ($0{,}504$ ve $0{,}534$), ImageNet satırında ise log oran sıfıra yakın olduğundan pay tanımsızdır.
+
+% FOY:M9.2:1496,1497,1499,1505,1506,1507,1508,1509
+% FOY:M12.1:2229,2246 (A2: sigma(V-IN) - sigma(R224-IN), birlesik varyansli t %90 ve Welch %90; kesifsel)
+Tasarım, H1 için olası bir alternatif açıklamayı ayıramamaktadır. Sıfırdan eğitilen ViT hem en düşük temiz doğruluğa hem de en yüksek kırılganlığa sahiptir ve mimari karşıtlığı yapısı gereği bunlarla birlikte değişmektedir. Bu nedenle $\Asig{scr}$ değerinin bir kısmı daha az yakınsamış bir çözümü yansıtıyor olabilir. ImageNet ile başlatılan ViT, ResNet hücrelerinin temiz doğruluğuna yaklaşmakta ($\%83{,}39$ ve $\%83{,}47$), ancak panel benzerliği \cellname{R224-IN} hücresininkinin altında kalmaktadır ($-0{,}635$'e karşı $-0{,}739$). Sonuçlar görüldükten sonra türetilen bu karşıtlığın, yani $\sigma(\cellname{V-IN}) - \sigma(\cellname{R224-IN}) = -0{,}104$ değerinin birleştirilmiş varyanslı \%90 aralığı $[-0{,}159;\ -0{,}049]$'dur. Hücre başına iki koşuyla hesaplanan Welch aralığı ise $[-0{,}318;\ +0{,}109]$ olup sıfırı içermektedir (Ek~\ref{app:exploratory}). Dolayısıyla bu karşıtlık doğruluğun ötesinde bir farklılığa yalnız birleştirilmiş varyanslar altında işaret etmektedir.
+
+% FOY:M9.2:1496,1497,1498,1499 (hucre ortalamalari)
+% FOY:M9.2:1505,1506,1507,1508,1509,1510,1511,1512,1513 (kosu satirlari)
+% FOY:M9.1:1463,1464,1465,1466,1467,1468 ; M9.7:1666-1671,1673 (B6 sutunlari)
+% FOY:TabloI:17 ; M9.2:1517 (V-scr AA, B6 disi)
+\begin{table*}[!t]
+\centering
+\caption{$2\times2$ tasarımın CIFAR-10 koşuları ve hücre ortalamaları. Temiz doğruluk ve $w$ (hedef doğru beyaz kutu PGD-10 yanıltma oranı) tam test kümesinde ölçülmüştür; $\omega = \log w$ ($w$ yüzde olarak), $\sigma$ ve $\rho$ ise yedi üyeli panele karşı bölünmüş yarı log kestirimleridir. Son üç sütun ilk $1.000$ test görüntüsündeki maskeleme denetimidir (PGD-10 ve AutoAttack gürbüz doğruluğu ile bunların farkı; işaret eşiği $10$ puan) ve yalnız altı yeni koşuyu kapsamaktadır; \cellname{V-scr} için tam test AutoAttack değeri Tablo~\ref{tab:main_results} içinde verilmiştir.}
+\label{tab:cells}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccccccc}
+\toprule
+\textbf{Hücre} & \textbf{Tohum} & \textbf{Temiz (\%)} & \textbf{$w$ (\%)} & \textbf{$\omega$} & \textbf{$\sigma$} & \textbf{$\rho$} & \textbf{PGD-10, 1k (\%)} & \textbf{AA, 1k (\%)} & \textbf{PGD$-$AA (puan)} \\
 \midrule
-\multicolumn{7}{l}{\textit{Mahmood vd.~\cite{mahmood2021robustness}, $8\times8$ her ikisi doğru matrisler, aile düzeyi}} \\
-CIFAR-10 & Toplamsal & $-$25,01 & $+$2,08 & $-$24,01 & 74,04 & 0,3681 \\
-CIFAR-10 & Aynı aile terimi & $-$10,78 & $-$12,15 & $-$24,01 & 29,33 & 0,7852 \\
-CIFAR-100 & Toplamsal & $-$22,77 & $+$14,74 & $-$9,02 & 66,29 & 0,4508 \\
-CIFAR-100 & Aynı aile terimi & $-$9,43 & $+$1,39 & $-$9,02 & 24,33 & 0,8425 \\
-CIFAR-100 & ResNet-56/164 ile ViT, toplamsal & $-$21,90 & $+$30,15 & $+$9,15 & -- & -- \\
-CIFAR-100 & ResNet-56/164 ile ViT, aynı aile & $-$8,55 & $+$16,81 & $+$9,15 & -- & -- \\
+\cellname{V-scr} & 2001 & 74,10 & 55,91 & 4,024 & $-$1,015 & $+$0,025 & -- & -- & -- \\
+\cellname{V-scr} & 2002 & 73,47 & 55,86 & 4,023 & $-$1,000 & $+$0,007 & -- & -- & -- \\
+\cellname{V-scr} & 2003 & 73,01 & 55,12 & 4,009 & $-$1,011 & $+$0,004 & -- & -- & -- \\
+\cellname{V-scr} & ortalama ($n=3$) & 73,53 & 55,63 & 4,019 & $-$1,009 & $+$0,012 & & & \\
+\midrule
+\cellname{V-IN} & 2101 & 83,39 & 48,24 & 3,876 & $-$0,702 & $-$0,131 & 43,30 & 40,10 & 3,20 \\
+\cellname{V-IN} & 2102 & 83,47 & 51,11 & 3,934 & $-$0,776 & $-$0,105 & 42,20 & 38,80 & 3,40 \\
+\cellname{V-IN} & ortalama ($n=2$) & 83,43 & 49,68 & 3,905 & $-$0,739 & $-$0,118 & & & \\
+\midrule
+\cellname{R224-scr} & 1201 & 86,35 & 49,33 & 3,899 & $-$0,625 & $-$0,038 & 43,90 & 39,50 & 4,40 \\
+\cellname{R224-scr} & 1202 & 85,11 & 48,47 & 3,881 & $-$0,664 & $-$0,079 & 45,10 & 41,10 & 4,00 \\
+\cellname{R224-scr} & ortalama ($n=2$) & 85,73 & 48,90 & 3,890 & $-$0,645 & $-$0,058 & & & \\
+\midrule
+\cellname{R224-IN} & 1301 & 85,76 & 48,34 & 3,878 & $-$0,642 & $-$0,056 & 45,80 & 38,40 & 7,40 \\
+\cellname{R224-IN} & 1302 & 86,25 & 47,73 & 3,866 & $-$0,628 & $-$0,052 & 47,40 & 41,80 & 5,60 \\
+\cellname{R224-IN} & ortalama ($n=2$) & 86,00 & 48,04 & 3,872 & $-$0,635 & $-$0,054 & & & \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-% ----------------------------------------------------------------------------
-% D. Ayarlar arasi
-% ----------------------------------------------------------------------------
-\subsection{Veri Kümeleri ve Tehdit Modelleri Arasında}
-\label{subsec:settings}
-
-Tablo~\ref{tab:protocol_settings} bu makaledeki her ayarda dört protokolü bir araya getirmektedir. Onaylanan iki protokol her ayarın içinde aynı işareti vermektedir; protokoller arasında işaret yalnızca SVHN'de değişmekte ve orada dört kestirimin tamamı sıfırın üç puan yakınında kalmaktadır. Ayarlar aşağıda sırayla ele alınmakta (Bölüm~\ref{subsec:cifar100} ile~\ref{subsec:l2} arası), ardından ölçülen her çiftte yayılım ile temiz doğruluk farkı arasındaki ilişki incelenmektedir (Bölüm~\ref{subsubsec:spread_gap}).
-
-% ----------------------------------------------------------------------------
-% D.1 Ikinci veri kumesi (E1)
-% ----------------------------------------------------------------------------
-\subsubsection{İkinci bir veri kümesi: CIFAR-100}
-\label{subsec:cifar100}
-
-Yalnızca CIFAR-10'da var olan bir protokol etkisi genel bir raporlama önerisini desteklemeyeceği için tasarımın tamamı CIFAR-100 üzerinde yinelenmiştir; mimariler, tehdit modeli, saldırı bütçesi, üç tohumlu yapı ve dört protokol aynı tutulmuştur. Üç yönsel ön kestirim ile üç uç nokta bandı, bu veri kümesinden herhangi bir ölçüm mevcut olmadan önce salt eklemeli bir belgeye kaydedilmiş, böylece sonucun ölçüldükten sonra yeniden yorumlanmasının önüne geçilmiştir. Kayıt eğitimin başlangıcından önce gelmemektedir; kayıt işlemesi, sayı bildiren ilk adımdan, yani epok 5'teki pilot kapısından altmış altı dakika öncedir.
-
+% FOY:M9.3:1526,1527,1528,1530,1532,1534,1536
+% FOY:M9.4:1549,1551,1552,1553,1554,1555
 \begin{table}[!t]
 \centering
-\caption{CIFAR-100 yinelemesi (mimari başına üç bağımsız eğitim koşusunun ortalaması$\pm$std, tam test kümesi, $\eps$=8/255). İki model de Bölüm~\ref{subsec:training}'deki tarifle eğitilmiştir. Mutlak gürbüzlük iki mimaride de CIFAR-10'a göre düşüktür ve CNN'in ViT üzerindeki sıralaması değişmemiştir.}
-\label{tab:cifar100_results}
-\footnotesize
+\caption{CIFAR-10'da kayıtlı $2\times2$ ailesi (bölünmüş yarı, log ölçeği; dört hücre üzerinden birleştirilmiş varyans, 5 serbestlik derecesi; Holm düzeltmesi). H1 tek yönlü $\Asig{scr} = \sigma(\cellname{V-scr}) - \sigma(\cellname{R224-scr})$ karşıtlığını, H2 çift yönlü $\Isig$ etkileşimini, H3 ise $\rho$ üzerindeki mimari ana etkisini ($\pm0{,}10$ marjla TOST) sınamaktadır. Maskeleme kuralından önce ve sonra sonuç bölgesi O1'dir; kuralın altındaki duyarlılık çözümlemelerinin hiçbiri bir kararı değiştirmemektedir.}
+\label{tab:fb4}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
 \begin{tabular}{lccc}
 \toprule
-\textbf{Model} & \textbf{Temiz (\%)} & \textbf{PGD-10 (\%)} & \textbf{AutoAttack (\%)} \\
+& \textbf{H1, $\Asig{scr}$} & \textbf{H2, $\Isig$} & \textbf{H3, $\Arho$} \\
 \midrule
-ResNet-18 AT & 63,86$\pm$1,05 & 19,30$\pm$0,32 & 15,04$\pm$0,54 \\
-ViT-Tiny AT  & 43,17$\pm$1,10 & 11,15$\pm$0,60 & 8,87$\pm$0,83 \\
+Kestirim & $-$0,364 & $+$0,260 & $+$0,003 \\
+\%90 GA & [$-$0,415; $-$0,314] & [$+$0,186; $+$0,335] & [$-$0,020; $+$0,026] \\
+\%95 GA & [$-$0,428; $-$0,300] & [$+$0,165; $+$0,355] & [$-$0,026; $+$0,033] \\
+$t$ (sd 5) & $-$14,60 & $+$7,03 & $+$0,29 \\
+Ham $p$ & $1{,}36\times10^{-5}$ & $9{,}00\times10^{-4}$ & $1{,}89\times10^{-4}$ (TOST) \\
+Holm $p$ & $4{,}09\times10^{-5}$ & $9{,}00\times10^{-4}$ & $3{,}79\times10^{-4}$ \\
+Karar & destek & destek & destek (eşdeğerlik) \\
+Öngörülen büyüklük & evet ($\leq -0{,}20$) & evet ($\geq +0{,}10$) & -- \\
+\midrule
+Logit kestirimi & $-$0,498 & $+$0,354 & $-$0,087 \\
+\quad \%90 GA & [$-$0,570; $-$0,426] & [$+$0,247; $+$0,461] & [$-$0,110; $-$0,064] \\
+Oran kestirimi (puan) & $-$8,50 & $+$5,85 & $-$4,13 \\
+\quad \%90 GA & [$-$9,85; $-$7,14] & [$+$3,83; $+$7,86] & [$-$4,90; $-$3,37] \\
+Welch \%95 GA & [$-$0,569; $-$0,160] & [$+$0,029; $+$0,491] & [$-$0,052; $+$0,059] \\
+\quad Welch sd & 1,10 & 1,63 & 1,95 \\
+Panel jackknife & $-$0,376, $-$0,346 & $+$0,249, $+$0,266 & $+$0,001, $+$0,006 \\
+Hiy.\ bootstrap \%90 & [$-$0,393; $-$0,335] & [$+$0,204; $+$0,316] & [$-$0,024; $+$0,031] \\
+$\delta = 0{,}06$, Holm $p$ & $4{,}09\times10^{-5}$ & $1{,}80\times10^{-3}$ & $2{,}13\times10^{-3}$ \\
+\quad karar & destek & destek & destek \\
+\bottomrule
+\multicolumn{4}{l}{\scriptsize Birleştirilmiş SS: 0,0273 ($\sigma$ karşıtlıkları), 0,0169 ($\Arho$).}
+\end{tabular}
+\end{table}
+
+% Sekil: paper/figures/konsey/fig_cells_interaction.py (kanit fig_cells_interaction.kanit.json); taslak, visio-cizici turu bekliyor.
+% FOY:M9.3:1526,1527
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{../figures/konsey/fig_cells_interaction.pdf}
+\caption{$2\times2$ tasarımın CIFAR-10'daki hücre ortalamaları (çizgiler) ve tek tek koşuları (işaretçiler); log ölçeğinde bölünmüş yarı kestirimleri. (a) panelinde panel benzerliği $\sigma$, (b) panelinde $\pm0{,}10$ eşdeğerlik bandıyla birlikte yönlü terim $\rho$, (c) panelinde kırılganlık $\omega = \log w$ gösterilmektedir. (a) ve (b) panellerindeki içi boş kareler 32 piksellik üç ResNet-18 köprü koşusudur ve bu koşuların tek tek $\omega$ değerleri gösterilmemiştir.}
+\label{fig:cells_interaction}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+% E. Saldiri tarafi ve maskeleme
+% ----------------------------------------------------------------------------
+\subsection{Saldırı Tarafı ve Gradyan Maskeleme}
+\label{subsec:attack_side}
+
+% FOY:M9.6:1620,1621,1622,1623,1624,1625,1626,1627,1628,1629,1635,1636,1637,1638,1639,1640
+Tek bir saldırıyla ölçülen kaynak açığı, PGD-10'un her kaynağa ne ölçüde uyduğunu yansıtıyor olabilir. Bu nedenle her kaynak için çapraz uydurmalı bölünmüş yarı seçimi, PGD-10, MI-PGD-10 ve yalnız ViT kaynakları için TGR (Bölüm~\ref{subsec:attack_methods}) arasından panele en iyi transfer olan saldırıyı belirlemekte, açık da her kaynağın seçilen saldırısıyla yeniden hesaplanmaktadır (Tablo~\ref{tab:attack_side}). PGD-10 altında 32 piksellik ResNet-18 ile sıfırdan eğitilen ViT arasındaki açık $\Gk{PGD} = 0{,}389$ log birimi, seçilen saldırılar altında ise $\Gk{best} = 0{,}374$ olarak bulunmuştur. Korunan oran $0{,}960$ (\%90 aralığı $[0{,}941;\ 0{,}976]$) ile ön kayıttaki $0{,}5$ eşiğinin çok üstünde kalmış ve sınama desteklenmiştir. Momentumlu PGD üç ViT kaynağının üçünde ve üç ResNet kaynağının birinde seçilmiş ve açığın $0{,}0155$ log birimini kapatmıştır.
+
+% FOY:M9.6:1648,1654,1655
+TGR beş ViT kaynağının hiçbiri için seçilmemiştir. Bu saldırı her ViT kaynağından PGD-10'a göre daha kötü transfer olmuştur. Fark sıfırdan eğitilen ViT'lerde $-0{,}218$ ile $-0{,}147$, ImageNet ile başlatılanlarda ise $-0{,}217$ ile $-0{,}168$ log birimi arasındadır (Şekil~\ref{fig:attack_side}). Tasarımın betimsel çiftlerinde sıfırdan eğitim satırı açığının $0{,}959$'unu korumuştur. ImageNet satırında PGD-10 açığı yalnız $0{,}072$ olup korunan oranın tanımlandığı $0{,}10$ eşiğinin altında kaldığından bu satır için oran raporlanmamıştır. Çift üzerinde daha önce yapılan eşlenmiş bütçeli bir TGR karşılaştırması Ek~\ref{app:behavior} içinde verilmektedir.
+
+% FOY:M9.7:1666,1667,1668,1669,1670,1671,1673,1675 ; M9.2:1517 ; TabloI:17
+Gradyan maskelemeyi denetlemek için altı yeni modelde ilk $1.000$ test görüntüsü üzerinde AutoAttack koşulmuştur (Tablo~\ref{tab:cells}). PGD-10 doğruluğu AutoAttack doğruluğunu $3{,}20$ ile $7{,}40$ puan aşmıştır. Bu fark ön kayıttaki $10$ puanlık işaret eşiğinin altında kaldığı için hiçbir model işaretlenmemiş ve $2\times2$ kararları kayıtta belirtildiği gibi bütün modeller üzerinde hesaplanmıştır.
+
+% FOY:M9.6:1620,1621,1622,1624,1625,1626,1627,1628,1629,1654,1655,1648
+\begin{table}[!t]
+\centering
+\caption{Saldırı tarafı sınaması. 32 piksellik ResNet-18 ile sıfırdan eğitilen ViT-Tiny arasındaki kaynak açığı PGD-10 altında ve her kaynağın en iyi saldırısı altında verilmiştir (log birimi, panel ortalaması); aralıklar seçimi her kopyada yineleyen hiyerarşik bootstrap ile hesaplanmıştır. Tasarım çiftleri betimseldir.}
+\label{tab:attack_side}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lc}
+\toprule
+\textbf{Nicelik} & \textbf{Değer} \\
+\midrule
+$\Gk{PGD}$ [\%90 GA] & 0,3893 [0,370; 0,409] \\
+$\Gk{best}$ & 0,3738 \\
+Korunan oran $\Gk{best}/\Gk{PGD}$ & 0,960 \\
+\quad \%90 GA; \%95 GA & [0,941; 0,976]; [0,937; 0,981] \\
+Geçerli bootstrap kopyası & 2.000 / 2.000 \\
+Karar (eşik 0,5) & destek \\
+Tam örneklemle seçim, oran & 0,960 \\
+\midrule
+\cellname{R224-scr} / \cellname{V-scr}: $\Gk{PGD}$, $\Gk{best}$, oran & 0,399, 0,383, 0,959 \\
+\cellname{R224-IN} / \cellname{V-IN}: $\Gk{PGD}$ & 0,072 (oran yok, $\Gk{PGD} \leq 0{,}10$) \\
+\bottomrule
+\multicolumn{2}{l}{\scriptsize TGR, 5 ViT kaynağının 0'ında seçilmiştir.}
+\end{tabular}
+\end{table}
+
+% Sekil: paper/figures/konsey/fig_attack_side.py (kanit fig_attack_side.kanit.json); taslak, visio-cizici turu bekliyor.
+% FOY:M9.6:1635-1646
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{../figures/konsey/fig_attack_side.pdf}
+\caption{Her kaynaktan PGD-10, momentumlu PGD ve ViT kaynakları için jeton gradyanı düzenlileştirme (TGR) altında panel ortalamalı log transfer; dolu işaretçiler çapraz uydurmalı seçimin belirlediği saldırılardır. TGR hiçbir kaynakta seçilmemiştir (Tablo~\ref{tab:attack_side}).}
+\label{fig:attack_side}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+% F. ImageNetV2 (betimsel)
+% ----------------------------------------------------------------------------
+\subsection{Betimsel Bir ImageNetV2 Paneli}
+\label{subsec:imagenet}
+
+% FOY:M10.1:1814,1816,1818,1820,1827 (en buyuk fark matristeki 14 modelde 0.95, Mo ViT-B; 1.20 yalniz kullanilmayan yedek Wong2020Fast)
+% FOY:M10.4:1903
+$2\times2$ tasarım CIFAR ölçeğiyle ve küçük modellerle sınırlıdır. ImageNetV2~\cite{recht2019imagenet} üzerinde ön kayda alınmış ancak betimsel bir panel, başlatılmış satırın bağımsız eğitilmiş ImageNet modelleri arasında bir karşılığı olup olmadığını sormaktadır. Bu panelin karar ailesi yoktur ve CIFAR sınamalarını doğrulayamaz ya da çürütemez. Bölüm~\ref{subsec:panels} içinde tanıtılan on dört modele tek bir ortak ön işleme hattı üzerinden PGD-10 saldırısı uygulanmıştır (Tablo~\ref{tab:imagenet}). Her aday kayıtlı ön işleme denetimini geçmiştir. Matristeki on dört model arasında ortak hat ile modelin kendi hattı arasındaki en büyük fark $0{,}95$ puandır (kullanılmayan bir yedek modelde $1{,}20$). Karma değeriyle tanımlanan aynı görüntü listesi hem transfer matrisine hem de gradyan koşusuna girmiştir.
+
+% FOY:M10.4:1930,1931,1938,1941
+Başlatılmış satırı Singh vd.~\cite{singh2023revisiting} çalışmasından alınan iki çift temsil etmekte olup her çiftte bir ConvNeXt ile evrişimli girişli bir ViT, temiz ImageNet kontrol noktalarından aynı tarifle eğitilmiştir. İki çiftte de dönüştürücü CNN paneline daha az benzemektedir ($\Ak{\sigma}{1} = -0{,}167$, görüntü bootstrap \%90 aralığı $[-0{,}234;\ -0{,}096]$; $\Ak{\sigma}{2} = -0{,}118$, $[-0{,}202;\ -0{,}038]$). Bu iki değerin ortalaması $\AbarIN = -0{,}142$ ($[-0{,}197;\ -0{,}090]$), iki çift de negatifken en çok $-0{,}10$ olan kayıtlı beklentiyi karşılamış ve ``beklentiyle uyumlu'' etiketini almıştır. Bu sonuç başlatılmış satırın doğal ölçekteki betimsel karşılığı olup $2\times2$ tasarımı sınamamaktadır. İki çiftle elde edilen aralıklar yalnız görüntü örneklemesini kapsamaktadır.
+
+% FOY:M10.4:1909,1910,1912,1913,1930,1931
+CIFAR-100 çiftinden farklı olarak Singh çiftleri temiz doğrulukta ve kırılganlıkta eşlenmiştir. Her çiftte temiz doğruluk ve $w$ ikişer puandan az farklıdır (Tablo~\ref{tab:imagenet}) ve kırılganlık karşıtlığı $+0{,}001$ ve $+0{,}050$ log birimidir. Dolayısıyla bu dönüştürücülerin daha düşük benzerliği doğruluktan ya da kırılganlıktan türetilemez.
+
+% FOY:M10.4:1932,1939
+Sıfırdan eğitim satırı, Liu vd.~\cite{liu2023comprehensive} çalışmasından alınan ve dolaylı kanıta dayanarak sıfırdan eğitilmiş sayılan tek bir ConvNeXt-B ve Swin-B çiftine dayanmaktadır. Bu çiftin karşıtlığı $\Asig{scr,Liu} = -0{,}055$ ($[-0{,}137;\ +0{,}022]$) olup ``belirsiz'' olarak etiketlenmiştir. ImageNet ölçeğinde sıfırdan eğitim satırının kestirimi tek bir çifte dayandığı için belirlenmiş değildir ve CIFAR'da bulunan büyük farklılık bu ölçeğe taşınmamalıdır.
+
+% FOY:M10.4:1909,1910,1930,1931,1932,1943,1945,1947
+Dönüştürücüye özgü bir yön görülmemiştir. Dört dönüştürücünün $\rho$ değerleri $-0{,}211$, $-0{,}188$, $-0{,}049$ ve $+0{,}024$ olarak bulunmuştur. Ancak Singh CNN'leri de negatiftir ($-0{,}122$ ve $-0{,}298$) ve $\Ak{\rho}{1}$, $\Ak{\rho}{2}$, $\Ak{\rho}{3}$ çift içi karşıtlıkları sırasıyla $-0{,}089$, $+0{,}110$ ve $+0{,}091$ olmuştur. $14$ modelli artık matrisinin Hodge ayrışımı yönlü yapının $0{,}890$'ını model potansiyellerine yerleştirmiş, rastgele durumda ise bu değer $0{,}143$ olmuştur.\footnote{Dondurulmuş panel betiği tamlık için bu matrisler üzerinde de koşulduğunda betimsel ortalama simetrik pay olarak $0{,}864$ ($[0{,}126;\ 1{,}603]$) döndürmektedir; Liu çifti nedeniyle payda kuralı tetiklenmiştir.}
+
+% FOY:M10.4:1909,1910,1911,1912,1913,1914,1915,1916,1917,1918,1919,1920,1921,1922 (model satirlari)
+% FOY:M10.4:1930,1931,1932,1938,1939,1941 (cift duzeyi)
+% FOY:M10.1:1802-1818 (on isleme denetimi), 1820, 1827
+\begin{table*}[!t]
+\centering
+\caption{Betimsel ve keşifsel ImageNetV2 paneli; karar ailesi yoktur ($2.000$ görüntü, PGD-10, $\eps = 4/255$, ortak BicubicRes256Crop224 hattı). Üst blok on dört modeli RobustBench tanımlayıcısıyla vermektedir; sütunlar ortak hattaki temiz ve PGD-10 gürbüz doğruluğunu, $w$ değerini ve altı üyeli CNN paneline karşı bölünmüş yarı log $\sigma$ ve $\rho$ kestirimlerini içermekte, son iki sütun ise RobustBench tarafından bildirilen değerleri göstermektedir. Alt blok CNN-dönüştürücü çiftlerini ($k$; Bölüm~\ref{subsec:panels}) vermektedir ve aralıklar yalnız görüntü örneklemesini kapsamaktadır (görüntü bootstrap'i, $B = 2.000$).}
+\label{tab:imagenet}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lccccccccc}
+\toprule
+\textbf{Model} & \textbf{Rol} & \textbf{Aile} & \textbf{Temiz} & \textbf{PGD-10} & \textbf{$w$} & \textbf{$\sigma$} & \textbf{$\rho$} & \textbf{RB temiz} & \textbf{RB AA} \\
+\midrule
+\texttt{Singh2023Revisiting\_ConvNeXt-T-ConvStem} & çift 1, IN & CNN & 60,90 & 39,85 & 34,56 & $-$0,963 & $-$0,122 & 72,72 & 49,46 \\
+\texttt{Singh2023Revisiting\_ViT-S-ConvStem} & çift 1, IN & ViT & 61,00 & 39,90 & 34,59 & $-$1,130 & $-$0,211 & 72,56 & 48,08 \\
+\texttt{Singh2023Revisiting\_ConvNeXt-B-ConvStem} & çift 2, IN & CNN & 63,20 & 44,05 & 30,30 & $-$1,118 & $-$0,298 & 75,90 & 56,14 \\
+\texttt{Singh2023Revisiting\_ViT-B-ConvStem} & çift 2, IN & ViT & 64,85 & 44,20 & 31,84 & $-$1,237 & $-$0,188 & 76,30 & 54,66 \\
+\texttt{Liu2023Comprehensive\_ConvNeXt-B} & çift 3, scr & CNN & 65,50 & 45,65 & 30,38 & $-$1,148 & $-$0,140 & 76,02 & 55,82 \\
+\texttt{Liu2023Comprehensive\_Swin-B} & çift 3, scr & Swin & 64,80 & 45,40 & 29,94 & $-$1,203 & $-$0,049 & 76,16 & 56,16 \\
+\texttt{Mo2022When\_ViT-B} & eşi yok & ViT & 56,75 & 28,05 & 50,57 & $-$1,184 & $+$0,024 & 68,38 & 34,40 \\
+\texttt{Salman2020Do\_R18} & panel & CNN & 41,35 & 22,90 & 44,62 & $-$1,070 & $+$0,202 & 52,92 & 25,32 \\
+\texttt{Salman2020Do\_R50} & panel & CNN & 51,90 & 29,80 & 42,58 & $-$0,819 & $+$0,003 & 64,02 & 34,96 \\
+\texttt{Salman2020Do\_50\_2} & panel & CNN & 56,75 & 31,30 & 44,85 & $-$0,895 & $-$0,120 & 68,46 & 38,14 \\
+\texttt{Engstrom2019Robustness} & panel & CNN & 51,05 & 25,65 & 49,76 & $-$0,890 & $-$0,043 & 62,56 & 29,22 \\
+\texttt{Chen2024Data\_WRN\_50\_2} & panel & CNN & 57,60 & 35,90 & 37,67 & $-$0,813 & $+$0,025 & 68,76 & 40,60 \\
+\texttt{Peng2023Robust} & panel & CNN & 60,45 & 40,45 & 33,09 & $-$1,039 & $-$0,067 & 73,44 & 48,94 \\
+\texttt{Debenedetti2022Light\_XCiT-S12} & ikincil & XCiT & 60,35 & 35,60 & 41,01 & $-$1,112 & $-$0,194 & 72,34 & 41,78 \\
+\midrule
+\multicolumn{3}{l}{\textbf{Çift (satır)}} & \textbf{$\Ak{\sigma}{k}$} & \multicolumn{2}{c}{\textbf{\%90 GA}} & \multicolumn{2}{c}{\textbf{\%95 GA}} & \textbf{$\Ak{\sigma}{k}$ logit} & \textbf{$\Ak{\rho}{k}$; $\Ak{\omega}{k}$} \\
+\midrule
+\multicolumn{3}{l}{1: ConvNeXt-T / ViT-S (IN)} & $-$0,167 & \multicolumn{2}{c}{[$-$0,234; $-$0,096]} & \multicolumn{2}{c}{[$-$0,246; $-$0,084]} & $-$0,193 & $-$0,089; $+$0,001 \\
+\multicolumn{3}{l}{2: ConvNeXt-B / ViT-B (IN)} & $-$0,118 & \multicolumn{2}{c}{[$-$0,202; $-$0,038]} & \multicolumn{2}{c}{[$-$0,217; $-$0,023]} & $-$0,147 & $+$0,110; $+$0,050 \\
+\multicolumn{3}{l}{3: ConvNeXt-B / Swin-B (scr)} & $-$0,055 & \multicolumn{2}{c}{[$-$0,137; $+$0,022]} & \multicolumn{2}{c}{[$-$0,153; $+$0,034]} & $-$0,061 & $+$0,091; $-$0,015 \\
+\multicolumn{3}{l}{$\AbarIN$, çift 1--2} & $-$0,142 & \multicolumn{2}{c}{[$-$0,197; $-$0,090]} & \multicolumn{2}{c}{[$-$0,207; $-$0,081]} & \multicolumn{2}{l}{beklentiyle uyumlu} \\
+\multicolumn{3}{l}{$\Asig{scr,Liu}$, çift 3} & $-$0,055 & \multicolumn{2}{c}{[$-$0,137; $+$0,022]} & \multicolumn{2}{c}{[$-$0,153; $+$0,034]} & \multicolumn{2}{l}{belirsiz} \\
+\bottomrule
+\end{tabular*}
+\end{table*}
+
+% ----------------------------------------------------------------------------
+% G. Girdi gradyani hizalanmasi
+% ----------------------------------------------------------------------------
+\subsection{Girdi Gradyanı Hizalanması}
+\label{subsec:gradcos}
+
+% FOY:M10.5:1970,1971,1972,1973,1974,1975,1977,1983,1984,1985,1986,1987,1988,1990
+Simetrik terim transferin kendisi üzerinden tanımlanmaktadır. Bu nedenle kayıtlı bir aile, bu terimin hiçbir saldırı kullanılmadan ölçülen bir niceliği izleyip izlemediğini sormuştur. Söz konusu nicelik, Denklem~\eqref{eq:cij} ile tanımlanan ve temiz test görüntüleri üzerinden ortalanan girdi gradyanı kosinüsü $c_{ij}$'dir. Her veri kümesinde bütün model çiftleri üzerinden $c_{ij}$ ile $\log\simt_{ij}$ arasındaki sıra korelasyonu hem ham hâliyle (H10) hem de iki matristen toplamsal model ana etkileri çıkarıldıktan sonra (H10k; Tablo~\ref{tab:mantel}, Şekil~\ref{fig:gradient_alignment}) yüksektir. $\rS$ değerleri CIFAR-10'da ($20$ model) $0{,}943$ ve $0{,}944$, CIFAR-100'de ($15$) $0{,}981$ ve $0{,}912$, ImageNetV2'de ($14$) ise $0{,}694$ ve $0{,}893$ olarak bulunmuştur. Tek yönlü Mantel $p$ değerlerinin hepsi $10^{-4}$ olan permütasyon tabanındadır ve her sınama öngörülen büyüklüğü aşarak Holm düzeltmesinden sonra desteklenmiştir.
+
+% FOY:M10.5:1996,1997,1998,1999,2000,2001,2009,2010,2011
+Aile dışında kalan iki keşifsel denetim de aynı yönü göstermiştir. İki modelin log kırılganlığını kontrol eden kısmi Mantel testleri $0{,}936$, $0{,}954$ ve $0{,}532$, gradyan normu da eklendiğinde $0{,}937$, $0{,}941$ ve $0{,}597$ değerlerini vermiştir. Çift türüne göre bakıldığında (Tablo~\ref{tab:mantel}, alt blok) iki CIFAR veri kümesinde de hizalanma CNN çiftleri arasında en yüksek, karma çiftlerde en düşüktür. ImageNetV2'de ise betimsel olarak daha hizalı olanlar dönüştürücü çiftleridir (CNN'ler arasındaki $0{,}187$ değerine karşı $0{,}318$).
+
+% FOY:M11.2:2131,2132,2133 (S10-3 r ve p) ; 2121 (etiket)
+% FOY:M11.3:2182,2183,2184 (aile ayiklamali, sira olcegi) ; 2190,2191,2192 (yalniz CNN-CNN, tam matris artigi; ImageNetV2 0.842)
+% FOY:M11.3:2171-2176 (aile ici kisitli permutasyon: alti sinamada p 1e-4, sifir ortalamalari -0.008 ile +0.461)
+% FOY:M11.3:2200,2202 (R18-R50: c 0.0034, en kucuk, 91 cift; log tau -0.936, sira 55/91)
+% KAYNAK: raporlar/konsey_2026-10-29/13_b10_r18_r50_denetimi.md Sec. 6 (GPU denetimi; sayisiz).
+Tek bir temiz noktada ölçülen hizalanma benzer transferle ilişkilidir, ancak bir mekanizmanın kanıtı sayılamaz. Bu ölçüm saldırı yolu boyunca alınmamakta, artık istatistiği de yalnız toplamsal model etkilerini çıkardığı için iki ailenin blok yapısını yerinde bırakmaktadır. Karma çiftler iki CIFAR veri kümesinde de en az hizalı çiftlerdir. Dolayısıyla ilişkinin bir kısmı CNN'ler ile dönüştürücüler arasındaki ayrımı yansıtıyor olabilir. Bu ayrımı çıkaran ya da gözeten keşifsel çözümlemelerde ilişki yüksek kalmıştır. Toplamsal uydurmaya çift türü göstergeleri eklendiğinde (S10-3) $\rS$ CIFAR-10, CIFAR-100 ve ImageNetV2'de sırasıyla $0{,}917$, $0{,}882$ ve $0{,}878$ olmuştur. Aynı düzeltme sıra ölçeğinde $0{,}905$, $0{,}892$ ve $0{,}888$, yalnız CNN çiftleriyle sınırlanan artıklar ise $0{,}963$, $0{,}929$ ve $0{,}842$ vermiştir. Modeller yalnız kendi aileleri içinde permüte edildiğinde, yani sıfır dağılımı blokları koruduğunda, kayıtlı altı istatistiğin hepsi permütasyon tabanında kalmış ve sıfır dağılımı ortalamaları $-0{,}008$ ile $+0{,}461$ arasında yer almıştır. Aynı mimarinin tohumlarının neredeyse birer yineleme olması da permütasyon testinin varsaydığı değiştirilebilirliği zorlamaktadır. Salman vd.~\cite{salman2020adversarially} çalışmasındaki ResNet-18 ve ResNet-50, $91$ ImageNetV2 çifti içinde en küçük kosinüse sahip olmasına ($c = 0{,}0034$) karşın bu çiftin $\log\simt = -0{,}936$ değeri alttan $55$.\ sırada yer almıştır. GPU üzerinde yapılan yeniden hesaplama bu değeri doğrulamış ve gradyanların düşük mekânsal frekanslarda hizalı, en yüksek bantta ise zıt yönlü olduğunu göstermiştir. Bu ölçüt için sıfıra yakın bir kosinüs, benzer transferi dışlamamaktadır.
+
+% FOY:M10.5:1970-1975 (K, cift, r, tek yonlu p), 1977 (taban), 1983-1988 (Holm, buyukluk, karar), 1990 (kural)
+% FOY:M10.5:2009,2010,2011 (c ortalamalari) ; M11.2:2121,2131,2132,2133 (S10-3 satirlari, kesifsel, F_B10 disi)
+\begin{table}[!t]
+\centering
+\caption{Kayıtlı gradyan ailesinde girdi gradyanı kosinüsü $c_{ij}$ ile $\log\simt_{ij}$ arasındaki Mantel testleri (Spearman $\rS$, tek yönlü, $9.999$ permütasyon; altı sınama üzerinden Holm düzeltmesi). ``Artık'' satırları iki matristen toplamsal model ana etkilerini çıkarmaktadır; ham satırlar Tablo~\ref{tab:registry} içindeki H10, artık satırları ise H10k sınamasıdır. S10-3 artık uydurmasına çift türü göstergeleri eklemekte olup ön kayıt ekinde keşifsel olarak kayda alınmış, sonuçlar görüldükten sonra belirlenmiştir ve aile dışındadır. Tek yönlü $p$ değerlerinin hepsi $10^{-4}$ olan permütasyon tabanına eşittir. Alt blok çift türüne göre ortalama $c_{ij}$ değerlerini (çift sayısı) betimsel olarak vermektedir.}
+\label{tab:mantel}
+\scriptsize
+\setlength{\tabcolsep}{1.5pt}
+\begin{tabular}{llcccccc}
+\toprule
+\textbf{Veri} & \textbf{Sınama} & \textbf{$K$ / çift} & \textbf{$\rS$} & \textbf{$p$} & \textbf{Holm $p$} & \textbf{Büyüklük} & \textbf{Karar} \\
+\midrule
+CIFAR-10 & ham & 20 / 190 & $+$0,943 & $10^{-4}$ & $6\times10^{-4}$ & evet ($\geq$0,50) & destek \\
+CIFAR-10 & artık & 20 / 190 & $+$0,944 & $10^{-4}$ & $6\times10^{-4}$ & evet ($\geq$0,30) & destek \\
+CIFAR-100 & ham & 15 / 105 & $+$0,981 & $10^{-4}$ & $6\times10^{-4}$ & evet & destek \\
+CIFAR-100 & artık & 15 / 105 & $+$0,912 & $10^{-4}$ & $6\times10^{-4}$ & evet & destek \\
+ImageNetV2 & ham & 14 / 91 & $+$0,694 & $10^{-4}$ & $6\times10^{-4}$ & evet & destek \\
+ImageNetV2 & artık & 14 / 91 & $+$0,893 & $10^{-4}$ & $6\times10^{-4}$ & evet & destek \\
+CIFAR-10 & S10-3 & 20 / 190 & $+$0,917 & $10^{-4}$ & -- & -- & -- \\
+CIFAR-100 & S10-3 & 15 / 105 & $+$0,882 & $10^{-4}$ & -- & -- & -- \\
+ImageNetV2 & S10-3 & 14 / 91 & $+$0,878 & $10^{-4}$ & -- & -- & -- \\
+\midrule
+\textbf{Veri} & \textbf{Tümü} & \multicolumn{2}{c}{\textbf{CNN--CNN}} & \multicolumn{2}{c}{\textbf{Dön.--dön.}} & \multicolumn{2}{c}{\textbf{Karma}} \\
+\midrule
+CIFAR-10 & 0,460 & \multicolumn{2}{c}{0,543 (91)} & \multicolumn{2}{c}{0,464 (15)} & \multicolumn{2}{c}{0,370 (84)} \\
+CIFAR-100 & 0,376 & \multicolumn{2}{c}{0,462 (55)} & \multicolumn{2}{c}{0,359 (6)} & \multicolumn{2}{c}{0,271 (44)} \\
+ImageNetV2 & 0,218 & \multicolumn{2}{c}{0,187 (36)} & \multicolumn{2}{c}{0,318 (10)} & \multicolumn{2}{c}{0,221 (45)} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Mutlak gürbüzlük CIFAR-10'a göre düşüktür ve CNN'in ViT üzerindeki sıralamasını korumaktadır (Tablo~\ref{tab:cifar100_results}). Aynı dört protokol boyunca ölçülen CNN$\rightarrow$ViT asimetrisi $+4{,}96\pm1{,}01$ puandan (hedef doğru) $+18{,}53\pm0{,}71$ puana (koşulsuz) uzanmakta; her ikisi doğru protokolünde $+10{,}92\pm0{,}34$, başarılı kaynak protokolünde ise $+17{,}50\pm0{,}92$ puan olmaktadır. Tohum başına ortalama yayılım $13{,}83\pm1{,}30$ puandır; CIFAR-10'da bu değer $15{,}01\pm0{,}84$ olduğuna göre daha zor veri kümesi protokol etkisini aynı aralıkta, CIFAR-10 değerinin bir miktar altında bırakmaktadır. Yön, CIFAR-10'da olduğu gibi on iki ölçümün tamamında pozitiftir (dört protokol $\times$ üç tohum çifti). Her ikisi doğru protokolünde eşleştirilmiş fark $10{,}92$ puandır. CIFAR-10'da olduğu gibi verilen $[9{,}47;\ 12{,}35]$ aralığı üç tohumun kendi bootstrap uç noktalarının ortalamasıdır ve kapsama garantisi taşımamaktadır; mimarilere ilişkin bir iddiayla eşleşen koşumlar arası $t$ aralığı ise $[10{,}07;\ 11{,}77]$'dir. İşaret çevirme permütasyonunun $p$ değeri her tohumda $20.000$ permütasyonun çözünürlüğünün altındadır ve TOST sınanan hiçbir marjda eşdeğerliği kuramamaktadır.
-
-Kaydedilen üç ön kestirimin biri doğrulanmış, biri bağlayıcı kabul edilen okumada tutmamış, üçüncüsü ise bu tasarımda sınanamamıştır. İşaretin korunacağı ön kestirimi doğrulanmıştır ($12/12$). Protokol yayılımının daha zor veri kümesinde büyüyeceği ön kestirimi CIFAR-10 yayılımına karşı bir karşılaştırma olarak kaydedilmiş ve o tarihte bu yayılım $10{,}45$ puan olarak anılmıştı. Bu sayısal eşiğe karşı kestirim tutmaktadır ($13{,}83 > 10{,}45$); sıkı başarılı kaynak okuması altındaki güncel CIFAR-10 yayılımına karşı ise tutmamaktadır ($13{,}83 < 15{,}01$). Kayıt sayıyı değil CIFAR-10 yayılımını adlandırdığı için bu sonuç bir başarısızlık olarak sayılmıştır. Üçüncü ön kestirim, koşulsuz oranın koşullu orandan sapmasının hedefin temiz hatasıyla birlikte büyüyeceğini öngörüyordu. Ölçülen eğim hedef hatasının puanı başına $+0{,}656$ puandır ve öngörüldüğü gibi pozitiftir. Ancak CIFAR-100'de üç hedeften ikisinin temiz hatası yalnızca $0{,}21$ puan farklıdır ($36{,}15$ ve $36{,}36$); dolayısıyla korelasyon üç değil iki etkin küme üzerinden hesaplanmakta ve değeri (altı yön üzerinde $r = 0{,}931$, hedef düzeyinde $0{,}974$) iki noktalı bir karşıtlığa dayanmaktadır. Ölçüm ön kestirimi \emph{sınamadan} onunla \emph{tutarlıdır} ve üçüncü bir doğrulama sayılmamaktadır.
-
-Kaydedilen uç noktalardan biri tutmamıştır. Çekişmeli eğitilmiş ViT için temiz doğruluk $\%33$ ile $40$ bandında öngörülmüş, $\%43{,}17\pm1{,}10$ ölçülmüştür. Bant, çekişmeli eğitimin temiz doğruluk bedelinin iki mimaride aynı biçimde ölçekleneceği varsayımıyla türetilmişti. Bu varsayım tutmamıştır; ViT çekişmeli eğitim altında temiz ön eğitim doğruluğunun $0{,}885$'ini korurken ResNet $0{,}802$'sini korumuştur. Protokol iddiasının dayandığı iki çekişmeli uç nokta ise bantlarının içinde kalmıştır (PGD-10 öngörüsü $\%10$ ile $14$, ölçüm $11{,}15$; AutoAttack öngörüsü $\%8$ ile $11$, ölçüm $8{,}87$). Koşullama sınıf karışımını da değiştirdiğinden bir asimetri ilke olarak bir bileşim artefaktı olabilirdi, ancak ölçümler bunu göstermemektedir. Hedef doğru protokolünde asimetrinin bileşim bileşeni üç tohum çiftinde $-1{,}249$, $-1{,}330$ ve $-1{,}065$ puandır ve \emph{negatiftir}; yani sınıf karışımı yeniden dengelenseydi asimetri büyürdü. Başarılı kaynak protokolünde bu bileşen küçüktür ve her tohumda pozitiftir ($+0{,}527$, $+0{,}435$ ve $+0{,}382$ puan); koşulsuz ve her ikisi doğru protokollerinde ise ayrıştırmanın gerektirdiği gibi tam olarak sıfırdır.
-
-Bu sonuç iki niteleme taşımaktadır. Birincisi, iki çekişmeli bant en yakın tohum düzeyi kenarında $0{,}22$ puanlık (AutoAttack) ve $0{,}48$ puanlık (PGD-10) marjlarla tutmuştur ve bu marjlar aynı veri kümesindeki kontrol noktası seçimi gürültüsünden küçüktür. Eğitim koşusu sabit tutularak CIFAR-100 yörüngelerinde erken durdurma sabrı ve eğri yumuşatması tarandığında raporlanan PGD-10 doğruluğu $0{,}18$ ile $1{,}83$ puan arasında oynamaktadır (ortalama $0{,}86$). Aynı dokuz hücreli tarama CIFAR-10'da doğrulama bölmesi başına $0{,}54$ ile $2{,}83$ puan vermektedir; Bölüm~\ref{subsec:selection}'deki on sekiz hücreli değer ise bölmeyi de değiştirdiği için daha da büyüktür ve CIFAR-100 protokolünde bu boyut bulunmamaktadır. İkincisi, iki bağımsız bölme yerine aynı ayrılmış bölme iki aşamada da seçim için kullanılmıştır; bu tercih iki veri kümesini karşılaştırılabilir tutmak amacıyla CIFAR-10 protokolünden devralınmıştır.
+% Sekil: paper/figures/konsey/fig_gradient_alignment.py (kanit fig_gradient_alignment.kanit.json); taslak, visio-cizici turu bekliyor.
+% FOY:M10.5:1970-1975
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{../figures/konsey/fig_gradient_alignment.pdf}
+\caption{CIFAR-10, CIFAR-100 ve ImageNetV2'de her model çifti için temiz görüntülerdeki girdi gradyanı kosinüsünün ikili simetrik benzerliğe karşı grafiği; (a) ile (c) arası ham değerleri, (d) ile (f) arası ise iki matristen toplamsal model ana etkileri çıkarıldıktan sonraki değerleri göstermektedir. Sıra korelasyonu altı panelin hepsinde pozitiftir ve permütasyon $p$ değeri her durumda tabandadır (Tablo~\ref{tab:mantel}).}
+\label{fig:gradient_alignment}
+\end{figure*}
 
 % ----------------------------------------------------------------------------
-% D.2 Ucuncu veri kumesi: SVHN, esleşmeye yakin cift
+% H. Olcek, panel ve veri kumesi bagimliligi
 % ----------------------------------------------------------------------------
-\subsubsection{Eşlenmeye yakın bir çiftle üçüncü bir veri kümesi: SVHN}
-\label{subsec:svhn}
+\subsection{Ölçeğe, Panele ve Veri Kümesine Bağımlılık}
+\label{subsec:scale}
 
-CIFAR-10 ve CIFAR-100 iki mimariyi temiz doğrulukta birbirinden hayli uzağa yerleştirmektedir (yaklaşık $12$ ve $21$ puan). SVHN~\cite{netzer2011reading} ise böyle değildir. Aynı tarifle çekişmeli eğitildiğinde ResNet iki koşuda $\%94{,}76$ ve $\%93{,}77$ (ortalama $94{,}27$), ViT ise $\%92{,}82$ ve $\%92{,}03$ (ortalama $92{,}42$) temiz doğruluğa ulaşmakta, aradaki farklar $1{,}94$ ve $1{,}74$ puan (ortalama $1{,}84$) olmaktadır. İki koşudan hesaplanan $0{,}70$ ve $0{,}56$'lık standart sapmalar az bilgi taşıdığından koşu değerleri ayrı ayrı verilmiştir. Ortalama gürbüz doğruluklar PGD-10 altında $\%55{,}52$ ve $\%52{,}30$'dur. PGD-10 farkı hâlâ yaklaşık üç puan olduğundan bu çift eşlenmiş değil, eşlenmeye yakın olarak adlandırılmaktadır. Özdeşlik terimi temiz doğruluk farkını izliyorsa burada yönün kendisi bir protokol meselesine dönüşmelidir.
+% FOY:M9.5:1603,1604 ; M10.2:1857,1858 ; M9.4:1551,1552
+Simetrik bulgular, oranların karşılaştırıldığı ölçeğe bağlı değildir (Şekil~\ref{fig:estimates_forest}). ViT'in kaynak açığındaki simetrik pay CIFAR-10'da logit ölçeğinde $1{,}101$, oran ölçeğinde $1{,}542$, CIFAR-100'de ise $1{,}026$ ve $1{,}216$ olarak bulunmuştur. Birden büyük bir pay, o ölçekte yönlü kısmın açığı daralttığı anlamına gelmektedir. H1 ve H2 iki ölçekte de işaretlerini korumuştur (Tablo~\ref{tab:fb4}).
 
+% FOY:M9.5:1603,1604 ; M10.2:1857,1858 ; M9.4:1551,1552
+Yönlü terim ise ölçeğe bağlıdır. Logit ölçeğinde ViT'in $\rho$ değeri CIFAR-10'da $-0{,}304$ ($[-0{,}320;\ -0{,}289]$), CIFAR-100'de $-0{,}413$ ($[-0{,}546;\ -0{,}280]$), oran ölçeğinde ise $-14{,}66$ ve $-14{,}61$ puan olarak ölçülmüştür. Bu değerler iki veri kümesinde de büyük ve negatif olup logit ölçeğinde ViT'i yönlü olarak daha güçlü kaynak konumuna getirmektedir. CIFAR-100'de bu durum pozitif bir log kestirimini tersine çevirmektedir. Yarı simetri biçimi $T_{ij} = w_j\simt_{ij}$ log ölçeğinde toplamsal olduğundan ve ön kayıt bu ölçeği koşuların hiçbiri yapılmadan önce birincil olarak sabitlediğinden log ölçeği birincil alınmıştır.
+
+% FOY:M9.5:1605,1606 ; M10.2:1859,1860 ; M9.5:1601 ; M10.2:1846 ; M9.4:1549
+Yönlü terim panele de bağlıdır. Herhangi bir panel üyesinin dışarıda bırakılması CIFAR-10'da $\rho(\cellname{V-scr})$ değerini yalnız $+0{,}001$ ile $+0{,}022$ arasında oynatmıştır. Buna karşılık tek üyeli ikincil panel olarak XCiT-S12'ye karşı bu değer $+0{,}198$ ile $+0{,}204$, CIFAR-100'de XCiT-S12 ve Hendrycks vd.\ modeline karşı ise $+0{,}129$ ile $+0{,}221$ arasında bulunmuştur. Tek bir dönüştürücü referansa karşı ve aralık hesaplanmadan bakıldığında ViT yönlü olarak zayıf bir kaynaktır.
+
+Bu ViT-Tiny için simetrik farklılık böylece iki CIFAR veri kümesinde ve sınanan her ölçek ile panelde geçerliliğini korumakta, yönlü terim ise yalnız log ölçeğinde, bir CNN paneline karşı ve CIFAR-10'da küçük kalmaktadır.
+
+% Sekil: paper/figures/konsey/fig_estimates_forest.py (kanit fig_estimates_forest.kanit.json); taslak, visio-cizici turu bekliyor.
+% FOY:M9.3:1526,1527,1528 ; M9.4:1551 ; M9.5:1588,1603 ; M10.2:1839,1857 ; M10.4:1930-1939
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{../figures/konsey/fig_estimates_forest.pdf}
+\caption{Log ölçeğindeki kayıtlı kestirimlerin \%90 (kalın) ve \%95 (ince) aralıkları ile logit ölçeğindeki karşılıkları. (a) Panel benzerliği üzerindeki mimari ve etkileşim etkileri; karşılaştırma için betimsel ImageNetV2 çift kestirimleri içi boş işaretçilerle gösterilmiştir. (b) Yönlü terimler gösterilmiş, $\pm0{,}10$ bandı yalnız log ölçeği için kayda alınmıştır. ImageNetV2 aralıkları yalnız görüntü örneklemesini kapsadığından yukarıdaki koşu düzeyi aralıklarla karşılaştırılamaz.}
+\label{fig:estimates_forest}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+% I. Kosullama protokolu katmani
+% ----------------------------------------------------------------------------
+\subsection{Koşullama Protokolü Katmanı}
+\label{subsec:transfer}
+
+% FOY:TabloIII:159,160,161,162,163 ; M8.4:1195,1196
+Yukarıdaki bütün sonuçlar tek bir koşullama protokolünü, yani oranı $r_{\text{koş}} = T_{ij}$ ile ayrıştırılan nicelik olan hedef doğru protokolünü kullanmaktadır. Sonuçlar görüntü bazında kaydedildiği için aynı saldırı koşuları Tablo~\ref{tab:protocol_masks} içindeki her protokol altında puanlanabilmektedir. Çift üzerinde yalnız bu seçim, asimetriyi hedef doğru protokolündeki $+4{,}36\pm0{,}44$ puandan başarılı kaynak protokolündeki $+19{,}37\pm1{,}27$ puana taşımakta ve çift başına ortalama yayılım $15{,}01\pm0{,}84$ puan olmaktadır (Tablo~\ref{tab:protocol_settings}, Şekil~\ref{fig:protocol_sets}). Yön dört protokolün hepsinde, üç tohum çiftinin hepsinde ve MI-FGSM altında da pozitiftir (hedef doğru protokolünde CNN$\rightarrow$ViT $\%19{,}07\pm0{,}33$, ViT$\rightarrow$CNN $\%15{,}42\pm0{,}52$). Tablo~\ref{tab:protocol_settings} içindeki CIFAR-100 ve $L_2$ sütunları aynı yayılımı ve işareti göstermektedir. Bu ayarlar için kayda alınan öngörüler Ek~\ref{app:registrations} içinde değerlendirilmiştir.
+
+% FOY:Ozdeslikte kullanilan p:641 ; M8.1:1153,1157,1158,1161,1162
+% FOY:Standart egitimli hedeflerde oncul p:868,869,870,871
+Bu aralığın büyük kısmı aritmetikten kaynaklanmaktadır. Denklem~\eqref{eq:raw_identity}, koşulsuz oranı hedefin temiz hatası, koşullu oran ve öncül $p$ cinsinden bir özdeşlik olarak yazmaktadır. Buradaki $p$, bir saldırının temizde yanlış sınıflandırılan bir örneği yanlış bırakma olasılığıdır. Çekişmeli eğitilmiş hedeflerdeki $36$ köşegen dışı yönde (iki veri kümesi, üç tohum çifti) ölçülen $p$, üst sınırı olan $1{,}000$ değerine karşı en az $0{,}989$'dur (ortalama $0{,}997$) ve $p = 1$ biçimi her koşulsuz oranı $0{,}41$ puan içinde yeniden üretmiştir. Öncül standart eğitilmiş hedeflerde zayıflamaktadır. Bu hedeflerde $p$ değeri $0{,}877$ düzeyine inmekte, $p = 1$ biçimi ise temiz hatası en büyük olan temiz ViT-Tiny hedefinde $1{,}58$ puana kadar sapmıştır. Bu durumda ölçülen $p$ ile genel biçim olan Denklem~\eqref{eq:general_identity} geçerlidir.
+
+% FOY:M9.9:1764,1768,1770,1771
+Önerme~\ref{prop:hscale}, bir protokol değişikliğinin ayrışım için ne zaman zararsız olduğunu belirtmektedir. Bu önermeye göre $h = -\log(1 - T)$ ölçeğinde koşulsuz ve hedef doğru oranlar yalnız hedef tarafındaki bir potansiyel üzerinden farklılaşmalıdır. Havuzda bu önermenin sınaması en büyük kalibrasyon terimini $|g| = 0{,}0044$ olarak bulmuştur (en küçük $p = 0{,}933$). Koşulsuz ve hedef doğru kaynak etkileri arasındaki fark $h$ ölçeğinde hedef doğru kaynak standart sapmasının $0{,}016$'sı kadarken bu değer oran ölçeğinde $0{,}316$, logit ölçeğinde $1{,}655$ olarak hesaplanmıştır. Hedef etkilerindeki fark ise $h$ ölçeğinde hedef potansiyeliyle $1{,}000$ düzeyinde korelasyon göstermiştir. Dolayısıyla oranlar $h$ ölçeğinde karşılaştırıldığı sürece bu iki protokol arasındaki seçim yalnız hedef potansiyellerini değiştirmektedir.
+
+% FOY:M8.5:1211,1212
+% FOY:Turetilmis:214
+Özdeşlik başarılı kaynak ve her ikisi doğru protokollerini kapsamamaktadır. Hedefin temiz girdide çözdüğü ama kaynağın çözemediği görüntüler, ortak çözülenlerden üç ila dört kat daha kırılgandır ($\%10{,}0$ ve $\%18{,}2$ değerlerine karşı $\%41{,}2\pm0{,}8$ ve $\%59{,}1\pm1{,}7$ yanıltma) ve bu marjinal altkümelerin boyutları beş kat farklıdır ($291\pm16$ değerine karşı $1.517\pm102$). Hedef doğru protokolü iki altkümeyi de içeri almakta ve bunların eşit olmayan boyutları iki yönü birbirine yaklaştırmaktadır. Her ikisi doğru protokolü ise onları dışarıda bıraktığında yönlü fark $3{,}91\pm0{,}32$ puan daha yüksek olarak yeniden ortaya çıkmıştır. Başarılı kaynak protokolü kaynağın kendi gürbüzlüğüne göre seçim yapmakta ve bu gürbüzlük temiz doğruluk farkını izlemediği için ikinci ve kısmen ters yönlü bir terim katmaktadır.
+
+% FOY:Yayilim-temiz fark:1038,1039,1073,1075 ; RobustBench havuzu:1007
+% FOY:M9.4:1567 (S5)
+% FOY:RobustBench havuzu:1006,1007 (havuz egimleri; 2026-10-31 tab:external_pool alt blogundan metne tasindi, birlesik.md m17)
+% KAYNAK: ON_KAYIT Sec. 5 (S5 bandi +-1.5 puan, tasarim sabiti)
+% FOY:Secim kurali B:817
+Şekil~\ref{fig:spread_clean_gap}, ölçülen her çifti temiz doğruluk farkı üzerine yerleştirmektedir. Özdeşliğin kapsadığı üç protokol üzerindeki yayılım farkla birlikte artmış (eğim $+0{,}796$, $60$ çift üzerinde Pearson korelasyonu $r_{\mathrm{P}} = 0{,}957$) ve $60$ noktanın $57$'sinde koşulsuz eksi hedef doğru farkına eşit olmuştur. Bu noktalarda özdeşlik yayılımı $1{,}09$ puan içinde (ortalama $0{,}13$) izlemiştir. Dört protokollü yayılım ise farkı izlememiştir (eğim $+0{,}092$, $r_{\mathrm{P}} = 0{,}053$). Tablo~\ref{tab:external_pool} içindeki sekiz modelli havuzun $28$ çiftinde üç protokollü eğim $+0{,}872$ (modeli dışarıda bırakan bootstrap ile \%95 aralığı $[+0{,}534;\ +1{,}274]$, $r_{\mathrm{P}} = 0{,}944$), dört protokollü eğim ise $+0{,}559$ olarak bulunmuştur ($[-0{,}205;\ +4{,}582]$, $r_{\mathrm{P}} = 0{,}350$). Örneklem dışında $2\times2$ çiftleri eğim çizgisinden ortalama $-0{,}181$ puan sapmıştır ($[-0{,}500;\ +0{,}138]$) ve bu sapma kayıtlı $\pm1{,}5$ puanlık bandın içindedir (S5). Kontrol noktası seçim kuralı dört protokollü yayılımı yönü değiştirmeden $-2{,}16\pm0{,}93$ puan oynatmıştır (Ek~\ref{app:selection}).
+
+% FOY:TabloIII:159,160,161,162,163 ; 185 ; 199 ; Turetilmis:229,230 (SVHN)
+SVHN, çift temiz doğrulukta eşleştiğinde ne olduğunu göstermektedir. İki tohum çiftinde temiz farklar $1{,}94$ ve $1{,}74$ puan iken asimetrinin işareti protokolün bir özelliğine dönüşmüştür. Hedef doğru protokolü $-1{,}16$ ve $-0{,}85$ puan, başarılı kaynak $+2{,}98$ ve $+2{,}41$ puan vermekte, her ikisi doğru protokolünde ise işaret çevirme permütasyon $p$ değeri $0{,}105$ olmakta ve TOST $\pm1$ ile $\pm3$ puan arasındaki marjlarda eşdeğerliği kabul etmiştir. İki tohum çifti koşudan koşuya değişimi sınırlayamadığı için eşdeğerlik koşu içi karşılaştırmaya ve iki koşunun uyumuna dayanmaktadır. Yalnız tek bir protokol altında raporlanması durumunda bu çift, iki mimariden herhangi birini daha güçlü kaynak olarak gösterebilecek niteliktedir.
+
+% FOY:TabloIII:159,160,161,162,163,164,165 (CIFAR-10, CIFAR-100, SVHN, L2 sutunlari)
 \begin{table*}[!t]
 \centering
-\caption{Bu makaledeki her ayarda dört koşullama protokolü altında transfer asimetrisi (CNN$\rightarrow$ViT eksi ViT$\rightarrow$CNN, yüzde puan; PGD-10; $L_\infty$ altında $\eps$=8/255, $L_2$ altında $\eps$=0,5; tam test kümeleri). Üç tohum çiftli ayarlarda çiftler üzerinden ortalama$\pm$std verilir; SVHN'de iki çift olduğundan standart sapma yerine iki değer ayrı ayrı basılır. Yayılım, çift başına dört protokol üzerindeki açıklığın çiftler üzerinden ortalamasıdır. Onaylanan iki protokol, hedef doğru ve her ikisi doğru, her ayarın içinde aynı işareti verir; protokoller arasında işaret yalnızca SVHN'de değişir ve orada dört kestirimin tamamı sıfırın üç puan yakınındadır.}
+\caption{ResNet-18 ve ViT-Tiny çiftinin her ayarda dört koşullama protokolü altındaki transfer asimetrisi (CNN$\rightarrow$ViT eksi ViT$\rightarrow$CNN, yüzde puan; PGD-10; $L_\infty$ altında $\eps = 8/255$, $L_2$ altında $\eps = 0{,}5$; tam test kümeleri). Üç tohum çiftli ayarlarda çiftler arası ortalama$\pm$SS verilmiştir; SVHN'de iki çift bulunduğundan iki değer de yazılmıştır. Yayılım, dört protokol üzerindeki çift başına açıklığın çiftler üzerinden ortalamasıdır.}
 \label{tab:protocol_settings}
 \footnotesize
 \begin{tabular}{lcccc}
@@ -289,315 +571,24 @@ Yayılım (en büyük $-$ en küçük) & 15,01$\pm$0,84 & 13,83$\pm$1,30 & 4,14 
 \end{tabular}
 \end{table*}
 
-% REF: Transfer asimetrisi, dort protokol, ayarlar (SVHN satirlari; Her ikisi dogru, eslesmis analiz: SVHN)
-Ölçümler bu beklentiyle uyuşmaktadır. Dört protokolün ikisi CNN, ikisi ViT üstünlüğü bildirmektedir (Tablo~\ref{tab:protocol_settings}). Yönlü iddialar için onaylanan iki protokol, hedef doğru ile her ikisi doğru, birbiriyle uyuşmakta ve ikisi de ViT lehine çıkmaktadır; işaret değişimi bu iki protokolü koşulsuz ve başarılı kaynak oranlarından ayırmaktadır. Koşulsuz orandaki çevrilme Denklem~\eqref{eq:raw_identity}'den aritmetik olarak çıkmaktadır. Burada ViT hedefinin temiz hatası CNN'inkini yaklaşık iki puan aşmakta ve bu fark $-1{,}00$'lık hedef doğru farkını $+0{,}39$'luk ham farka taşımaya yetmektedir. İki yönü özdeş örnekler üzerinde puanladığı için birincil kabul edilen her ikisi doğru protokolünde fark $-0{,}35$ puandır; işaret çevirme permütasyonunun $p$ değeri $0{,}105$'tir ve TOST eşdeğerliği, sınanan en dar marj ($\pm1$ puan) dahil üç marjın üçünde de kabul edilmektedir. Böyle bir eşdeğerlik iddiasının kurulup kurulamayacağına da protokol karar vermektedir. Ölçümden önce sabitlenen $\pm2$ marjında iki nokta kestirimi ($+2{,}98$ ve $+2{,}41$) marjın dışında kaldığı için hiçbir başarılı kaynak kestirimi bu sınamayı geçemezken, iki her ikisi doğru kestirimi ($-0{,}34$ ve $-0{,}36$) marjın rahatça içindedir. Kabul bir niteleme gerektirmektedir. SVHN iki tohum çiftiyle koşulduğundan verilen $[-0{,}76;\ +0{,}07]$ aralığı iki tohumun bootstrap uç noktalarının ortalamasıdır ve koşumlar arası bir aralık elde edilememektedir; eşdeğerlik koşum içi karşılaştırmaya ve iki koşumun yakın uyuşmasına dayanmakta, iki koşum ise koşumlar arası değişimi sınırlayamamaktadır. Yalnızca başarılı kaynak oranını raporlayan bir çalışma SVHN'de $2{,}70$ puanlık bir CNN üstünlüğü, yalnızca hedef doğru oranını raporlayan bir çalışma ise $1{,}00$ puanlık bir ViT üstünlüğü duyururdu.
-
-SVHN'de dört protokollü yayılım iki çiftte $4{,}14$ ve $3{,}26$ puandır (ortalama $3{,}70$); bu değer CIFAR-10'da $15{,}01\pm0{,}84$, CIFAR-100'de $13{,}83\pm1{,}30$ puan iken temiz doğruluk farkları sırasıyla $1{,}84$, $\approx12$ ve $\approx21$ puandır. Özdeşlik terimine karşılık gelen üç protokollü yayılım ise $1{,}49$ ve $1{,}30$ puandır. İlişki üç veri kümesi arasında tekdüze değildir ve en büyük fark en büyük yayılımı vermemektedir. SVHN'i ayıran özellik eşlenmeye yakın çifttir. Yayılım yeterince küçüldüğünde asimetrinin kendisini aşamamakta ve işaret mimarilerin değil protokolün bir özelliği haline gelmektedir; Bölüm~\ref{subsec:transfer}'te kararlı olarak raporlanan yön, iki CIFAR veri kümesinin de bulunduğu \emph{iki modelin temiz doğrulukta ayrıştığı rejimde} kararlıdır. SVHN önceden sabitlenmiş indirgenmiş bir yapılandırmayla koşulmuştur; üç yerine iki tohum çifti kullanılmış, çekişmeli eğitim $50$ epokla sınırlanmış, AutoAttack ve üçüncü mimari yer almamıştır. Bu nedenle Bölüm~\ref{subsubsec:matrix}'teki $3\times3$ kontrol burada kurulmamıştır.
-
-% ----------------------------------------------------------------------------
-% D.3 Tehdit modelinin degistirilmesi
-% ----------------------------------------------------------------------------
-\subsubsection{İkinci bir tehdit modeli: $L_2$}
-\label{subsec:l2}
-
-Protokol etkisinin $\Linf$'ye özgü bir artefakt olup olmadığını sınamak için aynı CIFAR-10 kontrol noktaları $\eps=0{,}5$'lik bir $L_2$ bütçesi altında yeniden değerlendirilmiş ve üç yönsel ön kestirim herhangi bir $L_2$ çıktısına bakılmadan önce kaydedilmiştir. Modeller $\Linf$ ile eğitildiğinden bu ölçüm $L_2$ gürbüzlüğünü değil protokolün sonucu nasıl etkilediğini yoklamaktadır ve aşağıdaki mutlak değerler $L_2$ ile eğitilmiş referanslarla karşılaştırılamamaktadır.
-
-\begin{table}[!t]
+% Ic ice kosullama kumeleri sekli: paper/figures/konsey/fig_protocol_sets.py (v5, baglayici etiketleri "marginal subsets removed" ve "source robustness"), kanit fig_protocol_sets.kanit.json.
+% 2026-10-31 TR esitleme: EN ile ayni konsey PDF'i (eski final_tr surumu v5 baglayicilarini tasimiyordu).
+% REF: Tablo III: transfer protokolleri (N degerleri)
+% FOY:TabloIII:53,54,55,56 (N) ; 163 (15.01)
+\begin{figure}[!t]
 \centering
-\caption{Aynı kontrol noktaları, $L_2$ bütçesi ($\eps$=0,5; üç tohum çiftinin ortalaması$\pm$std). PGD-L2 tam test kümesini, AutoAttack-L2 ise ölçümden önce sabitlenen $5.000$ örneklik bir altkümeyi kullanır; bu yüzden temiz sütunu tam küme değerinden bir miktar farklıdır ve ikisi aynı örneklerden gelmez.}
-\label{tab:l2_results}
-\footnotesize
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Model} & \textbf{Temiz} & \textbf{PGD-L2} & \textbf{Temiz (5k)} & \textbf{AA-L2} \\
-\midrule
-ResNet-18 AT & 85,78 & 63,78$\pm$0,38 & 85,33 & 60,61$\pm$0,42 \\
-ViT-Tiny AT & 73,53 & 51,72$\pm$0,23 & 73,61 & 49,85$\pm$0,20 \\
-\bottomrule
-\end{tabular}
-\end{table}
+\includegraphics[width=\columnwidth]{../figures/konsey/fig_protocol_sets.pdf}
+\caption{Dört transfer protokolünün CNN$\rightarrow$ViT yönündeki iç içe değerlendirme kümeleri (a; şematiktir ve alanla orantılı değildir, $N$ üç tohum çiftinin ortalamasıdır) ve her protokolün aynı modeller ve veri üzerinde verdiği asimetri (b; çift içi farkın ortalaması$\pm$SS, tek tek çiftler içi boş işaretçilerle). Bağlayıcılar komşu protokoller arasındaki adımı adlandırmaktadır. Bu adımlar Denklem~\eqref{eq:raw_identity} ile verilen özdeşlik terimi, her ikisi doğru protokolünün dışarıda bıraktığı marjinal altkümeler ve başarılı kaynak protokolünün seçim yaptığı kaynak gürbüzlüğüdür.}
+\label{fig:protocol_sets}
+\end{figure}
 
-Norm değişince protokol yayılımı $10{,}92$ puana küçülmektedir ($\Linf$ altında $15{,}01$); ancak hem kayıtta belirlenen iki puanlık tabanın hem de koşumlar arası standart sapmanın çok üstünde kalmakta ve işaret on iki ölçümün tamamında pozitif çıkmaktadır; böylece kaydedilen ilk iki ön kestirim tutmaktadır. Dört protokolün (Tablo~\ref{tab:protocol_settings}) bildirdiği asimetriler $+13{,}03\pm0{,}81$ (koşulsuz), $+2{,}12\pm0{,}18$ (hedef doğru), $+4{,}07\pm0{,}36$ (her ikisi doğru) ve $+12{,}06\pm0{,}23$ puandır (başarılı kaynak). Üçüncü ön kestirim, yani koşulsuz oranın koşullu orandan sapmasının hedefin temiz hatasıyla artacağı, Denklem~\eqref{eq:raw_identity} sağlandığı sürece yanlışlanamaz ve uydurulan $+0{,}914$ eğimi bir şeyi sınamak yerine $1 - r_{\text{koş}}$'u kestirmektedir. On sekiz yön yalnızca yedi ayrık hedef hatası değeri aldığından ve bunların altısı aynı sabit WideResNet'ten geldiğinden korelasyon yerine eğim raporlanmaktadır. Ön kestirim özdeşlik yazılmadan önce kaydedilmişti ve şimdi özdeşliğin örneklem dışı bir sınaması işlevini görmektedir. Eğim de özdeşliğin öngördüğü yerde durmaktadır. Koşullu oranlar bu $L_2$ bütçesi altında $\Linf$'dekinden çok daha düşük olduğundan (kabaca $\%2$ ile $9$'a karşı $\%9$ ile $22$) özdeşlik daha dik bir eğim öngörmektedir ve ölçülen $0{,}914$, aynı modellerin $\Linf$ altındaki $0{,}762$ değerini aşmaktadır. Mutlak gürbüzlük (Tablo~\ref{tab:l2_results}) iki saldırı altında da CNN'in ViT üzerindeki sıralamasını korumakta ve McNemar $p<10^{-57}$ her tohum çiftinde sağlanmaktadır.
-
-% ----------------------------------------------------------------------------
-% D.4 Yayilim ve temiz dogruluk farki
-% ----------------------------------------------------------------------------
-\subsubsection{Yayılım ve temiz doğruluk farkı}
-\label{subsubsec:spread_gap}
-
-% REF: Uc-protokol egimi, SVHN dahil (+0.4697 [+0.3606; +0.6649]; dort protokol -0.1331 [-0.5700; +0.4686];
-%      yalniz ozdeslik terimi +0.4712 [+0.3615; +0.6666]; 19/20 esitlik; en buyuk sapma 0.16; 20 nokta, 8 kume)
-Yukarıdaki ayarlar yayılımın temiz doğruluk farkıyla büyüdüğünü düşündürmektedir; CIFAR-100 ve SVHN ölçümlerinden önce kaydedilen analiz bu ilişkiyi tüm final modellerin yön çiftleri üzerinde sınamıştır (sekiz tohum ve veri kümesi kümesinden $20$ yön çifti, küme bootstrap). Dört protokollü eğim $-0{,}133$'tür ve $[-0{,}570;\ +0{,}469]$ aralığı sıfırı içerdiği için geri çekilmiştir. Başarılı kaynak protokolünü dışarıda bırakan üç protokollü eğim ise $+0{,}470$ $[+0{,}361;\ +0{,}665]$'tir. Bu eğim bir mekanizma için bağımsız kanıt değildir. Yön çiftlerinin $20$'sinden $19$'unda, her ikisi doğru kestirimi ikisinin arasında kaldığı için üç protokollü yayılım koşulsuz ve hedef doğru asimetrileri arasındaki mutlak farka eşittir ve bu fark Denklem~\eqref{eq:raw_identity}'in öngörüsüyle $0{,}16$ puan içinde uyuşmaktadır; yalnızca özdeşlik terimi $+0{,}471$ $[+0{,}3615;\ +0{,}6666]$ eğimini vermektedir. Üç protokollü eğim özdeşliğin ikinci kez ölçülmesidir ve Denklem~\eqref{eq:raw_identity}'in örneklem dışı bir sınaması olarak okunmaktadır.
-
-Bu uydurmada ilk kullanılan havuz SVHN çiftini dışarıda bırakmıştı. Bu tercih, SVHN'i uydurulan kola koyan ve onu küçük farklardaki boş bandı dolduracak çift olarak adlandıran ön kayıttan bir sapmadır; bağımsız bir tutarlılık kontrolüne yeniden atanması SVHN sonucu elde edildikten sonra yazıldığından yukarıdaki SVHN'i içeren uydurma bağlayıcıdır. SVHN'in dışarıda bırakıldığı havuzda dört protokollü eğim $-0{,}528$ $[-0{,}664;\ -0{,}418]$, üç protokollü eğim $+0{,}431$ $[+0{,}333;\ +0{,}633]$'tür. Zıt işaretler, orada $18$ çiftin $16$'sında dördün ucu olan başarılı kaynak protokolünden gelmektedir ve en geniş protokol çifti hedef doğru ile başarılı kaynak arasındadır ($23{,}77$ puan ortalama açıklık, $18$ yönün $13$'ünde en geniş). Kontrollü bir kol aynı ilişkiyi eğitim yörüngeleri içinde kalibre etmektedir. Çiftin bir üyesi sabit tutulup diğeri kendi yörüngesi boyunca taranmakta, böylece mimari, tohum, veri kümesi ve bütçe sabit kalırken fark değişmektedir (sekiz kümeden $116$ nokta, yörünge düzeyinde küme bootstrap). Bu kolun üç protokollü eğimi $+0{,}673$ $[+0{,}602;\ +0{,}727]$ ile gözlemsel eğimin işaretini taşımakta, o da özdeşlik teriminin baskın olduğu bir nicelik olduğu için aynı uyarıya tabi olmaktadır. Dört protokollü eğimi $+0{,}273$ $[+0{,}219;\ +0{,}371]$ ise bağlayıcı havuzdaki gözlemsel aralığın tamamen içinde kaldığından kollar bu nicelikte ne uyuşmakta ne de ayrışmaktadır; gözlemsel havuz eşlenmiş mimari çiftine kısıtlandığında dört protokollü eğim $-0{,}100$ $[-0{,}464;\ +0{,}092]$ olmaktadır. Hangi çiftlerin uydurmaya girdiğine bu kadar duyarlı bir nicelik bir mekanizma iddiasına dayanak olamaz. Altı ile sekiz küme varken yüzdelik küme bootstrap kapsamayı düşük tuttuğundan bu aralıkların tümü genişliklerini olduğundan dar göstermektedir; ayrıca tek ve sabit bir kontrol noktası olan WideResNet her gözlemsel kümede yer almaktadır.
-
-% Yeni sekil (2026-10-04): betik paper/figures/fig_yayilim_temiz_fark.py --lang tr, veri
-% results/q1/fig_yayilim_temiz_fark_veri.json, kanit final_tr/fig_spread_clean_gap.kanit.json.
+% Sekil: paper/figures/fig_yayilim_temiz_fark.py, veri results/q1/fig_yayilim_temiz_fark_veri.json.
+% TR surumu final_tr (ayni betik, --lang tr; 2026-10-04 18:45, EN final ile ayni uretim).
+% REF: Yayilim - temiz fark iliskisi (tum ciftler): 60 nokta, 8 grup
+% FOY:Yayilim-temiz fark:1016,1030
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures/final_tr/fig_spread_clean_gap.pdf}
-\caption{Ölçülen $60$ model çiftinin tamamında protokol yayılımının mutlak temiz doğruluk farkına göre değişimi. (a) Asimetrinin koşulsuz, hedef doğru ve her ikisi doğru protokolleri üzerindeki yayılımı; küçük içi boş halkalar aynı çift için $p=1$ alınarak hesaplanan Denklem~\eqref{eq:raw_identity} öngörüsünü gösterir. (b) Aynı çiftlerde başarılı kaynak eksi her ikisi doğru asimetrisi, yani üç protokollü yayılımın dışarıda bıraktığı terim. İşaretçiler her ayarın çekişmeli eğitilmiş çiftlerini, bunların WideResNet-28-10 referansıyla eşleşmelerini, son kontrol noktasındaki aynı çiftleri, standart eğitilmiş çiftleri ve RobustBench havuzunu ayırır; çiftler modelleri paylaştığı için uydurma doğrusu çizilmemiştir.}
+\caption{Ölçülen $60$ model çiftinin tamamı için protokol yayılımının mutlak temiz doğruluk farkına göre değişimi. (a) Koşulsuz, hedef doğru ve her ikisi doğru protokolleri üzerindeki yayılım; içi boş halkalar Denklem~\eqref{eq:raw_identity} ile $p = 1$ için yapılan öngörüyü göstermektedir. (b) Başarılı kaynak eksi her ikisi doğru asimetrisi, yani (a) panelinin dışarıda bıraktığı terim verilmiştir. İşaretçiler eğitim ayarlarını, son kontrol noktası ve standart eğitilmiş çiftleri ve RobustBench havuzunu ayırmakta, çiftler model paylaştığından uydurulmuş çizgi çizilmemektedir.}
 \label{fig:spread_clean_gap}
 \end{figure}
-
-% REF: Yayilim - temiz fark iliskisi (tum ciftler): uc protokol egim +0.796, r 0.9571, grup-birak +0.767; +0.855;
-%      57/60 esitlik; ozdeslik paritesi en buyuk 1.09, ortalama 0.13; dort protokol +0.092, r 0.0532
-Şekil~\ref{fig:spread_clean_gap} ilişkiyi ölçülen her çifte genişletmektedir. Bu çiftler üç veri kümesinin ve iki tehdit modelinin çekişmeli eğitilmiş çiftleri, bunların WideResNet ile eşleşmeleri, son kontrol noktasındaki aynı CIFAR-10 çiftleri (Bölüm~\ref{subsec:selection}), standart eğitilmiş çiftler ve Bölüm~\ref{subsec:external}'teki dış havuzdur; toplam $60$ sırasız çift söz konusudur. CIFAR-100 ve $L_2$ ayarlarının WideResNet eşleşmeleri dahil edilmemiş, havuzun ilk CIFAR-10 eğitim çiftiyle çakışan üç çifti ise çekişmeli eğitilmiş gruplarda bir kez sayılmıştır. Üç protokollü yayılım farkla birlikte artmakta (eğim $+0{,}796$, Pearson $r = 0{,}957$; herhangi bir grup dışarıda bırakıldığında $+0{,}767$ ile $+0{,}855$ arasında) ve $60$ noktanın $57$'sinde koşulsuz eksi hedef doğru farkına eşit olmaktadır. İçi boş halkalarla çizilen Denklem~\eqref{eq:raw_identity} öngörüsü her noktayı $1{,}09$ puan içinde izlemekte (ortalama mutlak sapma $0{,}13$), en büyük sapmalar ise $p$'nin birden en uzak olduğu standart eğitilmiş hedeflerde görülmektedir (Bölüm~\ref{subsec:external}). Dört protokollü yayılım farkı izlememekte (eğim $+0{,}092$, $r = 0{,}053$) ve temiz doğrulukları neredeyse eşit gürbüz çiftlerde büyük kalmaktadır. Bu yayılım Carmon vd.~\cite{carmon2019unlabeled} ile Gowal vd.'nin~\cite{gowal2020uncovering} iki WideResNet-28-10 kontrol noktasında ($0{,}21$ puan fark) $9{,}03$, XCiT-S12 ile Gowal vd.\ modelinde ($0{,}58$) $12{,}73$, bu çalışmanın ResNet-18 modeli ile Engstrom vd.'nin~\cite{engstrom2019robustness} ResNet-50 modelinde ($1{,}66$) ise $17{,}50$ puandır. Bunun nedenini (b) paneli göstermektedir. Başarılı kaynak terimi farkla ilişkisizdir; PGD-10 gürbüz doğrulukları sıfıra yakın olduğu için hemen her kaynak saldırısının başarılı olduğu standart eğitilmiş çiftlerde sıfıra yakın, gürbüz modeller arasında ise büyüktür ve iki işaretten birini taşımaktadır. Çiftler modelleri ve koşumları paylaştığı için bu eğimler havuzu betimlemekte, hiçbir şeyi sınamamaktadır.
-
-% REF: Yayilim - temiz fark iliskisi, grup araliklari (SVHN uc protokol 1.30; 1.49)
-% REF: Standart egitimli hedeflerde oncul p, cift turune gore ozet (0.47+-0.16; 0.19+-0.02)
-Eşlenmiş çift öngörüsü ayrı bir bulgu değil, özdeşliğin bir sonucudur. Koşulsuz, hedef doğru ve her ikisi doğru kestirimleri temiz hatalarla ölçeklenen terimler üzerinden ayrıştığından, temiz doğrulukta eşlenmiş bir çiftin mimarisi ne olursa olsun bu kestirimleri birbirine yakın bırakması beklenir. Verilerin katkısı, öngörünün gerektirdiği üç ölçülmüş olgudur. İncelenen her çekişmeli eğitilmiş hedefte $p$ en az $0{,}984$'tür, her ikisi doğru kestirimi $60$ noktanın $57$'sinde diğer ikisinin arasında yer almaktadır ve başarılı kaynak terimi farka bağlı değildir. Buna uygun olarak $1{,}84$ puanlık farkla SVHN'in iki çiftinde üç protokollü yayılım $1{,}49$ ve $1{,}30$ puandır; aralarında $0{,}47\pm0{,}16$ puan bulunan standart eğitilmiş ResNet-18 ile WideResNet-28-10 çiftinde ise dört protokolün tamamı $0{,}19\pm0{,}02$ puan içindedir (Bölüm~\ref{subsec:external}). CIFAR-10'daki $15$ puanlık aralığın temiz doğruluk farkından gelen kısımları, yani özdeşlik terimi ve onaylanan ikili içindeki uzaklık, temiz doğrulukta eşlenmiş çiftlerde küçülmelidir; yukarıdaki gürbüz çiftlerin gösterdiği gibi başarılı kaynak fazlasının küçülmesi ise gerekmemektedir.
-
-% ----------------------------------------------------------------------------
-% E. Standart egitilmis hedefler ve dis havuz
-% ----------------------------------------------------------------------------
-\subsection{Standart Eğitilmiş Hedefler ve Dış Model Havuzu}
-\label{subsec:external}
-
-% REF: Standart egitimli hedeflerde oncul p (temiz ciftler); RobustBench havuzu (8 model, tohum 42)
-\begin{sloppypar}
-Bu çalışmanın çekişmeli eğitilmiş çiftinin yanıtlayamadığı iki soru kalmaktadır. Bunlar öncül $p$'nin transfer çalışmalarının çoğunun saldırdığı rejim olan standart eğitilmiş hedeflerde sağlanıp sağlanmadığı ve eşlenmiş çift öngörüsünün başkalarının eğittiği modellerde tutup tutmadığıdır. İki soru da yeni bir eğitim yapılmadan yanıtlanmıştır. İlk olarak üç eğitim çiftinin, çekişmeli ince ayarın başlangıç noktaları olan temiz eğitilmiş ResNet-18 ve ViT-Tiny kontrol noktaları, RobustBench~\cite{croce2021robustbench} üzerinden dağıtılan standart eğitilmiş WideResNet-28-10 (tanımlayıcı \texttt{Standard}) ile birleştirilerek çift başına bir $3\times3$ matris kurulmuştur. İkinci olarak sekiz modelli bir CIFAR-10 havuzu, ilk çiftin çekişmeli eğitilmiş ResNet-18 ve ViT-Tiny modellerini, standart eğitilmiş WideResNet'i ve RobustBench tanımlayıcılarıyla anılan beş gürbüz RobustBench kontrol noktasını bir araya getirmektedir: bir PreAct ResNet-18 (\texttt{Wong2020Fast})~\cite{wong2020fast}, bir ResNet-50 (\texttt{Engstrom2019Robustness})~\cite{engstrom2019robustness}, etiketsiz veriyle eğitilmiş bir WideResNet-28-10 (\texttt{Carmon2019Unlabeled})~\cite{carmon2019unlabeled}, dikkati evrişim bileşenleriyle birleştiren bir XCiT-S12 (\texttt{Debenedetti2022Light\_XCiT-S12})~\cite{debenedetti2023light} ve önceki bölümlerin WideResNet-28-10 referansı~\cite{gowal2020uncovering}. Her yöne tam test kümesinde, örnek bazında kayıtla $\eps=8/255$ bütçeli PGD-10 saldırısı uygulanmış; dört protokol, $p$ ve $p=1$ artığı bu kayıtlardan hesaplanmıştır (Tablo~\ref{tab:external_pool}).
-\end{sloppypar}
-
-% REF: Standart egitimli hedeflerde oncul p, hedef turune gore (tum yonler 0.8774-1.0000; Standard WRN hedef 0.8774-0.9962;
-%      ViT temiz hedef 0.9231-0.9338; artik en buyuk 1.58)
-% REF: RobustBench havuzu (56 yon, p 0.9330-1.0000; artik en buyuk 0.35; AT hedeflerde p en kucuk 0.9846)
-% REF: Secim kuralinin asimetriye etkisi, B (son kontrol noktasi p en kucuk 0.9915; artik en buyuk 0.20)
-Standart eğitilmiş hedeflerde öncül zayıflamaktadır. Üç temiz matrisin $18$ köşegen dışı yönünde $p$ değeri $0{,}877$ ile $1{,}000$ arasında değişmektedir; en düşük değerler standart eğitilmiş WideResNet hedef olduğunda görülmekte ($0{,}877$ ile $0{,}996$), temiz ViT-Tiny hedefinde ise $p$ $0{,}923$ ile $0{,}934$ arasında kalmaktadır. Bu durumda $p=1$ biçimi koşulsuz oranı, üç hedef içinde temiz hatası en büyük olan ViT-Tiny hedefinde $1{,}58$ puana kadar ıskalamaktadır. Orada Denklem~\eqref{eq:raw_identity} bir üst sınırdır ve kullanılması gereken düzeltme, ölçülmüş $p$ ile genel biçim olan Denklem~\eqref{eq:general_identity}'dir. Sekiz hedeften yedisinin çekişmeli eğitilmiş olduğu havuzda her çekişmeli eğitilmiş hedefte $p\geq0{,}984$, standart eğitilmiş hedefte $p\geq0{,}933$'tür ve $p=1$ artığı $56$ yönün tamamında $0{,}35$ puan içinde kalmaktadır; bu çalışmanın çiftlerinin son kontrol noktasında ise artık $0{,}20$ puanı aşmamaktadır (Bölüm~\ref{subsec:selection}).
-
-% REF: Standart egitimli hedeflerde oncul p, cift basina dort protokol asimetrisi ve cift turune gore ozet
-Standart eğitilmiş matrisler eşlenmiş çift öngörüsünü farklı bir eğitim rejiminde de sınamaktadır. Temiz ResNet-18 ile standart WideResNet temiz doğrulukta $0{,}47\pm0{,}16$ puan ayrışmakta ve dört protokol kestirimleri $0{,}19\pm0{,}02$ puan içinde uyuşmaktadır (ilk çiftte $-3{,}35$, $-3{,}54$, $-3{,}51$ ve $-3{,}50$). Yaklaşık $15$ puan ayrışan iki eşlenmemiş çiftte ($15{,}16\pm0{,}48$ ve $14{,}69\pm0{,}60$) yayılım $13{,}25\pm0{,}34$ ve $13{,}08\pm0{,}60$ puandır ve her koşuda koşulsuz protokol diğer üçünün bildirdiği işareti tersine çevirmektedir; temiz ResNet-18 ve ViT-Tiny için koşulsuz protokol $+7{,}81$ ile $+10{,}09$ puan verirken hedef doğru protokolü $-5{,}22$ ile $-3{,}56$ puan vermektedir. Dolayısıyla standart eğitim altında bu çalışmanın ResNet-18 ve ViT-Tiny modelleri her koşullu protokolde ters yönü, yani Mahmood vd.'nin bildirdiği yönü göstermektedir (her ikisi doğru $-3{,}02$ ile $-1{,}30$), ancak onların mekanizmasını göstermemektedir. Toplamsal uydurma (Tablo~\ref{tab:source_target}) temiz ViT-Tiny modelini açık ara en zayıf kaynak olarak tutmakta (kaynak farkı $+69{,}18\pm2{,}31$) ve işareti hedef terimi üzerinden çevirmektedir ($-75{,}05\pm1{,}72$); temiz ViT-Tiny, zayıf bir kaynak olduğundan da daha zor bir hedeftir. Standart WideResNet iki karşıtlığı da doğrudan göstermektedir; ResNet'te üretilen örneklerin $\%81{,}40$'ı, ViT'te üretilenlerin ise $\%13{,}60$'ı tarafından kandırılmakta, kendisi de ResNet'i $\%84{,}05$, ViT'i $\%7{,}62$ oranında kandırmaktadır.
-
-% REF: RobustBench havuzu (28 cift; temiz fark 0.21-20.68; uc protokol +0.872 [+0.534; +1.274], r 0.9438;
-%      dort protokol +0.559 [-0.205; +4.582]; isaret donen 1/28; ViT_Tiny_AT/Standard -6.72 / +14.53, fark 20.68;
-%      Carmon2019/Gowal2020: fark 0.21, uc 0.32, dort 9.03; toplamsal: R2 0.8955, kaynak etkileri, hedef etkileri)
-Temiz farkları $0{,}21$ ile $20{,}68$ puan arasında değişen $28$ çiftli havuzda üç protokollü yayılım temiz farkın puanı başına $0{,}872$ puan artmakta (model dışarıda bırakmalı bootstrap aralığı $[+0{,}534;\ +1{,}274]$, $r = 0{,}944$), dört protokollü yayılım ise güvenilir bir ilişki göstermemektedir ($+0{,}559$, $[-0{,}205;\ +4{,}582]$). İşaret protokoller arasında $28$ çiftin yalnızca birinde, bu çalışmanın çekişmeli eğitilmiş ViT-Tiny modeli ile standart eğitilmiş WideResNet çiftinde değişmektedir; bu çift aynı zamanda en geniş farka sahip çifttir ($20{,}68$ puan; koşulsuz $-6{,}72$, hedef doğru $+14{,}53$). Temiz doğrulukları neredeyse eşit gürbüz modeller eşlenmiş çift öngörüsünü ve onun sınırını aynı anda doğrulamaktadır. Carmon vd.\ ile Gowal vd.'nin aralarında $0{,}21$ puan bulunan iki gürbüz WideResNet-28-10 kontrol noktasında üç protokollü yayılım $0{,}32$, dört protokollü yayılım ise $9{,}03$ puandır. Havuzun hedef doğru matrisine yapılan toplamsal uydurma ($56$ hücrede $R^2 = 0{,}8955$) bu çalışmanın ViT-Tiny modelini çekişmeli eğitilmiş en zayıf kaynak olarak konumlandırmakta (kaynak etkisi $-4{,}87$, diğer gürbüz modellerde $+2{,}94$ ile $+3{,}65$), hedef etkisini ise gürbüz modellerin aralığı ($-4{,}26$ ile $+2{,}76$) içinde $-0{,}63$ olarak vermektedir. Evrişim bileşenli bir dikkat modeli olan gürbüz XCiT-S12, CNN'ler kadar güçlü bir kaynaktır ($+3{,}06$). Bölüm~\ref{subsec:source_target}'deki kaynak etkisi bu nedenle bir aile olarak dönüştürücülerin değil, sıfırdan düşük bir temiz doğruluğa eğitilmiş bu ViT-Tiny modelinin özelliği olarak okunmalıdır; havuzdaki tek gürbüz dikkat tabanlı model daha fazlasını söylemeye yetmemektedir.
-
-% REF: tablo hucreleri: "Standart egitimli hedeflerde oncul p", "RobustBench havuzu",
-%      "Secim kuralinin asimetriye etkisi" B, ozdeslik_kontrol.json (36 yon, 0.41)
-\begin{table}[!t]
-\centering
-\caption{Denklem~\eqref{eq:general_identity}'deki öncül $p$ ve bu çalışmanın çekişmeli eğitilmiş çifti dışında eşlenmiş çift öngörüsü (CIFAR-10, PGD-10, $\eps$=8/255, tam test kümesi). Üst blok: köşegen dışı yönler üzerinden hedef türüne göre $p$ ve $p=1$ biçiminin puan cinsinden en büyük mutlak hatası (``--'': hedef türü başına saklanmamıştır). Orta blok: her biri bir eğitim çiftinin temiz ResNet-18 ya da ViT-Tiny modeli veya RobustBench'in standart eğitilmiş WideResNet-28-10 modeli olan standart eğitilmiş çiftler, üç çift üzerinden ortalama$\pm$std; işaret dönmesi dört protokolün işarette uyuşmadığını gösterir. Alt blok: sekiz modelli havuzun $28$ çifti üzerinde protokol yayılımının mutlak temiz doğruluk farkına göre eğimi; çiftler modelleri paylaştığı için aralık model dışarıda bırakmalı bootstrap ile verilmiştir.}
-\label{tab:external_pool}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Hedef} & \textbf{Yön} & \textbf{$p$ aralığı} & \textbf{Maks.\ $|$artık$|$} \\
-\midrule
-AT hedefleri, $3\times3$ & 36 & 0,9890--1,0000 & 0,41 \\
-AT hedefleri, son k.\,n. & 18 & 0,9915--1,0000 & 0,20 \\
-Temiz ViT-Tiny & 6 & 0,9231--0,9338 & 1,58 \\
-Temiz ResNet-18 & 6 & 0,8961--1,0000 & 0,51 \\
-Standart WRN-28-10 & 6 & 0,8774--0,9962 & 0,64 \\
-Havuz, AT hedefleri & 49 & 0,9846--1,0000 & -- \\
-Havuz, standart WRN & 7 & 0,9330--0,9962 & -- \\
-Havuz, tüm hedefler & 56 & 0,9330--1,0000 & 0,35 \\
-\midrule
-\textbf{Std.\ eğitilmiş çift} & \textbf{$|$Temiz fark$|$} & \textbf{Yayılım} & \textbf{İşaret dön.} \\
-\midrule
-ResNet-18 / WRN & 0,47$\pm$0,16 & 0,19$\pm$0,02 & 0/3 \\
-ResNet-18 / ViT-Tiny & 15,16$\pm$0,48 & 13,25$\pm$0,34 & 3/3 \\
-ViT-Tiny / WRN & 14,69$\pm$0,60 & 13,08$\pm$0,60 & 3/3 \\
-\midrule
-\textbf{Havuz yayılımı} & \textbf{Eğim} & \textbf{\%95 aralık} & \textbf{$r$} \\
-\midrule
-Üç protokol & $+$0,872 & [$+$0,534; $+$1,274] & 0,944 \\
-Dört protokol & $+$0,559 & [$-$0,205; $+$4,582] & 0,350 \\
-İşaret dön.\ (4 prot.) & \multicolumn{3}{c}{1/28 çift} \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% ----------------------------------------------------------------------------
-% F. Kontrol noktasi secimi
-% ----------------------------------------------------------------------------
-\subsection{Kontrol Noktası Seçimi ve Asimetri}
-\label{subsec:selection}
-
-Sabit bir yörüngeden son kontrol noktasını seçen çevrimdışı kural, gürbüz aşırı öğrenme bu seçimi çekişmeli eğitimde sonuç doğurucu kılsa da~\cite{rice2020overfitting} genellikle örtük bırakılmaktadır. Bir eğitim yörüngesi sabit tutulup yalnızca son kontrol noktasının nasıl seçildiği, yani doğrulama bölmesi, erken durdurma sabrı ve argmaks öncesinde doğrulama eğrisinin yumuşatılıp yumuşatılmadığı değiştirildiğinde (on sekiz bileşim) raporlanan PGD-10 doğruluğu ResNet'te tohum başına $2{,}62$ ile $2{,}85$, ViT'te $1{,}58$ ile $2{,}09$ puan oynamaktadır. Bu hücrelerde diskteki ağırlıklar özdeştir ve yalnızca içlerinden birini seçen kural farklıdır. Bu yayılımın yaklaşık yarısı üç boyuttan yalnızca birinden gelmektedir. Argmaks öncesinde doğrulama eğrisini yumuşatmak, üç ResNet koşumunun üçünde ve üç ViT koşumunun ikisinde test PGD-10 doğruluğunu monoton biçimde düşürmektedir; yani sistematik olarak daha kötü bir kuraldır. Çalışmaların fiilen değiştirdiği bölme ve sabır seçimleriyle sınırlandığında yayılım ResNet'te tohum düzeyi standart sapmanın $1{,}09$ katına, ViT'te $1{,}42$ katına inmektedir. Bu yayılım mutlak birimlerle raporlanmakta ve bilinçli olarak tohum düzeyi yayılıma oran biçiminde verilmemektedir; çünkü o oran on sekiz hücreden hangisinin referans alındığına bağlıdır ve on sekizinin tamamı tarandığında ResNet'te $0{,}67$ ile $3{,}38$, ViT'te $0{,}63$ ile $7{,}38$ arasında değişerek bazı referanslarda karşılaştırmayı tersine çevirmektedir.
-
-CIFAR-100 koşuları bir karşı ağırlık sağlamaktadır. Bu çalışmanın protokolünün seçtiği epok üç ResNet tohumu arasında $25$ epok kaymakta, buna karşılık ortaya çıkan test PGD-10 standart sapması $0{,}32$ puanda kalmaktadır. Seçim \emph{yolu} oynak, seçilen \emph{sonuç} ise kararlı olmuştur; bunlardan hangisinin gerçekleşeceği mimariye değil yörüngenin platosuna bağlıdır.
-
-% REF: Secim kuralinin asimetriye etkisi, B. Son kontrol noktasi ve fark ozeti
-%      (temiz fark 12.26+-0.90 -> 10.55+-0.59, degisim -1.71+-0.84; dort yayilim 15.01+-0.84 -> 12.84+-0.34,
-%       degisim -2.16+-0.93; uc yayilim 9.21+-0.76 -> 7.84+-0.56; tc +4.36+-0.44 -> +4.64+-0.56;
-%       ss +19.37 -> +17.48; p en kucuk 0.9915; artik en buyuk 0.20)
-Seçim kuralı, yayılımın bağlı olduğu temiz doğruluk farkını belirlediği için transfer asimetrisine de ulaşmaktadır. Üç eğitim çiftinin seçilen kontrol noktası yerine son kontrol noktasında, yani erken durdurmanın eğitimi sonlandırdığı epokta yeniden puanlanması (ResNet'ler için $71$, $76$ ve $77$, ViT'ler için $45$, $38$ ve $39$; seçilen $51$, $56$, $57$ ve $25$, $18$, $19$. epoklardan yirmi epok sonra) temiz farkı $12{,}26\pm0{,}90$ puandan $10{,}55\pm0{,}59$ puana (değişim $-1{,}71\pm0{,}84$), dört protokollü yayılımı ise $15{,}01\pm0{,}84$ puandan $12{,}84\pm0{,}34$ puana (değişim $-2{,}16\pm0{,}93$) daraltmaktadır; üç protokollü yayılım da $9{,}21\pm0{,}76$'dan $7{,}84\pm0{,}56$'ya inmektedir. Hedef doğru asimetrisi neredeyse yerinden oynamamakta ($+4{,}36\pm0{,}44$'e karşı $+4{,}64\pm0{,}56$), başarılı kaynak kestirimi $+19{,}37$'den $+17{,}48$'e düşmekte, dört protokolün tamamı her çiftte CNN$\rightarrow$ViT işaretini korumakta ve öncül önceki gibi sağlanmaktadır ($p\geq0{,}9915$, $p=1$ artığı en çok $0{,}20$ puan).
-
-% REF: Secim kuralinin asimetriye etkisi, A. Saklanan egitim yorungeleri (CIFAR-10 temiz fark secilen 10.59-12.65,
-%      son 11.83-13.83; yayilim Delta ResNet -1.53+-1.15, ViT -0.03+-1.15; tc Delta ViT +2.53+-0.15;
-%      CIFAR-100 yayilim Delta ResNet -1.84+-0.94, ViT +0.84+-0.24)
-Saklanan eğitim yörüngeleri eğitim boyunca aynı tabloyu vermektedir. Bu yörüngeler ana çiftlerin seçilen kontrol noktalarından değil, aynı tohumlarla yapılan CIFAR-10 yeniden eğitim koşularından ve doğrudan CIFAR-100 koşularından gelmekte ve yaklaşık her on epokta bir kaydedilmektedir. CIFAR-10'da bu yeniden eğitim koşuları temiz farkı hem seçilen hem son epokta $10{,}59$ puanda ya da üstünde tutmaktadır; dolayısıyla seçim farkı yaklaşık $1{,}7$ puan oynatmakta, ancak ortadan kaldırmamaktadır. Farkın tam büyüklüğü ise seçime duyarlıdır. Bir çiftin bir üyesini seçilen epoğundan son epoğuna taşımak dört protokollü yayılımı ResNet taşındığında $-1{,}53\pm1{,}15$ puan, ViT taşındığında $-0{,}03\pm1{,}15$ puan değiştirmekte, ViT'in taşınması ise hedef doğru asimetrisini $+2{,}53\pm0{,}15$ puan kaydırmaktadır; CIFAR-100'de yayılım $-1{,}84\pm0{,}94$ ve $+0{,}84\pm0{,}24$ puan değişmektedir. Seçim kuralı böylece asimetrinin düzeyini yaklaşık iki buçuk puana, yayılımını ise yaklaşık iki puana kadar oynatmakta, ancak yönü ya da büyüklük mertebesini değiştirmemektedir. Bu kuralın yöntem bölümünde belirtilmesi gerekir.
-
-% ----------------------------------------------------------------------------
-% G. Uc okuma (gradyan, dikkat, TGR tek alt bolumde)
-% ----------------------------------------------------------------------------
-\subsection{Doğrudan Ölçümde Ayakta Kalmayan Üç Okuma}
-\label{subsec:readings}
-
-Mimari karşılaştırmaları transfer asimetrisinin ötesinde üç okumayı da akla getirmektedir: CNN gradyanlarının mekansal olarak daha lokalize olduğu, çekişmeli pertürbasyonun ViT dikkatini bozduğu ve ViT'e özgü transfer saldırılarının ViT kaynaklı transferi iyileştirdiği. Her biri doğrudan ölçülmüş, hiçbiri bu rejimde geçerli çıkmamış ve aynı ölçümler iki davranışsal farkı ayakta bırakmıştır.
-
-% ----------------------------------------------------------------------------
-% G.1 Gradyan seyrekligi ve mekansal lokalite
-% ----------------------------------------------------------------------------
-\subsubsection{Mekansal lokalite olmadan gradyan seyrekliği}
-\label{subsec:gradient}
-\label{subsubsec:spatial}
-
-\begin{table}[!t]
-\centering
-\caption{Örnek başına kayıp gradyanlarından hesaplanan gradyan karakteristikleri (koşu başına $n$=500 test örneği; üç koşu üzerinden ortalama$\pm$std). Kalın yazı, çekişmeli eğitilmiş iki modelden büyük olanı gösterir; yerel kontrol tek bir kontrol noktası olduğundan standart sapma verilmemiştir.}
-\label{tab:gradient}
-\footnotesize
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{lccc}
-\toprule
-\textbf{Metrik} & \textbf{ResNet-18 AT} & \textbf{ViT-Tiny AT} & \textbf{ViT (yerel)$^\ddagger$} \\
-\midrule
-Hoyer seyrekliği & \textbf{0,4928}$\pm$0,0120 & 0,4561$\pm$0,0055 & 0,4046 \\
-Gini katsayısı & \textbf{0,6498}$\pm$0,0089 & 0,6099$\pm$0,0051 & 0,5712 \\
-Maks.\ \%1 altı kesir & \textbf{0,3477}$\pm$0,0210 & 0,2682$\pm$0,0090 & 0,1785 \\
-Hizalanma (mutlak) & 0,0378$\pm$0,0009 & \textbf{0,0562}$\pm$0,0004 & 0,0794 \\
-Hizalanma (işaretli) & 0,0010$\pm$0,0003 & 0,0004$\pm$0,0001 & -- \\
-\bottomrule
-\multicolumn{4}{l}{\scriptsize $^\ddagger$CIFAR'a özgü ViT kontrolü ($4\times4$ yama, 5,4M parametre); sabit bölme}\\
-\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}protokolünden önceye ait, test kümesinde seçilmiş tek kontrol noktası;}\\
-\multicolumn{4}{l}{\scriptsize \phantom{$^\ddagger$}yalnızca büyütme etkisinin işareti için eklenmiştir.}
-\end{tabular}
-\end{table}
-
-% REF: Gradyan yapisi (Hoyer temiz 0.3467 / 0.3804; hizalanma temiz 0.0293 / 0.0581; Cohen d 0.32-1.23; isaretli en buyuk 0.0014)
-CNN girdi gradyanları üç ölçekten bağımsız ölçünün üçünde de ViT gradyanlarından daha seyrektir (Tablo~\ref{tab:gradient}; normlar değerlendirme parti boyuna bağlı olmasın diye örnek başına kayıp gradyanları, hizalanma için tüm $500\times499/2$ örnek çifti üzerinden ortalama mutlak kosinüs) ve sıralama, tohum düzeyi standart sapmalar farktan en az üç kat küçük kalarak her koşuda yeniden üretilmektedir. İki çıkarım biriminin uyuşmadığı tek yer burasıdır ve bu nedenle ikisi de raporlanmaktadır. Aynı 500 örneğin iki modelde de ölçüldüğü koşum içinde örnek başına eşleştirilmiş Wilcoxon testleri üç ölçüde de sıfır hipotezini reddetmektedir (Holm düzeltmeli $p<10^{-11}$, eşleştirilmiş Cohen $d$ 0,32 ile 1,23 arasında). Mimari bir iddianın gerektirdiği birim olan koşum düzeyinde ise üç eşleştirilmiş koşum Gini, \%1 altı kesir ve Hoyer için $0{,}036$, $0{,}042$ ve $0{,}067$ ham $p$ değerleri vermekte, Holm düzeltmesi bunları $0{,}108$'e çıkarmaktadır. Sıralama her koşuda tutarlı ama koşum düzeyinde anlamsız olduğu için anlamlı olarak değil, yeniden üretilebilir olarak raporlanmaktadır. Sıralama çekişmeli eğitimin ürünüdür. Aynı koşuların temiz eğitilmiş karşılıklarında daha seyrek model \emph{ViT'tir} (Hoyer $0{,}380\pm0{,}009$'a karşı $0{,}347\pm0{,}002$); bu durum Chalasani vd.'nin~\cite{chalasani2020concise} çekişmeli eğitilmiş modeller için bildirdiği daha seyrek öznitelik atıflarıyla uyumludur. CIFAR'a özgü ViT kontrolü ise her ölçüde büyütülmüş ViT'ten daha az seyrektir; dolayısıyla sıralama $32\rightarrow224$ büyütmenin artefaktı değildir. Örnekler arası hizalanma mutlak kosinüste ViT'te daha yüksektir; bu fark koşum düzeyinde anlamlılığa ulaşmakta ($p=0{,}0009$) ve temiz eğitilmiş çiftte zaten görülmektedir ($0{,}058$'e karşı $0{,}029$). \emph{İşaretli} ortalama kosinüs ise iki modelde de sıfıra yakındır (her koşumda $\leq0{,}0014$); yani örnekler duyarlılık eksenlerini paylaşmakta, ancak tutarlı bir yönü paylaşmamaktadır.
-
-\begin{table}[!t]
-\centering
-\caption{Girdi gradyanlarının mekansal lokalitesi (koşu başına $n$=500 örnek; üç koşu üzerinden ortalama$\pm$std). Eşleştirilmiş farklar aynı örnekler üzerinde hesaplanır. Çıkarım koşum düzeyindedir: $p$, üç koşumun ortalama farkları üzerinde tek örneklem $t$ testidir ve dört ölçüye Holm düzeltmesi uygulanmıştır; böylece çıkarımın birimi iddianın birimiyle eşleşir. Düşük alan ve entropi daha lokalize, yüksek Moran's $I$ daha kümeli demektir.}
-\label{tab:spatial}
-\scriptsize
-\setlength{\tabcolsep}{1.6pt}
-\begin{tabular}{lcccc}
-\toprule
-\textbf{Ölçüt} & \textbf{ResNet-18} & \textbf{ViT-Tiny} & \textbf{Fark (R$-$V)} & \textbf{$p$ (Holm)} \\
-\midrule
-\%50 enerji alanı & 0,0378$\pm$0,0017 & 0,0397$\pm$0,0010 & $-$0,0019$\pm$0,0027 & 0,54 \\
-\%90 enerji alanı & 0,2345$\pm$0,0078 & 0,2570$\pm$0,0067 & $-$0,0224$\pm$0,0133 & 0,40 \\
-Mekansal entropi (nat) & 5,2014$\pm$0,0387 & 5,2524$\pm$0,0197 & $-$0,0509$\pm$0,0580 & 0,54 \\
-Moran's $I$ & 0,4141$\pm$0,0132 & 0,3941$\pm$0,0024 & $+$0,0200$\pm$0,0156 & 0,47 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% REF: Tablo 9 ek sutunlari (Holm p 0.402-0.535; kosum degerleri: alan50 ve entropi isaret degistiriyor)
-Seyreklik kaç gradyan bileşeninin büyük olduğunu saymakta, ancak bu bileşenlerin görüntüde bir arada durup durmadığını, yani gradyanları lokalize olarak betimleyen ifadenin ileri sürdüğü şeyi söylememektedir. Aynı gradyanların kanal toplamı enerji haritası üzerinde dört ölçekten bağımsız betimleyicinin hiçbiri koşum düzeyinde farklılaşmamaktadır (Tablo~\ref{tab:spatial}; Holm düzeltmeli $p$ değerleri $0{,}40$ ile $0{,}54$ arasında). Enerjinin \%90'ını taşıyan alan CNN için görüntü alanının iki yüzde puanı kadar \emph{daha küçük} bir alana işaret etmekte ve dört mekansal sıralamanın ikisi koşumlar arasında işaret değiştirmektedir; seyreklik sıralaması ise her koşuda her ölçüde korunmaktadır. Çekişmeli eğitilmiş CNN gradyanları kütlelerinin daha büyük kısmını daha az piksele yerleştirmekte, ancak bu pikseller ViT'inkilerden mekansal olarak daha kümeli olmamaktadır; bu nedenle bu çalışmanın iddiaları seyreklikle sınırlı tutulmuştur. Şekil~\ref{fig:gradient_analysis} ölçekten bağımsız ölçülerin yakalamadığı örnek başına gradyan normlarının dağılımını eklemektedir; Şekil~\ref{fig:gradient_heatmap}'teki büyüklük haritaları da lokalite olarak değil seyreklik olarak okunmalıdır.
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig4b_gradient_distribution.pdf}
-\caption{Örnek başına girdi gradyanı $L_2$ normlarının deneysel dağılımı (örnek başına çapraz entropi kaybı, ilk $500$ test görüntüsü, eğitim koşusu başına bir eğri, mimari başına üç koşu; logaritmik eksen). Bu girdilerden dördünün büyüklük haritaları Şekil~\ref{fig:gradient_heatmap}'te verilmektedir.}
-\label{fig:gradient_analysis}
-\end{figure}
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig4_gradient_comparison.pdf}
-\caption{Aynı test görüntüleri için iki modelde girdi gradyanı büyüklük haritaları (tohum çifti 1; ilk dört test görüntüsü; her harita kendi en büyük değerine ölçeklendiğinden büyüklükler paneller arasında karşılaştırılamaz). CNN gradyanları kütlelerinin daha büyük kısmını daha az bileşene yerleştirmektedir (Tablo~\ref{tab:gradient}). Tablo~\ref{tab:spatial} bu durumun mekansal dizilişte bir farkla birlikte gelmediğini göstermektedir; bu yüzden paneller lokalite olarak değil seyreklik olarak okunmalıdır.}
-\label{fig:gradient_heatmap}
-\end{figure}
-
-% ----------------------------------------------------------------------------
-% G.2 Dikkat ve oznitelik kaymasi
-% ----------------------------------------------------------------------------
-\subsubsection{Dikkat entropisi ve öznitelik kayması}
-\label{subsec:attention}
-
-\begin{table}[!t]
-\centering
-\caption{Her modelin kendi beyaz kutu PGD-10 saldırısı altında blok bazlı temizden çekişmeliye kosinüs benzerliği (koşu başına $n$=1000; üç koşu ortalaması). Tüm özetler artık blok çıkışında alınmıştır, böylece ViT ve CNN sütunları eşdeğer noktalarda ölçülmektedir; ViT sütunları yalnızca bir bloğun jetonlarının nasıl toplandığında ayrışır. MLP alt-blok çıkışına ait değerler metinde verilmiştir. Koşumlar arası standart sapma ViT sütunlarında en çok 0,0061, ResNet sütununda en çok 0,0181'dir (aşama 4, blok 1); kalın yazı her sütunun en küçük değerini gösterir.}
-\label{tab:feature_degradation}
-\footnotesize
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{lccc@{\hspace{9pt}}lc}
-\toprule
-\multicolumn{4}{c}{\textbf{ViT-Tiny AT}} & \multicolumn{2}{c}{\textbf{ResNet-18 AT}} \\
-\cmidrule(lr){1-4} \cmidrule(lr){5-6}
-\textbf{Blok} & \textbf{CLS} & \textbf{Yama ort.} & \textbf{Tüm jetonlar} & \textbf{Aşama.blok} & \textbf{Kosinüs} \\
-\midrule
-1 & 0,9993 & 0,9980 & 0,9927 & 1.1 & 0,9951 \\
-2 & 0,9950 & 0,9959 & 0,9901 & 1.2 & 0,9918 \\
-3 & 0,9902 & 0,9940 & 0,9881 & 2.1 & 0,9879 \\
-4 & 0,9873 & 0,9919 & 0,9861 & 2.2 & 0,9853 \\
-5 & 0,9845 & 0,9904 & 0,9847 & 3.1 & 0,9753 \\
-6 & 0,9814 & 0,9894 & 0,9835 & 3.2 & 0,9607 \\
-7 & 0,9782 & 0,9885 & 0,9826 & 4.1 & \textbf{0,8777} \\
-8 & 0,9743 & 0,9875 & 0,9816 & 4.2 & 0,9108 \\
-9 & 0,9703 & \textbf{0,9870} & 0,9809 & & \\
-10 & 0,9661 & 0,9872 & 0,9805 & & \\
-11 & \textbf{0,9604} & 0,9874 & \textbf{0,9803} & & \\
-12 & 0,9663 & 0,9915 & 0,9837 & & \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% REF: C4: oznitelik kaymasi ve attention (CLS 0.9604 blok 11; yama 0.9870 blok 9; oran 3.05;
-%      MLP alt-blok: CLS 0.9343 blok 10, yama 0.9840 blok 8); ResNet layer4.0 0.8777+-0.0181, -13.14+-1.89%; layer4.1 0.9108+-0.0060
-Çekişmeli hasarın derinlik boyunca nerede biriktiği iki mimaride farklıdır (Tablo~\ref{tab:feature_degradation}; artık blok çıkışları, koşu başına $n=1000$) ve bu ölçüm temiz eğitilmiş ViT'lerin katman bazlı analizlerini~\cite{raghu2021vision} çekişmeli eğitilmiş ortama taşımaktadır. ViT'te kayma kademelidir ve yalnızca yönü değiştirmektedir. Benzerlik 11. bloktaki minimuma kadar azalmakta ve çıkışta hafifçe toparlanmakta, öznitelik normları ise temiz değerlerinin \%0,45'i içinde kalmaktadır. CNN'de ise hasar yoğunlaşmıştır; son aşamanın ilk bloğu $-\%13{,}14\pm1{,}89$'luk bir norm daralmasıyla $0{,}8777\pm0{,}0181$'e düşmekte, son blok ise temsili kısmen onarmaktadır ($0{,}9108\pm0{,}0060$). Ölçülen ViT profili jeton agregasyonuna bağlıdır. Minimumlarında CLS yolu yama jetonu ortalamasının yaklaşık üç katı kaymakta ($0{,}9604$'e karşı $0{,}9870$; $1-\cos$ cinsinden oran $3{,}05$) ve minimumlar farklı derinliklerde (blok 11 ve 9) bulunmaktadır; artık blok çıkışı yerine MLP alt-blok çıkışında okunduğunda minimumlar blok 10'da $0{,}9343$'e ve blok 8'de $0{,}9840$'a kaymaktadır. Farklı makalelerden katman bazlı kayma eğrileri ancak hem agregasyon hem de tensör belirtildiğinde karşılaştırılabilir.
-
-% REF: Dikkat entropisi TOST ve devrilen/devrilmeyen kosinus (12/12; en buyuk p 0.00611; en buyuk |degisim| 0.0045;
-%      temiz entropi 4.613-5.105; devrilen/devrilmeyen ViT 0.9895/0.9877, p 0.2010; ResNet 0.9058/0.9143, p 0.0804)
-% REF: Dikkat entropisi ve CLS dikkat yer degistirmesi (TV 0.0276 -> 0.0841)
-Dikkat okuması bu ölçümlerde doğrulanmamaktadır. Çekişmeli pertürbasyon CLS dikkat dağılımının entropisini değiştirmemektedir. Katman başına en büyük ortalama değişim $0{,}0045$ nat iken temiz katman ortalamaları $4{,}61$ ile $5{,}11$ nat arasındadır; ölçünün ölçeğinden sabitlenen $\pm0{,}05$ nat marjıyla üç koşum üzerinden yapılan koşum düzeyi TOST, $12$ katmanın tamamında eşdeğerliği kabul etmekte ve en zayıf sonuç $p=0{,}006$ olmaktadır (Şekil~\ref{fig:feature_degradation}a). Derinlikle büyüyen şey dikkat haritasının yer değiştirmesidir; bu değer ilk katmanda $0{,}028$ toplam varyasyondan son katmanda $0{,}084$'e çıkmaktadır (panel b). Dolayısıyla saldırı dikkati hafifçe yeniden yönlendirmekte, ancak genişletmemekte ya da keskinleştirmemektedir. Şekil~\ref{fig:attention_layers}'teki tek örnekli haritalar yayılmayı değil yeniden yönlendirmeyi göstermektedir ve 8 örneklik daha önceki bir şekil kümesi bu ölçümün desteklemediği bir dikkat etkisi izlenimi vermişti. Öznitelik kayması devrilen ve devrilmeyen örnekleri de ayırmamaktadır; buradaki devrilmeyen grup, modelin temiz girdide zaten yanlış sınıflandırdığı örnekleri de içermektedir. Son blok kosinüsü ViT'te devrilen örneklerde $0{,}9895$, devrilmeyenlerde $0{,}9877$, CNN'de ise $0{,}9058$ ve $0{,}9143$'tür; iki fark da koşum düzeyinde anlamlı değildir (üç koşum üzerinden eşleştirilmiş $t$, $p=0{,}20$ ve $p=0{,}080$), ancak CNN farkı üç koşumun üçünde de aynı işareti taşımaktadır. Yama pertürbasyonları altındaki dikkat kayması etkileri~\cite{gu2022vision} ve dikkat mekanizmasının kendisine yönelik saldırılar~\cite{fu2022patchfool} farklı bir tehdit modeline aittir.
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig5_attention_comparison.pdf}
-\caption{Çekişmeli saldırı altında ViT katmanları boyunca CLS jetonu dikkat haritaları (softmax sonrası, başlar üzerinden ortalanmış). Her satır farklı bir katmanı (1, 6, 12) gösterir; sütunlar temiz dikkat, çekişmeli dikkat ve farklarıdır ve dikkat sütunları için bir, fark sütunu için bir ortak renk ölçeği kullanılmıştır. Gösterilen tek bir örnektir (ilk test görüntüsü, tohum çifti 1); dikkat yer değiştirmesindeki derinlik eğilimi koşu başına $n$=1.000 örnek üzerinden Şekil~\ref{fig:feature_degradation}(b)'de ölçülmektedir.}
-\label{fig:attention_layers}
-\end{figure}
-
-\begin{figure}[!t]
-\centering
-\includegraphics[width=\columnwidth]{../figures/final_tr/fig5b_attention_entropy.pdf}
-\caption{(a) Saldırı altında CLS dikkat entropisindeki değişim (çekişmeli eksi temiz), katman başına, üç koşum ortalaması ve \%95 $t$ güven aralıkları; kesikli çizgiler $\pm0{,}05$ nat TOST marjını gösterir ve her aralık bu marjın içindedir. (b) CLS dikkat yer değiştirmesi (temiz ile çekişmeli haritalar arasındaki toplam varyasyon), katman başına, koşumlar üzerinden ortalama$\pm$std. Koşu başına $n$=1.000 örnek; tek örnekli haritalar Şekil~\ref{fig:attention_layers}'te verilmektedir.}
-\label{fig:feature_degradation}
-\end{figure}
-
-% ----------------------------------------------------------------------------
-% G.3 ViT'e ozgu transfer saldirisi
-% ----------------------------------------------------------------------------
-\subsubsection{ViT'e özgü bir transfer saldırısı}
-\label{subsec:tgr}
-
-\begin{table}[!t]
-\centering
-\caption{Eşleşmiş bütçede Jeton Gradyanı Düzenlileştirme (TGR)~\cite{zhang2023tgr} ve düz momentumlu yinelemeli FGSM (MI-FGSM) altında ViT$\rightarrow$CNN transferi ($L_\infty$, $\eps$=8/255, 10 adım, $\alpha$=2/255; koşu başına $n$=10.000; üç koşu üzerinden ortalama$\pm$std).}
-\label{tab:tgr}
-\footnotesize
-\begin{tabular}{lcc}
-\toprule
-\textbf{Ölçüt (\%)} & \textbf{TGR} & \textbf{MI-FGSM} \\
-\midrule
-Kaynakta beyaz kutu (ham) & 51,56$\pm$0,80 & \textbf{66,43}$\pm$0,29 \\
-Transfer, hedef doğru & 12,70$\pm$0,41 & \textbf{15,71}$\pm$0,60 \\
-Transfer, her ikisi doğru & 7,93$\pm$0,42 & \textbf{10,08}$\pm$0,30 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% REF: C2: TGR vs MI-FGSM (66.43 - 51.56 = 14.87; 15.71 - 12.70 = 3.01; 10.08 - 7.93 = 2.15; McNemar p)
-Transfer sonuçlarına yöneltilebilecek doğal bir itiraz, dönüştürücü yapısı için tasarlanmış saldırıların daha iyi taşındığı bildirildiğinden ViT'i genel türevlenebilir bir model olarak ele alan gradyan saldırılarının ViT kaynaklı yönü dezavantajlı bıraktığıdır. Geri yayılım sırasında kaynağın dikkat, QKV ve MLP yollarındaki uç değerli jeton gradyanlarını bastıran Jeton Gradyanı Düzenlileştirme (TGR)~\cite{zhang2023tgr} bu itirazı sınamaktadır; bu çalışmadaki uyarlama yöntemi makale boyunca kullanılan bütçeyle CIFAR-10 ViT-Tiny modeline uygulamakta (Bölüm~\ref{subsec:attack_methods}) ve aynı koşuda eşleştirilmiş kontrol olarak düz MI-FGSM üretmektedir. TGR bu rejimde transferi iyileştirmemekte, tersine kötüleştirmektedir (Tablo~\ref{tab:tgr}). Kaynakta 14,9 puanlık beyaz kutu gücünden vazgeçmekte, koşullu transfer ise hedef doğru protokolünde 3,0, her ikisi doğruda 2,2 puan düşmektedir; her ikisi doğru altkümesindeki eşleştirilmiş McNemar testleri her koşuda MI-FGSM lehinedir ($p = 6{,}1\times10^{-10}$, $1{,}1\times10^{-27}$, $7{,}0\times10^{-34}$). Hedefler çekişmeli eğitilmiş, girdiler model içinde büyütülen $32\times32$ CIFAR-10 görüntüleri, kaynak ise 5,7M parametreli bir ViT-Tiny'dir; TGR ise standart eğitilmiş ImageNet ViT'leri için kurulmuştur. Bu nedenle sonuç yöntemi genel olarak değil, bu rejimdeki uyarlamayı sınırlamaktadır. Bu makale açısından sonucun anlamı, CNN$\rightarrow$ViT asimetrisinin mimariden bağımsız saldırıların bir artefaktı olmamasıdır; ViT yönüne dönüştürücüye özgü bir saldırı vermek onu zayıflatmaktadır.
-
-% ----------------------------------------------------------------------------
-% H. Varyans kaynaklari
-% ----------------------------------------------------------------------------
-\subsection{Varyans Kaynakları}
-\label{subsec:statistics_results}
-
-Yukarıdaki karşılaştırmaları dört varyans kaynağı ilgilendirmektedir. Saldırı başlatma stokastisitesi ihmal edilebilir düzeydedir; PGD-10'u sabit 1.000 örneklik bir altkümede üç saldırı tohumuyla (42, 123, 456) yeniden koşmak, yükleyici örnekleri karıştırmadığı için temiz doğruluğu hiç değiştirmemekte ve gürbüz doğruluğu CNN'de $0{,}05$, ViT'te $0{,}00$ puanlık standart sapmayla oynatmaktadır. Eğitim koşusu varyansı daha büyük ama yine küçüktür. Mimari başına üç bağımsız koşuda, çekişmeli eğitilmiş çift için standart sapma temiz doğrulukta en çok $0{,}55$, PGD-10'da en çok $0{,}50$ puandır (Tablo~\ref{tab:main_results}).
-
-% REF: Secim kuralinin asimetriye etkisi, B (kosumlar arasi aralik en cok 2.41)
-Protokol etkisini doğrudan bu iki sayıyla karşılaştırmak bir ölçek hatası olurdu, çünkü protokol etkisi transfer asimetrisi üzerinde, yukarıdaki iki sayı ise mutlak doğruluk üzerinde ölçülmektedir. Bu nedenle protokol ve eğitim koşusu etkileri \emph{aynı} nicelik olan köşegen dışı asimetri üzerinde ve mutlak birimlerle nicelenmiştir. Sabit bir tohum çiftinde yalnızca koşullama protokolünü değiştirmek asimetriyi $15{,}01\pm0{,}84$ puan oynatmaktadır. Bu değer tohum başına açıklıkların ortalamasıdır; uç protokoller üç tohumda da aynı olduğu için burada protokol ortalamalarının açıklığıyla çakışmakta, uç protokollerin aynı olmadığı CIFAR-100'de ise ondan ayrışmaktadır ($13{,}83$'e karşı $13{,}58$). İki mimariyi yeniden eğitmek aynı asimetriyi en çok $2{,}41$ puanlık bir aralıkta, ölçüldüğü protokole göre $0{,}23$ ile $1{,}27$ puanlık bir standart sapmayla oynatmaktadır (Bölüm~\ref{subsec:transfer}). En çok iki buçuk puana karşı on beş puan, makalenin dayandığı sıralamadır. Kontrol noktası seçim kuralını değiştirmek dört protokollü yayılımı ortalama $2{,}16$ puan oynatmaktadır (Bölüm~\ref{subsec:selection}); bu değer yeniden eğitimin bir protokol içinde asimetriyi oynattığı miktara ($2{,}41$'e kadar) yakındır ve söz konusu sıralamayı bozmamaktadır.
-
-Bu iki yayılımın oranı manşete taşınmamıştır. Üç koşumla payda iki serbestlik derecesi taşıdığından herhangi bir tek oran için $\chi^2$ aralığı çok geniştir; başarılı kaynak protokolünde bu aralık $0{,}8$ ile $9{,}9$ arasında uzanmakta ve biri içermektedir. Duyarlılık olarak raporlandığında oran, yayılım ölçüleri ve referans protokoller boyunca $5{,}2$ ile $32{,}6$ arasında değişmekte, birincil kabul edilen her ikisi doğru protokolündeki benzeri benzeriyle karşılaştırmada ise $28{,}3$ olmaktadır. İki uyarı oranı daha da sınırlamaktadır. En büyük asimetriyi veren protokol aynı zamanda en büyük koşumlar arası standart sapmayı taşımakta, yani pay ile payda bağımsız olmamaktadır; üç koşum tek bir doğrulama bölmesini paylaştığından da payda bölmeler arası varyansı dışarıda bırakmakta ve bu durum oranı bir üst sınır yapmaktadır. Mutlak karşılaştırma iki uyarıdan da etkilenmediği için iddiayı kat değeri değil o taşımaktadır. Dördüncü kaynak olan kontrol noktası seçim kuralı Bölüm~\ref{subsec:selection}'de ele alınmıştır.
-
-Üç CIFAR-10 eğitim çifti ve bunların CIFAR-10 değerlendirmeleri, Bölüm~\ref{subsec:training}'de anılan önceki kontrol noktası çifti gibi NVIDIA RTX 5060 Ti (16GB VRAM) üzerinde koşulmuştur; CIFAR-100, SVHN ve $L_2$ kampanyaları, kontrol noktası seçimi yörüngeleri ile standart eğitilmiş, son kontrol noktası ve RobustBench havuzu transfer koşuları ise RTX 5090 (32GB) üzerinde yürütülmüştür. Tüm koşularda PyTorch 2.6.0, CUDA 12.8 ve deterministik cuDNN ayarları kullanılmıştır. AutoAttack değerlendirmesi standart yapılandırmayla (APGD-CE, APGD-T, FAB-T, Square) 10.000 örneklik tam test kümesinde, örnek bazında kayıtla ve tohumlanmış 1.000 örneklik parçalar halinde koşulmuştur. Üç tohumlu eğitim boru hattı toplam 21,7 GPU-saat gerektirmiştir.

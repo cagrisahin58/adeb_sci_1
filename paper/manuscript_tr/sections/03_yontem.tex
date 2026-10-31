@@ -1,127 +1,220 @@
 % ============================================================================
 % BOLUM 3: YONTEM
 % ============================================================================
-% 2026-10-04 (LeCun turu): EN 03_methodology.tex ile esitlendi; koyu etiketler
-% duzyaziya, tarif adi, yeni tab:protocol_masks, eq:general_identity ve
-% eq:raw_identity buraya tasindi, onceki kontrol noktasi cifti tek nitel cumle.
+% 2026-10-31 (konsey turu, TR ayna T2): EN 03_methodology.tex (konsey
+% revizyonu) ile esitlendi. Yapi EN'yi izler: tasarim ozeti, tehdit modeli ve
+% modeller, saldirilar, egitim, mimari x baslatma tasarimi (tab:design),
+% ayrisim (Onerme 1), paneller, kosullama protokolleri (Onerme 2), girdi
+% gradyani hizalanmasi, istatistiksel cikarim (tab:registry), on kayit.
+% Eski metindeki gradyan, uzamsal lokalite, jeton agregasyonu, dikkat ve
+% oznitelik metrikleri EN'de oldugu gibi Ek'e (07_ek.tex) gitti. TR gosterim
+% uzlasimi korundu: r_{\text{ham}}, r_{\text{koş}} (EN r_raw, r_cond).
+% Sayilar EN ile ve foyle birebir; FOY ve KAYNAK yorumlari EN'deki yerlerinde.
+\makeatletter
+\@ifundefined{proposition}{\newtheorem{proposition}{Önerme}}{}
+\makeatother
+
 \section{Yöntem}
 \label{sec:methodology}
 
-Şekil~\ref{fig:study_overview} tasarımı özetlemektedir. İki mimari, mimari başına üç bağımsız koşuyla tek bir eşleşmiş çekişmeli tarif altında eğitilmekte ve her değerlendirme tam test kümesinde örnek bazında kaydedilmektedir; böylece her analizin içinde Bölüm~\ref{subsec:metrics}'teki dört koşullama protokolü, saldırı yeniden koşulmadan aynı kayıtlara uygulanabilmektedir. Aşağıdaki alt bölümler sırasıyla tehdit modelini, modelleri, saldırıları ve eğitim protokolünü sabitlemekte, ardından ölçümleri tanımlamaktadır.
+Çalışmanın merkezinde, her biri üç tohumla eğitilmiş bir ResNet-18 ve bir ViT-Tiny'den oluşan çekişmeli eğitilmiş tek bir çift bulunmaktadır. Bu çiftin transfer oranları, iki modeli de içermeyen gürbüz CNN'lerden kurulmuş sabit bir panele karşı bileşenlerine ayrılmaktadır. Bir $2\times2$ tasarımda mimari ve ImageNet başlatması iki etken olarak birlikte ele alınmış, bütün karar kuralları da ilgili koşulardan önce kayda geçirilmiştir (Şekil~\ref{fig:study_overview}).
 
-% Genel bakis sekli: EN ile ortak dosya (vektor TikZ, etiketler Ingilizce). Sayi tasimaz.
+% Sekil: paper/figures/konsey/fig_study_overview.tex (TikZ; sayilar fig_study_overview_veri.py, kanit fig_study_overview.kanit.json); taslak, visio-cizici turu bekliyor.
+% FOY:M9.4:1569 (CIFAR-10 matrisi K = 20); FOY:M10.1:1826,1827 (CIFAR-100
+% 15 model, ImageNetV2 14 model); panel uyesi sayilari ON_KAYIT Sec. 2 ve
+% EK Sec. 4.1, 5.3 tasarim sabitleri.
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=\textwidth]{../figures/final/fig_study_overview.pdf}
-\caption{Çalışmanın genel görünümü. Aynı CIFAR-10 bölmesi iki mimariyi, ResNet-18 ve ViT-Tiny'yi beslemekte; ikisi de mimari başına üç bağımsız koşuyla tek bir eşleşmiş çekişmeli tarif altında eğitilmekte ve her eğitimden önce ayrılmış bir doğrulama bölmesiyle seçilmektedir. Her değerlendirme tam test kümesinde örnek bazında kaydedilmektedir ve dört koşullama protokolünün aynı kayıtlara uygulanabilmesini sağlayan da bu kayıttır. Alt sıradaki beş ölçüm ailesi Bölüm~\ref{sec:experiments}'te raporlananlardır; altlarındaki şerit yineleme ayarlarını ve kontrolleri sıralamaktadır.}
+\includegraphics[width=\textwidth]{../figures/konsey/fig_study_overview.pdf}
+\caption{Çalışmanın genel görünümü. Bir ResNet-18 ile ViT-Tiny çifti ve $2\times2$ mimari $\times$ başlatma tasarımı, CIFAR-10 ve CIFAR-100'de gürbüz CNN'lerden oluşan sabit panellere karşı değerlendirilmekte, bağımsız eğitilmiş ImageNet modelleriyle ImageNetV2 üzerinde betimsel bir genişletme yapılmaktadır. Transfer oranları kırılganlık $w$, simetrik benzerlik $\simt$ ve yönlü artık $r$ bileşenlerine ayrılmaktadır; kayıtlı test aileleri ve koşullama protokolü katmanı şeklin alt kısmında yer almaktadır.}
 \label{fig:study_overview}
 \end{figure*}
 
 % ----------------------------------------------------------------------------
-% 3.1 Tehdit Modeli
+% 3.1 Tehdit modeli ve modeller
 % ----------------------------------------------------------------------------
-\subsection{Tehdit Modeli}
-\label{subsec:threat_model}
+\subsection{Tehdit Modeli ve Modeller}
+\label{subsec:setup}
 
-Saldırganın girdi görüntülerini sınırlı bir bölge içinde pertürbe edebildiği standart $\Linf$ tehdit modeli ele alınmaktadır:
-\begin{equation}
-    \mathcal{B}_\eps(x) = \{x' : \|x' - x\|_\infty \leq \eps\}
-\end{equation}
+% KAYNAK: ON_KAYIT Sec. 2-3 (eps, alpha, girdi hatti, timm adlari); EK Sec.
+% 5.2 (ImageNetV2 eps 4/255, alpha 1/255); parametre sayilari eski metin
+% 03:43 ve 03:47 (tasarim olgusu, sonuc degil).
+% KAYNAK: raporlar/konsey_2026-10-29/_ek_flop_olcumu.json (param_M 5.53, on sinifli baslik; birlesik.md m10)
+Bütün saldırılar hedefsizdir ve $\Linf$ normuyla, $\mathcal{B}_\eps(x) = \{x' : \|x' - x\|_\infty \leq \eps\}$ bölgesi içinde sınırlanmaktadır. Pertürbasyon bütçesi CIFAR-10 ve CIFAR-100~\cite{krizhevsky2009learning} için $\eps = 8/255$, ImageNetV2 için $\eps = 4/255$ olarak belirlenmiştir.
 
-CIFAR-10 için yerleşik uzlaşımlar izlenerek~\cite{krizhevsky2009learning, croce2021robustbench} birincil pertürbasyon bütçesi olarak $\eps = 8/255 \approx 0{,}031$ kullanılmakta, epsilon taraması analizi için de $\eps \in \{2/255, 4/255, 16/255\}$ değerlerinde ek tam test PGD-10 değerlendirmeleri yapılmaktadır.
-
-Değerlendirme hem beyaz kutu (tam model erişimi) hem kara kutu (transfer saldırısı) senaryolarında yapılmaktadır. Beyaz kutu saldırılarda saldırgan model mimarisini ve parametrelerini tam olarak bilmektedir. Transfer saldırılarında ise çekişmeli örnekler bir kaynak modelde üretilmekte ve farklı bir hedef modelde değerlendirilmektedir.
-
-% ----------------------------------------------------------------------------
-% 3.2 Model Mimarileri
-% ----------------------------------------------------------------------------
-\subsection{Model Mimarileri}
-\label{subsec:architectures}
-
-\paragraph{CNN Modelleri}
-
-ResNet-18~\cite{he2016deep}, artık ağın CIFAR-10 türevidir; 7$\times$7 giriş katmanı yerine başlangıçta 3$\times$3 bir evrişim kullanmakta ve 11,2M parametre içermektedir. 36,5M parametreli WideResNet-28-10~\cite{zagoruyko2016wide}, CIFAR-10'da çekişmeli gürbüzlük için olağan referans mimaridir ve bu çalışmada Gowal vd.'nin~\cite{gowal2020uncovering} RobustBench~\cite{croce2021robustbench} üzerinden dağıtılan gürbüz kontrol noktası kullanılmıştır. Bu model ek etiketsiz veriyle ve buradaki tariften daha güçlü bir tarifle eğitildiğinden eşleşmiş bir karşılaştırma değil, bir referans noktası işlevi görmektedir. Bölüm~\ref{subsec:external}, aralarında standart eğitilmiş bir WideResNet-28-10'un da bulunduğu başka RobustBench kontrol noktalarını yeni bir eğitim yapmadan eklemektedir.
-
-\paragraph{Görü Dönüştürücüsü Modelleri}
-
-ViT-Tiny, \texttt{timm} kütüphanesinden~\cite{rw2019timm} alınmış ve girdiler çift doğrusal olarak 224$\times$224'e büyütülerek CIFAR-10'a uyarlanmıştır. Mimari 16$\times$16 yamalar (görüntü başına 196 yama), 192 boyutlu gömmeler, her biri 3 dikkat başlı 12 dönüştürücü bloğu ve 4 MLP oranı kullanmakta, toplam 5,7M parametre içermektedir. Model CIFAR-10 üzerinde \emph{sıfırdan} (ImageNet ön eğitimi olmadan) temel veri artırmayla (rastgele kırpma ve yatay çevirme) eğitilmekte, ardından çekişmeli ince ayara tabi tutulmaktadır. Küçük veri kümelerinde ViT gürbüzlüğünün eğitim tarifine duyarlı olduğu bilindiğinden~\cite{debenedetti2023light, mo2022adversarial}, mimari düzeyindeki sonuçlar en iyi şekilde eğitilmiş ViT'ler için değil, \emph{bu temel eğitim tarifi altında} geçerli olarak okunmalıdır.
+% KAYNAK: raporlar/hakem_konsey_2026-10-31/uygulama.md Sec. 9 (timm 1.0.27 vit_tiny_patch16_224, konteynerde okundu:
+% patch_size 16, depth 12, embed_dim 192, num_heads 3, img_size 224); ON_KAYIT Sec. 3 (32->224 bilinear buyutme; degerler 32, 224).
+Bu çalışmada R32 olarak anılan CIFAR ResNet-18~\cite{he2016deep}, $3\times3$ bir giriş katmanına ve 11{,}2M parametreye sahiptir ve $32\times32$ girdi almaktadır. ViT-Tiny (\texttt{timm}~\cite{rw2019timm} içinde \texttt{vit\_tiny\_patch16\_224}; 5{,}5M parametre, $16\times16$ yamalar, 3 başlı ve 192 genişlikli 12 blok) 32 pikselden 224 piksele çift doğrusal olarak büyütülmüş girdileri okumaktadır. R224, yani $7\times7$ giriş katmanlı \texttt{timm} \texttt{resnet18} modeli de aynı büyütülmüş girdiyi almaktadır. ImageNet ağırlıkları \texttt{deit\_tiny\_patch16\_224.fb\_in1k}~\cite{touvron2021training} ve \texttt{resnet18.a1\_in1k}~\cite{wightman2021resnet} kontrol noktalarından alınmıştır. CIFAR modelleri $[0,1]$ aralığındaki ham pikselleri okurken ImageNet ile başlatılan modeller ImageNet normalizasyonunu model içinde uygulamaktadır.
 
 % ----------------------------------------------------------------------------
-% 3.3 Saldiri Yontemleri
+% 3.2 Saldirilar
 % ----------------------------------------------------------------------------
 \subsection{Saldırı Yöntemleri}
 \label{subsec:attack_methods}
 
-\paragraph{FGSM}
-Adım boyu pertürbasyon bütçesine eşit tek adımlı saldırıdır:
-\begin{equation}
-    x_{adv} = x + \eps \cdot \text{sign}(\nabla_x \mathcal{L}_{CE}(f(x), y))
-\end{equation}
+% KAYNAK: ON_KAYIT Sec. 5 B5 (MI-PGD mu 1.0, alpha eps/10; TGR alpha 2/255,
+% mu 1.0, gamma 0.5; adim 10); eski metin 03:62-69 ve 03:171 (TGR uyarlamasi).
+PGD~\cite{madry2018towards}, düzgün dağılımlı rastgele bir başlangıçtan çapraz entropi üzerinde $\alpha = 2/255$ (ImageNetV2'de $1/255$) boyunda on işaretli gradyan adımı atmakta ve her adımdan sonra $\mathcal{B}_\eps(x)$ üzerine izdüşüm almaktadır. Bu PGD-10 eğitimde, beyaz kutu değerlendirmede ve bütün transfer matrislerinde kullanılmıştır. AutoAttack~\cite{croce2020reliable}, APGD-CE, APGD-T, FAB-T ve Square saldırılarından oluşan standart topluluktur. Sonucun saldırıya bağlılığını yoklamak için iki kaynak saldırısı daha eklenmiştir. Bunlardan ilki MI-FGSM'i~\cite{dong2018boosting} izleyen momentumlu PGD-10'dur ($\mu = 1{,}0$, $\alpha = \eps/10$). İkincisi ise yalnız ViT kaynaklarında uygulanan ve momentumu $1{,}0$, adım boyu $\alpha = 2/255$, ölçek katsayısı $\gamma = 0{,}5$ olan TGR'dir~\cite{zhang2023tgr} (Bölüm~\ref{subsec:rw_transfer}). Bu çalışmadaki TGR dikkat, QKV ve MLP yollarına tek bir $\gamma$ uyguladığından ve her örnek ve kanal için jetonlar boyunca yalnız bir en büyük ve bir en küçük girdiyi sıfırladığından sonuçları yalnız bu uyarlama için geçerlidir.
 
-\paragraph{PGD}
-Adım boyu $\alpha = 2/255$ ve rastgele başlangıçlı yinelemeli saldırıdır:
-\begin{equation}
-    x^{t+1} = \Pi_{\mathcal{B}_\eps(x)} \left( x^t + \alpha \cdot \text{sign}(\nabla_{x^t} \mathcal{L}_{CE}(f(x^t), y)) \right)
-\end{equation}
-burada $x^0 = x + \mathcal{U}(-\eps, \eps)$'dir. Bu çalışma boyunca hem çekişmeli eğitimde hem değerlendirmede PGD-10 (10 yineleme) kullanılmaktadır (Tablo~\ref{tab:main_results}).
-
-\paragraph{AutoAttack}
-APGD-CE (çapraz entropi kayıplı Auto-PGD), APGD-T (hedefli DLR kayıplı Auto-PGD), FAB-T (hedefli Hızlı Uyarlanabilir Sınır saldırısı) ve Square (skor tabanlı kara kutu saldırısı) bileşenlerini birleştiren standartlaştırılmış topluluk saldırısı AutoAttack~\cite{croce2020reliable} kullanılmaktadır.
+Her kaynağın en iyi saldırısı, izin verilen saldırılar arasından örnekleri panele en iyi transfer olan saldırıdır. Seçim çift indisli görüntülerde yapılıp tek indisli görüntülerde puanlanmış, ardından roller değiştirilmiş ve kaynak açığı bu seçim altında yeniden hesaplanmıştır (Bölüm~\ref{subsec:decomposition_def}). Adım boyları saldırılar arasında farklıdır ve ayarlanmamıştır.
 
 % ----------------------------------------------------------------------------
-% 3.4 Savunma Yontemleri
+% 3.3 Egitim
 % ----------------------------------------------------------------------------
-\subsection{Savunma Yöntemleri}
-\label{subsec:defense_methods}
-
-\paragraph{Çekişmeli Eğitim (AT)}
-Temiz ve çekişmeli kayıpları birleştiren karma bir çekişmeli eğitim amacı kullanılmaktadır:
-\begin{equation}
-    \mathcal{L} = (1 - \lambda)\,\mathcal{L}_{CE}(f_\theta(x), y) + \lambda\,\mathcal{L}_{CE}(f_\theta(x_{adv}), y)
-\end{equation}
-burada $\lambda = 0{,}5$, standart sınıflandırma başarımı ile çekişmeli gürbüzlüğü dengelemektedir. İç enbüyükleme çekişmeli örnekleri PGD-10 ile üretmektedir ($\alpha = 2/255$, $\eps = 8/255$). Saldırı üretimi, Rice vd.'nin~\cite{rice2020overfitting} referans gerçeklemesinde olduğu gibi model eğitim kipindeyken yapılmakta, böylece saldırı üretimi ile parametre güncellemesi tutarlı parti-normalizasyonu istatistikleri görmektedir. Yalnızca çekişmeli örneklerle eğitim doğal başarımı düşürebildiğinden iki kaybı karıştırmak, gürbüzlük kazanılırken temiz doğruluğun korunmasına yardım etmektedir. Kaybın yarısı temiz olduğu ve tarif temiz ön eğitilmiş kontrol noktalarına uygulandığı için bu tarif, bu çalışmada \emph{karma kayıplı PGD çekişmeli ince ayar} olarak adlandırılmaktadır; Madry vd.'nin~\cite{madry2018towards} PGD çekişmeli eğitimi değildir ve ürettiği gürbüz doğruluklar referans PGD çekişmeli eğitim sonuçlarıyla karşılaştırılarak okunmamalıdır. TRADES~\cite{zhang2019theoretically} gibi alternatif formülasyonlar kuramsal temelli ödünleşim mekanizmaları sunmaktadır; mimari etkileri savunmaya özgü etkileşimlerden yalıtmak için iki mimaride de tek bir tarif kullanılmıştır.
-
-% ----------------------------------------------------------------------------
-% 3.5 Egitim Protokolu
-% ----------------------------------------------------------------------------
-\subsection{Eğitim Protokolü}
+\subsection{Çekişmeli Eğitim}
 \label{subsec:training}
 
-\paragraph{Temiz Eğitim}
-CNN'ler için SGD eniyileyici, 0,1 başlangıç öğrenme oranı, kosinüs tavlama çizelgesi~\cite{loshchilov2016sgdr}, $5 \times 10^{-4}$ ağırlık sönümü ve 200 epok kullanılmıştır. ViT'ler için AdamW eniyileyici~\cite{loshchilov2017decoupled}, $10^{-3}$ başlangıç öğrenme oranı, kosinüs tavlama, 0,05 ağırlık sönümü ve 200 epok kullanılmıştır.
+% KAYNAK: eski metin 03:78-100 (C1 tarifi, dogrulama bolmesi, tohumlar);
+% CLAUDE.md (LR secimi). Tasarim sabitleri, sonuc degil.
+Bütün modellerde $\tfrac12\mathcal{L}_{\mathrm{CE}}(f_\theta(x), y) + \tfrac12\mathcal{L}_{\mathrm{CE}}(f_\theta(x_{adv}), y)$ kaybı enküçültülmekte, $x_{adv}$ ise Rice vd.'nin~\cite{rice2020overfitting} referans gerçeklemesinde olduğu gibi model eğitim kipindeyken PGD-10 ile üretilmiştir. Kaybın yarısı temiz olduğundan ve eğitim temiz kontrol noktalarından başladığından bu karma kayıplı PGD çekişmeli ince ayar, Madry vd.'nin~\cite{madry2018towards} PGD çekişmeli eğitimiyle aynı yöntem değildir ve ürettiği gürbüz doğruluklar o yöntemin referans sonuçlarıyla karşılaştırılarak okunmamalıdır. Mimarinin savunmayla karışmaması için her hücrede tek bir tarif kullanılmıştır.
 
-\paragraph{Çekişmeli Eğitim}
-Temiz eğitilmiş kontrol noktalarından başlanarak düşürülmüş öğrenme oranlarıyla ince ayar yapılmaktadır. CNN'ler SGD ile $10^{-3}$ öğrenme oranı ve kosinüs tavlamayla en çok 100 epok, ViT'ler ise AdamW ile aynı öğrenme oranı ve çizelgeyle eğitilmektedir. Gradyanlar küresel $L_2$ normu 10'a kırpılmakta ve kaybı sonlu olmayan partiler atlanmaktadır. Veri artırma 4 piksel dolgulu rastgele kırpma ve yatay çevirmeden oluşmaktadır; tüm modeller $[0,1]$ aralığında ham piksel girdisi almakta (ortalama/std normalizasyonu yoktur), saldırılar ve epsilon bütçeleri de doğrudan bu piksel uzayında işlemektedir. Eğitim parti boyu CNN için 128, ViT için 64'tür (değerlendirme parti boyları analize göre değişmektedir). Erken durdurma 20 sabır ve 0,1 yüzde puanlık iyileşme eşiğiyle uygulanmaktadır.
-
-\paragraph{Doğrulama Bölmesi ve Tekrarlar}
-Model seçimi ve erken durdurma, sabit 2.000 örneklik bir doğrulama bölmesindeki PGD-10 çekişmeli doğruluğuyla yürütülmektedir. Bu bölme bir kez çekilmiş (tohum 777; indeksler kodla birlikte saklanmaktadır), çalışmadaki her model tarafından paylaşılmakta ve hem temiz hem çekişmeli aşamanın eğitim kümesinden çıkarılmaktadır; dolayısıyla hiçbir kontrol noktası üzerinde eğitildiği veriyle seçilmemektedir. Test kümesine yalnızca nihai art-değerlendirmelerde dokunulmaktadır. Temiz ön eğitim ve ardından çekişmeli ince ayardan oluşan boru hattının tamamı mimari başına üç kez, bağımsız tohumlarla tekrarlanmış (ResNet-18 için 1001 ile 1003, ViT-Tiny için 2001 ile 2003) ve koşular indekse göre eşlenmiştir; böylece her mimariler arası karşılaştırma aynı tekrar altında eğitilmiş modeller arasında yapılmaktadır. Aksi belirtilmedikçe tablolar bu üç koşunun ortalamasını ve standart sapmasını raporlamaktadır. İstisnalar SVHN ile dış modellerdir; SVHN'de iki koşu bulunduğundan değerleri ayrı ayrı basılmakta, WideResNet-28-10 referansı ve Bölüm~\ref{subsec:external}'teki RobustBench kontrol noktaları ise tek birer dış modeldir.
+% KAYNAK: scripts/run_c1_pipeline.sh (temiz 200 epok, SGD lr 0.1, batch 128; AT 100 epok, lr 1e-3, ViT batch 64, sabir 20;
+% tohumlar 1001-1003 ve 2001-2003); src/training/trainer.py (SGD weight_decay 5e-4, AdamW weight_decay 0.05);
+% cli/train.py (--grad-clip 10); experiments/rev2/make_val_split.py (val-size 2000, split-seed 777); CLAUDE.md (min_delta 0.1).
+R32 ve ViT-Tiny için temiz eğitim kosinüs tavlamayla~\cite{loshchilov2016sgdr} 200 epok sürmekte, CNN'de SGD (öğrenme oranı 0{,}1, ağırlık sönümü $5\times10^{-4}$), ViT'te AdamW~\cite{loshchilov2017decoupled} (öğrenme oranı $10^{-3}$, ağırlık sönümü 0{,}05) kullanılmaktadır. Ardından çekişmeli ince ayar, $10^{-3}$ öğrenme oranı ve en çok 100 epokluk kosinüs çizelgesiyle yürütülmüştür. Bu aşamada CNN'de SGD ve 128'lik parti, ViT'te AdamW ve 64'lük parti kullanılmış, gradyanlar $L_2$ normu 10'da kırpılmış, sonlu olmayan partiler atlanmış ve veri artırma 4 piksel dolgulu rastgele kırpma ile yatay çevirmeyle yapılmıştır. Seçim ve erken durdurma (sabır 20, eşik 0{,}1 puan), sabit 2.000 görüntülük bir doğrulama bölmesindeki PGD-10 doğruluğuna dayanmaktadır. Bu bölme tohum 777 ile bir kez çekilmiş ve her modelin iki eğitim aşamasından da çıkarılmıştır. Tohumlar R32 için 1001 ile 1003, ViT-Tiny için 2001 ile 2003 arasındadır ve indekse göre eşlenmiştir. Tablolar koşular üzerinden ortalama ve standart sapma vermektedir.
 
 % 2026-10-04 (koordinator karari): onceki cift karantinadadir; hicbir sayisi metne girmez.
-Bu protokol benimsenmeden önce eğitilmiş ve temiz ön eğitimin zaten gördüğü bir doğrulama bölmesiyle seçilmiş daha eski bir kontrol noktası çifti, burada raporlanan koşularla aynı mutlak sıralamayı vermiş, ancak temiz doğruluk ile koşullu duyarlılık arasındaki payı farklı dağıtmıştır; kayıtları sızıntısız protokolden önceye ait olduğu için bu çiftin kayıtları yayımlanmamakta ve hiçbir sayısı bu makaleye girmemektedir.
+Temiz ön eğitimin zaten gördüğü bir doğrulama bölmesiyle seçilmiş daha eski bir kontrol noktası çifti de aynı mutlak sıralamayı vermiştir. Ancak bu çift sızıntısız protokolden önceye ait olduğundan hiçbir sayısı bu makaleye girmemektedir.
 
 % ----------------------------------------------------------------------------
-% 3.6 Degerlendirme Metrikleri
+% 3.4 Mimari x baslatma tasarimi
 % ----------------------------------------------------------------------------
-\subsection{Değerlendirme Metrikleri}
+\subsection{Mimari \texorpdfstring{$\times$}{x} Başlatma Tasarımı}
+\label{subsec:design}
+
+% KAYNAK: ON_KAYIT Sec. 3 (hucreler, tarif, normalizasyon demeti), Sec. 4
+% (denetimler); FOY:M9:1443 (hucre tanimlari).
+Sıfırdan eğitilmiş bir ViT-Tiny, R32'den mimari, girdi hattı ve belki de eğitimin yeterliliği bakımından ayrılmaktadır. ViT'lerin çekişmeli eğitiminin ön eğitime bağlı olduğu da bilinmektedir~\cite{mo2022adversarial}. Tablo~\ref{tab:design} ile verilen tasarım bu etkenleri birbirinden ayırmak için kurulmuştur. \cellname{R224-scr}, ViT-Tiny koşularının (\cellname{V-scr}) girdi hattını ve temiz aşama komutunu paylaşmaktadır. Böylece sıfırdan satırındaki iki hücre mimari paketinde, \cellname{V-scr} için ayrıca eğitim kampanyasında ve çekişmeli epok tavanında ayrışmakta, ImageNet satırı ise iki mimariyi de ImageNet ağırlıklarından başlatmaktadır. Başlatma etkeni ağırlıkları, daha kısa bir temiz aşamayı ve model içi normalizasyonu bir demet hâlinde taşımaktadır. Bu demet iki mimari için aynı olduğundan etkileşim karşıtlığından ancak etkisi mimariye bağlı değilse düşmekte, normalizasyonun ayrı etkisi ise tanımlanamamaktadır.
+
+% KAYNAK: ON_KAYIT Sec. 3 tablo ve ortak AT tarifi; degerler 32, 224, 1e-4, 0.05, 1e-3, 64, 100, 20, 80;
+% scripts/run_c1_pipeline.sh (R32 tohumlari 1001-1003).
+% FOY:M9.1:1452-1457 (yeni kosu tohumlari); FOY:M9.2:1505-1507 (V-scr
+% tohumlari); FOY:M9.5:1593 (R32 ciftleri).
+\begin{table}[!t]
+\centering
+\caption{CIFAR-10'daki tasarım hücreleri. 224 piksellik girdiler 32 pikselden çift doğrusal olarak büyütülmüştür, $^\ast$ ise model içi ImageNet normalizasyonunu gösterir; ImageNet satırının temiz aşamasında öğrenme oranı $10^{-4}$ olan AdamW kullanılmıştır. Köprü hücresi R32 dışındaki bütün hücreler tek bir çekişmeli tarifi paylaşmaktadır (karma kayıp, PGD-10, ağırlık sönümü 0{,}05 olan AdamW, öğrenme oranı $10^{-3}$, parti 64, 100 epokluk kosinüs çizelgesi, sabır 20); üç yeni hücrede tavan 80 epoktur.}
+\label{tab:design}
+\footnotesize
+\setlength{\tabcolsep}{2.4pt}
+\begin{tabular}{@{}llllll@{}}
+\toprule
+\textbf{Hücre} & \textbf{Model} & \textbf{Başlatma} & \textbf{Girdi} & \textbf{Temiz aşama} & \textbf{Tohumlar} \\
+\midrule
+R32 & ResNet-18, $3{\times}3$ & rastgele & 32 & SGD, 200 ep & 1001--1003 \\
+\cellname{V-scr} & ViT-Tiny & rastgele & 224 & AdamW, 200 ep & 2001--2003 \\
+\cellname{V-IN} & ViT-Tiny & DeiT-Ti & 224$^\ast$ & AdamW, 30 ep & 2101, 2102 \\
+\cellname{R224-scr} & ResNet-18, $7{\times}7$ & rastgele & 224 & \cellname{V-scr} gibi & 1201, 1202 \\
+\cellname{R224-IN} & ResNet-18, $7{\times}7$ & RSB A1 & 224$^\ast$ & AdamW, 30 ep & 1301, 1302 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% KAYNAK: ON_KAYIT Sec. 4 (denetim esigi 5 puan, cokus esigi 15 yuzde, kirpilma, dislama).
+ImageNet ile başlatılan her koşunun, ilk temiz epoğundan sonra, kendi mimarisindeki rastgele başlatılmış koşuların ilk epok doğrulama doğruluğu ortalamasını 5 puan aşması gerekmiştir. Bu koşul, yüklemenin ve normalizasyonun bir denetimi olarak konmuştur. Beşinci çekişmeli epokta doğrulama PGD doğruluğunun \%15'in altında kalması durumunda ImageNet satırının öğrenme oranının düşürülmesi öngörülmüştür. Tavana beş epoktan daha yakın bir noktada seçilen koşu kesilmiş olabileceği gerekçesiyle işaretlenmekte, hiçbir koşu sonuçlarına bakılarak dışlanmamaktadır. Kayıtlı karşıtlıklar $\sigma$ ve $\rho$'nun hücre ortalamalarını kullanmaktadır (Denklem~\eqref{eq:panel_def}):
+\begin{align*}
+\Asig{scr} &= \sigma(\cellname{V-scr}) - \sigma(\cellname{R224-scr}),\\
+\Isig &= [\sigma(\cellname{V-IN}) - \sigma(\cellname{V-scr})]\\
+&\quad - [\sigma(\cellname{R224-IN}) - \sigma(\cellname{R224-scr})],\\
+\Arho &= \tfrac12\{[\rho(\cellname{V-scr}) - \rho(\cellname{R224-scr})]\\
+&\quad + [\rho(\cellname{V-IN}) - \rho(\cellname{R224-IN})]\}.
+\end{align*}
+
+% ----------------------------------------------------------------------------
+% 3.5 Ayrisim
+% ----------------------------------------------------------------------------
+\subsection{Kırılganlık, Benzerlik ve Yön}
+\label{subsec:decomposition_def}
+
+% KAYNAK: ON_KAYIT Sec. 2 (tanimlar, bolunmus yari, logit ve oran olcekleri,
+% panel uyesinin kendi degeri); 01_oneri_P3_kuram_olcum.md satir 15-27
+% (Onerme 1); brif Sec. 3.1 gosterim.
+% KAYNAK: eski metin 03:109-116 (T_ij tanimi; 2026-10-31 subsec:metrics'ten tasindi).
+Gürbüz doğruluk temizde yanlış sınıflandırılan görüntüleri gürbüz olmayan saydığından temiz doğruluk ile koşullu sağkalımın çarpımına birebir ayrışmaktadır. Koşullu sağkalımın tümleyeni, $j$ modelinin beyaz kutu koşullu yanıltma oranı $w_j$'dir. Kaynak $i$'den hedef $j$'ye transferde \emph{hedef doğru} oranı, $j$'nin temizde doğru sınıflandırdığı ve $i$ üzerinde üretilen örnekte yanlış sınıflandırdığı görüntülerin kesridir:
+\begin{equation}
+    T_{ij} = \frac{\sum_{x} \mathbf{1}[f_j(x) = y]\,\mathbf{1}[f_j(x_{adv}^{(i)}) \neq y]}{\sum_{x} \mathbf{1}[f_j(x) = y]}.
+\end{equation}
+Bu tanımla $w_j = T_{jj}$ olur.
+
+Hedef doğru oranları $T_{ij}$, $T_{ji}$ ve beyaz kutu oranları $w_i$, $w_j$ olan iki model için
+\begin{align}
+\log\simt_{ij} &= \tfrac12\left[\log(T_{ij}T_{ji}) - \log(w_i w_j)\right], \label{eq:tau_def}\\
+r_{ij} &= \log(T_{ij}/T_{ji}) - \log(w_j/w_i) \label{eq:r_def}
+\end{align}
+tanımlandığında
+\begin{equation}
+\log T_{ij} = \log w_j + \log\simt_{ij} + \tfrac12 r_{ij}
+\label{eq:decomp}
+\end{equation}
+eşitliği birebir sağlanır. Burada benzerlik $\simt_{ij} = \simt_{ji}$ iki yön tarafından paylaşılmakta, yönlü artık $r_{ij} = -r_{ji}$ ise kırılganlık oranı çıkarıldıktan sonra kalan log asimetrisini vermektedir. Denklem~\eqref{eq:decomp} bir muhasebe özdeşliğidir. Bu özdeşliğin içeriği terimlerin ölçülen büyüklüklerinde ve bu büyüklüklerin tasarıma verdiği yanıtta yatmaktadır. $r$ olmadan yazılan $T_{ij} = w_j\simt_{ij}$, sütun etkisi ölçülmüş bir değere sabitlenmiş hâliyle Caussinus'un~\cite{caussinus1965contribution} yarı simetri modelidir (Bölüm~\ref{subsec:rw_decomposition}). Bu biçimiyle Demontis vd.'nin~\cite{demontis2019adversarial} üç etkeninden ikisine, hedef kırılganlığına ve gradyan hizalanmasına yakın durmaktadır. Üçüncü etken olan vekil modelin karmaşıklığına ayrı bir terim ayrılmamış, bu etken Önerme~\ref{prop:identifiability}(d)'nin anlattığı biçimde öteki terimlere katılmıştır (Şekil~\ref{fig:decomposition_schematic}).
+
+% Sekil: paper/figures/konsey/fig_decomposition_schematic.py (kanit fig_decomposition_schematic.kanit.json); taslak, visio-cizici turu bekliyor.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{../figures/konsey/fig_decomposition_schematic.pdf}
+\caption{Çalışma boyunca kullanılan ayrışım. Log hedef doğru oranı, hedefin kırılganlığına, simetrik bir benzerliğe ve yönlü artığın yarısına birebir ayrışmaktadır. Son iki terimin panel ortalamaları ($\langle\cdot\rangle_P$: $c\in P$ panel üyeleri üzerinden ortalama) $\sigma$ ve $\rho$'yu vermekte, bu iki nicelik de iki model arasındaki bir kaynak açığını simetrik ve yönlü parçalara ayırmaktadır.}
+\label{fig:decomposition_schematic}
+\end{figure}
+
+% KAYNAK: ON_KAYIT Sec. 2 (oranlar yuzde olarak; logit tanimi x/100, dolayisiyla sabit log 100; deger 100).
+Model düzeyindeki nicelikler dış modellerden oluşan sabit bir $P$ paneli üzerinden ortalanmaktadır:
+\begin{equation}
+\begin{gathered}
+\sigma_m = \frac{1}{|P|}\sum_{c\in P}\log\simt_{mc}, \qquad \rho_m = \frac{1}{|P|}\sum_{c\in P} r_{cm},\\
+\omega_m = \log w_m.
+\end{gathered}
+\label{eq:panel_def}
+\end{equation}
+Yüksek bir $\sigma_m$, $m$'nin çekişmeli yönleri panelle paylaştığını gösterir. Pozitif bir $\rho_m$ ise $m$'nin, kırılganlığın açıklayabildiğinin ötesinde, panelden gönderdiğinden fazlasını aldığı, yani yönlü olarak zayıf bir kaynak olduğu anlamına gelir. Oranlar logaritmaya yüzde olarak girdiğinden $\omega$ ve aşağıdaki $L_k$, her karşıtlıktan düşen toplamsal bir $\log 100$ sabiti taşımakta, $\sigma_m$ ise ayrıca $w$'nin yakalamadığı her model ana etkisinin yarısını da üstlenmektedir. $R$ ve $V$ modelleri için panel kaynak açığı
+\begin{equation*}
+G = \frac{1}{|P|}\sum_{c\in P}\left[\log T_{Rc} - \log T_{Vc}\right] = (\sigma_R - \sigma_V) - \tfrac12(\rho_R - \rho_V)
+\end{equation*}
+olarak tanımlanmakta ve $V$'nin üçüncü modellere karşı $R$'den ne kadar zayıf bir kaynak olduğunu ölçmektedir. Bu açığın simetrik payı $q = (\sigma_R - \sigma_V)/G$'dir. Tohum çifti $s$ için $q_s$, çiftler üzerinden ortalama için $q$ yazılmakta, panelin kendi kırılganlıkları bu paydan düşmektedir. Saf bir kaynak etkisi, K-a'nın sıfır değeri olan $q = 1/2$'yi verir ve daha büyük bir $q$, kaynak etkisinin ötesindeki farklılığı ölçer. Kaynak saldırısı $k$ için $L_k(m) = |P|^{-1}\sum_{c\in P}\log T_k(m\to c)$, $m$ kaynağının panel ortalamalı log transferidir ve böylece $G = L_{\mathrm{PGD}}(R) - L_{\mathrm{PGD}}(V)$ olur. $\Gk{k}$ aynı farkın R32 ve ViT-Tiny koşuları için $k$ saldırısı altındaki değeridir. Korunan oran $\Gk{best}/\Gk{PGD}$ ise açığın her kaynağın en iyi saldırısı altında korunup korunmadığını sorar (Bölüm~\ref{subsec:attack_methods}). Aile içi benzerlik $\Dseed$, ViT tohum çiftleri üzerinden ortalama $\log\simt$ değerinden bu tohumların $\sigma$ ortalamasının çıkarılmasıyla elde edilir.
+
+\begin{proposition}[Tanımlanabilirlik]
+\label{prop:identifiability}
+Aşağıda $i \neq j$ için $\ell_{ij} = \log T_{ij}$ yazılmaktadır. (a) İki modelde $\ell$'nin antisimetrik kısmı tek bir sayıdan, $\ell_{12} - \ell_{21}$ farkından ibarettir. Simetrik $s$ ile kurulan $\ell_{ij} = \mu + \alpha_i + \beta_j + s_{ij}$ toplamsal uydurması yalnız $(\alpha_1 - \alpha_2) - (\beta_1 - \beta_2)$ farkını tanımlar, bu farkın kaynak ile hedef arasındaki bölüşümünü tanımlamaz. (b) $\ell_{ij}$ bir $\gamma\,\mathbf{1}[i,j \in C]$ aile terimi içeriyorsa ve tasarımda $C$'ye ait olmayan tek bir $V$ modeli varsa toplamsal uydurma bu terimi $V$'nin kaynak ve hedef etkilerine eşit $-\gamma$ ağırlığıyla katar ve asimetriyi değiştirmez. (c) $\ell_{ij}$ içindeki her simetrik terim, aile terimi de dâhil, $r_{ij}$'den düşer ve $\log\simt_{ij}$'ye bütünüyle girer, sabit bir panel üzerinde de $\sigma_m$'yi değiştirip $\rho_m$'yi değiştirmez. (d) $\ell_{ij}$ içindeki bir $\alpha_i$ kaynak ana etkisi $r_{ij}$'ye $\alpha_i - \alpha_j$ potansiyel farkı olarak, $\log\simt_{ij}$'ye ise $\tfrac12(\alpha_i+\alpha_j)$ olarak girer. $R$ ile $V$ arasında simetrik bir fark yoksa bu etki $q = 1/2$ verir.
+\end{proposition}
+
+(a) şıkkı, $K$ model için $K-1$ potansiyel ve $(K-1)(K-2)/2$ dolaşım serbestlik derecesi veren Hodge ayrışımının~\cite{jiang2011statistical} serbestlik derecesi sayımından gelmektedir. (b) şıkkı $i\neq j$ için $\mathbf{1}[i,j\in C] = 1 - \mathbf{1}[i=V] - \mathbf{1}[j=V]$ eşitliğinden, (c) ve (d) şıkları ise Denklem~\eqref{eq:tau_def} ve~\eqref{eq:r_def} içinde yerine koymadan çıkmaktadır. Dolayısıyla tek bir ViT bulunan bir tasarımda ViT'in toplamsal bir kaynak etkisi CNN'lerden farklılığından ayırt edilemez ve ayrışım bu farklılığı $\sigma$'ya yüklemektedir.
+
+Kestirimler bölünmüş yarı düzeniyle yapılmaktadır. $w$ çift indisli test görüntülerinden, $T$ tek indisli görüntülerden alınmış, ardından roller değiştirilip iki yarının ortalaması hesaplanmış ve böylece bir köşegen hücresi ile bir köşegen dışı hücre hiçbir zaman aynı görüntüleri paylaşmaz. $\omega$ ise tam örneklemden hesaplanan $w$'yi kullanmaktadır. Bir panel üyesinin kendi $\sigma$ ve $\rho$ değerleri o üye dışarıda bırakılarak hesaplanmıştır. Doğal logaritma birincil ölçektir. Duyarlılık analizi olarak logit ölçeği $\log x$ yerine $\log[x/(1-x)]$ kullanmakta, oran ölçeği ise oranların kendisiyle çalışmaktadır.
+
+% ----------------------------------------------------------------------------
+% 3.6 Paneller
+% ----------------------------------------------------------------------------
+\subsection{Referans Panelleri}
+\label{subsec:panels}
+
+% KAYNAK: ON_KAYIT Sec. 2 ve Dondurma eki (c) (P yedi uye, XCiT ikincil,
+% en az bes uye); EK Sec. 4.1 (P9), Sec. 5.1-5.5 (ImageNetV2, P8, ciftler,
+% on isleme denetimi). FOY:M9.4:1569 (CIFAR-10 K = 20); FOY:M10.1:1820
+% (ImageNetV2 n = 2000), 1826 (CIFAR-100 15 model), 1827 (ImageNetV2 14 model).
+% Uzun RobustBench adlari (\texttt) satir sonunda bolunemedigi icin.
+\begin{sloppypar}
+Panel üyeleri RobustBench'ten~\cite{croce2021robustbench} alınmış ve her panel, transfer hücreleri hesaplanmadan önce dondurulmuştur. CIFAR-10'daki birincil $P$ paneli, ImageNet ön eğitimi olmadan eğitilmiş ve ResNet ailesinden gelen yedi $\Linf$-gürbüz CNN'den oluşmaktadır. Bunların dördü (PreAct) ResNet-18 türevidir. Panel \texttt{Wong\allowbreak{}2020\allowbreak{}Fast}~\cite{wong2020fast}, \texttt{Engstrom\allowbreak{}2019\allowbreak{}Robustness}~\cite{engstrom2019robustness}, \texttt{Carmon\allowbreak{}2019\allowbreak{}Unlabeled}~\cite{carmon2019unlabeled}, \texttt{Gowal\allowbreak{}2020\allowbreak{}Uncovering\_\allowbreak{}28\_\allowbreak{}10\_\allowbreak{}extra}~\cite{gowal2020uncovering}, \texttt{Sehwag\allowbreak{}2021\allowbreak{}Proxy\_\allowbreak{}R18}~\cite{sehwag2022robust}, \texttt{Addepalli\allowbreak{}2022\allowbreak{}Efficient\_\allowbreak{}RN18}~\cite{addepalli2022efficient} ve \texttt{Rade\allowbreak{}2021\allowbreak{}Helper\_\allowbreak{}R18\_\allowbreak{}ddpm}~\cite{rade2022reducing} modellerini içermektedir. ImageNet ile ön eğitilmiş \texttt{Debenedetti\allowbreak{}2022\allowbreak{}Light\_\allowbreak{}XCi\allowbreak{}T-S12}~\cite{debenedetti2023light} ikincil paneli oluşturmaktadır. Çift ve tasarım hücreleriyle birlikte CIFAR-10 matrisi 20 model içermektedir.
+
+% FOY:M10.1:1826 (CIFAR-100 matrisi 15 model)
+CIFAR-100 paneli, RobustBench'in elverdiği ölçüde $P$'ye yakın tutulmuş ve \texttt{Rice\allowbreak{}2020\allowbreak{}Overfitting}~\cite{rice2020overfitting}, \texttt{Rade\allowbreak{}2021\allowbreak{}Helper\_\allowbreak{}R18\_\allowbreak{}ddpm}, \texttt{Addepalli\allowbreak{}2022\allowbreak{}Efficient\_\allowbreak{}RN18}, \texttt{Sehwag\allowbreak{}2021\allowbreak{}Proxy}~\cite{sehwag2022robust}, \texttt{Pang\allowbreak{}2022\allowbreak{}Robustness\_\allowbreak{}WRN28\_\allowbreak{}10}~\cite{pang2022robustness}, \texttt{Wang\allowbreak{}2023\allowbreak{}Better\_\allowbreak{}WRN-28-10}~\cite{wang2023better} ve \texttt{Jia\allowbreak{}2022\allowbreak{}LAS-AT\_\allowbreak{}34\_\allowbreak{}10}~\cite{jia2022lasat} modellerinden kurulmuştur. ImageNet ile ön eğitilmiş XCiT-S12 ve \texttt{Hendrycks\allowbreak{}2019\allowbreak{}Using}~\cite{hendrycks2019using} ikincil paneli oluşturmaktadır. Bu veri kümesindeki çift, her biri üç tohumlu CIFAR-100 ResNet-18 ve ViT-Tiny modelleridir ve eğitildikleri dönemde geçerli olan, CIFAR-10 kuralından farklı tek bölmeli kurala göre seçilmiştir. Bu veri kümesindeki matris 15 model içermektedir.
+
+% FOY:M10.1:1820,1827 (ImageNetV2 n = 2000; 14 model)
+% KAYNAK: EK Sec. 5.2-5.5 (ortak hat Resize 256 ve CenterCrop 224; 1000 sinif logit; kendi hatla temiz dogruluk
+% en az 25 yuzde ve RobustBench degerinin 0.6 kati; degerler 256, 224, 1000, 25, 0.6).
+ImageNet paneli \texttt{Salman\allowbreak{}2020\allowbreak{}Do\_\allowbreak{}R18}, \texttt{\_\allowbreak{}R50} ve \texttt{\_\allowbreak{}50\_\allowbreak{}2}~\cite{salman2020adversarially}, \texttt{Engstrom\allowbreak{}2019\allowbreak{}Robustness}, \texttt{Chen\allowbreak{}2024\allowbreak{}Data\_\allowbreak{}WRN\_\allowbreak{}50\_\allowbreak{}2}~\cite{chen2024data} ve \texttt{Peng\allowbreak{}2023\allowbreak{}Robust}~\cite{peng2023robust} olmak üzere altı CNN'den oluşmaktadır. Temiz eğitilmiş modellerden ortak bir tarifle çekişmeli olarak eğitilmiş ve hepsi evrişimli giriş katmanı taşıyan iki CNN-dönüştürücü çifti, yani ConvNeXt-T ile ViT-S ve ConvNeXt-B ile ViT-B~\cite{singh2023revisiting}, ImageNet ile başlatılmış satırı oluşturmaktadır. $k$ çifti için dönüştürücü eksi CNN farkları $\sigma$, $\rho$ ve $\omega$'da sırasıyla $\Ak{\sigma}{k}$, $\Ak{\rho}{k}$ ve $\Ak{\omega}{k}$ ile, $\Ak{\sigma}{k}$'nin bu iki çift üzerinden ortalaması ise $\AbarIN$ ile gösterilmektedir. Liu vd.'nin~\cite{liu2023comprehensive} ConvNeXt-B ve Swin-B modelleri sıfırdan satırını vermektedir. Ancak ortak yapılandırmalarında bir ön eğitim bayrağı bulunmadığından bu dayanak dolaylıdır. Bu çiftin karşıtlığı, CIFAR-10 karşıtlığı $\Asig{scr}$ ile karışmaması için $\Asig{scr,Liu}$ ile yazılmaktadır. Mo vd.'nin ViT-B modeli~\cite{mo2022adversarial} eşi olmadan, XCiT-S12 ise ikincil üye olarak matrise girmekte ve toplam 14 model, ImageNetV2 MatchedFrequency kümesinin~\cite{recht2019imagenet} 2.000 görüntüsü üzerinde değerlendirilmektedir. Bu görüntüler her sınıfın sözlük sırasındaki ilk iki dosyasından oluşmaktadır. Bütün modellere tek bir ön işleme hattı (256 piksele bikübik yeniden boyutlandırma, 224 piksele merkez kırpma) uygulandığından bir kaynağın çekişmeli tensörü her hedefe aynı piksel uzayında ulaşmaktadır. Normalizasyon her RobustBench modelinin uyguladığı biçimde bırakılmış, puanlamada 1.000 logitin tamamı kullanılmıştır. Her modelin kendi hattındaki temiz doğruluğunun \%25'e ve RobustBench değerinin 0{,}6 katına ulaşması, ortak hattaki doğruluktan da en çok 5 puan ayrılması gerekmiştir. Bu panel betimseldir ve $2\times2$ tasarımı yinelememektedir. Panelde başlatma aynı veri kümesinde yapılmış temiz ön eğitim anlamına gelmekte, mimariler de farklı bulunmaktadır.
+\end{sloppypar}
+
+% ----------------------------------------------------------------------------
+% 3.7 Kosullama protokolleri (2026-10-31 hakem konseyi B16: ayrisim ve panellerin ardina alindi;
+% T_ij tanimi ayrisim alt bolumune tasindi, boylece tanimlanabilirlik Onerme 1, h olcegi Onerme 2)
+% ----------------------------------------------------------------------------
+\subsection{Koşullama Protokolleri}
 \label{subsec:metrics}
 
-\paragraph{Gürbüzlük Metrikleri}
-Modeller üç standart metrikle değerlendirilmektedir: temiz doğruluk (pertürbe edilmemiş test görüntülerinde sınıflandırma başarımı), gürbüz doğruluk (çekişmeli örneklerde sınıflandırma başarımı) ve saldırı başarı oranı (temizde doğru sınıflandırılan görüntülerden saldırı sonrası yanlışa dönenlerin oranı). Beyaz kutu değerlendirmelerde ek olarak \emph{koşullu yanıltma oranı}, yani temizde doğru sınıflandırılan örneklerden saldırının devirdiklerinin kesri ve onun tümleyeni olan koşullu sağkalım raporlanmaktadır. Örnek bazındaki kayıtlarda hem PGD hem AutoAttack temizde yanlış sınıflandırılan örnekleri gürbüz olmayan saydığından mutlak gürbüz doğruluk birebir $\text{gürbüz} = \text{temiz} \times \text{koşullu sağkalım}$ biçiminde çarpanlarına ayrılmaktadır. TRADES'in~\cite{zhang2019theoretically} doğal-artı-sınır ayrışımının beyaz kutu karşılığı olan bu ayrışım, gürbüzlük farklarının bir temiz doğruluk bileşenine ve bir koşullu duyarlılık bileşenine ayrılmasını sağlamaktadır. Doğruluklar ayrıca \emph{her ikisi doğru} altkümesinde (karşılaştırılan iki modelin de temizde doğru sınıflandırdığı örnekler) raporlanmakta ve bu altküme, ortak bir örnek kümesi üzerinde birebir eşleştirilmiş bir karşılaştırma sağlamaktadır.
-
-\paragraph{Transfer Saldırısı Metrikleri}
-Bu çalışmadaki transfer metrikleri, yalnızca koşullama kümesiyle ayrışan bir \emph{koşullu yanıltma oranları} ailesidir. Ailenin taban üyesi \emph{hedef doğru} oranıdır; bu oran, hedef modelin temizde doğru sınıflandırdığı örnekler içinde kaynak modelde üretilen çekişmeli örneklerle yanlışa dönenlerin kesridir. Kaynak model $f_S$'ye karşı üretilen $\{x_{adv}^S\}$ örnekleri için hedef model $f_T$'ye koşullu transfer oranı şöyledir:
-\begin{equation}
-    T_c(f_S \rightarrow f_T) = \frac{\sum_{i=1}^{n} \mathbf{1}[f_T(x_i) = y_i]\,\mathbf{1}[f_T(x_{adv,i}^S) \neq y_i]}{\sum_{i=1}^{n} \mathbf{1}[f_T(x_i) = y_i]}
-\end{equation}
-Transfer değerlendirmesini doğru sınıflandırılan örneklerle koşullamak yerleşik bir pratiktir ve genellikle çalışmadaki her modelin doğru sınıflandırdığı örnekler üzerinde yapılmaktadır~\cite{liu2017delving, dong2018boosting, mahmood2021robustness, ravikumar2023trend, zhao2025revisiting}. Hedef doğru oran bu havuzun tek yanlı gevşetmesidir ve koşullama en çok mimariler arası karşılaştırmalarda önem taşımaktadır. Ham yanlış sınıflandırma oranı $\frac{1}{n} \sum_{i} \mathbf{1}[f_T(x_{adv,i}^S) \neq y_i]$ hedefin temiz hatasını içerdiğinden temiz doğruluğu düşük bir hedef, saldırı hiç ek örnek devirmese bile transfere daha ``kırılgan'' görünmektedir. Ham oran, şeffaflık ve bu karıştırıcının boyutunu nicelemek için ikincil metrik olarak raporlanmaktadır. Koşullama kümesinin kendisi bir protokol seçimi olduğundan iki alternatif de raporlanmaktadır. Bunlar kaynak ve hedefin ikisinin de doğru sınıflandırdığı örneklerle koşullayan \emph{her ikisi doğru} protokolü~\cite{mahmood2021robustness, ravikumar2023trend} ve saldırının kaynakta beyaz kutu anlamında başarılı olduğu hedef doğru örneklerle koşullayan \emph{başarılı kaynak} protokolüdür. Her iki protokol de literatürde yerleşiktir. Başarılı kaynak oranı Ravikumar vd.'nin~\cite{ravikumar2023trend} transfer edilebilirlik metriğidir; o çalışmadaki Denklem~(1), iki modelin de doğru sınıflandırdığı örneklerle sınırlanmış bir havuzda hedefe transfer olan örnek sayısını kaynakta üretilen örnek sayısına bölmektedir. Bir transfer oranı ``başarılı'' çekişmeli örnekler üzerinden raporlandığında örtük olarak kullanılan protokol de budur. Yönlü iddialar için birincil kestirim olarak her ikisi doğru oranı alınmaktadır, çünkü bu oran iki yönü de aynı örnekler üzerinde puanlamakta ve bu yüzden eşleştirilmiş çıkarımı desteklemektedir; diğer üç oran baştan sona onun yanında raporlanmaktadır. Bölüm~\ref{subsec:transfer}'in gösterdiği gibi bu protokoller nitel olarak farklı asimetri sonuçları verebilmektedir ve bu makaledeki her transfer sayısının protokolüyle birlikte verilmesinin nedeni de budur. Transfer oranları tam test kümesinde (10.000 örnek) örnek bazında kayıtla hesaplanmakta ve örnekler üzerinde yüzdelik bootstrap ile \%95 güven aralıkları verilmektedir (10.000 yeniden örnekleme).
-
-% 2026-10-04 (LeCun turu): dort maske tek tabloda; ozdeslik ve oncul p burada tanimlanir.
-\paragraph{Koşullama Maskeleri ve Ham Oran Özdeşliği}
-Tablo~\ref{tab:protocol_masks} dört protokolü, başarılı kaynak protokolünün iki okumasıyla birlikte tek bir yerde tanımlamaktadır. Her protokol payında, maskesindeki örneklerden hedefin kaynakta üretilmiş girdide yanlış sınıflandırdıklarını saymaktadır; protokoller yalnızca maskede ayrışmaktadır. Bu tabloya en çok başarılı kaynak protokolü ihtiyaç duymaktadır, çünkü protokolün adı beyaz kutu başarısının kaynağın temiz girdiyi doğru sınıflandırmasını gerektirip gerektirmediğini söylememektedir. Çalışma boyunca sıkı okuma kullanılmakta, gevşek okuma yalnızca bir duyarlılık analizi olarak raporlanmaktadır (Bölüm~\ref{subsec:transfer}).
+% KAYNAK: scripts/q1_e2_conditional.py (ornek bazli bootstrap, --n-boot 10000; tam test kumesi).
+Köşegeni de aynı biçimde koşullandığı için ayrışımda baştan sona hedef doğru oranı kullanılmaktadır. Doğru sınıflandırılan görüntülerle koşullama yerleşik bir uygulamadır (Bölüm~\ref{subsec:rw_protocols}). Ne var ki koşullama kümesi bir protokol seçimidir ve protokol katmanı (Bölüm~\ref{subsec:transfer}) aynı örnek bazındaki kayıtlar üzerinde üç alternatifi puanlamaktadır (Tablo~\ref{tab:protocol_masks}). Bunlar koşulsuz oran, \emph{her ikisi doğru} oranı~\cite{mahmood2021robustness, ravikumar2023trend} ve Ravikumar vd.'nin~\cite{ravikumar2023trend} \emph{başarılı kaynak} oranıdır. Sonuncusu, beyaz kutu başarısının temizde doğru sınıflandıran bir kaynağı varsaydığı sıkı okumayla uygulanmaktadır. Oranlar örnek bazındaki sonuçları kaydedilmiş tam test kümelerinde hesaplanmakta, sabit kontrol noktalarının aralıkları ise görüntüler üzerinde 10.000 yeniden örneklemeli yüzdelik bootstrap ile elde edilmektedir.
 
 \begin{table}[!t]
 \centering
-\caption{Bir kaynak $f_S$ ve bir hedef $f_T$ için dört transfer protokolünün koşullama maskeleri. Bir $(x, y)$ örneği listelenen her koşul sağlandığında paydaya girer; pay, maskedeki örneklerden $f_T(x^S_{adv}) \neq y$ olanları sayar. Son sütun bir çiftin iki yönünün aynı örnekler üzerinde puanlanıp puanlanmadığını belirtir. Başarılı kaynak protokolünün gevşek okuması yalnızca bir duyarlılık analizidir.}
+\caption{Bir kaynak $f_S$ ve bir hedef $f_T$ için koşullama maskeleri. Listelenen bütün koşullar sağlandığında örnek paydaya girer; pay bunlardan $f_T(x^S_{adv}) \neq y$ olanları sayar. Son sütun bir çiftin iki yönünün aynı örnekleri kullanıp kullanmadığını belirtir; gevşek okuma yalnızca bir duyarlılık analizidir.}
 \label{tab:protocol_masks}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -138,7 +231,7 @@ Başarılı kaynak & $f_T(x) = y$, $f_S(x) = y$, $f_S(x^S_{adv}) \neq y$ & hayı
 \end{tabular}
 \end{table}
 
-Koşulsuz ve hedef doğru oranlar toplam olasılık yasasıyla birbirine bağlıdır. Hedefin temiz hatası $e$, bir yönün koşulsuz ve hedef doğru oranları $r_{\text{ham}}$ ve $r_{\text{koş}}$, hedefin temiz girdide yanlış sınıflandırdığı bir örneğin kaynakta üretilmiş girdide de yanlış sınıflandırılma olasılığı ise $p$ ile gösterilsin. Bu durumda
+Hedefin temiz hatası $e$, bir yönün koşulsuz ve hedef doğru oranları $r_{\text{ham}}$ ve $r_{\text{koş}}$ ($r_{\text{koş}} = T_{ij}$), hedefin temiz girdide yanlış sınıflandırdığı bir örneğin kaynakta üretilmiş girdide de yanlış sınıflandırılma olasılığı ise $p$ ile gösterilsin. Toplam olasılık yasasına göre
 \begin{equation}
 r_{\text{ham}} = e\,p + r_{\text{koş}}\,(1 - e)
 \label{eq:general_identity}
@@ -148,44 +241,104 @@ olur ve $p=1$ olduğunda
 r_{\text{ham}} - r_{\text{koş}} = e\,(1 - r_{\text{koş}})
 \label{eq:raw_identity}
 \end{equation}
-elde edilir. Tek bir model üzerine yazıldığında $r_{\text{ham}} = e + r_{\text{koş}}(1 - e)$, TRADES'in~\cite{zhang2019theoretically} doğal-artı-sınır ayrışımıdır; orada $p=1$'e karşılık gelen öncül tanım gereği sağlanmaktadır, çünkü sınır terimi bütün pertürbasyon komşuluğu üzerinde tanımlanmıştır. Transfer ortamında ise öncül tanımsal değildir. Kaynakta üretilmiş sabit bir pertürbasyon yanlış sınıflandırılmış bir örneği yanlış bırakabilir ya da doğru sınıfa geri taşıyabilir; dolayısıyla $p$ ölçülmesi gereken görgül bir niceliktir. Denklem~\eqref{eq:general_identity} her örnek kümesinde yapısı gereği sağlanan bir muhasebe özdeşliğidir ve tek görgül içeriği $p$'nin değeridir; bu makalenin eklediği ölçüm de bu değerdir. $p<1$ olduğunda Denklem~\eqref{eq:raw_identity} sapmayı tam olarak $e\,(1-p)$ kadar abartmakta ve bir eşitlik değil bir üst sınır olmaktadır. Bu nedenle Denklem~\eqref{eq:raw_identity} yalnızca $p$'nin bire yakın ölçüldüğü hedefler için kesin bir düzeltme olarak kullanılmaktadır; bu makalede söz konusu hedefler Bölüm~\ref{subsubsec:matrix}'teki çekişmeli eğitilmiş hedeflerdir. Standart eğitilmiş hedeflerde (Bölüm~\ref{subsec:external}) kullanılması gereken düzeltme, ölçülmüş $p$ ile genel biçim olan Denklem~\eqref{eq:general_identity}'dir.
+elde edilir. Tek bir model üzerinde $p=1$ tanım gereği sağlanırken transferde sabit bir pertürbasyon yanlış sınıflandırılmış bir örneği doğru sınıfa geri taşıyabileceğinden $p$'nin ölçülmesi gerekir. Denklem~\eqref{eq:general_identity}, tek görgül içeriği $p$ olan bir muhasebe özdeşliğidir. Buna karşılık $p<1$ olduğunda Denklem~\eqref{eq:raw_identity} sapmayı $e\,(1-p)$ kadar abartmaktadır. $h = -\log(1-T)$ ölçeğinde ise aynı özdeşlik, protokolün hangi sonuçları değiştirebileceğini de göstermektedir.
 
-\paragraph{Gradyan Analizi Metrikleri}
-Gradyan özellikleri, büyüklükler değerlendirme parti boyundan bağımsız olsun diye örnek başına kayıplarla hesaplanarak üç tamamlayıcı metrik ailesiyle incelenmektedir. Gradyan normu ($\|\nabla_x \mathcal{L}\|_2$ ve $\|\nabla_x \mathcal{L}\|_\infty$) toplam duyarlılık büyüklüğünü ölçmektedir. Sabit mutlak eşikler gradyan ölçeğini yapıyla karıştırdığından gradyan seyrekliği ölçekten bağımsız ölçülerle nicelenmektedir: Hoyer seyrekliği, $|g|$'nin Gini katsayısı ve örnek başına en büyük değerin \%1'inin altında kalan bileşenlerin oranı. Hoyer ve Gini, Hurley ve Rickard'ın~\cite{hurley2009comparing} biçimselleştirdiği ölçek değişmezliği aksiyomlarını sağlamaktadır. Gradyan hizalanması, örnekler arasındaki ortalama ikili mutlak kosinüs benzerliğini ölçmektedir (500 analiz örneğinin tüm çiftleri üzerinden):
-\begin{equation}
-    \text{Hizalanma} = \frac{1}{N(N-1)} \sum_{i \neq j} \left| \frac{\nabla_{x_i} \mathcal{L} \cdot \nabla_{x_j} \mathcal{L}}{\|\nabla_{x_i} \mathcal{L}\| \|\nabla_{x_j} \mathcal{L}\|} \right|
-\end{equation}
-Paylaşılan duyarlılık \emph{eksenleri} işaretten bağımsız olarak saldırı geometrisi için önem taşıdığından mutlak kosinüs kullanılmaktadır. Evrensel pertürbasyon argümanlarının ek olarak gerektirdiği şey işaret tutarlılığı olduğu için işaretli ortalama kosinüs de raporlanmaktadır ve bu değer her model için sıfıra yakın çıkmaktadır (Bölüm~\ref{subsec:gradient}). Yüksek mutlak hizalanma, girdiler arasında benzer pertürbasyon eksenlerine işaret etmektedir.
+\begin{proposition}[$h$ ölçeğinde protokol ayar dönüşümü]
+\label{prop:hscale}
+Her $i \to j$ yönü için $g_{ij} = -\log\bigl(1 + e_j(1-p_{ij})/[(1-e_j)(1-T_{ij})]\bigr)$ olmak üzere $h^{\text{ham}}_{ij} - h^{\text{koş}}_{ij} = -\log(1 - e_j) + g_{ij}$ eşitliği sağlanır ve $g_{ij}$, $p_{ij} = 1$ olduğunda sıfırlanır. Dolayısıyla $h$ matrisinin toplamsal bir ayrışımındaki kaynak etkileri, ikili simetrik terimler ve dolaşım, $g$ dışında ham ve hedef doğru protokollerinde aynıdır. Yalnız hedef etkileri bilinen $-\log(1-e_j)$ miktarı kadar kaymaktadır.
+\end{proposition}
 
-\paragraph{Mekansal Lokalite Metrikleri}
-Seyreklik kaç gradyan bileşeninin büyük olduğunu ölçmekte, ancak bu bileşenlerin görüntüde nerede durduğu hakkında bir şey söylememektedir. Bu yüzden mekansal yapı, toplamı bire normalize edilmiş kanal toplamı enerji haritası $e = \sum_c (\nabla_x \mathcal{L})_c^2$ üzerinde ayrıca ölçülmektedir. Enerjinin \%50'sini ve \%90'ını toplayan en küçük piksel oranı (küçük değer daha lokalize demektir), $e$'nin pikseller üzerinde bir dağılım olarak Shannon entropisi (düşük değer daha lokalize demektir) ve enerji bitişik piksellerde kümelendiğinde pozitif olan 4-komşuluklu Moran's $I$ raporlanmaktadır. Dördü de gradyan ölçeğinden bağımsızdır ve örnek başına hesaplanmaktadır; böylece iki mimari aynı girdiler üzerinde eşleştirilmiş testlerle karşılaştırılabilmektedir.
-
-\paragraph{Katman Analizi için Jeton Agregasyonu}
-Bir dönüştürücü bloğu jeton başına bir vektör ürettiğinden bloğu özetlemek bir seçim gerektirmektedir. Üç seçenek raporlanmaktadır: yalnızca CLS jetonu, 196 yama jetonunun ortalaması ve tüm jetonların örnek başına düzleştirilmiş birleşimi. CNN'de her artık blok çıktısı mekansal boyutları üzerinden düzleştirilmektedir. ViT için üç özetin birden raporlanmasının nedeni, Bölüm~\ref{subsec:attention}'ün gösterdiği gibi farklı kayma büyüklükleri vermeleri ve minimumu farklı derinliklere yerleştirmeleridir.
-
-\paragraph{Dikkat Metrikleri}
-ViT için her bloğun softmax sonrası CLS$\to$yama dikkat satırı, başlar üzerinden ortalanarak çıkarılmaktadır. Dikkatin ne kadar geniş yayıldığını ölçen Shannon entropisi ve saldırı altındaki yer değiştirmesi raporlanmaktadır; yer değiştirme, temiz ve çekişmeli dikkat dağılımları arasındaki 1 ile sınırlı toplam varyasyon uzaklığıyla ölçülmektedir. İki ölçü de örnek başına hesaplanıp koşu başına $n=1000$ örnek üzerinde ortalanmaktadır.
-
-\paragraph{ViT'e Özgü Transfer Saldırısı}
-Transfer sonuçlarının mimariden bağımsız saldırıların kullanılmasına bağlı olup olmadığını sınamak için kaynak örnekler ek olarak Jeton Gradyanı Düzenlileştirme (TGR)~\cite{zhang2023tgr} ile üretilmektedir. TGR, geri yayılım sırasında dikkat, QKV ve MLP yollarındaki jeton-gradyan tensörlerinin uç değerli girdilerini sıfırlamakta ve kalan gradyanı $\gamma=0{,}5$ ile ölçeklemektedir. Bu çalışmadaki gerçekleme yöntemi, özgün ImageNet varsayılanları yerine CIFAR-10 ViT sarmalayıcısına ve makale boyunca kullanılan bütçeye ($\eps=8/255$, $\alpha=2/255$, 10 adım, momentum 1,0) uyarlamaktadır. Ürettiği sonuç negatif olduğundan bu sürümün iki ayrıntısı daha önem taşımaktadır. Üç yolun hepsine yol başına ayarlanmış değerler yerine tek bir $\gamma=0{,}5$ uygulanmakta ve jetonlar arasında her (örnek, kanal) için bütün jeton satır ve sütunları değil, tek bir en büyük ve tek bir en küçük girdi sıfırlanmaktadır. Yayımlanmış düzenlileştirme şeması birebir yeniden gerçeklenmediği için aşağıdaki negatif sonuç yalnızca bu uyarlamayı sınırlamaktadır; sonucu yöntemin yayımlanmış haline genişletmek özgün şemayla bir yineleme gerektirir. Düz MI-FGSM~\cite{dong2018boosting} örnekleri aynı koşuda aynı örnekler üzerinde üretilmekte ve birebir aynı bütçede eşleştirilmiş bir kontrol sağlamaktadır.
-
-\paragraph{Öznitelik Bozunması Metrikleri}
-Çekişmeli pertürbasyonların ViT temsillerini katmanlar boyunca nasıl etkilediğini incelemek için her $\ell$ katmanında üç metrik hesaplanmaktadır. Öznitelik kosinüs benzerliği, temsilin yönünün ne ölçüde korunduğunu ölçmektedir:
-\begin{equation}
-    \text{Benz}_\ell = \frac{h_\ell(x) \cdot h_\ell(x_{adv})}{\|h_\ell(x)\| \|h_\ell(x_{adv})\|}
-\end{equation}
-burada $h_\ell$, $\ell$ katmanındaki temsili göstermektedir. Öznitelik norm değişimi ise büyüklük etkilerini yakalamaktadır:
-\begin{equation}
-    \Delta_\ell = \frac{\|h_\ell(x_{adv})\| - \|h_\ell(x)\|}{\|h_\ell(x)\|} \times 100\%
-\end{equation}
-Öznitelik $L_2$ uzaklığı ($\|h_\ell(x) - h_\ell(x_{adv})\|_2$) mutlak sapmayı nicelemektedir.
+Bu sonuç, Denklem~\eqref{eq:general_identity} $1 - r_{\text{ham}} = (1-e)(1-r_{\text{koş}}) + e(1-p)$ biçiminde yeniden düzenlenerek elde edilmektedir. Maskesi kaynağın temiz doğruluğuna bağlı olduğundan her ikisi doğru protokolü böyle bir ayar dönüşümü oluşturmamaktadır.
 
 % ----------------------------------------------------------------------------
-% 3.7 Istatistiksel Dogrulama
+% 3.8 Girdi gradyani hizalanmasi
 % ----------------------------------------------------------------------------
-\subsection{İstatistiksel Doğrulama}
+\subsection{Girdi Gradyanı Hizalanması}
+\label{subsec:gradcos_def}
+
+% KAYNAK: EK Sec. 6.1-6.3 (tanim, ham ve ana etki artikli Spearman,
+% permutasyon 9999, tohum 20261030, karar kurali).
+Simetrik terimin transfer ve saldırı olmadan ölçülebilen bir şeyi yansıtıp yansıtmadığı, her model çiftinde girdi gradyanlarının temiz görüntülerdeki ortalama kosinüsüyle yoklanmıştır:
+\begin{equation}
+c_{ij} = \frac{1}{n}\sum_{x} \cos\left(\nabla_x \mathcal{L}_i(x,y),\, \nabla_x \mathcal{L}_j(x,y)\right).
+\label{eq:cij}
+\end{equation}
+Burada $\mathcal{L}_m$, $m$ modelinin çapraz entropisidir. Gradyanlar model içindeki normalizasyondan geçilerek $[0,1]$ piksel uzayında alınmış, modeller değerlendirme kipinde tutulmuş ve ilgili transfer matrisinin görüntüleri kullanılmıştır. Bu nicelik Zhang vd.'nin~\cite{zhang2024why} gradyan benzerliğinin görüntü ortalamasıdır, hizalanma ise Demontis vd.'nin~\cite{demontis2019adversarial} simetrik etkenine karşılık gelmektedir.
+
+% FOY:M10.5:1970 (9999 permutasyon, p tabani 1e-4)
+Ham istatistik, sırasız çiftler üzerinde $c_{ij}$ ile $\log\simt_{ij}$ arasındaki Spearman korelasyonu $\rS$'dir. Artık istatistiği ise her matrise kurulan $X_{ij} = \mu + a_i + a_j + e_{ij}$ en küçük kareler uydurmasının artıklarını ilişkilendirmektedir. Bu uydurma, gürbüzlük, gradyan normu ya da temiz doğruluk gibi bir çiftin iki üyesine de eklenen her model düzeyi özelliği ortadan kaldırmakta ve kısmi Mantel testinin~\cite{smouse1986multiple} mantığını bütün model ana etkilerini bir kerede çıkararak izlemektedir. Anlamlılık Mantel testinden~\cite{mantel1967detection} elde edilmektedir. Bu testte $\log\simt$ sabit tutulurken model etiketleri $c$'nin satır ve sütunları üzerinde birlikte 9.999 kez permüte edilmiş ve alt sınırı $10^{-4}$ olan tek yönlü bir $p$ değeri hesaplanmıştır. Toplamsal uydurma çarpımsal ya da etkileşimli model etkilerini ve CNN ile dönüştürücü ailelerinin blok yapısını yerinde bırakmaktadır.
+
+% ----------------------------------------------------------------------------
+% 3.9 Istatistiksel cikarim ve kayitli testler
+% ----------------------------------------------------------------------------
+\subsection{İstatistiksel Çıkarım}
 \label{subsec:statistics}
 
-Dört varyans kaynağı birbirinden ayrılmakta ve her biri geçerli olduğu yerde raporlanmaktadır. Mimari karşılaştırmaları eğitim koşusu varyansına dayandığından her tablo mimari başına üç bağımsız koşunun ortalamasını ve standart sapmasını vermektedir (Bölüm~\ref{subsec:training}). Saldırı başlatma varyansı, PGD-10'un sabit bir altkümede üç saldırı tohumuyla (42, 123, 456) yeniden koşulmasıyla ölçülmektedir; değerlendirilen örnekler ve sıraları sabit olduğundan tohumlar yalnızca saldırının rastgele başlangıcını değiştirmektedir. Koşullama protokolleri arasındaki yayılım olan protokol varyansı gürültü olarak değil bir sonuç olarak ele alınmaktadır (Bölüm~\ref{subsec:transfer}). Dördüncü kaynak olan kontrol noktası seçimi varyansı, sabit bir yörüngeden son kontrol noktasını seçen çevrimdışı kuraldan (doğrulama bölmesi, erken durdurma sabrı ve eğri yumuşatması) doğmakta ve yörünge sabit tutularak on sekiz bileşim üzerinde ölçülmektedir. Bölüm~\ref{subsec:statistics_results} bu kaynakların büyüklüklerini karşılaştırmakta, Bölüm~\ref{subsec:selection} ise seçim kuralının transfer asimetrisine etkisini izlemektedir.
+% KAYNAK: ON_KAYIT Sec. 2, 5, 6 (cikarim birimi, delta, karar ilkesi, Holm,
+% sonuc haritasi); EK Sec. 2, 4.2, 5.6, 6.3. delta = 0.10 ve 0.06 tasarim
+% sabitidir. Dayanaktaki RMS degerleri (havuz r, 21 cift; yalniz CNN
+% ciftleri) foyde yok, sayisiz yazildi.
+Çıkarım birimi eğitim koşusu, görüntüler ise bütün modellerin paylaştığı yinelenen ölçümlerdir. Bu nedenle koşular üzerinden kurulan aralıklar sabit test görüntülerine ve panel üyelerine koşulludur ve görüntü örneklemesi yalnız görüntüleri yeniden örnekleyen bootstrap analizlerine girmektedir. Tasarımın $2\times2$ karşıtlıkları koşu düzeyindeki hücre ortalamalarını ve 5 serbestlik dereceli, birleştirilmiş varyanslı bir $t$ aralığını kullanmaktadır. Testler, her birinde $\alpha = 0{,}05$ düzeyinde Holm düzeltmesi uygulanan kayıtlı aileler oluşturmaktadır (Tablo~\ref{tab:registry}). Eşdeğerlik, $\delta = 0{,}10$ log birimlik marjla iki tek yönlü testle (TOST) sınanmaktadır. Bu marj bir oranda kabaca yüzde onluk göreli değişime karşılık gelmektedir. Eşdeğerlik testi log nicelikleri için kaydedildiğinden logit ve oran ölçeklerinde aynı banda karşı yapılan karşılaştırmalar betimseldir. Marj, ön kayıttan önce görülen çekişmeli eğitilmiş modeller arasındaki yönlü artığın karesel ortalama karekökünden (RMS) alınmıştır. Bu küme ViT'i de içerdiğinden marj gevşektir ve her eşdeğerlik, yalnız CNN çiftlerinden gelen değer olan $\delta = 0{,}06$ ile yinelenmektedir. $\sigma$ karşıtlıkları (H1, H2, K-c) için aynı marj, ayrı bir görgül dayanağı olmayan bir uzlaşımdır.
 
-Aynı örneklerin iki koşul altında puanlandığı her yerde eşleştirilmiş testler kullanılmaktadır: eşleştirilmiş ikili sonuçlar için McNemar'ın kesin testi, üç seyreklik ölçüsü için Holm düzeltmeli Wilcoxon işaretli sıra testi, farklar için eşleştirilmiş bootstrap güven aralıkları (10.000 yeniden örnekleme) ve her ikisi doğru transfer farkı için işaret çevirme permütasyon testi (20.000 permütasyon). Çalışma boyunca iki çıkarım birimi mevcuttur ve bu birimler farklı soruları yanıtlamaktadır. Örnek bazlı bir test iki sabit kontrol noktasının değerlendirilen görüntülerde farklı olup olmadığını, üç tekrar üzerinden yapılan koşum düzeyi bir test ise mimarilerin farklı olup olmadığını sormaktadır. Mimari bir iddiayı yalnızca ikincisi desteklemektedir ve üç koşumla bu test çok daha zayıftır. Her testin yanında birimi belirtilmekte, iddia mimari olduğu her yerde koşum düzeyi kullanılmakta, iki birimin uyuşmadığı yerde ise iddiayı destekleyen birim yerine ikisi birden raporlanmaktadır; bunun yaşandığı yer Bölüm~\ref{subsec:gradient}'dir. Eşdeğerlik iddiaları, karşılaştırmalardan önce PGD doğruluğundaki koşumlar arası değişimden sabitlenen $\pm2$ puanlık birincil marjla iki tek yönlü test (TOST) kullanılarak yapılmaktadır. Bu marj mutlak doğruluk için doğru, koşumlar arası standart sapması $0{,}23$ puan olan transfer asimetrisi için ise yanlış ölçektir; orada marj yaklaşık sekiz kat cömerttir ve TOST'u eşdeğerliği kabul etmeye doğru yanlılaştırmaktadır. Ölçümden önce sabitlenen marj veriyi gördükten sonra yeniden ayarlanmamış, korunmuştur ve her eşdeğerlik iddiası $\pm1$ ve $\pm3$ puanda da raporlanmaktadır; bir transfer asimetrisi için kabul edilen tek eşdeğerlik olan SVHN sonucu $\pm1$ puanda da geçerlidir. Bölüm~\ref{subsec:attention}'teki dikkat entropisi eşdeğerliği ise farklı bir ölçekte yapılan ayrı bir sınamadır ve o ölçünün ölçeğinden sabitlenen kendi $\pm0{,}05$ nat marjını kullanmaktadır. Tüm değerlendirme ve analiz betikleri rastgele tohumları sabitlemekte (CUDA determinizm bayrakları dahil tohum 42) ve her protokol kestirimi, saklanan örnek bazındaki kayıtlardan Tablo~\ref{tab:protocol_masks}'teki maskelerle yeniden hesaplanmaktadır.
+% KAYNAK: ON_KAYIT Sec. 6 satir 100 (O1 bolgesi ve onceden yazilmis manseti).
+Destek Holm düzeltmeli $p < 0{,}05$ değerinden okunmaktadır. Çürütme ile H1 ve H2'nin eşdeğerlik kolları ham aralıklardan, K-b ve H3 için eşdeğerlik desteği ise önce çürütme denetlenmek koşuluyla Holm düzeltmeli TOST $p$ değerinden okunmaktadır. Böylece aralığı $\pm\delta$ içinde kalan anlamlı bir etki ihmal edilebilir sayılmaktadır. Hesaplanamayan bir test $p = 1$ sayılmakta, öngörülen büyüklükler ise ölçüt yapılmadan raporlanmaktadır. H1, H2 ve H3 sonuçlarının her bileşimi için önceden bir manşet yazılmış, maskeleme kuralı da bölge seçildikten sonra uygulanmıştır. H1 ve H2'nin desteklendiği, H3'ün eşdeğer çıktığı O1 bölgesinde kayıtlı manşet, ViT'in zayıf kaynak görünümünü ImageNet başlatmasının ViT için daha çok azalttığı simetrik ve mimariye bağlı bir farklılığa bağlamaktadır. Aynı manşet asimetriyi ise hedef kırılganlığına ve mimariden bağımsız küçük bir yönlü terime yüklemektedir. Aşağıdaki sonuçlar bu manşeti daraltmaktadır. Bunun bir nedeni de sıfırdan satırında tasarımın mimariyi yakınsamadan ayıramamasıdır. S1-S7 ikincil analizleri keşifseldir ve düzeltme uygulanmamıştır. Protokol eşdeğerliği ise $\pm1$ ve $\pm3$ puanda TOST ile sınanmaktadır.
+
+% KAYNAK: ON_KAYIT Sec. 5 (B2: K-a, K-b, K-c; B4: H1-H3; B5; B6), EK Sec. 4.2
+% (B9), Sec. 5.6 (B8), Sec. 6.3 (B10); donma tarihleri ON_KAYIT ve EK
+% Dondurma ekleri. Tablo tasarim tasir, sonuc tasimaz. Esikler: 0.75, 0.50, 0.10, 0.30,
+% -0.20 (ON_KAYIT Sec. 5); 0.5 (B5); 10 puan ve ilk 1000 goruntu (B6); -0.10 ve -0.20 (EK B8);
+% 0.50, 0.30 ve 0.20 (EK B10).
+% YON: kural
+\begin{table*}[!t]
+\centering
+\caption{Kayıtlı testler. Her aile içinde $\alpha = 0{,}05$ düzeyinde Holm düzeltmesi ve $\delta = 0{,}10$ log birimlik marj kullanılmıştır; ImageNetV2 satırları betimseldir. Ön kayıt belgelerinde satırlar, tablodaki sırayla B2, B4, B5 ve B6 bloklarına (29 Ekim 2026'da donduruldu) ve B9, B8 ve B10 bloklarına (30 Ekim 2026'da donduruldu) karşılık gelmektedir; H10 ve H10k ön kayıt ekinin etiketlerini korumaktadır.}
+\label{tab:registry}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lllllp{5.4cm}@{}}
+\toprule
+\textbf{Aile} & \textbf{Etiket} & \textbf{Nicelik} & \textbf{Öngörü} & \textbf{Test} & \textbf{Çürütme ya da karar kuralı} \\
+\midrule
+Panel, CIFAR-10 & K-a & $q_s$ & her tohumda $\geq 0{,}75$ & tek yönlü $t$, $q \leq 0{,}50$ & \%90 üst sınır $< 0{,}50$; bir $G_s \leq 0{,}10$ ise kararsız \\
+ & K-b & $\rho(\cellname{V-scr})$ & $|\rho| < \delta$ & TOST & \%95 GA 0'ı dışlar ve $|\hat\rho| > \delta$ \\
+ & K-c & $\Dseed$ & $\geq 0{,}30$ & bootstrap, $\Dseed \leq 0$ & önce denetlenir: \%90 üst sınır $< 0{,}10$ \\
+\midrule
+$2\times2$, CIFAR-10 & H1 & $\Asig{scr}$ & $\leq -0{,}20$ & tek yönlü $t$ & \%90 GA $\pm\delta$ içinde ya da \%95 GA 0'ı dışlayarak pozitif \\
+ & H2 & $\Isig$ & $\geq 0{,}10$ & iki yönlü $t$ & \%90 GA $\pm\delta$ içinde ya da ham $p < 0{,}05$ ile negatif; destek için logit kestirimi pozitif olmalı \\
+ & H3 & $\Arho$ & $|\Arho| < \delta$ & TOST & K-b gibi \\
+\midrule
+Saldırı tarafı & -- & $\Gk{best}/\Gk{PGD}$ & $\geq 0{,}5$ & bootstrap & \%90 alt sınır $\geq 0{,}5$ ise destek, üst sınır $< 0{,}5$ ise çürütme; $\Gk{PGD} \leq 0{,}10$ ise kararsız \\
+Maskeleme & -- & PGD-10 $-$ AA & -- & kural & ilk 1.000 görüntüde 10 puanı aşan fark modeli işaretler; H1-H3 o model olmadan yeniden hesaplanır \\
+\midrule
+Panel, CIFAR-100 & K-a--K-c & yukarıdaki gibi & yukarıdaki gibi & yukarıdaki gibi & yukarıdaki gibi \\
+\midrule
+ImageNetV2 (aile yok) & -- & $\AbarIN$ & iki çiftte de $\leq -0{,}10$ & görüntü bootstrap & yalnız betimsel etiket \\
+ & -- & $\Asig{scr,Liu}$ & $\leq -0{,}20$ & görüntü bootstrap & yalnız betimsel etiket \\
+\midrule
+Gradyan, üç veri kümesi & H10 & $\rS(c, \log\simt)$ & $> 0$, büyüklük $\geq 0{,}50$ & Mantel & $\hat r_{\mathrm{S}} \leq 0{,}20$ ve ham $p \geq 0{,}20$ \\
+ & H10k & artıkların $\rS$'si & $> 0$, büyüklük $\geq 0{,}30$ & Mantel & H10 gibi \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% ----------------------------------------------------------------------------
+% 3.10 On kayit
+% ----------------------------------------------------------------------------
+\subsection{Ön Kayıt}
+\label{subsec:prereg}
+
+% FOY:M9.8:1684-1686 (betik, hucre tablosu, on kayit govdesi sha256);
+% FOY:M10.6:2022-2032 (ek govde, hucre tablolari, ozgun ve catal betikler);
+% FOY:M11.1:2078,2080 (K-a ve K-b hiyerarsik bootstrap: on kayitli, 31.10.2026'da sonradan uretildi);
+% FOY:M11.2:2121 (S10-3: ek on kayit 6.4 kesifsel, sonradan uretildi); ONKAYIT_SAPMALAR.md satir 67-87;
+% FOY:M9.8:1690, M9.9:1775 (ImageNet top-1 kayitta yok).
+% KAYNAK: ON_KAYIT Sec. 1, 7, 8 (m.7, m.17), Dondurma eki (i) m.8;
+% EK Sec. 1, 4.4, 5.7, 6.4, 12; R09 Sec. 0, 7; R11 Sec. 6 (beyanlar, brif
+% Sec. 8.2). Uretilmeyenler: S9-2, S9-4, S8-1 (D_k, q_k), S8-3 grup
+% jackknife, S8-7, S8-8, S10-1..S10-7, B10 her-ikisi-dogru Mantel.
+Ana ön kayıt (panel testleri, $2\times2$ tasarım, saldırı tarafı, maskeleme) bu koşuların hiçbirinden önce, 29 Ekim 2026'da dondurulmuştur. Ön kayıt eki (CIFAR-100, ImageNetV2, gradyan hizalanması) ise matrislerinin ve gradyanlarının hiçbiri hesaplanmadan önce, 30 Ekim 2026'da dondurulmuştur. Bütün testler dondurulmuş tek bir analiz betiğiyle koşulmuştur. Bu betiğin (\texttt{4bce2c983ace\ldots}), hücre tablolarının ve iki kayıt metninin SHA-256 özetleri, dondurma anında yazılan kayıtlarla ve her analiz çıktısında saklanan özetlerle örtüşmektedir. Ana ön kayıtta bir uygulama sapması bulunmaktadır. Dondurulmuş betikte K-a ve K-b için öngörülen hiyerarşik bootstrap duyarlılığına ait kod bulunmamaktadır. Bu analiz, dondurulmuş fonksiyonları değiştirmeden yükleyen ayrı bir betikle, sonuçlar ve bir iç değerlendirme görüldükten sonra iki CIFAR veri kümesinde hesaplanmıştır (Bölüm~\ref{subsec:panel}). Ön kayıt ekinde sapma yoktur ve bu eke ait keşifsel S10-3 analizi, yani aile göstergeli kısmi Mantel testi, bu noktada belirlenmiştir.
+
+% FOY:M10.2:1842 (K-b(B9) eski yalniz pozitif okuma ile de curutme: evet)
+Ön kayıttan önce görülen veriler test sayılmamaktadır. Bunlar çiftin üçe üçlük matrisleri, tek tohumlu sekiz modelli havuz matrisi ve onun üzerindeki masa çözümlemeleri, $2\times2$ tasarım kodunun gerçek çift matrisleriyle yapılan bir deneme koşusu ve küçük örneklemli duman testi matrisleri ile temiz doğruluklardır. Deneme koşusu ve masa çözümlemesi, çiftin ViT'i ile 32 piksellik ResNet'i arasındaki $\sigma$ açığını zaten göstermişti ve H1 öngörüsü bu açık bilinerek yazılmıştır. H1'in bunun ötesinde sınadığı şey, ViT'in girdi hattındaki 224 piksellik bir ResNet-18'in açığın ResNet tarafını yeniden üretip üretmediğidir. Yeni bir hücrenin tam tarifli hiçbir koşusu görülmediğinden CIFAR-10 panel öngörüleri ilk tohumdaki gözlemi iki ek tohuma ve yedi üyeli bir panele genişletmektedir. Veri görüldükten sonra iki kural değişmiştir. K-b'nin çürütme ölçütü iki işarete genişletilmiş ve bu değişiklik çürütmeyi kolaylaştırmıştır. Bununla birlikte CIFAR-100'deki çürütme özgün tek yönlü kuraldan da çıkmaktadır. Bir yükleme denetimi olan temiz aşama denetimi ilk epoğa taşınmış ve \cellname{R224-IN} için referans olarak tek bir \cellname{R224-scr} koşusu alınmıştır. Hiçbir karar bu denetime bağlı değildir. Saldırı tarafı öngörüsünün momentum ve TGR duman testi matrislerinden önce yazılıp yazılmadığı dosya geçmişinden doğrulanamamaktadır. CIFAR-10 panel tablosunun yönlü değerlerine ön kayıt eki dondurulmadan önce bakılmış, ekin öngörüleri de dondurulmuş öngörülerden kopyalanmıştır. CIFAR-100 matrisi hesaplanırken bir başlatma betiği tek bir kaynağın günlük satırlarını ekrana basmış, analiz ise seçim bırakmayan tek bir çağrıdan oluşmaktadır.
+
+Kayda geçirilmiş bazı duyarlılık ve keşifsel analizler üretilmemiştir. Bunlar arasında CIFAR-100'ün her ikisi doğru ve Hodge analizleri, ImageNetV2 ve gradyan analizlerinin bir kısmı ve her ikisi doğru Mantel testi bulunmaktadır. İki başlatma kontrol noktasının ImageNet top-1 doğruluğu kaydedilmemiştir.

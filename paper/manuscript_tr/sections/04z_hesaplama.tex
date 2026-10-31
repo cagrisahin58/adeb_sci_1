@@ -1,0 +1,25 @@
+% ============================================================================
+% BOLUM 4 (son alt bolum): HESAPLAMA AYRINTILARI
+% ============================================================================
+% 2026-10-31 (konsey turu, TR ayna T2): EN 04z_computational.tex aynasi.
+% Ek bloklarin (B8-B10) ve adimlarin sureleri foyde olmadigi icin yazilmaz
+% (brif 9); GPU paylasimi ve bellek sayisiz, nitel beyan. Surum numaralari
+% (PyTorch 2.6.0a0, CUDA 12.8, timm 1.0.27, NumPy 1.26.4) ondalik degil,
+% surum dizgesidir; noktali kalir.
+\subsection{Hesaplama Ayrıntıları}
+\label{subsec:computational}
+
+% KAYNAK: CLAUDE.md (Donanim: C1 kampanyasi RTX 5060 Ti 16GB, Q1 ve konsey bloklari RTX 5090 32GB); eski metin 04:638
+% KAYNAK: raporlar/konsey_2026-10-29/adeb_eval_pip_freeze.txt satir 156, 234, 266, 269; CLAUDE.md (CUDA 12.8)
+% KAYNAK: raporlar/konsey_2026-10-29/10_konteyner_yeniden_kurulum.md satir 276 (commit edilmis imaj adeb_eval:2026-10-30)
+% KAYNAK: eski metin 04:638 ve 03:192 (deterministik cuDNN, tohum 42)
+% FOY:M10.1:1789,1793,1794,1796
+Özgün hücrenin üç CIFAR-10 eğitim çifti ve bunların değerlendirmeleri bir NVIDIA RTX 5060 Ti (16~GB) üzerinde koşulmuştur. CIFAR-100, SVHN ve $L_2$ kampanyaları, seçim yörüngeleri, dış havuz ve kayıtlı blokların tamamı ise bir RTX 5090 (32~GB) üzerinde yürütülmüştür. Kod, NVIDIA'nın PyTorch~25.01 imajı üzerine kurulmuş bir konteynerde (PyTorch 2.6.0a0, CUDA 12.8) timm 1.0.27, NumPy 1.26.4 ve RobustBench'in \texttt{78fcc9e} sürüm kaydıyla, deterministik cuDNN ayarları ve tohum 42 altında çalıştırılmıştır. Kayıtlı CIFAR-100, ImageNetV2 ve gradyan blokları mevcut kontrol noktalarını yeniden kullanmış ve yeni bir model eğitmemiştir. Bu bloklar yeniden kurulan konteynerin kaydedilmiş bir anlık görüntüsünden, transfer matrisi betiğinin çatallanmış bir kopyasıyla koşulmuştur; söz konusu kopya bir regresyon koşusunda özgün çıktıları birebir yeniden üretmiştir.
+
+% FOY:M9.7:1673
+% KAYNAK: eski metin 04:638 (C1 AutoAttack: tam test kumesi, tohumlu 1000'lik parcalar)
+AutoAttack standart yapılandırmasıyla (APGD-CE, APGD-T, FAB-T, Square) kullanılmış, özgün çiftte tam test kümesinde tohumlu 1.000 görüntülük parçalar hâlinde, altı yeni modelde ise ilk 1.000 test görüntüsünde koşulmuştur.
+
+% FOY:M8.9:1315,1316
+% FOY:M9.1:1452,1453,1454,1455,1456,1457,1470,1485
+Özgün çiftin üç tohumlu eğitim hattı 21{,}7 GPU saati sürmüştür. Altı yeni koşunun temiz ve çekişmeli aşamaları 17{,}79 saat sürmüş, pilot ölçümünden 80 epokluk tavan için yapılan öngörü ise 20{,}47 saat olmuştur. Çekişmeli eğitim her koşuda 36 ile 58 epok arasında erken durmuş, seçilen epoklar 16 ile 38 arasında kalmıştır. Epok başına süreler, boşta bir GPU üzerinde ölçülen pilot sürelerinin 1{,}05 ile 2{,}19 katı olmuştur. GPU zaman zaman başka bir süreçle paylaşılmış, ancak günlükler yavaşlamanın nedenini ortaya koymamaktadır.

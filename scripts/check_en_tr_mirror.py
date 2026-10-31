@@ -41,6 +41,8 @@ CIFTLER = [
     ("04_experiments.tex", "04_deneyler.tex"),
     ("05_discussion.tex", "05_tartisma.tex"),
     ("06_conclusion.tex", "06_sonuc.tex"),
+    ("04z_computational.tex", "04z_hesaplama.tex"),
+    ("07_appendix.tex", "07_ek.tex"),
 ]
 
 PARAGRAF_ESIGI = 200
