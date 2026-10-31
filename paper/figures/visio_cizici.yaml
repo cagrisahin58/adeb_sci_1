@@ -1,0 +1,42 @@
+# visio-cizici proje ayari: adeb_sci_1 (IEEE Access makalesi, EN paper/manuscript, TR aynasi paper/manuscript_tr)
+# Yazan: gorsel-uretici, 31.10.2026 (skill adim 1). Anahtarlar motor/visio/proje_ayari.py basindadir.
+#
+# Bu dosya skill'in varsaydigi <kok>/figures/visio_cizici.yaml yerinde DEGIL, paper/figures altindadir.
+# Her komutta iki ortam degiskeni verilir (Git Bash'te MSYS_NO_PATHCONV=1 ile):
+#   VZ_PROJE_KOKU=//wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1
+#   VZ_PROJE_AYARI=//wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1/paper/figures/visio_cizici.yaml
+# Asagidaki goreli yollar depo kokune goredir.
+
+visio:
+  out_dir: paper/figures/visio                       # Visio yapim klasoru
+  preview_dir: paper/figures/onizleme                # uslup onizlemeleri ve montajlar
+  dpi: 120                                           # 31.10.2026 olcumu: GetDeviceCaps(LOGPIXELSX) = 120, AppliedDPI 120; izgara 0.6 pt
+  tasklist_log: paper/figures/visio_loglari/visio_tasklist.log
+
+install:
+  target: paper/figures                              # kurulu sekiller (fig<N>_<kok>); final/, final_tr/, konsey/ dosyalarinin uzerine yazilmaz
+  visio_dir: paper/figures/visio
+  charts_dir: paper/figures/charts
+  qc_dir: paper/figures/qc
+  log: paper/figures/visio_loglari/kurulum.log
+  mapping: paper/figures/qc/ESLEME.md                # henuz yazilmadi; yapim kokleri bugunku include adlarindan farkli olacagi icin elle yazilir
+
+language: en                                         # EN el yazmasi; TR altyazilar yazim ajaninda ayri, sayac TR icin --dil tr
+
+# VENUE: probe "olculdu" verdi (raporlar/visio_2026-10-31/venue_probe_ieee_access.json):
+#   \columnwidth 242.67355 pt = 85.290 mm, \textwidth 505.12177 pt = 177.530 mm,
+#   \textheight 672.0 pt = 236.181 mm, \columnsep 19.77464 pt = 6.950 mm, govde 10 pt.
+# "ieee_access" 31.10.2026'da skill'in motor/figspec/venues.py REGISTRY'sine IEEE_ACCESS adiyla
+# eklendi (blok: raporlar/visio_2026-10-31/venue_ieee_access_blok.txt); taban 8.0 pt ve yukseklik
+# payi 0.70 IEEE kilavuzundan dogrulanmadi (cls olcumu ve LaTeX varsayilani). Bu satir kapali
+# kalsaydi venue verilmeyen motor varsayilan MDPI geometrisine (138.6 / 184.6 mm, 7.5 pt) duserdi.
+venue: ieee_access
+
+# PALET: makalenin kurulu paleti paper/figures/konsey/konsey_ortak.py icindeki OI ve COL
+# sozlukleridir (Okabe-Ito, anlamsal): vit #D55E00, r224 #0072B2, r32 #56B4E9, panel #999999,
+# xcit #CC79A7, sym (simetrik/sigma) #009E73, dir (yonlu/rho) #E69F00.
+# Motorun okudugu YAML palet dosyasi henuz yok (configs/figures/palettes de yok). Cizim
+# fazinda paper/figures/visio/palettes/adeb_konsey.yaml bu sozluklerden uretilir ve
+# asagidaki satir acilir; iki motor ayni renk baglarini kullanir.
+# palette: paper/figures/visio/palettes/adeb_konsey.yaml
+palet_kaynagi: paper/figures/konsey/konsey_ortak.py   # bilgi anahtari; motor okumaz

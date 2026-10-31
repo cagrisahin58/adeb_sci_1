@@ -1,0 +1,43 @@
+# Onerilen venue kaydi (skill: motor/figspec/venues.py). Bu fazda skill'e YAZILMADI.
+# Olcum: scripts/venue_probe.py --tex <karalama kopyasi>/main.tex --ad ieee_access, 31.10.2026,
+# Windows TeX Live 2025 pdflatex, cikis 0, "olculdu".
+# Karalama kopyasi: paper/manuscript/main.tex'in birebir kopyasi, tek fark \titlepgskip satirindan
+# sonra eklenen \EOD (ieeeaccess.cls satir 1080 belge sonunda \EOD ister; probe metni kesip
+# "x \end{document}" ekledigi icin olmadan pdflatex 1 ile cikiyor). Sinif yazi tipi dosyalari
+# (t1-*.tfm/.pfb/.map, T1times.fd, logo png'leri) --kopyala ile probe klasorune verildi.
+#   PROBEcw=242.67355pt  PROBEtw=505.12177pt  PROBEth=672.0pt  PROBEcs=19.77464pt
+#   PROBElw=242.67355pt  PROBEbase=10
+# Sinifin kendi satirlari: ieeeaccess.cls 261-265 (\columnsep 6.95mm, \columnwidth 85.29mm,
+# \textwidth 177.53mm, \textheight 672pt). Ikili sutun ozdesligi: 2 x 242.67355 + 19.77464
+# = 505.12174 pt (fark 0.00003 pt < 0.01).
+# Gorev metnindeki yer tutucu (tek sutun 3.5 in = 88.9 mm, cift 7.16 in = 181.9 mm) sinifla
+# tutmaz; olcum esastir. konsey_ortak.py 31.10.2026'dan beri zaten 85.29 / 177.53 mm kullanir.
+#
+# Olculmeyen, karar olarak yazilan alanlar:
+#   min_type_abs_pt=8.0, min_type_ratio=0.80 -> taban max(8.0, 10 x 0.80) = 8.0 pt
+#       (konsey_ortak.MIN_FONT 8.0 ve skill'in ieee_tran yer tutucusu; IEEE yazar kilavuzu bu
+#        oturumda okunmadi, dogrulanmadi)
+#   max_float_height_frac=0.70 -> 165.33 mm. Sinif \topfraction / \dbltopfraction tanimlamaz,
+#       LaTeX varsayilani 0.7'dir; bugunku sekil 1 yaklasik 129 mm, 0.45 (106.3 mm) bunu bloklar.
+#   caption_pt=7.0 (ieeeaccess.cls satir 218-219, \figcapfont Formata 7 pt; yalniz bilgi)
+#   raster_dpi=600, raster_min_dpi=300
+IEEE_ACCESS = Venue(
+    name="ieee_access",
+    doc_class="ieeeaccess",
+    class_options="",
+    single_pt=242.67355,
+    double_pt=505.12177,
+    textheight_pt=672.0,
+    columnsep_pt=19.77464,
+    body_pt=10.0,
+    min_type_ratio=0.80,
+    min_type_abs_pt=8.0,
+    max_float_height_frac=0.70,
+    raster_dpi=600,
+    raster_min_dpi=300,
+    columns=2,
+    caption_pt=7.0,
+)
+# REGISTRY'ye eklenir; ardindan tests/test_venues_kind.py kosulur ve
+# paper/figures/visio_cizici.yaml icindeki "venue: ieee_access" satiri acilir.
+# fig_mm_pdf.py her cagride --floor 8.0 ile verilir.

@@ -1,0 +1,92 @@
+# Panel yapisi ve adlandirma plani (visio-cizici, adim 4)
+# Ilk yazim 31.10.2026 gorsel-uretici; duzeltme 31.10.2026 aksam, Faz A dogrulamasinin
+# M2, M3, M4, m1, m2 ve m7 bulgulari uzerine (raporlar/visio_2026-10-31/03_faz_a_dogrulama.md;
+# baglayici plan 04_cizim_plani.md).
+#
+# Anahtar: sekil etiketi (EN ve TR ayni \label). Okuyan: scripts/panel_atif_sayaci.py
+#   python <skill>/scripts/panel_atif_sayaci.py --tex paper/figures/qc/main_en_duz.tex \
+#     --yapi paper/figures/panel_yapisi.yaml --json-out paper/figures/qc/panel_atiflari_en.json \
+#     --md-out paper/figures/qc/panel_atiflari_en.md
+# Duz kopya (main_en_duz.tex) ek ve hesaplama bolumunu de tasir; vz_duzlestir
+# \InputIfFileExists acmadigi icin once ek kaynak kopyasi yazildi (rapor 01_envanter.md bolum 2).
+#
+# Metinde yalniz 1 panel atfi var (Figure 3a). Adim 5'in testi hicbir sekle harf vermez.
+# Harf yalniz sekil 1'de kalir ve sartlidir: yazim ajani bes panelden en az ucunu metinde
+# ayri ayri anmalidir: (a) Trained models, (b) Reference panels, (c) Matrices,
+# (d) Registered before measurement, (e) Exact split and contrasts. Anmazsa sekil 1
+# "akis + serit" karmasina iner (cizim betiginde tek parametre: harf yerine naming="strip").
+# Uslup 8'de harf "(a)", duz, 9.0 pt ve PANELIN ALTINDADIR; motor konumu okumadigi icin
+# cizim betigi harfi panel altina elle koyar (references/panel_adlandirma.md bolum 5).
+#
+# Mevcut 12 sekil dizisi: karma akis serit serit renk yok serit renk serit serit yok serit
+#   en uzun ayni tur dizisi 2 (3-4, 9-10); harfli pay 1/12 = 0.083 (denge.py adlandirma_dizisi,
+#   satir 692-709: harf iceren karma harfli sayilir; onceki "0/12" yanlisti).
+#
+# Adim 1-7: 1 tek panel, 2 surec zinciri (akis), 3 numarali duzey (rakam halkasi; yalniz
+# metinde numarayla anilan duzeyler), 4 kucuk katlar (baslik seridi ya da renk kodu),
+# 5 farkli analizler (harf; iki panelli ve az atifliysa serit, kural dali 5),
+# 6 lejant seridi, 7 karma (en cok iki tur).
+
+fig:study_overview:            # 1  (a)-(c) ust zemin bandi, (d)-(e) alt satir, lejant seridi (yontem_semasi, Uslup 8)
+  yapi: karma
+  adlandirma: karma            # harf (a)-(e) panel altinda + bantlar arasi etiketli ince ok (PGD-10, split-half)
+  turler: [harf, akis]
+  not: "harf sartli: metinde (a)-(e) icin en az uc ayri atif gerekir; yoksa akis + serit"
+
+fig:decomposition_schematic:   # 2  matris -> ayrisim -> panel ortalamasi -> kaynak acigi zinciri
+  yapi: surec_zinciri
+  adlandirma: akis             # bugunku (a)-(d) harfleri kalkar; asamalar etiketli sevronla baglanir
+
+fig:source_gap_split:          # 3  CIFAR-10 / CIFAR-100 / ImageNetV2, ayni eksen
+  yapi: kucuk_katlar
+  adlandirma: serit            # metindeki tek atif "Figure 3a" -> "the CIFAR-10 panel of Figure 3"
+
+fig:similarity_matrix:         # 4  uc veri kumesinin log tau matrisi, ayni renk olcegi
+  yapi: kucuk_katlar
+  adlandirma: serit
+
+fig:cells_interaction:         # 5  sigma, rho, omega; ayni hucre ekseni
+  yapi: kucuk_katlar
+  adlandirma: renk             # sigma basligi simetrik yesil, rho yonlu turuncu (konsey_ortak COL sym/dir)
+
+fig:attack_side:               # 6
+  yapi: tek_panel
+
+fig:gradient_alignment:        # 7  2 satir (ham, artik) x 3 sutun (veri kumesi); Spearman ozet karti kalkar
+  yapi: kucuk_katlar
+  adlandirma: serit            # sutun seridi veri kumesi, dar satir seridi ham/artik; (a)-(f) kalkar
+
+fig:estimates_forest:          # 8  benzerlik etkileri ve yon terimleri
+  yapi: kucuk_katlar
+  adlandirma: renk             # ust kart sigma (yesil baslik), alt kart rho (turuncu baslik)
+
+fig:protocol_sets:             # 9  ic ice dort kosullama kumesi (Y3: maskeler kumelerde) ve olculen asimetri
+  yapi: farkli_analizler       # M3 duzeltmesi: protokoller metinde ADLA anilir, numarayla degil; adim 3 olmaz
+  adlandirma: serit            # iki panelli, az atifli farkli analiz -> baslik seridi (adim 4, kural dali 5);
+                               # kumelerde protokol adlari yazilir, A-D harfleri ve rakam halkasi yok
+
+fig:spread_clean_gap:          # 10 yayilim ve basarili-kaynak eksi her-ikisi-dogru
+  yapi: kucuk_katlar
+  adlandirma: serit
+
+fig:epsilon_sweep:             # 11
+  yapi: tek_panel
+
+fig:feature_degradation:       # 12 katman basina entropi degisimi, TV yer degistirmesi, Y8 ile blok cikisi kosinusu
+  yapi: kucuk_katlar
+  adlandirma: serit
+
+# Eklenecek yeni sekiller (metinde henuz yok; sayac okumaz). Yazim ajani sekli metne koyunca
+# satir yorumdan cikarilir ve sayac yeniden kosulur. Sablonlar secili uslupta "uygulanir" olarak
+# sablonlar.yaml'dan dogrulandi (04_cizim_plani.md bolum 3).
+# fig:design_recipe:     {yapi: kucuk_katlar, adlandirma: serit}  # Y1, Uslup 8 tasarim_izgarasi; 2x2 satir/sutun seridi, 3B model bloklari, alt AT tarifi seridi (lejant)
+# fig:panel_members:     {yapi: kucuk_katlar, adlandirma: serit}  # Y2, AYRI tek sutun sekil (M4 karari), Uslup 8 tasarim_izgarasi; ust blok CIFAR-10/100, alt blok ImageNetV2
+# fig:registry_map:      {yapi: kucuk_katlar, adlandirma: serit}  # Y4, Uslup 8 tablodan_sekle; aile satir seritleri, sayi dogrusunda esik ve +-delta bandi
+# fig:prereg_chain:      {yapi: surec_zinciri, adlandirma: akis}  # Y5, Uslup 8 yontem_semasi (yalniz ust zemin bandi + 7 mm lejant seridi); sayim_akisi Uslup 8'de UYGULANMAZ (sablonlar.yaml satir 73-74)
+# fig:protocol_settings: {yapi: tek_panel}                        # Y7, Uslup 7 tek_kart_veri; satir adlari ve sag kenarda yayilim sutunu
+# Y3 sekil 9'un icinde (maskeler kumelere yazilir), Y8 sekil 12'nin icinde (ucuncu kart). Y6 ve Y9 eklenmez.
+#
+# 17 sekillik hedef dizi (metindeki yere gore):
+#   1 karma | Y1 serit | 2 akis | Y2 serit | Y4 serit | Y5 akis | 3 serit | 4 serit | 5 renk | 6 yok |
+#   7 serit | 8 renk | Y7 yok | 9 serit | 10 serit | 11 yok | 12 serit
+#   en uzun ayni tur dizisi 2 (Y2-Y4, 3-4, 9-10); harfli pay 1/17 = 0.059 (harf kalirsa), 0/17 (kalmazsa); sinir 0.40.

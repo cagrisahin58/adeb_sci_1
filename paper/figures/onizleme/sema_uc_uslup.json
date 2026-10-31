@@ -1,0 +1,59 @@
+{
+  "pdf": "paper\\figures\\onizleme\\sema_uc_uslup.pdf",
+  "png": "paper\\figures\\onizleme\\sema_uc_uslup.png",
+  "kompozisyon": {
+    "Üslup 8 (seçilen)": {
+      "panel": 6,
+      "derinlik": 4,
+      "goruntu": true,
+      "akis": true,
+      "adlandirma": 7
+    },
+    "Üslup H (aday)": {
+      "panel": 4,
+      "derinlik": 3,
+      "goruntu": true,
+      "akis": false,
+      "adlandirma": 7
+    },
+    "Üslup 3 (aday)": {
+      "panel": 4,
+      "derinlik": 4,
+      "goruntu": false,
+      "akis": true,
+      "adlandirma": 7
+    }
+  },
+  "ciftler": [
+    {
+      "a": "Üslup 8 (seçilen)",
+      "b": "Üslup H (aday)",
+      "farkli_anahtarlar": [
+        "panel",
+        "derinlik",
+        "akis"
+      ],
+      "gecerli": true
+    },
+    {
+      "a": "Üslup 8 (seçilen)",
+      "b": "Üslup 3 (aday)",
+      "farkli_anahtarlar": [
+        "panel",
+        "goruntu"
+      ],
+      "gecerli": true
+    },
+    {
+      "a": "Üslup H (aday)",
+      "b": "Üslup 3 (aday)",
+      "farkli_anahtarlar": [
+        "derinlik",
+        "goruntu",
+        "akis"
+      ],
+      "gecerli": true
+    }
+  ],
+  "ayrisma_tamam": true
+}
