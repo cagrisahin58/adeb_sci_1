@@ -1,0 +1,42 @@
+# KURU KOSU (--dry-run): komutlar yalniz basilir, hicbir sey calismaz
+# pilot: results/q1/konsey_pilot_zaman.json  tavan: 80  egitim payi: 38.15 sa  disk esigi: 15 GB  IN AT lr: 0.001  R224_scr AT lr: 0.001
+# her asamadan once: df -BG /workspace (< 15 GB ise dur) ve nvidia-smi kaydi
+# IN kosularinda AT'den once denetim her baslatmada yeniden yapilir; GECTI olmadan AT baslamaz
+## V_IN_s2101
+[temiz] python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2101 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2101 --resume   # atla: models/q1/konsey/V_IN_s2101/vit_tiny_in1k/clean/TRAINING_COMPLETE varsa
+[denetim] python scripts/konsey_b3_denetim.py temiz --takma V_IN_s2101   # ilk epok val >= C1 ViT ilk epok ort. + 5; KALDI ise dur (kod 3)
+[AT-on] models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/at_lr.txt (yoksa 0.001) != 0.001 ise klasor adversarial_training__lr<eski>_<zaman> adiyla tasinir
+[AT]    python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2101/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2101 -o models/q1/konsey/V_IN_s2101 --resume   # atla: models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/TRAINING_COMPLETE varsa
+[izleme] her 5 dk: python scripts/konsey_b3_denetim.py cokus --takma V_IN_s2101   # 5. epok val PGD < %15 ise egitim durdurulur (kod 5); yeniden baslatma: --in-at-lr 0.0005
+[ozet]  python scripts/konsey_b3_denetim.py ozet --takma V_IN_s2101 --tavan 80
+## R224_IN_s1301
+[temiz] python -m cli.main train clean -m resnet18_224_in1k --init-weights resnet18_a1_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 1301 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_IN_s1301 --resume   # atla: models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/clean/TRAINING_COMPLETE varsa
+[denetim] python scripts/konsey_b3_denetim.py temiz --takma R224_IN_s1301   # ilk epok val >= R224_scr ilk epok ort. + 5; ERTELENDI ise AT, R224_scr temiz asamasindan sonraya kalir; KALDI ise dur (kod 3)
+[AT-on] models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/at_lr.txt (yoksa 0.001) != 0.001 ise klasor adversarial_training__lr<eski>_<zaman> adiyla tasinir
+[AT]    python -m cli.main train adversarial -m resnet18_224_in1k -d adversarial_training -p models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1301 -o models/q1/konsey/R224_IN_s1301 --resume   # atla: models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/TRAINING_COMPLETE varsa
+[izleme] her 5 dk: python scripts/konsey_b3_denetim.py cokus --takma R224_IN_s1301   # 5. epok val PGD < %15 ise egitim durdurulur (kod 5); yeniden baslatma: --in-at-lr 0.0005
+[ozet]  python scripts/konsey_b3_denetim.py ozet --takma R224_IN_s1301 --tavan 80
+## R224_scr_s1201
+[temiz] python -m cli.main train clean -m resnet18_224 --init-weights none --optimizer adamw --lr-schedule cosine -e 200 --lr 0.001 -b 128 --seed 1201 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_scr_s1201 --resume   # atla: models/q1/konsey/R224_scr_s1201/resnet18_224/clean/TRAINING_COMPLETE varsa
+[denetim] ertelenmis R224_IN denetimleri yapilir; GECTI olanlarin AT'si bu noktada kosulur, KALDI ise dur (kod 3)
+[AT]    python -m cli.main train adversarial -m resnet18_224 -d adversarial_training -p models/q1/konsey/R224_scr_s1201/resnet18_224/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1201 -o models/q1/konsey/R224_scr_s1201 --resume   # atla: models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/TRAINING_COMPLETE varsa
+[ozet]  python scripts/konsey_b3_denetim.py ozet --takma R224_scr_s1201 --tavan 80
+## V_IN_s2102
+[temiz] python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2102 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2102 --resume   # atla: models/q1/konsey/V_IN_s2102/vit_tiny_in1k/clean/TRAINING_COMPLETE varsa
+[denetim] python scripts/konsey_b3_denetim.py temiz --takma V_IN_s2102   # ilk epok val >= C1 ViT ilk epok ort. + 5; KALDI ise dur (kod 3)
+[AT-on] models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/at_lr.txt (yoksa 0.001) != 0.001 ise klasor adversarial_training__lr<eski>_<zaman> adiyla tasinir
+[AT]    python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2102/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2102 -o models/q1/konsey/V_IN_s2102 --resume   # atla: models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/TRAINING_COMPLETE varsa
+[izleme] her 5 dk: python scripts/konsey_b3_denetim.py cokus --takma V_IN_s2102   # 5. epok val PGD < %15 ise egitim durdurulur (kod 5); yeniden baslatma: --in-at-lr 0.0005
+[ozet]  python scripts/konsey_b3_denetim.py ozet --takma V_IN_s2102 --tavan 80
+## R224_IN_s1302
+[temiz] python -m cli.main train clean -m resnet18_224_in1k --init-weights resnet18_a1_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 1302 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_IN_s1302 --resume   # atla: models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/clean/TRAINING_COMPLETE varsa
+[denetim] python scripts/konsey_b3_denetim.py temiz --takma R224_IN_s1302   # ilk epok val >= R224_scr ilk epok ort. + 5; ERTELENDI ise AT, R224_scr temiz asamasindan sonraya kalir; KALDI ise dur (kod 3)
+[AT-on] models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/at_lr.txt (yoksa 0.001) != 0.001 ise klasor adversarial_training__lr<eski>_<zaman> adiyla tasinir
+[AT]    python -m cli.main train adversarial -m resnet18_224_in1k -d adversarial_training -p models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1302 -o models/q1/konsey/R224_IN_s1302 --resume   # atla: models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/TRAINING_COMPLETE varsa
+[izleme] her 5 dk: python scripts/konsey_b3_denetim.py cokus --takma R224_IN_s1302   # 5. epok val PGD < %15 ise egitim durdurulur (kod 5); yeniden baslatma: --in-at-lr 0.0005
+[ozet]  python scripts/konsey_b3_denetim.py ozet --takma R224_IN_s1302 --tavan 80
+## R224_scr_s1202
+[temiz] python -m cli.main train clean -m resnet18_224 --init-weights none --optimizer adamw --lr-schedule cosine -e 200 --lr 0.001 -b 128 --seed 1202 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_scr_s1202 --resume   # atla: models/q1/konsey/R224_scr_s1202/resnet18_224/clean/TRAINING_COMPLETE varsa
+[denetim] ertelenmis R224_IN denetimleri yapilir; GECTI olanlarin AT'si bu noktada kosulur, KALDI ise dur (kod 3)
+[AT]    python -m cli.main train adversarial -m resnet18_224 -d adversarial_training -p models/q1/konsey/R224_scr_s1202/resnet18_224/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1202 -o models/q1/konsey/R224_scr_s1202 --resume   # atla: models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/TRAINING_COMPLETE varsa
+[ozet]  python scripts/konsey_b3_denetim.py ozet --takma R224_scr_s1202 --tavan 80

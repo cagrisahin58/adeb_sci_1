@@ -1,0 +1,86 @@
+[2026-08-25 00:26:59] === CIFAR-10 (E2 yorungeleri) ===
+  SKIP arsiv c10_rn18_s1001
+  SKIP arsiv c10_vit_s2001
+secim: stride=10 -> 11 / 100 checkpoint
+  SKIP ep1
+  SKIP ep11
+  SKIP ep21
+  SKIP ep31
+  SKIP ep41
+  SKIP ep51
+  SKIP ep61
+  SKIP ep71
+  SKIP ep81
+  SKIP ep91
+  SKIP ep100
+secim: stride=10 -> 11 / 100 checkpoint
+  SKIP ep1
+  SKIP ep11
+  SKIP ep21
+  SKIP ep31
+  SKIP ep41
+  SKIP ep51
+  SKIP ep61
+  SKIP ep71
+  SKIP ep81
+  SKIP ep91
+  SKIP ep100
+  SKIP arsiv c10_rn18_s1002
+  SKIP arsiv c10_vit_s2002
+secim: stride=10 -> 11 / 100 checkpoint
+  SKIP ep1
+  SKIP ep11
+  SKIP ep21
+  SKIP ep31
+  SKIP ep41
+  SKIP ep51
+  SKIP ep61
+  SKIP ep71
+  SKIP ep81
+  SKIP ep91
+  SKIP ep100
+[4edf0cbe76cf:1797 :0:1797] Caught signal 11 (Segmentation fault: address not mapped to object at address (nil))
+==== backtrace (tid:   1797) ====
+ 0  /opt/hpcx/ucx/lib/libucs.so.0(ucs_handle_error+0x2e4) [0x7a00cabc6614]
+ 1  /opt/hpcx/ucx/lib/libucs.so.0(+0x3680c) [0x7a00cabc680c]
+ 2  /opt/hpcx/ucx/lib/libucs.so.0(+0x36a48) [0x7a00cabc6a48]
+ 3  /usr/lib/x86_64-linux-gnu/libc.so.6(+0x45320) [0x7a00f582c320]
+=================================
+  FAIL A_c10_vit_s2002
+  SKIP arsiv c10_rn18_s1003
+  SKIP arsiv c10_vit_s2003
+secim: stride=10 -> 11 / 100 checkpoint
+  SKIP ep1
+  SKIP ep11
+  SKIP ep21
+  SKIP ep31
+  SKIP ep41
+  SKIP ep51
+  SKIP ep61
+  SKIP ep71
+  SKIP ep81
+  SKIP ep91
+  SKIP ep100
+secim: stride=10 -> 11 / 100 checkpoint
+  SKIP ep1
+  SKIP ep11
+  SKIP ep21
+  SKIP ep31
+  SKIP ep41
+  SKIP ep51
+  SKIP ep61
+  SKIP ep71
+  SKIP ep81
+  SKIP ep91
+  SKIP ep100
+[2026-08-25 00:27:45] === CIFAR-100 (E1 yorungeleri) ===
+  SKIP arsiv c100_rn18_s1001
+  SKIP arsiv c100_vit_s2001
+secim: stride=10 -> 7 / 52 checkpoint
+  SKIP ep1
+  SKIP ep11
+  SKIP ep21
+  SKIP ep31
+  SKIP ep41
+  SKIP ep51
+  SKIP ep52

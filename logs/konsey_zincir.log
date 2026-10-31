@@ -1,0 +1,112 @@
+[2026-10-30 01:46:39] ZINCIR BASLADI (kok /workspace, pid 1383)
+== 1. B2 bitisi (isaret: results/q1/konsey_b2_panel/transfer_matrix.json ve logs/konsey_b2.log icinde 'custom kaydedildi: results/q1/konsey_b2_panel')
+[2026-10-30 01:46:39] ATLA B2_bekle (B2 bitmis)
+== 2. B2 cozumlemesi (isaret: results/q1/konsey_ayrisim_b2.json)
+[2026-10-30 01:46:39] BASLA B2_cozumleme
+yazildi: results/q1/konsey_ayrisim_b2.json
+[2026-10-30 01:46:42] BITTI B2_cozumleme (rc=0, bitis isareti var)
+== 3. B3 on denetimi ve 4. B3 kuyrugu (isaret: logs/konsey_b3_kuyruk.log son satiri 'KUYRUK TAMAM' ve 6 AT TRAINING_COMPLETE; su an 0/6)
+[2026-10-30 01:46:50] GPU kullanim %0 < %10; B3 baslayabilir
+Fri Oct 30 01:46:50 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 620.67.01              KMD Version: 621.01        CUDA UMD Version: 13.5     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 5090        On  |   00000000:01:00.0  On |                  N/A |
+| 30%   42C    P0             72W /  475W |    4214MiB /  32607MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+[2026-10-30 01:46:50] bos disk 54 GB >= 30 GB
+[2026-10-30 01:46:50] BASLA B3_kuru: bash scripts/konsey_b3_kuyruk.sh --dry-run --pilot results/q1/konsey_pilot_zaman.json > logs/konsey_b3_kuru_kosu.log
+# KURU KOSU (--dry-run): komutlar yalniz basilir, hicbir sey calismaz
+# pilot: results/q1/konsey_pilot_zaman.json  tavan: 80  egitim payi: 38.15 sa  disk esigi: 15 GB  IN AT lr: 0.001  R224_scr AT lr: 0.001
+# her asamadan once: df -BG /workspace (< 15 GB ise dur) ve nvidia-smi kaydi
+[2026-10-30 01:46:51] BASLA B3_kuyruk: bash scripts/konsey_b3_kuyruk.sh --pilot results/q1/konsey_pilot_zaman.json 2>&1 | tee -a logs/konsey_b3_kuyruk.log
+[2026-10-30 01:46:52] BASLA V_IN_s2101 temiz (bastan): python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2101 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2101 --resume
+[2026-10-30 01:51:42] COKUS-IZLEME V_IN_s2101: BEKLE last.pth yok
+[2026-10-30 01:55:06] BITTI V_IN_s2101 temiz: OK, epok=30; toplam egitim 0.14 / 38.15 sa
+[2026-10-30 01:55:07] DENETIM GECTI V_IN_s2101 ilk_epok_val=93.95 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+68.73 esik=+5; betimsel best_val=97.25
+[2026-10-30 01:55:07] BASLA V_IN_s2101 AT (bastan; AT lr 0.001): python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2101/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2101 -o models/q1/konsey/V_IN_s2101 --resume
+[2026-10-30 02:01:25] COKUS-IZLEME V_IN_s2101: BEKLE 2 epok
+[2026-10-30 02:06:15] COKUS-IZLEME V_IN_s2101: BEKLE 4 epok
+[2026-10-30 02:11:07] COKUS-IZLEME V_IN_s2101: TAMAM 34.90
+[2026-10-30 02:11:07] COKUS-IZLEME V_IN_s2101 son deger: TAMAM 34.90 (bilgi amacli; durdurma karari kuyrugun kendisinde)
+[2026-10-30 03:28:55] BITTI V_IN_s2101 AT: OK, epok=38; toplam egitim 1.70 / 38.15 sa
+[2026-10-30 03:28:59] OZET V_IN_s2101: AT_lr=0.001 secilen_epok=18 kosulan_epok=38 erken_durma=True tavanda_durdu=False val_pgd=45.15 kirpilmis_olabilir=False
+[2026-10-30 03:28:59] BASLA R224_IN_s1301 temiz (bastan): python -m cli.main train clean -m resnet18_224_in1k --init-weights resnet18_a1_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 1301 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_IN_s1301 --resume
+[2026-10-30 03:38:49] BITTI R224_IN_s1301 temiz: OK, epok=30; toplam egitim 1.86 / 38.15 sa
+[2026-10-30 03:38:52] DENETIM ERTELENDI R224_IN_s1301 ilk_epok_val=87.25; referans (R224_scr temiz ilk epok, -) henuz yok
+[2026-10-30 03:38:52] BEKLET R224_IN_s1301 AT: referans (R224_scr temiz ilk epogu) yok; R224_scr temiz asamasindan sonra kosulacak
+[2026-10-30 03:38:52] BASLA R224_scr_s1201 temiz (bastan): python -m cli.main train clean -m resnet18_224 --init-weights none --optimizer adamw --lr-schedule cosine -e 200 --lr 0.001 -b 128 --seed 1201 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_scr_s1201 --resume
+[2026-10-30 04:51:10] BITTI R224_scr_s1201 temiz: OK, epok=200; toplam egitim 3.07 / 38.15 sa
+[2026-10-30 04:51:11] DENETIM GECTI R224_IN_s1301 ilk_epok_val=87.25 (last.pth history.test_acc[0]) ref=38.85 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+48.40 esik=+5; betimsel best_val=96.05
+[2026-10-30 04:51:12] BASLA R224_IN_s1301 AT (bastan; AT lr 0.001): python -m cli.main train adversarial -m resnet18_224_in1k -d adversarial_training -p models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1301 -o models/q1/konsey/R224_IN_s1301 --resume
+[2026-10-30 06:48:42] BITTI R224_IN_s1301 AT: OK, epok=36; toplam egitim 5.03 / 38.15 sa
+[2026-10-30 06:48:44] OZET R224_IN_s1301: AT_lr=0.001 secilen_epok=16 kosulan_epok=36 erken_durma=True tavanda_durdu=False val_pgd=46.40 kirpilmis_olabilir=False
+[2026-10-30 06:48:44] BASLA R224_scr_s1201 AT (bastan; AT lr 0.001): python -m cli.main train adversarial -m resnet18_224 -d adversarial_training -p models/q1/konsey/R224_scr_s1201/resnet18_224/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1201 -o models/q1/konsey/R224_scr_s1201 --resume
+[2026-10-30 10:27:30] BITTI R224_scr_s1201 AT: OK, epok=42; toplam egitim 8.67 / 38.15 sa
+[2026-10-30 10:27:31] OZET R224_scr_s1201: AT_lr=0.001 secilen_epok=22 kosulan_epok=42 erken_durma=True tavanda_durdu=False val_pgd=46.40 kirpilmis_olabilir=False
+[2026-10-30 10:27:31] BASLA V_IN_s2102 temiz (bastan): python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2102 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2102 --resume
+[2026-10-30 10:34:33] BITTI V_IN_s2102 temiz: OK, epok=30; toplam egitim 8.79 / 38.15 sa
+[2026-10-30 10:34:34] DENETIM GECTI V_IN_s2102 ilk_epok_val=94.60 (last.pth history.test_acc[0]) ref=25.22 (n=3, C1 ViT-Tiny temiz ilk epok, C1_clean_vit_2001.log C1_clean_vit_2002.log C1_clean_vit_2003.log) fark=+69.38 esik=+5; betimsel best_val=97.45
+[2026-10-30 10:34:34] BASLA V_IN_s2102 AT (bastan; AT lr 0.001): python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2102/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2102 -o models/q1/konsey/V_IN_s2102 --resume
+[2026-10-30 14:03:24] BITTI V_IN_s2102 AT: OK, epok=47; toplam egitim 12.27 / 38.15 sa
+[2026-10-30 14:03:25] OZET V_IN_s2102: AT_lr=0.001 secilen_epok=27 kosulan_epok=47 erken_durma=True tavanda_durdu=False val_pgd=42.90 kirpilmis_olabilir=False
+[2026-10-30 14:03:25] BASLA R224_IN_s1302 temiz (bastan): python -m cli.main train clean -m resnet18_224_in1k --init-weights resnet18_a1_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 1302 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_IN_s1302 --resume
+[2026-10-30 14:22:02] BITTI R224_IN_s1302 temiz: OK, epok=30; toplam egitim 12.58 / 38.15 sa
+[2026-10-30 14:22:03] DENETIM GECTI R224_IN_s1302 ilk_epok_val=87.85 (last.pth history.test_acc[0]) ref=38.85 (n=1, R224_scr temiz ilk epok, R224_scr_s1201) fark=+49.00 esik=+5; betimsel best_val=96.15
+[2026-10-30 14:22:03] BASLA R224_IN_s1302 AT (bastan; AT lr 0.001): python -m cli.main train adversarial -m resnet18_224_in1k -d adversarial_training -p models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1302 -o models/q1/konsey/R224_IN_s1302 --resume
+[2026-10-30 16:14:49] BITTI R224_IN_s1302 AT: OK, epok=37; toplam egitim 14.46 / 38.15 sa
+[2026-10-30 16:14:55] OZET R224_IN_s1302: AT_lr=0.001 secilen_epok=17 kosulan_epok=37 erken_durma=True tavanda_durdu=False val_pgd=46.95 kirpilmis_olabilir=False
+[2026-10-30 16:14:55] BASLA R224_scr_s1202 temiz (bastan): python -m cli.main train clean -m resnet18_224 --init-weights none --optimizer adamw --lr-schedule cosine -e 200 --lr 0.001 -b 128 --seed 1202 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_scr_s1202 --resume
+[2026-10-30 17:10:10] BITTI R224_scr_s1202 temiz: OK, epok=200; toplam egitim 15.38 / 38.15 sa
+[2026-10-30 17:10:10] BASLA R224_scr_s1202 AT (bastan; AT lr 0.001): python -m cli.main train adversarial -m resnet18_224 -d adversarial_training -p models/q1/konsey/R224_scr_s1202/resnet18_224/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1202 -o models/q1/konsey/R224_scr_s1202 --resume
+[2026-10-30 19:34:55] BITTI R224_scr_s1202 AT: OK, epok=58; toplam egitim 17.79 / 38.15 sa
+[2026-10-30 19:34:57] OZET R224_scr_s1202: AT_lr=0.001 secilen_epok=38 kosulan_epok=58 erken_durma=True tavanda_durdu=False val_pgd=45.85 kirpilmis_olabilir=False
+[2026-10-30 19:34:57] KUYRUK TAMAM; toplam egitim 17.79 sa (pay 38.15 sa). Defter: results/q1/konsey_b3_defter.tsv
+[2026-10-30 19:34:57] BITTI B3_kuyruk
+== 5. B4 son matris (isaret: results/q1/konsey_b4_matris/transfer_matrix.json, 400 npz, logs/konsey_b4.log icinde 'custom kaydedildi: results/q1/konsey_b4_matris'; su an 0 npz)
+[2026-10-30 19:34:57] BASLA B4
+cp: warning: behavior of -n is non-portable and may change in future; use --update=none instead
+[2026-10-30 19:34:57] B4 kopya rc=0 (cp -n var olan dosyada sifir disi donebilir; bilgi), 196 npz
+[2026-10-30 19:42:12] BITTI B4 (rc=0, bitis isareti var)
+== 6. B6 AutoAttack (isaret: results/q1/konsey_b6_aa/autoattack_summary.json)
+[2026-10-30 19:42:12] BASLA B6_AA
+[2026-10-30 20:29:18] BITTI B6_AA (rc=0, bitis isareti var)
+== 7. B5 MI-PGD ve TGR (isaret: results/q1/konsey_b5_saldiri/mi/transfer_matrix.json, results/q1/konsey_b5_saldiri/tgr/transfer_matrix.json)
+[2026-10-30 20:29:18] BASLA B5_MI
+[2026-10-30 20:36:38] BITTI B5_MI (rc=0, bitis isareti var)
+[2026-10-30 20:36:38] BASLA B5_TGR
+[2026-10-30 20:40:39] BITTI B5_TGR (rc=0, bitis isareti var)
+== 8. B6 maskeleme (isaret: results/q1/konsey_b6_maskeleme.json)
+[2026-10-30 20:40:39] BASLA B6_maskeleme
+V_IN_s2101: PGD10=43.30 AA=40.10 fark=+3.20 isaretli=False maske_uyusmaz=0
+V_IN_s2102: PGD10=42.20 AA=38.80 fark=+3.40 isaretli=False maske_uyusmaz=0
+R224_IN_s1301: PGD10=45.80 AA=38.40 fark=+7.40 isaretli=False maske_uyusmaz=0
+R224_IN_s1302: PGD10=47.40 AA=41.80 fark=+5.60 isaretli=False maske_uyusmaz=0
+R224_scr_s1201: PGD10=43.90 AA=39.50 fark=+4.40 isaretli=False maske_uyusmaz=0
+R224_scr_s1202: PGD10=45.10 AA=41.10 fark=+4.00 isaretli=False maske_uyusmaz=0
+isaretli: yok -> results/q1/konsey_b6_maskeleme.json
+[2026-10-30 20:40:39] BITTI B6_maskeleme (rc=0, bitis isareti var)
+[2026-10-30 20:40:39] B6 maskeleme_isaretli_arg: ''
+== 9. B4 cozumlemesi (isaret: results/q1/konsey_ayrisim_b4.json) ve B5 cozumlemesi (isaret: results/q1/konsey_ayrisim_b5.json)
+[2026-10-30 20:40:39] BASLA B4_cozumleme
+yazildi: results/q1/konsey_ayrisim_b4.json
+[2026-10-30 20:40:42] BITTI B4_cozumleme (rc=0, bitis isareti var)
+[2026-10-30 20:40:42] BASLA B5_cozumleme
+yazildi: results/q1/konsey_ayrisim_b5.json
+[2026-10-30 20:40:46] BITTI B5_cozumleme (rc=0, bitis isareti var)
+== 10. chown ve son satir
+[2026-10-30 20:40:46] chown: chown -R 1000:1000 /workspace/results/q1 /workspace/models/q1 /workspace/logs
+[2026-10-30 20:40:46] ZINCIR TAMAM

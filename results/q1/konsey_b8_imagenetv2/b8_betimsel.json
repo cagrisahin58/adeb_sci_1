@@ -1,0 +1,1505 @@
+{
+ "etiket": "KESIFSEL / BETIMSEL: IN satirinin dogal olcekte kestirimi; Holm ailesi yok, karar yok",
+ "meta": {
+  "sarmalayici": "experiments/q1_ek_ayrisim.py",
+  "sarmalayici_sha256": "d264c4e584fcfb3c0e3dd9517cfe2cea4ea1fe564117c88459e2b9721027a641",
+  "dondurulmus_betik_sha256_dogrulandi": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "ozgun_matris_betigi_sha256_simdi": "f25d9062c958a296353059639398f0a0a8eb18cd48182b1afa5ec4e3986140b7",
+  "ozgun_matris_betigi_degismedi": true,
+  "mod": "b8",
+  "uretildi_utc": "2026-10-31T04:43:53.452600+00:00",
+  "numpy": "1.26.4",
+  "hucre_tablosu": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+  "hucre_tablosu_sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d",
+  "bootstrap_B": 2000,
+  "bootstrap_tohum": 20261030
+ },
+ "veri": {
+  "n_goruntu": 2000,
+  "modeller": [
+   "IN_Chen2024Data_WRN_50_2",
+   "IN_Debenedetti_XCiT-S12",
+   "IN_Engstrom2019Robustness",
+   "IN_Liu_ConvNeXt-B",
+   "IN_Liu_Swin-B",
+   "IN_Mo_ViT-B",
+   "IN_Peng2023Robust",
+   "IN_Salman2020Do_50_2",
+   "IN_Salman2020Do_R18",
+   "IN_Salman2020Do_R50",
+   "IN_Singh_ConvNeXt-B-CvSt",
+   "IN_Singh_ConvNeXt-T-CvSt",
+   "IN_Singh_ViT-B-CvSt",
+   "IN_Singh_ViT-S-CvSt"
+  ],
+  "hucre_sayisi": 196,
+  "tutarlilik": {
+   "hedef_maskesi_tutarli": true,
+   "tutarsiz_hedefler": []
+  },
+  "cakismalar": [],
+  "tablo_disi_modeller": [],
+  "girdi_sha256": {
+   "results/q1/konsey_b8_imagenetv2/matris/transfer_matrix.json": "2bdac9be87a9bddc43b3038c9f4bff85b8391284bac8d3ec50a8668293216713",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Salman2020Do_R18.npz": "21479258c84008ac73b509704666fe860f37b3a583a43e94fe43aed92343e370",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Salman2020Do_R50.npz": "15e2455cd69cd29b4049637152ff6afbd14dfd5f5f6310128ef21d8d9bea64a2",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Salman2020Do_50_2.npz": "9236cb9139106fe57efafba82ce4b2e0507ea6f3d1a7a68a0768fc11054d88f3",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Engstrom2019Robustness.npz": "3f692b2c1f42ac77bc1cd1e2e98d1b63aab5cf8d202758d8161b6f1f344c0a0f",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Chen2024Data_WRN_50_2.npz": "96c0b1869461dc38c2a3e5ef8473e4e042dffeb030f0643a1af5e4bce3583f25",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Peng2023Robust.npz": "57adb7597eceeb6ebe4316e644afb730d93b74a01cbdec4b1f055a2b07308496",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Singh_ConvNeXt-T-CvSt.npz": "d45713ed585b81cd9c451a6c33e96a6675002f7c03c2a3a04c45dbdc29c6d30e",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Singh_ViT-S-CvSt.npz": "8ec3be6945242b9c8a0fc012d638816a74510267648c362240a070bf5cc59e5b",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Singh_ConvNeXt-B-CvSt.npz": "5da8bf20f27395f916a70c5d320af328841a6d7d6b49abae535347a563bc3a60",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Singh_ViT-B-CvSt.npz": "8bcc779aafdf520d04937c19974ac015828ec938556b66961c8869a39266dab1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Liu_ConvNeXt-B.npz": "1b52b44311f0c28ea220e5c78f6b1ac35698876603101a2987b967f250578403",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Liu_Swin-B.npz": "7f7dd96f8a8a10fdea1fd9c23798405c91ac1225ac61dcf8da16815a3d86bf75",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Mo_ViT-B.npz": "28c8830581cdb4f7975ccc18249195fdfaa0f83098c12ad05aebe454e6c13d0d",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R18_to_IN_Debenedetti_XCiT-S12.npz": "fe5f840a8818e27c972ac77cbbcdc76249929081919610ffa32fcd216e426a0d",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Salman2020Do_R18.npz": "5ea0ec7c87751cdac910c7e3a8f61e2aaa89e787196157ffa392b638c9063c8d",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Salman2020Do_R50.npz": "1da0927384c4efa477ed4184ba12cb8c317420d2aaf6f2c83e175429281ef868",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Salman2020Do_50_2.npz": "3b3bb33954d1e02c03270bfd9a11bd1384d9548055f2b3a1069bcdae5131cbc8",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Engstrom2019Robustness.npz": "5c7bf1bf66c5115f98647556755de67812f7a8c23adee123c08d225e8d7595dc",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Chen2024Data_WRN_50_2.npz": "70b1bee13ccae14bbe2d1773d6afdb8fa9ca99ac1e6312c9494bc00e70c68bdb",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Peng2023Robust.npz": "7b6930398b3bc62cd7b25026587ba09c042c7ef3e80f7efe716cbdb1fb898775",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Singh_ConvNeXt-T-CvSt.npz": "ef520bde15e0568c3652551fa7928712f5c420a7751e89d5f3c2a57e5e90d6f0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Singh_ViT-S-CvSt.npz": "8470c699094c52d134924897843939b2c65c3c2f62f178c2fbe8c0d2b1a94e11",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Singh_ConvNeXt-B-CvSt.npz": "6fb57f6292a2b0a72113de5c6436aca1e8ce9c33f7259430d907dc08297e9099",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Singh_ViT-B-CvSt.npz": "7f9577c314d8afc3233ddeace339dc1b06d50a24492cf9c69f7fd73599012965",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Liu_ConvNeXt-B.npz": "cde86bc169bab6d24b7b6128f84f0f65834a76794369effa35274fe3b39ad480",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Liu_Swin-B.npz": "47a99aaf212789ce025afe2127b7f18607ede8dfb3b0ba13ee30ee480712fb95",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Mo_ViT-B.npz": "f62ef302949ca6b8548c539c0de692079cb8181b4b11426cba780e878e0809d1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_R50_to_IN_Debenedetti_XCiT-S12.npz": "f0b2a3c7ddd6292d0bdef59bb5d54a595bec091d18290118ebeb350ff9a01c2a",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Salman2020Do_R18.npz": "d5924d959679ab0e50490a65e8d4dad669957c4041b2a5981ab6531a7216fbf0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Salman2020Do_R50.npz": "2b3ed6a7e7dfcd081b7af1c73e9d3a17c26970a0a9c5638bd535a21b055982e9",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Salman2020Do_50_2.npz": "a706c28efee4396e4adfee8278c3640c8a752f8f8daa6305e15ac5bfcaf10983",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Engstrom2019Robustness.npz": "09b8a530738c4cc5dd2211469d434bf8e42cbf952764b40eab87e1cb8ce55f10",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Chen2024Data_WRN_50_2.npz": "eddd45b5cf551b2f83fd641e60a2e4bc7ab30d6043d44a332982ba8c96895064",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Peng2023Robust.npz": "bdaec874261ef1a66404e889c92011a939587c1a8de8849de2d092cd1586d4d0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Singh_ConvNeXt-T-CvSt.npz": "9ed2a6b766807ae62c73561c98a2306abd9b5d10f5f6fbd1445e9ca20053db3f",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Singh_ViT-S-CvSt.npz": "0118814a702c07fc3b2d31ed7bd05f5353d4880cba97fdd0a199266fc7e2ec30",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Singh_ConvNeXt-B-CvSt.npz": "77512fcd481acc0651cff54360bc0a728b5ffe2ff73a17fa990e09ca3320dcc8",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Singh_ViT-B-CvSt.npz": "b8ae6fd74df3679f6e1dffa1d0b4e7ac05c5ad2bddb5db9b9ed79783bc77a6da",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Liu_ConvNeXt-B.npz": "014f3ba37e09504a0616a72e77a07ebbb1f7d52bacce732fda0b66540c9d0018",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Liu_Swin-B.npz": "b3c8d8c3e4506ea94e5339cc97c7fad0e88add0916c8ac4e378a6648499ea393",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Mo_ViT-B.npz": "7c8108545520564c8a4b7379c232fafe7118b17503e75a8cf0795673bcd7d2a4",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Salman2020Do_50_2_to_IN_Debenedetti_XCiT-S12.npz": "9835d013a5725da03cba4f37ad5d4f6a39ffedf3fabe3e9bf8cb62e7bb2af258",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Salman2020Do_R18.npz": "8918182e93e44397623e33c36acbfa5d11ad27dbdb1a77acf5c0b44c3b4f71f8",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Salman2020Do_R50.npz": "c92c7e01b482d51c3bf532cea6c19d0bbf09633ce582cb4ce96134c6956d0f4b",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Salman2020Do_50_2.npz": "d78868638edd1d19acf69acdcf0e868741f87d10bc5dd481b67ae650c14d7043",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Engstrom2019Robustness.npz": "a7e63d1bafbb9b4068733a4603586482795b51597b8119c0deb1622ca39a4af6",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Chen2024Data_WRN_50_2.npz": "1b39750fba5005d8f797e17a609e84d71732f735d8f5465aa0b05cdfe9b71f21",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Peng2023Robust.npz": "246ba5cd7182814e19a308056b294d1f61a6c40ad980a8f916eff9db8f84ac07",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Singh_ConvNeXt-T-CvSt.npz": "79d1c8964c35794c83ae7466c94d25c0f09daedd02c6e75aabd5893d56fdaf7e",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Singh_ViT-S-CvSt.npz": "f20b3ff797ea32725eb2beaba4e1a0d082c482f452b6eb57034a7746577b98c6",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Singh_ConvNeXt-B-CvSt.npz": "05406406041996e64ed74e304ddead1a00539e35c4466bd0d8a24484e20cb34c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Singh_ViT-B-CvSt.npz": "d65b7013f0130dc8630bcf16e927b4097c216eba6fc6650362505257487982d0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Liu_ConvNeXt-B.npz": "e933d6bb115c639e5f0a4ae3bff7e9dc105b9cfee65082e18d0267fdf5e44afa",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Liu_Swin-B.npz": "81efebc8aeb55fa6dcff907962ffeaaf98e4620083f0b9c186aa0ad31547ad8b",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Mo_ViT-B.npz": "eb3ca0b12ceff0d534cbb2ebbafbef5127df1e0a91a161b12ba6e83c605f5716",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Engstrom2019Robustness_to_IN_Debenedetti_XCiT-S12.npz": "f26ab9cc4e628792bee08baa5a7654a56aac913c2e39bd997a103b8465c8458e",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Salman2020Do_R18.npz": "673815f7302aff081367d6f5863ec892f8d43a22229300bf4fead8fbfdd955db",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Salman2020Do_R50.npz": "6654329e6bf4bd6d50f72142290e508179081d6b19a3825b9dda375002fa74f6",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Salman2020Do_50_2.npz": "7b379003fe1027024ec819aaf7c0900afe273e68c856d23ea2c14cbde4737616",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Engstrom2019Robustness.npz": "07f83713adf1e041028c56f9ab6c940e9436ccd95df6b6790af73e893134ea3d",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Chen2024Data_WRN_50_2.npz": "11d89e4dde3980d9cec664fd5570f0cf5cb6ad07a401ba2b1cd2c329ac7493e8",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Peng2023Robust.npz": "fc0d1cb829ced06f771f58eba8420175471d5ca72ccdbfdc42fd9ad8a36536d1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Singh_ConvNeXt-T-CvSt.npz": "2e167c4ffed7ee24578f7e26835a73ec42d5b8fbf80fa49026f500c279eb310b",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Singh_ViT-S-CvSt.npz": "7060deedab72c02b798e3d9c6ba49b103f09a175a9f228e1a61ebfdc78823292",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Singh_ConvNeXt-B-CvSt.npz": "bd2ca59b597611bcd6173890f691a22334d31ac4d63f323167ff002455c6041f",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Singh_ViT-B-CvSt.npz": "46fe3eeb2693b5f0aa49c4cb307da79dd016c6994ac59d690de381905c006fc6",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Liu_ConvNeXt-B.npz": "a12ae2f9dc154d1ad262668742852993b50168a06980003d094f3d8083a65451",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Liu_Swin-B.npz": "b6d5f54bfc8159c3f0e89790d0866e41c3ba2b9e3a1f3f04156d794480ef43dd",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Mo_ViT-B.npz": "40f7da769da24a7720e5f9b8c310fdcb9ac8ee44d744de0d1c17b32d3eec9f41",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Chen2024Data_WRN_50_2_to_IN_Debenedetti_XCiT-S12.npz": "6c85a3d597a7289e082b66239291f80f5ccd554df466ee682d732828a5a25b6c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Salman2020Do_R18.npz": "e2a9dc3d2b8bec59c0fe52ac781c17ac8f5a23ce143297dc35a5c8951ca64783",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Salman2020Do_R50.npz": "39de06378b0680688f53b57435886b060c2e7549876aa912a985cd0848787573",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Salman2020Do_50_2.npz": "06899546332a24e3d9c4430d2d0dfc05c6290a5817f38333ec2f43e39b040af4",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Engstrom2019Robustness.npz": "d1ac776d316fde0f2bea2efb9480b552c907fa88efa97ee67dd6d6da25818320",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Chen2024Data_WRN_50_2.npz": "397953f191ab3f94825d690282a8a9ae3d9fc7ca953d004c33033f33fb769a35",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Peng2023Robust.npz": "4bdfc2d2313c8864ace7b15eb1f328aec55d50dd96e6d2e82671989cb5dd81dd",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Singh_ConvNeXt-T-CvSt.npz": "570664426251ed676db800c489ad504baad0268a8adc2da0bf304e56552c013f",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Singh_ViT-S-CvSt.npz": "d1a5822a00d33ea761873aace969bf0ad333d3188284a12ea9f64acabc84cbe6",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Singh_ConvNeXt-B-CvSt.npz": "97a77988522de940b72557f594199b8cee66e38dc527f56028d947e3a939f2ce",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Singh_ViT-B-CvSt.npz": "99706cdd56f1af8098c8d0818f8a72c9db9ff3b165b148c6f0326f19b105455b",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Liu_ConvNeXt-B.npz": "87f2f483c59c045eb825e6eaff905a18781502d57e5c8989aaa51ee65e352bf1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Liu_Swin-B.npz": "e054ecc9c6060d6aa2d6a1c98033b518a0c7a34e5fd2006da044de008e79d6ad",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Mo_ViT-B.npz": "831d6c46e92b92b5653c35baee583157c021440a4b96da551649d592a8336df3",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Peng2023Robust_to_IN_Debenedetti_XCiT-S12.npz": "d0d81c3b258de8385a49ff1a3c8c2adc74eeefdac61c4f6b138041d54524434c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Salman2020Do_R18.npz": "dec80dfdc7f63e6af52180827fbedf11327310986552f61668dc122586d1500a",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Salman2020Do_R50.npz": "d2e74c67abea3070eb9fa37a1177af94c4a923639342dd9203d2cce67b9644c7",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Salman2020Do_50_2.npz": "34379861a184c1b0d8f15813cdd6b6604d0143350c26dba8890f0233bd2725c5",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Engstrom2019Robustness.npz": "ad55302a4e4c7c90f60b318514af74e6a4cec3ebcb3ebb7512ccb0849f53342a",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Chen2024Data_WRN_50_2.npz": "ce6cc4a5b2ff5d652c49ccb8ff3c5e939f761b3daf0a403538608273b9df7d4e",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Peng2023Robust.npz": "48c91fcadbcb269353c3eb38b11f071c1f513112d8315652e5a9da94f64fce22",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Singh_ConvNeXt-T-CvSt.npz": "e3b47250331165ea9b087e158c42157af2ea880dfdeadbf3e9ea360a8dfae769",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Singh_ViT-S-CvSt.npz": "2c0da69d82e6eef229d5152f464dcfdfec6eb76800391a58b2ee695408daa7fa",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Singh_ConvNeXt-B-CvSt.npz": "8b36aadde6a409c97f185b7d894df502524421eac0a6053f3762ac38c991a029",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Singh_ViT-B-CvSt.npz": "eabef48774793d9043b4bdb79e32001158355b96cf264e387278442b4278a367",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Liu_ConvNeXt-B.npz": "17efed9c8fb18105376b24cddc2d0f7b2501aed7ebf75083bcbd86722d72575c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Liu_Swin-B.npz": "64c569ad7a14151d7d26d88d63af56105402148f2221d5c030350c53282d49b4",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Mo_ViT-B.npz": "8e5f4ae2d77042583ed467f764a42ac46b26572ed2975a8334d53ba787b2085d",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-T-CvSt_to_IN_Debenedetti_XCiT-S12.npz": "f63260d63dd7fec5fe31c7fba388a55bd545f7505b47d84f261309ac00d48a2f",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Salman2020Do_R18.npz": "3a1129e3d7f5e961be7712a383b5da87d2e3b82b9e1f35460d8a8fc4b432fcb0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Salman2020Do_R50.npz": "6718570a3efa0ac49f8a4893337efe73779862845dc7b0679bc88ce21e54986c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Salman2020Do_50_2.npz": "7db1d9516fc0cedaad2648838d2411e75991a5e40a3b14d89fe9584869d44393",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Engstrom2019Robustness.npz": "1c0c3c7fd18736ffc5137b35f6739313234a63cfc8869bfa7cd3ac449746509e",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Chen2024Data_WRN_50_2.npz": "e534318db0fdaebd139620ba61cc024717a7b354d66907d103fc6f9e1aa3d86a",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Peng2023Robust.npz": "7d710da957d951c999eb940e055497deb703095f8a912118555f339cf94b3b67",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Singh_ConvNeXt-T-CvSt.npz": "3e079e722c4cdb4e5eafa02555d3f1e9ebe56cdb212580e65521a5c02592d6fd",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Singh_ViT-S-CvSt.npz": "5029712c2ca4ac2148a93cba714c0a1e1ca290e814f24e866ea4c1927f9b2a36",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Singh_ConvNeXt-B-CvSt.npz": "184736ab977c261d86067c45e9ab07758bc0ad3849961c6044a15b8470de2b1c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Singh_ViT-B-CvSt.npz": "f672c0dbe7fcbf1e9c958d50f4fd237939f7890b765c19797c6adc44ff4ab629",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Liu_ConvNeXt-B.npz": "96c8abf36432eb16993e7426000008a0d389d2a53754e3027fc372f411869c97",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Liu_Swin-B.npz": "e606d2e79b75cf4ac51c65e5bfba2edd006a8c05b1bcf483995efcca82389aab",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Mo_ViT-B.npz": "7691a3ef1a82806962ca2f27acd6fcf48b6a5fe3040bbf51b965c0ea02ca2e54",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-S-CvSt_to_IN_Debenedetti_XCiT-S12.npz": "959ce059ea475eebc78e26a045ff161f1ca0be20b7df3c0a203c4cad2653338a",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Salman2020Do_R18.npz": "e4caa31488e479befe19671ff647dfaeaa4ce20952b2efaa04cf2124995442e4",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Salman2020Do_R50.npz": "ce68602e4298a926194811b59a83a11ab7c5de576670629fe2d8bff8632bb040",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Salman2020Do_50_2.npz": "d92a13aaf81a090ebbeabd1f78db368926935d1e802856dfda916e83c65b3bd1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Engstrom2019Robustness.npz": "864723a5432b6eaa441c8fa1860ed1a97149579dd5f9fa7b73f719590de72e58",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Chen2024Data_WRN_50_2.npz": "339cfb4330d61e48e24516b9720304f090d866d6d00b5f4898ec3131dae8acc0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Peng2023Robust.npz": "d10d3fc06f6d9006018e3be61bb756bbef7643623fadf0ab8144f820f116e401",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Singh_ConvNeXt-T-CvSt.npz": "6b1d6013931240b0526efc0ae9270e03ae61d602a839d069ff0b92788e0d89d3",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Singh_ViT-S-CvSt.npz": "d8e9392a1015922c1ad500649e6dbcd07d559bf86366e785a445fa7fefaead51",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Singh_ConvNeXt-B-CvSt.npz": "60edff44bb226cf9434bf2ad1809118de11f54a747373c78656e2b607f804d9c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Singh_ViT-B-CvSt.npz": "c0e60ef820bc2d4729d7508b304c8ec40bd77d566397ff6f4f729c9422799b59",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Liu_ConvNeXt-B.npz": "8dafe1f9a9b55c4f107dbbea459d1a9b2bc9902786ce6ed0380918bce3dede49",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Liu_Swin-B.npz": "a9cf58cec100ec5f824dce429bb8da0180e3005851effd0b512d48f3f9bd56c5",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Mo_ViT-B.npz": "fa3fabc12adb669872174a7cbdb521e9606dc983d94d1f44972f86fd433eda83",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ConvNeXt-B-CvSt_to_IN_Debenedetti_XCiT-S12.npz": "208531cb1956924101c6cca7defb0abf9f50c7f65900d46162b5d52f2698a881",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Salman2020Do_R18.npz": "22757170f5314ab4d379ec6284099039d044e90bd0c6cad626eb7227cca07df0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Salman2020Do_R50.npz": "606edcaac07e2345483e95f43ff4904458025c91105b586840c9fac9f4b8f4a7",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Salman2020Do_50_2.npz": "94a27358bd5f48e111f64694e624fa67d4abab1cdca27d948aebfb4f4d2237a6",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Engstrom2019Robustness.npz": "4abf02022e9c7e6f432a422349c322ac816b65f30eb732fcc42933873f5271c8",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Chen2024Data_WRN_50_2.npz": "12ad69d40d05590c3d73b2b35446d90ab4fa0d99aee09858874f368fa48cf5b1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Peng2023Robust.npz": "36febdc18779bc7b926ffed94ca988ced5dcc0fc59b3f0d8193e58df4eb2314f",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Singh_ConvNeXt-T-CvSt.npz": "481659be04697e94d01f5f875176c785472198f52b1b0ac44f263caed9ba3fd1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Singh_ViT-S-CvSt.npz": "505c77870537554b64c3a98a49f21c83b6eb987459c3bb0e07c59fa39774e970",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Singh_ConvNeXt-B-CvSt.npz": "6f5515acdaf532ef70b7e2ba0ecf45eef74f947a06c3bca3dab08ae52bb74b7f",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Singh_ViT-B-CvSt.npz": "7ad0d9f9d0b3bb93cc18e00c26f0e3b4b3b24c4bfeba964c9d914fd3a89b98d1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Liu_ConvNeXt-B.npz": "4765ac264fe38f18d7d4cecf36b7f2add7a6ba3288056e518c3cb01b3f5288b1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Liu_Swin-B.npz": "3c8abf878f861892bbade9aafa4c8cc022a5492ff254f5ac90c3c98db57d40ad",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Mo_ViT-B.npz": "038943aeb22a99e333c7223e6c94c0db234cf3756cf66b9abc67002bea299ac0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Singh_ViT-B-CvSt_to_IN_Debenedetti_XCiT-S12.npz": "76352d06b76a4c34b1907710b201283722ae500367e5883523700366bc76b6f3",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Salman2020Do_R18.npz": "cf9d48007426930ad540f9a6d86ba70482ca3d30cf2f69b5d9c36b74056b1883",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Salman2020Do_R50.npz": "6794e6745a6b39f4c82a12c93dc3be66468170874525fdfa688e431cadf307c5",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Salman2020Do_50_2.npz": "513cd3380dcdd07ec9b4cd835f5b28414b65b54575bcc8b3899ce6d53656e95c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Engstrom2019Robustness.npz": "3a3fca9530fed37eaf9a0a776b3fda6e21fb0af8869ed8afd635fd8f6fd8f973",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Chen2024Data_WRN_50_2.npz": "53c119695bc6c7d9b93c1aba077e9421a565982e4cc434de7968bddbf69b7d85",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Peng2023Robust.npz": "4aa8c7506cb62b95509b60550ed0531effd87ac142966edc93b638c4656cb3ed",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Singh_ConvNeXt-T-CvSt.npz": "3b4efb1a816ebd42aeca6b86018f20c2ad0e0eaad54acefe7161b3b9dd5a6a77",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Singh_ViT-S-CvSt.npz": "77f13b9fe054eb4173eaa81e221294d32594946c2a7c062b3d3d7221bc77d8af",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Singh_ConvNeXt-B-CvSt.npz": "378b0b39cd04b6c5300d5df3639b5736cb9665b5ed2b97fe2744855fac16e94b",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Singh_ViT-B-CvSt.npz": "7b41632a227dc6a26a0239e68b90d223c59e1a6d78c0297bf87ac3261cb49a80",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Liu_ConvNeXt-B.npz": "8df55589b7820eba5ade6649f763ed156950a776d6fbb9f3f3b8f17e1f57ad72",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Liu_Swin-B.npz": "f8f931e52ca97e51db3d78938061782c72f8baff56fee4294c7c0561c38caf3d",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Mo_ViT-B.npz": "bb61ea12c5c2a30e78dc949b72b8c5eae5bd85429966764a0c6d8bcdd8073df6",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_ConvNeXt-B_to_IN_Debenedetti_XCiT-S12.npz": "329271c8e52dafd026032bd44fd9b72406a6470e1ea82fce85a83217b1b53fab",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Salman2020Do_R18.npz": "6e752b360225a44ebf74aec36f95715169adbef4e9a505cfffe367143a2b6bb0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Salman2020Do_R50.npz": "81b48fca525df3011a7f31212f48a0052f3945522161486612417d0cc3761a2e",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Salman2020Do_50_2.npz": "7f1076d3009a6c50fa58809fd954e1d8c501b82195a5cc8fa0bd58125ff14bda",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Engstrom2019Robustness.npz": "7c1ce92aaa8e489f6a1c0622c95ba38d0c2b58b46932c5326263842ea7c370b1",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Chen2024Data_WRN_50_2.npz": "ea36ab2ce512cc53455f8bff4be8577f56f706b338d66cc3688cc1c05a81afce",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Peng2023Robust.npz": "1b8dcf2cc8474409af3be47d88beee673df04106e23f2890e4de4efc8e021a86",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Singh_ConvNeXt-T-CvSt.npz": "e037d6aa7b47ce119f578e0c99b0b350031c887c3253c5b6b13ae40b552fae9a",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Singh_ViT-S-CvSt.npz": "de2f434f23e87017aa921bd297908f326333624cdb14dd56433dd57cde3fa94e",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Singh_ConvNeXt-B-CvSt.npz": "f3c21de73fd9f303fb921fd6fc0bbdd9ed74fa4646c1145e88cd9b29074deb74",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Singh_ViT-B-CvSt.npz": "a37db44522920491ac3edd1ba0cf348c18e5b37561422e2fd230821d9bdfff5e",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Liu_ConvNeXt-B.npz": "0f73ff946d83008051694e9b794c9a8cdd1cf71c8c7029a5bbedeb18b0b3f6c8",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Liu_Swin-B.npz": "5436376d4dc02400fec0e2312dfeb21bba32d111f11de89a537c3cbfcddf795a",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Mo_ViT-B.npz": "d8637e70a92504c5232efb7a43a0d311eba1eec74740712c97f2508de231fd85",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Liu_Swin-B_to_IN_Debenedetti_XCiT-S12.npz": "9d893bc167f08e399ad767336f14ee60d99adcbbb92a89ba2f8892106158f552",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Salman2020Do_R18.npz": "a0b52f229a3696dc23a297ec474478056ff0f143a7d3710a5f75e4a37353abc5",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Salman2020Do_R50.npz": "df42dae0737a0b4fc1423c666367f33a3d0a3c6118305af45c651b1e1b2049b6",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Salman2020Do_50_2.npz": "952397e235f5177800ff81745660076cd828be582db09c3760579b22a6efe83b",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Engstrom2019Robustness.npz": "50f905d54f2cac013630ce98fef7696186ae09dc42e7e07d77a8e880e8a96039",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Chen2024Data_WRN_50_2.npz": "8669b039bcf9530365adc89b2ea64b5c5b7da0fb89c00b2d50b1d4c2219cc595",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Peng2023Robust.npz": "816a1205d4620a2209f8b9885563667a5a5ea443dd63d65919d4292fd55f35ff",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Singh_ConvNeXt-T-CvSt.npz": "30adc26f9ad9e964062049a616a0df2c4b11dc2f38a737232c6c9d04a9eb31ae",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Singh_ViT-S-CvSt.npz": "c89d7d0d3968822965d45c37987980cadce710a0b97ac5b4ee6e461523cc3397",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Singh_ConvNeXt-B-CvSt.npz": "f6a27bf24090d146f9fa580616a1db021d3c486b2a44d6b72bc761e9fb890232",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Singh_ViT-B-CvSt.npz": "aba732f62edaf89ed407336a5fe7dee94f108011b04e81b45634a0a7e6f067f0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Liu_ConvNeXt-B.npz": "fd0d1aa18ff852af65fc5a062d27256d9e9cdead3412e06f90f3f44504eb1f2f",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Liu_Swin-B.npz": "526dc5e14263a1cb2f2a755b5d493b9a9755d049afdfc5540c4564ab44c31cf9",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Mo_ViT-B.npz": "88623c808cc1f423e7378a0ce7c9e2d3a2d519defe8656c9c81d740f8b5445fd",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Mo_ViT-B_to_IN_Debenedetti_XCiT-S12.npz": "440fa1a574e9667bdf99f1b0568664ffb56d4fd8a80122685c2e2502184355f8",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Salman2020Do_R18.npz": "5a714d06b7b5d10c35506ee77e8007969e0379e841f54ca5f24888173d4ad1ad",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Salman2020Do_R50.npz": "9fefee428723e069d789fa6f034c53430b401848aed5f5e2a5941f6d0e255967",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Salman2020Do_50_2.npz": "b3a53b858d1310dd31142cf65bdc54414814c8e0060fd49e3be08530cf20d5b8",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Engstrom2019Robustness.npz": "c3589e632b7029caf687a2c5d830e32bd2e62a3d587883d3bacad19fa500ef4c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Chen2024Data_WRN_50_2.npz": "d7785e2bcea9f612b9b0ea5dcf045f60805e5890417a83124d0dc343681952af",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Peng2023Robust.npz": "23f8adfc64fd9222fe7791008bc69c7f0b9cb47d0c5c50aee628d106f622beb0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Singh_ConvNeXt-T-CvSt.npz": "e7c4a9738c9326f30ae67e8a47a19b252ec2988dd7602ca958de984fa1fdc5f0",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Singh_ViT-S-CvSt.npz": "69213079cd91ef7b5dae0875d29de02943f5ca421a140392b9a2cb2438833fdd",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Singh_ConvNeXt-B-CvSt.npz": "8e9c42a24322bf21c30fc434d2aa6822146807ed4901c58650ded1ee64af039b",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Singh_ViT-B-CvSt.npz": "4021b81e3f30fa298069afdb1cf33d6eda4930269a9a4e94e73fd6c7424c9011",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Liu_ConvNeXt-B.npz": "af90f12b935ed3767cb7cc996b7c66f786b0ed33c087261ca7104d350e01db1d",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Liu_Swin-B.npz": "7a2dae6e364f83123bf1a2d081d924a164b16526efda02b00c63e813cca4103c",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Mo_ViT-B.npz": "5b34586ba3b80f67d88c6f5ed1d0669abebd0ba517da37a8d56fdbb415f93b21",
+   "results/q1/konsey_b8_imagenetv2/matris/per_sample_IN_Debenedetti_XCiT-S12_to_IN_Debenedetti_XCiT-S12.npz": "0bf31e33886fd47ee2d5223113ac6546d4df19f2938fa1198aa0114bbb6238de"
+  }
+ },
+ "panel": {
+  "birincil": [
+   "IN_Salman2020Do_R18",
+   "IN_Salman2020Do_R50",
+   "IN_Salman2020Do_50_2",
+   "IN_Engstrom2019Robustness",
+   "IN_Chen2024Data_WRN_50_2",
+   "IN_Peng2023Robust"
+  ],
+  "birincil_eksik": [],
+  "ikincil": [
+   "IN_Debenedetti_XCiT-S12"
+  ]
+ },
+ "model_tablosu_ozet": {
+  "IN_Chen2024Data_WRN_50_2": {
+   "sigma": -0.8128736004204526,
+   "rho": 0.025158774867913757,
+   "S": 2.9256345326029374,
+   "omega_log_w": 3.6289598788326596,
+   "w_yuzde": 37.67361111111111,
+   "temiz_dogruluk_yuzde": 57.6,
+   "hucre": "panel",
+   "panel_n": 5,
+   "sigma_logit": -1.132798050126942,
+   "rho_logit": 0.09679432010405258,
+   "sigma_tam": -0.8123457904741496,
+   "rho_tam": 0.02530660239234823
+  },
+  "IN_Debenedetti_XCiT-S12": {
+   "sigma": -1.1123490791772206,
+   "rho": -0.19414076301990094,
+   "S": 2.715456476444633,
+   "omega_log_w": 3.71383472745925,
+   "w_yuzde": 41.010770505385246,
+   "temiz_dogruluk_yuzde": 60.35,
+   "hucre": "ikincil_panel",
+   "panel_n": 6,
+   "sigma_logit": -1.5031176767395755,
+   "rho_logit": -0.20423170650529732,
+   "sigma_tam": -1.1116231659334428,
+   "rho_tam": -0.19664380538193363
+  },
+  "IN_Engstrom2019Robustness": {
+   "sigma": -0.8897817861014873,
+   "rho": -0.04293720307140614,
+   "S": 2.8275437554961043,
+   "omega_log_w": 3.9071138154019076,
+   "w_yuzde": 49.755142017629765,
+   "temiz_dogruluk_yuzde": 51.05,
+   "hucre": "panel",
+   "panel_n": 5,
+   "sigma_logit": -1.2877495694179597,
+   "rho_logit": -0.17521373806843552,
+   "sigma_tam": -0.8899147347736525,
+   "rho_tam": -0.044561744174515375
+  },
+  "IN_Liu_ConvNeXt-B": {
+   "sigma": -1.147984744338367,
+   "rho": -0.13960317376925765,
+   "S": 2.6525520166581646,
+   "omega_log_w": 3.413839775077332,
+   "w_yuzde": 30.38167938931298,
+   "temiz_dogruluk_yuzde": 65.5,
+   "hucre": "C1-R32",
+   "panel_n": 6,
+   "sigma_logit": -1.4783153428852673,
+   "rho_logit": -0.0069041880691168706,
+   "sigma_tam": -1.1463276318900568,
+   "rho_tam": -0.13835261902414753
+  },
+  "IN_Liu_Swin-B": {
+   "sigma": -1.2025891357061245,
+   "rho": -0.049093072996326294,
+   "S": 2.5526925749039417,
+   "omega_log_w": 3.3991376486991447,
+   "w_yuzde": 29.93827160493827,
+   "temiz_dogruluk_yuzde": 64.8,
+   "hucre": "V-scr",
+   "panel_n": 6,
+   "sigma_logit": -1.5394273229362603,
+   "rho_logit": 0.10198906307734197,
+   "sigma_tam": -1.200746964011335,
+   "rho_tam": -0.04770007493320283
+  },
+  "IN_Mo_ViT-B": {
+   "sigma": -1.1839193175165859,
+   "rho": 0.023736295757257626,
+   "S": 2.5349477087166887,
+   "omega_log_w": 3.9234116523921547,
+   "w_yuzde": 50.5726872246696,
+   "temiz_dogruluk_yuzde": 56.75,
+   "hucre": "V-scr",
+   "panel_n": 6,
+   "sigma_logit": -1.657173832400374,
+   "rho_logit": -0.09725720114304413,
+   "sigma_tam": -1.1831099511154797,
+   "rho_tam": 0.022166422994928475
+  },
+  "IN_Peng2023Robust": {
+   "sigma": -1.0390696652981695,
+   "rho": -0.06710451214694765,
+   "S": 2.771704398989198,
+   "omega_log_w": 3.4990858824812805,
+   "w_yuzde": 33.08519437551695,
+   "temiz_dogruluk_yuzde": 60.45,
+   "hucre": "panel",
+   "panel_n": 5,
+   "sigma_logit": -1.3811443790919937,
+   "rho_logit": 0.05815783794053278,
+   "sigma_tam": -1.037617650804376,
+   "rho_tam": -0.0671371461245072
+  },
+  "IN_Salman2020Do_50_2": {
+   "sigma": -0.8945186935628203,
+   "rho": -0.11987428956858248,
+   "S": 2.8816549139853307,
+   "omega_log_w": 3.803230272623111,
+   "w_yuzde": 44.84581497797355,
+   "temiz_dogruluk_yuzde": 56.75,
+   "hucre": "panel",
+   "panel_n": 5,
+   "sigma_logit": -1.265892603440561,
+   "rho_logit": -0.18097002316034477,
+   "sigma_tam": -0.8937757498999407,
+   "rho_tam": -0.12037580681367288
+  },
+  "IN_Salman2020Do_R18": {
+   "sigma": -1.0700032556348449,
+   "rho": 0.20210013347315858,
+   "S": 2.546285218243752,
+   "omega_log_w": 3.7981621350049273,
+   "w_yuzde": 44.619105199516326,
+   "temiz_dogruluk_yuzde": 41.35,
+   "hucre": "panel",
+   "panel_n": 5,
+   "sigma_logit": -1.4716471605186112,
+   "rho_logit": 0.20020815403416362,
+   "sigma_tam": -1.068588688739355,
+   "rho_tam": 0.20231814293027578
+  },
+  "IN_Salman2020Do_R50": {
+   "sigma": -0.8192712606825163,
+   "rho": 0.0026570964458640933,
+   "S": 2.9060699636538065,
+   "omega_log_w": 3.7514290043399554,
+   "w_yuzde": 42.581888246628125,
+   "temiz_dogruluk_yuzde": 51.9,
+   "hucre": "panel",
+   "panel_n": 5,
+   "sigma_logit": -1.1615899725541854,
+   "rho_logit": 0.0010234491500312921,
+   "sigma_tam": -0.8180755860360162,
+   "rho_tam": 0.004449951790071527
+  },
+  "IN_Singh_ConvNeXt-B-CvSt": {
+   "sigma": -1.1184691202940988,
+   "rho": -0.29836657944751405,
+   "S": 2.7614493435415612,
+   "omega_log_w": 3.4111686004619344,
+   "w_yuzde": 30.3006329113924,
+   "temiz_dogruluk_yuzde": 63.2,
+   "hucre": "C1-R32",
+   "panel_n": 6,
+   "sigma_logit": -1.439507978272935,
+   "rho_logit": -0.18589279357629865,
+   "sigma_tam": -1.1119600693227207,
+   "rho_tam": -0.286422740396183
+  },
+  "IN_Singh_ConvNeXt-T-CvSt": {
+   "sigma": -0.9633764672387739,
+   "rho": -0.1219636992872755,
+   "S": 2.8283405565167676,
+   "omega_log_w": 3.5428375714006304,
+   "w_yuzde": 34.564860426929386,
+   "temiz_dogruluk_yuzde": 60.9,
+   "hucre": "C1-R32",
+   "panel_n": 6,
+   "sigma_logit": -1.2892555390949683,
+   "rho_logit": -0.04680290730811876,
+   "sigma_tam": -0.9615242773656352,
+   "rho_tam": -0.11994272521666856
+  },
+  "IN_Singh_ViT-B-CvSt": {
+   "sigma": -1.2365819646593863,
+   "rho": -0.18844263220557417,
+   "S": 2.5883745255553046,
+   "omega_log_w": 3.46080859463268,
+   "w_yuzde": 31.84271395528142,
+   "temiz_dogruluk_yuzde": 64.85,
+   "hucre": "V-scr",
+   "panel_n": 6,
+   "sigma_logit": -1.5867839840914355,
+   "rho_logit": -0.07406351849200904,
+   "sigma_tam": -1.2356844995624199,
+   "rho_tam": -0.18853353016742144
+  },
+  "IN_Singh_ViT-S-CvSt": {
+   "sigma": -1.1299240445324972,
+   "rho": -0.21086741808687595,
+   "S": 2.706244838622844,
+   "omega_log_w": 3.5435693622968008,
+   "w_yuzde": 34.59016393442622,
+   "temiz_dogruluk_yuzde": 61.0,
+   "hucre": "V-scr",
+   "panel_n": 6,
+   "sigma_logit": -1.482531330078364,
+   "rho_logit": -0.14029008285170558,
+   "sigma_tam": -1.1304222150306156,
+   "rho_tam": -0.2137435719908114
+  }
+ },
+ "model_tablosu_tam": {
+  "IN_Chen2024Data_WRN_50_2": {
+   "yari_log": {
+    "sigma": -0.8128736004204526,
+    "rho": 0.025158774867913757,
+    "S": 2.9256345326029374,
+    "omega": 3.6289598788326596,
+    "panel_n": 5
+   },
+   "tam_log": {
+    "sigma": -0.8123457904741496,
+    "rho": 0.02530660239234823,
+    "S": 2.9268051302999125,
+    "omega": 3.6289598788326596,
+    "panel_n": 5
+   },
+   "yari_logit": {
+    "sigma": -1.132798050126942,
+    "rho": 0.09679432010405258,
+    "S": -1.4686687947360384,
+    "omega": -0.5034250349478195,
+    "panel_n": 5
+   },
+   "yari_oran": {
+    "sigma": -22.272383418164075,
+    "rho": 3.505242109637426,
+    "S": 18.94977831982498,
+    "omega": 37.67361111111111,
+    "panel_n": 5
+   }
+  },
+  "IN_Debenedetti_XCiT-S12": {
+   "yari_log": {
+    "sigma": -1.1123490791772206,
+    "rho": -0.19414076301990094,
+    "S": 2.715456476444633,
+    "omega": 3.71383472745925,
+    "panel_n": 6
+   },
+   "tam_log": {
+    "sigma": -1.1116231659334428,
+    "rho": -0.19664380538193363,
+    "S": 2.718028901538164,
+    "omega": 3.71383472745925,
+    "panel_n": 6
+   },
+   "yari_logit": {
+    "sigma": -1.5031176767395755,
+    "rho": -0.20423170650529732,
+    "S": -1.724461496917559,
+    "omega": -0.3635201488432855,
+    "panel_n": 6
+   },
+   "yari_oran": {
+    "sigma": -27.76410338241469,
+    "rho": -1.77338053675793,
+    "S": 15.214011396794307,
+    "omega": 41.01077050538525,
+    "panel_n": 6
+   }
+  },
+  "IN_Engstrom2019Robustness": {
+   "yari_log": {
+    "sigma": -0.8897817861014873,
+    "rho": -0.04293720307140614,
+    "S": 2.8275437554961043,
+    "omega": 3.9071138154019076,
+    "panel_n": 5
+   },
+   "tam_log": {
+    "sigma": -0.8899147347736525,
+    "rho": -0.044561744174515375,
+    "S": 2.8285395719699915,
+    "omega": 3.9071138154019076,
+    "panel_n": 5
+   },
+   "yari_logit": {
+    "sigma": -1.2877495694179597,
+    "rho": -0.17521373806843552,
+    "S": -1.5863036717888197,
+    "omega": -0.009794397592287698,
+    "panel_n": 5
+   },
+   "yari_oran": {
+    "sigma": -26.399498110500044,
+    "rho": -6.3540677443120614,
+    "S": 17.33682116943349,
+    "omega": 49.75514201762977,
+    "panel_n": 5
+   }
+  },
+  "IN_Liu_ConvNeXt-B": {
+   "yari_log": {
+    "sigma": -1.147984744338367,
+    "rho": -0.13960317376925765,
+    "S": 2.6525520166581646,
+    "omega": 3.413839775077332,
+    "panel_n": 6
+   },
+   "tam_log": {
+    "sigma": -1.1463276318900568,
+    "rho": -0.13835261902414753,
+    "S": 2.6541788424026573,
+    "omega": 3.413839775077332,
+    "panel_n": 6
+   },
+   "yari_logit": {
+    "sigma": -1.4783153428852673,
+    "rho": -0.0069041880691168706,
+    "S": -1.7983229222813408,
+    "omega": -0.8291879847898938,
+    "panel_n": 6
+   },
+   "yari_oran": {
+    "sigma": -24.43266803443516,
+    "rho": 6.750718426816196,
+    "S": 14.283397262986767,
+    "omega": 30.38167938931298,
+    "panel_n": 6
+   }
+  },
+  "IN_Liu_Swin-B": {
+   "yari_log": {
+    "sigma": -1.2025891357061245,
+    "rho": -0.049093072996326294,
+    "S": 2.5526925749039417,
+    "omega": 3.3991376486991447,
+    "panel_n": 6
+   },
+   "tam_log": {
+    "sigma": -1.200746964011335,
+    "rho": -0.04770007493320283,
+    "S": 2.5544332382359065,
+    "omega": 3.3991376486991447,
+    "panel_n": 6
+   },
+   "yari_logit": {
+    "sigma": -1.5394273229362603,
+    "rho": 0.10198906307734197,
+    "S": -1.9138815279055634,
+    "omega": -0.8502390389780199,
+    "panel_n": 6
+   },
+   "yari_oran": {
+    "sigma": -25.03100754266299,
+    "rho": 8.262480430893893,
+    "S": 12.929176752720085,
+    "omega": 29.938271604938272,
+    "panel_n": 6
+   }
+  },
+  "IN_Mo_ViT-B": {
+   "yari_log": {
+    "sigma": -1.1839193175165859,
+    "rho": 0.023736295757257626,
+    "S": 2.5349477087166887,
+    "omega": 3.9234116523921547,
+    "panel_n": 6
+   },
+   "tam_log": {
+    "sigma": -1.1831099511154797,
+    "rho": 0.022166422994928475,
+    "S": 2.5371370021676958,
+    "omega": 3.9234116523921547,
+    "panel_n": 6
+   },
+   "yari_logit": {
+    "sigma": -1.657173832400374,
+    "rho": -0.09725720114304413,
+    "S": -1.932004905259484,
+    "omega": 0.0229084907968699,
+    "panel_n": 6
+   },
+   "yari_oran": {
+    "sigma": -32.042451295647005,
+    "rho": -5.654094263915196,
+    "S": 12.876020347140617,
+    "omega": 50.5726872246696,
+    "panel_n": 6
+   }
+  },
+  "IN_Peng2023Robust": {
+   "yari_log": {
+    "sigma": -1.0390696652981695,
+    "rho": -0.06710451214694765,
+    "S": 2.771704398989198,
+    "omega": 3.4990858824812805,
+    "panel_n": 5
+   },
+   "tam_log": {
+    "sigma": -1.037617650804376,
+    "rho": -0.0671371461245072,
+    "S": 2.7737299434983895,
+    "omega": 3.4990858824812805,
+    "panel_n": 5
+   },
+   "yari_logit": {
+    "sigma": -1.3811443790919937,
+    "rho": 0.05815783794053278,
+    "S": -1.65736028103685,
+    "omega": -0.7043343699505097,
+    "panel_n": 5
+   },
+   "yari_oran": {
+    "sigma": -24.677941706098835,
+    "rho": 6.186494674129534,
+    "S": 16.122792197488092,
+    "omega": 33.085194375516956,
+    "panel_n": 5
+   }
+  },
+  "IN_Salman2020Do_50_2": {
+   "yari_log": {
+    "sigma": -0.8945186935628203,
+    "rho": -0.11987428956858248,
+    "S": 2.8816549139853307,
+    "omega": 3.803230272623111,
+    "panel_n": 5
+   },
+   "tam_log": {
+    "sigma": -0.8937757498999407,
+    "rho": -0.12037580681367288,
+    "S": 2.8833622967190418,
+    "omega": 3.803230272623111,
+    "panel_n": 5
+   },
+   "yari_logit": {
+    "sigma": -1.265892603440561,
+    "rho": -0.18097002316034477,
+    "S": -1.5221783430868125,
+    "omega": -0.2069023545495757,
+    "panel_n": 5
+   },
+   "yari_oran": {
+    "sigma": -25.349495467814094,
+    "rho": -3.9613165885291,
+    "S": 18.17171780667703,
+    "omega": 44.84581497797357,
+    "panel_n": 5
+   }
+  },
+  "IN_Salman2020Do_R18": {
+   "yari_log": {
+    "sigma": -1.0700032556348449,
+    "rho": 0.20210013347315858,
+    "S": 2.546285218243752,
+    "omega": 3.7981621350049273,
+    "panel_n": 5
+   },
+   "tam_log": {
+    "sigma": -1.068588688739355,
+    "rho": 0.20231814293027578,
+    "S": 2.54821601053129,
+    "omega": 3.7981621350049273,
+    "panel_n": 5
+   },
+   "yari_logit": {
+    "sigma": -1.4716471605186112,
+    "rho": 0.20020815403416362,
+    "S": -1.9166471167313017,
+    "omega": -0.2160725400736576,
+    "panel_n": 5
+   },
+   "yari_oran": {
+    "sigma": -27.93218785954818,
+    "rho": 0.9194107520237964,
+    "S": 13.194303760924273,
+    "omega": 44.619105199516326,
+    "panel_n": 5
+   }
+  },
+  "IN_Salman2020Do_R50": {
+   "yari_log": {
+    "sigma": -0.8192712606825163,
+    "rho": 0.0026570964458640933,
+    "S": 2.9060699636538065,
+    "omega": 3.7514290043399554,
+    "panel_n": 5
+   },
+   "tam_log": {
+    "sigma": -0.8180755860360162,
+    "rho": 0.004449951790071527,
+    "S": 2.9070098349377256,
+    "omega": 3.7514290043399554,
+    "panel_n": 5
+   },
+   "yari_logit": {
+    "sigma": -1.1615899725541854,
+    "rho": 0.0010234491500312921,
+    "S": -1.4904215683542221,
+    "omega": -0.29893078498765163,
+    "panel_n": 5
+   },
+   "yari_oran": {
+    "sigma": -23.3976336940405,
+    "rho": -0.29576320294959546,
+    "S": 18.743993554466563,
+    "omega": 42.58188824662813,
+    "panel_n": 5
+   }
+  },
+  "IN_Singh_ConvNeXt-B-CvSt": {
+   "yari_log": {
+    "sigma": -1.1184691202940988,
+    "rho": -0.29836657944751405,
+    "S": 2.7614493435415612,
+    "omega": 3.4111686004619344,
+    "panel_n": 6
+   },
+   "tam_log": {
+    "sigma": -1.1119600693227207,
+    "rho": -0.286422740396183,
+    "S": 2.762581465656011,
+    "omega": 3.4111686004619344,
+    "panel_n": 6
+   },
+   "yari_logit": {
+    "sigma": -1.439507978272935,
+    "rho": -0.18589279357629865,
+    "S": -1.6700212549154174,
+    "omega": -0.8330226367555336,
+    "panel_n": 6
+   },
+   "yari_oran": {
+    "sigma": -23.663568021999588,
+    "rho": 5.002128219273028,
+    "S": 15.926792379193927,
+    "omega": 30.300632911392405,
+    "panel_n": 6
+   }
+  },
+  "IN_Singh_ConvNeXt-T-CvSt": {
+   "yari_log": {
+    "sigma": -0.9633764672387739,
+    "rho": -0.1219636992872755,
+    "S": 2.8283405565167676,
+    "omega": 3.5428375714006304,
+    "panel_n": 6
+   },
+   "tam_log": {
+    "sigma": -0.9615242773656352,
+    "rho": -0.11994272521666856,
+    "S": 2.8297772500233394,
+    "omega": 3.5428375714006304,
+    "panel_n": 6
+   },
+   "yari_logit": {
+    "sigma": -1.2892555390949683,
+    "rho": -0.04680290730811876,
+    "S": -1.589313758871541,
+    "omega": -0.6382218451078336,
+    "panel_n": 6
+   },
+   "yari_oran": {
+    "sigma": -23.43267432786072,
+    "rho": 3.178987229516344,
+    "S": 17.069256568211138,
+    "omega": 34.56486042692939,
+    "panel_n": 6
+   }
+  },
+  "IN_Singh_ViT-B-CvSt": {
+   "yari_log": {
+    "sigma": -1.2365819646593863,
+    "rho": -0.18844263220557417,
+    "S": 2.5883745255553046,
+    "omega": 3.46080859463268,
+    "panel_n": 6
+   },
+   "tam_log": {
+    "sigma": -1.2356844995624199,
+    "rho": -0.18853353016742144,
+    "S": 2.589912430301931,
+    "omega": 3.46080859463268,
+    "panel_n": 6
+   },
+   "yari_logit": {
+    "sigma": -1.5867839840914355,
+    "rho": -0.07406351849200904,
+    "S": -1.873211898276063,
+    "omega": -0.7610094696766105,
+    "panel_n": 6
+   },
+   "yari_oran": {
+    "sigma": -25.959912015733224,
+    "rho": 5.529607389769467,
+    "S": 13.366708800212066,
+    "omega": 31.842713955281422,
+    "panel_n": 6
+   }
+  },
+  "IN_Singh_ViT-S-CvSt": {
+   "yari_log": {
+    "sigma": -1.1299240445324972,
+    "rho": -0.21086741808687595,
+    "S": 2.706244838622844,
+    "omega": 3.5435693622968008,
+    "panel_n": 6
+   },
+   "tam_log": {
+    "sigma": -1.1304222150306156,
+    "rho": -0.2137435719908114,
+    "S": 2.7077797357454307,
+    "omega": 3.5435693622968008,
+    "panel_n": 6
+   },
+   "yari_logit": {
+    "sigma": -1.482531330078364,
+    "rho": -0.14029008285170558,
+    "S": -1.7358459620831435,
+    "omega": -0.6371032834137971,
+    "panel_n": 6
+   },
+   "yari_oran": {
+    "sigma": -25.70834259434464,
+    "rho": 2.693227184233468,
+    "S": 15.036468324368656,
+    "omega": 34.59016393442623,
+    "panel_n": 6
+   }
+  }
+ },
+ "ciftler": [
+  {
+   "cift": 1,
+   "cnn": "IN_Singh_ConvNeXt-T-CvSt",
+   "donusturucu": "IN_Singh_ViT-S-CvSt",
+   "satir": "IN",
+   "mevcut": true,
+   "A_sigma": -0.16654757729372327,
+   "A_sigma_logit": -0.19327579098339576,
+   "A_rho": -0.08890371879960045,
+   "A_omega_log_w": 0.0007317908961703701,
+   "goruntu_bootstrap_ci90": [
+    -0.2335874021053314,
+    -0.09648125767707827
+   ],
+   "goruntu_bootstrap_ci95": [
+    -0.24576271176338196,
+    -0.08425995111465456
+   ],
+   "durum": "hesaplandi"
+  },
+  {
+   "cift": 2,
+   "cnn": "IN_Singh_ConvNeXt-B-CvSt",
+   "donusturucu": "IN_Singh_ViT-B-CvSt",
+   "satir": "IN",
+   "mevcut": true,
+   "A_sigma": -0.11811284436528746,
+   "A_sigma_logit": -0.14727600581850053,
+   "A_rho": 0.10992394724193988,
+   "A_omega_log_w": 0.049639994170745716,
+   "goruntu_bootstrap_ci90": [
+    -0.2024648070335388,
+    -0.038379573822021486
+   ],
+   "goruntu_bootstrap_ci95": [
+    -0.21704058051109315,
+    -0.023059350252151712
+   ],
+   "durum": "hesaplandi"
+  },
+  {
+   "cift": 3,
+   "cnn": "IN_Liu_ConvNeXt-B",
+   "donusturucu": "IN_Liu_Swin-B",
+   "satir": "scr",
+   "mevcut": true,
+   "A_sigma": -0.05460439136775741,
+   "A_sigma_logit": -0.06111198005099294,
+   "A_rho": 0.09051010077293137,
+   "A_omega_log_w": -0.014702126378187241,
+   "goruntu_bootstrap_ci90": [
+    -0.13736583590507506,
+    0.021813350915908806
+   ],
+   "goruntu_bootstrap_ci95": [
+    -0.15308306813240052,
+    0.033780682086944555
+   ],
+   "durum": "hesaplandi"
+  }
+ ],
+ "A_sigma_IN": {
+  "tanim": "A^sigma_IN = ort_k [sigma(donusturucu_k) - sigma(CNN_k)], P8, bolunmus yari, log; IN satiri yalniz --in-ciftleri (varsayilan Singh 1, 2)",
+  "beklenti": "<= -0.1, iki ciftte de negatif (dondurulmus H1+H2; karar degil)",
+  "ciftler": [
+   1,
+   2
+  ],
+  "cift_degerleri": [
+   -0.16654757729372327,
+   -0.11811284436528746
+  ],
+  "kestirim": -0.14233021082950537,
+  "goruntu_bootstrap": {
+   "B": 2000,
+   "tohum": 20261030,
+   "ci90": [
+    -0.1968042865395546,
+    -0.09044530093669892
+   ],
+   "ci95": [
+    -0.20729340985417366,
+    -0.08104620426893237
+   ],
+   "not": "ortak goruntu agirliklari; cift kumesi sabit; yalniz goruntu belirsizligi"
+  },
+  "beklenti_esigi": -0.1,
+  "betimsel_etiket": "beklentiyle uyumlu",
+  "nokta_beklenti_esiginde_ya_da_altinda": true,
+  "iki_cift_farki": 0.04843473292843581,
+  "not": "iki ciftle df 1; ciftler arasi t araligi kurulmaz (ek on kayit §5.6)"
+ },
+ "A_sigma_scr_Liu": {
+  "tanim": "ayni nicelik --scr-ciftleri icin (varsayilan Liu 3); 2x2'nin scr satiri",
+  "beklenti": "<= -0,20 (H1'in ongorulen buyuklugu; karar degil)",
+  "ciftler": [
+   3
+  ],
+  "cift_degerleri": [
+   -0.05460439136775741
+  ],
+  "kestirim": -0.05460439136775741,
+  "goruntu_bootstrap": {
+   "B": 2000,
+   "tohum": 20261030,
+   "ci90": [
+    -0.13736583590507506,
+    0.021813350915908806
+   ],
+   "ci95": [
+    -0.15308306813240052,
+    0.033780682086944555
+   ],
+   "not": "ortak goruntu agirliklari; cift kumesi sabit; yalniz goruntu belirsizligi"
+  },
+  "beklenti_esigi": -0.2,
+  "betimsel_etiket": "belirsiz",
+  "nokta_beklenti_esiginde_ya_da_altinda": false
+ },
+ "donusturucu_rho_ayri_ayri": {
+  "IN_Singh_ViT-S-CvSt": {
+   "rho": -0.21086741808687595,
+   "sigma": -1.1299240445324972
+  },
+  "IN_Singh_ViT-B-CvSt": {
+   "rho": -0.18844263220557417,
+   "sigma": -1.2365819646593863
+  },
+  "IN_Liu_Swin-B": {
+   "rho": -0.049093072996326294,
+   "sigma": -1.2025891357061245
+  },
+  "IN_Mo_ViT-B": {
+   "rho": 0.023736295757257626,
+   "sigma": -1.1839193175165859
+  }
+ },
+ "hodge_r_kesifsel": {
+  "modeller": [
+   "IN_Chen2024Data_WRN_50_2",
+   "IN_Debenedetti_XCiT-S12",
+   "IN_Engstrom2019Robustness",
+   "IN_Liu_ConvNeXt-B",
+   "IN_Liu_Swin-B",
+   "IN_Mo_ViT-B",
+   "IN_Peng2023Robust",
+   "IN_Salman2020Do_50_2",
+   "IN_Salman2020Do_R18",
+   "IN_Salman2020Do_R50",
+   "IN_Singh_ConvNeXt-B-CvSt",
+   "IN_Singh_ConvNeXt-T-CvSt",
+   "IN_Singh_ViT-B-CvSt",
+   "IN_Singh_ViT-S-CvSt"
+  ],
+  "K": 14,
+  "delta_potansiyel": {
+   "IN_Chen2024Data_WRN_50_2": -0.11135559395354454,
+   "IN_Debenedetti_XCiT-S12": 0.1088662834488636,
+   "IN_Engstrom2019Robustness": -0.045842000127572016,
+   "IN_Liu_ConvNeXt-B": 0.0817648713938889,
+   "IN_Liu_Swin-B": -0.004600415599365177,
+   "IN_Mo_ViT-B": -0.09464888724023045,
+   "IN_Peng2023Robust": 0.0013862757865970657,
+   "IN_Salman2020Do_50_2": 0.011128630102979804,
+   "IN_Salman2020Do_R18": -0.2719861899287147,
+   "IN_Salman2020Do_R50": -0.08850585461780282,
+   "IN_Singh_ConvNeXt-B-CvSt": 0.18524330170866293,
+   "IN_Singh_ConvNeXt-T-CvSt": 0.02736044743413876,
+   "IN_Singh_ViT-B-CvSt": 0.1229253649965802,
+   "IN_Singh_ViT-S-CvSt": 0.07826376659551858
+  },
+  "G_potansiyel_payi": 0.889701557221341,
+  "G_rastgele_beklenti_2_bolu_K": 0.14285714285714285,
+  "dolasim_rms": 0.05863376463679427,
+  "r_rms": 0.17654811658437522,
+  "r_matrisi": [
+   [
+    0.0,
+    -0.22919654194338923,
+    -0.01943879063324694,
+    -0.1708482396006652,
+    -0.13647835138190967,
+    -0.024622862244228827,
+    -0.12826871668278672,
+    -0.12429942321139742,
+    0.19655977361853516,
+    -0.05034671743067265,
+    -0.3010915422017395,
+    -0.16118304834879393,
+    -0.11852881787474967,
+    -0.2912350374145789
+   ],
+   [
+    0.22919654194338923,
+    0.0,
+    0.19355848531603814,
+    -0.004913854552181185,
+    0.1242930103714377,
+    0.2054504641689643,
+    0.13066601889127183,
+    0.1158109105895011,
+    0.2847577073481036,
+    0.21085491403110224,
+    -0.0984398461029703,
+    0.07452837921865862,
+    0.00607487528443218,
+    0.05229036177634283
+   ],
+   [
+    0.01943879063324694,
+    -0.1935584853160377,
+    0.0,
+    -0.05074181122733834,
+    0.03031192094630475,
+    0.05033612745912097,
+    0.007900000383393557,
+    -0.05235806602476689,
+    0.1853136045585222,
+    0.054391685806635115,
+    -0.21375173168834904,
+    -0.10788172200829393,
+    -0.1958668784252049,
+    -0.17532143688324098
+   ],
+   [
+    0.1708482396006652,
+    0.004913854552181185,
+    0.05074181122733834,
+    0.0,
+    0.05731392605302554,
+    0.13039209407230978,
+    0.005889394040643481,
+    0.08887782666312516,
+    0.3270035899525965,
+    0.1942581811311772,
+    -0.0024414005511437242,
+    0.08027396187151048,
+    -0.03482410722647744,
+    0.07146082812749288
+   ],
+   [
+    0.13647835138190967,
+    -0.1242930103714377,
+    -0.03031192094630475,
+    -0.05731392605302554,
+    0.0,
+    0.004620087135672302,
+    -0.026141475198349973,
+    0.018899208123347666,
+    0.16934140295983768,
+    0.026292871657517702,
+    -0.05186972647474053,
+    -0.0386584035273676,
+    -0.09281315596079143,
+    0.0013638788826200177
+   ],
+   [
+    0.02462286224422905,
+    -0.2054504641689643,
+    -0.05033612745912097,
+    -0.13039209407230978,
+    -0.004620087135672302,
+    0.0,
+    -0.15858168760653935,
+    -0.17022831244823577,
+    0.18960020029158797,
+    0.02250529043453353,
+    -0.42659793411421654,
+    -0.06248088618748704,
+    -0.1791540214429237,
+    -0.17397115969810706
+   ],
+   [
+    0.12826871668278672,
+    -0.13066601889127183,
+    -0.007900000383393557,
+    -0.005889394040643481,
+    0.026141475198349973,
+    0.15858168760653935,
+    0.0,
+    0.015454543480938998,
+    0.13652520509185817,
+    0.06317409586254796,
+    -0.10473030466754119,
+    -0.020456350790931,
+    -0.13819570551812577,
+    -0.10090008861875543
+   ],
+   [
+    0.12429942321139742,
+    -0.1158109105895011,
+    0.05235806602476689,
+    -0.08887782666312516,
+    -0.018899208123347444,
+    0.17022831244823577,
+    -0.01545454348093922,
+    0.0,
+    0.2850399810109998,
+    0.15312852107668729,
+    -0.16123605874210756,
+    -0.044610945338652064,
+    -0.11622964375112876,
+    -0.06813434564156862
+   ],
+   [
+    -0.19655977361853494,
+    -0.2847577073481036,
+    -0.18531360455852197,
+    -0.3270035899525965,
+    -0.16934140295983768,
+    -0.18960020029158797,
+    -0.13652520509185795,
+    -0.2850399810109998,
+    0.0,
+    -0.20706210308587725,
+    -0.726996328935158,
+    -0.26760858164683143,
+    -0.3985915251618659,
+    -0.4334066553402329
+   ],
+   [
+    0.05034671743067265,
+    -0.21085491403110224,
+    -0.054391685806635115,
+    -0.1942581811311772,
+    -0.026292871657517702,
+    -0.02250529043453353,
+    -0.06317409586254796,
+    -0.15312852107668729,
+    0.20706210308587747,
+    0.0,
+    -0.2823935104501891,
+    -0.13004154759015063,
+    -0.1632432225023699,
+    -0.1962069446228789
+   ],
+   [
+    0.3010915422017395,
+    0.09843984610297007,
+    0.21375173168834904,
+    0.0024414005511437242,
+    0.05186972647474053,
+    0.4265979341142161,
+    0.10473030466754119,
+    0.16123605874210756,
+    0.726996328935158,
+    0.2823935104501891,
+    0.0,
+    0.11139951005773807,
+    -0.041420461126902675,
+    0.15387879106229052
+   ],
+   [
+    0.16118304834879393,
+    -0.07452837921865862,
+    0.10788172200829371,
+    -0.08027396187151048,
+    0.0386584035273676,
+    0.06248088618748682,
+    0.020456350790931,
+    0.044610945338652064,
+    0.2676085816468312,
+    0.13004154759015063,
+    -0.11139951005773807,
+    0.0,
+    -0.13686659841920457,
+    -0.046806771793452606
+   ],
+   [
+    0.11852881787474967,
+    -0.00607487528443218,
+    0.19586687842520512,
+    0.03482410722647744,
+    0.09281315596079143,
+    0.17915402144292392,
+    0.13819570551812577,
+    0.11622964375112876,
+    0.39859152516186613,
+    0.1632432225023699,
+    0.041420461126902675,
+    0.13686659841920457,
+    0.0,
+    0.11129584782680957
+   ],
+   [
+    0.2912350374145789,
+    -0.05229036177634283,
+    0.17532143688324098,
+    -0.07146082812749288,
+    -0.0013638788826200177,
+    0.17397115969810728,
+    0.10090008861875543,
+    0.06813434564156862,
+    0.43340665534023315,
+    0.1962069446228789,
+    -0.15387879106229052,
+    0.046806771793452606,
+    -0.11129584782680957,
+    0.0
+   ]
+  ],
+  "dolasim_matrisi": [
+   [
+    0.0,
+    -0.008974664540981114,
+    0.04607480319272558,
+    0.022272225746768237,
+    -0.02972317302773031,
+    -0.007916155530914737,
+    -0.015526846942645112,
+    -0.0018151991548730761,
+    0.03592917764336501,
+    -0.02749697809493093,
+    -0.004492646539532019,
+    -0.022467006961110647,
+    0.11575214107537507,
+    -0.10161567686551579
+   ],
+   [
+    0.008974664540981114,
+    0.0,
+    0.03885020173960252,
+    -0.03201526660715588,
+    0.010826311323208923,
+    0.0019352934798702592,
+    0.023186011229005307,
+    0.018073257243617316,
+    -0.09609476602947475,
+    0.013482775964435811,
+    -0.022062827843170957,
+    -0.006977456796066206,
+    0.02013395683214879,
+    0.021687844922997815
+   ],
+   [
+    -0.04607480319272558,
+    -0.038850201739602075,
+    0.0,
+    0.07686506029412257,
+    0.07155350547451159,
+    0.0015292403464625404,
+    0.05512827629756264,
+    0.00461256420578493,
+    -0.04083058524262051,
+    0.011727831316404314,
+    0.01733357014788589,
+    -0.034679274446583155,
+    -0.027099513301052675,
+    -0.051215670160150384
+   ],
+   [
+    -0.022272225746768237,
+    0.03201526660715588,
+    -0.07686506029412257,
+    0.0,
+    -0.029051360940228532,
+    -0.04602166456180956,
+    -0.07448920156664834,
+    0.018241585372216068,
+    -0.026747471370007103,
+    0.023987455119485496,
+    0.10103702976363031,
+    0.025869537911760346,
+    0.006336386376213865,
+    0.06795972332912256
+   ],
+   [
+    0.02972317302773031,
+    -0.010826311323208923,
+    -0.07155350547451159,
+    0.029051360940228532,
+    0.0,
+    -0.08542838450519297,
+    -0.02015478381238773,
+    0.03462825382569265,
+    -0.09804437136951183,
+    -0.057612567360919936,
+    0.13797399083328757,
+    -0.006697540493863667,
+    0.034712624635153955,
+    0.08422806107750377
+   ],
+   [
+    0.007916155530914959,
+    -0.0019352934798702592,
+    -0.0015292403464625404,
+    0.04602166456180956,
+    0.08542838450519297,
+    0.0,
+    -0.06254652457971183,
+    -0.06445079510502552,
+    0.012262897603103728,
+    0.02864832305696116,
+    -0.14670574516532314,
+    0.05952844848688217,
+    0.038420230793886956,
+    -0.0010585058623580335
+   ],
+   [
+    0.015526846942645112,
+    -0.023186011229005307,
+    -0.05512827629756264,
+    0.07448920156664834,
+    0.02015478381238773,
+    0.06254652457971183,
+    0.0,
+    0.025196897797321736,
+    -0.1368472606234536,
+    -0.026718034541851926,
+    0.07912672125452469,
+    0.005517820856610695,
+    -0.016656616308142635,
+    -0.02402259780983393
+   ],
+   [
+    0.0018151991548730761,
+    -0.018073257243617316,
+    -0.00461256420578493,
+    -0.018241585372216068,
+    -0.03462825382569243,
+    0.06445079510502552,
+    -0.025196897797321958,
+    0.0,
+    0.0019251609793052848,
+    0.05349403635590466,
+    0.012878612863575584,
+    -0.028379128007493107,
+    -0.004432908857528367,
+    -0.000999209149029845
+   ],
+   [
+    -0.035929177643364785,
+    0.09609476602947475,
+    0.04083058524262073,
+    0.026747471370007103,
+    0.09804437136951183,
+    -0.012262897603103728,
+    0.13684726062345381,
+    -0.0019251609793052848,
+    0.0,
+    -0.023581767774965345,
+    -0.26976683729778034,
+    0.03173805571602201,
+    -0.0036799702365710174,
+    -0.08315669881599963
+   ],
+   [
+    0.02749697809493093,
+    -0.013482775964435811,
+    -0.011727831316404314,
+    -0.023987455119485496,
+    0.057612567360919936,
+    -0.02864832305696116,
+    0.026718034541851926,
+    -0.05349403635590466,
+    0.023581767774965567,
+    0.0,
+    -0.008644354123723386,
+    -0.01417524553820905,
+    0.04818799711201313,
+    -0.029437323409557514
+   ],
+   [
+    0.004492646539532019,
+    0.022062827843170735,
+    -0.01733357014788589,
+    -0.10103702976363031,
+    -0.13797399083328757,
+    0.1467057451653227,
+    -0.07912672125452469,
+    -0.012878612863575584,
+    0.26976683729778034,
+    0.008644354123723386,
+    0.0,
+    -0.0464833442167861,
+    -0.1037383978389854,
+    0.046899255949146165
+   ],
+   [
+    0.022467006961110647,
+    0.006977456796066206,
+    0.03467927444658293,
+    -0.025869537911760346,
+    0.006697540493863667,
+    -0.05952844848688239,
+    -0.005517820856610695,
+    0.028379128007493107,
+    -0.03173805571602223,
+    0.01417524553820905,
+    0.0464833442167861,
+    0.0,
+    -0.041301680856763126,
+    0.0040965473679272085
+   ],
+   [
+    -0.11575214107537507,
+    -0.02013395683214879,
+    0.027099513301052897,
+    -0.006336386376213865,
+    -0.034712624635153955,
+    -0.038420230793886734,
+    0.016656616308142635,
+    0.004432908857528367,
+    0.0036799702365712395,
+    -0.04818799711201313,
+    0.1037383978389854,
+    0.041301680856763126,
+    0.0,
+    0.06663424942574794
+   ],
+   [
+    0.10161567686551579,
+    -0.021687844922997815,
+    0.051215670160150384,
+    -0.06795972332912256,
+    -0.08422806107750377,
+    0.0010585058623582555,
+    0.02402259780983393,
+    0.000999209149029845,
+    0.08315669881599985,
+    0.029437323409557514,
+    -0.046899255949146165,
+    -0.0040965473679272085,
+    -0.06663424942574794,
+    0.0
+   ]
+  ]
+ }
+}

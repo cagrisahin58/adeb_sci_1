@@ -1,0 +1,32 @@
+3d751094aecd1a6ce259b6bd928d112f3daf26b5b7c874818d74675cfdb40b27  results/q1_research/ONKAYIT_SAPMALAR.md
+853429e1e5f2a1637bb80ba28c634452e122ff3560dd2ffc19f0c07f7ae618c3  results/q1_research/ONKAYIT_SAPMALAR.md
+l betiğin `esik` alanından okunmuş, ayrıca ek §5.3'teki RobustBench temiz doğrulukları `raporlar/konsey_2026-10-29/_ek_denetim/dis/rb/in_<ad>.json` kopyalarından okunarak bağımsız olarak yeniden hesaplanmış ve on beş modelde de aynı bulunmuştur (`arsiv/b2_yardimci/_ek_b8_kural.py`).
+
+[2026-10-31 07:08:48] IS 3 baslatiliyor: b9 b8 b10 cozumleme
+[2026-10-31 07:11:18] 150 s sonra
+2026-10-31 07:08:49 adim b9 basliyor
+== b9_matris.log kuyruk
+  C100_ResNet18_AT_s1003->C100_ResNet18_AT_s1001: raw=63.01 cond=42.46
+  C100_ResNet18_AT_s1003->C100_ResNet18_AT_s1002: raw=62.60 cond=42.20
+  C100_ResNet18_AT_s1003->C100_ResNet18_AT_s1003: raw=80.42 cond=68.76
+  C100_ResNet18_AT_s1003->C100_ViT_Tiny_AT_s2001: raw=68.57 cond=25.89
+  C100_ResNet18_AT_s1003->C100_ViT_Tiny_AT_s2002: raw=67.25 cond=25.29
+  C100_ResNet18_AT_s1003->C100_ViT_Tiny_AT_s2003: raw=67.08 cond=25.85
+  C100_ResNet18_AT_s1003->C100_Rice2020Overfitting: raw=60.38 cond=26.63
+  C100_ResNet18_AT_s1003->C100_Rade2021Helper_R18_ddpm: raw=53.93 cond=25.20
+  C100_ResNet18_AT_s1003->C100_Addepalli2022Efficient_RN18: raw=53.06 cond=28.31
+  C100_ResNet18_AT_s1003->C100_Sehwag2021Proxy: raw=49.42 cond=23.36
+  C100_ResNet18_AT_s1003->C100_Pang2022Robustness_WRN28_10: raw=50.95 cond=23.00
+  C100_ResNet18_AT_s1003->C100_Wang2023Better_WRN-28-10: raw=40.53 cond=18.12
+  C100_ResNet18_AT_s1003->C100_Jia2022LAS-AT_34_10: raw=50.47 cond=23.72
+  C100_ResNet18_AT_s1003->C100_Debenedetti2022Light_XCiT-S12: raw=46.74 cond=20.92
+  C100_ResNet18_AT_s1003->C100_Hendrycks2019Using: raw=51.49 cond=18.59
+utilization.gpu [%], memory.used [MiB], memory.free [MiB]
+92 %, 7599 MiB, 24589 MiB
+pid, used_gpu_memory [MiB]
+705, [N/A]
+PID                 ELAPSED             COMMAND
+77479               12:59               sleep infinity
+90574               02:28               python experiments/c1_c3_transfer_matrix.py --dataset cifar100 --n-samples 10000 --seed 42 --model C100_ResNet18_AT_s1001:resnet18:models/q1/cifar100/resnet18_s1001/resnet18/adv/ad
+91182               00:10               python experiments/c1_c3_transfer_matrix.py --dataset cifar100 --n-samples 10000 --seed 42 --model C100_ResNet18_AT_s1001:resnet18:models/q1/cifar100/resnet18_s1001/resnet18/adv/ad
+91183               00:10               python experiments/c1_c3_transfer_matrix.py --dataset cifar100 --n-samples 10000 --seed 42 --model C100_ResNet18_AT_s1001:resnet18:models/q1/cifar100/resnet18_s1001/resnet18/adv/ad

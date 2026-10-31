@@ -1434,6 +1434,612 @@ Bu degerler foyun 'RobustBench havuzu' bolumundeki model etkileri tablosunda da 
 | Ayni 6 gurbuz modelin hedef etkisi araligi | -4.26; +2.76 |
 
 
+## M9: Konsey turu, mimari x baslatma 2x2 ve w-tau-r ayrisimi (2026-10-30)
+
+_Kaynak: `results/q1/konsey_ayrisim_b2.json; results/q1/konsey_ayrisim_b4.json; results/q1/konsey_ayrisim_b5.json; results/q1/konsey_b6_maskeleme.json; results/q1/konsey_b3_defter.tsv; results/q1/konsey_b4_matris/transfer_matrix.json; results/q1/konsey_b6_aa/autoattack_results.csv; raporlar/konsey_2026-10-29/hucre_tablosu.json; results/q1/konsey_pilot_zaman.json; results/c1_seeds/c1_seed_summary.json (yalniz V-scr AA capraz basvurusu); results/q1/konsey_sentez_r_tau_masa.json; results/q1/konsey_masa/konsey_masa_cozumlemeleri.json; results/q1/konsey_masa/_p3_carpimsal_yasa_masa.json; results/q1/konsey_masa/_p3_potansiyel_masa.json; experiments/q1_konsey_ayrisim.py (dondurulmus, yalniz esik sabitleri ve sha256); raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md (yalniz Dondurma eki ve govde sha256)`_
+
+29-30.10.2026 konsey turunda on kayitli B2, B3, B4, B5 ve B6 bloklari kosuldu. Asagidaki her alt bolum kendi artefaktindan okunur ve altinda kaynak dosya ile anahtar yollari yazilidir. Yuvarlama: log olcekli nicelikler ve oranlar 3 ondalik, puanlar (yuzde) 2 ondalik, t istatistigi 2 ondalik, p degerleri bilimsel gosterim; 3 ondalikta sifira yuvarlanan ya da elle yeniden uretilmesi gereken farklarda 4 ondalik (ilgili satirda belirtilir).
+
+Hucre tanimlari (`raporlar/konsey_2026-10-29/hucre_tablosu.json` hucreler): C1-R32: C1 ResNet-18 AT, 32x32 girdi (mevcut, kopru karsitligi S1 ve B2); V-scr: C1 ViT-Tiny AT, 32->224, rastgele baslatma (mevcut); V-IN: ViT-Tiny, deit_tiny_patch16_224.fb_in1k baslatma, model ici ImageNet normalizasyonu (yeni); R224-scr: timm resnet18, 32->224, rastgele baslatma, V-scr ile ayni girdi hatti (fable K3) (yeni); R224-IN: timm resnet18, resnet18.a1_in1k baslatma, model ici ImageNet normalizasyonu (yeni); panel: birincil panel P: ImageNet on egitimsiz gurbuz CNN (RobustBench CIFAR-10 Linf); ikincil_panel: ikincil panel: Debenedetti2022Light_XCiT-S12.
+
+
+### M9.1 B3 egitim defteri (alti yeni kosu)
+
+Egitim (B3 defteri; 'Dogrulama PGD' secilen epoktaki dogrulama bolmesi PGD dogrulugu, %):
+
+| Takma ad | Hucre | Tohum | Temiz epok | AT epok (kosulan) | Secilen epok | Erken durma | Tavanda durdu | Kirpilmis olabilir | Dogrulama PGD (%) |
+|---|---|---|---|---|---|---|---|---|---|
+| V_IN_s2101 | V-IN | 2101 | 30 | 38 | 18 | evet | hayir | hayir | 45.15 |
+| R224_IN_s1301 | R224-IN | 1301 | 30 | 36 | 16 | evet | hayir | hayir | 46.40 |
+| R224_scr_s1201 | R224-scr | 1201 | 200 | 42 | 22 | evet | hayir | hayir | 46.40 |
+| V_IN_s2102 | V-IN | 2102 | 30 | 47 | 27 | evet | hayir | hayir | 42.90 |
+| R224_IN_s1302 | R224-IN | 1302 | 30 | 37 | 17 | evet | hayir | hayir | 46.95 |
+| R224_scr_s1202 | R224-scr | 1202 | 200 | 58 | 38 | evet | hayir | hayir | 45.85 |
+
+Test kumesinin ilk 1000 goruntusu (B6; PGD-10 B4 kosegeninden, AA `results/q1/konsey_b6_aa/autoattack_results.csv`; %):
+
+| Takma ad | Temiz (ilk 1000) | PGD-10 | AutoAttack | Fark PGD-10 - AA (puan) |
+|---|---|---|---|---|
+| V_IN_s2101 | 85.80 | 43.30 | 40.10 | 3.20 |
+| R224_IN_s1301 | 87.40 | 45.80 | 38.40 | 7.40 |
+| R224_scr_s1201 | 87.20 | 43.90 | 39.50 | 4.40 |
+| V_IN_s2102 | 83.70 | 42.20 | 38.80 | 3.40 |
+| R224_IN_s1302 | 86.90 | 47.40 | 41.80 | 5.60 |
+| R224_scr_s1202 | 85.70 | 45.10 | 41.10 | 4.00 |
+
+Defterdeki temiz ve AT asama surelerinin toplami (sure_s): 17.79 sa. AT satirindaki epok ile at_ozet kosulan_epok: uyusuyor (6/6). Durum 'OK' disindaki egitim satiri: 0.
+
+Denetimler (defter): V_IN_s2101: temiz denetimi GECTI (fark +68.73 puan); AT cokus denetimi TAMAM 34.90; R224_IN_s1301: temiz denetimi GECTI (fark +48.40 puan); AT cokus denetimi TAMAM 41.90; R224_scr_s1201: temiz denetimi satiri yok; AT cokus denetimi satiri yok; V_IN_s2102: temiz denetimi GECTI (fark +69.38 puan); AT cokus denetimi TAMAM 33.35; R224_IN_s1302: temiz denetimi GECTI (fark +49.00 puan); AT cokus denetimi TAMAM 42.55; R224_scr_s1202: temiz denetimi satiri yok; AT cokus denetimi satiri yok.
+
+AT epok suresi (hesaplama ayrintilari beyani icin; 'Defter' = AT satirindaki sure_s / epok, turetilmis; 'Pilot' = on kayit oncesi bos GPU'da olculen epok suresi):
+
+| Takma ad | Hucre | AT sure_s | AT epok | Defter epok suresi (s) | Pilot epok suresi (s) | Defter / pilot (kat) |
+|---|---|---|---|---|---|---|
+| V_IN_s2101 | V-IN | 5628 | 38 | 148.1 | 125.8 | 1.18 |
+| R224_IN_s1301 | R224-IN | 7050 | 36 | 195.8 | 142.7 | 1.37 |
+| R224_scr_s1201 | R224-scr | 13126 | 42 | 312.5 | 142.5 | 2.19 |
+| V_IN_s2102 | V-IN | 12530 | 47 | 266.6 | 125.8 | 2.12 |
+| R224_IN_s1302 | R224-IN | 6766 | 37 | 182.9 | 142.7 | 1.28 |
+| R224_scr_s1202 | R224-scr | 8685 | 58 | 149.7 | 142.5 | 1.05 |
+
+Defter / pilot kat araligi: 1.05; 2.19 (6 kosu). Pilot tahmini duvar saati W(80) = 20.47 sa (secilen tavan 80 epok; egitim payi 38.15 sa). Pilot yontemi: '50 olculen iterasyon (5 isinma), AT batch 64, temiz batch 128; epok = iterasyon x (48000/batch) + val temiz + val PGD-10 (5/20 batch olceklenmis)'.
+
+_Kaynak: `results/q1/konsey_b3_defter.tsv` (takma_ad, asama, epok, sure_s, durum; at_ozet notu: secilen_epok, kosulan_epok, erken_durma, tavanda_durdu, kirpilmis_olabilir, val_pgd; denetim_temiz notu: fark; AT notu: cokus denetimi); `raporlar/konsey_2026-10-29/hucre_tablosu.json` modeller.<m>.hucre, .tohum; `results/q1/konsey_b6_maskeleme.json` n, modeller.<m>.temiz_dogruluk_aa, .pgd10_dogruluk, .aa_dogruluk, .fark_puan; `results/q1/konsey_pilot_zaman.json` parcalar.<hucre>.t_at_epok_s, secilen_tavan, W_sa.<tavan>, egitim_payi_sa, yontem_
+
+
+### M9.2 2x2 hucre tablosu (temiz dogruluk, w, sigma, rho)
+
+Hucre ozetleri (w = beyaz kutu hedef-dogru kirilganlik, %; omega = log w; sigma ve rho bolunmus yari, log olcek; temiz dogruluk tam test kumesi):
+
+| Hucre | Tohum sayisi n | Temiz dogruluk (model degerleri, %) | Temiz ort (%) | w (model degerleri, %) | w ort (%) | omega ort | sigma ort | rho ort | AA ilk 1000 (model degerleri, %) |
+|---|---|---|---|---|---|---|---|---|---|
+| V-scr | 3 | 74.10 / 73.47 / 73.01 | 73.53 | 55.91 / 55.86 / 55.12 | 55.63 | 4.019 | -1.009 | +0.012 | B6 kapsami disi (konsey_b6_maskeleme.json'da yok) |
+| V-IN | 2 | 83.39 / 83.47 | 83.43 | 48.24 / 51.11 | 49.68 | 3.905 | -0.739 | -0.118 | 40.10 / 38.80 |
+| R224-scr | 2 | 86.35 / 85.11 | 85.73 | 49.33 / 48.47 | 48.90 | 3.890 | -0.645 | -0.058 | 39.50 / 41.10 |
+| R224-IN | 2 | 85.76 / 86.25 | 86.00 | 48.34 / 47.73 | 48.04 | 3.872 | -0.635 | -0.054 | 38.40 / 41.80 |
+
+Model duzeyi:
+
+| Hucre | Model | Tohum | Temiz (%) | w (%) | omega | sigma | rho | AA ilk 1000 (%) |
+|---|---|---|---|---|---|---|---|---|
+| V-scr | ViT_Tiny_AT_s2001 | 2001 | 74.10 | 55.91 | 4.024 | -1.015 | +0.025 | B6 disi |
+| V-scr | ViT_Tiny_AT_s2002 | 2002 | 73.47 | 55.86 | 4.023 | -1.000 | +0.007 | B6 disi |
+| V-scr | ViT_Tiny_AT_s2003 | 2003 | 73.01 | 55.12 | 4.009 | -1.011 | +0.004 | B6 disi |
+| V-IN | V_IN_s2101 | 2101 | 83.39 | 48.24 | 3.876 | -0.702 | -0.131 | 40.10 |
+| V-IN | V_IN_s2102 | 2102 | 83.47 | 51.11 | 3.934 | -0.776 | -0.105 | 38.80 |
+| R224-scr | R224_scr_s1201 | 1201 | 86.35 | 49.33 | 3.899 | -0.625 | -0.038 | 39.50 |
+| R224-scr | R224_scr_s1202 | 1202 | 85.11 | 48.47 | 3.881 | -0.664 | -0.079 | 41.10 |
+| R224-IN | R224_IN_s1301 | 1301 | 85.76 | 48.34 | 3.878 | -0.642 | -0.056 | 38.40 |
+| R224-IN | R224_IN_s1302 | 1302 | 86.25 | 47.73 | 3.866 | -0.628 | -0.052 | 41.80 |
+
+w = exp(omega) denetimi: en buyuk mutlak fark 1.42e-14 puan. Temiz dogruluk `konsey_ayrisim_b4.json`'da yoktur; B4'un girdi matrisinden (`results/q1/konsey_b4_matris/transfer_matrix.json` results.<kaynak>-><m>.target_clean_acc, butun kaynaklarda ayni oldugu denetlendi) okunmustur. Bu dosyanin sha256'si 4e2de4c6c0107580..., B4 JSON'daki kayit (veri.girdi_sha256) ile UYUSUYOR. AA sutunundaki goruntu sayisi `results/q1/konsey_b6_maskeleme.json` n alanindan: n = 1000.
+
+V-scr hucresinin AA degeri B6 kapsami disindadir (ON_KAYIT Dondurma eki (i) m.7: B6'da AA yalniz yeni alti modelde kosar, V-scr ve C1-R32 icin maskeleme isareti tanimlanmamistir). Ayni modellerin C1 AA degerleri `results/c1_seeds/c1_seed_summary.json` pairs.<cift>.vit.aa alanindadir ve foyun 'Tablo I: ana gurbuzluk' bolumundeki AA sutunu da bu dosyanin aggregate alanindan gelir: ViT_Tiny_AT_s2001 29.59; ViT_Tiny_AT_s2002 28.86; ViT_Tiny_AT_s2003 28.96 (%). Bu degerler C1 AA degerlendirmesinin orneklemindendir (foy basligindaki tanim: tam test kumesi), B6 sutunu ise test kumesinin ilk 1000 goruntusundendir; iki orneklem karsilastirilamaz, hucre tablosunun AA sutununa ancak orneklemi etiketlenerek ya da dipnotla bos birakilarak girer.
+
+_Kaynak: `results/q1/konsey_ayrisim_b4.json` b4.hucreler; b4.F_B4.karsitliklar.H2.hucre_n, .H2.hucre_ort (sigma), .H3.hucre_ort (rho); b4.ikincil.S3.etkilesim.hucre_ort (omega); b4.model_tablosu.<m>.yari_oran.omega (w), .yari_log.{omega, sigma, rho}; veri.girdi_sha256; `results/q1/konsey_b4_matris/transfer_matrix.json` results.*-><m>.target_clean_acc; `results/q1/konsey_b6_maskeleme.json` modeller.<m>.aa_dogruluk; `raporlar/konsey_2026-10-29/hucre_tablosu.json` modeller.<m>.tohum; `results/c1_seeds/c1_seed_summary.json` pairs.<cift>.{vit_seed, resnet_seed, vit.aa, resnet.aa} (B6 disi hucre)_
+
+
+### M9.3 B4 birincil aile F_B4 (H1, H2, H3; Holm)
+
+| Sinama | Kestirim | %90 aralik | %95 aralik | t (df) | Ham p | Holm p | Karar | Ongorulen buyukluk |
+|---|---|---|---|---|---|---|---|---|
+| H1, A^sigma_scr = sigma(V-scr) - sigma(R224-scr) | -0.364 | [-0.415; -0.314] | [-0.428; -0.300] | -14.60 (5) | 1.36e-05 | 4.09e-05 | destek | (A <= -0,20): evet |
+| H2, I^sigma = [sigma(V-IN) - sigma(V-scr)] - [sigma(R224-IN) - sigma(R224-scr)] | +0.260 | [+0.186; +0.335] | [+0.165; +0.355] | +7.03 (5) | 9.00e-04 | 9.00e-04 | destek | (I >= +0,10): evet |
+| H3, A^rho = 1/2 {[rho(V-scr) - rho(R224-scr)] + [rho(V-IN) - rho(R224-IN)]} | +0.003 | [-0.020; +0.026] | [-0.026; +0.033] | +0.29 (5) | 1.89e-04 | 3.79e-04 | destek (esdeger, Holm sonrasi TOST p < 0,05) | (H3: esdegerlik; buyukluk satiri yok) |
+
+Ham p: H1 tek yonlu (p_tek_kucuk), H2 iki yonlu (p_iki), H3 TOST (iki tek yonlu p'nin buyugu, tost_p); F_B4.not: 'H1 tek yonlu (H0: A >= 0), H2 iki yonlu, H3 TOST +-0,10; birlesik varyans dort hucre. Omega tam orneklem w'den (ON_KAYIT §2).'. Holm denetimi (bu betigin holm() fonksiyonuyla p_ham'dan): en buyuk mutlak fark 0.00e+00.
+
+TOST esdegerlik siniri delta = 0.1 (meta.delta = 0.1; duyarlilik meta.delta_duyarlilik = 0.06); Holm alfa = 0.05; birlesik SD (sigma karsitliklari) 0.0273, (rho karsitligi) 0.0169.
+
+H2 logit olcekli kestirim (karar kosulu): +0.354; H2 ters yon Holm anlamli: hayir; H3 ham %90 aralik +-delta icinde: evet; H1 esdeger: hayir; H2 esdeger: hayir; hesaplanamayip p = 1 sayilan sinama: yok.
+
+Sonuc bolgesi: **O1** (kural: sira: O2 > O5 > O1 > O3 > O3-varyant > O5a; O4 ek niteleme); O4 nitelemesi: hayir; B6 maskeleme kuralindan sonra uygulanan bolge: O1 (isaretli: yok).
+
+Gozlenen %90 yari genislikler (turetilmis, (ci90[1] - ci90[0]) / 2): H1 0.050; H2 0.075; H3 0.023.
+
+_Kaynak: `results/q1/konsey_ayrisim_b4.json` b4.F_B4.karsitliklar.H{1,2,3}.{kestirim, ci90, ci95, t, df, sp_birlesik}; b4.F_B4.p_ham; b4.F_B4.p_holm; b4.F_B4.karar.{H1, H2, H3, *_ongoru_buyuklugu_tuttu, H2_logit_kestirim, H2_negatif_anlamli_holm, H3_ham_ci90_delta_icinde, delta, sonuc_bolgesi, sonuc_kurali, O4_niteleme}; b4.F_B4.maskeleme_kurali; b4.F_B4.p_1_sayilan_hesaplanamayan; meta.{delta, delta_duyarlilik, alfa}_
+
+
+### M9.4 B4 duyarliliklar ve ikincil ongoruler (S1-S7)
+
+Duyarliliklar (ON_KAYIT geregi karar degistirmez). delta duyarliliginda sonuc bolgesi: O1.
+
+| Duyarlilik | H1 | H2 | H3 | Anahtar |
+|---|---|---|---|---|
+| delta = 0.06 (Holm p; karar) | 4.09e-05; destek | 1.80e-03; destek | 2.13e-03; destek (esdeger, Holm sonrasi TOST p < 0,05) | b4.duyarlilik.delta_0.06 |
+| Tam orneklem, log (%90; %95) | -0.364 [-0.414; -0.314]; [-0.428; -0.300] | +0.260 [+0.186; +0.334]; [+0.166; +0.355] | +0.004 [-0.020; +0.027]; [-0.026; +0.033] | b4.duyarlilik.tam_log.H*.{kestirim, ci90, ci95} |
+| Logit olcek (%90; %95) | -0.498 [-0.570; -0.426]; [-0.590; -0.406] | +0.354 [+0.247; +0.461]; [+0.218; +0.490] | -0.087 [-0.110; -0.064]; [-0.116; -0.058] | b4.duyarlilik.yari_logit.H*.{kestirim, ci90, ci95} |
+| Oran olcegi, puan (%90; %95) | -8.50 [-9.85; -7.14]; [-10.23; -6.76] | +5.85 [+3.83; +7.86]; [+3.28; +8.42] | -4.13 [-4.90; -3.37]; [-5.11; -3.16] | b4.duyarlilik.yari_oran.H*.{kestirim, ci90, ci95} |
+| Welch, %95 (df) | [-0.569; -0.160] (1.10) | [+0.029; +0.491] (1.63) | [-0.052; +0.059] (1.95) | b4.duyarlilik.welch.H*.{ci95, df} |
+| Panel jackknife (en kucuk ile en buyuk) | -0.376 (Sehwag2021Proxy_R18 cikinca) ile -0.346 (Engstrom2019Robustness cikinca) | +0.249 (Engstrom2019Robustness cikinca) ile +0.266 (Wong2020Fast cikinca) | +0.001 (Wong2020Fast cikinca) ile +0.006 (Sehwag2021Proxy_R18 cikinca) | b4.duyarlilik.panel_jackknife.<uye>.H* |
+| Hiyerarsik bootstrap (B = 2000), %90; %95 | [-0.393; -0.335]; [-0.397; -0.330] | [+0.204; +0.316]; [+0.196; +0.324] | [-0.024; +0.031]; [-0.030; +0.036] | b4.duyarlilik.hiyerarsik_bootstrap.H*.{ci90, ci95} |
+
+Ikincil cozumlemeler (kesifsel, coklu duzeltme yok):
+
+| Cozumleme | Kestirim | %90 aralik | Ek bilgi | Ongoru | Anahtar |
+|---|---|---|---|---|---|
+| S1, kopru sigma: sigma(R224-scr) - sigma(C1-R32) (kestirim 4 ondalik) | -0.0003 | [-0.035; +0.034] | df 3; Welch %90 [-0.120; +0.119] (Welch df 1.02); TOST p 3.27e-03 | ikisi de esdeger: evet | b4.ikincil.S1.sigma |
+| S1, kopru rho | -0.021 | [-0.064; +0.023] | df 3; Welch %90 [-0.114; +0.072] (Welch df 1.33); TOST p 1.17e-02 | ikisi de esdeger: evet | b4.ikincil.S1.rho |
+| S2, rho(V-IN) - rho(V-scr) | -0.130 | [-0.161; -0.099] | iki yonlu p 3.86e-04 | negatif: evet | b4.ikincil.S2 |
+| S3, omega baslatma etkisi ViT: omega(V-IN) - omega(V-scr) | -0.114 | [-0.151; -0.077] | iki yonlu p 1.62e-03 | omega(V-IN) < omega(V-scr): evet | b4.ikincil.S3.V_baslatma |
+| S3, omega baslatma etkisi ResNet: omega(R224-IN) - omega(R224-scr) | -0.018 | [-0.058; +0.023] | iki yonlu p 4.19e-01 | betimsel | b4.ikincil.S3.R224_baslatma |
+| S3, omega etkilesimi | -0.096 | [-0.151; -0.041] | iki yonlu p 1.71e-02 | betimsel | b4.ikincil.S3.etkilesim |
+| S5, protokol katmani ornek disi sapma (puan) | -0.181 | [-0.500; +0.138] | n = 4; cift sapmalari -0.309 / -0.473 / +0.151 / -0.093; egim, kesisim 0.796, -0.010 | ort sapma bant icinde: evet; curutme (%90 bant disinda): hayir | b4.ikincil.S5.ozet; .egim_kesisim |
+| S6, ikincil panel (Debenedetti2022Light_XCiT-S12): A^sigma_scr; I^sigma | -0.284; +0.254 | - | - | isaret ayni A: evet; I: evet | b4.ikincil.S6 |
+| S7, Hodge (K = 20): potansiyel payi | 0.919 | - | rastgele beklenti 0.100; dolasim RMS 0.022; r RMS 0.078 | betimsel | b4.ikincil.S7 |
+
+S4, tohum indeksiyle eslesmis ciftler (betimsel; tam orneklem; potansiyel payi = log_w_potansiyel / log_oran, log_oran sifira yakinken kararsizdir):
+
+| Cift (ResNet / ViT) | Hedef-dogru asimetri (puan) | log oran | Potansiyel (w) bileseni | Yonlu artik r | log tau | Potansiyel payi | Potansiyel payi (bolunmus yari) |
+|---|---|---|---|---|---|---|---|
+| R224_scr_s1201 / ViT_Tiny_AT_s2001 | +4.18 | +0.248 | +0.125 | +0.123 | -1.141 | 0.504 | 0.504 |
+| R224_scr_s1202 / ViT_Tiny_AT_s2002 | +4.43 | +0.266 | +0.142 | +0.124 | -1.142 | 0.534 | 0.536 |
+| R224_IN_s1301 / V_IN_s2101 | -1.28 | -0.056 | -0.002 | -0.054 | -0.753 | 0.037 | 0.038 |
+| R224_IN_s1302 / V_IN_s2102 | +0.78 | +0.036 | +0.068 | -0.032 | -0.825 | 1.896 | 1.961 |
+
+_Kaynak: `results/q1/konsey_ayrisim_b4.json` b4.duyarlilik.{delta_<meta.delta_duyarlilik>, tam_log, yari_logit, yari_oran, welch, panel_jackknife, hiyerarsik_bootstrap}; b4.ikincil.{S1 (kestirim, ci90, df, welch.ci90, welch.df, tost_p), S2, S3, S4, S5, S6, S7}_
+
+
+### M9.5 B2 aile F_B2 (K-a, K-b, K-c; Holm)
+
+| Sinama | Gozlenen | %90 aralik | %95 aralik | Ham p | Holm p | Karar | Ongorulen buyukluk |
+|---|---|---|---|---|---|---|---|
+| K-a, simetrik oran q_s = [sigma(R_s) - sigma(V_s)] / D_s | ort q 0.936 (q_s: 0.940 / 0.928 / 0.940) | [0.925; 0.948] | [0.919; 0.953] | 4.19e-05 | 1.26e-04 | destek | (her tohumda q >= 0,75): evet |
+| K-b, ViT yonlu terimi rho(V-scr) | ort rho +0.012 (tohumlar: +0.025 / +0.007 / +0.004) | [-0.007; +0.031] | [-0.016; +0.040] | TOST 2.73e-03 | 2.73e-03 | destek (Holm sonrasi TOST p < 0,05) | ham %90 aralik +-delta icinde: evet |
+| K-c, tur ici benzerlik Delta_w | Delta_w +0.566 | bootstrap [+0.537; +0.604] | bootstrap [+0.533; +0.608] | 5.00e-04 | 1.00e-03 | destek | (Delta_w >= 0,30): evet |
+
+F_B2.not: 'K-a p tek yonlu t (H0: ort q <= 0,50); K-b p TOST'un buyuk tek yonlu p'si; K-c p hiyerarsik bootstrap (H0: Delta_w <= 0). Destek Holm sonrasi, curutme ham aralikla okunur; ON_KAYIT §5 karar ilkesi.'. TOST siniri delta = 0.1; Holm alfa = 0.05. Holm denetimi (holm() ile p_ham'dan): en buyuk mutlak fark 0.00e+00. Hesaplanamayip p = 1 sayilan: yok.
+
+K-a ayrintisi: D_s 0.391 / 0.387 / 0.390; simetrik pay 0.368 / 0.360 / 0.367; yonlu pay 0.023 / 0.028 / 0.023; payda kurali tetiklenen tohum: yok; ozdeslik artigi en buyuk 4.3e-16; ciftler: ResNet18_AT_s1001 / ViT_Tiny_AT_s2001; ResNet18_AT_s1002 / ViT_Tiny_AT_s2002; ResNet18_AT_s1003 / ViT_Tiny_AT_s2003.
+
+K-c ayrintisi: ViT tur ici log tau -0.453 / -0.466 / -0.410 (ort -0.443); sigma_V -1.015 / -1.000 / -1.011; bootstrap B = 2000, yeniden cekilen tek tohumlu ornek 284; ResNet tur ici log tau -0.496 / -0.494 / -0.476 (ort -0.489).
+
+Duyarliliklar (karar degistirmez):
+
+| Duyarlilik | q | rho(V-scr) ve diger | Anahtar |
+|---|---|---|---|
+| delta = 0.06 | Holm p 1.26e-04, 8.98e-03, 1.00e-03 | K-a destek; K-b destek (Holm sonrasi TOST p < 0,05); K-c destek | b2.F_B2.duyarlilik_delta_0.06 |
+| Tam orneklem, log | ort q 0.937 | ort rho(V-scr) +0.012, %90 [-0.007; +0.031] | b2.duyarlilik.tam_log |
+| Yari logit | ort q 1.101 (q_s: 1.125 / 1.093 / 1.086) | ort rho(V-scr) -0.304, %90 [-0.320; -0.289], %95 [-0.327; -0.282] | b2.duyarlilik.yari_logit |
+| Yari oran (rho puan) | ort q 1.542 | ort rho(V-scr) -14.66 puan, %90 [-14.93; -14.39] | b2.duyarlilik.yari_oran |
+| Panel jackknife | ort q 0.931 (Sehwag2021Proxy_R18 cikinca) ile 0.941 (Carmon2019Unlabeled cikinca) | ort rho(V-scr) +0.001 (Engstrom2019Robustness cikinca) ile +0.022 (Gowal2020Uncovering_28_10_extra cikinca) | b2.duyarlilik.panel_jackknife |
+| Ikincil panel (Debenedetti2022Light_XCiT-S12) | q_s 0.899 / 0.825 / 0.842 | rho(V-scr) +0.198 / +0.202 / +0.204 | b2.duyarlilik.ikincil_panel |
+| K-a ve K-b hiyerarsik bootstrap | bulunamadi | JSON'da anahtar yok; dondurulmus betik B2'de hiyerarsik bootstrap'i yalniz K-c birincil araligi olarak uretir | b2.duyarlilik.hiyerarsik_bootstrap |
+
+_Kaynak: `results/q1/konsey_ayrisim_b2.json` b2.F_B2.K-a.{q, sinama.ort, sinama.ci90, sinama.ci95, D, simetrik_pay, yonlu_pay, ozdeslik_artik_max, payda_kucuk_tohumlar}; b2.F_B2.K-b.{degerler, ort, ci90, ci95, tost_p}; b2.F_B2.K-c.{Delta_w, bootstrap, log_tau_tur_ici, sigma_V}; b2.F_B2.{p_ham, p_holm, karar, not, duyarlilik_delta_<meta.delta_duyarlilik>}; b2.duyarlilik.{tam_log, yari_logit, yari_oran, panel_jackknife, ikincil_panel}; b2.tur_ici_resnet_log_tau; meta.{delta, alfa}_
+
+
+### M9.6 B5 saldiri tarafi (korunma orani)
+
+Tanim (b5.tanim): S_k(m) = ort_{c in P} log T_k(m->c); G_k = ort_R S_k - ort_V S_k; korunma orani = G_best/G_PGD; en iyi saldiri her kaynak icin panelde en yuksek S_k'yi veren izinli saldiri, capraz uydurmali bolunmus yari secimle (cift yarida sec, tek yarida degerlendir ve tersi).
+
+Esikler: korunma orani esigi B5_ESIK = 0.5 (`experiments/q1_konsey_ayrisim.py` satir 61); G_PGD hesaplanabilirlik esigi = 0.1 (J5 meta.delta; betikte `if not (Gp > DELTA)` kosulu, DELTA = 0.10, satir 58). Izinli saldirilar: CNN pgd, mi; ViT pgd, mi, tgr.
+
+| Nicelik | Deger | Anahtar |
+|---|---|---|
+| G_PGD (log birimi; 4 ondalik) | 0.3893 | b5.birincil_C1-R32_V-scr.G_PGD |
+| G_PGD bootstrap %90 | [0.370; 0.409] | .bootstrap.G_PGD_ci90 |
+| G_best (capraz uydurmali secim; 4 ondalik) | 0.3738 | .G_best |
+| Secimin kapattigi acik G_PGD - G_best (turetilmis; 4 ondalik) | 0.0155 | .G_PGD - .G_best |
+| Korunma orani G_best / G_PGD | 0.960 | .oran |
+| Korunma orani %90 | [0.941; 0.976] | .bootstrap.ci90 |
+| Korunma orani %95 | [0.937; 0.981] | .bootstrap.ci95 |
+| Gecerli bootstrap kopyasi / B | 2000 / 2000 | .bootstrap.gecerli, .B |
+| Karar | destek | .karar |
+| Tam orneklem secim duyarliligi: oran | 0.960 | .duyarlilik_tam_orneklem_secim.oran |
+
+Kaynak bazinda secilen saldiri ve panel ortalamasi S_k (tam orneklem, log; farklar turetilmis):
+
+| Kaynak | Hucre | Secilen (cift / tek yari) | Secilen (tam orneklem) | S_PGD | S_MI | S_TGR | S_MI - S_PGD | S_TGR - S_PGD |
+|---|---|---|---|---|---|---|---|---|
+| ResNet18_AT_s1001 | C1-R32 | pgd / pgd | pgd | 2.822 | 2.820 | - | -0.002 | - |
+| ResNet18_AT_s1002 | C1-R32 | pgd / pgd | pgd | 2.842 | 2.838 | - | -0.004 | - |
+| ResNet18_AT_s1003 | C1-R32 | mi / mi | mi | 2.836 | 2.838 | - | +0.002 | - |
+| ViT_Tiny_AT_s2001 | V-scr | mi / mi | mi | 2.431 | 2.449 | 2.284 | +0.018 | -0.147 |
+| ViT_Tiny_AT_s2002 | V-scr | mi / mi | mi | 2.454 | 2.469 | 2.266 | +0.015 | -0.188 |
+| ViT_Tiny_AT_s2003 | V-scr | mi / mi | mi | 2.446 | 2.462 | 2.228 | +0.016 | -0.218 |
+| R224_scr_s1201 | R224-scr | pgd / pgd | pgd | 2.852 | 2.839 | - | -0.014 | - |
+| R224_scr_s1202 | R224-scr | pgd / pgd | pgd | 2.834 | 2.824 | - | -0.010 | - |
+| R224_IN_s1301 | R224-IN | pgd / pgd | pgd | 2.844 | 2.837 | - | -0.008 | - |
+| R224_IN_s1302 | R224-IN | pgd / pgd | pgd | 2.856 | 2.833 | - | -0.023 | - |
+| V_IN_s2101 | V-IN | pgd / pgd | pgd | 2.822 | 2.816 | 2.604 | -0.006 | -0.217 |
+| V_IN_s2102 | V-IN | mi / mi | mi | 2.735 | 2.744 | 2.567 | +0.009 | -0.168 |
+
+TGR'nin en iyi saldiri secildigi kaynak sayisi: 0 / 5 ViT kaynagi (TGR yalniz ViT kaynaklarinda izinli). V-scr kaynaklarinda S_TGR - S_PGD araligi -0.218; -0.147 (3 kaynak); V-IN kaynaklarinda S_TGR - S_PGD araligi -0.217; -0.168 (2 kaynak).
+
+Betimsel hucre ciftleri (on kayit geregi karar yok):
+
+| Cift (ResNet hucresi _ ViT hucresi) | G_PGD | G_best | Korunma orani | Tam orneklem secim orani | Not |
+|---|---|---|---|---|---|
+| R224-scr_V-scr | 0.399 | 0.383 | 0.959 | 0.959 | betimsel |
+| R224-IN_V-IN | 0.072 | - | - | - | G_PGD <= J5 meta.delta (0.1); on kayitli B5 hesaplanabilirlik kurali (`if not (Gp > DELTA)`) birincil sinama icin tanimlidir, betimsel cifte uygulanmasi `raporlar/konsey_2026-10-29/09_sonuc_b2_b6.md` §7 m.4 kararidir; JSON'daki G_best ve oran bu karar geregi foye alinmaz, oran yorumlanmaz |
+
+b5.not: 'B5 ayri ailedir (tek sinama), Holm'a girmez; F_B2 ve F_B4 kararlarini degistirmez.'.
+
+_Kaynak: `results/q1/konsey_ayrisim_b5.json` b5.tanim; b5.izinli; b5.birincil_C1-R32_V-scr.{G_PGD, G_best, oran, bootstrap.{ci90, ci95, G_PGD_ci90, gecerli, B}, karar, duyarlilik_tam_orneklem_secim.oran, kaynaklar.<m>.{S_tam, secilen_cift_tek, secilen_tam_orneklem}}; b5.betimsel.<cift>.{G_PGD, G_best, oran, kaynaklar}; meta.delta; `experiments/q1_konsey_ayrisim.py` B5_ESIK, DELTA (kaynak metninden); `raporlar/konsey_2026-10-29/hucre_tablosu.json` modeller.<m>.hucre_
+
+
+### M9.7 B6 AutoAttack ve maskeleme kurali
+
+| Model | Temiz (AA dosyasi) | Temiz (B4 matrisi) | PGD-10 | AutoAttack | Fark (puan) | Isaretli | Temiz maske uyusmazligi | AA dogru, PGD-10 yanlis |
+|---|---|---|---|---|---|---|---|---|
+| V_IN_s2101 | 85.80 | 85.80 | 43.30 | 40.10 | 3.20 | hayir | 0 | 0 |
+| V_IN_s2102 | 83.70 | 83.70 | 42.20 | 38.80 | 3.40 | hayir | 0 | 0 |
+| R224_IN_s1301 | 87.40 | 87.40 | 45.80 | 38.40 | 7.40 | hayir | 0 | 0 |
+| R224_IN_s1302 | 86.90 | 86.90 | 47.40 | 41.80 | 5.60 | hayir | 0 | 0 |
+| R224_scr_s1201 | 87.20 | 87.20 | 43.90 | 39.50 | 4.40 | hayir | 0 | 0 |
+| R224_scr_s1202 | 85.70 | 85.70 | 45.10 | 41.10 | 4.00 | hayir | 0 | 0 |
+
+Kural: test kumesinin ilk n = 1000 goruntusunde PGD-10 ile AutoAttack farki esik_puan = 10.0 puani asan model isaretlenir (PGD kaynagi: per_sample_{m}_to_{m}.npz target_adv_wrong, ilk n goruntu; AA kaynagi: per_sample_{m}.npz robust_correct, ilk n goruntu). Isaretli model: yok; maskeleme_isaretli_arg: ''; hatalar: yok. En buyuk fark R224_IN_s1301 (7.40 puan; esige uzaklik 2.60 puan). Fark araligi 3.20; 7.40 puan.
+
+`results/q1/konsey_b6_aa/autoattack_results.csv` ile capraz denetim (clean_accuracy, robust_accuracy): 6 / 6 modelde uyusuyor. B4 maskeleme kurali: uygulanan bolge O1; not: 'B6'da isaretli model verilmedi (--maskeleme-isaretli)'.
+
+_Kaynak: `results/q1/konsey_b6_maskeleme.json` n, esik_puan, pgd_kaynagi, aa_kaynagi, isaretli, maskeleme_isaretli_arg, hatalar, modeller.<m>.{temiz_dogruluk_aa, temiz_dogruluk_matris, pgd10_dogruluk, aa_dogruluk, fark_puan, isaretli, temiz_maske_uyusmazligi, aa_robust_pgd_yanilmis}; `results/q1/konsey_b6_aa/autoattack_results.csv` model, clean_accuracy, robust_accuracy; `results/q1/konsey_ayrisim_b4.json` b4.F_B4.maskeleme_kurali_
+
+
+### M9.8 Butunluk (dondurulmus betik, hucre tablosu, on kayit govdesi)
+
+| Dosya | JSON kaydi | On kayit Dondurma eki kaydi | Dosyadan hesaplanan (bu betik) | Durum |
+|---|---|---|---|---|
+| `experiments/q1_konsey_ayrisim.py` | 4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389 (J2, J4, J5 meta.betik_sha256; uc JSON ayni) | 4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389 | 4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389 | UYUSUYOR |
+| `raporlar/konsey_2026-10-29/hucre_tablosu.json` | 2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500 (J2, J4, J5 meta.hucre_tablosu_sha256; uc JSON ayni) | 2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500 | 2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500 | UYUSUYOR |
+| `raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md` govdesi (ilk satirdan '## Dondurma eki' basligina kadar) | JSON'da kayitli degil; dosyadan hesaplandi | 46ab58fb4843a30265f44c04c8fc4831b7a3601df57aa520da1efd7e03a663a5 | 46ab58fb4843a30265f44c04c8fc4831b7a3601df57aa520da1efd7e03a663a5 | UYUSUYOR |
+
+JSON uretim zamanlari: J2 2026-10-30T01:46:40.768882+00:00; J4 2026-10-30T20:40:40.619077+00:00; J5 2026-10-30T20:40:44.160853+00:00. numpy (JSON meta): 1.26.4. Birincil panel eksik uyesi: J2 yok; J4 yok; J5 yok. Matris cakismasi: J2 yok; J4 yok; J5 pgd yok, mi yok, tgr yok.
+
+Bu bolumde (M9.1-M9.9) JSON'da bulunamayip 'bulunamadi' yazilan kalemler: B2 K-a ve K-b hiyerarsik bootstrap duyarliligi (b2.duyarlilik.hiyerarsik_bootstrap); Iki ImageNet baslatma kontrol noktasinin ImageNet top-1 degeri (ON_KAYIT Dondurma eki (i) m.9; `raporlar/konsey_2026-10-29/09_sonuc_b2_b6.md` §7 m.6; `raporlar/konsey_2026-10-29/hucre_tablosu.json` imagenet_top1 alani yok).
+
+_Kaynak: `results/q1/konsey_ayrisim_b2.json`, `results/q1/konsey_ayrisim_b4.json`, `results/q1/konsey_ayrisim_b5.json` meta.{betik_sha256, hucre_tablosu_sha256, uretildi_utc, numpy}, panel.birincil_eksik, veri.cakismalar; `raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md` Dondurma eki (a) ve (b) (sha256 kayitlari, metinden); dosya sha256'lari bu betikte hashlib ile hesaplanir (`experiments/q1_konsey_ayrisim.py`, `raporlar/konsey_2026-10-29/hucre_tablosu.json`, `raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md` govdesi)_
+
+
+### M9.9 Masa cozumlemeleri (SENTEZ ve konsey_masa)
+
+On kayit oncesi masa cozumlemeleridir; yeni olcum yoktur ve sinama degildir (SENTEZ tanim: 'Konsey sentezi masa cozumlemesi (29.10.2026). Yeni olcum yok, GPU yok.'; `results/q1/konsey_masa/konsey_masa_cozumlemeleri.json` not: 'Tek tohumlu havuz ve dort uyeli panel: on kayit oncesi gorulmus veri, sinama degil.'). Betimsel olarak okunur.
+
+C1 ResNet-18 / ViT-Tiny ciftinin log asimetri ayrisimi (uc tohum cifti; ort ve kosum SD'si JSON'dan; potansiyel payi = log_w_potansiyel / log_oran):
+
+| Kume | Nicelik | Ort | SD (kosum) | Cift degerleri |
+|---|---|---|---|---|
+| c10_c1_secilen | Hedef-dogru asimetri (puan) | +4.41 | 0.45 | +4.81 / +4.50 / +3.92 |
+| c10_c1_secilen | log oran | +0.251 | 0.032 | +0.279 / +0.256 / +0.217 |
+| c10_c1_secilen | Potansiyel (w) bileseni | +0.136 | 0.023 | +0.160 / +0.133 / +0.114 |
+| c10_c1_secilen | Yonlu artik r | +0.115 | 0.010 | +0.119 / +0.122 / +0.103 |
+| c10_c1_secilen | log tau | -1.083 | 0.022 | -1.100 / -1.091 / -1.058 |
+| c10_c1_secilen | Potansiyel payi | 0.541 | 0.029 | 0.574 / 0.522 / 0.526 |
+| c10_son_kontrol_noktasi | Hedef-dogru asimetri (puan) | +4.64 | 0.56 | +4.48 / +4.17 / +5.27 |
+| c10_son_kontrol_noktasi | log oran | +0.273 | 0.029 | +0.267 / +0.247 / +0.305 |
+| c10_son_kontrol_noktasi | Potansiyel (w) bileseni | +0.144 | 0.034 | +0.183 / +0.117 / +0.133 |
+| c10_son_kontrol_noktasi | Yonlu artik r | +0.129 | 0.044 | +0.084 / +0.130 / +0.172 |
+| c10_son_kontrol_noktasi | log tau | -1.170 | 0.021 | -1.194 / -1.160 / -1.155 |
+| c10_son_kontrol_noktasi | Potansiyel payi | 0.531 | 0.134 | 0.685 / 0.473 / 0.436 |
+| c100_c1_secilen | Hedef-dogru asimetri (puan) | +4.96 | 1.02 | +4.21 / +4.54 / +6.12 |
+| c100_c1_secilen | log oran | +0.215 | 0.048 | +0.179 / +0.197 / +0.270 |
+| c100_c1_secilen | Potansiyel (w) bileseni | +0.061 | 0.020 | +0.038 / +0.075 / +0.070 |
+| c100_c1_secilen | Yonlu artik r | +0.154 | 0.041 | +0.141 / +0.122 / +0.200 |
+| c100_c1_secilen | log tau | -1.138 | 0.023 | -1.112 / -1.154 / -1.148 |
+| c100_c1_secilen | Potansiyel payi | 0.283 | 0.087 | 0.211 / 0.380 / 0.258 |
+
+Goruntu bootstrap SD'si, cift 1 (goruntu_bootstrap_pair1): c10_c1_secilen r SD 0.030, log tau SD 0.016 (B = 300); c10_son_kontrol_noktasi r SD 0.030, log tau SD 0.016 (B = 300); c100_c1_secilen r SD 0.031, log tau SD 0.016 (B = 300).
+
+| Nicelik (tam orneklem, log) | Deger | Anahtar |
+|---|---|---|
+| Kaynak acigi toplam | +0.422 | havuz_tohum1.kaynak_acigi_ayristirma_log.toplam |
+| Kaynak acigi simetrik pay | +0.392 | havuz_tohum1.kaynak_acigi_ayristirma_log.simetrik_pay |
+| Kaynak acigi yonlu pay | +0.030 | havuz_tohum1.kaynak_acigi_ayristirma_log.yonlu_pay |
+| Kaynak acigi simetrik oran | 0.928 | havuz_tohum1.kaynak_acigi_ayristirma_log.simetrik_oran |
+| Kaynak acigi kontrol artigi | -8.0e-16 | havuz_tohum1.kaynak_acigi_ayristirma_log.kontrol_artik |
+| Hedef farki toplam | -0.201 | havuz_tohum1.hedef_farki_ayristirma_log.toplam |
+| Hedef farki potansiyel pay | +0.160 | havuz_tohum1.hedef_farki_ayristirma_log.potansiyel_pay |
+| Hedef farki simetrik pay | -0.392 | havuz_tohum1.hedef_farki_ayristirma_log.simetrik_pay |
+| Hedef farki yonlu pay | +0.030 | havuz_tohum1.hedef_farki_ayristirma_log.yonlu_pay |
+| Hedef farki kontrol artigi | -3.6e-16 | havuz_tohum1.hedef_farki_ayristirma_log.kontrol_artik |
+
+Tanimlar (SENTEZ): kaynak acigi 'panel ortalamasi log T(R->c) - log T(V->c) = simetrik (log tau_R - log tau_V) + yonlu (-0.5*(r_R - r_V))'; hedef farki 'panel ortalamasi log T(c->V) - log T(c->R) = potansiyel (log w_V - log w_R) + simetrik (log tau_V - log tau_R) + yonlu (0.5*(r_V - r_R))'. Panel: Wong2020_PRN18, Engstrom2019_RN50, Carmon2019_WRN28_10, Gowal2020_WRN28_10 (havuz_tohum1.ViT_Tiny_AT.panel).
+
+Ayni ayrisimin `results/q1/konsey_masa/konsey_masa_cozumlemeleri.json` karsiligi, ResNet-18 AT (R) ile her model (m) arasindaki panel kaynak aciginin simetrik orani (1_havuz_model_tablosu.modeller.<m>.kaynak_acigi_R_eksi_m_<olcek>.simetrik_oran; jackknife_aralik.<m>.simetrik_oran; panel uyeleri icin panel kendisi haric): ViT_Tiny_AT_s2001: yari_log 0.927, tam_log 0.928, yari_logit 1.097; panel uyesi birakmali jackknife araligi (yari_log) [0.919; 0.935]; Wong2020Fast: yari_log 0.961, tam_log 0.958, yari_logit 1.339; Engstrom2019Robustness: yari_log 0.921, tam_log 0.920, yari_logit 1.258; Carmon2019Unlabeled: yari_log 1.087, tam_log 1.087, yari_logit 1.674; Debenedetti2022Light_XCiT-S12: yari_log 0.688, tam_log 0.688, yari_logit 1.232; panel uyesi birakmali jackknife araligi (yari_log) [0.426; 0.798]; Gowal2020Uncovering_28_10_extra: yari_log 1.341, tam_log 1.341, yari_logit 2.137.
+
+Havuz modellerinde sigma ve rho (`tab:external_pool` icin). 'Masa' sutunlari `results/q1/konsey_masa/konsey_masa_cozumlemeleri.json` 1_havuz_model_tablosu.modeller.<m>.{yari_log, tam_log} alanindan, panel 4 CNN: Wong2020Fast, Engstrom2019Robustness, Carmon2019Unlabeled, Gowal2020Uncovering_28_10_extra (1_havuz_model_tablosu.panel). 'B4' sutunlari `results/q1/konsey_ayrisim_b4.json` b4.model_tablosu.<m>.yari_log alanindan, panel 7 uyeli birincil panel: Wong2020Fast, Engstrom2019Robustness, Carmon2019Unlabeled, Gowal2020Uncovering_28_10_extra, Sehwag2021Proxy_R18, Addepalli2022Efficient_RN18, Rade2021Helper_R18_ddpm (panel.birincil). panel_n, panel uyesinin kendisi haric hesaba giren panel modeli sayisidir.
+
+| Model | Masa sigma (yari, log) | Masa rho (yari, log) | Masa panel_n | Masa sigma (tam, log) | Masa rho (tam, log) | B4 sigma (yari, log) | B4 rho (yari, log) | B4 panel_n |
+|---|---|---|---|---|---|---|---|---|
+| ResNet18_AT_s1001 | -0.694 | -0.018 | 4 | -0.694 | -0.018 | -0.648 | -0.022 | 7 |
+| ViT_Tiny_AT_s2001 | -1.086 | +0.043 | 4 | -1.086 | +0.043 | -1.015 | +0.025 | 7 |
+| Wong2020Fast | -0.656 | -0.033 | 3 | -0.656 | -0.033 | -0.576 | -0.033 | 6 |
+| Engstrom2019Robustness | -0.566 | -0.058 | 3 | -0.565 | -0.058 | -0.508 | -0.055 | 6 |
+| Carmon2019Unlabeled | -0.519 | +0.008 | 3 | -0.519 | +0.008 | -0.472 | -0.009 | 6 |
+| Debenedetti2022Light_XCiT-S12 | -0.609 | -0.096 | 4 | -0.609 | -0.095 | -0.561 | -0.095 | 7 |
+| Gowal2020Uncovering_28_10_extra | -0.521 | +0.083 | 3 | -0.521 | +0.084 | -0.467 | +0.065 | 6 |
+
+Kaynak secimi: `tab:external_pool` sekiz modellik havuz verisinden kuruludur (`results/q1/konsey_masa/_p3_potansiyel_masa.json` havuz_cifar10.klasor = `results/q1/havuz_cifar10`, 8 model: ResNet18_AT, ViT_Tiny_AT, Standard_WRN28_10, Wong2020_PRN18, Engstrom2019_RN50, Carmon2019_WRN28_10, Debenedetti2022_XCiT_S12, Gowal2020_WRN28_10). Masa sutunlari bu veriden hesaplanir (`experiments/q1_konsey_masa.py` kaynak metninde `results/q1/havuz_cifar10`: VAR); B4 sutunlari ayni modellerin B4 matrisindeki (`results/q1/konsey_b4_matris/transfer_matrix.json`) ve farkli paneldeki degeridir. Bu foyde `tab:external_pool` icin secilen kaynak masa sutunlaridir (ayni veri, 4 CNN'lik panel); B4 sutunlari yalniz karsilastirma icindir. Masa model tablosu 7 model kapsar; havuzun kalan 1 uyesi icin bu dosyada sigma ve rho yoktur. SENTEZ havuz_tohum1 log_tau_ort ve r_ort degerleri masa tam_log sigma ve rho ile 1e-9 icinde ayni: ViT_Tiny_AT = ViT_Tiny_AT_s2001; ResNet18_AT = ResNet18_AT_s1001; Debenedetti2022_XCiT_S12 = Debenedetti2022Light_XCiT-S12.
+
+Carpimsal yasa masasi (log oran ile log w orani; lambda = 1 sabit R2, kesisimsiz lambda, kesisimli egim ve kesisim):
+
+| Kume | n | R2 (lambda = 1) | Kesisimsiz lambda | Kesisimli egim, kesisim | Pearson r | Isaret uyumu |
+|---|---|---|---|---|---|---|
+| Yorunge noktalari (A_kolu), birlesik | 100 | 0.201 | 1.878 | 1.464, +0.110 | 0.958 | 92/100 |
+| A_kolu.veri_ayrimi.cifar10 | 66 | - | - | 1.451, +0.106 | 0.965 | 59/66 |
+| A_kolu.veri_ayrimi.cifar100 | 34 | - | - | 2.067, +0.097 | 0.925 | 33/34 |
+| havuz_AT7 (7 AT modeli; R2 lambda uydurmali: 0.953) | - | 0.953 | 1.015 | - | - | 21/21 |
+
+Onerme 3 ayar testi, havuz (`results/q1/konsey_masa/_p3_potansiyel_masa.json` havuz_cifar10.ayar_testi; n = 10000, B = 400): en buyuk |g| 0.0044, ortalama |g| 0.0008 (4 ondalik), en kucuk p 0.933.
+
+| Nicelik | oran | logit | h | Anahtar |
+|---|---|---|---|---|
+| Ham - tc kaynak etkisi / tc kaynak SD | 0.316 | 1.655 | 0.016 | havuz_cifar10.ayar_testi.<olcek>.kaynak_alfa_raw_eksi_tc_bolu_tc_alfa_SD |
+| Ham - tc kaynak etkisi, en buyuk mutlak (olcek birimi) | 2.063 | 1.638 | 0.001 | havuz_cifar10.ayar_testi.<olcek>.kaynak_alfa_raw_eksi_tc_en_buyuk_mutlak |
+| Ham - tc hedef etkisi ile tau korelasyonu | 0.997 | 0.941 | 1.000 | havuz_cifar10.ayar_testi.<olcek>.hedef_beta_raw_eksi_tc_ile_tau_korelasyonu |
+| Ham - tc dolasim RMS / tc dolasim RMS | 0.179 | 0.637 | 0.009 | havuz_cifar10.ayar_testi.<olcek>.dolasim_raw_eksi_tc_rms_bolu_dolasim_tc_rms |
+| bc - tc kaynak etkisi / tc kaynak SD | 0.348 | 0.338 | 0.363 | havuz_cifar10.ayar_testi.<olcek>.kaynak_alfa_bc_eksi_tc_bolu_tc_alfa_SD |
+| bc - tc dolasim RMS / tc dolasim RMS | 0.197 | 0.445 | 0.177 | havuz_cifar10.ayar_testi.<olcek>.dolasim_bc_eksi_tc_rms_bolu_dolasim_tc_rms |
+
+ImageNet baslatma kontrol noktalarinin ImageNet top-1 degeri: bulunamadi.
+
+_Kaynak: `results/q1/konsey_sentez_r_tau_masa.json` tanim, kumeler.<kume>.{tam_orneklem.<nicelik>.{ort, sd_kosum, degerler}, goruntu_bootstrap_pair1}, havuz_tohum1.{kaynak_acigi_ayristirma_log, hedef_farki_ayristirma_log, <m>.{panel, log_tau_ort, r_ort}}; `results/q1/konsey_masa/konsey_masa_cozumlemeleri.json` betik, not, 1_havuz_model_tablosu.{panel, modeller.<m>.{yari_log, tam_log, kaynak_acigi_R_eksi_m_<olcek>}, jackknife_aralik}; `results/q1/konsey_ayrisim_b4.json` panel.birincil, b4.model_tablosu.<m>.yari_log; `results/q1/konsey_masa/_p3_carpimsal_yasa_masa.json` A_kolu, havuz_AT7; `results/q1/konsey_masa/_p3_potansiyel_masa.json` havuz_cifar10.{klasor, modeller, n, B, ayar_testi}; `raporlar/konsey_2026-10-29/hucre_tablosu.json` imagenet_top1 (yok)_
+
+
+## M10: Ek bloklar, CIFAR-100 paneli, ImageNetV2 paneli ve gradyan kosinusu (2026-10-31)
+
+_Kaynak: `results/q1/ek_regresyon/gpu_n200/karsilastirma_*.json; results/q1/ek_loglar/*.log, regresyon_gpu200.txt; results/q1/konsey_b8_imagenetv2/denetim/onisleme_denetimi.json; results/q1/konsey_b8_imagenetv2/denetim/imagenetv2_manifest.json; results/q1/konsey_b9_c100/b9_dondurulmus_b2.json; results/q1/konsey_b9_c100/b9_sarmalayici_b2.json.sarmalayici.json; results/q1/konsey_b9_c100/matris/{transfer_matrix.json, cells_meta.json}; raporlar/konsey_2026-10-29/hucre_tablosu_b9.json; results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json; results/q1/konsey_b8_imagenetv2/b8_betimsel.json; results/q1/konsey_b8_imagenetv2/matris/{transfer_matrix.json, cells_meta.json}; raporlar/konsey_2026-10-29/hucre_tablosu_b8.json; raporlar/konsey_2026-10-29/_ek_denetim/dis/rb/in_<model>.json; results/q1/konsey_b10_gradyan/<veri>/kosinus_ozet.json; results/q1/konsey_b10_gradyan/mantel_<veri>.json; results/q1/konsey_b10_gradyan/b10_aile.json; results/q1/konsey_ayrisim_b2.json (yalniz CIFAR-10 karsilastirma sutunu); raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md (yalniz Dondurma eki ve govde sha256); results/q1_research/ONKAYIT_SAPMALAR.md (yalniz Ek B8-B10 kayitlari)`_
+
+Ek on kayitli B8, B9 ve B10 bloklarinin sonuclaridir. B9 baglayicidir (aile F_B9, Holm); B8 betimseldir (Holm yok, baglayici karar yok); B10'un karar ailesi F_B10'dur (Holm). Asagidaki her alt bolum kendi artefaktindan okunur ve altinda kaynak dosya ile anahtar yollari yazilidir. Yuvarlama M9 kuraliyla: log olcekli nicelikler, oranlar ve korelasyonlar 3 ondalik, puanlar (yuzde) 2 ondalik, p degerleri bilimsel gosterim.
+
+
+### M10.1 On kosullar (catal regresyonu, B8 on isleme denetimi, ImageNetV2 orneklemi, matris ayarlari)
+
+GPU catal regresyonu (ozgun matris betigi `experiments/c1_c3_transfer_matrix.py` ile catal betik; klasor adlari A / B sutununda):
+
+| Karsilastirma | A / B | Hucre sayisi | npz sayisi | JSON'u farkli hucre | npz farki | Ust alan farki | BIREBIR |
+|---|---|---|---|---|---|---|---|
+| `karsilastirma_ozgun_catal.json` | `results/q1/ek_regresyon/gpu_n200/ozgun` / `results/q1/ek_regresyon/gpu_n200/catal` | 9 | 9 | 0 | 0 | 0 | evet |
+| `karsilastirma_ozgun_onb_catal_onb.json` | `results/q1/ek_regresyon/gpu_n200/ozgun_onb` / `results/q1/ek_regresyon/gpu_n200/catal_onb` | 9 | 9 | 0 | 0 | 0 | evet |
+
+Onbellek dosyalarinin bayt karsilastirmasi (`results/q1/ek_loglar/regresyon_gpu200.txt`, 'ayni'/'FARKLI' satirlari): 3 ayni, 0 FARKLI. Zincir gunluklerindeki adim donus kodlari (`results/q1/ek_loglar/ek_zincir_{1,2}.log`): b8 denetim rc=0; b9 rc=0; b8 rc=0; b10 c10 rc=0; b10 c100 rc=0; b10 in rc=0.
+
+B8 on isleme denetimi (n = 2000 goruntu; ortak hat BicubicRes256Crop224; temiz dogruluk %; varyant farki = ortak - kendi, puan; 'Esik (i)' kendi hat icin alt sinir, puan; RB temiz `esik.rb_temiz`):
+
+| Takma ad | RobustBench adi | Temiz, ortak hat | Temiz, kendi hat | Varyant farki | Mutlak fark | RB temiz | Esik (i) | (i) gecti | (ii) gecti | isaretli_3_5 | Karar |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| IN_Salman2020Do_R18 | Salman2020Do_R18 | 41.35 | 41.55 | -0.20 | 0.20 | 52.92 | 31.75 | evet | evet | hayir | gecti |
+| IN_Salman2020Do_R50 | Salman2020Do_R50 | 51.90 | 52.00 | -0.10 | 0.10 | 64.02 | 38.41 | evet | evet | hayir | gecti |
+| IN_Salman2020Do_50_2 | Salman2020Do_50_2 | 56.75 | 56.20 | +0.55 | 0.55 | 68.46 | 41.08 | evet | evet | hayir | gecti |
+| IN_Engstrom2019Robustness | Engstrom2019Robustness | 51.05 | 50.95 | +0.10 | 0.10 | 62.56 | 37.54 | evet | evet | hayir | gecti |
+| IN_Chen2024Data_WRN_50_2 | Chen2024Data_WRN_50_2 | 57.60 | 57.05 | +0.55 | 0.55 | 68.76 | 41.26 | evet | evet | hayir | gecti |
+| IN_Peng2023Robust | Peng2023Robust | 60.45 | 59.65 | +0.80 | 0.80 | 73.44 | 44.06 | evet | evet | hayir | gecti |
+| IN_Singh_ConvNeXt-T-CvSt | Singh2023Revisiting_ConvNeXt-T-ConvStem | 60.90 | 60.90 | +0.00 | 0.00 | 72.72 | 43.63 | evet | evet | hayir | gecti |
+| IN_Singh_ViT-S-CvSt | Singh2023Revisiting_ViT-S-ConvStem | 61.00 | 61.00 | +0.00 | 0.00 | 72.56 | 43.54 | evet | evet | hayir | gecti |
+| IN_Singh_ConvNeXt-B-CvSt | Singh2023Revisiting_ConvNeXt-B-ConvStem | 63.20 | 63.20 | +0.00 | 0.00 | 75.90 | 45.54 | evet | evet | hayir | gecti |
+| IN_Singh_ViT-B-CvSt | Singh2023Revisiting_ViT-B-ConvStem | 64.85 | 64.85 | +0.00 | 0.00 | 76.30 | 45.78 | evet | evet | hayir | gecti |
+| IN_Liu_ConvNeXt-B | Liu2023Comprehensive_ConvNeXt-B | 65.50 | 65.50 | +0.00 | 0.00 | 76.02 | 45.61 | evet | evet | hayir | gecti |
+| IN_Liu_Swin-B | Liu2023Comprehensive_Swin-B | 64.80 | 64.80 | +0.00 | 0.00 | 76.16 | 45.70 | evet | evet | hayir | gecti |
+| IN_Mo_ViT-B | Mo2022When_ViT-B | 56.75 | 55.80 | +0.95 | 0.95 | 68.38 | 41.03 | evet | evet | hayir | gecti |
+| IN_Debenedetti_XCiT-S12 | Debenedetti2022Light_XCiT-S12 | 60.35 | 59.90 | +0.45 | 0.45 | 72.34 | 43.40 | evet | evet | hayir | gecti |
+| IN_Wong2020Fast | Wong2020Fast | 43.35 | 44.55 | -1.20 | 1.20 | 55.62 | 33.37 | evet | evet | hayir | gecti |
+
+Model sayisi 15; `kalan` listesi: bos; `isaretli` listesi: bos; karari 'gecti' disinda olan: yok; en buyuk mutlak varyant farki 1.20 puan (IN_Wong2020Fast). Model ici normalizasyon katmani tasiyan model: 10/15. Kural (JSON `not`): 'Esik kurali ek on kayit §5.5 (ON_KAYIT_EK_B8_B10_2026-10-30.md): (i) kendi hatta 1000 sinifli temiz dogruluk >= %25 ve >= RobustBench temiz dogrulugunun 0,6 kati; (ii) |ortak - kendi| <= 5 puan; 3 ile 5 puan arasi matriste kalir ve isaretlenir. 'kaldi' alan model matristen cikar (P8 uyesiyse yedek IN_Wong2020Fast ayni denetimle girer; cift uyesiyse cift duzeyi niceliklerden cikar). Sonuc T gorulmeden sapma kaydina yazilir.'
+
+ImageNetV2 orneklemi (`results/q1/konsey_b8_imagenetv2/denetim/imagenetv2_manifest.json`): n = 2000; dosya listesi uzunlugu 2000; tensor sekli [2000, 3, 224, 224]; on isleme BicubicRes256Crop224; secim kurali 'sinif klasoru basina sirali ilk ceil(n/1000) dosya; sira (sinif, ad)'; liste_sha256 25db498ba8b2c710618e76e8a2dfe5492c9f75be0be1b7f63c253acc4f27d1a8. Ayni ozet: B8 matrisi (`transfer_matrix.json` manifest_liste_sha256) AYNI; B10 ImageNetV2 kosinus ozeti (imagenetv2_liste_sha256) AYNI; sapma kaydi (`results/q1_research/ONKAYIT_SAPMALAR.md`) AYNI. B8 matrisindeki manifest_n = 2000.
+
+Matris kosu ayarlari (`cells_meta.json`; eps ve alpha x 255 turetilmis) ve dondurulmus betigin veri denetimi (`veri`):
+
+| Blok | Veri | Saldiri | eps x 255 | alpha x 255 | Adim | Tohum | n | Kaynak basina tohum | On isleme | JSON hucre sayisi | Klasordeki per_sample npz | Model sayisi | Cakisma | Tablo disi model | Hedef maskesi tutarli |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| B9 | cifar100 | pgd linf | 8.00 | 2.00 | 10 | 42 | 10000 | evet | - | 225 | 225 | 15 | 0 | 0 | evet |
+| B8 | imagenetv2 | pgd linf | 4.00 | 1.00 | 10 | 42 | 2000 | evet | BicubicRes256Crop224 | 196 | 196 | 14 | 0 | 0 | evet |
+
+_Kaynak: `results/q1/ek_regresyon/gpu_n200/karsilastirma_*.json` A, B, hucre_sayisi, npz_sayisi, json_farkli_hucreler, npz_farklari, ust_alan_farklari, BIREBIR; `results/q1/ek_loglar/regresyon_gpu200.txt` (ayni/FARKLI satirlari); `results/q1/ek_loglar/ek_zincir_{1,2}.log` (rc satirlari); `results/q1/konsey_b8_imagenetv2/denetim/onisleme_denetimi.json` n, ortak_onisleme, modeller.<m>.{model, temiz_dogruluk_ortak, temiz_dogruluk_kendi, fark_puan, esik.{karar, esik_i, i_gecti, mutlak_fark_puan, ii_gecti, isaretli_3_5, rb_temiz}}, kalan, isaretli, normalizasyon, not; `results/q1/konsey_b8_imagenetv2/denetim/imagenetv2_manifest.json` n, dosyalar, tensor_sekli, onisleme, secim_kurali, liste_sha256; `results/q1/konsey_b8_imagenetv2/matris/transfer_matrix.json` manifest_liste_sha256, manifest_n; `results/q1/konsey_b10_gradyan/imagenetv2/kosinus_ozet.json` imagenetv2_liste_sha256; `results/q1_research/ONKAYIT_SAPMALAR.md` (liste ozeti kaydi); `<matris>/cells_meta.json`; `results/q1/konsey_b9_c100/b9_dondurulmus_b2.json`, `results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json` veri.{hucre_sayisi, modeller, cakismalar, tablo_disi_modeller, tutarlilik}_
+
+
+### M10.2 B9 aile F_B9: F_B2'nin CIFAR-100 yinelemesi (K-a, K-b, K-c; Holm)
+
+CIFAR-100 (B9) ve karsilastirma icin CIFAR-10 (B2, M9.5 ile ayni kaynak):
+
+| Sinama | CIFAR-100 gozlenen | CIFAR-100 %90 aralik | CIFAR-100 %95 aralik | CIFAR-100 ham p | CIFAR-100 Holm p | CIFAR-100 karar | CIFAR-10 gozlenen | CIFAR-10 %90 aralik | CIFAR-10 Holm p | CIFAR-10 karar |
+|---|---|---|---|---|---|---|---|---|---|---|
+| K-a, simetrik oran q_s | ort q 0.840 (q_s: 0.848 / 0.861 / 0.810) | [0.795; 0.885] | [0.773; 0.906] | 1.02e-03 | 2.05e-03 | destek | ort q 0.936 (q_s: 0.940 / 0.928 / 0.940) | [0.925; 0.948] | 1.26e-04 | destek |
+| K-b, ViT yonlu terimi rho(V-scr) | ort rho +0.143 (tohumlar: +0.134 / +0.123 / +0.170) | [+0.101; +0.184] | [+0.082; +0.203] | TOST 9.53e-01 | 9.53e-01 | curutuldu (pozitif yon) | ort rho +0.012 (tohumlar: +0.025 / +0.007 / +0.004) | [-0.007; +0.031] | 2.73e-03 | destek (Holm sonrasi TOST p < 0,05) |
+| K-c, tur ici benzerlik Delta_w | Delta_w +0.519 | bootstrap [+0.469; +0.599] | bootstrap [+0.463; +0.604] | 5.00e-04 | 1.50e-03 | destek | Delta_w +0.566 | bootstrap [+0.537; +0.604] | 1.00e-03 | destek |
+
+B9 karar ayrintilari (b2.F_B2.karar): K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75): evet; K-b_ham_ci90_delta_icinde: hayir; K-b_eski_yalniz_pozitif_okuma_curutme: evet; K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30): evet.
+
+B9 K-b TOST tek yonlu p'leri: alt 1.69e-03, ust 9.53e-01 (tost_p = buyugu 9.53e-01); sd 0.025, df 2. F_B2.not: 'K-a p tek yonlu t (H0: ort q <= 0,50); K-b p TOST'un buyuk tek yonlu p'si; K-c p hiyerarsik bootstrap (H0: Delta_w <= 0). Destek Holm sonrasi, curutme ham aralikla okunur; ON_KAYIT §5 karar ilkesi.'. TOST siniri delta = 0.1; Holm alfa = 0.05; bootstrap B = 2000, tohum 20261029. Holm denetimi (holm() ile p_ham'dan): en buyuk mutlak fark 0.00e+00. Hesaplanamayip p = 1 sayilan: yok.
+
+delta = 0.06 duyarliligi (b2.F_B2.duyarlilik_delta_0.06): Holm p 2.05e-03, 9.86e-01, 1.50e-03; K-a destek; K-b curutuldu (pozitif yon); K-c destek.
+
+K-a ayrintisi: D_s 0.388 / 0.459 / 0.448; simetrik pay 0.329 / 0.395 / 0.363; yonlu pay 0.059 / 0.064 / 0.085; tek yonlu t p (p_tek_H0_q_le_0.5) 1.02e-03; payda kurali tetiklenen tohum cifti: yok; ozdeslik artigi en buyuk 7.8e-16; ciftler: C100_ResNet18_AT_s1001 / C100_ViT_Tiny_AT_s2001; C100_ResNet18_AT_s1002 / C100_ViT_Tiny_AT_s2002; C100_ResNet18_AT_s1003 / C100_ViT_Tiny_AT_s2003.
+
+K-c ayrintisi: ViT tur ici log tau -0.417 / -0.514 / -0.529 (ort -0.487); sigma_V -0.971 / -1.031 / -1.015; bootstrap B = 2000, yeniden cekilen tek tohumlu ornek 284; ResNet tur ici log tau -0.468 / -0.520 / -0.514 (ort -0.501).
+
+B9 duyarliliklari ve kesifsel S9-1, S9-3 (karar degistirmez):
+
+| Duyarlilik | q | rho(V-scr) ve diger | Anahtar |
+|---|---|---|---|
+| Tam orneklem, log | ort q 0.840 | ort rho(V-scr) +0.143, %90 [+0.101; +0.184], %95 [+0.082; +0.203] | b2.duyarlilik.tam_log |
+| Yari logit | ort q 1.026 (q_s: 0.997 / 1.086 / 0.996) | ort rho(V-scr) -0.413, %90 [-0.546; -0.280], %95 [-0.609; -0.217] | b2.duyarlilik.yari_logit |
+| Yari oran (rho puan) | ort q 1.216 | ort rho(V-scr) -14.61 puan, %90 [-17.32; -11.89], %95 [-18.61; -10.60] | b2.duyarlilik.yari_oran |
+| Panel jackknife | ort q 0.831 (C100_Jia2022LAS-AT_34_10 cikinca) ile 0.847 (C100_Wang2023Better_WRN-28-10 cikinca) | ort rho(V-scr) +0.127 (C100_Wang2023Better_WRN-28-10 cikinca) ile +0.150 (C100_Rice2020Overfitting cikinca) | b2.duyarlilik.panel_jackknife |
+| Ikincil panel (C100_Debenedetti2022Light_XCiT-S12, C100_Hendrycks2019Using) | q_s 0.799 / 0.834 / 0.771 | rho(V-scr) +0.129 / +0.136 / +0.221 | b2.duyarlilik.ikincil_panel |
+
+Sarmalayici yan bilgisi (`results/q1/konsey_b9_c100/b9_sarmalayici_b2.json.sarmalayici.json`; mod b9; dondurulmus betik cagrisi `--mod b2 --hucre-tablosu raporlar/konsey_2026-10-29/hucre_tablosu_b9.json --cikti results/q1/konsey_b9_c100/b9_sarmalayici_b2.json --bootstrap 2000 --panel-en-az 5 --matris-dizini results/q1/konsey_b9_c100/matris`): dondurulmus_ozet.karar ile `results/q1/konsey_b9_c100/b9_dondurulmus_b2.json` b2.F_B2.karar AYNI; ozgun_matris_betigi_degismedi: evet. Temiz dogruluk (temiz_dogruluk_yuzde, %): C100_ResNet18_AT_s1001 64.23; C100_ResNet18_AT_s1002 64.65; C100_ResNet18_AT_s1003 62.68; C100_ViT_Tiny_AT_s2001 41.94; C100_ViT_Tiny_AT_s2002 43.50; C100_ViT_Tiny_AT_s2003 44.06; C100_Rice2020Overfitting 53.82; C100_Rade2021Helper_R18_ddpm 61.50; C100_Addepalli2022Efficient_RN18 65.45; C100_Sehwag2021Proxy 65.93; C100_Pang2022Robustness_WRN28_10 63.64; C100_Wang2023Better_WRN-28-10 72.57; C100_Jia2022LAS-AT_34_10 64.89; C100_Debenedetti2022Light_XCiT-S12 67.34; C100_Hendrycks2019Using 59.22. Sarmalayicinin karistirici notu (JSON metni): 'E1: C1 ViT-Tiny CIFAR-100 temiz dogrulugu panelden belirgin dusuktur; w ve hedef-dogru payda farkli bir alt kumeye dayanir. Sinirlilik olarak yazilir; bu dosya yalniz bu kosudaki temiz dogruluklari betimsel verir.'
+
+_Kaynak: `results/q1/konsey_b9_c100/b9_dondurulmus_b2.json` b2.F_B2.K-a.{q, sinama.{ort, ci90, ci95}, D, simetrik_pay, yonlu_pay, p_tek_H0_q_le_0.5, ozdeslik_artik_max, payda_kucuk_tohumlar, ciftler}; b2.F_B2.K-b.{degerler, ort, sd, df, ci90, ci95, tost_p, tost_p_alt, tost_p_ust}; b2.F_B2.K-c.{Delta_w, bootstrap, log_tau_tur_ici, sigma_V}; b2.F_B2.{p_ham, p_holm, karar, not, p_1_sayilan_hesaplanamayan, duyarlilik_delta_<meta.delta_duyarlilik>}; b2.duyarlilik.{tam_log, yari_logit, yari_oran, panel_jackknife, ikincil_panel}; b2.tur_ici_resnet_log_tau; meta.{delta, alfa, bootstrap_B, bootstrap_tohum}; `results/q1/konsey_ayrisim_b2.json` b2.F_B2 (ayni anahtarlar, CIFAR-10 sutunlari); `results/q1/konsey_b9_c100/b9_sarmalayici_b2.json.sarmalayici.json` meta.{mod, dondurulmus_cagri_argv, ozgun_matris_betigi_degismedi}, temiz_dogruluk_yuzde, karistirici_notu, dondurulmus_ozet.karar_
+
+
+### M10.3 B9 model tablosu (CIFAR-100)
+
+CIFAR-100, 10000 test goruntusu (temiz ve PGD beyaz kutu `transfer_matrix.json` kosegeninden, %; PGD-10 gurbuz dogruluk turetilmis: 100 - raw_fooling, yani saldiri altinda dogru siniflanan ornek orani, temiz dogrulukla kosullanmamis; w = beyaz kutu hedef-dogru kirilganlik, model_tablosu.yari_oran.omega, %; omega = log w; sigma ve rho bolunmus yari, log olcek; hucre, aile ve panel atamasi `raporlar/konsey_2026-10-29/hucre_tablosu_b9.json`):
+
+| Model | Hucre | Aile | Tohum | Birincil panel | Ikincil panel | Temiz (%) | PGD beyaz kutu ham yaniltma (%) | PGD-10 gurbuz dogruluk (%) (turetilmis: 100 - raw_fooling) | w (%) | omega | sigma | rho | panel_n |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| C100_ResNet18_AT_s1001 | C1-R32 | CNN | 1001 | hayir | hayir | 64.23 | 80.84 | 19.16 | 70.17 | 4.251 | -0.642 | +0.016 | 7 |
+| C100_ResNet18_AT_s1002 | C1-R32 | CNN | 1002 | hayir | hayir | 64.65 | 80.83 | 19.17 | 70.35 | 4.253 | -0.636 | -0.004 | 7 |
+| C100_ResNet18_AT_s1003 | C1-R32 | CNN | 1003 | hayir | hayir | 62.68 | 80.42 | 19.58 | 68.76 | 4.231 | -0.653 | +0.000 | 7 |
+| C100_ViT_Tiny_AT_s2001 | V-scr | ViT | 2001 | hayir | hayir | 41.94 | 88.61 | 11.39 | 72.84 | 4.288 | -0.971 | +0.134 | 7 |
+| C100_ViT_Tiny_AT_s2002 | V-scr | ViT | 2002 | hayir | hayir | 43.50 | 89.54 | 10.46 | 75.95 | 4.330 | -1.031 | +0.123 | 7 |
+| C100_ViT_Tiny_AT_s2003 | V-scr | ViT | 2003 | hayir | hayir | 44.06 | 88.42 | 11.58 | 73.72 | 4.300 | -1.015 | +0.170 | 7 |
+| C100_Rice2020Overfitting | panel | CNN | - | evet | hayir | 53.82 | 78.15 | 21.85 | 59.40 | 4.084 | -0.670 | +0.024 | 6 |
+| C100_Rade2021Helper_R18_ddpm | panel | CNN | - | evet | hayir | 61.50 | 67.04 | 32.96 | 46.41 | 3.837 | -0.388 | -0.053 | 6 |
+| C100_Addepalli2022Efficient_RN18 | panel | CNN | - | evet | hayir | 65.45 | 65.57 | 34.43 | 47.39 | 3.859 | -0.439 | +0.106 | 6 |
+| C100_Sehwag2021Proxy | panel | CNN | - | evet | hayir | 65.93 | 63.36 | 36.64 | 44.43 | 3.794 | -0.407 | +0.003 | 6 |
+| C100_Pang2022Robustness_WRN28_10 | panel | CNN | - | evet | hayir | 63.64 | 64.39 | 35.61 | 44.04 | 3.785 | -0.396 | -0.033 | 6 |
+| C100_Wang2023Better_WRN-28-10 | panel | CNN | - | evet | hayir | 72.57 | 55.51 | 44.49 | 38.69 | 3.656 | -0.468 | -0.048 | 6 |
+| C100_Jia2022LAS-AT_34_10 | panel | CNN | - | evet | hayir | 64.89 | 62.86 | 37.14 | 42.76 | 3.756 | -0.421 | +0.002 | 6 |
+| C100_Debenedetti2022Light_XCiT-S12 | ikincil_panel | XCiT | - | hayir | evet | 67.34 | 62.21 | 37.79 | 43.88 | 3.781 | -0.489 | +0.000 | 7 |
+| C100_Hendrycks2019Using | ikincil_panel | CNN | - | hayir | evet | 59.22 | 65.81 | 34.19 | 42.38 | 3.747 | -0.567 | +0.009 | 7 |
+
+Hucre ortalamalari (turetilmis, model degerlerinin aritmetik ortalamasi):
+
+| Hucre | n | Temiz ort (%) | w ort (%) | sigma ort | rho ort |
+|---|---|---|---|---|---|
+| C1-R32 | 3 | 63.85 | 69.76 | -0.644 | +0.004 |
+| V-scr | 3 | 43.17 | 74.17 | -1.006 | +0.143 |
+
+Denetimler: kosegen cond_fooling ile w arasindaki en buyuk mutlak fark 4.96e-03 puan (5e-03'ten kucuk: evet; round(cond_fooling, 2) == cond_fooling olan hucre 225/225); `transfer_matrix.json` temiz dogrulugu ile sarmalayici temiz_dogruluk_yuzde arasindaki en buyuk mutlak fark 0.00e+00 puan (15 model); hucre tablosundaki model sayisi 15, model_tablosu 15; 100 - raw_fooling ile kosegen npz'den 100 * ort(~target_adv_wrong) en buyuk mutlak fark 7.11e-15 puan; kosegen npz'lerde temiz yanlis olup saldiri altinda dogru siniflanan ornek sayisi (modeller toplami) 7.
+
+_Kaynak: `results/q1/konsey_b9_c100/matris/transfer_matrix.json` n_samples, steps, results.<m>-><m>.{raw_fooling, cond_fooling}, results.*-><m>.target_clean_acc, results.*.cond_fooling (denetim); `results/q1/konsey_b9_c100/matris/per_sample_<m>_to_<m>.npz` target_adv_wrong, target_clean_correct (denetim); `results/q1/konsey_b9_c100/b9_dondurulmus_b2.json` b2.model_tablosu.<m>.{yari_oran.omega, yari_log.{omega, sigma, rho, panel_n}}, b2.hucreler; `raporlar/konsey_2026-10-29/hucre_tablosu_b9.json` modeller.<m>.{hucre, aile, tohum, birincil_panel, ikincil_panel}; `results/q1/konsey_b9_c100/b9_sarmalayici_b2.json.sarmalayici.json` temiz_dogruluk_yuzde (denetim)_
+
+
+### M10.4 B8 ImageNetV2 paneli (betimsel; model tablosu ve ozet olculer)
+
+B8 betimseldir: Holm yok, baglayici karar yok (`results/q1/konsey_b8_imagenetv2/b8_betimsel.json` etiket: 'KESIFSEL / BETIMSEL: IN satirinin dogal olcekte kestirimi; Holm ailesi yok, karar yok').
+
+ImageNetV2, 2000 goruntu, PGD-10 linf eps x 255 = 4.00 (temiz ortak hatta, `b8_betimsel.json` model_tablosu_ozet.temiz_dogruluk_yuzde; PGD beyaz kutu ham yaniltma `transfer_matrix.json` kosegeni; PGD-10 gurbuz dogruluk turetilmis: 100 - raw_fooling, yani saldiri altinda dogru siniflanan ornek orani, temiz dogrulukla kosullanmamis; w = model_tablosu_ozet.w_yuzde; sigma ve rho bolunmus yari, log; hucre ve aile `raporlar/konsey_2026-10-29/hucre_tablosu_b8.json`; cift numarasi `b8_betimsel.json` ciftler.<k>.cift (hucre tablosu tohum alaniyla esitligi denetlenir; ciftsiz modelde tohum alani parantez icinde), satir `b8_betimsel.json` ciftler.<k>.satir; RB sutunlari RobustBench model_info kopyalarinin clean_acc ve autoattack_acc alanlari, ortak hatta olculmemistir):
+
+| Takma ad | RobustBench adi | Hucre (kod yolu) | Aile | Cift no | Satir | Temiz (%) | PGD beyaz kutu ham yaniltma (%) | PGD-10 gurbuz dogruluk (%) (turetilmis: 100 - raw_fooling) | w (%) | sigma | rho | panel_n | RB bildirilen temiz (%) | RB bildirilen AA (%) |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| IN_Singh_ConvNeXt-T-CvSt | Singh2023Revisiting_ConvNeXt-T-ConvStem | C1-R32 | CNN | 1 | cift 1, IN satiri | 60.90 | 60.15 | 39.85 | 34.56 | -0.963 | -0.122 | 6 | 72.72 | 49.46 |
+| IN_Singh_ConvNeXt-B-CvSt | Singh2023Revisiting_ConvNeXt-B-ConvStem | C1-R32 | CNN | 2 | cift 2, IN satiri | 63.20 | 55.95 | 44.05 | 30.30 | -1.118 | -0.298 | 6 | 75.90 | 56.14 |
+| IN_Liu_ConvNeXt-B | Liu2023Comprehensive_ConvNeXt-B | C1-R32 | CNN | 3 | cift 3, scr satiri | 65.50 | 54.35 | 45.65 | 30.38 | -1.148 | -0.140 | 6 | 76.02 | 55.82 |
+| IN_Singh_ViT-S-CvSt | Singh2023Revisiting_ViT-S-ConvStem | V-scr | ViT | 1 | cift 1, IN satiri | 61.00 | 60.10 | 39.90 | 34.59 | -1.130 | -0.211 | 6 | 72.56 | 48.08 |
+| IN_Singh_ViT-B-CvSt | Singh2023Revisiting_ViT-B-ConvStem | V-scr | ViT | 2 | cift 2, IN satiri | 64.85 | 55.80 | 44.20 | 31.84 | -1.237 | -0.188 | 6 | 76.30 | 54.66 |
+| IN_Liu_Swin-B | Liu2023Comprehensive_Swin-B | V-scr | Swin | 3 | cift 3, scr satiri | 64.80 | 54.60 | 45.40 | 29.94 | -1.203 | -0.049 | 6 | 76.16 | 56.16 |
+| IN_Mo_ViT-B | Mo2022When_ViT-B | V-scr | ViT | - (tohum alani 4, ciftsiz) | ciftsiz (b8_betimsel ciftler disinda) | 56.75 | 71.95 | 28.05 | 50.57 | -1.184 | +0.024 | 6 | 68.38 | 34.40 |
+| IN_Salman2020Do_R18 | Salman2020Do_R18 | panel | CNN | - | panel | 41.35 | 77.10 | 22.90 | 44.62 | -1.070 | +0.202 | 5 | 52.92 | 25.32 |
+| IN_Salman2020Do_R50 | Salman2020Do_R50 | panel | CNN | - | panel | 51.90 | 70.20 | 29.80 | 42.58 | -0.819 | +0.003 | 5 | 64.02 | 34.96 |
+| IN_Salman2020Do_50_2 | Salman2020Do_50_2 | panel | CNN | - | panel | 56.75 | 68.70 | 31.30 | 44.85 | -0.895 | -0.120 | 5 | 68.46 | 38.14 |
+| IN_Engstrom2019Robustness | Engstrom2019Robustness | panel | CNN | - | panel | 51.05 | 74.35 | 25.65 | 49.76 | -0.890 | -0.043 | 5 | 62.56 | 29.22 |
+| IN_Chen2024Data_WRN_50_2 | Chen2024Data_WRN_50_2 | panel | CNN | - | panel | 57.60 | 64.10 | 35.90 | 37.67 | -0.813 | +0.025 | 5 | 68.76 | 40.60 |
+| IN_Peng2023Robust | Peng2023Robust | panel | CNN | - | panel | 60.45 | 59.55 | 40.45 | 33.09 | -1.039 | -0.067 | 5 | 73.44 | 48.94 |
+| IN_Debenedetti_XCiT-S12 | Debenedetti2022Light_XCiT-S12 | ikincil_panel | XCiT | - | ikincil_panel | 60.35 | 64.40 | 35.60 | 41.01 | -1.112 | -0.194 | 6 | 72.34 | 41.78 |
+
+Denetimler: temiz dogruluk (`transfer_matrix.json` hedef temiz, temiz_dogruluk alani ve b8_betimsel) en buyuk mutlak fark 0.00e+00 puan; kosegen cond_fooling ile w en buyuk mutlak fark 4.86e-03 puan (5e-03'ten kucuk: evet; round(cond_fooling, 2) == cond_fooling olan hucre 196/196); 100 - raw_fooling ile kosegen npz'den 100 * ort(~target_adv_wrong) en buyuk mutlak fark 7.11e-15 puan; kosegen npz'lerde temiz yanlis olup saldiri altinda dogru siniflanan ornek sayisi (modeller toplami) 1; b8_betimsel sigma ve rho ile `results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json` b2.model_tablosu.<m>.yari_log en buyuk mutlak fark 0.00e+00; RB clean_acc ile on isleme denetimindeki esik.rb_temiz en buyuk mutlak fark 0.00e+00 puan (14 model); hucre etiketi uyusmayan: yok.
+
+Cift duzeyi (A = donusturucu - CNN; A^sigma bolunmus yari, log; aralik goruntu bootstrap'i; D, simetrik pay, yonlu pay ve q dondurulmus betigin K-a alanlarindan, ayni cift sirasiyla; D_k yuvarlama kuralina istisna olarak 4 ondalik, payda kurali D_k <= 0.1 (`results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json` meta.delta) ile karsilastirma icin):
+
+| Cift | CNN | Donusturucu | Satir | A^sigma | %90 aralik | %95 aralik | A^sigma (logit) | A^rho | A^omega (log w) | D_k | Simetrik pay | Yonlu pay | q_k | Durum |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt | IN | -0.167 | [-0.234; -0.096] | [-0.246; -0.084] | -0.193 | -0.089 | +0.001 | 0.1221 | 0.167 | -0.044 | 1.364 | hesaplandi |
+| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt | IN | -0.118 | [-0.202; -0.038] | [-0.217; -0.023] | -0.147 | +0.110 | +0.050 | 0.1731 | 0.118 | +0.055 | 0.682 | hesaplandi |
+| 3 | IN_Liu_ConvNeXt-B | IN_Liu_Swin-B | scr | -0.055 | [-0.137; +0.022] | [-0.153; +0.034] | -0.061 | +0.091 | -0.015 | 0.0999 | 0.055 | +0.045 | 0.547 | hesaplandi |
+
+Satir kestirimleri (`results/q1/konsey_b8_imagenetv2/b8_betimsel.json`; 'Beklenti' sutunu JSON'daki beklenti ve beklenti_esigi alanlaridir, kaynagi ek on kayit §5.6; betimsel etiket karar degildir):
+
+| Nicelik | Ciftler | Cift degerleri | Kestirim | %90 aralik | %95 aralik | Betimsel etiket | Beklenti |
+|---|---|---|---|---|---|---|---|
+| A_sigma_IN (A^sigma_IN = ort_k [sigma(donusturucu_k) - sigma(CNN_k)], P8, bolunmus yari, log; IN satiri yalniz --in-ciftleri (varsayilan Singh 1, 2)) | 1, 2 | -0.167 / -0.118 | -0.142 | [-0.197; -0.090] | [-0.207; -0.081] | beklentiyle uyumlu | '<= -0.1, iki ciftte de negatif (dondurulmus H1+H2; karar degil)' (esik -0.1; nokta esikte ya da altinda: evet) |
+| A_sigma_scr_Liu (ayni nicelik --scr-ciftleri icin (varsayilan Liu 3); 2x2'nin scr satiri) | 3 | -0.055 | -0.055 | [-0.137; +0.022] | [-0.153; +0.034] | belirsiz | '<= -0,20 (H1'in ongorulen buyuklugu; karar degil)' (esik -0.2; nokta esikte ya da altinda: hayir) |
+
+A_sigma_IN iki cift farki 0.048; not: 'iki ciftle df 1; ciftler arasi t araligi kurulmaz (ek on kayit §5.6)'. Goruntu bootstrap'i B = 2000, tohum 20261030 ('ortak goruntu agirliklari; cift kumesi sabit; yalniz goruntu belirsizligi').
+
+Donusturucu rho ve sigma, ayri ayri (donusturucu_rho_ayri_ayri): IN_Singh_ViT-S-CvSt rho -0.211, sigma -1.130; IN_Singh_ViT-B-CvSt rho -0.188, sigma -1.237; IN_Liu_Swin-B rho -0.049, sigma -1.203; IN_Mo_ViT-B rho +0.024, sigma -1.184.
+
+Dondurulmus betigin B8 ciktisi (`results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json`; p degerleri, Holm ve etiketler B8'de karar DEGILDIR, yalniz betimsel): K-a ort q 0.864, %90 [0.126; 1.603], payda kurali tetiklenen cift: cift 3 (IN_Liu_ConvNeXt-B / IN_Liu_Swin-B, D = 0.0999; JSON indeksi 2); K-b 4 donusturucunun ort rho -0.106, %90 [-0.238; +0.026], %95 [-0.285; +0.073], TOST p 5.40e-01; K-c Delta_w +0.228, bootstrap %90 [-0.063; +0.513], p 6.55e-02, donusturucu ciftleri arasi log tau (K-c.log_tau_tur_ici, 6 cift) en kucuk -1.301 (IN_Liu_Swin-B|IN_Mo_ViT-B), en buyuk -0.659 (IN_Singh_ViT-S-CvSt|IN_Singh_ViT-B-CvSt); p_ham null (hesaplanamadi), 5.40e-01, 6.55e-02; p_holm 1.00e+00, 1.00e+00, 1.96e-01; hesaplanamayip p = 1 sayilan indeks 0 (K-a); betigin etiketleri K-a 'kararsiz (payda kucuk: bir tohumda D_s <= 0,10)', K-b 'kararsiz', K-c 'kararsiz'.
+
+S8-2 Hodge (kesifsel, K = 14): potansiyel payi 0.890; rastgele beklenti 2/K 0.143; dolasim RMS 0.059; r RMS 0.177.
+
+B8 duyarliliklari (`results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json` b2.duyarlilik; ek on kayit §5.7 S8-3; betimsel, karar yok; rho(V-scr) V-scr hucresindeki 4 donusturucu uzerinden):
+
+| Duyarlilik | q | rho(V-scr) ve diger | Anahtar |
+|---|---|---|---|
+| Tam orneklem, log | ort q 0.882 | ort rho(V-scr) -0.107, %90 [-0.240; +0.026], %95 [-0.287; +0.073] | b2.duyarlilik.tam_log |
+| Yari logit | ort q 0.858 (q_s: 1.319 / 0.725 / 0.529) | ort rho(V-scr) -0.052, %90 [-0.178; +0.073], %95 [-0.222; +0.117] | b2.duyarlilik.yari_logit |
+| Yari oran (rho puan) | ort q 0.819 | ort rho(V-scr) +2.71 puan, %90 [-4.38; +9.79], %95 [-6.87; +12.29] | b2.duyarlilik.yari_oran |
+| Panel jackknife | ort q 0.830 (IN_Peng2023Robust cikinca) ile 0.908 (IN_Salman2020Do_R50 cikinca) | ort rho(V-scr) -0.126 (IN_Salman2020Do_50_2 cikinca) ile -0.068 (IN_Salman2020Do_R18 cikinca) | b2.duyarlilik.panel_jackknife |
+| Ikincil panel (IN_Debenedetti_XCiT-S12) | q_s 0.811 / 4.067 / -0.082 | rho(V-scr) +0.052 / +0.006 / +0.124 / +0.205 | b2.duyarlilik.ikincil_panel |
+
+delta = 0.06 duyarliligi (b2.F_B2.duyarlilik_delta_0.06; betimsel): Holm p 1.00e+00, 1.00e+00, 1.96e-01; betigin etiketleri K-a 'kararsiz (payda kucuk: bir tohumda D_s <= 0,10)', K-b 'kararsiz', K-c 'kararsiz'.
+
+_Kaynak: `results/q1/konsey_b8_imagenetv2/b8_betimsel.json` etiket, model_tablosu_ozet.<m>.{temiz_dogruluk_yuzde, w_yuzde, sigma, rho, panel_n, hucre}, ciftler.<k>.{cift, cnn, donusturucu, satir, A_sigma, A_sigma_logit, A_rho, A_omega_log_w, goruntu_bootstrap_ci90, goruntu_bootstrap_ci95, durum}, A_sigma_IN, A_sigma_scr_Liu (tanim, beklenti, ciftler, cift_degerleri, kestirim, goruntu_bootstrap, beklenti_esigi, betimsel_etiket, nokta_beklenti_esiginde_ya_da_altinda, iki_cift_farki, not), donusturucu_rho_ayri_ayri, hodge_r_kesifsel; `results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json` b2.F_B2.{K-a.{D, ciftler, payda_kucuk_tohumlar (0 tabanli indeks)}, K-b.{ci90, ci95}, K-c.log_tau_tur_ici, p_ham, p_holm, karar, p_1_sayilan_hesaplanamayan, duyarlilik_delta_<meta.delta_duyarlilik>}, b2.duyarlilik.{tam_log, yari_logit, yari_oran, panel_jackknife, ikincil_panel}, b2.model_tablosu.<m>.yari_log, meta.{delta, delta_duyarlilik}; `results/q1/konsey_b8_imagenetv2/matris/transfer_matrix.json` n_samples, steps, norm, eps_255, temiz_dogruluk, results; `results/q1/konsey_b8_imagenetv2/matris/per_sample_<m>_to_<m>.npz` target_adv_wrong, target_clean_correct (denetim); `raporlar/konsey_2026-10-29/hucre_tablosu_b8.json` modeller.<m>.{hucre, aile, tohum}; `results/q1/konsey_b8_imagenetv2/denetim/onisleme_denetimi.json` modeller.<m>.{model, esik.rb_temiz}; `raporlar/konsey_2026-10-29/_ek_denetim/dis/rb/in_<RobustBench adi>.json` clean_acc, autoattack_acc_
+
+
+### M10.5 B10 girdi gradyani kosinusu ile log tau (Mantel, aile F_B10)
+
+Mantel sinamalari (Spearman r, c_ij ile log tau; 'ham' ve model ana etkileri cikarilmis 'ana_etki_artik'; tek yonlu p birincil; 'p tabani' turetilmis, 1/(perm+1), permutasyon sinamasinin ulasabilecegi en kucuk p):
+
+| Veri kumesi | Sinama | K (model) | Cift sayisi | r | Tek yonlu p | Iki yonlu p | Permutasyon | p tabani 1/(perm+1) (turetilmis) | Tohum | Permutasyon ort / SD | c turu | Dislanan model |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| cifar10 | ham | 20 | 190 | +0.943 | 1.00e-04 | 1.00e-04 | 9999 | 1.00e-04 | 20261030 | +0.002 / 0.122 | tum | yok |
+| cifar10 | ana_etki_artik | 20 | 190 | +0.944 | 1.00e-04 | 1.00e-04 | 9999 | 1.00e-04 | 20261030 | +0.001 / 0.075 | tum | yok |
+| cifar100 | ham | 15 | 105 | +0.981 | 1.00e-04 | 1.00e-04 | 9999 | 1.00e-04 | 20261030 | +0.004 / 0.169 | tum | yok |
+| cifar100 | ana_etki_artik | 15 | 105 | +0.912 | 1.00e-04 | 1.00e-04 | 9999 | 1.00e-04 | 20261030 | +0.002 / 0.102 | tum | yok |
+| imagenetv2 | ham | 14 | 91 | +0.694 | 1.00e-04 | 1.00e-04 | 9999 | 1.00e-04 | 20261030 | -0.001 / 0.165 | tum | yok |
+| imagenetv2 | ana_etki_artik | 14 | 91 | +0.893 | 1.00e-04 | 1.00e-04 | 9999 | 1.00e-04 | 20261030 | +0.001 / 0.112 | tum | yok |
+
+Tek yonlu p'si p tabanina esit olan sinama: 6/6.
+
+Aile F_B10 (`results/q1/konsey_b10_gradyan/b10_aile.json`; aile buyuklugu 6, Holm):
+
+| Sinama | Istatistik | Ham p | Holm p | Permutasyon | Ongorulen buyukluk | Buyukluk tuttu | Karar |
+|---|---|---|---|---|---|---|---|
+| H10-cifar10 | +0.943 | 1.00e-04 | 6.00e-04 | 9999 | 0.500 | evet | destek |
+| H10k-cifar10 | +0.944 | 1.00e-04 | 6.00e-04 | 9999 | 0.300 | evet | destek |
+| H10-cifar100 | +0.981 | 1.00e-04 | 6.00e-04 | 9999 | 0.500 | evet | destek |
+| H10k-cifar100 | +0.912 | 1.00e-04 | 6.00e-04 | 9999 | 0.300 | evet | destek |
+| H10-imagenetv2 | +0.694 | 1.00e-04 | 6.00e-04 | 9999 | 0.500 | evet | destek |
+| H10k-imagenetv2 | +0.893 | 1.00e-04 | 6.00e-04 | 9999 | 0.300 | evet | destek |
+
+Karar kurali (JSON): 'ek on kayit §6.3: (i) kestirim <= 0,20 ve ham p >= 0,20 ise curutuldu; (ii) Holm sonrasi p < 0,05 ise destek; (iii) kalan kararsiz'. Hesaplanamayip p = 1 sayilan: yok. Holm denetimi (holm() ile p_tek_ham'dan): en buyuk mutlak fark 0.00e+00. F_B10 istatistikleri ile mantel_<veri>.json sinamalar.{ham, ana_etki_artik}.istatistik en buyuk mutlak fark 0.00e+00. Mantel notu (JSON): 'Birincil: ham Mantel (Spearman, tek yonlu, pozitif). Ana etki artigi ve kismi Mantel model duzeyi ana etkileri (gurbuzluk duzeyi, gradyan buyuklugu ve algisal hizalanma gibi model ozellikleri) ayiklar. Yorum ek on kayda gore yapilir.'
+
+Aile disi, kesifsel kismi Mantel sinamalari (F_B10'a ve Holm hesabina girmez; ek on kayit §6.2):
+
+| Sinama | Veri kumesi | K | Cift sayisi | r | Tek yonlu p | Iki yonlu p | Permutasyon | Kovaryat sayisi |
+|---|---|---|---|---|---|---|---|---|
+| kismi_omega | cifar10 | 20 | 190 | +0.936 | 1.00e-04 | 1.00e-04 | 9999 | 2 |
+| kismi_omega | cifar100 | 15 | 105 | +0.954 | 1.00e-04 | 1.00e-04 | 9999 | 2 |
+| kismi_omega | imagenetv2 | 14 | 91 | +0.532 | 2.00e-04 | 2.00e-04 | 9999 | 2 |
+| kismi_omega_gradnorm | cifar10 | 20 | 190 | +0.937 | 1.00e-04 | 1.00e-04 | 9999 | 3 |
+| kismi_omega_gradnorm | cifar100 | 15 | 105 | +0.941 | 1.00e-04 | 1.00e-04 | 9999 | 3 |
+| kismi_omega_gradnorm | imagenetv2 | 14 | 91 | +0.597 | 1.00e-04 | 1.00e-04 | 9999 | 3 |
+
+`results/q1/konsey_b10_gradyan/b10_aile.json` kesifsel_* ile mantel_<veri>.json sinamalar.<ad>.istatistik en buyuk mutlak fark 0.00e+00.
+
+c_ij ozetleri (kosinus_ozet.json; ortalama, en kucuk ve en buyuk turetilmis, c matrisinin ust ucgeni; aile gruplari turetilmis: c_tum ust ucgeni, aile atamasi hucre tablolarinin aile alanindan (cifar10 `raporlar/konsey_2026-10-29/hucre_tablosu.json`, cifar100 `raporlar/konsey_2026-10-29/hucre_tablosu_b9.json`, imagenetv2 `raporlar/konsey_2026-10-29/hucre_tablosu_b8.json`); donusturucu = aile alani CNN olmayan model (Swin, ViT, XCiT); parantez icinde cift sayisi):
+
+| Veri kumesi | n goruntu | Model sayisi | Cift sayisi | c_ij ort (tum goruntu) | c_ij en kucuk; en buyuk | c_ij ort (iki model dogru) | NaN kosinus | CNN-CNN ort (n) (turetilmis) | Donusturucu-donusturucu ort (n) (turetilmis) | Karma ort (n) (turetilmis) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| cifar10 | 10000 | 20 | 190 | 0.460 | 0.231; 0.746 | 0.463 | 0 | 0.543 (91) | 0.464 (15) | 0.370 (84) |
+| cifar100 | 10000 | 15 | 105 | 0.376 | 0.169; 0.692 | 0.379 | 0 | 0.462 (55) | 0.359 (6) | 0.271 (44) |
+| imagenetv2 | 2000 | 14 | 91 | 0.218 | 0.003; 0.486 | 0.192 | 0 | 0.187 (36) | 0.318 (10) | 0.221 (45) |
+
+Tanim (JSON): 'c_ij = ort_x cos(grad_x CE(f_i(x), y), grad_x CE(f_j(x), y)); eval, fp32, [0,1] uzayi'.
+
+_Kaynak: `results/q1/konsey_b10_gradyan/mantel_<veri>.json` c_turu, dislanan, not, sinamalar.{ham, ana_etki_artik, kismi_omega, kismi_omega_gradnorm}.{K, cift_sayisi, istatistik, p_tek, p_iki, perm, tohum, perm_ort, perm_sd}; `results/q1/konsey_b10_gradyan/b10_aile.json` F_B10.{sinamalar.<k>.{sinama, istatistik, p_tek_ham, p_holm, perm, ongorulen_buyukluk, ongorulen_buyukluk_tuttu, karar}, aile_buyuklugu, p_1_sayilan, kural}, kesifsel_kismi_omega.<veri>, kesifsel_kismi_omega_gradnorm.<veri>; `results/q1/konsey_b10_gradyan/<veri>/kosinus_ozet.json` n, modeller, c_tum, c_iki_model_dogru, nan_kosinus_sayisi, tanim; `raporlar/konsey_2026-10-29/hucre_tablosu.json`, `raporlar/konsey_2026-10-29/hucre_tablosu_b9.json`, `raporlar/konsey_2026-10-29/hucre_tablosu_b8.json` modeller.<m>.aile (aile gruplari icin)_
+
+
+### M10.6 Butunluk (ek on kayit govdesi, hucre tablolari, dondurulmus ve ek betikler)
+
+| Dosya | Kayit yeri | Kayitli sha256 | Dosyadan hesaplanan (bu betik) | JSON kayitlari | Durum |
+|---|---|---|---|---|---|
+| `raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md` govdesi (ilk satirdan '## Dondurma eki' basligina kadar) | ek Dondurma eki (d) | 76d05f111371230495c95b757e46dccdb84123264034cc8432cb0a31403df595 | 76d05f111371230495c95b757e46dccdb84123264034cc8432cb0a31403df595 | - | UYUSUYOR |
+| `experiments/q1_konsey_ayrisim.py` | ek Dondurma eki (a) | 4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389 | 4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389 | b9_dondurulmus_b2.json meta.betik_sha256 ayni; b8_dondurulmus_b2.json meta.betik_sha256 ayni; b9_sarmalayici_b2.json.sarmalayici.json meta.dondurulmus_betik_sha256_dogrulandi ayni; b8_betimsel.json meta.dondurulmus_betik_sha256_dogrulandi ayni; b10_aile.json meta.dondurulmus_betik_sha256_dogrulandi ayni | UYUSUYOR |
+| `raporlar/konsey_2026-10-29/hucre_tablosu.json` | ek Dondurma eki (a) | 2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500 | 2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500 | - | UYUSUYOR |
+| `raporlar/konsey_2026-10-29/hucre_tablosu_b9.json` | ek Dondurma eki (b) | be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd | be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd | b9_dondurulmus_b2.json meta.hucre_tablosu_sha256 ayni; b9_sarmalayici_b2.json.sarmalayici.json meta.hucre_tablosu_sha256 ayni | UYUSUYOR |
+| `raporlar/konsey_2026-10-29/hucre_tablosu_b8.json` | ek Dondurma eki (b) | 4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d | 4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d | b8_dondurulmus_b2.json meta.hucre_tablosu_sha256 ayni; b8_betimsel.json meta.hucre_tablosu_sha256 ayni | UYUSUYOR |
+| `experiments/c1_c3_transfer_matrix.py` | ek Dondurma eki (c) | f25d9062c958a296353059639398f0a0a8eb18cd48182b1afa5ec4e3986140b7 | f25d9062c958a296353059639398f0a0a8eb18cd48182b1afa5ec4e3986140b7 | b9_sarmalayici_b2.json.sarmalayici.json meta.ozgun_matris_betigi_sha256_simdi ayni; b8_betimsel.json meta.ozgun_matris_betigi_sha256_simdi ayni; b10_aile.json meta.ozgun_matris_betigi_sha256_simdi ayni | UYUSUYOR |
+| `experiments/q1_ek_transfer_matrix.py` | sapma kaydi, kod eki | edec356afa594a681e1b3646b76f28c92bbf16c9159eace3dbc3c03cd6a87145 | edec356afa594a681e1b3646b76f28c92bbf16c9159eace3dbc3c03cd6a87145 | B8 matrisi transfer_matrix.json ek_betik_sha256 ayni | UYUSUYOR |
+| `experiments/q1_ek_ayrisim.py` | sapma kaydi, kod eki | d264c4e584fcfb3c0e3dd9517cfe2cea4ea1fe564117c88459e2b9721027a641 | d264c4e584fcfb3c0e3dd9517cfe2cea4ea1fe564117c88459e2b9721027a641 | b9_sarmalayici_b2.json.sarmalayici.json meta.sarmalayici_sha256 ayni; b8_betimsel.json meta.sarmalayici_sha256 ayni; b10_aile.json meta.sarmalayici_sha256 ayni | UYUSUYOR |
+| `experiments/q1_ek_gradyan_kosinus.py` | sapma kaydi, kod eki | c82a66d196c38f23d688f610caf6ffceab0c01e7ebfa68e5358f832014043eed | c82a66d196c38f23d688f610caf6ffceab0c01e7ebfa68e5358f832014043eed | mantel_cifar10 betik_sha256 ayni; mantel_cifar100 betik_sha256 ayni; mantel_imagenetv2 betik_sha256 ayni; cifar10 kosinus_ozet betik_sha256 ayni; cifar100 kosinus_ozet betik_sha256 ayni; imagenetv2 kosinus_ozet betik_sha256 ayni | UYUSUYOR |
+| `tests/test_q1_ek.py` | sapma kaydi, kod eki | 169a522bf07ff1a8ce7d5828c182cb9893030d098cc99cc731d110e8b1e3facd | 169a522bf07ff1a8ce7d5828c182cb9893030d098cc99cc731d110e8b1e3facd | - | UYUSUYOR |
+| `results/q1/konsey_b8_imagenetv2/denetim/onisleme_denetimi.json` | sapma kaydi (B8 on isleme denetimi notu) | 9f75f8dd4ad96320e8661ff6a4c8665736d37d3d7a24d28d858dbdfa9e2c4ed1 | 9f75f8dd4ad96320e8661ff6a4c8665736d37d3d7a24d28d858dbdfa9e2c4ed1 | - | UYUSUYOR |
+
+Girdi ve cikti ozetleri: B9 veri.girdi_sha256 (226 dosya, `results/q1/konsey_b9_c100/matris` matrisi ve per_sample npz): yeniden hesaplananla farkli 0; B8 veri.girdi_sha256 (197 dosya, `results/q1/konsey_b8_imagenetv2/matris` matrisi ve per_sample npz): yeniden hesaplananla farkli 0; b10_aile girdiler.cifar10 (results/q1/konsey_b10_gradyan/mantel_cifar10.json) ayni; mantel_cifar10 kosinus_ozet_sha256 (results/q1/konsey_b10_gradyan/cifar10/kosinus_ozet.json) ayni; b10_aile girdiler.cifar100 (results/q1/konsey_b10_gradyan/mantel_cifar100.json) ayni; mantel_cifar100 kosinus_ozet_sha256 (results/q1/konsey_b10_gradyan/cifar100/kosinus_ozet.json) ayni; b10_aile girdiler.imagenetv2 (results/q1/konsey_b10_gradyan/mantel_imagenetv2.json) ayni; mantel_imagenetv2 kosinus_ozet_sha256 (results/q1/konsey_b10_gradyan/imagenetv2/kosinus_ozet.json) ayni; `results/q1/konsey_b9_c100/b9_sarmalayici_b2.json.sarmalayici.json` meta.dondurulmus_cikti_sha256 ile `results/q1/konsey_b9_c100/b9_sarmalayici_b2.json` ayni; `results/q1/konsey_b9_c100/b9_dondurulmus_b2.json` ile `results/q1/konsey_b9_c100/b9_sarmalayici_b2.json` meta.uretildi_utc disinda AYNI.
+
+JSON uretim zamanlari: b9_dondurulmus_b2.json 2026-10-31T04:43:48.044428+00:00; b9_sarmalayici_b2.json 2026-10-31T04:43:49.864241+00:00; b9_sarmalayici_b2.json.sarmalayici.json 2026-10-31T04:43:50.244033+00:00; b8_dondurulmus_b2.json 2026-10-31T04:43:51.751189+00:00; b8_betimsel.json 2026-10-31T04:43:53.452600+00:00; b10_aile.json 2026-10-31T04:44:08.752419+00:00; mantel_cifar10 2026-10-31T04:43:58.333024+00:00; mantel_cifar100 2026-10-31T04:44:02.827799+00:00; mantel_imagenetv2 2026-10-31T04:44:07.285684+00:00. numpy (JSON meta): 1.26.4.
+
+Bu bolumde (M10.1-M10.6) JSON'da bulunamayip 'bulunamadi' yazilan kalemler: yok.
+
+_Kaynak: `raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md` Dondurma eki (a)-(c) kod bloklari ve (d) govde ozeti (metinden); `results/q1_research/ONKAYIT_SAPMALAR.md` Ek B8-B10 'kod eki' kod blogu ve on isleme denetimi kaydi (metinden); `results/q1/konsey_b9_c100/b9_dondurulmus_b2.json`, `results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json` meta.{betik_sha256, hucre_tablosu_sha256, uretildi_utc, numpy}, veri.girdi_sha256; `results/q1/konsey_b9_c100/b9_sarmalayici_b2.json.sarmalayici.json`, `results/q1/konsey_b8_imagenetv2/b8_betimsel.json`, `results/q1/konsey_b10_gradyan/b10_aile.json` meta.{sarmalayici_sha256, dondurulmus_betik_sha256_dogrulandi, ozgun_matris_betigi_sha256_simdi, hucre_tablosu_sha256, dondurulmus_cikti_sha256}, girdiler; `results/q1/konsey_b8_imagenetv2/matris/transfer_matrix.json` ek_betik_sha256; `results/q1/konsey_b10_gradyan/mantel_<veri>.json` betik_sha256, kosinus_ozet, kosinus_ozet_sha256, uretildi_utc; `results/q1/konsey_b10_gradyan/<veri>/kosinus_ozet.json` betik_sha256; dosya sha256'lari bu betikte hashlib ile hesaplanir_
+
+
 ## Sabit dizgeler (artefakttan OKUNMAYAN, elle tasinmis literaller)
 
 _Kaynak: `scripts/build_reference_sheet.py (satir numaralari calisma aninda bulunur)`_

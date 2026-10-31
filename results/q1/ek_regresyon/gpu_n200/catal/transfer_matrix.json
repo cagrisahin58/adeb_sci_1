@@ -1,0 +1,70 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 200,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "ResNet18_AT_s1001",
+    "ViT_Tiny_AT_s2001",
+    "WRN_28_10"
+  ],
+  "results": {
+    "ResNet18_AT_s1001->ResNet18_AT_s1001": {
+      "raw_fooling": 56.0,
+      "cond_fooling": 50.0,
+      "n_cond": 176,
+      "target_clean_acc": 88.0
+    },
+    "ResNet18_AT_s1001->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 36.5,
+      "cond_fooling": 19.62,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "ResNet18_AT_s1001->WRN_28_10": {
+      "raw_fooling": 20.5,
+      "cond_fooling": 13.11,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "ViT_Tiny_AT_s2001->ResNet18_AT_s1001": {
+      "raw_fooling": 26.0,
+      "cond_fooling": 15.91,
+      "n_cond": 176,
+      "target_clean_acc": 88.0
+    },
+    "ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 66.5,
+      "cond_fooling": 57.59,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "ViT_Tiny_AT_s2001->WRN_28_10": {
+      "raw_fooling": 14.5,
+      "cond_fooling": 6.56,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "WRN_28_10->ResNet18_AT_s1001": {
+      "raw_fooling": 33.5,
+      "cond_fooling": 24.43,
+      "n_cond": 176,
+      "target_clean_acc": 88.0
+    },
+    "WRN_28_10->ViT_Tiny_AT_s2001": {
+      "raw_fooling": 36.5,
+      "cond_fooling": 19.62,
+      "n_cond": 158,
+      "target_clean_acc": 79.0
+    },
+    "WRN_28_10->WRN_28_10": {
+      "raw_fooling": 35.0,
+      "cond_fooling": 28.96,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    }
+  }
+}

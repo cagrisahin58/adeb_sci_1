@@ -1,0 +1,77 @@
+[2026-10-31 06:58:28] D1 nvidia-smi
+Sat Oct 31 03:58:28 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 620.67.01              KMD Version: 621.01        CUDA UMD Version: 13.5     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 5090        On  |   00000000:01:00.0  On |                  N/A |
+| 30%   36C    P0             81W /  475W |    2800MiB /  32607MiB |      1%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+SONUC D1: GECTI
+[2026-10-31 06:58:28] D2 import
+2.6.0a0+ecf3bae40a.nv25.01 1.0.27 True
+SONUC D2: GECTI
+[2026-10-31 06:58:34] D3 epochs ls -L
+epoch_001.pth
+epoch_002.pth
+epoch_003.pth
+SONUC D3: GECTI
+[2026-10-31 06:58:34] D4 epoch_100.pth yukleme
+99 44.233333333333334
+SONUC D4: GECTI
+[2026-10-31 06:58:35] D5 /veri 1 GB dd yaz-sil
+1024+0 records in
+1024+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 5.46508 s, 196 MB/s
+SONUC D5: GECTI
+dd_dosyasi_silindi
+[2026-10-31 06:58:41] D6 imagenetv2 gorunur
+D_GORUNUR
+SONUC D6: GECTI
+[2026-10-31 06:58:41] D7 robustbench_zoo imagenet/Linf (15 bekleniyor)
+15
+SONUC D7: GECTI
+total 3312208
+-rwxrwxrwx 1 ubuntu ubuntu 275913601 Oct 30 02:31 Chen2024Data_WRN_50_2.pt
+-rwxrwxrwx 1 ubuntu ubuntu 105172083 Oct 30 02:33 Debenedetti2022Light_XCiT-S12.pth.tar
+-rwxrwxrwx 1 ubuntu ubuntu 102529618 Oct 30 02:30 Engstrom2019Robustness.pt
+-rwxrwxrwx 1 ubuntu ubuntu 354496687 Oct 30 02:28 Liu2023Comprehensive_ConvNeXt-B.pt
+-rwxrwxrwx 1 ubuntu ubuntu 352787535 Oct 30 02:28 Liu2023Comprehensive_Swin-B.pt
+-rwxrwxrwx 1 ubuntu ubuntu 346330174 Oct 30 02:29 Mo2022When_ViT-B.pt
+-rwxrwxrwx 1 ubuntu ubuntu 417089026 Oct 30 02:32 Peng2023Robust.pt
+-rwxrwxrwx 1 ubuntu ubuntu 275912303 Oct 30 02:30 Salman2020Do_50_2.pt
+-rwxrwxrwx 1 ubuntu ubuntu  46836793 Oct 30 02:29 Salman2020Do_R18.pt
+-rwxrwxrwx 1 ubuntu ubuntu 102546991 Oct 30 02:29 Salman2020Do_R50.pt
+-rwxrwxrwx 1 ubuntu ubuntu 355132063 Oct 30 02:26 Singh2023Revisiting_ConvNeXt-B-ConvStem.pt
+-rwxrwxrwx 1 ubuntu ubuntu 114572173 Oct 30 02:26 Singh2023Revisiting_ConvNeXt-T-ConvStem.pt
+-rwxrwxrwx 1 ubuntu ubuntu 348642911 Oct 30 02:27 Singh2023Revisiting_ViT-B-ConvStem.pt
+-rwxrwxrwx 1 ubuntu ubuntu  91166417 Oct 30 02:26 Singh2023Revisiting_ViT-S-ConvStem.pt
+-rwxrwxrwx 1 ubuntu ubuntu 102546991 Oct 30 02:33 Wong2020Fast.pt
+[2026-10-31 06:58:42] D8 robustbench_zoo cifar100/Linf (11 bekleniyor)
+11
+SONUC D8: GECTI
+total 1368332
+-rwxrwxrwx 1 ubuntu ubuntu  44963257 Oct 30 02:34 Addepalli2022Efficient_RN18.pt
+-rwxrwxrwx 1 ubuntu ubuntu 193470987 Oct 30 02:36 Chen2021LTD_WRN34_10.pt
+-rwxrwxrwx 1 ubuntu ubuntu 146269938 Oct 30 02:36 Cui2023Decoupled_WRN-28-10.pt
+-rwxrwxrwx 1 ubuntu ubuntu 103786099 Oct 30 02:35 Debenedetti2022Light_XCiT-S12.pth.tar
+-rwxrwxrwx 1 ubuntu ubuntu 146249648 Oct 30 02:35 Hendrycks2019Using.pt
+-rwxrwxrwx 1 ubuntu ubuntu 193475477 Oct 30 02:35 Jia2022LAS-AT_34_10.pt
+-rw------- 1 ubuntu ubuntu 146270845 Mar 15  2022 Pang2022Robustness_WRN28_10.pt
+-rwxrwxrwx 1 ubuntu ubuntu  50445746 Oct 30 02:34 Rade2021Helper_R18_ddpm.pt
+-rwxrwxrwx 1 ubuntu ubuntu  44922584 Oct 30 02:33 Rice2020Overfitting.pt
+-rwxrwxrwx 1 ubuntu ubuntu 185019203 Oct 30 02:34 Sehwag2021Proxy.pt
+-rwxrwxrwx 1 ubuntu ubuntu 146269624 Oct 30 02:34 Wang2023Better_WRN-28-10.pt
+[2026-10-31 06:58:42] OZET gecen=8 kalan=0

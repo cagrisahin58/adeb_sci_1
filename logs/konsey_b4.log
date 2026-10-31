@@ -1,0 +1,422 @@
+custom temiz dogruluk: ResNet18_AT_s1001=85.37, ResNet18_AT_s1002=85.94, ResNet18_AT_s1003=86.05, ViT_Tiny_AT_s2001=74.10, ViT_Tiny_AT_s2002=73.47, ViT_Tiny_AT_s2003=73.01, V_IN_s2101=83.39, V_IN_s2102=83.47, R224_IN_s1301=85.76, R224_IN_s1302=86.25, R224_scr_s1201=86.35, R224_scr_s1202=85.11, Wong2020Fast=83.34, Engstrom2019Robustness=87.03, Carmon2019Unlabeled=89.69, Gowal2020Uncovering_28_10_extra=89.48, Sehwag2021Proxy_R18=84.59, Addepalli2022Efficient_RN18=85.71, Rade2021Helper_R18_ddpm=86.86, Debenedetti2022Light_XCiT-S12=90.06
+  ResNet18_AT_s1001: onbellekten (10000, 3, 32, 32)
+  ResNet18_AT_s1001->ResNet18_AT_s1001: raw=55.23 cond=47.56 (mevcut hucre)
+  ResNet18_AT_s1001->ResNet18_AT_s1002: raw=39.29 cond=29.36 (mevcut hucre)
+  ResNet18_AT_s1001->ResNet18_AT_s1003: raw=39.52 cond=29.72 (mevcut hucre)
+  ResNet18_AT_s1001->ViT_Tiny_AT_s2001: raw=40.47 cond=19.73 (mevcut hucre)
+  ResNet18_AT_s1001->ViT_Tiny_AT_s2002: raw=41.08 cond=19.89 (mevcut hucre)
+  ResNet18_AT_s1001->ViT_Tiny_AT_s2003: raw=41.36 cond=19.74 (mevcut hucre)
+  ResNet18_AT_s1001->V_IN_s2101: raw=34.46 cond=21.44
+  ResNet18_AT_s1001->V_IN_s2102: raw=34.17 cond=21.16
+  ResNet18_AT_s1001->R224_IN_s1301: raw=35.41 cond=24.70
+  ResNet18_AT_s1001->R224_IN_s1302: raw=35.17 cond=24.86
+  ResNet18_AT_s1001->R224_scr_s1201: raw=35.48 cond=25.30
+  ResNet18_AT_s1001->R224_scr_s1202: raw=34.34 cond=22.89
+  ResNet18_AT_s1001->Wong2020Fast: raw=36.13 cond=23.37 (mevcut hucre)
+  ResNet18_AT_s1001->Engstrom2019Robustness: raw=29.38 cond=18.90 (mevcut hucre)
+  ResNet18_AT_s1001->Carmon2019Unlabeled: raw=22.45 cond=13.55 (mevcut hucre)
+  ResNet18_AT_s1001->Gowal2020Uncovering_28_10_extra: raw=21.61 cond=12.39 (mevcut hucre)
+  ResNet18_AT_s1001->Sehwag2021Proxy_R18: raw=28.75 cond=15.79 (mevcut hucre)
+  ResNet18_AT_s1001->Addepalli2022Efficient_RN18: raw=31.11 cond=19.62 (mevcut hucre)
+  ResNet18_AT_s1001->Rade2021Helper_R18_ddpm: raw=27.44 cond=16.46 (mevcut hucre)
+  ResNet18_AT_s1001->Debenedetti2022Light_XCiT-S12: raw=22.38 cond=13.81 (mevcut hucre)
+  ResNet18_AT_s1002: onbellekten (10000, 3, 32, 32)
+  ResNet18_AT_s1002->ResNet18_AT_s1001: raw=39.68 cond=29.35 (mevcut hucre)
+  ResNet18_AT_s1002->ResNet18_AT_s1002: raw=56.04 cond=48.85 (mevcut hucre)
+  ResNet18_AT_s1002->ResNet18_AT_s1003: raw=40.10 cond=30.39 (mevcut hucre)
+  ResNet18_AT_s1002->ViT_Tiny_AT_s2001: raw=40.58 cond=19.91 (mevcut hucre)
+  ResNet18_AT_s1002->ViT_Tiny_AT_s2002: raw=41.12 cond=19.94 (mevcut hucre)
+  ResNet18_AT_s1002->ViT_Tiny_AT_s2003: raw=41.33 cond=19.64 (mevcut hucre)
+  ResNet18_AT_s1002->V_IN_s2101: raw=34.62 cond=21.61
+  ResNet18_AT_s1002->V_IN_s2102: raw=34.14 cond=21.15
+  ResNet18_AT_s1002->R224_IN_s1301: raw=35.41 cond=24.70
+  ResNet18_AT_s1002->R224_IN_s1302: raw=35.52 cond=25.28
+  ResNet18_AT_s1002->R224_scr_s1201: raw=36.28 cond=26.22
+  ResNet18_AT_s1002->R224_scr_s1202: raw=35.03 cond=23.70
+  ResNet18_AT_s1002->Wong2020Fast: raw=36.25 cond=23.53 (mevcut hucre)
+  ResNet18_AT_s1002->Engstrom2019Robustness: raw=29.75 cond=19.30 (mevcut hucre)
+  ResNet18_AT_s1002->Carmon2019Unlabeled: raw=22.97 cond=14.12 (mevcut hucre)
+  ResNet18_AT_s1002->Gowal2020Uncovering_28_10_extra: raw=21.79 cond=12.59 (mevcut hucre)
+  ResNet18_AT_s1002->Sehwag2021Proxy_R18: raw=29.13 cond=16.23 (mevcut hucre)
+  ResNet18_AT_s1002->Addepalli2022Efficient_RN18: raw=31.46 cond=20.03 (mevcut hucre)
+  ResNet18_AT_s1002->Rade2021Helper_R18_ddpm: raw=27.54 cond=16.58 (mevcut hucre)
+  ResNet18_AT_s1002->Debenedetti2022Light_XCiT-S12: raw=23.00 cond=14.50 (mevcut hucre)
+  ResNet18_AT_s1003: onbellekten (10000, 3, 32, 32)
+  ResNet18_AT_s1003->ResNet18_AT_s1001: raw=39.61 cond=29.31 (mevcut hucre)
+  ResNet18_AT_s1003->ResNet18_AT_s1002: raw=40.24 cond=30.47 (mevcut hucre)
+  ResNet18_AT_s1003->ResNet18_AT_s1003: raw=56.24 cond=49.15 (mevcut hucre)
+  ResNet18_AT_s1003->ViT_Tiny_AT_s2001: raw=40.50 cond=19.80 (mevcut hucre)
+  ResNet18_AT_s1003->ViT_Tiny_AT_s2002: raw=41.32 cond=20.25 (mevcut hucre)
+  ResNet18_AT_s1003->ViT_Tiny_AT_s2003: raw=41.63 cond=20.12 (mevcut hucre)
+  ResNet18_AT_s1003->V_IN_s2101: raw=35.07 cond=22.15
+  ResNet18_AT_s1003->V_IN_s2102: raw=34.71 cond=21.84
+  ResNet18_AT_s1003->R224_IN_s1301: raw=35.49 cond=24.80
+  ResNet18_AT_s1003->R224_IN_s1302: raw=35.46 cond=25.18
+  ResNet18_AT_s1003->R224_scr_s1201: raw=35.75 cond=25.62
+  ResNet18_AT_s1003->R224_scr_s1202: raw=35.06 cond=23.73
+  ResNet18_AT_s1003->Wong2020Fast: raw=36.21 cond=23.49 (mevcut hucre)
+  ResNet18_AT_s1003->Engstrom2019Robustness: raw=29.71 cond=19.26 (mevcut hucre)
+  ResNet18_AT_s1003->Carmon2019Unlabeled: raw=22.66 cond=13.79 (mevcut hucre)
+  ResNet18_AT_s1003->Gowal2020Uncovering_28_10_extra: raw=21.68 cond=12.47 (mevcut hucre)
+  ResNet18_AT_s1003->Sehwag2021Proxy_R18: raw=29.00 cond=16.12 (mevcut hucre)
+  ResNet18_AT_s1003->Addepalli2022Efficient_RN18: raw=31.34 cond=19.89 (mevcut hucre)
+  ResNet18_AT_s1003->Rade2021Helper_R18_ddpm: raw=27.66 cond=16.72 (mevcut hucre)
+  ResNet18_AT_s1003->Debenedetti2022Light_XCiT-S12: raw=22.86 cond=14.35 (mevcut hucre)
+  ViT_Tiny_AT_s2001: onbellekten (10000, 3, 32, 32)
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1001: raw=27.33 cond=14.98 (mevcut hucre)
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1002: raw=27.18 cond=15.32 (mevcut hucre)
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1003: raw=27.26 cond=15.50 (mevcut hucre)
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001: raw=67.33 cond=55.91 (mevcut hucre)
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2002: raw=52.80 cond=35.77 (mevcut hucre)
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2003: raw=52.37 cond=34.76 (mevcut hucre)
+  ViT_Tiny_AT_s2001->V_IN_s2101: raw=34.35 cond=21.35
+  ViT_Tiny_AT_s2001->V_IN_s2102: raw=34.30 cond=21.33
+  ViT_Tiny_AT_s2001->R224_IN_s1301: raw=27.21 cond=15.18
+  ViT_Tiny_AT_s2001->R224_IN_s1302: raw=26.78 cond=15.18
+  ViT_Tiny_AT_s2001->R224_scr_s1201: raw=26.33 cond=14.82
+  ViT_Tiny_AT_s2001->R224_scr_s1202: raw=27.52 cond=14.91
+  ViT_Tiny_AT_s2001->Wong2020Fast: raw=29.33 cond=15.30 (mevcut hucre)
+  ViT_Tiny_AT_s2001->Engstrom2019Robustness: raw=23.15 cond=11.77 (mevcut hucre)
+  ViT_Tiny_AT_s2001->Carmon2019Unlabeled: raw=18.37 cond=9.00 (mevcut hucre)
+  ViT_Tiny_AT_s2001->Gowal2020Uncovering_28_10_extra: raw=18.13 cond=8.52 (mevcut hucre)
+  ViT_Tiny_AT_s2001->Sehwag2021Proxy_R18: raw=25.39 cond=11.86 (mevcut hucre)
+  ViT_Tiny_AT_s2001->Addepalli2022Efficient_RN18: raw=25.29 cond=12.85 (mevcut hucre)
+  ViT_Tiny_AT_s2001->Rade2021Helper_R18_ddpm: raw=23.29 cond=11.70 (mevcut hucre)
+  ViT_Tiny_AT_s2001->Debenedetti2022Light_XCiT-S12: raw=18.80 cond=9.85 (mevcut hucre)
+  ViT_Tiny_AT_s2002: onbellekten (10000, 3, 32, 32)
+  ViT_Tiny_AT_s2002->ResNet18_AT_s1001: raw=27.91 cond=15.66 (mevcut hucre)
+  ViT_Tiny_AT_s2002->ResNet18_AT_s1002: raw=27.20 cond=15.39 (mevcut hucre)
+  ViT_Tiny_AT_s2002->ResNet18_AT_s1003: raw=27.69 cond=16.05 (mevcut hucre)
+  ViT_Tiny_AT_s2002->ViT_Tiny_AT_s2001: raw=52.05 cond=35.32 (mevcut hucre)
+  ViT_Tiny_AT_s2002->ViT_Tiny_AT_s2002: raw=67.57 cond=55.86 (mevcut hucre)
+  ViT_Tiny_AT_s2002->ViT_Tiny_AT_s2003: raw=53.66 cond=36.57 (mevcut hucre)
+  ViT_Tiny_AT_s2002->V_IN_s2101: raw=34.87 cond=21.92
+  ViT_Tiny_AT_s2002->V_IN_s2102: raw=34.55 cond=21.61
+  ViT_Tiny_AT_s2002->R224_IN_s1301: raw=27.36 cond=15.37
+  ViT_Tiny_AT_s2002->R224_IN_s1302: raw=27.22 cond=15.65
+  ViT_Tiny_AT_s2002->R224_scr_s1201: raw=26.76 cond=15.30
+  ViT_Tiny_AT_s2002->R224_scr_s1202: raw=27.20 cond=14.55
+  ViT_Tiny_AT_s2002->Wong2020Fast: raw=29.57 cond=15.61 (mevcut hucre)
+  ViT_Tiny_AT_s2002->Engstrom2019Robustness: raw=23.25 cond=11.88 (mevcut hucre)
+  ViT_Tiny_AT_s2002->Carmon2019Unlabeled: raw=18.66 cond=9.37 (mevcut hucre)
+  ViT_Tiny_AT_s2002->Gowal2020Uncovering_28_10_extra: raw=18.22 cond=8.62 (mevcut hucre)
+  ViT_Tiny_AT_s2002->Sehwag2021Proxy_R18: raw=25.49 cond=11.96 (mevcut hucre)
+  ViT_Tiny_AT_s2002->Addepalli2022Efficient_RN18: raw=25.78 cond=13.41 (mevcut hucre)
+  ViT_Tiny_AT_s2002->Rade2021Helper_R18_ddpm: raw=23.58 cond=12.04 (mevcut hucre)
+  ViT_Tiny_AT_s2002->Debenedetti2022Light_XCiT-S12: raw=18.99 cond=10.07 (mevcut hucre)
+  ViT_Tiny_AT_s2003: onbellekten (10000, 3, 32, 32)
+  ViT_Tiny_AT_s2003->ResNet18_AT_s1001: raw=27.74 cond=15.44 (mevcut hucre)
+  ViT_Tiny_AT_s2003->ResNet18_AT_s1002: raw=27.15 cond=15.32 (mevcut hucre)
+  ViT_Tiny_AT_s2003->ResNet18_AT_s1003: raw=27.71 cond=16.05 (mevcut hucre)
+  ViT_Tiny_AT_s2003->ViT_Tiny_AT_s2001: raw=51.78 cond=34.95 (mevcut hucre)
+  ViT_Tiny_AT_s2003->ViT_Tiny_AT_s2002: raw=53.75 cond=37.10 (mevcut hucre)
+  ViT_Tiny_AT_s2003->ViT_Tiny_AT_s2003: raw=67.23 cond=55.12 (mevcut hucre)
+  ViT_Tiny_AT_s2003->V_IN_s2101: raw=34.16 cond=21.11
+  ViT_Tiny_AT_s2003->V_IN_s2102: raw=34.16 cond=21.18
+  ViT_Tiny_AT_s2003->R224_IN_s1301: raw=27.03 cond=14.95
+  ViT_Tiny_AT_s2003->R224_IN_s1302: raw=26.85 cond=15.26
+  ViT_Tiny_AT_s2003->R224_scr_s1201: raw=26.55 cond=15.04
+  ViT_Tiny_AT_s2003->R224_scr_s1202: raw=27.43 cond=14.85
+  ViT_Tiny_AT_s2003->Wong2020Fast: raw=29.65 cond=15.71 (mevcut hucre)
+  ViT_Tiny_AT_s2003->Engstrom2019Robustness: raw=23.18 cond=11.79 (mevcut hucre)
+  ViT_Tiny_AT_s2003->Carmon2019Unlabeled: raw=18.52 cond=9.22 (mevcut hucre)
+  ViT_Tiny_AT_s2003->Gowal2020Uncovering_28_10_extra: raw=18.39 cond=8.81 (mevcut hucre)
+  ViT_Tiny_AT_s2003->Sehwag2021Proxy_R18: raw=25.18 cond=11.62 (mevcut hucre)
+  ViT_Tiny_AT_s2003->Addepalli2022Efficient_RN18: raw=25.54 cond=13.16 (mevcut hucre)
+  ViT_Tiny_AT_s2003->Rade2021Helper_R18_ddpm: raw=23.43 cond=11.85 (mevcut hucre)
+  ViT_Tiny_AT_s2003->Debenedetti2022Light_XCiT-S12: raw=18.86 cond=9.95 (mevcut hucre)
+  V_IN_s2101: onbellege yazildi results/q1/konsey_adv_onbellek/V_IN_s2101__pgd_linf_s10_n10000_seed42_cifar10.npy (10000, 3, 32, 32)
+  V_IN_s2101->ResNet18_AT_s1001: raw=34.45 cond=23.23
+  V_IN_s2101->ResNet18_AT_s1002: raw=34.44 cond=23.75
+  V_IN_s2101->ResNet18_AT_s1003: raw=34.74 cond=24.18
+  V_IN_s2101->ViT_Tiny_AT_s2001: raw=45.89 cond=27.04
+  V_IN_s2101->ViT_Tiny_AT_s2002: raw=46.48 cond=27.19
+  V_IN_s2101->ViT_Tiny_AT_s2003: raw=46.12 cond=26.24
+  V_IN_s2101->V_IN_s2101: raw=56.84 cond=48.24
+  V_IN_s2101->V_IN_s2102: raw=41.14 cond=29.50
+  V_IN_s2101->R224_IN_s1301: raw=34.28 cond=23.39
+  V_IN_s2101->R224_IN_s1302: raw=33.51 cond=22.93
+  V_IN_s2101->R224_scr_s1201: raw=33.40 cond=22.92
+  V_IN_s2101->R224_scr_s1202: raw=33.52 cond=21.97
+  V_IN_s2101->Wong2020Fast: raw=34.95 cond=22.01
+  V_IN_s2101->Engstrom2019Robustness: raw=29.06 cond=18.50
+  V_IN_s2101->Carmon2019Unlabeled: raw=22.53 cond=13.62
+  V_IN_s2101->Gowal2020Uncovering_28_10_extra: raw=21.96 cond=12.78
+  V_IN_s2101->Sehwag2021Proxy_R18: raw=29.51 cond=16.68
+  V_IN_s2101->Addepalli2022Efficient_RN18: raw=30.54 cond=18.96
+  V_IN_s2101->Rade2021Helper_R18_ddpm: raw=27.79 cond=16.87
+  V_IN_s2101->Debenedetti2022Light_XCiT-S12: raw=24.08 cond=15.72
+  V_IN_s2102: onbellege yazildi results/q1/konsey_adv_onbellek/V_IN_s2102__pgd_linf_s10_n10000_seed42_cifar10.npy (10000, 3, 32, 32)
+  V_IN_s2102->ResNet18_AT_s1001: raw=32.52 cond=21.03
+  V_IN_s2102->ResNet18_AT_s1002: raw=32.37 cond=21.34
+  V_IN_s2102->ResNet18_AT_s1003: raw=32.86 cond=22.01
+  V_IN_s2102->ViT_Tiny_AT_s2001: raw=44.89 cond=25.70
+  V_IN_s2102->ViT_Tiny_AT_s2002: raw=45.31 cond=25.63
+  V_IN_s2102->ViT_Tiny_AT_s2003: raw=45.32 cond=25.16
+  V_IN_s2102->V_IN_s2101: raw=39.78 cond=27.81
+  V_IN_s2102->V_IN_s2102: raw=59.19 cond=51.11
+  V_IN_s2102->R224_IN_s1301: raw=32.94 cond=21.89
+  V_IN_s2102->R224_IN_s1302: raw=32.04 cond=21.26
+  V_IN_s2102->R224_scr_s1201: raw=32.15 cond=21.49
+  V_IN_s2102->R224_scr_s1202: raw=32.17 cond=20.39
+  V_IN_s2102->Wong2020Fast: raw=33.81 cond=20.69
+  V_IN_s2102->Engstrom2019Robustness: raw=27.65 cond=16.90
+  V_IN_s2102->Carmon2019Unlabeled: raw=21.58 cond=12.59
+  V_IN_s2102->Gowal2020Uncovering_28_10_extra: raw=20.86 cond=11.56
+  V_IN_s2102->Sehwag2021Proxy_R18: raw=28.22 cond=15.23
+  V_IN_s2102->Addepalli2022Efficient_RN18: raw=29.01 cond=17.19
+  V_IN_s2102->Rade2021Helper_R18_ddpm: raw=26.56 cond=15.45
+  V_IN_s2102->Debenedetti2022Light_XCiT-S12: raw=22.85 cond=14.35
+  R224_IN_s1301: onbellege yazildi results/q1/konsey_adv_onbellek/R224_IN_s1301__pgd_linf_s10_n10000_seed42_cifar10.npy (10000, 3, 32, 32)
+  R224_IN_s1301->ResNet18_AT_s1001: raw=36.32 cond=25.44
+  R224_IN_s1301->ResNet18_AT_s1002: raw=36.29 cond=25.89
+  R224_IN_s1301->ResNet18_AT_s1003: raw=36.45 cond=26.17
+  R224_IN_s1301->ViT_Tiny_AT_s2001: raw=40.72 cond=20.05
+  R224_IN_s1301->ViT_Tiny_AT_s2002: raw=41.64 cond=20.66
+  R224_IN_s1301->ViT_Tiny_AT_s2003: raw=41.43 cond=19.86
+  R224_IN_s1301->V_IN_s2101: raw=35.03 cond=22.11
+  R224_IN_s1301->V_IN_s2102: raw=35.24 cond=22.43
+  R224_IN_s1301->R224_IN_s1301: raw=55.70 cond=48.34
+  R224_IN_s1301->R224_IN_s1302: raw=39.85 cond=30.28
+  R224_IN_s1301->R224_scr_s1201: raw=37.06 cond=27.15
+  R224_IN_s1301->R224_scr_s1202: raw=35.67 cond=24.44
+  R224_IN_s1301->Wong2020Fast: raw=36.09 cond=23.37
+  R224_IN_s1301->Engstrom2019Robustness: raw=29.86 cond=19.45
+  R224_IN_s1301->Carmon2019Unlabeled: raw=22.93 cond=14.09
+  R224_IN_s1301->Gowal2020Uncovering_28_10_extra: raw=21.95 cond=12.77
+  R224_IN_s1301->Sehwag2021Proxy_R18: raw=29.31 cond=16.47
+  R224_IN_s1301->Addepalli2022Efficient_RN18: raw=31.11 cond=19.64
+  R224_IN_s1301->Rade2021Helper_R18_ddpm: raw=27.67 cond=16.73
+  R224_IN_s1301->Debenedetti2022Light_XCiT-S12: raw=23.45 cond=15.00
+  R224_IN_s1302: onbellege yazildi results/q1/konsey_adv_onbellek/R224_IN_s1302__pgd_linf_s10_n10000_seed42_cifar10.npy (10000, 3, 32, 32)
+  R224_IN_s1302->ResNet18_AT_s1001: raw=36.45 cond=25.57
+  R224_IN_s1302->ResNet18_AT_s1002: raw=36.35 cond=25.95
+  R224_IN_s1302->ResNet18_AT_s1003: raw=36.79 cond=26.57
+  R224_IN_s1302->ViT_Tiny_AT_s2001: raw=40.43 cond=19.68
+  R224_IN_s1302->ViT_Tiny_AT_s2002: raw=41.48 cond=20.39
+  R224_IN_s1302->ViT_Tiny_AT_s2003: raw=41.15 cond=19.44
+  R224_IN_s1302->V_IN_s2101: raw=34.86 cond=21.90
+  R224_IN_s1302->V_IN_s2102: raw=34.93 cond=22.04
+  R224_IN_s1302->R224_IN_s1301: raw=40.50 cond=30.62
+  R224_IN_s1302->R224_IN_s1302: raw=54.92 cond=47.73
+  R224_IN_s1302->R224_scr_s1201: raw=37.02 cond=27.06
+  R224_IN_s1302->R224_scr_s1202: raw=35.58 cond=24.33
+  R224_IN_s1302->Wong2020Fast: raw=36.19 cond=23.48
+  R224_IN_s1302->Engstrom2019Robustness: raw=30.18 cond=19.83
+  R224_IN_s1302->Carmon2019Unlabeled: raw=23.27 cond=14.46
+  R224_IN_s1302->Gowal2020Uncovering_28_10_extra: raw=22.10 cond=12.94
+  R224_IN_s1302->Sehwag2021Proxy_R18: raw=29.10 cond=16.22
+  R224_IN_s1302->Addepalli2022Efficient_RN18: raw=31.43 cond=20.00
+  R224_IN_s1302->Rade2021Helper_R18_ddpm: raw=27.98 cond=17.08
+  R224_IN_s1302->Debenedetti2022Light_XCiT-S12: raw=23.42 cond=14.97
+  R224_scr_s1201: onbellege yazildi results/q1/konsey_adv_onbellek/R224_scr_s1201__pgd_linf_s10_n10000_seed42_cifar10.npy (10000, 3, 32, 32)
+  R224_scr_s1201->ResNet18_AT_s1001: raw=36.72 cond=25.89
+  R224_scr_s1201->ResNet18_AT_s1002: raw=36.45 cond=26.09
+  R224_scr_s1201->ResNet18_AT_s1003: raw=36.16 cond=25.81
+  R224_scr_s1201->ViT_Tiny_AT_s2001: raw=39.94 cond=19.00
+  R224_scr_s1201->ViT_Tiny_AT_s2002: raw=40.47 cond=19.04
+  R224_scr_s1201->ViT_Tiny_AT_s2003: raw=40.41 cond=18.39
+  R224_scr_s1201->V_IN_s2101: raw=33.94 cond=20.81
+  R224_scr_s1201->V_IN_s2102: raw=34.00 cond=20.93
+  R224_scr_s1201->R224_IN_s1301: raw=36.82 cond=26.34
+  R224_scr_s1201->R224_IN_s1302: raw=36.04 cond=25.89
+  R224_scr_s1201->R224_scr_s1201: raw=56.25 cond=49.33
+  R224_scr_s1201->R224_scr_s1202: raw=37.16 cond=26.19
+  R224_scr_s1201->Wong2020Fast: raw=36.04 cond=23.31
+  R224_scr_s1201->Engstrom2019Robustness: raw=30.64 cond=20.31
+  R224_scr_s1201->Carmon2019Unlabeled: raw=23.25 cond=14.43
+  R224_scr_s1201->Gowal2020Uncovering_28_10_extra: raw=22.01 cond=12.85
+  R224_scr_s1201->Sehwag2021Proxy_R18: raw=29.10 cond=16.22
+  R224_scr_s1201->Addepalli2022Efficient_RN18: raw=31.07 cond=19.58
+  R224_scr_s1201->Rade2021Helper_R18_ddpm: raw=27.74 cond=16.81
+  R224_scr_s1201->Debenedetti2022Light_XCiT-S12: raw=22.79 cond=14.27
+  R224_scr_s1202: onbellege yazildi results/q1/konsey_adv_onbellek/R224_scr_s1202__pgd_linf_s10_n10000_seed42_cifar10.npy (10000, 3, 32, 32)
+  R224_scr_s1202->ResNet18_AT_s1001: raw=35.18 cond=24.10
+  R224_scr_s1202->ResNet18_AT_s1002: raw=35.40 cond=24.84
+  R224_scr_s1202->ResNet18_AT_s1003: raw=35.56 cond=25.12
+  R224_scr_s1202->ViT_Tiny_AT_s2001: raw=40.00 cond=19.12
+  R224_scr_s1202->ViT_Tiny_AT_s2002: raw=40.41 cond=18.97
+  R224_scr_s1202->ViT_Tiny_AT_s2003: raw=40.56 cond=18.65
+  R224_scr_s1202->V_IN_s2101: raw=33.96 cond=20.82
+  R224_scr_s1202->V_IN_s2102: raw=33.81 cond=20.71
+  R224_scr_s1202->R224_IN_s1301: raw=35.34 cond=24.63
+  R224_scr_s1202->R224_IN_s1302: raw=35.03 cond=24.72
+  R224_scr_s1202->R224_scr_s1201: raw=37.08 cond=27.18
+  R224_scr_s1202->R224_scr_s1202: raw=56.14 cond=48.47
+  R224_scr_s1202->Wong2020Fast: raw=35.49 cond=22.62
+  R224_scr_s1202->Engstrom2019Robustness: raw=29.79 cond=19.35
+  R224_scr_s1202->Carmon2019Unlabeled: raw=23.10 cond=14.26
+  R224_scr_s1202->Gowal2020Uncovering_28_10_extra: raw=21.82 cond=12.63
+  R224_scr_s1202->Sehwag2021Proxy_R18: raw=29.23 cond=16.37
+  R224_scr_s1202->Addepalli2022Efficient_RN18: raw=30.94 cond=19.43
+  R224_scr_s1202->Rade2021Helper_R18_ddpm: raw=27.44 cond=16.46
+  R224_scr_s1202->Debenedetti2022Light_XCiT-S12: raw=22.30 cond=13.75
+  Wong2020Fast: onbellekten (10000, 3, 32, 32)
+  Wong2020Fast->ResNet18_AT_s1001: raw=37.24 cond=26.52 (mevcut hucre)
+  Wong2020Fast->ResNet18_AT_s1002: raw=37.23 cond=27.00 (mevcut hucre)
+  Wong2020Fast->ResNet18_AT_s1003: raw=37.38 cond=27.26 (mevcut hucre)
+  Wong2020Fast->ViT_Tiny_AT_s2001: raw=41.66 cond=21.43 (mevcut hucre)
+  Wong2020Fast->ViT_Tiny_AT_s2002: raw=42.68 cond=22.06 (mevcut hucre)
+  Wong2020Fast->ViT_Tiny_AT_s2003: raw=42.70 cond=21.53 (mevcut hucre)
+  Wong2020Fast->V_IN_s2101: raw=35.82 cond=23.07
+  Wong2020Fast->V_IN_s2102: raw=35.80 cond=23.11
+  Wong2020Fast->R224_IN_s1301: raw=36.48 cond=25.94
+  Wong2020Fast->R224_IN_s1302: raw=36.06 cond=25.88
+  Wong2020Fast->R224_scr_s1201: raw=36.86 cond=26.93
+  Wong2020Fast->R224_scr_s1202: raw=35.77 cond=24.57
+  Wong2020Fast->Wong2020Fast: raw=51.69 cond=42.03 (mevcut hucre)
+  Wong2020Fast->Engstrom2019Robustness: raw=31.44 cond=21.29 (mevcut hucre)
+  Wong2020Fast->Carmon2019Unlabeled: raw=23.26 cond=14.46 (mevcut hucre)
+  Wong2020Fast->Gowal2020Uncovering_28_10_extra: raw=22.32 cond=13.19 (mevcut hucre)
+  Wong2020Fast->Sehwag2021Proxy_R18: raw=30.78 cond=18.23 (mevcut hucre)
+  Wong2020Fast->Addepalli2022Efficient_RN18: raw=32.12 cond=20.80 (mevcut hucre)
+  Wong2020Fast->Rade2021Helper_R18_ddpm: raw=28.42 cond=17.60 (mevcut hucre)
+  Wong2020Fast->Debenedetti2022Light_XCiT-S12: raw=24.12 cond=15.77 (mevcut hucre)
+  Engstrom2019Robustness: onbellekten (10000, 3, 32, 32)
+  Engstrom2019Robustness->ResNet18_AT_s1001: raw=35.59 cond=24.56 (mevcut hucre)
+  Engstrom2019Robustness->ResNet18_AT_s1002: raw=35.94 cond=25.46 (mevcut hucre)
+  Engstrom2019Robustness->ResNet18_AT_s1003: raw=35.52 cond=25.07 (mevcut hucre)
+  Engstrom2019Robustness->ViT_Tiny_AT_s2001: raw=39.91 cond=19.00 (mevcut hucre)
+  Engstrom2019Robustness->ViT_Tiny_AT_s2002: raw=40.43 cond=19.03 (mevcut hucre)
+  Engstrom2019Robustness->ViT_Tiny_AT_s2003: raw=40.44 cond=18.56 (mevcut hucre)
+  Engstrom2019Robustness->V_IN_s2101: raw=34.55 cond=21.55
+  Engstrom2019Robustness->V_IN_s2102: raw=34.80 cond=21.91
+  Engstrom2019Robustness->R224_IN_s1301: raw=35.87 cond=25.27
+  Engstrom2019Robustness->R224_IN_s1302: raw=35.66 cond=25.44
+  Engstrom2019Robustness->R224_scr_s1201: raw=36.73 cond=26.74
+  Engstrom2019Robustness->R224_scr_s1202: raw=35.55 cond=24.30
+  Engstrom2019Robustness->Wong2020Fast: raw=37.04 cond=24.49 (mevcut hucre)
+  Engstrom2019Robustness->Engstrom2019Robustness: raw=45.72 cond=37.63 (mevcut hucre)
+  Engstrom2019Robustness->Carmon2019Unlabeled: raw=25.34 cond=16.77 (mevcut hucre)
+  Engstrom2019Robustness->Gowal2020Uncovering_28_10_extra: raw=23.91 cond=14.96 (mevcut hucre)
+  Engstrom2019Robustness->Sehwag2021Proxy_R18: raw=31.29 cond=18.78 (mevcut hucre)
+  Engstrom2019Robustness->Addepalli2022Efficient_RN18: raw=32.97 cond=21.79 (mevcut hucre)
+  Engstrom2019Robustness->Rade2021Helper_R18_ddpm: raw=29.93 cond=19.33 (mevcut hucre)
+  Engstrom2019Robustness->Debenedetti2022Light_XCiT-S12: raw=24.65 cond=16.34 (mevcut hucre)
+  Carmon2019Unlabeled: onbellekten (10000, 3, 32, 32)
+  Carmon2019Unlabeled->ResNet18_AT_s1001: raw=33.38 cond=22.00 (mevcut hucre)
+  Carmon2019Unlabeled->ResNet18_AT_s1002: raw=33.02 cond=22.07 (mevcut hucre)
+  Carmon2019Unlabeled->ResNet18_AT_s1003: raw=33.31 cond=22.50 (mevcut hucre)
+  Carmon2019Unlabeled->ViT_Tiny_AT_s2001: raw=39.50 cond=18.43 (mevcut hucre)
+  Carmon2019Unlabeled->ViT_Tiny_AT_s2002: raw=39.86 cond=18.23 (mevcut hucre)
+  Carmon2019Unlabeled->ViT_Tiny_AT_s2003: raw=40.03 cond=17.97 (mevcut hucre)
+  Carmon2019Unlabeled->V_IN_s2101: raw=33.71 cond=20.51
+  Carmon2019Unlabeled->V_IN_s2102: raw=33.32 cond=20.14
+  Carmon2019Unlabeled->R224_IN_s1301: raw=33.62 cond=22.61
+  Carmon2019Unlabeled->R224_IN_s1302: raw=33.33 cond=22.72
+  Carmon2019Unlabeled->R224_scr_s1201: raw=34.25 cond=23.87
+  Carmon2019Unlabeled->R224_scr_s1202: raw=33.72 cond=22.15
+  Carmon2019Unlabeled->Wong2020Fast: raw=33.74 cond=20.52 (mevcut hucre)
+  Carmon2019Unlabeled->Engstrom2019Robustness: raw=31.14 cond=20.90 (mevcut hucre)
+  Carmon2019Unlabeled->Carmon2019Unlabeled: raw=36.17 cond=28.83 (mevcut hucre)
+  Carmon2019Unlabeled->Gowal2020Uncovering_28_10_extra: raw=27.82 cond=19.33 (mevcut hucre)
+  Carmon2019Unlabeled->Sehwag2021Proxy_R18: raw=31.36 cond=18.86 (mevcut hucre)
+  Carmon2019Unlabeled->Addepalli2022Efficient_RN18: raw=32.75 cond=21.54 (mevcut hucre)
+  Carmon2019Unlabeled->Rade2021Helper_R18_ddpm: raw=30.85 cond=20.39 (mevcut hucre)
+  Carmon2019Unlabeled->Debenedetti2022Light_XCiT-S12: raw=26.05 cond=17.89 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra: onbellekten (10000, 3, 32, 32)
+  Gowal2020Uncovering_28_10_extra->ResNet18_AT_s1001: raw=32.66 cond=21.13 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->ResNet18_AT_s1002: raw=32.46 cond=21.42 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->ResNet18_AT_s1003: raw=32.69 cond=21.78 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->ViT_Tiny_AT_s2001: raw=39.36 cond=18.25 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->ViT_Tiny_AT_s2002: raw=39.81 cond=18.21 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->ViT_Tiny_AT_s2003: raw=39.96 cond=17.92 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->V_IN_s2101: raw=33.24 cond=19.97
+  Gowal2020Uncovering_28_10_extra->V_IN_s2102: raw=33.01 cond=19.79
+  Gowal2020Uncovering_28_10_extra->R224_IN_s1301: raw=33.06 cond=21.94
+  Gowal2020Uncovering_28_10_extra->R224_IN_s1302: raw=32.41 cond=21.63
+  Gowal2020Uncovering_28_10_extra->R224_scr_s1201: raw=33.53 cond=23.03
+  Gowal2020Uncovering_28_10_extra->R224_scr_s1202: raw=32.92 cond=21.21
+  Gowal2020Uncovering_28_10_extra->Wong2020Fast: raw=32.98 cond=19.63 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->Engstrom2019Robustness: raw=30.65 cond=20.34 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->Carmon2019Unlabeled: raw=29.06 cond=20.91 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->Gowal2020Uncovering_28_10_extra: raw=33.11 cond=25.25 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->Sehwag2021Proxy_R18: raw=30.97 cond=18.41 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->Addepalli2022Efficient_RN18: raw=32.14 cond=20.83 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->Rade2021Helper_R18_ddpm: raw=30.67 cond=20.18 (mevcut hucre)
+  Gowal2020Uncovering_28_10_extra->Debenedetti2022Light_XCiT-S12: raw=26.43 cond=18.31 (mevcut hucre)
+  Sehwag2021Proxy_R18: onbellekten (10000, 3, 32, 32)
+  Sehwag2021Proxy_R18->ResNet18_AT_s1001: raw=36.48 cond=25.63 (mevcut hucre)
+  Sehwag2021Proxy_R18->ResNet18_AT_s1002: raw=36.61 cond=26.24 (mevcut hucre)
+  Sehwag2021Proxy_R18->ResNet18_AT_s1003: raw=36.69 cond=26.45 (mevcut hucre)
+  Sehwag2021Proxy_R18->ViT_Tiny_AT_s2001: raw=42.52 cond=22.47 (mevcut hucre)
+  Sehwag2021Proxy_R18->ViT_Tiny_AT_s2002: raw=43.13 cond=22.69 (mevcut hucre)
+  Sehwag2021Proxy_R18->ViT_Tiny_AT_s2003: raw=42.97 cond=21.96 (mevcut hucre)
+  Sehwag2021Proxy_R18->V_IN_s2101: raw=36.55 cond=23.92
+  Sehwag2021Proxy_R18->V_IN_s2102: raw=36.56 cond=24.03
+  Sehwag2021Proxy_R18->R224_IN_s1301: raw=35.98 cond=25.36
+  Sehwag2021Proxy_R18->R224_IN_s1302: raw=35.78 cond=25.58
+  Sehwag2021Proxy_R18->R224_scr_s1201: raw=36.45 cond=26.47
+  Sehwag2021Proxy_R18->R224_scr_s1202: raw=36.30 cond=25.17
+  Sehwag2021Proxy_R18->Wong2020Fast: raw=38.02 cond=25.65 (mevcut hucre)
+  Sehwag2021Proxy_R18->Engstrom2019Robustness: raw=33.40 cond=23.51 (mevcut hucre)
+  Sehwag2021Proxy_R18->Carmon2019Unlabeled: raw=26.87 cond=18.46 (mevcut hucre)
+  Sehwag2021Proxy_R18->Gowal2020Uncovering_28_10_extra: raw=25.76 cond=17.03 (mevcut hucre)
+  Sehwag2021Proxy_R18->Sehwag2021Proxy_R18: raw=40.14 cond=29.24 (mevcut hucre)
+  Sehwag2021Proxy_R18->Addepalli2022Efficient_RN18: raw=34.76 cond=23.88 (mevcut hucre)
+  Sehwag2021Proxy_R18->Rade2021Helper_R18_ddpm: raw=32.52 cond=22.31 (mevcut hucre)
+  Sehwag2021Proxy_R18->Debenedetti2022Light_XCiT-S12: raw=26.66 cond=18.57 (mevcut hucre)
+  Addepalli2022Efficient_RN18: onbellekten (10000, 3, 32, 32)
+  Addepalli2022Efficient_RN18->ResNet18_AT_s1001: raw=37.65 cond=26.96 (mevcut hucre)
+  Addepalli2022Efficient_RN18->ResNet18_AT_s1002: raw=38.01 cond=27.87 (mevcut hucre)
+  Addepalli2022Efficient_RN18->ResNet18_AT_s1003: raw=37.86 cond=27.79 (mevcut hucre)
+  Addepalli2022Efficient_RN18->ViT_Tiny_AT_s2001: raw=42.10 cond=21.86 (mevcut hucre)
+  Addepalli2022Efficient_RN18->ViT_Tiny_AT_s2002: raw=42.74 cond=22.10 (mevcut hucre)
+  Addepalli2022Efficient_RN18->ViT_Tiny_AT_s2003: raw=42.49 cond=21.26 (mevcut hucre)
+  Addepalli2022Efficient_RN18->V_IN_s2101: raw=36.34 cond=23.66
+  Addepalli2022Efficient_RN18->V_IN_s2102: raw=36.03 cond=23.39
+  Addepalli2022Efficient_RN18->R224_IN_s1301: raw=36.85 cond=26.36
+  Addepalli2022Efficient_RN18->R224_IN_s1302: raw=36.62 cond=26.53
+  Addepalli2022Efficient_RN18->R224_scr_s1201: raw=37.31 cond=27.41
+  Addepalli2022Efficient_RN18->R224_scr_s1202: raw=36.64 cond=25.56
+  Addepalli2022Efficient_RN18->Wong2020Fast: raw=37.50 cond=25.01 (mevcut hucre)
+  Addepalli2022Efficient_RN18->Engstrom2019Robustness: raw=32.94 cond=22.97 (mevcut hucre)
+  Addepalli2022Efficient_RN18->Carmon2019Unlabeled: raw=26.32 cond=17.85 (mevcut hucre)
+  Addepalli2022Efficient_RN18->Gowal2020Uncovering_28_10_extra: raw=25.01 cond=16.19 (mevcut hucre)
+  Addepalli2022Efficient_RN18->Sehwag2021Proxy_R18: raw=32.28 cond=19.96 (mevcut hucre)
+  Addepalli2022Efficient_RN18->Addepalli2022Efficient_RN18: raw=42.57 cond=32.99 (mevcut hucre)
+  Addepalli2022Efficient_RN18->Rade2021Helper_R18_ddpm: raw=31.42 cond=21.05 (mevcut hucre)
+  Addepalli2022Efficient_RN18->Debenedetti2022Light_XCiT-S12: raw=26.38 cond=18.25 (mevcut hucre)
+  Rade2021Helper_R18_ddpm: onbellekten (10000, 3, 32, 32)
+  Rade2021Helper_R18_ddpm->ResNet18_AT_s1001: raw=37.04 cond=26.25 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->ResNet18_AT_s1002: raw=36.93 cond=26.61 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->ResNet18_AT_s1003: raw=36.92 cond=26.69 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->ViT_Tiny_AT_s2001: raw=42.71 cond=22.74 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->ViT_Tiny_AT_s2002: raw=43.15 cond=22.68 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->ViT_Tiny_AT_s2003: raw=43.07 cond=22.05 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->V_IN_s2101: raw=37.05 cond=24.51
+  Rade2021Helper_R18_ddpm->V_IN_s2102: raw=36.91 cond=24.42
+  Rade2021Helper_R18_ddpm->R224_IN_s1301: raw=36.57 cond=26.04
+  Rade2021Helper_R18_ddpm->R224_IN_s1302: raw=36.50 cond=26.39
+  Rade2021Helper_R18_ddpm->R224_scr_s1201: raw=37.17 cond=27.26
+  Rade2021Helper_R18_ddpm->R224_scr_s1202: raw=36.43 cond=25.32
+  Rade2021Helper_R18_ddpm->Wong2020Fast: raw=37.44 cond=24.93 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->Engstrom2019Robustness: raw=33.31 cond=23.39 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->Carmon2019Unlabeled: raw=28.06 cond=19.79 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->Gowal2020Uncovering_28_10_extra: raw=26.81 cond=18.21 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->Sehwag2021Proxy_R18: raw=33.71 cond=21.63 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->Addepalli2022Efficient_RN18: raw=35.27 cond=24.48 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->Rade2021Helper_R18_ddpm: raw=38.63 cond=29.35 (mevcut hucre)
+  Rade2021Helper_R18_ddpm->Debenedetti2022Light_XCiT-S12: raw=27.36 cond=19.34 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12: onbellekten (10000, 3, 32, 32)
+  Debenedetti2022Light_XCiT-S12->ResNet18_AT_s1001: raw=34.22 cond=22.96 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->ResNet18_AT_s1002: raw=34.17 cond=23.41 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->ResNet18_AT_s1003: raw=34.27 cond=23.63 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->ViT_Tiny_AT_s2001: raw=41.13 cond=20.62 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->ViT_Tiny_AT_s2002: raw=42.00 cond=21.14 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->ViT_Tiny_AT_s2003: raw=42.03 cond=20.65 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->V_IN_s2101: raw=36.02 cond=23.29
+  Debenedetti2022Light_XCiT-S12->V_IN_s2102: raw=35.72 cond=23.01
+  Debenedetti2022Light_XCiT-S12->R224_IN_s1301: raw=34.56 cond=23.71
+  Debenedetti2022Light_XCiT-S12->R224_IN_s1302: raw=34.35 cond=23.91
+  Debenedetti2022Light_XCiT-S12->R224_scr_s1201: raw=34.16 cond=23.75
+  Debenedetti2022Light_XCiT-S12->R224_scr_s1202: raw=33.74 cond=22.17
+  Debenedetti2022Light_XCiT-S12->Wong2020Fast: raw=34.75 cond=21.75 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->Engstrom2019Robustness: raw=30.49 cond=20.13 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->Carmon2019Unlabeled: raw=25.54 cond=16.98 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->Gowal2020Uncovering_28_10_extra: raw=24.93 cond=16.10 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->Sehwag2021Proxy_R18: raw=30.92 cond=18.35 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->Addepalli2022Efficient_RN18: raw=32.28 cond=20.99 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->Rade2021Helper_R18_ddpm: raw=29.98 cond=19.39 (mevcut hucre)
+  Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-S12: raw=39.28 cond=32.58 (mevcut hucre)
+custom kaydedildi: results/q1/konsey_b4_matris

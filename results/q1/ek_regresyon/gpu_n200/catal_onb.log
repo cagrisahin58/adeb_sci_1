@@ -1,0 +1,14 @@
+custom temiz dogruluk: ResNet18_AT_s1001=88.00, ViT_Tiny_AT_s2001=79.00, WRN_28_10=91.50
+  ResNet18_AT_s1001: onbellege yazildi results/q1/ek_regresyon/gpu_n200/onb_catal/ResNet18_AT_s1001__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  ResNet18_AT_s1001->ResNet18_AT_s1001: raw=56.00 cond=50.00
+  ResNet18_AT_s1001->ViT_Tiny_AT_s2001: raw=36.50 cond=19.62
+  ResNet18_AT_s1001->WRN_28_10: raw=20.50 cond=13.11
+  ViT_Tiny_AT_s2001: onbellege yazildi results/q1/ek_regresyon/gpu_n200/onb_catal/ViT_Tiny_AT_s2001__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  ViT_Tiny_AT_s2001->ResNet18_AT_s1001: raw=27.50 cond=17.61
+  ViT_Tiny_AT_s2001->ViT_Tiny_AT_s2001: raw=67.00 cond=58.23
+  ViT_Tiny_AT_s2001->WRN_28_10: raw=15.00 cond=7.10
+  WRN_28_10: onbellege yazildi results/q1/ek_regresyon/gpu_n200/onb_catal/WRN_28_10__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  WRN_28_10->ResNet18_AT_s1001: raw=33.00 cond=23.86
+  WRN_28_10->ViT_Tiny_AT_s2001: raw=36.00 cond=18.99
+  WRN_28_10->WRN_28_10: raw=35.00 cond=28.96
+custom kaydedildi: results/q1/ek_regresyon/gpu_n200/catal_onb

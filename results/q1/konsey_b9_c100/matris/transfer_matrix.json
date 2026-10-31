@@ -1,0 +1,1460 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 10000,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "C100_ResNet18_AT_s1001",
+    "C100_ResNet18_AT_s1002",
+    "C100_ResNet18_AT_s1003",
+    "C100_ViT_Tiny_AT_s2001",
+    "C100_ViT_Tiny_AT_s2002",
+    "C100_ViT_Tiny_AT_s2003",
+    "C100_Rice2020Overfitting",
+    "C100_Rade2021Helper_R18_ddpm",
+    "C100_Addepalli2022Efficient_RN18",
+    "C100_Sehwag2021Proxy",
+    "C100_Pang2022Robustness_WRN28_10",
+    "C100_Wang2023Better_WRN-28-10",
+    "C100_Jia2022LAS-AT_34_10",
+    "C100_Debenedetti2022Light_XCiT-S12",
+    "C100_Hendrycks2019Using"
+  ],
+  "results": {
+    "C100_ResNet18_AT_s1001->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 80.84,
+      "cond_fooling": 70.17,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_ResNet18_AT_s1001->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 63.81,
+      "cond_fooling": 44.07,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_ResNet18_AT_s1001->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 62.48,
+      "cond_fooling": 40.17,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_ResNet18_AT_s1001->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 68.61,
+      "cond_fooling": 25.73,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_ResNet18_AT_s1001->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 67.62,
+      "cond_fooling": 26.07,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_ResNet18_AT_s1001->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 66.37,
+      "cond_fooling": 24.4,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_ResNet18_AT_s1001->C100_Rice2020Overfitting": {
+      "raw_fooling": 59.89,
+      "cond_fooling": 25.72,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_ResNet18_AT_s1001->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 54.1,
+      "cond_fooling": 25.5,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_ResNet18_AT_s1001->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 52.89,
+      "cond_fooling": 28.11,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_ResNet18_AT_s1001->C100_Sehwag2021Proxy": {
+      "raw_fooling": 49.37,
+      "cond_fooling": 23.25,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_ResNet18_AT_s1001->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 51.35,
+      "cond_fooling": 23.65,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_ResNet18_AT_s1001->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 40.78,
+      "cond_fooling": 18.44,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_ResNet18_AT_s1001->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 50.54,
+      "cond_fooling": 23.84,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_ResNet18_AT_s1001->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 47.05,
+      "cond_fooling": 21.41,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_ResNet18_AT_s1001->C100_Hendrycks2019Using": {
+      "raw_fooling": 51.72,
+      "cond_fooling": 19.18,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_ResNet18_AT_s1002->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 63.95,
+      "cond_fooling": 43.94,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_ResNet18_AT_s1002->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 80.83,
+      "cond_fooling": 70.35,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_ResNet18_AT_s1002->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 62.98,
+      "cond_fooling": 40.99,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_ResNet18_AT_s1002->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 68.8,
+      "cond_fooling": 26.11,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_ResNet18_AT_s1002->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 67.22,
+      "cond_fooling": 25.43,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_ResNet18_AT_s1002->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 66.84,
+      "cond_fooling": 25.28,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_ResNet18_AT_s1002->C100_Rice2020Overfitting": {
+      "raw_fooling": 59.9,
+      "cond_fooling": 25.79,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_ResNet18_AT_s1002->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 54.4,
+      "cond_fooling": 25.9,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_ResNet18_AT_s1002->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 53.23,
+      "cond_fooling": 28.59,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_ResNet18_AT_s1002->C100_Sehwag2021Proxy": {
+      "raw_fooling": 49.72,
+      "cond_fooling": 23.81,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_ResNet18_AT_s1002->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 51.4,
+      "cond_fooling": 23.66,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_ResNet18_AT_s1002->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 41.14,
+      "cond_fooling": 18.92,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_ResNet18_AT_s1002->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 50.98,
+      "cond_fooling": 24.5,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_ResNet18_AT_s1002->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 47.4,
+      "cond_fooling": 21.92,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_ResNet18_AT_s1002->C100_Hendrycks2019Using": {
+      "raw_fooling": 52.27,
+      "cond_fooling": 19.84,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_ResNet18_AT_s1003->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 63.01,
+      "cond_fooling": 42.46,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_ResNet18_AT_s1003->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 62.6,
+      "cond_fooling": 42.2,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_ResNet18_AT_s1003->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 80.42,
+      "cond_fooling": 68.76,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_ResNet18_AT_s1003->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 68.57,
+      "cond_fooling": 25.89,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_ResNet18_AT_s1003->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 67.25,
+      "cond_fooling": 25.29,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_ResNet18_AT_s1003->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 67.08,
+      "cond_fooling": 25.85,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_ResNet18_AT_s1003->C100_Rice2020Overfitting": {
+      "raw_fooling": 60.38,
+      "cond_fooling": 26.63,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_ResNet18_AT_s1003->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 53.93,
+      "cond_fooling": 25.2,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_ResNet18_AT_s1003->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 53.06,
+      "cond_fooling": 28.31,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_ResNet18_AT_s1003->C100_Sehwag2021Proxy": {
+      "raw_fooling": 49.42,
+      "cond_fooling": 23.36,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_ResNet18_AT_s1003->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 50.95,
+      "cond_fooling": 23.0,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_ResNet18_AT_s1003->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 40.53,
+      "cond_fooling": 18.12,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_ResNet18_AT_s1003->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 50.47,
+      "cond_fooling": 23.72,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_ResNet18_AT_s1003->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 46.74,
+      "cond_fooling": 20.92,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_ResNet18_AT_s1003->C100_Hendrycks2019Using": {
+      "raw_fooling": 51.49,
+      "cond_fooling": 18.59,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 49.48,
+      "cond_fooling": 21.69,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 49.22,
+      "cond_fooling": 21.81,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 50.07,
+      "cond_fooling": 20.84,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 88.61,
+      "cond_fooling": 72.84,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 78.02,
+      "cond_fooling": 49.56,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 75.13,
+      "cond_fooling": 43.83,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Rice2020Overfitting": {
+      "raw_fooling": 56.44,
+      "cond_fooling": 19.55,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 49.7,
+      "cond_fooling": 18.39,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 45.54,
+      "cond_fooling": 16.96,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Sehwag2021Proxy": {
+      "raw_fooling": 44.58,
+      "cond_fooling": 16.05,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 46.65,
+      "cond_fooling": 16.31,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 36.13,
+      "cond_fooling": 12.15,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 44.68,
+      "cond_fooling": 15.18,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 43.47,
+      "cond_fooling": 16.2,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_ViT_Tiny_AT_s2001->C100_Hendrycks2019Using": {
+      "raw_fooling": 48.97,
+      "cond_fooling": 14.71,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 48.7,
+      "cond_fooling": 20.47,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 48.67,
+      "cond_fooling": 20.97,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 49.45,
+      "cond_fooling": 19.94,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 78.36,
+      "cond_fooling": 48.52,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 89.54,
+      "cond_fooling": 75.95,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 75.0,
+      "cond_fooling": 43.44,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Rice2020Overfitting": {
+      "raw_fooling": 56.16,
+      "cond_fooling": 19.34,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 49.02,
+      "cond_fooling": 17.32,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 44.95,
+      "cond_fooling": 16.17,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Sehwag2021Proxy": {
+      "raw_fooling": 43.66,
+      "cond_fooling": 14.73,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 45.95,
+      "cond_fooling": 15.29,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 35.76,
+      "cond_fooling": 11.7,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 44.03,
+      "cond_fooling": 14.12,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 42.45,
+      "cond_fooling": 14.73,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_ViT_Tiny_AT_s2002->C100_Hendrycks2019Using": {
+      "raw_fooling": 48.15,
+      "cond_fooling": 13.26,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 48.51,
+      "cond_fooling": 20.29,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 48.11,
+      "cond_fooling": 20.15,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 49.28,
+      "cond_fooling": 19.67,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 76.38,
+      "cond_fooling": 43.82,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 75.91,
+      "cond_fooling": 44.76,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 88.42,
+      "cond_fooling": 73.72,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Rice2020Overfitting": {
+      "raw_fooling": 56.52,
+      "cond_fooling": 19.73,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 48.64,
+      "cond_fooling": 16.88,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 44.84,
+      "cond_fooling": 15.98,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Sehwag2021Proxy": {
+      "raw_fooling": 43.72,
+      "cond_fooling": 14.92,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 45.73,
+      "cond_fooling": 14.96,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 35.56,
+      "cond_fooling": 11.45,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 44.02,
+      "cond_fooling": 14.05,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 41.9,
+      "cond_fooling": 13.93,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_ViT_Tiny_AT_s2003->C100_Hendrycks2019Using": {
+      "raw_fooling": 47.59,
+      "cond_fooling": 12.45,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Rice2020Overfitting->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 55.31,
+      "cond_fooling": 30.55,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Rice2020Overfitting->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 54.59,
+      "cond_fooling": 29.96,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Rice2020Overfitting->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 56.32,
+      "cond_fooling": 30.55,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Rice2020Overfitting->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 68.97,
+      "cond_fooling": 26.66,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Rice2020Overfitting->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 67.54,
+      "cond_fooling": 26.28,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Rice2020Overfitting->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 68.07,
+      "cond_fooling": 28.08,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Rice2020Overfitting->C100_Rice2020Overfitting": {
+      "raw_fooling": 78.15,
+      "cond_fooling": 59.4,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Rice2020Overfitting->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 53.88,
+      "cond_fooling": 25.09,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Rice2020Overfitting->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 50.97,
+      "cond_fooling": 25.13,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Rice2020Overfitting->C100_Sehwag2021Proxy": {
+      "raw_fooling": 49.17,
+      "cond_fooling": 22.96,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Rice2020Overfitting->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 50.28,
+      "cond_fooling": 21.95,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Rice2020Overfitting->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 39.58,
+      "cond_fooling": 16.83,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Rice2020Overfitting->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 49.45,
+      "cond_fooling": 22.31,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Rice2020Overfitting->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 45.67,
+      "cond_fooling": 19.36,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Rice2020Overfitting->C100_Hendrycks2019Using": {
+      "raw_fooling": 50.95,
+      "cond_fooling": 17.83,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 61.65,
+      "cond_fooling": 40.34,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 61.37,
+      "cond_fooling": 40.28,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 61.5,
+      "cond_fooling": 38.59,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 71.81,
+      "cond_fooling": 33.07,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 70.32,
+      "cond_fooling": 32.28,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 69.89,
+      "cond_fooling": 32.02,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Rice2020Overfitting": {
+      "raw_fooling": 64.1,
+      "cond_fooling": 33.35,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 67.04,
+      "cond_fooling": 46.41,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 57.72,
+      "cond_fooling": 35.4,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Sehwag2021Proxy": {
+      "raw_fooling": 55.31,
+      "cond_fooling": 32.22,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 58.36,
+      "cond_fooling": 34.57,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 46.38,
+      "cond_fooling": 26.11,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 54.83,
+      "cond_fooling": 30.41,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 52.41,
+      "cond_fooling": 29.33,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Rade2021Helper_R18_ddpm->C100_Hendrycks2019Using": {
+      "raw_fooling": 56.1,
+      "cond_fooling": 26.07,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 60.88,
+      "cond_fooling": 39.13,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 60.61,
+      "cond_fooling": 39.09,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 60.86,
+      "cond_fooling": 37.57,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 70.13,
+      "cond_fooling": 29.04,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 68.77,
+      "cond_fooling": 28.6,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 68.32,
+      "cond_fooling": 28.46,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Rice2020Overfitting": {
+      "raw_fooling": 62.25,
+      "cond_fooling": 30.01,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 56.87,
+      "cond_fooling": 29.89,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 65.57,
+      "cond_fooling": 47.39,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Sehwag2021Proxy": {
+      "raw_fooling": 53.3,
+      "cond_fooling": 29.17,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 54.11,
+      "cond_fooling": 27.89,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 44.09,
+      "cond_fooling": 22.96,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 53.2,
+      "cond_fooling": 27.91,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 50.62,
+      "cond_fooling": 26.69,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Addepalli2022Efficient_RN18->C100_Hendrycks2019Using": {
+      "raw_fooling": 54.35,
+      "cond_fooling": 23.22,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Sehwag2021Proxy->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 60.13,
+      "cond_fooling": 37.96,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Sehwag2021Proxy->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 60.12,
+      "cond_fooling": 38.36,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Sehwag2021Proxy->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 60.01,
+      "cond_fooling": 36.23,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Sehwag2021Proxy->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 70.45,
+      "cond_fooling": 29.95,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Sehwag2021Proxy->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 68.87,
+      "cond_fooling": 28.97,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Sehwag2021Proxy->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 68.74,
+      "cond_fooling": 29.35,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Sehwag2021Proxy->C100_Rice2020Overfitting": {
+      "raw_fooling": 62.61,
+      "cond_fooling": 30.6,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Sehwag2021Proxy->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 58.33,
+      "cond_fooling": 32.24,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Sehwag2021Proxy->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 56.98,
+      "cond_fooling": 34.27,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Sehwag2021Proxy->C100_Sehwag2021Proxy": {
+      "raw_fooling": 63.36,
+      "cond_fooling": 44.43,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Sehwag2021Proxy->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 55.89,
+      "cond_fooling": 30.69,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Sehwag2021Proxy->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 46.81,
+      "cond_fooling": 26.71,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Sehwag2021Proxy->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 54.31,
+      "cond_fooling": 29.62,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Sehwag2021Proxy->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 51.95,
+      "cond_fooling": 28.65,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Sehwag2021Proxy->C100_Hendrycks2019Using": {
+      "raw_fooling": 55.51,
+      "cond_fooling": 25.14,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 60.34,
+      "cond_fooling": 38.28,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 59.99,
+      "cond_fooling": 38.17,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 60.39,
+      "cond_fooling": 36.87,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 70.82,
+      "cond_fooling": 30.76,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 69.15,
+      "cond_fooling": 29.52,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 69.02,
+      "cond_fooling": 29.98,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Rice2020Overfitting": {
+      "raw_fooling": 62.98,
+      "cond_fooling": 31.33,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 60.3,
+      "cond_fooling": 35.45,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 56.68,
+      "cond_fooling": 33.81,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Sehwag2021Proxy": {
+      "raw_fooling": 55.2,
+      "cond_fooling": 32.05,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 64.39,
+      "cond_fooling": 44.04,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 46.67,
+      "cond_fooling": 26.51,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 55.12,
+      "cond_fooling": 30.85,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 52.01,
+      "cond_fooling": 28.73,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Pang2022Robustness_WRN28_10->C100_Hendrycks2019Using": {
+      "raw_fooling": 56.14,
+      "cond_fooling": 26.21,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 58.72,
+      "cond_fooling": 35.76,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 58.44,
+      "cond_fooling": 35.75,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 58.64,
+      "cond_fooling": 34.06,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 69.94,
+      "cond_fooling": 28.83,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 68.67,
+      "cond_fooling": 28.46,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 68.36,
+      "cond_fooling": 28.48,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Rice2020Overfitting": {
+      "raw_fooling": 61.43,
+      "cond_fooling": 28.45,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 57.43,
+      "cond_fooling": 30.78,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 55.46,
+      "cond_fooling": 31.95,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Sehwag2021Proxy": {
+      "raw_fooling": 54.81,
+      "cond_fooling": 31.46,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 55.75,
+      "cond_fooling": 30.47,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 55.51,
+      "cond_fooling": 38.69,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 53.62,
+      "cond_fooling": 28.53,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 52.46,
+      "cond_fooling": 29.4,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Wang2023Better_WRN-28-10->C100_Hendrycks2019Using": {
+      "raw_fooling": 55.32,
+      "cond_fooling": 24.89,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 61.07,
+      "cond_fooling": 39.42,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 60.94,
+      "cond_fooling": 39.66,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 60.72,
+      "cond_fooling": 37.4,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 69.86,
+      "cond_fooling": 28.54,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 68.47,
+      "cond_fooling": 27.91,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 67.9,
+      "cond_fooling": 27.44,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Rice2020Overfitting": {
+      "raw_fooling": 62.86,
+      "cond_fooling": 31.18,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 57.79,
+      "cond_fooling": 31.46,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 56.82,
+      "cond_fooling": 34.03,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Sehwag2021Proxy": {
+      "raw_fooling": 54.46,
+      "cond_fooling": 30.96,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 56.06,
+      "cond_fooling": 30.97,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 45.23,
+      "cond_fooling": 24.58,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 62.86,
+      "cond_fooling": 42.76,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 51.42,
+      "cond_fooling": 27.87,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Jia2022LAS-AT_34_10->C100_Hendrycks2019Using": {
+      "raw_fooling": 56.6,
+      "cond_fooling": 27.02,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 58.25,
+      "cond_fooling": 35.03,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 58.27,
+      "cond_fooling": 35.48,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 58.79,
+      "cond_fooling": 34.33,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 70.85,
+      "cond_fooling": 30.85,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 69.15,
+      "cond_fooling": 29.56,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 68.67,
+      "cond_fooling": 29.35,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Rice2020Overfitting": {
+      "raw_fooling": 60.77,
+      "cond_fooling": 27.37,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 56.7,
+      "cond_fooling": 29.61,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 55.1,
+      "cond_fooling": 31.4,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Sehwag2021Proxy": {
+      "raw_fooling": 52.81,
+      "cond_fooling": 28.45,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 54.35,
+      "cond_fooling": 28.3,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 45.24,
+      "cond_fooling": 24.57,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 52.83,
+      "cond_fooling": 27.32,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 62.21,
+      "cond_fooling": 43.88,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Debenedetti2022Light_XCiT-S12->C100_Hendrycks2019Using": {
+      "raw_fooling": 56.12,
+      "cond_fooling": 26.21,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    },
+    "C100_Hendrycks2019Using->C100_ResNet18_AT_s1001": {
+      "raw_fooling": 56.39,
+      "cond_fooling": 32.31,
+      "n_cond": 6423,
+      "target_clean_acc": 64.23
+    },
+    "C100_Hendrycks2019Using->C100_ResNet18_AT_s1002": {
+      "raw_fooling": 56.4,
+      "cond_fooling": 32.79,
+      "n_cond": 6465,
+      "target_clean_acc": 64.65
+    },
+    "C100_Hendrycks2019Using->C100_ResNet18_AT_s1003": {
+      "raw_fooling": 56.46,
+      "cond_fooling": 30.92,
+      "n_cond": 6268,
+      "target_clean_acc": 62.68
+    },
+    "C100_Hendrycks2019Using->C100_ViT_Tiny_AT_s2001": {
+      "raw_fooling": 69.8,
+      "cond_fooling": 28.54,
+      "n_cond": 4194,
+      "target_clean_acc": 41.94
+    },
+    "C100_Hendrycks2019Using->C100_ViT_Tiny_AT_s2002": {
+      "raw_fooling": 67.83,
+      "cond_fooling": 26.87,
+      "n_cond": 4350,
+      "target_clean_acc": 43.5
+    },
+    "C100_Hendrycks2019Using->C100_ViT_Tiny_AT_s2003": {
+      "raw_fooling": 67.38,
+      "cond_fooling": 26.83,
+      "n_cond": 4406,
+      "target_clean_acc": 44.06
+    },
+    "C100_Hendrycks2019Using->C100_Rice2020Overfitting": {
+      "raw_fooling": 59.78,
+      "cond_fooling": 25.62,
+      "n_cond": 5382,
+      "target_clean_acc": 53.82
+    },
+    "C100_Hendrycks2019Using->C100_Rade2021Helper_R18_ddpm": {
+      "raw_fooling": 55.37,
+      "cond_fooling": 27.54,
+      "n_cond": 6150,
+      "target_clean_acc": 61.5
+    },
+    "C100_Hendrycks2019Using->C100_Addepalli2022Efficient_RN18": {
+      "raw_fooling": 52.7,
+      "cond_fooling": 27.82,
+      "n_cond": 6545,
+      "target_clean_acc": 65.45
+    },
+    "C100_Hendrycks2019Using->C100_Sehwag2021Proxy": {
+      "raw_fooling": 50.52,
+      "cond_fooling": 25.03,
+      "n_cond": 6593,
+      "target_clean_acc": 65.93
+    },
+    "C100_Hendrycks2019Using->C100_Pang2022Robustness_WRN28_10": {
+      "raw_fooling": 53.25,
+      "cond_fooling": 26.6,
+      "n_cond": 6364,
+      "target_clean_acc": 63.64
+    },
+    "C100_Hendrycks2019Using->C100_Wang2023Better_WRN-28-10": {
+      "raw_fooling": 43.02,
+      "cond_fooling": 21.55,
+      "n_cond": 7257,
+      "target_clean_acc": 72.57
+    },
+    "C100_Hendrycks2019Using->C100_Jia2022LAS-AT_34_10": {
+      "raw_fooling": 52.86,
+      "cond_fooling": 27.45,
+      "n_cond": 6489,
+      "target_clean_acc": 64.89
+    },
+    "C100_Hendrycks2019Using->C100_Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 50.65,
+      "cond_fooling": 26.86,
+      "n_cond": 6734,
+      "target_clean_acc": 67.34
+    },
+    "C100_Hendrycks2019Using->C100_Hendrycks2019Using": {
+      "raw_fooling": 65.81,
+      "cond_fooling": 42.38,
+      "n_cond": 5922,
+      "target_clean_acc": 59.22
+    }
+  },
+  "attack": "pgd",
+  "sources": [
+    "C100_ResNet18_AT_s1001",
+    "C100_ResNet18_AT_s1002",
+    "C100_ResNet18_AT_s1003",
+    "C100_ViT_Tiny_AT_s2001",
+    "C100_ViT_Tiny_AT_s2002",
+    "C100_ViT_Tiny_AT_s2003",
+    "C100_Rice2020Overfitting",
+    "C100_Rade2021Helper_R18_ddpm",
+    "C100_Addepalli2022Efficient_RN18",
+    "C100_Sehwag2021Proxy",
+    "C100_Pang2022Robustness_WRN28_10",
+    "C100_Wang2023Better_WRN-28-10",
+    "C100_Jia2022LAS-AT_34_10",
+    "C100_Debenedetti2022Light_XCiT-S12",
+    "C100_Hendrycks2019Using"
+  ],
+  "cache_adv": "/mnt/d/adeb_sci_1_veri/onbellek/b9_c100",
+  "per_source_seed": true,
+  "model_specs": {
+    "C100_ResNet18_AT_s1001": [
+      "resnet18",
+      "models/q1/cifar100/resnet18_s1001/resnet18/adv/adversarial_training/best.pth"
+    ],
+    "C100_ResNet18_AT_s1002": [
+      "resnet18",
+      "models/q1/cifar100/resnet18_s1002/resnet18/adv/adversarial_training/best.pth"
+    ],
+    "C100_ResNet18_AT_s1003": [
+      "resnet18",
+      "models/q1/cifar100/resnet18_s1003/resnet18/adv/adversarial_training/best.pth"
+    ],
+    "C100_ViT_Tiny_AT_s2001": [
+      "vit_tiny",
+      "models/q1/cifar100/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+    ],
+    "C100_ViT_Tiny_AT_s2002": [
+      "vit_tiny",
+      "models/q1/cifar100/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth"
+    ],
+    "C100_ViT_Tiny_AT_s2003": [
+      "vit_tiny",
+      "models/q1/cifar100/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth"
+    ],
+    "C100_Rice2020Overfitting": [
+      "robustbench",
+      "Rice2020Overfitting"
+    ],
+    "C100_Rade2021Helper_R18_ddpm": [
+      "robustbench",
+      "Rade2021Helper_R18_ddpm"
+    ],
+    "C100_Addepalli2022Efficient_RN18": [
+      "robustbench",
+      "Addepalli2022Efficient_RN18"
+    ],
+    "C100_Sehwag2021Proxy": [
+      "robustbench",
+      "Sehwag2021Proxy"
+    ],
+    "C100_Pang2022Robustness_WRN28_10": [
+      "robustbench",
+      "Pang2022Robustness_WRN28_10"
+    ],
+    "C100_Wang2023Better_WRN-28-10": [
+      "robustbench",
+      "Wang2023Better_WRN-28-10"
+    ],
+    "C100_Jia2022LAS-AT_34_10": [
+      "robustbench",
+      "Jia2022LAS-AT_34_10"
+    ],
+    "C100_Debenedetti2022Light_XCiT-S12": [
+      "robustbench",
+      "Debenedetti2022Light_XCiT-S12"
+    ],
+    "C100_Hendrycks2019Using": [
+      "robustbench",
+      "Hendrycks2019Using"
+    ]
+  }
+}

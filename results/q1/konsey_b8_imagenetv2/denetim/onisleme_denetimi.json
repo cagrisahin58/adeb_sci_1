@@ -1,0 +1,377 @@
+{
+ "ortak_onisleme": "BicubicRes256Crop224",
+ "n": 2000,
+ "modeller": {
+  "IN_Salman2020Do_R18": {
+   "model": "Salman2020Do_R18",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bilinear, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 41.35,
+   "temiz_dogruluk_kendi": 41.55,
+   "fark_puan": -0.2,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 31.752,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.2,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 52.92
+   }
+  },
+  "IN_Salman2020Do_R50": {
+   "model": "Salman2020Do_R50",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bilinear, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 51.9,
+   "temiz_dogruluk_kendi": 52.0,
+   "fark_puan": -0.1,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 38.412,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.1,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 64.02
+   }
+  },
+  "IN_Salman2020Do_50_2": {
+   "model": "Salman2020Do_50_2",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bilinear, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 56.75,
+   "temiz_dogruluk_kendi": 56.2,
+   "fark_puan": 0.55,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 41.076,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.55,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 68.46
+   }
+  },
+  "IN_Engstrom2019Robustness": {
+   "model": "Engstrom2019Robustness",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bilinear, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 51.05,
+   "temiz_dogruluk_kendi": 50.95,
+   "fark_puan": 0.1,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 37.536,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.1,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 62.56
+   }
+  },
+  "IN_Chen2024Data_WRN_50_2": {
+   "model": "Chen2024Data_WRN_50_2",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bilinear, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 57.6,
+   "temiz_dogruluk_kendi": 57.05,
+   "fark_puan": 0.55,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 41.256,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.55,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 68.76
+   }
+  },
+  "IN_Peng2023Robust": {
+   "model": "Peng2023Robust",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bilinear, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 60.45,
+   "temiz_dogruluk_kendi": 59.65,
+   "fark_puan": 0.8,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 44.064,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.8,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 73.44
+   }
+  },
+  "IN_Singh_ConvNeXt-T-CvSt": {
+   "model": "Singh2023Revisiting_ConvNeXt-T-ConvStem",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bicubic, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 60.9,
+   "temiz_dogruluk_kendi": 60.9,
+   "fark_puan": 0.0,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 43.632,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.0,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 72.72
+   }
+  },
+  "IN_Singh_ViT-S-CvSt": {
+   "model": "Singh2023Revisiting_ViT-S-ConvStem",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bicubic, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 61.0,
+   "temiz_dogruluk_kendi": 61.0,
+   "fark_puan": 0.0,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 43.536,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.0,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 72.56
+   }
+  },
+  "IN_Singh_ConvNeXt-B-CvSt": {
+   "model": "Singh2023Revisiting_ConvNeXt-B-ConvStem",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bicubic, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 63.2,
+   "temiz_dogruluk_kendi": 63.2,
+   "fark_puan": 0.0,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 45.54,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.0,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 75.9
+   }
+  },
+  "IN_Singh_ViT-B-CvSt": {
+   "model": "Singh2023Revisiting_ViT-B-ConvStem",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bicubic, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 64.85,
+   "temiz_dogruluk_kendi": 64.85,
+   "fark_puan": 0.0,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 45.78,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.0,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 76.3
+   }
+  },
+  "IN_Liu_ConvNeXt-B": {
+   "model": "Liu2023Comprehensive_ConvNeXt-B",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bicubic, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 65.5,
+   "temiz_dogruluk_kendi": 65.5,
+   "fark_puan": 0.0,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 45.612,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.0,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 76.02
+   }
+  },
+  "IN_Liu_Swin-B": {
+   "model": "Liu2023Comprehensive_Swin-B",
+   "kendi_onisleme": "Compose(     Resize(size=256, interpolation=bicubic, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 64.8,
+   "temiz_dogruluk_kendi": 64.8,
+   "fark_puan": 0.0,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 45.696,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.0,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 76.16
+   }
+  },
+  "IN_Mo_ViT-B": {
+   "model": "Mo2022When_ViT-B",
+   "kendi_onisleme": "Compose(     Resize(size=[224, 224], interpolation=bilinear, max_size=None, antialias=True)     ToTensor() )",
+   "temiz_dogruluk_ortak": 56.75,
+   "temiz_dogruluk_kendi": 55.8,
+   "fark_puan": 0.95,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 41.028,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.95,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 68.38
+   }
+  },
+  "IN_Debenedetti_XCiT-S12": {
+   "model": "Debenedetti2022Light_XCiT-S12",
+   "kendi_onisleme": "Compose(     Resize(size=224, interpolation=bicubic, max_size=None, antialias=True)     CenterCrop(size=(224, 224))     ToTensor() )",
+   "temiz_dogruluk_ortak": 60.35,
+   "temiz_dogruluk_kendi": 59.9,
+   "fark_puan": 0.45,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 43.404,
+    "i_gecti": true,
+    "mutlak_fark_puan": 0.45,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 72.34
+   }
+  },
+  "IN_Wong2020Fast": {
+   "model": "Wong2020Fast",
+   "kendi_onisleme": "Compose(     CenterCrop(size=(288, 288))     ToTensor() )",
+   "temiz_dogruluk_ortak": 43.35,
+   "temiz_dogruluk_kendi": 44.55,
+   "fark_puan": -1.2,
+   "esik": {
+    "karar": "gecti",
+    "esik_i": 33.372,
+    "i_gecti": true,
+    "mutlak_fark_puan": 1.2,
+    "ii_gecti": true,
+    "isaretli_3_5": false,
+    "rb_temiz": 55.62
+   }
+  }
+ },
+ "kalan": [],
+ "isaretli": [],
+ "not": "Esik kurali ek on kayit \u00a75.5 (ON_KAYIT_EK_B8_B10_2026-10-30.md): (i) kendi hatta 1000 sinifli temiz dogruluk >= %25 ve >= RobustBench temiz dogrulugunun 0,6 kati; (ii) |ortak - kendi| <= 5 puan; 3 ile 5 puan arasi matriste kalir ve isaretlenir. 'kaldi' alan model matristen cikar (P8 uyesiyse yedek IN_Wong2020Fast ayni denetimle girer; cift uyesiyse cift duzeyi niceliklerden cikar). Sonuc T gorulmeden sapma kaydina yazilir.",
+ "normalizasyon": {
+  "IN_Salman2020Do_R18": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Salman2020Do_R50": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Salman2020Do_50_2": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Engstrom2019Robustness": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Chen2024Data_WRN_50_2": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  },
+  "IN_Peng2023Robust": {
+   "normalizasyon_katmanlari": [
+    "NormalizeByChannelMeanStd",
+    "NormalizedConfigurableModel"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "NormalizeByChannelMeanStd.mean",
+    "NormalizeByChannelMeanStd.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Singh_ConvNeXt-T-CvSt": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  },
+  "IN_Singh_ViT-S-CvSt": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Singh_ConvNeXt-B-CvSt": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  },
+  "IN_Singh_ViT-B-CvSt": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  },
+  "IN_Liu_ConvNeXt-B": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Liu_Swin-B": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Mo_ViT-B": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  },
+  "IN_Debenedetti_XCiT-S12": {
+   "normalizasyon_katmanlari": [],
+   "uc_kanalli_mean_std_tamponlari": [],
+   "model_ici_normalizasyon_var": false
+  },
+  "IN_Wong2020Fast": {
+   "normalizasyon_katmanlari": [
+    "ImageNormalizer"
+   ],
+   "uc_kanalli_mean_std_tamponlari": [
+    "ImageNormalizer.mean",
+    "ImageNormalizer.std"
+   ],
+   "model_ici_normalizasyon_var": true
+  }
+ }
+}

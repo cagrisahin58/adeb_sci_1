@@ -1,0 +1,180 @@
+{
+ "meta": {
+  "sarmalayici": "experiments/q1_ek_ayrisim.py",
+  "sarmalayici_sha256": "d264c4e584fcfb3c0e3dd9517cfe2cea4ea1fe564117c88459e2b9721027a641",
+  "dondurulmus_betik_sha256_dogrulandi": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "ozgun_matris_betigi_sha256_simdi": "f25d9062c958a296353059639398f0a0a8eb18cd48182b1afa5ec4e3986140b7",
+  "ozgun_matris_betigi_degismedi": true,
+  "mod": "b10",
+  "uretildi_utc": "2026-10-31T04:44:08.752419+00:00",
+  "numpy": "1.26.4"
+ },
+ "veri_kumeleri": [
+  "cifar10",
+  "cifar100",
+  "imagenetv2"
+ ],
+ "F_B10": {
+  "sinamalar": [
+   {
+    "sinama": "H10-cifar10",
+    "istatistik": 0.9428064051927375,
+    "p_tek_ham": 0.0001,
+    "perm": 9999,
+    "ongorulen_buyukluk": 0.5,
+    "p_holm": 0.0006000000000000001,
+    "karar": "destek",
+    "ongorulen_buyukluk_tuttu": true
+   },
+   {
+    "sinama": "H10k-cifar10",
+    "istatistik": 0.9442568025648764,
+    "p_tek_ham": 0.0001,
+    "perm": 9999,
+    "ongorulen_buyukluk": 0.3,
+    "p_holm": 0.0006000000000000001,
+    "karar": "destek",
+    "ongorulen_buyukluk_tuttu": true
+   },
+   {
+    "sinama": "H10-cifar100",
+    "istatistik": 0.9806759278457391,
+    "p_tek_ham": 0.0001,
+    "perm": 9999,
+    "ongorulen_buyukluk": 0.5,
+    "p_holm": 0.0006000000000000001,
+    "karar": "destek",
+    "ongorulen_buyukluk_tuttu": true
+   },
+   {
+    "sinama": "H10k-cifar100",
+    "istatistik": 0.9124300228073812,
+    "p_tek_ham": 0.0001,
+    "perm": 9999,
+    "ongorulen_buyukluk": 0.3,
+    "p_holm": 0.0006000000000000001,
+    "karar": "destek",
+    "ongorulen_buyukluk_tuttu": true
+   },
+   {
+    "sinama": "H10-imagenetv2",
+    "istatistik": 0.6944099378881987,
+    "p_tek_ham": 0.0001,
+    "perm": 9999,
+    "ongorulen_buyukluk": 0.5,
+    "p_holm": 0.0006000000000000001,
+    "karar": "destek",
+    "ongorulen_buyukluk_tuttu": true
+   },
+   {
+    "sinama": "H10k-imagenetv2",
+    "istatistik": 0.8926262143653447,
+    "p_tek_ham": 0.0001,
+    "perm": 9999,
+    "ongorulen_buyukluk": 0.3,
+    "p_holm": 0.0006000000000000001,
+    "karar": "destek",
+    "ongorulen_buyukluk_tuttu": true
+   }
+  ],
+  "aile_buyuklugu": 6,
+  "p_1_sayilan": [],
+  "kural": "ek on kayit §6.3: (i) kestirim <= 0,20 ve ham p >= 0,20 ise curutuldu; (ii) Holm sonrasi p < 0,05 ise destek; (iii) kalan kararsiz"
+ },
+ "kesifsel_kismi_omega": {
+  "cifar10": {
+   "K": 20,
+   "cift_sayisi": 190,
+   "istatistik": 0.9355891973948715,
+   "perm": 9999,
+   "tohum": 20261030,
+   "p_tek": 0.0001,
+   "p_iki": 0.0001,
+   "perm_ort": 0.0012289074781625046,
+   "perm_sd": 0.10225850960121861,
+   "kovaryat_sayisi": 2,
+   "sira_donusumu": true
+  },
+  "cifar100": {
+   "K": 15,
+   "cift_sayisi": 105,
+   "istatistik": 0.9542228616845171,
+   "perm": 9999,
+   "tohum": 20261030,
+   "p_tek": 0.0001,
+   "p_iki": 0.0001,
+   "perm_ort": 0.0017190745788302564,
+   "perm_sd": 0.1376223617934733,
+   "kovaryat_sayisi": 2,
+   "sira_donusumu": true
+  },
+  "imagenetv2": {
+   "K": 14,
+   "cift_sayisi": 91,
+   "istatistik": 0.5324842971606872,
+   "perm": 9999,
+   "tohum": 20261030,
+   "p_tek": 0.0002,
+   "p_iki": 0.0002,
+   "perm_ort": 0.0009510846923181646,
+   "perm_sd": 0.1568079708212982,
+   "kovaryat_sayisi": 2,
+   "sira_donusumu": true
+  }
+ },
+ "kesifsel_kismi_omega_gradnorm": {
+  "cifar10": {
+   "K": 20,
+   "cift_sayisi": 190,
+   "istatistik": 0.9374048295076777,
+   "perm": 9999,
+   "tohum": 20261030,
+   "p_tek": 0.0001,
+   "p_iki": 0.0001,
+   "perm_ort": 0.0014264969829225357,
+   "perm_sd": 0.10314579128689445,
+   "kovaryat_sayisi": 3,
+   "sira_donusumu": true
+  },
+  "cifar100": {
+   "K": 15,
+   "cift_sayisi": 105,
+   "istatistik": 0.9407142629185485,
+   "perm": 9999,
+   "tohum": 20261030,
+   "p_tek": 0.0001,
+   "p_iki": 0.0001,
+   "perm_ort": 0.0029646368648733115,
+   "perm_sd": 0.13925302941950105,
+   "kovaryat_sayisi": 3,
+   "sira_donusumu": true
+  },
+  "imagenetv2": {
+   "K": 14,
+   "cift_sayisi": 91,
+   "istatistik": 0.5972937470060702,
+   "perm": 9999,
+   "tohum": 20261030,
+   "p_tek": 0.0001,
+   "p_iki": 0.0001,
+   "perm_ort": 0.0008897942285734846,
+   "perm_sd": 0.16373454154019773,
+   "kovaryat_sayisi": 3,
+   "sira_donusumu": true
+  }
+ },
+ "girdiler": {
+  "cifar10": {
+   "dosya": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+   "sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+  },
+  "cifar100": {
+   "dosya": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+   "sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+  },
+  "imagenetv2": {
+   "dosya": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+   "sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+  }
+ }
+}

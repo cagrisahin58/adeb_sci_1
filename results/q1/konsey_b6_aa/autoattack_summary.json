@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-10-30T20:29:17.788151",
+  "dataset": "cifar10",
+  "norm": "Linf",
+  "eps": 0.03137254901960784,
+  "n_samples": 1000,
+  "seed": 42,
+  "mcnemar_robust": null,
+  "results": [
+    {
+      "n_samples": 1000,
+      "clean_accuracy": 85.8,
+      "robust_accuracy": 40.1,
+      "clean_correct": 858,
+      "robust_correct": 401,
+      "seed": 42,
+      "chunk_size": 1000,
+      "model": "V_IN_s2101",
+      "model_type": "vit_tiny_in1k",
+      "eps": 0.03137254901960784,
+      "model_path": "models/q1/konsey/V_IN_s2101/vit_tiny_in1k/adv/adversarial_training/best.pth"
+    },
+    {
+      "n_samples": 1000,
+      "clean_accuracy": 83.7,
+      "robust_accuracy": 38.8,
+      "clean_correct": 837,
+      "robust_correct": 388,
+      "seed": 42,
+      "chunk_size": 1000,
+      "model": "V_IN_s2102",
+      "model_type": "vit_tiny_in1k",
+      "eps": 0.03137254901960784,
+      "model_path": "models/q1/konsey/V_IN_s2102/vit_tiny_in1k/adv/adversarial_training/best.pth"
+    },
+    {
+      "n_samples": 1000,
+      "clean_accuracy": 87.4,
+      "robust_accuracy": 38.4,
+      "clean_correct": 874,
+      "robust_correct": 384,
+      "seed": 42,
+      "chunk_size": 1000,
+      "model": "R224_IN_s1301",
+      "model_type": "resnet18_224_in1k",
+      "eps": 0.03137254901960784,
+      "model_path": "models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/adv/adversarial_training/best.pth"
+    },
+    {
+      "n_samples": 1000,
+      "clean_accuracy": 86.9,
+      "robust_accuracy": 41.8,
+      "clean_correct": 869,
+      "robust_correct": 418,
+      "seed": 42,
+      "chunk_size": 1000,
+      "model": "R224_IN_s1302",
+      "model_type": "resnet18_224_in1k",
+      "eps": 0.03137254901960784,
+      "model_path": "models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/adv/adversarial_training/best.pth"
+    },
+    {
+      "n_samples": 1000,
+      "clean_accuracy": 87.2,
+      "robust_accuracy": 39.5,
+      "clean_correct": 872,
+      "robust_correct": 395,
+      "seed": 42,
+      "chunk_size": 1000,
+      "model": "R224_scr_s1201",
+      "model_type": "resnet18_224",
+      "eps": 0.03137254901960784,
+      "model_path": "models/q1/konsey/R224_scr_s1201/resnet18_224/adv/adversarial_training/best.pth"
+    },
+    {
+      "n_samples": 1000,
+      "clean_accuracy": 85.7,
+      "robust_accuracy": 41.1,
+      "clean_correct": 857,
+      "robust_correct": 411,
+      "seed": 42,
+      "chunk_size": 1000,
+      "model": "R224_scr_s1202",
+      "model_type": "resnet18_224",
+      "eps": 0.03137254901960784,
+      "model_path": "models/q1/konsey/R224_scr_s1202/resnet18_224/adv/adversarial_training/best.pth"
+    }
+  ]
+}

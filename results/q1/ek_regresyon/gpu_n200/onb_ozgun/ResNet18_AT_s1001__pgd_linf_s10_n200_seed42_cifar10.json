@@ -1,0 +1,15 @@
+{
+  "attack": "pgd",
+  "norm": "linf",
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "seed": 42,
+  "n_samples": 200,
+  "dataset": "cifar10",
+  "per_source_seed": true,
+  "source": "ResNet18_AT_s1001",
+  "source_type": "resnet18",
+  "source_ref": "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+  "source_sha256": "81459b646696cf7a267c4228b736e626540cd1ae9e377cfa9cc259c4d6b8929c"
+}

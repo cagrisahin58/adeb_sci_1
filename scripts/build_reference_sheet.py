@@ -2130,6 +2130,1425 @@ _m8("M8.16 Havuz: XCiT ve ViT-Tiny kaynak etkisi (foyde zaten var; aralik ifadel
 
 # <<< UCUNCU DALGA SONU (hakem M8)
 
+# ===========================================================================
+# GENISLETME 2026-10-31 (M9, konsey turu 29-30.10.2026): on kayitli B2-B6
+# bloklarinin sonuclari (sonuc bolgesi O1). Her sayi dondurulmus cozumleme
+# betiginin JSON ciktilarindan, B3 defterinden (TSV) ve B6 dosyalarindan okunur;
+# hicbir sayi elle yazilmaz. Esikler de JSON'dan ya da dondurulmus betigin
+# kaynak metninden okunur. Mevcut bolumlere dokunulmaz; karantina yollarindan
+# OKUNMAZ. Bolum 'Sabit dizgeler' bolumunden once eklenir. Kaynak dizini:
+# raporlar/konsey_2026-10-29/09_sonuc_b2_b6.md ("Sayi kaynak dizini").
+# ===========================================================================
+import csv as _m9csv
+import hashlib as _m9hl
+
+_M9_J2 = "results/q1/konsey_ayrisim_b2.json"
+_M9_J4 = "results/q1/konsey_ayrisim_b4.json"
+_M9_J5 = "results/q1/konsey_ayrisim_b5.json"
+_M9_M6 = "results/q1/konsey_b6_maskeleme.json"
+_M9_DF = "results/q1/konsey_b3_defter.tsv"
+_M9_HT = "raporlar/konsey_2026-10-29/hucre_tablosu.json"
+_M9_TM = "results/q1/konsey_b4_matris/transfer_matrix.json"
+_M9_AA = "results/q1/konsey_b6_aa/autoattack_results.csv"
+_M9_BETIK = "experiments/q1_konsey_ayrisim.py"
+_M9_OK = "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md"
+_M9_YOK = []
+
+
+def _m9(ad, kaynak, fn):
+    L.append(f"\n### {ad}\n")
+    try:
+        fn()
+    except (KeyError, TypeError, IndexError, ValueError, OSError, ZeroDivisionError, AttributeError) as e_:
+        _hata(e_)
+    L.append(f"_Kaynak: {kaynak}_\n")
+
+
+def _m9s(x, nd=3, plus=False):
+    return "bulunamadi" if x is None else sg(float(x), nd, plus)
+
+
+def _m9p(x):
+    return "bulunamadi" if x is None else f"{float(x):.2e}"
+
+
+def _m9a(a, nd=3, plus=False):
+    if a is None:
+        return "bulunamadi"
+    return f"[{_m9s(a[0], nd, plus)}; {_m9s(a[1], nd, plus)}]"
+
+
+def _m9e(x):
+    return {True: "evet", False: "hayir", "True": "evet", "False": "hayir"}.get(x, "bulunamadi" if x is None else str(x))
+
+
+def _m9g(d, yol, etiket):
+    """Noktali anahtar yolunu izler; yoksa None doner ve kalemi bulunamayanlar listesine yazar."""
+    x = d
+    for k_ in yol:
+        if isinstance(x, dict) and k_ in x:
+            x = x[k_]
+        else:
+            _M9_YOK.append(etiket)
+            return None
+    return x
+
+
+def _m9sha(rel, govde=False):
+    with open(os.path.join(ROOT, rel), "rb") as fh:
+        b_ = fh.read()
+    if govde:
+        i_ = b_.find(b"\n## Dondurma eki\n")
+        if i_ < 0:
+            raise ValueError(f"{rel}: '## Dondurma eki' basligi yok")
+        b_ = b_[:i_ + 1]
+    return _m9hl.sha256(b_).hexdigest()
+
+
+def _m9oran(d, nd=3, plus=True):
+    """{model: deger} sozlugunde en kucuk ve en buyuk, model adlariyla."""
+    k_min = min(d, key=d.get)
+    k_max = max(d, key=d.get)
+    return f"{sg(d[k_min], nd, plus)} ({k_min} cikinca) ile {sg(d[k_max], nd, plus)} ({k_max} cikinca)"
+
+
+_M9_PZ = "results/q1/konsey_pilot_zaman.json"
+_M9_C1S = "results/c1_seeds/c1_seed_summary.json"
+_M9_SN = "results/q1/konsey_sentez_r_tau_masa.json"
+_M9_MC = "results/q1/konsey_masa/konsey_masa_cozumlemeleri.json"
+_M9_P3Y = "results/q1/konsey_masa/_p3_carpimsal_yasa_masa.json"
+_M9_P3P = "results/q1/konsey_masa/_p3_potansiyel_masa.json"
+_M9_SR = "raporlar/konsey_2026-10-29/09_sonuc_b2_b6.md"
+_M9_YOK_YER = []
+
+sec("M9: Konsey turu, mimari x baslatma 2x2 ve w-tau-r ayrisimi (2026-10-30)",
+    f"{_M9_J2}; {_M9_J4}; {_M9_J5}; {_M9_M6}; {_M9_DF}; {_M9_TM}; {_M9_AA}; {_M9_HT}; {_M9_PZ}; {_M9_C1S} (yalniz V-scr AA "
+    f"capraz basvurusu); {_M9_SN}; {_M9_MC}; {_M9_P3Y}; {_M9_P3P}; "
+    f"{_M9_BETIK} (dondurulmus, yalniz esik sabitleri ve sha256); {_M9_OK} (yalniz Dondurma eki ve govde sha256)")
+L.append("29-30.10.2026 konsey turunda on kayitli B2, B3, B4, B5 ve B6 bloklari kosuldu. Asagidaki her alt bolum kendi "
+         "artefaktindan okunur ve altinda kaynak dosya ile anahtar yollari yazilidir. Yuvarlama: log olcekli nicelikler ve "
+         "oranlar 3 ondalik, puanlar (yuzde) 2 ondalik, t istatistigi 2 ondalik, p degerleri bilimsel gosterim; 3 ondalikta "
+         "sifira yuvarlanan ya da elle yeniden uretilmesi gereken farklarda 4 ondalik (ilgili satirda belirtilir).\n")
+_m9ht = load(_M9_HT)
+L.append("Hucre tanimlari (`" + _M9_HT + "` hucreler): "
+         + ("; ".join(f"{k_}: {v_}" for k_, v_ in _m9ht["hucreler"].items()) if _m9ht and "hucreler" in _m9ht
+            else "ARTEFAKT YOK") + ".\n")
+
+
+# --- M9.1 B3 egitim defteri ----------------------------------------------------------------
+def _m9_1():
+    with open(os.path.join(ROOT, _M9_DF), encoding="utf-8", newline="") as fh:
+        sat = list(_m9csv.DictReader(fh, delimiter="\t"))
+    ht = _oku(_M9_HT)["modeller"]
+    m6 = _oku(_M9_M6)
+    sira = []
+    for r_ in sat:
+        if r_["takma_ad"] not in sira:
+            sira.append(r_["takma_ad"])
+
+    def bul(ad, asama):
+        x_ = [r_ for r_ in sat if r_["takma_ad"] == ad and r_["asama"] == asama]
+        return x_[-1] if x_ else None
+
+    s1, s2, tutarsiz, denet = [], [], [], []
+    for ad in sira:
+        tz, at, oz = bul(ad, "temiz"), bul(ad, "AT"), bul(ad, "at_ozet")
+        kv = dict(_m8re.findall(r"(\w+)=(\S+)", oz["not"])) if oz else {}
+        if at and kv.get("kosulan_epok") != at["epok"]:
+            tutarsiz.append(ad)
+        vp = kv.get("val_pgd")
+        s1.append([ad, ht[ad]["hucre"], ht[ad]["tohum"], tz["epok"] if tz else "bulunamadi",
+                   at["epok"] if at else "bulunamadi", kv.get("secilen_epok", "bulunamadi"), _m9e(kv.get("erken_durma")),
+                   _m9e(kv.get("tavanda_durdu")), _m9e(kv.get("kirpilmis_olabilir")),
+                   _m9s(float(vp), 2) if vp is not None else "bulunamadi"])
+        mm6 = m6["modeller"].get(ad)
+        if mm6 is None:
+            s2.append([ad, "bulunamadi", "bulunamadi", "bulunamadi", "bulunamadi"])
+        else:
+            s2.append([ad, _m9s(mm6["temiz_dogruluk_aa"], 2), _m9s(mm6["pgd10_dogruluk"], 2), _m9s(mm6["aa_dogruluk"], 2),
+                       _m9s(mm6["fark_puan"], 2)])
+        dt = bul(ad, "denetim_temiz")
+        ck = _m8re.search(r"cokus denetimi (\S+) ([\d.]+)", at["not"]) if at else None
+        fk_ = _m8re.search(r"fark=(\S+)", dt["not"]) if dt else None
+        dt_m = (dt["durum"] + (" (fark " + fk_.group(1) + " puan)" if fk_ else "")) if dt else "satiri yok"
+        ck_m = (ck.group(1) + " " + sg(float(ck.group(2)), 2)) if ck else "satiri yok"
+        denet.append(f"{ad}: temiz denetimi {dt_m}; AT cokus denetimi {ck_m}")
+    L.append("Egitim (B3 defteri; 'Dogrulama PGD' secilen epoktaki dogrulama bolmesi PGD dogrulugu, %):\n")
+    T(["Takma ad", "Hucre", "Tohum", "Temiz epok", "AT epok (kosulan)", "Secilen epok", "Erken durma", "Tavanda durdu",
+       "Kirpilmis olabilir", "Dogrulama PGD (%)"], s1)
+    L.append(f"Test kumesinin ilk {m6['n']} goruntusu (B6; PGD-10 B4 kosegeninden, AA `{_M9_AA}`; %):\n")
+    T(["Takma ad", f"Temiz (ilk {m6['n']})", "PGD-10", "AutoAttack", "Fark PGD-10 - AA (puan)"], s2)
+    top = sum(float(r_["sure_s"]) for r_ in sat if r_["asama"] in ("temiz", "AT") and r_["sure_s"])
+    L.append(f"Defterdeki temiz ve AT asama surelerinin toplami (sure_s): {sg(top / 3600.0, 2)} sa. "
+             f"AT satirindaki epok ile at_ozet kosulan_epok: {'uyusuyor (' + str(len(sira)) + '/' + str(len(sira)) + ')' if not tutarsiz else 'UYUSMUYOR: ' + ', '.join(tutarsiz)}. "
+             f"Durum 'OK' disindaki egitim satiri: {sum(1 for r_ in sat if r_['asama'] in ('temiz', 'AT') and r_['durum'] != 'OK')}.\n")
+    L.append("Denetimler (defter): " + "; ".join(denet) + ".\n")
+    pz = _oku(_M9_PZ)
+    sz, kat = [], []
+    for ad in sira:
+        at = bul(ad, "AT")
+        pk = ht[ad]["hucre"].replace("-", "_")
+        tp = _m9g(pz, ["parcalar", pk, "t_at_epok_s"], f"Pilot AT epok suresi ({_M9_PZ} parcalar.{pk}.t_at_epok_s)")
+        if at is None or not at["sure_s"] or not at["epok"]:
+            sz.append([ad, ht[ad]["hucre"], "bulunamadi", "bulunamadi", "bulunamadi", _m9s(tp, 1), "bulunamadi"])
+            continue
+        ep_s = float(at["sure_s"]) / float(at["epok"])
+        if tp is not None:
+            kat.append(ep_s / float(tp))
+        sz.append([ad, ht[ad]["hucre"], at["sure_s"], at["epok"], sg(ep_s, 1), _m9s(tp, 1),
+                   sg(ep_s / float(tp), 2) if tp is not None else "bulunamadi"])
+    tv = pz["secilen_tavan"]
+    L.append("AT epok suresi (hesaplama ayrintilari beyani icin; 'Defter' = AT satirindaki sure_s / epok, turetilmis; "
+             "'Pilot' = on kayit oncesi bos GPU'da olculen epok suresi):\n")
+    T(["Takma ad", "Hucre", "AT sure_s", "AT epok", "Defter epok suresi (s)", "Pilot epok suresi (s)", "Defter / pilot (kat)"], sz)
+    L.append(f"Defter / pilot kat araligi: {mm(kat, 2) if kat else 'bulunamadi'} ({len(kat)} kosu). Pilot tahmini duvar saati "
+             f"W({tv}) = {sg(pz['W_sa'][str(tv)], 2)} sa (secilen tavan {tv} epok; egitim payi {sg(pz['egitim_payi_sa'], 2)} sa). "
+             f"Pilot yontemi: '{pz['yontem']}'.\n")
+
+
+_m9("M9.1 B3 egitim defteri (alti yeni kosu)",
+    f"`{_M9_DF}` (takma_ad, asama, epok, sure_s, durum; at_ozet notu: secilen_epok, kosulan_epok, erken_durma, "
+    f"tavanda_durdu, kirpilmis_olabilir, val_pgd; denetim_temiz notu: fark; AT notu: cokus denetimi); "
+    f"`{_M9_HT}` modeller.<m>.hucre, .tohum; `{_M9_M6}` n, modeller.<m>.temiz_dogruluk_aa, .pgd10_dogruluk, "
+    f".aa_dogruluk, .fark_puan; `{_M9_PZ}` parcalar.<hucre>.t_at_epok_s, secilen_tavan, W_sa.<tavan>, egitim_payi_sa, yontem", _m9_1)
+
+
+# --- M9.2 2x2 hucre tablosu ----------------------------------------------------------------
+def _m9_2():
+    J4 = _oku(_M9_J4)
+    b4 = J4["b4"]
+    K = b4["F_B4"]["karsitliklar"]
+    MT = b4["model_tablosu"]
+    TM = _oku(_M9_TM)["results"]
+    m6_ = _oku(_M9_M6)
+    m6, n6 = m6_["modeller"], m6_["n"]
+    ht = _oku(_M9_HT)["modeller"]
+    kayitli = J4["veri"]["girdi_sha256"].get(_M9_TM)
+    hes = _m9sha(_M9_TM)
+
+    def temiz(m):
+        v_ = {r_["target_clean_acc"] for k_, r_ in TM.items() if k_.split("->")[1] == m}
+        if len(v_) != 1:
+            raise ValueError(f"{m}: hedef temiz dogruluk kaynaklar arasinda tutarsiz {sorted(v_)}")
+        return v_.pop()
+
+    s1, s2, ex = [], [], []
+    for h_, ms_ in b4["hucreler"].items():
+        tz = [temiz(m) for m in ms_]
+        w_ = [MT[m]["yari_oran"]["omega"] for m in ms_]
+        aa = [m6[m]["aa_dogruluk"] for m in ms_ if m in m6]
+        s1.append([h_, K["H2"]["hucre_n"][h_], uc(tz, 2), sg(float(np.mean(tz)), 2), uc(w_, 2), sg(float(np.mean(w_)), 2),
+                   _m9s(b4["ikincil"]["S3"]["etkilesim"]["hucre_ort"][h_]), _m9s(K["H2"]["hucre_ort"][h_], 3, True),
+                   _m9s(K["H3"]["hucre_ort"][h_], 3, True),
+                   (uc(aa, 2) if len(aa) == len(ms_) else "B6 kapsami disi (konsey_b6_maskeleme.json'da yok)")])
+        for m in ms_:
+            ex.append(abs(float(np.exp(MT[m]["yari_log"]["omega"])) - MT[m]["yari_oran"]["omega"]))
+            s2.append([h_, m, ht[m]["tohum"], sg(temiz(m), 2), sg(MT[m]["yari_oran"]["omega"], 2),
+                       sg(MT[m]["yari_log"]["omega"], 3), sg(MT[m]["yari_log"]["sigma"], 3, True),
+                       sg(MT[m]["yari_log"]["rho"], 3, True),
+                       sg(m6[m]["aa_dogruluk"], 2) if m in m6 else "B6 disi"])
+    L.append("Hucre ozetleri (w = beyaz kutu hedef-dogru kirilganlik, %; omega = log w; sigma ve rho bolunmus yari, log olcek; "
+             "temiz dogruluk tam test kumesi):\n")
+    T(["Hucre", "Tohum sayisi n", "Temiz dogruluk (model degerleri, %)", "Temiz ort (%)", "w (model degerleri, %)", "w ort (%)",
+       "omega ort", "sigma ort", "rho ort", f"AA ilk {n6} (model degerleri, %)"], s1)
+    L.append("Model duzeyi:\n")
+    T(["Hucre", "Model", "Tohum", "Temiz (%)", "w (%)", "omega", "sigma", "rho", f"AA ilk {n6} (%)"], s2)
+    L.append(f"w = exp(omega) denetimi: en buyuk mutlak fark {max(ex):.2e} puan. Temiz dogruluk `konsey_ayrisim_b4.json`'da "
+             f"yoktur; B4'un girdi matrisinden (`{_M9_TM}` results.<kaynak>-><m>.target_clean_acc, butun kaynaklarda ayni oldugu "
+             f"denetlendi) okunmustur. Bu dosyanin sha256'si {hes[:16]}..., B4 JSON'daki kayit (veri.girdi_sha256) "
+             f"{'ile UYUSUYOR' if hes == kayitli else 'ile UYUSMUYOR (' + str(kayitli) + ')'}. "
+             f"AA sutunundaki goruntu sayisi `{_M9_M6}` n alanindan: n = {n6}.\n")
+    c1p = _oku(_M9_C1S)["pairs"]
+    for h_, ms_ in b4["hucreler"].items():
+        eks = [m for m in ms_ if m not in m6]
+        if not eks:
+            continue
+        deg = []
+        for m in eks:
+            t_ = ht[m]["tohum"]
+            p_ = [(p["vit"]["aa"] if p["vit_seed"] == t_ else p["resnet"]["aa"]) for p in c1p
+                  if t_ in (p["vit_seed"], p["resnet_seed"])]
+            deg.append(f"{m} {sg(p_[0], 2) if len(p_) == 1 else 'bulunamadi'}")
+        L.append(f"{h_} hucresinin AA degeri B6 kapsami disindadir (ON_KAYIT Dondurma eki (i) m.7: B6'da AA yalniz yeni alti "
+                 f"modelde kosar, V-scr ve C1-R32 icin maskeleme isareti tanimlanmamistir). Ayni modellerin C1 AA degerleri `{_M9_C1S}` pairs.<cift>.vit.aa alanindadir ve foyun "
+                 f"'Tablo I: ana gurbuzluk' bolumundeki AA sutunu da bu dosyanin aggregate alanindan gelir: " + "; ".join(deg)
+                 + f" (%). Bu degerler C1 AA degerlendirmesinin orneklemindendir (foy basligindaki tanim: tam test kumesi), "
+                 f"B6 sutunu ise test kumesinin ilk {n6} goruntusundendir; iki orneklem karsilastirilamaz, hucre tablosunun AA "
+                 f"sutununa ancak orneklemi etiketlenerek ya da dipnotla bos birakilarak girer.\n")
+
+
+_m9("M9.2 2x2 hucre tablosu (temiz dogruluk, w, sigma, rho)",
+    f"`{_M9_J4}` b4.hucreler; b4.F_B4.karsitliklar.H2.hucre_n, .H2.hucre_ort (sigma), .H3.hucre_ort (rho); "
+    f"b4.ikincil.S3.etkilesim.hucre_ort (omega); b4.model_tablosu.<m>.yari_oran.omega (w), .yari_log.{{omega, sigma, rho}}; "
+    f"veri.girdi_sha256; `{_M9_TM}` results.*-><m>.target_clean_acc; `{_M9_M6}` modeller.<m>.aa_dogruluk; "
+    f"`{_M9_HT}` modeller.<m>.tohum; `{_M9_C1S}` pairs.<cift>.{{vit_seed, resnet_seed, vit.aa, resnet.aa}} (B6 disi hucre)", _m9_2)
+
+
+# --- M9.3 B4 birincil aile F_B4 ------------------------------------------------------------
+def _m9_3():
+    J4 = _oku(_M9_J4)
+    F = J4["b4"]["F_B4"]
+    K, kr = F["karsitliklar"], F["karar"]
+    adlar = ("H1", "H2", "H3")
+    tanim = {"H1": "A^sigma_scr = sigma(V-scr) - sigma(R224-scr)",
+             "H2": "I^sigma = [sigma(V-IN) - sigma(V-scr)] - [sigma(R224-IN) - sigma(R224-scr)]",
+             "H3": "A^rho = 1/2 {[rho(V-scr) - rho(R224-scr)] + [rho(V-IN) - rho(R224-IN)]}"}
+    satir = []
+    for i_, h_ in enumerate(adlar):
+        k_ = K[h_]
+        ong = [f"{kk.split(h_ + '_ongoru_buyuklugu_tuttu')[1].strip()}: {_m9e(vv)}" for kk, vv in kr.items()
+               if kk.startswith(h_ + "_ongoru_buyuklugu_tuttu")]
+        satir.append([f"{h_}, {tanim[h_]}", sg(k_["kestirim"], 3, True), _m9a(k_["ci90"], 3, True), _m9a(k_["ci95"], 3, True),
+                      f"{sg(k_['t'], 2, True)} ({k_['df']})", _m9p(F["p_ham"][i_]), _m9p(F["p_holm"][i_]), kr[h_],
+                      "; ".join(ong) if ong else "(H3: esdegerlik; buyukluk satiri yok)"])
+    T(["Sinama", "Kestirim", "%90 aralik", "%95 aralik", "t (df)", "Ham p", "Holm p", "Karar", "Ongorulen buyukluk"], satir)
+    hk = holm(F["p_ham"])
+    L.append(f"Ham p: H1 tek yonlu (p_tek_kucuk), H2 iki yonlu (p_iki), H3 TOST (iki tek yonlu p'nin buyugu, tost_p); "
+             f"F_B4.not: '{F.get('not', 'bulunamadi')}'. Holm denetimi (bu betigin holm() fonksiyonuyla p_ham'dan): en buyuk "
+             f"mutlak fark {float(np.max(np.abs(hk - np.asarray(F['p_holm'])))):.2e}.\n")
+    L.append(f"TOST esdegerlik siniri delta = {kr['delta']} (meta.delta = {J4['meta']['delta']}; duyarlilik "
+             f"meta.delta_duyarlilik = {J4['meta']['delta_duyarlilik']}); Holm alfa = {J4['meta']['alfa']}; "
+             f"birlesik SD (sigma karsitliklari) {sg(K['H1']['sp_birlesik'], 4)}, (rho karsitligi) {sg(K['H3']['sp_birlesik'], 4)}.\n")
+    L.append(f"H2 logit olcekli kestirim (karar kosulu): {sg(kr['H2_logit_kestirim'], 3, True)}; H2 ters yon Holm anlamli: "
+             f"{_m9e(kr['H2_negatif_anlamli_holm'])}; H3 ham %90 aralik +-delta icinde: {_m9e(kr['H3_ham_ci90_delta_icinde'])}; "
+             f"H1 esdeger: {_m9e(kr['H1_esdeger'])}; H2 esdeger: {_m9e(kr['H2_esdeger'])}; hesaplanamayip p = 1 sayilan sinama: "
+             f"{', '.join(F['p_1_sayilan_hesaplanamayan']) or 'yok'}.\n")
+    L.append(f"Sonuc bolgesi: **{kr['sonuc_bolgesi']}** (kural: {kr['sonuc_kurali']}); O4 nitelemesi: {_m9e(kr['O4_niteleme'])}; "
+             f"B6 maskeleme kuralindan sonra uygulanan bolge: {F['maskeleme_kurali']['uygulanan_bolge']} (isaretli: "
+             f"{', '.join(F['maskeleme_kurali']['isaretli']) or 'yok'}).\n")
+    L.append(f"Gozlenen %90 yari genislikler (turetilmis, (ci90[1] - ci90[0]) / 2): "
+             + "; ".join(f"{h_} {sg((K[h_]['ci90'][1] - K[h_]['ci90'][0]) / 2.0, 3)}" for h_ in adlar) + ".\n")
+
+
+_m9("M9.3 B4 birincil aile F_B4 (H1, H2, H3; Holm)",
+    f"`{_M9_J4}` b4.F_B4.karsitliklar.H{{1,2,3}}.{{kestirim, ci90, ci95, t, df, sp_birlesik}}; b4.F_B4.p_ham; b4.F_B4.p_holm; "
+    f"b4.F_B4.karar.{{H1, H2, H3, *_ongoru_buyuklugu_tuttu, H2_logit_kestirim, H2_negatif_anlamli_holm, H3_ham_ci90_delta_icinde, "
+    f"delta, sonuc_bolgesi, sonuc_kurali, O4_niteleme}}; b4.F_B4.maskeleme_kurali; b4.F_B4.p_1_sayilan_hesaplanamayan; "
+    f"meta.{{delta, delta_duyarlilik, alfa}}", _m9_3)
+
+
+# --- M9.4 B4 duyarliliklar ve ikincil ongoruler --------------------------------------------
+def _m9_4():
+    J4 = _oku(_M9_J4)
+    b4 = J4["b4"]
+    D = b4["duyarlilik"]
+    adlar = ("H1", "H2", "H3")
+    dk = f"delta_{J4['meta']['delta_duyarlilik']}"
+    dd = D[dk]
+    satir = [[f"delta = {dd['delta']} (Holm p; karar)"]
+             + [f"{_m9p(dd['p_holm'][i_])}; {dd[h_]}" for i_, h_ in enumerate(adlar)] + [f"b4.duyarlilik.{dk}"]]
+    for ad_, k_, nd in (("Tam orneklem, log (%90; %95)", "tam_log", 3), ("Logit olcek (%90; %95)", "yari_logit", 3),
+                        ("Oran olcegi, puan (%90; %95)", "yari_oran", 2)):
+        satir.append([ad_] + [f"{sg(D[k_][h_]['kestirim'], nd, True)} {_m9a(D[k_][h_]['ci90'], nd, True)}; "
+                              f"{_m9a(D[k_][h_]['ci95'], nd, True)}" for h_ in adlar]
+                     + [f"b4.duyarlilik.{k_}.H*.{{kestirim, ci90, ci95}}"])
+    satir.append(["Welch, %95 (df)"] + [f"{_m9a(D['welch'][h_]['ci95'], 3, True)} ({sg(D['welch'][h_]['df'], 2)})" for h_ in adlar]
+                 + ["b4.duyarlilik.welch.H*.{ci95, df}"])
+    jk = D["panel_jackknife"]
+    satir.append(["Panel jackknife (en kucuk ile en buyuk)"]
+                 + [_m9oran({m: v[h_] for m, v in jk.items()}, 3) for h_ in adlar] + ["b4.duyarlilik.panel_jackknife.<uye>.H*"])
+    hb = D["hiyerarsik_bootstrap"]
+    satir.append([f"Hiyerarsik bootstrap (B = {hb['H1']['B']}), %90; %95"]
+                 + [f"{_m9a(hb[h_]['ci90'], 3, True)}; {_m9a(hb[h_]['ci95'], 3, True)}" for h_ in adlar]
+                 + ["b4.duyarlilik.hiyerarsik_bootstrap.H*.{ci90, ci95}"])
+    L.append(f"Duyarliliklar (ON_KAYIT geregi karar degistirmez). delta duyarliliginda sonuc bolgesi: {dd['sonuc_bolgesi']}.\n")
+    T(["Duyarlilik", "H1", "H2", "H3", "Anahtar"], satir)
+
+    S = b4["ikincil"]
+    s1, s3 = S["S1"], S["S3"]
+    st = [
+        ["S1, kopru sigma: sigma(R224-scr) - sigma(C1-R32) (kestirim 4 ondalik)", sg(s1["sigma"]["kestirim"], 4, True),
+         _m9a(s1["sigma"]["ci90"], 3, True),
+         f"df {s1['sigma']['df']}; Welch %90 {_m9a(s1['sigma']['welch']['ci90'], 3, True)} (Welch df "
+         f"{sg(s1['sigma']['welch']['df'], 2)}); TOST p {_m9p(s1['sigma']['tost_p'])}",
+         f"ikisi de esdeger: {_m9e(s1['ongoru_ikisi_de_esdeger'])}", "b4.ikincil.S1.sigma"],
+        ["S1, kopru rho", sg(s1["rho"]["kestirim"], 3, True), _m9a(s1["rho"]["ci90"], 3, True),
+         f"df {s1['rho']['df']}; Welch %90 {_m9a(s1['rho']['welch']['ci90'], 3, True)} (Welch df "
+         f"{sg(s1['rho']['welch']['df'], 2)}); TOST p {_m9p(s1['rho']['tost_p'])}",
+         f"ikisi de esdeger: {_m9e(s1['ongoru_ikisi_de_esdeger'])}", "b4.ikincil.S1.rho"],
+        ["S2, rho(V-IN) - rho(V-scr)", sg(S["S2"]["kestirim"], 3, True), _m9a(S["S2"]["ci90"], 3, True),
+         f"iki yonlu p {_m9p(S['S2']['p_iki'])}", f"negatif: {_m9e(S['S2']['ongoru_negatif'])}", "b4.ikincil.S2"],
+        ["S3, omega baslatma etkisi ViT: omega(V-IN) - omega(V-scr)", sg(s3["V_baslatma"]["kestirim"], 3, True),
+         _m9a(s3["V_baslatma"]["ci90"], 3, True), f"iki yonlu p {_m9p(s3['V_baslatma']['p_iki'])}",
+         f"omega(V-IN) < omega(V-scr): {_m9e(s3['ongoru_omega_VIN_lt_Vscr'])}", "b4.ikincil.S3.V_baslatma"],
+        ["S3, omega baslatma etkisi ResNet: omega(R224-IN) - omega(R224-scr)", sg(s3["R224_baslatma"]["kestirim"], 3, True),
+         _m9a(s3["R224_baslatma"]["ci90"], 3, True), f"iki yonlu p {_m9p(s3['R224_baslatma']['p_iki'])}", "betimsel",
+         "b4.ikincil.S3.R224_baslatma"],
+        ["S3, omega etkilesimi", sg(s3["etkilesim"]["kestirim"], 3, True), _m9a(s3["etkilesim"]["ci90"], 3, True),
+         f"iki yonlu p {_m9p(s3['etkilesim']['p_iki'])}", "betimsel", "b4.ikincil.S3.etkilesim"],
+        ["S5, protokol katmani ornek disi sapma (puan)", sg(S["S5"]["ozet"]["ort"], 3, True), _m9a(S["S5"]["ozet"]["ci90"], 3, True),
+         f"n = {S['S5']['ozet']['n']}; cift sapmalari {uc(S['S5']['ozet']['degerler'], 3, True)}; egim, kesisim "
+         f"{', '.join(sg(float(x_), 3) for x_ in S['S5']['egim_kesisim'])}",
+         f"ort sapma bant icinde: {_m9e(S['S5']['ozet']['ongoru_ort_sapma_bant_icinde'])}; curutme (%90 bant disinda): "
+         f"{_m9e(S['S5']['ozet']['curutme_ci90_bant_disinda'])}", "b4.ikincil.S5.ozet; .egim_kesisim"],
+        [f"S6, ikincil panel ({', '.join(S['S6']['panel'])}): A^sigma_scr; I^sigma",
+         f"{sg(S['S6']['A_sigma_scr'], 3, True)}; {sg(S['S6']['I_sigma'], 3, True)}", "-", "-",
+         f"isaret ayni A: {_m9e(S['S6']['isaret_ayni_A'])}; I: {_m9e(S['S6']['isaret_ayni_I'])}", "b4.ikincil.S6"]]
+    s7 = S.get("S7")
+    if s7:
+        st.append([f"S7, Hodge (K = {s7['K']}): potansiyel payi", sg(s7["G_potansiyel_payi"], 3), "-",
+                   f"rastgele beklenti {sg(s7['G_rastgele_beklenti_2_bolu_K'], 3)}; dolasim RMS {sg(s7['dolasim_rms'], 3)}; "
+                   f"r RMS {sg(s7['r_rms'], 3)}", "betimsel", "b4.ikincil.S7"])
+    L.append("Ikincil cozumlemeler (kesifsel, coklu duzeltme yok):\n")
+    T(["Cozumleme", "Kestirim", "%90 aralik", "Ek bilgi", "Ongoru", "Anahtar"], st)
+    s4 = []
+    for c_ in S["S4"]:
+        t_ = c_["tam"]
+        s4.append([" / ".join(c_["cift"]), sg(t_["asimetri_puan"], 2, True), sg(t_["log_oran"], 3, True),
+                   sg(t_["log_w_potansiyel"], 3, True), sg(t_["r"], 3, True), sg(t_["log_tau"], 3, True),
+                   sg(t_["potansiyel_payi"], 3), sg(c_["potansiyel_payi_yari"], 3)])
+    L.append("S4, tohum indeksiyle eslesmis ciftler (betimsel; tam orneklem; potansiyel payi = log_w_potansiyel / log_oran, "
+             "log_oran sifira yakinken kararsizdir):\n")
+    T(["Cift (ResNet / ViT)", "Hedef-dogru asimetri (puan)", "log oran", "Potansiyel (w) bileseni", "Yonlu artik r", "log tau",
+       "Potansiyel payi", "Potansiyel payi (bolunmus yari)"], s4)
+
+
+_m9("M9.4 B4 duyarliliklar ve ikincil ongoruler (S1-S7)",
+    f"`{_M9_J4}` b4.duyarlilik.{{delta_<meta.delta_duyarlilik>, tam_log, yari_logit, yari_oran, welch, panel_jackknife, "
+    f"hiyerarsik_bootstrap}}; b4.ikincil.{{S1 (kestirim, ci90, df, welch.ci90, welch.df, tost_p), S2, S3, S4, S5, S6, S7}}", _m9_4)
+
+
+# --- M9.5 B2 aile F_B2 ---------------------------------------------------------------------
+def _m9_5():
+    J2 = _oku(_M9_J2)
+    b2 = J2["b2"]
+    F = b2["F_B2"]
+    ka, kb, kc, kr = F["K-a"], F["K-b"], F["K-c"], F["karar"]
+
+    def ong(ad):
+        return "; ".join(f"{kk.split(ad + '_ongoru_buyuklugu_tuttu')[1].strip()}: {_m9e(vv)}" for kk, vv in kr.items()
+                         if kk.startswith(ad + "_ongoru_buyuklugu_tuttu")) or "-"
+
+    satir = [
+        ["K-a, simetrik oran q_s = [sigma(R_s) - sigma(V_s)] / D_s", f"ort q {sg(ka['sinama']['ort'], 3)} (q_s: {uc(ka['q'], 3)})",
+         _m9a(ka["sinama"]["ci90"]), _m9a(ka["sinama"]["ci95"]), _m9p(F["p_ham"][0]), _m9p(F["p_holm"][0]), kr["K-a"], ong("K-a")],
+        ["K-b, ViT yonlu terimi rho(V-scr)", f"ort rho {sg(kb['ort'], 3, True)} (tohumlar: {uc(kb['degerler'], 3, True)})",
+         _m9a(kb["ci90"], 3, True), _m9a(kb["ci95"], 3, True), f"TOST {_m9p(F['p_ham'][1])}", _m9p(F["p_holm"][1]), kr["K-b"],
+         f"ham %90 aralik +-delta icinde: {_m9e(kr['K-b_ham_ci90_delta_icinde'])}"],
+        ["K-c, tur ici benzerlik Delta_w", f"Delta_w {sg(kc['Delta_w'], 3, True)}", f"bootstrap {_m9a(kc['bootstrap']['ci90'], 3, True)}",
+         f"bootstrap {_m9a(kc['bootstrap']['ci95'], 3, True)}", _m9p(F["p_ham"][2]), _m9p(F["p_holm"][2]), kr["K-c"], ong("K-c")]]
+    T(["Sinama", "Gozlenen", "%90 aralik", "%95 aralik", "Ham p", "Holm p", "Karar", "Ongorulen buyukluk"], satir)
+    hk = holm(F["p_ham"])
+    L.append(f"F_B2.not: '{F.get('not', 'bulunamadi')}'. TOST siniri delta = {J2['meta']['delta']}; Holm alfa = {J2['meta']['alfa']}. "
+             f"Holm denetimi (holm() ile p_ham'dan): en buyuk mutlak fark {float(np.max(np.abs(hk - np.asarray(F['p_holm'])))):.2e}. "
+             f"Hesaplanamayip p = 1 sayilan: {', '.join(F['p_1_sayilan_hesaplanamayan']) or 'yok'}.\n")
+    L.append(f"K-a ayrintisi: D_s {uc(ka['D'], 3)}; simetrik pay {uc(ka['simetrik_pay'], 3)}; yonlu pay {uc(ka['yonlu_pay'], 3)}; "
+             f"payda kurali tetiklenen tohum: {', '.join(str(x_) for x_ in ka['payda_kucuk_tohumlar']) or 'yok'}; "
+             f"ozdeslik artigi en buyuk {ka['ozdeslik_artik_max']:.1e}; ciftler: "
+             + "; ".join(" / ".join(c_) for c_ in ka["ciftler"]) + ".\n")
+    tr = b2.get("tur_ici_resnet_log_tau", {})
+    L.append(f"K-c ayrintisi: ViT tur ici log tau {uc(list(kc['log_tau_tur_ici'].values()), 3, True)} (ort "
+             f"{sg(float(np.mean(list(kc['log_tau_tur_ici'].values()))), 3, True)}); sigma_V {uc(list(kc['sigma_V'].values()), 3, True)}; "
+             f"bootstrap B = {kc['bootstrap']['B']}, yeniden cekilen tek tohumlu ornek {kc['bootstrap']['yeniden_cekilen_tek_tohumlu_ornek']}; "
+             f"ResNet tur ici log tau {uc(list(tr.values()), 3, True) if tr else 'bulunamadi'}"
+             f"{(' (ort ' + sg(float(np.mean(list(tr.values()))), 3, True) + ')') if tr else ''}.\n")
+    D = b2["duyarlilik"]
+    dk = f"duyarlilik_delta_{J2['meta']['delta_duyarlilik']}"
+    dd = F[dk]
+    jk = D["panel_jackknife"]
+    ds = [
+        [f"delta = {dd['delta']}", f"Holm p {', '.join(_m9p(x_) for x_ in dd['p_holm'])}",
+         f"K-a {dd['karar']['K-a']}; K-b {dd['karar']['K-b']}; K-c {dd['karar']['K-c']}", f"b2.F_B2.{dk}"],
+        ["Tam orneklem, log", f"ort q {sg(D['tam_log']['q_ort'], 3)}",
+         f"ort rho(V-scr) {sg(D['tam_log']['rho_V']['ort'], 3, True)}, %90 {_m9a(D['tam_log']['rho_V']['ci90'], 3, True)}",
+         "b2.duyarlilik.tam_log"],
+        ["Yari logit", f"ort q {sg(D['yari_logit']['q_ort'], 3)} (q_s: {uc(D['yari_logit']['q'], 3)})",
+         f"ort rho(V-scr) {sg(D['yari_logit']['rho_V']['ort'], 3, True)}, %90 {_m9a(D['yari_logit']['rho_V']['ci90'], 3, True)}, "
+         f"%95 {_m9a(D['yari_logit']['rho_V']['ci95'], 3, True)}", "b2.duyarlilik.yari_logit"],
+        ["Yari oran (rho puan)", f"ort q {sg(D['yari_oran']['q_ort'], 3)}",
+         f"ort rho(V-scr) {sg(D['yari_oran']['rho_V']['ort'], 2, True)} puan, %90 {_m9a(D['yari_oran']['rho_V']['ci90'], 2, True)}",
+         "b2.duyarlilik.yari_oran"],
+        ["Panel jackknife", "ort q " + _m9oran({m: v["q_ort"] for m, v in jk.items()}, 3, False),
+         "ort rho(V-scr) " + _m9oran({m: v["rho_V_ort"] for m, v in jk.items()}, 3), "b2.duyarlilik.panel_jackknife"],
+        [f"Ikincil panel ({', '.join(D['ikincil_panel']['panel'])})", f"q_s {uc(D['ikincil_panel']['q'], 3)}",
+         f"rho(V-scr) {uc(D['ikincil_panel']['rho_V'], 3, True)}", "b2.duyarlilik.ikincil_panel"]]
+    hb = _m9g(D, ["hiyerarsik_bootstrap"], "B2 K-a ve K-b hiyerarsik bootstrap duyarliligi (b2.duyarlilik.hiyerarsik_bootstrap)")
+    ds.append(["K-a ve K-b hiyerarsik bootstrap", "bulunamadi" if hb is None else str(hb),
+               "JSON'da anahtar yok; dondurulmus betik B2'de hiyerarsik bootstrap'i yalniz K-c birincil araligi olarak uretir"
+               if hb is None else "-", "b2.duyarlilik.hiyerarsik_bootstrap"])
+    L.append("Duyarliliklar (karar degistirmez):\n")
+    T(["Duyarlilik", "q", "rho(V-scr) ve diger", "Anahtar"], ds)
+
+
+_m9("M9.5 B2 aile F_B2 (K-a, K-b, K-c; Holm)",
+    f"`{_M9_J2}` b2.F_B2.K-a.{{q, sinama.ort, sinama.ci90, sinama.ci95, D, simetrik_pay, yonlu_pay, ozdeslik_artik_max, "
+    f"payda_kucuk_tohumlar}}; b2.F_B2.K-b.{{degerler, ort, ci90, ci95, tost_p}}; b2.F_B2.K-c.{{Delta_w, bootstrap, log_tau_tur_ici, "
+    f"sigma_V}}; b2.F_B2.{{p_ham, p_holm, karar, not, duyarlilik_delta_<meta.delta_duyarlilik>}}; b2.duyarlilik.{{tam_log, "
+    f"yari_logit, yari_oran, panel_jackknife, ikincil_panel}}; b2.tur_ici_resnet_log_tau; meta.{{delta, alfa}}", _m9_5)
+
+
+# --- M9.6 B5 saldiri tarafi ----------------------------------------------------------------
+def _m9_6():
+    J5 = _oku(_M9_J5)
+    b5 = J5["b5"]
+    ht = _oku(_M9_HT)["modeller"]
+    with open(os.path.join(ROOT, _M9_BETIK), encoding="utf-8") as fh:
+        src = fh.read()
+    m_es = _m8re.search(r"^B5_ESIK\s*=\s*([0-9.]+)", src, _m8re.M)
+    m_de = _m8re.search(r"^DELTA\s*=\s*([0-9.]+)", src, _m8re.M)
+    b5esik = float(m_es.group(1))
+    gp_kural = "if not (Gp > DELTA)" in src
+    esik = J5["meta"]["delta"]
+    if not gp_kural or abs(float(m_de.group(1)) - esik) > 1e-12:
+        raise ValueError("G_PGD esigi dondurulmus betikle JSON meta.delta arasinda dogrulanamadi")
+    B = b5["birincil_C1-R32_V-scr"]
+    bs = B["bootstrap"]
+    L.append(f"Tanim (b5.tanim): {b5['tanim']}\n")
+    L.append(f"Esikler: korunma orani esigi B5_ESIK = {b5esik} (`{_M9_BETIK}` satir {src[:m_es.start()].count(chr(10)) + 1}); "
+             f"G_PGD hesaplanabilirlik esigi = {esik} (J5 meta.delta; betikte `if not (Gp > DELTA)` kosulu, DELTA = "
+             f"{m_de.group(1)}, satir {src[:m_de.start()].count(chr(10)) + 1}). Izinli saldirilar: CNN {', '.join(b5['izinli']['CNN'])}; "
+             f"ViT {', '.join(b5['izinli']['ViT'])}.\n")
+    T(["Nicelik", "Deger", "Anahtar"], [
+        ["G_PGD (log birimi; 4 ondalik)", sg(B["G_PGD"], 4), "b5.birincil_C1-R32_V-scr.G_PGD"],
+        ["G_PGD bootstrap %90", _m9a(bs["G_PGD_ci90"], 3), ".bootstrap.G_PGD_ci90"],
+        ["G_best (capraz uydurmali secim; 4 ondalik)", sg(B["G_best"], 4), ".G_best"],
+        ["Secimin kapattigi acik G_PGD - G_best (turetilmis; 4 ondalik)", sg(B["G_PGD"] - B["G_best"], 4), ".G_PGD - .G_best"],
+        ["Korunma orani G_best / G_PGD", sg(B["oran"], 3), ".oran"],
+        ["Korunma orani %90", _m9a(bs["ci90"], 3), ".bootstrap.ci90"],
+        ["Korunma orani %95", _m9a(bs["ci95"], 3), ".bootstrap.ci95"],
+        ["Gecerli bootstrap kopyasi / B", f"{bs['gecerli']} / {bs['B']}", ".bootstrap.gecerli, .B"],
+        ["Karar", B["karar"], ".karar"],
+        ["Tam orneklem secim duyarliligi: oran", sg(B["duyarlilik_tam_orneklem_secim"]["oran"], 3),
+         ".duyarlilik_tam_orneklem_secim.oran"]])
+    bloklar = [("birincil_C1-R32_V-scr", B)] + list(b5["betimsel"].items())
+    satir, gor, vit_fark, n_vit, n_tgr = [], set(), {}, 0, 0
+    for bad, blk in bloklar:
+        for m, k_ in blk["kaynaklar"].items():
+            if m in gor:
+                continue
+            gor.add(m)
+            St = k_["S_tam"]
+            if "tgr" in St:
+                n_vit += 1
+                vit_fark.setdefault(ht[m]["hucre"], {})[m] = St["tgr"] - St["pgd"]
+            if "tgr" in k_["secilen_cift_tek"] or k_["secilen_tam_orneklem"] == "tgr":
+                n_tgr += 1
+            satir.append([m, ht[m]["hucre"], " / ".join(k_["secilen_cift_tek"]), k_["secilen_tam_orneklem"],
+                          sg(St["pgd"], 3), sg(St["mi"], 3), sg(St["tgr"], 3) if "tgr" in St else "-",
+                          sg(St["mi"] - St["pgd"], 3, True), sg(St["tgr"] - St["pgd"], 3, True) if "tgr" in St else "-"])
+    L.append("Kaynak bazinda secilen saldiri ve panel ortalamasi S_k (tam orneklem, log; farklar turetilmis):\n")
+    T(["Kaynak", "Hucre", "Secilen (cift / tek yari)", "Secilen (tam orneklem)", "S_PGD", "S_MI", "S_TGR", "S_MI - S_PGD",
+       "S_TGR - S_PGD"], satir)
+    L.append(f"TGR'nin en iyi saldiri secildigi kaynak sayisi: {n_tgr} / {n_vit} ViT kaynagi (TGR yalniz ViT kaynaklarinda izinli). "
+             + "; ".join(f"{h_} kaynaklarinda S_TGR - S_PGD araligi {mm(list(v_.values()), 3, True)} ({len(v_)} kaynak)"
+                         for h_, v_ in vit_fark.items()) + ".\n")
+    bt = []
+    for bad, blk in b5["betimsel"].items():
+        if blk["G_PGD"] > esik:
+            bt.append([bad, sg(blk["G_PGD"], 3), sg(blk["G_best"], 3), sg(blk["oran"], 3),
+                       sg(blk["duyarlilik_tam_orneklem_secim"]["oran"], 3), "betimsel"])
+        else:
+            bt.append([bad, sg(blk["G_PGD"], 3), "-", "-", "-",
+                       f"G_PGD <= J5 meta.delta ({esik}); on kayitli B5 hesaplanabilirlik kurali (`if not (Gp > DELTA)`) "
+                       f"birincil sinama icin tanimlidir, betimsel cifte uygulanmasi `{_M9_SR}` §7 m.4 kararidir; "
+                       f"JSON'daki G_best ve oran bu karar geregi foye alinmaz, oran yorumlanmaz"])
+    L.append("Betimsel hucre ciftleri (on kayit geregi karar yok):\n")
+    T(["Cift (ResNet hucresi _ ViT hucresi)", "G_PGD", "G_best", "Korunma orani", "Tam orneklem secim orani", "Not"], bt)
+    L.append(f"b5.not: '{b5.get('not', 'bulunamadi')}'.\n")
+
+
+_m9("M9.6 B5 saldiri tarafi (korunma orani)",
+    f"`{_M9_J5}` b5.tanim; b5.izinli; b5.birincil_C1-R32_V-scr.{{G_PGD, G_best, oran, bootstrap.{{ci90, ci95, G_PGD_ci90, gecerli, B}}, "
+    f"karar, duyarlilik_tam_orneklem_secim.oran, kaynaklar.<m>.{{S_tam, secilen_cift_tek, secilen_tam_orneklem}}}}; "
+    f"b5.betimsel.<cift>.{{G_PGD, G_best, oran, kaynaklar}}; meta.delta; `{_M9_BETIK}` B5_ESIK, DELTA (kaynak metninden); "
+    f"`{_M9_HT}` modeller.<m>.hucre", _m9_6)
+
+
+# --- M9.7 B6 maskeleme ---------------------------------------------------------------------
+def _m9_7():
+    m6 = _oku(_M9_M6)
+    J4 = _oku(_M9_J4)
+    with open(os.path.join(ROOT, _M9_AA), encoding="utf-8", newline="") as fh:
+        aa = {r_["model"]: r_ for r_ in _m9csv.DictReader(fh)}
+    satir, uy = [], 0
+    for m, v in m6["modeller"].items():
+        a_ = aa.get(m)
+        if a_ and abs(float(a_["robust_accuracy"]) - v["aa_dogruluk"]) < 1e-9 and \
+                abs(float(a_["clean_accuracy"]) - v["temiz_dogruluk_aa"]) < 1e-9:
+            uy += 1
+        satir.append([m, sg(v["temiz_dogruluk_aa"], 2), sg(v["temiz_dogruluk_matris"], 2), sg(v["pgd10_dogruluk"], 2),
+                      sg(v["aa_dogruluk"], 2), sg(v["fark_puan"], 2), _m9e(v["isaretli"]), v["temiz_maske_uyusmazligi"],
+                      v["aa_robust_pgd_yanilmis"]])
+    T(["Model", "Temiz (AA dosyasi)", "Temiz (B4 matrisi)", "PGD-10", "AutoAttack", "Fark (puan)", "Isaretli",
+       "Temiz maske uyusmazligi", "AA dogru, PGD-10 yanlis"], satir)
+    fk = {m: v["fark_puan"] for m, v in m6["modeller"].items()}
+    en = max(fk, key=fk.get)
+    mk = J4["b4"]["F_B4"]["maskeleme_kurali"]
+    L.append(f"Kural: test kumesinin ilk n = {m6['n']} goruntusunde PGD-10 ile AutoAttack farki esik_puan = {m6['esik_puan']} "
+             f"puani asan model isaretlenir (PGD kaynagi: {m6['pgd_kaynagi']}; AA kaynagi: {m6['aa_kaynagi']}). Isaretli model: "
+             f"{', '.join(m6['isaretli']) or 'yok'}; maskeleme_isaretli_arg: '{m6['maskeleme_isaretli_arg']}'; hatalar: "
+             f"{', '.join(m6['hatalar']) or 'yok'}. En buyuk fark {en} ({sg(fk[en], 2)} puan; esige uzaklik "
+             f"{sg(m6['esik_puan'] - fk[en], 2)} puan). Fark araligi {mm(list(fk.values()), 2)} puan.\n")
+    L.append(f"`{_M9_AA}` ile capraz denetim (clean_accuracy, robust_accuracy): {uy} / {len(m6['modeller'])} modelde uyusuyor. "
+             f"B4 maskeleme kurali: uygulanan bolge {mk['uygulanan_bolge']}; not: '{mk.get('not', '')}'.\n")
+
+
+_m9("M9.7 B6 AutoAttack ve maskeleme kurali",
+    f"`{_M9_M6}` n, esik_puan, pgd_kaynagi, aa_kaynagi, isaretli, maskeleme_isaretli_arg, hatalar, modeller.<m>.{{temiz_dogruluk_aa, "
+    f"temiz_dogruluk_matris, pgd10_dogruluk, aa_dogruluk, fark_puan, isaretli, temiz_maske_uyusmazligi, aa_robust_pgd_yanilmis}}; "
+    f"`{_M9_AA}` model, clean_accuracy, robust_accuracy; `{_M9_J4}` b4.F_B4.maskeleme_kurali", _m9_7)
+
+
+# --- M9.8 Butunluk -------------------------------------------------------------------------
+def _m9cak(veri):
+    """veri.cakismalar (J2, J4) ya da veri.<saldiri>.cakismalar (J5)."""
+    if "cakismalar" in veri:
+        return "VAR" if veri["cakismalar"] else "yok"
+    alt = {k_: v_["cakismalar"] for k_, v_ in veri.items() if isinstance(v_, dict) and "cakismalar" in v_}
+    if not alt:
+        return "bulunamadi"
+    return ", ".join(f"{k_} {'VAR' if v_ else 'yok'}" for k_, v_ in alt.items())
+
+
+def _m9_8():
+    J = {ad: _oku(rel) for ad, rel in (("J2", _M9_J2), ("J4", _M9_J4), ("J5", _M9_J5))}
+    with open(os.path.join(ROOT, _M9_OK), encoding="utf-8") as fh:
+        ok = fh.read()
+    eki = ok[ok.index("\n## Dondurma eki\n"):]
+    kay_a = dict((p_, h_) for h_, p_ in _m8re.findall(r"^([0-9a-f]{64})\s+(\S+)$", eki, _m8re.M))
+    m_b = _m8re.search(r"^\(b\)[^\n]*?`([0-9a-f]{64})`", eki, _m8re.M)
+    satir = []
+    for rel, alan in ((_M9_BETIK, "betik_sha256"), (_M9_HT, "hucre_tablosu_sha256")):
+        js = {ad: d["meta"][alan] for ad, d in J.items()}
+        hs = _m9sha(rel)
+        tek = len(set(js.values())) == 1
+        satir.append([f"`{rel}`", f"{list(js.values())[0]} (J2, J4, J5 meta.{alan}; uc JSON {'ayni' if tek else 'FARKLI'})",
+                      kay_a.get(rel, "bulunamadi"), hs,
+                      "UYUSUYOR" if tek and hs == list(js.values())[0] == kay_a.get(rel) else "UYUSMUYOR"])
+    hg = _m9sha(_M9_OK, govde=True)
+    kb = m_b.group(1) if m_b else None
+    if kb is None:
+        _M9_YOK.append("ON_KAYIT Dondurma eki (b) govde sha256 kaydi")
+    satir.append([f"`{_M9_OK}` govdesi (ilk satirdan '## Dondurma eki' basligina kadar)",
+                  "JSON'da kayitli degil; dosyadan hesaplandi", kb or "bulunamadi", hg, "UYUSUYOR" if hg == kb else "UYUSMUYOR"])
+    T(["Dosya", "JSON kaydi", "On kayit Dondurma eki kaydi", "Dosyadan hesaplanan (bu betik)", "Durum"], satir)
+    L.append("JSON uretim zamanlari: " + "; ".join(f"{ad} {d['meta']['uretildi_utc']}" for ad, d in J.items())
+             + f". numpy (JSON meta): {', '.join(sorted({d['meta']['numpy'] for d in J.values()}))}. Birincil panel eksik uyesi: "
+             + "; ".join(f"{ad} {', '.join(d['panel']['birincil_eksik']) or 'yok'}" for ad, d in J.items())
+             + ". Matris cakismasi: " + "; ".join(f"{ad} {_m9cak(d['veri'])}" for ad, d in J.items()) + ".\n")
+    # Eksikler satiri M9.9 (masa) da kosulduktan sonra doldurulur; yeri burada ayrilir.
+    _M9_YOK_YER.append(len(L))
+    L.append("")
+
+
+_m9("M9.8 Butunluk (dondurulmus betik, hucre tablosu, on kayit govdesi)",
+    f"`{_M9_J2}`, `{_M9_J4}`, `{_M9_J5}` meta.{{betik_sha256, hucre_tablosu_sha256, uretildi_utc, numpy}}, panel.birincil_eksik, "
+    f"veri.cakismalar; `{_M9_OK}` Dondurma eki (a) ve (b) (sha256 kayitlari, metinden); dosya sha256'lari bu betikte hashlib ile "
+    f"hesaplanir (`{_M9_BETIK}`, `{_M9_HT}`, `{_M9_OK}` govdesi)", _m9_8)
+
+
+# --- M9.9 Masa cozumlemeleri (SENTEZ ve konsey_masa) ----------------------------------------
+def _m9_9():
+    SN = _oku(_M9_SN)
+    MC = _oku(_M9_MC)
+    PY = _oku(_M9_P3Y)
+    PP = _oku(_M9_P3P)
+    J4 = _oku(_M9_J4)
+    L.append(f"On kayit oncesi masa cozumlemeleridir; yeni olcum yoktur ve sinama degildir (SENTEZ tanim: '{SN['tanim']}'; "
+             f"`{_M9_MC}` not: '{MC['not']}'). Betimsel olarak okunur.\n")
+
+    # (a) C1 cifti log asimetri ayrisimi
+    nic = (("asimetri_puan", "Hedef-dogru asimetri (puan)", 2, True), ("log_oran", "log oran", 3, True),
+           ("log_w_potansiyel", "Potansiyel (w) bileseni", 3, True), ("r", "Yonlu artik r", 3, True),
+           ("log_tau", "log tau", 3, True), ("potansiyel_payi", "Potansiyel payi", 3, False))
+    sat, gb = [], []
+    for kn, kv in SN["kumeler"].items():
+        for an, et, nd, pl in nic:
+            x = _m9g(kv, ["tam_orneklem", an], f"SENTEZ kumeler.{kn}.tam_orneklem.{an}")
+            if x is None:
+                sat.append([kn, et, "bulunamadi", "bulunamadi", "bulunamadi"])
+                continue
+            sat.append([kn, et, sg(x["ort"], nd, pl), sg(x["sd_kosum"], nd), uc(x["degerler"], nd, pl)])
+        g_ = kv.get("goruntu_bootstrap_pair1")
+        if g_:
+            gb.append(f"{kn} r SD {sg(g_['r_sd'], 3)}, log tau SD {sg(g_['log_tau_sd'], 3)} (B = {g_['B']})")
+    L.append("C1 ResNet-18 / ViT-Tiny ciftinin log asimetri ayrisimi (uc tohum cifti; ort ve kosum SD'si JSON'dan; "
+             "potansiyel payi = log_w_potansiyel / log_oran):\n")
+    T(["Kume", "Nicelik", "Ort", "SD (kosum)", "Cift degerleri"], sat)
+    L.append("Goruntu bootstrap SD'si, cift 1 (goruntu_bootstrap_pair1): " + ("; ".join(gb) if gb else "bulunamadi") + ".\n")
+
+    # (b) Havuz: ViT'nin panel kaynak acigi ve hedef farki
+    H = SN["havuz_tohum1"]
+    ka, hf = H["kaynak_acigi_ayristirma_log"], H["hedef_farki_ayristirma_log"]
+    on = "havuz_tohum1.kaynak_acigi_ayristirma_log"
+    hn = "havuz_tohum1.hedef_farki_ayristirma_log"
+    T(["Nicelik (tam orneklem, log)", "Deger", "Anahtar"], [
+        ["Kaynak acigi toplam", sg(ka["toplam"], 3, True), f"{on}.toplam"],
+        ["Kaynak acigi simetrik pay", sg(ka["simetrik_pay"], 3, True), f"{on}.simetrik_pay"],
+        ["Kaynak acigi yonlu pay", sg(ka["yonlu_pay"], 3, True), f"{on}.yonlu_pay"],
+        ["Kaynak acigi simetrik oran", sg(ka["simetrik_oran"], 3), f"{on}.simetrik_oran"],
+        ["Kaynak acigi kontrol artigi", f"{ka['kontrol_artik']:.1e}", f"{on}.kontrol_artik"],
+        ["Hedef farki toplam", sg(hf["toplam"], 3, True), f"{hn}.toplam"],
+        ["Hedef farki potansiyel pay", sg(hf["potansiyel_pay"], 3, True), f"{hn}.potansiyel_pay"],
+        ["Hedef farki simetrik pay", sg(hf["simetrik_pay"], 3, True), f"{hn}.simetrik_pay"],
+        ["Hedef farki yonlu pay", sg(hf["yonlu_pay"], 3, True), f"{hn}.yonlu_pay"],
+        ["Hedef farki kontrol artigi", f"{hf['kontrol_artik']:.1e}", f"{hn}.kontrol_artik"]])
+    L.append(f"Tanimlar (SENTEZ): kaynak acigi '{ka['tanim']}'; hedef farki '{hf['tanim']}'. Panel: "
+             f"{', '.join(H['ViT_Tiny_AT']['panel'])} (havuz_tohum1.ViT_Tiny_AT.panel).\n")
+    vt = MC["1_havuz_model_tablosu"]
+    jka = vt.get("jackknife_aralik", {})
+    ks = []
+    for m, v in vt["modeller"].items():
+        if "kaynak_acigi_R_eksi_m_yari_log" not in v:
+            continue
+        parca = [f"{ol} {sg(v['kaynak_acigi_R_eksi_m_' + ol]['simetrik_oran'], 3)}"
+                 for ol in ("yari_log", "tam_log", "yari_logit") if "kaynak_acigi_R_eksi_m_" + ol in v]
+        j_ = jka.get(m, {}).get("simetrik_oran")
+        ks.append(f"{m}: " + ", ".join(parca) + (f"; panel uyesi birakmali jackknife araligi (yari_log) {_m9a(j_, 3)}"
+                                                    if j_ else ""))
+    L.append(f"Ayni ayrisimin `{_M9_MC}` karsiligi, ResNet-18 AT (R) ile her model (m) arasindaki panel kaynak aciginin "
+             f"simetrik orani (1_havuz_model_tablosu.modeller.<m>.kaynak_acigi_R_eksi_m_<olcek>.simetrik_oran; "
+             f"jackknife_aralik.<m>.simetrik_oran; panel uyeleri icin panel kendisi haric): "
+             + ("; ".join(ks) if ks else "bulunamadi") + ".\n")
+
+    # (c) tab:external_pool icin sigma ve rho
+    with open(os.path.join(ROOT, MC["betik"]), encoding="utf-8") as fh:
+        mc_src = fh.read()
+    hv = PP["havuz_cifar10"]
+    ayni_veri = hv["klasor"] in mc_src
+    MT4 = J4["b4"]["model_tablosu"]
+    sat = []
+    for m, v in vt["modeller"].items():
+        b_ = MT4.get(m)
+        sat.append([m, sg(v["yari_log"]["sigma"], 3, True), sg(v["yari_log"]["rho"], 3, True), v["yari_log"]["panel_n"],
+                    sg(v["tam_log"]["sigma"], 3, True), sg(v["tam_log"]["rho"], 3, True),
+                    sg(b_["yari_log"]["sigma"], 3, True) if b_ else "B4'te yok",
+                    sg(b_["yari_log"]["rho"], 3, True) if b_ else "B4'te yok", b_["yari_log"]["panel_n"] if b_ else "-"])
+    L.append(f"Havuz modellerinde sigma ve rho (`tab:external_pool` icin). 'Masa' sutunlari `{_M9_MC}` "
+             f"1_havuz_model_tablosu.modeller.<m>.{{yari_log, tam_log}} alanindan, panel {len(vt['panel'])} CNN: "
+             f"{', '.join(vt['panel'])} (1_havuz_model_tablosu.panel). 'B4' sutunlari `{_M9_J4}` b4.model_tablosu.<m>.yari_log "
+             f"alanindan, panel {len(J4['panel']['birincil'])} uyeli birincil panel: {', '.join(J4['panel']['birincil'])} "
+             f"(panel.birincil). panel_n, panel uyesinin kendisi haric hesaba giren panel modeli sayisidir.\n")
+    T(["Model", "Masa sigma (yari, log)", "Masa rho (yari, log)", "Masa panel_n", "Masa sigma (tam, log)", "Masa rho (tam, log)",
+       "B4 sigma (yari, log)", "B4 rho (yari, log)", "B4 panel_n"], sat)
+    es = []
+    for sm, sv in H.items():
+        if not (isinstance(sv, dict) and "log_tau_ort" in sv and "r_ort" in sv):
+            continue
+        b_ = [m for m, v in vt["modeller"].items() if abs(v["tam_log"]["sigma"] - sv["log_tau_ort"]) < 1e-9
+              and abs(v["tam_log"]["rho"] - sv["r_ort"]) < 1e-9]
+        es.append(f"{sm} = {b_[0]}" if len(b_) == 1 else f"{sm} ESLESMEDI")
+    L.append(f"Kaynak secimi: `tab:external_pool` sekiz modellik havuz verisinden kuruludur (`{_M9_P3P}` havuz_cifar10.klasor = "
+             f"`{hv['klasor']}`, {len(hv['modeller'])} model: {', '.join(hv['modeller'])}). Masa sutunlari bu veriden hesaplanir "
+             f"(`{MC['betik']}` kaynak metninde `{hv['klasor']}`: {'VAR' if ayni_veri else 'YOK'}); B4 sutunlari ayni modellerin "
+             f"B4 matrisindeki (`{_M9_TM}`) ve farkli paneldeki degeridir. Bu foyde `tab:external_pool` icin secilen kaynak masa "
+             f"sutunlaridir (ayni veri, {len(vt['panel'])} CNN'lik panel); B4 sutunlari yalniz karsilastirma icindir. Masa model tablosu {len(vt['modeller'])} model kapsar; havuzun kalan "
+             f"{len(hv['modeller']) - len(vt['modeller'])} uyesi icin bu dosyada sigma ve rho yoktur. SENTEZ havuz_tohum1 "
+             f"log_tau_ort ve r_ort degerleri masa tam_log sigma ve rho ile 1e-9 icinde ayni: " + ("; ".join(es) if es else
+                                                                                                    "bulunamadi") + ".\n")
+
+    # (d) Yorunge sonucu (carpimsal yasa, A kolu) ve havuz karsiligi
+    A = PY["A_kolu"]
+    sat = [["Yorunge noktalari (A_kolu), birlesik", A["n"], sg(A["R2_lambda_1"], 3), sg(A["lambda_kesisimsiz"], 3),
+            f"{sg(A['egim_kesisimli'], 3)}, {sg(A['kesisim'], 3, True)}", sg(A["pearson_r"], 3), A["isaret"]]]
+    for vn, vv in A.get("veri_ayrimi", {}).items():
+        sat.append([f"A_kolu.veri_ayrimi.{vn}", vv["n"], "-", "-", f"{sg(vv['egim'], 3)}, {sg(vv['kesisim'], 3, True)}",
+                    sg(vv["pearson_r"], 3), vv["isaret"]])
+    h7 = PY["havuz_AT7"]
+    sat.append([f"havuz_AT7 ({len(h7['modeller'])} AT modeli; R2 lambda uydurmali: {sg(h7['R2_lambda_uydurma'], 3)})", "-",
+                sg(h7["R2_lambda_1_sabit"], 3), sg(h7["lambda"], 3), "-", "-", h7["isaret"]])
+    L.append("Carpimsal yasa masasi (log oran ile log w orani; lambda = 1 sabit R2, kesisimsiz lambda, kesisimli egim ve kesisim):\n")
+    T(["Kume", "n", "R2 (lambda = 1)", "Kesisimsiz lambda", "Kesisimli egim, kesisim", "Pearson r", "Isaret uyumu"], sat)
+
+    # (e) Onerme 3, h olcegi ayar testi (havuz)
+    at = hv["ayar_testi"]
+    L.append(f"Onerme 3 ayar testi, havuz (`{_M9_P3P}` havuz_cifar10.ayar_testi; n = {hv['n']}, B = {hv['B']}): en buyuk |g| "
+             f"{sg(at['g_mutlak_en_buyuk'], 4)}, ortalama |g| {sg(at['g_mutlak_ortalama'], 4)} (4 ondalik), en kucuk p "
+             f"{sg(at['p_en_kucuk'], 3)}.\n")
+    alan = (("kaynak_alfa_raw_eksi_tc_bolu_tc_alfa_SD", "Ham - tc kaynak etkisi / tc kaynak SD"),
+            ("kaynak_alfa_raw_eksi_tc_en_buyuk_mutlak", "Ham - tc kaynak etkisi, en buyuk mutlak (olcek birimi)"),
+            ("hedef_beta_raw_eksi_tc_ile_tau_korelasyonu", "Ham - tc hedef etkisi ile tau korelasyonu"),
+            ("dolasim_raw_eksi_tc_rms_bolu_dolasim_tc_rms", "Ham - tc dolasim RMS / tc dolasim RMS"),
+            ("kaynak_alfa_bc_eksi_tc_bolu_tc_alfa_SD", "bc - tc kaynak etkisi / tc kaynak SD"),
+            ("dolasim_bc_eksi_tc_rms_bolu_dolasim_tc_rms", "bc - tc dolasim RMS / tc dolasim RMS"))
+    olc = [o_ for o_ in ("oran", "logit", "h") if o_ in at]
+    T(["Nicelik"] + olc + ["Anahtar"],
+      [[et] + [sg(at[o_][an], 3) for o_ in olc] + [f"havuz_cifar10.ayar_testi.<olcek>.{an}"] for an, et in alan])
+
+    # (f) ImageNet top-1 (yontem bolumu icin)
+    t1 = _m9g(_oku(_M9_HT), ["imagenet_top1"],
+              f"Iki ImageNet baslatma kontrol noktasinin ImageNet top-1 degeri (ON_KAYIT Dondurma eki (i) m.9; `{_M9_SR}` "
+              f"§7 m.6; `{_M9_HT}` imagenet_top1 alani yok)")
+    L.append(f"ImageNet baslatma kontrol noktalarinin ImageNet top-1 degeri: {'bulunamadi' if t1 is None else t1}.\n")
+
+
+_m9("M9.9 Masa cozumlemeleri (SENTEZ ve konsey_masa)",
+    f"`{_M9_SN}` tanim, kumeler.<kume>.{{tam_orneklem.<nicelik>.{{ort, sd_kosum, degerler}}, goruntu_bootstrap_pair1}}, "
+    f"havuz_tohum1.{{kaynak_acigi_ayristirma_log, hedef_farki_ayristirma_log, <m>.{{panel, log_tau_ort, r_ort}}}}; "
+    f"`{_M9_MC}` betik, not, 1_havuz_model_tablosu.{{panel, modeller.<m>.{{yari_log, tam_log, kaynak_acigi_R_eksi_m_<olcek>}}, "
+    f"jackknife_aralik}}; `{_M9_J4}` panel.birincil, b4.model_tablosu.<m>.yari_log; `{_M9_P3Y}` A_kolu, havuz_AT7; "
+    f"`{_M9_P3P}` havuz_cifar10.{{klasor, modeller, n, B, ayar_testi}}; `{_M9_HT}` imagenet_top1 (yok)", _m9_9)
+
+for _i9 in _M9_YOK_YER:
+    L[_i9] = ("Bu bolumde (M9.1-M9.9) JSON'da bulunamayip 'bulunamadi' yazilan kalemler: "
+              + ("; ".join(_M9_YOK) if _M9_YOK else "yok") + ".\n")
+
+# <<< M9 SONU (konsey turu)
+
+# ===========================================================================
+# GENISLETME 2026-10-31 (M10, ek on kayit B8-B10): ek bloklarin sonuclari.
+# B9 (CIFAR-100 paneli; dondurulmus betigin --mod b2 cozumlemesi, baglayici),
+# B8 (ImageNetV2 paneli; betimsel, Holm yok) ve B10 (girdi gradyani kosinusu
+# ile log tau arasinda Mantel; aile F_B10). Her sayi JSON/log dosyalarindan
+# okunur; on kayit kayitlari (sha256) ek on kaydin Dondurma ekinden ve sapma
+# kaydindan regex ile okunur. Mevcut bolumlere dokunulmaz; karantina
+# yollarindan OKUNMAZ. Bolum M9'dan sonra, 'Sabit dizgeler'den once gelir.
+# ===========================================================================
+_M10_EK = "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md"
+_M10_SP = "results/q1_research/ONKAYIT_SAPMALAR.md"
+_M10_RG = "results/q1/ek_regresyon/gpu_n200"
+_M10_RGJ = ("karsilastirma_ozgun_catal.json", "karsilastirma_ozgun_onb_catal_onb.json")
+_M10_LG = "results/q1/ek_loglar"
+_M10_OD = "results/q1/konsey_b8_imagenetv2/denetim/onisleme_denetimi.json"
+_M10_MF = "results/q1/konsey_b8_imagenetv2/denetim/imagenetv2_manifest.json"
+_M10_B9 = "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json"
+_M10_B9S = "results/q1/konsey_b9_c100/b9_sarmalayici_b2.json"
+_M10_B9W = "results/q1/konsey_b9_c100/b9_sarmalayici_b2.json.sarmalayici.json"
+_M10_B9M = "results/q1/konsey_b9_c100/matris"
+_M10_B8D = "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json"
+_M10_B8B = "results/q1/konsey_b8_imagenetv2/b8_betimsel.json"
+_M10_B8M = "results/q1/konsey_b8_imagenetv2/matris"
+_M10_HT8 = "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json"
+_M10_HT9 = "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json"
+_M10_RB = "raporlar/konsey_2026-10-29/_ek_denetim/dis/rb/in_{}.json"
+_M10_G = "results/q1/konsey_b10_gradyan"
+_M10_GA = "results/q1/konsey_b10_gradyan/b10_aile.json"
+_M10_VK = ("cifar10", "cifar100", "imagenetv2")
+_M10_HTV = {"cifar10": _M9_HT, "cifar100": _M10_HT9, "imagenetv2": _M10_HT8}
+_M10_OZG = "experiments/c1_c3_transfer_matrix.py"
+_M10_YOK = []
+_M10_YOK_YER = []
+
+
+def _m10(ad, kaynak, fn):
+    L.append(f"\n### {ad}\n")
+    try:
+        fn()
+    except (KeyError, TypeError, IndexError, ValueError, OSError, ZeroDivisionError, AttributeError) as e_:
+        _hata(e_)
+    L.append(f"_Kaynak: {kaynak}_\n")
+
+
+def _m10g(d, yol, etiket):
+    """Anahtar yolunu izler; yoksa None doner ve kalemi M10 bulunamayanlar listesine yazar."""
+    x = d
+    for k_ in yol:
+        if isinstance(x, dict) and k_ in x:
+            x = x[k_]
+        else:
+            _M10_YOK.append(etiket)
+            return None
+    return x
+
+
+def _m10metin(rel):
+    with open(os.path.join(ROOT, rel), encoding="utf-8") as fh:
+        return fh.read()
+
+
+def _m10kayit(metin):
+    """Kod bloklarindaki '<sha256>  <yol>' satirlari: {yol: sha256}."""
+    return dict((p_, h_) for h_, p_ in _m8re.findall(r"^([0-9a-f]{64})\s+(\S+)$", metin, _m8re.M))
+
+
+def _m10ek():
+    """Ek on kaydin Dondurma eki: (a)-(c) kod bloklari ve (d) govde ozeti."""
+    ek = _m10metin(_M10_EK)
+    eki = ek[ek.index("\n## Dondurma eki\n"):]
+    m_d = _m8re.search(r"^\(d\)[^\n]*?`([0-9a-f]{64})`", eki, _m8re.M)
+    return _m10kayit(eki), (m_d.group(1) if m_d else None)
+
+
+def _m10sp_kod():
+    """Sapma kaydinin Ek B8-B10 'kod eki' basligi altindaki ozetler."""
+    sp = _m10metin(_M10_SP)
+    m_ = _m8re.search(r"^### [^\n]*kod eki[^\n]*\n(.*?)(?=^### |\Z)", sp, _m8re.M | _m8re.S)
+    return _m10kayit(m_.group(1)) if m_ else {}
+
+
+def _m10temiz(TM, m):
+    v_ = {r_["target_clean_acc"] for k_, r_ in TM["results"].items() if k_.split("->")[1] == m}
+    if len(v_) != 1:
+        raise ValueError(f"{m}: hedef temiz dogruluk kaynaklar arasinda tutarsiz {sorted(v_)}")
+    return v_.pop()
+
+
+def _m10ust(M):
+    a = np.asarray(M, dtype=float)
+    i_, j_ = np.triu_indices(a.shape[0], 1)
+    return a[i_, j_]
+
+
+def _m10payda(ka, etiket, numara=None):
+    """payda_kucuk_tohumlar 0 tabanli indeks listesidir (dondurulmus betik: enumerate(ka['D'])); cift numarasina cevrilir."""
+    out = []
+    for i_ in ka["payda_kucuk_tohumlar"]:
+        no_ = numara(i_) if numara else i_ + 1
+        out.append(f"{etiket} {no_} ({' / '.join(ka['ciftler'][i_])}, D = {ka['D'][i_]:.4f}; JSON indeksi {i_})")
+    return "; ".join(out) or "yok"
+
+
+def _m10duy(D):
+    """b2.duyarlilik alanlarinin tablo satirlari (B9 ve B8 icin ayni kalip)."""
+    jk = D["panel_jackknife"]
+
+    def rh(r_, nd, ek=""):
+        return (f"ort rho(V-scr) {sg(r_['ort'], nd, True)}{ek}, %90 {_m9a(r_['ci90'], nd, True)}, "
+                f"%95 {_m9a(r_['ci95'], nd, True)}")
+    return [["Tam orneklem, log", f"ort q {sg(D['tam_log']['q_ort'], 3)}", rh(D['tam_log']['rho_V'], 3),
+             "b2.duyarlilik.tam_log"],
+            ["Yari logit", f"ort q {sg(D['yari_logit']['q_ort'], 3)} (q_s: {uc(D['yari_logit']['q'], 3)})",
+             rh(D['yari_logit']['rho_V'], 3), "b2.duyarlilik.yari_logit"],
+            ["Yari oran (rho puan)", f"ort q {sg(D['yari_oran']['q_ort'], 3)}", rh(D['yari_oran']['rho_V'], 2, " puan"),
+             "b2.duyarlilik.yari_oran"],
+            ["Panel jackknife", "ort q " + _m9oran({m: v["q_ort"] for m, v in jk.items()}, 3, False),
+             "ort rho(V-scr) " + _m9oran({m: v["rho_V_ort"] for m, v in jk.items()}, 3), "b2.duyarlilik.panel_jackknife"],
+            [f"Ikincil panel ({', '.join(D['ikincil_panel']['panel'])})", f"q_s {uc(D['ikincil_panel']['q'], 3)}",
+             f"rho(V-scr) {uc(D['ikincil_panel']['rho_V'], 3, True)}", "b2.duyarlilik.ikincil_panel"]]
+
+
+def _m10kosegen(md, TM, ms):
+    """Kosegen npz denetimi: 100 - raw_fooling ile 100 * ort(~target_adv_wrong) farki ve temiz yanlis / saldiri altinda dogru
+    ornek sayisi; cond_fooling'in 2 ondalikla saklanip saklanmadigi (round(x, 2) == x) hucre sayimi."""
+    fk, ny = [], 0
+    for m in ms:
+        d_ = np.load(os.path.join(ROOT, md, f"per_sample_{m}_to_{m}.npz"))
+        aw, cc = d_["target_adv_wrong"].astype(bool), d_["target_clean_correct"].astype(bool)
+        fk.append(abs((100 - TM["results"][f"{m}->{m}"]["raw_fooling"]) - 100 * float((~aw).mean())))
+        ny += int((~cc & ~aw).sum())
+    cf = [r_["cond_fooling"] for r_ in TM["results"].values()]
+    return max(fk), ny, sum(1 for x_ in cf if round(x_, 2) == x_), len(cf)
+
+
+sec("M10: Ek bloklar, CIFAR-100 paneli, ImageNetV2 paneli ve gradyan kosinusu (2026-10-31)",
+    f"{_M10_RG}/karsilastirma_*.json; {_M10_LG}/*.log, regresyon_gpu200.txt; {_M10_OD}; {_M10_MF}; {_M10_B9}; {_M10_B9W}; "
+    f"{_M10_B9M}/{{transfer_matrix.json, cells_meta.json}}; {_M10_HT9}; {_M10_B8D}; {_M10_B8B}; "
+    f"{_M10_B8M}/{{transfer_matrix.json, cells_meta.json}}; {_M10_HT8}; {_M10_RB.format('<model>')}; "
+    f"{_M10_G}/<veri>/kosinus_ozet.json; {_M10_G}/mantel_<veri>.json; {_M10_GA}; {_M9_J2} (yalniz CIFAR-10 karsilastirma sutunu); "
+    f"{_M10_EK} (yalniz Dondurma eki ve govde sha256); {_M10_SP} (yalniz Ek B8-B10 kayitlari)")
+L.append("Ek on kayitli B8, B9 ve B10 bloklarinin sonuclaridir. B9 baglayicidir (aile F_B9, Holm); B8 betimseldir (Holm yok, "
+         "baglayici karar yok); B10'un karar ailesi F_B10'dur (Holm). Asagidaki her alt bolum kendi artefaktindan okunur ve altinda "
+         "kaynak dosya ile anahtar yollari yazilidir. Yuvarlama M9 kuraliyla: log olcekli nicelikler, oranlar ve korelasyonlar 3 "
+         "ondalik, puanlar (yuzde) 2 ondalik, p degerleri bilimsel gosterim.\n")
+
+
+# --- M10.1 On kosullar ----------------------------------------------------------------------
+def _m10_1():
+    sat = []
+    for ad in _M10_RGJ:
+        k = _oku(f"{_M10_RG}/{ad}")
+        sat.append([f"`{ad}`", f"`{k['A']}` / `{k['B']}`", k["hucre_sayisi"], k["npz_sayisi"], len(k["json_farkli_hucreler"]),
+                    len(k["npz_farklari"]), len(k["ust_alan_farklari"]), _m9e(k["BIREBIR"])])
+    L.append(f"GPU catal regresyonu (ozgun matris betigi `{_M10_OZG}` ile catal betik; klasor adlari A / B sutununda):\n")
+    T(["Karsilastirma", "A / B", "Hucre sayisi", "npz sayisi", "JSON'u farkli hucre", "npz farki", "Ust alan farki", "BIREBIR"], sat)
+    lg = _m10metin(f"{_M10_LG}/regresyon_gpu200.txt")
+    ay = _m8re.findall(r"^ayni (\S+)$", lg, _m8re.M)
+    fk = _m8re.findall(r"^FARKLI (\S+)$", lg, _m8re.M)
+    rc = []
+    for g_ in ("ek_zincir_1.log", "ek_zincir_2.log"):
+        rc += [f"{a_} rc={b_}" for a_, b_ in _m8re.findall(r"^(.+?) rc=(\d+)\s*$", _m10metin(f"{_M10_LG}/{g_}"), _m8re.M)]
+    L.append(f"Onbellek dosyalarinin bayt karsilastirmasi (`{_M10_LG}/regresyon_gpu200.txt`, 'ayni'/'FARKLI' satirlari): "
+             f"{len(ay)} ayni, {len(fk)} FARKLI. Zincir gunluklerindeki adim donus kodlari (`{_M10_LG}/ek_zincir_{{1,2}}.log`): "
+             + "; ".join(dict.fromkeys(rc)) + ".\n")
+
+    OD = _oku(_M10_OD)
+    so = []
+    for m, v in OD["modeller"].items():
+        e_ = v["esik"]
+        so.append([m, v["model"], sg(v["temiz_dogruluk_ortak"], 2), sg(v["temiz_dogruluk_kendi"], 2), sg(v["fark_puan"], 2, True),
+                   sg(e_["mutlak_fark_puan"], 2), sg(e_["rb_temiz"], 2), sg(e_["esik_i"], 2), _m9e(e_["i_gecti"]),
+                   _m9e(e_["ii_gecti"]), _m9e(e_["isaretli_3_5"]), e_["karar"]])
+    L.append(f"B8 on isleme denetimi (n = {OD['n']} goruntu; ortak hat {OD['ortak_onisleme']}; temiz dogruluk %; varyant farki = "
+             f"ortak - kendi, puan; 'Esik (i)' kendi hat icin alt sinir, puan; RB temiz `esik.rb_temiz`):\n")
+    T(["Takma ad", "RobustBench adi", "Temiz, ortak hat", "Temiz, kendi hat", "Varyant farki", "Mutlak fark", "RB temiz",
+       "Esik (i)", "(i) gecti", "(ii) gecti", "isaretli_3_5", "Karar"], so)
+    mf = {m: v["esik"]["mutlak_fark_puan"] for m, v in OD["modeller"].items()}
+    km = max(mf, key=mf.get)
+    L.append(f"Model sayisi {len(OD['modeller'])}; `kalan` listesi: {', '.join(OD['kalan']) or 'bos'}; `isaretli` listesi: "
+             f"{', '.join(OD['isaretli']) or 'bos'}; karari 'gecti' disinda olan: "
+             f"{', '.join(m for m, v in OD['modeller'].items() if v['esik']['karar'] != 'gecti') or 'yok'}; en buyuk mutlak "
+             f"varyant farki {sg(mf[km], 2)} puan ({km}). Model ici normalizasyon katmani tasiyan model: "
+             f"{sum(1 for v in OD['normalizasyon'].values() if v['model_ici_normalizasyon_var'])}/{len(OD['normalizasyon'])}. "
+             f"Kural (JSON `not`): '{OD['not']}'\n")
+
+    MF = _oku(_M10_MF)
+    TM8 = _oku(f"{_M10_B8M}/transfer_matrix.json")
+    KO = _oku(f"{_M10_G}/imagenetv2/kosinus_ozet.json")
+    sp = _m10metin(_M10_SP)
+    m_l = _m8re.search(r"`([0-9a-f]{64})`[^`\n]{0,12}\(`" + _m8re.escape(_M10_MF) + r"`, `liste_sha256`", sp)
+    ls = MF["liste_sha256"]
+    kars = (("B8 matrisi (`transfer_matrix.json` manifest_liste_sha256)", TM8.get("manifest_liste_sha256")),
+            ("B10 ImageNetV2 kosinus ozeti (imagenetv2_liste_sha256)", KO.get("imagenetv2_liste_sha256")),
+            (f"sapma kaydi (`{_M10_SP}`)", m_l.group(1) if m_l else None))
+    L.append(f"ImageNetV2 orneklemi (`{_M10_MF}`): n = {MF['n']}; dosya listesi uzunlugu {len(MF['dosyalar'])}; tensor sekli "
+             f"{MF['tensor_sekli']}; on isleme {MF['onisleme']}; secim kurali '{MF['secim_kurali']}'; liste_sha256 {ls}. Ayni ozet: "
+             + "; ".join(f"{a_} {'AYNI' if b_ == ls else ('bulunamadi' if b_ is None else 'FARKLI (' + b_ + ')')}" for a_, b_ in kars)
+             + f". B8 matrisindeki manifest_n = {TM8['manifest_n']}.\n")
+
+    sm = []
+    for blok, md, js in (("B9", _M10_B9M, _M10_B9), ("B8", _M10_B8M, _M10_B8D)):
+        cm = _oku(f"{md}/cells_meta.json")
+        J = _oku(js)
+        npz = len(_m8glob.glob(os.path.join(ROOT, md, "per_sample_*.npz")))
+        sm.append([blok, cm["dataset"], f"{cm['attack']} {cm['norm']}", sg(cm["eps"] * 255, 2), sg(cm["alpha"] * 255, 2), cm["steps"],
+                   cm["seed"], cm["n_samples"], _m9e(cm["per_source_seed"]), cm.get("onisleme", "-"), J["veri"]["hucre_sayisi"], npz,
+                   len(J["veri"]["modeller"]), len(J["veri"]["cakismalar"]), len(J["veri"]["tablo_disi_modeller"]),
+                   _m9e(J["veri"]["tutarlilik"]["hedef_maskesi_tutarli"])])
+    L.append("Matris kosu ayarlari (`cells_meta.json`; eps ve alpha x 255 turetilmis) ve dondurulmus betigin veri denetimi (`veri`):\n")
+    T(["Blok", "Veri", "Saldiri", "eps x 255", "alpha x 255", "Adim", "Tohum", "n", "Kaynak basina tohum", "On isleme",
+       "JSON hucre sayisi", "Klasordeki per_sample npz", "Model sayisi", "Cakisma", "Tablo disi model", "Hedef maskesi tutarli"], sm)
+
+
+_m10("M10.1 On kosullar (catal regresyonu, B8 on isleme denetimi, ImageNetV2 orneklemi, matris ayarlari)",
+     f"`{_M10_RG}/karsilastirma_*.json` A, B, hucre_sayisi, npz_sayisi, json_farkli_hucreler, npz_farklari, ust_alan_farklari, BIREBIR; "
+     f"`{_M10_LG}/regresyon_gpu200.txt` (ayni/FARKLI satirlari); `{_M10_LG}/ek_zincir_{{1,2}}.log` (rc satirlari); `{_M10_OD}` n, "
+     f"ortak_onisleme, modeller.<m>.{{model, temiz_dogruluk_ortak, temiz_dogruluk_kendi, fark_puan, esik.{{karar, esik_i, i_gecti, "
+     f"mutlak_fark_puan, ii_gecti, isaretli_3_5, rb_temiz}}}}, kalan, isaretli, normalizasyon, not; `{_M10_MF}` n, dosyalar, "
+     f"tensor_sekli, onisleme, secim_kurali, liste_sha256; `{_M10_B8M}/transfer_matrix.json` manifest_liste_sha256, manifest_n; "
+     f"`{_M10_G}/imagenetv2/kosinus_ozet.json` imagenetv2_liste_sha256; `{_M10_SP}` (liste ozeti kaydi); `<matris>/cells_meta.json`; "
+     f"`{_M10_B9}`, `{_M10_B8D}` veri.{{hucre_sayisi, modeller, cakismalar, tablo_disi_modeller, tutarlilik}}", _m10_1)
+
+
+# --- M10.2 B9 aile F_B9 (F_B2'nin CIFAR-100 yinelemesi) ----------------------------------------
+def _m10_2():
+    J9, J2 = _oku(_M10_B9), _oku(_M9_J2)
+    F9, F2 = J9["b2"]["F_B2"], J2["b2"]["F_B2"]
+
+    def gz(F):
+        ka, kb, kc = F["K-a"], F["K-b"], F["K-c"]
+        return {"K-a": (f"ort q {sg(ka['sinama']['ort'], 3)} (q_s: {uc(ka['q'], 3)})", _m9a(ka["sinama"]["ci90"]),
+                        _m9a(ka["sinama"]["ci95"]), _m9p(F["p_ham"][0])),
+                "K-b": (f"ort rho {sg(kb['ort'], 3, True)} (tohumlar: {uc(kb['degerler'], 3, True)})", _m9a(kb["ci90"], 3, True),
+                        _m9a(kb["ci95"], 3, True), f"TOST {_m9p(F['p_ham'][1])}"),
+                "K-c": (f"Delta_w {sg(kc['Delta_w'], 3, True)}", f"bootstrap {_m9a(kc['bootstrap']['ci90'], 3, True)}",
+                        f"bootstrap {_m9a(kc['bootstrap']['ci95'], 3, True)}", _m9p(F["p_ham"][2]))}
+
+    g9, g2 = gz(F9), gz(F2)
+    tanim = {"K-a": "K-a, simetrik oran q_s", "K-b": "K-b, ViT yonlu terimi rho(V-scr)", "K-c": "K-c, tur ici benzerlik Delta_w"}
+    satir = []
+    for i_, k_ in enumerate(("K-a", "K-b", "K-c")):
+        satir.append([tanim[k_], g9[k_][0], g9[k_][1], g9[k_][2], g9[k_][3], _m9p(F9["p_holm"][i_]), F9["karar"][k_],
+                      g2[k_][0], g2[k_][1], _m9p(F2["p_holm"][i_]), F2["karar"][k_]])
+    L.append("CIFAR-100 (B9) ve karsilastirma icin CIFAR-10 (B2, M9.5 ile ayni kaynak):\n")
+    T(["Sinama", "CIFAR-100 gozlenen", "CIFAR-100 %90 aralik", "CIFAR-100 %95 aralik", "CIFAR-100 ham p", "CIFAR-100 Holm p",
+       "CIFAR-100 karar", "CIFAR-10 gozlenen", "CIFAR-10 %90 aralik", "CIFAR-10 Holm p", "CIFAR-10 karar"], satir)
+    hk = holm(F9["p_ham"])
+    kr = F9["karar"]
+    L.append(f"B9 karar ayrintilari (b2.F_B2.karar): " + "; ".join(f"{kk}: {_m9e(vv)}" for kk, vv in kr.items()
+                                                                     if kk not in ("K-a", "K-b", "K-c")) + ".\n")
+    kb = F9["K-b"]
+    L.append(f"B9 K-b TOST tek yonlu p'leri: alt {_m9p(kb['tost_p_alt'])}, ust {_m9p(kb['tost_p_ust'])} (tost_p = buyugu "
+             f"{_m9p(kb['tost_p'])}); sd {sg(kb['sd'], 3)}, df {kb['df']}. F_B2.not: '{F9.get('not', 'bulunamadi')}'. TOST siniri "
+             f"delta = {J9['meta']['delta']}; Holm alfa = {J9['meta']['alfa']}; bootstrap B = {J9['meta']['bootstrap_B']}, tohum "
+             f"{J9['meta']['bootstrap_tohum']}. Holm denetimi (holm() ile p_ham'dan): en buyuk mutlak fark "
+             f"{float(np.max(np.abs(hk - np.asarray(F9['p_holm'])))):.2e}. Hesaplanamayip p = 1 sayilan: "
+             f"{', '.join(str(x_) for x_ in F9['p_1_sayilan_hesaplanamayan']) or 'yok'}.\n")
+    dk = f"duyarlilik_delta_{J9['meta']['delta_duyarlilik']}"
+    dd = F9[dk]
+    L.append(f"delta = {dd['delta']} duyarliligi (b2.F_B2.{dk}): Holm p {', '.join(_m9p(x_) for x_ in dd['p_holm'])}; K-a "
+             f"{dd['karar']['K-a']}; K-b {dd['karar']['K-b']}; K-c {dd['karar']['K-c']}.\n")
+    ka, kc = F9["K-a"], F9["K-c"]
+    L.append(f"K-a ayrintisi: D_s {uc(ka['D'], 3)}; simetrik pay {uc(ka['simetrik_pay'], 3)}; yonlu pay {uc(ka['yonlu_pay'], 3)}; "
+             f"tek yonlu t p (p_tek_H0_q_le_0.5) {_m9p(ka.get('p_tek_H0_q_le_0.5'))}; payda kurali tetiklenen tohum cifti: "
+             f"{_m10payda(ka, 'tohum cifti')}; ozdeslik artigi en buyuk "
+             f"{ka['ozdeslik_artik_max']:.1e}; ciftler: " + "; ".join(" / ".join(c_) for c_ in ka["ciftler"]) + ".\n")
+    tr = J9["b2"].get("tur_ici_resnet_log_tau", {})
+    lt = list(kc["log_tau_tur_ici"].values())
+    L.append(f"K-c ayrintisi: ViT tur ici log tau {uc(lt, 3, True)} (ort {sg(float(np.mean(lt)), 3, True)}); sigma_V "
+             f"{uc(list(kc['sigma_V'].values()), 3, True)}; bootstrap B = {kc['bootstrap']['B']}, yeniden cekilen tek tohumlu ornek "
+             f"{kc['bootstrap']['yeniden_cekilen_tek_tohumlu_ornek']}; ResNet tur ici log tau "
+             f"{uc(list(tr.values()), 3, True) if tr else 'bulunamadi'}"
+             f"{(' (ort ' + sg(float(np.mean(list(tr.values()))), 3, True) + ')') if tr else ''}.\n")
+    ds = _m10duy(J9["b2"]["duyarlilik"])
+    L.append("B9 duyarliliklari ve kesifsel S9-1, S9-3 (karar degistirmez):\n")
+    T(["Duyarlilik", "q", "rho(V-scr) ve diger", "Anahtar"], ds)
+    W = _oku(_M10_B9W)
+    wm = W["meta"]
+    tz = W["temiz_dogruluk_yuzde"]
+    ayni_k = W["dondurulmus_ozet"]["karar"] == F9["karar"]
+    L.append(f"Sarmalayici yan bilgisi (`{_M10_B9W}`; mod {wm['mod']}; dondurulmus betik cagrisi "
+             f"`{' '.join(wm['dondurulmus_cagri_argv'])}`): dondurulmus_ozet.karar ile `{_M10_B9}` b2.F_B2.karar "
+             f"{'AYNI' if ayni_k else 'FARKLI'}; ozgun_matris_betigi_degismedi: {_m9e(wm['ozgun_matris_betigi_degismedi'])}. Temiz "
+             f"dogruluk (temiz_dogruluk_yuzde, %): " + "; ".join(f"{m} {sg(v, 2)}" for m, v in tz.items())
+             + f". Sarmalayicinin karistirici notu (JSON metni): '{W.get('karistirici_notu', 'bulunamadi')}'\n")
+
+
+_m10("M10.2 B9 aile F_B9: F_B2'nin CIFAR-100 yinelemesi (K-a, K-b, K-c; Holm)",
+     f"`{_M10_B9}` b2.F_B2.K-a.{{q, sinama.{{ort, ci90, ci95}}, D, simetrik_pay, yonlu_pay, p_tek_H0_q_le_0.5, ozdeslik_artik_max, "
+     f"payda_kucuk_tohumlar, ciftler}}; b2.F_B2.K-b.{{degerler, ort, sd, df, ci90, ci95, tost_p, tost_p_alt, tost_p_ust}}; "
+     f"b2.F_B2.K-c.{{Delta_w, bootstrap, log_tau_tur_ici, sigma_V}}; b2.F_B2.{{p_ham, p_holm, karar, not, p_1_sayilan_hesaplanamayan, "
+     f"duyarlilik_delta_<meta.delta_duyarlilik>}}; b2.duyarlilik.{{tam_log, yari_logit, yari_oran, panel_jackknife, ikincil_panel}}; "
+     f"b2.tur_ici_resnet_log_tau; meta.{{delta, alfa, bootstrap_B, bootstrap_tohum}}; `{_M9_J2}` b2.F_B2 (ayni anahtarlar, CIFAR-10 "
+     f"sutunlari); `{_M10_B9W}` meta.{{mod, dondurulmus_cagri_argv, ozgun_matris_betigi_degismedi}}, temiz_dogruluk_yuzde, "
+     f"karistirici_notu, dondurulmus_ozet.karar", _m10_2)
+
+
+# --- M10.3 B9 model tablosu --------------------------------------------------------------------
+def _m10_3():
+    J9 = _oku(_M10_B9)
+    TM = _oku(f"{_M10_B9M}/transfer_matrix.json")
+    tzw = _oku(_M10_B9W)["temiz_dogruluk_yuzde"]
+    HT = _oku(_M10_HT9)["modeller"]
+    MT = J9["b2"]["model_tablosu"]
+    sat, fw, ft = [], [], []
+    for m, h in HT.items():
+        d_ = TM["results"][f"{m}->{m}"]
+        tz = _m10temiz(TM, m)
+        yl, yo = MT[m]["yari_log"], MT[m]["yari_oran"]
+        fw.append(abs(d_["cond_fooling"] - yo["omega"]))
+        if m in tzw:
+            ft.append(abs(tzw[m] - tz))
+        sat.append([m, h["hucre"], h["aile"], "-" if h["tohum"] is None else h["tohum"], _m9e(h["birincil_panel"]),
+                    _m9e(h["ikincil_panel"]), sg(tz, 2), sg(d_["raw_fooling"], 2), sg(100 - d_["raw_fooling"], 2),
+                    sg(yo["omega"], 2), sg(yl["omega"], 3), sg(yl["sigma"], 3, True), sg(yl["rho"], 3, True), yl["panel_n"]])
+    L.append(f"CIFAR-100, {TM['n_samples']} test goruntusu (temiz ve PGD beyaz kutu `transfer_matrix.json` kosegeninden, %; "
+             f"PGD-{TM['steps']} gurbuz dogruluk turetilmis: 100 - raw_fooling, yani saldiri altinda dogru siniflanan ornek orani, "
+             f"temiz dogrulukla kosullanmamis; w = "
+             f"beyaz kutu hedef-dogru kirilganlik, model_tablosu.yari_oran.omega, %; omega = log w; sigma ve rho bolunmus yari, log "
+             f"olcek; hucre, aile ve panel atamasi `{_M10_HT9}`):\n")
+    T(["Model", "Hucre", "Aile", "Tohum", "Birincil panel", "Ikincil panel", "Temiz (%)", "PGD beyaz kutu ham yaniltma (%)",
+       f"PGD-{TM['steps']} gurbuz dogruluk (%) (turetilmis: 100 - raw_fooling)", "w (%)", "omega", "sigma", "rho", "panel_n"], sat)
+    hs = []
+    for h_, ms_ in J9["b2"]["hucreler"].items():
+        hs.append([h_, len(ms_), sg(float(np.mean([_m10temiz(TM, m) for m in ms_])), 2),
+                   sg(float(np.mean([MT[m]["yari_oran"]["omega"] for m in ms_])), 2),
+                   sg(float(np.mean([MT[m]["yari_log"]["sigma"] for m in ms_])), 3, True),
+                   sg(float(np.mean([MT[m]["yari_log"]["rho"] for m in ms_])), 3, True)])
+    L.append("Hucre ortalamalari (turetilmis, model degerlerinin aritmetik ortalamasi):\n")
+    T(["Hucre", "n", "Temiz ort (%)", "w ort (%)", "sigma ort", "rho ort"], hs)
+    kf, ky, kr, kn = _m10kosegen(_M10_B9M, TM, list(HT))
+    L.append(f"Denetimler: kosegen cond_fooling ile w arasindaki en buyuk mutlak fark {max(fw):.2e} puan (5e-03'ten kucuk: "
+             f"{_m9e(max(fw) < 5e-3)}; round(cond_fooling, 2) == cond_fooling olan hucre {kr}/{kn}); "
+             f"`transfer_matrix.json` temiz dogrulugu ile sarmalayici temiz_dogruluk_yuzde arasindaki en buyuk mutlak fark "
+             f"{max(ft):.2e} puan ({len(ft)} model); hucre tablosundaki model sayisi {len(HT)}, model_tablosu {len(MT)}; "
+             f"100 - raw_fooling ile kosegen npz'den 100 * ort(~target_adv_wrong) en buyuk mutlak fark {kf:.2e} puan; kosegen "
+             f"npz'lerde temiz yanlis olup saldiri altinda dogru siniflanan ornek sayisi (modeller toplami) {ky}.\n")
+
+
+_m10("M10.3 B9 model tablosu (CIFAR-100)",
+     f"`{_M10_B9M}/transfer_matrix.json` n_samples, steps, results.<m>-><m>.{{raw_fooling, cond_fooling}}, results.*-><m>.target_clean_acc, "
+     f"results.*.cond_fooling (denetim); `{_M10_B9M}/per_sample_<m>_to_<m>.npz` target_adv_wrong, target_clean_correct (denetim); "
+     f"`{_M10_B9}` b2.model_tablosu.<m>.{{yari_oran.omega, yari_log.{{omega, sigma, rho, panel_n}}}}, b2.hucreler; `{_M10_HT9}` "
+     f"modeller.<m>.{{hucre, aile, tohum, birincil_panel, ikincil_panel}}; `{_M10_B9W}` temiz_dogruluk_yuzde (denetim)", _m10_3)
+
+
+# --- M10.4 B8 ImageNetV2 paneli (betimsel) -------------------------------------------------------
+def _m10_4():
+    B = _oku(_M10_B8B)
+    D8 = _oku(_M10_B8D)
+    TM = _oku(f"{_M10_B8M}/transfer_matrix.json")
+    OD = _oku(_M10_OD)["modeller"]
+    HT = _oku(_M10_HT8)["modeller"]
+    MO = B["model_tablosu_ozet"]
+    MT = D8["b2"]["model_tablosu"]
+    cs = {}
+    for c_ in B["ciftler"]:
+        cs[c_["cnn"]] = (c_["cift"], c_["satir"])
+        cs[c_["donusturucu"]] = (c_["cift"], c_["satir"])
+    sat, ft, fw, frb, fs, hh = [], [], [], [], [], []
+    for m, h in HT.items():
+        mo = MO[m]
+        d_ = TM["results"][f"{m}->{m}"]
+        tz = _m10temiz(TM, m)
+        ft += [abs(tz - mo["temiz_dogruluk_yuzde"]), abs(TM["temiz_dogruluk"][m] - tz)]
+        fw.append(abs(d_["cond_fooling"] - mo["w_yuzde"]))
+        fs += [abs(mo["sigma"] - MT[m]["yari_log"]["sigma"]), abs(mo["rho"] - MT[m]["yari_log"]["rho"])]
+        if mo["hucre"] != h["hucre"]:
+            hh.append(m)
+        if m in cs:
+            st_ = f"cift {cs[m][0]}, {cs[m][1]} satiri"
+        elif h["hucre"] in ("panel", "ikincil_panel"):
+            st_ = h["hucre"]
+        else:
+            st_ = "ciftsiz (b8_betimsel ciftler disinda)"
+        rbad = OD[m]["model"] if m in OD else None
+        rb = load(_M10_RB.format(rbad)) if rbad else None
+        if rb is None:
+            _M10_YOK.append(f"{m} icin RobustBench model_info kopyasi ({_M10_RB.format(rbad)})")
+        else:
+            frb.append(abs(float(rb["clean_acc"]) - OD[m]["esik"]["rb_temiz"]))
+        if m in cs:
+            if h["tohum"] != cs[m][0]:
+                raise ValueError(f"{m}: hucre tablosu tohum alani {h['tohum']} ile b8_betimsel cift {cs[m][0]} uyusmuyor")
+            cn_ = cs[m][0]
+        elif h["tohum"] is None:
+            cn_ = "-"
+        else:
+            cn_ = f"- (tohum alani {h['tohum']}, ciftsiz)"
+        sat.append([m, rbad or "bulunamadi", h["hucre"], h["aile"], cn_, st_,
+                    sg(mo["temiz_dogruluk_yuzde"], 2), sg(d_["raw_fooling"], 2), sg(100 - d_["raw_fooling"], 2),
+                    sg(mo["w_yuzde"], 2), sg(mo["sigma"], 3, True),
+                    sg(mo["rho"], 3, True), mo["panel_n"],
+                    _m9s(float(rb["clean_acc"]), 2) if rb else "bulunamadi",
+                    _m9s(float(rb["autoattack_acc"]), 2) if rb else "bulunamadi"])
+    L.append(f"B8 betimseldir: Holm yok, baglayici karar yok (`{_M10_B8B}` etiket: '{B['etiket']}').\n")
+    L.append(f"ImageNetV2, {TM['n_samples']} goruntu, PGD-{TM['steps']} {TM['norm']} eps x 255 = {sg(TM['eps_255'], 2)} (temiz ortak "
+             f"hatta, `b8_betimsel.json` model_tablosu_ozet.temiz_dogruluk_yuzde; PGD beyaz kutu ham yaniltma `transfer_matrix.json` "
+             f"kosegeni; PGD-{TM['steps']} gurbuz dogruluk turetilmis: 100 - raw_fooling, yani saldiri altinda dogru siniflanan "
+             f"ornek orani, temiz dogrulukla kosullanmamis; "
+             f"w = model_tablosu_ozet.w_yuzde; sigma ve rho bolunmus yari, log; hucre ve aile `{_M10_HT8}`; cift numarasi "
+             f"`b8_betimsel.json` ciftler.<k>.cift (hucre tablosu tohum alaniyla esitligi denetlenir; ciftsiz modelde tohum alani "
+             f"parantez icinde), "
+             f"satir `b8_betimsel.json` ciftler.<k>.satir; RB sutunlari RobustBench model_info kopyalarinin clean_acc ve "
+             f"autoattack_acc alanlari, ortak hatta olculmemistir):\n")
+    T(["Takma ad", "RobustBench adi", "Hucre (kod yolu)", "Aile", "Cift no", "Satir", "Temiz (%)",
+       "PGD beyaz kutu ham yaniltma (%)", f"PGD-{TM['steps']} gurbuz dogruluk (%) (turetilmis: 100 - raw_fooling)", "w (%)",
+       "sigma", "rho", "panel_n", "RB bildirilen temiz (%)", "RB bildirilen AA (%)"], sat)
+    kf, ky, kr, kn = _m10kosegen(_M10_B8M, TM, list(HT))
+    L.append(f"Denetimler: temiz dogruluk (`transfer_matrix.json` hedef temiz, temiz_dogruluk alani ve b8_betimsel) en buyuk mutlak "
+             f"fark {max(ft):.2e} puan; kosegen cond_fooling ile w en buyuk mutlak fark {max(fw):.2e} puan (5e-03'ten kucuk: "
+             f"{_m9e(max(fw) < 5e-3)}; round(cond_fooling, 2) == cond_fooling olan hucre {kr}/{kn}); 100 - raw_fooling ile kosegen "
+             f"npz'den 100 * ort(~target_adv_wrong) en buyuk mutlak fark {kf:.2e} puan; kosegen npz'lerde temiz yanlis olup saldiri "
+             f"altinda dogru siniflanan ornek sayisi (modeller toplami) {ky}; b8_betimsel sigma ve rho "
+             f"ile `{_M10_B8D}` b2.model_tablosu.<m>.yari_log en buyuk mutlak fark {max(fs):.2e}; RB clean_acc ile on isleme "
+             f"denetimindeki esik.rb_temiz en buyuk mutlak fark {max(frb):.2e} puan ({len(frb)} model); hucre etiketi uyusmayan: "
+             f"{', '.join(hh) or 'yok'}.\n")
+
+    KA = D8["b2"]["F_B2"]["K-a"]
+    cf = []
+    for i_, c_ in enumerate(B["ciftler"]):
+        if list(KA["ciftler"][i_]) != [c_["cnn"], c_["donusturucu"]]:
+            raise ValueError(f"cift sirasi uyusmuyor: {KA['ciftler'][i_]} / {c_['cnn']}, {c_['donusturucu']}")
+        cf.append([c_["cift"], c_["cnn"], c_["donusturucu"], c_["satir"], sg(c_["A_sigma"], 3, True),
+                   _m9a(c_["goruntu_bootstrap_ci90"], 3, True), _m9a(c_["goruntu_bootstrap_ci95"], 3, True),
+                   sg(c_["A_sigma_logit"], 3, True), sg(c_["A_rho"], 3, True), sg(c_["A_omega_log_w"], 3, True),
+                   sg(KA["D"][i_], 4), sg(KA["simetrik_pay"][i_], 3), sg(KA["yonlu_pay"][i_], 3, True), sg(KA["q"][i_], 3), c_["durum"]])
+    L.append("Cift duzeyi (A = donusturucu - CNN; A^sigma bolunmus yari, log; aralik goruntu bootstrap'i; D, simetrik pay, yonlu pay "
+             "ve q dondurulmus betigin K-a alanlarindan, ayni cift sirasiyla; D_k yuvarlama kuralina istisna olarak 4 ondalik, "
+             f"payda kurali D_k <= {D8['meta']['delta']} (`{_M10_B8D}` meta.delta) ile karsilastirma icin):\n")
+    T(["Cift", "CNN", "Donusturucu", "Satir", "A^sigma", "%90 aralik", "%95 aralik", "A^sigma (logit)", "A^rho", "A^omega (log w)",
+       "D_k", "Simetrik pay", "Yonlu pay", "q_k", "Durum"], cf)
+    se = []
+    for an in ("A_sigma_IN", "A_sigma_scr_Liu"):
+        x = B[an]
+        gb = x["goruntu_bootstrap"]
+        se.append([f"{an} ({x['tanim']})", ", ".join(str(c_) for c_ in x["ciftler"]), uc(x["cift_degerleri"], 3, True),
+                   sg(x["kestirim"], 3, True), _m9a(gb["ci90"], 3, True), _m9a(gb["ci95"], 3, True), x["betimsel_etiket"],
+                   f"'{x['beklenti']}' (esik {x['beklenti_esigi']}; nokta esikte ya da altinda: "
+                   f"{_m9e(x['nokta_beklenti_esiginde_ya_da_altinda'])})"])
+    L.append(f"Satir kestirimleri (`{_M10_B8B}`; 'Beklenti' sutunu JSON'daki beklenti ve beklenti_esigi alanlaridir, kaynagi ek on "
+             f"kayit §5.6; betimsel etiket karar degildir):\n")
+    T(["Nicelik", "Ciftler", "Cift degerleri", "Kestirim", "%90 aralik", "%95 aralik", "Betimsel etiket", "Beklenti"], se)
+    ai = B["A_sigma_IN"]
+    L.append(f"A_sigma_IN iki cift farki {sg(ai['iki_cift_farki'], 3)}; not: '{ai.get('not', 'bulunamadi')}'. Goruntu bootstrap'i "
+             f"B = {ai['goruntu_bootstrap']['B']}, tohum {ai['goruntu_bootstrap']['tohum']} ('{ai['goruntu_bootstrap']['not']}').\n")
+    L.append("Donusturucu rho ve sigma, ayri ayri (donusturucu_rho_ayri_ayri): "
+             + "; ".join(f"{m} rho {sg(v['rho'], 3, True)}, sigma {sg(v['sigma'], 3, True)}"
+                         for m, v in B["donusturucu_rho_ayri_ayri"].items()) + ".\n")
+    F = D8["b2"]["F_B2"]
+    kb, kc = F["K-b"], F["K-c"]
+    lt8 = kc["log_tau_tur_ici"]
+    k8n, k8x = min(lt8, key=lt8.get), max(lt8, key=lt8.get)
+    L.append(f"Dondurulmus betigin B8 ciktisi (`{_M10_B8D}`; p degerleri, Holm ve etiketler B8'de karar DEGILDIR, yalniz betimsel): "
+             f"K-a ort q {sg(KA['sinama']['ort'], 3)}, %90 {_m9a(KA['sinama']['ci90'])}, payda kurali tetiklenen cift: "
+             f"{_m10payda(KA, 'cift', lambda i_: B['ciftler'][i_]['cift'])}; K-b {kb['n']} donusturucunun ort rho "
+             f"{sg(kb['ort'], 3, True)}, %90 {_m9a(kb['ci90'], 3, True)}, %95 {_m9a(kb['ci95'], 3, True)}, TOST p "
+             f"{_m9p(kb['tost_p'])}; K-c Delta_w "
+             f"{sg(kc['Delta_w'], 3, True)}, bootstrap %90 {_m9a(kc['bootstrap']['ci90'], 3, True)}, p {_m9p(kc['p_tek_H0_Delta_le_0'])}, "
+             f"donusturucu ciftleri arasi log tau (K-c.log_tau_tur_ici, {len(lt8)} cift) en kucuk {sg(lt8[k8n], 3, True)} ({k8n}), "
+             f"en buyuk {sg(lt8[k8x], 3, True)} ({k8x}); "
+             f"p_ham {', '.join('null (hesaplanamadi)' if x_ is None else _m9p(x_) for x_ in F['p_ham'])}; p_holm "
+             f"{', '.join(_m9p(x_) for x_ in F['p_holm'])}; hesaplanamayip p = 1 sayilan "
+             f"{', '.join(('indeks ' + str(x_) + ' (' + ('K-a', 'K-b', 'K-c')[x_] + ')') if isinstance(x_, int) else str(x_) for x_ in F['p_1_sayilan_hesaplanamayan']) or 'yok'}; betigin etiketleri K-a "
+             f"'{F['karar']['K-a']}', K-b '{F['karar']['K-b']}', K-c '{F['karar']['K-c']}'.\n")
+    hd = B["hodge_r_kesifsel"]
+    L.append(f"S8-2 Hodge (kesifsel, K = {hd['K']}): potansiyel payi {sg(hd['G_potansiyel_payi'], 3)}; rastgele beklenti 2/K "
+             f"{sg(hd['G_rastgele_beklenti_2_bolu_K'], 3)}; dolasim RMS {sg(hd['dolasim_rms'], 3)}; r RMS {sg(hd['r_rms'], 3)}.\n")
+    L.append(f"B8 duyarliliklari (`{_M10_B8D}` b2.duyarlilik; ek on kayit §5.7 S8-3; betimsel, karar yok; rho(V-scr) V-scr "
+             f"hucresindeki {kb['n']} donusturucu uzerinden):\n")
+    T(["Duyarlilik", "q", "rho(V-scr) ve diger", "Anahtar"], _m10duy(D8["b2"]["duyarlilik"]))
+    dk = f"duyarlilik_delta_{D8['meta']['delta_duyarlilik']}"
+    dd = F[dk]
+    L.append(f"delta = {dd['delta']} duyarliligi (b2.F_B2.{dk}; betimsel): Holm p {', '.join(_m9p(x_) for x_ in dd['p_holm'])}; "
+             f"betigin etiketleri K-a '{dd['karar']['K-a']}', K-b '{dd['karar']['K-b']}', K-c '{dd['karar']['K-c']}'.\n")
+
+
+_m10("M10.4 B8 ImageNetV2 paneli (betimsel; model tablosu ve ozet olculer)",
+     f"`{_M10_B8B}` etiket, model_tablosu_ozet.<m>.{{temiz_dogruluk_yuzde, w_yuzde, sigma, rho, panel_n, hucre}}, ciftler.<k>.{{cift, cnn, "
+     f"donusturucu, satir, A_sigma, A_sigma_logit, A_rho, A_omega_log_w, goruntu_bootstrap_ci90, goruntu_bootstrap_ci95, durum}}, "
+     f"A_sigma_IN, A_sigma_scr_Liu (tanim, beklenti, ciftler, cift_degerleri, kestirim, goruntu_bootstrap, beklenti_esigi, "
+     f"betimsel_etiket, nokta_beklenti_esiginde_ya_da_altinda, iki_cift_farki, not), donusturucu_rho_ayri_ayri, hodge_r_kesifsel; "
+     f"`{_M10_B8D}` b2.F_B2.{{K-a.{{D, ciftler, payda_kucuk_tohumlar (0 tabanli indeks)}}, K-b.{{ci90, ci95}}, K-c.log_tau_tur_ici, "
+     f"p_ham, p_holm, karar, p_1_sayilan_hesaplanamayan, duyarlilik_delta_<meta.delta_duyarlilik>}}, b2.duyarlilik.{{tam_log, "
+     f"yari_logit, yari_oran, panel_jackknife, ikincil_panel}}, b2.model_tablosu.<m>.yari_log, meta.{{delta, delta_duyarlilik}}; "
+     f"`{_M10_B8M}/transfer_matrix.json` n_samples, steps, norm, eps_255, temiz_dogruluk, results; "
+     f"`{_M10_B8M}/per_sample_<m>_to_<m>.npz` target_adv_wrong, target_clean_correct (denetim); `{_M10_HT8}` modeller.<m>.{{hucre, "
+     f"aile, tohum}}; `{_M10_OD}` modeller.<m>.{{model, esik.rb_temiz}}; `{_M10_RB.format('<RobustBench adi>')}` clean_acc, "
+     f"autoattack_acc", _m10_4)
+
+
+# --- M10.5 B10 Mantel ve c_ij --------------------------------------------------------------------
+def _m10_5():
+    A = _oku(_M10_GA)
+    M = {vk: _oku(f"{_M10_G}/mantel_{vk}.json") for vk in _M10_VK}
+    sat, tb = [], []
+    for vk in _M10_VK:
+        for sn in ("ham", "ana_etki_artik"):
+            s_ = M[vk]["sinamalar"][sn]
+            pt_ = 1 / (s_["perm"] + 1)
+            tb.append(s_["p_tek"] == pt_)
+            sat.append([vk, sn, s_["K"], s_["cift_sayisi"], sg(s_["istatistik"], 3, True), _m9p(s_["p_tek"]), _m9p(s_["p_iki"]),
+                        s_["perm"], _m9p(pt_), s_["tohum"], f"{sg(s_['perm_ort'], 3, True)} / {sg(s_['perm_sd'], 3)}",
+                        M[vk]["c_turu"], ", ".join(M[vk]["dislanan"]) or "yok"])
+    L.append("Mantel sinamalari (Spearman r, c_ij ile log tau; 'ham' ve model ana etkileri cikarilmis 'ana_etki_artik'; tek yonlu "
+             "p birincil; 'p tabani' turetilmis, 1/(perm+1), permutasyon sinamasinin ulasabilecegi en kucuk p):\n")
+    T(["Veri kumesi", "Sinama", "K (model)", "Cift sayisi", "r", "Tek yonlu p", "Iki yonlu p", "Permutasyon",
+       "p tabani 1/(perm+1) (turetilmis)", "Tohum", "Permutasyon ort / SD", "c turu", "Dislanan model"], sat)
+    L.append(f"Tek yonlu p'si p tabanina esit olan sinama: {sum(tb)}/{len(tb)}.\n")
+    FB = A["F_B10"]
+    fs, dz = [], []
+    for s_ in FB["sinamalar"]:
+        vk = s_["sinama"].split("-", 1)[1]
+        sn = "ana_etki_artik" if s_["sinama"].startswith("H10k") else "ham"
+        dz.append(abs(s_["istatistik"] - M[vk]["sinamalar"][sn]["istatistik"]))
+        fs.append([s_["sinama"], sg(s_["istatistik"], 3, True), _m9p(s_["p_tek_ham"]), _m9p(s_["p_holm"]), s_["perm"],
+                   sg(s_["ongorulen_buyukluk"], 3), _m9e(s_["ongorulen_buyukluk_tuttu"]), s_["karar"]])
+    L.append(f"Aile F_B10 (`{_M10_GA}`; aile buyuklugu {FB['aile_buyuklugu']}, Holm):\n")
+    T(["Sinama", "Istatistik", "Ham p", "Holm p", "Permutasyon", "Ongorulen buyukluk", "Buyukluk tuttu", "Karar"], fs)
+    hk = holm([s_["p_tek_ham"] for s_ in FB["sinamalar"]])
+    L.append(f"Karar kurali (JSON): '{FB['kural']}'. Hesaplanamayip p = 1 sayilan: {', '.join(FB['p_1_sayilan']) or 'yok'}. Holm "
+             f"denetimi (holm() ile p_tek_ham'dan): en buyuk mutlak fark "
+             f"{float(np.max(np.abs(hk - np.asarray([s_['p_holm'] for s_ in FB['sinamalar']])))):.2e}. F_B10 istatistikleri ile "
+             f"mantel_<veri>.json sinamalar.{{ham, ana_etki_artik}}.istatistik en buyuk mutlak fark {max(dz):.2e}. Mantel notu "
+             f"(JSON): '{M[_M10_VK[0]]['not']}'\n")
+    ks, dk = [], []
+    for an in ("kismi_omega", "kismi_omega_gradnorm"):
+        for vk in _M10_VK:
+            s_ = A[f"kesifsel_{an}"][vk]
+            dk.append(abs(s_["istatistik"] - M[vk]["sinamalar"][an]["istatistik"]))
+            ks.append([an, vk, s_["K"], s_["cift_sayisi"], sg(s_["istatistik"], 3, True), _m9p(s_["p_tek"]), _m9p(s_["p_iki"]),
+                       s_["perm"], s_["kovaryat_sayisi"]])
+    L.append("Aile disi, kesifsel kismi Mantel sinamalari (F_B10'a ve Holm hesabina girmez; ek on kayit §6.2):\n")
+    T(["Sinama", "Veri kumesi", "K", "Cift sayisi", "r", "Tek yonlu p", "Iki yonlu p", "Permutasyon", "Kovaryat sayisi"], ks)
+    L.append(f"`{_M10_GA}` kesifsel_* ile mantel_<veri>.json sinamalar.<ad>.istatistik en buyuk mutlak fark {max(dk):.2e}.\n")
+    cs, ad_ = [], set()
+    for vk in _M10_VK:
+        K_ = _oku(f"{_M10_G}/{vk}/kosinus_ozet.json")
+        u_ = _m10ust(K_["c_tum"])
+        u2 = _m10ust(K_["c_iki_model_dogru"])
+        HA = _oku(_M10_HTV[vk])["modeller"]
+        eks = [m for m in K_["modeller"] if m not in HA]
+        if eks:
+            raise ValueError(f"{vk}: hucre tablosunda olmayan model {eks}")
+        don = np.array([HA[m]["aile"] != "CNN" for m in K_["modeller"]])
+        ad_ |= {HA[m]["aile"] for m in K_["modeller"] if HA[m]["aile"] != "CNN"}
+        i_, j_ = np.triu_indices(len(don), 1)
+        gr = {"CNN-CNN": ~don[i_] & ~don[j_], "don-don": don[i_] & don[j_], "karma": don[i_] != don[j_]}
+        if sum(int(v_.sum()) for v_ in gr.values()) != len(u_):
+            raise ValueError(f"{vk}: aile gruplari ust ucgeni kapsamiyor")
+        cs.append([vk, K_["n"], len(K_["modeller"]), len(u_), sg(float(u_.mean()), 3), f"{sg(float(u_.min()), 3)}; {sg(float(u_.max()), 3)}",
+                   sg(float(u2.mean()), 3), K_["nan_kosinus_sayisi"]]
+                  + [f"{sg(float(u_[v_].mean()), 3)} ({int(v_.sum())})" if v_.any() else "- (0)" for v_ in gr.values()])
+    L.append("c_ij ozetleri (kosinus_ozet.json; ortalama, en kucuk ve en buyuk turetilmis, c matrisinin ust ucgeni; aile gruplari "
+             "turetilmis: c_tum ust ucgeni, aile atamasi hucre tablolarinin aile alanindan "
+             f"({', '.join(f'{vk} `{_M10_HTV[vk]}`' for vk in _M10_VK)}); donusturucu = aile alani CNN olmayan model "
+             f"({', '.join(sorted(ad_))}); parantez icinde cift sayisi):\n")
+    T(["Veri kumesi", "n goruntu", "Model sayisi", "Cift sayisi", "c_ij ort (tum goruntu)", "c_ij en kucuk; en buyuk",
+       "c_ij ort (iki model dogru)", "NaN kosinus", "CNN-CNN ort (n) (turetilmis)", "Donusturucu-donusturucu ort (n) (turetilmis)",
+       "Karma ort (n) (turetilmis)"], cs)
+    L.append(f"Tanim (JSON): '{_oku(f'{_M10_G}/{_M10_VK[0]}/kosinus_ozet.json')['tanim']}'.\n")
+
+
+_m10("M10.5 B10 girdi gradyani kosinusu ile log tau (Mantel, aile F_B10)",
+     f"`{_M10_G}/mantel_<veri>.json` c_turu, dislanan, not, sinamalar.{{ham, ana_etki_artik, kismi_omega, kismi_omega_gradnorm}}."
+     f"{{K, cift_sayisi, istatistik, p_tek, p_iki, perm, tohum, perm_ort, perm_sd}}; `{_M10_GA}` F_B10.{{sinamalar.<k>.{{sinama, "
+     f"istatistik, p_tek_ham, p_holm, perm, ongorulen_buyukluk, ongorulen_buyukluk_tuttu, karar}}, aile_buyuklugu, p_1_sayilan, "
+     f"kural}}, kesifsel_kismi_omega.<veri>, kesifsel_kismi_omega_gradnorm.<veri>; `{_M10_G}/<veri>/kosinus_ozet.json` n, "
+     f"modeller, c_tum, c_iki_model_dogru, nan_kosinus_sayisi, tanim; `{_M9_HT}`, `{_M10_HT9}`, `{_M10_HT8}` modeller.<m>.aile "
+     f"(aile gruplari icin)", _m10_5)
+
+
+# --- M10.6 Butunluk ------------------------------------------------------------------------------
+def _m10_6():
+    kay, kd = _m10ek()
+    kod = _m10sp_kod()
+    J = {"B9": _oku(_M10_B9), "B9s": _oku(_M10_B9S), "B9w": _oku(_M10_B9W), "B8": _oku(_M10_B8D), "B8b": _oku(_M10_B8B),
+         "B10": _oku(_M10_GA)}
+    AD = {"B9": "b9_dondurulmus_b2.json", "B9s": "b9_sarmalayici_b2.json", "B9w": "b9_sarmalayici_b2.json.sarmalayici.json",
+          "B8": "b8_dondurulmus_b2.json", "B8b": "b8_betimsel.json", "B10": "b10_aile.json"}
+    TM8 =_oku(f"{_M10_B8M}/transfer_matrix.json")
+    MN = {vk: _oku(f"{_M10_G}/mantel_{vk}.json") for vk in _M10_VK}
+    KO = {vk: _oku(f"{_M10_G}/{vk}/kosinus_ozet.json") for vk in _M10_VK}
+
+    def satir(rel, kayit_yeri, kayit, js, govde=False):
+        hs = _m9sha(rel, govde)
+        jv = [v_ for _, v_ in js]
+        jt = all(v_ == hs for v_ in jv)
+        L_ = (f"`{rel}`" + (" govdesi (ilk satirdan '## Dondurma eki' basligina kadar)" if govde else ""))
+        return [L_, kayit_yeri, kayit or "bulunamadi", hs,
+                ("; ".join(f"{a_} {'ayni' if v_ == hs else 'FARKLI'}" for a_, v_ in js) if js else "-"),
+                "UYUSUYOR" if (kayit == hs and jt) else "UYUSMUYOR"]
+
+    if kd is None:
+        _M10_YOK.append("Ek on kayit Dondurma eki (d) govde sha256 kaydi")
+    st = [satir(_M10_EK, "ek Dondurma eki (d)", kd, [], govde=True)]
+    st.append(satir(_M9_BETIK, "ek Dondurma eki (a)", kay.get(_M9_BETIK),
+                    [(f"{AD['B9']} meta.betik_sha256", J["B9"]["meta"]["betik_sha256"]),
+                     (f"{AD['B8']} meta.betik_sha256", J["B8"]["meta"]["betik_sha256"])]
+                    + [(f"{AD[a_]} meta.dondurulmus_betik_sha256_dogrulandi", J[a_]["meta"]["dondurulmus_betik_sha256_dogrulandi"])
+                       for a_ in ("B9w", "B8b", "B10")]))
+    st.append(satir(_M9_HT, "ek Dondurma eki (a)", kay.get(_M9_HT), []))
+    st.append(satir(_M10_HT9, "ek Dondurma eki (b)", kay.get(_M10_HT9),
+                    [(f"{AD[a_]} meta.hucre_tablosu_sha256", J[a_]["meta"]["hucre_tablosu_sha256"]) for a_ in ("B9", "B9w")]))
+    st.append(satir(_M10_HT8, "ek Dondurma eki (b)", kay.get(_M10_HT8),
+                    [(f"{AD[a_]} meta.hucre_tablosu_sha256", J[a_]["meta"]["hucre_tablosu_sha256"]) for a_ in ("B8", "B8b")]))
+    st.append(satir(_M10_OZG, "ek Dondurma eki (c)", kay.get(_M10_OZG),
+                    [(f"{AD[a_]} meta.ozgun_matris_betigi_sha256_simdi", J[a_]["meta"]["ozgun_matris_betigi_sha256_simdi"])
+                     for a_ in ("B9w", "B8b", "B10")]))
+    jsk = {"experiments/q1_ek_transfer_matrix.py": [("B8 matrisi transfer_matrix.json ek_betik_sha256", TM8.get("ek_betik_sha256"))],
+           "experiments/q1_ek_ayrisim.py": [(f"{AD[a_]} meta.sarmalayici_sha256", J[a_]["meta"]["sarmalayici_sha256"])
+                                            for a_ in ("B9w", "B8b", "B10")],
+           "experiments/q1_ek_gradyan_kosinus.py": ([(f"mantel_{vk} betik_sha256", MN[vk]["betik_sha256"]) for vk in _M10_VK]
+                                                    + [(f"{vk} kosinus_ozet betik_sha256", KO[vk]["betik_sha256"]) for vk in _M10_VK])}
+    if not kod:
+        _M10_YOK.append(f"Sapma kaydi kod eki ozetleri ({_M10_SP})")
+    for rel, h_ in kod.items():
+        st.append(satir(rel, "sapma kaydi, kod eki", h_, jsk.get(rel, [])))
+    sp = _m10metin(_M10_SP)
+    m_o = _m8re.search(_m8re.escape(_M10_OD) + r"`[^(`\n]*\(SHA-256 `([0-9a-f]{64})`", sp)
+    st.append(satir(_M10_OD, "sapma kaydi (B8 on isleme denetimi notu)", m_o.group(1) if m_o else None, []))
+    T(["Dosya", "Kayit yeri", "Kayitli sha256", "Dosyadan hesaplanan (bu betik)", "JSON kayitlari", "Durum"], st)
+
+    gs = []
+    for blok, rel, md in (("B9", _M10_B9, _M10_B9M), ("B8", _M10_B8D, _M10_B8M)):
+        gi = _oku(rel)["veri"]["girdi_sha256"]
+        fark = [p_ for p_, h_ in gi.items() if _m9sha(p_) != h_]
+        gs.append(f"{blok} veri.girdi_sha256 ({len(gi)} dosya, `{md}` matrisi ve per_sample npz): yeniden hesaplananla farkli "
+                  f"{len(fark)}" + (f" ({', '.join(fark[:5])})" if fark else ""))
+    for vk in _M10_VK:
+        g_ = J["B10"]["girdiler"][vk]
+        gs.append(f"b10_aile girdiler.{vk} ({g_['dosya']}) {'ayni' if _m9sha(g_['dosya']) == g_['sha256'] else 'FARKLI'}")
+        gs.append(f"mantel_{vk} kosinus_ozet_sha256 ({MN[vk]['kosinus_ozet']}) "
+                  f"{'ayni' if _m9sha(MN[vk]['kosinus_ozet']) == MN[vk]['kosinus_ozet_sha256'] else 'FARKLI'}")
+    gs.append(f"`{_M10_B9W}` meta.dondurulmus_cikti_sha256 ile `{_M10_B9S}` "
+              f"{'ayni' if _m9sha(_M10_B9S) == J['B9w']['meta']['dondurulmus_cikti_sha256'] else 'FARKLI'}")
+    a_, b_ = json.loads(json.dumps(J["B9"])), json.loads(json.dumps(J["B9s"]))
+    a_["meta"].pop("uretildi_utc", None)
+    b_["meta"].pop("uretildi_utc", None)
+    gs.append(f"`{_M10_B9}` ile `{_M10_B9S}` meta.uretildi_utc disinda {'AYNI' if a_ == b_ else 'FARKLI'}")
+    L.append("Girdi ve cikti ozetleri: " + "; ".join(gs) + ".\n")
+    L.append("JSON uretim zamanlari: " + "; ".join(f"{AD[a_]} {d_['meta']['uretildi_utc']}" for a_, d_ in J.items())
+             + "; " + "; ".join(f"mantel_{vk} {MN[vk]['uretildi_utc']}" for vk in _M10_VK)
+             + f". numpy (JSON meta): {', '.join(sorted({d_['meta']['numpy'] for d_ in J.values()}))}.\n")
+    # Bulunamayanlar satiri butun M10 alt bolumleri kosulduktan sonra doldurulur.
+    _M10_YOK_YER.append(len(L))
+    L.append("")
+
+
+_m10("M10.6 Butunluk (ek on kayit govdesi, hucre tablolari, dondurulmus ve ek betikler)",
+     f"`{_M10_EK}` Dondurma eki (a)-(c) kod bloklari ve (d) govde ozeti (metinden); `{_M10_SP}` Ek B8-B10 'kod eki' kod blogu ve "
+     f"on isleme denetimi kaydi (metinden); `{_M10_B9}`, `{_M10_B8D}` meta.{{betik_sha256, hucre_tablosu_sha256, uretildi_utc, numpy}}, "
+     f"veri.girdi_sha256; `{_M10_B9W}`, `{_M10_B8B}`, `{_M10_GA}` meta.{{sarmalayici_sha256, dondurulmus_betik_sha256_dogrulandi, "
+     f"ozgun_matris_betigi_sha256_simdi, hucre_tablosu_sha256, dondurulmus_cikti_sha256}}, girdiler; `{_M10_B8M}/transfer_matrix.json` "
+     f"ek_betik_sha256; `{_M10_G}/mantel_<veri>.json` betik_sha256, kosinus_ozet, kosinus_ozet_sha256, uretildi_utc; "
+     f"`{_M10_G}/<veri>/kosinus_ozet.json` betik_sha256; dosya sha256'lari bu betikte hashlib ile hesaplanir", _m10_6)
+
+for _i10 in _M10_YOK_YER:
+    L[_i10] = ("Bu bolumde (M10.1-M10.6) JSON'da bulunamayip 'bulunamadi' yazilan kalemler: "
+               + ("; ".join(_M10_YOK) if _M10_YOK else "yok") + ".\n")
+
+# <<< M10 SONU (ek bloklar B8-B10)
+
 # --- 8. Sabit dizgeler -----------------------------------------------------------
 sec("Sabit dizgeler (artefakttan OKUNMAYAN, elle tasinmis literaller)",
     "scripts/build_reference_sheet.py (satir numaralari calisma aninda bulunur)")
