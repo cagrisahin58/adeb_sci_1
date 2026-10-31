@@ -1,0 +1,1643 @@
+{
+  "stem": "protocol_settings",
+  "uslup": 7,
+  "degerler": [
+    {
+      "etiket": "CIFAR-10, L∞ Unconditioned pair 1",
+      "deger": 13.2,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Unconditioned pair 2",
+      "deger": 13.69,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Unconditioned pair 3",
+      "deger": 13.83,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Unconditioned mean",
+      "deger": 13.573333333333332,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Unconditioned SD",
+      "deger": 0.3308070938376829,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Target-correct pair 1",
+      "deger": 4.83,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Target-correct pair 2",
+      "deger": 4.28,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Target-correct pair 3",
+      "deger": 3.97,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Target-correct mean",
+      "deger": 4.36,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Target-correct SD",
+      "deger": 0.4355456348076513,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Both-correct pair 1",
+      "deger": 8.51,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Both-correct pair 2",
+      "deger": 8.05,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Both-correct pair 3",
+      "deger": 8.24,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Both-correct mean",
+      "deger": 8.266666666666667,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Both-correct SD",
+      "deger": 0.231156512634477,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Successful-source pair 1",
+      "deger": 20.8,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Successful-source pair 2",
+      "deger": 18.91,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Successful-source pair 3",
+      "deger": 18.39,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Successful-source mean",
+      "deger": 19.366666666666667,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ Successful-source SD",
+      "deger": 1.2682402506360275,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ spread pair 1",
+      "deger": 15.97,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[0]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ spread pair 2",
+      "deger": 14.629999999999999,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[1]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-10, L∞ spread pair 3",
+      "deger": 14.42,
+      "kaynak": "results/c1_transfer/c1_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[2]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Unconditioned pair 1",
+      "deger": 19.22,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Unconditioned pair 2",
+      "deger": 18.58,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Unconditioned pair 3",
+      "deger": 17.8,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Unconditioned mean",
+      "deger": 18.53333333333333,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Unconditioned SD",
+      "deger": 0.71114930452988,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Target-correct pair 1",
+      "deger": 4.21,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Target-correct pair 2",
+      "deger": 4.55,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Target-correct pair 3",
+      "deger": 6.11,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Target-correct mean",
+      "deger": 4.956666666666667,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Target-correct SD",
+      "deger": 1.013179812932203,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Both-correct pair 1",
+      "deger": 11.15,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Both-correct pair 2",
+      "deger": 10.53,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Both-correct pair 3",
+      "deger": 11.09,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Both-correct mean",
+      "deger": 10.923333333333334,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Both-correct SD",
+      "deger": 0.34195516275285803,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Successful-source pair 1",
+      "deger": 16.84,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Successful-source pair 2",
+      "deger": 17.11,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Successful-source pair 3",
+      "deger": 18.55,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Successful-source mean",
+      "deger": 17.5,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ Successful-source SD",
+      "deger": 0.9192932067626743,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ spread pair 1",
+      "deger": 15.009999999999998,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[0]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ spread pair 2",
+      "deger": 14.029999999999998,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[1]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "CIFAR-100, L∞ spread pair 3",
+      "deger": 12.440000000000001,
+      "kaynak": "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[2]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430"
+    },
+    {
+      "etiket": "SVHN, L∞ Unconditioned pair 1",
+      "deger": 0.33,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ Unconditioned pair 2",
+      "deger": 0.45,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ Target-correct pair 1",
+      "deger": -1.16,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ Target-correct pair 2",
+      "deger": -0.85,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ Both-correct pair 1",
+      "deger": -0.34,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ Both-correct pair 2",
+      "deger": -0.36,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ Successful-source pair 1",
+      "deger": 2.98,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ Successful-source pair 2",
+      "deger": 2.41,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ spread pair 1",
+      "deger": 4.14,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[0]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "SVHN, L∞ spread pair 2",
+      "deger": 3.2600000000000002,
+      "kaynak": "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[1]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Unconditioned pair 1",
+      "deger": 12.22,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Unconditioned pair 2",
+      "deger": 13.02,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Unconditioned pair 3",
+      "deger": 13.84,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Unconditioned mean",
+      "deger": 13.026666666666667,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Unconditioned SD",
+      "deger": 0.8100205758703496,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.raw.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 159,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Target-correct pair 1",
+      "deger": 2.23,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Target-correct pair 2",
+      "deger": 1.91,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Target-correct pair 3",
+      "deger": 2.22,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Target-correct mean",
+      "deger": 2.12,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Target-correct SD",
+      "deger": 0.18193405398660262,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.target_correct.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 160,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Both-correct pair 1",
+      "deger": 4.01,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Both-correct pair 2",
+      "deger": 3.74,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Both-correct pair 3",
+      "deger": 4.45,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Both-correct mean",
+      "deger": 4.066666666666666,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Both-correct SD",
+      "deger": 0.35837596645608555,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.both_correct.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 161,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Successful-source pair 1",
+      "deger": 12.25,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[0]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Successful-source pair 2",
+      "deger": 11.8,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[1]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Successful-source pair 3",
+      "deger": 12.12,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values[2]",
+      "hesap": "read as stored; == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Successful-source mean",
+      "deger": 12.056666666666667,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values",
+      "hesap": "mean; == diff.mean (1e-9); == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ Successful-source SD",
+      "deger": 0.2315887159024228,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocols.successful_source.diff.values",
+      "hesap": "SD ddof=1; == diff.std (1e-9); == foy (2 dp)",
+      "foy_satiri": 162,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ spread pair 1",
+      "deger": 10.02,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[0]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ spread pair 2",
+      "deger": 11.11,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[1]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    },
+    {
+      "etiket": "CIFAR-10, L₂ spread pair 3",
+      "deger": 11.62,
+      "kaynak": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "anahtar_yolu": "protocol_spread_pp.values[2]",
+      "hesap": "max - min over the four protocols (1e-9)",
+      "foy_satiri": 163,
+      "kaynak_sha256": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+    }
+  ],
+  "records_sha256": null,
+  "betik": "paper/figures/charts/fig_protocol_settings.py --uslup 7",
+  "ortak_modul": "paper/figures/charts/_kart_ortak.py",
+  "veri_kurali_modulu": "paper/figures/konsey/konsey_ortak.py (imported unchanged)",
+  "girdiler_sha256": {
+    "results/c1_transfer/c1_transfer_summary.json": "60268615535eb5ca5ab00bdd7db7efb11128364c8e1b4c62ff5220c551f570c1",
+    "results/q1/cifar100/transfer/e1_transfer_summary.json": "3a585301057ce126cff7236ec38fdad4db6e8082072bacae8f5160b0fe5ea430",
+    "results/q1/svhn/transfer/e7_transfer_summary.json": "9157cef398b671235fa177dc83d51dda525ddf3b55bdfd8eac3ca3bf6c0435b4",
+    "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json": "700512b9a84a5c1321ed76eab3390682b7979ff414fd926d3abed1572797d672"
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 75,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results\\C1_REFERANS_FOYU.md",
+    "foy_sha256": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f",
+    "ayrinti": [
+      {
+        "ad": "source line",
+        "aranan_metin": "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+        "foy_satiri": 153,
+        "capa": "_Kaynak:",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf raw mean == JSON",
+        "a": 13.573333333333332,
+        "b": 13.573333333333332,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf raw SD == JSON",
+        "a": 0.3308070938376829,
+        "b": 0.3308070938376829,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf raw mean",
+        "json_degeri": 13.573333333333332,
+        "foy_satiri": 159,
+        "capa": "| Unconditioned (raw) |",
+        "foy_en_yakin": 13.57,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf raw SD",
+        "json_degeri": 0.3308070938376829,
+        "foy_satiri": 159,
+        "capa": "| Unconditioned (raw) |",
+        "foy_en_yakin": 0.33,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf target_correct mean == JSON",
+        "a": 4.36,
+        "b": 4.36,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf target_correct SD == JSON",
+        "a": 0.4355456348076513,
+        "b": 0.4355456348076513,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf target_correct mean",
+        "json_degeri": 4.36,
+        "foy_satiri": 160,
+        "capa": "| Target-correct |",
+        "foy_en_yakin": 4.36,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf target_correct SD",
+        "json_degeri": 0.4355456348076513,
+        "foy_satiri": 160,
+        "capa": "| Target-correct |",
+        "foy_en_yakin": 0.44,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf both_correct mean == JSON",
+        "a": 8.266666666666667,
+        "b": 8.266666666666667,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf both_correct SD == JSON",
+        "a": 0.231156512634477,
+        "b": 0.231156512634477,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf both_correct mean",
+        "json_degeri": 8.266666666666667,
+        "foy_satiri": 161,
+        "capa": "| Both-correct |",
+        "foy_en_yakin": 8.27,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf both_correct SD",
+        "json_degeri": 0.231156512634477,
+        "foy_satiri": 161,
+        "capa": "| Both-correct |",
+        "foy_en_yakin": 0.23,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf successful_source mean == JSON",
+        "a": 19.366666666666667,
+        "b": 19.366666666666667,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf successful_source SD == JSON",
+        "a": 1.2682402506360275,
+        "b": 1.2682402506360273,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf successful_source mean",
+        "json_degeri": 19.366666666666667,
+        "foy_satiri": 162,
+        "capa": "| Successful-source |",
+        "foy_en_yakin": 19.37,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf successful_source SD",
+        "json_degeri": 1.2682402506360275,
+        "foy_satiri": 162,
+        "capa": "| Successful-source |",
+        "foy_en_yakin": 1.27,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf spread pair == max - min",
+        "a": 15.97,
+        "b": 15.97,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf spread pair == max - min",
+        "a": 14.629999999999999,
+        "b": 14.629999999999999,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf spread pair == max - min",
+        "a": 14.42,
+        "b": 14.42,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf spread mean",
+        "json_degeri": 15.006666666666666,
+        "foy_satiri": 163,
+        "capa": "| Spread |",
+        "foy_en_yakin": 15.01,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_Linf pair count",
+        "aranan_metin": "| 3",
+        "foy_satiri": 165,
+        "capa": "| Cift (kosum) sayisi |",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf raw mean == JSON",
+        "a": 18.53333333333333,
+        "b": 18.53333333333333,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf raw SD == JSON",
+        "a": 0.71114930452988,
+        "b": 0.7111493045298799,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf raw mean",
+        "json_degeri": 18.53333333333333,
+        "foy_satiri": 159,
+        "capa": "| Unconditioned (raw) |",
+        "foy_en_yakin": 18.53,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf raw SD",
+        "json_degeri": 0.71114930452988,
+        "foy_satiri": 159,
+        "capa": "| Unconditioned (raw) |",
+        "foy_en_yakin": 0.71,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf target_correct mean == JSON",
+        "a": 4.956666666666667,
+        "b": 4.956666666666667,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf target_correct SD == JSON",
+        "a": 1.013179812932203,
+        "b": 1.013179812932203,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf target_correct mean",
+        "json_degeri": 4.956666666666667,
+        "foy_satiri": 160,
+        "capa": "| Target-correct |",
+        "foy_en_yakin": 4.96,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf target_correct SD",
+        "json_degeri": 1.013179812932203,
+        "foy_satiri": 160,
+        "capa": "| Target-correct |",
+        "foy_en_yakin": 1.01,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf both_correct mean == JSON",
+        "a": 10.923333333333334,
+        "b": 10.923333333333332,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf both_correct SD == JSON",
+        "a": 0.34195516275285803,
+        "b": 0.3419551627528581,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf both_correct mean",
+        "json_degeri": 10.923333333333334,
+        "foy_satiri": 161,
+        "capa": "| Both-correct |",
+        "foy_en_yakin": 10.92,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf both_correct SD",
+        "json_degeri": 0.34195516275285803,
+        "foy_satiri": 161,
+        "capa": "| Both-correct |",
+        "foy_en_yakin": 0.34,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf successful_source mean == JSON",
+        "a": 17.5,
+        "b": 17.5,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf successful_source SD == JSON",
+        "a": 0.9192932067626743,
+        "b": 0.9192932067626743,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf successful_source mean",
+        "json_degeri": 17.5,
+        "foy_satiri": 162,
+        "capa": "| Successful-source |",
+        "foy_en_yakin": 17.5,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf successful_source SD",
+        "json_degeri": 0.9192932067626743,
+        "foy_satiri": 162,
+        "capa": "| Successful-source |",
+        "foy_en_yakin": 0.92,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf spread pair == max - min",
+        "a": 15.009999999999998,
+        "b": 15.009999999999998,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf spread pair == max - min",
+        "a": 14.029999999999998,
+        "b": 14.029999999999998,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf spread pair == max - min",
+        "a": 12.440000000000001,
+        "b": 12.440000000000001,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf spread mean",
+        "json_degeri": 13.826666666666666,
+        "foy_satiri": 163,
+        "capa": "| Spread |",
+        "foy_en_yakin": 13.83,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C100_Linf pair count",
+        "aranan_metin": "| 3",
+        "foy_satiri": 165,
+        "capa": "| Cift (kosum) sayisi |",
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf raw pair 1",
+        "json_degeri": 0.33,
+        "foy_satiri": 159,
+        "capa": "| Unconditioned (raw) |",
+        "foy_en_yakin": 0.33,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf raw pair 2",
+        "json_degeri": 0.45,
+        "foy_satiri": 159,
+        "capa": "| Unconditioned (raw) |",
+        "foy_en_yakin": 0.45,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf target_correct pair 1",
+        "json_degeri": -1.16,
+        "foy_satiri": 160,
+        "capa": "| Target-correct |",
+        "foy_en_yakin": -1.16,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf target_correct pair 2",
+        "json_degeri": -0.85,
+        "foy_satiri": 160,
+        "capa": "| Target-correct |",
+        "foy_en_yakin": -0.85,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf both_correct pair 1",
+        "json_degeri": -0.34,
+        "foy_satiri": 161,
+        "capa": "| Both-correct |",
+        "foy_en_yakin": -0.34,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf both_correct pair 2",
+        "json_degeri": -0.36,
+        "foy_satiri": 161,
+        "capa": "| Both-correct |",
+        "foy_en_yakin": -0.36,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf successful_source pair 1",
+        "json_degeri": 2.98,
+        "foy_satiri": 162,
+        "capa": "| Successful-source |",
+        "foy_en_yakin": 2.98,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf successful_source pair 2",
+        "json_degeri": 2.41,
+        "foy_satiri": 162,
+        "capa": "| Successful-source |",
+        "foy_en_yakin": 2.41,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf spread pair == max - min",
+        "a": 4.14,
+        "b": 4.14,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf spread pair == max - min",
+        "a": 3.2600000000000002,
+        "b": 3.2600000000000002,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "SVHN_Linf pair count",
+        "aranan_metin": "| 2",
+        "foy_satiri": 165,
+        "capa": "| Cift (kosum) sayisi |",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 raw mean == JSON",
+        "a": 13.026666666666667,
+        "b": 13.026666666666666,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 raw SD == JSON",
+        "a": 0.8100205758703496,
+        "b": 0.8100205758703495,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 raw mean",
+        "json_degeri": 13.026666666666667,
+        "foy_satiri": 159,
+        "capa": "| Unconditioned (raw) |",
+        "foy_en_yakin": 13.03,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 raw SD",
+        "json_degeri": 0.8100205758703496,
+        "foy_satiri": 159,
+        "capa": "| Unconditioned (raw) |",
+        "foy_en_yakin": 0.81,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 target_correct mean == JSON",
+        "a": 2.12,
+        "b": 2.1199999999999997,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 target_correct SD == JSON",
+        "a": 0.18193405398660262,
+        "b": 0.18193405398660262,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 target_correct mean",
+        "json_degeri": 2.12,
+        "foy_satiri": 160,
+        "capa": "| Target-correct |",
+        "foy_en_yakin": 2.12,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 target_correct SD",
+        "json_degeri": 0.18193405398660262,
+        "foy_satiri": 160,
+        "capa": "| Target-correct |",
+        "foy_en_yakin": 0.18,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 both_correct mean == JSON",
+        "a": 4.066666666666666,
+        "b": 4.066666666666666,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 both_correct SD == JSON",
+        "a": 0.35837596645608555,
+        "b": 0.35837596645608555,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 both_correct mean",
+        "json_degeri": 4.066666666666666,
+        "foy_satiri": 161,
+        "capa": "| Both-correct |",
+        "foy_en_yakin": 4.07,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 both_correct SD",
+        "json_degeri": 0.35837596645608555,
+        "foy_satiri": 161,
+        "capa": "| Both-correct |",
+        "foy_en_yakin": 0.36,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 successful_source mean == JSON",
+        "a": 12.056666666666667,
+        "b": 12.056666666666667,
+        "tolerans": 1e-09,
+        "aciklama": "mean of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 successful_source SD == JSON",
+        "a": 0.2315887159024228,
+        "b": 0.2315887159024228,
+        "tolerans": 1e-09,
+        "aciklama": "SD ddof=1 of pair values",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 successful_source mean",
+        "json_degeri": 12.056666666666667,
+        "foy_satiri": 162,
+        "capa": "| Successful-source |",
+        "foy_en_yakin": 12.06,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 successful_source SD",
+        "json_degeri": 0.2315887159024228,
+        "foy_satiri": 162,
+        "capa": "| Successful-source |",
+        "foy_en_yakin": 0.23,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 spread pair == max - min",
+        "a": 10.02,
+        "b": 10.02,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 spread pair == max - min",
+        "a": 11.11,
+        "b": 11.11,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 spread pair == max - min",
+        "a": 11.62,
+        "b": 11.62,
+        "tolerans": 1e-09,
+        "aciklama": "per-pair spread over the four protocols",
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 spread mean",
+        "json_degeri": 10.916666666666666,
+        "foy_satiri": 163,
+        "capa": "| Spread |",
+        "foy_en_yakin": 10.92,
+        "ondalik": 2,
+        "tolerans": 0.0050000010000000004,
+        "eslesti": true
+      },
+      {
+        "ad": "C10_L2 pair count",
+        "aranan_metin": "| 3",
+        "foy_satiri": 165,
+        "capa": "| Cift (kosum) sayisi |",
+        "eslesti": true
+      }
+    ]
+  },
+  "okunan_anahtarlar": {
+    "results/c1_transfer/c1_transfer_summary.json": [
+      "protocols.<p>.diff.{values, mean, std}",
+      "protocol_spread_pp.values"
+    ],
+    "results/q1/cifar100/transfer/e1_transfer_summary.json": [
+      "protocols.<p>.diff.{values, mean, std}",
+      "protocol_spread_pp.values"
+    ],
+    "results/q1/svhn/transfer/e7_transfer_summary.json": [
+      "protocols.<p>.diff.{values, mean, std}",
+      "protocol_spread_pp.values"
+    ],
+    "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json": [
+      "protocols.<p>.diff.{values, mean, std}",
+      "protocol_spread_pp.values"
+    ]
+  },
+  "cizilen": {
+    "C10_Linf": {
+      "satirlar": {
+        "raw": {
+          "values": [
+            13.2,
+            13.69,
+            13.83
+          ],
+          "mean": 13.573333333333332,
+          "sd": 0.3308070938376829
+        },
+        "target_correct": {
+          "values": [
+            4.83,
+            4.28,
+            3.97
+          ],
+          "mean": 4.36,
+          "sd": 0.4355456348076513
+        },
+        "both_correct": {
+          "values": [
+            8.51,
+            8.05,
+            8.24
+          ],
+          "mean": 8.266666666666667,
+          "sd": 0.231156512634477
+        },
+        "successful_source": {
+          "values": [
+            20.8,
+            18.91,
+            18.39
+          ],
+          "mean": 19.366666666666667,
+          "sd": 1.2682402506360275
+        }
+      },
+      "yayilim": [
+        15.97,
+        14.629999999999999,
+        14.42
+      ],
+      "yayilim_etiketi": "15.01"
+    },
+    "C100_Linf": {
+      "satirlar": {
+        "raw": {
+          "values": [
+            19.22,
+            18.58,
+            17.8
+          ],
+          "mean": 18.53333333333333,
+          "sd": 0.71114930452988
+        },
+        "target_correct": {
+          "values": [
+            4.21,
+            4.55,
+            6.11
+          ],
+          "mean": 4.956666666666667,
+          "sd": 1.013179812932203
+        },
+        "both_correct": {
+          "values": [
+            11.15,
+            10.53,
+            11.09
+          ],
+          "mean": 10.923333333333334,
+          "sd": 0.34195516275285803
+        },
+        "successful_source": {
+          "values": [
+            16.84,
+            17.11,
+            18.55
+          ],
+          "mean": 17.5,
+          "sd": 0.9192932067626743
+        }
+      },
+      "yayilim": [
+        15.009999999999998,
+        14.029999999999998,
+        12.440000000000001
+      ],
+      "yayilim_etiketi": "13.83"
+    },
+    "SVHN_Linf": {
+      "satirlar": {
+        "raw": {
+          "values": [
+            0.33,
+            0.45
+          ],
+          "mean": null,
+          "sd": null
+        },
+        "target_correct": {
+          "values": [
+            -1.16,
+            -0.85
+          ],
+          "mean": null,
+          "sd": null
+        },
+        "both_correct": {
+          "values": [
+            -0.34,
+            -0.36
+          ],
+          "mean": null,
+          "sd": null
+        },
+        "successful_source": {
+          "values": [
+            2.98,
+            2.41
+          ],
+          "mean": null,
+          "sd": null
+        }
+      },
+      "yayilim": [
+        4.14,
+        3.2600000000000002
+      ],
+      "yayilim_etiketi": "4.14 / 3.26"
+    },
+    "C10_L2": {
+      "satirlar": {
+        "raw": {
+          "values": [
+            12.22,
+            13.02,
+            13.84
+          ],
+          "mean": 13.026666666666667,
+          "sd": 0.8100205758703496
+        },
+        "target_correct": {
+          "values": [
+            2.23,
+            1.91,
+            2.22
+          ],
+          "mean": 2.12,
+          "sd": 0.18193405398660262
+        },
+        "both_correct": {
+          "values": [
+            4.01,
+            3.74,
+            4.45
+          ],
+          "mean": 4.066666666666666,
+          "sd": 0.35837596645608555
+        },
+        "successful_source": {
+          "values": [
+            12.25,
+            11.8,
+            12.12
+          ],
+          "mean": 12.056666666666667,
+          "sd": 0.2315887159024228
+        }
+      },
+      "yayilim": [
+        10.02,
+        11.11,
+        11.62
+      ],
+      "yayilim_etiketi": "10.92"
+    }
+  },
+  "notlar": [
+    "Lanes inside a row are fixed offsets per protocol; they carry no value.",
+    "SVHN has two seed pairs: both values are drawn, no mean, no SD (as in the table and the sheet).",
+    "Per-direction rates and the both-correct paired analysis of the sheet (lines 167-195) are not drawn."
+  ],
+  "kararlar": [
+    "Karar (duzeltme turu 2): seed pairs are lifted 0.09 row units above their lane (as in protocol_sets), so the SD whisker ends and the seed marks no longer coincide; the SD is drawn through annotate.errorbar (kind sd); the Unconditioned mark takes the emphasis stroke (0.55 pt) as edge instead of a darker palette tone (the palette is regenerated only by _palet_uret.py); the key names the SVHN encoding ('SVHN: two pairs', protocol marks on a thin line, no mean); 'L2' reads 'L₂'. Height 84 mm (ceiling 88).",
+    "Karar: protocol marks take the protocol family of the paper palette (tone and shape, as in protocol_sets), and seed pairs are small open ink circles, because the two light purples would vanish as open marks on the grey plot area.",
+    "Karar: the key stands under the axes inside the single card (naming step 1 allows one card)."
+  ],
+  "git": {
+    "commit": "c315e09f6c03fe9b165e4fa3a5786f8448ae8c85",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "M paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+      "?? paper/figures/charts/_kart_ortak.py",
+      "?? paper/figures/charts/fig_protocol_settings.py"
+    ],
+    "izlenen_yollar": [
+      "results/c1_transfer/c1_transfer_summary.json",
+      "results/q1/cifar100/transfer/e1_transfer_summary.json",
+      "results/q1/svhn/transfer/e7_transfer_summary.json",
+      "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json",
+      "paper/figures/charts/_kart_ortak.py",
+      "paper/figures/charts/fig_protocol_settings.py",
+      "paper/figures/konsey/konsey_ortak.py",
+      "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+      "results/C1_REFERANS_FOYU.md"
+    ],
+    "kod_ve_foy_sha256": {
+      "paper/figures/charts/_kart_ortak.py": "d7769ae93310d3655dec79843e9586a03c19a9ab2622eab01a9c88b42710b82b",
+      "paper/figures/charts/fig_protocol_settings.py": "9e5370dd3c86e8913554e2d3a9ccfc80cc9ca475df285fb505d7e2df14357a2e",
+      "paper/figures/konsey/konsey_ortak.py": "798137ef5ad8aa2ca9f8ad4d17697e69733f9d606a522433eabe9449026f0579",
+      "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml": "7b99cc206514a16847a7797ecac447eb84b3b2e6f5249255a8deee2a8dd932eb",
+      "results/C1_REFERANS_FOYU.md": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f"
+    },
+    "not": "dirty_or_untracked lists every path above that is modified or untracked; until the scripts are committed, kod_ve_foy_sha256 is what pins the code and the sheet"
+  },
+  "venue": "ieee_access",
+  "tuval_mm": [
+    85.29,
+    84.0
+  ]
+}

@@ -1,0 +1,95 @@
+{
+ "similarity_matrix": {
+  "page_mm": [
+   177.53,
+   56.98
+  ],
+  "fonts": [
+   "DejaVuSans"
+  ],
+  "min_pt": 8.0,
+  "spans": 27,
+  "issues": [],
+  "checks": {
+   "page_size": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "177.530 x 56.980 mm"
+   },
+   "fonts": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "DejaVuSans"
+   },
+   "min_type": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "smallest 8.000 pt"
+   },
+   "text_overlap": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "27 spans"
+   },
+   "box_spill": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "5 closed boxes"
+   }
+  },
+  "inputs": {
+   "page_text_sha256": "32a631531b4ca63448942087395b7d4de1012f6b053b9d21d4ed0b0a87a6437e",
+   "spans": 27,
+   "lines": 27,
+   "drawings": 850,
+   "closed_boxes": 5
+  },
+  "verdict": "PASS",
+  "expected_from": "mm.json",
+  "floor_pt": 8.0,
+  "cizgi": {
+   "basili_pt": [
+    0.354,
+    0.55
+   ],
+   "tokenlar_pt": {
+    "ince": 0.354,
+    "normal": 0.49,
+    "vurgu": 0.55,
+    "eksen": 0.354
+   },
+   "basili_uzunluk_mm": {
+    "0.354": 469.65,
+    "0.550": 405.32
+   },
+   "ok_ucu": {
+    "basili_mm": [],
+    "token_mm": 1.5,
+    "bicim": [],
+    "olculen": 0,
+    "beklenen": 0,
+    "beklenen_kaynagi": "manifest naming.flows (kind arrow)",
+    "adaylar": []
+   },
+   "sorunlar": [
+    "token width(s) [0.49] pt never printed"
+   ],
+   "uyumlu": false,
+   "token_kaynagi": "style 7",
+   "basim_modeli": {
+    "model": null
+   }
+  },
+  "glif": {
+   "tounicode_yok": [],
+   "suphe": []
+  },
+  "egri": {
+   "sayi": 0,
+   "metinden_gecen": []
+  },
+  "uyarilar": [
+   "T4: token width(s) [0.49] pt never printed"
+  ]
+ }
+}

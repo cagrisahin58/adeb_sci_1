@@ -1,0 +1,212 @@
+{
+ "canvas_mm": [
+  177.53,
+  110.0
+ ],
+ "cards": [
+  {
+   "letter": "",
+   "name": "",
+   "title": "",
+   "tint": "white",
+   "naming": null,
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    0.5,
+    8.5,
+    101.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-10",
+   "title": "CIFAR-10",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    10.1,
+    0.5,
+    63.743,
+    50.4
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-100",
+   "title": "CIFAR-100",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    66.743,
+    0.5,
+    120.387,
+    50.4
+   ]
+  },
+  {
+   "letter": "",
+   "name": "ImageNetV2",
+   "title": "ImageNetV2",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    123.387,
+    0.5,
+    177.03,
+    50.4
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-10, residual",
+   "title": "CIFAR-10, residual",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    10.1,
+    52.0,
+    63.743,
+    101.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-100, residual",
+   "title": "CIFAR-100, residual",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    66.743,
+    52.0,
+    120.387,
+    101.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "ImageNetV2, residual",
+   "title": "ImageNetV2, residual",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    123.387,
+    52.0,
+    177.03,
+    101.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "",
+   "title": "",
+   "tint": "white",
+   "naming": null,
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    103.5,
+    177.03,
+    109.5
+   ]
+  }
+ ],
+ "texts": 65,
+ "marks": 21,
+ "sizes_pt": [
+  8.0,
+  9.0
+ ],
+ "faces": [
+  "DejaVuSans.ttf"
+ ],
+ "fallback_faces": [],
+ "min_text_clearance_mm": {
+  "": 1.73,
+  "CIFAR-10": 1.402,
+  "CIFAR-10, residual": 2.0,
+  "CIFAR-100": 2.0,
+  "CIFAR-100, residual": 2.0,
+  "ImageNetV2": 2.0,
+  "ImageNetV2, residual": 2.0
+ },
+ "min_axes_clearance_mm": {
+  "": 0.9,
+  "CIFAR-10": 1.402,
+  "CIFAR-10, residual": 2.5,
+  "CIFAR-100": 2.5,
+  "CIFAR-100, residual": 2.5,
+  "ImageNetV2": 2.5,
+  "ImageNetV2, residual": 2.5
+ },
+ "tolerances_mm": {
+  "text_clear": 0.8,
+  "axes_clear": 0.8,
+  "card_gap": 1.5,
+  "overlap": 0.1
+ },
+ "a4": {
+  "height_mm": 110.0,
+  "budget_mm": 165.327,
+  "slack_mm": 55.327,
+  "qc_tolerance_pt": 1.0,
+  "within_budget": true,
+  "passes_qc_only_by_its_tolerance": false
+ },
+ "naming": {
+  "step": 4,
+  "kind": "serit",
+  "kind_drawn": "serit",
+  "types": [
+   "strip"
+  ],
+  "panels": {
+   "": "none",
+   "CIFAR-10": "strip",
+   "CIFAR-100": "strip",
+   "ImageNetV2": "strip",
+   "CIFAR-10, residual": "strip",
+   "CIFAR-100, residual": "strip",
+   "ImageNetV2, residual": "strip"
+  },
+  "badges": [],
+  "badge_suppressed": [],
+  "strips": [
+   {
+    "cards": [
+     "CIFAR-10",
+     "CIFAR-100",
+     "ImageNetV2"
+    ],
+    "baseline_mm": 5.757
+   },
+   {
+    "cards": [
+     "CIFAR-10, residual",
+     "CIFAR-100, residual",
+     "ImageNetV2, residual"
+    ],
+    "baseline_mm": 57.257
+   }
+  ],
+  "flows": []
+ },
+ "sample_size": {
+  "": "exempt: a key to the marks",
+  "CIFAR-10": "n",
+  "CIFAR-100": "n",
+  "ImageNetV2": "n",
+  "CIFAR-10, residual": "n",
+  "CIFAR-100, residual": "n",
+  "ImageNetV2, residual": "n"
+ },
+ "allowed": [],
+ "issues": [],
+ "verdict": "PASS"
+}

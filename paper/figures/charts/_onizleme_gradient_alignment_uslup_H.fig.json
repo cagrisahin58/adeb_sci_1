@@ -1,0 +1,143 @@
+{
+  "stem": "_onizleme_gradient_alignment_uslup_H",
+  "builder": "figspec.export.save",
+  "figspec_version": "1.0.0",
+  "venue": "ieee_access",
+  "venue_olcum": "olculdu",
+  "palette": "adeb_konsey_uslup_H",
+  "palette_path": null,
+  "uslup": "H",
+  "uslup_uc_boyut": "izometrik 30",
+  "uslup_uc_boyut_kaynagi": "skill_varsayilani",
+  "kind": "double",
+  "panels": [
+    1,
+    4
+  ],
+  "panels_n_exempt": {
+    "Rank correlation": "one statistic per data set"
+  },
+  "naming_step": 4,
+  "naming_kind": "serit",
+  "naming": {
+    "step": 4,
+    "kind": "serit",
+    "kind_drawn": "serit",
+    "types": [
+      "strip"
+    ],
+    "panels": {
+      "Rank correlation": "strip",
+      "CIFAR-10": "strip",
+      "CIFAR-100": "strip",
+      "ImageNetV2": "strip"
+    },
+    "badges": [],
+    "badge_suppressed": [],
+    "strips": [
+      {
+        "cards": [
+          "Rank correlation",
+          "CIFAR-10",
+          "CIFAR-100"
+        ],
+        "baseline_mm": 5.733
+      },
+      {
+        "cards": [
+          "ImageNetV2"
+        ],
+        "baseline_mm": 60.556,
+        "row_top_mm": 55.322
+      }
+    ],
+    "flows": []
+  },
+  "figsize_in": [
+    6.9893700013837,
+    4.133858267716536
+  ],
+  "geometry": {
+    "pdf_width_pt": 503.2346400996,
+    "expected_pdf_width_pt": 503.2346400996264,
+    "a1": {
+      "kind": "double",
+      "expected_pt": 503.235,
+      "width_pt": 503.235,
+      "scale": 1.0,
+      "ok": true,
+      "gate_points": 6,
+      "gate_blocks": false
+    }
+  },
+  "type_scale": {
+    "floor": 8.0,
+    "tick": 8.0,
+    "annot": 8.0,
+    "label": 9.0,
+    "title": 10.0,
+    "panel": 10.0
+  },
+  "font_sans": [
+    "Open Sans",
+    "DejaVu Sans"
+  ],
+  "font_fallback": [],
+  "entities": {},
+  "derived_colours": {
+    "#F4F6F9": {
+      "from": "card",
+      "tint": "neutral",
+      "role": "fill"
+    },
+    "#D9DEE6": {
+      "from": "card",
+      "tint": "neutral",
+      "role": "edge"
+    }
+  },
+  "errorbar_kinds": [],
+  "provenance": "computed",
+  "sources": [
+    {
+      "path": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "exists": true,
+      "sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "path": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "exists": true,
+      "sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    },
+    {
+      "path": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "exists": true,
+      "sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "path": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+      "exists": true,
+      "sha256": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd"
+    },
+    {
+      "path": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "exists": true,
+      "sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "path": "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
+      "exists": true,
+      "sha256": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+    }
+  ],
+  "message": "Input-gradient cosine tracks pairwise symmetric similarity on all three data sets, raw and with additive model main effects removed.",
+  "caption_hint": null,
+  "notes": null,
+  "git_rev": "c8be9b7",
+  "formats": {
+    "pdf": "_onizleme_gradient_alignment_uslup_H.pdf",
+    "eps": "_onizleme_gradient_alignment_uslup_H.eps",
+    "svg": "_onizleme_gradient_alignment_uslup_H.svg",
+    "png": "_onizleme_gradient_alignment_uslup_H.png"
+  }
+}

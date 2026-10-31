@@ -1,0 +1,272 @@
+{
+ "esik_kaynaklari": [
+  "C:\\Users\\cagri\\projects\\cc_duzen\\skills\\visio-cizici\\references\\denge_esikleri.yaml"
+ ],
+ "sekiller": {
+  "epsilon_sweep": {
+   "pdf": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures\\charts\\epsilon_sweep.pdf",
+   "tur": "veri",
+   "sablon": "tek_kart_veri",
+   "olcum": {
+    "sayfa_mm": [
+     85.29,
+     62.0
+    ],
+    "murekkep": 0.0557,
+    "ton": 0.9122,
+    "bos": 0.0321,
+    "sozcuk": 33,
+    "karakter_cm2": 2.704,
+    "yazi_kutusu_alani": 0.1605,
+    "sayisal_oran": 0.3333,
+    "veri_alani_payi": 0.5896,
+    "veri_alani_satirlar": [
+     0.5896
+    ],
+    "veri_alani_ic_satirlar": [],
+    "ic_ice_derinlik_olculen": 1,
+    "panel_olculen": 1,
+    "ton_karti": 1,
+    "grup_cercevesi": 0,
+    "kutu": 0,
+    "gorselli_kutu": 0,
+    "yalniz_metin_kutu_orani": null,
+    "goruntu": 0,
+    "goruntu_payi": 0.0,
+    "ok_uclari_mm": [],
+    "akis": {
+     "kaynak": "pdf",
+     "oge": 0,
+     "uc": 0,
+     "sevron": 0,
+     "blok": 0,
+     "manifest_akis": 0,
+     "etiketli": 0,
+     "nicelikli": 0
+    }
+   },
+   "maddeler": [
+    {
+     "olcut": "karakter_cm2",
+     "deger": 2.704,
+     "esik": {
+      "max": 4.5
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 229: en çok 4.5 karakter/cm²",
+     "gecti": true,
+     "uygulanmaz": null,
+     "not": ""
+    },
+    {
+     "olcut": "yazi_kutusu_alani",
+     "deger": 0.1605,
+     "esik": {
+      "max": 0.25
+     },
+     "siddet": "blok",
+     "kaynak": "beğenilen set ölçümü 30.10.2026, MF2 rapor bölüm 1 ve DV-M bölüm 6",
+     "gecti": true,
+     "uygulanmaz": null,
+     "not": ""
+    },
+    {
+     "olcut": "sayisal_oran",
+     "deger": 0.3333,
+     "esik": {
+      "max": 0.55
+     },
+     "siddet": "uyari",
+     "kaynak": "beğenilen set ölçümü 30.10.2026, MF2 rapor bölüm 1 ve DV-M bölüm 6",
+     "gecti": true,
+     "uygulanmaz": null,
+     "not": ""
+    },
+    {
+     "olcut": "veri_alani_payi",
+     "deger": 0.5896,
+     "esik": {
+      "min": 0.45
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 211 ve 230: veri ekseni şekil genişliğinin en az %45'i",
+     "gecti": true,
+     "uygulanmaz": null,
+     "not": "rows [0.5896]; insets []"
+    },
+    {
+     "olcut": "ic_ice_derinlik",
+     "deger": 1,
+     "esik": {
+      "min": 3
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 225: her yöntem şemasında derinlik 3",
+     "gecti": null,
+     "uygulanmaz": "required of method schemes only (template tek_kart_veri); the paper-level share counts data figures",
+     "not": "measured 1"
+    },
+    {
+     "olcut": "gomulu_gorsel",
+     "deger": 0,
+     "esik": {
+      "min": 1
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 226: her şematikte en az bir gömülü küçük görsel",
+     "gecti": null,
+     "uygulanmaz": "only for schematics (veri)",
+     "not": ""
+    },
+    {
+     "olcut": "yalniz_metin_kutu_orani",
+     "deger": null,
+     "esik": {
+      "max_exclusive": 0.5
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 226: kutuların yarısından azı yalnız metin",
+     "gecti": null,
+     "uygulanmaz": "only for schematics (veri)",
+     "not": ""
+    },
+    {
+     "olcut": "akis_ogesi",
+     "deger": 0,
+     "esik": {
+      "min": 1
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 228: süreç zinciri olan her şekilde akış öğesi",
+     "gecti": null,
+     "uygulanmaz": "no process chain declared",
+     "not": ""
+    },
+    {
+     "olcut": "akis_etiketi",
+     "deger": 0,
+     "esik": {
+      "min": 1
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 228: en az bir ok ne aktığını yazar ya da nicelik taşır",
+     "gecti": null,
+     "uygulanmaz": "no process chain declared",
+     "not": ""
+    },
+    {
+     "olcut": "gruplama_araci",
+     "deger": 1,
+     "esik": {
+      "min": 1
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 231: her çok panelli şekilde bir gruplama aracı (ton kartı, zemin bandı)",
+     "gecti": null,
+     "uygulanmaz": "single panel (manifest)",
+     "not": ""
+    },
+    {
+     "olcut": "ton_kapsami_h",
+     "deger": 0.9122,
+     "esik": {
+      "min": 0.85
+     },
+     "siddet": "blok",
+     "kaynak": "İSTEM satır 231: Üslup H veri şekillerinde ton en az 0.85 (yalnız Üslup H'nin hedefi, satır 245)",
+     "gecti": null,
+     "uygulanmaz": "style H data figures only (İSTEM line 245)",
+     "not": ""
+    }
+   ],
+   "blok": [],
+   "uyari": [],
+   "begeni": {
+    "olcutler": {
+     "murekkep": {
+      "deger": 0.0557,
+      "begenilen": [
+       0.046,
+       0.272
+      ],
+      "begenilmeyen_medyan": 0.093,
+      "uzaklik": 0.0,
+      "begenilmeyen_tarafinda": false,
+      "kaynak": "20 sentezi satır 34"
+     },
+     "karakter_cm2": {
+      "deger": 2.704,
+      "begenilen": [
+       2.3,
+       4.3
+      ],
+      "begenilmeyen_medyan": 4.9,
+      "uzaklik": 0.0,
+      "begenilmeyen_tarafinda": false,
+      "kaynak": "20 sentezi satır 31"
+     },
+     "yazi_kutusu_alani": {
+      "deger": 0.1605,
+      "begenilen": [
+       0.131,
+       0.285
+      ],
+      "begenilmeyen_medyan": 0.253,
+      "uzaklik": 0.0,
+      "begenilmeyen_tarafinda": false,
+      "kaynak": "20 sentezi satır 31"
+     },
+     "ton": {
+      "deger": 0.9122,
+      "begenilen": [
+       0.86,
+       0.924
+      ],
+      "begenilmeyen_medyan": 0.038,
+      "uzaklik": 0.0,
+      "begenilmeyen_tarafinda": false,
+      "kaynak": "20 sentezi satır 33 (13 veri şekli)"
+     },
+     "bos": {
+      "deger": 0.0321,
+      "begenilen": [
+       0.024,
+       0.046
+      ],
+      "begenilmeyen_medyan": 0.869,
+      "uzaklik": 0.0,
+      "begenilmeyen_tarafinda": false,
+      "kaynak": "20 sentezi satır 35"
+     },
+     "sayisal_oran": {
+      "deger": 0.3333,
+      "begenilen": null,
+      "begenilmeyen_medyan": null,
+      "uzaklik": null,
+      "kaynak": "20 sentezi satır 32: histopatolojide ölçülmedi; kara kutuda veri şekillerinde 0.23-0.58 (12 raporu satır 188), medyan verilmedi"
+     },
+     "veri_alani_payi": {
+      "deger": 0.5896,
+      "begenilen": null,
+      "begenilmeyen_medyan": null,
+      "uzaklik": null,
+      "kaynak": "20 sentezi satır 85: histopatolojide ölçülmedi; kara kutu tablo-grafiklerinde %11-30, medyan verilmedi"
+     }
+    },
+    "uzaklik": 0.0,
+    "olculen": 5,
+    "begenilmeyen_tarafinda": 0,
+    "uzak_durur": true
+   },
+   "katalog": {
+    "uzaklik": null,
+    "not": "no F_araligi for this style and template"
+   },
+   "sonuc": "kurulabilir",
+   "esik_kaynaklari": [
+    "C:\\Users\\cagri\\projects\\cc_duzen\\skills\\visio-cizici\\references\\denge_esikleri.yaml"
+   ],
+   "ozet_satiri": "kar/cm² 2.70 [2.30-4.30] · yazı kutusu 0.16 [0.13-0.28] · sayısal 0.33 · veri alanı 0.59 · derinlik 1 · akış 0/0 etiketli · ton 0.91 [0.86-0.92] · mürekkep 0.056 | beğeniye uzaklık 0.00 (0/5 beğenilmeyen tarafında) | eşikler tamam"
+  }
+ }
+}

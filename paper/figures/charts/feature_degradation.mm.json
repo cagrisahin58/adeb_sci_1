@@ -1,0 +1,149 @@
+{
+ "canvas_mm": [
+  85.29,
+  121.0
+ ],
+ "cards": [
+  {
+   "letter": "",
+   "name": "CLS attention entropy change (nat)",
+   "title": "CLS attention entropy change (nat)",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    0.5,
+    84.79,
+    34.233
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CLS attention displacement (TV)",
+   "title": "CLS attention displacement (TV)",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    35.833,
+    84.79,
+    69.567
+   ]
+  },
+  {
+   "letter": "",
+   "name": "Block-output cosine under attack",
+   "title": "Block-output cosine under attack",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    71.167,
+    84.79,
+    104.9
+   ]
+  },
+  {
+   "letter": "",
+   "name": "",
+   "title": "",
+   "tint": "white",
+   "naming": null,
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    106.5,
+    84.79,
+    120.5
+   ]
+  }
+ ],
+ "texts": 64,
+ "marks": 45,
+ "sizes_pt": [
+  8.0,
+  9.0
+ ],
+ "faces": [
+  "DejaVuSans.ttf"
+ ],
+ "fallback_faces": [],
+ "min_text_clearance_mm": {
+  "": 0.9,
+  "Block-output cosine under attack": 2.0,
+  "CLS attention displacement (TV)": 2.0,
+  "CLS attention entropy change (nat)": 2.0
+ },
+ "min_axes_clearance_mm": {
+  "": 0.84,
+  "Block-output cosine under attack": 2.03,
+  "CLS attention displacement (TV)": 2.03,
+  "CLS attention entropy change (nat)": 2.03
+ },
+ "tolerances_mm": {
+  "text_clear": 0.8,
+  "axes_clear": 0.8,
+  "card_gap": 1.5,
+  "overlap": 0.1
+ },
+ "a4": {
+  "height_mm": 121.0,
+  "budget_mm": 165.327,
+  "slack_mm": 44.327,
+  "qc_tolerance_pt": 1.0,
+  "within_budget": true,
+  "passes_qc_only_by_its_tolerance": false
+ },
+ "naming": {
+  "step": 4,
+  "kind": "serit",
+  "kind_drawn": "serit",
+  "types": [
+   "strip"
+  ],
+  "panels": {
+   "CLS attention entropy change (nat)": "strip",
+   "CLS attention displacement (TV)": "strip",
+   "Block-output cosine under attack": "strip",
+   "": "none"
+  },
+  "badges": [],
+  "badge_suppressed": [],
+  "strips": [
+   {
+    "cards": [
+     "CLS attention entropy change (nat)"
+    ],
+    "baseline_mm": 5.757,
+    "row_top_mm": 0.5
+   },
+   {
+    "cards": [
+     "CLS attention displacement (TV)"
+    ],
+    "baseline_mm": 41.091,
+    "row_top_mm": 35.833
+   },
+   {
+    "cards": [
+     "Block-output cosine under attack"
+    ],
+    "baseline_mm": 76.424,
+    "row_top_mm": 71.167
+   }
+  ],
+  "flows": []
+ },
+ "sample_size": {
+  "CLS attention entropy change (nat)": "n",
+  "CLS attention displacement (TV)": "n",
+  "Block-output cosine under attack": "n",
+  "": "exempt: a key to the marks"
+ },
+ "allowed": [],
+ "issues": [],
+ "verdict": "PASS"
+}

@@ -1,0 +1,124 @@
+{
+ "prereg_chain": {
+  "page_mm": [
+   177.588,
+   65.405
+  ],
+  "fonts": [
+   "DejaVu Sans",
+   "DejaVu Sans,Bold"
+  ],
+  "min_pt": 8.425,
+  "spans": 44,
+  "issues": [],
+  "checks": {
+   "page_size": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "177.588 x 65.405 mm"
+   },
+   "fonts": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "DejaVu Sans, DejaVu Sans,Bold"
+   },
+   "min_type": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "smallest 8.425 pt"
+   },
+   "text_overlap": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "44 spans"
+   },
+   "box_spill": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "0 closed boxes"
+   }
+  },
+  "inputs": {
+   "page_text_sha256": "86bf454f3f485f868ca28a4c6353379f71271fd7fcc3e27a50273b23f9436401",
+   "spans": 44,
+   "lines": 38,
+   "drawings": 51,
+   "closed_boxes": 0
+  },
+  "verdict": "PASS",
+  "expected_from": "visio report",
+  "floor_pt": 8.0,
+  "cizgi": {
+   "basili_pt": [
+    0.601
+   ],
+   "tokenlar_pt": {
+    "ince": 0.354,
+    "normal": 0.41,
+    "vurgu": 1.03,
+    "eksen": 0.354
+   },
+   "basili_uzunluk_mm": {
+    "0.601": 1190.77
+   },
+   "ok_ucu": {
+    "basili_mm": [
+     [
+      1.559,
+      1.559
+     ],
+     [
+      1.559,
+      1.559
+     ]
+    ],
+    "token_mm": 1.4,
+    "bicim": [
+     "kapali",
+     "kapali"
+    ],
+    "olculen": 2,
+    "beklenen": 2,
+    "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
+    "adaylar": []
+   },
+   "sorunlar": [
+    "printed width(s) [0.601] pt match no token [0.354, 0.41, 1.03]",
+    "token width(s) [0.354, 0.41, 1.03] pt never printed",
+    "the line hierarchy is gone in print: tokens [0.354, 0.41, 1.03] all print as 0.601 pt",
+    "arrow head length(s) [1.559] mm against the token 1.4 mm (widths [1.559] mm)"
+   ],
+   "uyumlu": false,
+   "token_kaynagi": "manifest",
+   "basim_modeli": {
+    "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
+    "dpi": 120,
+    "beklenen_cizgi_pt": [
+     0.6006
+    ],
+    "beklenen_ok_ucu_mm": [
+     1.559
+    ],
+    "sorunlar": [],
+    "uyumlu": true
+   }
+  },
+  "glif": {
+   "tounicode_yok": [
+    "DejaVu Sans",
+    "DejaVu Sans,Bold"
+   ],
+   "suphe": []
+  },
+  "egri": {
+   "sayi": 0,
+   "metinden_gecen": []
+  },
+  "uyarilar": [
+   "T4: printed width(s) [0.601] pt match no token [0.354, 0.41, 1.03]",
+   "T4: token width(s) [0.354, 0.41, 1.03] pt never printed",
+   "T4: the line hierarchy is gone in print: tokens [0.354, 0.41, 1.03] all print as 0.601 pt",
+   "T4: arrow head length(s) [1.559] mm against the token 1.4 mm (widths [1.559] mm)"
+  ]
+ }
+}

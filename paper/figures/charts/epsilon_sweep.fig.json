@@ -1,0 +1,126 @@
+{
+  "stem": "epsilon_sweep",
+  "builder": "figspec.export.save",
+  "figspec_version": "1.0.0",
+  "venue": "ieee_access",
+  "venue_olcum": "olculdu",
+  "palette": "adeb_konsey_uslup_7",
+  "palette_path": "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+  "uslup": 7,
+  "uslup_uc_boyut": "izometrik 30",
+  "uslup_uc_boyut_kaynagi": "skill_varsayilani",
+  "kind": "single",
+  "panels": [
+    1,
+    1
+  ],
+  "panels_n_exempt": {},
+  "naming_step": 1,
+  "naming_kind": "yok",
+  "naming": {
+    "step": 1,
+    "kind": "yok",
+    "kind_drawn": "yok",
+    "types": [],
+    "panels": {
+      "Robust accuracy under PGD-10": "none"
+    },
+    "badges": [],
+    "badge_suppressed": [],
+    "strips": [],
+    "flows": []
+  },
+  "figsize_in": [
+    3.35787394492874,
+    2.440944881889764
+  ],
+  "geometry": {
+    "pdf_width_pt": 241.7669240349,
+    "expected_pdf_width_pt": 241.76692403486928,
+    "a1": {
+      "kind": "single",
+      "expected_pt": 241.767,
+      "width_pt": 241.767,
+      "scale": 1.0,
+      "ok": true,
+      "gate_points": 6,
+      "gate_blocks": false
+    }
+  },
+  "type_scale": {
+    "floor": 8.0,
+    "tick": 8.0,
+    "annot": 8.0,
+    "label": 9.0,
+    "title": 10.0,
+    "panel": 10.0
+  },
+  "font_sans": [
+    "DejaVu Sans",
+    "Open Sans"
+  ],
+  "font_fallback": [],
+  "entities": {},
+  "derived_colours": {
+    "#EAEAF2": {
+      "from": "card",
+      "tint": "kap",
+      "role": "fill"
+    }
+  },
+  "errorbar_kinds": [
+    "sd"
+  ],
+  "provenance": "computed",
+  "sources": [
+    {
+      "path": "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
+      "exists": true,
+      "sha256": "bfdc1f18a4ccc322df8ab0a7b92a81e8faea2e705c05a2297b728895662f0ce3"
+    },
+    {
+      "path": "results/c1_sweep/pair2/resnet18/resnet18_robustness_results.csv",
+      "exists": true,
+      "sha256": "276b3bad6c65d60292950f17ab3bb54a7caac6591e9d8c942843ecc5ec56dfca"
+    },
+    {
+      "path": "results/c1_sweep/pair3/resnet18/resnet18_robustness_results.csv",
+      "exists": true,
+      "sha256": "c8fef0b665339b70601ab279c1bb786c4375a0324a60329dab821b16d6bbefd2"
+    },
+    {
+      "path": "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
+      "exists": true,
+      "sha256": "72c7f4249083be4ac6cf6121b78d6ccac7fe4e9382cb2ed4f0049eb6c013304a"
+    },
+    {
+      "path": "results/c1_sweep/pair2/vit_tiny/vit_tiny_robustness_results.csv",
+      "exists": true,
+      "sha256": "3db9892b20c6e7c9612fe2c8721b91a169c969480c51c6208faa4dd02ae7e8a1"
+    },
+    {
+      "path": "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv",
+      "exists": true,
+      "sha256": "e04d82bc9060f07e7a0cb013810203c6d260c8a536578da5e7d3b23590e4e8cd"
+    },
+    {
+      "path": "results/wrn_eval/wrn_eval_summary.json",
+      "exists": true,
+      "sha256": "0f0930ba2d9e32460a3f9b0c7bdfe5ef4cedc33350f5f1850c99a5bee9163375"
+    }
+  ],
+  "message": "ResNet-18 AT stays above ViT-Tiny AT at every budget; WRN-28-10 is the external reference.",
+  "caption_hint": null,
+  "notes": null,
+  "git_rev": "c315e09",
+  "formats": {
+    "pdf": "epsilon_sweep.pdf",
+    "eps": "epsilon_sweep.eps",
+    "svg": "epsilon_sweep.svg",
+    "png": "epsilon_sweep.png"
+  },
+  "sablon": "tek_kart_veri",
+  "errorbar_tanimlari": {
+    "sd": "+-1 SD (ddof = 1) over the three C1 seed pairs; WRN-28-10 has none (one model)"
+  }
+}

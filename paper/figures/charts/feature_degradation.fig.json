@@ -1,0 +1,147 @@
+{
+  "stem": "feature_degradation",
+  "builder": "figspec.export.save",
+  "figspec_version": "1.0.0",
+  "venue": "ieee_access",
+  "venue_olcum": "olculdu",
+  "palette": "adeb_konsey_uslup_7",
+  "palette_path": "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+  "uslup": 7,
+  "uslup_uc_boyut": "izometrik 30",
+  "uslup_uc_boyut_kaynagi": "skill_varsayilani",
+  "kind": "single",
+  "panels": [
+    1,
+    4
+  ],
+  "panels_n_exempt": {
+    "": "a key to the marks"
+  },
+  "naming_step": 4,
+  "naming_kind": "serit",
+  "naming": {
+    "step": 4,
+    "kind": "serit",
+    "kind_drawn": "serit",
+    "types": [
+      "strip"
+    ],
+    "panels": {
+      "CLS attention entropy change (nat)": "strip",
+      "CLS attention displacement (TV)": "strip",
+      "Block-output cosine under attack": "strip",
+      "": "none"
+    },
+    "badges": [],
+    "badge_suppressed": [],
+    "strips": [
+      {
+        "cards": [
+          "CLS attention entropy change (nat)"
+        ],
+        "baseline_mm": 5.757,
+        "row_top_mm": 0.5
+      },
+      {
+        "cards": [
+          "CLS attention displacement (TV)"
+        ],
+        "baseline_mm": 41.091,
+        "row_top_mm": 35.833
+      },
+      {
+        "cards": [
+          "Block-output cosine under attack"
+        ],
+        "baseline_mm": 76.424,
+        "row_top_mm": 71.167
+      }
+    ],
+    "flows": []
+  },
+  "figsize_in": [
+    3.35787394492874,
+    4.7637795275590555
+  ],
+  "geometry": {
+    "pdf_width_pt": 241.7669240349,
+    "expected_pdf_width_pt": 241.76692403486928,
+    "a1": {
+      "kind": "single",
+      "expected_pt": 241.767,
+      "width_pt": 241.767,
+      "scale": 1.0,
+      "ok": true,
+      "gate_points": 6,
+      "gate_blocks": false
+    }
+  },
+  "type_scale": {
+    "floor": 8.0,
+    "tick": 8.0,
+    "annot": 8.0,
+    "label": 9.0,
+    "title": 10.0,
+    "panel": 10.0
+  },
+  "font_sans": [
+    "DejaVu Sans",
+    "Open Sans"
+  ],
+  "font_fallback": [],
+  "entities": {},
+  "derived_colours": {
+    "#EAEAF2": {
+      "from": "card",
+      "tint": "kap",
+      "role": "fill"
+    },
+    "#FFFFFF": {
+      "from": "card",
+      "tint": "white",
+      "role": "fill"
+    }
+  },
+  "errorbar_kinds": [
+    "ci90",
+    "sd"
+  ],
+  "provenance": "computed",
+  "sources": [
+    {
+      "path": "results/c1_c4/pair1/c4_summary.json",
+      "exists": true,
+      "sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "path": "results/c1_c4/pair2/c4_summary.json",
+      "exists": true,
+      "sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "path": "results/c1_c4/pair3/c4_summary.json",
+      "exists": true,
+      "sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "path": "results/c1_c4/c4_entropy_tost.json",
+      "exists": true,
+      "sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    }
+  ],
+  "message": "Under attack the ViT's CLS attention moves (displacement grows with depth) without broadening, and block outputs drift gradually.",
+  "caption_hint": null,
+  "notes": null,
+  "git_rev": "c315e09",
+  "formats": {
+    "pdf": "feature_degradation.pdf",
+    "eps": "feature_degradation.eps",
+    "svg": "feature_degradation.svg",
+    "png": "feature_degradation.png"
+  },
+  "sablon": "tasarim_izgarasi",
+  "errorbar_tanimlari": {
+    "ci90": "top card: run-level 90% interval of the TOST file (entropi_TOST.katmanlar[k].GA90), the interval the equivalence decision reads against the +-0.05 nat margin; ci90 is outside annotate.ERRORBAR_KINDS, recorded so the caption check runs",
+    "sd": "middle and bottom cards: +-1 SD (ddof = 1) over the three runs"
+  }
+}

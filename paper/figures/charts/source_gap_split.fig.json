@@ -1,0 +1,122 @@
+{
+  "stem": "source_gap_split",
+  "builder": "figspec.export.save",
+  "figspec_version": "1.0.0",
+  "venue": "ieee_access",
+  "venue_olcum": "olculdu",
+  "palette": "adeb_konsey_uslup_7",
+  "palette_path": "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+  "uslup": 7,
+  "uslup_uc_boyut": "izometrik 30",
+  "uslup_uc_boyut_kaynagi": "skill_varsayilani",
+  "kind": "double",
+  "panels": [
+    1,
+    4
+  ],
+  "panels_n_exempt": {
+    "": "a key to the marks"
+  },
+  "naming_step": 4,
+  "naming_kind": "serit",
+  "naming": {
+    "step": 4,
+    "kind": "serit",
+    "kind_drawn": "serit",
+    "types": [
+      "strip"
+    ],
+    "panels": {
+      "CIFAR-10": "strip",
+      "CIFAR-100": "strip",
+      "ImageNetV2, descriptive": "strip",
+      "": "none"
+    },
+    "badges": [],
+    "badge_suppressed": [],
+    "strips": [
+      {
+        "cards": [
+          "CIFAR-10",
+          "CIFAR-100",
+          "ImageNetV2, descriptive"
+        ],
+        "baseline_mm": 5.757
+      }
+    ],
+    "flows": []
+  },
+  "figsize_in": [
+    6.9893700013837,
+    2.716535433070866
+  ],
+  "geometry": {
+    "pdf_width_pt": 503.2346400996,
+    "expected_pdf_width_pt": 503.2346400996264,
+    "a1": {
+      "kind": "double",
+      "expected_pt": 503.235,
+      "width_pt": 503.235,
+      "scale": 1.0,
+      "ok": true,
+      "gate_points": 6,
+      "gate_blocks": false
+    }
+  },
+  "type_scale": {
+    "floor": 8.0,
+    "tick": 8.0,
+    "annot": 8.0,
+    "label": 9.0,
+    "title": 10.0,
+    "panel": 10.0
+  },
+  "font_sans": [
+    "DejaVu Sans",
+    "Open Sans"
+  ],
+  "font_fallback": [],
+  "entities": {},
+  "derived_colours": {
+    "#EAEAF2": {
+      "from": "card",
+      "tint": "kap",
+      "role": "fill"
+    },
+    "#FFFFFF": {
+      "from": "card",
+      "tint": "white",
+      "role": "fill"
+    }
+  },
+  "errorbar_kinds": [],
+  "provenance": "computed",
+  "sources": [
+    {
+      "path": "results/q1/konsey_ayrisim_b2.json",
+      "exists": true,
+      "sha256": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27"
+    },
+    {
+      "path": "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json",
+      "exists": true,
+      "sha256": "762d62b4194c245e310ab9ae9b5eb82ef3476a6965597feed707a6c0b3a76cd8"
+    },
+    {
+      "path": "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json",
+      "exists": true,
+      "sha256": "2c5e992eaaad49d88056f1d64f1cd7c2650657d0d49da85424f52caa9ebae0e9"
+    }
+  ],
+  "message": "The transformer's source gap is mostly symmetric on CIFAR-10 and CIFAR-100; the ImageNetV2 pairs are descriptive.",
+  "caption_hint": null,
+  "notes": null,
+  "git_rev": "c315e09",
+  "formats": {
+    "pdf": "source_gap_split.pdf",
+    "eps": "source_gap_split.eps",
+    "svg": "source_gap_split.svg",
+    "png": "source_gap_split.png"
+  },
+  "sablon": "ortak_satirli_katlar"
+}

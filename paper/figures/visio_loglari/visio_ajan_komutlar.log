@@ -1,0 +1,163 @@
+# visio_ajan komut gunlugu (31.10.2026)
+  CIEDE2000 fix: {'varlik': 'ayar_c100', 'aday': '#88CCEE', 'sonuc': '#6597B0', 'koyulastirma': 0.26}
+  cift_cnn: #000000 nearest semantic r224 dE2000 39.23
+  cift_vit: #F0E442 nearest semantic dir dE2000 21.72
+  mixed: #6E6E6E nearest semantic panel dE2000 15.94
+  prot_raw: #E7D4E8 nearest semantic panel dE2000 21.17
+  prot_target: #C2A5CF nearest semantic xcit dE2000 14.12
+  prot_both: #9970AB nearest semantic xcit dE2000 12.73
+  prot_success: #762A83 nearest semantic xcit dE2000 30.0
+  ayar_c10: #332288 nearest semantic r224 dE2000 28.85
+  ayar_c10l2: #117733 nearest semantic sym dE2000 16.38
+  ayar_c100: #6597B0 nearest semantic r32 dE2000 10.69
+  ayar_svhn: #DDCC77 nearest semantic dir dE2000 17.35
+  ayar_wrn: #882255 nearest semantic xcit dE2000 28.54
+  ayar_std: #CC6677 nearest semantic xcit dE2000 12.0
+  ayar_last: #999933 nearest semantic dir dE2000 20.64
+  ayar_pool: #C4C4C4 nearest semantic panel dE2000 12.15
+wrote paper\figures\visio\palettes\adeb_konsey_uslup_8.yaml: 22 entities, 53 structural, 4 warning(s)
+  warning: entities/protan: xcit vs ayar_c100 = 3.5 < 12.0 (mitigated: both carry a non-colour channel)
+  warning: entities/deutan: sym vs ayar_std = 4.0 < 12.0 (mitigated: both carry a non-colour channel)
+  warning: entities/tritan: cift_vit vs ayar_svhn = 5.2 < 12.0 (mitigated: both carry a non-colour channel)
+  warning: entities/greyscale: prot_success vs ayar_wrn = 0.3 < 8.0 (mitigated: both carry a non-colour channel)
+wrote paper\figures\visio\palettes\adeb_konsey_uslup_7.yaml: 22 entities, 49 structural, 4 warning(s)
+  warning: entities/protan: xcit vs ayar_c100 = 3.5 < 12.0 (mitigated: both carry a non-colour channel)
+  warning: entities/deutan: sym vs ayar_std = 4.0 < 12.0 (mitigated: both carry a non-colour channel)
+  warning: entities/tritan: cift_vit vs ayar_svhn = 5.2 < 12.0 (mitigated: both carry a non-colour channel)
+  warning: entities/greyscale: prot_success vs ayar_wrn = 0.3 < 8.0 (mitigated: both carry a non-colour channel)
+  3D vit: on #D55E00 sag #E08640 ust #EAAE80 kenar #954200 L {'on': 0.2215, 'sag': 0.3327, 'ust': 0.4932} basamak {'ust_sag': 0.1606, 'sag_on': 0.1112}
+  3D r224: on #0072B2 sag #4095C5 ust #80B8D8 kenar #00507D L {'on': 0.1525, 'sag': 0.2662, 'ust': 0.4383} basamak {'ust_sag': 0.1721, 'sag_on': 0.1137}
+  3D r32: on #56B4E9 sag #80C7EE ust #AADAF4 kenar #3C7EA3 L {'on': 0.405, 'sag': 0.5161, 'ust': 0.6522} basamak {'ust_sag': 0.1361, 'sag_on': 0.111}
+  3D panel: on #999999 sag #B2B2B2 ust #CCCCCC kenar #6B6B6B L {'on': 0.3185, 'sag': 0.4452, 'ust': 0.6038} basamak {'ust_sag': 0.1586, 'sag_on': 0.1267}
+  3D xcit: on #CC79A7 sag #D99ABD ust #E6BCD3 kenar #8F5575 L {'on': 0.293, 'sag': 0.4154, 'ust': 0.5749} basamak {'ust_sag': 0.1596, 'sag_on': 0.1223}
+  3D sym: on #009E73 sag #40B696 ust #80CEB9 kenar #006F50 L {'on': 0.2569, 'sag': 0.3675, 'ust': 0.5223} basamak {'ust_sag': 0.1549, 'sag_on': 0.1106}
+  3D dir: on #E69F00 sag #ECB740 ust #F2CF80 kenar #A16F00 L {'on': 0.4162, 'sag': 0.5207, 'ust': 0.6506} basamak {'ust_sag': 0.1299, 'sag_on': 0.1045}
+wrote paper\figures\visio\palettes\adeb_konsey_uc_boyut.yaml
+2026-10-31T20:58:39+03:00 python paper/figures/visio/fig_study_overview.py --uslup 8
+2026-10-31T21:00:03+03:00 python paper/figures/visio/fig_study_overview.py --uslup 8
+2026-10-31T21:00:24 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure study_overview --floor 8.0 --json-out paper/figures/qc/study_overview/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:00:24 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure study_overview --uslup 8 --ajan paper/figures/visio/study_overview.denge_ajan.json --out paper/figures/qc/study_overview/denge.json  -> exit 1
+2026-10-31T21:00:25 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/study_overview.pdf --tablo  -> exit 1
+2026-10-31T21:00:56+03:00 python paper/figures/visio/fig_study_overview.py --uslup 8
+2026-10-31T21:01:17 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure study_overview --floor 8.0 --json-out paper/figures/qc/study_overview/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:01:18 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure study_overview --uslup 8 --ajan paper/figures/visio/study_overview.denge_ajan.json --out paper/figures/qc/study_overview/denge.json  -> exit 0
+2026-10-31T21:01:18 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/study_overview.pdf --tablo  -> exit 0
+2026-10-31T21:05:15+03:00 python paper/figures/visio/fig_decomposition_schematic.py --uslup 8
+2026-10-31T21:06:14+03:00 python paper/figures/visio/fig_decomposition_schematic.py --uslup 8
+2026-10-31T21:06:27 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure decomposition_schematic --floor 8.0 --json-out paper/figures/qc/decomposition_schematic/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:06:27 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure decomposition_schematic --uslup 8 --ajan paper/figures/visio/decomposition_schematic.denge_ajan.json --out paper/figures/qc/decomposition_schematic/denge.json  -> exit 1
+2026-10-31T21:06:28 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/decomposition_schematic.pdf --tablo  -> exit 1
+2026-10-31T21:07:05+03:00 python paper/figures/visio/fig_decomposition_schematic.py --uslup 8
+2026-10-31T21:07:28 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure decomposition_schematic --floor 8.0 --json-out paper/figures/qc/decomposition_schematic/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:07:29 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure decomposition_schematic --uslup 8 --ajan paper/figures/visio/decomposition_schematic.denge_ajan.json --out paper/figures/qc/decomposition_schematic/denge.json  -> exit 0
+2026-10-31T21:07:29 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/decomposition_schematic.pdf --tablo  -> exit 0
+2026-10-31T21:13:36+03:00 python paper/figures/visio/fig_panel_members.py --uslup 8
+2026-10-31T21:13:50 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure panel_members --floor 8.0 --json-out paper/figures/qc/panel_members/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:13:50 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure panel_members --uslup 8 --ajan paper/figures/visio/panel_members.denge_ajan.json --out paper/figures/qc/panel_members/denge.json  -> exit 1
+2026-10-31T21:13:50 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/panel_members.pdf --tablo  -> exit 1
+2026-10-31T21:14:09+03:00 python paper/figures/visio/fig_panel_members.py --uslup 8
+2026-10-31T21:14:22 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure panel_members --floor 8.0 --json-out paper/figures/qc/panel_members/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:14:22 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure panel_members --uslup 8 --ajan paper/figures/visio/panel_members.denge_ajan.json --out paper/figures/qc/panel_members/denge.json  -> exit 0
+2026-10-31T21:14:23 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/panel_members.pdf --tablo  -> exit 0
+2026-10-31T21:14:34+03:00 python paper/figures/visio/fig_panel_members.py --uslup 8
+2026-10-31T21:14:47 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure panel_members --floor 8.0 --json-out paper/figures/qc/panel_members/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:14:47 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure panel_members --uslup 8 --ajan paper/figures/visio/panel_members.denge_ajan.json --out paper/figures/qc/panel_members/denge.json  -> exit 0
+2026-10-31T21:14:48 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/panel_members.pdf --tablo  -> exit 0
+2026-10-31T21:19:59+03:00 python paper/figures/visio/fig_design_recipe.py --uslup 8
+2026-10-31T21:20:13 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure design_recipe --floor 8.0 --json-out paper/figures/qc/design_recipe/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:20:14 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure design_recipe --uslup 8 --ajan paper/figures/visio/design_recipe.denge_ajan.json --out paper/figures/qc/design_recipe/denge.json  -> exit 1
+2026-10-31T21:20:15 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/design_recipe.pdf --tablo  -> exit 1
+2026-10-31T21:20:24+03:00 python paper/figures/visio/fig_design_recipe.py --uslup 8
+2026-10-31T21:20:36 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure design_recipe --floor 8.0 --json-out paper/figures/qc/design_recipe/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:20:36 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure design_recipe --uslup 8 --ajan paper/figures/visio/design_recipe.denge_ajan.json --out paper/figures/qc/design_recipe/denge.json  -> exit 0
+2026-10-31T21:20:37 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/design_recipe.pdf --tablo  -> exit 0
+2026-10-31T21:21:08+03:00 python paper/figures/visio/fig_design_recipe.py --uslup 8
+2026-10-31T21:21:20 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure design_recipe --floor 8.0 --json-out paper/figures/qc/design_recipe/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:21:20 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure design_recipe --uslup 8 --ajan paper/figures/visio/design_recipe.denge_ajan.json --out paper/figures/qc/design_recipe/denge.json  -> exit 0
+2026-10-31T21:21:21 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/design_recipe.pdf --tablo  -> exit 0
+2026-10-31T21:25:16+03:00 python paper/figures/visio/fig_registry_map.py --uslup 8
+2026-10-31T21:25:26+03:00 python paper/figures/visio/fig_registry_map.py --uslup 8
+2026-10-31T21:25:41 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure registry_map --floor 8.0 --json-out paper/figures/qc/registry_map/fig_mm_pdf.json  -> exit 1
+2026-10-31T21:25:42 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure registry_map --uslup 8 --ajan paper/figures/visio/registry_map.denge_ajan.json --out paper/figures/qc/registry_map/denge.json  -> exit 1
+2026-10-31T21:25:42 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/registry_map.pdf --tablo  -> exit 1
+2026-10-31T21:26:16+03:00 python paper/figures/visio/fig_registry_map.py --uslup 8
+2026-10-31T21:26:32 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure registry_map --floor 8.0 --json-out paper/figures/qc/registry_map/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:26:33 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure registry_map --uslup 8 --ajan paper/figures/visio/registry_map.denge_ajan.json --out paper/figures/qc/registry_map/denge.json  -> exit 0
+2026-10-31T21:26:33 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/registry_map.pdf --tablo  -> exit 0
+2026-10-31T21:26:46+03:00 python paper/figures/visio/fig_registry_map.py --uslup 8
+2026-10-31T21:27:02 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure registry_map --floor 8.0 --json-out paper/figures/qc/registry_map/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:27:03 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure registry_map --uslup 8 --ajan paper/figures/visio/registry_map.denge_ajan.json --out paper/figures/qc/registry_map/denge.json  -> exit 0
+2026-10-31T21:27:04 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/registry_map.pdf --tablo  -> exit 0
+2026-10-31T21:30:14+03:00 python paper/figures/visio/fig_prereg_chain.py --uslup 8
+2026-10-31T21:30:25 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure prereg_chain --floor 8.0 --json-out paper/figures/qc/prereg_chain/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:30:26 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure prereg_chain --uslup 8 --ajan paper/figures/visio/prereg_chain.denge_ajan.json --out paper/figures/qc/prereg_chain/denge.json  -> exit 1
+2026-10-31T21:30:26 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/prereg_chain.pdf --tablo  -> exit 1
+2026-10-31T21:30:46+03:00 python paper/figures/visio/fig_prereg_chain.py --uslup 8
+2026-10-31T21:30:58 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure prereg_chain --floor 8.0 --json-out paper/figures/qc/prereg_chain/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:30:59 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure prereg_chain --uslup 8 --ajan paper/figures/visio/prereg_chain.denge_ajan.json --out paper/figures/qc/prereg_chain/denge.json  -> exit 1
+2026-10-31T21:30:59 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/prereg_chain.pdf --tablo  -> exit 1
+2026-10-31T21:31:08+03:00 python paper/figures/visio/fig_prereg_chain.py --uslup 8
+2026-10-31T21:31:20 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure prereg_chain --floor 8.0 --json-out paper/figures/qc/prereg_chain/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:31:20 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure prereg_chain --uslup 8 --ajan paper/figures/visio/prereg_chain.denge_ajan.json --out paper/figures/qc/prereg_chain/denge.json  -> exit 0
+2026-10-31T21:31:21 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/prereg_chain.pdf --tablo  -> exit 0
+2026-10-31T21:31:44+03:00 python paper/figures/visio/fig_study_overview.py --uslup 8 (son tur)
+2026-10-31T21:32:05 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure study_overview --floor 8.0 --json-out paper/figures/qc/study_overview/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:32:06 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure study_overview --uslup 8 --ajan paper/figures/visio/study_overview.denge_ajan.json --out paper/figures/qc/study_overview/denge.json  -> exit 0
+2026-10-31T21:32:06 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/study_overview.pdf --tablo  -> exit 0
+2026-10-31T21:32:07+03:00 python paper/figures/visio/fig_decomposition_schematic.py --uslup 8 (son tur)
+2026-10-31T21:32:31 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure decomposition_schematic --floor 8.0 --json-out paper/figures/qc/decomposition_schematic/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:32:32 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure decomposition_schematic --uslup 8 --ajan paper/figures/visio/decomposition_schematic.denge_ajan.json --out paper/figures/qc/decomposition_schematic/denge.json  -> exit 0
+2026-10-31T21:32:32 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/decomposition_schematic.pdf --tablo  -> exit 0
+2026-10-31T21:32:32+03:00 python paper/figures/visio/fig_panel_members.py --uslup 8 (son tur)
+2026-10-31T21:32:45 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure panel_members --floor 8.0 --json-out paper/figures/qc/panel_members/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:32:46 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure panel_members --uslup 8 --ajan paper/figures/visio/panel_members.denge_ajan.json --out paper/figures/qc/panel_members/denge.json  -> exit 0
+2026-10-31T21:32:46 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/panel_members.pdf --tablo  -> exit 0
+2026-10-31T21:32:47+03:00 python paper/figures/visio/fig_design_recipe.py --uslup 8 (son tur)
+2026-10-31T21:32:58 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure design_recipe --floor 8.0 --json-out paper/figures/qc/design_recipe/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:32:59 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure design_recipe --uslup 8 --ajan paper/figures/visio/design_recipe.denge_ajan.json --out paper/figures/qc/design_recipe/denge.json  -> exit 0
+2026-10-31T21:32:59 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/design_recipe.pdf --tablo  -> exit 0
+2026-10-31T21:33:00+03:00 python paper/figures/visio/fig_registry_map.py --uslup 8 (son tur)
+2026-10-31T21:33:16 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure registry_map --floor 8.0 --json-out paper/figures/qc/registry_map/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:33:16 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure registry_map --uslup 8 --ajan paper/figures/visio/registry_map.denge_ajan.json --out paper/figures/qc/registry_map/denge.json  -> exit 0
+2026-10-31T21:33:17 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/registry_map.pdf --tablo  -> exit 0
+2026-10-31T21:33:17+03:00 python paper/figures/visio/fig_prereg_chain.py --uslup 8 (son tur)
+2026-10-31T21:33:29 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure prereg_chain --floor 8.0 --json-out paper/figures/qc/prereg_chain/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:33:30 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure prereg_chain --uslup 8 --ajan paper/figures/visio/prereg_chain.denge_ajan.json --out paper/figures/qc/prereg_chain/denge.json  -> exit 1
+2026-10-31T21:33:30 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/prereg_chain.pdf --tablo  -> exit 0
+2026-10-31T21:33:44+03:00 python paper/figures/visio/fig_prereg_chain.py --uslup 8 (son tur, bant daraltildi)
+2026-10-31T21:33:45 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure prereg_chain --floor 8.0 --json-out paper/figures/qc/prereg_chain/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:33:45 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure prereg_chain --uslup 8 --ajan paper/figures/visio/prereg_chain.denge_ajan.json --out paper/figures/qc/prereg_chain/denge.json  -> exit 1
+2026-10-31T21:33:46 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/prereg_chain.pdf --tablo  -> exit 0
+2026-10-31T21:33:57+03:00 python paper/figures/visio/fig_prereg_chain.py --uslup 8 (son tur, serit araligi)
+2026-10-31T21:34:09 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure prereg_chain --floor 8.0 --json-out paper/figures/qc/prereg_chain/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:34:09 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure prereg_chain --uslup 8 --ajan paper/figures/visio/prereg_chain.denge_ajan.json --out paper/figures/qc/prereg_chain/denge.json  -> exit 0
+2026-10-31T21:34:10 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/prereg_chain.pdf --tablo  -> exit 0
+2026-10-31T21:54:44+03:00 python paper/figures/visio/fig_panel_members.py --uslup 8 (dogrulama duzeltme turu)
+2026-10-31T21:54:57 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure panel_members --floor 8.0 --json-out paper/figures/qc/panel_members/fig_mm_pdf.json  -> exit 0
+2026-10-31T21:54:58 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure panel_members --uslup 8 --ajan paper/figures/visio/panel_members.denge_ajan.json --out paper/figures/qc/panel_members/denge.json  -> exit 0
+2026-10-31T21:54:58 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/panel_members.pdf --tablo  -> exit 0
+2026-10-31T22:01:19+03:00 python paper/figures/visio/fig_panel_members.py --uslup 8 (dogrulama duzeltme turu)
+2026-10-31T22:01:33+03:00 python paper/figures/visio/fig_registry_map.py --uslup 8 (dogrulama duzeltme turu)
+2026-10-31T22:01:50+03:00 python paper/figures/visio/fig_study_overview.py --uslup 8 (dogrulama duzeltme turu)
+2026-10-31T22:02:12+03:00 python paper/figures/visio/fig_decomposition_schematic.py --uslup 8 (dogrulama duzeltme turu)
+2026-10-31T22:02:24+03:00 python paper/figures/visio/fig_prereg_chain.py --uslup 8 (dogrulama duzeltme turu)
+2026-10-31T22:02:36+03:00 python paper/figures/visio/fig_design_recipe.py --uslup 8 (dogrulama duzeltme turu)
+2026-10-31T22:02:52 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure panel_members --floor 8.0 --json-out paper/figures/qc/panel_members/fig_mm_pdf.json  -> exit 0
+2026-10-31T22:02:52 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure panel_members --uslup 8 --ajan paper/figures/visio/panel_members.denge_ajan.json --out paper/figures/qc/panel_members/denge.json  -> exit 0
+2026-10-31T22:02:53 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/panel_members.pdf --tablo  -> exit 0
+2026-10-31T22:02:53 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure registry_map --floor 8.0 --json-out paper/figures/qc/registry_map/fig_mm_pdf.json  -> exit 0
+2026-10-31T22:02:54 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure registry_map --uslup 8 --ajan paper/figures/visio/registry_map.denge_ajan.json --out paper/figures/qc/registry_map/denge.json  -> exit 0
+2026-10-31T22:02:54 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/registry_map.pdf --tablo  -> exit 0
+2026-10-31T22:02:55 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure study_overview --floor 8.0 --json-out paper/figures/qc/study_overview/fig_mm_pdf.json  -> exit 0
+2026-10-31T22:02:55 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure study_overview --uslup 8 --ajan paper/figures/visio/study_overview.denge_ajan.json --out paper/figures/qc/study_overview/denge.json  -> exit 0
+2026-10-31T22:02:56 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/study_overview.pdf --tablo  -> exit 0
+2026-10-31T22:02:56 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure decomposition_schematic --floor 8.0 --json-out paper/figures/qc/decomposition_schematic/fig_mm_pdf.json  -> exit 0
+2026-10-31T22:02:56 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure decomposition_schematic --uslup 8 --ajan paper/figures/visio/decomposition_schematic.denge_ajan.json --out paper/figures/qc/decomposition_schematic/denge.json  -> exit 0
+2026-10-31T22:02:57 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/decomposition_schematic.pdf --tablo  -> exit 0
+2026-10-31T22:02:57 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure prereg_chain --floor 8.0 --json-out paper/figures/qc/prereg_chain/fig_mm_pdf.json  -> exit 0
+2026-10-31T22:02:58 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure prereg_chain --uslup 8 --ajan paper/figures/visio/prereg_chain.denge_ajan.json --out paper/figures/qc/prereg_chain/denge.json  -> exit 0
+2026-10-31T22:02:58 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/prereg_chain.pdf --tablo  -> exit 0
+2026-10-31T22:02:59 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_mm_pdf.py --assets paper/figures/visio --figure design_recipe --floor 8.0 --json-out paper/figures/qc/design_recipe/fig_mm_pdf.json  -> exit 0
+2026-10-31T22:02:59 python C:/Users/cagri/.claude/skills/visio-cizici/motor/host/denge.py --assets paper/figures/visio --figure design_recipe --uslup 8 --ajan paper/figures/visio/design_recipe.denge_ajan.json --out paper/figures/qc/design_recipe/denge.json  -> exit 0
+2026-10-31T22:02:59 python C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --pdf paper/figures/visio/design_recipe.pdf --tablo  -> exit 0
+2026-10-31T22:05:14 dogrulama duzeltme turu bitti; rapor 05 bolum 7, yedek _v1_dogrulama_oncesi

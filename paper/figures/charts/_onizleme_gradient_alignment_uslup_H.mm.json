@@ -1,0 +1,144 @@
+{
+ "canvas_mm": [
+  177.53,
+  105.0
+ ],
+ "cards": [
+  {
+   "letter": "",
+   "name": "Rank correlation",
+   "title": "Rank correlation",
+   "tint": "neutral",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    0.5,
+    63.267,
+    104.5
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-10",
+   "title": "CIFAR-10",
+   "tint": "neutral",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    64.867,
+    0.5,
+    120.148,
+    53.722
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-100",
+   "title": "CIFAR-100",
+   "tint": "neutral",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    121.748,
+    0.5,
+    177.03,
+    53.722
+   ]
+  },
+  {
+   "letter": "",
+   "name": "ImageNetV2",
+   "title": "ImageNetV2",
+   "tint": "neutral",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    64.867,
+    55.322,
+    177.03,
+    104.5
+   ]
+  }
+ ],
+ "texts": 68,
+ "marks": 30,
+ "sizes_pt": [
+  8.0,
+  9.0
+ ],
+ "faces": [
+  "OpenSans-Regular.ttf",
+  "OpenSans-SemiBold.ttf"
+ ],
+ "fallback_faces": [],
+ "min_text_clearance_mm": {
+  "CIFAR-10": 1.117,
+  "CIFAR-100": 1.189,
+  "ImageNetV2": 1.189,
+  "Rank correlation": 2.0
+ },
+ "min_axes_clearance_mm": {
+  "CIFAR-10": 1.117,
+  "CIFAR-100": 1.189,
+  "ImageNetV2": 1.189,
+  "Rank correlation": 2.5
+ },
+ "tolerances_mm": {
+  "text_clear": 0.8,
+  "axes_clear": 0.8,
+  "card_gap": 1.5,
+  "overlap": 0.1
+ },
+ "a4": {
+  "height_mm": 105.0,
+  "budget_mm": 165.327,
+  "slack_mm": 60.327,
+  "qc_tolerance_pt": 1.0,
+  "within_budget": true,
+  "passes_qc_only_by_its_tolerance": false
+ },
+ "naming": {
+  "step": 4,
+  "kind": "serit",
+  "kind_drawn": "serit",
+  "types": [
+   "strip"
+  ],
+  "panels": {
+   "Rank correlation": "strip",
+   "CIFAR-10": "strip",
+   "CIFAR-100": "strip",
+   "ImageNetV2": "strip"
+  },
+  "badges": [],
+  "badge_suppressed": [],
+  "strips": [
+   {
+    "cards": [
+     "Rank correlation",
+     "CIFAR-10",
+     "CIFAR-100"
+    ],
+    "baseline_mm": 5.733
+   },
+   {
+    "cards": [
+     "ImageNetV2"
+    ],
+    "baseline_mm": 60.556,
+    "row_top_mm": 55.322
+   }
+  ],
+  "flows": []
+ },
+ "sample_size": {
+  "Rank correlation": "exempt: one statistic per data set",
+  "CIFAR-10": "n",
+  "CIFAR-100": "n",
+  "ImageNetV2": "n"
+ },
+ "allowed": [],
+ "issues": [],
+ "verdict": "PASS"
+}

@@ -1,0 +1,109 @@
+{
+ "panel_members": {
+  "page_mm": [
+   85.302,
+   109.008
+  ],
+  "fonts": [
+   "DejaVu Sans",
+   "DejaVu Sans,Bold"
+  ],
+  "min_pt": 8.4,
+  "spans": 38,
+  "issues": [],
+  "checks": {
+   "page_size": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "85.302 x 109.008 mm"
+   },
+   "fonts": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "DejaVu Sans, DejaVu Sans,Bold"
+   },
+   "min_type": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "smallest 8.400 pt"
+   },
+   "text_overlap": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "38 spans"
+   },
+   "box_spill": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "0 closed boxes"
+   }
+  },
+  "inputs": {
+   "page_text_sha256": "936924d6a7928a2c79e6daa4241346b3baddc3ebeef7628d752dd86101d47ab6",
+   "spans": 38,
+   "lines": 38,
+   "drawings": 43,
+   "closed_boxes": 0
+  },
+  "verdict": "PASS",
+  "expected_from": "visio report",
+  "floor_pt": 8.0,
+  "cizgi": {
+   "basili_pt": [
+    0.601,
+    1.03
+   ],
+   "tokenlar_pt": {
+    "ince": 0.354,
+    "normal": 0.41,
+    "vurgu": 1.03,
+    "eksen": 0.354
+   },
+   "basili_uzunluk_mm": {
+    "0.601": 793.4,
+    "1.030": 47.12
+   },
+   "ok_ucu": {
+    "basili_mm": [],
+    "token_mm": 1.4,
+    "bicim": [],
+    "olculen": 0,
+    "beklenen": 0,
+    "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
+    "adaylar": []
+   },
+   "sorunlar": [
+    "printed width(s) [0.601] pt match no token [0.354, 0.41, 1.03]",
+    "token width(s) [0.354, 0.41] pt never printed"
+   ],
+   "uyumlu": false,
+   "token_kaynagi": "manifest",
+   "basim_modeli": {
+    "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
+    "dpi": 120,
+    "beklenen_cizgi_pt": [
+     0.6006,
+     1.03
+    ],
+    "beklenen_ok_ucu_mm": [],
+    "sorunlar": [],
+    "uyumlu": true
+   }
+  },
+  "glif": {
+   "tounicode_yok": [
+    "DejaVu Sans",
+    "DejaVu Sans,Bold"
+   ],
+   "suphe": []
+  },
+  "egri": {
+   "sayi": 0,
+   "metinden_gecen": []
+  },
+  "uyarilar": [
+   "T4: printed width(s) [0.601] pt match no token [0.354, 0.41, 1.03]",
+   "T4: token width(s) [0.354, 0.41] pt never printed"
+  ]
+ }
+}

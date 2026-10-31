@@ -1,0 +1,191 @@
+{
+ "canvas_mm": [
+  177.53,
+  96.0
+ ],
+ "cards": [
+  {
+   "letter": "",
+   "name": "Rank correlation",
+   "title": "Rank correlation",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    0.5,
+    0.5,
+    56.81,
+    95.5
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-10",
+   "title": "CIFAR-10",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    60.68,
+    0.5,
+    97.463,
+    46.5
+   ]
+  },
+  {
+   "letter": "",
+   "name": "CIFAR-100",
+   "title": "CIFAR-100",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    100.463,
+    0.5,
+    137.247,
+    46.5
+   ]
+  },
+  {
+   "letter": "",
+   "name": "ImageNetV2",
+   "title": "ImageNetV2",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    140.247,
+    0.5,
+    177.03,
+    46.5
+   ]
+  },
+  {
+   "letter": "",
+   "name": "residual",
+   "title": "residual",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    60.68,
+    49.5,
+    97.463,
+    95.5
+   ]
+  },
+  {
+   "letter": "",
+   "name": "residual",
+   "title": "residual",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    100.463,
+    49.5,
+    137.247,
+    95.5
+   ]
+  },
+  {
+   "letter": "",
+   "name": "residual",
+   "title": "residual",
+   "tint": "kap",
+   "naming": "strip",
+   "badge": false,
+   "rect_mm": [
+    140.247,
+    49.5,
+    177.03,
+    95.5
+   ]
+  }
+ ],
+ "texts": 72,
+ "marks": 30,
+ "sizes_pt": [
+  8.0,
+  9.0
+ ],
+ "faces": [
+  "DejaVuSans.ttf"
+ ],
+ "fallback_faces": [],
+ "min_text_clearance_mm": {
+  "CIFAR-10": 1.197,
+  "CIFAR-100": 2.0,
+  "ImageNetV2": 2.0,
+  "Rank correlation": 2.0,
+  "residual": 1.098
+ },
+ "min_axes_clearance_mm": {
+  "CIFAR-10": 1.197,
+  "CIFAR-100": 2.325,
+  "ImageNetV2": 2.325,
+  "Rank correlation": 2.271,
+  "residual": 1.098
+ },
+ "tolerances_mm": {
+  "text_clear": 0.8,
+  "axes_clear": 0.8,
+  "card_gap": 1.5,
+  "overlap": 0.1
+ },
+ "a4": {
+  "height_mm": 96.0,
+  "budget_mm": 165.327,
+  "slack_mm": 69.327,
+  "qc_tolerance_pt": 1.0,
+  "within_budget": true,
+  "passes_qc_only_by_its_tolerance": false
+ },
+ "naming": {
+  "step": 4,
+  "kind": "serit",
+  "kind_drawn": "serit",
+  "types": [
+   "strip"
+  ],
+  "panels": {
+   "Rank correlation": "strip",
+   "CIFAR-10": "strip",
+   "CIFAR-100": "strip",
+   "ImageNetV2": "strip",
+   "residual": "strip"
+  },
+  "badges": [],
+  "badge_suppressed": [],
+  "strips": [
+   {
+    "cards": [
+     "Rank correlation",
+     "CIFAR-10",
+     "CIFAR-100",
+     "ImageNetV2"
+    ],
+    "baseline_mm": 5.757
+   },
+   {
+    "cards": [
+     "residual",
+     "residual",
+     "residual"
+    ],
+    "baseline_mm": 54.757
+   }
+  ],
+  "flows": []
+ },
+ "sample_size": {
+  "Rank correlation": "exempt: one statistic per data set",
+  "CIFAR-10": "n",
+  "CIFAR-100": "n",
+  "ImageNetV2": "n",
+  "residual": "n"
+ },
+ "allowed": [],
+ "issues": [],
+ "verdict": "PASS"
+}

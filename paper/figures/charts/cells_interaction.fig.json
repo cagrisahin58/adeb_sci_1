@@ -1,0 +1,135 @@
+{
+  "stem": "cells_interaction",
+  "builder": "figspec.export.save",
+  "figspec_version": "1.0.0",
+  "venue": "ieee_access",
+  "venue_olcum": "olculdu",
+  "palette": "adeb_konsey_uslup_7",
+  "palette_path": "paper/figures/visio/palettes/adeb_konsey_uslup_7.yaml",
+  "uslup": 7,
+  "uslup_uc_boyut": "izometrik 30",
+  "uslup_uc_boyut_kaynagi": "skill_varsayilani",
+  "kind": "single",
+  "panels": [
+    1,
+    4
+  ],
+  "panels_n_exempt": {
+    "": "a key to the marks"
+  },
+  "naming_step": 4,
+  "naming_kind": "renk",
+  "naming": {
+    "step": 4,
+    "kind": "renk",
+    "kind_drawn": "serit",
+    "types": [
+      "strip"
+    ],
+    "panels": {
+      "Panel similarity σ": "strip",
+      "Direction ρ": "strip",
+      "Vulnerability ω = log w, w in %": "strip",
+      "": "none"
+    },
+    "badges": [],
+    "badge_suppressed": [],
+    "strips": [
+      {
+        "cards": [
+          "Panel similarity σ"
+        ],
+        "baseline_mm": 5.757,
+        "row_top_mm": 0.5
+      },
+      {
+        "cards": [
+          "Direction ρ"
+        ],
+        "baseline_mm": 41.424,
+        "row_top_mm": 36.167
+      },
+      {
+        "cards": [
+          "Vulnerability ω = log w, w in %"
+        ],
+        "baseline_mm": 77.091,
+        "row_top_mm": 71.833
+      }
+    ],
+    "flows": []
+  },
+  "figsize_in": [
+    3.35787394492874,
+    4.7637795275590555
+  ],
+  "geometry": {
+    "pdf_width_pt": 241.7669240349,
+    "expected_pdf_width_pt": 241.76692403486928,
+    "a1": {
+      "kind": "single",
+      "expected_pt": 241.767,
+      "width_pt": 241.767,
+      "scale": 1.0,
+      "ok": true,
+      "gate_points": 6,
+      "gate_blocks": false
+    }
+  },
+  "type_scale": {
+    "floor": 8.0,
+    "tick": 8.0,
+    "annot": 8.0,
+    "label": 9.0,
+    "title": 10.0,
+    "panel": 10.0
+  },
+  "font_sans": [
+    "DejaVu Sans",
+    "Open Sans"
+  ],
+  "font_fallback": [],
+  "entities": {},
+  "derived_colours": {
+    "#EAEAF2": {
+      "from": "card",
+      "tint": "kap",
+      "role": "fill"
+    },
+    "#FFFFFF": {
+      "from": "card",
+      "tint": "white",
+      "role": "fill"
+    }
+  },
+  "errorbar_kinds": [],
+  "provenance": "computed",
+  "sources": [
+    {
+      "path": "results/q1/konsey_ayrisim_b4.json",
+      "exists": true,
+      "sha256": "5c50890819c509b9ef890373797b4f303eea8427d05f3f4025c31019380ca99b"
+    },
+    {
+      "path": "results/q1/konsey_ayrisim_b2.json",
+      "exists": true,
+      "sha256": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27"
+    },
+    {
+      "path": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+      "exists": true,
+      "sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
+    }
+  ],
+  "message": "ViT-Tiny's panel similarity rises with ImageNet initialization while ResNet-18's stays flat; rho and omega move far less.",
+  "caption_hint": null,
+  "notes": null,
+  "git_rev": "c315e09",
+  "formats": {
+    "pdf": "cells_interaction.pdf",
+    "eps": "cells_interaction.eps",
+    "svg": "cells_interaction.svg",
+    "png": "cells_interaction.png"
+  },
+  "sablon": "tasarim_izgarasi"
+}

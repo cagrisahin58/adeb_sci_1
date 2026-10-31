@@ -1,0 +1,124 @@
+{
+ "design_recipe": {
+  "page_mm": [
+   85.302,
+   88.053
+  ],
+  "fonts": [
+   "DejaVu Sans",
+   "DejaVu Sans,Bold"
+  ],
+  "min_pt": 8.4,
+  "spans": 27,
+  "issues": [],
+  "checks": {
+   "page_size": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "85.302 x 88.053 mm"
+   },
+   "fonts": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "DejaVu Sans, DejaVu Sans,Bold"
+   },
+   "min_type": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "smallest 8.400 pt"
+   },
+   "text_overlap": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "27 spans"
+   },
+   "box_spill": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "0 closed boxes"
+   }
+  },
+  "inputs": {
+   "page_text_sha256": "befaf37663274b1b7132588765726d6e68753ad5ec6e0e3664b9afb0b3ff865b",
+   "spans": 27,
+   "lines": 25,
+   "drawings": 36,
+   "closed_boxes": 0
+  },
+  "verdict": "PASS",
+  "expected_from": "visio report",
+  "floor_pt": 8.0,
+  "cizgi": {
+   "basili_pt": [
+    0.601
+   ],
+   "tokenlar_pt": {
+    "ince": 0.354,
+    "normal": 0.41,
+    "vurgu": 1.03,
+    "eksen": 0.354
+   },
+   "basili_uzunluk_mm": {
+    "0.601": 1175.68
+   },
+   "ok_ucu": {
+    "basili_mm": [],
+    "token_mm": 1.4,
+    "bicim": [],
+    "olculen": 0,
+    "beklenen": 0,
+    "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
+    "adaylar": []
+   },
+   "sorunlar": [
+    "printed width(s) [0.601] pt match no token [0.354, 0.41, 1.03]",
+    "token width(s) [0.354, 0.41, 1.03] pt never printed",
+    "the line hierarchy is gone in print: tokens [0.354, 0.41, 1.03] all print as 0.601 pt"
+   ],
+   "uyumlu": false,
+   "token_kaynagi": "manifest",
+   "basim_modeli": {
+    "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
+    "dpi": 120,
+    "beklenen_cizgi_pt": [
+     0.6006
+    ],
+    "beklenen_ok_ucu_mm": [],
+    "sorunlar": [],
+    "uyumlu": true
+   }
+  },
+  "glif": {
+   "tounicode_yok": [
+    "DejaVu Sans",
+    "DejaVu Sans,Bold"
+   ],
+   "suphe": [
+    {
+     "metin": " ",
+     "karakter": "U+0020",
+     "glif": 3101,
+     "font": "DejaVu Sans",
+     "not": "decodes to a space through glyph 3101; the font's spaces use glyph 3"
+    },
+    {
+     "metin": " ",
+     "karakter": "U+0020",
+     "glif": 3101,
+     "font": "DejaVu Sans",
+     "not": "decodes to a space through glyph 3101; the font's spaces use glyph 3"
+    }
+   ]
+  },
+  "egri": {
+   "sayi": 0,
+   "metinden_gecen": []
+  },
+  "uyarilar": [
+   "T4: printed width(s) [0.601] pt match no token [0.354, 0.41, 1.03]",
+   "T4: token width(s) [0.354, 0.41, 1.03] pt never printed",
+   "T4: the line hierarchy is gone in print: tokens [0.354, 0.41, 1.03] all print as 0.601 pt",
+   "T6: 2 printed glyph(s) do not reach the text layer: [{'metin': ' ', 'karakter': 'U+0020', 'glif': 3101, 'font': 'DejaVu Sans', 'not': \"decodes to a space through glyph 3101; the font's spaces use glyph 3\"}, {'metin': ' ', 'karakter': 'U+0020', 'glif': 3101, 'font': 'DejaVu Sans', 'not': \"decodes to a space through glyph 3101; the font's spaces use glyph 3\"}]"
+  ]
+ }
+}

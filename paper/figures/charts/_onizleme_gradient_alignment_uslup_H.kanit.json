@@ -1,0 +1,761 @@
+{
+  "stem": "_onizleme_gradient_alignment_uslup_H",
+  "uslup": "H",
+  "degerler": [
+    {
+      "etiket": "cifar10 raw Spearman",
+      "deger": 0.9428064051927375,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "sinamalar.ham.istatistik",
+      "hesap": "recomputed == JSON (1e-9) == foy (1e-3)",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar10 residual Spearman",
+      "deger": 0.9442568025648764,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "sinamalar.ana_etki_artik.istatistik",
+      "hesap": "recomputed == JSON (1e-9) == foy (1e-3)",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar10 pairs",
+      "deger": 190,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "sinamalar.ham.cift_sayisi",
+      "hesap": "upper triangle of c_matrisi; == foy",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar10 CNN-CNN n",
+      "deger": 91,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar10 CNN-CNN mean c",
+      "deger": 0.5427358988762556,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar10 T-T n",
+      "deger": 15,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar10 T-T mean c",
+      "deger": 0.4637057716401418,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar10 mixed n",
+      "deger": 84,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar10 mixed mean c",
+      "deger": 0.370434997817803,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7"
+    },
+    {
+      "etiket": "cifar100 raw Spearman",
+      "deger": 0.9806759278457391,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "sinamalar.ham.istatistik",
+      "hesap": "recomputed == JSON (1e-9) == foy (1e-3)",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "cifar100 residual Spearman",
+      "deger": 0.9124300228073812,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "sinamalar.ana_etki_artik.istatistik",
+      "hesap": "recomputed == JSON (1e-9) == foy (1e-3)",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "cifar100 pairs",
+      "deger": 105,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "sinamalar.ham.cift_sayisi",
+      "hesap": "upper triangle of c_matrisi; == foy",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "cifar100 CNN-CNN n",
+      "deger": 55,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "cifar100 CNN-CNN mean c",
+      "deger": 0.4620840790913322,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "cifar100 T-T n",
+      "deger": 6,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "cifar100 T-T mean c",
+      "deger": 0.3591036991079648,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "cifar100 mixed n",
+      "deger": 44,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "cifar100 mixed mean c",
+      "deger": 0.27066684110354294,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac"
+    },
+    {
+      "etiket": "imagenetv2 raw Spearman",
+      "deger": 0.6944099378881987,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "sinamalar.ham.istatistik",
+      "hesap": "recomputed == JSON (1e-9) == foy (1e-3)",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "etiket": "imagenetv2 residual Spearman",
+      "deger": 0.8926262143653447,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "sinamalar.ana_etki_artik.istatistik",
+      "hesap": "recomputed == JSON (1e-9) == foy (1e-3)",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "etiket": "imagenetv2 pairs",
+      "deger": 91,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "sinamalar.ham.cift_sayisi",
+      "hesap": "upper triangle of c_matrisi; == foy",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "etiket": "imagenetv2 CNN-CNN n",
+      "deger": 36,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "etiket": "imagenetv2 CNN-CNN mean c",
+      "deger": 0.18657666663163236,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "etiket": "imagenetv2 T-T n",
+      "deger": 10,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "etiket": "imagenetv2 T-T mean c",
+      "deger": 0.31845173141360283,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "etiket": "imagenetv2 mixed n",
+      "deger": 45,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "count of pairs of this type; == foy 2009-2011",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    },
+    {
+      "etiket": "imagenetv2 mixed mean c",
+      "deger": 0.2211054308646255,
+      "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json",
+      "anahtar_yolu": "c_matrisi + hucre_tablosu modeller.<m>.aile",
+      "hesap": "mean of c over pairs of this type; == foy 2009-2011 (3 decimals)",
+      "kaynak_sha256": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073"
+    }
+  ],
+  "records_sha256": null,
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 43,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results\\C1_REFERANS_FOYU.md",
+    "foy_sha256": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+    "ayrinti": [
+      {
+        "ad": "cifar10: max |C - C^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "c matrix symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: recomputed raw Spearman == JSON",
+        "a": 0.9428064051927375,
+        "b": 0.9428064051927375,
+        "tolerans": 1e-09,
+        "aciklama": "raw Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: recomputed residual Spearman == JSON",
+        "a": 0.9442568025648765,
+        "b": 0.9442568025648764,
+        "tolerans": 1e-09,
+        "aciklama": "main-effect residual Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: raw r_S (1e-3)",
+        "json_degeri": 0.9428064051927375,
+        "foy_satiri": 1970,
+        "capa": "| cifar10 | ham |",
+        "foy_en_yakin": 0.943,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: residual r_S (1e-3)",
+        "json_degeri": 0.9442568025648765,
+        "foy_satiri": 1971,
+        "capa": "| cifar10 | ana_etki_artik |",
+        "foy_en_yakin": 0.944,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: K",
+        "json_degeri": 20,
+        "foy_satiri": 1970,
+        "capa": "| cifar10 | ham |",
+        "foy_en_yakin": 20.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: pairs",
+        "json_degeri": 190,
+        "foy_satiri": 1970,
+        "capa": "| cifar10 | ham |",
+        "foy_en_yakin": 190.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: pairs == JSON cift_sayisi",
+        "a": 190,
+        "b": 190,
+        "tolerans": 0,
+        "aciklama": "pair count",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: mean c CNN-CNN",
+        "json_degeri": 0.5427358988762556,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 0.543,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: n CNN-CNN",
+        "json_degeri": 91,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 91.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: mean c T-T",
+        "json_degeri": 0.4637057716401418,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 0.464,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: n T-T",
+        "json_degeri": 15,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 15.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: mean c mixed",
+        "json_degeri": 0.370434997817803,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 0.37,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: n mixed",
+        "json_degeri": 84,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 84.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: max |C - C^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "c matrix symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: recomputed raw Spearman == JSON",
+        "a": 0.9806759278457391,
+        "b": 0.9806759278457391,
+        "tolerans": 1e-09,
+        "aciklama": "raw Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: recomputed residual Spearman == JSON",
+        "a": 0.9124300228073813,
+        "b": 0.9124300228073812,
+        "tolerans": 1e-09,
+        "aciklama": "main-effect residual Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: raw r_S (1e-3)",
+        "json_degeri": 0.9806759278457391,
+        "foy_satiri": 1972,
+        "capa": "| cifar100 | ham |",
+        "foy_en_yakin": 0.981,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: residual r_S (1e-3)",
+        "json_degeri": 0.9124300228073813,
+        "foy_satiri": 1973,
+        "capa": "| cifar100 | ana_etki_artik |",
+        "foy_en_yakin": 0.912,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: K",
+        "json_degeri": 15,
+        "foy_satiri": 1972,
+        "capa": "| cifar100 | ham |",
+        "foy_en_yakin": 15.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: pairs",
+        "json_degeri": 105,
+        "foy_satiri": 1972,
+        "capa": "| cifar100 | ham |",
+        "foy_en_yakin": 105.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: pairs == JSON cift_sayisi",
+        "a": 105,
+        "b": 105,
+        "tolerans": 0,
+        "aciklama": "pair count",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: mean c CNN-CNN",
+        "json_degeri": 0.4620840790913322,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 0.462,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: n CNN-CNN",
+        "json_degeri": 55,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 55.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: mean c T-T",
+        "json_degeri": 0.3591036991079648,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 0.359,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: n T-T",
+        "json_degeri": 6,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 6.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: mean c mixed",
+        "json_degeri": 0.27066684110354294,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 0.271,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: n mixed",
+        "json_degeri": 44,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 44.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: max |C - C^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "c matrix symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: recomputed raw Spearman == JSON",
+        "a": 0.6944099378881988,
+        "b": 0.6944099378881987,
+        "tolerans": 1e-09,
+        "aciklama": "raw Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: recomputed residual Spearman == JSON",
+        "a": 0.8926262143653448,
+        "b": 0.8926262143653447,
+        "tolerans": 1e-09,
+        "aciklama": "main-effect residual Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: raw r_S (1e-3)",
+        "json_degeri": 0.6944099378881988,
+        "foy_satiri": 1974,
+        "capa": "| imagenetv2 | ham |",
+        "foy_en_yakin": 0.694,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: residual r_S (1e-3)",
+        "json_degeri": 0.8926262143653448,
+        "foy_satiri": 1975,
+        "capa": "| imagenetv2 | ana_etki_artik |",
+        "foy_en_yakin": 0.893,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: K",
+        "json_degeri": 14,
+        "foy_satiri": 1974,
+        "capa": "| imagenetv2 | ham |",
+        "foy_en_yakin": 14.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: pairs",
+        "json_degeri": 91,
+        "foy_satiri": 1974,
+        "capa": "| imagenetv2 | ham |",
+        "foy_en_yakin": 91.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: pairs == JSON cift_sayisi",
+        "a": 91,
+        "b": 91,
+        "tolerans": 0,
+        "aciklama": "pair count",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: mean c CNN-CNN",
+        "json_degeri": 0.18657666663163236,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 0.187,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: n CNN-CNN",
+        "json_degeri": 36,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 36.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: mean c T-T",
+        "json_degeri": 0.31845173141360283,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 0.318,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: n T-T",
+        "json_degeri": 10,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 10.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: mean c mixed",
+        "json_degeri": 0.2211054308646255,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 0.221,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: n mixed",
+        "json_degeri": 45,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 45.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "p at floor in 6/6",
+        "aranan_metin": "Tek yonlu p'si p tabanina esit olan sinama: 6/6",
+        "foy_satiri": 1977,
+        "capa": "p tabanina esit",
+        "eslesti": true
+      }
+    ]
+  },
+  "okunan_anahtarlar": {
+    "results/q1/konsey_b10_gradyan/mantel_cifar10.json": [
+      "c_matrisi",
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.{ham, ana_etki_artik}.{K, cift_sayisi, istatistik}"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu.json": [
+      "modeller.<m>.aile"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_cifar100.json": [
+      "c_matrisi",
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.{ham, ana_etki_artik}.{K, cift_sayisi, istatistik}"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": [
+      "modeller.<m>.aile"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": [
+      "c_matrisi",
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.{ham, ana_etki_artik}.{K, cift_sayisi, istatistik}"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": [
+      "modeller.<m>.aile"
+    ]
+  },
+  "cizilen": {
+    "ozet": {
+      "cifar10": {
+        "raw": 0.9428064051927375,
+        "residual": 0.9442568025648764
+      },
+      "cifar100": {
+        "raw": 0.9806759278457391,
+        "residual": 0.9124300228073812
+      },
+      "imagenetv2": {
+        "raw": 0.6944099378881987,
+        "residual": 0.8926262143653447
+      }
+    },
+    "cifar10_ham": {
+      "r_S": 0.9428064051927375,
+      "nokta": 190,
+      "x_aralik": [
+        0.23119256396293641,
+        0.7460507797241211
+      ],
+      "y_aralik": [
+        -1.142531065710037,
+        -0.28758530026720475
+      ]
+    },
+    "cifar10_artik": {
+      "r_S": 0.9442568025648764,
+      "nokta": 190,
+      "x_aralik": [
+        -0.11902439219287622,
+        0.45037879444693624
+      ],
+      "y_aralik": [
+        -0.1954052936198487,
+        0.7941305407216785
+      ]
+    },
+    "cifar100_ham": {
+      "r_S": 0.9806759278457391,
+      "nokta": 105,
+      "x_aralik": [
+        0.16919543634653092,
+        0.6919674566745758
+      ],
+      "y_aralik": [
+        -1.1735281250608687,
+        -0.2557202760754371
+      ]
+    },
+    "cifar100_artik": {
+      "r_S": 0.9124300228073812,
+      "nokta": 105,
+      "x_aralik": [
+        -0.11629176460845111,
+        0.4219941093708789
+      ],
+      "y_aralik": [
+        -0.19673405382206544,
+        0.8044569729544153
+      ]
+    },
+    "imagenetv2_ham": {
+      "r_S": 0.6944099378881987,
+      "nokta": 91,
+      "x_aralik": [
+        0.003449308782815933,
+        0.4855499768257141
+      ],
+      "y_aralik": [
+        -1.6202982638238996,
+        -0.511953683880946
+      ]
+    },
+    "imagenetv2_artik": {
+      "r_S": 0.8926262143653447,
+      "nokta": 91,
+      "x_aralik": [
+        -0.09076541219804529,
+        0.16008458430663902
+      ],
+      "y_aralik": [
+        -0.3818810147383356,
+        0.4751268142564059
+      ]
+    }
+  },
+  "git": {
+    "commit": "c8be9b7e443c39e9e015489ad712dda4af769b69",
+    "branch": "q1",
+    "dirty_or_untracked": []
+  },
+  "betik": "paper/figures/charts/_onizleme_gradient_alignment.py --uslup H"
+}
