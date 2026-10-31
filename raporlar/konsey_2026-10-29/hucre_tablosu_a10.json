@@ -1,0 +1,228 @@
+{
+ "surum": "2026-10-29",
+ "aciklama": "Konsey on kaydi icin takma ad -> hucre, tohum, aile, panel uyeligi. Takma adlar fable karari K5 ile aynidir. Bu tablo experiments/q1_konsey_ayrisim.py tarafindan okunur ve B2 ile B3 sonuclari gorulmeden dondurulur.",
+ "hucreler": {
+  "C1-R32": "C1 ResNet-18 AT, 32x32 girdi (mevcut, kopru karsitligi S1 ve B2)",
+  "V-scr": "C1 ViT-Tiny AT, 32->224, rastgele baslatma (mevcut)",
+  "V-IN": "ViT-Tiny, deit_tiny_patch16_224.fb_in1k baslatma, model ici ImageNet normalizasyonu (yeni)",
+  "R224-scr": "timm resnet18, 32->224, rastgele baslatma, V-scr ile ayni girdi hatti (fable K3) (yeni)",
+  "R224-IN": "timm resnet18, resnet18.a1_in1k baslatma, model ici ImageNet normalizasyonu (yeni)",
+  "panel": "birincil panel P: ImageNet on egitimsiz gurbuz CNN (RobustBench CIFAR-10 Linf)",
+  "ikincil_panel": "ikincil panel: Debenedetti2022Light_XCiT-S12"
+ },
+ "modeller": {
+  "ResNet18_AT_s1001": {
+   "hucre": "C1-R32",
+   "tohum": 1001,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth"
+  },
+  "ResNet18_AT_s1002": {
+   "hucre": "C1-R32",
+   "tohum": 1002,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth"
+  },
+  "ResNet18_AT_s1003": {
+   "hucre": "C1-R32",
+   "tohum": 1003,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth"
+  },
+  "ViT_Tiny_AT_s2001": {
+   "hucre": "V-scr",
+   "tohum": 2001,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "ViT_Tiny_AT_s2002": {
+   "hucre": "V-scr",
+   "tohum": 2002,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "ViT_Tiny_AT_s2003": {
+   "hucre": "V-scr",
+   "tohum": 2003,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "V_IN_s2101": {
+   "hucre": "V-IN",
+   "tohum": 2101,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/V_IN_s2101/"
+  },
+  "V_IN_s2102": {
+   "hucre": "V-IN",
+   "tohum": 2102,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/V_IN_s2102/"
+  },
+  "R224_scr_s1201": {
+   "hucre": "R224-scr",
+   "tohum": 1201,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/R224_scr_s1201/"
+  },
+  "R224_scr_s1202": {
+   "hucre": "R224-scr",
+   "tohum": 1202,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/R224_scr_s1202/"
+  },
+  "R224_IN_s1301": {
+   "hucre": "R224-IN",
+   "tohum": 1301,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/R224_IN_s1301/"
+  },
+  "R224_IN_s1302": {
+   "hucre": "R224-IN",
+   "tohum": 1302,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/R224_IN_s1302/"
+  },
+  "Wong2020Fast": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf"
+  },
+  "Engstrom2019Robustness": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf"
+  },
+  "Carmon2019Unlabeled": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf"
+  },
+  "Gowal2020Uncovering_28_10_extra": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf"
+  },
+  "Sehwag2021Proxy_R18": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf (diskte: models/robustbench_zoo/cifar10/Linf/)"
+  },
+  "Addepalli2022Efficient_RN18": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf (diskte: models/robustbench_zoo/cifar10/Linf/)"
+  },
+  "Rade2021Helper_R18_ddpm": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf (diskte: models/robustbench_zoo/cifar10/Linf/)"
+  },
+  "Debenedetti2022Light_XCiT-S12": {
+   "hucre": "ikincil_panel",
+   "tohum": null,
+   "aile": "XCiT",
+   "birincil_panel": false,
+   "ikincil_panel": true,
+   "kontrol_noktasi": "RobustBench cifar10 Linf"
+  }
+ },
+ "b2_tohum_ciftleri": [
+  [
+   "ResNet18_AT_s1001",
+   "ViT_Tiny_AT_s2001"
+  ],
+  [
+   "ResNet18_AT_s1002",
+   "ViT_Tiny_AT_s2002"
+  ],
+  [
+   "ResNet18_AT_s1003",
+   "ViT_Tiny_AT_s2003"
+  ]
+ ],
+ "s4_ciftleri": [
+  [
+   "R224_scr_s1201",
+   "ViT_Tiny_AT_s2001"
+  ],
+  [
+   "R224_scr_s1202",
+   "ViT_Tiny_AT_s2002"
+  ],
+  [
+   "R224_IN_s1301",
+   "V_IN_s2101"
+  ],
+  [
+   "R224_IN_s1302",
+   "V_IN_s2102"
+  ]
+ ],
+ "panel_dondurma": "Birincil panel yedi uye olarak donduruldu (ON_KAYIT §2, 29.10 dogrulayici duzeltmesi): yedisi de models/robustbench_zoo/cifar10/Linf/ altinda ve results/q1/konsey_smoke/matris_panel.log smoke matrisinde yuklendi. Bilesim B2 sonuclarindan once sabittir.",
+ "eslesme_notu": "b2_tohum_ciftleri C1 cift numaralandirmasidir (pair1-3). s4_ciftleri ON_KAYIT S4 'tohum indeksiyle eslesmis ciftler (R224-x, V-x)' ifadesinin acik bicimidir: hucre icinde tohum sirasina gore birinci ile birinci, ikinci ile ikinci; V-scr'nin ucuncu tohumu (2003) S4 ve S5'e girmez.",
+ "a10_kesifsel": {
+  "etiket": "kesifsel, on kayit disi panel, 3 uye (31.10.2026, hakem paneli acik isi A10)",
+  "kaynak_tablo": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+  "kaynak_tablo_sha256": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
+  "degisen_alan": "modeller.<uye>.birincil_panel (true -> false)",
+  "cikarilan": [
+   "Wong2020Fast",
+   "Sehwag2021Proxy_R18",
+   "Addepalli2022Efficient_RN18",
+   "Rade2021Helper_R18_ddpm"
+  ],
+  "kalan_birincil_panel": [
+   "Engstrom2019Robustness",
+   "Carmon2019Unlabeled",
+   "Gowal2020Uncovering_28_10_extra"
+  ],
+  "mimari_kaynagi": "robustbench.model_zoo.cifar10.linf model nesneleri (arsiv/b2_yardimci/_m12_ek_masa.py)",
+  "uretildi": "31.10.2026, hakem paneli acik isi A10; ON_KAYIT §2 en az 5 uye kurali disinda"
+ }
+}

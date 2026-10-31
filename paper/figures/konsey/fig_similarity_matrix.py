@@ -1,9 +1,21 @@
 #!/usr/bin/env python3
 """Pairwise symmetric similarity log tau_ij on CIFAR-10, CIFAR-100 and ImageNetV2 (brief 12, section 6.5).
 
-Double column (7.16 in), three heat maps side by side with one shared colour scale. Rows and
+Change log (degisiklik notu):
+- 2026-10-31, hakem konseyi B15 (birlesik.md; mercek_sunum bulgu 4): colour-bar ticks were placed
+  by the default locator at multiples of 0.25 and printed with .1f, so -0.25 read -0.2, -0.75 read
+  -0.8 and -1.25 read -1.2. Major ticks now sit at multiples of 0.5 (minor at 0.25, unlabelled),
+  printed with .1f, and the script fails if any printed tick label differs from its tick value.
+- 2026-10-31, m15 (mercek_sunum bulgu 12): CIFAR-100 group labels 'V-scr' and 'R32' (CIFAR-10 cell
+  names of tab:design) replaced by 'ViT (C100)' and 'ResNet (C100)', two-line on the axes.
+- 2026-10-31, m15: group frames are drawn with a white halo under the dark line, so the frame of the
+  ImageNetV2 transformer block (whose Mo ViT-B row is dark blue) is visible; before, the dark line
+  vanished on dark cells and the block read as unframed.
+- 2026-10-31: width 6.989 in (= \\textwidth of ieeeaccess.cls, see konsey_ortak.py), axes resized.
+
+Double column (6.989 in), three heat maps side by side with one shared colour scale. Rows and
 columns are ordered by cell or family group (CIFAR-10: V-scr, V-IN, R224-scr, R224-IN, R32,
-primary panel, secondary panel; CIFAR-100: V-scr, R32, primary panel, secondary panel;
+primary panel, secondary panel; CIFAR-100: ViT (C100), ResNet (C100), primary panel, secondary panel;
 ImageNetV2: transformers, CNN pair counterparts, primary panel, secondary panel), diagonal
 blocks of each group are framed, diagonal cells are undefined and left blank.
 
@@ -29,6 +41,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import konsey_ortak as K  # noqa: E402
 import matplotlib.pyplot as plt  # noqa: E402
+import matplotlib.ticker as mticker  # noqa: E402
 import numpy as np  # noqa: E402
 from matplotlib.patches import Rectangle  # noqa: E402
 
@@ -47,7 +60,9 @@ SETS = [
 GROUPS = {
     "cifar10": [("V-scr", "V-scr"), ("V-IN", "V-IN"), ("R224-scr", "R224-scr"), ("R224-IN", "R224-IN"),
                 ("C1-R32", "R32"), ("panel", "panel"), ("ikincil_panel", "secondary")],
-    "cifar100": [("V-scr", "V-scr"), ("C1-R32", "R32"), ("panel", "panel"), ("ikincil_panel", "secondary")],
+    # B9 cell table reuses the CIFAR-10 cell names for the CIFAR-100 pair; displayed by dataset (m15)
+    "cifar100": [("V-scr", "ViT\n(C100)"), ("C1-R32", "ResNet\n(C100)"), ("panel", "panel"),
+                 ("ikincil_panel", "secondary")],
     # B8 cell table reuses the frozen labels: transformers carry 'V-scr', their CNN counterparts 'C1-R32'
     "imagenetv2": [("V-scr", "transformer"), ("C1-R32", "CNN (pair)"), ("panel", "panel"),
                    ("ikincil_panel", "secondary")],
@@ -167,7 +182,7 @@ def main():
     fig.patch.set_facecolor("white")
     cmap = plt.get_cmap("cividis").copy()
     cmap.set_bad("white")
-    s_in, lab_in, x0_in = 1.43, 0.63, 0.02
+    s_in, lab_in, x0_in = 1.40, 0.63, 0.02
     bot_in = 0.74
     axs = []
     for k in range(3):
@@ -177,8 +192,9 @@ def main():
     for ax, (key, d) in zip(axs, data.items()):
         n = len(d["order"])
         im = ax.imshow(d["P"], cmap=cmap, vmin=vmin, vmax=vmax, interpolation="nearest", aspect="equal")
-        for a, b, _ in d["bounds"]:
-            ax.add_patch(Rectangle((a - 0.5, a - 0.5), b - a, b - a, fill=False, ec=K.INK, lw=0.8, zorder=3))
+        for a, b, _ in d["bounds"]:  # white halo under the dark frame: visible on dark and light cells
+            ax.add_patch(Rectangle((a - 0.5, a - 0.5), b - a, b - a, fill=False, ec="white", lw=2.0, zorder=3))
+            ax.add_patch(Rectangle((a - 0.5, a - 0.5), b - a, b - a, fill=False, ec=K.INK, lw=0.8, zorder=4))
         cen = [(a + b - 1) / 2 for a, b, _ in d["bounds"]]
         labs = [lab for _, _, lab in d["bounds"]]
         ax.set_yticks(cen)
@@ -204,7 +220,19 @@ def main():
     cb.outline.set_linewidth(0.6)
     cb.ax.tick_params(length=2.5, width=0.6, pad=1.5)
     cb.set_label(r"$\log\bar\tau_{ij}$", labelpad=2)
+    cb.ax.yaxis.set_major_locator(mticker.MultipleLocator(0.5))
+    cb.ax.yaxis.set_minor_locator(mticker.MultipleLocator(0.25))
+    cb.ax.tick_params(which="minor", length=1.5, width=0.5)
     cb.ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.1f}".replace("-", "−")))
+    fig.canvas.draw()
+    cb_ticks = []
+    for tv, tl in zip(cb.ax.get_yticks(), cb.ax.get_yticklabels()):
+        if not (vmin - 1e-9 <= tv <= vmax + 1e-9):
+            continue
+        printed = float(tl.get_text().replace("−", "-"))
+        if abs(printed - tv) > 1e-9:  # B15: a printed label must equal its tick value exactly
+            K.fail(f"colour-bar tick {tv} printed as {tl.get_text()!r}")
+        cb_ticks.append(round(float(tv), 6))
     for ax, lab in zip(axs, ("(a)", "(b)", "(c)")):
         bb = ax.get_position()
         K.panel_label(fig, bb.x0 - lab_in / W + 0.004, bb.y1 + 0.012, lab, va="bottom")
@@ -213,6 +241,7 @@ def main():
     out = K.OUTDIR
     pdf, png, moved = K.save(fig, out, args.name, args.dpi)
     cizilen["renk_olcegi"] = {"harita": "cividis (sequential, luminance-monotone)", "vmin": vmin, "vmax": vmax,
+                              "cubuk_etiketleri": cb_ticks, "etiket_esitligi_denetlendi": True,
                               "veri_en_kucuk": float(allv.min()), "veri_en_buyuk": float(allv.max())}
     kp = K.write_kanit(out, args.name, SCRIPT_REL, sys.argv[1:], inputs, (W, H), args.dpi, min_pt, okunan, cizilen,
                        foy_sonuc,
@@ -228,7 +257,11 @@ def main():
                         "modeller_ortak and is recorded under cizilen_degerler.",
                         "ImageNetV2 cell table labels transformers 'V-scr' and their CNN counterparts 'C1-R32' (frozen "
                         "script reuse); they are displayed as 'transformer' and 'CNN (pair)'. Mo ViT-B is in the "
-                        "transformer group."],
+                        "transformer group.",
+                        "CIFAR-100 cell table (B9) reuses 'V-scr' and 'C1-R32'; displayed as 'ViT (C100)' and "
+                        "'ResNet (C100)' (m15, 2026-10-31).",
+                        "Colour-bar labels at multiples of 0.5, each printed label checked equal to its tick value "
+                        "(B15, 2026-10-31)."],
                        moved)
     print(f"written: {pdf}\nwritten: {png}\nwritten: {kp}")
     print(f"foy comparisons {foy_sonuc['karsilastirma_sayisi']}, all matched; min font {min_pt}")

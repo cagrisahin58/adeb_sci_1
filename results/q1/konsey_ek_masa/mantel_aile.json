@@ -1,0 +1,448 @@
+{
+ "etiket": "on kayitli (ek on kayit §6.4, kesifsel oncelik), sonradan uretildi (31.10.2026, hakem paneli sonrasi)",
+ "tanim_S10_3": "Ek on kayit §6.4 S10-3: 'ayni aileden olma gostergesini (CNN-CNN, donusturucu-donusturucu, karma) ek ortak degisken alan kismi Mantel'. Uygulama (ek §6.2 kismi istatistiginin dogal uzantisi): sirasiz ciftler uzerinde her matris (c ve log tau ayri ayri) X_ij = mu + a_i + a_j + b_CC*CC_ij + b_TT*TT_ij + e_ij modeliyle deger olceginde en kucuk kareler ile kestirilir (karma ciftler referans; aile: hucre tablosundaki 'aile' alani, CNN = CNN, ViT/XCiT/Swin = donusturucu); istatistik e(c) ile e(log tau) arasindaki Spearman korelasyonudur. Permutasyon (birincil, ek §6.2'deki 'kismi istatistikte c artik matrisi' kuralinin aynisi; Smouse, Long ve Sokal 1986 artik permutasyonu): e(c) artik matrisinin satir ve sutunlari ortak permute edilir, e(log tau) sabit; 9999 permutasyon, tohum 20261030, p_tek = (1 + #{r* >= r})/(perm + 1). Duyarlilik: ham c matrisi permute edilip sabit tasarima gore yeniden artiklanir (Legendre ve Legendre 2012 'ham X permutasyonu'; gradyan betiginin kismi Mantel semasi).",
+ "tanim_6_2_yeniden_uretim": "Ek §6.2 yeniden uretimi: ham = Spearman(ust c, ust log tau), c'nin satir/sutun ortak permutasyonu; ana_etki_artik = e_ij artiklari (X_ij = mu + a_i + a_j, deger olceginde en kucuk kareler) arasinda Spearman, c artik matrisinin ortak permutasyonu; 9999 permutasyon, tohum 20261030 (her sinama kendi RNG'siyle). Kod gradyan betiginden bagimsizdir (I - X X^+ izdusumu, scipy rankdata, Pearson).",
+ "tolerans": 1e-06,
+ "veri": {
+  "cifar10": {
+   "K": 20,
+   "cift_sayisi": 190,
+   "modeller": [
+    "ResNet18_AT_s1001",
+    "ResNet18_AT_s1002",
+    "ResNet18_AT_s1003",
+    "ViT_Tiny_AT_s2001",
+    "ViT_Tiny_AT_s2002",
+    "ViT_Tiny_AT_s2003",
+    "V_IN_s2101",
+    "V_IN_s2102",
+    "R224_IN_s1301",
+    "R224_IN_s1302",
+    "R224_scr_s1201",
+    "R224_scr_s1202",
+    "Wong2020Fast",
+    "Engstrom2019Robustness",
+    "Carmon2019Unlabeled",
+    "Gowal2020Uncovering_28_10_extra",
+    "Sehwag2021Proxy_R18",
+    "Addepalli2022Efficient_RN18",
+    "Rade2021Helper_R18_ddpm",
+    "Debenedetti2022Light_XCiT-S12"
+   ],
+   "aile": [
+    "CNN",
+    "CNN",
+    "CNN",
+    "ViT",
+    "ViT",
+    "ViT",
+    "ViT",
+    "ViT",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "XCiT"
+   ],
+   "grup": [
+    "CNN",
+    "CNN",
+    "CNN",
+    "donusturucu",
+    "donusturucu",
+    "donusturucu",
+    "donusturucu",
+    "donusturucu",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "donusturucu"
+   ],
+   "cift_turu_sayilari": {
+    "CNN-CNN": 91,
+    "donusturucu-donusturucu": 15,
+    "karma": 84
+   },
+   "tasarim_rank": {
+    "rank_X_ana_etki": 20,
+    "rank_X_ana_etki_aile": 21
+   },
+   "yeniden_uretim_6_2": {
+    "ham": {
+     "istatistik": 0.9428064051927375,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.0015051994424249645,
+     "perm_sd": 0.12211573292897032
+    },
+    "ana_etki_artik": {
+     "istatistik": 0.9442568025648764,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.0014851112670566703,
+     "perm_sd": 0.0752755884473484
+    }
+   },
+   "S10_3": {
+    "istatistik": 0.9169389442191868,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": 0.0013636921172204873,
+    "perm_sd": 0.07381781958520625
+   },
+   "S10_3_duyarlilik_ham_c_permutasyonu": {
+    "istatistik": 0.9169389442191868,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": -8.914143129989641e-05,
+    "perm_sd": 0.07464696246926185
+   },
+   "mantel_json_karsilastirma": {
+    "ham": {
+     "maks_fark": 2.168404344971009e-19,
+     "farklar": {
+      "istatistik": 0.0,
+      "p_tek": 0.0,
+      "p_iki": 0.0,
+      "perm_ort": 2.168404344971009e-19,
+      "perm_sd": 0.0
+     },
+     "esit_1e-6": true,
+     "json_perm": 9999,
+     "json_tohum": 20261030
+    },
+    "ana_etki_artik": {
+     "maks_fark": 2.168404344971009e-19,
+     "farklar": {
+      "istatistik": 0.0,
+      "p_tek": 0.0,
+      "p_iki": 0.0,
+      "perm_ort": 2.168404344971009e-19,
+      "perm_sd": 0.0
+     },
+     "esit_1e-6": true,
+     "json_perm": 9999,
+     "json_tohum": 20261030
+    }
+   },
+   "simetri": {
+    "c_maks_asimetri": 0.0,
+    "log_tau_maks_asimetri": 0.0
+   }
+  },
+  "cifar100": {
+   "K": 15,
+   "cift_sayisi": 105,
+   "modeller": [
+    "C100_ResNet18_AT_s1001",
+    "C100_ResNet18_AT_s1002",
+    "C100_ResNet18_AT_s1003",
+    "C100_ViT_Tiny_AT_s2001",
+    "C100_ViT_Tiny_AT_s2002",
+    "C100_ViT_Tiny_AT_s2003",
+    "C100_Rice2020Overfitting",
+    "C100_Rade2021Helper_R18_ddpm",
+    "C100_Addepalli2022Efficient_RN18",
+    "C100_Sehwag2021Proxy",
+    "C100_Pang2022Robustness_WRN28_10",
+    "C100_Wang2023Better_WRN-28-10",
+    "C100_Jia2022LAS-AT_34_10",
+    "C100_Debenedetti2022Light_XCiT-S12",
+    "C100_Hendrycks2019Using"
+   ],
+   "aile": [
+    "CNN",
+    "CNN",
+    "CNN",
+    "ViT",
+    "ViT",
+    "ViT",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "XCiT",
+    "CNN"
+   ],
+   "grup": [
+    "CNN",
+    "CNN",
+    "CNN",
+    "donusturucu",
+    "donusturucu",
+    "donusturucu",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "donusturucu",
+    "CNN"
+   ],
+   "cift_turu_sayilari": {
+    "CNN-CNN": 55,
+    "donusturucu-donusturucu": 6,
+    "karma": 44
+   },
+   "tasarim_rank": {
+    "rank_X_ana_etki": 15,
+    "rank_X_ana_etki_aile": 16
+   },
+   "yeniden_uretim_6_2": {
+    "ham": {
+     "istatistik": 0.9806759278457392,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.0041390444248654585,
+     "perm_sd": 0.1688914595481917
+    },
+    "ana_etki_artik": {
+     "istatistik": 0.9124300228073813,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.002115987049669097,
+     "perm_sd": 0.10202004386422331
+    }
+   },
+   "S10_3": {
+    "istatistik": 0.8817229939871449,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": 0.002166831860461601,
+    "perm_sd": 0.10085310962805591
+   },
+   "S10_3_duyarlilik_ham_c_permutasyonu": {
+    "istatistik": 0.8817229939871449,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": 0.0017777767824470611,
+    "perm_sd": 0.10158103500807564
+   },
+   "mantel_json_karsilastirma": {
+    "ham": {
+     "maks_fark": 1.1102230246251565e-16,
+     "farklar": {
+      "istatistik": 1.1102230246251565e-16,
+      "p_tek": 0.0,
+      "p_iki": 0.0,
+      "perm_ort": 8.673617379884035e-19,
+      "perm_sd": 0.0
+     },
+     "esit_1e-6": true,
+     "json_perm": 9999,
+     "json_tohum": 20261030
+    },
+    "ana_etki_artik": {
+     "maks_fark": 1.1102230246251565e-16,
+     "farklar": {
+      "istatistik": 1.1102230246251565e-16,
+      "p_tek": 0.0,
+      "p_iki": 0.0,
+      "perm_ort": 0.0,
+      "perm_sd": 1.3877787807814457e-17
+     },
+     "esit_1e-6": true,
+     "json_perm": 9999,
+     "json_tohum": 20261030
+    }
+   },
+   "simetri": {
+    "c_maks_asimetri": 0.0,
+    "log_tau_maks_asimetri": 0.0
+   }
+  },
+  "imagenetv2": {
+   "K": 14,
+   "cift_sayisi": 91,
+   "modeller": [
+    "IN_Salman2020Do_R18",
+    "IN_Salman2020Do_R50",
+    "IN_Salman2020Do_50_2",
+    "IN_Engstrom2019Robustness",
+    "IN_Chen2024Data_WRN_50_2",
+    "IN_Peng2023Robust",
+    "IN_Singh_ConvNeXt-T-CvSt",
+    "IN_Singh_ViT-S-CvSt",
+    "IN_Singh_ConvNeXt-B-CvSt",
+    "IN_Singh_ViT-B-CvSt",
+    "IN_Liu_ConvNeXt-B",
+    "IN_Liu_Swin-B",
+    "IN_Mo_ViT-B",
+    "IN_Debenedetti_XCiT-S12"
+   ],
+   "aile": [
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "ViT",
+    "CNN",
+    "ViT",
+    "CNN",
+    "Swin",
+    "ViT",
+    "XCiT"
+   ],
+   "grup": [
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "CNN",
+    "donusturucu",
+    "CNN",
+    "donusturucu",
+    "CNN",
+    "donusturucu",
+    "donusturucu",
+    "donusturucu"
+   ],
+   "cift_turu_sayilari": {
+    "CNN-CNN": 36,
+    "donusturucu-donusturucu": 10,
+    "karma": 45
+   },
+   "tasarim_rank": {
+    "rank_X_ana_etki": 14,
+    "rank_X_ana_etki_aile": 15
+   },
+   "yeniden_uretim_6_2": {
+    "ham": {
+     "istatistik": 0.6944099378881987,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": -0.0008774264908573989,
+     "perm_sd": 0.16461991399994583
+    },
+    "ana_etki_artik": {
+     "istatistik": 0.8926262143653448,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.0005498590948440286,
+     "perm_sd": 0.11214982692726523
+    }
+   },
+   "S10_3": {
+    "istatistik": 0.8783086478738653,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": 0.0003515879538264385,
+    "perm_sd": 0.11182036333648374
+   },
+   "S10_3_duyarlilik_ham_c_permutasyonu": {
+    "istatistik": 0.8783086478738653,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": 0.0001473232209349301,
+    "perm_sd": 0.11251340987087576
+   },
+   "mantel_json_karsilastirma": {
+    "ham": {
+     "maks_fark": 2.7755575615628914e-17,
+     "farklar": {
+      "istatistik": 0.0,
+      "p_tek": 0.0,
+      "p_iki": 0.0,
+      "perm_ort": 5.421010862427522e-19,
+      "perm_sd": 2.7755575615628914e-17
+     },
+     "esit_1e-6": true,
+     "json_perm": 9999,
+     "json_tohum": 20261030
+    },
+    "ana_etki_artik": {
+     "maks_fark": 1.1102230246251565e-16,
+     "farklar": {
+      "istatistik": 1.1102230246251565e-16,
+      "p_tek": 0.0,
+      "p_iki": 0.0,
+      "perm_ort": 9.75781955236954e-19,
+      "perm_sd": 2.7755575615628914e-17
+     },
+     "esit_1e-6": true,
+     "json_perm": 9999,
+     "json_tohum": 20261030
+    }
+   },
+   "simetri": {
+    "c_maks_asimetri": 0.0,
+    "log_tau_maks_asimetri": 0.0
+   }
+  }
+ },
+ "meta": {
+  "betik": "experiments/q1_ek_masa.py",
+  "betik_sha256": "40454344bd3f8b1a0318d4bdb295d1dad05f187d74fe22f739501654a785b8c1",
+  "dondurulmus_betik": "experiments/q1_konsey_ayrisim.py",
+  "dondurulmus_betik_sha256_dogrulandi": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "mod": "mantel_aile",
+  "uretildi_utc": "2026-10-31T15:06:36.581560+00:00",
+  "numpy": "1.26.4",
+  "scipy": "1.14.1",
+  "argv": [
+   "--mod",
+   "mantel_aile"
+  ],
+  "perm": 9999,
+  "tohum": 20261030,
+  "tohum_kaynagi": "ek on kayit §6.2 (20261030)",
+  "girdi_sha256": {
+   "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7",
+   "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
+   "results/q1/konsey_b10_gradyan/mantel_cifar100.json": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac",
+   "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+   "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073",
+   "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+  }
+ },
+ "yeniden_uretim_hepsi_esit_1e-6": true
+}

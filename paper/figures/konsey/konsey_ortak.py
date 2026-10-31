@@ -1,8 +1,15 @@
 """Shared helpers for the council-round draft figures (paper/figures/konsey/).
 
 Style follows paper/figures/fig_yayilim_temiz_fark.py: DejaVu Sans, 8-9 pt, single column
-3.5 in, double column 7.16 in, Okabe-Ito colours with a second channel (marker, line style or
+3.358 in, double column 6.989 in, Okabe-Ito colours with a second channel (marker, line style or
 hatch), pdf.fonttype 42, no Type 3 fonts.
+
+Change log (degisiklik notu):
+- 2026-10-31 (hakem konseyi, sunum mercegi bulgu 13 / A12): SINGLE_IN and DOUBLE_IN set to the
+  class geometry of ieeeaccess.cls (\\columnwidth 85.29 mm = 3.358 in, \\textwidth 177.53 mm =
+  6.989 in) instead of 3.5 / 7.16 in, so that \\includegraphics[width=\\columnwidth|\\textwidth]
+  places every council figure at scale 1.00 and the 8 pt minimum is 8 pt on the printed page
+  (before: x0.959 single, x0.976 double, i.e. 7.7 and 7.8 pt).
 
 Every number a figure draws is read from a JSON artefact and compared with the reference sheet
 (results/C1_REFERANS_FOYU.md, "foy") at a named line that must also contain an anchor string, so
@@ -27,7 +34,7 @@ import matplotlib.text  # noqa: E402,F401
 
 FOY = Path("results/C1_REFERANS_FOYU.md")
 OUTDIR = Path("paper/figures/konsey")
-SINGLE_IN, DOUBLE_IN = 3.5, 7.16
+SINGLE_IN, DOUBLE_IN = round(85.29 / 25.4, 3), round(177.53 / 25.4, 3)  # ieeeaccess.cls lines 262-263
 MIN_FONT = 8.0
 INK, EDGE, ZERO, MUTE = "#262626", "#393939", "#8d8d8d", "#6e6e6e"
 

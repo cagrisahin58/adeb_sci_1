@@ -44,6 +44,35 @@ ozet_ilk = re.sub(r"\s+", " ", m.group(1)).strip()
 # PDF metninde satir sonlari/tireleme olabilir: ilk 6 kelimeyi ara
 ozet_anahtar = " ".join(ozet_ilk.split()[:6])
 
+
+def tex_baslik(metin):
+    """main.tex'teki \\title{...} govdesi (dengeli parantez), LaTeX'ten arindirilmis duz metin.
+
+    2026-10-31: baslik betige elle yazilmaz; her baslik degisikliginde (10-04 LeCun turu, 10-31
+    konsey manseti) kapi eski dizgeyi arayip KALDI veriyordu."""
+    m_ = re.search(r"^\\title\{", metin, re.M)
+    if not m_:
+        return None
+    i, der, bas = m_.end(), 1, m_.end()
+    while i < len(metin) and der:
+        der += {"{": 1, "}": -1}.get(metin[i], 0)
+        i += 1
+    if der:
+        return None
+    g = metin[bas:i - 1]
+    g = re.sub(r"(?<!\\)%[^\n]*", "", g)                 # yorum
+    g = re.sub(r"\\\\(\[[^\]]*\])?|~", " ", g)            # \\ ve ~ -> bosluk
+    g = re.sub(r"\\[A-Za-z]+\*?\s*", "", g)              # kalan komut adlari
+    g = g.replace("{", "").replace("}", "")
+    return re.sub(r"\s+", " ", g).strip()
+
+
+baslik = tex_baslik(tex)
+if not baslik:
+    sys.exit("KAPI HATASI: main.tex icinde \\title{...} bulunamadi.")
+# Ana baslik ve alt baslik (ilk ':' ile ayrilir); alt baslik yoksa yalniz ana baslik aranir.
+ana_baslik, _, alt_baslik = (s_.strip() for s_ in baslik.partition(":"))
+
 d = fitz.open(PDF)
 s1 = re.sub(r"\s+", " ", d[0].get_text())
 son = re.sub(r"\s+", " ", d[-1].get_text())
@@ -61,11 +90,14 @@ def kontrol(ad, kosul, detay=""):
 kontrol("ozet ilk cumlesi ilk sayfada", ozet_anahtar in s1, f"aranan: '{ozet_anahtar}'")
 kontrol("INDEX TERMS ilk sayfada", "INDEX TERMS" in s1)
 kontrol("ABSTRACT basligi ilk sayfada", "ABSTRACT" in s1)
-# 2026-10-04: baslik LeCun turunda degisti (hukum B1).
-kontrol("baslik ilk sayfada", "The Conditioning Set Decides the Measured Transfer Asymmetry" in s1)
-# Hakem gecisi (2026-10-04): alt baslik "Source-Effect Reading" oldu; eski alt baslik
-# ("Matched-Pair Prediction") ayni on eki tasidigi icin ilk kontrol onu ayirt etmez.
-kontrol("alt baslik ilk sayfada", "Source-Effect Reading" in s1.replace("- ", "-"))
+# 2026-10-31: baslik dizgesi main.tex'ten okunur (eski elle yazilmis dizgeler: 10-04 "The
+# Conditioning Set Decides ...", alt baslik "Source-Effect Reading"). Ana baslik ve alt baslik
+# AYRI aranir: ikisi ayni on eki tasiyabilir (10-04 hakem gecisi dersi). Satir sonundaki tire
+# bolunmesi ("CNN- ViT") birlestirilir.
+s1_bitisik = s1.replace("- ", "-")
+kontrol("baslik ilk sayfada", ana_baslik in s1_bitisik, f"aranan: '{ana_baslik}'")
+if alt_baslik:
+    kontrol("alt baslik ilk sayfada", alt_baslik in s1_bitisik, f"aranan: '{alt_baslik}'")
 
 # yazar bandi: buyuk harfli ad icinde kucuk dotless-i (ı) kalmis mi?
 band = s1[: s1.find("INTRODUCTION")] if "INTRODUCTION" in s1 else s1[:1500]

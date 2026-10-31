@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
 """Input-gradient cosine c_ij against pairwise symmetric similarity log tau_ij (brief 12, section 6.6).
 
-Double column (7.16 in), 2 x 3 panels. Columns: CIFAR-10, CIFAR-100, ImageNetV2. Top row: raw c_ij
+Change log (degisiklik notu):
+- 2026-10-31: width 6.989 in (= textwidth of ieeeaccess.cls, see konsey_ortak.py), so the figure
+  prints at scale 1.00 and 8 pt text stays 8 pt. Drawn values, layout fractions and labels
+  unchanged; panel letters (a)-(c) raw and (d)-(f) residual already match the caption as revised
+  by the author (hakem konseyi m15, caption side).
+- 2026-10-31: height 4.9 -> 4.78 in, the printed height of the 7.16 x 4.9 in draft at textwidth;
+  at 4.9 in the float page with Table 11 overflowed by 1.3 pt (Overfull vbox in main.log).
+
+Double column (6.989 in), 2 x 3 panels. Columns: CIFAR-10, CIFAR-100, ImageNetV2. Top row: raw c_ij
 against raw log tau_ij for every unordered model pair. Bottom row: the same pairs after additive
 model main effects (X_ij = mu + a_i + a_j + e_ij, least squares over unordered pairs, ek on kayit
 section 6.2) are removed from both matrices. Colour and marker encode the pair type from the
@@ -61,7 +69,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--name", default="fig_gradient_alignment")
     ap.add_argument("--width-in", type=float, default=K.DOUBLE_IN)
-    ap.add_argument("--height-in", type=float, default=4.9)
+    ap.add_argument("--height-in", type=float, default=4.78)
     ap.add_argument("--dpi", type=int, default=300)
     ap.add_argument("--seed", type=int, default=0, help="no randomness; kept for the log")
     args = ap.parse_args()

@@ -1,0 +1,685 @@
+{
+ "etiket": "kesifsel, on kayit disi panel, 3 uye (31.10.2026, hakem paneli acik isi A10)",
+ "tanim": "Panel uyesi 'ResNet-18 turevi' sayilir eger RobustBench (cifar10, Linf) model nesnesindeki iki evrisimli artik blok sayisi 8 ise (BasicBlock, PreActBlock, _PreActBlock; ResNet-18 ve PreAct-ResNet-18'in [2, 2, 2, 2] dizilimi). Nesneler robustbench.model_zoo.cifar10.linf sozlugunden CPU'da kurulur (agirlik yuklenmez); blok sinifi ve sayisi, Conv2d sayisi ve parametre sayisi kaydedilir. hucre_tablosu_a10.json dondurulmus tablonun kopyasidir; yalniz bu uyelerin birincil_panel alani false yapilir ve belgeleme icin 'a10_kesifsel' anahtari eklenir (dondurulmus betik bu anahtari okumaz). Dondurulmus betik degistirilmeden alt surecle cagrilir: once runbook bicimiyle (varsayilan --panel-en-az 5), sonra betigin istege bagli --panel-en-az 3 bayragiyla. ON_KAYIT §2'nin en az bes uyelik panel kurali bu ikinci cagrida bilerek gevsetilmistir; sonuclar on kayit disi ve kesifseldir, F_B2/F_B4 kararlarinin yerine gecmez. Dondurulmus panelle karsilastirmada 'ayni_yon' kestirim isaretinin, 'karar_ayni' karar dizgesinin aynen tutmasidir. Bagimsiz denetim: dondurulmus islevler importlib ile yuklenip 3 uyeli panelle H1-H3 kestirimleri ve K-a q, K-b rho yeniden hesaplanir ve alt surec ciktisiyla karsilastirilir.",
+ "meta": {
+  "betik": "arsiv/b2_yardimci/_m12_ek_masa.py",
+  "betik_sha256": "57016d02354f205d712aace1ae3c210d8eae0ce6ceac669e2cac560694e93245",
+  "kutuphane_betik": "experiments/q1_ek_masa.py",
+  "kutuphane_betik_sha256_dogrulandi": "40454344bd3f8b1a0318d4bdb295d1dad05f187d74fe22f739501654a785b8c1",
+  "dondurulmus_betik": "experiments/q1_konsey_ayrisim.py",
+  "dondurulmus_betik_sha256_dogrulandi": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "mod": "a10_panel",
+  "uretildi_utc": "2026-10-31T15:37:24.179897+00:00",
+  "numpy": "1.26.4",
+  "scipy": "1.14.1",
+  "argv": [
+   "--mod",
+   "a10_panel"
+  ],
+  "girdi_sha256": {
+   "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
+   "raporlar/konsey_2026-10-29/hucre_tablosu_a10.json": "dd77b5ae9e4188cbe57c0ffe18a49108bb3f8398935b5f7e280e002dad15c49e",
+   "results/q1/konsey_ayrisim_b4.json": "5c50890819c509b9ef890373797b4f303eea8427d05f3f4025c31019380ca99b",
+   "results/q1/konsey_ayrisim_b2.json": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27",
+   "experiments/q1_konsey_ayrisim.py": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+   "experiments/q1_ek_masa.py": "40454344bd3f8b1a0318d4bdb295d1dad05f187d74fe22f739501654a785b8c1",
+   "results/q1/konsey_ek_masa/a10_b4.json": "9340c12b90eb93cf7b4efd64fb5e5e850d2cffcff1b378adb66d868c2771bc27",
+   "results/q1/konsey_ek_masa/a10_b2.json": "5ab88eaa0069c451911b8d9579fd175749ec3c279dbca4b4240d107cbed6ef18"
+  },
+  "matris_dizinleri": {
+   "b4": "results/q1/konsey_b4_matris",
+   "b2": "results/q1/konsey_b2_panel"
+  },
+  "bootstrap_B": 2000,
+  "bootstrap_tohum": 20261029,
+  "panel_en_az_kullanilan": 3
+ },
+ "mimari_dogrulama": {
+  "robustbench_surum": "bilinmiyor",
+  "robustbench_dizin": "/usr/local/lib/python3.12/dist-packages/robustbench",
+  "kaynak": "robustbench.model_zoo.cifar10.linf",
+  "modeller": {
+   "Wong2020Fast": {
+    "sinif": "Wong2020FastNet",
+    "mro": [
+     "Wong2020FastNet",
+     "PreActResNet",
+     "Module",
+     "object"
+    ],
+    "blok_siniflari": [
+     "PreActBlock"
+    ],
+    "blok_sayisi": 8,
+    "conv2d_sayisi": 20,
+    "parametre_sayisi": 11171146,
+    "resnet18_turevi": true
+   },
+   "Engstrom2019Robustness": {
+    "sinif": "Engstrom2019RobustnessNet",
+    "mro": [
+     "Engstrom2019RobustnessNet",
+     "ResNet",
+     "Module",
+     "object"
+    ],
+    "blok_siniflari": [
+     "Bottleneck"
+    ],
+    "blok_sayisi": 16,
+    "conv2d_sayisi": 53,
+    "parametre_sayisi": 23520842,
+    "resnet18_turevi": false
+   },
+   "Carmon2019Unlabeled": {
+    "sinif": "WideResNet",
+    "mro": [
+     "WideResNet",
+     "Module",
+     "object"
+    ],
+    "blok_siniflari": [
+     "BasicBlock"
+    ],
+    "blok_sayisi": 16,
+    "conv2d_sayisi": 37,
+    "parametre_sayisi": 38119866,
+    "resnet18_turevi": false
+   },
+   "Gowal2020Uncovering_28_10_extra": {
+    "sinif": "DMWideResNet",
+    "mro": [
+     "DMWideResNet",
+     "Module",
+     "object"
+    ],
+    "blok_siniflari": [
+     "_Block"
+    ],
+    "blok_sayisi": 12,
+    "conv2d_sayisi": 28,
+    "parametre_sayisi": 36479194,
+    "resnet18_turevi": false
+   },
+   "Sehwag2021Proxy_R18": {
+    "sinif": "ResNet",
+    "mro": [
+     "ResNet",
+     "Module",
+     "object"
+    ],
+    "blok_siniflari": [
+     "BasicBlock"
+    ],
+    "blok_sayisi": 8,
+    "conv2d_sayisi": 20,
+    "parametre_sayisi": 11173962,
+    "resnet18_turevi": true
+   },
+   "Addepalli2022Efficient_RN18": {
+    "sinif": "ResNet",
+    "mro": [
+     "ResNet",
+     "Module",
+     "object"
+    ],
+    "blok_siniflari": [
+     "BasicBlock"
+    ],
+    "blok_sayisi": 8,
+    "conv2d_sayisi": 20,
+    "parametre_sayisi": 11173962,
+    "resnet18_turevi": true
+   },
+   "Rade2021Helper_R18_ddpm": {
+    "sinif": "DMPreActResNet",
+    "mro": [
+     "DMPreActResNet",
+     "Module",
+     "object"
+    ],
+    "blok_siniflari": [
+     "_PreActBlock"
+    ],
+    "blok_sayisi": 8,
+    "conv2d_sayisi": 20,
+    "parametre_sayisi": 12548426,
+    "resnet18_turevi": true
+   }
+  }
+ },
+ "cikarilan": [
+  "Wong2020Fast",
+  "Sehwag2021Proxy_R18",
+  "Addepalli2022Efficient_RN18",
+  "Rade2021Helper_R18_ddpm"
+ ],
+ "kalan_panel": [
+  "Engstrom2019Robustness",
+  "Carmon2019Unlabeled",
+  "Gowal2020Uncovering_28_10_extra"
+ ],
+ "tablo_farki": [
+  "modeller.Addepalli2022Efficient_RN18.birincil_panel",
+  "modeller.Rade2021Helper_R18_ddpm.birincil_panel",
+  "modeller.Sehwag2021Proxy_R18.birincil_panel",
+  "modeller.Wong2020Fast.birincil_panel"
+ ],
+ "dondurulmus_cagrilar": {
+  "b4_varsayilan": {
+   "komut": "python -B experiments/q1_konsey_ayrisim.py --mod b4 --matris-dizini results/q1/konsey_b4_matris --hucre-tablosu raporlar/konsey_2026-10-29/hucre_tablosu_a10.json --cikti results/q1/konsey_ek_masa/a10_b4_varsayilan_bekci.json",
+   "donus_kodu": 0,
+   "stdout_son": [
+    "yazildi: results/q1/konsey_ek_masa/a10_b4_varsayilan_bekci.json"
+   ],
+   "stderr_son": [],
+   "cikti": "results/q1/konsey_ek_masa/a10_b4_varsayilan_bekci.json",
+   "cikti_sha256": "60d752977472c5d3d2504775c5795cc9c94b71eb1ebfe9dd82e913f5a663f05a"
+  },
+  "b2_varsayilan": {
+   "komut": "python -B experiments/q1_konsey_ayrisim.py --mod b2 --matris-dizini results/q1/konsey_b2_panel --hucre-tablosu raporlar/konsey_2026-10-29/hucre_tablosu_a10.json --cikti results/q1/konsey_ek_masa/a10_b2_varsayilan_bekci.json",
+   "donus_kodu": 0,
+   "stdout_son": [
+    "yazildi: results/q1/konsey_ek_masa/a10_b2_varsayilan_bekci.json"
+   ],
+   "stderr_son": [],
+   "cikti": "results/q1/konsey_ek_masa/a10_b2_varsayilan_bekci.json",
+   "cikti_sha256": "7f44e664e1e01b5c6081334643dde48d002c6f0e40ddd0f433f8c5fb054e97ce"
+  },
+  "b4": {
+   "komut": "python -B experiments/q1_konsey_ayrisim.py --mod b4 --matris-dizini results/q1/konsey_b4_matris --hucre-tablosu raporlar/konsey_2026-10-29/hucre_tablosu_a10.json --cikti results/q1/konsey_ek_masa/a10_b4.json --panel-en-az 3",
+   "donus_kodu": 0,
+   "stdout_son": [
+    "yazildi: results/q1/konsey_ek_masa/a10_b4.json"
+   ],
+   "stderr_son": [],
+   "cikti": "results/q1/konsey_ek_masa/a10_b4.json",
+   "cikti_sha256": "9340c12b90eb93cf7b4efd64fb5e5e850d2cffcff1b378adb66d868c2771bc27"
+  },
+  "b2": {
+   "komut": "python -B experiments/q1_konsey_ayrisim.py --mod b2 --matris-dizini results/q1/konsey_b2_panel --hucre-tablosu raporlar/konsey_2026-10-29/hucre_tablosu_a10.json --cikti results/q1/konsey_ek_masa/a10_b2.json --panel-en-az 3",
+   "donus_kodu": 0,
+   "stdout_son": [
+    "yazildi: results/q1/konsey_ek_masa/a10_b2.json"
+   ],
+   "stderr_son": [],
+   "cikti": "results/q1/konsey_ek_masa/a10_b2.json",
+   "cikti_sha256": "5ab88eaa0069c451911b8d9579fd175749ec3c279dbca4b4240d107cbed6ef18"
+  }
+ },
+ "varsayilan_bekci_hatasi": {
+  "b4_varsayilan": "birincil panelde 3 uye var; ON_KAYIT §2 en az 5 ister",
+  "b2_varsayilan": "birincil panelde 3 uye var; ON_KAYIT §2 en az 5 ister"
+ },
+ "b4_a10": {
+  "H1": {
+   "kestirim": -0.41188914884997163,
+   "ci90": [
+    -0.4648819759386085,
+    -0.35889632176133474
+   ],
+   "ci95": [
+    -0.4794916940473086,
+    -0.34428660365263464
+   ],
+   "se": 0.026298538432098915,
+   "df": 5,
+   "hucre_ort": {
+    "V-scr": -1.115892827467947,
+    "R224-scr": -0.7040036786179753
+   },
+   "p_ham": 9.643743443205976e-06,
+   "p_holm": 2.893123032961793e-05,
+   "karar": "destek",
+   "hiyerarsik_bootstrap_ci90": [
+    -0.44543362855911256,
+    -0.3776131600141525
+   ],
+   "welch_ci90": [
+    -0.5532916010460737,
+    -0.2704866966538696
+   ]
+  },
+  "H2": {
+   "kestirim": 0.29456680837957816,
+   "ci90": [
+    0.21596574356324394,
+    0.3731678731959124
+   ],
+   "ci95": [
+    0.19429602969631682,
+    0.3948375870628395
+   ],
+   "se": 0.03900703618659183,
+   "df": 5,
+   "hucre_ort": {
+    "V-IN": -0.8188567841664364,
+    "V-scr": -1.115892827467947,
+    "R224-IN": -0.7015344436960429,
+    "R224-scr": -0.7040036786179753
+   },
+   "p_ham": 0.0006453273350466304,
+   "p_holm": 0.0006453273350466304,
+   "karar": "destek",
+   "hiyerarsik_bootstrap_ci90": [
+    0.2355056345462799,
+    0.3545427083969116
+   ],
+   "welch_ci90": [
+    0.14906041634609837,
+    0.440073200413058
+   ]
+  },
+  "H3": {
+   "kestirim": 0.003775138784955107,
+   "ci90": [
+    -0.02139901554352329,
+    0.0289492931134335
+   ],
+   "ci95": [
+    -0.028339337820513955,
+    0.035889615390424165
+   ],
+   "se": 0.01249307692144317,
+   "df": 5,
+   "hucre_ort": {
+    "V-scr": 0.018231292798105373,
+    "R224-scr": -0.058587986846482844,
+    "V-IN": -0.12014008903123877,
+    "R224-IN": -0.050871086956560764
+   },
+   "p_ham": 0.0002942947586080459,
+   "p_holm": 0.0005885895172160918,
+   "karar": "destek (esdeger, Holm sonrasi TOST p < 0,05)",
+   "hiyerarsik_bootstrap_ci90": [
+    -0.027616249161656014,
+    0.03448159480467439
+   ],
+   "welch_ci90": [
+    -0.031056349592158902,
+    0.03860662716206911
+   ]
+  },
+  "sonuc_bolgesi": "O1",
+  "O4_niteleme": false,
+  "H2_logit_kestirim": 0.3904263084189359,
+  "delta_0.06": {
+   "H1": "destek",
+   "H2": "destek",
+   "H3": "destek (esdeger, Holm sonrasi TOST p < 0,05)"
+  },
+  "S2_rho_VIN_eksi_Vscr": {
+   "kestirim": -0.13837138182934414,
+   "ci90": [
+    -0.17231620460112126,
+    -0.10442655905756701
+   ]
+  },
+  "panel_jackknife": {
+   "Engstrom2019Robustness": {
+    "H1": -0.38082780416881623,
+    "H2": 0.2780974102157079,
+    "H3": 0.004472125883541668
+   },
+   "Carmon2019Unlabeled": {
+    "H1": -0.4158468520503379,
+    "H2": 0.29721779521104763,
+    "H3": -0.0010682613919744677
+   },
+   "Gowal2020Uncovering_28_10_extra": {
+    "H1": -0.4389927903307608,
+    "H2": 0.30838521971197896,
+    "H3": 0.007921551863298116
+   }
+  }
+ },
+ "b4_dondurulmus_panel": {
+  "H1": {
+   "kestirim": -0.36425561539142937,
+   "ci90": [
+    -0.4145328915713304,
+    -0.31397833921152835
+   ],
+   "ci95": [
+    -0.42839395301334426,
+    -0.30011727776951447
+   ],
+   "se": 0.024950902839488195,
+   "df": 5,
+   "hucre_ort": {
+    "V-scr": -1.0087889528473282,
+    "R224-scr": -0.6445333374558988
+   },
+   "p_ham": 1.3617124718174717e-05,
+   "p_holm": 4.0851374154524155e-05,
+   "karar": "destek",
+   "hiyerarsik_bootstrap_ci90": [
+    -0.3925281405448914,
+    -0.33488166630268096
+   ],
+   "welch_ci90": [
+    -0.47221955587975495,
+    -0.2562916749031038
+   ]
+  },
+  "H2": {
+   "kestirim": 0.26009061024075675,
+   "ci90": [
+    0.18551735833262223,
+    0.33466386214889127
+   ],
+   "ci95": [
+    0.16495808175346155,
+    0.35522313872805195
+   ],
+   "se": 0.037008169577976646,
+   "df": 5,
+   "hucre_ort": {
+    "V-IN": -0.7392475750161311,
+    "V-scr": -1.0087889528473282,
+    "R224-IN": -0.6350825698654585,
+    "R224-scr": -0.6445333374558988
+   },
+   "p_ham": 0.0009000991866829899,
+   "p_holm": 0.0009000991866829899,
+   "karar": "destek",
+   "hiyerarsik_bootstrap_ci90": [
+    0.20370842814445494,
+    0.31563712656497955
+   ],
+   "welch_ci90": [
+    0.113240612328882,
+    0.4069406081526315
+   ]
+  },
+  "H3": {
+   "kestirim": 0.0033636461191873827,
+   "ci90": [
+    -0.019651710065087324,
+    0.02637900230346209
+   ],
+   "ci95": [
+    -0.025996868164713995,
+    0.03272416040308876
+   ],
+   "se": 0.011421738797369805,
+   "df": 5,
+   "hucre_ort": {
+    "V-scr": 0.011885915600693684,
+    "R224-scr": -0.05848880979438009,
+    "V-IN": -0.11792657662124897,
+    "R224-IN": -0.05427914346454996
+   },
+   "p_ham": 0.00018937896414330654,
+   "p_holm": 0.00037875792828661307,
+   "karar": "destek (esdeger, Holm sonrasi TOST p < 0,05)",
+   "hiyerarsik_bootstrap_ci90": [
+    -0.02427064214134589,
+    0.03083232367353048
+   ],
+   "welch_ci90": [
+    -0.033813939068158765,
+    0.040541231306533525
+   ]
+  },
+  "sonuc_bolgesi": "O1",
+  "O4_niteleme": false,
+  "H2_logit_kestirim": 0.35410578382031854,
+  "delta_0.06": {
+   "H1": "destek",
+   "H2": "destek",
+   "H3": "destek (esdeger, Holm sonrasi TOST p < 0,05)"
+  },
+  "S2_rho_VIN_eksi_Vscr": {
+   "kestirim": -0.12981249222194266,
+   "ci90": [
+    -0.16084639216990373,
+    -0.09877859227398159
+   ]
+  },
+  "panel_jackknife": {
+   "Wong2020Fast": {
+    "H1": -0.36737829618485596,
+    "H2": 0.26604091474618663,
+    "H3": 0.00098937795498995
+   },
+   "Engstrom2019Robustness": {
+    "H1": -0.345962911587954,
+    "H2": 0.24885477782966337,
+    "H3": 0.0035273930410882875
+   },
+   "Carmon2019Unlabeled": {
+    "H1": -0.35763592754846096,
+    "H2": 0.25522823949477624,
+    "H3": 0.0016805972825829013
+   },
+   "Gowal2020Uncovering_28_10_extra": {
+    "H1": -0.365351240308602,
+    "H2": 0.2589507143284202,
+    "H3": 0.0046772017010071
+   },
+   "Sehwag2021Proxy_R18": {
+    "H1": -0.3755317352792531,
+    "H2": 0.26395178605073877,
+    "H3": 0.005567242611289269
+   },
+   "Addepalli2022Efficient_RN18": {
+    "H1": -0.36489543677402514,
+    "H2": 0.26371118644929104,
+    "H3": 0.0029509543095443905
+   },
+   "Rade2021Helper_R18_ddpm": {
+    "H1": -0.37303376005685407,
+    "H2": 0.26389665278622154,
+    "H3": 0.004152755933809788
+   }
+  }
+ },
+ "b2_a10": {
+  "K-a": {
+   "q_s": [
+    0.9227370670893246,
+    0.9106436893993867,
+    0.9282927353269645
+   ],
+   "D_s": [
+    0.4198459433330375,
+    0.4247081317389254,
+    0.4140567807654705
+   ],
+   "ort_q": 0.9205578306052252,
+   "ci90": [
+    0.9053445460692937,
+    0.9357711151411567
+   ],
+   "ci95": [
+    0.8981407746181884,
+    0.942974886592262
+   ],
+   "p_tek_H0_q_le_0.5": 7.671903903427868e-05,
+   "payda_kucuk_tohumlar": [],
+   "karar": "destek"
+  },
+  "K-b": {
+   "rho_s": [
+    0.035797339345907675,
+    0.011479811727182007,
+    0.007416727321226443
+   ],
+   "ort_rho_Vscr": 0.018231292798105373,
+   "ci90": [
+    -0.007642682634924437,
+    0.04410526823113518
+   ],
+   "ci95": [
+    -0.01989448829272532,
+    0.05635707388893607
+   ],
+   "tost_p": 0.005770211172223032,
+   "karar": "destek (Holm sonrasi TOST p < 0,05)",
+   "ham_ci90_delta_icinde": true
+  },
+  "K-c": {
+   "Delta_w": 0.6732764593771403,
+   "bootstrap_ci90": [
+    0.6405041664838791,
+    0.7140114337205887
+   ],
+   "p_tek_H0_Delta_le_0": 0.0004997501249375312,
+   "karar": "destek"
+  },
+  "p_ham": [
+   7.671903903427868e-05,
+   0.005770211172223032,
+   0.0004997501249375312
+  ],
+  "p_holm": [
+   0.00023015711710283604,
+   0.005770211172223032,
+   0.0009995002498750624
+  ],
+  "delta_0.06_karar": {
+   "K-a": "destek",
+   "K-b": "destek (Holm sonrasi TOST p < 0,05)",
+   "K-c": "destek"
+  }
+ },
+ "b2_dondurulmus_panel": {
+  "K-a": {
+   "q_s": [
+    0.940426735813352,
+    0.9283096902319006,
+    0.9401501389044822
+   ],
+   "D_s": [
+    0.3907820131748867,
+    0.38727356455782536,
+    0.38998897064756965
+   ],
+   "ort_q": 0.9362955216499116,
+   "ci90": [
+    0.924633934418925,
+    0.9479571088808981
+   ],
+   "ci95": [
+    0.9191119572961847,
+    0.9534790860036385
+   ],
+   "p_tek_H0_q_le_0.5": 4.188975600016853e-05,
+   "payda_kucuk_tohumlar": [],
+   "karar": "destek"
+  },
+  "K-b": {
+   "rho_s": [
+    0.024812601580214998,
+    0.007095290278063691,
+    0.0037498549438023596
+   ],
+   "ort_rho_Vscr": 0.011885915600693684,
+   "ci90": [
+    -0.007196466986688703,
+    0.030968298188076074
+   ],
+   "ci95": [
+    -0.016232327886902737,
+    0.04000415908829011
+   ],
+   "tost_p": 0.002727832629765287,
+   "karar": "destek (Holm sonrasi TOST p < 0,05)",
+   "ham_ci90_delta_icinde": true
+  },
+  "K-c": {
+   "Delta_w": 0.5661725847565215,
+   "bootstrap_ci90": [
+    0.5374159991741181,
+    0.6038880437612534
+   ],
+   "p_tek_H0_Delta_le_0": 0.0004997501249375312,
+   "karar": "destek"
+  },
+  "p_ham": [
+   4.188975600016853e-05,
+   0.002727832629765287,
+   0.0004997501249375312
+  ],
+  "p_holm": [
+   0.0001256692680005056,
+   0.002727832629765287,
+   0.0009995002498750624
+  ],
+  "delta_0.06_karar": {
+   "K-a": "destek",
+   "K-b": "destek (Holm sonrasi TOST p < 0,05)",
+   "K-c": "destek"
+  }
+ },
+ "karsilastirma": {
+  "H1": {
+   "dondurulmus_kestirim": -0.36425561539142937,
+   "a10_kestirim": -0.41188914884997163,
+   "ayni_yon": true,
+   "dondurulmus_karar": "destek",
+   "a10_karar": "destek",
+   "karar_ayni": true
+  },
+  "H2": {
+   "dondurulmus_kestirim": 0.26009061024075675,
+   "a10_kestirim": 0.29456680837957816,
+   "ayni_yon": true,
+   "dondurulmus_karar": "destek",
+   "a10_karar": "destek",
+   "karar_ayni": true
+  },
+  "H3": {
+   "dondurulmus_kestirim": 0.0033636461191873827,
+   "a10_kestirim": 0.003775138784955107,
+   "ayni_yon": true,
+   "dondurulmus_karar": "destek (esdeger, Holm sonrasi TOST p < 0,05)",
+   "a10_karar": "destek (esdeger, Holm sonrasi TOST p < 0,05)",
+   "karar_ayni": true
+  },
+  "sonuc_bolgesi": {
+   "dondurulmus": "O1",
+   "a10": "O1",
+   "ayni": true
+  },
+  "K-a": {
+   "dondurulmus_kestirim": 0.9362955216499116,
+   "a10_kestirim": 0.9205578306052252,
+   "ayni_yon": true,
+   "ayni_yon_tanimi": "q - 0,5 isareti",
+   "dondurulmus_karar": "destek",
+   "a10_karar": "destek",
+   "karar_ayni": true
+  },
+  "K-b": {
+   "dondurulmus_kestirim": 0.011885915600693684,
+   "a10_kestirim": 0.018231292798105373,
+   "ayni_yon": true,
+   "ayni_yon_tanimi": "kestirim isareti",
+   "dondurulmus_karar": "destek (Holm sonrasi TOST p < 0,05)",
+   "a10_karar": "destek (Holm sonrasi TOST p < 0,05)",
+   "karar_ayni": true
+  },
+  "K-c": {
+   "dondurulmus_kestirim": 0.5661725847565215,
+   "a10_kestirim": 0.6732764593771403,
+   "ayni_yon": true,
+   "ayni_yon_tanimi": "kestirim isareti",
+   "dondurulmus_karar": "destek",
+   "a10_karar": "destek",
+   "karar_ayni": true
+  }
+ },
+ "bagimsiz_yeniden_hesap": {
+  "panel": [
+   "Engstrom2019Robustness",
+   "Carmon2019Unlabeled",
+   "Gowal2020Uncovering_28_10_extra"
+  ],
+  "H_kestirim_maks_fark": 0.0,
+  "H_ci90_maks_fark": 0.0,
+  "K-a_q_maks_fark": 0.0,
+  "K-b_rho_maks_fark": 0.0
+ }
+}

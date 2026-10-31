@@ -4,21 +4,21 @@
   "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
   "betik": "paper/figures/konsey/fig_decomposition_schematic.py",
   "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
-  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "ortak_modul_sha256": "798137ef5ad8aa2ca9f8ad4d17697e69733f9d606a522433eabe9449026f0579",
   "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_decomposition_schematic.py",
-  "uretim_zamani_utc": "2026-10-31T13:39:49+00:00",
+  "uretim_zamani_utc": "2026-10-31T15:25:42+00:00",
   "girdiler_sha256": {},
   "git": {
-    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "commit": "52364bcd19fb6514f0b7bf228ad158e763dcd858",
     "branch": "q1",
     "dirty_or_untracked": [
-      "?? paper/figures/konsey/fig_decomposition_schematic.py",
-      "?? paper/figures/konsey/konsey_ortak.py"
+      "M paper/figures/konsey/fig_decomposition_schematic.py",
+      " M paper/figures/konsey/konsey_ortak.py"
     ]
   },
   "yerlesim": {
     "boyut_in": [
-      3.5,
+      3.358,
       3.55
     ],
     "dpi": 300,
@@ -43,7 +43,7 @@
     "uyusmayan": 0,
     "sonuc": "TAMAM",
     "foy": "results/C1_REFERANS_FOYU.md",
-    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "foy_sha256": "42c7dc34ea0671aeda99de493ce1023dbfec728465592a7d32b987fab9ef1801",
     "ayrinti": [
       {
         "ad": "identity log T = log w_j + log tau + r/2 (max abs residual, random matrices)",
@@ -70,9 +70,10 @@
   ],
   "notlar": [
     "No number from any result file is drawn; the only numerals are the 1/2 of the definitions.",
-    "Overline denotes the mean over panel members c in P (for a panel member, P without itself), as in brief 12 section 3.1; the caption should say so.",
+    "<.>_P denotes the mean over panel members c in P (for a panel member, P without itself); since 2026-10-31 (m15) it replaces the overline of brief 12 section 3.1, which collided with the overline of tau-bar. The caption must say '<.>_P: mean over panel members'.",
+    "Panels lettered (a)-(d) since 2026-10-31 (m15).",
     "rho_m = mean_c r_cm: positive rho_m means m is directionally the weaker source."
   ],
-  "eski_surum_tasindi": null,
+  "eski_surum_tasindi": "fig_decomposition_schematic_v1",
   "rastgele_denetim_tohumu": 20261031
 }

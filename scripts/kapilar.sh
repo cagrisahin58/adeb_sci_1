@@ -22,11 +22,20 @@
 #                                  hic tanimlamiyordu; govde bir ay Computer
 #                                  Modern'di, kalin/italik hic basilmadi, bes
 #                                  tablo sutunu asti; sekiz kapi da gecmisti.)
+#   0 test_verify_manuscript_numbers.py  ILK ADIM: sayi kapisinin oz-sinamasi (2026-10-31,
+#                                  celisik dogrulayici Y3; ucuncu tur Y4). Gecici kopyada 19
+#                                  sinamanin butun adaylarini bozar (isaret, takas, tek kopya,
+#                                  tamsayi, A1-A3, B, KAYNAK-yalniz, GRUPSUZ, ters aralik, YON,
+#                                  ozet rakam takasi, KAYNAK belgesi). Oz-sinama KALDI verirse
+#                                  sayi kapisinin hukmu gecersizdir: zincir "OZ-SINAMA KALDI:
+#                                  sayi kapisi hukmu gecersiz" basar ve HEMEN cikis 1 ile durur
+#                                  (kalan kapilar kosulmaz).
 set -u
 cd "$(dirname "$0")/.." || exit 1
-DEX=(docker exec -w /workspace adeb_eval python)
+DEX=(docker exec -w /workspace adeb_eval python -B)
 
 KAPILAR=(
+  "test_verify_manuscript_numbers.py:oz-sinama"
   "verify_manuscript_numbers.py:sayilar"
   "check_manuscript_claims.py:iddialar"
   "check_abstract_body.py:ozet"
@@ -46,12 +55,17 @@ for k in "${KAPILAR[@]}"; do
     else
         printf "%-14s KALDI   %s\n" "$ad" "$(grep -m1 'SONUC\|KALDI' /tmp/kapi.log | cut -c1-70)"
         kalan=$((kalan + 1))
+        if [ "$betik" = "test_verify_manuscript_numbers.py" ]; then
+            grep '^  KALDI' /tmp/kapi.log | cut -c1-120
+            echo "OZ-SINAMA KALDI: sayi kapisi hukmu gecersiz"
+            exit 1
+        fi
     fi
 done
 
 echo "----------------------------------------------------------------------"
 if [ "$kalan" -eq 0 ]; then
-    echo "DOKUZ KAPI DA GECTI"
+    echo "OZ-SINAMA VE DOKUZ KAPI GECTI"
 else
     echo "KALAN KAPI: $kalan"
 fi

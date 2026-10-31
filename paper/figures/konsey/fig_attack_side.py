@@ -2,7 +2,14 @@
 """Attack side (B5): panel-mean log transfer L_k(m) of every source under each permitted attack
 (brief 12, section 6.7).
 
-One column (3.5 in). Rows are the twelve source models grouped by cell (R32, V-scr, R224-scr,
+Change log (degisiklik notu):
+- 2026-10-31, hakem konseyi B14 (birlesik.md; mercek_sunum bulgu 3): x label gains the unit note
+  "(T in %)" on a second line; L_k is the panel mean of log T_k with T in percent (03_methodology,
+  "Rates enter the logarithm in percent"). Karar: "(T in %)" rather than the "(w in %)" of the
+  report, because this axis carries transfer rates T, not the white-box rate w.
+- 2026-10-31: width 3.358 in (= columnwidth of ieeeaccess.cls, see konsey_ortak.py).
+
+One column (3.358 in). Rows are the twelve source models grouped by cell (R32, V-scr, R224-scr,
 R224-IN, V-IN); x is the full-sample panel mean of log target-correct transfer S_tam under PGD-10
 (circle), momentum PGD (square) and, for ViT sources only, TGR (triangle). Within a row the three
 attacks are offset vertically so that near-equal values stay visible. A filled marker is the attack
@@ -39,7 +46,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--name", default="fig_attack_side")
     ap.add_argument("--width-in", type=float, default=K.SINGLE_IN)
-    ap.add_argument("--height-in", type=float, default=3.7)
+    ap.add_argument("--height-in", type=float, default=3.85)
     ap.add_argument("--dpi", type=int, default=300)
     ap.add_argument("--seed", type=int, default=0, help="no randomness; kept for the log")
     args = ap.parse_args()
@@ -102,7 +109,7 @@ def main():
     W, H = args.width_in, args.height_in
     fig = plt.figure(figsize=(W, H))
     fig.patch.set_facecolor("white")
-    ax = fig.add_axes([0.36, 0.29, 0.60, 0.69])
+    ax = fig.add_axes([0.36, 0.315, 0.60, 0.663])  # 2026-10-31: room for the two-line x label (B14)
     ypos, y, prev = {}, 0.0, None
     centres = []
     for m, lab, ck, cell in rows:
@@ -132,7 +139,7 @@ def main():
         fig.text(0.015, yc, lab, transform=tr, ha="left", va="center", fontsize=8)
         ax.plot([-0.175, -0.175], [y0 - 0.3, y1 + 0.3], transform=mtransforms.blended_transform_factory(ax.transAxes, ax.transData),
                 color=K.EDGE, lw=0.6, clip_on=False)
-    ax.set_xlabel(r"panel-mean log transfer $L_k(m)$", labelpad=2)
+    ax.set_xlabel(r"panel-mean log transfer $L_k(m)$" + "\n" + r"($T$ in %)", labelpad=2, linespacing=1.15)  # B14
     ax.tick_params(axis="y", length=0, pad=2)
     ax.grid(axis="x", color="#e6e6e6", lw=0.5, zorder=0)
     for sp in ("top", "right"):

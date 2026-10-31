@@ -1,0 +1,1085 @@
+{
+  "sekil": "fig_similarity_matrix",
+  "surum": 1,
+  "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
+  "betik": "paper/figures/konsey/fig_similarity_matrix.py",
+  "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
+  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_similarity_matrix.py",
+  "uretim_zamani_utc": "2026-10-31T13:33:23+00:00",
+  "girdiler_sha256": {
+    "results/q1/konsey_ayrisim_b4.json": "5c50890819c509b9ef890373797b4f303eea8427d05f3f4025c31019380ca99b",
+    "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7",
+    "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
+    "results/q1/konsey_ayrisim_b2.json": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27",
+    "results/q1/konsey_b10_gradyan/mantel_cifar100.json": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac",
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+    "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": "762d62b4194c245e310ab9ae9b5eb82ef3476a6965597feed707a6c0b3a76cd8",
+    "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073",
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d",
+    "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": "2c5e992eaaad49d88056f1d64f1cd7c2650657d0d49da85424f52caa9ebae0e9"
+  },
+  "git": {
+    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "?? paper/figures/konsey/fig_similarity_matrix.py",
+      "?? paper/figures/konsey/konsey_ortak.py"
+    ]
+  },
+  "yerlesim": {
+    "boyut_in": [
+      7.16,
+      2.52
+    ],
+    "dpi": 300,
+    "en_kucuk_yazi_pt": 8.0,
+    "font": "DejaVu Sans, pdf.fonttype 42",
+    "renkler": {
+      "vit": "#D55E00",
+      "r224": "#0072B2",
+      "r32": "#56B4E9",
+      "panel": "#999999",
+      "xcit": "#CC79A7",
+      "sym": "#009E73",
+      "dir": "#E69F00"
+    }
+  },
+  "okunan_anahtarlar": {
+    "results/q1/konsey_ayrisim_b4.json": [
+      "b4.model_tablosu.<m>.yari_log.sigma (identity check only)"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_cifar10.json": [
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.ham.K"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu.json": [
+      "modeller.<m>.{hucre, aile, birincil_panel, ikincil_panel}"
+    ],
+    "results/q1/konsey_ayrisim_b2.json": [
+      "b2.F_B2.K-c.{log_tau_tur_ici, sigma_V}",
+      "b2.tur_ici_resnet_log_tau"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_cifar100.json": [
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.ham.K"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": [
+      "modeller.<m>.{hucre, aile, birincil_panel, ikincil_panel}"
+    ],
+    "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": [
+      "b2.F_B2.K-c.{log_tau_tur_ici, sigma_V}",
+      "b2.tur_ici_resnet_log_tau"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": [
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.ham.K"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": [
+      "modeller.<m>.{hucre, aile, birincil_panel, ikincil_panel}"
+    ],
+    "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": [
+      "b2.F_B2.K-c.{log_tau_tur_ici, sigma_V}",
+      "b2.tur_ici_resnet_log_tau"
+    ]
+  },
+  "cizilen_degerler": {
+    "cifar10": {
+      "sira": [
+        "ViT_Tiny_AT_s2001",
+        "ViT_Tiny_AT_s2002",
+        "ViT_Tiny_AT_s2003",
+        "V_IN_s2101",
+        "V_IN_s2102",
+        "R224_scr_s1201",
+        "R224_scr_s1202",
+        "R224_IN_s1301",
+        "R224_IN_s1302",
+        "ResNet18_AT_s1001",
+        "ResNet18_AT_s1002",
+        "ResNet18_AT_s1003",
+        "Wong2020Fast",
+        "Engstrom2019Robustness",
+        "Carmon2019Unlabeled",
+        "Gowal2020Uncovering_28_10_extra",
+        "Sehwag2021Proxy_R18",
+        "Addepalli2022Efficient_RN18",
+        "Rade2021Helper_R18_ddpm",
+        "Debenedetti2022Light_XCiT-S12"
+      ],
+      "gruplar": [
+        {
+          "etiket": "V-scr",
+          "bas": 0,
+          "son": 3
+        },
+        {
+          "etiket": "V-IN",
+          "bas": 3,
+          "son": 5
+        },
+        {
+          "etiket": "R224-scr",
+          "bas": 5,
+          "son": 7
+        },
+        {
+          "etiket": "R224-IN",
+          "bas": 7,
+          "son": 9
+        },
+        {
+          "etiket": "R32",
+          "bas": 9,
+          "son": 12
+        },
+        {
+          "etiket": "panel",
+          "bas": 12,
+          "son": 19
+        },
+        {
+          "etiket": "secondary",
+          "bas": 19,
+          "son": 20
+        }
+      ],
+      "matris_ust_ucgen_ozet": {
+        "en_kucuk": -1.142531065710037,
+        "en_buyuk": -0.28758530026720475,
+        "hucre_sayisi": 190
+      }
+    },
+    "cifar100": {
+      "sira": [
+        "C100_ViT_Tiny_AT_s2001",
+        "C100_ViT_Tiny_AT_s2002",
+        "C100_ViT_Tiny_AT_s2003",
+        "C100_ResNet18_AT_s1001",
+        "C100_ResNet18_AT_s1002",
+        "C100_ResNet18_AT_s1003",
+        "C100_Rice2020Overfitting",
+        "C100_Rade2021Helper_R18_ddpm",
+        "C100_Addepalli2022Efficient_RN18",
+        "C100_Sehwag2021Proxy",
+        "C100_Pang2022Robustness_WRN28_10",
+        "C100_Wang2023Better_WRN-28-10",
+        "C100_Jia2022LAS-AT_34_10",
+        "C100_Debenedetti2022Light_XCiT-S12",
+        "C100_Hendrycks2019Using"
+      ],
+      "gruplar": [
+        {
+          "etiket": "V-scr",
+          "bas": 0,
+          "son": 3
+        },
+        {
+          "etiket": "R32",
+          "bas": 3,
+          "son": 6
+        },
+        {
+          "etiket": "panel",
+          "bas": 6,
+          "son": 13
+        },
+        {
+          "etiket": "secondary",
+          "bas": 13,
+          "son": 15
+        }
+      ],
+      "matris_ust_ucgen_ozet": {
+        "en_kucuk": -1.1735281250608687,
+        "en_buyuk": -0.2557202760754371,
+        "hucre_sayisi": 105
+      }
+    },
+    "imagenetv2": {
+      "sira": [
+        "IN_Singh_ViT-S-CvSt",
+        "IN_Singh_ViT-B-CvSt",
+        "IN_Liu_Swin-B",
+        "IN_Mo_ViT-B",
+        "IN_Singh_ConvNeXt-T-CvSt",
+        "IN_Singh_ConvNeXt-B-CvSt",
+        "IN_Liu_ConvNeXt-B",
+        "IN_Salman2020Do_R18",
+        "IN_Salman2020Do_R50",
+        "IN_Salman2020Do_50_2",
+        "IN_Engstrom2019Robustness",
+        "IN_Chen2024Data_WRN_50_2",
+        "IN_Peng2023Robust",
+        "IN_Debenedetti_XCiT-S12"
+      ],
+      "gruplar": [
+        {
+          "etiket": "transformer",
+          "bas": 0,
+          "son": 4
+        },
+        {
+          "etiket": "CNN (pair)",
+          "bas": 4,
+          "son": 7
+        },
+        {
+          "etiket": "panel",
+          "bas": 7,
+          "son": 13
+        },
+        {
+          "etiket": "secondary",
+          "bas": 13,
+          "son": 14
+        }
+      ],
+      "matris_ust_ucgen_ozet": {
+        "en_kucuk": -1.6202982638238996,
+        "en_buyuk": -0.511953683880946,
+        "hucre_sayisi": 91
+      }
+    },
+    "renk_olcegi": {
+      "harita": "cividis (sequential, luminance-monotone)",
+      "vmin": -1.7,
+      "vmax": -0.2,
+      "veri_en_kucuk": -1.6202982638238996,
+      "veri_en_buyuk": -0.2557202760754371
+    }
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 93,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results/C1_REFERANS_FOYU.md",
+    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "ayrinti": [
+      {
+        "ad": "cifar10: max |T - T^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "log tau matrix is symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: max |diag|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "diagonal stored as 0 (undefined)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: K == sinamalar.ham.K",
+        "a": 20,
+        "b": 20,
+        "tolerans": 0,
+        "aciklama": "model count",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: K",
+        "json_degeri": 20,
+        "foy_satiri": 1970,
+        "capa": "| cifar10 | ham |",
+        "foy_en_yakin": 20.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: log tau ViT_Tiny_AT_s2001|ViT_Tiny_AT_s2002 == K-c.log_tau_tur_ici",
+        "a": -0.45255395925039466,
+        "b": -0.45255395925039466,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: log tau ViT_Tiny_AT_s2001|ViT_Tiny_AT_s2003 == K-c.log_tau_tur_ici",
+        "a": -0.46554695152864944,
+        "b": -0.46554695152864944,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: log tau ViT_Tiny_AT_s2002|ViT_Tiny_AT_s2003 == K-c.log_tau_tur_ici",
+        "a": -0.40974819349337555,
+        "b": -0.40974819349337555,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: log tau ResNet18_AT_s1001|ResNet18_AT_s1002 == tur_ici_resnet_log_tau",
+        "a": -0.49593992850888513,
+        "b": -0.49593992850888513,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: log tau ResNet18_AT_s1001|ResNet18_AT_s1003 == tur_ici_resnet_log_tau",
+        "a": -0.4936813768159142,
+        "b": -0.4936813768159142,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: log tau ResNet18_AT_s1002|ResNet18_AT_s1003 == tur_ici_resnet_log_tau",
+        "a": -0.47644680105611403,
+        "b": -0.47644680105611403,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ViT_Tiny_AT_s2001) from matrix == K-c.sigma_V",
+        "a": -1.0150580240524838,
+        "b": -1.0150580240524838,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ViT_Tiny_AT_s2002) from matrix == K-c.sigma_V",
+        "a": -1.0004924765143077,
+        "b": -1.0004924765143077,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ViT_Tiny_AT_s2003) from matrix == K-c.sigma_V",
+        "a": -1.010816357975193,
+        "b": -1.0108163579751928,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: ViT within log tau [0]",
+        "json_degeri": -0.45255395925039466,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.453,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: ViT within log tau [1]",
+        "json_degeri": -0.46554695152864944,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.466,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: ViT within log tau [2]",
+        "json_degeri": -0.40974819349337555,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.41,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: ResNet within log tau [0]",
+        "json_degeri": -0.49593992850888513,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.496,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: ResNet within log tau [1]",
+        "json_degeri": -0.4936813768159142,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.494,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: ResNet within log tau [2]",
+        "json_degeri": -0.47644680105611403,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.476,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: ViT within mean",
+        "json_degeri": -0.44261636809080657,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.443,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: ResNet within mean",
+        "json_degeri": -0.4886893687936378,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.489,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma_V ViT_Tiny_AT_s2001",
+        "json_degeri": -1.0150580240524838,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -1.015,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma_V ViT_Tiny_AT_s2002",
+        "json_degeri": -1.0004924765143077,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -1.0,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma_V ViT_Tiny_AT_s2003",
+        "json_degeri": -1.0108163579751928,
+        "foy_satiri": 1595,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -1.011,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ResNet18_AT_s1001) from matrix == b4 yari_log.sigma",
+        "a": -0.6475561709878547,
+        "b": -0.6475561709878548,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ResNet18_AT_s1002) from matrix == b4 yari_log.sigma",
+        "a": -0.6409826737646288,
+        "b": -0.6409826737646289,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ResNet18_AT_s1003) from matrix == b4 yari_log.sigma",
+        "a": -0.6441681730496641,
+        "b": -0.6441681730496641,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ViT_Tiny_AT_s2001) from matrix == b4 yari_log.sigma",
+        "a": -1.0150580240524838,
+        "b": -1.0150580240524838,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ViT_Tiny_AT_s2002) from matrix == b4 yari_log.sigma",
+        "a": -1.0004924765143077,
+        "b": -1.0004924765143077,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(ViT_Tiny_AT_s2003) from matrix == b4 yari_log.sigma",
+        "a": -1.010816357975193,
+        "b": -1.0108163579751928,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(V_IN_s2101) from matrix == b4 yari_log.sigma",
+        "a": -0.7020527686566019,
+        "b": -0.702052768656602,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(V_IN_s2102) from matrix == b4 yari_log.sigma",
+        "a": -0.7764423813756602,
+        "b": -0.7764423813756602,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(R224_IN_s1301) from matrix == b4 yari_log.sigma",
+        "a": -0.6421798909162,
+        "b": -0.6421798909162,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(R224_IN_s1302) from matrix == b4 yari_log.sigma",
+        "a": -0.6279852488147172,
+        "b": -0.6279852488147172,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(R224_scr_s1201) from matrix == b4 yari_log.sigma",
+        "a": -0.6250989478626935,
+        "b": -0.6250989478626934,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(R224_scr_s1202) from matrix == b4 yari_log.sigma",
+        "a": -0.6639677270491043,
+        "b": -0.6639677270491042,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(Wong2020Fast) from matrix == b4 yari_log.sigma",
+        "a": -0.5756347651832017,
+        "b": -0.5756347651832017,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(Engstrom2019Robustness) from matrix == b4 yari_log.sigma",
+        "a": -0.5077508673027339,
+        "b": -0.5077508673027339,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(Carmon2019Unlabeled) from matrix == b4 yari_log.sigma",
+        "a": -0.4715549738509031,
+        "b": -0.47155497385090306,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(Gowal2020Uncovering_28_10_extra) from matrix == b4 yari_log.sigma",
+        "a": -0.466744625677243,
+        "b": -0.46674462567724295,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(Sehwag2021Proxy_R18) from matrix == b4 yari_log.sigma",
+        "a": -0.4084020661870811,
+        "b": -0.4084020661870811,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(Addepalli2022Efficient_RN18) from matrix == b4 yari_log.sigma",
+        "a": -0.41966189473486937,
+        "b": -0.41966189473486937,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(Rade2021Helper_R18_ddpm) from matrix == b4 yari_log.sigma",
+        "a": -0.381183944159816,
+        "b": -0.38118394415981605,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: sigma(Debenedetti2022Light_XCiT-S12) from matrix == b4 yari_log.sigma",
+        "a": -0.5610155234779991,
+        "b": -0.5610155234779992,
+        "tolerans": 1e-09,
+        "aciklama": "matrix reproduces B4 sigma (split-half, log)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: max |T - T^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "log tau matrix is symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: max |diag|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "diagonal stored as 0 (undefined)",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: K == sinamalar.ham.K",
+        "a": 15,
+        "b": 15,
+        "tolerans": 0,
+        "aciklama": "model count",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: K",
+        "json_degeri": 15,
+        "foy_satiri": 1972,
+        "capa": "| cifar100 | ham |",
+        "foy_en_yakin": 15.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: log tau C100_ViT_Tiny_AT_s2001|C100_ViT_Tiny_AT_s2002 == K-c.log_tau_tur_ici",
+        "a": -0.41670853208666747,
+        "b": -0.41670853208666747,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: log tau C100_ViT_Tiny_AT_s2001|C100_ViT_Tiny_AT_s2003 == K-c.log_tau_tur_ici",
+        "a": -0.5140781448725995,
+        "b": -0.5140781448725995,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: log tau C100_ViT_Tiny_AT_s2002|C100_ViT_Tiny_AT_s2003 == K-c.log_tau_tur_ici",
+        "a": -0.5289235063118292,
+        "b": -0.5289235063118292,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: log tau C100_ResNet18_AT_s1001|C100_ResNet18_AT_s1002 == tur_ici_resnet_log_tau",
+        "a": -0.4680067949398301,
+        "b": -0.4680067949398301,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: log tau C100_ResNet18_AT_s1001|C100_ResNet18_AT_s1003 == tur_ici_resnet_log_tau",
+        "a": -0.519976165270436,
+        "b": -0.519976165270436,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: log tau C100_ResNet18_AT_s1002|C100_ResNet18_AT_s1003 == tur_ici_resnet_log_tau",
+        "a": -0.5144437253016372,
+        "b": -0.5144437253016372,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: sigma(C100_ViT_Tiny_AT_s2001) from matrix == K-c.sigma_V",
+        "a": -0.9714856498014222,
+        "b": -0.9714856498014222,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: sigma(C100_ViT_Tiny_AT_s2002) from matrix == K-c.sigma_V",
+        "a": -1.0312566819249593,
+        "b": -1.0312566819249591,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: sigma(C100_ViT_Tiny_AT_s2003) from matrix == K-c.sigma_V",
+        "a": -1.0152895131043964,
+        "b": -1.0152895131043966,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: ViT within log tau [0]",
+        "json_degeri": -0.41670853208666747,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.417,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: ViT within log tau [1]",
+        "json_degeri": -0.5140781448725995,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.514,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: ViT within log tau [2]",
+        "json_degeri": -0.5289235063118292,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.529,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: ResNet within log tau [0]",
+        "json_degeri": -0.4680067949398301,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.468,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: ResNet within log tau [1]",
+        "json_degeri": -0.519976165270436,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.52,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: ResNet within log tau [2]",
+        "json_degeri": -0.5144437253016372,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.514,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: ViT within mean",
+        "json_degeri": -0.4865700610903654,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.487,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: ResNet within mean",
+        "json_degeri": -0.5008088951706344,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.501,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: sigma_V C100_ViT_Tiny_AT_s2001",
+        "json_degeri": -0.9714856498014222,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -0.971,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: sigma_V C100_ViT_Tiny_AT_s2002",
+        "json_degeri": -1.0312566819249591,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -1.031,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: sigma_V C100_ViT_Tiny_AT_s2003",
+        "json_degeri": -1.0152895131043966,
+        "foy_satiri": 1850,
+        "capa": "K-c ayrintisi",
+        "foy_en_yakin": -1.015,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: max |T - T^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "log tau matrix is symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: max |diag|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "diagonal stored as 0 (undefined)",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: K == sinamalar.ham.K",
+        "a": 14,
+        "b": 14,
+        "tolerans": 0,
+        "aciklama": "model count",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: K",
+        "json_degeri": 14,
+        "foy_satiri": 1974,
+        "capa": "| imagenetv2 | ham |",
+        "foy_en_yakin": 14.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Singh_ViT-S-CvSt|IN_Singh_ViT-B-CvSt == K-c.log_tau_tur_ici",
+        "a": -0.6594689411672409,
+        "b": -0.6594689411672409,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Singh_ViT-S-CvSt|IN_Liu_Swin-B == K-c.log_tau_tur_ici",
+        "a": -0.8232599369594,
+        "b": -0.8232599369594,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Singh_ViT-S-CvSt|IN_Mo_ViT-B == K-c.log_tau_tur_ici",
+        "a": -1.0597160621292576,
+        "b": -1.0597160621292576,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Singh_ViT-B-CvSt|IN_Liu_Swin-B == K-c.log_tau_tur_ici",
+        "a": -0.7398077590538045,
+        "b": -0.7398077590538045,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Singh_ViT-B-CvSt|IN_Mo_ViT-B == K-c.log_tau_tur_ici",
+        "a": -1.1794325081432178,
+        "b": -1.1794325081432178,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Liu_Swin-B|IN_Mo_ViT-B == K-c.log_tau_tur_ici",
+        "a": -1.3010570059793491,
+        "b": -1.3010570059793491,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-family value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Singh_ConvNeXt-T-CvSt|IN_Singh_ConvNeXt-B-CvSt == tur_ici_resnet_log_tau",
+        "a": -0.5494360482081131,
+        "b": -0.5494360482081131,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Singh_ConvNeXt-T-CvSt|IN_Liu_ConvNeXt-B == tur_ici_resnet_log_tau",
+        "a": -0.6508921934313869,
+        "b": -0.6508921934313869,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: log tau IN_Singh_ConvNeXt-B-CvSt|IN_Liu_ConvNeXt-B == tur_ici_resnet_log_tau",
+        "a": -0.511953683880946,
+        "b": -0.511953683880946,
+        "tolerans": 1e-12,
+        "aciklama": "matrix cell equals the frozen script's within-ResNet value",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: sigma(IN_Singh_ViT-S-CvSt) from matrix == K-c.sigma_V",
+        "a": -1.129924044532497,
+        "b": -1.1299240445324972,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: sigma(IN_Singh_ViT-B-CvSt) from matrix == K-c.sigma_V",
+        "a": -1.236581964659386,
+        "b": -1.2365819646593863,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: sigma(IN_Liu_Swin-B) from matrix == K-c.sigma_V",
+        "a": -1.2025891357061245,
+        "b": -1.2025891357061245,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: sigma(IN_Mo_ViT-B) from matrix == K-c.sigma_V",
+        "a": -1.1839193175165859,
+        "b": -1.1839193175165859,
+        "tolerans": 1e-09,
+        "aciklama": "panel mean of the row equals the frozen sigma",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: sigma(IN_Singh_ViT-S-CvSt)",
+        "json_degeri": -1.129924044532497,
+        "foy_satiri": 1943,
+        "capa": "Donusturucu rho ve sigma",
+        "foy_en_yakin": -1.13,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: sigma(IN_Singh_ViT-B-CvSt)",
+        "json_degeri": -1.236581964659386,
+        "foy_satiri": 1943,
+        "capa": "Donusturucu rho ve sigma",
+        "foy_en_yakin": -1.237,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: sigma(IN_Liu_Swin-B)",
+        "json_degeri": -1.2025891357061245,
+        "foy_satiri": 1943,
+        "capa": "Donusturucu rho ve sigma",
+        "foy_en_yakin": -1.203,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: sigma(IN_Mo_ViT-B)",
+        "json_degeri": -1.1839193175165859,
+        "foy_satiri": 1943,
+        "capa": "Donusturucu rho ve sigma",
+        "foy_en_yakin": -1.184,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: transformer within log tau min",
+        "json_degeri": -1.3010570059793491,
+        "foy_satiri": 1945,
+        "capa": "Dondurulmus betigin B8 ciktisi",
+        "foy_en_yakin": -1.301,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: transformer within log tau max",
+        "json_degeri": -0.6594689411672409,
+        "foy_satiri": 1945,
+        "capa": "Dondurulmus betigin B8 ciktisi",
+        "foy_en_yakin": -0.659,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: 6 transformer pairs",
+        "aranan_metin": "6 cift",
+        "foy_satiri": 1945,
+        "capa": "Dondurulmus betigin B8 ciktisi",
+        "eslesti": true
+      },
+      {
+        "ad": "panel P has 7 members (cifar10)",
+        "aranan_metin": "panel 7 uyeli",
+        "foy_satiri": 1741,
+        "capa": "Havuz modellerinde sigma ve rho",
+        "eslesti": true
+      }
+    ]
+  },
+  "denetimler": [
+    "matrices symmetric with zero diagonal; model set == cell table; K vs foy 1970/1972/1974",
+    "split-half identity: within-family cells == frozen K-c / tur_ici_resnet values (1e-12)",
+    "split-half identity: panel-mean rows == frozen sigma_V (1e-9); CIFAR-10 every B4 model sigma (1e-9)",
+    "K-c within-ViT and within-ResNet log tau, means and sigma_V vs foy 1595 (CIFAR-10), 1850 (CIFAR-100)",
+    "ImageNetV2 transformer sigma vs foy 1943; within-transformer min/max vs foy 1945",
+    "no text overlap, all text inside, >= 8 pt, no Type 3 font"
+  ],
+  "notlar": [
+    "Brief 6.5 asks for a diverging scale; every off-diagonal log tau is negative (range -1.620 to -0.256), so a sequential luminance-monotone map is used.",
+    "Axis labels name groups, not individual models; the model order inside each group follows modeller_ortak and is recorded under cizilen_degerler.",
+    "ImageNetV2 cell table labels transformers 'V-scr' and their CNN counterparts 'C1-R32' (frozen script reuse); they are displayed as 'transformer' and 'CNN (pair)'. Mo ViT-B is in the transformer group."
+  ],
+  "eski_surum_tasindi": null
+}

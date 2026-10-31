@@ -1,0 +1,1047 @@
+{
+  "sekil": "fig_estimates_forest",
+  "surum": 1,
+  "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
+  "betik": "paper/figures/konsey/fig_estimates_forest.py",
+  "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
+  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_estimates_forest.py",
+  "uretim_zamani_utc": "2026-10-31T13:37:41+00:00",
+  "girdiler_sha256": {
+    "results/q1/konsey_ayrisim_b4.json": "5c50890819c509b9ef890373797b4f303eea8427d05f3f4025c31019380ca99b",
+    "results/q1/konsey_ayrisim_b2.json": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27",
+    "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": "762d62b4194c245e310ab9ae9b5eb82ef3476a6965597feed707a6c0b3a76cd8",
+    "results/q1/konsey_b8_imagenetv2/b8_betimsel.json": "332d30789cc22180eed26f60f8544ef26263cdd32ff4b7255fec598439376da0"
+  },
+  "git": {
+    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "?? paper/figures/konsey/fig_estimates_forest.py",
+      "?? paper/figures/konsey/konsey_ortak.py"
+    ]
+  },
+  "yerlesim": {
+    "boyut_in": [
+      3.5,
+      4.9
+    ],
+    "dpi": 300,
+    "en_kucuk_yazi_pt": 8.0,
+    "font": "DejaVu Sans, pdf.fonttype 42",
+    "renkler": {
+      "vit": "#D55E00",
+      "r224": "#0072B2",
+      "r32": "#56B4E9",
+      "panel": "#999999",
+      "xcit": "#CC79A7",
+      "sym": "#009E73",
+      "dir": "#E69F00"
+    }
+  },
+  "okunan_anahtarlar": {
+    "results/q1/konsey_ayrisim_b4.json": [
+      "b4.F_B4.karsitliklar.H{1,2,3}.{kestirim, ci90, ci95}",
+      "b4.duyarlilik.yari_logit.H{1,2,3}.{kestirim, ci90, ci95}",
+      "meta.delta"
+    ],
+    "results/q1/konsey_ayrisim_b2.json": [
+      "b2.F_B2.K-b.{ort, ci90, ci95}",
+      "b2.duyarlilik.yari_logit.rho_V.{ort, ci90, ci95}"
+    ],
+    "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": [
+      "b2.F_B2.K-b.{ort, ci90, ci95}",
+      "b2.duyarlilik.yari_logit.rho_V.{ort, ci90, ci95}"
+    ],
+    "results/q1/konsey_b8_imagenetv2/b8_betimsel.json": [
+      "ciftler[0..1].{cift, cnn, donusturucu, satir, A_sigma, goruntu_bootstrap_ci90, goruntu_bootstrap_ci95}",
+      "A_sigma_IN.{kestirim, goruntu_bootstrap.ci90, goruntu_bootstrap.ci95}",
+      "A_sigma_scr_Liu.{kestirim, goruntu_bootstrap.ci90, goruntu_bootstrap.ci95, beklenti_esigi}"
+    ]
+  },
+  "cizilen_degerler": {
+    "a": [
+      {
+        "satir": "H1, log",
+        "olcek": "log",
+        "durum": "reg",
+        "kestirim": -0.36425561539142937,
+        "ci90": [
+          -0.4145328915713304,
+          -0.31397833921152835
+        ],
+        "ci95": [
+          -0.42839395301334426,
+          -0.30011727776951447
+        ],
+        "foy_satiri": 1526
+      },
+      {
+        "satir": "H1, logit",
+        "olcek": "logit",
+        "durum": "reg",
+        "kestirim": -0.4979438589283367,
+        "ci90": [
+          -0.5699852404108187,
+          -0.42590247744585474
+        ],
+        "ci95": [
+          -0.5898464996310514,
+          -0.406041218225622
+        ],
+        "foy_satiri": 1551
+      },
+      {
+        "satir": "H2, log",
+        "olcek": "log",
+        "durum": "reg",
+        "kestirim": 0.26009061024075675,
+        "ci90": [
+          0.18551735833262223,
+          0.33466386214889127
+        ],
+        "ci95": [
+          0.16495808175346155,
+          0.35522313872805195
+        ],
+        "foy_satiri": 1527
+      },
+      {
+        "satir": "H2, logit",
+        "olcek": "logit",
+        "durum": "reg",
+        "kestirim": 0.35410578382031854,
+        "ci90": [
+          0.24725114694858566,
+          0.46096042069205145
+        ],
+        "ci95": [
+          0.21779213883240475,
+          0.4904194288082323
+        ],
+        "foy_satiri": 1551
+      },
+      {
+        "satir": "ImageNetV2 pair 1",
+        "olcek": "log",
+        "durum": "desc",
+        "kestirim": -0.16654757729372327,
+        "ci90": [
+          -0.2335874021053314,
+          -0.09648125767707827
+        ],
+        "ci95": [
+          -0.24576271176338196,
+          -0.08425995111465456
+        ],
+        "foy_satiri": 1930
+      },
+      {
+        "satir": "ImageNetV2 pair 2",
+        "olcek": "log",
+        "durum": "desc",
+        "kestirim": -0.11811284436528746,
+        "ci90": [
+          -0.2024648070335388,
+          -0.038379573822021486
+        ],
+        "ci95": [
+          -0.21704058051109315,
+          -0.023059350252151712
+        ],
+        "foy_satiri": 1931
+      },
+      {
+        "satir": "ImageNetV2 mean $\\bar{A}^{\\sigma}_{\\mathrm{IN}}$",
+        "olcek": "log",
+        "durum": "desc",
+        "kestirim": -0.14233021082950537,
+        "ci90": [
+          -0.1968042865395546,
+          -0.09044530093669892
+        ],
+        "ci95": [
+          -0.20729340985417366,
+          -0.08104620426893237
+        ],
+        "foy_satiri": 1938
+      },
+      {
+        "satir": "ImageNetV2 Liu (scratch)",
+        "olcek": "log",
+        "durum": "desc",
+        "kestirim": -0.05460439136775741,
+        "ci90": [
+          -0.13736583590507506,
+          0.021813350915908806
+        ],
+        "ci95": [
+          -0.15308306813240052,
+          0.033780682086944555
+        ],
+        "foy_satiri": 1939
+      }
+    ],
+    "b": [
+      {
+        "satir": "K-b CIFAR-10, log",
+        "olcek": "log",
+        "durum": "reg",
+        "kestirim": 0.011885915600693684,
+        "ci90": [
+          -0.007196466986688703,
+          0.030968298188076074
+        ],
+        "ci95": [
+          -0.016232327886902737,
+          0.04000415908829011
+        ],
+        "foy_satiri": 1588
+      },
+      {
+        "satir": "K-b CIFAR-10, logit",
+        "olcek": "logit",
+        "durum": "reg",
+        "kestirim": -0.3042497401109637,
+        "ci90": [
+          -0.31959968564092256,
+          -0.2888997945810048
+        ],
+        "ci95": [
+          -0.3268681685989302,
+          -0.28163131162299715
+        ],
+        "foy_satiri": 1603
+      },
+      {
+        "satir": "K-b CIFAR-100, log",
+        "olcek": "log",
+        "durum": "reg",
+        "kestirim": 0.142602109468218,
+        "ci90": [
+          0.10128400264886685,
+          0.18392021628756916
+        ],
+        "ci95": [
+          0.08171911528900937,
+          0.2034851036474266
+        ],
+        "foy_satiri": 1839
+      },
+      {
+        "satir": "K-b CIFAR-100, logit",
+        "olcek": "logit",
+        "durum": "reg",
+        "kestirim": -0.41307789353814295,
+        "ci90": [
+          -0.5462669044035768,
+          -0.27988888267270906
+        ],
+        "ci95": [
+          -0.6093343630978029,
+          -0.21682142397848303
+        ],
+        "foy_satiri": 1857
+      },
+      {
+        "satir": "H3, log",
+        "olcek": "log",
+        "durum": "reg",
+        "kestirim": 0.0033636461191873827,
+        "ci90": [
+          -0.019651710065087324,
+          0.02637900230346209
+        ],
+        "ci95": [
+          -0.025996868164713995,
+          0.03272416040308876
+        ],
+        "foy_satiri": 1528
+      },
+      {
+        "satir": "H3, logit",
+        "olcek": "logit",
+        "durum": "reg",
+        "kestirim": -0.08676204312796966,
+        "ci90": [
+          -0.10967912115270126,
+          -0.06384496510323806
+        ],
+        "ci95": [
+          -0.11599718471357526,
+          -0.05752690154236406
+        ],
+        "foy_satiri": 1551
+      }
+    ],
+    "referans_cizgileri": {
+      "sifir": 0.0,
+      "delta": 0.1,
+      "H1_buyukluk_esigi": -0.2
+    }
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 76,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results/C1_REFERANS_FOYU.md",
+    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "ayrinti": [
+      {
+        "ad": "H1, log: estimate",
+        "json_degeri": -0.36425561539142937,
+        "foy_satiri": 1526,
+        "capa": "| H1, A^sigma_scr",
+        "foy_en_yakin": -0.364,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, log: c90[0]",
+        "json_degeri": -0.4145328915713304,
+        "foy_satiri": 1526,
+        "capa": "| H1, A^sigma_scr",
+        "foy_en_yakin": -0.415,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, log: c90[1]",
+        "json_degeri": -0.31397833921152835,
+        "foy_satiri": 1526,
+        "capa": "| H1, A^sigma_scr",
+        "foy_en_yakin": -0.314,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, log: c95[0]",
+        "json_degeri": -0.42839395301334426,
+        "foy_satiri": 1526,
+        "capa": "| H1, A^sigma_scr",
+        "foy_en_yakin": -0.428,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, log: c95[1]",
+        "json_degeri": -0.30011727776951447,
+        "foy_satiri": 1526,
+        "capa": "| H1, A^sigma_scr",
+        "foy_en_yakin": -0.3,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, logit: estimate",
+        "json_degeri": -0.4979438589283367,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.498,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, logit: c90[0]",
+        "json_degeri": -0.5699852404108187,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.57,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, logit: c90[1]",
+        "json_degeri": -0.42590247744585474,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.426,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, logit: c95[0]",
+        "json_degeri": -0.5898464996310514,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.59,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H1, logit: c95[1]",
+        "json_degeri": -0.406041218225622,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.406,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, log: estimate",
+        "json_degeri": 0.26009061024075675,
+        "foy_satiri": 1527,
+        "capa": "| H2, I^sigma",
+        "foy_en_yakin": 0.26,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, log: c90[0]",
+        "json_degeri": 0.18551735833262223,
+        "foy_satiri": 1527,
+        "capa": "| H2, I^sigma",
+        "foy_en_yakin": 0.186,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, log: c90[1]",
+        "json_degeri": 0.33466386214889127,
+        "foy_satiri": 1527,
+        "capa": "| H2, I^sigma",
+        "foy_en_yakin": 0.335,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, log: c95[0]",
+        "json_degeri": 0.16495808175346155,
+        "foy_satiri": 1527,
+        "capa": "| H2, I^sigma",
+        "foy_en_yakin": 0.165,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, log: c95[1]",
+        "json_degeri": 0.35522313872805195,
+        "foy_satiri": 1527,
+        "capa": "| H2, I^sigma",
+        "foy_en_yakin": 0.355,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, logit: estimate",
+        "json_degeri": 0.35410578382031854,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": 0.354,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, logit: c90[0]",
+        "json_degeri": 0.24725114694858566,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": 0.247,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, logit: c90[1]",
+        "json_degeri": 0.46096042069205145,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": 0.461,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, logit: c95[0]",
+        "json_degeri": 0.21779213883240475,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": 0.218,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H2, logit: c95[1]",
+        "json_degeri": 0.4904194288082323,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": 0.49,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 1: estimate",
+        "json_degeri": -0.16654757729372327,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": -0.167,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 1: c90[0]",
+        "json_degeri": -0.2335874021053314,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": -0.234,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 1: c90[1]",
+        "json_degeri": -0.09648125767707827,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": -0.096,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 1: c95[0]",
+        "json_degeri": -0.24576271176338196,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": -0.246,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 1: c95[1]",
+        "json_degeri": -0.08425995111465456,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": -0.084,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 2: estimate",
+        "json_degeri": -0.11811284436528746,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": -0.118,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 2: c90[0]",
+        "json_degeri": -0.2024648070335388,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": -0.202,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 2: c90[1]",
+        "json_degeri": -0.038379573822021486,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": -0.038,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 2: c95[0]",
+        "json_degeri": -0.21704058051109315,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": -0.217,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pair 2: c95[1]",
+        "json_degeri": -0.023059350252151712,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": -0.023,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 mean $\\bar{A}^{\\sigma}_{\\mathrm{IN}}$: estimate",
+        "json_degeri": -0.14233021082950537,
+        "foy_satiri": 1938,
+        "capa": "| A_sigma_IN",
+        "foy_en_yakin": -0.142,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 mean $\\bar{A}^{\\sigma}_{\\mathrm{IN}}$: c90[0]",
+        "json_degeri": -0.1968042865395546,
+        "foy_satiri": 1938,
+        "capa": "| A_sigma_IN",
+        "foy_en_yakin": -0.197,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 mean $\\bar{A}^{\\sigma}_{\\mathrm{IN}}$: c90[1]",
+        "json_degeri": -0.09044530093669892,
+        "foy_satiri": 1938,
+        "capa": "| A_sigma_IN",
+        "foy_en_yakin": -0.09,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 mean $\\bar{A}^{\\sigma}_{\\mathrm{IN}}$: c95[0]",
+        "json_degeri": -0.20729340985417366,
+        "foy_satiri": 1938,
+        "capa": "| A_sigma_IN",
+        "foy_en_yakin": -0.207,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 mean $\\bar{A}^{\\sigma}_{\\mathrm{IN}}$: c95[1]",
+        "json_degeri": -0.08104620426893237,
+        "foy_satiri": 1938,
+        "capa": "| A_sigma_IN",
+        "foy_en_yakin": -0.081,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 Liu (scratch): estimate",
+        "json_degeri": -0.05460439136775741,
+        "foy_satiri": 1939,
+        "capa": "| A_sigma_scr_Liu",
+        "foy_en_yakin": -0.055,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 Liu (scratch): c90[0]",
+        "json_degeri": -0.13736583590507506,
+        "foy_satiri": 1939,
+        "capa": "| A_sigma_scr_Liu",
+        "foy_en_yakin": -0.137,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 Liu (scratch): c90[1]",
+        "json_degeri": 0.021813350915908806,
+        "foy_satiri": 1939,
+        "capa": "| A_sigma_scr_Liu",
+        "foy_en_yakin": 0.022,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 Liu (scratch): c95[0]",
+        "json_degeri": -0.15308306813240052,
+        "foy_satiri": 1939,
+        "capa": "| A_sigma_scr_Liu",
+        "foy_en_yakin": -0.153,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 Liu (scratch): c95[1]",
+        "json_degeri": 0.033780682086944555,
+        "foy_satiri": 1939,
+        "capa": "| A_sigma_scr_Liu",
+        "foy_en_yakin": 0.034,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, log: estimate",
+        "json_degeri": 0.011885915600693684,
+        "foy_satiri": 1588,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": 0.012,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, log: c90[0]",
+        "json_degeri": -0.007196466986688703,
+        "foy_satiri": 1588,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": -0.007,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, log: c90[1]",
+        "json_degeri": 0.030968298188076074,
+        "foy_satiri": 1588,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": 0.031,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, log: c95[0]",
+        "json_degeri": -0.016232327886902737,
+        "foy_satiri": 1588,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": -0.016,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, log: c95[1]",
+        "json_degeri": 0.04000415908829011,
+        "foy_satiri": 1588,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": 0.04,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, logit: estimate",
+        "json_degeri": -0.3042497401109637,
+        "foy_satiri": 1603,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.304,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, logit: c90[0]",
+        "json_degeri": -0.31959968564092256,
+        "foy_satiri": 1603,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.32,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, logit: c90[1]",
+        "json_degeri": -0.2888997945810048,
+        "foy_satiri": 1603,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.289,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, logit: c95[0]",
+        "json_degeri": -0.3268681685989302,
+        "foy_satiri": 1603,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.327,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-10, logit: c95[1]",
+        "json_degeri": -0.28163131162299715,
+        "foy_satiri": 1603,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.282,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, log: estimate",
+        "json_degeri": 0.142602109468218,
+        "foy_satiri": 1839,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": 0.143,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, log: c90[0]",
+        "json_degeri": 0.10128400264886685,
+        "foy_satiri": 1839,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": 0.101,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, log: c90[1]",
+        "json_degeri": 0.18392021628756916,
+        "foy_satiri": 1839,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": 0.184,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, log: c95[0]",
+        "json_degeri": 0.08171911528900937,
+        "foy_satiri": 1839,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": 0.082,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, log: c95[1]",
+        "json_degeri": 0.2034851036474266,
+        "foy_satiri": 1839,
+        "capa": "| K-b, ViT yonlu terimi",
+        "foy_en_yakin": 0.203,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, logit: estimate",
+        "json_degeri": -0.41307789353814295,
+        "foy_satiri": 1857,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.413,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, logit: c90[0]",
+        "json_degeri": -0.5462669044035768,
+        "foy_satiri": 1857,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.546,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, logit: c90[1]",
+        "json_degeri": -0.27988888267270906,
+        "foy_satiri": 1857,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.28,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, logit: c95[0]",
+        "json_degeri": -0.6093343630978029,
+        "foy_satiri": 1857,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.609,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "K-b CIFAR-100, logit: c95[1]",
+        "json_degeri": -0.21682142397848303,
+        "foy_satiri": 1857,
+        "capa": "| Yari logit",
+        "foy_en_yakin": -0.217,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, log: estimate",
+        "json_degeri": 0.0033636461191873827,
+        "foy_satiri": 1528,
+        "capa": "| H3, A^rho",
+        "foy_en_yakin": 0.003,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, log: c90[0]",
+        "json_degeri": -0.019651710065087324,
+        "foy_satiri": 1528,
+        "capa": "| H3, A^rho",
+        "foy_en_yakin": -0.02,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, log: c90[1]",
+        "json_degeri": 0.02637900230346209,
+        "foy_satiri": 1528,
+        "capa": "| H3, A^rho",
+        "foy_en_yakin": 0.026,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, log: c95[0]",
+        "json_degeri": -0.025996868164713995,
+        "foy_satiri": 1528,
+        "capa": "| H3, A^rho",
+        "foy_en_yakin": -0.026,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, log: c95[1]",
+        "json_degeri": 0.03272416040308876,
+        "foy_satiri": 1528,
+        "capa": "| H3, A^rho",
+        "foy_en_yakin": 0.033,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, logit: estimate",
+        "json_degeri": -0.08676204312796966,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.087,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, logit: c90[0]",
+        "json_degeri": -0.10967912115270126,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.11,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, logit: c90[1]",
+        "json_degeri": -0.06384496510323806,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.064,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, logit: c95[0]",
+        "json_degeri": -0.11599718471357526,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.116,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "H3, logit: c95[1]",
+        "json_degeri": -0.05752690154236406,
+        "foy_satiri": 1551,
+        "capa": "| Logit olcek",
+        "foy_en_yakin": -0.058,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "delta",
+        "aranan_metin": "delta = 0.1",
+        "foy_satiri": 1532,
+        "capa": "TOST esdegerlik siniri",
+        "eslesti": true
+      },
+      {
+        "ad": "H1 size threshold (Liu expectation)",
+        "aranan_metin": "esik -0.2",
+        "foy_satiri": 1939,
+        "capa": "| A_sigma_scr_Liu",
+        "eslesti": true
+      },
+      {
+        "ad": "H1 registered size",
+        "aranan_metin": "(A <= -0,20)",
+        "foy_satiri": 1526,
+        "capa": "| H1, A^sigma_scr",
+        "eslesti": true
+      },
+      {
+        "ad": "H1 size threshold == -0.20 as registered",
+        "a": -0.2,
+        "b": -0.2,
+        "tolerans": 1e-12,
+        "aciklama": "Liu expectation is H1's predicted size",
+        "eslesti": true
+      },
+      {
+        "ad": "A_sigma_IN label",
+        "aranan_metin": "beklentiyle uyumlu",
+        "foy_satiri": 1938,
+        "capa": "| A_sigma_IN",
+        "eslesti": true
+      },
+      {
+        "ad": "Liu label",
+        "aranan_metin": "belirsiz",
+        "foy_satiri": 1939,
+        "capa": "| A_sigma_scr_Liu",
+        "eslesti": true
+      }
+    ]
+  },
+  "denetimler": [
+    "14 estimates x (point, 90% low/high, 95% low/high) vs foy (3 dp): 1526-1528, 1551, 1588, 1603, 1839, 1857, 1930-1931, 1938-1939",
+    "intervals nested around each estimate",
+    "delta vs foy 1532; H1 size threshold -0.20 vs foy 1526 and 1939",
+    "descriptive labels of A_sigma_IN and Liu present in foy (not drawn as words)",
+    "no text overlap, all text inside, >= 8 pt, legend clear of axes, no Type 3 font"
+  ],
+  "notlar": [
+    "ImageNetV2 intervals are image-bootstrap intervals (image uncertainty only, B = 2000), not between-pair intervals; they are drawn with open markers as descriptive.",
+    "Ratio-scale (points) sensitivities are not drawn (different unit), per brief 12 section 6.8."
+  ],
+  "eski_surum_tasindi": null
+}

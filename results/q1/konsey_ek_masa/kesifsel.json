@@ -1,0 +1,269 @@
+{
+ "etiket": "kesifsel",
+ "tanim": {
+  "aile_ici_kisitli_permutasyon": "Ek §6.2'nin ham ve ana_etki_artik istatistikleri ayni; permutasyon yalniz ayni grup icinde (CNN modelleri kendi aralarinda, donusturuculer kendi aralarinda) yapilir; grup sirasi CNN, donusturucu; her grupta indeksler artan sirada; 9999 permutasyon, tohum 20261030; p_tek = (1 + #{r* >= r})/(perm + 1). Kisitli permutasyon sayisi n_CNN! x n_donusturucu! olarak raporlanir.",
+  "aile_ayiklamali_artik_spearman_sira": "11_sonuc_b8_b10.md §7 yontemi: ana etki artiklari e(c), e(log tau) (deger olceginde) siraya cevrilir; siralar [1, CC, TT] (gostergelerin siralari) uzerine en kucuk kareyle ayiklanir; istatistik ayiklanmis siralar arasindaki Pearson (sira kismi korelasyonu). Permutasyon: e(c) artik matrisi ortak permute edilir, e(log tau) ve gostergeler sabit (gradyan betiginin kismi Mantel semasi); 9999, tohum 20261030. 'deger_olcegi_farki' = bu istatistik eksi mantel_aile.json S10_3 istatistigi (ayni veri; ayiklama deger olceginde).",
+  "cnn_cnn_artik_spearman": "(i) tam_matris_artigi: butun modellerle kestirilmis ana etki artiklari yalniz CNN-CNN ciftlerine sinirlanir; Spearman; p: e(c) artik matrisinin CNN blogunda CNN etiketleri ortak permute edilir. (ii) cnn_alt_matrisi: toplamsal model yalniz CNN alt matrisinde yeniden kestirilir; Spearman; Mantel p ayni bicimde. 9999, tohum 20261030.",
+  "r18_r50_ve_en_kucuk_c": "mantel_imagenetv2.json c_matrisi ve log_tau_matrisi'nden IN_Salman2020Do_R18 ile IN_Salman2020Do_R50 hucresi; sira = kosegen disi sirasiz ciftlerdeki artan sira (1 = en kucuk); en kucuk c_ij ve onu veren cift; her veri kumesi."
+ },
+ "veri": {
+  "cifar10": {
+   "K": 20,
+   "n_CNN": 14,
+   "n_donusturucu": 6,
+   "kisitli_permutasyon_sayisi": 62768369664000,
+   "aile_ici_kisitli_permutasyon": {
+    "ham": {
+     "istatistik": 0.9428064051927375,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.4612917403223218,
+     "perm_sd": 0.09870555952109555
+    },
+    "ana_etki_artik": {
+     "istatistik": 0.9442568025648764,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.4472214829858199,
+     "perm_sd": 0.0914544777020209
+    }
+   },
+   "aile_ayiklamali_artik_spearman_sira": {
+    "istatistik": 0.9046808341928703,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": 0.0003104377211110034,
+    "perm_sd": 0.07552761428104174,
+    "deger_olcegi_istatistigi": 0.9169389442191868,
+    "deger_olcegi_farki": -0.012258110026316493
+   },
+   "cnn_cnn_artik_spearman": {
+    "n_CNN": 14,
+    "cift_sayisi": 91,
+    "tam_matris_artigi": {
+     "istatistik": 0.9628444019748368,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": -0.00011052387290011066,
+     "perm_sd": 0.10558664695295225
+    },
+    "cnn_alt_matrisi": {
+     "istatistik": 0.9647077560121038,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.00043729647690043705,
+     "perm_sd": 0.10745161418974433
+    },
+    "cnn_cnn_ham_spearman": 0.8184265010351967
+   },
+   "c_ozet": {
+    "en_kucuk_c": 0.23119256396293641,
+    "en_kucuk_c_cifti": [
+     "ViT_Tiny_AT_s2002",
+     "Carmon2019Unlabeled"
+    ],
+    "en_kucuk_c_ciftinin_log_tau": -1.1226946081331444,
+    "ikinci_en_kucuk_c": 0.23254523166418076,
+    "ikinci_en_kucuk_c_cifti": [
+     "ViT_Tiny_AT_s2001",
+     "Carmon2019Unlabeled"
+    ],
+    "en_buyuk_kosegen_disi_c": 0.7460507797241211
+   }
+  },
+  "cifar100": {
+   "K": 15,
+   "n_CNN": 11,
+   "n_donusturucu": 4,
+   "kisitli_permutasyon_sayisi": 958003200,
+   "aile_ici_kisitli_permutasyon": {
+    "ham": {
+     "istatistik": 0.9806759278457392,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.3890614574623542,
+     "perm_sd": 0.1831517713379513
+    },
+    "ana_etki_artik": {
+     "istatistik": 0.9124300228073813,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.2836403420561836,
+     "perm_sd": 0.14743008939898963
+    }
+   },
+   "aile_ayiklamali_artik_spearman_sira": {
+    "istatistik": 0.8922838404834668,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": 0.0024397080846313914,
+    "perm_sd": 0.10152247843819931,
+    "deger_olcegi_istatistigi": 0.8817229939871449,
+    "deger_olcegi_farki": 0.01056084649632183
+   },
+   "cnn_cnn_artik_spearman": {
+    "n_CNN": 11,
+    "cift_sayisi": 55,
+    "tam_matris_artigi": {
+     "istatistik": 0.9290764790764791,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": -0.0005382212102884165,
+     "perm_sd": 0.13657435028028583
+    },
+    "cnn_alt_matrisi": {
+     "istatistik": 0.9256854256854257,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": -0.0002554656620063163,
+     "perm_sd": 0.1409224715899929
+    },
+    "cnn_cnn_ham_spearman": 0.9781385281385281
+   },
+   "c_ozet": {
+    "en_kucuk_c": 0.16919543634653092,
+    "en_kucuk_c_cifti": [
+     "C100_ViT_Tiny_AT_s2003",
+     "C100_Hendrycks2019Using"
+    ],
+    "en_kucuk_c_ciftinin_log_tau": -1.1183144690048699,
+    "ikinci_en_kucuk_c": 0.18097415225505828,
+    "ikinci_en_kucuk_c_cifti": [
+     "C100_ViT_Tiny_AT_s2002",
+     "C100_Hendrycks2019Using"
+    ],
+    "en_buyuk_kosegen_disi_c": 0.6919674566745758
+   }
+  },
+  "imagenetv2": {
+   "K": 14,
+   "n_CNN": 9,
+   "n_donusturucu": 5,
+   "kisitli_permutasyon_sayisi": 43545600,
+   "aile_ici_kisitli_permutasyon": {
+    "ham": {
+     "istatistik": 0.6944099378881987,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": -0.007652196976346783,
+     "perm_sd": 0.1647375332940277
+    },
+    "ana_etki_artik": {
+     "istatistik": 0.8926262143653448,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0001,
+     "p_iki": 0.0001,
+     "perm_ort": 0.07163977426568904,
+     "perm_sd": 0.10900953717534921
+    }
+   },
+   "aile_ayiklamali_artik_spearman_sira": {
+    "istatistik": 0.8877828785155105,
+    "perm": 9999,
+    "tohum": 20261030,
+    "p_tek": 0.0001,
+    "p_iki": 0.0001,
+    "perm_ort": 0.00018086817593847594,
+    "perm_sd": 0.1127177632737786,
+    "deger_olcegi_istatistigi": 0.8783086478738653,
+    "deger_olcegi_farki": 0.00947423064164521
+   },
+   "cnn_cnn_artik_spearman": {
+    "n_CNN": 9,
+    "cift_sayisi": 36,
+    "tam_matris_artigi": {
+     "istatistik": 0.8424710424710424,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0003,
+     "p_iki": 0.0003,
+     "perm_ort": 0.000611103581400611,
+     "perm_sd": 0.1736626367579949
+    },
+    "cnn_alt_matrisi": {
+     "istatistik": 0.8239382239382239,
+     "perm": 9999,
+     "tohum": 20261030,
+     "p_tek": 0.0003,
+     "p_iki": 0.0003,
+     "perm_ort": 0.0004116756592004122,
+     "perm_sd": 0.18461505591389846
+    },
+    "cnn_cnn_ham_spearman": 0.5673101673101673
+   },
+   "c_ozet": {
+    "en_kucuk_c": 0.003449308782815933,
+    "en_kucuk_c_cifti": [
+     "IN_Salman2020Do_R18",
+     "IN_Salman2020Do_R50"
+    ],
+    "en_kucuk_c_ciftinin_log_tau": -0.9357493846141826,
+    "ikinci_en_kucuk_c": 0.07030142498016358,
+    "ikinci_en_kucuk_c_cifti": [
+     "IN_Salman2020Do_50_2",
+     "IN_Chen2024Data_WRN_50_2"
+    ],
+    "en_buyuk_kosegen_disi_c": 0.4855499768257141,
+    "R18_R50": {
+     "c": 0.003449308782815933,
+     "log_tau": -0.9357493846141826,
+     "c_sirasi_artan": 1,
+     "log_tau_sirasi_artan": 55,
+     "cift_sayisi": 91,
+     "c_simetrik_hucre": 0.003449308782815933,
+     "log_tau_simetrik_hucre": -0.9357493846141826,
+     "ana_etki_artigi_c": 0.008384200541636978,
+     "ana_etki_artigi_log_tau": 0.36640028802862956
+    }
+   }
+  }
+ },
+ "meta": {
+  "betik": "experiments/q1_ek_masa.py",
+  "betik_sha256": "40454344bd3f8b1a0318d4bdb295d1dad05f187d74fe22f739501654a785b8c1",
+  "dondurulmus_betik": "experiments/q1_konsey_ayrisim.py",
+  "dondurulmus_betik_sha256_dogrulandi": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "mod": "kesifsel",
+  "uretildi_utc": "2026-10-31T15:07:01.403456+00:00",
+  "numpy": "1.26.4",
+  "scipy": "1.14.1",
+  "argv": [
+   "--mod",
+   "kesifsel"
+  ],
+  "perm": 9999,
+  "tohum": 20261030,
+  "tohum_kaynagi": "ek on kayit §6.2 (20261030)",
+  "girdi_sha256": {
+   "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7",
+   "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
+   "results/q1/konsey_b10_gradyan/mantel_cifar100.json": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac",
+   "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+   "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073",
+   "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+  }
+ }
+}

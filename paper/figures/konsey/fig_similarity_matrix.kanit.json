@@ -4,9 +4,9 @@
   "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
   "betik": "paper/figures/konsey/fig_similarity_matrix.py",
   "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
-  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "ortak_modul_sha256": "798137ef5ad8aa2ca9f8ad4d17697e69733f9d606a522433eabe9449026f0579",
   "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_similarity_matrix.py",
-  "uretim_zamani_utc": "2026-10-31T13:33:23+00:00",
+  "uretim_zamani_utc": "2026-10-31T15:21:17+00:00",
   "girdiler_sha256": {
     "results/q1/konsey_ayrisim_b4.json": "5c50890819c509b9ef890373797b4f303eea8427d05f3f4025c31019380ca99b",
     "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7",
@@ -20,16 +20,16 @@
     "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": "2c5e992eaaad49d88056f1d64f1cd7c2650657d0d49da85424f52caa9ebae0e9"
   },
   "git": {
-    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "commit": "52364bcd19fb6514f0b7bf228ad158e763dcd858",
     "branch": "q1",
     "dirty_or_untracked": [
-      "?? paper/figures/konsey/fig_similarity_matrix.py",
-      "?? paper/figures/konsey/konsey_ortak.py"
+      "M paper/figures/konsey/fig_similarity_matrix.py",
+      " M paper/figures/konsey/konsey_ortak.py"
     ]
   },
   "yerlesim": {
     "boyut_in": [
-      7.16,
+      6.989,
       2.52
     ],
     "dpi": 300,
@@ -176,12 +176,12 @@
       ],
       "gruplar": [
         {
-          "etiket": "V-scr",
+          "etiket": "ViT\n(C100)",
           "bas": 0,
           "son": 3
         },
         {
-          "etiket": "R32",
+          "etiket": "ResNet\n(C100)",
           "bas": 3,
           "son": 6
         },
@@ -251,6 +251,12 @@
       "harita": "cividis (sequential, luminance-monotone)",
       "vmin": -1.7,
       "vmax": -0.2,
+      "cubuk_etiketleri": [
+        -1.5,
+        -1.0,
+        -0.5
+      ],
+      "etiket_esitligi_denetlendi": true,
       "veri_en_kucuk": -1.6202982638238996,
       "veri_en_buyuk": -0.2557202760754371
     }
@@ -260,7 +266,7 @@
     "uyusmayan": 0,
     "sonuc": "TAMAM",
     "foy": "results/C1_REFERANS_FOYU.md",
-    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "foy_sha256": "42c7dc34ea0671aeda99de493ce1023dbfec728465592a7d32b987fab9ef1801",
     "ayrinti": [
       {
         "ad": "cifar10: max |T - T^T|",
@@ -1079,7 +1085,9 @@
   "notlar": [
     "Brief 6.5 asks for a diverging scale; every off-diagonal log tau is negative (range -1.620 to -0.256), so a sequential luminance-monotone map is used.",
     "Axis labels name groups, not individual models; the model order inside each group follows modeller_ortak and is recorded under cizilen_degerler.",
-    "ImageNetV2 cell table labels transformers 'V-scr' and their CNN counterparts 'C1-R32' (frozen script reuse); they are displayed as 'transformer' and 'CNN (pair)'. Mo ViT-B is in the transformer group."
+    "ImageNetV2 cell table labels transformers 'V-scr' and their CNN counterparts 'C1-R32' (frozen script reuse); they are displayed as 'transformer' and 'CNN (pair)'. Mo ViT-B is in the transformer group.",
+    "CIFAR-100 cell table (B9) reuses 'V-scr' and 'C1-R32'; displayed as 'ViT (C100)' and 'ResNet (C100)' (m15, 2026-10-31).",
+    "Colour-bar labels at multiples of 0.5, each printed label checked equal to its tick value (B15, 2026-10-31)."
   ],
-  "eski_surum_tasindi": null
+  "eski_surum_tasindi": "fig_similarity_matrix_v1"
 }

@@ -1,0 +1,257 @@
+# ===========================================================================
+# GENISLETME 2026-10-31 (M11): hakem paneli sonrasi masa cozumlemeleri.
+# M11.1 ON_KAYIT §5 hiyerarsik bootstrap duyarliligi (K-a, K-b yeni; K-c
+# yeniden uretim), M11.2 ek on kayit §6.4 S10-3 (aile gostergeli kismi Mantel),
+# M11.3 kesifsel. Her sayi results/q1/konsey_ek_masa/*.json ve
+# results/q1/konsey_b10_gradyan/mantel_<veri>.json dosyalarindan okunur; yorum
+# yazilmaz. Mevcut bolumlere dokunulmaz; bolum M10'dan sonra, 'Sabit
+# dizgeler'den once gelir.
+# ===========================================================================
+_M11_D = "results/q1/konsey_ek_masa"
+_M11_BS = {"cifar10": f"{_M11_D}/bootstrap_cifar10.json", "cifar100": f"{_M11_D}/bootstrap_cifar100.json"}
+_M11_MA = f"{_M11_D}/mantel_aile.json"
+_M11_KS = f"{_M11_D}/kesifsel.json"
+_M11_BETIK = "experiments/q1_ek_masa.py"
+_M11_VK = ("cifar10", "cifar100", "imagenetv2")
+_M11_YOK = []
+_M11_YOK_YER = []
+
+
+def _m11(ad, kaynak, fn):
+    L.append(f"\n### {ad}\n")
+    try:
+        fn()
+    except (KeyError, TypeError, IndexError, ValueError, OSError, ZeroDivisionError, AttributeError) as e_:
+        _hata(e_)
+    L.append(f"_Kaynak: {kaynak}_\n")
+
+
+def _m11g(d, yol, etiket):
+    """Anahtar yolunu izler; yoksa None doner ve kalemi M11 bulunamayanlar listesine yazar."""
+    x = d
+    for k_ in yol:
+        if isinstance(x, dict) and k_ in x:
+            x = x[k_]
+        else:
+            _M11_YOK.append(etiket)
+            return None
+    return x
+
+
+def _m11c(x):
+    return "bulunamadi" if x is None else f"{float(x):.4f}"
+
+
+def _m11meta(J, rel):
+    m_ = J["meta"]
+    return (f"`{rel}` meta: betik_sha256 {m_['betik_sha256']} (dosyadan hesaplanan {_m9sha(_M11_BETIK)}; "
+            f"{'AYNI' if m_['betik_sha256'] == _m9sha(_M11_BETIK) else 'FARKLI'}); dondurulmus_betik_sha256_dogrulandi "
+            f"{m_['dondurulmus_betik_sha256_dogrulandi']}; uretildi_utc {m_['uretildi_utc']}; numpy {m_['numpy']}; "
+            f"scipy {m_['scipy']}; girdi dosyasi sayisi (girdi_sha256) {len(m_['girdi_sha256'])}.")
+
+
+sec("M11: Hakem paneli sonrasi masa cozumlemeleri (2026-10-31)",
+    f"{_M11_BS['cifar10']}; {_M11_BS['cifar100']}; {_M11_MA}; {_M11_KS}; "
+    f"results/q1/konsey_b10_gradyan/mantel_<veri>.json (yalniz yeniden uretim karsilastirmasi); "
+    f"{_M11_BETIK} (yalniz sha256)")
+L.append("Hakem paneli sonrasi 31.10.2026'da uretilen uc masa cozumlemesi. Her alt bolum kendi JSON'undan okunur ve "
+         "altinda kaynak dosya ile anahtar yollari yazilidir; etiketler JSON'un 'etiket' alanindandir. Yuvarlama: "
+         "oranlar, log olcekli nicelikler ve korelasyonlar 3 ondalik, c_ij 4 ondalik, p degerleri bilimsel gosterim.\n")
+
+
+# --- M11.1 Hiyerarsik bootstrap ------------------------------------------------------------
+def _m11_1():
+    J = {v: _oku(r) for v, r in _M11_BS.items()}
+    L.append(f"Etiket (`etiket`): {_m11g(J['cifar10'], ('etiket',), 'bootstrap_cifar10 etiket')}.\n")
+    L.append(f"Tanim (`tanim`): {_m11g(J['cifar10'], ('tanim',), 'bootstrap_cifar10 tanim')}\n")
+    for v, j in J.items():
+        m_ = j["meta"]
+        L.append(_m11meta(j, _M11_BS[v]) + f" Veri {m_['veri']} ({m_['blok']}); matris {m_['matris_dizini']}; hucre "
+                 f"tablosu {m_['hucre_tablosu']}; dondurulmus cikti {m_['dondurulmus_cikti']}; B {m_['B']}; bootstrap "
+                 f"tohumu {m_['bootstrap_tohum']} ({m_['tohum_kaynagi']}); n_goruntu {m_['n_goruntu']}.\n")
+    st = []
+    for v, j in J.items():
+        ka, kb, kc = j["K-a"], j["K-b"], j["K-c"]
+        bo, bv = ka["bootstrap"], kb["bootstrap"]
+        st.append([v, "K-a ort q", _m9s(ka["nokta_ort_q"]), _m9a(ka["t_ci90"]), _m9a(ka["t_ci95"]), _m9a(bo["ci90"]),
+                   _m9a(bo["ci95"]), _m9s(bo["sd"]), f"{_m9p(bo['p_tek_H0_q_le_0.5'])} (H0: ort q <= 0,50)",
+                   "K-a.{nokta_ort_q, t_ci90, t_ci95, bootstrap}"])
+        cv = ka["cift_duzeyi_varyant"]
+        st.append([v, "K-a ort q, cift duzeyi varyant", "", "", "", _m9a(cv["ci90"]), _m9a(cv["ci95"]), _m9s(cv["sd"]), "",
+                   "K-a.cift_duzeyi_varyant"])
+        st.append([v, "K-b ort rho(V-scr)", _m9s(kb["nokta_ort_rho"], plus=True), _m9a(kb["t_ci90"], plus=True),
+                   _m9a(kb["t_ci95"], plus=True), _m9a(bv["ci90"], plus=True), _m9a(bv["ci95"], plus=True), _m9s(bv["sd"]),
+                   f"TOST {_m9p(bv['tost_p'])} (alt {_m9p(bv['tost_p_alt'])}, ust {_m9p(bv['tost_p_ust'])}; delta 0,06: "
+                   f"{_m9p(bv['tost_p_delta_0.06'])}); t TOST {_m9p(kb['t_tost_p'])}",
+                   "K-b.{nokta_ort_rho, t_ci90, t_ci95, t_tost_p, bootstrap}"])
+        cv = kb["cift_duzeyi_varyant"]
+        st.append([v, "K-b ort rho(V-scr), cift duzeyi varyant", "", "", "", _m9a(cv["ci90"], plus=True),
+                   _m9a(cv["ci95"], plus=True), _m9s(cv["sd"]), "", "K-b.cift_duzeyi_varyant"])
+        st.append([v, "K-c Delta_w (yeniden uretim)", _m9s(kc["Delta_w"], plus=True), "", "",
+                   _m9a(kc["yeniden_bootstrap"]["ci90"], plus=True), _m9a(kc["yeniden_bootstrap"]["ci95"], plus=True), "",
+                   f"{_m9p(kc['yeniden_bootstrap']['p'])} (H0: Delta_w <= 0)", "K-c.{Delta_w, yeniden_bootstrap}"])
+        st.append([v, "K-c Delta_w (dondurulmus JSON)", "", "", "", _m9a(kc["dondurulmus_bootstrap"]["ci90"], plus=True),
+                   _m9a(kc["dondurulmus_bootstrap"]["ci95"], plus=True), "", _m9p(kc["dondurulmus_bootstrap"]["p"]),
+                   "K-c.dondurulmus_bootstrap"])
+    T(["Veri", "Nicelik", "Nokta", "t %90", "t %95", "Hiyerarsik bootstrap %90", "Hiyerarsik bootstrap %95", "Bootstrap SD",
+       "Bootstrap p", "Anahtar"], st)
+    st = []
+    for v, j in J.items():
+        k_ = j["karar"]
+        for s_ in ("K-a", "K-b", "K-c"):
+            a_, b_ = k_["karsilastirma"][s_], k_["delta_0.06"]["karsilastirma"][s_]
+            st.append([v, s_, a_["dondurulmus"], a_["bootstrap_araligiyla"], _m9e(a_["degisti"]), b_["dondurulmus"],
+                       b_["bootstrap_araligiyla"], _m9e(b_["degisti"])])
+    L.append("Karar karsilastirmasi (`karar.karsilastirma`, `karar.delta_0.06.karsilastirma`; kural: "
+             f"'{_m11g(J['cifar10'], ('karar', 'kural'), 'bootstrap karar.kural')}'):\n")
+    T(["Veri", "Sinama", "Dondurulmus karar (delta 0,10)", "Bootstrap araligiyla (delta 0,10)", "Degisti",
+       "Dondurulmus karar (delta 0,06)", "Bootstrap araligiyla (delta 0,06)", "Degisti"], st)
+    for v, j in J.items():
+        k_, d_ = j["karar"], j["dogrulama"]
+        nf = max(d_["nokta_kestirimleri_dondurulmus_json_ile_maks_fark"].values())
+        kcf = d_["K-c_yeniden_uretim_maks_fark"]
+        L.append(f"{v}: Holm p bootstrap p'lerinden (K-a, K-b, K-c) {', '.join(_m9p(x) for x in k_['p_holm_bootstrap'])}; "
+                 f"dondurulmus Holm p {', '.join(_m9p(x) for x in k_['p_holm_dondurulmus'])}; degisen sinama "
+                 f"{k_['degisen'] or 'yok'} (delta 0,06: {k_['delta_0.06']['degisen'] or 'yok'}). Nokta kestirimleri ile "
+                 f"dondurulmus JSON en buyuk mutlak fark {nf:.2e} (nokta_esit {_m9e(d_['nokta_esit'])}); K-c yeniden uretim "
+                 f"farki ci90 {kcf['ci90']:.2e}, ci95 {kcf['ci95']:.2e}, p {kcf['p_tek_H0_Delta_le_0']:.2e}, yeniden cekilen "
+                 f"tek tohumlu ornek {j['K-c']['yeniden_bootstrap']['yeniden_cekilen']} (dondurulmus "
+                 f"{j['K-c']['dondurulmus_bootstrap']['yeniden_cekilen']}; K-c_esit {_m9e(d_['K-c_esit'])}); bootstrap "
+                 f"kopyalarinda bir ciftte D <= 0,10 olan kopya sayisi {j['K-a']['bootstrap']['D_le_0.10_kopya_sayisi']} "
+                 f"(cift duzeyi varyant {j['K-a']['cift_duzeyi_varyant']['D_le_0.10_kopya_sayisi']}); bootstrap p tabani "
+                 f"1/(B+1) (turetilmis) {_m9p(1 / (j['meta']['B'] + 1))}.\n")
+
+
+_m11("M11.1 Hiyerarsik bootstrap duyarliligi: K-a, K-b ve K-c (CIFAR-10 B2, CIFAR-100 B9)",
+     f"`{_M11_BS['cifar10']}`, `{_M11_BS['cifar100']}` etiket, tanim, meta.{{betik_sha256, dondurulmus_betik_sha256_dogrulandi, "
+     f"uretildi_utc, numpy, scipy, girdi_sha256, veri, blok, matris_dizini, hucre_tablosu, dondurulmus_cikti, B, bootstrap_tohum, "
+     f"tohum_kaynagi, n_goruntu}}; K-a.{{nokta_ort_q, t_ci90, t_ci95, bootstrap, cift_duzeyi_varyant}}; K-b.{{nokta_ort_rho, "
+     f"t_ci90, t_ci95, t_tost_p, bootstrap, cift_duzeyi_varyant}}; K-c.{{Delta_w, yeniden_bootstrap, dondurulmus_bootstrap}}; "
+     f"karar.{{kural, karsilastirma, degisen, p_holm_bootstrap, p_holm_dondurulmus, delta_0.06}}; dogrulama.{{nokta_kestirimleri_"
+     f"dondurulmus_json_ile_maks_fark, nokta_esit, K-c_yeniden_uretim_maks_fark, K-c_esit}}; `{_M11_BETIK}` sha256 bu betikte "
+     f"hashlib ile", _m11_1)
+
+
+# --- M11.2 S10-3 ---------------------------------------------------------------------------
+def _m11_2():
+    J = _oku(_M11_MA)
+    L.append(f"Etiket (`etiket`): {_m11g(J, ('etiket',), 'mantel_aile etiket')}.\n")
+    L.append(f"Tanim (`tanim_S10_3`): {_m11g(J, ('tanim_S10_3',), 'mantel_aile tanim_S10_3')}\n")
+    L.append(f"Ek §6.2 yeniden uretim tanimi (`tanim_6_2_yeniden_uretim`): "
+             f"{_m11g(J, ('tanim_6_2_yeniden_uretim',), 'mantel_aile tanim_6_2_yeniden_uretim')}\n")
+    L.append(_m11meta(J, _M11_MA) + f" Permutasyon {J['meta']['perm']}; tohum {J['meta']['tohum']} "
+             f"({J['meta']['tohum_kaynagi']}).\n")
+    st = []
+    for v in _M11_VK:
+        d_ = J["veri"][v]
+        s_, h_ = d_["S10_3"], d_["S10_3_duyarlilik_ham_c_permutasyonu"]
+        ct = d_["cift_turu_sayilari"]
+        st.append([v, d_["K"], d_["cift_sayisi"], f"{ct['CNN-CNN']} / {ct['donusturucu-donusturucu']} / {ct['karma']}",
+                   f"{d_['tasarim_rank']['rank_X_ana_etki']} / {d_['tasarim_rank']['rank_X_ana_etki_aile']}",
+                   _m9s(s_["istatistik"], plus=True), _m9p(s_["p_tek"]), _m9p(s_["p_iki"]),
+                   f"{_m9s(s_['perm_ort'], plus=True)} / {_m9s(s_['perm_sd'])}", _m9s(h_["istatistik"], plus=True),
+                   _m9p(h_["p_tek"]), s_["perm"], s_["tohum"], _m9p(1 / (s_["perm"] + 1))])
+    T(["Veri kumesi", "K (model)", "Cift sayisi", "Cift turu CNN-CNN / donusturucu-donusturucu / karma",
+       "Tasarim rank (ana etki / ana etki + aile)", "S10-3 r", "Tek yonlu p", "Iki yonlu p", "Permutasyon ort / SD",
+       "Duyarlilik r (ham c permutasyonu)", "Duyarlilik tek yonlu p", "Permutasyon", "Tohum", "p tabani 1/(perm+1) (turetilmis)"],
+      st)
+    st = []
+    for v in _M11_VK:
+        d_ = J["veri"][v]
+        mn = _oku(f"results/q1/konsey_b10_gradyan/mantel_{v}.json")
+        for s_ in ("ham", "ana_etki_artik"):
+            y_, e_, k_ = d_["yeniden_uretim_6_2"][s_], mn["sinamalar"][s_], d_["mantel_json_karsilastirma"][s_]
+            st.append([v, s_, _m9s(y_["istatistik"], plus=True), _m9p(y_["p_tek"]), _m9s(e_["istatistik"], plus=True),
+                       _m9p(e_["p_tek"]), f"{abs(y_['istatistik'] - e_['istatistik']):.2e}", f"{k_['maks_fark']:.2e}",
+                       _m9e(k_["esit_1e-6"])])
+    L.append("Ek §6.2 istatistiklerinin bagimsiz yeniden uretimi (`veri.<veri>.yeniden_uretim_6_2`) ve "
+             "`results/q1/konsey_b10_gradyan/mantel_<veri>.json` sinamalar.<sinama> ile karsilastirma:\n")
+    T(["Veri kumesi", "Sinama", "r (yeniden)", "Tek yonlu p (yeniden)", "r (mantel JSON)", "Tek yonlu p (mantel JSON)",
+       "|fark| r (bu betik)", "En buyuk |fark| (istatistik, p_tek, p_iki, perm_ort, perm_sd; JSON)", "Esit (1e-6)"], st)
+    L.append(f"Tolerans {J['tolerans']}; yeniden_uretim_hepsi_esit_1e-6 {_m9e(J.get('yeniden_uretim_hepsi_esit_1e-6'))}; "
+             f"c ve log tau matris simetrisi en buyuk asimetri: "
+             + "; ".join(f"{v} c {J['veri'][v]['simetri']['c_maks_asimetri']:.1e}, log tau "
+                         f"{J['veri'][v]['simetri']['log_tau_maks_asimetri']:.1e}" for v in _M11_VK) + ".\n")
+    L.append("Model gruplari (`veri.<veri>.modeller`, `.aile`, `.grup`): "
+             + "; ".join(f"{v}: donusturucu = " + ", ".join(m_ for m_, g_ in zip(J['veri'][v]['modeller'], J['veri'][v]['grup'])
+                                                           if g_ == "donusturucu") for v in _M11_VK) + ".\n")
+
+
+_m11("M11.2 S10-3: aile gostergeli kismi Mantel (ek on kayit §6.4)",
+     f"`{_M11_MA}` etiket, tanim_S10_3, tanim_6_2_yeniden_uretim, tolerans, yeniden_uretim_hepsi_esit_1e-6, meta.{{betik_sha256, "
+     f"dondurulmus_betik_sha256_dogrulandi, uretildi_utc, numpy, scipy, girdi_sha256, perm, tohum, tohum_kaynagi}}; "
+     f"veri.<veri>.{{K, cift_sayisi, cift_turu_sayilari, tasarim_rank, S10_3, S10_3_duyarlilik_ham_c_permutasyonu, "
+     f"yeniden_uretim_6_2, mantel_json_karsilastirma, simetri, modeller, grup}}; `results/q1/konsey_b10_gradyan/mantel_<veri>.json` "
+     f"sinamalar.{{ham, ana_etki_artik}}.{{istatistik, p_tek}}", _m11_2)
+
+
+# --- M11.3 Kesifsel ------------------------------------------------------------------------
+def _m11_3():
+    J = _oku(_M11_KS)
+    L.append(f"Etiket (`etiket`): {_m11g(J, ('etiket',), 'kesifsel etiket')}.\n")
+    for k_, t_ in (_m11g(J, ("tanim",), "kesifsel tanim") or {}).items():
+        L.append(f"Tanim `{k_}`: {t_}\n")
+    L.append(_m11meta(J, _M11_KS) + f" Permutasyon {J['meta']['perm']}; tohum {J['meta']['tohum']}.\n")
+    st = []
+    for v in _M11_VK:
+        d_ = J["veri"][v]
+        for s_ in ("ham", "ana_etki_artik"):
+            x_ = d_["aile_ici_kisitli_permutasyon"][s_]
+            st.append([v, d_["n_CNN"], d_["n_donusturucu"], d_["kisitli_permutasyon_sayisi"], s_,
+                       _m9s(x_["istatistik"], plus=True), _m9p(x_["p_tek"]), _m9p(x_["p_iki"]),
+                       f"{_m9s(x_['perm_ort'], plus=True)} / {_m9s(x_['perm_sd'])}", x_["perm"]])
+    L.append("(a) Aile ici kisitli permutasyonla Mantel (`veri.<veri>.aile_ici_kisitli_permutasyon`):\n")
+    T(["Veri kumesi", "n CNN", "n donusturucu", "Kisitli permutasyon sayisi", "Sinama", "r", "Tek yonlu p", "Iki yonlu p",
+       "Permutasyon ort / SD", "Permutasyon"], st)
+    st = []
+    for v in _M11_VK:
+        x_ = J["veri"][v]["aile_ayiklamali_artik_spearman_sira"]
+        st.append([v, _m9s(x_["istatistik"], plus=True), _m9p(x_["p_tek"]), _m9p(x_["p_iki"]),
+                   f"{_m9s(x_['perm_ort'], plus=True)} / {_m9s(x_['perm_sd'])}", _m9s(x_["deger_olcegi_istatistigi"], plus=True),
+                   _m9s(x_["deger_olcegi_farki"], 4, plus=True), x_["perm"]])
+    L.append("(b) Aile ayiklamali artik Spearman, sira olcegi (`veri.<veri>.aile_ayiklamali_artik_spearman_sira`):\n")
+    T(["Veri kumesi", "r (sira olcegi)", "Tek yonlu p", "Iki yonlu p", "Permutasyon ort / SD",
+       "r (deger olcegi, M11.2 S10-3 ile ayni hesap)", "Fark sira - deger (4 ondalik)", "Permutasyon"], st)
+    st = []
+    for v in _M11_VK:
+        x_ = J["veri"][v].get("cnn_cnn_artik_spearman")
+        if not x_:
+            _M11_YOK.append(f"kesifsel veri.{v}.cnn_cnn_artik_spearman")
+            continue
+        st.append([v, x_["n_CNN"], x_["cift_sayisi"], _m9s(x_["tam_matris_artigi"]["istatistik"], plus=True),
+                   _m9p(x_["tam_matris_artigi"]["p_tek"]), _m9s(x_["cnn_alt_matrisi"]["istatistik"], plus=True),
+                   _m9p(x_["cnn_alt_matrisi"]["p_tek"]), _m9s(x_["cnn_cnn_ham_spearman"], plus=True)])
+    L.append("(c) Yalniz CNN-CNN ciftlerinde artik Spearman (`veri.<veri>.cnn_cnn_artik_spearman`):\n")
+    T(["Veri kumesi", "n CNN", "Cift sayisi", "r, tam matris artigi", "Tek yonlu p", "r, CNN alt matrisi artigi",
+       "Tek yonlu p", "CNN-CNN ham Spearman (c, log tau)"], st)
+    st = []
+    for v in _M11_VK:
+        x_ = J["veri"][v]["c_ozet"]
+        st.append([v, f"{_m11c(x_['en_kucuk_c'])} ({' - '.join(x_['en_kucuk_c_cifti'])})",
+                   _m9s(x_["en_kucuk_c_ciftinin_log_tau"], plus=True),
+                   f"{_m11c(x_['ikinci_en_kucuk_c'])} ({' - '.join(x_['ikinci_en_kucuk_c_cifti'])})",
+                   _m11c(x_["en_buyuk_kosegen_disi_c"])])
+    L.append("(d) c_ij ozeti (`veri.<veri>.c_ozet`; c 4 ondalik):\n")
+    T(["Veri kumesi", "En kucuk c_ij (cift)", "O ciftin log tau", "Ikinci en kucuk c_ij (cift)", "En buyuk kosegen disi c_ij"], st)
+    r_ = _m11g(J, ("veri", "imagenetv2", "c_ozet", "R18_R50"), "kesifsel veri.imagenetv2.c_ozet.R18_R50")
+    if r_:
+        L.append(f"ImageNetV2 IN_Salman2020Do_R18 - IN_Salman2020Do_R50 (`veri.imagenetv2.c_ozet.R18_R50`): c {_m11c(r_['c'])} "
+                 f"(simetrik hucre {_m11c(r_['c_simetrik_hucre'])}); log tau {_m9s(r_['log_tau'], plus=True)} (simetrik hucre "
+                 f"{_m9s(r_['log_tau_simetrik_hucre'], plus=True)}); c sirasi {r_['c_sirasi_artan']}/{r_['cift_sayisi']} "
+                 f"(artan, 1 = en kucuk); log tau sirasi {r_['log_tau_sirasi_artan']}/{r_['cift_sayisi']}; ana etki artigi c "
+                 f"{_m11c(r_['ana_etki_artigi_c'])}, log tau {_m9s(r_['ana_etki_artigi_log_tau'], plus=True)}.\n")
+    _M11_YOK_YER.append(len(L))
+    L.append("")
+
+
+_m11("M11.3 Kesifsel: aile ici kisitli permutasyon, aile ayiklamali ve CNN-CNN artik Spearman, R18-R50 ve en kucuk c_ij",
+     f"`{_M11_KS}` etiket, tanim, meta.{{betik_sha256, dondurulmus_betik_sha256_dogrulandi, uretildi_utc, numpy, scipy, "
+     f"girdi_sha256, perm, tohum}}; veri.<veri>.{{n_CNN, n_donusturucu, kisitli_permutasyon_sayisi, aile_ici_kisitli_permutasyon, "
+     f"aile_ayiklamali_artik_spearman_sira, cnn_cnn_artik_spearman, c_ozet}}", _m11_3)
+
+for _i11 in _M11_YOK_YER:
+    L[_i11] = ("Bu bolumde (M11.1-M11.3) JSON'da bulunamayip 'bulunamadi' yazilan kalemler: "
+               + ("; ".join(_M11_YOK) if _M11_YOK else "yok") + ".\n")
+
+# <<< M11 SONU (hakem paneli sonrasi masa cozumlemeleri)
+

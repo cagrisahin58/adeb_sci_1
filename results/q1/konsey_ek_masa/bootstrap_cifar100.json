@@ -1,0 +1,518 @@
+{
+ "etiket": "on kayitli, sonradan uretildi (31.10.2026, hakem paneli sonrasi)",
+ "meta": {
+  "betik": "experiments/q1_ek_masa.py",
+  "betik_sha256": "40454344bd3f8b1a0318d4bdb295d1dad05f187d74fe22f739501654a785b8c1",
+  "dondurulmus_betik": "experiments/q1_konsey_ayrisim.py",
+  "dondurulmus_betik_sha256_dogrulandi": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "mod": "bootstrap",
+  "uretildi_utc": "2026-10-31T15:03:29.780096+00:00",
+  "numpy": "1.26.4",
+  "scipy": "1.14.1",
+  "argv": [
+   "--mod",
+   "bootstrap",
+   "--veri",
+   "cifar100"
+  ],
+  "veri": "cifar100",
+  "blok": "B9",
+  "matris_dizini": "results/q1/konsey_b9_c100/matris",
+  "hucre_tablosu": "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
+  "dondurulmus_cikti": "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json",
+  "B": 2000,
+  "bootstrap_tohum": 20261029,
+  "tohum_kaynagi": "ON_KAYIT_2026-10-29.md bootstrap tohumu belirtmez; dondurulmus betigin BOOT_TOHUM sabiti kullanildi (dondurulmus K-c bootstrap'iyla ayni tohum ve ayni RNG akisi; W ilk cekim, K-c tohum cekimleri ikinci, K-a/K-b tohum cekimleri ucuncu)",
+  "delta": 0.1,
+  "delta_duyarlilik": 0.06,
+  "alfa": 0.05,
+  "n_goruntu": 10000,
+  "girdi_sha256": {
+   "results/q1/konsey_b9_c100/matris/transfer_matrix.json": "94212fba84b05bf422e2182b47de6711659d62e86a0b0cf8cfc6ce7066cd28db",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_ResNet18_AT_s1001.npz": "54374487765e47359a216443b346261a4d93cec782aa8bf8a078700397e175bb",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_ResNet18_AT_s1002.npz": "6718c79228b86ae4a4a41df3d5f2c7b38a5489279415de83a5ed86cf7d89f237",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_ResNet18_AT_s1003.npz": "5d4cdc6708393883946a3e4487c39d96a07e76ca761a87b583b9900b9fb0f6b0",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_ViT_Tiny_AT_s2001.npz": "74e6aa46f440cd194920be558a331de5d659605d0c8dd3e03f61d61322dc4df9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_ViT_Tiny_AT_s2002.npz": "5946e03b59c63e2b2c0360baca955e93e477a1595e1ccc2add4ba6e6e96f57e4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_ViT_Tiny_AT_s2003.npz": "9ff2440e45520c44409ccf10ce585a32e32b323a147d3a9952013d362c0f22cb",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Rice2020Overfitting.npz": "f323885d7e360378253857232b38adf37ae774ef40bbd61d9296b8cf6d3d4fc4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Rade2021Helper_R18_ddpm.npz": "3c5d2455ac80b8b2261c45d17636d65ad7e572f425ba1fc22a17def5fa14d774",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Addepalli2022Efficient_RN18.npz": "bfb8f4f55171fee8c50267a80bbb233184ee6634dfa3e680ace6e4ac8532312e",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Sehwag2021Proxy.npz": "e78fba606c421847d8bdcd00ade93c4f83ba021965d7041c6781b258b33218d8",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Pang2022Robustness_WRN28_10.npz": "a3e529682be88a5153edf10c4e26126704ddefc0d9114dc149459aa067356d64",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Wang2023Better_WRN-28-10.npz": "b747f4d108a214aafe2a10c0dfdfa24c8247022988469a05c3212a210ae2aec4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Jia2022LAS-AT_34_10.npz": "9cbc49997c2d1c86f3584bf7591448b0a115454584b357abdc5c663860db791a",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Debenedetti2022Light_XCiT-S12.npz": "d60f4ac14a9ba36cb23c92de68f47bf7078011cbc312ec1a4a561195379def85",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1001_to_C100_Hendrycks2019Using.npz": "b2075c39041ea8f035cce38173048e0c842c26a97592676c9927202f34da246c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_ResNet18_AT_s1001.npz": "0ddda4af2bcf8ca8448fa46020f85fb8736751c9fff3f9ee20ebf7856a957939",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_ResNet18_AT_s1002.npz": "d3660df3990a40cae06460a148e3f83c62d1c24e2085ab82d23ecf680f4be5a1",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_ResNet18_AT_s1003.npz": "966adcf4023437ff0afcf43449a606199866705098d30dc7a081359255290b74",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_ViT_Tiny_AT_s2001.npz": "35a3268f26b521904a7e204a5cdbd1af58c78e5123d17f0d1a2b32fdbc0d8119",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_ViT_Tiny_AT_s2002.npz": "de5727e4f1b10f847d8a19fdb10f1f23a1e253c29eb84828bf7f4cccd0905371",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_ViT_Tiny_AT_s2003.npz": "43f52393b4533d0abee8021bcd079a480d7713d0c4488a75985de60162419355",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Rice2020Overfitting.npz": "ea1b9fab89efefd80db95317dd50dc3161e3c47d548e0177d3dc33b5acb28e48",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Rade2021Helper_R18_ddpm.npz": "57a1d4942d6c9f042a3fdf51cd7e54110cf858669a551f3af7b5fa0c9b7d4578",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Addepalli2022Efficient_RN18.npz": "33141792c4cfd470d54201790cb9d7ca1d61027a5b6e460afd89dddb1e3f420b",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Sehwag2021Proxy.npz": "e0921b0186f5983a63e366cab95c1fe7128319d6b1e0e724cc124f755e67461c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Pang2022Robustness_WRN28_10.npz": "ede1ee6effcb6fab01ab1d9997466bb0c63e480ff9b7c90c6ec0d933367d40f5",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Wang2023Better_WRN-28-10.npz": "057fdbe9280cf8aed273e6528ba973c0d688c6c1cbec7daecd3856a192371149",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Jia2022LAS-AT_34_10.npz": "8ce1c48591b9de0aa83e7589864c07541ad70fc1feabcf0de5a04b2be64161d9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Debenedetti2022Light_XCiT-S12.npz": "f26ae46a464908661349180fc50dfeaed927d0e324e9f1b525a06c5f09ab7bcd",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1002_to_C100_Hendrycks2019Using.npz": "4b78ffce4f046f6ab7c988a9ad1d3dc3ae8017e2504fce760cfcd6a045be7676",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_ResNet18_AT_s1001.npz": "d576e87c4549f6cae4907999ca51384b79dfaa057e1ef186cf8dadd268efa7b4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_ResNet18_AT_s1002.npz": "755b19856821d390526145b655799c6b3e376050577441918876229a730d9329",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_ResNet18_AT_s1003.npz": "0e91959b740fe4ea1ea3b1a7327f27762c3195abbfa8c61d3e98098ffed5dd21",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_ViT_Tiny_AT_s2001.npz": "df90a260f9b76d831a1dd8fc272d84bfaaf32ccdee9cb9a67df5402873104604",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_ViT_Tiny_AT_s2002.npz": "b762729cde156a7467fb1dc819a73961a161aff78e7caa19ac2968791cdd0e4d",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_ViT_Tiny_AT_s2003.npz": "d7ed3cd07f83815d358e1e7a5651baeee330f3fc30c7b00475393cedc1e43d6f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Rice2020Overfitting.npz": "928fbef5ffc457ec451eca304f20bd04d8891139b26d095cb23d4ac56a6516d4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Rade2021Helper_R18_ddpm.npz": "232c01cccd251045ea69d94e07a822c237afb34f621415acf77f867b6c70a7f1",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Addepalli2022Efficient_RN18.npz": "1dc98e85d0dab564739b3b50a97bab951141b3d14531e09fc038eef3e925baf5",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Sehwag2021Proxy.npz": "58147b965a5863bf073316ad6504a86fccbb36b9ad622be143b185a8aaa2a5c7",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Pang2022Robustness_WRN28_10.npz": "6ae5fffe8448c5fd8d2d361b1f14ee5ecb747ade7b329d97d3867f12daea640b",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Wang2023Better_WRN-28-10.npz": "aee93fcad49740262e00383bd28ae1e5be95069e5066a233095ec08bd93d6bac",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Jia2022LAS-AT_34_10.npz": "ab71e0bb7ecbfdf89e94f5e284f5dbe25a8a3458637a7e6f54be4fb077ce658d",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Debenedetti2022Light_XCiT-S12.npz": "b8ef5201044347289117398038a8dbce0cae45d96cd70a5506b0c6c693d1a2ce",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ResNet18_AT_s1003_to_C100_Hendrycks2019Using.npz": "e10ccd8dc861be4e93ce26802ccc5c3bdde90f177bc7229031cfaf61d4856bfd",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ResNet18_AT_s1001.npz": "4fca03d5c154a433bf7f140193dc04da276ec698895787bccde20787f2e71cae",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ResNet18_AT_s1002.npz": "2b1318f41399e425b6e7247290238014ef95368879f19c9ab5df7a9c043dc884",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ResNet18_AT_s1003.npz": "d70e3190e95f5ff659720ee423978f1ff58447014a5a7e7a9193d7d6f2de5686",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ViT_Tiny_AT_s2001.npz": "2dd0826b899f3758d10dc5875fe2c32d0443b40a0fbd7430300cb0e429d464e2",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ViT_Tiny_AT_s2002.npz": "3a74da82d9ba88c91732b4bd80fd119438aac89fd55b4aead1c10cd98c8ab5d5",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_ViT_Tiny_AT_s2003.npz": "3812f3c1c25a62c862ff1c1a6cad75ad7be077c50364bf034cab2d3195977e99",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Rice2020Overfitting.npz": "b0512720796379b37c454919a374a981ebee822e346ca2463c2a8d786cff2811",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Rade2021Helper_R18_ddpm.npz": "c21f3a18bc340ae0e1b8d3173320ddb1135e83bced4b49931611c513c787b233",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Addepalli2022Efficient_RN18.npz": "2b192199dd5f7381ff773883825c3607d4bfd3e1bf487ec674f4e7127cdd7c14",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Sehwag2021Proxy.npz": "79db6b281f51778a8b8883df8389908b2e3358b194855410de5f94a724c2ac30",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Pang2022Robustness_WRN28_10.npz": "5a0735e6a0184386f32482877683b9c658fe989b98462ba5e9f14767f3a9d69c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Wang2023Better_WRN-28-10.npz": "28703632b8d63a5a6bf336a2c6427a4591150b29e061d01d61d52162c729da4d",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Jia2022LAS-AT_34_10.npz": "431a7b162a5b7d947af0852992cdf94dc4653434e15a594f1d96da5b7b801b87",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Debenedetti2022Light_XCiT-S12.npz": "4b4d399b0dd82ef65398c2ae52e80e78db9ae6066691e4f2dd304b23f1e09379",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2001_to_C100_Hendrycks2019Using.npz": "c74b6154814842158c0897b75b3e982437960ed60941fbe6c331dbac5f4d4124",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ResNet18_AT_s1001.npz": "65fc849802f124b968b8129b74517e79f25f20ec23c2f8681cfeed4d27f4859c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ResNet18_AT_s1002.npz": "58b18ce748b549cda8e8b723d2a76980610696edd2f75813ac5aa32a3cff9dc3",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ResNet18_AT_s1003.npz": "0a3469bb2ed4c3135de07672b4b47d392afa202f90cc6589f49f195399992032",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ViT_Tiny_AT_s2001.npz": "cdcd4c70365173dea4d792e8c4e77dd394c93aee837e4dd619e6b380f660df6b",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ViT_Tiny_AT_s2002.npz": "13eabda69beeadab1893ec4c84b706bf18e59d12764cd375990219a0c821814b",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_ViT_Tiny_AT_s2003.npz": "df7477a314e1e463c35a6af16290c341e67925f88f51107f3793e3a5beafba06",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Rice2020Overfitting.npz": "0e1a4c0d13d6eeaee44f09a233aa685333739f9caebc9b017f9f3f9c87afcddd",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Rade2021Helper_R18_ddpm.npz": "7238f9a36f371ce8d498450250d785925ef41f06379483d6ede473cf23aa3f90",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Addepalli2022Efficient_RN18.npz": "73d3ef9a68ef666283d365d6210d00c0dd5bc1e521c3485fb15e929f813e87d6",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Sehwag2021Proxy.npz": "2d70bdd557d933b9884c89d905b4e72423c1be71c584396b2557399dbf22e422",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Pang2022Robustness_WRN28_10.npz": "26b0cc7ffe365ea6f9a10d76f115cccf85689d2f5d431d76e1953f56e6b61eaf",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Wang2023Better_WRN-28-10.npz": "ca1058e6b64273d58a272f267cc195b05e4f118c59f903698cc700af451693e0",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Jia2022LAS-AT_34_10.npz": "a89090afc36167486a4f083afda8f7b3f7e158d86c9d5b3054d4bf27a40530fb",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Debenedetti2022Light_XCiT-S12.npz": "4c2d1a3a45037f59c3b4c93649d3e163ce22dbb39cedfffe8304b7a468732f76",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2002_to_C100_Hendrycks2019Using.npz": "6d76eeef3336a9cfe9a4a0d8faefc9ac8d54e427e158610825ec4cbbece167a1",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ResNet18_AT_s1001.npz": "cc0629ed3f60f923f2f70acdbeb9654add14f22eabcf700bb29650f3907ae948",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ResNet18_AT_s1002.npz": "fe5080730a1feb579b9e6def788b2316f25714b4a2b13da5863a4ea17b7716ff",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ResNet18_AT_s1003.npz": "628d013c8190416bb82b9606e0b64f099af9f6a9c6b0abc4a4d839af66099847",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ViT_Tiny_AT_s2001.npz": "61046d6b4f9a1c3e6356162df466f05e4c4aab4adcd1dc1178413800ae49a932",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ViT_Tiny_AT_s2002.npz": "8e9cb9ef48373efa61e495d0e68aa3f98ac0ee59f14095fe6b0b7a2a17abe84e",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_ViT_Tiny_AT_s2003.npz": "ab3dd6733513cec77f6a90bbc157e54d0126071c57f932ffc0debfb180c9a7ef",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Rice2020Overfitting.npz": "b281f2c04fd35e07a1bf1c24c79c8e2a881a7b0427c7f32e88550b38d5e72c4c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Rade2021Helper_R18_ddpm.npz": "6f3435fb4269ad3bbffebd8a67fa0205148f8b01800b8395e901638990817f4f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Addepalli2022Efficient_RN18.npz": "6c20d8441d8a99f72aad18cf9b858567a1a9c8adb2fea25520a4426abc6b6755",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Sehwag2021Proxy.npz": "f744926fea0551d7f72597447c8199dcc11e78007f6a05f888efd57455005c27",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Pang2022Robustness_WRN28_10.npz": "cb38daf700d22cf2bc291f1e9b3297f9a00c4a53a114fead2f83645d7c4c34d0",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Wang2023Better_WRN-28-10.npz": "f7da1081a1bd813dfa0ec190d701a9ffc31b5949bfadd69d4af17c0f7ca43b97",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Jia2022LAS-AT_34_10.npz": "4757eff3f65bb9d78c096d75f7ab9e216e96de91374aba5d5afb3531fbb601a0",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Debenedetti2022Light_XCiT-S12.npz": "1ff38ec80a1a4846ca66430ef8e7b4a34f92b958ac22f957f6c8fd63c2b4e7b6",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_ViT_Tiny_AT_s2003_to_C100_Hendrycks2019Using.npz": "7ed534deb6a7a2afd49995459b5b5ab32ef9aa45474b5346f95a609b9dd894fd",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_ResNet18_AT_s1001.npz": "faa533eab76a7fbc2db2ee5caa65b8f624aed6f5ff831c57e678ecf2fe2b2042",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_ResNet18_AT_s1002.npz": "c3e4362dc9903a347af9d81593618d615be4093f4a4b4dd9b97965aaf9c01adb",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_ResNet18_AT_s1003.npz": "6cfc4053c70a91f3b5837f61fb7be391806e3a98bdce023017db9c0b981b931f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_ViT_Tiny_AT_s2001.npz": "ff2b92d5f952034faf67ea00fddc0926ae1089e44f5aa851a3ae8f29d3ef8ee9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_ViT_Tiny_AT_s2002.npz": "c13403624cbff9c5e9b9050994a49e30305a4e8cab49ec9799fe4629a37fd969",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_ViT_Tiny_AT_s2003.npz": "bcf752c08b23ac8d094193f02666f9660ce1c31f1a0cf185ab1f8353fc0bc1f4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Rice2020Overfitting.npz": "bca21874b79ca353956068de4a1796ce31b37ddb9b6749613e300ca5d7d82aaa",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Rade2021Helper_R18_ddpm.npz": "f540bd4744a1d64970299a79c7531723d16a0cacff32b468168176c4ea50ff91",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Addepalli2022Efficient_RN18.npz": "08cc4f7b9f76dd50293527dc834292145db78a24f8a9f66ba144ef1cc1f14864",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Sehwag2021Proxy.npz": "a53465cdad1aafb2ab2c6d9c89d5043b86a9bf37222631728ae8c6e2db673d49",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Pang2022Robustness_WRN28_10.npz": "167c65f782229b52d7e4b0d09e5b4563ed107b814235d586248046fc273a5248",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Wang2023Better_WRN-28-10.npz": "9322e3dedff784d6484a4b00d86e305a71bf7a307f7f393b03047b16a87d99e1",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Jia2022LAS-AT_34_10.npz": "0b7fc05ee1aca673f1eebb17834b2a56f10c9ad56c64ce8a6fdfe72272d9b680",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Debenedetti2022Light_XCiT-S12.npz": "e2bea6b4137e1e8455d39ae247c9e350e221a360f50479ff6a9a68d6826cdcc7",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rice2020Overfitting_to_C100_Hendrycks2019Using.npz": "1fd9e13bcaa59fdeeb537500c73b29535fd1f9d2e35fd0c329e1b1bed3e58cfa",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ResNet18_AT_s1001.npz": "97ddf0c6a42edc6ed3bd505cb8e4d82d4789e86d6591a2352494e4d5ef0ad008",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ResNet18_AT_s1002.npz": "b3035bd9635d2f4fcf2bc2be5b3c1b785f5ad1deb737fd8fe133412f5529a4f7",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ResNet18_AT_s1003.npz": "bc29ad7cb08df5498e31f6b65f7b9722be9e550b4dc96e9c55cdeedb9ad3c626",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ViT_Tiny_AT_s2001.npz": "539814bdcdd56851391c17e8a81543c9228fdf2263081d53426cf78d4288c458",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ViT_Tiny_AT_s2002.npz": "35b98280cb6774c007bfaa6fac8e984fd90c3ffa654685bbe6a19a221fcf5c1f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_ViT_Tiny_AT_s2003.npz": "c650468d1c404bf2c91d7ec48111f58bcc8b8aed713c95d4fd21af7b17fb79a4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Rice2020Overfitting.npz": "05ddfc220de240e7e52ebbec0b9add5f44fdfcd824d0ec7aee08bf9eae4c6db8",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Rade2021Helper_R18_ddpm.npz": "a9479c3693759dff04fb168c33072419054d88c4b41302113e4d4325a1d98563",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Addepalli2022Efficient_RN18.npz": "6c5c562ddc9157019cfb055213fb5747cb89dbbeba7ac45efb2b98985653a270",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Sehwag2021Proxy.npz": "08226e45c7855ed6bc5732ec77c062aa99ad636de6384780dce2f339b5a77ded",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Pang2022Robustness_WRN28_10.npz": "2c1830b6b699aaa56b7ffa6bdb130a48f61ed4e85fc3321b53de9b8e973d13b9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Wang2023Better_WRN-28-10.npz": "7014cde7b5ef75f35c0b20b3b75b7f6e83ca9c04cab1df5c2a9c305474da3eec",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Jia2022LAS-AT_34_10.npz": "e9a744f061b26894c2aa9271fcc0e54d5037cf83d90f921559fe1bb8af774c0f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Debenedetti2022Light_XCiT-S12.npz": "1101a669eb2d600ef74afd461707d7d282901368013bc6f8896fe20f0303cdf9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Rade2021Helper_R18_ddpm_to_C100_Hendrycks2019Using.npz": "84cff25b31bb7d220d502486b1124bc717ed9dfd5988dd079da5717e147c6203",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ResNet18_AT_s1001.npz": "28fe55a46b1ecf836d259d54685786c7b6a3882fc22df4d5540e82eaf008758c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ResNet18_AT_s1002.npz": "4f0791e3f73342a48af3c4dfc069b09cf018a8c7fe444c0cf60b9187c961b895",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ResNet18_AT_s1003.npz": "8c61e2f9c1ed209c551b644e3c28bc2d3d9fe9e4b8191bdc3a3c0877e118a8b0",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ViT_Tiny_AT_s2001.npz": "b172976d6408cab37a16873c65e9f1aa71609871daaf36834ca935fdeff3611c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ViT_Tiny_AT_s2002.npz": "d5ea6bf8def7ebdadee5d3dc7435dcb1240d8d927827cbd603bf5d8766f2cd7a",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_ViT_Tiny_AT_s2003.npz": "492eca6243ef78eb8879b0dc975a9bbc384a55a0a63e42a8bbbd6c8167544fc6",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Rice2020Overfitting.npz": "1c518c2725b8a1ec6be1cd1844d6debfa5aa348949e8be0c5f409c3689c71326",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Rade2021Helper_R18_ddpm.npz": "88e4bac738018aab790c5b89f3345325d12173673e52ba0535ecd6083c1e80e4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Addepalli2022Efficient_RN18.npz": "bd595532e59e8042e78bc85633a1f4e1d4789cbe28b11813c377f3cac8e97288",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Sehwag2021Proxy.npz": "ec39cdd747cc58b5894cf4003153f9fb701164e673a15d8e6658425b298e4e1a",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Pang2022Robustness_WRN28_10.npz": "98c2e8ceb6e5abbad8dda10745aa361cc64fb6a2ae7a8c9d73ab8fe7fec6f2a3",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Wang2023Better_WRN-28-10.npz": "927e3abd7aec32e7f9405b329871ee88bf043054d4b4cc03440f8e8a9b603275",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Jia2022LAS-AT_34_10.npz": "258d8137eac30ba80fc0a5b852ff143015e0c64233a30193c7ec5635c8024717",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Debenedetti2022Light_XCiT-S12.npz": "b955bf35f87990873c3da9c50f31d0613e19a123851ca1c0197f0350f41870d6",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Addepalli2022Efficient_RN18_to_C100_Hendrycks2019Using.npz": "e5e115d40358b439adb8a0b6cc0db20349346af85c3672457156537f9ef791e9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_ResNet18_AT_s1001.npz": "755f5151431cdb52da4f6f976039dcda1fcb0316e9e434a869189887ee3df891",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_ResNet18_AT_s1002.npz": "d6538af1f58847a6b18431d7ceb0fb27ae22b4b4227eeb4f0525e73718bf0e8c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_ResNet18_AT_s1003.npz": "9f417e392d3a03c26f0edad3e402fb56d16d575f47a934739ee72df2ac79575b",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_ViT_Tiny_AT_s2001.npz": "641bc9988ffe16e0f38c167ad32337cafd5a55e41d759f167b7965e0633ff4c9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_ViT_Tiny_AT_s2002.npz": "b97b60102f7c75995a4aacab705dd6097e88942033d03cf7a508eda042035195",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_ViT_Tiny_AT_s2003.npz": "5479fd08dc26fba4b136e12dd6a37794b5617f10e2b492d2861f0ac7107adcbd",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Rice2020Overfitting.npz": "3d4147c9b8ba7174fe55855c133e7fe0f49d69d6dbe41479bad3339720a34aaa",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Rade2021Helper_R18_ddpm.npz": "cfc1cf80afdf97ae14190462d695d581e5b386ec517ba9653da5b8d31a329722",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Addepalli2022Efficient_RN18.npz": "98b227473d7926664a366c2355b2e707b8425ceb8776a802b37e602ab51b2308",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Sehwag2021Proxy.npz": "f7ec44993a8cbf1d22532e302127ccc772295edafdd6d00e4e851b9459bad766",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Pang2022Robustness_WRN28_10.npz": "a0446180558968791728ca1c3772d1be00689665745a40e75b3520f91ca6e7ca",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Wang2023Better_WRN-28-10.npz": "720f67e2ff58174d0881852ac657de75879fd7daaed5f4bf56bb371004f0270d",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Jia2022LAS-AT_34_10.npz": "e98f8be80489ec63daee0f702aea9e53a1e97a1cc5f72df69fd2311f1e1b86fb",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Debenedetti2022Light_XCiT-S12.npz": "5caba910acad94a5150ebdaf6b9bffa51d47df133b6badd3d47b9dafabe80ef3",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Sehwag2021Proxy_to_C100_Hendrycks2019Using.npz": "385dbd75a64a87c2b38b86ac2df57f8f55938e4c50732be5902cb54b79d642fc",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ResNet18_AT_s1001.npz": "c95bf49fb69e58fc22b4acff486b88dac750e90a232b9480097790462f376058",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ResNet18_AT_s1002.npz": "b965c5a752267597fc8d466d4d8a87a5cf534f6eb3ae2dd00dff55a4590bab09",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ResNet18_AT_s1003.npz": "54e328dc26bef5a95e2a5b48057b8264f6e4db1e9564d467e3e4e419fbe60b9f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ViT_Tiny_AT_s2001.npz": "6aef75433cf1070f38d9b6a1618100c810004bb3591ebe12ffa64dc43fc0e549",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ViT_Tiny_AT_s2002.npz": "9cc2a5f603ecc5d37a97cfd83d78db9e2e1253df171a916adfd15f46b18a4f05",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_ViT_Tiny_AT_s2003.npz": "fc242c9a23e0d8294154977681f0893b38ce33121fffbdd9ddf8a9a6d83c5767",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Rice2020Overfitting.npz": "54283d667183a19d59d0597f2f71125ac46cec9cabda767466dc730c191ef26d",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Rade2021Helper_R18_ddpm.npz": "ef7b8c00746863705e91b40b4b88f6aa7d50455a8f8fcf561bed37a271da911c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Addepalli2022Efficient_RN18.npz": "2f7666cbe4e2fb8c19f170cd1692ac5f41c900ba1ecd038b53972fe3955321da",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Sehwag2021Proxy.npz": "0bcea59691f1f1d7d5c7a60642def804d9ecb8778df4300f6047d1c6a9e18c62",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Pang2022Robustness_WRN28_10.npz": "f89f492d1006d2aaad21b7f3a7868e00f5151888eb2be091c5b050e584ec6b53",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Wang2023Better_WRN-28-10.npz": "0667cdfe12791df9295b622ecfe77866824def5c6730b32977e772f4d6b0b51f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Jia2022LAS-AT_34_10.npz": "860822df044069174f70a6640886d17ea4d16e79573421ffb42ad2aca320e2d6",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Debenedetti2022Light_XCiT-S12.npz": "a76ad1083c3cbdbc53c5e833fa0506edb79943f0f1510c574b408903c4260d55",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Pang2022Robustness_WRN28_10_to_C100_Hendrycks2019Using.npz": "53d9391626bd3f7e0d2c2443de46f21d5370549a3657d6971e85e6a5e889b54a",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ResNet18_AT_s1001.npz": "c303f8778d05781814bd067d24cfa4768e239a242c423b3c468cfed0f3b81f1e",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ResNet18_AT_s1002.npz": "6f1359db9e76c629402a88c19c86cf2fdc1a9cf3b36a59129822435f6373bfaa",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ResNet18_AT_s1003.npz": "798331713c5fcfa9da6d39b65a9cd94281245b53af26053ae9dbacbc50aff45f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ViT_Tiny_AT_s2001.npz": "909e15a7d170f7894f8734594bb33d4d063cc3529c9fea76c055d7f0aef02d68",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ViT_Tiny_AT_s2002.npz": "e713e37d5e7c0259f18c79aa51851d943924d15faeb05ca2df3b12bb383334aa",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_ViT_Tiny_AT_s2003.npz": "0576141b3b8389c7d5cf87f6109e3e5175ff1eca728845f2b7191b14e109d311",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Rice2020Overfitting.npz": "764fab72384643f770e7c12d88dbab365036bc1cf6f9e3afec715d40751b755c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Rade2021Helper_R18_ddpm.npz": "703bfe5fdf08c3801459e51e29b7f0725470fe220006e29f064d2b5204b2fc7c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Addepalli2022Efficient_RN18.npz": "d4855f8dec2d2bfab87aace2d63b8f46652db763166bfaec8784c4bd34c79226",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Sehwag2021Proxy.npz": "593d3bf04ae78a9b4b842bfc3a414036da1b403e1aa94763b8bc61800c68a26d",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Pang2022Robustness_WRN28_10.npz": "00c9e3dcb1a5721896e89923665e2fce7b0fe8b409228df30c73702826275f39",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Wang2023Better_WRN-28-10.npz": "b46befe1b8533552d32d0dca8faac53e81bacb3276838005b9cf69bac5dec257",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Jia2022LAS-AT_34_10.npz": "c8d6846295f8c2933d0f9a14daca9ad99124cf3f9f1a68316a9c0e2e51140924",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Debenedetti2022Light_XCiT-S12.npz": "6c8fdafc6f482fed4fff90fe7e0e4309fc799e5cdf0de8378c3128d57dfa6c64",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Wang2023Better_WRN-28-10_to_C100_Hendrycks2019Using.npz": "f6bebbfe1d337ead60fb399255d9cb7d649979560c43b1754e520d12e4a7bd2b",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ResNet18_AT_s1001.npz": "e47e38dd7992f8d579d2e7bbbf10cde93cdf26b1b8e48ead70108fba1539707c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ResNet18_AT_s1002.npz": "e7b3b8fbe5c2919544a933456564c6384fa07ec39c52b7b9674a49cb112aad93",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ResNet18_AT_s1003.npz": "dc40793ae79f3eec97c003e4e4ffc853882e8f644538a21c92ab37d8bc98e4aa",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ViT_Tiny_AT_s2001.npz": "b09e0e04d757f29c1650ba33d40aed046fad8540cc67ba021ff704b254a421fc",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ViT_Tiny_AT_s2002.npz": "2a8a0282880b3d170599a0507e3174120efe6231315c8a3605532106a5beff5f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_ViT_Tiny_AT_s2003.npz": "ac532e9b6509da502e80305f730084f66f77611e0d5dda2ffe0f4921bfbd5fb8",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Rice2020Overfitting.npz": "7756cf60c7d5b5999661173e45b63dcdeeffbfc4592e02a00fb06f554a0a67f9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Rade2021Helper_R18_ddpm.npz": "698e28ea603135863d80432d6814383c7bc276125214e1d86c7986c561b3b5b3",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Addepalli2022Efficient_RN18.npz": "a11c534157c775251a230ae64e7eba039a3f67d97da8342487304e198505d646",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Sehwag2021Proxy.npz": "d147004e36f5dee27bfb65e435f559d75c969cdf52a7237721da7e9b3829a63a",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Pang2022Robustness_WRN28_10.npz": "6a30e9fc973a8d5b7c3633da111f5224694e229d1e2909177e8123d27e1fe57c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Wang2023Better_WRN-28-10.npz": "358d80433defe4eec002c787047271693477c3164b308d73c01c72c0ad04180c",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Jia2022LAS-AT_34_10.npz": "9c54cab15cc1e34c584d3381d821eaafbd714cd4d7c6a449cff0b0ed86f9ba60",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Debenedetti2022Light_XCiT-S12.npz": "b9e0f8ca7a253512bcb058170103cad055ec90aab27b551aa2671f706903bfcf",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Jia2022LAS-AT_34_10_to_C100_Hendrycks2019Using.npz": "8d1fe5a69157ac650bcbbb06c96fc91c886e9ba6c5d9401232240ad6df97214f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ResNet18_AT_s1001.npz": "e06005b8edd9c1ccf6d0b085a20ce95e9d3e619969315dafb10785ddf6904053",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ResNet18_AT_s1002.npz": "31cc1aa13b9b994fcea14f892814cea909d4b7754dd8df1db6b80f526a20f328",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ResNet18_AT_s1003.npz": "7d8a67d14f2fe4929d7306ab9e5d229bd0424ff99766779853da8abf7b2c4df0",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ViT_Tiny_AT_s2001.npz": "8d2aa4fbd40c5b6e184a69734eb41399d95b5a590a67f79b9330bbc59f21c323",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ViT_Tiny_AT_s2002.npz": "8555922e4f28d9ba6ef167e4c32396071081caaf7d649586add2f7b17e2c17e4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_ViT_Tiny_AT_s2003.npz": "57095f3213cb70284a193cf6fa575803dce15cf0252d951a799fbe5cdcb2436a",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Rice2020Overfitting.npz": "378defe277216aa1fa4d77e27e3997fc13a0e6ea05a3c0b85337e841a60eb5d4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Rade2021Helper_R18_ddpm.npz": "c22941e006c20339d5bfefaf30c95d43bb0ba77c586f38fe76a835fba660748b",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Addepalli2022Efficient_RN18.npz": "ed13bfc577a4a019401d38238bf6ea57c2567e428ed83be2934ec2fece35c03b",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Sehwag2021Proxy.npz": "64ee515e7ef05fbab19a1e092507cff2e577c73859e9b31d0f1f579ed32b1123",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Pang2022Robustness_WRN28_10.npz": "9e1b0a0813623b032e53a79ed1129cc11275b9a9ce3dc62c10f5e39244a25e05",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Wang2023Better_WRN-28-10.npz": "d5100c077bb62a26f1a069b9937ececb6e3e70da8d008a8e9cab3a4072532794",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Jia2022LAS-AT_34_10.npz": "c8a9561ec4d87f55d5d9e74cfc52d69c73c5501d1d80d5806d4056801ae1af48",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Debenedetti2022Light_XCiT-S12.npz": "618c9434673db17bb4ecad1484f399e634e6901c1d159ce18af4e33965cfe301",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Debenedetti2022Light_XCiT-S12_to_C100_Hendrycks2019Using.npz": "6f717ad66666d169abcf8aeb426b1fb08a07f64490c5ba2ad6de57e7b5984cb8",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_ResNet18_AT_s1001.npz": "ea5e47c99bba3a724f0c73f1520c5a8553a82718960cc4c2f32f2195554fd2ab",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_ResNet18_AT_s1002.npz": "43e472eccc9e067d8db59c484ad990064448839c5695aab4a898e8604d2d9691",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_ResNet18_AT_s1003.npz": "36bc4729e11ccd5bff6bc692ad62f080fcf92625a8ce4d8fa46760540d637bd4",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_ViT_Tiny_AT_s2001.npz": "6617431da9564a926f36304636131dce893bc47561a09e144d8a85eabeab317f",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_ViT_Tiny_AT_s2002.npz": "5310e3fe07eb3b612decba6ffc8199f420b07ad10099df4331e538d73bfd71a9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_ViT_Tiny_AT_s2003.npz": "198ae2cac3dc8df25a3f088446ea289cd207d91ffc141e5842b4c679437ed033",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Rice2020Overfitting.npz": "4ca3f3561779e80f43def2aed74445c44d1132c7b5e1f0d40ed90b05ba5df7f5",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Rade2021Helper_R18_ddpm.npz": "892dde33221dde3ad4b007316e16f63f9ce211d398dc61a6ee9b456bad3b453d",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Addepalli2022Efficient_RN18.npz": "9091e9fb8446fd07fcbf58c8de9851e398ec022564a1287029c1e0f9cb08ebc2",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Sehwag2021Proxy.npz": "12d95dfe7f5cacaa04079c366935436e64b52ec6e894562a9fe47d22f4f32e78",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Pang2022Robustness_WRN28_10.npz": "3133881f1709779ba3338f5d12160ed99e1e8bec5c5746f15a8657625ec4a8b9",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Wang2023Better_WRN-28-10.npz": "a30d8cd74326a790479ce54805049bab94c77680b2cd1e9ada2eb48a5b3b4654",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Jia2022LAS-AT_34_10.npz": "3bfa87d2c17648520acad1866847d3704de39be2c8ba45b6c30bd85c78b3cbdc",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Debenedetti2022Light_XCiT-S12.npz": "f94f99979927f110af2f35fa2d2b693acbaa9a2b78a9f47dd733168fdf9af450",
+   "results/q1/konsey_b9_c100/matris/per_sample_C100_Hendrycks2019Using_to_C100_Hendrycks2019Using.npz": "dce87c0695e45cc7f68eaeb4dda66ded1bebf03fd03b4326a5a773449d06e2f5",
+   "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": "762d62b4194c245e310ab9ae9b5eb82ef3476a6965597feed707a6c0b3a76cd8",
+   "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+   "experiments/q1_konsey_ayrisim.py": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389"
+  }
+ },
+ "tanim": "ON_KAYIT §5 Duyarliliklar: 'hiyerarsik bootstrap (hucre icinde kosular, goruntuler ortak, B = 2000)'. Uygulama: (i) goruntu bootstrap agirliklari W (n x B) dondurulmus bootstrap_agirlik() ile bir kez cekilir ve butun hucrelerde, butun modellerde ve uc nicelikte (K-a, K-b, K-c) ortaktir; her kopyada sigma, rho ve S dondurulmus model_duzeyi() ile bolunmus yari, log olcek ve birincil panel P uzerinden agirlikli oranlardan hesaplanir. (ii) K-c icin tohumlar dondurulmus b2_coz() dongusuyle birebir cekilir (V-scr icinde yerine koyarak; ozdes tohum ciftleri disarida; yalniz tek farkli tohum iceren ornek yeniden cekilir). (iii) Ardindan ayni RNG ile her kopyada once C1-R32 hucresinin, sonra V-scr hucresinin kosulari hucre icinde yerine koyarak cekilir (sR, sV; her biri hucre buyuklugu kadar). K-a: k'inci cift (R[sR[k]], V[sV[k]]), q_k = [sigma(R) - sigma(V)] / [S(R) - S(V)], istatistik ort_k q_k. K-b: ort_i rho(V[sV[i]]). Aralik yuzdelik (%90: 5-95, %95: 2,5-97,5; np.percentile dogrusal aradegerleme), K-c ile ayni. Bootstrap p: K-a (1 + #{ort q* <= 0,50})/(B + 1); K-b TOST max[(1 + #{rho* <= -delta})/(B + 1), (1 + #{rho* >= +delta})/(B + 1)]; K-c dondurulmus tanim. Karar karsilastirmasi: dondurulmus b2_karar() kurallari, t araliklari ve t p'leri yerine bootstrap araliklari ve bootstrap p'leri konarak (Holm, aile buyuklugu 3) yeniden uygulanir; nokta kestirimleri degismez. Duyarlilik varyanti (cift_duzeyi): kosu ciftleri birim olarak cekilir (sR cift indeksi olarak kullanilir).",
+ "hucreler": {
+  "C1-R32": [
+   "C100_ResNet18_AT_s1001",
+   "C100_ResNet18_AT_s1002",
+   "C100_ResNet18_AT_s1003"
+  ],
+  "V-scr": [
+   "C100_ViT_Tiny_AT_s2001",
+   "C100_ViT_Tiny_AT_s2002",
+   "C100_ViT_Tiny_AT_s2003"
+  ]
+ },
+ "tohum_ciftleri": [
+  [
+   "C100_ResNet18_AT_s1001",
+   "C100_ViT_Tiny_AT_s2001"
+  ],
+  [
+   "C100_ResNet18_AT_s1002",
+   "C100_ViT_Tiny_AT_s2002"
+  ],
+  [
+   "C100_ResNet18_AT_s1003",
+   "C100_ViT_Tiny_AT_s2003"
+  ]
+ ],
+ "panel": [
+  "C100_Rice2020Overfitting",
+  "C100_Rade2021Helper_R18_ddpm",
+  "C100_Addepalli2022Efficient_RN18",
+  "C100_Sehwag2021Proxy",
+  "C100_Pang2022Robustness_WRN28_10",
+  "C100_Wang2023Better_WRN-28-10",
+  "C100_Jia2022LAS-AT_34_10"
+ ],
+ "dogrulama": {
+  "nokta_kestirimleri_dondurulmus_json_ile_maks_fark": {
+   "K-a.q": 0.0,
+   "K-a.D": 0.0,
+   "K-a.sinama.ort": 0.0,
+   "K-a.sinama.ci90": 0.0,
+   "K-a.sinama.ci95": 0.0,
+   "K-b.degerler": 0.0,
+   "K-b.ort": 0.0,
+   "K-b.ci90": 0.0,
+   "K-b.ci95": 0.0,
+   "K-b.tost_p": 0.0,
+   "K-c.Delta_w": 0.0
+  },
+  "nokta_esit": true,
+  "K-c_yeniden_uretim_maks_fark": {
+   "ci90": 0.0,
+   "ci95": 0.0,
+   "p_tek_H0_Delta_le_0": 0.0,
+   "yeniden_cekilen_tek_tohumlu_ornek": 0
+  },
+  "K-c_esit": true,
+  "tutarlilik": {
+   "hedef_maskesi_tutarli": true,
+   "tutarsiz_hedefler": []
+  },
+  "cakismalar": []
+ },
+ "K-a": {
+  "nokta_ort_q": 0.8397036613613249,
+  "q_s": [
+   0.8478161181351545,
+   0.8613811262744356,
+   0.8099137396743846
+  ],
+  "D_s": [
+   0.3880467036990032,
+   0.4585194155509873,
+   0.4475934722507069
+  ],
+  "t_ci90": [
+   0.7947326621681496,
+   0.8846746605545002
+  ],
+  "t_ci95": [
+   0.7734380627441837,
+   0.9059692599784661
+  ],
+  "t_p_tek_H0_q_le_0.5": 0.001024558430526401,
+  "bootstrap": {
+   "ci90": [
+    0.7995957225484839,
+    0.88027734840467
+   ],
+   "ci95": [
+    0.7901461929432726,
+    0.8901191850934282
+   ],
+   "ort": 0.8398151735093167,
+   "sd": 0.024843348804861182,
+   "p_tek_H0_q_le_0.5": 0.0004997501249375312,
+   "D_le_0.10_kopya_sayisi": 0
+  },
+  "cift_duzeyi_varyant": {
+   "ci90": [
+    0.8004052342046205,
+    0.8803753634598336
+   ],
+   "ci95": [
+    0.7924081515819275,
+    0.890020871800581
+   ],
+   "sd": 0.024506732463243402,
+   "D_le_0.10_kopya_sayisi": 0
+  }
+ },
+ "K-b": {
+  "nokta_ort_rho": 0.142602109468218,
+  "rho_s": [
+   0.13430050956636613,
+   0.12332239261596889,
+   0.17018342622231897
+  ],
+  "t_ci90": [
+   0.10128400264886685,
+   0.18392021628756916
+  ],
+  "t_ci95": [
+   0.08171911528900937,
+   0.2034851036474266
+  ],
+  "t_tost_p": 0.9525597633456266,
+  "bootstrap": {
+   "ci90": [
+    0.10625678487122059,
+    0.1780169447263082
+   ],
+   "ci95": [
+    0.09845762122422458,
+    0.1854644693434238
+   ],
+   "ort": 0.14278102785907687,
+   "sd": 0.022255331788989835,
+   "tost_p": 0.9700149925037481,
+   "tost_p_alt": 0.0004997501249375312,
+   "tost_p_ust": 0.9700149925037481,
+   "tost_p_delta_0.06": 1.0,
+   "ci90_delta_icinde": false,
+   "ci95_sifiri_disliyor": true
+  },
+  "cift_duzeyi_varyant": {
+   "ci90": [
+    0.10539068890114625,
+    0.1776519020398458
+   ],
+   "ci95": [
+    0.09796404453615347,
+    0.1859608141084512
+   ],
+   "sd": 0.0221386670478836,
+   "ci90_delta_icinde": false
+  }
+ },
+ "K-c": {
+  "Delta_w": 0.5194405538532272,
+  "dondurulmus_bootstrap": {
+   "ci90": [
+    0.46895651817321776,
+    0.5990933537483215
+   ],
+   "ci95": [
+    0.46338621228933335,
+    0.6042318105697632
+   ],
+   "yeniden_cekilen": 284,
+   "p": 0.0004997501249375312
+  },
+  "yeniden_bootstrap": {
+   "ci90": [
+    0.46895651817321776,
+    0.5990933537483215
+   ],
+   "ci95": [
+    0.46338621228933335,
+    0.6042318105697632
+   ],
+   "yeniden_cekilen": 284,
+   "p": 0.0004997501249375312
+  }
+ },
+ "karar": {
+  "kural": "dondurulmus b2_karar(); t araliklari ve t p'leri yerine bootstrap araliklari ve p'leri",
+  "p_ham_bootstrap": [
+   0.0004997501249375312,
+   0.9700149925037481,
+   0.0004997501249375312
+  ],
+  "p_holm_bootstrap": [
+   0.0014992503748125937,
+   0.9700149925037481,
+   0.0014992503748125937
+  ],
+  "p_holm_dondurulmus": [
+   0.002049116861052802,
+   0.9525597633456266,
+   0.0014992503748125937
+  ],
+  "karsilastirma": {
+   "K-a": {
+    "dondurulmus": "destek",
+    "bootstrap_araligiyla": "destek",
+    "degisti": false
+   },
+   "K-b": {
+    "dondurulmus": "curutuldu (pozitif yon)",
+    "bootstrap_araligiyla": "curutuldu (pozitif yon)",
+    "degisti": false
+   },
+   "K-c": {
+    "dondurulmus": "destek",
+    "bootstrap_araligiyla": "destek",
+    "degisti": false
+   }
+  },
+  "degisen": [],
+  "delta_0.06": {
+   "p_holm_bootstrap": [
+    0.0014992503748125937,
+    1.0,
+    0.0014992503748125937
+   ],
+   "karsilastirma": {
+    "K-a": {
+     "dondurulmus": "destek",
+     "bootstrap_araligiyla": "destek",
+     "degisti": false
+    },
+    "K-b": {
+     "dondurulmus": "curutuldu (pozitif yon)",
+     "bootstrap_araligiyla": "curutuldu (pozitif yon)",
+     "degisti": false
+    },
+    "K-c": {
+     "dondurulmus": "destek",
+     "bootstrap_araligiyla": "destek",
+     "degisti": false
+    }
+   },
+   "degisen": []
+  },
+  "bootstrap_karar_tam": {
+   "K-a": "destek",
+   "K-a_ongoru_buyuklugu_tuttu (her tohumda q >= 0,75)": true,
+   "K-b": "curutuldu (pozitif yon)",
+   "K-b_ham_ci90_delta_icinde": false,
+   "K-b_eski_yalniz_pozitif_okuma_curutme": true,
+   "K-c": "destek",
+   "K-c_ongoru_buyuklugu_tuttu (Delta_w >= 0,30)": true
+  }
+ }
+}

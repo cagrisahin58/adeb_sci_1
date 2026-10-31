@@ -62,7 +62,14 @@
 % (KONSEY_PLANI Sec. 9) uzerine kuruldu; brif 12 Sec. 1.1: ABD imlasi,
 % "CNN-ViT" (iki yon), "x" yerine "-by-". Eski "Source-Effect" basligi O1 ile
 % celistigi icin kalkti.
-\title{Not a Weak Source but a Different One: Vulnerability, Similarity
+% 2026-10-31 hakem konseyi turu (raporlar/hakem_konsey_2026-10-31/birlesik.md
+% B2; ana oturum karari 1): "Not a Weak Source but a Different One" yerine
+% "Less a Weak Source than a Different One". Gerekce: K-b(B9) CIFAR-100'de
+% curutuldu (rho +0.143, FOY:M10.2:1839), XCiT ikincil panelinde rho +0.20
+% (FOY:M9.5:1606), cift ici r_RV +0.115 (FOY:M9.9:1708); simetrik pay iki veri
+% kumesinde de baskin (0.936 ve 0.840), "less ... than" dogru niceleme.
+% Brif 12 Sec. 1.1'den tek sapma; Sec. 2 iddia siniri Sec. 1.1'den once gelir.
+\title{Less a Weak Source than a Different One: Vulnerability, Similarity
 and Direction in CNN-ViT Adversarial Transfer under an
 Architecture-by-Initialization Design}
 
@@ -113,8 +120,17 @@ AND \"OZAL YILDIRIM\authorrefmark{2}}
 % FOY:M10.5:1971,1973,1975 (ana etki artikli Spearman 0.944, 0.912, 0.893)
 % FOY:Tablo III:160,162 (hedef-dogru +4.36, basarili-kaynak +19.37)
 % KAYNAK: ON_KAYIT Sec. 2-3 (yedi uyeli panel); FOY:M9.5:1593 (uc tohum cifti)
+% 2026-10-31 hakem konseyi turu (birlesik.md B1-B5, B7, B10, B17; ana oturum
+% karari 3): ozet yeniden kuruldu. K-b(B9) "refuted" ve CIFAR-100'de ViT de
+% yonlu olarak zayif kaynak; sifirdan ViT'nin dusuk temiz dogrulugu karistirici
+% olarak tek yan cumle (FOY:M9.2:1496,1498); aralik turu "egitim kosulari
+% uzerinden, test goruntuleri ve panele kosullu"; hucre basina iki ya da uc
+% kosu (FOY:M9.2:1505-1513); "necessary condition" kalkti; PGD-10 ile AA farki
+% parantezi, 4.36/19.37 cumlesi, K-c (Delta_seed +0.566) ve H2 araligi 250 kelime
+% icin cikti (govdede IV-C, IV-D, IV-E ve katki 4); ozet 249 kelime. Yeni ozetteki
+% sayilarin hepsi yukaridaki FOY satirlarindadir; Tablo III satiri artik ozette yok.
 \begin{abstract}
-Adversarially trained ViTs look like weak transfer sources against CNNs, but two models cannot split this asymmetry between source and target. We factor each log target-correct transfer rate into target vulnerability $w$, symmetric similarity $\bar{\tau}$ and directional residual $r$, averaged over a fixed panel of seven robust CNNs, testing pre-registered predictions with three seeds (brackets: 90\% intervals). On CIFAR-10, 0.936 [0.925, 0.948] of ViT-Tiny's panel source gap to ResNet-18 is symmetric, the ViT's directional term ($+0.012$) is equivalent to zero within $\pm0.10$, and ViT seeds resemble each other more than the panel ($\Delta_{\mathrm{seed}}=+0.566$). In an architecture-by-initialization design at a matched pipeline, the scratch-trained ViT resembles the panel less than the ResNet ($-0.364$ [$-0.415$, $-0.314$]), ImageNet initialization narrows it more for the ViT ($+0.260$ [0.186, 0.335]), and on the log scale architecture leaves direction unchanged ($+0.003$). The gap survives each source's best permitted attack (0.960 [0.941, 0.976]), and AutoAttack flags no new model for masking (PGD-10 gaps 3.20--7.40 points). On CIFAR-100 the symmetric share (0.840) and seed similarity replicate but the ViT's small directional term does not ($+0.143$), and on the logit scale it is strongly negative on both datasets, confining a small directional term to CIFAR-10, the log scale and a CNN panel. On ImageNetV2, transformers in two clean-pretrained same-recipe pairs are descriptively less similar to the panel ($-0.142$ [$-0.197$, $-0.090$]), and input-gradient cosine, a necessary condition for similar transfer, tracks similarity on three datasets (residual Spearman 0.893--0.944). The conditioning protocol alone moves the asymmetry from 4.36 to 19.37 points.
+Adversarially trained ViTs look like weak transfer sources against CNNs, but two models cannot split this asymmetry between source and target. We factor log target-correct transfer rates into target vulnerability, symmetric similarity and directional residual, averaged over a fixed panel of seven robust ResNet-family CNNs, testing registered predictions with two or three runs per cell (brackets: 90\% intervals over training runs, conditional on test images and panel). On CIFAR-10, 0.936 [0.925, 0.948] of ViT-Tiny's panel source gap to ResNet-18 is symmetric, and the ViT's directional term ($+0.012$) is equivalent to zero within $\pm0.10$. In an architecture-by-initialization design on a matched pipeline, the scratch-trained ViT is less similar to the panel than the ResNet ($-0.364$ [$-0.415$, $-0.314$]), a contrast confounded with its lower clean accuracy. ImageNet initialization narrows it more for the ViT ($+0.260$); averaged over initialization, architecture leaves the log directional term within $\pm0.10$ ($+0.003$). The gap is retained under the best of PGD-10, momentum PGD and adapted token gradient regularization (0.960), and AutoAttack flags no new model for masking. On CIFAR-100 the symmetric share (0.840) replicates, but equivalence of the ViT's directional term is refuted ($+0.143$): there the ViT is also a directionally weaker source. A small directional term holds only on CIFAR-10, the log scale and a CNN panel; on the logit scale it is strongly negative. On ImageNetV2, transformers in two same-recipe pairs are descriptively less similar to the panel ($-0.142$), and input-gradient cosine tracks similarity on three datasets (Spearman 0.893--0.944 net of additive model effects).
 \end{abstract}
 
 \begin{IEEEkeywords}

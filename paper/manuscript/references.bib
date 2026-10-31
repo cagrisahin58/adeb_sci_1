@@ -689,6 +689,10 @@
 % IEEEtran note alanini kaynakcaya basiyordu)
 % brif tablosunda "dogrulanmadi" olarak isaretlidir ve atif-kontrol
 % turunda dogrulanmadan VERIFIED sayilmaz. Hicbir DOI tahminle yazilmadi.
+% atif-kontrol turu 31.10.2026 (raporlar/atif_2026-10-31/rapor.md): 12 TODO
+% girdisinin 10'u VERIFIED, alan kaldirildi; rade2022reducing ve
+% mantel1967detection gercek ama DOI/arXiv kimligi yok, alan
+% "GERCEK_KIMLIKSIZ" degeriyle kaldi. Yedek: references.bib.bak.
 % ============================================================================
 
 % arXiv API 31.10.2026: baslik ve dort yazar okundu; yayin yeri yok (on baski).
@@ -760,12 +764,18 @@
   archiveprefix = {arXiv}
 }
 
-% arXiv API 31.10.2026: yorum alani "IJCV [under review]"; on baski olarak.
-@misc{liu2023comprehensive,
+% atif-kontrol 31.10.2026: on baski IJCV'de yayimlanmis (Crossref
+% 10.1007/s11263-024-02196-3, cilt 133, sayi 2, 567-589, Subat 2025);
+% yayimlanmis surume cevrildi, anahtar korundu.
+@article{liu2023comprehensive,
   author       = {Liu, Chang and Dong, Yinpeng and Xiang, Wenzhao and Yang, Xiao and Su, Hang and Zhu, Jun and Chen, Yuefeng and He, Yuan and Xue, Hui and Zheng, Shibao},
   title        = {A Comprehensive Study on Robustness of Image Classification Models: Benchmarking and Rethinking},
-  howpublished = {arXiv preprint arXiv:2302.14301},
-  year         = {2023},
+  journal      = {International Journal of Computer Vision},
+  volume       = {133},
+  number       = {2},
+  pages        = {567--589},
+  year         = {2025},
+  doi          = {10.1007/s11263-024-02196-3},
   eprint       = {2302.14301},
   archiveprefix = {arXiv}
 }
@@ -793,27 +803,30 @@
   doi          = {10.2307/2413122}
 }
 
-% arXiv API 31.10.2026: baslik ve yazarlar okundu; yayin yeri (ICML 2021)
-% API'de yok. Brif: dogrulanmadi.
+% atif-kontrol 31.10.2026: arXiv 2012.12877 (arxiv.org/abs) + Semantic Scholar
+% + PMLR v139 touvron21a sayfasi; VERIFIED.
 @inproceedings{touvron2021training,
   author       = {Touvron, Hugo and Cord, Matthieu and Douze, Matthijs and Massa, Francisco and Sablayrolles, Alexandre and J{\'e}gou, Herv{\'e}},
   title        = {Training Data-Efficient Image Transformers \& Distillation through Attention},
   booktitle    = {Proc. International Conference on Machine Learning ({ICML})},
+  series       = {Proceedings of Machine Learning Research},
+  volume       = {139},
+  pages        = {10347--10357},
+  publisher    = {PMLR},
   year         = {2021},
   eprint       = {2012.12877},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
-% arXiv API 31.10.2026: baslik ve yazarlar okundu. Brif: dogrulanmadi.
+% atif-kontrol 31.10.2026: arXiv 2110.00476 (arxiv.org/abs) + Semantic Scholar;
+% yalniz on baski, VERIFIED.
 @misc{wightman2021resnet,
   author       = {Wightman, Ross and Touvron, Hugo and J{\'e}gou, Herv{\'e}},
   title        = {{ResNet} Strikes Back: An Improved Training Procedure in timm},
   howpublished = {arXiv preprint arXiv:2110.00476},
   year         = {2021},
   eprint       = {2110.00476},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
 % arXiv API 31.10.2026: baslik ve yazarlar okundu (ImageNetV2).
@@ -821,6 +834,10 @@
   author       = {Recht, Benjamin and Roelofs, Rebecca and Schmidt, Ludwig and Shankar, Vaishaal},
   title        = {Do {ImageNet} Classifiers Generalize to {ImageNet}?},
   booktitle    = {Proc. International Conference on Machine Learning ({ICML})},
+  series       = {Proceedings of Machine Learning Research},
+  volume       = {97},
+  pages        = {5389--5400},
+  publisher    = {PMLR},
   year         = {2019},
   eprint       = {1902.10811},
   archiveprefix = {arXiv}
@@ -837,9 +854,10 @@
   archiveprefix = {arXiv}
 }
 
-% RobustBench panel uyeleri (brif Sec. 7: "dogrulanmadi"). arXiv kimlikleri
-% ve basliklar 31.10.2026'da arXiv API'den okundu; RobustBench kimligi ile
-% makale eslesmesi atif-kontrol turunda dogrulanacak.
+% RobustBench panel uyeleri. atif-kontrol 31.10.2026: her RobustBench kimligi
+% robustbench/model_info/<veri>/Linf/<kimlik>.json kaydindaki baslik, yazar ve
+% baglantiyla eslestirildi; arXiv kimlikleri arxiv.org/abs ve Semantic Scholar
+% ile, DOI'ler Crossref ile dogrulandi.
 % RobustBench: Sehwag2021Proxy_R18 (CIFAR-10), Sehwag2021Proxy (CIFAR-100).
 @inproceedings{sehwag2022robust,
   author       = {Sehwag, Vikash and Mahloujifar, Saeed and Handina, Tinashe and Dai, Sihui and Xiang, Chong and Chiang, Mung and Mittal, Prateek},
@@ -847,8 +865,7 @@
   booktitle    = {Proc. International Conference on Learning Representations ({ICLR})},
   year         = {2022},
   eprint       = {2104.09425},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
 % RobustBench: Addepalli2022Efficient_RN18.
@@ -859,18 +876,22 @@
   volume       = {35},
   year         = {2022},
   eprint       = {2210.15318},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
-% RobustBench: Rade2021Helper_R18_ddpm. arXiv kimligi ve DOI bulunamadi
-% (Crossref aramasi 31.10.2026 sonuc vermedi); baslik hafizadan, dogrulanmadi.
+% RobustBench: Rade2021Helper_R18_ddpm. RobustBench kaydi ayni calismanin
+% ICML 2021 AdvML calistay surumune baglanir ("Helper-based Adversarial
+% Training: ...", openreview BuD2LmNaU3a); arsivsel surum ICLR 2022.
+% atif-kontrol 31.10.2026: varlik iclr.cc/virtual/2022/poster/5907 ve
+% mlanthology/OpenReview Azh9QBQ4tR7 ile dogrulandi. DOI ve arXiv kimligi yok;
+% kullanici kurali geregi VERIFIED sayilmaz (sinif: GERCEK_KIMLIKSIZ).
 @inproceedings{rade2022reducing,
   author       = {Rade, Rahul and Moosavi-Dezfooli, Seyed-Mohsen},
   title        = {Reducing Excessive Margin to Achieve a Better Accuracy vs. Robustness Trade-off},
   booktitle    = {Proc. International Conference on Learning Representations ({ICLR})},
   year         = {2022},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  url          = {https://openreview.net/forum?id=Azh9QBQ4tR7},
+  x-atifkontrol = {GERCEK_KIMLIKSIZ: OpenReview Azh9QBQ4tR7; DOI/arXiv yok}
 }
 
 % RobustBench: Pang2022Robustness_WRN28_10 (CIFAR-100).
@@ -878,10 +899,13 @@
   author       = {Pang, Tianyu and Lin, Min and Yang, Xiao and Zhu, Jun and Yan, Shuicheng},
   title        = {Robustness and Accuracy Could Be Reconcilable by (Proper) Definition},
   booktitle    = {Proc. International Conference on Machine Learning ({ICML})},
+  series       = {Proceedings of Machine Learning Research},
+  volume       = {162},
+  pages        = {17258--17277},
+  publisher    = {PMLR},
   year         = {2022},
   eprint       = {2202.10103},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
 % RobustBench: Jia2022LAS-AT_34_10 (CIFAR-100). arXiv journal_ref: CVPR 2022.
@@ -889,10 +913,11 @@
   author       = {Jia, Xiaojun and Zhang, Yong and Wu, Baoyuan and Ma, Ke and Wang, Jue and Cao, Xiaochun},
   title        = {{LAS-AT}: Adversarial Training with Learnable Attack Strategy},
   booktitle    = {Proc. IEEE/CVF Conference on Computer Vision and Pattern Recognition ({CVPR})},
+  pages        = {13388--13398},
   year         = {2022},
+  doi          = {10.1109/CVPR52688.2022.01304},
   eprint       = {2203.06616},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
 % RobustBench: Hendrycks2019Using (CIFAR-100 ikincil panel).
@@ -900,10 +925,13 @@
   author       = {Hendrycks, Dan and Lee, Kimin and Mazeika, Mantas},
   title        = {Using Pre-Training Can Improve Model Robustness and Uncertainty},
   booktitle    = {Proc. International Conference on Machine Learning ({ICML})},
+  series       = {Proceedings of Machine Learning Research},
+  volume       = {97},
+  pages        = {2712--2721},
+  publisher    = {PMLR},
   year         = {2019},
   eprint       = {1901.09960},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
 % RobustBench: Salman2020Do_R18, Salman2020Do_R50, Salman2020Do_50_2 (ImageNet).
@@ -914,12 +942,11 @@
   volume       = {33},
   year         = {2020},
   eprint       = {2007.08489},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
-% RobustBench: Chen2024Data_WRN_50_2 (ImageNet). Baslik, yazarlar, cilt ve
-% DOI Crossref aramasindan (31.10.2026); RobustBench eslesmesi dogrulanmadi.
+% RobustBench: Chen2024Data_WRN_50_2 (ImageNet). Crossref DOI ve RobustBench
+% model_info kaydi (ayni DOI baglantisi) ile dogrulandi (atif-kontrol 31.10.2026).
 @article{chen2024data,
   author       = {Chen, Erh-Chung and Lee, Che-Rung},
   title        = {Data Filtering for Efficient Adversarial Training},
@@ -927,8 +954,7 @@
   volume       = {151},
   pages        = {110394},
   year         = {2024},
-  doi          = {10.1016/j.patcog.2024.110394},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  doi          = {10.1016/j.patcog.2024.110394}
 }
 
 % RobustBench: Peng2023Robust (ImageNet). arXiv yorum alani "Published at BMVC'23".
@@ -938,12 +964,13 @@
   booktitle    = {Proc. British Machine Vision Conference ({BMVC})},
   year         = {2023},
   eprint       = {2308.16258},
-  archiveprefix = {arXiv},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  archiveprefix = {arXiv}
 }
 
-% Mantel testinin ozgun kaynagi. Crossref aramasi (31.10.2026) yalniz 2016
-% tarihli bir yorum yazisini dondurdu; cilt ve sayfa hafizadan, DOI yazilmadi.
+% Mantel testinin ozgun kaynagi. atif-kontrol 31.10.2026: PubMed PMID 6018555
+% (Cancer Res 1967 Feb;27(2 Part 1):209-220) ve PMC kaynakcalari ile kunye
+% dogrulandi. DOI ve arXiv kimligi yok; kullanici kurali geregi VERIFIED
+% sayilmaz (sinif: GERCEK_KIMLIKSIZ).
 @article{mantel1967detection,
   author       = {Mantel, Nathan},
   title        = {The Detection of Disease Clustering and a Generalized Regression Approach},
@@ -951,8 +978,9 @@
   volume       = {27},
   number       = {2},
   pages        = {209--220},
+  month        = feb,
   year         = {1967},
-  x-atifkontrol = {TODO: dogrulanmadi}
+  x-atifkontrol = {GERCEK_KIMLIKSIZ: PMID 6018555; DOI/arXiv yok}
 }
 
 % arXiv API 31.10.2026: yorum alani "NeurIPS '21" (istege bagli atif).

@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
 """Decomposition schematic (brief 12, section 6.2). No data: symbols only.
 
-One column (3.5 in), read top to bottom. (1) The two-model target-correct transfer matrix T with the
+Change log (degisiklik notu):
+- 2026-10-31, hakem konseyi m15 (birlesik.md; mercek_sunum bulgu 12): panels lettered (a)-(d) like
+  every other figure (were (1)-(4)); the panel mean is written <.>_P (angle brackets with subscript
+  P) instead of an overline, so it no longer collides with the overline of tau-bar (geometric mean
+  of the two directions): sigma_m = <log tau-bar_mc>_P, rho_m = <r_cm>_P. The grey note under (b)
+  defines <.>_P. NOTE for the author: the caption of fig:decomposition_schematic (03_methodology)
+  still says "overline: mean over panel members"; it should say "<.>_P: mean over panel members".
+- 2026-10-31, mercek_sunum bulgu 13 (A12, small type): the two definitions in (a) use display-style
+  fractions (dfrac), so subscripts inside the fraction print at 0.7 x 9 = 6.3 pt instead of
+  0.7 x 0.7 x 9 = 4.4 pt.
+- 2026-10-31: width 3.358 in (= columnwidth of ieeeaccess.cls, see konsey_ortak.py).
+
+One column (3.358 in), read top to bottom. (a) The two-model target-correct transfer matrix T with the
 white-box vulnerabilities w on the diagonal, next to the definitions of the symmetric similarity
-log tau_ij and the directional residual r_ij. (2) The exact split
-log T_ij = log w_j + log tau_ij + r_ij / 2. (3) Averages over a fixed CNN panel P give the model-level
-similarity sigma_m and direction rho_m. (4) The panel source gap of V relative to R is a symmetric
+log tau_ij and the directional residual r_ij. (b) The exact split
+log T_ij = log w_j + log tau_ij + r_ij / 2. (c) Averages <.>_P over a fixed CNN panel P give the
+model-level similarity sigma_m and direction rho_m. (d) The panel source gap of V relative to R is a symmetric
 part plus a directional part. Colours follow the council palette (similarity green, direction
 orange); every coloured term also carries a word label, so the figure reads in grey scale.
 
@@ -130,10 +142,11 @@ def main():
     ax.set_xlabel("target $j$", labelpad=6)
     ax.xaxis.set_label_position("top")
     ax.set_ylabel("source $i$", labelpad=3)
-    fig.text(0.53, 0.83, r"$\log\bar\tau_{ij}=\frac{1}{2}\log\frac{T_{ij}\,T_{ji}}{w_i\,w_j}$", color=sym, fontsize=9,
-             ha="left", va="center")
-    fig.text(0.53, 0.735, r"$r_{ij}=\log\frac{T_{ij}\,w_i}{T_{ji}\,w_j}$", color=dr, fontsize=9, ha="left", va="center")
-    fig.text(0.53, 0.665, "diagonal: white-box rate", fontsize=8, ha="left", va="center", color=K.MUTE)
+    fig.text(0.50, 0.845, r"$\log\bar\tau_{ij}=\frac{1}{2}\log\dfrac{T_{ij}\,T_{ji}}{w_i\,w_j}$", color=sym,
+             fontsize=9, ha="left", va="center")
+    fig.text(0.50, 0.745, r"$r_{ij}=\log\dfrac{T_{ij}\,w_i}{T_{ji}\,w_j}$", color=dr, fontsize=9, ha="left",
+             va="center")
+    fig.text(0.50, 0.665, "diagonal: white-box rate", fontsize=8, ha="left", va="center", color=K.MUTE)
     arrow(fig, 0.5, 0.64, 0.605)
 
     # (2) exact split
@@ -141,19 +154,20 @@ def main():
                               (r"$\log w_j$", K.INK, "vulnerability", 9), ("+", K.INK, None, 9),
                               (r"$\log\bar\tau_{ij}$", sym, "similarity", 9), ("+", K.INK, None, 9),
                               (r"$\frac{1}{2}\,r_{ij}$", dr, "direction", 9)], 0.06, W)
-    fig.text(0.5, 0.445, r"mean over a fixed CNN panel $c\in P$", fontsize=8, ha="center", va="center", color=K.MUTE)
+    fig.text(0.5, 0.445, r"$\langle\cdot\rangle_P$: mean over a fixed CNN panel $c\in P$", fontsize=8, ha="center",
+             va="center", color=K.MUTE)
     arrow(fig, 0.5, 0.42, 0.385)
 
     # (3) panel averages
-    place_row(fig, R, 0.33, [(r"$\sigma_m=\overline{\log\bar\tau_{mc}}$", sym, "panel similarity", 9),
-                             (r"$\rho_m=\overline{r_{cm}}$", dr, "direction ($m$ as target)", 9)], 0.28, W)
+    place_row(fig, R, 0.33, [(r"$\sigma_m=\langle\log\bar\tau_{mc}\rangle_P$", sym, "panel similarity", 9),
+                             (r"$\rho_m=\langle r_{cm}\rangle_P$", dr, "direction ($m$ as target)", 9)], 0.22, W)
     arrow(fig, 0.5, 0.235, 0.19)
 
     # (4) source gap
     place_row(fig, R, 0.125, [(r"$G$", K.INK, "source gap", 9), ("=", K.INK, None, 9),
                               (r"$(\sigma_R-\sigma_V)$", sym, "symmetric part", 9),
                               (r"$-\,\frac{1}{2}(\rho_R-\rho_V)$", dr, "directional part", 9)], 0.11, W)
-    for lab, y in (("(1)", 0.955), ("(2)", 0.565), ("(3)", 0.345), ("(4)", 0.14)):
+    for lab, y in (("(a)", 0.955), ("(b)", 0.565), ("(c)", 0.345), ("(d)", 0.14)):
         K.panel_label(fig, 0.01, y, lab, va="center")
 
     min_pt = K.layout_checks(fig)
@@ -165,8 +179,10 @@ def main():
                         f"gap formula (4) on the same matrices: max abs residual {wgap:.1e}",
                         "no text overlap, all text inside, >= 8 pt, no Type 3 font"],
                        ["No number from any result file is drawn; the only numerals are the 1/2 of the definitions.",
-                        "Overline denotes the mean over panel members c in P (for a panel member, P without itself), "
-                        "as in brief 12 section 3.1; the caption should say so.",
+                        "<.>_P denotes the mean over panel members c in P (for a panel member, P without itself); "
+                        "since 2026-10-31 (m15) it replaces the overline of brief 12 section 3.1, which collided with "
+                        "the overline of tau-bar. The caption must say '<.>_P: mean over panel members'.",
+                        "Panels lettered (a)-(d) since 2026-10-31 (m15).",
                         "rho_m = mean_c r_cm: positive rho_m means m is directionally the weaker source."],
                        moved, extra={"rastgele_denetim_tohumu": args.seed})
     print(f"written: {pdf}\nwritten: {png}\nwritten: {kp}")

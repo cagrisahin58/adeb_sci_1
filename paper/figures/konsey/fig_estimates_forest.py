@@ -1,7 +1,19 @@
 #!/usr/bin/env python3
 """Registered estimates with 90% and 95% intervals on the log and logit scales (brief 12, section 6.8).
 
-One column (3.5 in), two panels stacked.
+Change log (degisiklik notu):
+- 2026-10-31, hakem konseyi m1 (birlesik.md; mercek_istatistik bulgu 4): the +-delta margin is
+  registered for log quantities only (on kayit section 5, line 50). The grey band in (b) and the
+  +-delta and H1-size reference lines in (a) are now drawn over the log-scale rows only. To make
+  that a single block, rows are regrouped: in (a) registered log rows, then the descriptive
+  ImageNetV2 rows (log), then the logit rows; in (b) the three log rows, then the three logit rows.
+  Legend entries say "log rows" and print the margin read from meta.delta (0.10, as in the caption).
+- 2026-10-31, m6 (mercek_istatistik bulgu 13): the ImageNetV2 rows carry image-bootstrap intervals,
+  not run-level ones; the block is now set off by separators and labelled "image bootstrap" inside
+  the axes, in addition to the open markers.
+- 2026-10-31: width 3.358 in (= columnwidth of ieeeaccess.cls, see konsey_ortak.py).
+
+One column (3.358 in), two panels stacked.
 (a) Contrasts on panel similarity sigma: H1 (A^sigma_scr) and H2 (I^sigma) on the log and logit
     scales, and the descriptive ImageNetV2 pair estimates (pair 1, pair 2, their mean A^sigma_IN,
     and the Liu scratch-row pair), drawn with open markers. Reference lines at 0, +-delta and at
@@ -48,7 +60,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--name", default="fig_estimates_forest")
     ap.add_argument("--width-in", type=float, default=K.SINGLE_IN)
-    ap.add_argument("--height-in", type=float, default=4.9)
+    ap.add_argument("--height-in", type=float, default=5.0)
     ap.add_argument("--dpi", type=int, default=300)
     ap.add_argument("--seed", type=int, default=0, help="no randomness; kept for the log")
     args = ap.parse_args()
@@ -83,6 +95,12 @@ def main():
                        "| Yari logit"))
     b_rows.append(("H3, log", "log", "reg", est(H["H3"]), 1528, "| H3, A^rho"))
     b_rows.append(("H3, logit", "logit", "reg", est(HL["H3"]), 1551, "| Logit olcek"))
+    # m1 regrouping: log rows first (one contiguous block for the registered margin), logit rows last
+    a_rows = ([r for r in a_rows if r[1] == "log" and r[2] == "reg"] + [r for r in a_rows if r[2] == "desc"]
+              + [r for r in a_rows if r[1] == "logit"])
+    b_rows = [r for r in b_rows if r[1] == "log"] + [r for r in b_rows if r[1] == "logit"]
+    if any(r[1] != "log" for r in a_rows if r[2] == "desc"):
+        K.fail("descriptive ImageNetV2 rows are expected on the log scale")
     for lab, _, _, d, n, anc in a_rows + b_rows:
         foy.kontrol(f"{lab}: estimate", d["e"], n, anc, 3)
         for nm in ("c90", "c95"):
@@ -105,13 +123,15 @@ def main():
     W, Hh = args.width_in, args.height_in
     fig = plt.figure(figsize=(W, Hh))
     fig.patch.set_facecolor("white")
-    left, right = 0.425, 0.975
+    left, right = 0.452, 0.975  # 2026-10-31: narrower column (3.358 in), longest row label must fit
     na, nb = len(a_rows), len(b_rows)
-    unit = 0.045
-    top_a = 0.945
+    # 2026-10-31: row pitch, top margin and panel gap fixed in inches (0.2205, 0.27, 0.49 in, the
+    # sizes of the 4.9 in draft) so that the taller two-column legend does not squeeze the rows
+    unit = 0.2205 / Hh
+    top_a = 1 - 0.27 / Hh
     ha_, hb_ = na * unit, nb * unit
     ax_a = fig.add_axes([left, top_a - ha_, right - left, ha_])
-    top_b = top_a - ha_ - 0.10
+    top_b = top_a - ha_ - 0.49 / Hh
     ax_b = fig.add_axes([left, top_b - hb_, right - left, hb_])
     cizilen = {}
     MK = {"log": "o", "logit": "D"}
@@ -132,13 +152,26 @@ def main():
         for sp in ("top", "right", "left"):
             ax.spines[sp].set_visible(False)
         ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:g}".replace("-", "−")))
+    # m1: reference margin only over the contiguous block of log-scale rows
+    def log_span(rws):
+        idx = [i for i, r in enumerate(rws) if r[1] == "log"]
+        if idx != list(range(len(idx))):
+            K.fail("log rows are not a leading contiguous block")
+        return -0.6, idx[-1] + 0.5, len(idx)
+    ya0, ya1, na_log = log_span(a_rows)
+    yb0, yb1, nb_log = log_span(b_rows)
     for v in (-delta, delta):
-        ax_a.axvline(v, color=K.MUTE, lw=0.6, ls=(0, (4, 2)), zorder=1)
-    ax_a.axvline(thr, color=K.MUTE, lw=0.6, ls=(0, (1, 1.5)), zorder=1)
-    ax_a.axhline(3.5, color="#d0d0d0", lw=0.5, zorder=0)
-    ax_b.axvspan(-delta, delta, color="#e4e4e4", lw=0, zorder=0)
-    for y in (1.5, 3.5):
-        ax_b.axhline(y, color="#d0d0d0", lw=0.5, zorder=0)
+        ax_a.vlines(v, ya0, ya1, color=K.MUTE, lw=0.6, ls=(0, (4, 2)), zorder=1)
+    ax_a.vlines(thr, ya0, ya1, color=K.MUTE, lw=0.6, ls=(0, (1, 1.5)), zorder=1)
+    ax_b.fill_betweenx([yb0, yb1], -delta, delta, color="#e4e4e4", lw=0, zorder=0)
+    n_reg_log_a = sum(1 for r in a_rows if r[1] == "log" and r[2] == "reg")
+    for y in (n_reg_log_a - 0.5, na_log - 0.5):
+        ax_a.axhline(y, color="#b8b8b8", lw=0.6, zorder=0)
+    ax_b.axhline(nb_log - 0.5, color="#b8b8b8", lw=0.6, zorder=0)
+    # m6: the descriptive block carries image-bootstrap intervals, not run-level ones
+    ax_a.text(0.985, (n_reg_log_a - 0.5 + na_log - 0.5) / 2, "image\nbootstrap",
+              transform=ax_a.get_yaxis_transform(), ha="right", va="center", fontsize=8, color=K.MUTE,
+              style="italic", linespacing=1.1)
     ax_a.set_xlabel(r"contrast on panel similarity $\sigma$", labelpad=2)
     ax_b.set_xlabel(r"directional term $\rho$ or $A^{\rho}$", labelpad=2)
     for ax, lab in ((ax_a, "(a)"), (ax_b, "(b)")):
@@ -148,10 +181,10 @@ def main():
           Line2D([], [], ls="none", marker="o", ms=4.4, mfc="white", mec=K.INK, mew=0.7, label="descriptive"),
           Line2D([], [], color=K.MUTE, lw=2.6, label="90% interval"),
           Line2D([], [], color=K.MUTE, lw=0.8, label="95% interval"),
-          Line2D([], [], color=K.MUTE, lw=0.6, ls=(0, (4, 2)), label=r"$\pm\delta$ (a)"),
-          Line2D([], [], color=K.MUTE, lw=0.6, ls=(0, (1, 1.5)), label="H1 size (a)"),
-          Patch(facecolor="#e4e4e4", edgecolor="none", label=r"$\pm\delta$ band (b)")]
-    fig.legend(handles=hs, loc="lower center", bbox_to_anchor=(0.5, 0.0), ncol=3, frameon=False, handletextpad=0.35,
+          Line2D([], [], color=K.MUTE, lw=0.6, ls=(0, (4, 2)), label="±" + f"{delta:.2f}" + ", log rows (a)"),
+          Line2D([], [], color=K.MUTE, lw=0.6, ls=(0, (1, 1.5)), label="H1 size, log rows (a)"),
+          Patch(facecolor="#e4e4e4", edgecolor="none", label="±" + f"{delta:.2f}" + " band, log rows (b)")]
+    fig.legend(handles=hs, loc="lower center", bbox_to_anchor=(0.5, 0.0), ncol=2, frameon=False, handletextpad=0.35,
                columnspacing=0.8, labelspacing=0.3, handlelength=1.6)
 
     min_pt = K.layout_checks(fig)
@@ -168,7 +201,11 @@ def main():
               J8P: ["ciftler[0..1].{cift, cnn, donusturucu, satir, A_sigma, goruntu_bootstrap_ci90, goruntu_bootstrap_ci95}",
                     "A_sigma_IN.{kestirim, goruntu_bootstrap.ci90, goruntu_bootstrap.ci95}",
                     "A_sigma_scr_Liu.{kestirim, goruntu_bootstrap.ci90, goruntu_bootstrap.ci95, beklenti_esigi}"]}
-    cizilen["referans_cizgileri"] = {"sifir": 0.0, "delta": delta, "H1_buyukluk_esigi": thr}
+    cizilen["referans_cizgileri"] = {"sifir": 0.0, "delta": delta, "H1_buyukluk_esigi": thr,
+                                     "yalniz_log_satirlarinda": True,
+                                     "a_log_satirlari": [r[0] for r in a_rows if r[1] == "log"],
+                                     "b_log_satirlari": [r[0] for r in b_rows if r[1] == "log"]}
+    cizilen["satir_sirasi"] = {"a": [r[0] for r in a_rows], "b": [r[0] for r in b_rows]}
     kp = K.write_kanit(out, args.name, SCRIPT_REL, sys.argv[1:], [J4P, J2P, J9P, J8P], (W, Hh), args.dpi, min_pt, okunan,
                        cizilen, foy_sonuc,
                        ["14 estimates x (point, 90% low/high, 95% low/high) vs foy (3 dp): 1526-1528, 1551, 1588, 1603, "
@@ -179,7 +216,11 @@ def main():
                         "no text overlap, all text inside, >= 8 pt, legend clear of axes, no Type 3 font"],
                        ["ImageNetV2 intervals are image-bootstrap intervals (image uncertainty only, B = 2000), "
                         "not between-pair intervals; they are drawn with open markers as descriptive.",
-                        "Ratio-scale (points) sensitivities are not drawn (different unit), per brief 12 section 6.8."],
+                        "Ratio-scale (points) sensitivities are not drawn (different unit), per brief 12 section 6.8.",
+                        "m1 (2026-10-31): the +-delta lines, the H1 size line and the grey band are drawn over the "
+                        "log-scale rows only; the margin is registered for log quantities (on kayit section 5).",
+                        "m6 (2026-10-31): the ImageNetV2 block is set off by separators and labelled 'image "
+                        "bootstrap' inside the axes."],
                        moved)
     print(f"written: {pdf}\nwritten: {png}\nwritten: {kp}")
     print(f"foy comparisons {foy_sonuc['karsilastirma_sayisi']}, all matched; min font {min_pt}")

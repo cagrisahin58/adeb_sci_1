@@ -1,0 +1,717 @@
+{
+  "sekil": "fig_source_gap_split",
+  "surum": 1,
+  "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
+  "betik": "paper/figures/konsey/fig_source_gap_split.py",
+  "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
+  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_source_gap_split.py",
+  "uretim_zamani_utc": "2026-10-31T14:37:18+00:00",
+  "girdiler_sha256": {
+    "results/q1/konsey_ayrisim_b2.json": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27",
+    "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": "762d62b4194c245e310ab9ae9b5eb82ef3476a6965597feed707a6c0b3a76cd8",
+    "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": "2c5e992eaaad49d88056f1d64f1cd7c2650657d0d49da85424f52caa9ebae0e9"
+  },
+  "git": {
+    "commit": "52364bcd19fb6514f0b7bf228ad158e763dcd858",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "M paper/figures/konsey/fig_source_gap_split.py"
+    ]
+  },
+  "yerlesim": {
+    "boyut_in": [
+      7.16,
+      2.6
+    ],
+    "dpi": 300,
+    "en_kucuk_yazi_pt": 8.0,
+    "font": "DejaVu Sans, pdf.fonttype 42",
+    "renkler": {
+      "vit": "#D55E00",
+      "r224": "#0072B2",
+      "r32": "#56B4E9",
+      "panel": "#999999",
+      "xcit": "#CC79A7",
+      "sym": "#009E73",
+      "dir": "#E69F00"
+    }
+  },
+  "okunan_anahtarlar": {
+    "results/q1/konsey_ayrisim_b2.json": [
+      "b2.F_B2.K-a.{ciftler, D, simetrik_pay, yonlu_pay, q, payda_kucuk_tohumlar}",
+      "meta.delta"
+    ],
+    "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": [
+      "b2.F_B2.K-a.{ciftler, D, simetrik_pay, yonlu_pay, q, payda_kucuk_tohumlar}",
+      "meta.delta"
+    ],
+    "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": [
+      "b2.F_B2.K-a.{ciftler, D, simetrik_pay, yonlu_pay, q, payda_kucuk_tohumlar}",
+      "meta.delta"
+    ]
+  },
+  "cizilen_degerler": {
+    "c10": [
+      {
+        "cift": [
+          "ResNet18_AT_s1001",
+          "ViT_Tiny_AT_s2001"
+        ],
+        "D": 0.390782,
+        "simetrik_pay": 0.367502,
+        "yonlu_pay": 0.02328,
+        "q": 0.940427,
+        "q_yazildi": true
+      },
+      {
+        "cift": [
+          "ResNet18_AT_s1002",
+          "ViT_Tiny_AT_s2002"
+        ],
+        "D": 0.387274,
+        "simetrik_pay": 0.35951,
+        "yonlu_pay": 0.027764,
+        "q": 0.92831,
+        "q_yazildi": true
+      },
+      {
+        "cift": [
+          "ResNet18_AT_s1003",
+          "ViT_Tiny_AT_s2003"
+        ],
+        "D": 0.389989,
+        "simetrik_pay": 0.366648,
+        "yonlu_pay": 0.023341,
+        "q": 0.94015,
+        "q_yazildi": true
+      }
+    ],
+    "c100": [
+      {
+        "cift": [
+          "C100_ResNet18_AT_s1001",
+          "C100_ViT_Tiny_AT_s2001"
+        ],
+        "D": 0.388047,
+        "simetrik_pay": 0.328992,
+        "yonlu_pay": 0.059054,
+        "q": 0.847816,
+        "q_yazildi": true
+      },
+      {
+        "cift": [
+          "C100_ResNet18_AT_s1002",
+          "C100_ViT_Tiny_AT_s2002"
+        ],
+        "D": 0.458519,
+        "simetrik_pay": 0.39496,
+        "yonlu_pay": 0.063559,
+        "q": 0.861381,
+        "q_yazildi": true
+      },
+      {
+        "cift": [
+          "C100_ResNet18_AT_s1003",
+          "C100_ViT_Tiny_AT_s2003"
+        ],
+        "D": 0.447593,
+        "simetrik_pay": 0.362512,
+        "yonlu_pay": 0.085081,
+        "q": 0.809914,
+        "q_yazildi": true
+      }
+    ],
+    "in": [
+      {
+        "cift": [
+          "IN_Singh_ConvNeXt-T-CvSt",
+          "IN_Singh_ViT-S-CvSt"
+        ],
+        "D": 0.122096,
+        "simetrik_pay": 0.166548,
+        "yonlu_pay": -0.044452,
+        "q": 1.364074,
+        "q_yazildi": true
+      },
+      {
+        "cift": [
+          "IN_Singh_ConvNeXt-B-CvSt",
+          "IN_Singh_ViT-B-CvSt"
+        ],
+        "D": 0.173075,
+        "simetrik_pay": 0.118113,
+        "yonlu_pay": 0.054962,
+        "q": 0.682438,
+        "q_yazildi": true
+      },
+      {
+        "cift": [
+          "IN_Liu_ConvNeXt-B",
+          "IN_Liu_Swin-B"
+        ],
+        "D": 0.099859,
+        "simetrik_pay": 0.054604,
+        "yonlu_pay": 0.045255,
+        "q": 0.546813,
+        "q_yazildi": false
+      }
+    ],
+    "esik_D (c)": 0.1
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 58,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results/C1_REFERANS_FOYU.md",
+    "foy_sha256": "21b2597ae9f995dffb24117d3bd4ef26f1335730c6dbc9567579e0d52dbeee06",
+    "ayrinti": [
+      {
+        "ad": "c10[0] D == sym + dir",
+        "a": 0.3907820131748867,
+        "b": 0.3907820131748865,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "c10[0] q == sym / D",
+        "a": 0.940426735813352,
+        "b": 0.940426735813352,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "c10[1] D == sym + dir",
+        "a": 0.38727356455782536,
+        "b": 0.3872735645578255,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "c10[1] q == sym / D",
+        "a": 0.9283096902319006,
+        "b": 0.9283096902319006,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "c10[2] D == sym + dir",
+        "a": 0.38998897064756965,
+        "b": 0.3899889706475692,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "c10[2] q == sym / D",
+        "a": 0.9401501389044822,
+        "b": 0.9401501389044822,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "c100[0] D == sym + dir",
+        "a": 0.3880467036990032,
+        "b": 0.3880467036990032,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "c100[0] q == sym / D",
+        "a": 0.8478161181351545,
+        "b": 0.8478161181351545,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "c100[1] D == sym + dir",
+        "a": 0.4585194155509873,
+        "b": 0.4585194155509875,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "c100[1] q == sym / D",
+        "a": 0.8613811262744356,
+        "b": 0.8613811262744356,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "c100[2] D == sym + dir",
+        "a": 0.4475934722507069,
+        "b": 0.44759347225070767,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "c100[2] q == sym / D",
+        "a": 0.8099137396743846,
+        "b": 0.8099137396743846,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "in[0] D == sym + dir",
+        "a": 0.1220957178939237,
+        "b": 0.12209571789392304,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "in[0] q == sym / D",
+        "a": 1.3640738607919007,
+        "b": 1.3640738607919007,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "in[1] D == sym + dir",
+        "a": 0.17307481798625668,
+        "b": 0.1730748179862574,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "in[1] q == sym / D",
+        "a": 0.6824380677648115,
+        "b": 0.6824380677648115,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "in[2] D == sym + dir",
+        "a": 0.0998594417542229,
+        "b": 0.0998594417542231,
+        "tolerans": 1e-12,
+        "aciklama": "identity of the source-gap split",
+        "eslesti": true
+      },
+      {
+        "ad": "in[2] q == sym / D",
+        "a": 0.5468125037405216,
+        "b": 0.5468125037405216,
+        "tolerans": 1e-12,
+        "aciklama": "symmetric ratio definition",
+        "eslesti": true
+      },
+      {
+        "ad": "c10.q[0]",
+        "json_degeri": 0.940426735813352,
+        "foy_satiri": 1587,
+        "capa": "| K-a, simetrik oran",
+        "foy_en_yakin": 0.94,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.D[0]",
+        "json_degeri": 0.3907820131748867,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.391,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.sym[0]",
+        "json_degeri": 0.367501853064629,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.368,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.dir[0]",
+        "json_degeri": 0.023280160110257478,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.023,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.q[1]",
+        "json_degeri": 0.9283096902319006,
+        "foy_satiri": 1587,
+        "capa": "| K-a, simetrik oran",
+        "foy_en_yakin": 0.928,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.D[1]",
+        "json_degeri": 0.38727356455782536,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.387,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.sym[1]",
+        "json_degeri": 0.3595098027496788,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.36,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.dir[1]",
+        "json_degeri": 0.027763761808146735,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.028,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.q[2]",
+        "json_degeri": 0.9401501389044822,
+        "foy_satiri": 1587,
+        "capa": "| K-a, simetrik oran",
+        "foy_en_yakin": 0.94,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.D[2]",
+        "json_degeri": 0.38998897064756965,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.39,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.sym[2]",
+        "json_degeri": 0.36664818492552864,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.367,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.dir[2]",
+        "json_degeri": 0.023340785722040586,
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.023,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c10.payda kurali",
+        "aranan_metin": "payda kurali tetiklenen tohum",
+        "foy_satiri": 1593,
+        "capa": "K-a ayrintisi",
+        "eslesti": true
+      },
+      {
+        "ad": "c100.q[0]",
+        "json_degeri": 0.8478161181351545,
+        "foy_satiri": 1838,
+        "capa": "| K-a, simetrik oran",
+        "foy_en_yakin": 0.848,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.D[0]",
+        "json_degeri": 0.3880467036990032,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.388,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.sym[0]",
+        "json_degeri": 0.32899224998523136,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.329,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.dir[0]",
+        "json_degeri": 0.059054453713771854,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.059,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.q[1]",
+        "json_degeri": 0.8613811262744356,
+        "foy_satiri": 1838,
+        "capa": "| K-a, simetrik oran",
+        "foy_en_yakin": 0.861,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.D[1]",
+        "json_degeri": 0.4585194155509873,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.459,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.sym[1]",
+        "json_degeri": 0.3949599705860054,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.395,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.dir[1]",
+        "json_degeri": 0.06355944496498213,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.064,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.q[2]",
+        "json_degeri": 0.8099137396743846,
+        "foy_satiri": 1838,
+        "capa": "| K-a, simetrik oran",
+        "foy_en_yakin": 0.81,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.D[2]",
+        "json_degeri": 0.4475934722507069,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.448,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.sym[2]",
+        "json_degeri": 0.36251210296441294,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.363,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.dir[2]",
+        "json_degeri": 0.08508136928629473,
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "foy_en_yakin": 0.085,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "c100.payda kurali",
+        "aranan_metin": "payda kurali tetiklenen tohum",
+        "foy_satiri": 1848,
+        "capa": "K-a ayrintisi",
+        "eslesti": true
+      },
+      {
+        "ad": "in.D[0]",
+        "json_degeri": 0.1220957178939237,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": 0.1221,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "in.sym[0]",
+        "json_degeri": 0.16654757729372327,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": 0.167,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.dir[0]",
+        "json_degeri": -0.044451859399800224,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": -0.044,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.q[0]",
+        "json_degeri": 1.3640738607919007,
+        "foy_satiri": 1930,
+        "capa": "| 1 | IN_Singh_ConvNeXt-T-CvSt | IN_Singh_ViT-S-CvSt |",
+        "foy_en_yakin": 1.364,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.D[1]",
+        "json_degeri": 0.17307481798625668,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": 0.1731,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "in.sym[1]",
+        "json_degeri": 0.11811284436528746,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": 0.118,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.dir[1]",
+        "json_degeri": 0.05496197362096994,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": 0.055,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.q[1]",
+        "json_degeri": 0.6824380677648115,
+        "foy_satiri": 1931,
+        "capa": "| 2 | IN_Singh_ConvNeXt-B-CvSt | IN_Singh_ViT-B-CvSt |",
+        "foy_en_yakin": 0.682,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.D[2]",
+        "json_degeri": 0.0998594417542229,
+        "foy_satiri": 1932,
+        "capa": "| 3 | IN_Liu_ConvNeXt-B | IN_Liu_Swin-B |",
+        "foy_en_yakin": 0.0999,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "in.sym[2]",
+        "json_degeri": 0.05460439136775741,
+        "foy_satiri": 1932,
+        "capa": "| 3 | IN_Liu_ConvNeXt-B | IN_Liu_Swin-B |",
+        "foy_en_yakin": 0.055,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.dir[2]",
+        "json_degeri": 0.045255050386465684,
+        "foy_satiri": 1932,
+        "capa": "| 3 | IN_Liu_ConvNeXt-B | IN_Liu_Swin-B |",
+        "foy_en_yakin": 0.045,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.q[2]",
+        "json_degeri": 0.5468125037405216,
+        "foy_satiri": 1932,
+        "capa": "| 3 | IN_Liu_ConvNeXt-B | IN_Liu_Swin-B |",
+        "foy_en_yakin": 0.547,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "in.payda kurali cift 3",
+        "aranan_metin": "payda kurali tetiklenen cift: cift 3",
+        "foy_satiri": 1945,
+        "capa": "Dondurulmus betigin B8 ciktisi",
+        "eslesti": true
+      },
+      {
+        "ad": "in.payda esigi",
+        "aranan_metin": "payda kurali D_k <= 0.1",
+        "foy_satiri": 1926,
+        "capa": "Cift duzeyi",
+        "eslesti": true
+      }
+    ]
+  },
+  "denetimler": [
+    "D == symmetric + directional (1e-12) and q == symmetric / D (1e-12) for every pair",
+    "CIFAR-10 q_s vs foy 1587, D/sym/dir vs 1593; CIFAR-100 vs 1838 and 1848 (3 dp)",
+    "ImageNetV2 D (4 dp), sym, dir, q (3 dp) vs foy 1930-1932; small-denominator pair 3 vs 1945",
+    "D <= meta.delta agrees with payda_kucuk_tohumlar for every ImageNetV2 pair",
+    "no text overlap, all text inside, >= 8 pt, legend clear of axes, no Type 3 font"
+  ],
+  "notlar": [
+    "Legend symbol G is the source gap of brief 12 section 3.1 (JSON field D); 2026-10-31 relabel from D, drawn values and sheet comparisons unchanged.",
+    "Pair 3 of ImageNetV2 (Liu ConvNeXt-B / Swin-B) has G (JSON D) at or below the registered 0.10 denominator threshold; its q (0.547 in the sheet) is not printed on the figure.",
+    "Negative components are stacked downward from zero (ImageNetV2 pair 1 directional part).",
+    "x tick labels are pair indices: CIFAR seed pairs 1-3 are C1 pairs (ResNet s1001-s1003 / ViT s2001-s2003); ImageNetV2 pairs 1-3 are Singh ConvNeXt-T/ViT-S, Singh ConvNeXt-B/ViT-B, Liu ConvNeXt-B/Swin-B."
+  ],
+  "eski_surum_tasindi": "fig_source_gap_split_v1"
+}

@@ -4,25 +4,25 @@
   "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
   "betik": "paper/figures/konsey/fig_cells_interaction.py",
   "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
-  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "ortak_modul_sha256": "798137ef5ad8aa2ca9f8ad4d17697e69733f9d606a522433eabe9449026f0579",
   "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_cells_interaction.py",
-  "uretim_zamani_utc": "2026-10-31T05:54:26+00:00",
+  "uretim_zamani_utc": "2026-10-31T15:22:46+00:00",
   "girdiler_sha256": {
     "results/q1/konsey_ayrisim_b4.json": "5c50890819c509b9ef890373797b4f303eea8427d05f3f4025c31019380ca99b",
     "results/q1/konsey_ayrisim_b2.json": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27",
     "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500"
   },
   "git": {
-    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "commit": "52364bcd19fb6514f0b7bf228ad158e763dcd858",
     "branch": "q1",
     "dirty_or_untracked": [
-      "?? paper/figures/konsey/fig_cells_interaction.py",
-      "?? paper/figures/konsey/konsey_ortak.py"
+      "M paper/figures/konsey/fig_cells_interaction.py",
+      " M paper/figures/konsey/konsey_ortak.py"
     ]
   },
   "yerlesim": {
     "boyut_in": [
-      3.5,
+      3.358,
       4.75
     ],
     "dpi": 300,
@@ -151,7 +151,7 @@
     "uyusmayan": 0,
     "sonuc": "TAMAM",
     "foy": "results/C1_REFERANS_FOYU.md",
-    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "foy_sha256": "42c7dc34ea0671aeda99de493ce1023dbfec728465592a7d32b987fab9ef1801",
     "ayrinti": [
       {
         "ad": "ViT_Tiny_AT_s2001.sigma",
@@ -901,5 +901,5 @@
     "R32 omitted from panel (c): per-run omega of the 32-pixel ResNet-18 is not in the reference sheet",
     "x positions are categorical (scratch, ImageNet) with fixed horizontal offsets; no jitter, no randomness"
   ],
-  "eski_surum_tasindi": null
+  "eski_surum_tasindi": "fig_cells_interaction_v1"
 }

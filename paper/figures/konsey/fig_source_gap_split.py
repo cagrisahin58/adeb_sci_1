@@ -2,13 +2,24 @@
 """Source gap of the transformer relative to its CNN counterpart, split into symmetric and
 directional parts (brief 12, section 6.4).
 
-Double column (7.16 in), three panels side by side with a shared y axis (log units):
+Change log (degisiklik notu):
+- 2026-10-31 17:37 (earlier pass): legend symbol D -> G ("total gap G", "registered G threshold").
+- 2026-10-31, hakem konseyi B15 (birlesik.md; mercek_sunum bulgu 5): a negative directional part was
+  stacked downward from zero, so the bar top (0.167, ImageNetV2 pair 1) did not equal the total gap
+  (0.122, foy 1930). The directional part now starts at the top of the symmetric part and runs to
+  symmetric + directional = G: upward in solid orange when positive, downward over the symmetric bar
+  in light orange with a dashed outline when negative. The solid top of every bar is now G, and
+  the script checks that for each pair before drawing. Legend entry added for the negative part.
+- 2026-10-31: width 6.989 in (= \\textwidth of ieeeaccess.cls, see konsey_ortak.py).
+
+Double column (6.989 in), three panels side by side with a shared y axis (log units):
 (a) CIFAR-10 seed pairs, (b) CIFAR-100 seed pairs, (c) ImageNetV2 same-recipe pairs (descriptive,
-hatched). Each pair is a diverging stacked bar: the symmetric part sigma(CNN) - sigma(T) and the
-directional part -(rho(CNN) - rho(T))/2 start at zero (a negative part goes below zero); the black
-tick is the total gap D, and q = symmetric / D is printed above. In (c) the dashed line is the
-registered denominator threshold (meta.delta); a pair with D at or below it has no interpretable q
-and is printed as "q n/a".
+hatched). Each pair is a stacked bar: the symmetric part sigma(CNN) - sigma(T) from zero, then the
+directional part -(rho(CNN) - rho(T))/2 from the top of the symmetric part to G (a negative
+directional part is drawn downward over the symmetric bar, light and dashed); the black
+tick is the total gap G (brief 12 section 3.1 notation; the JSON field is D, D_s in the registration),
+and q = symmetric / G is printed above. In (c) the dashed line is the registered denominator
+threshold (meta.delta); a pair with G at or below it has no interpretable q and is printed as "q n/a".
 
 Inputs: results/q1/konsey_ayrisim_b2.json, results/q1/konsey_b9_c100/b9_dondurulmus_b2.json,
 results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json (b2.F_B2.K-a.{ciftler, D, simetrik_pay,
@@ -38,6 +49,8 @@ SETS = [  # key, file, title, foy rows (q line / anchor, detail line / anchor or
     ("in", J8P, "ImageNetV2 (descriptive)", "model pair"),
 ]
 FOY_IN_PAIR = {0: 1930, 1: 1931, 2: 1932}
+# negative directional part: council orange mixed 50% with white, drawn with a dashed outline (B15)
+DIR_NEG = "#F2CF7F"
 
 
 def main():
@@ -105,27 +118,35 @@ def main():
     for k in range(3):
         ax = fig.add_axes([left + k * (pw + gap), bottom, pw, top - bottom], sharey=axs[0] if axs else None)
         axs.append(ax)
-    allv = [v for key in data for v in data[key]["sym"] + data[key]["dir"] + data[key]["D"]]
-    ymin, ymax = min(0.0, min(allv)), max(allv)
+    allv = [v for key in data for v in data[key]["sym"] + data[key]["D"]]
+    ymin, ymax = 0.0, max(allv)  # nothing is drawn below zero since B15 (checks above: sym, G >= 0)
     cizilen = {}
     for ax, (key, path, title, xl) in zip(axs, SETS):
         d = data[key]
         desc = key == "in"
         xs = list(range(len(d["D"])))
+        bar_tops = []
         for x, s_, r_, D_, q_ in zip(xs, d["sym"], d["dir"], d["D"], d["q"]):
-            pos = [("sym", s_), ("dir", r_)]
-            up, dn = 0.0, 0.0
-            for comp, v in pos:
-                base = up if v >= 0 else dn
-                ax.bar(x, v, bottom=base, width=0.62, color=K.COL[comp], edgecolor=K.INK, linewidth=0.5,
-                       hatch=("////" if desc else None), zorder=3)
-                if v >= 0:
-                    up += v
-                else:
-                    dn += v
+            if s_ < 0 or D_ < 0:
+                K.fail(f"{key} pair {x + 1}: negative symmetric part or gap; the stacking rule assumes both >= 0")
+            hatch = "////" if desc else None
+            # symmetric part from zero
+            ax.bar(x, s_, bottom=0.0, width=0.62, color=K.COL["sym"], edgecolor=K.INK, linewidth=0.5,
+                   hatch=hatch, zorder=3)
+            # directional part from the top of the symmetric part to G (B15)
+            if r_ >= 0:
+                ax.bar(x, r_, bottom=s_, width=0.62, color=K.COL["dir"], edgecolor=K.INK, linewidth=0.5,
+                       hatch=hatch, zorder=3)
+            else:
+                ax.bar(x, -r_, bottom=s_ + r_, width=0.62, color=DIR_NEG, edgecolor=K.INK, linewidth=0.6,
+                       linestyle=(0, (2.5, 1.5)), hatch=hatch, zorder=3.5)
+            top_solid = s_ + r_  # positive: top of the orange bar; negative: bottom of the light bar
+            if abs(top_solid - D_) > 1e-12:
+                K.fail(f"{key} pair {x + 1}: drawn solid top {top_solid} != G {D_}")
+            bar_tops.append(round(top_solid, 6))
             ax.plot([x - 0.38, x + 0.38], [D_, D_], color="black", lw=1.6, solid_capstyle="butt", zorder=4)
             lab = "q n/a" if (desc and xs.index(x) in d["payda_kucuk"]) else f"q = {q_:.3f}"
-            ax.text(x, max(up, D_) + 0.012, lab, ha="center", va="bottom", fontsize=8)
+            ax.text(x, max(s_, D_) + 0.012, lab, ha="center", va="bottom", fontsize=8)
         if desc:
             ax.axhline(d["delta"], color=K.MUTE, lw=0.8, ls=(0, (3, 2)), zorder=2)
         ax.axhline(0.0, color=K.EDGE, lw=0.6, zorder=2)
@@ -142,7 +163,9 @@ def main():
         cizilen[key] = [{"cift": list(c), "D": round(D_, 6), "simetrik_pay": round(s_, 6), "yonlu_pay": round(r_, 6),
                          "q": round(q_, 6), "q_yazildi": not (desc and i in d["payda_kucuk"])}
                         for i, (c, D_, s_, r_, q_) in enumerate(zip(d["ciftler"], d["D"], d["sym"], d["dir"], d["q"]))]
-    axs[0].set_ylim(ymin - 0.03, ymax + 0.085)
+        for row, t in zip(cizilen[key], bar_tops):
+            row["cubugun_dolu_tepesi"] = t
+    axs[0].set_ylim(ymin - 0.012, ymax + 0.085)
     axs[0].yaxis.set_major_locator(mticker.MultipleLocator(0.1))
     axs[0].set_ylabel("Source gap (log units)", labelpad=3)
     for ax in axs[1:]:
@@ -152,9 +175,11 @@ def main():
         K.panel_label(fig, bb.x0 - (0.07 if ax is axs[0] else 0.028), top + 0.075, lab)
     handles = [Patch(facecolor=K.COL["sym"], edgecolor=K.INK, lw=0.5, label=r"symmetric part $\sigma_{\mathrm{CNN}}-\sigma_{\mathrm{T}}$"),
                Patch(facecolor=K.COL["dir"], edgecolor=K.INK, lw=0.5, label=r"directional part $-\frac{1}{2}(\rho_{\mathrm{CNN}}-\rho_{\mathrm{T}})$"),
-               Line2D([], [], color="black", lw=1.6, label="total gap $D$"),
+               Patch(facecolor=DIR_NEG, edgecolor=K.INK, lw=0.6, ls=(0, (2.5, 1.5)),
+                     label="negative directional part (narrows the gap)"),
+               Line2D([], [], color="black", lw=1.6, label="total gap $G$"),
                Patch(facecolor="white", edgecolor=K.INK, lw=0.5, hatch="////", label="descriptive (no decision)"),
-               Line2D([], [], color=K.MUTE, lw=0.8, ls=(0, (3, 2)), label="registered $D$ threshold")]
+               Line2D([], [], color=K.MUTE, lw=0.8, ls=(0, (3, 2)), label="registered $G$ threshold")]
     fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.0), ncol=3, frameon=False,
                handletextpad=0.4, columnspacing=1.2, labelspacing=0.3, handlelength=1.6)
 
@@ -175,10 +200,15 @@ def main():
                         "CIFAR-10 q_s vs foy 1587, D/sym/dir vs 1593; CIFAR-100 vs 1838 and 1848 (3 dp)",
                         "ImageNetV2 D (4 dp), sym, dir, q (3 dp) vs foy 1930-1932; small-denominator pair 3 vs 1945",
                         "D <= meta.delta agrees with payda_kucuk_tohumlar for every ImageNetV2 pair",
+                        "drawn solid bar top (symmetric + directional) == G for every pair (1e-12), sym >= 0, G >= 0",
                         "no text overlap, all text inside, >= 8 pt, legend clear of axes, no Type 3 font"],
-                       ["Pair 3 of ImageNetV2 (Liu ConvNeXt-B / Swin-B) has D at or below the registered 0.10 "
+                       ["Legend symbol G is the source gap of brief 12 section 3.1 (JSON field D); 2026-10-31 relabel "
+                        "from D, drawn values and sheet comparisons unchanged.",
+                        "Pair 3 of ImageNetV2 (Liu ConvNeXt-B / Swin-B) has G (JSON D) at or below the registered 0.10 "
                         "denominator threshold; its q (0.547 in the sheet) is not printed on the figure.",
-                        "Negative components are stacked downward from zero (ImageNetV2 pair 1 directional part).",
+                        "Since 2026-10-31 (B15) the directional part starts at the top of the symmetric part; a "
+                        "negative one (ImageNetV2 pair 1) runs downward over the symmetric bar to G, light orange with "
+                        "a dashed outline, so the solid bar top equals G for every pair (checked, 1e-12).",
                         "x tick labels are pair indices: CIFAR seed pairs 1-3 are C1 pairs (ResNet s1001-s1003 / "
                         "ViT s2001-s2003); ImageNetV2 pairs 1-3 are Singh ConvNeXt-T/ViT-S, Singh ConvNeXt-B/ViT-B, "
                         "Liu ConvNeXt-B/Swin-B."],

@@ -1,0 +1,138 @@
+{
+ "etiket": "turetilmis (31.10.2026, hakem paneli acik isi A9; 2q - 1, K-a'nin dogrusal donusumu)",
+ "tanim": "q_s = simetrik_pay_s / D_s (K-a, dondurulmus F_B2). 1 - q_s yonlu payin D'deki payidir (ozdeslik D = simetrik + yonlu). 2q - 1 = (simetrik pay - yonlu pay)/D: simetrik payin yonlu payi D cinsinden asma orani; q = 0,5 (K-a'nin sifir hipotezi) 2q - 1 = 0'a karsilik gelir. Ortalama: 2 ort(q) - 1. Dogrusal donusum oldugundan t araliklari (dondurulmus F_B2.K-a.sinama.ci90/ci95) ve hiyerarsik bootstrap yuzdelik araliklari (M11.1, K-a.bootstrap) uc noktalarin 2x - 1 donusumudur; p degerleri K-a'nin p'leriyle aynidir. Denetim: kosu basina (simetrik - yonlu)/D ile 2q - 1 arasindaki en buyuk fark.",
+ "veri": {
+  "cifar10": {
+   "kaynak": "results/q1/konsey_ayrisim_b2.json",
+   "kaynak_anahtar": "b2.F_B2.K-a.{q, D, simetrik_pay, yonlu_pay, sinama.ort, sinama.ci90, sinama.ci95, p_tek_H0_q_le_0.5, ciftler}",
+   "bootstrap_kaynak": "results/q1/konsey_ek_masa/bootstrap_cifar10.json",
+   "bootstrap_anahtar": "K-a.{nokta_ort_q, bootstrap.ci90, bootstrap.ci95}",
+   "ciftler": [
+    [
+     "ResNet18_AT_s1001",
+     "ViT_Tiny_AT_s2001"
+    ],
+    [
+     "ResNet18_AT_s1002",
+     "ViT_Tiny_AT_s2002"
+    ],
+    [
+     "ResNet18_AT_s1003",
+     "ViT_Tiny_AT_s2003"
+    ]
+   ],
+   "q_s": [
+    0.940426735813352,
+    0.9283096902319006,
+    0.9401501389044822
+   ],
+   "iki_q_eksi_1_s": [
+    0.880853471626704,
+    0.8566193804638011,
+    0.8803002778089644
+   ],
+   "ort_q": 0.9362955216499116,
+   "iki_ort_q_eksi_1": 0.8725910432998232,
+   "t_ci90": [
+    0.8492678688378501,
+    0.8959142177617962
+   ],
+   "t_ci95": [
+    0.8382239145923693,
+    0.906958172007277
+   ],
+   "bootstrap_ci90": [
+    0.787029182757113,
+    0.9613227165312532
+   ],
+   "bootstrap_ci95": [
+    0.7732450726313895,
+    0.9824089608737574
+   ],
+   "p_tek_H0_2q_eksi_1_le_0_(K-a ile ayni)": 4.188975600016853e-05,
+   "denetim": {
+    "kosu_basina_(simetrik-yonlu)/D_ile_2q-1_maks_fark": 1.2212453270876722e-15,
+    "ozdeslik_artik_max_(dondurulmus)": 4.2674197509029455e-16,
+    "bootstrap_nokta_ort_q_ile_dondurulmus_ort_fark": 0.0,
+    "ort_2q-1_ile_2ort-1_fark": 0.0
+   }
+  },
+  "cifar100": {
+   "kaynak": "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json",
+   "kaynak_anahtar": "b2.F_B2.K-a.{q, D, simetrik_pay, yonlu_pay, sinama.ort, sinama.ci90, sinama.ci95, p_tek_H0_q_le_0.5, ciftler}",
+   "bootstrap_kaynak": "results/q1/konsey_ek_masa/bootstrap_cifar100.json",
+   "bootstrap_anahtar": "K-a.{nokta_ort_q, bootstrap.ci90, bootstrap.ci95}",
+   "ciftler": [
+    [
+     "C100_ResNet18_AT_s1001",
+     "C100_ViT_Tiny_AT_s2001"
+    ],
+    [
+     "C100_ResNet18_AT_s1002",
+     "C100_ViT_Tiny_AT_s2002"
+    ],
+    [
+     "C100_ResNet18_AT_s1003",
+     "C100_ViT_Tiny_AT_s2003"
+    ]
+   ],
+   "q_s": [
+    0.8478161181351545,
+    0.8613811262744356,
+    0.8099137396743846
+   ],
+   "iki_q_eksi_1_s": [
+    0.6956322362703089,
+    0.7227622525488713,
+    0.6198274793487693
+   ],
+   "ort_q": 0.8397036613613249,
+   "iki_ort_q_eksi_1": 0.6794073227226498,
+   "t_ci90": [
+    0.5894653243362993,
+    0.7693493211090003
+   ],
+   "t_ci95": [
+    0.5468761254883674,
+    0.8119385199569322
+   ],
+   "bootstrap_ci90": [
+    0.5991914450969678,
+    0.76055469680934
+   ],
+   "bootstrap_ci95": [
+    0.5802923858865452,
+    0.7802383701868565
+   ],
+   "p_tek_H0_2q_eksi_1_le_0_(K-a ile ayni)": 0.001024558430526401,
+   "denetim": {
+    "kosu_basina_(simetrik-yonlu)/D_ile_2q-1_maks_fark": 1.6653345369377348e-15,
+    "ozdeslik_artik_max_(dondurulmus)": 7.771561172376096e-16,
+    "bootstrap_nokta_ort_q_ile_dondurulmus_ort_fark": 0.0,
+    "ort_2q-1_ile_2ort-1_fark": 0.0
+   }
+  }
+ },
+ "meta": {
+  "betik": "arsiv/b2_yardimci/_m12_ek_masa.py",
+  "betik_sha256": "57016d02354f205d712aace1ae3c210d8eae0ce6ceac669e2cac560694e93245",
+  "kutuphane_betik": "experiments/q1_ek_masa.py",
+  "kutuphane_betik_sha256_dogrulandi": "40454344bd3f8b1a0318d4bdb295d1dad05f187d74fe22f739501654a785b8c1",
+  "dondurulmus_betik": "experiments/q1_konsey_ayrisim.py",
+  "dondurulmus_betik_sha256_dogrulandi": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "mod": "turetilmis",
+  "uretildi_utc": "2026-10-31T15:37:09.266134+00:00",
+  "numpy": "1.26.4",
+  "scipy": "1.14.1",
+  "argv": [
+   "--mod",
+   "turetilmis"
+  ],
+  "girdi_sha256": {
+   "results/q1/konsey_ayrisim_b2.json": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27",
+   "results/q1/konsey_ek_masa/bootstrap_cifar10.json": "a14dd890ee48b4f355e2b1ebdf5727cda63cf31ed73fa60bc55aa1c36dd84bc7",
+   "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": "762d62b4194c245e310ab9ae9b5eb82ef3476a6965597feed707a6c0b3a76cd8",
+   "results/q1/konsey_ek_masa/bootstrap_cifar100.json": "dd72deb4543e96ebf562bea543c2552b2ead645bd047a177488db2738f8ab3a9"
+  }
+ }
+}

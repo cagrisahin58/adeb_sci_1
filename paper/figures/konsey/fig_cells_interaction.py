@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
 """Two-by-two design on CIFAR-10: cell means and runs of sigma, rho and omega (brief 12, section 6.3).
 
-One column (3.5 in), three panels stacked, shared x = initialization (scratch, ImageNet).
+Change log (degisiklik notu):
+- 2026-10-31, hakem konseyi B14 (birlesik.md; mercek_sunum bulgu 3): rates enter the logarithm in
+  percent, so the (c) axis label now reads "omega = log w" with "(w in %)" on a second line.
+- 2026-10-31: legend entry of the (b) band prints the registered margin read from meta.delta
+  ("+-0.10 band (b)") instead of the symbol delta, matching the caption's "+-0.10 equivalence band".
+  The band is drawn on the log scale, for which it is registered (m1); unchanged.
+- 2026-10-31: width 3.358 in (= columnwidth of ieeeaccess.cls, see konsey_ortak.py).
+
+One column (3.358 in), three panels stacked, shared x = initialization (scratch, ImageNet).
 (a) panel similarity sigma, (b) directional term rho with the +-delta equivalence band,
 (c) vulnerability omega = log w. Lines join the cell means of ViT-Tiny and of ResNet-18 (224 px);
 small markers are the individual runs; open squares in (a) and (b) are the three 32-pixel
@@ -157,7 +165,7 @@ def main():
     axs[2].set_xlabel("Initialization", labelpad=2)
     axs[0].set_ylabel(r"Panel similarity $\sigma$", labelpad=3)
     axs[1].set_ylabel(r"Direction $\rho$", labelpad=3)
-    axs[2].set_ylabel(r"$\omega=\log w$", labelpad=3)
+    axs[2].set_ylabel(r"$\omega=\log w$" + "\n" + r"($w$ in %)", labelpad=3, linespacing=1.15)  # B14
     for ax, step in zip(axs, (0.1, 0.05, 0.05)):
         ax.yaxis.set_major_locator(mticker.MultipleLocator(step))
     fig.align_ylabels(axs)
@@ -177,7 +185,7 @@ def main():
     hrun = Line2D([], [], ls="none", marker="o", ms=3.4, mfc="white", mec=K.MUTE, mew=0.9, label="single run")
     h32 = Line2D([], [], ls="none", marker="s", ms=3.4, mfc="white", mec=K.COL["r32"], mew=1.0,
                  label="R32 bridge run")
-    hb = Patch(facecolor="#e4e4e4", edgecolor="none", label=r"$\pm\delta$ band (b)")
+    hb = Patch(facecolor="#e4e4e4", edgecolor="none", label="±" + f"{delta:.2f}" + " band (b)")
     fig.legend(handles=[hv, hr, hrun, h32, hb], loc="lower center", bbox_to_anchor=(0.5, 0.0), ncol=2,
                frameon=False, handletextpad=0.4, columnspacing=1.0, labelspacing=0.35, handlelength=1.9)
 

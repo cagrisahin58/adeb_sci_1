@@ -4,9 +4,9 @@
   "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
   "betik": "paper/figures/konsey/fig_gradient_alignment.py",
   "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
-  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "ortak_modul_sha256": "798137ef5ad8aa2ca9f8ad4d17697e69733f9d606a522433eabe9449026f0579",
   "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_gradient_alignment.py",
-  "uretim_zamani_utc": "2026-10-31T13:35:06+00:00",
+  "uretim_zamani_utc": "2026-10-31T15:30:20+00:00",
   "girdiler_sha256": {
     "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7",
     "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
@@ -16,17 +16,17 @@
     "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
   },
   "git": {
-    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "commit": "52364bcd19fb6514f0b7bf228ad158e763dcd858",
     "branch": "q1",
     "dirty_or_untracked": [
-      "?? paper/figures/konsey/fig_gradient_alignment.py",
-      "?? paper/figures/konsey/konsey_ortak.py"
+      "M paper/figures/konsey/fig_gradient_alignment.py",
+      " M paper/figures/konsey/konsey_ortak.py"
     ]
   },
   "yerlesim": {
     "boyut_in": [
-      7.16,
-      4.9
+      6.989,
+      4.78
     ],
     "dpi": 300,
     "en_kucuk_yazi_pt": 8.0,
@@ -173,7 +173,7 @@
     "uyusmayan": 0,
     "sonuc": "TAMAM",
     "foy": "results/C1_REFERANS_FOYU.md",
-    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "foy_sha256": "42c7dc34ea0671aeda99de493ce1023dbfec728465592a7d32b987fab9ef1801",
     "ayrinti": [
       {
         "ad": "cifar10: max |C - C^T|",
@@ -621,5 +621,6 @@
     "Bottom-row residuals use the same least-squares additive model as the frozen gradient script; they are drawn only because the recomputed statistic matches.",
     "Pairs are drawn once (upper triangle). No jitter, no randomness."
   ],
-  "eski_surum_tasindi": null
+  "eski_surum_tasindi": "fig_gradient_alignment_v1",
+  "eski_surum_notu": "2026-10-31: an intermediate _v2 (same session, 4.9 in height) was removed; the pre-revision version is _v1 (16:35)."
 }
