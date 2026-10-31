@@ -4,10 +4,8 @@ Manuscript: Less a Weak Source than a Different One: Vulnerability,
 Similarity and Direction in CNN-ViT Adversarial Transfer under an
 Architecture-by-Initialization Design
 
-Revised 2026-10-31. Every number comes from results/C1_REFERANS_FOYU.md
-(31.10.2026 version); the source line of each highlight is given in the
-notes at the end of this file. Log-scale quantities; brackets are 90%
-intervals.
+Log-scale quantities; brackets are 90% intervals over training runs,
+conditional on the test images and the panel.
 
 1. Against a fixed panel of seven robust CNNs, a share of 0.936
    [0.925, 0.948] of ViT-Tiny's CIFAR-10 source gap relative to ResNet-18
@@ -27,8 +25,8 @@ intervals.
 
 4. The gap is retained under the best of PGD-10, momentum PGD and an
    adapted token gradient regularization (0.960), AutoAttack flags none
-   of the new models for masking, and on ImageNetV2 transformers are only
-   descriptively less similar to the panel (-0.142).
+   of the new models for masking, and on ImageNetV2 transformers are less
+   similar to the panel in a descriptive, untested comparison (-0.142).
 
 5. On the same models the conditioning protocol moves the transfer
    asymmetry from +4.36 to +19.37 points (mean per-pair spread
@@ -38,6 +36,8 @@ intervals.
 
 ----------------------------------------------------------------------
 Source notes (internal; not part of the portal text)
+  Revised 2026-10-31. Every number comes from results/C1_REFERANS_FOYU.md
+  (31.10.2026 version); the source line of each highlight is below.
   1: FOY M9.5 lines 1587, 1588; panel and delta from ON_KAYIT Sec. 2-3, 5
   2: FOY M9.3 lines 1526, 1527; clean accuracy M9.2 lines 1496, 1498
   3: FOY M10.2 lines 1838, 1839; logit M9.5 line 1603, M10.2 line 1857

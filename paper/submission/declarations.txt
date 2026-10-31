@@ -31,16 +31,20 @@ distributed with the timm library.
 
 The analysis pipeline, the scripts behind every table and figure, the
 per-sample evaluation records, the validation-split indices and the seed
-lists are publicly available at
+lists will be released in the public repository at
 https://github.com/cagrisahin58/cnn-vit-robustness-protocols
-(MIT license for the code, CC BY 4.0 for the records). The repository
-also holds the pre-registration documents with their freeze records, the
-frozen analysis script, the cell tables whose SHA-256 digests the analysis
-outputs record, and a machine-read copy of Tables 1 and 2 of Mahmood et
-al. (ICCV 2021) with the scripts that re-score them. Since every protocol
-and decomposition term is computed from these records, all reported
-numbers can be reproduced without retraining. Trained checkpoints are
-available from the authors on request.
+(MIT license for the code, CC BY 4.0 for the records) upon acceptance.
+The release will also hold the pre-registration documents with their
+freeze records, the frozen analysis script, the cell tables whose SHA-256
+digests the analysis outputs record, and a machine-read copy of Tables 1
+and 2 of Mahmood et al. (ICCV 2021) with the scripts that re-score them.
+Until then, the registration documents, the frozen analysis script and
+the cell tables are time-stamped in the development repository (commits
+e32f2ce and 7325419), and all of the above can be shared with the editor
+and reviewers on request. Since every protocol and decomposition term is
+computed from these records, all reported numbers can be reproduced
+without retraining. Trained checkpoints are available from the authors on
+request.
 
 ---
 
@@ -51,8 +55,14 @@ architecture-by-initialization design, the attack-side test and the
 masking check were frozen on 29 October 2026 before any of the
 corresponding runs; an addendum covering CIFAR-100, ImageNetV2 and
 gradient alignment was frozen on 30 October 2026 before any of its
-matrices or gradients was computed. Both documents and their SHA-256
-freeze records are in the repository. The manuscript (Section III,
+matrices or gradients was computed. The registered tests ran through the
+frozen analysis script or, for the addendum, through a wrapper around it
+and a gradient script whose digests were recorded before their first run;
+every analysis output stores the digests of the scripts that produced it.
+Both registration documents and their SHA-256 freeze records will be
+released in the public repository upon acceptance; until then they are
+time-stamped in the development repository (commits e32f2ce and
+7325419). The manuscript (Section III,
 "Pre-Registration") lists the data seen before registration, the two
 rules changed after data had been seen, and the one registered
 sensitivity analysis computed after the results had been seen; analyses

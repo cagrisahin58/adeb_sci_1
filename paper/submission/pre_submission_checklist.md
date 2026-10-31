@@ -16,6 +16,12 @@
 
 ---
 
+## 0. Upload Precondition
+
+- [ ] **No upload before both of these arrive:** the second author's written approval of the submitted version (the cover letter states that both authors have approved it) and the second author's confirmation of the funding statement (`declarations.txt` §6, "no specific grant").
+
+---
+
 ## 1. Manuscript Format and Content
 
 - [x] IEEE Access LaTeX template (`ieeeaccess.cls`, mandatory)
@@ -68,10 +74,15 @@ Figures used by the manuscript (2026-10-31):
 ## 5. Declarations and Statements
 
 - [x] Data availability: manuscript (Data and Code Availability) and `declarations.txt` §1, same scope (CIFAR-10, CIFAR-100, SVHN, ImageNetV2; RobustBench checkpoints; timm initializations)
-- [x] Code availability: public repository https://github.com/cagrisahin58/cnn-vit-robustness-protocols, including the pre-registration documents, the frozen analysis script and the cell tables; checkpoints on request
+- [ ] **Code availability.** On 2026-10-31 https://github.com/cagrisahin58/cnn-vit-robustness-protocols returns 404; the local copy `teslim/acik_depo/cnn-vit-robustness-protocols` is a single commit of 4 October with the old title and without the registration documents or the frozen script. The cover letter and `declarations.txt` §2-3 therefore promise the release "upon acceptance" and point to the time-stamped development commits e32f2ce (main registration, frozen script, cell table) and 7325419 (addendum, addendum cell tables, addendum scripts, deviation log). The manuscript's Data and Code Availability paragraph (`main.tex`) still says "are public at"; it must be brought into line with whichever state holds at upload.
+  - [ ] Repository created on GitHub under `cagrisahin58` and published (user)
+  - [ ] `bash scripts/acik_depo_kur.sh --dry-run` read, then `bash scripts/acik_depo_kur.sh` run and the printed `git push` lines executed (user)
+  - [ ] The URL returns 200 (`curl -s -o /dev/null -w '%{http_code}' https://github.com/cagrisahin58/cnn-vit-robustness-protocols`)
+  - [ ] README.md and CITATION.cff in the published repository carry the new title
+  - [ ] If the repository is public before upload, switch "will be released ... upon acceptance" back to "are available at" in the cover letter, `declarations.txt` §2-3 and `main.tex`
 - [x] Pre-registration statement: `declarations.txt` §3, consistent with Section III "Pre-Registration" of the manuscript
 - [x] Conflict of interest: none declared
-- [ ] Funding: "no specific grant" to be confirmed with the co-author
+- [ ] Funding: "no specific grant" to be confirmed with the co-author (upload precondition, §0)
 
 ## 6. Conference Extension and Overlap
 
@@ -107,6 +118,7 @@ Figures used by the manuscript (2026-10-31):
 
 - [x] Title identical across manuscript and submission documents (gate 7)
 - [ ] Author names and order consistent in manuscript, portal and cover letter
+- [ ] Upload precondition of §0 met (second author's approval and funding confirmation)
 - [ ] No TODO comments in the manuscript (reviewer panel A14: two `TODO(foy)` comments in `sections/07_appendix.tex`)
 - [ ] The reviewer panel's open items that need the reference sheet (A2-A6, A9, A10) are either completed or their sentences stay without numbers
 - [x] All gates run by `bash scripts/kapilar.sh`; see `raporlar/hakem_konsey_2026-10-31/gonderim_paketi_notu.md` for the 2026-10-31 state
