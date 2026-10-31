@@ -1,0 +1,17 @@
+DEGISIKLIKLER = [
+("sections/03_methodology.tex",
+ "% Sekil: paper/figures/konsey/fig_study_overview.py (kanit fig_study_overview.kanit.json); taslak, visio-cizici turu bekliyor.",
+ "% Sekil: paper/figures/konsey/fig_study_overview.tex (TikZ; sayilar fig_study_overview_veri.py, kanit fig_study_overview.kanit.json); taslak, visio-cizici turu bekliyor."),
+("sections/03_methodology.tex",
+ "Panel averages of the last two give $\\sigma$ and $\\rho$, which split a source gap between two models into symmetric and directional parts.}",
+ "Panel averages of the last two (overline: mean over panel members $c\\in P$) give $\\sigma$ and $\\rho$, which split a source gap between two models into symmetric and directional parts.}"),
+("sections/04_experiments.tex",
+ "\\begin{figure}[!t]\n\\centering\n\\includegraphics[width=\\columnwidth]{../figures/konsey/fig_source_gap_split.pdf}",
+ "\\begin{figure*}[!t]\n\\centering\n\\includegraphics[width=\\textwidth]{../figures/konsey/fig_source_gap_split.pdf}"),
+("sections/04_experiments.tex",
+ "\\label{fig:source_gap_split}\n\\end{figure}",
+ "\\label{fig:source_gap_split}\n\\end{figure*}"),
+("sections/04_experiments.tex",
+ "Open markers are the three 32-pixel ResNet-18 runs used as a bridge.}",
+ "Open squares in (a) and (b) are the three 32-pixel ResNet-18 bridge runs; their per-run $\\omega$ is not shown.}"),
+]

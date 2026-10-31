@@ -1,0 +1,78 @@
+{
+  "sekil": "fig_decomposition_schematic",
+  "surum": 1,
+  "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
+  "betik": "paper/figures/konsey/fig_decomposition_schematic.py",
+  "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
+  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_decomposition_schematic.py",
+  "uretim_zamani_utc": "2026-10-31T13:39:49+00:00",
+  "girdiler_sha256": {},
+  "git": {
+    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "?? paper/figures/konsey/fig_decomposition_schematic.py",
+      "?? paper/figures/konsey/konsey_ortak.py"
+    ]
+  },
+  "yerlesim": {
+    "boyut_in": [
+      3.5,
+      3.55
+    ],
+    "dpi": 300,
+    "en_kucuk_yazi_pt": 8.0,
+    "font": "DejaVu Sans, pdf.fonttype 42",
+    "renkler": {
+      "vit": "#D55E00",
+      "r224": "#0072B2",
+      "r32": "#56B4E9",
+      "panel": "#999999",
+      "xcit": "#CC79A7",
+      "sym": "#009E73",
+      "dir": "#E69F00"
+    }
+  },
+  "okunan_anahtarlar": {},
+  "cizilen_degerler": {
+    "veri": "yok; yalniz semboller ve tanimlar (brif 6.2)"
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 2,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results/C1_REFERANS_FOYU.md",
+    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "ayrinti": [
+      {
+        "ad": "identity log T = log w_j + log tau + r/2 (max abs residual, random matrices)",
+        "a": 6.661338147750939e-16,
+        "b": 0.0,
+        "tolerans": 1e-12,
+        "aciklama": "algebraic self-check, not a result",
+        "eslesti": true
+      },
+      {
+        "ad": "gap G = (sigma_R - sigma_V) - (rho_R - rho_V)/2 (max abs residual)",
+        "a": 4.440892098500626e-16,
+        "b": 0.0,
+        "tolerans": 1e-12,
+        "aciklama": "algebraic self-check, not a result",
+        "eslesti": true
+      }
+    ]
+  },
+  "denetimler": [
+    "identity (2) on 200 seeded random 7-model matrices: max abs residual 6.7e-16",
+    "gap formula (4) on the same matrices: max abs residual 4.4e-16",
+    "no text overlap, all text inside, >= 8 pt, no Type 3 font"
+  ],
+  "notlar": [
+    "No number from any result file is drawn; the only numerals are the 1/2 of the definitions.",
+    "Overline denotes the mean over panel members c in P (for a panel member, P without itself), as in brief 12 section 3.1; the caption should say so.",
+    "rho_m = mean_c r_cm: positive rho_m means m is directionally the weaker source."
+  ],
+  "eski_surum_tasindi": null,
+  "rastgele_denetim_tohumu": 20261031
+}

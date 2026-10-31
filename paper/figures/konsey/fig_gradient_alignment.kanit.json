@@ -1,0 +1,625 @@
+{
+  "sekil": "fig_gradient_alignment",
+  "surum": 1,
+  "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
+  "betik": "paper/figures/konsey/fig_gradient_alignment.py",
+  "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
+  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_gradient_alignment.py",
+  "uretim_zamani_utc": "2026-10-31T13:35:06+00:00",
+  "girdiler_sha256": {
+    "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7",
+    "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
+    "results/q1/konsey_b10_gradyan/mantel_cifar100.json": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac",
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+    "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073",
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d"
+  },
+  "git": {
+    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "?? paper/figures/konsey/fig_gradient_alignment.py",
+      "?? paper/figures/konsey/konsey_ortak.py"
+    ]
+  },
+  "yerlesim": {
+    "boyut_in": [
+      7.16,
+      4.9
+    ],
+    "dpi": 300,
+    "en_kucuk_yazi_pt": 8.0,
+    "font": "DejaVu Sans, pdf.fonttype 42",
+    "renkler": {
+      "vit": "#D55E00",
+      "r224": "#0072B2",
+      "r32": "#56B4E9",
+      "panel": "#999999",
+      "xcit": "#CC79A7",
+      "sym": "#009E73",
+      "dir": "#E69F00"
+    }
+  },
+  "okunan_anahtarlar": {
+    "results/q1/konsey_b10_gradyan/mantel_cifar10.json": [
+      "c_matrisi",
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.{ham, ana_etki_artik}.{K, cift_sayisi, istatistik}"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu.json": [
+      "modeller.<m>.aile"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_cifar100.json": [
+      "c_matrisi",
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.{ham, ana_etki_artik}.{K, cift_sayisi, istatistik}"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": [
+      "modeller.<m>.aile"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": [
+      "c_matrisi",
+      "log_tau_matrisi",
+      "modeller_ortak",
+      "dislanan",
+      "sinamalar.{ham, ana_etki_artik}.{K, cift_sayisi, istatistik}"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": [
+      "modeller.<m>.aile"
+    ]
+  },
+  "cizilen_degerler": {
+    "cifar10": {
+      "raw": {
+        "r_S_gosterilen": 0.9428064051927375,
+        "nokta_sayisi": 190,
+        "x_aralik": [
+          0.23119256396293641,
+          0.7460507797241211
+        ],
+        "y_aralik": [
+          -1.142531065710037,
+          -0.28758530026720475
+        ]
+      },
+      "residual": {
+        "r_S_gosterilen": 0.9442568025648764,
+        "nokta_sayisi": 190,
+        "x_aralik": [
+          -0.11902439219287639,
+          0.450378794446936
+        ],
+        "y_aralik": [
+          -0.1954052936198487,
+          0.7941305407216785
+        ]
+      },
+      "cift_turu_sayilari": {
+        "CNN-CNN": 91,
+        "T-T": 15,
+        "mixed": 84
+      }
+    },
+    "cifar100": {
+      "raw": {
+        "r_S_gosterilen": 0.9806759278457391,
+        "nokta_sayisi": 105,
+        "x_aralik": [
+          0.16919543634653092,
+          0.6919674566745758
+        ],
+        "y_aralik": [
+          -1.1735281250608687,
+          -0.2557202760754371
+        ]
+      },
+      "residual": {
+        "r_S_gosterilen": 0.9124300228073812,
+        "nokta_sayisi": 105,
+        "x_aralik": [
+          -0.11629176460845123,
+          0.42199410937087883
+        ],
+        "y_aralik": [
+          -0.19673405382206577,
+          0.8044569729544151
+        ]
+      },
+      "cift_turu_sayilari": {
+        "CNN-CNN": 55,
+        "T-T": 6,
+        "mixed": 44
+      }
+    },
+    "imagenetv2": {
+      "raw": {
+        "r_S_gosterilen": 0.6944099378881987,
+        "nokta_sayisi": 91,
+        "x_aralik": [
+          0.003449308782815933,
+          0.4855499768257141
+        ],
+        "y_aralik": [
+          -1.6202982638238996,
+          -0.511953683880946
+        ]
+      },
+      "residual": {
+        "r_S_gosterilen": 0.8926262143653447,
+        "nokta_sayisi": 91,
+        "x_aralik": [
+          -0.09076541219804521,
+          0.16008458430663902
+        ],
+        "y_aralik": [
+          -0.381881014738336,
+          0.47512681425640546
+        ]
+      },
+      "cift_turu_sayilari": {
+        "CNN-CNN": 36,
+        "T-T": 10,
+        "mixed": 45
+      }
+    }
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 46,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results/C1_REFERANS_FOYU.md",
+    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "ayrinti": [
+      {
+        "ad": "cifar10: max |C - C^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "c matrix symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: recomputed raw Spearman == JSON",
+        "a": 0.9428064051927375,
+        "b": 0.9428064051927375,
+        "tolerans": 1e-09,
+        "aciklama": "raw Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: recomputed residual Spearman == JSON",
+        "a": 0.9442568025648765,
+        "b": 0.9442568025648764,
+        "tolerans": 1e-09,
+        "aciklama": "main-effect residual Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: raw r_S (recomputed, 1e-3)",
+        "json_degeri": 0.9428064051927375,
+        "foy_satiri": 1970,
+        "capa": "| cifar10 | ham |",
+        "foy_en_yakin": 0.943,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: residual r_S (recomputed, 1e-3)",
+        "json_degeri": 0.9442568025648765,
+        "foy_satiri": 1971,
+        "capa": "| cifar10 | ana_etki_artik |",
+        "foy_en_yakin": 0.944,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: K",
+        "json_degeri": 20,
+        "foy_satiri": 1970,
+        "capa": "| cifar10 | ham |",
+        "foy_en_yakin": 20.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: pairs",
+        "json_degeri": 190,
+        "foy_satiri": 1970,
+        "capa": "| cifar10 | ham |",
+        "foy_en_yakin": 190.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: pairs == JSON cift_sayisi",
+        "a": 190,
+        "b": 190,
+        "tolerans": 0,
+        "aciklama": "pair count",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: mean c CNN-CNN",
+        "json_degeri": 0.5427358988762556,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 0.543,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: n CNN-CNN",
+        "json_degeri": 91,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 91.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: mean c T-T",
+        "json_degeri": 0.4637057716401418,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 0.464,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: n T-T",
+        "json_degeri": 15,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 15.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: mean c mixed",
+        "json_degeri": 0.370434997817803,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 0.37,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: n mixed",
+        "json_degeri": 84,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 84.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar10: mean c all",
+        "json_degeri": 0.460321543100194,
+        "foy_satiri": 2009,
+        "capa": "| cifar10 |",
+        "foy_en_yakin": 0.46,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: max |C - C^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "c matrix symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: recomputed raw Spearman == JSON",
+        "a": 0.9806759278457391,
+        "b": 0.9806759278457391,
+        "tolerans": 1e-09,
+        "aciklama": "raw Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: recomputed residual Spearman == JSON",
+        "a": 0.9124300228073813,
+        "b": 0.9124300228073812,
+        "tolerans": 1e-09,
+        "aciklama": "main-effect residual Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: raw r_S (recomputed, 1e-3)",
+        "json_degeri": 0.9806759278457391,
+        "foy_satiri": 1972,
+        "capa": "| cifar100 | ham |",
+        "foy_en_yakin": 0.981,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: residual r_S (recomputed, 1e-3)",
+        "json_degeri": 0.9124300228073813,
+        "foy_satiri": 1973,
+        "capa": "| cifar100 | ana_etki_artik |",
+        "foy_en_yakin": 0.912,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: K",
+        "json_degeri": 15,
+        "foy_satiri": 1972,
+        "capa": "| cifar100 | ham |",
+        "foy_en_yakin": 15.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: pairs",
+        "json_degeri": 105,
+        "foy_satiri": 1972,
+        "capa": "| cifar100 | ham |",
+        "foy_en_yakin": 105.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: pairs == JSON cift_sayisi",
+        "a": 105,
+        "b": 105,
+        "tolerans": 0,
+        "aciklama": "pair count",
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: mean c CNN-CNN",
+        "json_degeri": 0.4620840790913322,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 0.462,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: n CNN-CNN",
+        "json_degeri": 55,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 55.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: mean c T-T",
+        "json_degeri": 0.3591036991079648,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 0.359,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: n T-T",
+        "json_degeri": 6,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 6.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: mean c mixed",
+        "json_degeri": 0.27066684110354294,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 0.271,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: n mixed",
+        "json_degeri": 44,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 44.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "cifar100: mean c all",
+        "json_degeri": 0.375986548125971,
+        "foy_satiri": 2010,
+        "capa": "| cifar100 |",
+        "foy_en_yakin": 0.376,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: max |C - C^T|",
+        "a": 0.0,
+        "b": 0.0,
+        "tolerans": 0.0,
+        "aciklama": "c matrix symmetric",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: recomputed raw Spearman == JSON",
+        "a": 0.6944099378881988,
+        "b": 0.6944099378881987,
+        "tolerans": 1e-09,
+        "aciklama": "raw Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: recomputed residual Spearman == JSON",
+        "a": 0.8926262143653448,
+        "b": 0.8926262143653447,
+        "tolerans": 1e-09,
+        "aciklama": "main-effect residual Mantel statistic",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: raw r_S (recomputed, 1e-3)",
+        "json_degeri": 0.6944099378881988,
+        "foy_satiri": 1974,
+        "capa": "| imagenetv2 | ham |",
+        "foy_en_yakin": 0.694,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: residual r_S (recomputed, 1e-3)",
+        "json_degeri": 0.8926262143653448,
+        "foy_satiri": 1975,
+        "capa": "| imagenetv2 | ana_etki_artik |",
+        "foy_en_yakin": 0.893,
+        "ondalik": 3,
+        "tolerans": 0.001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: K",
+        "json_degeri": 14,
+        "foy_satiri": 1974,
+        "capa": "| imagenetv2 | ham |",
+        "foy_en_yakin": 14.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: pairs",
+        "json_degeri": 91,
+        "foy_satiri": 1974,
+        "capa": "| imagenetv2 | ham |",
+        "foy_en_yakin": 91.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: pairs == JSON cift_sayisi",
+        "a": 91,
+        "b": 91,
+        "tolerans": 0,
+        "aciklama": "pair count",
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: mean c CNN-CNN",
+        "json_degeri": 0.18657666663163236,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 0.187,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: n CNN-CNN",
+        "json_degeri": 36,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 36.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: mean c T-T",
+        "json_degeri": 0.31845173141360283,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 0.318,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: n T-T",
+        "json_degeri": 10,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 10.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: mean c mixed",
+        "json_degeri": 0.2211054308646255,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 0.221,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: n mixed",
+        "json_degeri": 45,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 45.0,
+        "ondalik": 0,
+        "tolerans": 0.500000001,
+        "eslesti": true
+      },
+      {
+        "ad": "imagenetv2: mean c all",
+        "json_degeri": 0.2181430956239884,
+        "foy_satiri": 2011,
+        "capa": "| imagenetv2 |",
+        "foy_en_yakin": 0.218,
+        "ondalik": 3,
+        "tolerans": 0.000500001,
+        "eslesti": true
+      },
+      {
+        "ad": "p at floor in 6/6",
+        "aranan_metin": "Tek yonlu p'si p tabanina esit olan sinama: 6/6",
+        "foy_satiri": 1977,
+        "capa": "p tabanina esit",
+        "eslesti": true
+      }
+    ]
+  },
+  "denetimler": [
+    "raw and main-effect-residual Spearman recomputed == JSON (1e-9) and == foy 1970-1975 (1e-3)",
+    "K and pair counts vs foy and JSON",
+    "pair-type c means and counts (CNN-CNN, transformer-transformer, mixed) vs foy 2009-2011: confirms the family assignment used for colours",
+    "permutation p at floor in 6/6 vs foy 1977 (not drawn, caption refers to the table)",
+    "no text overlap, all text inside, >= 8 pt, legend clear of axes, no Type 3 font"
+  ],
+  "notlar": [
+    "Bottom-row residuals use the same least-squares additive model as the frozen gradient script; they are drawn only because the recomputed statistic matches.",
+    "Pairs are drawn once (upper triangle). No jitter, no randomness."
+  ],
+  "eski_surum_tasindi": null
+}

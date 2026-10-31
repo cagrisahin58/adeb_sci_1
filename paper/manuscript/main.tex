@@ -45,6 +45,7 @@
 % Custom commands
 \newcommand{\eps}{\epsilon}
 \newcommand{\Linf}{L_\infty}
+\input{macros_konsey}
 
 % ============================================================================
 % DOCUMENT INFO  (IEEE Access sablonu: history + doi + author/address/corresp)
@@ -57,11 +58,13 @@
 % Altbilgi cildi: sinif varsayilani 11 (2023). IEEE Access 2026 = cilt 14; uretim yine de doldurur.
 \vol{14}
 
-% 2026-10-04 (LeCun turu, hukum B1): baslik makalenin gercekten gosterdigi
-% seye indirildi; eski baslik literatur duzeyi bir iddia tasiyordu.
-\title{The Conditioning Set Decides the Measured Transfer Asymmetry: An Exact
-Correction and a Source-Effect Reading for CNN versus Vision Transformer
-Robustness Comparisons}
+% 2026-10-31 (konsey turu, O1 bolgesi): baslik on kayitli O1 manseti
+% (KONSEY_PLANI Sec. 9) uzerine kuruldu; brif 12 Sec. 1.1: ABD imlasi,
+% "CNN-ViT" (iki yon), "x" yerine "-by-". Eski "Source-Effect" basligi O1 ile
+% celistigi icin kalkti.
+\title{Not a Weak Source but a Different One: Vulnerability, Similarity
+and Direction in CNN-ViT Adversarial Transfer under an
+Architecture-by-Initialization Design}
 
 % Yazar bandi sablonda buyuk harftir. \uppercase Turkce {\i}'yi buyutmez ve
 % i -> I yapar (Turkce'de i -> İ); "CAGRı SAHIN" / "YıLDıRıM" basiliyordu.
@@ -92,24 +95,30 @@ AND \"OZAL YILDIRIM\authorrefmark{2}}
 % ve anahtar kelimesizdi. Kapilar .tex okudugu icin yakalamadi; artik
 % scripts/check_pdf_render.py PDF metnini denetliyor.
 % ----------------------------------------------------------------------------
-% 2026-10-04 (LeCun turu): ozet yeni omurgaya gore yeniden kuruldu. Sayilarin
-% kaynagi results/C1_REFERANS_FOYU.md:
-% REF: Transfer asimetrisi, dort protokol, ayarlar (4.4-19.4)
-% REF: Yayilim - temiz fark iliskisi, grup araliklari (SVHN uc protokol 1.30; 1.49)
-% REF: RobustBench havuzu, cift basina (Carmon2019/Gowal2020: fark 0.21, dort protokol 9.03)
-% REF: Secim kuralinin asimetriye etkisi, B (kosum araliklari 0.63/0.86/0.46/2.41 -> en cok 2.4)
-% REF: Turetilmis (9.21; 11.10; 3.91 [3.12; 4.70])
-% REF: Dis veri: Mahmood (p_min 0.989014) ve ozdeslik_kontrol.json (0.989-1.000)
-% REF: Standart egitimli hedeflerde oncul p (0.8774 -> 0.88; artik 1.58 -> 1.6; 0.47 fark / 0.19 yayilim)
-% REF: Kaynak-hedef toplamsal ayristirma (+5.13/-2.03; +9.54/-6.19)
-% REF: RobustBench havuzu (28 cift, uc protokol egimi +0.872)
-% REF: Secim kuralinin asimetriye etkisi, B (yayilim degisimi -2.16)
+% 2026-10-31 (konsey turu, O1 bolgesi): ozet brif 12 Sec. 1.2'deki sekiz
+% cumlelik plana gore yeniden kuruldu. Eski "source effect" cumlesi O1 ile
+% celistigi icin kalkti; eski REF satirlari silindi. 250 kelime siniri icin
+% 8. cumlenin h-olcegi yarisi (0.0044) ozetten cikti, govdede (Giris, katki 4)
+% duruyor. Sayilarin kaynagi results/C1_REFERANS_FOYU.md (31.10.2026 surumu):
+% FOY:M9.5:1587,1588,1589 (q 0.936 [0.925, 0.948]; rho(V-scr) +0.012; Delta_seed +0.566)
+% FOY:M9.3:1526,1527,1528 (H1 -0.364 [-0.415, -0.314]; H2 +0.260 [0.186, 0.335]; H3 +0.003)
+% FOY:M9.6:1624,1625 (korunma orani 0.960 [0.941, 0.976])
+% FOY:M9.7:1673 (PGD-10 ile AA farki 3.20 ile 7.40 puan, isaretli model yok)
+% FOY:M10.2:1838,1839,1840 (CIFAR-100 q 0.840; rho(V-scr) +0.143; K-c destek)
+% FOY:M9.5:1603; M10.2:1857 (logit olcekte rho(V-scr) -0.304 ve -0.413, guclu negatif; sayi ozette yok)
+% 2026-10-31 dogrulayici turu: H3 "log olcekte" diye nitelendi (FOY:M9.4:1551
+% logit H3 -0.087 kararsiz); logit yonlu terim "isaret doner" yerine "guclu
+% negatif"; gradyan icin "gerekli kosul" kaydi; ozet 250 kelime.
+% FOY:M10.4:1938 (A^sigma_IN -0.142 [-0.197, -0.090], betimsel)
+% FOY:M10.5:1971,1973,1975 (ana etki artikli Spearman 0.944, 0.912, 0.893)
+% FOY:Tablo III:160,162 (hedef-dogru +4.36, basarili-kaynak +19.37)
+% KAYNAK: ON_KAYIT Sec. 2-3 (yedi uyeli panel); FOY:M9.5:1593 (uc tohum cifti)
 \begin{abstract}
-CNN-versus-ViT transfer studies state which samples they score, but those we review never vary this conditioning set. We measure its weight on adversarially trained ResNet-18 and ViT-Tiny (three runs each, full CIFAR-10 test set, per-sample logging). With models, data and attack fixed, four conditioning protocols place the CNN-to-ViT transfer asymmetry between 4.4 and 19.4 points, whereas retraining moves it by at most 2.4 points (run-to-run SD 0.23 to 1.27). The unconditioned estimate lies 9.21 points above the target-correct one, where the law of total probability places it; the premise $p$, that clean-misclassified samples stay misclassified, is 0.989 to 1.000 on our adversarially trained targets but falls to 0.88 on standard-trained ones, where assuming $p=1$ errs by up to 1.6 points. The two protocols we endorse differ by 3.91 points (run-level 95\% interval [3.12, 4.70]), and successful-source scoring, a different estimand, lies 11.10 points above both-correct. The direction is a source effect of this ViT-Tiny: additive fits to target-correct matrices give source terms of $+5.13$ (CIFAR-10) and $+9.54$ points (CIFAR-100) against target terms of $-2.03$ and $-6.19$. The identity term follows the clean-accuracy gap: the three-protocol spread is 1.49 and 1.30 points on near-matched SVHN, 0.19 for a standard-trained pair 0.47 points apart, and rises 0.87 points per point of gap over 28 pool pairs, whereas the successful-source excess does not shrink (9.03 points for two robust WideResNets 0.21 points apart). Checkpoint selection moves the spread by about two points. Three further readings fail direct measurement; we close with reporting requirements.
+Adversarially trained ViTs look like weak transfer sources against CNNs, but two models cannot split this asymmetry between source and target. We factor each log target-correct transfer rate into target vulnerability $w$, symmetric similarity $\bar{\tau}$ and directional residual $r$, averaged over a fixed panel of seven robust CNNs, testing pre-registered predictions with three seeds (brackets: 90\% intervals). On CIFAR-10, 0.936 [0.925, 0.948] of ViT-Tiny's panel source gap to ResNet-18 is symmetric, the ViT's directional term ($+0.012$) is equivalent to zero within $\pm0.10$, and ViT seeds resemble each other more than the panel ($\Delta_{\mathrm{seed}}=+0.566$). In an architecture-by-initialization design at a matched pipeline, the scratch-trained ViT resembles the panel less than the ResNet ($-0.364$ [$-0.415$, $-0.314$]), ImageNet initialization narrows it more for the ViT ($+0.260$ [0.186, 0.335]), and on the log scale architecture leaves direction unchanged ($+0.003$). The gap survives each source's best permitted attack (0.960 [0.941, 0.976]), and AutoAttack flags no new model for masking (PGD-10 gaps 3.20--7.40 points). On CIFAR-100 the symmetric share (0.840) and seed similarity replicate but the ViT's small directional term does not ($+0.143$), and on the logit scale it is strongly negative on both datasets, confining a small directional term to CIFAR-10, the log scale and a CNN panel. On ImageNetV2, transformers in two clean-pretrained same-recipe pairs are descriptively less similar to the panel ($-0.142$ [$-0.197$, $-0.090$]), and input-gradient cosine, a necessary condition for similar transfer, tracks similarity on three datasets (residual Spearman 0.893--0.944). The conditioning protocol alone moves the asymmetry from 4.36 to 19.37 points.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Adversarial robustness, convolutional neural networks, evaluation methodology, deep learning security, reproducibility, transfer attacks, Vision Transformer
+Adversarial robustness, transfer attacks, transferability, Vision Transformer, convolutional neural networks, pre-registration, evaluation methodology
 \end{IEEEkeywords}
 
 \titlepgskip=-21pt
@@ -123,8 +132,10 @@ Adversarial robustness, convolutional neural networks, evaluation methodology, d
 \input{sections/02_related_work}
 \input{sections/03_methodology}
 \input{sections/04_experiments}
+\InputIfFileExists{sections/04z_computational}{}{}
 \input{sections/05_discussion}
 \input{sections/06_conclusion}
+\InputIfFileExists{sections/07_appendix}{}{}
 
 % ----------------------------------------------------------------------------
 % DATA AND CODE AVAILABILITY
@@ -134,9 +145,11 @@ Adversarial robustness, convolutional neural networks, evaluation methodology, d
 % scripts/acik_depo_kur.sh). Kapsam vaatle ayni: analiz kodu + ornek bazinda
 % kayitlar + bolme indeksleri + tohumlar; kontrol noktalari (40 GB) istek
 % uzerine. Uc yerdeki dil ayni: simdiki zaman, ayni kapsam (burasi, §6, TR).
-The experiments in this study use the CIFAR-10 and CIFAR-100 datasets~\cite{krizhevsky2009learning} and the SVHN dataset~\cite{netzer2011reading}, all of which are publicly available. Pre-trained WideResNet-28-10 weights were obtained from the RobustBench benchmark~\cite{croce2021robustbench, gowal2020uncovering}. % 2026-10-04 (LeCun turu): depo kapsamina yeni artefaktlar eklendi (temiz ciftler,
-% RobustBench havuzu, son kontrol noktasi, Mahmood tablolari ve betikleri).
-The analysis pipeline, the scripts that generate every table and figure in this paper, the per-sample evaluation records, the fixed validation-split indices and the seed lists are publicly available at \texttt{https://github.com/cagrisahin58/cnn-vit-robustness-protocols}. The per-sample records include the transfer runs of the clean-trained model pairs, of the eight-model RobustBench pool and of the last-checkpoint re-scoring, and the repository also holds a machine-read copy of Tables~1 and~2 of Mahmood et al.~\cite{mahmood2021robustness} together with the scripts that decompose and re-score them. Together these reproduce every number reported here, and because the four conditioning protocols are all computed from the per-sample records, the protocol comparison can be repeated without retraining. Trained checkpoints total about $40$~GB and are available from the authors on request.
+% 2026-10-31 (konsey turu, brif 12 Sec. 4.1): ImageNetV2, RobustBench
+% CIFAR-100 ve ImageNet modelleri, timm ImageNet baslatmalari eklendi; depo
+% kapsamina on kayit dosyalari, dondurulmus cozumleme betigi ve hucre
+% tablolari eklendi. "about 40 GB" foyde olmadigi icin sayisiz yazildi.
+The CIFAR-10 and CIFAR-100~\cite{krizhevsky2009learning}, SVHN~\cite{netzer2011reading} and ImageNetV2 MatchedFrequency~\cite{recht2019imagenet} datasets are public. Panel checkpoints come from RobustBench~\cite{croce2021robustbench}, and the ImageNet initializations are the public DeiT-Tiny~\cite{touvron2021training} and ResNet-18 A1~\cite{wightman2021resnet} weights from timm. The analysis pipeline, the scripts behind every table and figure, the per-sample evaluation records, the validation-split indices and the seed lists are public at \url{https://github.com/cagrisahin58/cnn-vit-robustness-protocols}. It also holds the pre-registration documents with their freeze records, the frozen analysis script, the cell tables whose SHA-256 digests the analysis outputs record, and a machine-read copy of Tables~1 and~2 of Mahmood et al.~\cite{mahmood2021robustness} with the scripts that re-score them. Since every protocol and decomposition term is computed from these records, all reported numbers can be reproduced without retraining. Trained checkpoints are available from the authors on request.
 
 % ----------------------------------------------------------------------------
 % ACKNOWLEDGMENT

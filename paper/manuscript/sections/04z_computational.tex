@@ -1,0 +1,23 @@
+% ============================================================================
+% SECTION 4 (son alt bolum): COMPUTATIONAL DETAILS
+% ============================================================================
+% 2026-10-31 (konsey turu, Y4): eski 04_experiments.tex:638 paragrafinin yerine.
+% Brif 10 olgulari. Ek bloklarin (B8-B10) ve adimlarin sureleri foyde olmadigi
+% icin yazilmaz (brif 9); GPU paylasimi ve bellek sayisiz, nitel beyan.
+\subsection{Computational Details}
+\label{subsec:computational}
+
+% KAYNAK: CLAUDE.md (Donanim: C1 kampanyasi RTX 5060 Ti 16GB, Q1 ve konsey bloklari RTX 5090 32GB); eski metin 04:638
+% KAYNAK: raporlar/konsey_2026-10-29/adeb_eval_pip_freeze.txt satir 156, 234, 266, 269; CLAUDE.md (CUDA 12.8)
+% KAYNAK: raporlar/konsey_2026-10-29/10_konteyner_yeniden_kurulum.md satir 276 (commit edilmis imaj adeb_eval:2026-10-30)
+% KAYNAK: eski metin 04:638 ve 03:192 (deterministik cuDNN, tohum 42)
+% FOY:M10.1:1789,1793,1794,1796
+The three CIFAR-10 training pairs of the original cell and their evaluations ran on an NVIDIA RTX 5060 Ti (16~GB). The CIFAR-100, SVHN and $L_2$ campaigns, the selection trajectories, the external pool and all registered blocks ran on an RTX 5090 (32~GB). Code ran in a container built on NVIDIA's PyTorch~25.01 image (PyTorch 2.6.0a0, CUDA 12.8) with timm 1.0.27, NumPy 1.26.4 and RobustBench commit \texttt{78fcc9e}, under deterministic cuDNN settings and seed 42. The CIFAR-100, ImageNetV2 and gradient blocks involved no training. They ran from a committed snapshot of the rebuilt container, with a forked copy of the transfer-matrix script that reproduced the original outputs exactly in a regression run.
+
+% FOY:M9.7:1673
+% KAYNAK: eski metin 04:638 (C1 AutoAttack: tam test kumesi, tohumlu 1000'lik parcalar)
+AutoAttack used the standard configuration (APGD-CE, APGD-T, FAB-T, Square), on the full test set in seeded 1{,}000-image chunks for the original pair and on the first 1{,}000 test images for the six new models.
+
+% FOY:M8.9:1315,1316
+% FOY:M9.1:1452,1453,1454,1455,1456,1457,1470,1485
+The three-seed training pipeline of the original pair took 21.7 GPU-hours. The six new runs took 17.79 hours for their clean and adversarial phases, against a pilot projection of 20.47 hours at the 80-epoch cap. Adversarial training stopped early in every run, after 36 to 58 epochs, with selected epochs between 16 and 38. Per-epoch times were 1.05 to 2.19 times those of the pilot, which was measured on an idle GPU. The GPU was at times shared with another process, but the logs do not establish the cause of the slowdown.

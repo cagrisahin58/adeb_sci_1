@@ -1,0 +1,281 @@
+{
+  "sekil": "fig_study_overview",
+  "surum": 1,
+  "durum": "taslak (matplotlib); kalici cizim visio-cizici turunda",
+  "betik": "paper/figures/konsey/fig_study_overview_veri.py",
+  "ortak_modul": "paper/figures/konsey/konsey_ortak.py",
+  "ortak_modul_sha256": "b375d0648bdd49b017265f3de06fc76df194b7bfa1e5e7f5526a28a983da76ba",
+  "komut": "docker exec -w /workspace adeb_eval python -B paper/figures/konsey/fig_study_overview_veri.py",
+  "uretim_zamani_utc": "2026-10-31T13:44:11+00:00",
+  "girdiler_sha256": {
+    "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": "be778f4286289a744b88a052d234a4fbf93c616e125b5977b2f38a2f40dde3bd",
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": "4afa5fbc3f661632cf3e08c66ce56064fbde01424c352b2ab66a482d390a388d",
+    "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7",
+    "results/q1/konsey_b10_gradyan/mantel_cifar100.json": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac",
+    "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073",
+    "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": "2c5e992eaaad49d88056f1d64f1cd7c2650657d0d49da85424f52caa9ebae0e9"
+  },
+  "git": {
+    "commit": "2fc9f572795b04daeae43a98076ad54d343ef936",
+    "branch": "q1",
+    "dirty_or_untracked": [
+      "?? paper/figures/konsey/fig_study_overview_veri.py",
+      "?? paper/figures/konsey/konsey_ortak.py"
+    ]
+  },
+  "yerlesim": {
+    "boyut_in": [
+      6.771,
+      5.085
+    ],
+    "dpi": 0,
+    "en_kucuk_yazi_pt": 0,
+    "font": "DejaVu Sans, pdf.fonttype 42",
+    "renkler": {
+      "vit": "#D55E00",
+      "r224": "#0072B2",
+      "r32": "#56B4E9",
+      "panel": "#999999",
+      "xcit": "#CC79A7",
+      "sym": "#009E73",
+      "dir": "#E69F00"
+    }
+  },
+  "okunan_anahtarlar": {
+    "raporlar/konsey_2026-10-29/hucre_tablosu.json": [
+      "modeller.<m>.{hucre, birincil_panel, ikincil_panel}"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": [
+      "modeller.<m>.{hucre, birincil_panel, ikincil_panel}"
+    ],
+    "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": [
+      "modeller.<m>.{hucre, birincil_panel, ikincil_panel}"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_cifar10.json": [
+      "modeller_ortak"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_cifar100.json": [
+      "modeller_ortak"
+    ],
+    "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": [
+      "modeller_ortak"
+    ],
+    "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": [
+      "b2.F_B2.K-a.ciftler"
+    ]
+  },
+  "cizilen_degerler": {
+    "makrolar": {
+      "NmodCten": 20,
+      "NmodChun": 15,
+      "NmodIN": 14,
+      "SeedRtt": 3,
+      "SeedVscr": 3,
+      "SeedVin": 2,
+      "SeedRscr": 2,
+      "SeedRin": 2,
+      "PanelCten": 7,
+      "SecCten": 1,
+      "SeedChunR": 3,
+      "SeedChunV": 3,
+      "PanelChun": 7,
+      "SecChun": 2,
+      "PanelIN": 6,
+      "SecIN": 1,
+      "PairsIN": 3,
+      "TransIN": 4,
+      "UnpairedIN": 1
+    },
+    "makro_dosyasi": "paper/figures/konsey/fig_study_overview_sayilar.tex"
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 19,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results/C1_REFERANS_FOYU.md",
+    "foy_sha256": "57e9659ed7472af4646d1e6feace5e325f918fb00c72a08509f41d41269802c5",
+    "ayrinti": [
+      {
+        "ad": "CIFAR-10 total == sum of groups",
+        "a": 20,
+        "b": 20,
+        "tolerans": 0,
+        "aciklama": "partition",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 total == sum of groups",
+        "a": 15,
+        "b": 15,
+        "tolerans": 0,
+        "aciklama": "partition",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 total == sum of groups",
+        "a": 14,
+        "b": 14,
+        "tolerans": 0,
+        "aciklama": "partition (pairs = CNN counterparts)",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-10 K = 20 (S7)",
+        "aranan_metin": "S7, Hodge (K = 20)",
+        "foy_satiri": 1569,
+        "capa": "| S7, Hodge",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 model count",
+        "aranan_metin": "| 15 | 0 | 0 | evet |",
+        "foy_satiri": 1826,
+        "capa": "| B9 | cifar100 |",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 model count",
+        "aranan_metin": "| 14 | 0 | 0 | evet |",
+        "foy_satiri": 1827,
+        "capa": "| B8 | imagenetv2 |",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-10 primary panel",
+        "aranan_metin": "panel 7 uyeli",
+        "foy_satiri": 1741,
+        "capa": "Havuz modellerinde sigma ve rho",
+        "eslesti": true
+      },
+      {
+        "ad": "V-scr runs",
+        "aranan_metin": "| V-scr | 3 |",
+        "foy_satiri": 1496,
+        "capa": "| V-scr |",
+        "eslesti": true
+      },
+      {
+        "ad": "V-IN runs",
+        "aranan_metin": "| V-IN | 2 |",
+        "foy_satiri": 1497,
+        "capa": "| V-IN |",
+        "eslesti": true
+      },
+      {
+        "ad": "R224-scr runs",
+        "aranan_metin": "| R224-scr | 2 |",
+        "foy_satiri": 1498,
+        "capa": "| R224-scr |",
+        "eslesti": true
+      },
+      {
+        "ad": "R224-IN runs",
+        "aranan_metin": "| R224-IN | 2 |",
+        "foy_satiri": 1499,
+        "capa": "| R224-IN |",
+        "eslesti": true
+      },
+      {
+        "ad": "R32 runs == K-a seed pairs (foy 1593 lists three pairs)",
+        "a": 3,
+        "b": 3,
+        "tolerans": 0,
+        "aciklama": "count of ResNet seeds named on foy 1593",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 seed pairs (foy 1848)",
+        "a": 3,
+        "b": 3,
+        "tolerans": 0,
+        "aciklama": "count of ResNet seeds named on foy 1848",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 primary panel rows (foy 1873-1887)",
+        "a": 7,
+        "b": 7,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "CIFAR-100 secondary panel rows",
+        "a": 2,
+        "b": 2,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 primary panel rows (foy 1909-1922)",
+        "a": 6,
+        "b": 6,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 secondary panel rows",
+        "a": 1,
+        "b": 1,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 pairs (foy 1930-1932)",
+        "a": 3,
+        "b": 3,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      },
+      {
+        "ad": "ImageNetV2 unpaired transformer rows",
+        "a": 1,
+        "b": 1,
+        "tolerans": 0,
+        "aciklama": "row count",
+        "eslesti": true
+      }
+    ]
+  },
+  "denetimler": [
+    "model totals == sum of groups for each data set",
+    "totals vs foy 1569 (K = 20), 1826 (15), 1827 (14); panel and secondary counts vs foy rows",
+    "run counts per cell vs foy 1496-1499; seed pairs vs foy 1593, 1848; ImageNetV2 pairs vs 1930-1932"
+  ],
+  "notlar": [
+    "TikZ figure: drawn by fig_study_overview.tex (copy of paper/figures/overview/fig_study_overview.tex, rewritten per brief 12 section 6.1; the original is untouched). Numerals in the drawing are only the macros above; names such as PGD-10, H1-H3 and 2x2 are labels.",
+    "Layout fields (size, fonts, PDF hash) are filled by --cikti-ekle after compiling with pdflatex in WSL."
+  ],
+  "eski_surum_tasindi": null,
+  "cikti": {
+    "pdf_sha256": "95773aa9ef9a3002bdecc2cd609b45a8ecf1571c245c827cbd26187df0f65df2",
+    "png_sha256": "e6b6e98d7467085d236ad5739a18c06b35abe4a6c9b50d77d4f340aa7224a97c",
+    "sayfa_boyutu_in": [
+      6.771,
+      5.085
+    ],
+    "fontlar": [
+      "AKIGCD+LMMathItalic8-Regular",
+      "FRSYEB+LMSans8-Regular",
+      "GUKCJE+LMMathItalic5-Regular",
+      "GVOAKQ+LMSans10-Bold",
+      "IYZGZC+LMMathSymbols8-Regular",
+      "LQMEKN+LMMathItalic6-Regular",
+      "OOIELQ+LMMathSymbols7-Regular",
+      "TTFIYM+LMRoman7-Regular",
+      "WAPGFJ+LMMathItalic7-Regular",
+      "WRWULN+LMRoman8-Regular",
+      "YNVWXX+LMRoman6-Regular"
+    ],
+    "font_turleri": [
+      "Type1"
+    ],
+    "tex_sha256": "694a1f3fb7346a8effadfeb70cf8fcd49487263b08c188a9e9780c259644fec3",
+    "sayilar_sha256": "6e12f0cfc5742f6e21f554a0e1753a0869e43eb272449bea800fe01a65508dec"
+  }
+}
