@@ -4154,6 +4154,440 @@ for _i12 in _M12_YOK_YER:
 
 # <<< M12 SONU (hakem paneli acik isleri A2, A9, A10)
 
+# ===========================================================================
+# GENISLETME 2026-10-31 (M13): sekil kaynaklari (visio yeniden cizimi; envanter
+# raporlar/visio_2026-10-31/01_envanter.md bolum 5-6, Y1, Y4, Y5). M13.1 tasarim ve
+# egitim tarifi (results/q1/konsey_b3_tarif.json), M13.2 kayit haritasi
+# (results/q1/konsey_kayit_kurallari.json), M13.3 zaman cizelgesi
+# (results/q1/konsey_zaman_cizelgesi.json). Uc JSON arsiv/b2_yardimci/_m13_tarif.py,
+# _m13_kayit.py ve _m13_zaman.py ile kaynaklarindan uretilir; bu blok yalniz okur,
+# yorum yazmaz. JSON'lardaki foy satir referanslari bu calismada L uzerinden satir
+# sha256'siyla denetlenir (M13'ten onceki satirlar ciktida degismez). Mevcut
+# bolumlere dokunulmaz; bolum M12'den sonra, 'Sabit dizgeler'den once gelir.
+# ===========================================================================
+_M13_TJ = "results/q1/konsey_b3_tarif.json"
+_M13_KJ = "results/q1/konsey_kayit_kurallari.json"
+_M13_ZJ = "results/q1/konsey_zaman_cizelgesi.json"
+_M13_FOY = "results/C1_REFERANS_FOYU.md"
+_M13_BETIKLER = ("arsiv/b2_yardimci/_m13_tarif.py", "arsiv/b2_yardimci/_m13_kayit.py", "arsiv/b2_yardimci/_m13_zaman.py",
+                 "arsiv/b2_yardimci/_m13_ortak.py")
+_M13_DEGISEN = []
+_M13_YOK_YER = []
+
+
+def _m13(ad, kaynak, fn):
+    L.append(f"\n### {ad}\n")
+    try:
+        fn()
+    except (KeyError, TypeError, IndexError, ValueError, OSError, ZeroDivisionError, AttributeError) as e_:
+        _hata(e_)
+    L.append(f"_Kaynak: {kaynak}_\n")
+
+
+def _m13_foy(n, sha_, etiket):
+    """Foy satiri n (bu calismadaki metin; M13'ten onceki satirlar ciktida aynen kalir) JSON'daki sha256 ile ayni mi."""
+    s_ = "\n".join(L).split("\n")
+    ok_ = n <= len(s_) and _m9hl.sha256(s_[n - 1].encode("utf-8")).hexdigest() == sha_
+    if not ok_:
+        _M13_DEGISEN.append(f"{etiket} (satir {n})")
+    return ok_
+
+
+def _m13g(x):
+    if x is None:
+        return "-"
+    if isinstance(x, bool) or not isinstance(x, (int, float)):
+        return str(x)
+    return str(int(x)) if float(x).is_integer() else f"{x:g}"
+
+
+def _m13t(x):
+    return "-" if not x else str(x).replace("T", " ").replace("+00:00", "")
+
+
+def _m13meta(J, rel):
+    m_ = J["meta"]
+    hb, ho = _m9sha(m_["betik"]), _m9sha(m_["ortak_modul"])
+    farkli = [p_ for p_, h_ in m_["kaynaklar_sha256"].items() if p_ != _M13_FOY and _m9sha(p_) != h_]
+    return (f"`{rel}` meta: betik {m_['betik']} betik_sha256 {m_['betik_sha256']} (dosyadan hesaplanan "
+            f"{'AYNI' if hb == m_['betik_sha256'] else 'FARKLI ' + hb}); ortak modul {m_['ortak_modul']} "
+            f"{m_['ortak_modul_sha256']} ({'AYNI' if ho == m_['ortak_modul_sha256'] else 'FARKLI'}); uretildi_utc "
+            f"{m_['uretildi_utc']}; python {m_['python']}; kaynak dosya sayisi (kaynaklar_sha256) {m_['kaynak_sayisi']}; "
+            f"kaynaklardan simdi farkli olan (foy haric; foy satirlari satir sha256'siyla ayrica denetlenir): "
+            f"{farkli or 'yok'}."
+            # 31.10.2026 duzeltme turu (bulgu 3): foy ozeti M13 haric metnin sha256'si; git'ten okunan surumler
+            + (f" Foy ozeti (`meta.foy_ozeti.m13_haric_sha256`; foyden '## M13:' bolumu cikarilmis metnin sha256'si, "
+               f"denetimi arsiv/b2_yardimci/_m13_kontrol.py): {m_['foy_ozeti']['m13_haric_sha256']}." if "foy_ozeti" in m_ else "")
+            + (f" Git'ten salt okunan surumler (`meta.git_kaynaklari.blob`): {len(m_['git_kaynaklari']['blob'])} dosya "
+               f"({', '.join(sorted({k_.split(':')[1] for k_ in m_['git_kaynaklari']['blob']}))})." if "git_kaynaklari" in m_ else ""))
+
+
+sec("M13: Sekil kaynaklari, tasarim tarifi, kayit haritasi ve zaman cizelgesi (2026-10-31)",
+    f"{_M13_TJ}; {_M13_KJ}; {_M13_ZJ}; {', '.join(_M13_BETIKLER)} (yalniz sha256)")
+L.append("Uc yeni sekil (Y1 fig:design_recipe, Y4 fig:registry_map, Y5 fig:prereg_chain) icin makine okunur kaynaklardir. "
+         "Her JSON uretici betiginin kaynak dosyalarindan okunur; degerin yaninda kaynak dosya ve satiri JSON'da yazilidir. "
+         "Sonuc sayilari burada tekrarlanmaz; foyun ilgili satiri verilir ve satirin sha256'si bu calismada denetlenir.\n")
+
+
+# --- M13.1 Tasarim ve egitim tarifi ---------------------------------------------------------
+def _m13_1():
+    J = _oku(_M13_TJ)
+    L.append(f"Etiket (`etiket`): {J['etiket']}.\n")
+    L.append(_m13meta(J, _M13_TJ) + "\n")
+    H = J["hucreler"]
+    sira = [h_ for h_ in ("V-scr", "V-IN", "R224-scr", "R224-IN", "C1-R32") if h_ in H]
+
+    def ilk(h_):
+        return list(H[h_]["kosular"].values())[0]
+
+    st = []
+    for h_ in sira:
+        x_, g_ = H[h_], H[h_]["girdi_hatti"]
+        nrm = g_["normalizasyon"]
+        if g_.get("imagenet_ortalama"):
+            nrm += (f"; ortalama {g_['imagenet_ortalama']}, SD {g_['imagenet_sd']}, cfg ile ayni "
+                    f"{_m9e(g_.get('norm_cfg_ile_ayni'))} (`{g_['init_kaynak']}`)")
+        st.append([h_, x_["blok"], g_["model"], g_["girdi"], nrm, g_["baslatma"],
+                   ", ".join(str(t_) for t_ in x_["tohumlar"]),
+                   f"`{x_['on_kayit_satiri']}`" if x_.get("on_kayit_satiri") else f"hucre tablosu: {x_.get('hucre_tablosu_tanimi')}",
+                   "; ".join(f"`{k_}`" for k_ in g_["kaynak"])])
+    L.append("(a) Hucreler ve girdi hatti (`hucreler.<h>`.{blok, girdi_hatti, tohumlar, on_kayit_satiri}):\n")
+    T(["Hucre", "Blok", "Model", "Girdi hatti", "Normalizasyon", "Baslatma", "Tohumlar", "On kayit satiri",
+       "Kod kaynagi"], st)
+    st = []
+    for h_ in sira:
+        o_ = ilk(h_)["temiz"]
+        st.append([h_, o_["epok_bayragi"], o_["eniyileyici_eniyileyici"], _m13g(o_["eniyileyici_lr_etkin"]),
+                   _m13g(o_["eniyileyici_agirlik_azaltma"]), _m13g(o_.get("eniyileyici_momentum")),
+                   f"{o_['lr_cizelgesi']['tur']} (T_max {_m13g(o_['lr_cizelgesi']['T_max_epok'])})", o_["batch"],
+                   o_["baslatma_bayragi"], f"`{o_['komut_kaynagi']}`; {o_['eniyileyici_kaynak']}"])
+    L.append("(b) Temiz asama (`hucreler.<h>.kosular.<ilk kosu>.temiz`; B3 hucrelerinde iki kosu tohum disinda ozdes, "
+             "bkz. denetimler):\n")
+    T(["Hucre", "Epok", "Eniyileyici", "lr (etkin)", "Agirlik azaltma", "Momentum", "LR cizelgesi", "Batch",
+       "--init-weights", "Komut ve eniyileyici kaynagi"], st)
+    st = []
+    for h_ in sira:
+        o_ = ilk(h_)["AT"]
+        st.append([h_, o_["epok_tavani"], f"{o_['lr_cizelgesi']['tur']} (T_max {o_['lr_cizelgesi']['T_max_epok']})",
+                   o_["sabir"], o_["eniyileyici_eniyileyici"], _m13g(o_["eniyileyici_lr_etkin"]),
+                   _m13g(o_["eniyileyici_agirlik_azaltma"]), _m13g(o_.get("eniyileyici_momentum")), o_["batch"],
+                   f"{_m13g(o_['eps_x255'])}/255", f"{_m13g(o_['alpha_x255'])}/255", o_["pgd_adim"],
+                   _m13g(o_["gradyan_kirpma"]), o_["kaydet_her"], f"`{o_['komut_kaynagi']}`; {o_['epok_tavani_kaynagi']}"])
+    L.append("(c) AT asamasi (`hucreler.<h>.kosular.<ilk kosu>.AT`; eps, alpha, adim ve gradyan kirpma cli/train.py "
+             "varsayilanlari, satirlari JSON'da):\n")
+    T(["Hucre", "Epok tavani", "LR cizelgesi", "Sabir", "Eniyileyici", "lr (etkin)", "Agirlik azaltma", "Momentum",
+       "Batch", "eps", "alpha", "PGD adim", "Gradyan kirpma", "--save-every", "Komut ve tavan kaynagi"], st)
+    o_ = J["ortak"]
+    L.append(f"Ortak (`ortak`): AT kaybi {o_['at_kaybi']['tur']}, mix_ratio {_m13g(o_['at_kaybi']['mix_ratio'])}, PGD rastgele "
+             f"baslangic {_m9e(o_['at_kaybi']['pgd_rastgele_baslangic'])} ({o_['at_kaybi']['kaynak']}); erken durma olcutu "
+             f"{o_['erken_durma']['olcut']}, min_delta {_m13g(o_['erken_durma']['min_delta_puan'])} ({o_['erken_durma']['kaynak']}); "
+             f"veri {o_['veri']['egitim_kumesi']}, dogrulama bolmesi `{o_['veri']['dogrulama_bolmesi_dosyasi']}` n "
+             f"{o_['veri']['dogrulama_n']} ({o_['veri']['dogrulama_n_kaynagi']}); artirma {o_['veri']['artirma']} "
+             f"({o_['veri']['artirma_kaynagi']}); pilot secilen tavan {o_['at_tavani_pilot']['secilen_tavan']} "
+             f"(`{o_['at_tavani_pilot']['kaynak']}`; on kayit `{o_['at_tavani_pilot']['on_kayit']}`); secim kurali "
+             f"`{o_['secim_kurali']['kaynak']}`.\n")
+    for h_ in sira:
+        if "takma_adlar" in H[h_]:
+            k_ = H[h_]["kosular"]
+            L.append(f"{h_} kosulari: " + "; ".join(
+                f"{t_} temiz `{k_[t_]['temiz']['komut_kaynagi']}`, AT `{k_[t_]['AT']['komut_kaynagi']}` (kuyruk sablonu "
+                f"`{k_[t_]['AT']['kuyruk_sablonu']}`, sablonla ayni bayraklar {_m9e(k_[t_]['AT']['sablonla_ayni_bayraklar'])})"
+                for t_ in H[h_]["takma_adlar"]) + ".\n")
+    d_ = J["denetimler"]
+    gb = d_["gunluk_basliklari_cozumlenen_degerlerle_ayni"]
+    L.append(f"Denetimler (`denetimler`): B3 AT tavani pilotla ayni {_m9e(d_['B3_AT_tavani_pilotla_ayni'])}; B3 komutlari kuyruk "
+             f"sablonuyla ayni {_m9e(d_['B3_komutlar_kuyruk_sablonuyla_ayni'])}; B3 hucre ici kosular tohum disinda ozdes "
+             f"{_m9e(d_['B3_hucre_ici_kosular_tohum_disinda_ozdes'])}; egitim gunlugu basliklari (Epochs, LR, eniyileyici) "
+             f"cozumlenen degerlerle {gb['uyusan']}/{gb['denetlenen']} uyusuyor; AT eps, alpha ve adim hucreler arasi ayni "
+             f"{_m9e(d_['AT_eps_alpha_adim_hucreler_arasi_ayni'])}.\n")
+    f_ = J["foy_referanslari"]
+    ep = "; ".join(f"{t_} satir {x_['foy_satiri']} ({'satir ayni' if _m13_foy(x_['foy_satiri'], x_['satir_metni_sha256'], 'M13.1 ' + t_) else 'SATIR DEGISTI'})"
+                   for t_, x_ in f_["B3_gerceklesen_epoklar"].items())
+    c1 = f_["C1_son_kontrol_noktasi_epoklari_bolumu"]
+    te = f_["B3_toplam_egitim_suresi"]
+    L.append(f"Gerceklesen epoklar bu bolumde tekrarlanmaz (`foy_referanslari`): B3, M9.1 tablosunun 'AT epok (kosulan)' sutunu, "
+             f"{ep}; C1 V-scr ve C1-R32, M8.14 basligi satir {c1['foy_satiri']} "
+             f"({'satir ayni' if _m13_foy(c1['foy_satiri'], c1['satir_metni_sha256'], 'M13.1 M8.14') else 'SATIR DEGISTI'}); "
+             f"B3 toplam egitim suresi M9.1 satir {te['foy_satiri']} "
+             f"({'satir ayni' if _m13_foy(te['foy_satiri'], te['satir_metni_sha256'], 'M13.1 toplam') else 'SATIR DEGISTI'}).\n")
+    # 31.10.2026 duzeltme turu, bulgu 7: AT tavani cumlesi tam alinti ve V-scr tavan denetimi
+    at_ = J["ortak"].get("at_tavani_on_kayit_cumlesi")
+    if at_:
+        L.append(f"AT tavani cumlesi (`ortak.at_tavani_on_kayit_cumlesi`, `{at_['kaynak']}`, tam alinti): \"{at_['alinti']}\" "
+                 f"On kayit hucre tablosunda 'mevcut' isaretli hucreler: {', '.join(at_['on_kayit_tablosunda_mevcut_isaretli_hucreler'])}; "
+                 f"yeni hucreler: {', '.join(at_['on_kayit_tablosunda_yeni_hucreler'])}.\n")
+    vd = d_.get("V_scr_AT_tavani_ve_gerceklesen_durma")
+    if vd:
+        okv = all([_m13_foy(n_, vd["foy_satir_metni_sha256"][t_], f"M13.1 V-scr durma {t_}") for t_, n_ in vd["foy_satirlari"].items()])
+        L.append(f"V-scr AT tavani (`denetimler.V_scr_AT_tavani_ve_gerceklesen_durma`): {vd['V_scr_AT_tavani']} "
+                 f"({vd['V_scr_AT_tavani_kaynagi']}; kosinus T_max {vd['V_scr_lr_cizelgesi_T_max']}); B3 tavani {vd['B3_AT_tavani']} "
+                 f"({vd['B3_AT_tavani_kaynagi']}); gerceklesen durma epoklari B3 tavaninin altinda "
+                 f"{_m9e(vd['gerceklesen_durma_epoklari_B3_tavaninin_altinda'])} ({vd['foy_bolum']} '{vd['foy_sutun']}' sutunu, satir "
+                 f"{min(vd['foy_satirlari'].values())}-{max(vd['foy_satirlari'].values())}, "
+                 f"{'satirlar ayni' if okv else 'SATIR DEGISTI'}; epoklar burada tekrarlanmaz).\n")
+    # 31.10.2026 duzeltme turu, bulgu 6: C1 hucrelerinin kosu anindaki kod surumu
+    kh = [h_ for h_ in ("V-scr", "C1-R32") if "kosu_ani_kodu" in H.get(h_, {})]
+    if kh:
+        st = []
+        for h_ in kh:
+            for r_ in H[h_]["kosu_ani_kodu"]["karsilastirma"]:
+                st.append([h_, r_["asama"], r_["ad"], _m13g(r_["kosu_ani"]), f"`{r_['kosu_ani_kaynagi']}`",
+                           _m13g(r_["bugunku_tarif"]), _m9e(r_["ayni"])])
+        ka_ = H[kh[0]]["kosu_ani_kodu"]
+        dy = ka_["dayanak"]
+        L.append(f"(d) C1 hucrelerinin kosu anindaki kod surumu (`hucreler.<V-scr|C1-R32>.kosu_ani_kodu`): (b) ve (c) "
+                 f"tablolarindaki C1 'varsayilan' kaynaklari bugunku kod satirlaridir; kosular {ka_['commit_kisa']} "
+                 f"({dy['commit_utc']}) ile yapilmistir. Dayanak (`dayanak`): ilk C1 egitim adimi {dy['ilk_C1_egitim_adimi_baslangic_utc']} "
+                 f"(`{dy['ilk_adim_kaynagi']}`, commit'e gore {dy['ilk_adim_baslangici_commit_eksi_s']} s), son adim "
+                 f"{dy['son_C1_egitim_adimi_bitis_utc']} (`{dy['son_adim_kaynagi']}`); izlenen dosyalari degistiren bir sonraki commit "
+                 f"{dy['izlenen_dosyalari_sonra_degistiren_ilk_commit']['commit']} ({dy['izlenen_dosyalari_sonra_degistiren_ilk_commit']['utc']}), "
+                 f"son adim ondan once {_m9e(dy['son_egitim_adimi_sonraki_committen_once'])}; egitim dosyalari commit'le degismedi "
+                 f"{_m9e(dy['egitim_dosyalari_commitle_degismedi'])}; --val-indices secenegi commit oncesinde var "
+                 f"{_m9e(dy['val_indices_secenegi']['77ae259_oncesi'])}, commit'te var {_m9e(dy['val_indices_secenegi']['77ae259'])}; "
+                 f"TIMING.md saatleri ile gunluk mtime farki en buyuk {_m13g(round(dy['zaman_kaynagi_utc_denetimi_en_buyuk_fark_s'], 2))} s. "
+                 f"Kosu aninda olmayan CLI secenekleri: {', '.join(ka_['kosu_aninda_olmayan_cli_secenekleri'])} (davranis o surumde "
+                 f"sabit kodla belirleniyordu). Asagidaki tablo her degeri {ka_['commit_kisa']} metninden yeniden okur:\n")
+        T(["Hucre", "Asama", "Deger", f"{ka_['commit_kisa']} (kosu ani)", "Kosu ani kaynagi", "Bugunku tarif", "Ayni"], st)
+        L.append("Eniyileyici gozlemi (`kosu_ani_kodu.eniyileyici_gozlemi`): " + "; ".join(
+            f"{h_} {a_}: {g_['durum']}" + (f" ({g_['kod']})" if "kod" in g_ else "")
+            for h_ in kh for a_, g_ in H[h_]["kosu_ani_kodu"]["eniyileyici_gozlemi"].items())
+            + f". C1 kosu ani kodu bugunku tarifle ayni (`denetimler.C1_kosu_ani_kodu_bugunku_tarifle_ayni`): "
+              f"{_m9e(d_.get('C1_kosu_ani_kodu_bugunku_tarifle_ayni'))}.\n")
+
+
+_m13("M13.1 Tasarim ve egitim tarifi: 2x2 hucreler ve R32 koprusu (Y1, fig:design_recipe)",
+     f"`{_M13_TJ}` etiket, meta.{{betik, betik_sha256, ortak_modul, ortak_modul_sha256, uretildi_utc, python, kaynak_sayisi, "
+     f"kaynaklar_sha256, foy_ozeti, yeniden_uretim_notu, git_kaynaklari}}; hucreler.<h>.{{blok, girdi_hatti, tohumlar, "
+     f"on_kayit_satiri, hucre_tablosu_tanimi, takma_adlar, kosular.<k>.{{temiz, AT}}, kosu_ani_kodu}}; ortak "
+     f"(at_tavani_on_kayit_cumlesi dahil); denetimler (C1_kosu_ani_kodu_bugunku_tarifle_ayni, "
+     f"V_scr_AT_tavani_ve_gerceklesen_durma dahil); foy_referanslari", _m13_1)
+
+
+# --- M13.2 Kayit haritasi --------------------------------------------------------------------
+def _m13_esik(s_):
+    out = []
+    for a_ in ("ongorulen_buyukluk", "esik", "beklenti_esigi", "bant"):
+        e_ = s_.get(a_)
+        if isinstance(e_, dict) and "deger" in e_:
+            out.append(f"{a_} {_m13g(e_['deger'])} (`{e_['kaynak']}`; on kayit `{e_.get('on_kayit', '-')}`)")
+    h0 = (s_.get("sinama") or {}).get("H0_esik")
+    if h0:
+        out.append(f"H0 esigi {_m13g(h0['deger'])} (`{h0['kaynak']}`)")
+    cu = (s_.get("curutme") or {}).get("esik")
+    if cu:
+        out.append(f"curutme esigi {_m13g(cu['deger'])} (`{cu['kaynak']}`)")
+    for r_ in s_.get("kurallar_sirasiyla", []):
+        for a_ in ("esik", "p_esigi"):
+            if a_ in r_:
+                out.append(f"{r_[a_]['ad']} {_m13g(r_[a_]['deger'])} (`{r_[a_]['kaynak']}`)")
+    # 31.10.2026 duzeltme turu (bulgu 1, 2): esdegerlik siniri ve S5 ongoru dogrusu JSON'daki acik alanlardan; JSON'da
+    # esik alani yoksa hucre '-' kalir (eski elle yazilmis dolgu kaldirildi)
+    es_ = s_.get("esdegerlik_siniri")
+    if isinstance(es_, dict):
+        out.append(f"esdegerlik siniri ({es_['alt_sinir']:g}; {es_['ust_sinir']:g}), {es_['tur']} (`{es_['kaynak']}`"
+                   + (f"; TOST tanimi `{es_['tost_tanimi']}`" if es_.get("tost_tanimi") else "")
+                   + (f"; icinde tanimi `{es_['icinde_tanimi']}`, uygulama `{es_['uygulama']}`" if es_.get("icinde_tanimi") else "")
+                   + f"; on kayit `{es_.get('on_kayit', '-')}` yazim {' / '.join(es_.get('on_kayit_metninde_yazimi', [])) or '-'})")
+    od_ = s_.get("ongoru_dogrusu")
+    if isinstance(od_, dict):
+        out.append(f"ongoru dogrusu egim {_m13g(od_['egim']['deger'])}, kesisim {_m13g(od_['kesisim']['deger'])} "
+                   f"(`{od_['egim']['kaynak']}`; uygulama `{od_['betik']['kaynak']}`; on kayit `{od_['on_kayit']['kaynak']}`)")
+    return "; ".join(out) or "-"
+
+
+def _m13_kural(s_):
+    ks = []
+    for a_ in ("payda_kurali", "curutme", "destek"):
+        x_ = s_.get(a_)
+        if isinstance(x_, dict):
+            k_ = x_.get("kaynak") or (x_.get("esik") or {}).get("kaynak")
+            okr = (f"; on kayit `{x_['on_kayit']['kaynak']}`" if isinstance(x_.get("on_kayit"), dict) else "")
+            ks.append(f"{a_}: {x_.get('kural', '')} (`{k_}`{okr})".replace(":  (", ": ("))
+    sn_ = s_.get("sinama") or {}
+    for a_ in ("p_iki", "holm_girdisi"):  # 31.10.2026 bulgu 8 (H2)
+        if isinstance(sn_.get(a_), dict):
+            ks.append(f"{a_} `{sn_[a_]['kaynak']}`")
+    for a_ in ("kurallar_sirasiyla", "etiketler_sirasiyla"):
+        for r_ in s_.get(a_, []):
+            ad = [x_ for x_ in ("i", "ii", "iii", "iv") if x_ in r_][0]
+            k_ = r_.get("kaynak") or (r_.get("esik") or {}).get("kaynak")
+            ks.append(f"({ad}) {r_[ad]}" + (f" (`{k_}`)" if k_ else ""))
+    if isinstance(s_.get("kural"), str):
+        ks.append(f"{s_['kural']} (`{s_['betik']['kaynak']}`)")
+    elif isinstance(s_.get("betik"), dict):
+        ks.append(f"betik `{s_['betik']['kaynak']}`")
+    if s_.get("karar_sirasi"):
+        ks.append("sira: " + s_["karar_sirasi"])
+    return "; ".join(ks) or "-"
+
+
+def _m13_karar(s_):
+    g_ = s_["gerceklesen"]
+    if "foy_satirlari" in g_:
+        hucre = "; ".join(f"{m_} {v_}" for m_, v_ in g_["foy_hucreleri"].items())
+        b_ = g_["bolgeye_uygulama"]
+        okb = _m13_foy(b_["foy_satiri"], b_["satir_metni_sha256"], "M13.2 B6 bolge")
+        okm = all([_m13_foy(n_, g_["foy_satir_metni_sha256"][m_], f"M13.2 B6 {m_}") for m_, n_ in g_["foy_satirlari"].items()])
+        yer = (f"{g_['foy_bolum']} satir {min(g_['foy_satirlari'].values())}-{max(g_['foy_satirlari'].values())} "
+               f"({'satirlar ayni' if okm else 'SATIR DEGISTI'}); "
+               f"{b_['foy_bolum']} satir {b_['foy_satiri']} ({'satir ayni' if okb else 'SATIR DEGISTI'})")
+        return (f"isaretli: {', '.join(g_['isaretli_json']) or 'yok'} (Isaretli sutunu: {hucre})", yer,
+                _m9e(g_.get("json_ile_foy_ayni")))
+    sha_ = g_.get("foy_satir_metni_sha256") or g_.get("satir_metni_sha256")
+    ok_ = _m13_foy(g_["foy_satiri"], sha_, f"M13.2 {s_['kimlik']}/{s_['blok']}")
+    karar = g_.get("foy_hucre", g_.get("deger"))
+    if karar is None:
+        karar = g_.get("not", "satir referansi")
+    yer = f"{g_['foy_bolum']} satir {g_['foy_satiri']} ({'satir ayni' if ok_ else 'SATIR DEGISTI'})"
+    return karar, yer, _m9e(g_.get("json_ile_foy_ayni")) if "json_ile_foy_ayni" in g_ else "-"
+
+
+def _m13_2():
+    J = _oku(_M13_KJ)
+    L.append(f"Etiket (`etiket`): {J['etiket']}.\n")
+    L.append(_m13meta(J, _M13_KJ) + "\n")
+    st = [[k_, x_["ad"], _m13g(x_["deger"]), f"`{x_['kaynak']}`", f"`{x_['on_kayit']}`" if x_.get("on_kayit") else "-",
+           " / ".join(x_.get("on_kayit_metninde_yazimi", [])) or "-"] for k_, x_ in J["sabitler"].items()]
+    L.append("(a) Sabitler (`sabitler`; deger kaynak satirindan duzenli ifadeyle okunmus, on kayit satirinda ondalik "
+             "virgullu yazimi aranmistir):\n")
+    T(["Sabit", "Ad", "Deger", "Betik satiri", "On kayit satiri", "On kayitta bulunan yazim"], st)
+    dt_ = J["delta_tost_tanimi"]
+    ki = J["karar_ilkesi"]
+    L.append(f"TOST siniri tanimi `{dt_['kaynak']}`; karar ilkesi `{ki['birincil']['kaynak']}` (ek on kayit "
+             f"`{ki['ek']['kaynak']}`); hesaplanamayan sinamanin Holm'da p = 1 sayilmasi `{ki['hesaplanamayan_p_1']['kaynak']}`.\n")
+    st = [[a_, x_["blok"], x_.get("veri", "-"), ", ".join(x_.get("sinamalar", [])) or "-", _m9e(x_["holm"]),
+           _m13g(x_.get("aile_buyuklugu_json")), f"`{x_['on_kayit']['kaynak']}`", x_.get("not", "-")]
+          for a_, x_ in J["aileler"].items()]
+    L.append("(b) Aileler (`aileler`; aile buyuklugu sonuc JSON'undaki p_holm uzunlugundan):\n")
+    T(["Aile", "Blok", "Veri", "Sinamalar", "Holm", "Aile buyuklugu (JSON)", "On kayit satiri", "Not"], st)
+    st = []
+    for s_ in J["sinamalar"]:
+        karar, yer, ayni = _m13_karar(s_)
+        ok_ = s_.get("on_kayit") or {}
+        okk = ok_.get("kaynak") or "; ".join(f"{v_['kaynak']}" for v_ in ok_.values() if isinstance(v_, dict))
+        oa_ = s_.get("ongoru_on_kayit")
+        oal = f"\"{oa_['alinti']}\" (`{oa_['kaynak']}`)" if isinstance(oa_, dict) else "-"
+        st.append([str(x_).replace("|", "\\|") for x_ in (
+            s_["kimlik"], s_["blok"], s_["aile"], s_.get("nicelik", "-"), s_.get("ongoru", "-"), oal, _m13_esik(s_),
+            _m13_kural(s_), f"`{okk}`", karar, yer, ayni)])
+    L.append("(c) Sinamalar (`sinamalar`; 'Karar' sutunu foyun gosterilen tablo hucresidir, 'JSON ile ayni' sonuc JSON'unun "
+             "karar anahtariyla, S satirlarinda b4.ikincil mantiksal anahtarlariyla karsilastirmadir, '-' karsilastirilmayan "
+             "betimsel satirdir; 'Ongorulen buyukluk ve esikler' yalniz JSON'daki esik alanlarindan basilir, alan yoksa '-'; "
+             "S satirlarinin ongorusu `ongoru` ve `ongoru_on_kayit` alanlarindandir; sonuc sayilari icin foy satirina bakilir):\n")
+    T(["Sinama", "Blok", "Aile", "Nicelik", "Ongoru", "Ongoru (on kayit alintisi)", "Ongorulen buyukluk ve esikler",
+       "Karar kurali (kaynak satirlari)", "On kayit satiri", "Karar (foy)", "Foy satiri", "JSON ile ayni"], st)
+    b_ = J["sonuc_bolgesi"]
+    g_ = b_["gerceklesen"]
+    okb = _m13_foy(g_["foy_satiri"], g_["satir_metni_sha256"], "M13.2 sonuc bolgesi")
+    L.append(f"Sonuc bolgesi (`sonuc_bolgesi`): denetim sirasi `{b_['sira']['kaynak']}`, on kayit tablosu "
+             f"`{b_['on_kayit_tablosu']['kaynak']}`, sira cumlesi `{b_['on_kayit_sira']['kaynak']}`; gerceklesen bolge "
+             f"{g_['bolge_json']} (O4 nitelemesi {_m9e(g_['O4_niteleme_json'])}; `{g_['json']}`), foy {g_['foy_bolum']} satir "
+             f"{g_['foy_satiri']} ({'satir ayni' if okb else 'SATIR DEGISTI'}; satirda bolge var "
+             f"{_m9e(g_['foy_satirinda_bolge_var'])}).\n")
+    d_ = J["denetimler"]
+    kz_ = "; ".join(f"{x_['kimlik']}/{x_['blok']} ({x_['neden']})" for x_ in d_.get("json_ile_foy_karsilastirilmayan", []))
+    L.append(f"Denetimler (`denetimler`): sinama sayisi {d_['sinama_sayisi']}; JSON karari ile foy hucresi "
+             f"(`json_ile_foy_ozet`): {d_.get('json_ile_foy_ozet', '-')}; ayni olmayan: {d_['json_ile_foy_ayni_olmayan'] or 'yok'}; "
+             f"karsilastirilmayan (`json_ile_foy_karsilastirilmayan`): {kz_ or 'yok'}; dondurulmus "
+             f"betik sha256 {d_['dondurulmus_betik_sha256']} (on kayit metninde geciyor {_m9e(d_['dondurulmus_betik_on_kayitla_ayni'])}; "
+             f"dosyadan simdi hesaplanan {'AYNI' if _m9sha('experiments/q1_konsey_ayrisim.py') == d_['dondurulmus_betik_sha256'] else 'FARKLI'}); "
+             f"JSON uretilirken okunan foyun ozeti (M13 bolumu cikarilmis metnin sha256'si, `foy_sha256_tanimi`) {d_['foy_sha256']}.\n")
+    oa_ = d_.get("on_kayit_deger_aramasi")
+    if oa_:
+        L.append(f"On kayit metninde deger aramasi (`denetimler.on_kayit_deger_aramasi`; her esik ve sabitte "
+                 f"`on_kayit_eslesmeleri` ve `on_kayit_aranan_yazimlar`): {oa_['denetlenen_deger_sayisi']} deger; kural: {oa_['kural']}\n")
+
+
+_m13("M13.2 Kayit haritasi: on kayitli sinamalar, esikler, aileler ve gerceklesen kararlar (Y4, fig:registry_map)",
+     f"`{_M13_KJ}` etiket, meta (foy_ozeti, yeniden_uretim_notu dahil); sabitler.<ad>.{{ad, deger, kaynak, on_kayit, "
+     f"on_kayit_metninde_yazimi, on_kayit_eslesmeleri, on_kayit_aranan_yazimlar}}; delta_tost_tanimi; "
+     f"karar_ilkesi; aileler.<aile>.{{blok, veri, sinamalar, holm, aile_buyuklugu_json, on_kayit, not}}; sinamalar[].{{kimlik, "
+     f"blok, aile, nicelik, ongoru, ongoru_on_kayit, ongoru_turu, ongorulen_buyukluk, esdegerlik_siniri, ongoru_dogrusu, "
+     f"sinama (p_iki, holm_girdisi dahil), destek, curutme (kural, on_kayit dahil), payda_kurali, kurallar_sirasiyla, "
+     f"etiketler_sirasiyla, esik, bant, beklenti_esigi, on_kayit, gerceklesen (karar_json, json_ile_foy_ayni, "
+     f"json_ile_foy_karsilastirma dahil)}}; sonuc_bolgesi; denetimler", _m13_2)
+
+
+# --- M13.3 Zaman cizelgesi -------------------------------------------------------------------
+def _m13_3():
+    J = _oku(_M13_ZJ)
+    L.append(f"Etiket (`etiket`): {J['etiket']}.\n")
+    L.append(_m13meta(J, _M13_ZJ) + "\n")
+    sd = J["saat_dilimi"]
+    L.append(f"Saat dilimi (`saat_dilimi`): konsey zinciri gunlugu, durum TSV'si ve B3 defteri UTC'ye gore "
+             f"{sd['konsey_zinciri_saat_farki_utc_gore']} saat fark; ek zincir gunlukleri {sd['ek_zincir_saat_farki_utc_gore']} "
+             f"saat fark. Kanit: " + "; ".join(f"{x_['etiket']} (artik {x_['artik_s']} s, JSON zamani adim icinde "
+                                            f"{_m9e(x_['json_zamani_adim_icinde'])})"
+                                            for x_ in sd["konsey_zinciri_kanit"] + sd["ek_zincir_kanit"]) + ".\n")
+    sat = []
+    for a_, x_ in J["dondurma"].items():
+        sat.append((x_["utc"], [f"{'On kayit' if a_ == 'on_kayit' else 'Ek on kayit'} dondurma (commit {x_['commit'][:7]})",
+                                _m13t(x_["utc"]), "-", "-", f"`{x_['kaynak']}`; dosyayi ekleyen ilk commit "
+                                f"{_m9e(x_['dondurma_commiti_dosyayi_ekleyen_ilk_commit'])}"]))
+    b2 = J["B2"]
+    sat.append((b2["baslangic_utc"], [b2["olay"], _m13t(b2["baslangic_utc"]), _m13t(b2["bitis_utc"]), b2["sure_s"],
+                                       f"{b2['kaynak']} ({b2['kanit_turu']})"]))
+    for x_ in J["konsey_zinciri"]:
+        sat.append((x_["baslangic_utc"] or x_["bitis_utc"], [f"konsey zinciri: {x_['olay']} ({x_['durum']})",
+                    _m13t(x_["baslangic_utc"]), _m13t(x_["bitis_utc"]), _m13g(x_.get("sure_s")), f"`{x_['kaynak']}`"]))
+    for x_ in J["B3_asamalari"]:
+        sat.append((x_["baslangic_utc"], [x_["olay"], _m13t(x_["baslangic_utc"]), _m13t(x_["bitis_utc"]), x_["sure_s"],
+                                          f"`{x_['kaynak']}`; defter `{x_['defter_satiri']}`"]))
+    for x_ in J["ek_zincir"]:
+        sat.append((x_["baslangic_utc"], [x_["olay"] + (f" ({'; '.join(x_['donus_kodlari'])})" if x_["donus_kodlari"] else ""),
+                                          _m13t(x_["baslangic_utc"]), _m13t(x_["bitis_utc"]), x_["sure_s"],
+                                          f"`{x_['kaynak']}` (bitis: {x_['bitis_tanimi']})"]))
+    for p_, x_ in J["masa_cozumlemeleri"].items():
+        sat.append((x_["uretildi_utc"], [f"masa cozumlemesi: {p_.rsplit('/', 1)[-1]}", _m13t(x_["uretildi_utc"]), "-", "-",
+                                         f"`{p_}` {x_['anahtar']}"]))
+    sat.sort(key=lambda z_: z_[0])
+    L.append("(a) Olaylar, UTC'ye gore sirali (`dondurma`, `B2`, `konsey_zinciri`, `B3_asamalari`, `ek_zincir`, "
+             "`masa_cozumlemeleri`; +03 karsiliklari JSON'da `*_yerel` alanlarinda; sure gunluk saatlerinin farkidir, s):\n")
+    T(["Olay", "Baslangic (UTC)", "Bitis (UTC)", "Sure (s)", "Kaynak"], [z_[1] for z_ in sat])
+    st = [[b_, x_.get("saldiri", "-"), x_["n_goruntu"] if "n_goruntu" in x_ else "-", x_["model_sayisi"],
+           x_.get("hucre_sayisi", x_.get("cift_sayisi", "-")), _m13g(x_.get("eps_x255")), f"`{x_['kaynak']}`"]
+          for b_, x_ in J["matrisler"].items()]
+    L.append("(b) Blok basina matris boyutlari (`matrisler`; B10 satirlarinda 'Hucre' sutunu sirasiz cift sayisidir):\n")
+    T(["Blok", "Saldiri", "n goruntu", "Model", "Hucre / cift", "eps x 255", "Kaynak"], st)
+    dn, eg = J["donanim"], J["egitim_suresi"]
+    okt = _m13_foy(eg["foy"]["foy_satiri"], eg["foy"]["satir_metni_sha256"], "M13.3 toplam egitim")
+    foy_s = "\n".join(L).split("\n")[eg["foy"]["foy_satiri"] - 1]
+    top_ayni = f"{eg['defter_toplam_sure_sa']:.2f}" in foy_s
+    L.append(f"Donanim (`donanim`): {dn['gpu']}, toplam bellek {dn['gpu_bellek_toplam_mib']} MiB, zincir basinda kullanilan "
+             f"{dn['gpu_bellek_kullanilan_mib_zincir_basi']} MiB (`{dn['kaynak']}`); ek zincir basinda kullanilan "
+             f"{dn['ek_zincir_bellek']['kullanilan_mib']} / {dn['ek_zincir_bellek']['toplam_mib']} MiB "
+             f"(`{dn['ek_zincir_bellek']['kaynak']}`). B3 toplam egitim suresi bu bolumde tekrarlanmaz: M9.1 satir "
+             f"{eg['foy']['foy_satiri']} ({'satir ayni' if okt else 'SATIR DEGISTI'}); `{eg['kaynak']}` ile yeniden hesaplanan "
+             f"toplam iki ondalikta o satirdaki degerle ayni {_m9e(top_ayni)}; "
+             f"zincir gunlugu karsiligi `{eg['zincir_gunlugu_satiri']}`; egitim payi on kayit `{eg['egitim_payi_on_kayit']}`.\n")
+    st = [[x_["tarih"], x_["baslik"], _m9e(x_["sapma_degil_ibaresi"]), f"`{x_['kaynak']}`"] for x_ in J["sapma_kaydi_basliklari"]]
+    L.append("(c) Sapma kaydi basliklari (`sapma_kaydi_basliklari`; `results/q1_research/ONKAYIT_SAPMALAR.md` '###' "
+             "satirlari):\n")
+    T(["Tarih", "Baslik", "'sapma degil' ibaresi", "Kaynak"], st)
+    kg = J["kayit_oncesi_gorulen_veriler"]
+    d_ = J["denetimler"]
+    L.append(f"Kayit oncesi gorulen veriler (`kayit_oncesi_gorulen_veriler`): ana on kayit `{kg['ana']}`, ek on kayit "
+             f"`{kg['ek']}`. Denetimler (`denetimler`): B3 asama sayisi {d_['B3_asama_sayisi']}; defter baslangiclari zincir "
+             f"gunluguyle ayni {_m9e(d_['B3_defter_baslangiclari_zincir_gunluguyle_ayni'])}; defter ile gunluk bitis farki en "
+             f"buyuk {d_['B3_defter_bitis_farki_s_en_buyuk_mutlak']} s; on kayit dondurmasi B2 matrisinden once "
+             f"{_m9e(d_['on_kayit_dondurmasi_B2_matrisinden_once'])}; ek dondurma B3 kuyrugu sirasinda "
+             f"{_m9e(d_['ek_dondurma_konsey_zinciri_icinde'])}; ek dondurma ek zincirden once "
+             f"{_m9e(d_['ek_dondurma_ek_zincirden_once'])}.\n")
+    _M13_YOK_YER.append(len(L))
+    L.append("")
+
+
+_m13("M13.3 On kayit ve deney zinciri zaman cizelgesi (Y5, fig:prereg_chain)",
+     f"`{_M13_ZJ}` etiket, meta (foy_ozeti, yeniden_uretim_notu dahil); saat_dilimi; dondurma.<on_kayit|ek_on_kayit>.{{commit, utc, kaynak, "
+     f"dondurma_commiti_dosyayi_ekleyen_ilk_commit}}; B2; konsey_zinciri[]; B3_asamalari[]; ek_zincir[]; masa_cozumlemeleri; "
+     f"matrisler; donanim; egitim_suresi; sapma_kaydi_basliklari; kayit_oncesi_gorulen_veriler; denetimler", _m13_3)
+
+for _i13 in _M13_YOK_YER:
+    L[_i13] = ("Bu bolumde (M13.1-M13.3) satir sha256'si JSON'daki kayittan farkli cikan foy referanslari: "
+               + ("; ".join(_M13_DEGISEN) if _M13_DEGISEN else "yok") + ".\n")
+
+# <<< M13 SONU (sekil kaynaklari Y1, Y4, Y5)
+
 
 # --- 8. Sabit dizgeler -----------------------------------------------------------
 sec("Sabit dizgeler (artefakttan OKUNMAYAN, elle tasinmis literaller)",

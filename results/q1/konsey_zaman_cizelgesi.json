@@ -1,0 +1,985 @@
+{
+ "etiket": "Y5 fig:prereg_chain kaynagi: on kayit ve deney zinciri zaman cizelgesi",
+ "tanim": "Dondurma commit'leri, B2-B6 konsey zinciri, B3'un alti kosusunun asamalari, B8-B10 ek zinciri ve masa cozumlemeleri; her zaman UTC ve +03 olarak, gunluk saati ve saat dilimi kanitiyla.",
+ "meta": {
+  "betik": "arsiv/b2_yardimci/_m13_zaman.py",
+  "betik_sha256": "951b998a8631c7bcc1cdd31e7b0e16e7a91e106ca68f777df5b6f645547351bb",
+  "ortak_modul": "arsiv/b2_yardimci/_m13_ortak.py",
+  "ortak_modul_sha256": "c17618e252c0d08b8b4a5e01960d676f4f9e71b9d80e39cfd9906b5cc1069d98",
+  "uretildi_utc": "2026-10-31T18:18:19.357534+00:00",
+  "python": "3.10.12",
+  "kaynak_sayisi": 40,
+  "kaynaklar_sha256": {
+   "experiments/c1_c3_transfer_matrix.py": "f25d9062c958a296353059639398f0a0a8eb18cd48182b1afa5ec4e3986140b7",
+   "logs/konsey_zincir.log": "bd81ff7bd85d8481bf9cf370b42651890691c12034cd505c97aca00d1b0c9603",
+   "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md": "8d8b17b2d094e0d84ef8d018517da551d717483c25f33155beb5d2c76f20ce3d",
+   "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md": "56a8141ff7d23e98c007ff1a0a5b20f102772b6d40bec904dd3d40e503160182",
+   "results/C1_REFERANS_FOYU.md": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+   "results/q1/ek_loglar/ek_zincir_1.log": "bf0f78dea830e6757fd666ee23f407775cbefbdd2f7ca25189b3cd9111c2e399",
+   "results/q1/ek_loglar/ek_zincir_2.log": "3bb96a17c4bcf0abf9d37cc11c61986557d0fd939860c006973886270d0e3267",
+   "results/q1/konsey_ayrisim_b2.json": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27",
+   "results/q1/konsey_ayrisim_b4.json": "5c50890819c509b9ef890373797b4f303eea8427d05f3f4025c31019380ca99b",
+   "results/q1/konsey_ayrisim_b5.json": "363f1bb121c0781e558554baa442ddb2ecb3e414b0fe852415c0413beca16461",
+   "results/q1/konsey_b10_gradyan/b10_aile.json": "87140d9c9ffc0c78c82448390a2dbefb55831abfbcc06a1cd93bb0afd4cf8379",
+   "results/q1/konsey_b10_gradyan/mantel_cifar10.json": "c8c91ba0411189a9ec4a3a8e1d5f236eadb88c5b8ebdb2c8c69189584a2c2bb7",
+   "results/q1/konsey_b10_gradyan/mantel_cifar100.json": "0d4528d6e649a3254fd4aa7788af70d6578aa9ebaff6cdb9aa898b4fb8a65cac",
+   "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": "4919f73d2e3975b70c003dcb78c45f527acd6904359b612d40599783cb4e8073",
+   "results/q1/konsey_b2_panel/cells_meta.json": "e0a56e067a8c2e5b88fec40ba5fda2acc4149a737aae6bec76076318fdf647b1",
+   "results/q1/konsey_b2_panel/transfer_matrix.json": "cfad833cf041f0d1028e7f192b4ad9ad3bc16c19e8aba29979be942702aaeaa3",
+   "results/q1/konsey_b3_defter.tsv": "55a8f01f91fa15fa8ebeeb11d783f512e12b256f6779833b9e6c8429496185cb",
+   "results/q1/konsey_b4_matris/transfer_matrix.json": "4e2de4c6c01075802993a8cc561efb97e1b7a52187a8c6a9724b09c43c8864da",
+   "results/q1/konsey_b5_saldiri/mi/transfer_matrix.json": "950d1fbcc575dd3fa0cce6a3e6bcd8c06ad389d9af714b22398a85a6511ef377",
+   "results/q1/konsey_b5_saldiri/tgr/transfer_matrix.json": "545034a7e93dd16bd1d4fdb1faefac0773397fd595551187e875ce7829c9ffef",
+   "results/q1/konsey_b6_maskeleme.json": "dfd82b45ef4c62ebac1e76f91a0c0dfc90e503fa6c5545075f8e7b3d8276597d",
+   "results/q1/konsey_b8_imagenetv2/b8_betimsel.json": "332d30789cc22180eed26f60f8544ef26263cdd32ff4b7255fec598439376da0",
+   "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": "2c5e992eaaad49d88056f1d64f1cd7c2650657d0d49da85424f52caa9ebae0e9",
+   "results/q1/konsey_b8_imagenetv2/matris/transfer_matrix.json": "2bdac9be87a9bddc43b3038c9f4bff85b8391284bac8d3ec50a8668293216713",
+   "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": "762d62b4194c245e310ab9ae9b5eb82ef3476a6965597feed707a6c0b3a76cd8",
+   "results/q1/konsey_b9_c100/b9_sarmalayici_b2.json": "75dbfeabd48ea3593d25184466fcba936fe877b9c1247d235a41c0adc0856946",
+   "results/q1/konsey_b9_c100/matris/transfer_matrix.json": "94212fba84b05bf422e2182b47de6711659d62e86a0b0cf8cfc6ce7066cd28db",
+   "results/q1/konsey_ek_masa/a10_b2.json": "5ab88eaa0069c451911b8d9579fd175749ec3c279dbca4b4240d107cbed6ef18",
+   "results/q1/konsey_ek_masa/a10_b2_varsayilan_bekci.json": "7f44e664e1e01b5c6081334643dde48d002c6f0e40ddd0f433f8c5fb054e97ce",
+   "results/q1/konsey_ek_masa/a10_b4.json": "9340c12b90eb93cf7b4efd64fb5e5e850d2cffcff1b378adb66d868c2771bc27",
+   "results/q1/konsey_ek_masa/a10_b4_varsayilan_bekci.json": "60d752977472c5d3d2504775c5795cc9c94b71eb1ebfe9dd82e913f5a663f05a",
+   "results/q1/konsey_ek_masa/a10_panel.json": "1de4530323bd26d5fe4dbfc0019aab17195a4a396c18b9217c67431bbe9f2fdd",
+   "results/q1/konsey_ek_masa/a2_basit_etkiler.json": "f478f1958de3e9567e17096b8377e2ffbbb978f290f12f9284b5603b48ebdcf9",
+   "results/q1/konsey_ek_masa/a9_2q_eksi_1.json": "22262db54470805c56730aed8c5ca1ab555f3e6a7ea2912946a89098ad3bfb31",
+   "results/q1/konsey_ek_masa/bootstrap_cifar10.json": "a14dd890ee48b4f355e2b1ebdf5727cda63cf31ed73fa60bc55aa1c36dd84bc7",
+   "results/q1/konsey_ek_masa/bootstrap_cifar100.json": "dd72deb4543e96ebf562bea543c2552b2ead645bd047a177488db2738f8ab3a9",
+   "results/q1/konsey_ek_masa/kesifsel.json": "d53c43f11c5156add145702fbede067efae07998cf43a009e917accc1ea99064",
+   "results/q1/konsey_ek_masa/mantel_aile.json": "fe810b1c8d3977811943771880860b73e34493fefd43b00a7dc9799e3fc42eec",
+   "results/q1/konsey_zincir_durum.tsv": "c1e34dd4f40075196bd33ba18fb9743930b4dd2349a3f84ee0a993fac5774cb7",
+   "results/q1_research/ONKAYIT_SAPMALAR.md": "ce5ab48f7475c32329e451bc44bb46929f6ae7c0e46117e90aec4ac4f2d5d4d2"
+  },
+  "foy_ozeti": {
+   "dosya": "results/C1_REFERANS_FOYU.md",
+   "m13_haric_sha256": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+   "tanim": "results/C1_REFERANS_FOYU.md icin kaynaklar_sha256 degeri (ve foy_ozeti.m13_haric_sha256) ham dosyanin degil, '\\n## M13:' ile '\\n## Sabit dizgeler' arasindaki bayt araligi cikarilmis metnin sha256'sidir (arsiv/b2_yardimci/_m13_kontrol.py ile ayni kural). Foyde M13 yoksa ham sha256 ile aynidir."
+  },
+  "yeniden_uretim_notu": "Foyun M13 bolumu bu JSON'un meta'sini (uretildi_utc, betik sha256) basar; ham foy sha256'si kaynak olarak yazilsaydi her JSON uretimi foyu, her foy uretimi JSON'u degistirirdi ve uretim sabit noktaya oturmazdi (onceki surumdeki 'yalniz uretildi_utc degisir' notu bu yuzden yanlisti). Duzeltmeden sonra JSON'lar foyun yalniz M13 disi metnine baglidir: M13 disi foy ve kaynak dosyalar degismedikce JSON yeniden uretildiginde JSON'da yalniz meta.uretildi_utc, foyde yalniz M13 meta satirlarindaki uretildi_utc degisir (31.10.2026'da iki ardisik uretimle denetlendi; bkz. results/q1/konsey_kayit_kurallari.DEGISIKLIK.md)."
+ },
+ "saat_dilimi": {
+  "konsey_zinciri_saat_farki_utc_gore": 0,
+  "ek_zincir_saat_farki_utc_gore": 3,
+  "konsey_zinciri_kanit": [
+   {
+    "etiket": "results/q1/konsey_zincir_durum.tsv B2_cozumleme.baslangic ile results/q1/konsey_ayrisim_b2.json meta.uretildi_utc",
+    "saat_farki": 0,
+    "artik_s": -1.769,
+    "json_zamani_adim_icinde": true
+   },
+   {
+    "etiket": "results/q1/konsey_zincir_durum.tsv B4_cozumleme.baslangic ile results/q1/konsey_ayrisim_b4.json meta.uretildi_utc",
+    "saat_farki": 0,
+    "artik_s": -1.619,
+    "json_zamani_adim_icinde": true
+   },
+   {
+    "etiket": "results/q1/konsey_zincir_durum.tsv B5_cozumleme.baslangic ile results/q1/konsey_ayrisim_b5.json meta.uretildi_utc",
+    "saat_farki": 0,
+    "artik_s": -2.161,
+    "json_zamani_adim_icinde": true
+   }
+  ],
+  "ek_zincir_kanit": [
+   {
+    "etiket": "results/q1/ek_loglar/ek_zincir_2.log:12 cozumleme baslangici ile results/q1/konsey_b9_c100/b9_dondurulmus_b2.json meta.uretildi_utc",
+    "saat_farki": 3,
+    "artik_s": -2.044,
+    "json_zamani_adim_icinde": true
+   },
+   {
+    "etiket": "results/q1/ek_loglar/ek_zincir_2.log:12 cozumleme baslangici ile results/q1/konsey_b10_gradyan/b10_aile.json meta.uretildi_utc",
+    "saat_farki": 3,
+    "artik_s": -22.752,
+    "json_zamani_adim_icinde": true
+   }
+  ],
+  "not": "konteyner saati (zincir gunlugu, durum TSV'si, B3 defteri) ve ek zincir gunlukleri bu farkla UTC'ye cevrilir"
+ },
+ "dondurma": {
+  "on_kayit": {
+   "commit": "e32f2ce29afb61af0d216eef40389dc697058282",
+   "commit_zamani": "2026-10-29T16:53:52+03:00",
+   "utc": "2026-10-29T13:53:52+00:00",
+   "yerel": "2026-10-29 16:53:52 +0300",
+   "kaynak": "git log -1 --format=%H|%cI e32f2ce",
+   "dosyayi_ekleyen_ilk_commit": "e32f2ce29afb61af0d216eef40389dc697058282",
+   "dondurma_commiti_dosyayi_ekleyen_ilk_commit": true,
+   "dosya": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md",
+   "metin_kaniti": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:3 (commit e32f2ce)"
+  },
+  "ek_on_kayit": {
+   "commit": "7325419caf83516fccf6dbf9a1302325c536f02f",
+   "commit_zamani": "2026-10-30T07:17:42+03:00",
+   "utc": "2026-10-30T04:17:42+00:00",
+   "yerel": "2026-10-30 07:17:42 +0300",
+   "kaynak": "git log -1 --format=%H|%cI 7325419",
+   "dosyayi_ekleyen_ilk_commit": "7325419caf83516fccf6dbf9a1302325c536f02f",
+   "dondurma_commiti_dosyayi_ekleyen_ilk_commit": true,
+   "dosya": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md"
+  }
+ },
+ "B2": {
+  "olay": "B2 matrisi (dosya zamanlari)",
+  "baslangic_utc": "2026-10-30T01:35:04.900090+00:00",
+  "bitis_utc": "2026-10-30T01:45:46.404337+00:00",
+  "baslangic_yerel": "2026-10-30 04:35:04 +0300",
+  "bitis_yerel": "2026-10-30 04:45:46 +0300",
+  "sure_s": 641,
+  "kaynak": "os.stat st_mtime: results/q1/konsey_b2_panel/cells_meta.json (baslangic vekili; experiments/c1_c3_transfer_matrix.py:313 hucre hesabindan once yazar) ve results/q1/konsey_b2_panel/transfer_matrix.json (bitis)",
+  "kanit_turu": "dosya degistirilme zamani (gunluk degil)"
+ },
+ "konsey_zinciri": [
+  {
+   "olay": "zincir",
+   "baslangic_utc": "2026-10-30T01:46:39+00:00",
+   "bitis_utc": null,
+   "baslangic_yerel": "2026-10-30 04:46:39 +0300",
+   "bitis_yerel": null,
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 01:46:39",
+    "bitis": null,
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:2",
+   "durum": "BASLADI",
+   "cikis_kodu": "",
+   "not": "pid 1383"
+  },
+  {
+   "olay": "B2_bekle",
+   "baslangic_utc": "2026-10-30T01:46:39+00:00",
+   "bitis_utc": "2026-10-30T01:46:39+00:00",
+   "baslangic_yerel": "2026-10-30 04:46:39 +0300",
+   "bitis_yerel": "2026-10-30 04:46:39 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 01:46:39",
+    "bitis": "2026-10-30 01:46:39",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:3",
+   "sure_s": 0,
+   "durum": "ATLANDI",
+   "cikis_kodu": "0",
+   "not": "bitis isareti mevcut"
+  },
+  {
+   "olay": "B2_cozumleme",
+   "baslangic_utc": "2026-10-30T01:46:39+00:00",
+   "bitis_utc": "2026-10-30T01:46:42+00:00",
+   "baslangic_yerel": "2026-10-30 04:46:39 +0300",
+   "bitis_yerel": "2026-10-30 04:46:42 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 01:46:39",
+    "bitis": "2026-10-30 01:46:42",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:4",
+   "sure_s": 3,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": ""
+  },
+  {
+   "olay": "B3_on_denetim",
+   "baslangic_utc": "2026-10-30T01:46:42+00:00",
+   "bitis_utc": "2026-10-30T01:46:50+00:00",
+   "baslangic_yerel": "2026-10-30 04:46:42 +0300",
+   "bitis_yerel": "2026-10-30 04:46:50 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 01:46:42",
+    "bitis": "2026-10-30 01:46:50",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:5",
+   "sure_s": 8,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": "gpu %0; disk 54 GB"
+  },
+  {
+   "olay": "B3_kuru",
+   "baslangic_utc": "2026-10-30T01:46:50+00:00",
+   "bitis_utc": "2026-10-30T01:46:51+00:00",
+   "baslangic_yerel": "2026-10-30 04:46:50 +0300",
+   "bitis_yerel": "2026-10-30 04:46:51 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 01:46:50",
+    "bitis": "2026-10-30 01:46:51",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:6",
+   "sure_s": 1,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": "logs/konsey_b3_kuru_kosu.log"
+  },
+  {
+   "olay": "B3_kuyruk",
+   "baslangic_utc": "2026-10-30T01:46:51+00:00",
+   "bitis_utc": "2026-10-30T19:34:57+00:00",
+   "baslangic_yerel": "2026-10-30 04:46:51 +0300",
+   "bitis_yerel": "2026-10-30 22:34:57 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 01:46:51",
+    "bitis": "2026-10-30 19:34:57",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:7",
+   "sure_s": 64086,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": "lr 0.001"
+  },
+  {
+   "olay": "B4",
+   "baslangic_utc": "2026-10-30T19:34:57+00:00",
+   "bitis_utc": "2026-10-30T19:42:12+00:00",
+   "baslangic_yerel": "2026-10-30 22:34:57 +0300",
+   "bitis_yerel": "2026-10-30 22:42:12 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 19:34:57",
+    "bitis": "2026-10-30 19:42:12",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:8",
+   "sure_s": 435,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": ""
+  },
+  {
+   "olay": "B6_AA",
+   "baslangic_utc": "2026-10-30T19:42:12+00:00",
+   "bitis_utc": "2026-10-30T20:29:18+00:00",
+   "baslangic_yerel": "2026-10-30 22:42:12 +0300",
+   "bitis_yerel": "2026-10-30 23:29:18 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 19:42:12",
+    "bitis": "2026-10-30 20:29:18",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:9",
+   "sure_s": 2826,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": ""
+  },
+  {
+   "olay": "B5_MI",
+   "baslangic_utc": "2026-10-30T20:29:18+00:00",
+   "bitis_utc": "2026-10-30T20:36:38+00:00",
+   "baslangic_yerel": "2026-10-30 23:29:18 +0300",
+   "bitis_yerel": "2026-10-30 23:36:38 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 20:29:18",
+    "bitis": "2026-10-30 20:36:38",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:10",
+   "sure_s": 440,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": ""
+  },
+  {
+   "olay": "B5_TGR",
+   "baslangic_utc": "2026-10-30T20:36:38+00:00",
+   "bitis_utc": "2026-10-30T20:40:39+00:00",
+   "baslangic_yerel": "2026-10-30 23:36:38 +0300",
+   "bitis_yerel": "2026-10-30 23:40:39 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 20:36:38",
+    "bitis": "2026-10-30 20:40:39",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:11",
+   "sure_s": 241,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": ""
+  },
+  {
+   "olay": "B6_maskeleme",
+   "baslangic_utc": "2026-10-30T20:40:39+00:00",
+   "bitis_utc": "2026-10-30T20:40:39+00:00",
+   "baslangic_yerel": "2026-10-30 23:40:39 +0300",
+   "bitis_yerel": "2026-10-30 23:40:39 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 20:40:39",
+    "bitis": "2026-10-30 20:40:39",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:12",
+   "sure_s": 0,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": ""
+  },
+  {
+   "olay": "B4_cozumleme",
+   "baslangic_utc": "2026-10-30T20:40:39+00:00",
+   "bitis_utc": "2026-10-30T20:40:42+00:00",
+   "baslangic_yerel": "2026-10-30 23:40:39 +0300",
+   "bitis_yerel": "2026-10-30 23:40:42 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 20:40:39",
+    "bitis": "2026-10-30 20:40:42",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:13",
+   "sure_s": 3,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": ""
+  },
+  {
+   "olay": "B5_cozumleme",
+   "baslangic_utc": "2026-10-30T20:40:42+00:00",
+   "bitis_utc": "2026-10-30T20:40:46+00:00",
+   "baslangic_yerel": "2026-10-30 23:40:42 +0300",
+   "bitis_yerel": "2026-10-30 23:40:46 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 20:40:42",
+    "bitis": "2026-10-30 20:40:46",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:14",
+   "sure_s": 4,
+   "durum": "OK",
+   "cikis_kodu": "0",
+   "not": ""
+  },
+  {
+   "olay": "zincir",
+   "baslangic_utc": null,
+   "bitis_utc": "2026-10-30T20:40:46+00:00",
+   "baslangic_yerel": null,
+   "bitis_yerel": "2026-10-30 23:40:46 +0300",
+   "gunluk_saati": {
+    "baslangic": null,
+    "bitis": "2026-10-30 20:40:46",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "results/q1/konsey_zincir_durum.tsv:15",
+   "durum": "TAMAM",
+   "cikis_kodu": "0",
+   "not": ""
+  }
+ ],
+ "B3_asamalari": [
+  {
+   "olay": "B3 V_IN_s2101 temiz",
+   "baslangic_utc": "2026-10-30T01:46:52+00:00",
+   "bitis_utc": "2026-10-30T01:55:06+00:00",
+   "baslangic_yerel": "2026-10-30 04:46:52 +0300",
+   "bitis_yerel": "2026-10-30 04:55:06 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 01:46:52",
+    "bitis": "2026-10-30 01:55:06",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:36, logs/konsey_zincir.log:38",
+   "sure_s": 494,
+   "takma_ad": "V_IN_s2101",
+   "asama": "temiz",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:2",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 494
+  },
+  {
+   "olay": "B3 V_IN_s2101 AT",
+   "baslangic_utc": "2026-10-30T01:55:07+00:00",
+   "bitis_utc": "2026-10-30T03:28:55+00:00",
+   "baslangic_yerel": "2026-10-30 04:55:07 +0300",
+   "bitis_yerel": "2026-10-30 06:28:55 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 01:55:07",
+    "bitis": "2026-10-30 03:28:55",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:40, logs/konsey_zincir.log:45",
+   "sure_s": 5628,
+   "takma_ad": "V_IN_s2101",
+   "asama": "AT",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:4",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 5628
+  },
+  {
+   "olay": "B3 R224_IN_s1301 temiz",
+   "baslangic_utc": "2026-10-30T03:28:59+00:00",
+   "bitis_utc": "2026-10-30T03:38:49+00:00",
+   "baslangic_yerel": "2026-10-30 06:28:59 +0300",
+   "bitis_yerel": "2026-10-30 06:38:49 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 03:28:59",
+    "bitis": "2026-10-30 03:38:49",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:47, logs/konsey_zincir.log:48",
+   "sure_s": 590,
+   "takma_ad": "R224_IN_s1301",
+   "asama": "temiz",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:6",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 590
+  },
+  {
+   "olay": "B3 R224_scr_s1201 temiz",
+   "baslangic_utc": "2026-10-30T03:38:52+00:00",
+   "bitis_utc": "2026-10-30T04:51:10+00:00",
+   "baslangic_yerel": "2026-10-30 06:38:52 +0300",
+   "bitis_yerel": "2026-10-30 07:51:10 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 03:38:52",
+    "bitis": "2026-10-30 04:51:10",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:51, logs/konsey_zincir.log:52",
+   "sure_s": 4338,
+   "takma_ad": "R224_scr_s1201",
+   "asama": "temiz",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:8",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 4338
+  },
+  {
+   "olay": "B3 R224_IN_s1301 AT",
+   "baslangic_utc": "2026-10-30T04:51:12+00:00",
+   "bitis_utc": "2026-10-30T06:48:42+00:00",
+   "baslangic_yerel": "2026-10-30 07:51:12 +0300",
+   "bitis_yerel": "2026-10-30 09:48:42 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 04:51:12",
+    "bitis": "2026-10-30 06:48:42",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:54, logs/konsey_zincir.log:55",
+   "sure_s": 7050,
+   "takma_ad": "R224_IN_s1301",
+   "asama": "AT",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:10",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 7050
+  },
+  {
+   "olay": "B3 R224_scr_s1201 AT",
+   "baslangic_utc": "2026-10-30T06:48:44+00:00",
+   "bitis_utc": "2026-10-30T10:27:30+00:00",
+   "baslangic_yerel": "2026-10-30 09:48:44 +0300",
+   "bitis_yerel": "2026-10-30 13:27:30 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 06:48:44",
+    "bitis": "2026-10-30 10:27:30",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:57, logs/konsey_zincir.log:58",
+   "sure_s": 13126,
+   "takma_ad": "R224_scr_s1201",
+   "asama": "AT",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:12",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 13126
+  },
+  {
+   "olay": "B3 V_IN_s2102 temiz",
+   "baslangic_utc": "2026-10-30T10:27:31+00:00",
+   "bitis_utc": "2026-10-30T10:34:33+00:00",
+   "baslangic_yerel": "2026-10-30 13:27:31 +0300",
+   "bitis_yerel": "2026-10-30 13:34:33 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 10:27:31",
+    "bitis": "2026-10-30 10:34:33",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:60, logs/konsey_zincir.log:61",
+   "sure_s": 422,
+   "takma_ad": "V_IN_s2102",
+   "asama": "temiz",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:14",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 422
+  },
+  {
+   "olay": "B3 V_IN_s2102 AT",
+   "baslangic_utc": "2026-10-30T10:34:34+00:00",
+   "bitis_utc": "2026-10-30T14:03:24+00:00",
+   "baslangic_yerel": "2026-10-30 13:34:34 +0300",
+   "bitis_yerel": "2026-10-30 17:03:24 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 10:34:34",
+    "bitis": "2026-10-30 14:03:24",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:63, logs/konsey_zincir.log:64",
+   "sure_s": 12530,
+   "takma_ad": "V_IN_s2102",
+   "asama": "AT",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:16",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 12530
+  },
+  {
+   "olay": "B3 R224_IN_s1302 temiz",
+   "baslangic_utc": "2026-10-30T14:03:25+00:00",
+   "bitis_utc": "2026-10-30T14:22:02+00:00",
+   "baslangic_yerel": "2026-10-30 17:03:25 +0300",
+   "bitis_yerel": "2026-10-30 17:22:02 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 14:03:25",
+    "bitis": "2026-10-30 14:22:02",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:66, logs/konsey_zincir.log:67",
+   "sure_s": 1117,
+   "takma_ad": "R224_IN_s1302",
+   "asama": "temiz",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:18",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 1117
+  },
+  {
+   "olay": "B3 R224_IN_s1302 AT",
+   "baslangic_utc": "2026-10-30T14:22:03+00:00",
+   "bitis_utc": "2026-10-30T16:14:49+00:00",
+   "baslangic_yerel": "2026-10-30 17:22:03 +0300",
+   "bitis_yerel": "2026-10-30 19:14:49 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 14:22:03",
+    "bitis": "2026-10-30 16:14:49",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:69, logs/konsey_zincir.log:70",
+   "sure_s": 6766,
+   "takma_ad": "R224_IN_s1302",
+   "asama": "AT",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:20",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 6766
+  },
+  {
+   "olay": "B3 R224_scr_s1202 temiz",
+   "baslangic_utc": "2026-10-30T16:14:55+00:00",
+   "bitis_utc": "2026-10-30T17:10:10+00:00",
+   "baslangic_yerel": "2026-10-30 19:14:55 +0300",
+   "bitis_yerel": "2026-10-30 20:10:10 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 16:14:55",
+    "bitis": "2026-10-30 17:10:10",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:72, logs/konsey_zincir.log:73",
+   "sure_s": 3315,
+   "takma_ad": "R224_scr_s1202",
+   "asama": "temiz",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:22",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 3315
+  },
+  {
+   "olay": "B3 R224_scr_s1202 AT",
+   "baslangic_utc": "2026-10-30T17:10:10+00:00",
+   "bitis_utc": "2026-10-30T19:34:55+00:00",
+   "baslangic_yerel": "2026-10-30 20:10:10 +0300",
+   "bitis_yerel": "2026-10-30 22:34:55 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-30 17:10:10",
+    "bitis": "2026-10-30 19:34:55",
+    "saat_farki_utc_gore": 0
+   },
+   "kaynak": "logs/konsey_zincir.log:74, logs/konsey_zincir.log:75",
+   "sure_s": 8685,
+   "takma_ad": "R224_scr_s1202",
+   "asama": "AT",
+   "defter_satiri": "results/q1/konsey_b3_defter.tsv:23",
+   "defterle_ayni_baslangic": true,
+   "defter_bitis_farki_s": 0,
+   "defter_sure_s": 8685
+  }
+ ],
+ "ek_zincir": [
+  {
+   "olay": "ek zincir: regresyon",
+   "baslangic_utc": "2026-10-31T03:58:56+00:00",
+   "bitis_utc": "2026-10-31T04:00:31+00:00",
+   "baslangic_yerel": "2026-10-31 06:58:56 +0300",
+   "bitis_yerel": "2026-10-31 07:00:31 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-31 06:58:56",
+    "bitis": "2026-10-31 07:00:31",
+    "saat_farki_utc_gore": 3
+   },
+   "kaynak": "results/q1/ek_loglar/ek_zincir_1.log:1, results/q1/ek_loglar/ek_zincir_1.log:19",
+   "sure_s": 95,
+   "bitis_tanimi": "sonraki adimin baslangici",
+   "donus_kodlari": [
+    "ozgun: rc=0 sure=24 s",
+    "catal: rc=0 sure=24 s",
+    "ozgun_onb: rc=0 sure=22 s",
+    "catal_onb: rc=0 sure=23 s"
+   ]
+  },
+  {
+   "olay": "ek zincir: b8denetim",
+   "baslangic_utc": "2026-10-31T04:00:31+00:00",
+   "bitis_utc": "2026-10-31T04:07:58+00:00",
+   "baslangic_yerel": "2026-10-31 07:00:31 +0300",
+   "bitis_yerel": "2026-10-31 07:07:58 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-31 07:00:31",
+    "bitis": "2026-10-31 07:07:58",
+    "saat_farki_utc_gore": 3
+   },
+   "kaynak": "results/q1/ek_loglar/ek_zincir_1.log:19, results/q1/ek_loglar/ek_zincir_1.log:23",
+   "sure_s": 447,
+   "bitis_tanimi": "gunlugun 'bitti' satiri",
+   "donus_kodlari": [
+    "b8 denetim rc=0"
+   ]
+  },
+  {
+   "olay": "ek zincir: b9",
+   "baslangic_utc": "2026-10-31T04:08:49+00:00",
+   "bitis_utc": "2026-10-31T04:22:42+00:00",
+   "baslangic_yerel": "2026-10-31 07:08:49 +0300",
+   "bitis_yerel": "2026-10-31 07:22:42 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-31 07:08:49",
+    "bitis": "2026-10-31 07:22:42",
+    "saat_farki_utc_gore": 3
+   },
+   "kaynak": "results/q1/ek_loglar/ek_zincir_2.log:1, results/q1/ek_loglar/ek_zincir_2.log:3",
+   "sure_s": 833,
+   "bitis_tanimi": "sonraki adimin baslangici",
+   "donus_kodlari": [
+    "b9 rc=0"
+   ]
+  },
+  {
+   "olay": "ek zincir: b8",
+   "baslangic_utc": "2026-10-31T04:22:42+00:00",
+   "bitis_utc": "2026-10-31T04:38:55+00:00",
+   "baslangic_yerel": "2026-10-31 07:22:42 +0300",
+   "bitis_yerel": "2026-10-31 07:38:55 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-31 07:22:42",
+    "bitis": "2026-10-31 07:38:55",
+    "saat_farki_utc_gore": 3
+   },
+   "kaynak": "results/q1/ek_loglar/ek_zincir_2.log:3, results/q1/ek_loglar/ek_zincir_2.log:8",
+   "sure_s": 973,
+   "bitis_tanimi": "sonraki adimin baslangici",
+   "donus_kodlari": [
+    "b8 rc=0"
+   ]
+  },
+  {
+   "olay": "ek zincir: b10",
+   "baslangic_utc": "2026-10-31T04:38:55+00:00",
+   "bitis_utc": "2026-10-31T04:43:46+00:00",
+   "baslangic_yerel": "2026-10-31 07:38:55 +0300",
+   "bitis_yerel": "2026-10-31 07:43:46 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-31 07:38:55",
+    "bitis": "2026-10-31 07:43:46",
+    "saat_farki_utc_gore": 3
+   },
+   "kaynak": "results/q1/ek_loglar/ek_zincir_2.log:8, results/q1/ek_loglar/ek_zincir_2.log:12",
+   "sure_s": 291,
+   "bitis_tanimi": "sonraki adimin baslangici",
+   "donus_kodlari": [
+    "b10 c10 rc=0",
+    "b10 c100 rc=0",
+    "b10 in rc=0"
+   ]
+  },
+  {
+   "olay": "ek zincir: cozumleme",
+   "baslangic_utc": "2026-10-31T04:43:46+00:00",
+   "bitis_utc": "2026-10-31T04:44:09+00:00",
+   "baslangic_yerel": "2026-10-31 07:43:46 +0300",
+   "bitis_yerel": "2026-10-31 07:44:09 +0300",
+   "gunluk_saati": {
+    "baslangic": "2026-10-31 07:43:46",
+    "bitis": "2026-10-31 07:44:09",
+    "saat_farki_utc_gore": 3
+   },
+   "kaynak": "results/q1/ek_loglar/ek_zincir_2.log:12, results/q1/ek_loglar/ek_zincir_2.log:22",
+   "sure_s": 23,
+   "bitis_tanimi": "gunlugun 'bitti' satiri",
+   "donus_kodlari": []
+  }
+ ],
+ "cozumleme_jsonlari": {
+  "results/q1/konsey_ayrisim_b2.json": {
+   "uretildi_utc": "2026-10-30T01:46:40.768882+00:00",
+   "anahtar": "meta.uretildi_utc"
+  },
+  "results/q1/konsey_ayrisim_b4.json": {
+   "uretildi_utc": "2026-10-30T20:40:40.619077+00:00",
+   "anahtar": "meta.uretildi_utc"
+  },
+  "results/q1/konsey_ayrisim_b5.json": {
+   "uretildi_utc": "2026-10-30T20:40:44.160853+00:00",
+   "anahtar": "meta.uretildi_utc"
+  },
+  "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": {
+   "uretildi_utc": "2026-10-31T04:43:48.044428+00:00",
+   "anahtar": "meta.uretildi_utc"
+  },
+  "results/q1/konsey_b9_c100/b9_sarmalayici_b2.json": {
+   "uretildi_utc": "2026-10-31T04:43:49.864241+00:00",
+   "anahtar": "meta.uretildi_utc"
+  },
+  "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": {
+   "uretildi_utc": "2026-10-31T04:43:51.751189+00:00",
+   "anahtar": "meta.uretildi_utc"
+  },
+  "results/q1/konsey_b8_imagenetv2/b8_betimsel.json": {
+   "uretildi_utc": "2026-10-31T04:43:53.452600+00:00",
+   "anahtar": "meta.uretildi_utc"
+  },
+  "results/q1/konsey_b10_gradyan/b10_aile.json": {
+   "uretildi_utc": "2026-10-31T04:44:08.752419+00:00",
+   "anahtar": "meta.uretildi_utc"
+  }
+ },
+ "masa_cozumlemeleri": {
+  "results/q1/konsey_ek_masa/a10_b2.json": {
+   "uretildi_utc": "2026-10-31T15:37:23.570831+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:37:23 +0300"
+  },
+  "results/q1/konsey_ek_masa/a10_b2_varsayilan_bekci.json": {
+   "uretildi_utc": "2026-10-31T15:37:19.974223+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:37:19 +0300"
+  },
+  "results/q1/konsey_ek_masa/a10_b4.json": {
+   "uretildi_utc": "2026-10-31T15:37:21.559767+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:37:21 +0300"
+  },
+  "results/q1/konsey_ek_masa/a10_b4_varsayilan_bekci.json": {
+   "uretildi_utc": "2026-10-31T15:37:18.283682+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:37:18 +0300"
+  },
+  "results/q1/konsey_ek_masa/a10_panel.json": {
+   "uretildi_utc": "2026-10-31T15:37:24.179897+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:37:24 +0300"
+  },
+  "results/q1/konsey_ek_masa/a2_basit_etkiler.json": {
+   "uretildi_utc": "2026-10-31T15:37:09.263421+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:37:09 +0300"
+  },
+  "results/q1/konsey_ek_masa/a9_2q_eksi_1.json": {
+   "uretildi_utc": "2026-10-31T15:37:09.266134+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:37:09 +0300"
+  },
+  "results/q1/konsey_ek_masa/bootstrap_cifar10.json": {
+   "uretildi_utc": "2026-10-31T15:03:21.836906+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:03:21 +0300"
+  },
+  "results/q1/konsey_ek_masa/bootstrap_cifar100.json": {
+   "uretildi_utc": "2026-10-31T15:03:29.780096+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:03:29 +0300"
+  },
+  "results/q1/konsey_ek_masa/kesifsel.json": {
+   "uretildi_utc": "2026-10-31T15:07:01.403456+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:07:01 +0300"
+  },
+  "results/q1/konsey_ek_masa/mantel_aile.json": {
+   "uretildi_utc": "2026-10-31T15:06:36.581560+00:00",
+   "anahtar": "meta.uretildi_utc",
+   "yerel": "2026-10-31 18:06:36 +0300"
+  }
+ },
+ "matrisler": {
+  "B2": {
+   "saldiri": "pgd",
+   "n_goruntu": 10000,
+   "model_sayisi": 14,
+   "hucre_sayisi": 196,
+   "kaynak_sayisi": 14,
+   "eps_x255": 8.0,
+   "kaynak": "results/q1/konsey_b2_panel/transfer_matrix.json attack, n_samples, models, results, sources, eps"
+  },
+  "B4": {
+   "saldiri": "pgd",
+   "n_goruntu": 10000,
+   "model_sayisi": 20,
+   "hucre_sayisi": 400,
+   "kaynak_sayisi": 20,
+   "eps_x255": 8.0,
+   "kaynak": "results/q1/konsey_b4_matris/transfer_matrix.json attack, n_samples, models, results, sources, eps"
+  },
+  "B5-MI": {
+   "saldiri": "mi",
+   "n_goruntu": 10000,
+   "model_sayisi": 19,
+   "hucre_sayisi": 228,
+   "kaynak_sayisi": 12,
+   "eps_x255": 8.0,
+   "kaynak": "results/q1/konsey_b5_saldiri/mi/transfer_matrix.json attack, n_samples, models, results, sources, eps"
+  },
+  "B5-TGR": {
+   "saldiri": "tgr",
+   "n_goruntu": 10000,
+   "model_sayisi": 19,
+   "hucre_sayisi": 95,
+   "kaynak_sayisi": 5,
+   "eps_x255": 8.0,
+   "kaynak": "results/q1/konsey_b5_saldiri/tgr/transfer_matrix.json attack, n_samples, models, results, sources, eps"
+  },
+  "B9": {
+   "saldiri": "pgd",
+   "n_goruntu": 10000,
+   "model_sayisi": 15,
+   "hucre_sayisi": 225,
+   "kaynak_sayisi": 15,
+   "eps_x255": 8.0,
+   "kaynak": "results/q1/konsey_b9_c100/matris/transfer_matrix.json attack, n_samples, models, results, sources, eps"
+  },
+  "B8": {
+   "saldiri": "pgd",
+   "n_goruntu": 2000,
+   "model_sayisi": 14,
+   "hucre_sayisi": 196,
+   "kaynak_sayisi": 14,
+   "eps_x255": 4.0,
+   "kaynak": "results/q1/konsey_b8_imagenetv2/matris/transfer_matrix.json attack, n_samples, models, results, sources, eps"
+  },
+  "B6-AA": {
+   "n_goruntu": 1000,
+   "model_sayisi": 6,
+   "kaynak": "results/q1/konsey_b6_maskeleme.json n, modeller"
+  },
+  "B10-cifar10": {
+   "model_sayisi": 20,
+   "cift_sayisi": 190,
+   "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar10.json sinamalar.ham.K, .cift_sayisi"
+  },
+  "B10-cifar100": {
+   "model_sayisi": 15,
+   "cift_sayisi": 105,
+   "kaynak": "results/q1/konsey_b10_gradyan/mantel_cifar100.json sinamalar.ham.K, .cift_sayisi"
+  },
+  "B10-imagenetv2": {
+   "model_sayisi": 14,
+   "cift_sayisi": 91,
+   "kaynak": "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json sinamalar.ham.K, .cift_sayisi"
+  }
+ },
+ "donanim": {
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "gpu_bellek_toplam_mib": 32607,
+  "gpu_bellek_kullanilan_mib_zincir_basi": 4214,
+  "kaynak": "logs/konsey_zincir.log:18-19 (nvidia-smi dokumu, B3 on denetimi)",
+  "ek_zincir_bellek": {
+   "kullanilan_mib": 2804,
+   "toplam_mib": 32607,
+   "kaynak": "results/q1/ek_loglar/ek_zincir_1.log:2"
+  }
+ },
+ "egitim_suresi": {
+  "defter_toplam_sure_s": 64061,
+  "defter_toplam_sure_sa": 17.794722222222223,
+  "kaynak": "results/q1/konsey_b3_defter.tsv sure_s (asama temiz ve AT satirlari toplami)",
+  "zincir_gunlugu_satiri": "logs/konsey_zincir.log:77",
+  "zincir_gunlugu_metni": "[2026-10-30 19:34:57] KUYRUK TAMAM; toplam egitim 17.79 sa (pay 38.15 sa). Defter: results/q1/konsey_b3_defter.tsv",
+  "foy": {
+   "foy_satiri": 1470,
+   "satir_metni_sha256": "b62b7cb28ea06020c526796aac4091fe24571ab979108c9becef8ec986748a57",
+   "parca": "Defterdeki temiz ve AT asama surelerinin toplami"
+  },
+  "egitim_payi_on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:171"
+ },
+ "kayit_oncesi_gorulen_veriler": {
+  "ana": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:5-14",
+  "ek": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:5-14"
+ },
+ "sapma_kaydi_basliklari": [
+  {
+   "tarih": "2026-10-30",
+   "baslik": "indirme kaydı: ImageNetV2 arşivi (sapma değil)",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:7",
+   "sapma_degil_ibaresi": true
+  },
+  {
+   "tarih": "2026-10-30",
+   "baslik": "kod eki: üç yeni betiğin dondurma anındaki özetleri (sapma değil)",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:17",
+   "sapma_degil_ibaresi": true
+  },
+  {
+   "tarih": "2026-10-30",
+   "baslik": "not: çatal regresyonu (sapma değil)",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:30",
+   "sapma_degil_ibaresi": true
+  },
+  {
+   "tarih": "2026-10-31",
+   "baslik": "not: GPU çatal regresyonu ve B8 ön işleme denetimi (sapma değil)",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:34",
+   "sapma_degil_ibaresi": true
+  },
+  {
+   "tarih": "2026-10-31",
+   "baslik": "ana ön kayıt §7 kayıtları (B2-B6 sonrası)",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:40",
+   "sapma_degil_ibaresi": false
+  },
+  {
+   "tarih": "2026-10-31",
+   "baslik": "ek ön kayıt §12 kayıtları (B8-B10 sonrası)",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:53",
+   "sapma_degil_ibaresi": false
+  },
+  {
+   "tarih": "2026-10-31",
+   "baslik": "ana ön kayıt §7: hiyerarşik bootstrap duyarlılığı sonradan üretildi",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:67",
+   "sapma_degil_ibaresi": false
+  },
+  {
+   "tarih": "2026-10-31",
+   "baslik": "ek ön kayıt §12: S10-3 sonradan üretildi",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:75",
+   "sapma_degil_ibaresi": false
+  },
+  {
+   "tarih": "2026-10-31",
+   "baslik": "keşifsel: A2/A9/A10 türetilmiş ve yeniden panelli çözümleme (ön kayıt dışı)",
+   "kaynak": "results/q1_research/ONKAYIT_SAPMALAR.md:89",
+   "sapma_degil_ibaresi": false
+  }
+ ],
+ "denetimler": {
+  "B3_defter_baslangiclari_zincir_gunluguyle_ayni": true,
+  "B3_defter_bitis_farki_s_en_buyuk_mutlak": 0,
+  "B3_asama_sayisi": 12,
+  "ek_dondurma_konsey_zinciri_icinde": true,
+  "on_kayit_dondurmasi_B2_matrisinden_once": true,
+  "ek_dondurma_ek_zincirden_once": true
+ }
+}

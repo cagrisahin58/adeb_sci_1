@@ -1,0 +1,2679 @@
+{
+ "etiket": "Y4 fig:registry_map kaynagi: on kayitli sinamalarin kayit haritasi",
+ "tanim": "Her sinama icin ongoru, esikler (dondurulmus betik satirindan), Holm ailesi, delta, karar kurali ve gerceklesen karar (sonuc JSON'u ve foy tablo hucresi; sonuc sayilari kopyalanmaz, foy satiri verilir).",
+ "meta": {
+  "betik": "arsiv/b2_yardimci/_m13_kayit.py",
+  "betik_sha256": "031585b2c56f3f75c28cd6c8be67f6d11de0d3ce5a6237fcf39e7543b0183c1f",
+  "ortak_modul": "arsiv/b2_yardimci/_m13_ortak.py",
+  "ortak_modul_sha256": "c17618e252c0d08b8b4a5e01960d676f4f9e71b9d80e39cfd9906b5cc1069d98",
+  "uretildi_utc": "2026-10-31T18:18:19.309861+00:00",
+  "python": "3.10.12",
+  "kaynak_sayisi": 14,
+  "kaynaklar_sha256": {
+   "experiments/q1_ek_ayrisim.py": "d264c4e584fcfb3c0e3dd9517cfe2cea4ea1fe564117c88459e2b9721027a641",
+   "experiments/q1_ek_gradyan_kosinus.py": "c82a66d196c38f23d688f610caf6ffceab0c01e7ebfa68e5358f832014043eed",
+   "experiments/q1_konsey_ayrisim.py": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+   "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md": "8d8b17b2d094e0d84ef8d018517da551d717483c25f33155beb5d2c76f20ce3d",
+   "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md": "56a8141ff7d23e98c007ff1a0a5b20f102772b6d40bec904dd3d40e503160182",
+   "results/C1_REFERANS_FOYU.md": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+   "results/q1/konsey_ayrisim_b2.json": "3c736f89964ccd76a541a917db67e1719a8f92eb674326340696695867f89e27",
+   "results/q1/konsey_ayrisim_b4.json": "5c50890819c509b9ef890373797b4f303eea8427d05f3f4025c31019380ca99b",
+   "results/q1/konsey_ayrisim_b5.json": "363f1bb121c0781e558554baa442ddb2ecb3e414b0fe852415c0413beca16461",
+   "results/q1/konsey_b10_gradyan/b10_aile.json": "87140d9c9ffc0c78c82448390a2dbefb55831abfbcc06a1cd93bb0afd4cf8379",
+   "results/q1/konsey_b6_maskeleme.json": "dfd82b45ef4c62ebac1e76f91a0c0dfc90e503fa6c5545075f8e7b3d8276597d",
+   "results/q1/konsey_b8_imagenetv2/b8_betimsel.json": "332d30789cc22180eed26f60f8544ef26263cdd32ff4b7255fec598439376da0",
+   "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": "762d62b4194c245e310ab9ae9b5eb82ef3476a6965597feed707a6c0b3a76cd8",
+   "scripts/konsey_b6_maskeleme.py": "6e14580405ce38aa5b8b59debfe3e84ffc046e9db9bd4d2dc9fef07cf3d7d69e"
+  },
+  "foy_ozeti": {
+   "dosya": "results/C1_REFERANS_FOYU.md",
+   "m13_haric_sha256": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+   "tanim": "results/C1_REFERANS_FOYU.md icin kaynaklar_sha256 degeri (ve foy_ozeti.m13_haric_sha256) ham dosyanin degil, '\\n## M13:' ile '\\n## Sabit dizgeler' arasindaki bayt araligi cikarilmis metnin sha256'sidir (arsiv/b2_yardimci/_m13_kontrol.py ile ayni kural). Foyde M13 yoksa ham sha256 ile aynidir."
+  },
+  "yeniden_uretim_notu": "Foyun M13 bolumu bu JSON'un meta'sini (uretildi_utc, betik sha256) basar; ham foy sha256'si kaynak olarak yazilsaydi her JSON uretimi foyu, her foy uretimi JSON'u degistirirdi ve uretim sabit noktaya oturmazdi (onceki surumdeki 'yalniz uretildi_utc degisir' notu bu yuzden yanlisti). Duzeltmeden sonra JSON'lar foyun yalniz M13 disi metnine baglidir: M13 disi foy ve kaynak dosyalar degismedikce JSON yeniden uretildiginde JSON'da yalniz meta.uretildi_utc, foyde yalniz M13 meta satirlarindaki uretildi_utc degisir (31.10.2026'da iki ardisik uretimle denetlendi; bkz. results/q1/konsey_kayit_kurallari.DEGISIKLIK.md)."
+ },
+ "sabitler": {
+  "DELTA": {
+   "ad": "delta (birincil esdegerlik siniri, log birimi)",
+   "deger": 0.1,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:58",
+   "kaynak_metni": "DELTA = 0.10          # ON_KAYIT §5 esdegerlik siniri (log birimi)",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:50",
+   "on_kayit_metninde_yazimi": [
+    "0,10"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "0,10",
+     "sutun": 54
+    },
+    {
+     "yazim": "0,10",
+     "sutun": 64
+    },
+    {
+     "yazim": "0,10",
+     "sutun": 1026
+    },
+    {
+     "yazim": "0,10",
+     "sutun": 1371
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "0,1",
+    "0,10",
+    "0,100"
+   ]
+  },
+  "DELTA_DUY": {
+   "ad": "delta duyarliligi",
+   "deger": 0.06,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:59",
+   "kaynak_metni": "DELTA_DUY = 0.06      # ON_KAYIT §5 duyarlilik siniri (yalniz CNN ciftlerinde r RMS 0,0605; karar degistirmez)",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:50",
+   "on_kayit_metninde_yazimi": [
+    "0,06"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "0,06",
+     "sutun": 929
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "0,06",
+    "0,060"
+   ]
+  },
+  "ALFA": {
+   "ad": "Holm alfa",
+   "deger": 0.05,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:60",
+   "kaynak_metni": "ALFA = 0.05",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:58",
+   "on_kayit_metninde_yazimi": [
+    "0,05"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "0,05",
+     "sutun": 60
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "0,05",
+    "0,050"
+   ]
+  },
+  "B5_ESIK": {
+   "ad": "B5 korunma orani esigi",
+   "deger": 0.5,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:61",
+   "kaynak_metni": "B5_ESIK = 0.5         # ON_KAYIT §5 B5 korunma orani esigi",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:90",
+   "on_kayit_metninde_yazimi": [
+    "0,5"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "0,5",
+     "sutun": 188
+    },
+    {
+     "yazim": "0,5",
+     "sutun": 1375
+    },
+    {
+     "yazim": "0,5",
+     "sutun": 1412
+    },
+    {
+     "yazim": "0,5",
+     "sutun": 1450
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "0,5",
+    "0,50",
+    "0,500"
+   ]
+  },
+  "BOOT_TOHUM": {
+   "ad": "bootstrap tohumu",
+   "deger": 20261029.0,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:62",
+   "kaynak_metni": "BOOT_TOHUM = 20261029"
+  },
+  "BOOTSTRAP_B": {
+   "ad": "bootstrap kopya sayisi (varsayilan)",
+   "deger": 2000.0,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:1149",
+   "kaynak_metni": "ap.add_argument(\"--bootstrap\", type=int, default=2000)",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:64",
+   "on_kayit_metninde_yazimi": [
+    "2000"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "2000",
+     "sutun": 217
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "2000"
+   ]
+  },
+  "S5_BANT": {
+   "ad": "S5 bandi (puan)",
+   "deger": 1.5,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:63",
+   "kaynak_metni": "S5_EGIM, S5_KESISIM, S5_BANT = 0.796, -0.01, 1.5   # ON_KAYIT S5 (FOY:1039)",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+   "on_kayit_metninde_yazimi": [
+    "1,5"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "1,5",
+     "sutun": 223
+    },
+    {
+     "yazim": "1,5",
+     "sutun": 286
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "1,5",
+    "1,50",
+    "1,500"
+   ]
+  },
+  "S5_EGIM": {
+   "ad": "S5 ongoru dogrusu egimi",
+   "deger": 0.796,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:63",
+   "kaynak_metni": "S5_EGIM, S5_KESISIM, S5_BANT = 0.796, -0.01, 1.5   # ON_KAYIT S5 (FOY:1039)",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+   "on_kayit_metninde_yazimi": [
+    "+0,796"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "+0,796",
+     "sutun": 144
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "0,796"
+   ]
+  },
+  "S5_KESISIM": {
+   "ad": "S5 ongoru dogrusu kesisimi (puan)",
+   "deger": -0.01,
+   "kaynak": "experiments/q1_konsey_ayrisim.py:63",
+   "kaynak_metni": "S5_EGIM, S5_KESISIM, S5_BANT = 0.796, -0.01, 1.5   # ON_KAYIT S5 (FOY:1039)",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+   "on_kayit_metninde_yazimi": [
+    "−0,01"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "−0,01",
+     "sutun": 160
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "0,01",
+    "0,010"
+   ]
+  },
+  "B6_ESIK_PUAN": {
+   "ad": "B6 maskeleme esigi (PGD-10 - AA, puan)",
+   "deger": 10.0,
+   "kaynak": "scripts/konsey_b6_maskeleme.py:28",
+   "kaynak_metni": "ap.add_argument(\"--esik\", type=float, default=10.0, help=\"PGD - AA farki (puan); asan isaretlenir\")",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:94",
+   "on_kayit_metninde_yazimi": [
+    "10"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "10",
+     "sutun": 72
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "10"
+   ]
+  },
+  "B8_BEKLENTI_A_SIGMA_IN": {
+   "ad": "B8 IN satiri beklenti esigi",
+   "deger": -0.1,
+   "kaynak": "experiments/q1_ek_ayrisim.py:47",
+   "kaynak_metni": "BEKLENTI_A_SIGMA_IN = -0.10  # dondurulmus H1 (A^s_scr <= -0,20) + H2 (I^s >= +0,10)",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:122",
+   "on_kayit_metninde_yazimi": [
+    "−0,10"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "−0,10",
+     "sutun": 213
+    },
+    {
+     "yazim": "−0,10",
+     "sutun": 257
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "0,1",
+    "0,10",
+    "0,100"
+   ]
+  },
+  "B10_PERM": {
+   "ad": "B10 Mantel permutasyon sayisi",
+   "deger": 9999.0,
+   "kaynak": "experiments/q1_ek_ayrisim.py:48",
+   "kaynak_metni": "PERM_ON_KAYIT = 9999  # ek on kayit §6.2 (B10 Mantel permutasyon sayisi)",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:159",
+   "on_kayit_metninde_yazimi": [
+    "9999"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "9999",
+     "sutun": 196
+    },
+    {
+     "yazim": "9999",
+     "sutun": 252
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "9999"
+   ]
+  },
+  "B10_PERM_TOHUM": {
+   "ad": "B10 permutasyon tohumu",
+   "deger": 20261030.0,
+   "kaynak": "experiments/q1_ek_gradyan_kosinus.py:46",
+   "kaynak_metni": "TOHUM = 20261030",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:159",
+   "on_kayit_metninde_yazimi": [
+    "20261030"
+   ],
+   "on_kayit_eslesmeleri": [
+    {
+     "yazim": "20261030",
+     "sutun": 270
+    }
+   ],
+   "on_kayit_aranan_yazimlar": [
+    "20261030"
+   ]
+  }
+ },
+ "delta_tost_tanimi": {
+  "kaynak": "experiments/q1_konsey_ayrisim.py:318",
+  "metin": "def tost_p(est, se, df, delta=DELTA):"
+ },
+ "karar_ilkesi": {
+  "birincil": {
+   "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:54",
+   "metin_basi": "Karar ilkesi (bütün birincil sınamalar için): destek iddiası aile düzeyinde Holm sonrası p < 0,05 ile, çürütme ve eşdeğerlik koşulları ham aralıklarla okunur. Destek ile çürütme ölçütlerinin aynı sonu"
+  },
+  "ek": {
+   "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:17",
+   "metin_basi": "T_ij, w_j, r_ij, log τ̄_ij, σ_m, ρ_m, ω_m ve S_m, logit ve oran ölçekleri, bölünmüş yarı birincil kestiricisi, panel üyesinin kendi değerinde panelden çıkarılması ve yüklenemeyen üye tanımı dondurulmu"
+  },
+  "hesaplanamayan_p_1": {
+   "kaynak": "experiments/q1_konsey_ayrisim.py:311",
+   "metin": "def holm_aile(pler):"
+  }
+ },
+ "aileler": {
+  "F_B2": {
+   "blok": "B2",
+   "veri": "CIFAR-10",
+   "sinamalar": [
+    "K-a",
+    "K-b",
+    "K-c"
+   ],
+   "holm": true,
+   "aile_buyuklugu_json": 3,
+   "json": "results/q1/konsey_ayrisim_b2.json b2.F_B2.p_holm",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:58",
+    "metin_basi": "### B2 (üç tohum, mevcut C1 modelleri; aile F_B2, Holm α = 0,05, üç sınama)"
+   }
+  },
+  "F_B4": {
+   "blok": "B4",
+   "veri": "CIFAR-10",
+   "sinamalar": [
+    "H1",
+    "H2",
+    "H3"
+   ],
+   "holm": true,
+   "aile_buyuklugu_json": 3,
+   "json": "results/q1/konsey_ayrisim_b4.json b4.F_B4.p_holm",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:66",
+    "metin_basi": "### B4 (2x2; birincil aile F_B4, Holm α = 0,05, üç sınama)"
+   }
+  },
+  "F_B9": {
+   "blok": "B9",
+   "veri": "CIFAR-100",
+   "sinamalar": [
+    "K-a",
+    "K-b",
+    "K-c"
+   ],
+   "holm": true,
+   "aile_buyuklugu_json": 3,
+   "json": "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json b2.F_B2.p_holm",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:51",
+    "metin_basi": "### 4.2 Öngörüler, sınamalar ve karar (aile F_B9, üç sınama, Holm α = 0,05)"
+   }
+  },
+  "F_B10": {
+   "blok": "B10",
+   "veri": "CIFAR-10, CIFAR-100, ImageNetV2",
+   "sinamalar": [
+    "H10-cifar10",
+    "H10k-cifar10",
+    "H10-cifar100",
+    "H10k-cifar100",
+    "H10-imagenetv2",
+    "H10k-imagenetv2"
+   ],
+   "holm": true,
+   "aile_buyuklugu_json": 6,
+   "json": "results/q1/konsey_b10_gradyan/b10_aile.json F_B10.aile_buyuklugu",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:159",
+    "metin_basi": "Anlamlılık Mantel permütasyon sınamasıyla verilir: model etiketleri c matrisinin (kısmi istatistikte c artık matrisinin) satır ve sütunlarında ortak permüte edilir, log τ̄ matrisi sabit tutulur; 9999 "
+   }
+  },
+  "B5": {
+   "blok": "B5",
+   "holm": false,
+   "not": "tek sinamali ayri aile",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:90",
+    "metin_basi": "S_k(m) = ort_{c∈P} log T_k(m→c); izinli saldırılar CNN kaynaklarında PGD-10 ve MI-PGD-10 (μ = 1,0, α = ε/10), ViT kaynaklarında bunlara ek TGR-10'dur (momentumlu, μ = 1,0, α = 2/255, γ = 0,5; `experim"
+   }
+  },
+  "B8": {
+   "blok": "B8",
+   "holm": false,
+   "not": "karar ailesi yok, betimsel",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:120",
+    "metin_basi": "B8'de Holm'lu bir karar ailesi yoktur (fable kararı E2). Bütün B8 nicelikleri \"IN satırının doğal ölçekte kestirimi\" ve keşifsel etiketiyle, aralıklarıyla raporlanır. Birincil nicelik, aynı tarifli çi"
+   }
+  },
+  "S1-S7": {
+   "blok": "B4 ikincil",
+   "holm": false,
+   "not": "kesifsel, coklu duzeltme yok",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:76",
+    "metin_basi": "İkincil çözümlemeler (keşifsel olarak etiketlenir, çoklu düzeltme yok, aralıklarla raporlanır). S1'de aralık iki hücrenin birleşik varyansıyla (df = n1 + n2 − 2), S2 ve S3'te 2x2'nin dört hücreli birl"
+   }
+  }
+ },
+ "sinamalar": [
+  {
+   "kimlik": "K-a",
+   "blok": "B2",
+   "aile": "F_B2",
+   "baglayici": true,
+   "nicelik": "q_s = [sigma(R_s) - sigma(V_s)] / D_s, tohum basina; ort q",
+   "ongoru": "her tohumda q_s >= esik",
+   "ongorulen_buyukluk": {
+    "ad": "K-a ongoru",
+    "deger": 0.75,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:500",
+    "kaynak_metni": "ka[\"ongoru_her_tohumda_q_ge_0.75\"] = bool(all(q >= 0.75 for q in ka[\"q\"])) if ka[\"q\"] else None",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:60",
+    "on_kayit_metninde_yazimi": [
+     "0,75"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,75",
+      "sutun": 205
+     },
+     {
+      "yazim": "0,75",
+      "sutun": 575
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,75",
+     "0,750"
+    ]
+   },
+   "sinama": {
+    "tur": "tek yonlu t, df 2",
+    "H0_esik": {
+     "ad": "K-a H0: ort q <= esik",
+     "deger": 0.5,
+     "kaynak": "experiments/q1_konsey_ayrisim.py:497",
+     "kaynak_metni": "pa = float(1 - stats.t.cdf((kat[\"ort\"] - 0.5) / kat[\"se\"], kat[\"df\"])) if kat.get(\"se\") else float(\"nan\")",
+     "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:60",
+     "on_kayit_metninde_yazimi": [
+      "0,50"
+     ],
+     "on_kayit_eslesmeleri": [
+      {
+       "yazim": "0,50",
+       "sutun": 244
+      },
+      {
+       "yazim": "0,50",
+       "sutun": 333
+      }
+     ],
+     "on_kayit_aranan_yazimlar": [
+      "0,5",
+      "0,50",
+      "0,500"
+     ]
+    }
+   },
+   "destek": {
+    "kural": "Holm sonrasi p < ALFA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:454",
+    "metin": "elif adj[0] < ALFA:"
+   },
+   "curutme": {
+    "kural": "ort q %90 araligi ust siniri < esik",
+    "esik": {
+     "ad": "K-a curutme",
+     "deger": 0.5,
+     "kaynak": "experiments/q1_konsey_ayrisim.py:452",
+     "kaynak_metni": "elif kat[\"ci90\"][1] < 0.5:",
+     "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:60",
+     "on_kayit_metninde_yazimi": [
+      "0,50"
+     ],
+     "on_kayit_eslesmeleri": [
+      {
+       "yazim": "0,50",
+       "sutun": 244
+      },
+      {
+       "yazim": "0,50",
+       "sutun": 333
+      }
+     ],
+     "on_kayit_aranan_yazimlar": [
+      "0,5",
+      "0,50",
+      "0,500"
+     ]
+    }
+   },
+   "payda_kurali": {
+    "kural": "bir tohumda D_s <= DELTA ise kararsiz, Holm'da p = 1",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:542",
+    "metin": "ka[\"payda_kucuk_tohumlar\"] = [i for i, D in enumerate(ka[\"D\"]) if not (D > DELTA)]"
+   },
+   "karar_sirasi": "payda kurali > curutme > destek > kararsiz",
+   "karar_sirasi_kaynagi": "experiments/q1_konsey_ayrisim.py:443-485",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:60",
+    "metin_basi": "K-a, kaynak açığının simetrik oranı. Her tohum s için D_s = ort_c log T(R_s→c) − ort_c log T(V_s→c) = [σ(R_s) − σ(V_s)] + [−½(ρ(R_s) − ρ(V_s))]; oran q_s = [σ(R_s) − σ(V_s)]/D_s. Öngörü: üç tohumda q_"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_ayrisim_b2.json b2.F_B2.karar.K-a",
+    "foy_bolum": "M9.5",
+    "foy_satiri": 1587,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "8839ce9e932edbfadb74f4927d7766d3254bf7208808d971389c4db6e77be190",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "K-b",
+   "blok": "B2",
+   "aile": "F_B2",
+   "baglayici": true,
+   "nicelik": "rho(V-scr), tohum ortalamasi",
+   "ongoru": "esdeger, |rho| < DELTA",
+   "esdegerlik_siniri": {
+    "ad": "K-b TOST siniri +-DELTA",
+    "deger": 0.1,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:58",
+    "kaynak_metni": "DELTA = 0.10          # ON_KAYIT §5 esdegerlik siniri (log birimi)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:62",
+    "on_kayit_metninde_yazimi": [
+     "0,10"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,10",
+      "sutun": 81
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 101
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 210
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 315
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,1",
+     "0,10",
+     "0,100"
+    ],
+    "tur": "TOST +-DELTA: iki tek yonlu sinama (H0: mu <= -DELTA ve H0: mu >= +DELTA); buyuk p Holm'a girer",
+    "alt_sinir": -0.1,
+    "ust_sinir": 0.1,
+    "tost_tanimi": "experiments/q1_konsey_ayrisim.py:318"
+   },
+   "sinama": {
+    "tur": "TOST +-DELTA (iki tek yonlu p'nin buyugu Holm'a girer)",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:318",
+    "metin": "def tost_p(est, se, df, delta=DELTA):"
+   },
+   "destek": {
+    "kural": "Holm sonrasi TOST p < ALFA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:462",
+    "metin": "if adj[1] < ALFA:"
+   },
+   "curutme": {
+    "kural": "%95 aralik sifiri disliyor ve |ort| > DELTA (iki yonde)",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:461",
+    "metin": "cur = (kb[\"ci95\"][0] > 0 or kb[\"ci95\"][1] < 0) and abs(kb[\"ort\"]) > delta"
+   },
+   "karar_sirasi": "destek > curutme > kararsiz",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:62",
+    "metin_basi": "K-b, ViT'nin yönlü terimi. ρ(V-scr) üç tohum ortalaması. Öngörü: eşdeğer, |ρ| < 0,10. Sınama: TOST ±0,10 (iki tek yönlü p'nin büyüğü Holm'a girer). Destek: Holm sonrası TOST p < 0,05; ham %90 aralığın"
+   },
+   "gerceklesen": {
+    "karar_json": "destek (Holm sonrasi TOST p < 0,05)",
+    "json": "results/q1/konsey_ayrisim_b2.json b2.F_B2.karar.K-b",
+    "foy_bolum": "M9.5",
+    "foy_satiri": 1588,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek (Holm sonrasi TOST p < 0,05)",
+    "foy_satir_metni_sha256": "27042f575aabc690dd6759e0a07ca3270fb4848df069314b2f1cb6ceba91a201",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "K-c",
+   "blok": "B2",
+   "aile": "F_B2",
+   "baglayici": true,
+   "nicelik": "Delta_w = ort log tau(V_s, V_s') - ort_s sigma(V_s)",
+   "ongoru": "Delta_w >= esik",
+   "ongorulen_buyukluk": {
+    "ad": "K-c ongoru",
+    "deger": 0.3,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:540",
+    "kaynak_metni": "kc[\"ongoru_Delta_ge_0.30\"] = kc[\"Delta_w\"] >= 0.30",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:64",
+    "on_kayit_metninde_yazimi": [
+     "+0,30",
+     "0,30"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "+0,30",
+      "sutun": 113
+     },
+     {
+      "yazim": "0,30",
+      "sutun": 841
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,3",
+     "0,30",
+     "0,300"
+    ]
+   },
+   "sinama": {
+    "tur": "tek yonlu, H0: Delta_w <= 0; hiyerarsik bootstrap p = (1 + #{Delta* <= 0})/(B + 1)",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:538",
+    "metin": "p_kc = float((1 + (dist <= 0).sum()) / (args.bootstrap + 1))"
+   },
+   "destek": {
+    "kural": "curutme tutmuyorsa Holm sonrasi p < ALFA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:476",
+    "metin": "elif adj[2] < ALFA:"
+   },
+   "curutme": {
+    "kural": "%90 bootstrap araligi ust siniri < DELTA (once denetlenir)",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:474",
+    "metin": "if kc[\"bootstrap\"][\"ci90\"][1] < delta:"
+   },
+   "karar_sirasi": "curutme > destek > kararsiz",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:64",
+    "metin_basi": "K-c, tür içi benzerlik. Δ_w = ort log τ̄(V_s, V_s') − ort_s σ(V_s), üç ViT tohum çifti üzerinden. Öngörü: Δ_w ≥ +0,30. Sınama: tek yönlü, H0: Δ_w ≤ 0; belirsizlik tohum ve görüntü üzerinden hiyerarşik"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_ayrisim_b2.json b2.F_B2.karar.K-c",
+    "foy_bolum": "M9.5",
+    "foy_satiri": 1589,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "8b44bff3f39c6d5c2d77a67c34116d1712b8957f87a6146f2ae4acffcd611661",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "K-a",
+   "blok": "B9",
+   "aile": "F_B9",
+   "baglayici": true,
+   "nicelik": "q_s = [sigma(R_s) - sigma(V_s)] / D_s, tohum basina; ort q",
+   "ongoru": "her tohumda q_s >= esik",
+   "ongorulen_buyukluk": {
+    "ad": "K-a ongoru",
+    "deger": 0.75,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:500",
+    "kaynak_metni": "ka[\"ongoru_her_tohumda_q_ge_0.75\"] = bool(all(q >= 0.75 for q in ka[\"q\"])) if ka[\"q\"] else None",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:60",
+    "on_kayit_metninde_yazimi": [
+     "0,75"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,75",
+      "sutun": 205
+     },
+     {
+      "yazim": "0,75",
+      "sutun": 575
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,75",
+     "0,750"
+    ]
+   },
+   "sinama": {
+    "tur": "tek yonlu t, df 2",
+    "H0_esik": {
+     "ad": "K-a H0: ort q <= esik",
+     "deger": 0.5,
+     "kaynak": "experiments/q1_konsey_ayrisim.py:497",
+     "kaynak_metni": "pa = float(1 - stats.t.cdf((kat[\"ort\"] - 0.5) / kat[\"se\"], kat[\"df\"])) if kat.get(\"se\") else float(\"nan\")",
+     "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:60",
+     "on_kayit_metninde_yazimi": [
+      "0,50"
+     ],
+     "on_kayit_eslesmeleri": [
+      {
+       "yazim": "0,50",
+       "sutun": 244
+      },
+      {
+       "yazim": "0,50",
+       "sutun": 333
+      }
+     ],
+     "on_kayit_aranan_yazimlar": [
+      "0,5",
+      "0,50",
+      "0,500"
+     ]
+    }
+   },
+   "destek": {
+    "kural": "Holm sonrasi p < ALFA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:454",
+    "metin": "elif adj[0] < ALFA:"
+   },
+   "curutme": {
+    "kural": "ort q %90 araligi ust siniri < esik",
+    "esik": {
+     "ad": "K-a curutme",
+     "deger": 0.5,
+     "kaynak": "experiments/q1_konsey_ayrisim.py:452",
+     "kaynak_metni": "elif kat[\"ci90\"][1] < 0.5:",
+     "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:60",
+     "on_kayit_metninde_yazimi": [
+      "0,50"
+     ],
+     "on_kayit_eslesmeleri": [
+      {
+       "yazim": "0,50",
+       "sutun": 244
+      },
+      {
+       "yazim": "0,50",
+       "sutun": 333
+      }
+     ],
+     "on_kayit_aranan_yazimlar": [
+      "0,5",
+      "0,50",
+      "0,500"
+     ]
+    }
+   },
+   "payda_kurali": {
+    "kural": "bir tohumda D_s <= DELTA ise kararsiz, Holm'da p = 1",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:542",
+    "metin": "ka[\"payda_kucuk_tohumlar\"] = [i for i, D in enumerate(ka[\"D\"]) if not (D > DELTA)]"
+   },
+   "karar_sirasi": "payda kurali > curutme > destek > kararsiz",
+   "karar_sirasi_kaynagi": "experiments/q1_konsey_ayrisim.py:443-485",
+   "on_kayit": {
+    "ek_on_kayit": {
+     "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:53",
+     "metin_basi": "K-a(B9), K-b(B9) ve K-c(B9), dondurulmuş K-a, K-b ve K-c'nin birebir yinelemesidir: öngörüler her tohumda q_s ≥ 0,75 (sınama H0: ort q ≤ 0,50, tek yönlü t, df 2, payda kuralı D_s ≤ 0,10), ρ(V-scr) içi"
+    },
+    "dondurulmus_tanim": {
+     "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:60",
+     "metin_basi": "K-a, kaynak açığının simetrik oranı. Her tohum s için D_s = ort_c log T(R_s→c) − ort_c log T(V_s→c) = [σ(R_s) − σ(V_s)] + [−½(ρ(R_s) − ρ(V_s))]; oran q_s = [σ(R_s) − σ(V_s)]/D_s. Öngörü: üç tohumda q_"
+    }
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json b2.F_B2.karar.K-a",
+    "foy_bolum": "M10.2",
+    "foy_satiri": 1838,
+    "foy_sutun": "CIFAR-100 karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "8e62f644f74e145e35ddbfef31c3fa2267b947c4af92549b559da3403dcaa043",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "K-b",
+   "blok": "B9",
+   "aile": "F_B9",
+   "baglayici": true,
+   "nicelik": "rho(V-scr), tohum ortalamasi",
+   "ongoru": "esdeger, |rho| < DELTA",
+   "esdegerlik_siniri": {
+    "ad": "K-b TOST siniri +-DELTA",
+    "deger": 0.1,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:58",
+    "kaynak_metni": "DELTA = 0.10          # ON_KAYIT §5 esdegerlik siniri (log birimi)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:62",
+    "on_kayit_metninde_yazimi": [
+     "0,10"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,10",
+      "sutun": 81
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 101
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 210
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 315
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,1",
+     "0,10",
+     "0,100"
+    ],
+    "tur": "TOST +-DELTA: iki tek yonlu sinama (H0: mu <= -DELTA ve H0: mu >= +DELTA); buyuk p Holm'a girer",
+    "alt_sinir": -0.1,
+    "ust_sinir": 0.1,
+    "tost_tanimi": "experiments/q1_konsey_ayrisim.py:318"
+   },
+   "sinama": {
+    "tur": "TOST +-DELTA (iki tek yonlu p'nin buyugu Holm'a girer)",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:318",
+    "metin": "def tost_p(est, se, df, delta=DELTA):"
+   },
+   "destek": {
+    "kural": "Holm sonrasi TOST p < ALFA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:462",
+    "metin": "if adj[1] < ALFA:"
+   },
+   "curutme": {
+    "kural": "%95 aralik sifiri disliyor ve |ort| > DELTA (iki yonde)",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:461",
+    "metin": "cur = (kb[\"ci95\"][0] > 0 or kb[\"ci95\"][1] < 0) and abs(kb[\"ort\"]) > delta"
+   },
+   "karar_sirasi": "destek > curutme > kararsiz",
+   "on_kayit": {
+    "ek_on_kayit": {
+     "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:53",
+     "metin_basi": "K-a(B9), K-b(B9) ve K-c(B9), dondurulmuş K-a, K-b ve K-c'nin birebir yinelemesidir: öngörüler her tohumda q_s ≥ 0,75 (sınama H0: ort q ≤ 0,50, tek yönlü t, df 2, payda kuralı D_s ≤ 0,10), ρ(V-scr) içi"
+    },
+    "dondurulmus_tanim": {
+     "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:62",
+     "metin_basi": "K-b, ViT'nin yönlü terimi. ρ(V-scr) üç tohum ortalaması. Öngörü: eşdeğer, |ρ| < 0,10. Sınama: TOST ±0,10 (iki tek yönlü p'nin büyüğü Holm'a girer). Destek: Holm sonrası TOST p < 0,05; ham %90 aralığın"
+    }
+   },
+   "gerceklesen": {
+    "karar_json": "curutuldu (pozitif yon)",
+    "json": "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json b2.F_B2.karar.K-b",
+    "foy_bolum": "M10.2",
+    "foy_satiri": 1839,
+    "foy_sutun": "CIFAR-100 karar",
+    "foy_hucre": "curutuldu (pozitif yon)",
+    "foy_satir_metni_sha256": "f0927312e0bd0e540f470a2d244312d04d0b8f613b366b278864fccd9cf7c697",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "K-c",
+   "blok": "B9",
+   "aile": "F_B9",
+   "baglayici": true,
+   "nicelik": "Delta_w = ort log tau(V_s, V_s') - ort_s sigma(V_s)",
+   "ongoru": "Delta_w >= esik",
+   "ongorulen_buyukluk": {
+    "ad": "K-c ongoru",
+    "deger": 0.3,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:540",
+    "kaynak_metni": "kc[\"ongoru_Delta_ge_0.30\"] = kc[\"Delta_w\"] >= 0.30",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:64",
+    "on_kayit_metninde_yazimi": [
+     "+0,30",
+     "0,30"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "+0,30",
+      "sutun": 113
+     },
+     {
+      "yazim": "0,30",
+      "sutun": 841
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,3",
+     "0,30",
+     "0,300"
+    ]
+   },
+   "sinama": {
+    "tur": "tek yonlu, H0: Delta_w <= 0; hiyerarsik bootstrap p = (1 + #{Delta* <= 0})/(B + 1)",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:538",
+    "metin": "p_kc = float((1 + (dist <= 0).sum()) / (args.bootstrap + 1))"
+   },
+   "destek": {
+    "kural": "curutme tutmuyorsa Holm sonrasi p < ALFA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:476",
+    "metin": "elif adj[2] < ALFA:"
+   },
+   "curutme": {
+    "kural": "%90 bootstrap araligi ust siniri < DELTA (once denetlenir)",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:474",
+    "metin": "if kc[\"bootstrap\"][\"ci90\"][1] < delta:"
+   },
+   "karar_sirasi": "curutme > destek > kararsiz",
+   "on_kayit": {
+    "ek_on_kayit": {
+     "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:53",
+     "metin_basi": "K-a(B9), K-b(B9) ve K-c(B9), dondurulmuş K-a, K-b ve K-c'nin birebir yinelemesidir: öngörüler her tohumda q_s ≥ 0,75 (sınama H0: ort q ≤ 0,50, tek yönlü t, df 2, payda kuralı D_s ≤ 0,10), ρ(V-scr) içi"
+    },
+    "dondurulmus_tanim": {
+     "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:64",
+     "metin_basi": "K-c, tür içi benzerlik. Δ_w = ort log τ̄(V_s, V_s') − ort_s σ(V_s), üç ViT tohum çifti üzerinden. Öngörü: Δ_w ≥ +0,30. Sınama: tek yönlü, H0: Δ_w ≤ 0; belirsizlik tohum ve görüntü üzerinden hiyerarşik"
+    }
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json b2.F_B2.karar.K-c",
+    "foy_bolum": "M10.2",
+    "foy_satiri": 1840,
+    "foy_sutun": "CIFAR-100 karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "17b73e93ceb3de5271a1053acb532ccce548909304c3544b8d45f45fb56c4398",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "H1",
+   "blok": "B4",
+   "aile": "F_B4",
+   "baglayici": true,
+   "nicelik": "A^sigma_scr = sigma(V-scr) - sigma(R224-scr)",
+   "ongoru": "A^sigma_scr <= esik",
+   "ongorulen_buyukluk": {
+    "ad": "H1 ongoru",
+    "deger": -0.2,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:658",
+    "kaynak_metni": "out[\"H1_ongoru_buyuklugu_tuttu (A <= -0,20)\"] = bool(h1[\"kestirim\"] <= -0.20)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:70",
+    "on_kayit_metninde_yazimi": [
+     "−0,20"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "−0,20",
+      "sutun": 130
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,2",
+     "0,20",
+     "0,200"
+    ]
+   },
+   "sinama": {
+    "tur": "tek yonlu t, H0: A >= 0; birlesik varyans df 5",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:613",
+    "metin": "def b4_pler(k, delta=DELTA):"
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "ham %90 aralik (-DELTA; DELTA) icinde -> curutuldu (esdeger)",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:650",
+     "metin": "elif icinde(h1[\"ci90\"], -delta, delta):"
+    },
+    {
+     "ii": "Holm sonrasi p < ALFA -> destek",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:652",
+     "metin": "elif adj[0] < ALFA:"
+    },
+    {
+     "iii": "kestirim > 0 ve %95 alt sinir > 0 -> curutuldu (ters yon)",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:654",
+     "metin": "elif h1[\"kestirim\"] > 0 and h1[\"ci95\"][0] > 0:"
+    },
+    {
+     "iv": "kalan -> kararsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:70",
+    "metin_basi": "H1, girdi hattı eşitlenmişken sıfırdan eğitimde mimarinin benzerliğe etkisi: A^σ_scr = σ(V-scr) − σ(R224-scr). Öngörü: A^σ_scr ≤ −0,20. Sınama: tek yönlü, H0: A^σ_scr ≥ 0. Kurallar şu sırayla denetlen"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_ayrisim_b4.json b4.F_B4.karar.H1",
+    "foy_bolum": "M9.3",
+    "foy_satiri": 1526,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "e5d0a07ac4e9f20bced399f1ad19c3db84fb030bdc55d77c6eff716b3894f0c9",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "H2",
+   "blok": "B4",
+   "aile": "F_B4",
+   "baglayici": true,
+   "nicelik": "I^sigma = [sigma(V-IN) - sigma(V-scr)] - [sigma(R224-IN) - sigma(R224-scr)]",
+   "ongoru": "I^sigma >= esik",
+   "ongorulen_buyukluk": {
+    "ad": "H2 ongoru",
+    "deger": 0.1,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:672",
+    "kaynak_metni": "out[\"H2_ongoru_buyuklugu_tuttu (I >= +0,10)\"] = bool(h2[\"kestirim\"] >= 0.10)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:72",
+    "on_kayit_metninde_yazimi": [
+     "+0,10",
+     "0,10"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "+0,10",
+      "sutun": 123
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 221
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,1",
+     "0,10",
+     "0,100"
+    ]
+   },
+   "sinama": {
+    "tur": "iki yonlu t, H0: I = 0; df 5",
+    "p_iki": {
+     "kaynak": "experiments/q1_konsey_ayrisim.py:345",
+     "metin": "\"p_iki\": float(2 * min(stats.t.cdf(t, df), 1 - stats.t.cdf(t, df)))})"
+    },
+    "holm_girdisi": {
+     "kaynak": "experiments/q1_konsey_ayrisim.py:618",
+     "metin": "return [k[\"H1\"].get(\"p_tek_kucuk\", float(\"nan\")), k[\"H2\"].get(\"p_iki\", float(\"nan\")), p3]"
+    }
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "ham %90 aralik (-DELTA; DELTA) icinde -> curutuldu (esdeger)",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:662",
+     "metin": "elif icinde(h2[\"ci90\"], -delta, delta):"
+    },
+    {
+     "ii": "Holm sonrasi p < ALFA, kestirim > 0 ve logit kestirim > 0 -> destek",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:664",
+     "metin": "elif adj[1] < ALFA and h2[\"kestirim\"] > 0 and k_logit[\"H2\"][\"kestirim\"] > 0:"
+    },
+    {
+     "iii": "kestirim < 0 ve ham iki yonlu p < ALFA -> curutuldu (ters yon)",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:666",
+     "metin": "elif h2[\"kestirim\"] < 0 and h2.get(\"p_iki\", 1) < ALFA:"
+    },
+    {
+     "iv": "kalan -> kararsiz (logit isaret donusu dahil)",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:669",
+     "metin": "out[\"H2\"] = \"kararsiz (logit olceginde isaret tersine donuyor)\""
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:72",
+    "metin_basi": "H2, başlatma ile mimarinin benzerlikte etkileşimi: I^σ = [σ(V-IN) − σ(V-scr)] − [σ(R224-IN) − σ(R224-scr)]. Öngörü: I^σ ≥ +0,10. Sınama: iki yönlü, H0: I^σ = 0. Kurallar şu sırayla denetlenir: (i) ham"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_ayrisim_b4.json b4.F_B4.karar.H2",
+    "foy_bolum": "M9.3",
+    "foy_satiri": 1527,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "ee0f154443facf4b47c4b4bf3daa30324a4e00b4598af0d764edccbc5762c452",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "H3",
+   "blok": "B4",
+   "aile": "F_B4",
+   "baglayici": true,
+   "nicelik": "A^rho = 1/2 {[rho(V-scr) - rho(R224-scr)] + [rho(V-IN) - rho(R224-IN)]}",
+   "ongoru": "esdeger, |A^rho| < DELTA",
+   "esdegerlik_siniri": {
+    "ad": "H3 TOST siniri +-DELTA",
+    "deger": 0.1,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:58",
+    "kaynak_metni": "DELTA = 0.10          # ON_KAYIT §5 esdegerlik siniri (log birimi)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:74",
+    "on_kayit_metninde_yazimi": [
+     "0,10"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,10",
+      "sutun": 133
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 242
+     },
+     {
+      "yazim": "0,10",
+      "sutun": 340
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,1",
+     "0,10",
+     "0,100"
+    ],
+    "tur": "TOST +-DELTA: iki tek yonlu sinama (H0: mu <= -DELTA ve H0: mu >= +DELTA); buyuk p Holm'a girer",
+    "alt_sinir": -0.1,
+    "ust_sinir": 0.1,
+    "tost_tanimi": "experiments/q1_konsey_ayrisim.py:318"
+   },
+   "sinama": {
+    "tur": "TOST +-DELTA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:318",
+    "metin": "def tost_p(est, se, df, delta=DELTA):"
+   },
+   "destek": {
+    "kural": "Holm sonrasi TOST p < ALFA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:678",
+    "metin": "elif adj[2] < ALFA:"
+   },
+   "curutme": {
+    "kural": "%95 aralik sifiri disliyor ve |kestirim| > DELTA",
+    "kaynak": "experiments/q1_konsey_ayrisim.py:680",
+    "metin": "elif (h3[\"ci95\"][0] > 0 or h3[\"ci95\"][1] < 0) and abs(h3[\"kestirim\"]) > delta:"
+   },
+   "karar_sirasi": "destek > curutme > kararsiz",
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:74",
+    "metin_basi": "H3, yönlü terimin mimariye ait olmaması: A^ρ = ½{[ρ(V-scr) − ρ(R224-scr)] + [ρ(V-IN) − ρ(R224-IN)]}. Öngörü: eşdeğer. Sınama: TOST ±0,10 (iki tek yönlü p'nin büyüğü Holm'a girer). Destek: Holm sonrası"
+   },
+   "gerceklesen": {
+    "karar_json": "destek (esdeger, Holm sonrasi TOST p < 0,05)",
+    "json": "results/q1/konsey_ayrisim_b4.json b4.F_B4.karar.H3",
+    "foy_bolum": "M9.3",
+    "foy_satiri": 1528,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek (esdeger, Holm sonrasi TOST p < 0,05)",
+    "foy_satir_metni_sha256": "bfa1ad567bcdd7093680b5c911c28774d96022d0faab8d0dc0158630ac5d979b",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "S1-sigma",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:78",
+    "metin_basi": "- S1, köprü: σ(R224-scr) − σ(C1 ResNet-18) ve ρ için aynı fark; öngörü ikisi de ±0,10 içinde."
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:786",
+    "metin": "ik[\"S1\"] = {\"sigma\": a, \"rho\": b, \"ongoru_ikisi_de_esdeger\": bool(icinde(a.get(\"ci90\")) and icinde(b.get(\"ci90\"))),"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1561,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "ikisi de esdeger: evet",
+    "satir_metni_sha256": "aa08e5cd19692dd30a8a38af97181d88df05f4a6a17a5f459e8cedc4090d5cc3",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S1",
+    "karar_json": {
+     "S1.ongoru_ikisi_de_esdeger": true
+    },
+    "json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S1.ongoru_ikisi_de_esdeger",
+    "foy_hucre": "ikisi de esdeger: evet",
+    "json_ile_foy_ayni": true,
+    "karsilastirma_kurali": "foy hucresindeki 'etiket: evet|hayir' degerleri sirayla JSON mantiksal anahtarlariyla"
+   },
+   "esdegerlik_siniri": {
+    "ad": "S1 esdegerlik siniri +-DELTA",
+    "deger": 0.1,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:58",
+    "kaynak_metni": "DELTA = 0.10          # ON_KAYIT §5 esdegerlik siniri (log birimi)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:78",
+    "on_kayit_metninde_yazimi": [
+     "0,10"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,10",
+      "sutun": 82
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,1",
+     "0,10",
+     "0,100"
+    ],
+    "tur": "ham %90 t araligi (-DELTA; DELTA) icinde (iki ucta kesin esitsizlik); TOST degil, kesifsel, Holm yok",
+    "alt_sinir": -0.1,
+    "ust_sinir": 0.1,
+    "icinde_tanimi": "experiments/q1_konsey_ayrisim.py:359",
+    "uygulama": "experiments/q1_konsey_ayrisim.py:786"
+   },
+   "ongoru": "sigma koprusu ve rho koprusu ikisi de esdeger: ham %90 araligi (-DELTA; DELTA) icinde",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:78",
+    "alinti": "öngörü ikisi de ±0,10 içinde"
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S1-rho",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:78",
+    "metin_basi": "- S1, köprü: σ(R224-scr) − σ(C1 ResNet-18) ve ρ için aynı fark; öngörü ikisi de ±0,10 içinde."
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:786",
+    "metin": "ik[\"S1\"] = {\"sigma\": a, \"rho\": b, \"ongoru_ikisi_de_esdeger\": bool(icinde(a.get(\"ci90\")) and icinde(b.get(\"ci90\"))),"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1562,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "ikisi de esdeger: evet",
+    "satir_metni_sha256": "f48f2625dc34b5623b94b2dde9f373811161467da95b708be5de4a6c7f75bcad",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S1",
+    "karar_json": {
+     "S1.ongoru_ikisi_de_esdeger": true
+    },
+    "json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S1.ongoru_ikisi_de_esdeger",
+    "foy_hucre": "ikisi de esdeger: evet",
+    "json_ile_foy_ayni": true,
+    "karsilastirma_kurali": "foy hucresindeki 'etiket: evet|hayir' degerleri sirayla JSON mantiksal anahtarlariyla"
+   },
+   "esdegerlik_siniri": {
+    "ad": "S1 esdegerlik siniri +-DELTA",
+    "deger": 0.1,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:58",
+    "kaynak_metni": "DELTA = 0.10          # ON_KAYIT §5 esdegerlik siniri (log birimi)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:78",
+    "on_kayit_metninde_yazimi": [
+     "0,10"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,10",
+      "sutun": 82
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,1",
+     "0,10",
+     "0,100"
+    ],
+    "tur": "ham %90 t araligi (-DELTA; DELTA) icinde (iki ucta kesin esitsizlik); TOST degil, kesifsel, Holm yok",
+    "alt_sinir": -0.1,
+    "ust_sinir": 0.1,
+    "icinde_tanimi": "experiments/q1_konsey_ayrisim.py:359",
+    "uygulama": "experiments/q1_konsey_ayrisim.py:786"
+   },
+   "ongoru": "sigma koprusu ve rho koprusu ikisi de esdeger: ham %90 araligi (-DELTA; DELTA) icinde",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:78",
+    "alinti": "öngörü ikisi de ±0,10 içinde"
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S2",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:79",
+    "metin_basi": "- S2, başlatmanın ViT yönlü terimine etkisi: ρ(V-IN) − ρ(V-scr); öngörü negatif."
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:791",
+    "metin": "ik[\"S2\"][\"ongoru_negatif\"] = ik[\"S2\"][\"kestirim\"] < 0"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1563,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "negatif: evet",
+    "satir_metni_sha256": "75b35d9b8a48279cf789c336fe7e1f70dda84390005775f88ad7468aa0b75f82",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S2",
+    "karar_json": {
+     "S2.ongoru_negatif": true
+    },
+    "json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S2.ongoru_negatif",
+    "foy_hucre": "negatif: evet",
+    "json_ile_foy_ayni": true,
+    "karsilastirma_kurali": "foy hucresindeki 'etiket: evet|hayir' degerleri sirayla JSON mantiksal anahtarlariyla"
+   },
+   "ongoru": "rho(V-IN) - rho(V-scr) < 0 (negatif)",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:79",
+    "alinti": "öngörü negatif"
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S3-ViT",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:80",
+    "metin_basi": "- S3, ω karşıtlıkları: her mimaride başlatma etkisi ve etkileşim; öngörü ω(V-IN) < ω(V-scr)."
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:795",
+    "metin": "ik[\"S3\"][\"ongoru_omega_VIN_lt_Vscr\"] = ik[\"S3\"][\"V_baslatma\"][\"kestirim\"] < 0"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1564,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "omega(V-IN) < omega(V-scr): evet",
+    "satir_metni_sha256": "8689d0a97d5c06729c34723cefacbca66cc584b5c125d46dd769ac3b44d1aec8",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S3",
+    "karar_json": {
+     "S3.ongoru_omega_VIN_lt_Vscr": true
+    },
+    "json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S3.ongoru_omega_VIN_lt_Vscr",
+    "foy_hucre": "omega(V-IN) < omega(V-scr): evet",
+    "json_ile_foy_ayni": true,
+    "karsilastirma_kurali": "foy hucresindeki 'etiket: evet|hayir' degerleri sirayla JSON mantiksal anahtarlariyla"
+   },
+   "ongoru": "omega(V-IN) < omega(V-scr), yani ViT baslatma etkisi < 0",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:80",
+    "alinti": "öngörü ω(V-IN) < ω(V-scr)"
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S3-ResNet",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:80",
+    "metin_basi": "- S3, ω karşıtlıkları: her mimaride başlatma etkisi ve etkileşim; öngörü ω(V-IN) < ω(V-scr)."
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:795",
+    "metin": "ik[\"S3\"][\"ongoru_omega_VIN_lt_Vscr\"] = ik[\"S3\"][\"V_baslatma\"][\"kestirim\"] < 0"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1565,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "betimsel",
+    "satir_metni_sha256": "f455e37df0ef2516a83682147cdfde3247139677bb7b6df38ccac41042a9faef",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S3",
+    "json_ile_foy_karsilastirma": "yok: betimsel satir (foy hucresi 'betimsel'), JSON'da karar anahtari yok"
+   },
+   "ongoru": "yok (betimsel; on kayitta S3 ongorusu yalniz ViT baslatma etkisi icindir)",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:80",
+    "alinti": "öngörü ω(V-IN) < ω(V-scr)"
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S3-etkilesim",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:80",
+    "metin_basi": "- S3, ω karşıtlıkları: her mimaride başlatma etkisi ve etkileşim; öngörü ω(V-IN) < ω(V-scr)."
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:795",
+    "metin": "ik[\"S3\"][\"ongoru_omega_VIN_lt_Vscr\"] = ik[\"S3\"][\"V_baslatma\"][\"kestirim\"] < 0"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1566,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "betimsel",
+    "satir_metni_sha256": "e87b0f71d20fa38f4536700435748b24a6742e2cf834588fcf71a4a3202dfa22",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S3",
+    "json_ile_foy_karsilastirma": "yok: betimsel satir (foy hucresi 'betimsel'), JSON'da karar anahtari yok"
+   },
+   "ongoru": "yok (betimsel; on kayitta S3 ongorusu yalniz ViT baslatma etkisi icindir)",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:80",
+    "alinti": "öngörü ω(V-IN) < ω(V-scr)"
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S5",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+    "metin_basi": "- S5, protokol katmanının örnek dışı sınaması: eşleşmiş çiftlerde üç protokol yayılımının, temiz farka göre mevcut 60 noktalık ilişkinin (eğim +0,796, kesişim −0,01; FÖY:1039) öngörüsünden sapması. Ön"
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:820",
+    "metin": "s5o[\"ongoru_ort_sapma_bant_icinde\"] = abs(s5o[\"ort\"]) <= S5_BANT"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1567,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "ort sapma bant icinde: evet; curutme (%90 bant disinda): hayir",
+    "satir_metni_sha256": "d6814c51473f530d8e32a9450d08e14baa4f2221331657feb4f5f09164b4bb15",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S5",
+    "karar_json": {
+     "S5.ozet.ongoru_ort_sapma_bant_icinde": true,
+     "S5.ozet.curutme_ci90_bant_disinda": false
+    },
+    "json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S5.ozet.ongoru_ort_sapma_bant_icinde; b4.ikincil.S5.ozet.curutme_ci90_bant_disinda",
+    "foy_hucre": "ort sapma bant icinde: evet; curutme (%90 bant disinda): hayir",
+    "json_ile_foy_ayni": true,
+    "karsilastirma_kurali": "foy hucresindeki 'etiket: evet|hayir' degerleri sirayla JSON mantiksal anahtarlariyla"
+   },
+   "curutme": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:821",
+    "metin": "s5o[\"curutme_ci90_bant_disinda\"] = bool(s5o[\"ci90\"][0] > S5_BANT or s5o[\"ci90\"][1] < -S5_BANT)",
+    "kural": "ortalama sapmanin %90 araligi [-S5_BANT; S5_BANT] bandinin tumuyle disinda -> mekanizma cumlesi daraltilir, manset etkilenmez",
+    "on_kayit": {
+     "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+     "alinti": "Çürütme: ortalama sapmanın %90 aralığı [−1,5; 1,5] bandının tümüyle dışında; bu durumda mekanizma cümlesi daraltılır, manşet etkilenmez."
+    }
+   },
+   "bant": {
+    "ad": "S5 bandi (puan)",
+    "deger": 1.5,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:63",
+    "kaynak_metni": "S5_EGIM, S5_KESISIM, S5_BANT = 0.796, -0.01, 1.5   # ON_KAYIT S5 (FOY:1039)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+    "on_kayit_metninde_yazimi": [
+     "1,5"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "1,5",
+      "sutun": 223
+     },
+     {
+      "yazim": "1,5",
+      "sutun": 286
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "1,5",
+     "1,50",
+     "1,500"
+    ]
+   },
+   "ongoru_dogrusu": {
+    "tanim": "ongorulen yayilim (puan) = S5_EGIM * temiz fark (puan) + S5_KESISIM; sapma = gozlenen - ongorulen; ongoru: cift sapmalarinin ortalamasi +-S5_BANT icinde",
+    "egim": {
+     "ad": "S5 ongoru dogrusu egimi",
+     "deger": 0.796,
+     "kaynak": "experiments/q1_konsey_ayrisim.py:63",
+     "kaynak_metni": "S5_EGIM, S5_KESISIM, S5_BANT = 0.796, -0.01, 1.5   # ON_KAYIT S5 (FOY:1039)",
+     "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+     "on_kayit_metninde_yazimi": [
+      "+0,796"
+     ],
+     "on_kayit_eslesmeleri": [
+      {
+       "yazim": "+0,796",
+       "sutun": 144
+      }
+     ],
+     "on_kayit_aranan_yazimlar": [
+      "0,796"
+     ]
+    },
+    "kesisim": {
+     "ad": "S5 ongoru dogrusu kesisimi (puan)",
+     "deger": -0.01,
+     "kaynak": "experiments/q1_konsey_ayrisim.py:63",
+     "kaynak_metni": "S5_EGIM, S5_KESISIM, S5_BANT = 0.796, -0.01, 1.5   # ON_KAYIT S5 (FOY:1039)",
+     "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+     "on_kayit_metninde_yazimi": [
+      "−0,01"
+     ],
+     "on_kayit_eslesmeleri": [
+      {
+       "yazim": "−0,01",
+       "sutun": 160
+      }
+     ],
+     "on_kayit_aranan_yazimlar": [
+      "0,01",
+      "0,010"
+     ]
+    },
+    "bant": {
+     "ad": "S5 bandi (puan)",
+     "deger": 1.5,
+     "kaynak": "experiments/q1_konsey_ayrisim.py:63",
+     "kaynak_metni": "S5_EGIM, S5_KESISIM, S5_BANT = 0.796, -0.01, 1.5   # ON_KAYIT S5 (FOY:1039)",
+     "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+     "on_kayit_metninde_yazimi": [
+      "1,5"
+     ],
+     "on_kayit_eslesmeleri": [
+      {
+       "yazim": "1,5",
+       "sutun": 223
+      },
+      {
+       "yazim": "1,5",
+       "sutun": 286
+      }
+     ],
+     "on_kayit_aranan_yazimlar": [
+      "1,5",
+      "1,50",
+      "1,500"
+     ]
+    },
+    "betik": {
+     "kaynak": "experiments/q1_konsey_ayrisim.py:813",
+     "metin": "ong = S5_EGIM * temiz + S5_KESISIM"
+    },
+    "on_kayit": {
+     "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+     "alinti": "mevcut 60 noktalık ilişkinin (eğim +0,796, kesişim −0,01; FÖY:1039)"
+    }
+   },
+   "ongoru": "cift sapmalarinin ortalamasi +-S5_BANT puan icinde",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:82",
+    "alinti": "Öngörü: ortalama sapma ±1,5 puan içinde"
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S6",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:83",
+    "metin_basi": "- S6, ikincil panel (XCiT): A^σ_scr ve I^σ'nın işareti birincil panelle aynı."
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:828",
+    "metin": "ik[\"S6\"] = {\"panel\": P2, \"A_sigma_scr\": kk2[\"H1\"][\"kestirim\"], \"I_sigma\": kk2[\"H2\"][\"kestirim\"],"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1568,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "isaret ayni A: evet; I: evet",
+    "satir_metni_sha256": "7f6c9289036aba22e65be6a58d381bf4d9b625c35dcceda3801763513094d1d4",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S6",
+    "karar_json": {
+     "S6.isaret_ayni_A": true,
+     "S6.isaret_ayni_I": true
+    },
+    "json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S6.isaret_ayni_A; b4.ikincil.S6.isaret_ayni_I",
+    "foy_hucre": "isaret ayni A: evet; I: evet",
+    "json_ile_foy_ayni": true,
+    "karsilastirma_kurali": "foy hucresindeki 'etiket: evet|hayir' degerleri sirayla JSON mantiksal anahtarlariyla"
+   },
+   "ongoru": "A^sigma_scr ve I^sigma'nin isareti ikincil panelde birincil panelle ayni",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:83",
+    "alinti": "A^σ_scr ve I^σ'nın işareti birincil panelle aynı"
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S7",
+   "blok": "B4 ikincil",
+   "aile": "yok (kesifsel, coklu duzeltme yok)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:84",
+    "metin_basi": "- S7, r matrisinde Hodge ayrışımıyla model düzeyi ve dolaşım payı."
+   },
+   "betik": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:835",
+    "metin": "ik[\"S7\"] = hodge_r(g, M, sorted(mevcut & set(tablo[\"modeller\"])))"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1569,
+    "foy_baslik_satiri": 1559,
+    "sutun": "Ongoru",
+    "deger": "betimsel",
+    "satir_metni_sha256": "bbdda8e39e57ac22879777a49fa7ebc7c51ac77f7cc7800457577313c6c03f5f",
+    "foy_bolum": "M9.4",
+    "kaynak_json": "results/q1/konsey_ayrisim_b4.json b4.ikincil.S7",
+    "json_ile_foy_karsilastirma": "yok: betimsel satir (foy hucresi 'betimsel'), JSON'da karar anahtari yok"
+   },
+   "ongoru": "yok (betimsel; on kayit satirinda ongoru ifadesi yok)",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:84",
+    "alinti": "S7, r matrisinde Hodge ayrışımıyla model düzeyi ve dolaşım payı."
+   },
+   "ongoru_turu": "kesifsel; karar degil, coklu duzeltme yok"
+  },
+  {
+   "kimlik": "S4",
+   "blok": "B4 ikincil",
+   "aile": "yok (betimsel)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:81",
+    "metin_basi": "- S4, tohum indeksiyle eşleşmiş çiftlerde (R224-x, V-x) log asimetrinin potansiyel ve yönlü payları; betimsel."
+   },
+   "ongoru": "yok (betimsel)",
+   "ongoru_on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:81",
+    "alinti": "betimsel"
+   },
+   "ongoru_turu": "betimsel",
+   "gerceklesen": {
+    "foy_satiri": 1571,
+    "satir_metni_sha256": "275e89d1a7a1549f2106899c30e0483eae9ecaae37a47c44862e2837d737078a",
+    "parca": "S4, tohum indeksiyle eslesmis ciftler",
+    "foy_bolum": "M9.4",
+    "not": "betimsel tablo; karar yok",
+    "json_ile_foy_karsilastirma": "yok: betimsel tablo, karar yok"
+   }
+  },
+  {
+   "kimlik": "B5",
+   "blok": "B5",
+   "aile": "tek sinamali ayri aile (Holm yok)",
+   "baglayici": true,
+   "nicelik": "korunma orani G_best / G_PGD (C1-R32 ve V-scr; capraz uydurmali secim)",
+   "ongoru": "oran >= B5_ESIK",
+   "esik": {
+    "ad": "B5 korunma orani esigi",
+    "deger": 0.5,
+    "kaynak": "experiments/q1_konsey_ayrisim.py:61",
+    "kaynak_metni": "B5_ESIK = 0.5         # ON_KAYIT §5 B5 korunma orani esigi",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:90",
+    "on_kayit_metninde_yazimi": [
+     "0,5"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,5",
+      "sutun": 188
+     },
+     {
+      "yazim": "0,5",
+      "sutun": 1375
+     },
+     {
+      "yazim": "0,5",
+      "sutun": 1412
+     },
+     {
+      "yazim": "0,5",
+      "sutun": 1450
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,5",
+     "0,50",
+     "0,500"
+    ]
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "G_PGD <= DELTA -> kararsiz (payda kucuk)",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:944",
+     "metin": "if not (Gp > DELTA):"
+    },
+    {
+     "ii": "%90 bootstrap ust siniri < B5_ESIK -> curutuldu (manset PGD ailesiyle sinirlanir)",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:946",
+     "metin": "elif o[\"bootstrap\"][\"ci90\"][1] < B5_ESIK:"
+    },
+    {
+     "iii": "%90 bootstrap alt siniri >= B5_ESIK -> destek",
+     "kaynak": "experiments/q1_konsey_ayrisim.py:948",
+     "metin": "elif o[\"bootstrap\"][\"ci90\"][0] >= B5_ESIK:"
+    },
+    {
+     "iv": "kalan -> kararsiz"
+    }
+   ],
+   "izinli_saldirilar": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:843",
+    "metin": "B5_IZINLI = {\"CNN\": (\"pgd\", \"mi\"), \"ViT\": (\"pgd\", \"mi\", \"tgr\")}"
+   },
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:90",
+    "metin_basi": "S_k(m) = ort_{c∈P} log T_k(m→c); izinli saldırılar CNN kaynaklarında PGD-10 ve MI-PGD-10 (μ = 1,0, α = ε/10), ViT kaynaklarında bunlara ek TGR-10'dur (momentumlu, μ = 1,0, α = 2/255, γ = 0,5; `experim"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_ayrisim_b5.json b5.birincil_C1-R32_V-scr.karar",
+    "foy_bolum": "M9.6",
+    "foy_satiri": 1628,
+    "foy_sutun": "Deger",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "c3e078ea88d86dc7ee0d4f81c5b8ab929b9c91fc6577c3b2ba68d210a978059e",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "B6",
+   "blok": "B6",
+   "aile": "karar kurali (sinama degil; B4 bolgesini duzenler)",
+   "baglayici": true,
+   "nicelik": "PGD-10 dogrulugu - AutoAttack dogrulugu (ilk 1000 test goruntusu, puan)",
+   "kural": "fark > B6_ESIK_PUAN olan model isaretlenir; isaretli varsa H1-H3 isaretliler cikarilarak yeniden hesaplanir, karar degisirse ilgili manset kararsiz sayilir",
+   "esik": {
+    "ad": "B6 maskeleme esigi (PGD-10 - AA, puan)",
+    "deger": 10.0,
+    "kaynak": "scripts/konsey_b6_maskeleme.py:28",
+    "kaynak_metni": "ap.add_argument(\"--esik\", type=float, default=10.0, help=\"PGD - AA farki (puan); asan isaretlenir\")",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:94",
+    "on_kayit_metninde_yazimi": [
+     "10"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "10",
+      "sutun": 72
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "10"
+    ]
+   },
+   "betik": {
+    "kaynak": "scripts/konsey_b6_maskeleme.py:69",
+    "metin": "\"isaretli\": bool(fark > a.esik),"
+   },
+   "b4_uygulamasi": {
+    "kaynak": "experiments/q1_konsey_ayrisim.py:723",
+    "metin": "isaretli = [m for m in (getattr(args, \"maskeleme_isaretli\", None) or []) if m in mevcut]"
+   },
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:94",
+    "metin_basi": "AutoAttack n = 1000; PGD-10 doğruluğu ile AA doğruluğu arasındaki fark 10 puanı aşan model maskeleme şüphesiyle işaretlenir. İki doğruluk aynı örneklemde hesaplanır: AA test kümesinin ilk 1000 görüntü"
+   },
+   "gerceklesen": {
+    "isaretli_json": [],
+    "json": "results/q1/konsey_b6_maskeleme.json isaretli",
+    "foy_bolum": "M9.7",
+    "foy_satirlari": {
+     "V_IN_s2101": 1666,
+     "V_IN_s2102": 1667,
+     "R224_IN_s1301": 1668,
+     "R224_IN_s1302": 1669,
+     "R224_scr_s1201": 1670,
+     "R224_scr_s1202": 1671
+    },
+    "foy_hucreleri": {
+     "V_IN_s2101": "hayir",
+     "V_IN_s2102": "hayir",
+     "R224_IN_s1301": "hayir",
+     "R224_IN_s1302": "hayir",
+     "R224_scr_s1201": "hayir",
+     "R224_scr_s1202": "hayir"
+    },
+    "foy_satir_metni_sha256": {
+     "V_IN_s2101": "45b739ba24cf553dbea28aa62329e8f84f67bae81a6969c7fe5ea3eae98a7ba3",
+     "V_IN_s2102": "928ce739a83e1a096a9b2fe786a4d865992ade54693493f050ebd88cc27e5adc",
+     "R224_IN_s1301": "60fb173dd7870d2563b0c78cf9026e95040aee447416f51dfa66e068de639a4a",
+     "R224_IN_s1302": "d12624361f8baa6d41f2c4c24673aa6edda5c4c05476dd51b738e5d004466148",
+     "R224_scr_s1201": "ef91523cd01a3ee31aaeed84b9b38222ac72e04569bd4357cda1a381fa1fcfce",
+     "R224_scr_s1202": "9a00507f1ac445aa63810501995bb647696506044199446ee752a42c96f0e079"
+    },
+    "json_ile_foy_ayni": true,
+    "bolgeye_uygulama": {
+     "foy_satiri": 1536,
+     "satir_metni_sha256": "8ef758b6bbd95d650dde7c6c59127eaff8d11e97ea7d12a7ddc74c93e383e6fa",
+     "parca": "B6 maskeleme kuralindan sonra uygulanan bolge",
+     "foy_bolum": "M9.3"
+    }
+   }
+  },
+  {
+   "kimlik": "B8-A_sigma_IN",
+   "blok": "B8",
+   "aile": "yok (betimsel, kesifsel; Holm yok)",
+   "baglayici": false,
+   "nicelik": "A^sigma = sigma(donusturucu) - sigma(CNN), P8, bolunmus yari, log; goruntu bootstrap'i",
+   "beklenti_esigi": {
+    "ad": "B8 IN satiri beklenti esigi",
+    "deger": -0.1,
+    "kaynak": "experiments/q1_ek_ayrisim.py:47",
+    "kaynak_metni": "BEKLENTI_A_SIGMA_IN = -0.10  # dondurulmus H1 (A^s_scr <= -0,20) + H2 (I^s >= +0,10)",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:122",
+    "on_kayit_metninde_yazimi": [
+     "−0,10"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "−0,10",
+      "sutun": 213
+     },
+     {
+      "yazim": "−0,10",
+      "sutun": 257
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,1",
+     "0,10",
+     "0,100"
+    ]
+   },
+   "etiketler_sirasiyla": [
+    {
+     "i": "%90 aralik (-DELTA; DELTA) icinde -> ihmal edilebilir",
+     "kaynak": "experiments/q1_ek_ayrisim.py:166",
+     "metin": "if ci90[0] > -delta and ci90[1] < delta:"
+    },
+    {
+     "ii": "kestirim <= esik, ciftlerin hepsi negatif ve %90 ust sinir < 0 -> beklentiyle uyumlu",
+     "kaynak": "experiments/q1_ek_ayrisim.py:168",
+     "metin": "if est <= esik and all(v < 0 for v in cift_degerleri) and ci90[1] < 0:"
+    },
+    {
+     "iii": "kestirim > 0 ve %95 alt sinir > 0 -> ters yon",
+     "kaynak": "experiments/q1_ek_ayrisim.py:170",
+     "metin": "if est > 0 and ci95[0] > 0:"
+    },
+    {
+     "iv": "kalan -> belirsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:122",
+    "metin_basi": "Beklenti dondurulmuş öngörülerden türetilmiştir, B2 sonucundan değil. H1'in öngörülen büyüklüğü A^σ_scr ≤ −0,20, H2'ninki I^σ ≥ +0,10'dur ve A^σ_IN = A^σ_scr + I^σ olduğundan iki sınır değeri birleşin"
+   },
+   "gerceklesen": {
+    "karar_json": "beklentiyle uyumlu",
+    "json": "results/q1/konsey_b8_imagenetv2/b8_betimsel.json A_sigma_IN.betimsel_etiket",
+    "foy_bolum": "M10.4",
+    "foy_satiri": 1938,
+    "foy_sutun": "Betimsel etiket",
+    "foy_hucre": "beklentiyle uyumlu",
+    "foy_satir_metni_sha256": "559aabce6fe215564afb5f780b2b4260bf01596fd0db0e95ae15ead163ad1043",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "B8-A_sigma_scr_Liu",
+   "blok": "B8",
+   "aile": "yok (betimsel, kesifsel; Holm yok)",
+   "baglayici": false,
+   "nicelik": "A^sigma = sigma(donusturucu) - sigma(CNN), P8, bolunmus yari, log; goruntu bootstrap'i",
+   "beklenti_esigi": {
+    "ad": "B8 Liu satiri beklenti esigi",
+    "deger": -0.2,
+    "kaynak": "experiments/q1_ek_ayrisim.py:269",
+    "kaynak_metni": "**ozetle(satirlar.get(\"scr\", []), -0.20)}",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:126",
+    "on_kayit_metninde_yazimi": [
+     "−0,20"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "−0,20",
+      "sutun": 117
+     },
+     {
+      "yazim": "−0,20",
+      "sutun": 165
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,2",
+     "0,20",
+     "0,200"
+    ]
+   },
+   "etiketler_sirasiyla": [
+    {
+     "i": "%90 aralik (-DELTA; DELTA) icinde -> ihmal edilebilir",
+     "kaynak": "experiments/q1_ek_ayrisim.py:166",
+     "metin": "if ci90[0] > -delta and ci90[1] < delta:"
+    },
+    {
+     "ii": "kestirim <= esik, ciftlerin hepsi negatif ve %90 ust sinir < 0 -> beklentiyle uyumlu",
+     "kaynak": "experiments/q1_ek_ayrisim.py:168",
+     "metin": "if est <= esik and all(v < 0 for v in cift_degerleri) and ci90[1] < 0:"
+    },
+    {
+     "iii": "kestirim > 0 ve %95 alt sinir > 0 -> ters yon",
+     "kaynak": "experiments/q1_ek_ayrisim.py:170",
+     "metin": "if est > 0 and ci95[0] > 0:"
+    },
+    {
+     "iv": "kalan -> belirsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:126",
+    "metin_basi": "Liu çifti için aynı nicelik A^σ_scr,Liu ayrı satırda verilir; bu satırın beklentisi H1'in öngörülen büyüklüğüdür (≤ −0,20) ve etiketleri aynı kuralla, −0,10 yerine −0,20 eşiğiyle atanır. Üç çiftin ort"
+   },
+   "gerceklesen": {
+    "karar_json": "belirsiz",
+    "json": "results/q1/konsey_b8_imagenetv2/b8_betimsel.json A_sigma_scr_Liu.betimsel_etiket",
+    "foy_bolum": "M10.4",
+    "foy_satiri": 1939,
+    "foy_sutun": "Betimsel etiket",
+    "foy_hucre": "belirsiz",
+    "foy_satir_metni_sha256": "c6ead00c8b285727bb0717b45c6c74fe3566e1d8a53c878f1382e831499ba808",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "B8-K-abc",
+   "blok": "B8",
+   "aile": "yok (dondurulmus betik ciktisi yalniz betimsel)",
+   "baglayici": false,
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:137",
+    "metin_basi": "Bu çıktıdaki F_B2 p değerleri, Holm sonuçları ve karar etiketleri B8'de karar değildir; yalnız betimsel sayılar olarak aktarılır ve metinde \"destek\" ya da \"çürütüldü\" sözcükleriyle anılmaz. K-b'nin dö"
+   },
+   "gerceklesen": {
+    "foy_satiri": 1945,
+    "satir_metni_sha256": "08925d235400c65e308f799e725d48880d851b5a34592af5a0a34dc0f500da39",
+    "parca": "Dondurulmus betigin B8 ciktisi",
+    "foy_bolum": "M10.4",
+    "not": "etiketler B8'de karar degildir",
+    "json_ile_foy_karsilastirma": "yok: dondurulmus betik ciktisi B8'de karar degildir"
+   }
+  },
+  {
+   "kimlik": "H10-cifar10",
+   "blok": "B10",
+   "aile": "F_B10",
+   "baglayici": true,
+   "nicelik": "Spearman(c_ij, log tau_ij), Mantel",
+   "ongoru": "Spearman > 0",
+   "ongorulen_buyukluk": {
+    "ad": "H10 ongorulen buyukluk",
+    "deger": 0.5,
+    "kaynak": "experiments/q1_ek_ayrisim.py:297",
+    "kaynak_metni": "for anahtar, ad, ongoru in ((\"ham\", \"H10\", 0.50), (\"ana_etki_artik\", \"H10k\", 0.30)):",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "on_kayit_metninde_yazimi": [
+     "0,50"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,50",
+      "sutun": 76
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,5",
+     "0,50",
+     "0,500"
+    ]
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "kestirim <= esik ve ham Mantel p >= p esigi -> curutuldu",
+     "esik": {
+      "ad": "B10 curutme: kestirim esigi (kestirim <= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     },
+     "p_esigi": {
+      "ad": "B10 curutme: ham Mantel p esigi (p >= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     }
+    },
+    {
+     "ii": "Holm sonrasi p < ALFA -> destek",
+     "kaynak": "experiments/q1_ek_ayrisim.py:310",
+     "metin": "elif ph < dm.ALFA:"
+    },
+    {
+     "iii": "kalan -> kararsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "metin_basi": "Ham sınama H10-d için öngörü Spearman(c, log τ̄) > 0, öngörülen büyüklük ≥ 0,50'dir. Kısmi sınama H10k-d için öngörü artıklar arasındaki Spearman > 0, öngörülen büyüklük ≥ 0,30'dur. Her sınamada kural"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_b10_gradyan/b10_aile.json F_B10.sinamalar.0.karar",
+    "foy_bolum": "M10.5",
+    "foy_satiri": 1983,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "36c63beec021705c16742d7c01eb368ee39221cbf129b4dc4e20aae8b0ed7830",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "H10k-cifar10",
+   "blok": "B10",
+   "aile": "F_B10",
+   "baglayici": true,
+   "nicelik": "Spearman(c artigi, log tau artigi), model ana etkileri cikarilmis, Mantel",
+   "ongoru": "Spearman > 0",
+   "ongorulen_buyukluk": {
+    "ad": "H10k ongorulen buyukluk",
+    "deger": 0.3,
+    "kaynak": "experiments/q1_ek_ayrisim.py:297",
+    "kaynak_metni": "for anahtar, ad, ongoru in ((\"ham\", \"H10\", 0.50), (\"ana_etki_artik\", \"H10k\", 0.30)):",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "on_kayit_metninde_yazimi": [
+     "0,30"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,30",
+      "sutun": 173
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,3",
+     "0,30",
+     "0,300"
+    ]
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "kestirim <= esik ve ham Mantel p >= p esigi -> curutuldu",
+     "esik": {
+      "ad": "B10 curutme: kestirim esigi (kestirim <= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     },
+     "p_esigi": {
+      "ad": "B10 curutme: ham Mantel p esigi (p >= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     }
+    },
+    {
+     "ii": "Holm sonrasi p < ALFA -> destek",
+     "kaynak": "experiments/q1_ek_ayrisim.py:310",
+     "metin": "elif ph < dm.ALFA:"
+    },
+    {
+     "iii": "kalan -> kararsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "metin_basi": "Ham sınama H10-d için öngörü Spearman(c, log τ̄) > 0, öngörülen büyüklük ≥ 0,50'dir. Kısmi sınama H10k-d için öngörü artıklar arasındaki Spearman > 0, öngörülen büyüklük ≥ 0,30'dur. Her sınamada kural"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_b10_gradyan/b10_aile.json F_B10.sinamalar.1.karar",
+    "foy_bolum": "M10.5",
+    "foy_satiri": 1984,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "9a360b91798e3a4614517e5f7cf07d64573d76a8f935fba8bf739ee273ff9166",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "H10-cifar100",
+   "blok": "B10",
+   "aile": "F_B10",
+   "baglayici": true,
+   "nicelik": "Spearman(c_ij, log tau_ij), Mantel",
+   "ongoru": "Spearman > 0",
+   "ongorulen_buyukluk": {
+    "ad": "H10 ongorulen buyukluk",
+    "deger": 0.5,
+    "kaynak": "experiments/q1_ek_ayrisim.py:297",
+    "kaynak_metni": "for anahtar, ad, ongoru in ((\"ham\", \"H10\", 0.50), (\"ana_etki_artik\", \"H10k\", 0.30)):",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "on_kayit_metninde_yazimi": [
+     "0,50"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,50",
+      "sutun": 76
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,5",
+     "0,50",
+     "0,500"
+    ]
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "kestirim <= esik ve ham Mantel p >= p esigi -> curutuldu",
+     "esik": {
+      "ad": "B10 curutme: kestirim esigi (kestirim <= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     },
+     "p_esigi": {
+      "ad": "B10 curutme: ham Mantel p esigi (p >= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     }
+    },
+    {
+     "ii": "Holm sonrasi p < ALFA -> destek",
+     "kaynak": "experiments/q1_ek_ayrisim.py:310",
+     "metin": "elif ph < dm.ALFA:"
+    },
+    {
+     "iii": "kalan -> kararsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "metin_basi": "Ham sınama H10-d için öngörü Spearman(c, log τ̄) > 0, öngörülen büyüklük ≥ 0,50'dir. Kısmi sınama H10k-d için öngörü artıklar arasındaki Spearman > 0, öngörülen büyüklük ≥ 0,30'dur. Her sınamada kural"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_b10_gradyan/b10_aile.json F_B10.sinamalar.2.karar",
+    "foy_bolum": "M10.5",
+    "foy_satiri": 1985,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "96ee45f756c5e91927fb7c9310e8876c462efdfce2e65b498f9eddfdbe6c0d75",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "H10k-cifar100",
+   "blok": "B10",
+   "aile": "F_B10",
+   "baglayici": true,
+   "nicelik": "Spearman(c artigi, log tau artigi), model ana etkileri cikarilmis, Mantel",
+   "ongoru": "Spearman > 0",
+   "ongorulen_buyukluk": {
+    "ad": "H10k ongorulen buyukluk",
+    "deger": 0.3,
+    "kaynak": "experiments/q1_ek_ayrisim.py:297",
+    "kaynak_metni": "for anahtar, ad, ongoru in ((\"ham\", \"H10\", 0.50), (\"ana_etki_artik\", \"H10k\", 0.30)):",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "on_kayit_metninde_yazimi": [
+     "0,30"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,30",
+      "sutun": 173
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,3",
+     "0,30",
+     "0,300"
+    ]
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "kestirim <= esik ve ham Mantel p >= p esigi -> curutuldu",
+     "esik": {
+      "ad": "B10 curutme: kestirim esigi (kestirim <= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     },
+     "p_esigi": {
+      "ad": "B10 curutme: ham Mantel p esigi (p >= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     }
+    },
+    {
+     "ii": "Holm sonrasi p < ALFA -> destek",
+     "kaynak": "experiments/q1_ek_ayrisim.py:310",
+     "metin": "elif ph < dm.ALFA:"
+    },
+    {
+     "iii": "kalan -> kararsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "metin_basi": "Ham sınama H10-d için öngörü Spearman(c, log τ̄) > 0, öngörülen büyüklük ≥ 0,50'dir. Kısmi sınama H10k-d için öngörü artıklar arasındaki Spearman > 0, öngörülen büyüklük ≥ 0,30'dur. Her sınamada kural"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_b10_gradyan/b10_aile.json F_B10.sinamalar.3.karar",
+    "foy_bolum": "M10.5",
+    "foy_satiri": 1986,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "448683d99a0e79f39e2f91cd9d1a947acf19094ba964f632e308e0d1b6272e02",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "H10-imagenetv2",
+   "blok": "B10",
+   "aile": "F_B10",
+   "baglayici": true,
+   "nicelik": "Spearman(c_ij, log tau_ij), Mantel",
+   "ongoru": "Spearman > 0",
+   "ongorulen_buyukluk": {
+    "ad": "H10 ongorulen buyukluk",
+    "deger": 0.5,
+    "kaynak": "experiments/q1_ek_ayrisim.py:297",
+    "kaynak_metni": "for anahtar, ad, ongoru in ((\"ham\", \"H10\", 0.50), (\"ana_etki_artik\", \"H10k\", 0.30)):",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "on_kayit_metninde_yazimi": [
+     "0,50"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,50",
+      "sutun": 76
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,5",
+     "0,50",
+     "0,500"
+    ]
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "kestirim <= esik ve ham Mantel p >= p esigi -> curutuldu",
+     "esik": {
+      "ad": "B10 curutme: kestirim esigi (kestirim <= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     },
+     "p_esigi": {
+      "ad": "B10 curutme: ham Mantel p esigi (p >= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     }
+    },
+    {
+     "ii": "Holm sonrasi p < ALFA -> destek",
+     "kaynak": "experiments/q1_ek_ayrisim.py:310",
+     "metin": "elif ph < dm.ALFA:"
+    },
+    {
+     "iii": "kalan -> kararsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "metin_basi": "Ham sınama H10-d için öngörü Spearman(c, log τ̄) > 0, öngörülen büyüklük ≥ 0,50'dir. Kısmi sınama H10k-d için öngörü artıklar arasındaki Spearman > 0, öngörülen büyüklük ≥ 0,30'dur. Her sınamada kural"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_b10_gradyan/b10_aile.json F_B10.sinamalar.4.karar",
+    "foy_bolum": "M10.5",
+    "foy_satiri": 1987,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "9159f96b5f22cf58ed747396d4070bb41c8da366b883c955bf720e901df0449b",
+    "json_ile_foy_ayni": true
+   }
+  },
+  {
+   "kimlik": "H10k-imagenetv2",
+   "blok": "B10",
+   "aile": "F_B10",
+   "baglayici": true,
+   "nicelik": "Spearman(c artigi, log tau artigi), model ana etkileri cikarilmis, Mantel",
+   "ongoru": "Spearman > 0",
+   "ongorulen_buyukluk": {
+    "ad": "H10k ongorulen buyukluk",
+    "deger": 0.3,
+    "kaynak": "experiments/q1_ek_ayrisim.py:297",
+    "kaynak_metni": "for anahtar, ad, ongoru in ((\"ham\", \"H10\", 0.50), (\"ana_etki_artik\", \"H10k\", 0.30)):",
+    "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "on_kayit_metninde_yazimi": [
+     "0,30"
+    ],
+    "on_kayit_eslesmeleri": [
+     {
+      "yazim": "0,30",
+      "sutun": 173
+     }
+    ],
+    "on_kayit_aranan_yazimlar": [
+     "0,3",
+     "0,30",
+     "0,300"
+    ]
+   },
+   "kurallar_sirasiyla": [
+    {
+     "i": "kestirim <= esik ve ham Mantel p >= p esigi -> curutuldu",
+     "esik": {
+      "ad": "B10 curutme: kestirim esigi (kestirim <= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     },
+     "p_esigi": {
+      "ad": "B10 curutme: ham Mantel p esigi (p >= esik)",
+      "deger": 0.2,
+      "kaynak": "experiments/q1_ek_ayrisim.py:308",
+      "kaynak_metni": "elif r <= 0.20 and p >= 0.20:",
+      "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+      "on_kayit_metninde_yazimi": [
+       "0,20"
+      ],
+      "on_kayit_eslesmeleri": [
+       {
+        "yazim": "0,20",
+        "sutun": 250
+       },
+       {
+        "yazim": "0,20",
+        "sutun": 273
+       }
+      ],
+      "on_kayit_aranan_yazimlar": [
+       "0,2",
+       "0,20",
+       "0,200"
+      ]
+     }
+    },
+    {
+     "ii": "Holm sonrasi p < ALFA -> destek",
+     "kaynak": "experiments/q1_ek_ayrisim.py:310",
+     "metin": "elif ph < dm.ALFA:"
+    },
+    {
+     "iii": "kalan -> kararsiz"
+    }
+   ],
+   "on_kayit": {
+    "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_EK_B8_B10_2026-10-30.md:163",
+    "metin_basi": "Ham sınama H10-d için öngörü Spearman(c, log τ̄) > 0, öngörülen büyüklük ≥ 0,50'dir. Kısmi sınama H10k-d için öngörü artıklar arasındaki Spearman > 0, öngörülen büyüklük ≥ 0,30'dur. Her sınamada kural"
+   },
+   "gerceklesen": {
+    "karar_json": "destek",
+    "json": "results/q1/konsey_b10_gradyan/b10_aile.json F_B10.sinamalar.5.karar",
+    "foy_bolum": "M10.5",
+    "foy_satiri": 1988,
+    "foy_sutun": "Karar",
+    "foy_hucre": "destek",
+    "foy_satir_metni_sha256": "e215247219aa0d15f01b183daea100bf41a9a6345335c698970de1d36fe3088f",
+    "json_ile_foy_ayni": true
+   }
+  }
+ ],
+ "sonuc_bolgesi": {
+  "sira": {
+   "kaynak": "experiments/q1_konsey_ayrisim.py:637",
+   "metin": "\"kural\": \"sira: O2 > O5 > O1 > O3 > O3-varyant > O5a; O4 ek niteleme\"}"
+  },
+  "on_kayit_tablosu": {
+   "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:98",
+   "metin_basi": "| Bölge | Koşul | Manşet |"
+  },
+  "on_kayit_sira": {
+   "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:107",
+   "metin_basi": "Bölgeler şu sırayla denetlenir ve ilk tutan bölge manşeti verir: O2, O5, O1, O3, O3 varyantı, O5a. Bu sırayla her H1, H2 ve H3 sonuç bileşimi tam olarak bir bölgeye düşer. O4 ayrık bir bölge değildir:"
+  },
+  "gerceklesen": {
+   "bolge_json": "O1",
+   "O4_niteleme_json": false,
+   "json": "results/q1/konsey_ayrisim_b4.json b4.F_B4.karar.sonuc_bolgesi, .O4_niteleme",
+   "foy_satiri": 1536,
+   "satir_metni_sha256": "8ef758b6bbd95d650dde7c6c59127eaff8d11e97ea7d12a7ddc74c93e383e6fa",
+   "parca": "Sonuc bolgesi: ",
+   "foy_bolum": "M9.3",
+   "foy_satirinda_bolge_var": true
+  }
+ },
+ "denetimler": {
+  "json_ile_foy_ayni_hepsi": true,
+  "json_ile_foy_ayni_olmayan": [],
+  "sinama_sayisi": 30,
+  "dondurulmus_betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "ek_ayrisim_sha256": "d264c4e584fcfb3c0e3dd9517cfe2cea4ea1fe564117c88459e2b9721027a641",
+  "dondurulmus_betik_on_kayitla_ayni": true,
+  "foy_sha256": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+  "json_ile_foy_karsilastirilan_sayisi": 25,
+  "json_ile_foy_ayni_sayisi": 25,
+  "json_ile_foy_karsilastirilmayan": [
+   {
+    "kimlik": "S3-ResNet",
+    "blok": "B4 ikincil",
+    "neden": "yok: betimsel satir (foy hucresi 'betimsel'), JSON'da karar anahtari yok"
+   },
+   {
+    "kimlik": "S3-etkilesim",
+    "blok": "B4 ikincil",
+    "neden": "yok: betimsel satir (foy hucresi 'betimsel'), JSON'da karar anahtari yok"
+   },
+   {
+    "kimlik": "S7",
+    "blok": "B4 ikincil",
+    "neden": "yok: betimsel satir (foy hucresi 'betimsel'), JSON'da karar anahtari yok"
+   },
+   {
+    "kimlik": "S4",
+    "blok": "B4 ikincil",
+    "neden": "yok: betimsel tablo, karar yok"
+   },
+   {
+    "kimlik": "B8-K-abc",
+    "blok": "B8",
+    "neden": "yok: dondurulmus betik ciktisi B8'de karar degildir"
+   }
+  ],
+  "json_ile_foy_ozet": "25/25 karsilastirilan sinamada JSON karari foy hucresiyle ayni; 30 sinamanin 5 tanesi karsilastirilmadi (betimsel ya da karar degil)",
+  "foy_sha256_tanimi": "results/C1_REFERANS_FOYU.md icin kaynaklar_sha256 degeri (ve foy_ozeti.m13_haric_sha256) ham dosyanin degil, '\\n## M13:' ile '\\n## Sabit dizgeler' arasindaki bayt araligi cikarilmis metnin sha256'sidir (arsiv/b2_yardimci/_m13_kontrol.py ile ayni kural). Foyde M13 yoksa ham sha256 ile aynidir.",
+  "on_kayit_deger_aramasi": {
+   "kural": "Deger yalniz yuvarlamasiz yazimlarla aranir: en kisa ondalik gosterim ve sonuna sifir eklenmis bicimleri (en cok uc ondalik; ornegin 0.1 icin 0,1 / 0,10 / 0,100; 0.796 icin yalniz 0,796), ondalik ayirac virgul. Sozcuk siniri: eslesmenin oncesinde rakam, virgul ya da nokta; sonrasinda rakam ya da ayiracla baslayan rakam olamaz. Isaret: negatif deger icin hemen onde eksi (U+2212, '-' ya da '–') zorunlu; pozitif deger icin hemen onde eksi olamaz ('+' ve '±' serbest). En az bir eslesme yoksa uretim durur.",
+   "denetlenen_deger_sayisi": 53
+  }
+ }
+}

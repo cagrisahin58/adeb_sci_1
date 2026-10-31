@@ -1,0 +1,2160 @@
+{
+ "etiket": "Y1 fig:design_recipe kaynagi: 2x2 tasarim ve egitim tarifi (B3 ve C1)",
+ "tanim": "Her hucre icin baslatma, girdi hatti, normalizasyon, temiz asama ve AT asamasi; degerler gercek komut satirlarindan ve kod varsayilanlarindan, kaynak satirlariyla. Gerceklesen epoklar foy M9.1/M8.14'te.",
+ "meta": {
+  "betik": "arsiv/b2_yardimci/_m13_tarif.py",
+  "betik_sha256": "08468c4725e935f09dc67d3f006afcefbfe13fd5b736ba08e12987222e25dde5",
+  "ortak_modul": "arsiv/b2_yardimci/_m13_ortak.py",
+  "ortak_modul_sha256": "c17618e252c0d08b8b4a5e01960d676f4f9e71b9d80e39cfd9906b5cc1069d98",
+  "uretildi_utc": "2026-10-31T18:18:19.218184+00:00",
+  "python": "3.10.12",
+  "kaynak_sayisi": 41,
+  "kaynaklar_sha256": {
+   "TIMING.md": "bec629ac0a258a01cc91664fd7db8fbd32fa09c1c3e0c5f123a3169415fcba63",
+   "cli/train.py": "63a473156086acfd420f98eb5062821f88e245b2241b11e38a0adb5aea2d261c",
+   "data/val_split_indices.json": "e60320ed1ec9c2ff82ef9f3fe67375f93706512c0c7c0f510922cb7feb979d0a",
+   "logs/C1_at_resnet_1001.log": "f9d9e7ed2c2e6cb7bccd04e42197aa05dd78236b06fcb4202f6746cd9cd23f72",
+   "logs/C1_at_resnet_1002.log": "60f28624552e631e98a6511b2d143db956acdb745ae3bafd3bed95effd87c503",
+   "logs/C1_at_resnet_1003.log": "37313bda2d4fde31c12bc1f8c6926c03b7c536e3671ef5a1c697df01a50b3089",
+   "logs/C1_at_vit_2001.log": "1e39a84339939a5ff3bbf7330056ca1e15f2140caa7097489ab149b356fbd446",
+   "logs/C1_at_vit_2002.log": "fd90594f32d55a97015d63161922227a38213d66d448ea8540ce4af238d4d949",
+   "logs/C1_at_vit_2003.log": "651478f27049f2a7cc58214c96a9e71cfd2682f3fb36a5499a74f8b3ec2104e1",
+   "logs/C1_clean_resnet_1001.log": "d172fccd9db17f83cde256b555e20071824d1a339850cdc7a3d98eebdabe54ca",
+   "logs/C1_clean_resnet_1002.log": "ace85271fa54604330b7a48063665f2d84ff192b8c3fb419d2ad49733675f3c5",
+   "logs/C1_clean_resnet_1003.log": "ae3c99613619d4fc58ff97d7a5257541a9f977eae7e19a4c967e1dfd41bb11c4",
+   "logs/C1_clean_vit_2001.log": "55c6205005e1cf10fc780e46fa021d90f40bdfdd94ea2a5cbf9ad4efc7d4e843",
+   "logs/C1_clean_vit_2002.log": "30809deac92363e7dab32de111d05ebec001268182b57fd19e46bf71c4f7a315",
+   "logs/C1_clean_vit_2003.log": "928fc05adcabba75c89e701a9157c2aa8281fce0340cef82388d5fdda67b78cc",
+   "logs/konsey_b3/R224_IN_s1301_AT.log": "44b3462e1fac7eb218c175e3b875b3dc557b331787291c3e7687cd2cc0479718",
+   "logs/konsey_b3/R224_IN_s1301_temiz.log": "6bc4a9d35c78ac11cfc4842e138a2dbbcd325fcb0df18bc2f8c4fbf9d8e3aa95",
+   "logs/konsey_b3/R224_IN_s1302_AT.log": "d28e6d78a50d76cdaa50b9e34e1cba353b428a43f46fa7232f806811ca21ee5c",
+   "logs/konsey_b3/R224_IN_s1302_temiz.log": "09868a56099a02b716a959cb3c329c6121925bf12a118f74047da61c89b4e951",
+   "logs/konsey_b3/R224_scr_s1201_AT.log": "4ede24cf7329b4544464fc10bb4958f0ebb1d2b79d09a7fda0d18740a8599ab3",
+   "logs/konsey_b3/R224_scr_s1201_temiz.log": "7b23554868d445617ea59813d609437b979989eb7c13f88d8fd9fdfa8b743a2a",
+   "logs/konsey_b3/R224_scr_s1202_AT.log": "fc6c5c65f705eb0181efd2949b0c23b9560577338af406570b63d89854f41ef3",
+   "logs/konsey_b3/R224_scr_s1202_temiz.log": "5783a1d9478e43cdc99cb6c616733e8e4960e9d538de00470479720d22f3b0ec",
+   "logs/konsey_b3/V_IN_s2101_AT.log": "fbdbea63a8fbe20de176f4ef871b8ded0997419435dafd9b6f3934b8fbf22a8e",
+   "logs/konsey_b3/V_IN_s2101_temiz.log": "677c2172a381b78adb5535b69616e00aa46fa52c368a12d5235b07060b641939",
+   "logs/konsey_b3/V_IN_s2102_AT.log": "7a723f35dd959fdc3ac941e7fe484fb6e32b37763ecd18f4f41307d6eeef1c20",
+   "logs/konsey_b3/V_IN_s2102_temiz.log": "af24fb3260f163810a2e839a04c248f639037ac4d58e7199f1da06a932366de8",
+   "logs/konsey_zincir.log": "bd81ff7bd85d8481bf9cf370b42651890691c12034cd505c97aca00d1b0c9603",
+   "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md": "8d8b17b2d094e0d84ef8d018517da551d717483c25f33155beb5d2c76f20ce3d",
+   "raporlar/konsey_2026-10-29/hucre_tablosu.json": "2a891331f8c59897db14b30fb27a46c836ad391957aa4ff54a0ffef00bfe5500",
+   "results/C1_REFERANS_FOYU.md": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+   "results/q1/konsey_pilot_zaman.json": "f0c8c9385c4a571b0e23ee3e537946c2661fa52343bef677afdeea829c77a345",
+   "scripts/konsey_b3_kuyruk.sh": "27760bbe627093a3341ce6b07d563d5ebd8d64122b771502548b795aa53e173b",
+   "scripts/run_c1_pipeline.sh": "86f9eceae6431a0cffe9d58a85f1b1ef6f79d5e2d90cf56af39fe0c3a4cd2dbc",
+   "src/data/datasets.py": "c1030ca6bfa57bc763a260a066f8368a36aff41735adcf0624d1103da486d14d",
+   "src/defenses/adversarial_training.py": "9fd6b60a55de3724af6edf21199eedcca2c8a4a3f1c068c8bd602232a34bff53",
+   "src/models/r224.py": "b0e625838bb0a95cb20c2d6414bb24331a1feb04d5987e2ff21a2f12a70fa90d",
+   "src/models/resnet.py": "1b7324e4eacc3b5f7e4b01c1d5eb05b4a9ad75dd6664f4f2996b7867f8119b77",
+   "src/models/vit.py": "f5d5a16df6f76d1aeffbe1aa00027065e65d3820fcb8b7d114dfa78e8494b2b1",
+   "src/training/adversarial_trainer.py": "55e5b0d3ae567559edc45c8eb1b4a3a339a223d515719801ea0d280c923d270f",
+   "src/training/trainer.py": "c1eabb03f1aac91fec6c88ca2ea105bdc609be457654bd213a54d5ae515ddfb1"
+  },
+  "foy_ozeti": {
+   "dosya": "results/C1_REFERANS_FOYU.md",
+   "m13_haric_sha256": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+   "tanim": "results/C1_REFERANS_FOYU.md icin kaynaklar_sha256 degeri (ve foy_ozeti.m13_haric_sha256) ham dosyanin degil, '\\n## M13:' ile '\\n## Sabit dizgeler' arasindaki bayt araligi cikarilmis metnin sha256'sidir (arsiv/b2_yardimci/_m13_kontrol.py ile ayni kural). Foyde M13 yoksa ham sha256 ile aynidir."
+  },
+  "yeniden_uretim_notu": "Foyun M13 bolumu bu JSON'un meta'sini (uretildi_utc, betik sha256) basar; ham foy sha256'si kaynak olarak yazilsaydi her JSON uretimi foyu, her foy uretimi JSON'u degistirirdi ve uretim sabit noktaya oturmazdi (onceki surumdeki 'yalniz uretildi_utc degisir' notu bu yuzden yanlisti). Duzeltmeden sonra JSON'lar foyun yalniz M13 disi metnine baglidir: M13 disi foy ve kaynak dosyalar degismedikce JSON yeniden uretildiginde JSON'da yalniz meta.uretildi_utc, foyde yalniz M13 meta satirlarindaki uretildi_utc degisir (31.10.2026'da iki ardisik uretimle denetlendi; bkz. results/q1/konsey_kayit_kurallari.DEGISIKLIK.md).",
+  "git_kaynaklari": {
+   "tanim": "salt okur 'git show <commit>:<yol>' ile okunan surumler; deger git blob kimligi",
+   "blob": {
+    "git:77ae259:cli/train.py": "4fa5052382564e460f0f3a5d5f88d5ee81093245",
+    "git:77ae259:src/defenses/adversarial_training.py": "3bc537144fddfdbda8b0bf8a6a79ebdc4518fe29",
+    "git:77ae259:src/models/resnet.py": "4743dc2bb3da5329cdfb670748e7f0c44ae0f792",
+    "git:77ae259:src/models/vit.py": "670454a224466deea4ed25e72325c751860ea037",
+    "git:77ae259:src/training/adversarial_trainer.py": "043bcf57bfefd0b6a5c5227c76c6084722ee3651",
+    "git:77ae259:src/training/trainer.py": "e0ee0f06ec26f8588249f25d2ed1328601664515",
+    "git:77ae259^:cli/train.py": "897840e025ddb91fc633ae53ae73e1147c874fdb"
+   }
+  }
+ },
+ "ortak": {
+  "veri": {
+   "egitim_kumesi": "cifar10",
+   "dogrulama_bolmesi_dosyasi": "data/val_split_indices.json",
+   "dogrulama_n": 2000,
+   "dogrulama_n_kaynagi": "data/val_split_indices.json len(val_indices); val_size alani 2000",
+   "artirma": "RandomCrop(32, padding=4) + RandomHorizontalFlip + ToTensor",
+   "artirma_kaynagi": "src/data/datasets.py:296; src/data/datasets.py:298; src/data/datasets.py:269"
+  },
+  "at_kaybi": {
+   "tur": "karisik kayip: (1 - mix_ratio) * CE(temiz) + mix_ratio * CE(PGD)",
+   "mix_ratio": 0.5,
+   "pgd_rastgele_baslangic": true,
+   "kaynak": "src/defenses/adversarial_training.py:122; src/defenses/adversarial_training.py:31; src/defenses/adversarial_training.py:30; savunma kurulumu bu iki degeri gecmez (src/training/adversarial_trainer.py:131)"
+  },
+  "erken_durma": {
+   "olcut": "dogrulama PGD dogrulugu en iyi + min_delta (puan)",
+   "min_delta_puan": 0.1,
+   "kaynak": "src/training/adversarial_trainer.py:52; src/training/adversarial_trainer.py:512"
+  },
+  "secim_kurali": {
+   "metin": "Yakınsamış model: C1 seçim kuralıyla (sabit 2000 örneklik doğrulama bölmesinde en yüksek PGD doğruluğu, sabır 20) seçilen kontrol noktası. Son kontrol noktası duyarlılığı yalnız mevcut C1 3x3 matrislerinde (masa düzeyinde) raporlanır; B2 ve",
+   "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:23"
+  },
+  "at_tavani_pilot": {
+   "secilen_tavan": 80,
+   "kaynak": "results/q1/konsey_pilot_zaman.json secilen_tavan",
+   "on_kayit": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:36"
+  },
+  "on_kayit_at_tarifi": {
+   "metin_basi": "AT tarifi bütün hücrelerde: karışık kayıplı AT, PGD-10, ε = 8/255, α = 2/255, AdamW (ağırlık azaltma 0,05), lr 1e-3, batch 64, sabır 20, `data/val_split_indices.json`. AT tavanı 80 epoktur ve dört yen",
+   "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:36"
+  },
+  "at_tavani_on_kayit_cumlesi": {
+   "alinti": "AT tavanı 80 epoktur ve dört yeni hücrede eşittir.",
+   "kaynak": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:36",
+   "on_kayit_tablosunda_mevcut_isaretli_hucreler": [
+    "V-scr"
+   ],
+   "on_kayit_tablosunda_yeni_hucreler": [
+    "V-IN",
+    "R224-scr",
+    "R224-IN"
+   ],
+   "tablo_satirlari": {
+    "V-scr": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:31",
+    "V-IN": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:32",
+    "R224-scr": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:33",
+    "R224-IN": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:34"
+   },
+   "not": "Cumle aynen alintilanmistir. On kayit hucre tablosunda V-scr satiri 'mevcut C1' olarak isaretlidir; 80 tavani B3'te kosulan hucrelere (yukaridaki 'yeni' listesi, alti kosu) uygulanmistir (denetimler.B3_AT_tavani_pilotla_ayni). V-scr AT'si C1 tarifiyle (-e 100, --stop-epoch yok) kosulmustur; bkz. denetimler.V_scr_AT_tavani_ve_gerceklesen_durma."
+  }
+ },
+ "hucreler": {
+  "V-IN": {
+   "blok": "B3 (yeni)",
+   "on_kayit_satiri": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:32",
+   "on_kayit_metni": "| V-IN | aynı mimari ve büyütme; büyütmeden sonra model içi ImageNet normalizasyonu (başlatma demetinin parçası) | `deit_tiny_patch16_224.fb_in1k` | AdamW lr 1e-4, kosinüs, 30 epok | 2101, 2102 |",
+   "tohumlar": [
+    2101,
+    2102
+   ],
+   "takma_adlar": [
+    "V_IN_s2101",
+    "V_IN_s2102"
+   ],
+   "kosular_tohum_disinda_ozdes": true,
+   "kosular": {
+    "V_IN_s2101": {
+     "temiz": {
+      "komut": "python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2101 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2101 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:36",
+      "model_anahtari": "vit_tiny_in1k",
+      "model_sinifi": "CIFAR10ViTTinyIN1k",
+      "model_sinifi_kaynagi": "src/models/r224.py:89",
+      "epok_bayragi": 30,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:36)",
+      "lr_bayragi": 0.0001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:36)",
+      "batch": 128,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:36)",
+      "tohum": 2101,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.0001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/trainer.py:91",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 30,
+       "kaynak": "komut (logs/konsey_zincir.log:36); src/training/trainer.py:131"
+      },
+      "baslatma_bayragi": "deit_tiny_in1k",
+      "baslatma_kaynagi": "komut (logs/konsey_zincir.log:36)",
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:90",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2101_temiz.log:2",
+        "metin": "Epochs: 30, LR: 0.0001, Batch size: 128"
+       },
+       "init": {
+        "kaynak": "logs/konsey_b3/V_IN_s2101_temiz.log:3",
+        "init_key": "deit_tiny_in1k",
+        "timm_name": "deit_tiny_patch16_224.fb_in1k",
+        "source_file": "models/timm_agirliklar/deit_tiny_patch16_224.fb_in1k/model.safetensors",
+        "source_sha256": "21d4764d94f6c3ffdb6da3581115a0a1ee2d505537d96883b540e54766407c9e",
+        "n_loaded": 150,
+        "n_target_keys": 152,
+        "missing_nonhead": [],
+        "unexpected_nonhead": [],
+        "shape_mismatch": [],
+        "head_keys_skipped": [
+         "head.bias",
+         "head.weight"
+        ],
+        "pretrained_cfg_mean": [
+         0.485,
+         0.456,
+         0.406
+        ],
+        "pretrained_cfg_std": [
+         0.229,
+         0.224,
+         0.225
+        ],
+        "norm_matches_cfg": true
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2101_temiz.log:4",
+        "metin": "Optimizer: adamw, LR schedule: cosine"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2101_temiz.log:7",
+        "metin": "Using AdamW optimizer (forced, lr=0.0001, wd=0.05)"
+       }
+      }
+     },
+     "AT": {
+      "komut": "python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2101/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2101 -o models/q1/konsey/V_IN_s2101 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:40",
+      "model_anahtari": "vit_tiny_in1k",
+      "model_sinifi": "CIFAR10ViTTinyIN1k",
+      "model_sinifi_kaynagi": "src/models/r224.py:89",
+      "epok_bayragi": 100,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:40)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:40)",
+      "batch": 64,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:40)",
+      "tohum": 2101,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/adversarial_trainer.py:165",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 100,
+       "kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)"
+      },
+      "epok_tavani": 80,
+      "epok_tavani_kaynagi": "--stop-epoch komut (logs/konsey_zincir.log:40)",
+      "sabir": 20,
+      "sabir_kaynagi": "komut (logs/konsey_zincir.log:40)",
+      "savunma": "adversarial_training",
+      "eps": 0.03137254901960784,
+      "eps_x255": 8.0,
+      "eps_ifade": "8/255",
+      "eps_kaynagi": "varsayilan (cli/train.py:144)",
+      "alpha": 0.00784313725490196,
+      "alpha_x255": 2.0,
+      "alpha_ifade": "2/255",
+      "alpha_kaynagi": "varsayilan (cli/train.py:145)",
+      "pgd_adim": 10,
+      "pgd_adim_kaynagi": "varsayilan (cli/train.py:146)",
+      "gradyan_kirpma": 10.0,
+      "gradyan_kirpma_kaynagi": "varsayilan (cli/train.py:166)",
+      "kaydet_her": 10,
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:99",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2101_AT.log:2",
+        "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2101_AT.log:5",
+        "metin": "Using AdamW optimizer (forced, lr=0.001, wd=0.05)"
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2101_AT.log:6",
+        "metin": "Optimizer: adamw; stop_epoch: 80 (LR cizelgesi 100 epok uzerinden)"
+       },
+       "erken_durma_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2101_AT.log:8",
+        "metin": "Early stopping enabled (patience=20)"
+       }
+      }
+     }
+    },
+    "V_IN_s2102": {
+     "temiz": {
+      "komut": "python -m cli.main train clean -m vit_tiny_in1k --init-weights deit_tiny_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 2102 --val-indices data/val_split_indices.json -o models/q1/konsey/V_IN_s2102 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:60",
+      "model_anahtari": "vit_tiny_in1k",
+      "model_sinifi": "CIFAR10ViTTinyIN1k",
+      "model_sinifi_kaynagi": "src/models/r224.py:89",
+      "epok_bayragi": 30,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:60)",
+      "lr_bayragi": 0.0001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:60)",
+      "batch": 128,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:60)",
+      "tohum": 2102,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.0001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/trainer.py:91",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 30,
+       "kaynak": "komut (logs/konsey_zincir.log:60); src/training/trainer.py:131"
+      },
+      "baslatma_bayragi": "deit_tiny_in1k",
+      "baslatma_kaynagi": "komut (logs/konsey_zincir.log:60)",
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:90",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2102_temiz.log:2",
+        "metin": "Epochs: 30, LR: 0.0001, Batch size: 128"
+       },
+       "init": {
+        "kaynak": "logs/konsey_b3/V_IN_s2102_temiz.log:3",
+        "init_key": "deit_tiny_in1k",
+        "timm_name": "deit_tiny_patch16_224.fb_in1k",
+        "source_file": "models/timm_agirliklar/deit_tiny_patch16_224.fb_in1k/model.safetensors",
+        "source_sha256": "21d4764d94f6c3ffdb6da3581115a0a1ee2d505537d96883b540e54766407c9e",
+        "n_loaded": 150,
+        "n_target_keys": 152,
+        "missing_nonhead": [],
+        "unexpected_nonhead": [],
+        "shape_mismatch": [],
+        "head_keys_skipped": [
+         "head.bias",
+         "head.weight"
+        ],
+        "pretrained_cfg_mean": [
+         0.485,
+         0.456,
+         0.406
+        ],
+        "pretrained_cfg_std": [
+         0.229,
+         0.224,
+         0.225
+        ],
+        "norm_matches_cfg": true
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2102_temiz.log:4",
+        "metin": "Optimizer: adamw, LR schedule: cosine"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2102_temiz.log:7",
+        "metin": "Using AdamW optimizer (forced, lr=0.0001, wd=0.05)"
+       }
+      }
+     },
+     "AT": {
+      "komut": "python -m cli.main train adversarial -m vit_tiny_in1k -d adversarial_training -p models/q1/konsey/V_IN_s2102/vit_tiny_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 2102 -o models/q1/konsey/V_IN_s2102 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:63",
+      "model_anahtari": "vit_tiny_in1k",
+      "model_sinifi": "CIFAR10ViTTinyIN1k",
+      "model_sinifi_kaynagi": "src/models/r224.py:89",
+      "epok_bayragi": 100,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:63)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:63)",
+      "batch": 64,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:63)",
+      "tohum": 2102,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/adversarial_trainer.py:165",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 100,
+       "kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)"
+      },
+      "epok_tavani": 80,
+      "epok_tavani_kaynagi": "--stop-epoch komut (logs/konsey_zincir.log:63)",
+      "sabir": 20,
+      "sabir_kaynagi": "komut (logs/konsey_zincir.log:63)",
+      "savunma": "adversarial_training",
+      "eps": 0.03137254901960784,
+      "eps_x255": 8.0,
+      "eps_ifade": "8/255",
+      "eps_kaynagi": "varsayilan (cli/train.py:144)",
+      "alpha": 0.00784313725490196,
+      "alpha_x255": 2.0,
+      "alpha_ifade": "2/255",
+      "alpha_kaynagi": "varsayilan (cli/train.py:145)",
+      "pgd_adim": 10,
+      "pgd_adim_kaynagi": "varsayilan (cli/train.py:146)",
+      "gradyan_kirpma": 10.0,
+      "gradyan_kirpma_kaynagi": "varsayilan (cli/train.py:166)",
+      "kaydet_her": 10,
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:99",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2102_AT.log:2",
+        "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2102_AT.log:5",
+        "metin": "Using AdamW optimizer (forced, lr=0.001, wd=0.05)"
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2102_AT.log:6",
+        "metin": "Optimizer: adamw; stop_epoch: 80 (LR cizelgesi 100 epok uzerinden)"
+       },
+       "erken_durma_satiri": {
+        "kaynak": "logs/konsey_b3/V_IN_s2102_AT.log:8",
+        "metin": "Early stopping enabled (patience=20)"
+       }
+      }
+     }
+    }
+   },
+   "girdi_hatti": {
+    "model": "timm vit_tiny_patch16_224",
+    "girdi": "32->224 bilinear buyutme",
+    "normalizasyon": "model ici ImageNet (pretrained_cfg)",
+    "baslatma": "deit_tiny_patch16_224.fb_in1k",
+    "kaynak": [
+     "src/models/r224.py:75",
+     "src/models/r224.py:48",
+     "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:32"
+    ],
+    "imagenet_ortalama": [
+     0.485,
+     0.456,
+     0.406
+    ],
+    "imagenet_sd": [
+     0.229,
+     0.224,
+     0.225
+    ],
+    "norm_cfg_ile_ayni": true,
+    "agirlik_dosyasi_sha256": "21d4764d94f6c3ffdb6da3581115a0a1ee2d505537d96883b540e54766407c9e",
+    "yuklenen_anahtar": "150/152",
+    "init_kaynak": "logs/konsey_b3/V_IN_s2101_temiz.log:3"
+   }
+  },
+  "R224-scr": {
+   "blok": "B3 (yeni)",
+   "on_kayit_satiri": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:33",
+   "on_kayit_metni": "| R224-scr | timm `resnet18`; V-scr ile birebir aynı girdi hattı (32→224 bilinear büyütme, [0, 1] değer aralığı, normalizasyon yok) | rastgele | C1 ViT temiz komutu, 200 epok | 1201, 1202 |",
+   "tohumlar": [
+    1201,
+    1202
+   ],
+   "takma_adlar": [
+    "R224_scr_s1201",
+    "R224_scr_s1202"
+   ],
+   "kosular_tohum_disinda_ozdes": true,
+   "kosular": {
+    "R224_scr_s1201": {
+     "temiz": {
+      "komut": "python -m cli.main train clean -m resnet18_224 --init-weights none --optimizer adamw --lr-schedule cosine -e 200 --lr 0.001 -b 128 --seed 1201 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_scr_s1201 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:51",
+      "model_anahtari": "resnet18_224",
+      "model_sinifi": "CIFAR10ResNet18R224",
+      "model_sinifi_kaynagi": "src/models/r224.py:140",
+      "epok_bayragi": 200,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:51)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:51)",
+      "batch": 128,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:51)",
+      "tohum": 1201,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/trainer.py:91",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 200,
+       "kaynak": "komut (logs/konsey_zincir.log:51); src/training/trainer.py:131"
+      },
+      "baslatma_bayragi": "none",
+      "baslatma_kaynagi": "komut (logs/konsey_zincir.log:51)",
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:92",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1201_temiz.log:2",
+        "metin": "Epochs: 200, LR: 0.001, Batch size: 128"
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1201_temiz.log:3",
+        "metin": "Optimizer: adamw, LR schedule: cosine"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1201_temiz.log:6",
+        "metin": "Using AdamW optimizer (forced, lr=0.001, wd=0.05)"
+       }
+      }
+     },
+     "AT": {
+      "komut": "python -m cli.main train adversarial -m resnet18_224 -d adversarial_training -p models/q1/konsey/R224_scr_s1201/resnet18_224/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1201 -o models/q1/konsey/R224_scr_s1201 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:57",
+      "model_anahtari": "resnet18_224",
+      "model_sinifi": "CIFAR10ResNet18R224",
+      "model_sinifi_kaynagi": "src/models/r224.py:140",
+      "epok_bayragi": 100,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:57)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:57)",
+      "batch": 64,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:57)",
+      "tohum": 1201,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/adversarial_trainer.py:165",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 100,
+       "kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)"
+      },
+      "epok_tavani": 80,
+      "epok_tavani_kaynagi": "--stop-epoch komut (logs/konsey_zincir.log:57)",
+      "sabir": 20,
+      "sabir_kaynagi": "komut (logs/konsey_zincir.log:57)",
+      "savunma": "adversarial_training",
+      "eps": 0.03137254901960784,
+      "eps_x255": 8.0,
+      "eps_ifade": "8/255",
+      "eps_kaynagi": "varsayilan (cli/train.py:144)",
+      "alpha": 0.00784313725490196,
+      "alpha_x255": 2.0,
+      "alpha_ifade": "2/255",
+      "alpha_kaynagi": "varsayilan (cli/train.py:145)",
+      "pgd_adim": 10,
+      "pgd_adim_kaynagi": "varsayilan (cli/train.py:146)",
+      "gradyan_kirpma": 10.0,
+      "gradyan_kirpma_kaynagi": "varsayilan (cli/train.py:166)",
+      "kaydet_her": 10,
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:99",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1201_AT.log:2",
+        "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1201_AT.log:5",
+        "metin": "Using AdamW optimizer (forced, lr=0.001, wd=0.05)"
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1201_AT.log:6",
+        "metin": "Optimizer: adamw; stop_epoch: 80 (LR cizelgesi 100 epok uzerinden)"
+       },
+       "erken_durma_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1201_AT.log:8",
+        "metin": "Early stopping enabled (patience=20)"
+       }
+      }
+     }
+    },
+    "R224_scr_s1202": {
+     "temiz": {
+      "komut": "python -m cli.main train clean -m resnet18_224 --init-weights none --optimizer adamw --lr-schedule cosine -e 200 --lr 0.001 -b 128 --seed 1202 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_scr_s1202 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:72",
+      "model_anahtari": "resnet18_224",
+      "model_sinifi": "CIFAR10ResNet18R224",
+      "model_sinifi_kaynagi": "src/models/r224.py:140",
+      "epok_bayragi": 200,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:72)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:72)",
+      "batch": 128,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:72)",
+      "tohum": 1202,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/trainer.py:91",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 200,
+       "kaynak": "komut (logs/konsey_zincir.log:72); src/training/trainer.py:131"
+      },
+      "baslatma_bayragi": "none",
+      "baslatma_kaynagi": "komut (logs/konsey_zincir.log:72)",
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:92",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1202_temiz.log:2",
+        "metin": "Epochs: 200, LR: 0.001, Batch size: 128"
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1202_temiz.log:3",
+        "metin": "Optimizer: adamw, LR schedule: cosine"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1202_temiz.log:6",
+        "metin": "Using AdamW optimizer (forced, lr=0.001, wd=0.05)"
+       }
+      }
+     },
+     "AT": {
+      "komut": "python -m cli.main train adversarial -m resnet18_224 -d adversarial_training -p models/q1/konsey/R224_scr_s1202/resnet18_224/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1202 -o models/q1/konsey/R224_scr_s1202 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:74",
+      "model_anahtari": "resnet18_224",
+      "model_sinifi": "CIFAR10ResNet18R224",
+      "model_sinifi_kaynagi": "src/models/r224.py:140",
+      "epok_bayragi": 100,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:74)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:74)",
+      "batch": 64,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:74)",
+      "tohum": 1202,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/adversarial_trainer.py:165",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 100,
+       "kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)"
+      },
+      "epok_tavani": 80,
+      "epok_tavani_kaynagi": "--stop-epoch komut (logs/konsey_zincir.log:74)",
+      "sabir": 20,
+      "sabir_kaynagi": "komut (logs/konsey_zincir.log:74)",
+      "savunma": "adversarial_training",
+      "eps": 0.03137254901960784,
+      "eps_x255": 8.0,
+      "eps_ifade": "8/255",
+      "eps_kaynagi": "varsayilan (cli/train.py:144)",
+      "alpha": 0.00784313725490196,
+      "alpha_x255": 2.0,
+      "alpha_ifade": "2/255",
+      "alpha_kaynagi": "varsayilan (cli/train.py:145)",
+      "pgd_adim": 10,
+      "pgd_adim_kaynagi": "varsayilan (cli/train.py:146)",
+      "gradyan_kirpma": 10.0,
+      "gradyan_kirpma_kaynagi": "varsayilan (cli/train.py:166)",
+      "kaydet_her": 10,
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:99",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1202_AT.log:2",
+        "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1202_AT.log:5",
+        "metin": "Using AdamW optimizer (forced, lr=0.001, wd=0.05)"
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1202_AT.log:6",
+        "metin": "Optimizer: adamw; stop_epoch: 80 (LR cizelgesi 100 epok uzerinden)"
+       },
+       "erken_durma_satiri": {
+        "kaynak": "logs/konsey_b3/R224_scr_s1202_AT.log:8",
+        "metin": "Early stopping enabled (patience=20)"
+       }
+      }
+     }
+    }
+   },
+   "girdi_hatti": {
+    "model": "timm resnet18",
+    "girdi": "32->224 bilinear buyutme",
+    "normalizasyon": "yok",
+    "baslatma": "rastgele",
+    "kaynak": [
+     "src/models/r224.py:114",
+     "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:33"
+    ]
+   }
+  },
+  "R224-IN": {
+   "blok": "B3 (yeni)",
+   "on_kayit_satiri": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:34",
+   "on_kayit_metni": "| R224-IN | timm `resnet18`, 32→224 bilinear büyütme; büyütmeden sonra model içi ImageNet normalizasyonu (başlatma demetinin parçası) | `resnet18.a1_in1k` | AdamW lr 1e-4, kosinüs, 30 epok | 1301, 1302 |",
+   "tohumlar": [
+    1301,
+    1302
+   ],
+   "takma_adlar": [
+    "R224_IN_s1301",
+    "R224_IN_s1302"
+   ],
+   "kosular_tohum_disinda_ozdes": true,
+   "kosular": {
+    "R224_IN_s1301": {
+     "temiz": {
+      "komut": "python -m cli.main train clean -m resnet18_224_in1k --init-weights resnet18_a1_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 1301 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_IN_s1301 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:47",
+      "model_anahtari": "resnet18_224_in1k",
+      "model_sinifi": "CIFAR10ResNet18R224IN1k",
+      "model_sinifi_kaynagi": "src/models/r224.py:146",
+      "epok_bayragi": 30,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:47)",
+      "lr_bayragi": 0.0001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:47)",
+      "batch": 128,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:47)",
+      "tohum": 1301,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.0001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/trainer.py:91",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 30,
+       "kaynak": "komut (logs/konsey_zincir.log:47); src/training/trainer.py:131"
+      },
+      "baslatma_bayragi": "resnet18_a1_in1k",
+      "baslatma_kaynagi": "komut (logs/konsey_zincir.log:47)",
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:91",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1301_temiz.log:2",
+        "metin": "Epochs: 30, LR: 0.0001, Batch size: 128"
+       },
+       "init": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1301_temiz.log:3",
+        "init_key": "resnet18_a1_in1k",
+        "timm_name": "resnet18.a1_in1k",
+        "source_file": "models/timm_agirliklar/resnet18.a1_in1k/model.safetensors",
+        "source_sha256": "80c49dee3da4822c009c5a7fe591e9223c5a2cfcf95a4067ca4dfb5a7b89c612",
+        "n_loaded": 120,
+        "n_target_keys": 122,
+        "missing_nonhead": [],
+        "unexpected_nonhead": [],
+        "shape_mismatch": [],
+        "head_keys_skipped": [
+         "fc.bias",
+         "fc.weight"
+        ],
+        "pretrained_cfg_mean": [
+         0.485,
+         0.456,
+         0.406
+        ],
+        "pretrained_cfg_std": [
+         0.229,
+         0.224,
+         0.225
+        ],
+        "norm_matches_cfg": true
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1301_temiz.log:4",
+        "metin": "Optimizer: adamw, LR schedule: cosine"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1301_temiz.log:7",
+        "metin": "Using AdamW optimizer (forced, lr=0.0001, wd=0.05)"
+       }
+      }
+     },
+     "AT": {
+      "komut": "python -m cli.main train adversarial -m resnet18_224_in1k -d adversarial_training -p models/q1/konsey/R224_IN_s1301/resnet18_224_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1301 -o models/q1/konsey/R224_IN_s1301 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:54",
+      "model_anahtari": "resnet18_224_in1k",
+      "model_sinifi": "CIFAR10ResNet18R224IN1k",
+      "model_sinifi_kaynagi": "src/models/r224.py:146",
+      "epok_bayragi": 100,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:54)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:54)",
+      "batch": 64,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:54)",
+      "tohum": 1301,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/adversarial_trainer.py:165",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 100,
+       "kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)"
+      },
+      "epok_tavani": 80,
+      "epok_tavani_kaynagi": "--stop-epoch komut (logs/konsey_zincir.log:54)",
+      "sabir": 20,
+      "sabir_kaynagi": "komut (logs/konsey_zincir.log:54)",
+      "savunma": "adversarial_training",
+      "eps": 0.03137254901960784,
+      "eps_x255": 8.0,
+      "eps_ifade": "8/255",
+      "eps_kaynagi": "varsayilan (cli/train.py:144)",
+      "alpha": 0.00784313725490196,
+      "alpha_x255": 2.0,
+      "alpha_ifade": "2/255",
+      "alpha_kaynagi": "varsayilan (cli/train.py:145)",
+      "pgd_adim": 10,
+      "pgd_adim_kaynagi": "varsayilan (cli/train.py:146)",
+      "gradyan_kirpma": 10.0,
+      "gradyan_kirpma_kaynagi": "varsayilan (cli/train.py:166)",
+      "kaydet_her": 10,
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:99",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1301_AT.log:2",
+        "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1301_AT.log:5",
+        "metin": "Using AdamW optimizer (forced, lr=0.001, wd=0.05)"
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1301_AT.log:6",
+        "metin": "Optimizer: adamw; stop_epoch: 80 (LR cizelgesi 100 epok uzerinden)"
+       },
+       "erken_durma_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1301_AT.log:8",
+        "metin": "Early stopping enabled (patience=20)"
+       }
+      }
+     }
+    },
+    "R224_IN_s1302": {
+     "temiz": {
+      "komut": "python -m cli.main train clean -m resnet18_224_in1k --init-weights resnet18_a1_in1k --optimizer adamw --lr-schedule cosine -e 30 --lr 0.0001 -b 128 --seed 1302 --val-indices data/val_split_indices.json -o models/q1/konsey/R224_IN_s1302 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:66",
+      "model_anahtari": "resnet18_224_in1k",
+      "model_sinifi": "CIFAR10ResNet18R224IN1k",
+      "model_sinifi_kaynagi": "src/models/r224.py:146",
+      "epok_bayragi": 30,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:66)",
+      "lr_bayragi": 0.0001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:66)",
+      "batch": 128,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:66)",
+      "tohum": 1302,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.0001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/trainer.py:91",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 30,
+       "kaynak": "komut (logs/konsey_zincir.log:66); src/training/trainer.py:131"
+      },
+      "baslatma_bayragi": "resnet18_a1_in1k",
+      "baslatma_kaynagi": "komut (logs/konsey_zincir.log:66)",
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:91",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1302_temiz.log:2",
+        "metin": "Epochs: 30, LR: 0.0001, Batch size: 128"
+       },
+       "init": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1302_temiz.log:3",
+        "init_key": "resnet18_a1_in1k",
+        "timm_name": "resnet18.a1_in1k",
+        "source_file": "models/timm_agirliklar/resnet18.a1_in1k/model.safetensors",
+        "source_sha256": "80c49dee3da4822c009c5a7fe591e9223c5a2cfcf95a4067ca4dfb5a7b89c612",
+        "n_loaded": 120,
+        "n_target_keys": 122,
+        "missing_nonhead": [],
+        "unexpected_nonhead": [],
+        "shape_mismatch": [],
+        "head_keys_skipped": [
+         "fc.bias",
+         "fc.weight"
+        ],
+        "pretrained_cfg_mean": [
+         0.485,
+         0.456,
+         0.406
+        ],
+        "pretrained_cfg_std": [
+         0.229,
+         0.224,
+         0.225
+        ],
+        "norm_matches_cfg": true
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1302_temiz.log:4",
+        "metin": "Optimizer: adamw, LR schedule: cosine"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1302_temiz.log:7",
+        "metin": "Using AdamW optimizer (forced, lr=0.0001, wd=0.05)"
+       }
+      }
+     },
+     "AT": {
+      "komut": "python -m cli.main train adversarial -m resnet18_224_in1k -d adversarial_training -p models/q1/konsey/R224_IN_s1302/resnet18_224_in1k/clean/best.pth --optimizer adamw -e 100 --stop-epoch 80 --lr 0.001 -b 64 --patience 20 --val-indices data/val_split_indices.json --save-every 10 --seed 1302 -o models/q1/konsey/R224_IN_s1302 --resume",
+      "komut_kaynagi": "logs/konsey_zincir.log:69",
+      "model_anahtari": "resnet18_224_in1k",
+      "model_sinifi": "CIFAR10ResNet18R224IN1k",
+      "model_sinifi_kaynagi": "src/models/r224.py:146",
+      "epok_bayragi": 100,
+      "epok_kaynagi": "komut (logs/konsey_zincir.log:69)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (logs/konsey_zincir.log:69)",
+      "batch": 64,
+      "batch_kaynagi": "komut (logs/konsey_zincir.log:69)",
+      "tohum": 1302,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer adamw (zorla)",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/adversarial_trainer.py:165",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 100,
+       "kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)"
+      },
+      "epok_tavani": 80,
+      "epok_tavani_kaynagi": "--stop-epoch komut (logs/konsey_zincir.log:69)",
+      "sabir": 20,
+      "sabir_kaynagi": "komut (logs/konsey_zincir.log:69)",
+      "savunma": "adversarial_training",
+      "eps": 0.03137254901960784,
+      "eps_x255": 8.0,
+      "eps_ifade": "8/255",
+      "eps_kaynagi": "varsayilan (cli/train.py:144)",
+      "alpha": 0.00784313725490196,
+      "alpha_x255": 2.0,
+      "alpha_ifade": "2/255",
+      "alpha_kaynagi": "varsayilan (cli/train.py:145)",
+      "pgd_adim": 10,
+      "pgd_adim_kaynagi": "varsayilan (cli/train.py:146)",
+      "gradyan_kirpma": 10.0,
+      "gradyan_kirpma_kaynagi": "varsayilan (cli/train.py:166)",
+      "kaydet_her": 10,
+      "kuyruk_sablonu": "scripts/konsey_b3_kuyruk.sh:99",
+      "sablonla_ayni_bayraklar": true,
+      "gunluk": {
+       "epochs_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1302_AT.log:2",
+        "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+       },
+       "eniyileyici_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1302_AT.log:5",
+        "metin": "Using AdamW optimizer (forced, lr=0.001, wd=0.05)"
+       },
+       "optimizer_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1302_AT.log:6",
+        "metin": "Optimizer: adamw; stop_epoch: 80 (LR cizelgesi 100 epok uzerinden)"
+       },
+       "erken_durma_satiri": {
+        "kaynak": "logs/konsey_b3/R224_IN_s1302_AT.log:8",
+        "metin": "Early stopping enabled (patience=20)"
+       }
+      }
+     }
+    }
+   },
+   "girdi_hatti": {
+    "model": "timm resnet18",
+    "girdi": "32->224 bilinear buyutme",
+    "normalizasyon": "model ici ImageNet (pretrained_cfg)",
+    "baslatma": "resnet18.a1_in1k",
+    "kaynak": [
+     "src/models/r224.py:49",
+     "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:34"
+    ],
+    "imagenet_ortalama": [
+     0.485,
+     0.456,
+     0.406
+    ],
+    "imagenet_sd": [
+     0.229,
+     0.224,
+     0.225
+    ],
+    "norm_cfg_ile_ayni": true,
+    "agirlik_dosyasi_sha256": "80c49dee3da4822c009c5a7fe591e9223c5a2cfcf95a4067ca4dfb5a7b89c612",
+    "yuklenen_anahtar": "120/122",
+    "init_kaynak": "logs/konsey_b3/R224_IN_s1301_temiz.log:3"
+   }
+  },
+  "V-scr": {
+   "blok": "C1 (mevcut)",
+   "on_kayit_satiri": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:31",
+   "on_kayit_metni": "| V-scr | ViT-Tiny (timm `vit_tiny_patch16_224`), 32→224 bilinear büyütme, [0, 1] değer aralığı, normalizasyon yok | rastgele | C1 ViT tarifi, 200 epok | 2001, 2002, 2003 (mevcut C1) |",
+   "hucre_tablosu_tanimi": "C1 ViT-Tiny AT, 32->224, rastgele baslatma (mevcut)",
+   "tohumlar": [
+    2001,
+    2002,
+    2003
+   ],
+   "kosular": {
+    "sablon": {
+     "temiz": {
+      "komut": "python -m cli.main train clean -m vit_tiny -e 200 --lr 0.001 -b 128 --seed 2001 --val-indices data/val_split_indices.json -o \"models/c1/vit_tiny_s2001\"",
+      "komut_kaynagi": "scripts/run_c1_pipeline.sh:58-60",
+      "model_anahtari": "vit_tiny",
+      "model_sinifi": "CIFAR10ViTTiny",
+      "model_sinifi_kaynagi": "src/models/vit.py:361",
+      "epok_bayragi": 200,
+      "epok_kaynagi": "komut (scripts/run_c1_pipeline.sh:58-60)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (scripts/run_c1_pipeline.sh:58-60)",
+      "batch": 128,
+      "batch_kaynagi": "komut (scripts/run_c1_pipeline.sh:58-60)",
+      "tohum": null,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer auto; sinif CIFAR10ViTTiny ViT kuralina uyar",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_vit_lr_tavani": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/trainer.py:104; src/training/trainer.py:112; src/training/trainer.py:108",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 200,
+       "kaynak": "varsayilan (cli/train.py:45); src/training/trainer.py:131"
+      },
+      "baslatma_bayragi": "none",
+      "baslatma_kaynagi": "varsayilan (cli/train.py:40)",
+      "komut_sablonu": "python -m cli.main train clean -m vit_tiny -e 200 --lr 0.001 -b 128 --seed \"$VSEED\" --val-indices data/val_split_indices.json -o \"models/c1/vit_tiny_s${VSEED}\"",
+      "tohum_notu": "sablonda $RSEED/$VSEED; tohumlar hucre tablosundan (raporlar/konsey_2026-10-29/hucre_tablosu.json modeller.<m>.tohum)",
+      "gunlukler": {
+       "2001": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_clean_vit_2001.log:2",
+         "metin": "Epochs: 200, LR: 0.001, Batch size: 128"
+        },
+        "eniyileyici_satiri": {
+         "kaynak": "logs/C1_clean_vit_2001.log:5",
+         "metin": "Using AdamW optimizer for ViT (lr=0.001)"
+        }
+       },
+       "2002": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_clean_vit_2002.log:2",
+         "metin": "Epochs: 200, LR: 0.001, Batch size: 128"
+        },
+        "eniyileyici_satiri": {
+         "kaynak": "logs/C1_clean_vit_2002.log:5",
+         "metin": "Using AdamW optimizer for ViT (lr=0.001)"
+        }
+       },
+       "2003": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_clean_vit_2003.log:2",
+         "metin": "Epochs: 200, LR: 0.001, Batch size: 128"
+        },
+        "eniyileyici_satiri": {
+         "kaynak": "logs/C1_clean_vit_2003.log:5",
+         "metin": "Using AdamW optimizer for ViT (lr=0.001)"
+        }
+       }
+      }
+     },
+     "AT": {
+      "komut": "python -m cli.main train adversarial -m vit_tiny -d adversarial_training -p \"models/c1/vit_tiny_s2001/vit_tiny/clean/best.pth\" -e 100 --lr 0.001 -b 64 --patience 20 --seed 2001 --val-indices data/val_split_indices.json -o \"models/c1/vit_tiny_s2001\"",
+      "komut_kaynagi": "scripts/run_c1_pipeline.sh:62-66",
+      "model_anahtari": "vit_tiny",
+      "model_sinifi": "CIFAR10ViTTiny",
+      "model_sinifi_kaynagi": "src/models/vit.py:361",
+      "epok_bayragi": 100,
+      "epok_kaynagi": "komut (scripts/run_c1_pipeline.sh:62-66)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (scripts/run_c1_pipeline.sh:62-66)",
+      "batch": 64,
+      "batch_kaynagi": "komut (scripts/run_c1_pipeline.sh:62-66)",
+      "tohum": null,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "AdamW",
+      "eniyileyici_secim": "--optimizer auto; sinif CIFAR10ViTTiny ViT kuralina uyar",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_vit_lr_tavani": 0.001,
+      "eniyileyici_agirlik_azaltma": 0.05,
+      "eniyileyici_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:184; cli/train.py:173",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 100,
+       "kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)"
+      },
+      "epok_tavani": 100,
+      "epok_tavani_kaynagi": "--stop-epoch yok (varsayilan 0, cli/train.py:179); tavan = -e",
+      "sabir": 20,
+      "sabir_kaynagi": "komut (scripts/run_c1_pipeline.sh:62-66)",
+      "savunma": "adversarial_training",
+      "eps": 0.03137254901960784,
+      "eps_x255": 8.0,
+      "eps_ifade": "8/255",
+      "eps_kaynagi": "varsayilan (cli/train.py:144)",
+      "alpha": 0.00784313725490196,
+      "alpha_x255": 2.0,
+      "alpha_ifade": "2/255",
+      "alpha_kaynagi": "varsayilan (cli/train.py:145)",
+      "pgd_adim": 10,
+      "pgd_adim_kaynagi": "varsayilan (cli/train.py:146)",
+      "gradyan_kirpma": 10.0,
+      "gradyan_kirpma_kaynagi": "varsayilan (cli/train.py:166)",
+      "kaydet_her": 0,
+      "komut_sablonu": "python -m cli.main train adversarial -m vit_tiny -d adversarial_training -p \"models/c1/vit_tiny_s${VSEED}/vit_tiny/clean/best.pth\" -e 100 --lr 0.001 -b 64 --patience 20 --seed \"$VSEED\" --val-indices data/val_split_indices.json -o \"models/c1/vit_tiny_s${VSEED}\"",
+      "tohum_notu": "sablonda $RSEED/$VSEED; tohumlar hucre tablosundan (raporlar/konsey_2026-10-29/hucre_tablosu.json modeller.<m>.tohum)",
+      "gunlukler": {
+       "2001": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_at_vit_2001.log:2",
+         "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+        },
+        "eniyileyici_satiri": {
+         "kaynak": "logs/C1_at_vit_2001.log:5",
+         "metin": "Using AdamW optimizer for ViT (lr=0.001)"
+        },
+        "erken_durma_satiri": {
+         "kaynak": "logs/C1_at_vit_2001.log:6",
+         "metin": "Early stopping enabled (patience=20)"
+        }
+       },
+       "2002": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_at_vit_2002.log:2",
+         "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+        },
+        "eniyileyici_satiri": {
+         "kaynak": "logs/C1_at_vit_2002.log:5",
+         "metin": "Using AdamW optimizer for ViT (lr=0.001)"
+        },
+        "erken_durma_satiri": {
+         "kaynak": "logs/C1_at_vit_2002.log:6",
+         "metin": "Early stopping enabled (patience=20)"
+        }
+       },
+       "2003": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_at_vit_2003.log:2",
+         "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+        },
+        "eniyileyici_satiri": {
+         "kaynak": "logs/C1_at_vit_2003.log:5",
+         "metin": "Using AdamW optimizer for ViT (lr=0.001)"
+        },
+        "erken_durma_satiri": {
+         "kaynak": "logs/C1_at_vit_2003.log:6",
+         "metin": "Early stopping enabled (patience=20)"
+        }
+       }
+      }
+     }
+    }
+   },
+   "girdi_hatti": {
+    "model": "timm vit_tiny_patch16_224",
+    "girdi": "32->224 bilinear buyutme",
+    "normalizasyon": "yok",
+    "baslatma": "rastgele",
+    "kaynak": [
+     "src/models/vit.py:386",
+     "src/models/vit.py:392",
+     "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md:31"
+    ]
+   },
+   "kosu_ani_kodu": {
+    "commit": "77ae2590c08d8fe1fda976c59d9b5121f32cc51c",
+    "commit_kisa": "77ae259",
+    "dayanak": {
+     "commit": "77ae2590c08d8fe1fda976c59d9b5121f32cc51c",
+     "commit_utc": "2026-07-29T01:12:33+00:00",
+     "commit_basligi": "Rev2 C1 altyapisi: leak-fix sabit val bolmesi (--val-indices), 3-seed pipeline + izleyici",
+     "run_c1_pipeline_son_degistiren_commit": "77ae259",
+     "commit_ile_degisen_dosyalar": [
+      "cli/train.py",
+      "data/val_split_indices.json",
+      "experiments/rev2/make_val_split.py",
+      "scripts/c1_pgd_eval.py",
+      "scripts/run_c1_pipeline.sh",
+      "scripts/watch_c1_pipeline.sh",
+      "src/data/datasets.py"
+     ],
+     "egitim_dosyalari_commitle_degismedi": true,
+     "val_indices_secenegi": {
+      "77ae259_oncesi": false,
+      "77ae259": true,
+      "not": "C1 komutlari --val-indices tasir; secenek cli/train.py'ye bu commit'le eklenmistir"
+     },
+     "zaman_kaynagi": "TIMING.md",
+     "zaman_kaynagi_utc_denetimi_en_buyuk_fark_s": 0.509068,
+     "zaman_kaynagi_utc_denetimi": "11 adimda TIMING.md bitis saati (UTC kabul) ile gunluk mtime'i karsilastirildi",
+     "ilk_C1_egitim_adimi_baslangic_utc": "2026-07-29T01:11:17+00:00",
+     "ilk_adim_kaynagi": "TIMING.md:5",
+     "ilk_adim_baslangici_commit_eksi_s": -76,
+     "son_C1_egitim_adimi_bitis_utc": "2026-07-30T18:00:21+00:00",
+     "son_adim_kaynagi": "TIMING.md:21",
+     "izlenen_dosyalari_sonra_degistiren_ilk_commit": {
+      "commit": "f633190",
+      "utc": "2026-08-13T19:46:13+00:00"
+     },
+     "son_egitim_adimi_sonraki_committen_once": true,
+     "izlenen_dosyalar": [
+      "cli/train.py",
+      "src/training/trainer.py",
+      "src/training/adversarial_trainer.py",
+      "src/defenses/adversarial_training.py",
+      "src/data/datasets.py",
+      "scripts/run_c1_pipeline.sh",
+      "src/models/vit.py",
+      "src/models/resnet.py",
+      "src/models/r224.py"
+     ],
+     "not": "Ilk C1 egitim adimi commit zamanindan ilk_adim_baslangici_commit_eksi_s saniye farkla, yani commit'ten hemen once baslamistir (commit mesaji kosularin kuyruga alindigini yazar); --val-indices secenegi bu commit'le geldiginden ve egitim dosyalari (trainer, adversarial_trainer, savunma, modeller) bu commit'te degismediginden kosu anindaki kod 77ae259 icerigidir. Son C1 egitim adimi izlenen dosyalari degistiren bir sonraki commit'ten once bitmistir."
+    },
+    "karsilastirma": [
+     {
+      "asama": "temiz",
+      "ad": "model_sinifi",
+      "kosu_ani": "CIFAR10ViTTiny",
+      "kosu_ani_kaynagi": "git:77ae259:src/models/vit.py:284",
+      "bugunku_tarif": "CIFAR10ViTTiny",
+      "bugunku_kaynak": "src/models/vit.py:361",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "eniyileyici",
+      "kosu_ani": "AdamW",
+      "kosu_ani_kaynagi": "git:77ae259:src/training/trainer.py:83; git:77ae259:src/training/trainer.py:84",
+      "bugunku_tarif": "AdamW",
+      "bugunku_kaynak": "src/training/trainer.py:104; src/training/trainer.py:112; src/training/trainer.py:108",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "lr_etkin",
+      "kosu_ani": 0.001,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/trainer.py:88",
+      "bugunku_tarif": 0.001,
+      "bugunku_kaynak": "src/training/trainer.py:104; src/training/trainer.py:112; src/training/trainer.py:108",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "agirlik_azaltma",
+      "kosu_ani": 0.05,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/trainer.py:92",
+      "bugunku_tarif": 0.05,
+      "bugunku_kaynak": "src/training/trainer.py:104; src/training/trainer.py:112; src/training/trainer.py:108",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "lr_cizelgesi",
+      "kosu_ani": "cosine, T_max = -e (200)",
+      "kosu_ani_kaynagi": "git:77ae259:src/training/trainer.py:108",
+      "bugunku_tarif": "cosine, T_max 200",
+      "bugunku_kaynak": "varsayilan (cli/train.py:45); src/training/trainer.py:131",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "baslatma",
+      "kosu_ani": "rastgele (--init-weights secenegi yok)",
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py (secenek listesi)",
+      "bugunku_tarif": "none",
+      "bugunku_kaynak": "varsayilan (cli/train.py:40)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "model_sinifi",
+      "kosu_ani": "CIFAR10ViTTiny",
+      "kosu_ani_kaynagi": "git:77ae259:src/models/vit.py:284",
+      "bugunku_tarif": "CIFAR10ViTTiny",
+      "bugunku_kaynak": "src/models/vit.py:361",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "eniyileyici",
+      "kosu_ani": "AdamW",
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:137; git:77ae259:src/training/adversarial_trainer.py:138",
+      "bugunku_tarif": "AdamW",
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:184; cli/train.py:173",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "lr_etkin",
+      "kosu_ani": 0.001,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:141",
+      "bugunku_tarif": 0.001,
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:184; cli/train.py:173",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "agirlik_azaltma",
+      "kosu_ani": 0.05,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:145",
+      "bugunku_tarif": 0.05,
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:184; cli/train.py:173",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "lr_cizelgesi",
+      "kosu_ani": "cosine, T_max = -e (100)",
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:160",
+      "bugunku_tarif": "cosine, T_max 100",
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "epok_tavani",
+      "kosu_ani": "-e (100); --stop-epoch secenegi yok",
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py (secenek listesi)",
+      "bugunku_tarif": 100,
+      "bugunku_kaynak": "--stop-epoch yok (varsayilan 0, cli/train.py:179); tavan = -e",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "eps",
+      "kosu_ani": 0.03137254901960784,
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py:92",
+      "bugunku_tarif": 0.03137254901960784,
+      "bugunku_kaynak": "varsayilan (cli/train.py:144)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "alpha",
+      "kosu_ani": 0.00784313725490196,
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py:93",
+      "bugunku_tarif": 0.00784313725490196,
+      "bugunku_kaynak": "varsayilan (cli/train.py:145)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "pgd_adim",
+      "kosu_ani": 10,
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py:94",
+      "bugunku_tarif": 10,
+      "bugunku_kaynak": "varsayilan (cli/train.py:146)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "gradyan_kirpma",
+      "kosu_ani": 10.0,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:215 (sabit kod)",
+      "bugunku_tarif": 10.0,
+      "bugunku_kaynak": "varsayilan (cli/train.py:166)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "mix_ratio",
+      "kosu_ani": 0.5,
+      "kosu_ani_kaynagi": "git:77ae259:src/defenses/adversarial_training.py:31",
+      "bugunku_tarif": 0.5,
+      "bugunku_kaynak": "ortak.at_kaybi",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "pgd_rastgele_baslangic",
+      "kosu_ani": true,
+      "kosu_ani_kaynagi": "git:77ae259:src/defenses/adversarial_training.py:30",
+      "bugunku_tarif": true,
+      "bugunku_kaynak": "ortak.at_kaybi",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "erken_durma_min_delta",
+      "kosu_ani": 0.1,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:52",
+      "bugunku_tarif": 0.1,
+      "bugunku_kaynak": "ortak.erken_durma",
+      "ayni": true
+     }
+    ],
+    "hepsi_ayni": true,
+    "kosu_aninda_olmayan_cli_secenekleri": [
+     "--optimizer",
+     "--lr-schedule",
+     "--init-weights",
+     "--grad-clip",
+     "--stop-epoch",
+     "--save-every",
+     "--vit-lr-cap",
+     "--lr-warmup"
+    ],
+    "eniyileyici_gozlemi": {
+     "temiz": {
+      "durum": "gunlukte gozlendi",
+      "gunluk_satirlari": {
+       "2001": "logs/C1_clean_vit_2001.log:5",
+       "2002": "logs/C1_clean_vit_2002.log:5",
+       "2003": "logs/C1_clean_vit_2003.log:5"
+      }
+     },
+     "AT": {
+      "durum": "gunlukte gozlendi",
+      "gunluk_satirlari": {
+       "2001": "logs/C1_at_vit_2001.log:5",
+       "2002": "logs/C1_at_vit_2002.log:5",
+       "2003": "logs/C1_at_vit_2003.log:5"
+      }
+     }
+    },
+    "not": "Bu hucrenin kosular.sablon.* alanlarindaki 'varsayilan (...)' kaynaklari bugunku kod satirlarini gosterir. Kosu anindaki kod 77ae259'dur; bugun var olan secenekler listesi (kosu_aninda_olmayan_cli_secenekleri) o surumde yoktu ve davranis sabit kodla belirleniyordu. 'karsilastirma' her degeri 77ae259 metninden yeniden okur ve bugunku tarifle karsilastirir."
+   }
+  },
+  "C1-R32": {
+   "blok": "C1 (mevcut), kopru (S1, B2)",
+   "on_kayit_satiri": null,
+   "on_kayit_metni": null,
+   "hucre_tablosu_tanimi": "C1 ResNet-18 AT, 32x32 girdi (mevcut, kopru karsitligi S1 ve B2)",
+   "tohumlar": [
+    1001,
+    1002,
+    1003
+   ],
+   "kosular": {
+    "sablon": {
+     "temiz": {
+      "komut": "python -m cli.main train clean -m resnet18 -e 200 --lr 0.1 -b 128 --seed 1001 --val-indices data/val_split_indices.json -o \"models/c1/resnet18_s1001\"",
+      "komut_kaynagi": "scripts/run_c1_pipeline.sh:46-48",
+      "model_anahtari": "resnet18",
+      "model_sinifi": "CIFAR10ResNet18",
+      "model_sinifi_kaynagi": "src/models/resnet.py:13",
+      "epok_bayragi": 200,
+      "epok_kaynagi": "komut (scripts/run_c1_pipeline.sh:46-48)",
+      "lr_bayragi": 0.1,
+      "lr_kaynagi": "komut (scripts/run_c1_pipeline.sh:46-48)",
+      "batch": 128,
+      "batch_kaynagi": "komut (scripts/run_c1_pipeline.sh:46-48)",
+      "tohum": null,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "SGD",
+      "eniyileyici_secim": "--optimizer auto; sinif CIFAR10ResNet18 ViT kuralina uymaz",
+      "eniyileyici_lr_etkin": 0.1,
+      "eniyileyici_momentum": 0.9,
+      "eniyileyici_agirlik_azaltma": 0.0005,
+      "eniyileyici_kaynak": "src/training/trainer.py:104; src/training/trainer.py:33; src/training/trainer.py:34",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 200,
+       "kaynak": "varsayilan (cli/train.py:45); src/training/trainer.py:131"
+      },
+      "baslatma_bayragi": "none",
+      "baslatma_kaynagi": "varsayilan (cli/train.py:40)",
+      "komut_sablonu": "python -m cli.main train clean -m resnet18 -e 200 --lr 0.1 -b 128 --seed \"$RSEED\" --val-indices data/val_split_indices.json -o \"models/c1/resnet18_s${RSEED}\"",
+      "tohum_notu": "sablonda $RSEED/$VSEED; tohumlar hucre tablosundan (raporlar/konsey_2026-10-29/hucre_tablosu.json modeller.<m>.tohum)",
+      "gunlukler": {
+       "1001": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_clean_resnet_1001.log:2",
+         "metin": "Epochs: 200, LR: 0.1, Batch size: 128"
+        }
+       },
+       "1002": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_clean_resnet_1002.log:2",
+         "metin": "Epochs: 200, LR: 0.1, Batch size: 128"
+        }
+       },
+       "1003": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_clean_resnet_1003.log:2",
+         "metin": "Epochs: 200, LR: 0.1, Batch size: 128"
+        }
+       }
+      }
+     },
+     "AT": {
+      "komut": "python -m cli.main train adversarial -m resnet18 -d adversarial_training -p \"models/c1/resnet18_s1001/resnet18/clean/best.pth\" -e 100 --lr 0.001 -b 128 --patience 20 --seed 1001 --val-indices data/val_split_indices.json -o \"models/c1/resnet18_s1001\"",
+      "komut_kaynagi": "scripts/run_c1_pipeline.sh:50-54",
+      "model_anahtari": "resnet18",
+      "model_sinifi": "CIFAR10ResNet18",
+      "model_sinifi_kaynagi": "src/models/resnet.py:13",
+      "epok_bayragi": 100,
+      "epok_kaynagi": "komut (scripts/run_c1_pipeline.sh:50-54)",
+      "lr_bayragi": 0.001,
+      "lr_kaynagi": "komut (scripts/run_c1_pipeline.sh:50-54)",
+      "batch": 128,
+      "batch_kaynagi": "komut (scripts/run_c1_pipeline.sh:50-54)",
+      "tohum": null,
+      "dogrulama_bolmesi": "data/val_split_indices.json",
+      "eniyileyici_eniyileyici": "SGD",
+      "eniyileyici_secim": "--optimizer auto; sinif CIFAR10ResNet18 ViT kuralina uymaz",
+      "eniyileyici_lr_etkin": 0.001,
+      "eniyileyici_momentum": 0.9,
+      "eniyileyici_agirlik_azaltma": 0.0005,
+      "eniyileyici_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:41; src/training/adversarial_trainer.py:42",
+      "lr_cizelgesi": {
+       "tur": "cosine",
+       "T_max_epok": 100,
+       "kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)"
+      },
+      "epok_tavani": 100,
+      "epok_tavani_kaynagi": "--stop-epoch yok (varsayilan 0, cli/train.py:179); tavan = -e",
+      "sabir": 20,
+      "sabir_kaynagi": "komut (scripts/run_c1_pipeline.sh:50-54)",
+      "savunma": "adversarial_training",
+      "eps": 0.03137254901960784,
+      "eps_x255": 8.0,
+      "eps_ifade": "8/255",
+      "eps_kaynagi": "varsayilan (cli/train.py:144)",
+      "alpha": 0.00784313725490196,
+      "alpha_x255": 2.0,
+      "alpha_ifade": "2/255",
+      "alpha_kaynagi": "varsayilan (cli/train.py:145)",
+      "pgd_adim": 10,
+      "pgd_adim_kaynagi": "varsayilan (cli/train.py:146)",
+      "gradyan_kirpma": 10.0,
+      "gradyan_kirpma_kaynagi": "varsayilan (cli/train.py:166)",
+      "kaydet_her": 0,
+      "komut_sablonu": "python -m cli.main train adversarial -m resnet18 -d adversarial_training -p \"models/c1/resnet18_s${RSEED}/resnet18/clean/best.pth\" -e 100 --lr 0.001 -b 128 --patience 20 --seed \"$RSEED\" --val-indices data/val_split_indices.json -o \"models/c1/resnet18_s${RSEED}\"",
+      "tohum_notu": "sablonda $RSEED/$VSEED; tohumlar hucre tablosundan (raporlar/konsey_2026-10-29/hucre_tablosu.json modeller.<m>.tohum)",
+      "gunlukler": {
+       "1001": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_at_resnet_1001.log:2",
+         "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+        },
+        "erken_durma_satiri": {
+         "kaynak": "logs/C1_at_resnet_1001.log:5",
+         "metin": "Early stopping enabled (patience=20)"
+        }
+       },
+       "1002": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_at_resnet_1002.log:2",
+         "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+        },
+        "erken_durma_satiri": {
+         "kaynak": "logs/C1_at_resnet_1002.log:5",
+         "metin": "Early stopping enabled (patience=20)"
+        }
+       },
+       "1003": {
+        "epochs_satiri": {
+         "kaynak": "logs/C1_at_resnet_1003.log:2",
+         "metin": "Epochs: 100, LR: 0.001, eps: 0.0314"
+        },
+        "erken_durma_satiri": {
+         "kaynak": "logs/C1_at_resnet_1003.log:5",
+         "metin": "Early stopping enabled (patience=20)"
+        }
+       }
+      }
+     }
+    }
+   },
+   "girdi_hatti": {
+    "model": "CIFAR ResNet-18 (3x3 kok, maxpool yok)",
+    "girdi": "32x32 (buyutme yok)",
+    "normalizasyon": "yok (resnet.py'de normalizasyon ve buyutme satiri sayisi 0)",
+    "baslatma": "rastgele",
+    "kaynak": [
+     "src/models/resnet.py:18",
+     "raporlar/konsey_2026-10-29/hucre_tablosu.json hucreler.C1-R32"
+    ]
+   },
+   "kosu_ani_kodu": {
+    "commit": "77ae2590c08d8fe1fda976c59d9b5121f32cc51c",
+    "commit_kisa": "77ae259",
+    "dayanak": {
+     "commit": "77ae2590c08d8fe1fda976c59d9b5121f32cc51c",
+     "commit_utc": "2026-07-29T01:12:33+00:00",
+     "commit_basligi": "Rev2 C1 altyapisi: leak-fix sabit val bolmesi (--val-indices), 3-seed pipeline + izleyici",
+     "run_c1_pipeline_son_degistiren_commit": "77ae259",
+     "commit_ile_degisen_dosyalar": [
+      "cli/train.py",
+      "data/val_split_indices.json",
+      "experiments/rev2/make_val_split.py",
+      "scripts/c1_pgd_eval.py",
+      "scripts/run_c1_pipeline.sh",
+      "scripts/watch_c1_pipeline.sh",
+      "src/data/datasets.py"
+     ],
+     "egitim_dosyalari_commitle_degismedi": true,
+     "val_indices_secenegi": {
+      "77ae259_oncesi": false,
+      "77ae259": true,
+      "not": "C1 komutlari --val-indices tasir; secenek cli/train.py'ye bu commit'le eklenmistir"
+     },
+     "zaman_kaynagi": "TIMING.md",
+     "zaman_kaynagi_utc_denetimi_en_buyuk_fark_s": 0.509068,
+     "zaman_kaynagi_utc_denetimi": "11 adimda TIMING.md bitis saati (UTC kabul) ile gunluk mtime'i karsilastirildi",
+     "ilk_C1_egitim_adimi_baslangic_utc": "2026-07-29T01:11:17+00:00",
+     "ilk_adim_kaynagi": "TIMING.md:5",
+     "ilk_adim_baslangici_commit_eksi_s": -76,
+     "son_C1_egitim_adimi_bitis_utc": "2026-07-30T18:00:21+00:00",
+     "son_adim_kaynagi": "TIMING.md:21",
+     "izlenen_dosyalari_sonra_degistiren_ilk_commit": {
+      "commit": "f633190",
+      "utc": "2026-08-13T19:46:13+00:00"
+     },
+     "son_egitim_adimi_sonraki_committen_once": true,
+     "izlenen_dosyalar": [
+      "cli/train.py",
+      "src/training/trainer.py",
+      "src/training/adversarial_trainer.py",
+      "src/defenses/adversarial_training.py",
+      "src/data/datasets.py",
+      "scripts/run_c1_pipeline.sh",
+      "src/models/vit.py",
+      "src/models/resnet.py",
+      "src/models/r224.py"
+     ],
+     "not": "Ilk C1 egitim adimi commit zamanindan ilk_adim_baslangici_commit_eksi_s saniye farkla, yani commit'ten hemen once baslamistir (commit mesaji kosularin kuyruga alindigini yazar); --val-indices secenegi bu commit'le geldiginden ve egitim dosyalari (trainer, adversarial_trainer, savunma, modeller) bu commit'te degismediginden kosu anindaki kod 77ae259 icerigidir. Son C1 egitim adimi izlenen dosyalari degistiren bir sonraki commit'ten once bitmistir."
+    },
+    "karsilastirma": [
+     {
+      "asama": "temiz",
+      "ad": "model_sinifi",
+      "kosu_ani": "CIFAR10ResNet18",
+      "kosu_ani_kaynagi": "git:77ae259:src/models/resnet.py:13",
+      "bugunku_tarif": "CIFAR10ResNet18",
+      "bugunku_kaynak": "src/models/resnet.py:13",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "eniyileyici",
+      "kosu_ani": "SGD",
+      "kosu_ani_kaynagi": "git:77ae259:src/training/trainer.py:83; git:77ae259:src/training/trainer.py:84",
+      "bugunku_tarif": "SGD",
+      "bugunku_kaynak": "src/training/trainer.py:104; src/training/trainer.py:33; src/training/trainer.py:34",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "lr_etkin",
+      "kosu_ani": 0.1,
+      "kosu_ani_kaynagi": "komut (scripts/run_c1_pipeline.sh:46-48); git:77ae259:src/training/trainer.py:98",
+      "bugunku_tarif": 0.1,
+      "bugunku_kaynak": "src/training/trainer.py:104; src/training/trainer.py:33; src/training/trainer.py:34",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "momentum",
+      "kosu_ani": 0.9,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/trainer.py:33",
+      "bugunku_tarif": 0.9,
+      "bugunku_kaynak": "src/training/trainer.py:104; src/training/trainer.py:33; src/training/trainer.py:34",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "agirlik_azaltma",
+      "kosu_ani": 0.0005,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/trainer.py:34",
+      "bugunku_tarif": 0.0005,
+      "bugunku_kaynak": "src/training/trainer.py:104; src/training/trainer.py:33; src/training/trainer.py:34",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "lr_cizelgesi",
+      "kosu_ani": "cosine, T_max = -e (200)",
+      "kosu_ani_kaynagi": "git:77ae259:src/training/trainer.py:108",
+      "bugunku_tarif": "cosine, T_max 200",
+      "bugunku_kaynak": "varsayilan (cli/train.py:45); src/training/trainer.py:131",
+      "ayni": true
+     },
+     {
+      "asama": "temiz",
+      "ad": "baslatma",
+      "kosu_ani": "rastgele (--init-weights secenegi yok)",
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py (secenek listesi)",
+      "bugunku_tarif": "none",
+      "bugunku_kaynak": "varsayilan (cli/train.py:40)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "model_sinifi",
+      "kosu_ani": "CIFAR10ResNet18",
+      "kosu_ani_kaynagi": "git:77ae259:src/models/resnet.py:13",
+      "bugunku_tarif": "CIFAR10ResNet18",
+      "bugunku_kaynak": "src/models/resnet.py:13",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "eniyileyici",
+      "kosu_ani": "SGD",
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:137; git:77ae259:src/training/adversarial_trainer.py:138",
+      "bugunku_tarif": "SGD",
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:41; src/training/adversarial_trainer.py:42",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "lr_etkin",
+      "kosu_ani": 0.001,
+      "kosu_ani_kaynagi": "komut (scripts/run_c1_pipeline.sh:50-54); git:77ae259:src/training/adversarial_trainer.py:150",
+      "bugunku_tarif": 0.001,
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:41; src/training/adversarial_trainer.py:42",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "momentum",
+      "kosu_ani": 0.9,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:41",
+      "bugunku_tarif": 0.9,
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:41; src/training/adversarial_trainer.py:42",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "agirlik_azaltma",
+      "kosu_ani": 0.0005,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:42",
+      "bugunku_tarif": 0.0005,
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:177; src/training/adversarial_trainer.py:41; src/training/adversarial_trainer.py:42",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "lr_cizelgesi",
+      "kosu_ani": "cosine, T_max = -e (100)",
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:160",
+      "bugunku_tarif": "cosine, T_max 100",
+      "bugunku_kaynak": "src/training/adversarial_trainer.py:212 (lr_warmup varsayilan 0, cli/train.py:171)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "epok_tavani",
+      "kosu_ani": "-e (100); --stop-epoch secenegi yok",
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py (secenek listesi)",
+      "bugunku_tarif": 100,
+      "bugunku_kaynak": "--stop-epoch yok (varsayilan 0, cli/train.py:179); tavan = -e",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "eps",
+      "kosu_ani": 0.03137254901960784,
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py:92",
+      "bugunku_tarif": 0.03137254901960784,
+      "bugunku_kaynak": "varsayilan (cli/train.py:144)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "alpha",
+      "kosu_ani": 0.00784313725490196,
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py:93",
+      "bugunku_tarif": 0.00784313725490196,
+      "bugunku_kaynak": "varsayilan (cli/train.py:145)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "pgd_adim",
+      "kosu_ani": 10,
+      "kosu_ani_kaynagi": "git:77ae259:cli/train.py:94",
+      "bugunku_tarif": 10,
+      "bugunku_kaynak": "varsayilan (cli/train.py:146)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "gradyan_kirpma",
+      "kosu_ani": 10.0,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:215 (sabit kod)",
+      "bugunku_tarif": 10.0,
+      "bugunku_kaynak": "varsayilan (cli/train.py:166)",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "mix_ratio",
+      "kosu_ani": 0.5,
+      "kosu_ani_kaynagi": "git:77ae259:src/defenses/adversarial_training.py:31",
+      "bugunku_tarif": 0.5,
+      "bugunku_kaynak": "ortak.at_kaybi",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "pgd_rastgele_baslangic",
+      "kosu_ani": true,
+      "kosu_ani_kaynagi": "git:77ae259:src/defenses/adversarial_training.py:30",
+      "bugunku_tarif": true,
+      "bugunku_kaynak": "ortak.at_kaybi",
+      "ayni": true
+     },
+     {
+      "asama": "AT",
+      "ad": "erken_durma_min_delta",
+      "kosu_ani": 0.1,
+      "kosu_ani_kaynagi": "git:77ae259:src/training/adversarial_trainer.py:52",
+      "bugunku_tarif": 0.1,
+      "bugunku_kaynak": "ortak.erken_durma",
+      "ayni": true
+     }
+    ],
+    "hepsi_ayni": true,
+    "kosu_aninda_olmayan_cli_secenekleri": [
+     "--optimizer",
+     "--lr-schedule",
+     "--init-weights",
+     "--grad-clip",
+     "--stop-epoch",
+     "--save-every",
+     "--vit-lr-cap",
+     "--lr-warmup"
+    ],
+    "eniyileyici_gozlemi": {
+     "temiz": {
+      "durum": "gunlukte eniyileyici satiri yok; eniyileyici koddan cikarilmistir",
+      "gunluk_satirlari": {
+       "1001": null,
+       "1002": null,
+       "1003": null
+      },
+      "kod": "git:77ae259:src/training/trainer.py:98-105 (SGD dali; yazdirma yok: True); momentum git:77ae259:src/training/trainer.py:33; agirlik azaltma git:77ae259:src/training/trainer.py:34",
+      "not": "SGD, momentum ve agirlik azaltma bu hucrede gunlukten okunmamis, kosu anindaki kodun (77ae259) eniyileyici kuralindan cikarilmistir; gunlukteki 'Epochs/LR' satiri ve AdamW satirinin yoklugu bu cikarimla tutarlidir."
+     },
+     "AT": {
+      "durum": "gunlukte eniyileyici satiri yok; eniyileyici koddan cikarilmistir",
+      "gunluk_satirlari": {
+       "1001": null,
+       "1002": null,
+       "1003": null
+      },
+      "kod": "git:77ae259:src/training/adversarial_trainer.py:150-157 (SGD dali; yazdirma yok: True); momentum git:77ae259:src/training/adversarial_trainer.py:41; agirlik azaltma git:77ae259:src/training/adversarial_trainer.py:42",
+      "not": "SGD, momentum ve agirlik azaltma bu hucrede gunlukten okunmamis, kosu anindaki kodun (77ae259) eniyileyici kuralindan cikarilmistir; gunlukteki 'Epochs/LR' satiri ve AdamW satirinin yoklugu bu cikarimla tutarlidir."
+     }
+    },
+    "not": "Bu hucrenin kosular.sablon.* alanlarindaki 'varsayilan (...)' kaynaklari bugunku kod satirlarini gosterir. Kosu anindaki kod 77ae259'dur; bugun var olan secenekler listesi (kosu_aninda_olmayan_cli_secenekleri) o surumde yoktu ve davranis sabit kodla belirleniyordu. 'karsilastirma' her degeri 77ae259 metninden yeniden okur ve bugunku tarifle karsilastirir."
+   }
+  }
+ },
+ "denetimler": {
+  "B3_AT_tavani_pilotla_ayni": true,
+  "B3_komutlar_kuyruk_sablonuyla_ayni": true,
+  "B3_hucre_ici_kosular_tohum_disinda_ozdes": true,
+  "gunluk_basliklari_cozumlenen_degerlerle_ayni": {
+   "denetlenen": 42,
+   "uyusan": 42
+  },
+  "AT_eps_alpha_adim_hucreler_arasi_ayni": true,
+  "C1_kosu_ani_kodu_bugunku_tarifle_ayni": true,
+  "V_scr_AT_tavani_ve_gerceklesen_durma": {
+   "V_scr_AT_tavani": 100,
+   "V_scr_AT_tavani_kaynagi": "--stop-epoch yok (varsayilan 0, cli/train.py:179); tavan = -e",
+   "V_scr_lr_cizelgesi_T_max": 100,
+   "B3_AT_tavani": 80,
+   "B3_AT_tavani_kaynagi": "results/q1/konsey_pilot_zaman.json secilen_tavan",
+   "gerceklesen_durma_epoklari_B3_tavaninin_altinda": true,
+   "foy_bolum": "M8.14",
+   "foy_sutun": "Durma epogu",
+   "foy_satirlari": {
+    "2001": 1383,
+    "2002": 1384,
+    "2003": 1385
+   },
+   "foy_satir_metni_sha256": {
+    "2001": "4eb07e70ade1043e36c75f8de4006aedc18bab07825f024252d256adcf07705e",
+    "2002": "63a610d2adb256d783458609a14d3236cdc168db856881600963d11a1df933da",
+    "2003": "dd71566e119ee07e0f6630312abbf70ee9e90764ca8e28e982134dc8a329d123"
+   },
+   "not": "Durma epoklari bu dosyaya kopyalanmaz (foy M8.14 satirlari). V-scr'nin AT tavani B3 tavanindan buyuktur, ancak uc tohumun her biri erken durmayla B3 tavanindan once durmustur; kosinus cizelgesi her iki tarifte T_max = 100 oldugundan B3 tavani V-scr kosularinin hicbirinde baglayici olmazdi."
+  }
+ },
+ "foy_referanslari": {
+  "foy_sha256": "00cc422f01c0d9641d46bebd544eea0cb2a915256906bacf77d7f898f937979f",
+  "B3_gerceklesen_epoklar": {
+   "V_IN_s2101": {
+    "foy_satiri": 1452,
+    "foy_baslik_satiri": 1450,
+    "sutun": "AT epok (kosulan)",
+    "satir_metni_sha256": "ae7f2d71a4381492e651c0267fdc737c78aac0f2303640f9948817e3d7b2ae45"
+   },
+   "R224_IN_s1301": {
+    "foy_satiri": 1453,
+    "foy_baslik_satiri": 1450,
+    "sutun": "AT epok (kosulan)",
+    "satir_metni_sha256": "1850e7031747eac94d7c38d5839a53d81098bcd3e2a1eb71bd041c728dd187c0"
+   },
+   "R224_scr_s1201": {
+    "foy_satiri": 1454,
+    "foy_baslik_satiri": 1450,
+    "sutun": "AT epok (kosulan)",
+    "satir_metni_sha256": "6b2e116b748fd0c8378a1a33a89765587ade21c0cf8e11dc65906952f71c0eb0"
+   },
+   "V_IN_s2102": {
+    "foy_satiri": 1455,
+    "foy_baslik_satiri": 1450,
+    "sutun": "AT epok (kosulan)",
+    "satir_metni_sha256": "0cb366f5b36c3b0d824c0ec02335ddd936275157762d0931d62c0fdb36769a87"
+   },
+   "R224_IN_s1302": {
+    "foy_satiri": 1456,
+    "foy_baslik_satiri": 1450,
+    "sutun": "AT epok (kosulan)",
+    "satir_metni_sha256": "c7a5c65405e60ee8596276a253bd44cc024b1250732a0c74e64e2af37de051b4"
+   },
+   "R224_scr_s1202": {
+    "foy_satiri": 1457,
+    "foy_baslik_satiri": 1450,
+    "sutun": "AT epok (kosulan)",
+    "satir_metni_sha256": "df6a01cb97b6a6a378788cd7390d1c42292dbd7aed31f2e42dc7e1239304414d"
+   }
+  },
+  "B3_tablo_basligi": {
+   "foy_satiri": 1450,
+   "satir_metni_sha256": "6deb42e3f0d3b83ae5c07b355c7ae73cbca76b597e0869a693f56c6fb66d6404",
+   "parca": "| Takma ad | Hucre | Tohum | Temiz epok | AT epok (kosulan)"
+  },
+  "C1_son_kontrol_noktasi_epoklari_bolumu": {
+   "foy_satiri": 1377,
+   "satir_metni_sha256": "029256cccd275a510a9941acd149088b9ac714df8a55383af7848c62857c03c9",
+   "parca": "### M8.14"
+  },
+  "B3_toplam_egitim_suresi": {
+   "foy_satiri": 1470,
+   "satir_metni_sha256": "b62b7cb28ea06020c526796aac4091fe24571ab979108c9becef8ec986748a57",
+   "parca": "Defterdeki temiz ve AT asama surelerinin toplami"
+  },
+  "not": "deger alanlari bilerek bos; sayilar foyun gosterilen satirlarindadir",
+  "C1_V_scr_durma_epoklari": {
+   "2001": {
+    "foy_satiri": 1383,
+    "satir_metni_sha256": "4eb07e70ade1043e36c75f8de4006aedc18bab07825f024252d256adcf07705e"
+   },
+   "2002": {
+    "foy_satiri": 1384,
+    "satir_metni_sha256": "63a610d2adb256d783458609a14d3236cdc168db856881600963d11a1df933da"
+   },
+   "2003": {
+    "foy_satiri": 1385,
+    "satir_metni_sha256": "dd71566e119ee07e0f6630312abbf70ee9e90764ca8e28e982134dc8a329d123"
+   }
+  }
+ },
+ "kanitlar": {
+  "is_vit": {
+   "dosya": "src/training/trainer.py",
+   "satir": 104,
+   "metin": "is_vit = 'vit' in model_name or 'vision' in model_name or 'transformer' in model_name"
+  },
+  "temiz_vit_lr_tavani": {
+   "dosya": "src/training/trainer.py",
+   "satir": 108,
+   "metin": "effective_lr = min(lr, 1e-3)  # Cap LR at 1e-3 for ViT",
+   "deger": 0.001
+  },
+  "temiz_adamw_zorla": {
+   "dosya": "src/training/trainer.py",
+   "satir": 91,
+   "metin": "self.optimizer = optim.AdamW(self.model.parameters(), lr=lr, weight_decay=0.05)",
+   "deger": 0.05
+  },
+  "temiz_adamw_auto_wd": {
+   "dosya": "src/training/trainer.py",
+   "satir": 112,
+   "metin": "weight_decay=0.05,",
+   "deger": 0.05
+  },
+  "temiz_sgd_momentum": {
+   "dosya": "src/training/trainer.py",
+   "satir": 33,
+   "metin": "momentum: float = 0.9,",
+   "deger": 0.9
+  },
+  "temiz_sgd_wd": {
+   "dosya": "src/training/trainer.py",
+   "satir": 34,
+   "metin": "weight_decay: float = 5e-4,",
+   "deger": 0.0005
+  },
+  "temiz_cosine": {
+   "dosya": "src/training/trainer.py",
+   "satir": 131,
+   "metin": "T_max=epochs,"
+  },
+  "at_adamw_zorla": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 165,
+   "metin": "self.optimizer = optim.AdamW(self.model.parameters(), lr=lr, weight_decay=0.05)",
+   "deger": 0.05
+  },
+  "at_adamw_auto_wd": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 184,
+   "metin": "weight_decay=0.05,",
+   "deger": 0.05
+  },
+  "at_vit_lr": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 180,
+   "metin": "effective_lr = min(lr, vit_lr_cap) if vit_lr_cap else lr"
+  },
+  "at_is_vit": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 177,
+   "metin": "is_vit = 'vit' in model_name or 'vision' in model_name or 'transformer' in model_name"
+  },
+  "at_sgd_momentum": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 41,
+   "metin": "momentum: float = 0.9,",
+   "deger": 0.9
+  },
+  "at_sgd_wd": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 42,
+   "metin": "weight_decay: float = 5e-4,",
+   "deger": 0.0005
+  },
+  "at_cosine": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 212,
+   "metin": "self.optimizer, T_max=epochs,"
+  },
+  "at_min_delta": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 52,
+   "metin": "min_delta: float = 0.1,",
+   "deger": 0.1
+  },
+  "at_min_delta_kullanim": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 512,
+   "metin": "if self.save_best and adv_acc > self.best_adv_acc + self.min_delta:"
+  },
+  "at_savunma_kurulumu": {
+   "dosya": "src/training/adversarial_trainer.py",
+   "satir": 131,
+   "metin": "self.defense = AdversarialTraining("
+  },
+  "mix_ratio": {
+   "dosya": "src/defenses/adversarial_training.py",
+   "satir": 31,
+   "metin": "mix_ratio: float = 0.5,",
+   "deger": 0.5
+  },
+  "karisik_kayip": {
+   "dosya": "src/defenses/adversarial_training.py",
+   "satir": 122,
+   "metin": "loss = (1 - self.mix_ratio) * loss_clean + self.mix_ratio * loss_adv"
+  },
+  "random_start": {
+   "dosya": "src/defenses/adversarial_training.py",
+   "satir": 30,
+   "metin": "random_start: bool = True,",
+   "deger": true
+  },
+  "artirma_crop": {
+   "dosya": "src/data/datasets.py",
+   "satir": 296,
+   "metin": "aug = [T.RandomCrop(spec[\"img_size\"], padding=4)]",
+   "deger": 4
+  },
+  "artirma_flip": {
+   "dosya": "src/data/datasets.py",
+   "satir": 298,
+   "metin": "aug.append(T.RandomHorizontalFlip())"
+  },
+  "cifar10_spec": {
+   "dosya": "src/data/datasets.py",
+   "satir": 269,
+   "metin": "\"img_size\": 32, \"flip\": True,"
+  },
+  "vit_upsample": {
+   "dosya": "src/models/vit.py",
+   "satir": 392,
+   "metin": "self.resize = nn.Upsample(size=(224, 224), mode=\"bilinear\", align_corners=False)"
+  },
+  "vit_timm": {
+   "dosya": "src/models/vit.py",
+   "satir": 386,
+   "metin": "\"vit_tiny_patch16_224\","
+  },
+  "r224_resize_norm": {
+   "dosya": "src/models/r224.py",
+   "satir": 75,
+   "metin": "self.up = nn.Upsample(size=(size, size), mode=\"bilinear\", align_corners=False)"
+  },
+  "r224_timm": {
+   "dosya": "src/models/r224.py",
+   "satir": 114,
+   "metin": "self.model = timm.create_model(\"resnet18\", pretrained=False, num_classes=num_classes)"
+  },
+  "r224_buyutme": {
+   "dosya": "src/models/r224.py",
+   "satir": 101,
+   "metin": "self.resize = ResizeNormalize(224, mean, std)",
+   "deger": 224
+  },
+  "resnet32_kok": {
+   "dosya": "src/models/resnet.py",
+   "satir": 18,
+   "metin": "- First conv layer uses 3x3 kernel instead of 7x7 (for 32x32 images)"
+  },
+  "init_deit": {
+   "dosya": "src/models/r224.py",
+   "satir": 48,
+   "metin": "\"deit_tiny_in1k\": (\"deit_tiny_patch16_224.fb_in1k\", (\"vit_tiny_in1k\",)),"
+  },
+  "init_r18a1": {
+   "dosya": "src/models/r224.py",
+   "satir": 49,
+   "metin": "\"resnet18_a1_in1k\": (\"resnet18.a1_in1k\", (\"resnet18_224_in1k\",)),"
+  },
+  "ok_vscr": {
+   "dosya": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md",
+   "satir": 31,
+   "metin": "| V-scr | ViT-Tiny (timm `vit_tiny_patch16_224`), 32→224 bilinear büyütme, [0, 1] değer aralığı, normalizasyon yok | rastgele | C1 ViT tarifi, 200 epok | 2001, 2002, 2003 (mevcut C1) |"
+  },
+  "ok_vin": {
+   "dosya": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md",
+   "satir": 32,
+   "metin": "| V-IN | aynı mimari ve büyütme; büyütmeden sonra model içi ImageNet normalizasyonu (başlatma demetinin parçası) | `deit_tiny_patch16_224.fb_in1k` | AdamW lr 1e-4, kosinüs, 30 epok | 2101, 2102 |"
+  },
+  "ok_rscr": {
+   "dosya": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md",
+   "satir": 33,
+   "metin": "| R224-scr | timm `resnet18`; V-scr ile birebir aynı girdi hattı (32→224 bilinear büyütme, [0, 1] değer aralığı, normalizasyon yok) | rastgele | C1 ViT temiz komutu, 200 epok | 1201, 1202 |"
+  },
+  "ok_rin": {
+   "dosya": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md",
+   "satir": 34,
+   "metin": "| R224-IN | timm `resnet18`, 32→224 bilinear büyütme; büyütmeden sonra model içi ImageNet normalizasyonu (başlatma demetinin parçası) | `resnet18.a1_in1k` | AdamW lr 1e-4, kosinüs, 30 epok | 1301, 1302 |"
+  },
+  "ok_at": {
+   "dosya": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md",
+   "satir": 36,
+   "metin": "AT tarifi bütün hücrelerde: karışık kayıplı AT, PGD-10, ε = 8/255, α = 2/255, AdamW (ağırlık azaltma 0,05), lr 1e-3, batch 64, sabır 20, `data/val_split_indices.json`. AT tavanı 80 epoktur ve dört yeni hücrede eşittir. Tavan, pilot zaman öl"
+  },
+  "ok_yakinsama": {
+   "dosya": "raporlar/konsey_2026-10-29/ON_KAYIT_2026-10-29.md",
+   "satir": 23,
+   "metin": "Yakınsamış model: C1 seçim kuralıyla (sabit 2000 örneklik doğrulama bölmesinde en yüksek PGD doğruluğu, sabır 20) seçilen kontrol noktası. Son kontrol noktası duyarlılığı yalnız mevcut C1 3x3 matrislerinde (masa düzeyinde) raporlanır; B2 ve"
+  },
+  "resnet32_normalizasyon_yok": {
+   "dosya": "src/models/resnet.py",
+   "denetim": "dosyada 'normaliz', 'Normalize', '.mean', '.std' ve 'Upsample' geciyor mu (buyuk/kucuk harf duyarsiz)",
+   "eslesen_satir_sayisi": 0
+  }
+ }
+}
