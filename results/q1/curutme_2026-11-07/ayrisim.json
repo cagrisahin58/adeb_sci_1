@@ -1,0 +1,712 @@
+{
+ "a_w_saldiri_bagimliligi": {
+  "model": {
+   "V_IN_s2101": {
+    "w_pgd_1k": 0.49533799533799533,
+    "w_aa_1k": 0.5326340326340326,
+    "d_omega": 0.07259422196978793,
+    "kaynak": "konsey_b6_aa/per_sample + konsey_b4_matris kosegen, ilk 1000"
+   },
+   "V_IN_s2102": {
+    "w_pgd_1k": 0.4958183990442055,
+    "w_aa_1k": 0.5364396654719235,
+    "d_omega": 0.07874436751155578,
+    "kaynak": "konsey_b6_aa/per_sample + konsey_b4_matris kosegen, ilk 1000"
+   },
+   "R224_scr_s1201": {
+    "w_pgd_1k": 0.49655963302752293,
+    "w_aa_1k": 0.5470183486238532,
+    "d_omega": 0.09677876288585141,
+    "kaynak": "konsey_b6_aa/per_sample + konsey_b4_matris kosegen, ilk 1000"
+   },
+   "R224_scr_s1202": {
+    "w_pgd_1k": 0.47374562427071176,
+    "w_aa_1k": 0.5204200700116686,
+    "d_omega": 0.09396579241833147,
+    "kaynak": "konsey_b6_aa/per_sample + konsey_b4_matris kosegen, ilk 1000"
+   },
+   "R224_IN_s1301": {
+    "w_pgd_1k": 0.4759725400457666,
+    "w_aa_1k": 0.5606407322654463,
+    "d_omega": 0.16372013084340908,
+    "kaynak": "konsey_b6_aa/per_sample + konsey_b4_matris kosegen, ilk 1000"
+   },
+   "R224_IN_s1302": {
+    "w_pgd_1k": 0.45454545454545453,
+    "w_aa_1k": 0.5189873417721519,
+    "d_omega": 0.1325815746015565,
+    "kaynak": "konsey_b6_aa/per_sample + konsey_b4_matris kosegen, ilk 1000"
+   },
+   "ResNet18_AT_s1001": {
+    "w_pgd_tam": 0.4767482722267775,
+    "w_aa_tam": 0.5556987232048729,
+    "d_omega": 0.15323766224092072,
+    "kaynak": "results/c1_seeds/c1_seed_summary.json pairs[].{resnet,vit}.{clean,pgd,aa}"
+   },
+   "ViT_Tiny_AT_s2001": {
+    "w_pgd_tam": 0.5582995951417005,
+    "w_aa_tam": 0.6006747638326586,
+    "d_omega": 0.07315790255444277,
+    "kaynak": "results/c1_seeds/c1_seed_summary.json pairs[].{resnet,vit}.{clean,pgd,aa}"
+   },
+   "ResNet18_AT_s1002": {
+    "w_pgd_tam": 0.4888294158715384,
+    "w_aa_tam": 0.5602746101931582,
+    "d_omega": 0.13641345306284391,
+    "kaynak": "results/c1_seeds/c1_seed_summary.json pairs[].{resnet,vit}.{clean,pgd,aa}"
+   },
+   "ViT_Tiny_AT_s2002": {
+    "w_pgd_tam": 0.5581870151082073,
+    "w_aa_tam": 0.6071866067782767,
+    "d_omega": 0.0841421097362054,
+    "kaynak": "results/c1_seeds/c1_seed_summary.json pairs[].{resnet,vit}.{clean,pgd,aa}"
+   },
+   "ResNet18_AT_s1003": {
+    "w_pgd_tam": 0.49174802417480246,
+    "w_aa_tam": 0.5575313807531381,
+    "d_omega": 0.12555235078199645,
+    "kaynak": "results/c1_seeds/c1_seed_summary.json pairs[].{resnet,vit}.{clean,pgd,aa}"
+   },
+   "ViT_Tiny_AT_s2003": {
+    "w_pgd_tam": 0.5495137652376386,
+    "w_aa_tam": 0.6033420079441172,
+    "d_omega": 0.09345038928845373,
+    "kaynak": "results/c1_seeds/c1_seed_summary.json pairs[].{resnet,vit}.{clean,pgd,aa}"
+   }
+  },
+  "hucre_ort_d_omega": {
+   "V-scr": 0.08358346719303396,
+   "V-IN": 0.07566929474067186,
+   "R224-scr": 0.09537227765209144,
+   "R224-IN": 0.1481508527224828,
+   "C1-R32": 0.13840115536192035
+  },
+  "kayma": {
+   "H1": 0.005894405229528742,
+   "H2": 0.03034637376137673,
+   "H3": 0.04213518422043421,
+   "H3_yeni_nokta": 0.04549878422043421,
+   "q_tohum_yeni": [
+    0.837965827958517,
+    0.8608233600116595,
+    0.8989926140644361
+   ],
+   "q_yeni_ort": 0.8659272673448708,
+   "K-b_kayma_panel_haric": -0.08358346719303396,
+   "K-b_ci90_ust_0.10_asilir_eger_panel_ort_d_omega_buyukse": 0.1526151690049579,
+   "olculen_CNN_d_omega_araligi": [
+    0.09537227765209144,
+    0.1481508527224828
+   ],
+   "K-b_yeni_nokta_CNN_araligiyla": [
+    0.02367472605975117,
+    0.07645330113014252
+   ]
+  },
+  "uyari": "Yeni alti modelde AA yalniz ilk 1000 goruntude; C1 ciftinde tam test. Panel uyelerinin AA kosullu w'si olculmedi; K-b icin yalniz esik verilir. H3 icin H3 nokta degeri 0,0034 (M9.3)."
+ },
+ "b_capraz_benzerlik": {
+  "V-scr|V-scr": {
+   "ort_log_tau": -0.4426163680908064,
+   "n_cift": 6,
+   "min": -0.4655469515286493,
+   "max": -0.4097481934933753
+  },
+  "V-scr|V-IN": {
+   "ort_log_tau": -0.7981242686149913,
+   "n_cift": 6,
+   "min": -0.8325657441122191,
+   "max": -0.7544153972286644
+  },
+  "V-scr|R224-scr": {
+   "ort_log_tau": -1.1347084752271932,
+   "n_cift": 6,
+   "min": -1.1425310657100367,
+   "max": -1.123891267642147
+  },
+  "V-scr|R224-IN": {
+   "ort_log_tau": -1.0846517624164658,
+   "n_cift": 6,
+   "min": -1.097249386818402,
+   "max": -1.0617771270809633
+  },
+  "V-scr|C1-R32": {
+   "ort_log_tau": -1.084207082848509,
+   "n_cift": 9,
+   "min": -1.0986033948630634,
+   "max": -1.0635553697347206
+  },
+  "V-scr|XCiT": {
+   "ort_log_tau": -1.0843881503703823,
+   "n_cift": 3,
+   "min": -1.0965986313961062,
+   "max": -1.0729816576577953
+  },
+  "V-scr|panel": {
+   "ort_log_tau": -1.008788952847328,
+   "n_cift": 21,
+   "min": -1.138232337459108,
+   "max": -0.8964502724837163
+  },
+  "V-IN|V-IN": {
+   "ort_log_tau": -0.5503851333924044,
+   "n_cift": 2,
+   "min": -0.5503851333924044,
+   "max": -0.5503851333924044
+  },
+  "V-IN|R224-scr": {
+   "ort_log_tau": -0.8417458397123605,
+   "n_cift": 4,
+   "min": -0.8852933695085836,
+   "max": -0.803808578542692
+  },
+  "V-IN|R224-IN": {
+   "ort_log_tau": -0.7870722352192405,
+   "n_cift": 4,
+   "min": -0.825320303524077,
+   "max": -0.7532128084867513
+  },
+  "V-IN|C1-R32": {
+   "ort_log_tau": -0.8004112689135089,
+   "n_cift": 6,
+   "min": -0.8558370726327904,
+   "max": -0.7437452287868122
+  },
+  "V-IN|XCiT": {
+   "ort_log_tau": -0.7691118346997339,
+   "n_cift": 2,
+   "min": -0.8094408905595681,
+   "max": -0.7287827788398997
+  },
+  "V-IN|panel": {
+   "ort_log_tau": -0.7392475750161313,
+   "n_cift": 14,
+   "min": -0.8811373177982571,
+   "max": -0.6153837835833367
+  },
+  "R224-scr|R224-scr": {
+   "ort_log_tau": -0.6056709889984226,
+   "n_cift": 2,
+   "min": -0.6056709889984226,
+   "max": -0.6056709889984226
+  },
+  "R224-scr|R224-IN": {
+   "ort_log_tau": -0.6403506647365191,
+   "n_cift": 4,
+   "min": -0.679557065002169,
+   "max": -0.6023605754412629
+  },
+  "R224-scr|C1-R32": {
+   "ort_log_tau": -0.6701587076880191,
+   "n_cift": 6,
+   "min": -0.715098745131784,
+   "max": -0.6298438854816995
+  },
+  "R224-scr|XCiT": {
+   "ort_log_tau": -0.8007393891415907,
+   "n_cift": 2,
+   "min": -0.823221016888667,
+   "max": -0.7782577613945144
+  },
+  "R224-scr|panel": {
+   "ort_log_tau": -0.644533337455899,
+   "n_cift": 14,
+   "min": -0.7595678857205237,
+   "max": -0.5548158449303587
+  },
+  "R224-IN|R224-IN": {
+   "ort_log_tau": -0.4559161701124475,
+   "n_cift": 2,
+   "min": -0.4559161701124475,
+   "max": -0.4559161701124475
+  },
+  "R224-IN|C1-R32": {
+   "ort_log_tau": -0.6415582947950658,
+   "n_cift": 6,
+   "min": -0.653436858457641,
+   "max": -0.6273956782409865
+  },
+  "R224-IN|XCiT": {
+   "ort_log_tau": -0.7398086750684576,
+   "n_cift": 2,
+   "min": -0.7443174787843372,
+   "max": -0.7352998713525779
+  },
+  "R224-IN|panel": {
+   "ort_log_tau": -0.6350825698654585,
+   "n_cift": 14,
+   "min": -0.7381788400315172,
+   "max": -0.5441499949594225
+  },
+  "C1-R32|C1-R32": {
+   "ort_log_tau": -0.4886893687936377,
+   "n_cift": 6,
+   "min": -0.4959399285088849,
+   "max": -0.47644680105611403
+  },
+  "C1-R32|XCiT": {
+   "ort_log_tau": -0.7813311494043607,
+   "n_cift": 3,
+   "min": -0.7936642053166475,
+   "max": -0.7729737466995679
+  },
+  "C1-R32|panel": {
+   "ort_log_tau": -0.6442356726007157,
+   "n_cift": 21,
+   "min": -0.7638367562668351,
+   "max": -0.530276632031583
+  },
+  "XCiT|panel": {
+   "ort_log_tau": -0.5610155234779991,
+   "n_cift": 7,
+   "min": -0.692510714261309,
+   "max": -0.4680688551128016
+  },
+  "panel|panel": {
+   "ort_log_tau": -0.46156187672797827,
+   "n_cift": 42,
+   "min": -0.7054646858055761,
+   "max": -0.28758530026720475
+  }
+ },
+ "c_hodge_ve_serbest_potansiyel": {
+  "K": 20,
+  "modeller": [
+   "Addepalli2022Efficient_RN18",
+   "Carmon2019Unlabeled",
+   "Debenedetti2022Light_XCiT-S12",
+   "Engstrom2019Robustness",
+   "Gowal2020Uncovering_28_10_extra",
+   "R224_IN_s1301",
+   "R224_IN_s1302",
+   "R224_scr_s1201",
+   "R224_scr_s1202",
+   "Rade2021Helper_R18_ddpm",
+   "ResNet18_AT_s1001",
+   "ResNet18_AT_s1002",
+   "ResNet18_AT_s1003",
+   "Sehwag2021Proxy_R18",
+   "V_IN_s2101",
+   "V_IN_s2102",
+   "ViT_Tiny_AT_s2001",
+   "ViT_Tiny_AT_s2002",
+   "ViT_Tiny_AT_s2003",
+   "Wong2020Fast"
+  ],
+  "potansiyel_payi_ortalama_r": 0.9193982987389271,
+  "dolasim_rms": 0.02205915642306023,
+  "yari_fark_gurultu_rms": 0.035588499794453686,
+  "dolasim_yarilar_arasi_korelasyon": 0.560613543998904,
+  "potansiyel_yarilar_arasi_korelasyon": 0.7099666554326789,
+  "not": "dolasim_rms ile yari_fark_gurultu_rms karsilastirilir; gurultu RMS'i iki bolunmus yari kestiriminin farkinin yarisidir (ortalamanin ornekleme gurultusu icin kaba olcu).",
+  "serbest_potansiyel_omega_egimi": {
+   "egim_b": 0.9501242566744381,
+   "R2": 0.9572489870759706,
+   "egim_1_beklenen": 1.0,
+   "yorum": "b = 1 ise w potansiyeli tam tasir; b != 1 ise (1-b) omega yapisi r'ye kalir ve rho_m'ye (1-b)(omega_m - ort_P omega) eklenir."
+  },
+  "b_ile_rho_kaymasi": {
+   "V-scr_ort": 0.02795483051144003,
+   "H3_kayma": 0.0040410247866398165
+  }
+ },
+ "d_H1_bolusu": {
+  "hucre": {
+   "V-scr": {
+    "ham_simetrik_log_T": -1.8755979484869878,
+    "yarim_omega": -0.2932625016161787
+   },
+   "R224-scr": {
+    "ham_simetrik_log_T": -1.575927730325835,
+    "yarim_omega": -0.3578478988464551
+   },
+   "V-IN": {
+    "ham_simetrik_log_T": -1.662899695726681,
+    "yarim_omega": -0.350105626687069
+   },
+   "R224-IN": {
+    "ham_simetrik_log_T": -1.5752354073261543,
+    "yarim_omega": -0.36660634343721493
+   }
+  },
+  "H1_yeniden": -0.36425561539142925,
+  "H1_ham_simetrik_bilesen": -0.2996702181611528,
+  "H1_eksi_yarim_delta_omega": -0.06458539723027645,
+  "H2_ham_simetrik_bilesen": 0.21200592976062604,
+  "H2_omega_bileseni": 0.04808468048013054
+ },
+ "e_her_ikisi_dogru": {
+  "cifar10": {
+   "K-a_q": [
+    0.7173472210294936,
+    0.7004555890561063,
+    0.702050853134694
+   ],
+   "K-a_q_ort": 0.7066178877400979,
+   "G": [
+    0.7105186952264861,
+    0.7288342999300768,
+    0.7671042282276743
+   ],
+   "K-b": {
+    "degerler": [
+     0.4944988759680944,
+     0.4779365910588169,
+     0.50426388395802
+    ],
+    "n": 3,
+    "ort": 0.4922331169949771,
+    "sd": 0.013309088460270433,
+    "se": 0.007684005805205677,
+    "df": 2,
+    "ci90": [
+     0.46979593084440846,
+     0.5146703031455457
+    ],
+    "ci95": [
+     0.45917150844220794,
+     0.5252947255477464
+    ],
+    "tost_p": 0.9998082184035345
+   },
+   "B4": {
+    "H1": {
+     "kestirim": -0.5206229780122292,
+     "se": 0.029334753486154937,
+     "df": 5,
+     "ci90": [
+      -0.5797339253066309,
+      -0.4615120307178275
+     ],
+     "ci95": [
+      -0.5960303624766081,
+      -0.44521559354785034
+     ]
+    },
+    "H2": {
+     "kestirim": 0.39042201897624373,
+     "se": 0.0435104708846693,
+     "df": 5,
+     "ci90": [
+      0.302746315397137,
+      0.4780977225553505
+     ],
+     "ci95": [
+      0.2785747928601301,
+      0.5022692450923574
+     ]
+    },
+    "H3": {
+     "kestirim": 0.2437360851735371,
+     "se": 0.011221755302486385,
+     "df": 5,
+     "ci90": [
+      0.22112370540532067,
+      0.2663484649417535
+     ],
+     "ci95": [
+      0.2148896448290101,
+      0.27258252551806406
+     ],
+     "tost_p": 0.9999741894657583
+    }
+   },
+   "hucre_sigma": {
+    "V-scr": [
+     -1.3215637867168448,
+     -1.3091782403798398,
+     -1.3419336968212154
+    ],
+    "V-IN": [
+     -0.8856087463660618,
+     -0.9657924035199741
+    ],
+    "R224-scr": [
+     -0.7814471546021176,
+     -0.8257573719853575
+    ],
+    "R224-IN": [
+     -0.8099853757915094,
+     -0.7810138560225554
+    ]
+   },
+   "hucre_rho": {
+    "V-scr": [
+     0.4944988759680944,
+     0.4779365910588169,
+     0.50426388395802
+    ],
+    "V-IN": [
+     0.008234469075958777,
+     0.04991029147154877
+    ],
+    "R224-scr": [
+     0.018062629661924172,
+     0.020043149986776056
+    ],
+    "R224-IN": [
+     0.02341454804809247,
+     0.006146326146520767
+    ]
+   }
+  },
+  "cifar100": {
+   "K-a_q": [
+    0.6225592798947357,
+    0.6523540622190299,
+    0.6308351928695111
+   ],
+   "K-a_q_ort": 0.6352495116610922,
+   "G": [
+    0.7895537244195308,
+    0.8374824889822632,
+    0.8016928763063778
+   ],
+   "K-b": {
+    "degerler": [
+     0.6875889766920915,
+     0.6288000484825358,
+     0.6921892064439313
+    ],
+    "n": 3,
+    "ort": 0.6695260772061862,
+    "sd": 0.03534469677535977,
+    "se": 0.02040627019767966,
+    "df": 2,
+    "ci90": [
+     0.609940062480123,
+     0.7291120919322494
+    ],
+    "ci95": [
+     0.5817249830372228,
+     0.7573271713751496
+    ],
+    "tost_p": 0.9993593295426385
+   }
+  }
+ },
+ "f_sigma_temiz_dogruluk": {
+  "cnn_modelleri": [
+   "Addepalli2022Efficient_RN18",
+   "Carmon2019Unlabeled",
+   "Engstrom2019Robustness",
+   "Gowal2020Uncovering_28_10_extra",
+   "R224_IN_s1301",
+   "R224_IN_s1302",
+   "R224_scr_s1201",
+   "R224_scr_s1202",
+   "Rade2021Helper_R18_ddpm",
+   "ResNet18_AT_s1001",
+   "ResNet18_AT_s1002",
+   "ResNet18_AT_s1003",
+   "Sehwag2021Proxy_R18",
+   "Wong2020Fast"
+  ],
+  "egim_sigma_temiz_puan_basina": 0.01999810162650959,
+  "kesisim": -2.2765128304714173,
+  "r": 0.32504292365121656,
+  "p": 0.2568176005261298,
+  "x_araligi": [
+   83.34,
+   89.69
+  ],
+  "cnn_disi_artiklar": {
+   "Debenedetti2022Light_XCiT-S12": {
+    "temiz": 90.06,
+    "sigma": -0.5610155234779992,
+    "cnn_cizgisi_ongorusu": -0.47548379798796336,
+    "artik": -0.08553172549003585
+   },
+   "V_IN_s2101": {
+    "temiz": 83.39,
+    "sigma": -0.702052768656602,
+    "cnn_cizgisi_ongorusu": -0.6088711358367824,
+    "artik": -0.09318163281981962
+   },
+   "V_IN_s2102": {
+    "temiz": 83.47,
+    "sigma": -0.7764423813756602,
+    "cnn_cizgisi_ongorusu": -0.6072712877066617,
+    "artik": -0.16917109366899852
+   },
+   "ViT_Tiny_AT_s2001": {
+    "temiz": 74.1,
+    "sigma": -1.0150580240524836,
+    "cnn_cizgisi_ongorusu": -0.7946534999470567,
+    "artik": -0.22040452410542688
+   },
+   "ViT_Tiny_AT_s2002": {
+    "temiz": 73.47,
+    "sigma": -1.0004924765143077,
+    "cnn_cizgisi_ongorusu": -0.8072523039717576,
+    "artik": -0.1932401725425501
+   },
+   "ViT_Tiny_AT_s2003": {
+    "temiz": 73.00999999999999,
+    "sigma": -1.0108163579751928,
+    "cnn_cizgisi_ongorusu": -0.8164514307199522,
+    "artik": -0.19436492725524057
+   }
+  },
+  "temiz": {
+   "Addepalli2022Efficient_RN18": 85.71,
+   "Carmon2019Unlabeled": 89.69,
+   "Debenedetti2022Light_XCiT-S12": 90.06,
+   "Engstrom2019Robustness": 87.03,
+   "Gowal2020Uncovering_28_10_extra": 89.48,
+   "R224_IN_s1301": 85.76,
+   "R224_IN_s1302": 86.25,
+   "R224_scr_s1201": 86.35000000000001,
+   "R224_scr_s1202": 85.11,
+   "Rade2021Helper_R18_ddpm": 86.86,
+   "ResNet18_AT_s1001": 85.37,
+   "ResNet18_AT_s1002": 85.94000000000001,
+   "ResNet18_AT_s1003": 86.05000000000001,
+   "Sehwag2021Proxy_R18": 84.59,
+   "V_IN_s2101": 83.39,
+   "V_IN_s2102": 83.47,
+   "ViT_Tiny_AT_s2001": 74.1,
+   "ViT_Tiny_AT_s2002": 73.47,
+   "ViT_Tiny_AT_s2003": 73.00999999999999,
+   "Wong2020Fast": 83.34
+  },
+  "sigma": {
+   "Addepalli2022Efficient_RN18": -0.4196618947348695,
+   "Carmon2019Unlabeled": -0.47155497385090317,
+   "Debenedetti2022Light_XCiT-S12": -0.5610155234779992,
+   "Engstrom2019Robustness": -0.5077508673027338,
+   "Gowal2020Uncovering_28_10_extra": -0.4667446256772428,
+   "R224_IN_s1301": -0.6421798909162,
+   "R224_IN_s1302": -0.6279852488147171,
+   "R224_scr_s1201": -0.6250989478626934,
+   "R224_scr_s1202": -0.6639677270491042,
+   "Rade2021Helper_R18_ddpm": -0.381183944159816,
+   "ResNet18_AT_s1001": -0.6475561709878546,
+   "ResNet18_AT_s1002": -0.6409826737646288,
+   "ResNet18_AT_s1003": -0.644168173049664,
+   "Sehwag2021Proxy_R18": -0.408402066187081,
+   "V_IN_s2101": -0.702052768656602,
+   "V_IN_s2102": -0.7764423813756602,
+   "ViT_Tiny_AT_s2001": -1.0150580240524836,
+   "ViT_Tiny_AT_s2002": -1.0004924765143077,
+   "ViT_Tiny_AT_s2003": -1.0108163579751928,
+   "Wong2020Fast": -0.5756347651832019
+  },
+  "yalniz_kendi_CNN": {
+   "modeller": [
+    "R224_IN_s1301",
+    "R224_IN_s1302",
+    "R224_scr_s1201",
+    "R224_scr_s1202",
+    "ResNet18_AT_s1001",
+    "ResNet18_AT_s1002",
+    "ResNet18_AT_s1003"
+   ],
+   "egim": 0.026316583217422876,
+   "r": 0.9271912973218011,
+   "V-scr_ort_artik": -0.04322651959908034
+  },
+  "uyari": "V-scr temiz dogrulugu (yaklasik 73) CNN araliginin disinda; ongoru disdegerlemedir."
+ },
+ "g_panel_rastgele_etki": {
+  "q": {
+   "tam": 0.9362955216499115,
+   "jk_degerler": [
+    0.9376364239836366,
+    0.9368378159047993,
+    0.940911999250354,
+    0.9396804233758144,
+    0.9313581581513328,
+    0.9334949429636552,
+    0.9344312573030651
+   ],
+   "se_panel_jackknife": 0.00777614030705399
+  },
+  "rho_V": {
+   "tam": 0.011885915600693936,
+   "jk_degerler": [
+    0.0051323132288076,
+    0.0010346941651767309,
+    0.009282302877198655,
+    0.022168061161000552,
+    0.014736680565920998,
+    0.016969719151341697,
+    0.013877638055411326
+   ],
+   "se_panel_jackknife": 0.01640035746847245,
+   "se_kosu": 0.006535094801755436,
+   "se_birlesik": 0.01765443822843454,
+   "ci90_birlesik_normal": [
+    -0.01715563528508088,
+    0.04092746648646875
+   ]
+  },
+  "H1": {
+   "tam": -0.36425561539142914,
+   "jk_degerler": [
+    -0.36737829618485596,
+    -0.34596291158795356,
+    -0.35763592754846063,
+    -0.3653512403086019,
+    -0.3755317352792531,
+    -0.3648954367740249,
+    -0.37303376005685407
+   ],
+   "se_panel_jackknife": 0.02256440085818118,
+   "se_kosu": 0.02495090283948819,
+   "se_birlesik": 0.033640745214609434,
+   "ci90_birlesik_normal": [
+    -0.41959464126946167,
+    -0.3089165895133966
+   ]
+  },
+  "H2": {
+   "tam": 0.2600906102407565,
+   "jk_degerler": [
+    0.2660409147461864,
+    0.24885477782966292,
+    0.2552282394947758,
+    0.2589507143284199,
+    0.26395178605073877,
+    0.2637111864492907,
+    0.26389665278622143
+   ],
+   "se_panel_jackknife": 0.014013114557905177,
+   "se_kosu": 0.03700816957797664,
+   "se_birlesik": 0.03957236403255749,
+   "ci90_birlesik_normal": [
+    0.19499407140719946,
+    0.32518714907431356
+   ]
+  },
+  "H3": {
+   "tam": 0.0033636461191874946,
+   "jk_degerler": [
+    0.000989377954990074,
+    0.0035273930410884254,
+    0.001680597282583047,
+    0.00467720170100719,
+    0.005567242611289383,
+    0.002950954309544486,
+    0.004152755933809888
+   ],
+   "se_panel_jackknife": 0.0036883085963424138,
+   "se_kosu": 0.011421738797369758,
+   "se_birlesik": 0.012002488802627349,
+   "ci90_birlesik_normal": [
+    -0.016380447961134494,
+    0.023107740199509483
+   ]
+  },
+  "not": "Panel uyesi bir populasyondan cekilmis sayilirsa (rastgele etki) jackknife SE panel ornekleme belirsizligini verir; kosu SE'si ile karelerin toplami olarak birlestirildi (normal yaklasim, kaba)."
+ },
+ "meta": {
+  "betik": "arsiv/b2_yardimci/_curutme_ayrisim.py",
+  "betik_sha256": "e4126e2f423d84068673f68a760c23dfc9629924aa4e94e40ce3906f7a7f6076",
+  "ortak_modul_sha256": "202a9e1899a900a639abe7a0dc2f59f2547fef7ec22745e00ada9e615d557d1c",
+  "dondurulmus_betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "dondurulmus_betik_ayni": true,
+  "uretildi_utc": "2026-11-07T19:55:28.328063+00:00",
+  "etiket": "kesifsel, on kayit disi; curutme turu 07.11.2026 (Q1 istatistik hakemi mercegi)"
+ }
+}

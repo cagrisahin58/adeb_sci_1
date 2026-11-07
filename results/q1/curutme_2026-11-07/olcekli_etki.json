@@ -1,0 +1,114 @@
+{
+ "olcekli_etki": {
+  "H1_kestirim": -0.36425561539142914,
+  "H1_bolu_sd_cnn_10_birim": -3.5603764067202386,
+  "H1_bolu_sd_panel_7": -5.50022632079398,
+  "panel_sigma": {
+   "Wong2020Fast": -0.5756347651832019,
+   "Engstrom2019Robustness": -0.5077508673027338,
+   "Carmon2019Unlabeled": -0.47155497385090317,
+   "Gowal2020Uncovering_28_10_extra": -0.4667446256772428,
+   "Sehwag2021Proxy_R18": -0.408402066187081,
+   "Addepalli2022Efficient_RN18": -0.4196618947348695,
+   "Rade2021Helper_R18_ddpm": -0.381183944159816
+  },
+  "panel_aralik": [
+   -0.5756347651832019,
+   -0.381183944159816
+  ],
+  "sd_panel_7": 0.0662255685760304,
+  "sd_cnn_10_birim": 0.10230817581643721,
+  "ort_cnn_10_birim": -0.5154784717017921,
+  "hucre_ort": {
+   "V-scr": -1.008788952847328,
+   "V-IN": -0.7392475750161311,
+   "R224-scr": -0.6445333374558988,
+   "R224-IN": -0.6350825698654585,
+   "C1-R32": -0.6442356726007158
+  },
+  "z": {
+   "V-scr": {
+    "sigma": -1.008788952847328,
+    "z_cnn_10_birim": -4.821808982604094
+   },
+   "V-IN": {
+    "sigma": -0.7392475750161311,
+    "z_cnn_10_birim": -2.187206462519953
+   },
+   "XCiT": {
+    "sigma": -0.5610155234779992,
+    "z_cnn_10_birim": -0.44509689878461306
+   }
+  },
+  "not": "10 birim: yedi panel uyesi (kendi disarida birakmali sigma) ve kendi uc CNN hucresinin ortalamasi; tohumlar hucre ortalamasina indirildi."
+ },
+ "uc_bilesenli_belirsizlik": {
+  "rho_V": {
+   "nokta": 0.011885915600693936,
+   "sd_hiyerarsik_bootstrap_ci90den": 0.020263948708512225,
+   "se_panel_jackknife": 0.01640035746847245,
+   "se_uc_bilesen": 0.026069126229217855,
+   "ci90_uc_bilesen": [
+    -0.030997797046369437,
+    0.05476962824775731
+   ],
+   "panel_jk_varyans_payi": 0.39577984899405627
+  },
+  "q": {
+   "nokta": 0.9362955216499115,
+   "sd_hiyerarsik_bootstrap_ci90den": 0.026488378993030432,
+   "se_panel_jackknife": 0.00777614030705399,
+   "se_uc_bilesen": 0.027606205457349722,
+   "ci90_uc_bilesen": [
+    0.8908833136725712,
+    0.9817077296272517
+   ],
+   "panel_jk_varyans_payi": 0.0793441193894863
+  },
+  "H1": {
+   "nokta": -0.36425561539142914,
+   "sd_hiyerarsik_bootstrap_ci90den": 0.01752172469368098,
+   "se_panel_jackknife": 0.02256440085818118,
+   "se_uc_bilesen": 0.02856856703318942,
+   "ci90_uc_bilesen": [
+    -0.4112509081610257,
+    -0.31726032262183257
+   ],
+   "panel_jk_varyans_payi": 0.6238363809171975
+  },
+  "H2": {
+   "nokta": 0.2600906102407565,
+   "sd_hiyerarsik_bootstrap_ci90den": 0.03402088097888286,
+   "se_panel_jackknife": 0.014013114557905177,
+   "se_uc_bilesen": 0.03679385440793459,
+   "ci90_uc_bilesen": [
+    0.19956471973970413,
+    0.3206165007418089
+   ],
+   "panel_jk_varyans_payi": 0.1450503475500442
+  },
+  "H3": {
+   "nokta": 0.0033636461191874946,
+   "sd_hiyerarsik_bootstrap_ci90den": 0.0167486218282299,
+   "se_panel_jackknife": 0.0036883085963424138,
+   "se_uc_bilesen": 0.017149925756309047,
+   "ci90_uc_bilesen": [
+    -0.02484798174994089,
+    0.031575273988315875
+   ],
+   "panel_jk_varyans_payi": 0.04625194633151181
+  },
+  "K-b_band_icinde": true,
+  "H3_band_icinde": true,
+  "not": "Hiyerarsik bootstrap tohum ve goruntuyu, panel jackknife panel uyeligini tasir; bilesenler bagimsiz sayilarak kareler toplami alindi (normal yaklasim). K-b ve q bootstrap'i M11.1, H'ler B4 duyarliligi."
+ },
+ "meta": {
+  "betik": "arsiv/b2_yardimci/_curutme_olcekli_etki.py",
+  "betik_sha256": "eebdb78680d5283bbd80c27e72ef000268b6c326fd6db3d2de3101997872e6a0",
+  "ortak_modul_sha256": "202a9e1899a900a639abe7a0dc2f59f2547fef7ec22745e00ada9e615d557d1c",
+  "dondurulmus_betik_sha256": "4bce2c983ace1d2ce877af7fa9406d3bdb5cd137f422bcd5f55b11d91b667389",
+  "dondurulmus_betik_ayni": true,
+  "uretildi_utc": "2026-11-07T20:13:31.489901+00:00",
+  "etiket": "kesifsel, on kayit disi; curutme turu 07.11.2026 (Q1 istatistik hakemi mercegi)"
+ }
+}
