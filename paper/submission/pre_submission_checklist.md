@@ -81,12 +81,12 @@ The Turkish mirror (`paper/manuscript_tr`) uses the same 17 figure files with En
 ## 5. Declarations and Statements
 
 - [x] Data availability: manuscript (Data and Code Availability) and `declarations.txt` §1, same scope (CIFAR-10, CIFAR-100, SVHN, ImageNetV2; RobustBench checkpoints; timm initializations)
-- [ ] **Code availability.** On 2026-10-31 https://github.com/cagrisahin58/cnn-vit-robustness-protocols returns 404; the local copy `teslim/acik_depo/cnn-vit-robustness-protocols` is a single commit of 4 October with the old title and without the registration documents or the frozen script. The cover letter and `declarations.txt` §2-3 therefore promise the release "upon acceptance" and point to the time-stamped development commits e32f2ce (main registration, frozen script, cell table) and 7325419 (addendum, addendum cell tables, addendum scripts, deviation log). The manuscript's Data and Code Availability paragraph (`main.tex`, EN and TR) also says "will be released ... upon acceptance" since commit c8be9b7; all four places must be brought into line with whichever state holds at upload.
+- [x] **Code availability.** Published on 2026-11-07: https://github.com/cagrisahin58/cnn-vit-robustness-protocols (initial release f1bcb81 built from development commit dc12ef2 with `scripts/acik_depo_kur.sh`; 1,127 files, 36 MB; HTTPS 200). The manuscript (`main.tex`, EN and TR), the cover letter and `declarations.txt` §2-3 now say "are available at" and keep the time-stamped development commits e32f2ce and 7325419 as a second anchor.
   - [ ] Repository created on GitHub under `cagrisahin58` and published (user)
   - [ ] `bash scripts/acik_depo_kur.sh --dry-run` read, then `bash scripts/acik_depo_kur.sh` run and the printed `git push` lines executed (user)
   - [ ] The URL returns 200 (`curl -s -o /dev/null -w '%{http_code}' https://github.com/cagrisahin58/cnn-vit-robustness-protocols`)
   - [ ] README.md and CITATION.cff in the published repository carry the new title
-  - [ ] If the repository is public before upload, switch "will be released ... upon acceptance" back to "are available at" in the cover letter, `declarations.txt` §2-3 and `main.tex`
+  - [x] Repository public before upload; "upon acceptance" wording switched back to "are available at" in the cover letter, `declarations.txt` §2-3 and `main.tex` (EN and TR) on 2026-11-07.
 - [x] Pre-registration statement: `declarations.txt` §3, consistent with Section III "Pre-Registration" of the manuscript
 - [x] Conflict of interest: none declared
 - [ ] Funding: "no specific grant" to be confirmed with the co-author (upload precondition, §0)
