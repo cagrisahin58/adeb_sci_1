@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T14:15:27+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-08T20:59:27+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -70,4 +70,4 @@ Generated 2026-11-08T14:15:27+00:00; verdict from the ayarli scoring; both scori
 F: kar/cm² 2.29 [2.30-4.30] · yazı kutusu 0.14 [0.13-0.28] · sayısal 0.42 · veri alanı 0.55 · derinlik 1 · akış 0/0 etiketli · ton 0.12 [0.86-0.92] · mürekkep 0.138 | beğeniye uzaklık 0.35 (2/5 beğenilmeyen tarafında) | eşikler tamam
 
 ## Cross-figure consistency: PASS
-- 2 figures share one design system
+- 17 figures share one design system

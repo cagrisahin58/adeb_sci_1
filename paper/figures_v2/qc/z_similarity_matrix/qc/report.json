@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08T15:17:04.713473+00:00",
+  "generated": "2026-11-08T21:06:36.735939+00:00",
   "scoring": "ayarli",
   "venue": "ieee_access",
   "venue_olcum": "olculdu",
@@ -10,13 +10,13 @@
   "consistency": {
     "passes": true,
     "notes": [
-      "10 figures share one design system"
+      "17 figures share one design system"
     ]
   },
   "figures": [
     {
       "stem": "fig8_similarity_matrix",
-      "score": 94.6,
+      "score": 93.6,
       "verdict": "PASS",
       "checks": [
         {
@@ -81,42 +81,6 @@
           "status": "PASS",
           "blocking": false,
           "detail": "17 colours, all bound"
-        },
-        {
-          "code": "B2",
-          "title": "CVD separation, or redundant channels",
-          "points": 5,
-          "earned": 5,
-          "status": "PASS",
-          "blocking": false,
-          "detail": "worst CVD dE 7.5 (mitigated by marker/linestyle/hatch)"
-        },
-        {
-          "code": "B3",
-          "title": "Greyscale separation, or redundant channels",
-          "points": 4,
-          "earned": 4,
-          "status": "PASS",
-          "blocking": false,
-          "detail": "worst dL* 10.0"
-        },
-        {
-          "code": "B4",
-          "title": "Every series has a non-colour channel",
-          "points": 3,
-          "earned": 3,
-          "status": "PASS",
-          "blocking": false,
-          "detail": "all series redundant"
-        },
-        {
-          "code": "B5",
-          "title": "Low-contrast series carry direct labels",
-          "points": 3,
-          "earned": 3,
-          "status": "PASS",
-          "blocking": false,
-          "detail": "ok"
         },
         {
           "code": "C1",
@@ -224,31 +188,32 @@
           "earned": 3.0,
           "status": "PASS",
           "blocking": false,
-          "detail": "7/7 richness items pass; distance to the liked reference 0.218 (2/5 on the disliked side); catalogue 0.0"
+          "detail": "7/7 richness items pass; distance to the liked reference 0.219 (2/5 on the disliked side); catalogue 0.0"
         }
       ],
       "skipped": [
+        "B2-B5: no manifest entities, entity styles unknown",
         "D1: manifest is not stamped by figspec.export.save; dual-axis status unverified",
         "D2: a Visio schematic has no axes; not applied (İSTEM 5A, adjusted scoring)"
       ],
       "warnings": [],
       "tavan": {
-        "puan": 93,
-        "toplam": 93,
+        "puan": 78,
+        "toplam": 78,
         "yuzde": 100.0,
-        "sinir_90_puan": 83.7
+        "sinir_90_puan": 70.2
       },
       "ayarli": {
         "scoring": "ayarli",
-        "score": 94.6,
+        "score": 93.6,
         "verdict": "PASS",
-        "points": 88.0,
-        "total": 93,
+        "points": 73.0,
+        "total": 78,
         "tavan": {
-          "puan": 93,
-          "toplam": 93,
+          "puan": 78,
+          "toplam": 78,
           "yuzde": 100.0,
-          "sinir_90_puan": 83.7
+          "sinir_90_puan": 70.2
         },
         "blocking": [],
         "checks": [
@@ -314,42 +279,6 @@
             "status": "PASS",
             "blocking": false,
             "detail": "17 colours, all bound"
-          },
-          {
-            "code": "B2",
-            "title": "CVD separation, or redundant channels",
-            "points": 5,
-            "earned": 5,
-            "status": "PASS",
-            "blocking": false,
-            "detail": "worst CVD dE 7.5 (mitigated by marker/linestyle/hatch)"
-          },
-          {
-            "code": "B3",
-            "title": "Greyscale separation, or redundant channels",
-            "points": 4,
-            "earned": 4,
-            "status": "PASS",
-            "blocking": false,
-            "detail": "worst dL* 10.0"
-          },
-          {
-            "code": "B4",
-            "title": "Every series has a non-colour channel",
-            "points": 3,
-            "earned": 3,
-            "status": "PASS",
-            "blocking": false,
-            "detail": "all series redundant"
-          },
-          {
-            "code": "B5",
-            "title": "Low-contrast series carry direct labels",
-            "points": 3,
-            "earned": 3,
-            "status": "PASS",
-            "blocking": false,
-            "detail": "ok"
           },
           {
             "code": "C1",
@@ -457,10 +386,11 @@
             "earned": 3.0,
             "status": "PASS",
             "blocking": false,
-            "detail": "7/7 richness items pass; distance to the liked reference 0.218 (2/5 on the disliked side); catalogue 0.0"
+            "detail": "7/7 richness items pass; distance to the liked reference 0.219 (2/5 on the disliked side); catalogue 0.0"
           }
         ],
         "skipped": [
+          "B2-B5: no manifest entities, entity styles unknown",
           "D1: manifest is not stamped by figspec.export.save; dual-axis status unverified",
           "D2: a Visio schematic has no axes; not applied (İSTEM 5A, adjusted scoring)"
         ],
@@ -468,15 +398,15 @@
       },
       "kati": {
         "scoring": "kati",
-        "score": 91.1,
-        "verdict": "PASS",
-        "points": 87.5,
-        "total": 96,
+        "score": 89.5,
+        "verdict": "BLOCK",
+        "points": 72.5,
+        "total": 81,
         "tavan": {
-          "puan": 94.5,
-          "toplam": 96,
-          "yuzde": 98.4,
-          "sinir_90_puan": 86.4
+          "puan": 79.5,
+          "toplam": 81,
+          "yuzde": 98.1,
+          "sinir_90_puan": 72.9
         },
         "blocking": [],
         "checks": [
@@ -542,42 +472,6 @@
             "status": "PASS",
             "blocking": false,
             "detail": "17 colours, all bound"
-          },
-          {
-            "code": "B2",
-            "title": "CVD separation, or redundant channels",
-            "points": 5,
-            "earned": 5,
-            "status": "PASS",
-            "blocking": false,
-            "detail": "worst CVD dE 7.5 (mitigated by marker/linestyle/hatch)"
-          },
-          {
-            "code": "B3",
-            "title": "Greyscale separation, or redundant channels",
-            "points": 4,
-            "earned": 4,
-            "status": "PASS",
-            "blocking": false,
-            "detail": "worst dL* 10.0"
-          },
-          {
-            "code": "B4",
-            "title": "Every series has a non-colour channel",
-            "points": 3,
-            "earned": 3,
-            "status": "PASS",
-            "blocking": false,
-            "detail": "all series redundant"
-          },
-          {
-            "code": "B5",
-            "title": "Low-contrast series carry direct labels",
-            "points": 3,
-            "earned": 3,
-            "status": "PASS",
-            "blocking": false,
-            "detail": "ok"
           },
           {
             "code": "C1",
@@ -695,10 +589,11 @@
             "earned": 3.0,
             "status": "PASS",
             "blocking": false,
-            "detail": "7/7 richness items pass; distance to the liked reference 0.218 (2/5 on the disliked side); catalogue 0.0"
+            "detail": "7/7 richness items pass; distance to the liked reference 0.219 (2/5 on the disliked side); catalogue 0.0"
           }
         ],
         "skipped": [
+          "B2-B5: no manifest entities, entity styles unknown",
           "D1: manifest is not stamped by figspec.export.save; dual-axis status unverified"
         ],
         "warnings": []
@@ -708,7 +603,7 @@
         "maddeler": [
           {
             "olcut": "karakter_cm2",
-            "deger": 2.966,
+            "deger": 3.045,
             "esik": {
               "max": 4.5
             },
@@ -720,7 +615,7 @@
           },
           {
             "olcut": "yazi_kutusu_alani",
-            "deger": 0.175,
+            "deger": 0.1795,
             "esik": {
               "max": 0.25
             },
@@ -732,7 +627,7 @@
           },
           {
             "olcut": "sayisal_oran",
-            "deger": 0.2436,
+            "deger": 0.1154,
             "esik": {
               "max": 0.55
             },
@@ -824,7 +719,7 @@
             "kaynak": "İSTEM satır 231: her çok panelli şekilde bir gruplama aracı (ton kartı, zemin bandı)",
             "gecti": true,
             "uygulanmaz": null,
-            "not": "3 panels (manifest); 5 tone card(s), 0 group frame(s); 0 device(s) of the uc_kaide pattern"
+            "not": "3 panels (manifest); 5 tone card(s), 0 group frame(s)"
           },
           {
             "olcut": "ton_kapsami_h",
@@ -891,7 +786,7 @@
               "kaynak": "20 sentezi satır 34"
             },
             "karakter_cm2": {
-              "deger": 2.966,
+              "deger": 3.045,
               "begenilen": [
                 2.3,
                 4.3
@@ -902,7 +797,7 @@
               "kaynak": "20 sentezi satır 31"
             },
             "yazi_kutusu_alani": {
-              "deger": 0.175,
+              "deger": 0.1795,
               "begenilen": [
                 0.131,
                 0.285
@@ -924,7 +819,7 @@
               "kaynak": "20 sentezi satır 33 (13 veri şekli)"
             },
             "bos": {
-              "deger": 0.4731,
+              "deger": 0.4732,
               "begenilen": [
                 0.024,
                 0.046
@@ -935,7 +830,7 @@
               "kaynak": "20 sentezi satır 35"
             },
             "sayisal_oran": {
-              "deger": 0.2436,
+              "deger": 0.1154,
               "begenilen": null,
               "begenilmeyen_medyan": null,
               "uzaklik": null,
@@ -949,7 +844,7 @@
               "kaynak": "20 sentezi satır 85: histopatolojide ölçülmedi; kara kutu tablo-grafiklerinde %11-30, medyan verilmedi"
             }
           },
-          "uzaklik": 0.218,
+          "uzaklik": 0.219,
           "olculen": 5,
           "begenilmeyen_tarafinda": 2,
           "uzak_durur": true
@@ -966,7 +861,7 @@
               "birim": "mutlak"
             },
             "bos": {
-              "deger": 0.4731,
+              "deger": 0.4732,
               "aralik": [
                 0.4,
                 0.65
@@ -977,7 +872,7 @@
           },
           "uzaklik": 0.0
         },
-        "ozet_satiri": "kar/cm² 2.97 [2.30-4.30] · yazı kutusu 0.17 [0.13-0.28] · sayısal 0.24 · veri alanı - · derinlik 4 · akış 0/0 etiketli · ton 0.39 [0.86-0.92] · mürekkep 0.138 | beğeniye uzaklık 0.22 (2/5 beğenilmeyen tarafında) | eşikler tamam",
+        "ozet_satiri": "kar/cm² 3.04 [2.30-4.30] · yazı kutusu 0.18 [0.13-0.28] · sayısal 0.12 · veri alanı - · derinlik 4 · akış 0/0 etiketli · ton 0.39 [0.86-0.92] · mürekkep 0.138 | beğeniye uzaklık 0.22 (2/5 beğenilmeyen tarafında) | eşikler tamam",
         "uslup_okuma": {
           "secim": "<skill>/styles/uslup_Z.yaml",
           "kaynak": "uslup_yolu",

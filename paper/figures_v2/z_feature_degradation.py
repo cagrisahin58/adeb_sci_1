@@ -59,7 +59,7 @@ def main():
     # three readout cards
     cx0 = 20.6
     cw = (W - cx0 - 1.6 - 2 * 1.4) / 3
-    cards = [("Entropy Δ", "nat", (-0.06, 0.06), (-0.05, 0.05), ("−0.05", "0.05")),
+    cards = [("Entropy Δ", "nat", (-0.06, 0.06), (-0.05, 0.05), ("–0.05", "0.05")),
              ("TV", "shift", (0.0, 0.1), (0.0, 0.05, 0.1), ("0", "0.05", "0.1")),
              ("Cosine", "block output", (0.955, 1.0), (0.96, 1.0), ("0.96", "1"))]
     ctop = rowy[NL - 1] - RH / 2 - 2 * lh(Z.S8) - 1.4
@@ -71,7 +71,9 @@ def main():
         face = f"c{c}_face"
         T(f"ct{c}", fx + fw / 2, fy + 0.6, [[(title, "sb")]], size=Z.S8, align="c", cont=face)
         T(f"cs{c}", fx + fw / 2, fy + 0.6 + lh(Z.S8), [sub], size=Z.S8, align="c", color="muted", cont=face)
-        x0, x1 = fx + (5.2 if c == 0 else 3.9), fx + fw - 3.3
+        # second round: the entropy spine must stay >= 12 mm (denge veri_alani_payi counts only spines of
+        # 12 mm or more; at 11.6 mm the card dropped out of the measured row)
+        x0, x1 = fx + (4.7 if c == 0 else 3.7), fx + fw - 3.1
         sc = Z.Olcek(v0, v1, x0, x1)
         if c == 0:
             band = [(sc(-0.05), rowy[NL - 1] - RH / 2), (sc(0.05), rowy[NL - 1] - RH / 2), (sc(0.05), rowy[0] + RH / 2),

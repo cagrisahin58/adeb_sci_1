@@ -480,7 +480,7 @@ On ImageNet the panel holds six CNNs~\cite{salman2020adversarially, engstrom2019
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig4_panel_members.pdf}
-\caption{\textbf{Reference panel members as books on two shelves.} The front shelf, CIFAR-10 and CIFAR-100, gives each RobustBench identifier its role in the C10 and C100 columns and marks ResNet-18 variants in the R18 column. The back shelf, ImageNetV2, holds the CNN panel and the secondary XCiT-S12, then the transformer pairs and the unpaired ViT-B of Mo et al.}
+\caption{\textbf{Reference panel members on two catalogue cards.} The front card, CIFAR-10 and CIFAR-100, gives each RobustBench identifier its role in the C10 and C100 columns and marks ResNet-18 variants in the R18 column. The back card, ImageNetV2, holds the CNN panel and the secondary XCiT-S12, the transformer pairs and the unpaired ViT-B of Mo et al.}
 \label{fig:panel_members}
 \end{figure}
 
@@ -492,7 +492,7 @@ On ImageNet the panel holds six CNNs~\cite{salman2020adversarially, engstrom2019
 \label{subsec:metrics}
 
 % KAYNAK: scripts/q1_e2_conditional.py (ornek bazli bootstrap, --n-boot 10000; tam test kumesi).
-The decomposition uses the target-correct rate throughout, because its diagonal is conditioned in the same way. Conditioning on correctly classified images is established practice (Section~\ref{subsec:rw_protocols}), yet the conditioning set is a protocol choice, and the protocol layer of Section~\ref{subsec:transfer} scores three alternatives on the same per-sample records, with masks drawn there in the top card of Figure~\ref{fig:protocol_sets}: the unconditioned rate, the \emph{both-correct} rate~\cite{mahmood2021robustness, ravikumar2023trend} and the \emph{successful-source} rate of Ravikumar et al.~\cite{ravikumar2023trend}, read strictly so that white-box success presupposes a clean-correct source; a loose reading without that condition is a sensitivity analysis only. The unconditioned and both-correct masks use the same samples in both directions of a pair, and the target-correct and successful-source masks do not. Rates use full test sets with per-sample outcomes logged; intervals for fixed checkpoints come from a percentile bootstrap over images with 10{,}000 resamples.
+The decomposition uses the target-correct rate throughout, because its diagonal is conditioned in the same way. Conditioning on correctly classified images is established practice (Section~\ref{subsec:rw_protocols}), yet the conditioning set is a protocol choice, and the protocol layer of Section~\ref{subsec:transfer} scores three alternatives on the same per-sample records, with masks drawn there in the terraced top part of Figure~\ref{fig:protocol_sets}: the unconditioned rate, the \emph{both-correct} rate~\cite{mahmood2021robustness, ravikumar2023trend} and the \emph{successful-source} rate of Ravikumar et al.~\cite{ravikumar2023trend}, read strictly so that white-box success presupposes a clean-correct source; a loose reading without that condition is a sensitivity analysis only. The unconditioned and both-correct masks use the same samples in both directions of a pair, and the target-correct and successful-source masks do not. Rates use full test sets with per-sample outcomes logged; intervals for fixed checkpoints come from a percentile bootstrap over images with 10{,}000 resamples.
 
 Write $e$ for the target's clean error, $r_{\text{raw}}$ and $r_{\text{cond}}$ for the unconditioned and target-correct rates of a direction ($r_{\text{cond}} = T_{ij}$), and $p$ for the probability that a sample the target misclassifies on clean input is also misclassified on the source-crafted input. By the law of total probability,
 \begin{equation}
@@ -1082,7 +1082,7 @@ ImageNetV2 & 0.218 & \multicolumn{2}{c}{0.187 (36)} & \multicolumn{2}{c}{0.318 (
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{../figures_v2/fig11_gradient_alignment.pdf}
-\caption{\textbf{Input-gradient alignment against similarity on a two-step stand.} Cosine c between input gradients on clean images against $\log\simt$ for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; back row, raw; front row, residual, with additive model main effects removed from both matrices. Each card prints the Spearman r and the number of pairs n.}
+\caption{\textbf{Input-gradient alignment against similarity on three steles.} Cosine c between input gradients against $\log\simt$ for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; upper panels raw, lower panels residual below the ledge, with additive model main effects removed. Each panel prints the Spearman r and pair count n; values are positions on the flat faces.}
 \label{fig:gradient_alignment}
 \end{figure*}
 
@@ -1108,7 +1108,7 @@ For this ViT-Tiny, then, the symmetric dissimilarity holds on both CIFAR dataset
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig12_estimates_forest.pdf}
-\caption{\textbf{Registered estimates as two hanging tags.} The upper card, Contrasts on panel similarity $\sigma$, holds H1, H2 and descriptive ImageNetV2 rows; the lower card, Directional terms, holds K-b and H3. Circles log, diamonds logit, open marks descriptive; thick and thin bars are 90\% and 95\% intervals, over images only on ImageNetV2. The $\pm$0.10 lines apply to log rows only.}
+\caption{\textbf{Registered estimates carved into one tablet.} Upper panel, Contrasts on panel similarity $\sigma$: H1, H2 and descriptive ImageNetV2 rows; lower panel, Directional terms: K-b and H3. Circles log, diamonds logit, open marks descriptive; thick and thin bars are 90\% and 95\% intervals. Values are positions on the flat panel floors; the $\pm$0.10 lines apply to log rows only.}
 \label{fig:estimates_forest}
 \end{figure}
 
@@ -1147,7 +1147,7 @@ SVHN shows what happens when the pair is matched in clean accuracy. With clean g
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig13_protocol_settings.pdf}
-\caption{\textbf{Protocol by setting as four exploded boards.} Transfer asymmetry (CNN to ViT minus ViT to CNN) of the ResNet-18 and ViT-Tiny pair: boards 1-4 are the conditioning protocols, set back layer by layer; rows are settings, mean$\pm$SD over three seed pairs with pairs as small circles (SVHN two pairs, no mean). The spine prints the spread over the four protocols.}
+\caption{\textbf{Protocol by setting as four exploded boards.} Transfer asymmetry (CNN to ViT minus ViT to CNN): boards 1-4 are the conditioning protocols, set back layer by layer; rows are settings, mean$\pm$SD over three seed pairs, pairs as small circles (SVHN two, no mean). Values are positions on each board's flat face; the spine prints the spread.}
 \label{fig:protocol_settings}
 \end{figure}
 
@@ -1157,7 +1157,7 @@ SVHN shows what happens when the pair is matched in clean accuracy. With clean g
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig14_protocol_sets.pdf}
-\caption{\textbf{Conditioning sets and measured asymmetry.} Conditioning sets: nested evaluation sets in the CNN-to-ViT direction as terraces (schematic, not area-proportional) with masks and N averaged over seed pairs. Measured asymmetry: mean$\pm$SD of the within-pair difference, pairs as open circles; the steps print the identity term, the marginal subsets both-correct removes and the source robustness successful-source selects on.}
+\caption{\textbf{Conditioning sets and measured asymmetry.} Conditioning sets: nested evaluation sets as terraces (schematic, not area-proportional; terrace height carries no value) with masks and mean N. Measured asymmetry: mean$\pm$SD of the within-pair difference, pairs as open circles, read as positions on the flat card and printed; the steps print the three decomposition terms.}
 \label{fig:protocol_sets}
 \end{figure}
 
@@ -1167,7 +1167,7 @@ SVHN shows what happens when the pair is matched in clean accuracy. With clean g
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig15_spread_clean_gap.pdf}
-\caption{\textbf{Protocol spread against the clean-accuracy gap on a deep stage.} All 60 model pairs. Back card, Three-protocol spread: unconditioned, target-correct and both-correct, open rings the identity prediction at p = 1; front card, Successful-source minus both-correct: the term the back card leaves out. Markers separate settings; no line is fitted, as pairs share models.}
+\caption{\textbf{Protocol spread against the clean-accuracy gap on a deep stage.} All 60 model pairs. Back card, Three-protocol spread: unconditioned, target-correct and both-correct, rings the identity prediction at p = 1; front card, Successful-source minus both-correct, the term left out. Values are positions on the flat cards; no line is fitted.}
 \label{fig:spread_clean_gap}
 \end{figure}
 %% <<< vz_girdi: sections/04_experiments.tex
@@ -1342,7 +1342,7 @@ The CNN's margin over the ViT is widest at small perturbation budgets ($77.30$ a
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig16_epsilon_sweep.pdf}
-\caption{\textbf{Robust accuracy under PGD-10 as cut-out profiles.} Each card's top edge traces CIFAR-10 test accuracy over the budget $\eps$, clean to 16/255, as a true vertical length (scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model). Depth only orders the models.}
+\caption{\textbf{Robust accuracy under PGD-10 as cut-out profiles.} Each card's top edge traces CIFAR-10 test accuracy over the budget $\eps$, clean to 16/255, as height above its own base (back bases dashed; scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model).}
 \label{fig:epsilon_sweep}
 \end{figure}
 
@@ -1393,13 +1393,13 @@ Moran's $I$ & 0.4141$\pm$0.0132 & 0.3941$\pm$0.0024 & $+$0.0200$\pm$0.0156 & 0.4
 % KAYNAK: eski 03_methodology.tex (Token Aggregation, Attention Metrics, Feature Degradation Metrics)
 % FOY:C4:110,111,113,120,122,123 ; Tablo 10:288-323 ; Dikkat entropisi:348,350
 % FOY:Dikkat entropisi TOST:1113,1138,1139
-Feature drift is the clean-to-adversarial cosine at each residual block output under the model's own PGD-10 attack ($n = 1{,}000$ per run). In the ViT it is gradual and leaves feature norms within $0.45\%$; in the CNN it concentrates in the first block of the last stage, with a cosine of $0.8777$ against $0.9607$ one block earlier and $0.9108$ one block later, and a $-13.14\pm1.89\%$ norm change. The CLS token drifts about three times as far as the patch-token mean at their minima, which lie at blocks 11 and 9. The entropy of the head-averaged CLS attention does not change: the largest per-layer change is $0.0045$ nats against clean values of $4.61$ to $5.11$, and run-level TOST at $\pm0.05$ nats accepts equivalence in all $12$ layers (top card of Figure~\ref{fig:feature_degradation}). Attention displacement grows from $0.028$ to $0.084$ with depth, so the attack redirects attention without broadening it. Last-block drift does not separate flipped from unflipped images (run-level $p = 0.20$ for the ViT, $0.080$ for the CNN).
+Feature drift is the clean-to-adversarial cosine at each residual block output under the model's own PGD-10 attack ($n = 1{,}000$ per run). In the ViT it is gradual and leaves feature norms within $0.45\%$; in the CNN it concentrates in the first block of the last stage, with a cosine of $0.8777$ against $0.9607$ one block earlier and $0.9108$ one block later, and a $-13.14\pm1.89\%$ norm change. The CLS token drifts about three times as far as the patch-token mean at their minima, which lie at blocks 11 and 9. The entropy of the head-averaged CLS attention does not change: the largest per-layer change is $0.0045$ nats against clean values of $4.61$ to $5.11$, and run-level TOST at $\pm0.05$ nats accepts equivalence in all $12$ layers (left card of Figure~\ref{fig:feature_degradation}). Attention displacement grows from $0.028$ to $0.084$ with depth, so the attack redirects attention without broadening it. Last-block drift does not separate flipped from unflipped images (run-level $p = 0.20$ for the ViT, $0.080$ for the CNN).
 
 % FOY:Dikkat entropisi TOST:1113 ; Dikkat entropisi:334-345,350
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig17_feature_degradation.pdf}
-\caption{\textbf{Feature degradation of ViT-Tiny under attack, block by block.} The clean and PGD-10 image enter the spine, block 1 at the bottom; per block, over three runs: CLS attention entropy change with 90\% TOST intervals inside the $\pm$0.05-nat band, CLS attention displacement (TV), and block-output cosine for three token sets, mean$\pm$SD. The ViT is attacked with its own PGD-10.}
+\caption{\textbf{Feature degradation of ViT-Tiny under attack, block by block.} The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90\% TOST intervals inside the $\pm$0.05-nat band, attention displacement (TV), block-output cosine, mean$\pm$SD. Values are positions on the flat cards.}
 \label{fig:feature_degradation}
 \end{figure}
 

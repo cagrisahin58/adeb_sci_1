@@ -30,7 +30,7 @@ The CNN's margin over the ViT is widest at small perturbation budgets ($77.30$ a
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig16_epsilon_sweep.pdf}
-\caption{\textbf{Robust accuracy under PGD-10 as cut-out profiles.} Each card's top edge traces CIFAR-10 test accuracy over the budget $\eps$, clean to 16/255, as a true vertical length (scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model). Depth only orders the models.}
+\caption{\textbf{Robust accuracy under PGD-10 as cut-out profiles.} Each card's top edge traces CIFAR-10 test accuracy over the budget $\eps$, clean to 16/255, as height above its own base (back bases dashed; scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model).}
 \label{fig:epsilon_sweep}
 \end{figure}
 
@@ -81,13 +81,13 @@ Moran's $I$ & 0.4141$\pm$0.0132 & 0.3941$\pm$0.0024 & $+$0.0200$\pm$0.0156 & 0.4
 % KAYNAK: eski 03_methodology.tex (Token Aggregation, Attention Metrics, Feature Degradation Metrics)
 % FOY:C4:110,111,113,120,122,123 ; Tablo 10:288-323 ; Dikkat entropisi:348,350
 % FOY:Dikkat entropisi TOST:1113,1138,1139
-Feature drift is the clean-to-adversarial cosine at each residual block output under the model's own PGD-10 attack ($n = 1{,}000$ per run). In the ViT it is gradual and leaves feature norms within $0.45\%$; in the CNN it concentrates in the first block of the last stage, with a cosine of $0.8777$ against $0.9607$ one block earlier and $0.9108$ one block later, and a $-13.14\pm1.89\%$ norm change. The CLS token drifts about three times as far as the patch-token mean at their minima, which lie at blocks 11 and 9. The entropy of the head-averaged CLS attention does not change: the largest per-layer change is $0.0045$ nats against clean values of $4.61$ to $5.11$, and run-level TOST at $\pm0.05$ nats accepts equivalence in all $12$ layers (top card of Figure~\ref{fig:feature_degradation}). Attention displacement grows from $0.028$ to $0.084$ with depth, so the attack redirects attention without broadening it. Last-block drift does not separate flipped from unflipped images (run-level $p = 0.20$ for the ViT, $0.080$ for the CNN).
+Feature drift is the clean-to-adversarial cosine at each residual block output under the model's own PGD-10 attack ($n = 1{,}000$ per run). In the ViT it is gradual and leaves feature norms within $0.45\%$; in the CNN it concentrates in the first block of the last stage, with a cosine of $0.8777$ against $0.9607$ one block earlier and $0.9108$ one block later, and a $-13.14\pm1.89\%$ norm change. The CLS token drifts about three times as far as the patch-token mean at their minima, which lie at blocks 11 and 9. The entropy of the head-averaged CLS attention does not change: the largest per-layer change is $0.0045$ nats against clean values of $4.61$ to $5.11$, and run-level TOST at $\pm0.05$ nats accepts equivalence in all $12$ layers (left card of Figure~\ref{fig:feature_degradation}). Attention displacement grows from $0.028$ to $0.084$ with depth, so the attack redirects attention without broadening it. Last-block drift does not separate flipped from unflipped images (run-level $p = 0.20$ for the ViT, $0.080$ for the CNN).
 
 % FOY:Dikkat entropisi TOST:1113 ; Dikkat entropisi:334-345,350
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig17_feature_degradation.pdf}
-\caption{\textbf{Feature degradation of ViT-Tiny under attack, block by block.} The clean and PGD-10 image enter the spine, block 1 at the bottom; per block, over three runs: CLS attention entropy change with 90\% TOST intervals inside the $\pm$0.05-nat band, CLS attention displacement (TV), and block-output cosine for three token sets, mean$\pm$SD. The ViT is attacked with its own PGD-10.}
+\caption{\textbf{Feature degradation of ViT-Tiny under attack, block by block.} The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90\% TOST intervals inside the $\pm$0.05-nat band, attention displacement (TV), block-output cosine, mean$\pm$SD. Values are positions on the flat cards.}
 \label{fig:feature_degradation}
 \end{figure}
 

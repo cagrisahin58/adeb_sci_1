@@ -73,10 +73,11 @@ def main():
         Z.kot(f"ax_{key}", px0, px1, py0 + 0.8, sx, [0, 5, 10, 15, 20], ["0", "5", "10", "15", "20"], cont=face)
         if key == "front":
             vf.seg("zero", (px0, sy(0.0)), (px1, sy(0.0)), vf.C["frame"], vf.LW["ince"], dash=True)
-        if key == "back":                          # identity rings first: nothing grey lies under a white mark
+        if key == "back":   # identity rings first (an open mark prints with a white fill and would hide a point);
+            # second round: 2.6 mm, wider than every data mark (at most 2.0 mm), so each ring shows as a rim
             for i, n in enumerate(N):
                 Z.isaret(f"id_{i}", sx(n["temiz_fark_mutlak"]), sy(abs(n["raw_eksi_tc_asimetri_ozdeslik_ongorusu_p1"])),
-                         "o", fill=None, edge="ink", size=1.35, group=f"pt_{key}")
+                         "o", fill=None, edge="ink", size=2.6, group=f"pt_{key}")
         order = sorted(range(len(N)), key=lambda i: 0 if "havuzu" in N[i]["grup"] else 1)   # pool first, behind
         for i in order:
             n = N[i]
@@ -91,7 +92,9 @@ def main():
                      group=f"pt_{key}")
     T("xl", OX + 1.0 + CW / 2, OY + 2.8, [f"|clean-accuracy gap| (pts); n = {len(N)} pairs"], size=Z.S8, color="muted",
       align="c")
-    yl = OY + 2.8 + lh(Z.S8) + 1.0
+    yl = OY + 2.8 + lh(Z.S8) + 1.6
+    # bulgu 5 (08.11): the key rule, the 1.5 pt (vurgu) line that separates scene and key (as Figures 7, 13, 16)
+    vf.seg("rule", (1.0, yl - 0.6), (W - 1.0, yl - 0.6), vf.C["frame"], vf.LW["vurgu"])
     for j, (g, mk, fill, edge, lab) in enumerate(GROUPS):
         cx = 1.0 + (j % 2) * 42.0
         cy = yl + (j // 2) * (lh(Z.S8) + 0.2)
@@ -99,7 +102,7 @@ def main():
                  size=1.8)
         T(f"lgt{j}", cx + 2.6, cy, [lab], size=Z.S8)
     cy = yl + 4 * (lh(Z.S8) + 0.2)
-    Z.isaret("lgid", 2.0, cy + lh(Z.S8) / 2, "o", fill=None, edge="ink", size=1.35)
+    Z.isaret("lgid", 2.0, cy + lh(Z.S8) / 2, "o", fill=None, edge="ink", size=2.6)
     T("lgidt", 3.6, cy, ["identity prediction (back card)"], size=Z.S8)
     for _pid in ["ti_back", "ti_front"]:          # the panel titles are the strips of naming step 4
         vf.note_naming(_pid, "strip")

@@ -35,9 +35,9 @@ BW, BD, GAP = 8.6, 6.0, 3.2
 ROWS = [("vit_tiny", "govde_vit", "^", "ViT-Tiny AT"), ("resnet18", "govde_r32", "s", "ResNet-18 AT"),
         ("wrn", "govde_panel", "v", "WRN-28-10")]
 CAPTION = ("Robust accuracy under PGD-10 as cut-out profiles. Each card's top edge traces CIFAR-10 test accuracy "
-           "over the budget ε, clean to 16/255, as a true vertical length (scale bar 25 points); the number rows print "
-           "the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model). "
-           "Depth only orders the models.")
+           "over the budget ε, clean to 16/255, as height above its own base (back bases dashed; scale bar 25 points); "
+           "the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one "
+           "RobustBench model).")
 
 
 def main():
@@ -54,20 +54,30 @@ def main():
     for r in (2, 1, 0):                            # back to front
         key, tint, mk, lab = ROWS[r]
         d = data[key]
-        X, Y = S.n[0] * DEPTH * r, S.n[1] * DEPTH * r
+        # bulgu 11 (08.11): the back cut-outs are moved left along u by the page shift of their depth, so every
+        # marker stands straight above its budget label (depth lifts a profile, it no longer shifts it right)
+        shift = S.P(S.n[0] * DEPTH * r, S.n[1] * DEPTH * r)[0] - S.ox
+        X, Y = Z.un(S, -shift, DEPTH * r)
         hts = [v * HS for v in d["mean"]]
         fx = [0.0] + dx + [dx[-1] + 2.0]
         fh = [hts[0]] + hts + [hts[-1]]
         p0, top = Z.profil_kart(S, f"c{r}", X, Y, 0.0, fx, fh, tint, t=4.0, edge_hex=vf.tint_of(tint)[1], k=(0.05, 0.03),
                                 group=f"c{r}")
-        feet[r] = p0
+        feet[r] = (p0, p0[0] + fx[-1])
         ec = vf.tint_of(tint)[1]
         for i, (px, py) in enumerate(top[1:-1]):
             Z.isaret(f"m{r}_{i}", px, py, mk, fill=vf.tint_of(tint)[0], edge=ec, size=2.0, group=f"c{r}")
         if "sd" in d:
             sdmax = max(sdmax, max(d["sd"]))
+    # review round 2 (08.11.2026): the back cut-outs stand straight behind the front one, so their own bases are
+    # hidden and a reader measured them from the front base (WRN clean read ~119 instead of 89.5). The hidden base
+    # edges are drawn dashed (the hidden-line convention of technical drawing), each across its own cut-out, so
+    # every height is read from its own base; the scale bar holds within any one cut-out.
+    for r in (1, 2):
+        (bx0, by0), bx1 = feet[r]
+        vf.seg(f"hb{r}", (bx0, by0), (bx1, by0), vf.tint_of(ROWS[r][1])[1], vf.LW["ince"], dash=True)
     # true-length ruler on the front cut-out and the budget labels on its foot
-    p0 = feet[0]
+    p0 = feet[0][0]
     # a scale bar instead of an axis: the cut-outs stand at different depths, so one ruler would misread the
     # back profiles; 25 points of accuracy are 10 mm of true vertical length on every cut-out
     xb, yb0 = W - 3.0, p0[1]

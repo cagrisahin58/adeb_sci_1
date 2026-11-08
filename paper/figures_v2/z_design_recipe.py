@@ -63,10 +63,6 @@ def main():
     X, Y = Z.un(S, 1.5, -P)
     bx, by, bw, bh = Z.kart(S, "brd", X, Y, 1.0, CW - 3.0, BH, "govde_r32", t=P, shadow=False, group="brd",
                             cont="brbox_face")
-    for j in range(3):                       # index cards in the bridge drawer
-        X, Y = Z.un(S, 10.0, -P + (j + 1) * P / 4.0)
-        Z.kart(S, f"brc{j}", X, Y, 1.0 + BH, CW - 23.0, 1.8, "kutu", t=0.25, shadow=False, group=f"brc{j}",
-               cont="brbox_face")
     X, Y = Z.un(S, CW - 12.0, -P - 0.8)
     Z.kart(S, "mb32", X, Y, 2.4, 5.0, 6.0, "kutu", t=1.6, shadow=False, group="mb32", cont="brd_face")
     for i, ln in enumerate(lines32):
@@ -93,10 +89,12 @@ def main():
             vf.poly(f"slot{r}{cc}", slot + [slot[0]], fill=vf.tint_of("golge")[0], line=None, role="deco",
                     container="cab_face")
             runs = list(DR.H[cell]["kosular"])
+            if runs == ["sablon"]:            # V-scr: one command template for its runs; one card per seed (tohumlar)
+                runs = list(DR.H[cell]["tohumlar"])
             X, Y = Z.un(S, xo, -P)
             dx, dy, dw, dh = Z.kart(S, f"d{r}{cc}", X, Y, zr, DW, DH, tint, t=P, shadow=False, group=f"d{r}{cc}",
                                     cont=f"slot{r}{cc}")
-            for j in range(len(runs)):
+            for j in reversed(range(len(runs))):     # back card first: the front (lower) card must not be hidden
                 X, Y = Z.un(S, xo + 3.0 + 1.6 * j, -P + (j + 1) * P / (len(runs) + 1))
                 Z.kart(S, f"dc{r}{cc}{j}", X, Y, zr + DH, DW - 12.0, 1.8 + 0.7 * j, "kutu", t=0.25, shadow=False,
                        group=f"dc{r}{cc}{j}", cont="cab_face")
@@ -109,11 +107,22 @@ def main():
             T(f"dl{r}{cc}", dx + 1.4, dy + 0.9 + LH, [Lc["clean"], Lc["seeds"]], size=S8, cont=face)
             if Lc["init"]:
                 DR.CAPTION_MOVED[cell] = Lc["init"]
+    # review round 2: the bridge drawer's index cards (one per seed, as in the 2 x 2 drawers) stand in front of
+    # the cabinet face, so they are drawn after it, back card first, shifted and of rising height
+    n32 = len(DR.H["C1-R32"]["tohumlar"]) if "tohumlar" in DR.H["C1-R32"] else 3
+    for j in reversed(range(n32)):
+        X, Y = Z.un(S, 10.0 + 1.6 * j, -P + (j + 1) * P / (n32 + 1))
+        Z.kart(S, f"brc{j}", X, Y, 1.0 + BH, CW - 26.0, 1.8 + 0.7 * j, "kutu", t=0.25, shadow=False,
+               group=f"brc{j}", cont="cab_face")
     # column heads above the cabinet
     yh = OY - z0 - CH + 0.6
     for cc, lab in enumerate(("scratch (random init.)", "ImageNet init.")):
         T(f"colh{cc}", cx + 3.0 + cc * (DW + 2.0) + 1.4, yh, [[(lab, "sb")]], size=S8, color="muted",
           cont="cab_face")
+    # bulgu 5 (08.11): booktabs head rule, the one 1.5 pt (vurgu) line of the figure; table rules are the
+    # emphasis edges of style Z (as Figures 7, 13 and 16)
+    vf.seg("colh_rule", (cx + 3.0, yh + LH + 0.1), (cx + 3.0 + 2 * DW + 2.0, yh + LH + 0.1), vf.C["frame"],
+           vf.LW["vurgu"])
     # --- the AT sign standing on top of the cabinet
     cst = "V-IN"
     mix = DR.get("ortak.at_kaybi.mix_ratio")

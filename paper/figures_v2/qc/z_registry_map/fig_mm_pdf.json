@@ -40,10 +40,10 @@
    }
   },
   "inputs": {
-   "page_text_sha256": "cd391d65a3f550bbe5f7223b1083897ad3a8cfcd45a6089f05c8ebfcf2bd99f9",
+   "page_text_sha256": "73fc868f1929332527826b73b64e086c5f0968a106147aca79162b0dff6a9ac3",
    "spans": 75,
    "lines": 59,
-   "drawings": 124,
+   "drawings": 125,
    "closed_boxes": 0
   },
   "verdict": "PASS",
@@ -51,7 +51,8 @@
   "floor_pt": 8.0,
   "cizgi": {
    "basili_pt": [
-    0.75
+    0.75,
+    1.5
    ],
    "tokenlar_pt": {
     "ince": 0.75,
@@ -60,7 +61,8 @@
     "eksen": 0.75
    },
    "basili_uzunluk_mm": {
-    "0.750": 6319.06
+    "0.750": 6319.06,
+    "1.500": 175.53
    },
    "ok_ucu": {
     "basili_mm": [],
@@ -71,17 +73,15 @@
     "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
     "adaylar": []
    },
-   "sorunlar": [
-    "token width(s) [1.5] pt never printed",
-    "the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt"
-   ],
-   "uyumlu": false,
+   "sorunlar": [],
+   "uyumlu": true,
    "token_kaynagi": "manifest",
    "basim_modeli": {
     "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
     "dpi": 120,
     "beklenen_cizgi_pt": [
-     0.75
+     0.75,
+     1.5
     ],
     "beklenen_ok_ucu_mm": [],
     "sorunlar": [],
@@ -111,23 +111,9 @@
     {
      "metin": "  ",
      "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": "   ",
-     "karakter": "U+0020",
      "glif": 561,
      "font": "Open Sans",
      "not": "decodes to a space through glyph 561; the font's spaces use glyph 3"
-    },
-    {
-     "metin": "   ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
     },
     {
      "metin": " ",
@@ -160,13 +146,6 @@
     {
      "metin": "  ",
      "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": "  ",
-     "karakter": "U+0020",
      "glif": 561,
      "font": "Open Sans",
      "not": "decodes to a space through glyph 561; the font's spaces use glyph 3"
@@ -193,32 +172,18 @@
      "not": "decodes to a space through glyph 562; the font's spaces use glyph 3"
     },
     {
-     "metin": "   ",
+     "metin": "  ",
      "karakter": "U+0020",
      "glif": 561,
      "font": "Open Sans",
      "not": "decodes to a space through glyph 561; the font's spaces use glyph 3"
     },
     {
-     "metin": "   ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": "   ",
+     "metin": "  ",
      "karakter": "U+0020",
      "glif": 561,
      "font": "Open Sans",
      "not": "decodes to a space through glyph 561; the font's spaces use glyph 3"
-    },
-    {
-     "metin": "   ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
     },
     {
      "metin": "  ",
@@ -241,9 +206,7 @@
    "metinden_gecen": []
   },
   "uyarilar": [
-   "T4: token width(s) [1.5] pt never printed",
-   "T4: the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt",
-   "T6: 20 printed glyph(s) do not reach the text layer: [{'metin': '  ', 'karakter': 'U+0020', 'glif': 562, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 562; the font's spaces use glyph 3\"}, {'metin': '  ', 'karakter': 'U+0020', 'glif': 562, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 562; the font's spaces use glyph 3\"}, {'metin': '  ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}]"
+   "T6: 15 printed glyph(s) do not reach the text layer: [{'metin': '  ', 'karakter': 'U+0020', 'glif': 562, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 562; the font's spaces use glyph 3\"}, {'metin': '  ', 'karakter': 'U+0020', 'glif': 562, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 562; the font's spaces use glyph 3\"}, {'metin': '  ', 'karakter': 'U+0020', 'glif': 561, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 561; the font's spaces use glyph 3\"}]"
   ]
  }
 }

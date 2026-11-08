@@ -140,14 +140,14 @@
           "right": "c2_r"
         },
         "bbox_mm": [
-          10.9234,
+          6.0,
           3.5048,
           49.0941,
           35.792
         ],
         "world_mm": [
-          -8.376140289509753,
-          15.932365607481254,
+          -11.953179234936496,
+          14.0518049446086,
           0.0
         ],
         "rol": "veri",
@@ -190,14 +190,14 @@
           "right": "c1_r"
         },
         "bbox_mm": [
-          8.4617,
+          6.0,
           10.9601,
           49.0941,
           34.3133
         ],
         "world_mm": [
-          -4.188070144754876,
-          7.966182803740627,
+          -5.976589617468248,
+          7.0259024723043,
           0.0
         ],
         "rol": "veri",
@@ -339,12 +339,12 @@
   "sablon": "tek_kart_veri",
   "tur": "veri",
   "uslup_yolu": "<skill>/styles/uslup_Z.yaml",
-  "altyazi_taslagi": "Robust accuracy under PGD-10 as cut-out profiles. Each card's top edge traces CIFAR-10 test accuracy over the budget ε, clean to 16/255, as a true vertical length (scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model). Depth only orders the models.",
+  "altyazi_taslagi": "Robust accuracy under PGD-10 as cut-out profiles. Each card's top edge traces CIFAR-10 test accuracy over the budget ε, clean to 16/255, as height above its own base (back bases dashed; scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model).",
   "uslup_surumu": 3,
+  "sahne_kalibi": "kesik_profil_levhalari",
   "ikiz_kodlama": "every accuracy is printed as a number in the rows under the scene",
   "denge_muafiyet": {
     "3b_veri": "block height is the accuracy as a true length on the one vertical dimetric axis, and the number rows print every value (K7)"
   },
-  "derinlik_ekseni": "orders the models by robustness (front least robust), carries no value",
-  "sahne_kalibi": "teras"
+  "derinlik_ekseni": "orders the models by robustness (front least robust), carries no value"
 }

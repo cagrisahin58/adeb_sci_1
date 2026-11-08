@@ -17,22 +17,22 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 LOG = HERE / "visio_loglari" / "hepsi_v2.log"
 NOTES = {
-    "study_overview": "maket masasi (pv_a); harfler a-e metin atiflari icin; derinlik hat sirasi",
-    "design_recipe": "kartotek dolabi; adim 6; yazi muafiyeti (v1 gibi)",
+    "study_overview": "maket masasi; harfler not kartinda sol altta, (c) kilavuzlari karo yuzunde noktali; 1.5 pt kural; en tire",
+    "design_recipe": "kartotek dolabi; adim 6; yazi muafiyeti; 1.5 pt kural; V-scr ve R32 uc fis karti",
     "decomposition_schematic": "uc katli buzlu kesit, egri baglayicilar, katman 6 mm geri; adim 2",
-    "panel_members": "iki rafli katalog kartlari; adim 4; yazi muafiyeti",
-    "registry_map": "yedi basamakli merdiven; adim 3",
+    "panel_members": "iki rafli katalog kartlari; adim 4; yazi muafiyeti; baslik 1.5 pt kural",
+    "registry_map": "yedi basamakli merdiven; adim 3; baslik 1.5 pt kural",
     "prereg_chain": "zaman rafi, derinlik=zaman, egri oklar; adim 2",
-    "source_gap_split": "uc zemin levhasi; K7 muaf; adim 4",
+    "source_gap_split": "uc zemin levhasi; K7 muaf; adim 4; q n/a notu",
     "similarity_matrix": "uc kaide, duz matris; adim 3",
     "cells_interaction": "uc katli kule, ortak direkler; adim 4",
     "attack_side": "abakus; tek nesne",
-    "gradient_alignment": "iki basamakli tribun; eksen etiketi duzeltildi; adim 4",
-    "estimates_forest": "raydan asili iki etiket; adim 4",
+    "gradient_alignment": "uc dikili tas, ham ust/artik alt, cikinti islem; adim 4; anahtar kurali 1.5 pt",
+    "estimates_forest": "kaide ustunde iki oyuk panelli kitabe; adim 4; anahtar kurali 1.5 pt",
     "protocol_settings": "patlatilmis dort protokol tahtasi; adim 3",
     "protocol_sets": "terasli havuz ve olcum karti; adim 4",
-    "spread_clean_gap": "derin sahne, iki levha; adim 4",
-    "epsilon_sweep": "kesik profil levhalari; K7 muaf",
+    "spread_clean_gap": "derin sahne, iki levha; adim 4; anahtar kurali 1.5 pt",
+    "epsilon_sweep": "kesik profil levhalari, hizali, gizli tabanlar kesik; K7 muaf",
     "feature_degradation": "ViT omurgasi, blok basina okuma oku; adim 2",
 }
 ORDER = list(NOTES)

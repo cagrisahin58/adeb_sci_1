@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T15:52:12+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-08T20:56:52+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -29,7 +29,7 @@ Generated 2026-11-08T15:52:12+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): each block prints its model and image counts |
 | E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 60 words, 0 in mandatory sentences, 60 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | The pre-registration chain: what was seen before registration, the frozen main r... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 11/11 richness items pass; distance to the liked reference 1.199 (0/5 on the disliked side); catalogue 0.183 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 11/11 richness items pass; distance to the liked reference 1.196 (0/5 on the disliked side); catalogue 0.183 |
 | _skipped_ | - | SKIP | B2-B5: no manifest entities, entity styles unknown |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 | _skipped_ | - | SKIP | D2: a Visio schematic has no axes; not applied (İSTEM 5A, adjusted scoring) |
@@ -57,13 +57,11 @@ Generated 2026-11-08T15:52:12+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): each block prints its model and image counts |
 | E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 60 words, 0 in mandatory sentences, 60 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | The pre-registration chain: what was seen before registration, the frozen main r... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 11/11 richness items pass; distance to the liked reference 1.199 (0/5 on the disliked side); catalogue 0.183 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 11/11 richness items pass; distance to the liked reference 1.196 (0/5 on the disliked side); catalogue 0.183 |
 | _skipped_ | - | SKIP | B2-B5: no manifest entities, entity styles unknown |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 
-F: kar/cm² 4.25 [2.30-4.30] · yazı kutusu 0.26 [0.13-0.28] · sayısal 0.25 · veri alanı - · derinlik 2 · akış 2/2 etiketli · ton 0.59 [0.06-0.49] · mürekkep 0.109 | beğeniye uzaklık 1.20 (0/5 beğenilmeyen tarafında) | eşikler tamam
+F: kar/cm² 4.25 [2.30-4.30] · yazı kutusu 0.26 [0.13-0.28] · sayısal 0.25 · veri alanı - · derinlik 2 · akış 2/2 etiketli · ton 0.59 [0.06-0.49] · mürekkep 0.110 | beğeniye uzaklık 1.20 (0/5 beğenilmeyen tarafında) | eşikler tamam
 
-## Cross-figure consistency: BLOCK
-- entity 'r32' is drawn in more than one colour: #9DBEA3 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig9_cells_interaction']; #E6F5E8 <- ['fig2_design_recipe']
-- entity 'r224' is drawn in more than one colour: #594D44 <- ['fig10_attack_side', 'fig9_cells_interaction']; #999188 <- ['fig2_design_recipe']
-- entity 'vit' is drawn in more than one colour: #AB6F57 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig17_feature_degradation', 'fig9_cells_interaction']; #D5B09F <- ['fig2_design_recipe']
+## Cross-figure consistency: PASS
+- 17 figures share one design system

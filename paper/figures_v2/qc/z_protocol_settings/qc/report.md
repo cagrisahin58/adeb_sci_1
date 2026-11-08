@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T14:44:52+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-08T21:01:47+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -31,7 +31,7 @@ Generated 2026-11-08T14:44:52+00:00; verdict from the ayarli scoring; both scori
 | D4 No text-on-text collisions | 5/5 | PASS | clean |
 | D5 No internal experiment codes in the artwork | 3/3 | PASS | clean |
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): three seed pairs per setting (SVHN two) are drawn as single marks |
-| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 60 words, 0 in mandatory sentences, 60 counted; limit 60 on ieee_access; lead-in yes |
+| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 56 words, 0 in mandatory sentences, 56 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | The transfer asymmetry of one pair depends on the conditioning protocol in every... |
 | E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 8/8 richness items pass; distance to the liked reference 0.105 (0/5 on the disliked side); catalogue 0.459 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
@@ -62,7 +62,7 @@ Generated 2026-11-08T14:44:52+00:00; verdict from the ayarli scoring; both scori
 | D4 No text-on-text collisions | 5/5 | PASS | clean |
 | D5 No internal experiment codes in the artwork | 3/3 | PASS | clean |
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): three seed pairs per setting (SVHN two) are drawn as single marks |
-| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 60 words, 0 in mandatory sentences, 60 counted; limit 60 on ieee_access; lead-in yes |
+| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 56 words, 0 in mandatory sentences, 56 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | The transfer asymmetry of one pair depends on the conditioning protocol in every... |
 | E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 8/8 richness items pass; distance to the liked reference 0.105 (0/5 on the disliked side); catalogue 0.459 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
@@ -70,4 +70,4 @@ Generated 2026-11-08T14:44:52+00:00; verdict from the ayarli scoring; both scori
 F: kar/cm² 2.33 [2.30-4.30] · yazı kutusu 0.15 [0.13-0.28] · sayısal 0.17 · veri alanı 0.47 · derinlik 1 · akış 0/0 etiketli · ton 0.62 [0.86-0.92] · mürekkep 0.136 | beğeniye uzaklık 0.10 (0/5 beğenilmeyen tarafında) | eşikler tamam
 
 ## Cross-figure consistency: PASS
-- 6 figures share one design system
+- 17 figures share one design system

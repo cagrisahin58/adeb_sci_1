@@ -775,18 +775,31 @@
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_design_recipe.py",
-  "git_head": "74533ba",
-  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "git_head": "fc7c6c8",
   "okunan_dosyalar": [
+    "paper/figures/konsey/konsey_ortak.py",
+    "paper/figures/visio/_sema_ortak.py",
+    "paper/figures/visio/_yuz_tonlari.py",
     "results/C1_REFERANS_FOYU.md",
     "results/q1/konsey_b3_tarif.json",
     "src/models/r224.py"
   ],
   "karantina_denetimi": {
+    "paper/figures/konsey/konsey_ortak.py": true,
+    "paper/figures/visio/_sema_ortak.py": true,
+    "paper/figures/visio/_yuz_tonlari.py": true,
     "results/C1_REFERANS_FOYU.md": true,
     "results/q1/konsey_b3_tarif.json": true,
     "src/models/r224.py": true
   },
+  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); paper/figures/visio/*.py (v1 icerik kurallari, salt okunur ice aktarim); results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari); src/models/*.py (model tanimi satirlari). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "okunan_siniflar": [
+    "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
+    "paper/figures/visio/*.py (v1 icerik kurallari, salt okunur ice aktarim)",
+    "results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi)",
+    "results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari)",
+    "src/models/*.py (model tanimi satirlari)"
+  ],
   "foy_karsilastirmasi": {
     "karsilastirma_sayisi": 30,
     "uyusmayan": 0,

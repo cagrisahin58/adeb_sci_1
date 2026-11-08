@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T15:57:03+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-08T20:54:25+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -17,7 +17,7 @@ Generated 2026-11-08T15:57:03+00:00; verdict from the ayarli scoring; both scori
 | A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.175in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
 | A6 Panel frames aligned | 2/4 | WARN | left edges [3.5, 80.2], bottom edges [195.3, 258.6, 263.7] |
-| B1 Every colour bound in the palette | 5/5 | PASS | 52 colours, all bound |
+| B1 Every colour bound in the palette | 5/5 | PASS | 53 colours, all bound |
 | C1 Fonts embedded, zero Type 3 | 6/6 | PASS | 4 fonts, all embedded |
 | C2 All four formats, PNG above the dpi floor | 4/4 | PASS | have ['pdf', 'eps', 'svg', 'png'], PNG 600dpi |
 | C3 Manuscript includes the vector asset | 4/4 | PASS | includes fig1_study_overview (no extension; the PDF beside it is what pdflatex takes) |
@@ -29,7 +29,7 @@ Generated 2026-11-08T15:57:03+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): model and run counts are printed at each station |
 | E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 59 words, 0 in mandatory sentences, 59 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | Study design as one scene: trained models and fixed reference panels give transf... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.123 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.108 |
 | _skipped_ | - | SKIP | B2-B5: no manifest entities, entity styles unknown |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 | _skipped_ | - | SKIP | D2: a Visio schematic has no axes; not applied (İSTEM 5A, adjusted scoring) |
@@ -44,7 +44,7 @@ Generated 2026-11-08T15:57:03+00:00; verdict from the ayarli scoring; both scori
 | A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.175in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
 | A6 Panel frames aligned | 2/4 | WARN | left edges [3.5, 80.2], bottom edges [195.3, 258.6, 263.7] |
-| B1 Every colour bound in the palette | 5/5 | PASS | 52 colours, all bound |
+| B1 Every colour bound in the palette | 5/5 | PASS | 53 colours, all bound |
 | C1 Fonts embedded, zero Type 3 | 6/6 | PASS | 4 fonts, all embedded |
 | C2 All four formats, PNG above the dpi floor | 4/4 | PASS | have ['pdf', 'eps', 'svg', 'png'], PNG 600dpi |
 | C3 Manuscript includes the vector asset | 4/4 | PASS | includes fig1_study_overview (no extension; the PDF beside it is what pdflatex takes) |
@@ -57,13 +57,11 @@ Generated 2026-11-08T15:57:03+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): model and run counts are printed at each station |
 | E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 59 words, 0 in mandatory sentences, 59 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | Study design as one scene: trained models and fixed reference panels give transf... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.123 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.108 |
 | _skipped_ | - | SKIP | B2-B5: no manifest entities, entity styles unknown |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 
-F: kar/cm² 4.09 [2.30-4.30] · yazı kutusu 0.25 [0.13-0.28] · sayısal 0.10 · veri alanı 0.19 · derinlik 4 · akış 2/1 etiketli · ton 0.32 [0.06-0.49] · mürekkep 0.122 | beğeniye uzaklık 0.00 (0/5 beğenilmeyen tarafında) | eşikler tamam
+F: kar/cm² 4.04 [2.30-4.30] · yazı kutusu 0.25 [0.13-0.28] · sayısal 0.11 · veri alanı 0.19 · derinlik 4 · akış 2/1 etiketli · ton 0.45 [0.06-0.49] · mürekkep 0.123 | beğeniye uzaklık 0.00 (0/5 beğenilmeyen tarafında) | eşikler tamam
 
-## Cross-figure consistency: BLOCK
-- entity 'r32' is drawn in more than one colour: #9DBEA3 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig9_cells_interaction']; #E6F5E8 <- ['fig2_design_recipe']
-- entity 'r224' is drawn in more than one colour: #594D44 <- ['fig10_attack_side', 'fig9_cells_interaction']; #999188 <- ['fig2_design_recipe']
-- entity 'vit' is drawn in more than one colour: #AB6F57 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig17_feature_degradation', 'fig9_cells_interaction']; #D5B09F <- ['fig2_design_recipe']
+## Cross-figure consistency: PASS
+- 17 figures share one design system

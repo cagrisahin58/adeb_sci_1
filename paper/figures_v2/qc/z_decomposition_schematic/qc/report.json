@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08T15:57:37.148909+00:00",
+  "generated": "2026-11-08T20:55:21.989730+00:00",
   "scoring": "ayarli",
   "venue": "ieee_access",
   "venue_olcum": "olculdu",
@@ -8,11 +8,9 @@
   "settings": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\visio_cizici_v2.yaml (qc section)",
   "mapping": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\qc\\ESLEME.md",
   "consistency": {
-    "passes": false,
+    "passes": true,
     "notes": [
-      "entity 'r32' is drawn in more than one colour: #9DBEA3 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig9_cells_interaction']; #E6F5E8 <- ['fig2_design_recipe']",
-      "entity 'r224' is drawn in more than one colour: #594D44 <- ['fig10_attack_side', 'fig9_cells_interaction']; #999188 <- ['fig2_design_recipe']",
-      "entity 'vit' is drawn in more than one colour: #AB6F57 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig17_feature_degradation', 'fig9_cells_interaction']; #D5B09F <- ['fig2_design_recipe']"
+      "17 figures share one design system"
     ]
   },
   "figures": [
@@ -37,7 +35,7 @@
           "earned": 8,
           "status": "PASS",
           "blocking": true,
-          "detail": "smallest 8.40pt on 'per pair (i, j)'"
+          "detail": "smallest 8.40pt on 'log w(j)'"
         },
         {
           "code": "A3",
@@ -91,7 +89,7 @@
           "earned": 5,
           "status": "PASS",
           "blocking": false,
-          "detail": "worst CVD dE 11.6 (mitigated by marker/linestyle/hatch)"
+          "detail": "worst CVD dE 20.0 (mitigated by marker/linestyle/hatch)"
         },
         {
           "code": "B3",
@@ -100,7 +98,7 @@
           "earned": 4,
           "status": "PASS",
           "blocking": false,
-          "detail": "worst dL* 10.3"
+          "detail": "worst dL* 19.1"
         },
         {
           "code": "B4",
@@ -226,7 +224,7 @@
           "earned": 3.0,
           "status": "PASS",
           "blocking": false,
-          "detail": "11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.173"
+          "detail": "11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.19"
         }
       ],
       "skipped": [
@@ -270,7 +268,7 @@
             "earned": 8,
             "status": "PASS",
             "blocking": true,
-            "detail": "smallest 8.40pt on 'per pair (i, j)'"
+            "detail": "smallest 8.40pt on 'log w(j)'"
           },
           {
             "code": "A3",
@@ -324,7 +322,7 @@
             "earned": 5,
             "status": "PASS",
             "blocking": false,
-            "detail": "worst CVD dE 11.6 (mitigated by marker/linestyle/hatch)"
+            "detail": "worst CVD dE 20.0 (mitigated by marker/linestyle/hatch)"
           },
           {
             "code": "B3",
@@ -333,7 +331,7 @@
             "earned": 4,
             "status": "PASS",
             "blocking": false,
-            "detail": "worst dL* 10.3"
+            "detail": "worst dL* 19.1"
           },
           {
             "code": "B4",
@@ -459,7 +457,7 @@
             "earned": 3.0,
             "status": "PASS",
             "blocking": false,
-            "detail": "11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.173"
+            "detail": "11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.19"
           }
         ],
         "skipped": [
@@ -498,7 +496,7 @@
             "earned": 8,
             "status": "PASS",
             "blocking": true,
-            "detail": "smallest 8.40pt on 'per pair (i, j)'"
+            "detail": "smallest 8.40pt on 'log w(j)'"
           },
           {
             "code": "A3",
@@ -552,7 +550,7 @@
             "earned": 5,
             "status": "PASS",
             "blocking": false,
-            "detail": "worst CVD dE 11.6 (mitigated by marker/linestyle/hatch)"
+            "detail": "worst CVD dE 20.0 (mitigated by marker/linestyle/hatch)"
           },
           {
             "code": "B3",
@@ -561,7 +559,7 @@
             "earned": 4,
             "status": "PASS",
             "blocking": false,
-            "detail": "worst dL* 10.3"
+            "detail": "worst dL* 19.1"
           },
           {
             "code": "B4",
@@ -697,7 +695,7 @@
             "earned": 3.0,
             "status": "PASS",
             "blocking": false,
-            "detail": "11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.173"
+            "detail": "11/11 richness items pass; distance to the liked reference 0.0 (0/5 on the disliked side); catalogue 0.19"
           }
         ],
         "skipped": [
@@ -710,7 +708,7 @@
         "maddeler": [
           {
             "olcut": "karakter_cm2",
-            "deger": 3.853,
+            "deger": 3.882,
             "esik": {
               "max": 4.5
             },
@@ -722,7 +720,7 @@
           },
           {
             "olcut": "yazi_kutusu_alani",
-            "deger": 0.2053,
+            "deger": 0.207,
             "esik": {
               "max": 0.3
             },
@@ -826,11 +824,11 @@
             "kaynak": "İSTEM satır 231: her çok panelli şekilde bir gruplama aracı (ton kartı, zemin bandı)",
             "gecti": true,
             "uygulanmaz": null,
-            "not": "4 panels (manifest); 4 tone card(s), 4 group frame(s); 0 device(s) of the uc_katli_kesit pattern"
+            "not": "4 panels (manifest); 4 tone card(s), 4 group frame(s)"
           },
           {
             "olcut": "ton_kapsami_h",
-            "deger": 0.4422,
+            "deger": 0.4282,
             "esik": {
               "min": 0.85
             },
@@ -882,7 +880,7 @@
         "begeni": {
           "olcutler": {
             "murekkep": {
-              "deger": 0.1083,
+              "deger": 0.1076,
               "begenilen": [
                 0.046,
                 0.272
@@ -893,7 +891,7 @@
               "kaynak": "20 sentezi satır 34"
             },
             "karakter_cm2": {
-              "deger": 3.853,
+              "deger": 3.882,
               "begenilen": [
                 2.3,
                 4.3
@@ -904,7 +902,7 @@
               "kaynak": "20 sentezi satır 31"
             },
             "yazi_kutusu_alani": {
-              "deger": 0.2053,
+              "deger": 0.207,
               "begenilen": [
                 0.131,
                 0.285
@@ -915,7 +913,7 @@
               "kaynak": "20 sentezi satır 31"
             },
             "ton": {
-              "deger": 0.4422,
+              "deger": 0.4282,
               "begenilen": [
                 0.06,
                 0.49
@@ -926,7 +924,7 @@
               "kaynak": "12 raporu satır 53 (üç şema, bir küçük şema, bir görüntü paneli)"
             },
             "bos": {
-              "deger": 0.4495,
+              "deger": 0.4642,
               "begenilen": [
                 0.421,
                 0.778
@@ -968,27 +966,27 @@
               "birim": "mutlak"
             },
             "karakter_cm2": {
-              "deger": 3.853,
+              "deger": 3.882,
               "aralik": [
                 2.4,
                 3.4
               ],
-              "uzaklik": 0.453,
+              "uzaklik": 0.482,
               "birim": "aralik_genisligi"
             },
             "yazi_kutusu_alani": {
-              "deger": 0.2053,
+              "deger": 0.207,
               "aralik": [
                 0.12,
                 0.2
               ],
-              "uzaklik": 0.066,
+              "uzaklik": 0.087,
               "birim": "aralik_genisligi"
             }
           },
-          "uzaklik": 0.173
+          "uzaklik": 0.19
         },
-        "ozet_satiri": "kar/cm² 3.85 [2.30-4.30] · yazı kutusu 0.21 [0.13-0.28] · sayısal 0.00 · veri alanı 0.14 · derinlik 2 · akış 3/3 etiketli · ton 0.44 [0.06-0.49] · mürekkep 0.108 | beğeniye uzaklık 0.00 (0/5 beğenilmeyen tarafında) | eşikler tamam",
+        "ozet_satiri": "kar/cm² 3.88 [2.30-4.30] · yazı kutusu 0.21 [0.13-0.28] · sayısal 0.00 · veri alanı 0.14 · derinlik 2 · akış 3/3 etiketli · ton 0.43 [0.06-0.49] · mürekkep 0.108 | beğeniye uzaklık 0.00 (0/5 beğenilmeyen tarafında) | eşikler tamam",
         "uslup_okuma": {
           "secim": "<skill>/styles/uslup_Z.yaml",
           "kaynak": "uslup_yolu",

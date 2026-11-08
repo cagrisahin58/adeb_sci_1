@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
-"""Apply the two v2 changes to the copied sections: figure paths and figure captions (nothing else).
+"""Apply the three v2 changes to the copied sections: figure paths, figure captions and the listed body-text
+position words (nothing else).
 
     python3 _bolum_uygula.py            (run from paper/manuscript_v2 by derle_v2.sh)
 
 1. every `../figures/fig` becomes `../figures_v2/fig` inside \\includegraphics;
 2. every \\caption{...} of a figure environment whose \\label{fig:...} is in altyazilar_v2.tex is replaced by the
    v2 caption of that label (brace-balanced match).
-A label without a v2 caption, or a v2 caption whose label is not found, stops the build. The body text outside
-figure environments is not touched; main_v2.tex is generated from ../manuscript/main.tex with only its input
-paths changed.
+3. every row of govde_duzeltmeler_v2.tsv (file, old, new, reason) replaces one body-text phrase that names a
+   position in a v1 figure which the v2 figure no longer has (second round, 08.11.2026, bulgu 6); the old phrase
+   must occur exactly once in its file, otherwise the build stops.
+A label without a v2 caption, or a v2 caption whose label is not found, stops the build. Outside the listed
+phrases the body text is not touched; main_v2.tex is generated from ../manuscript/main.tex with only its input
+paths changed. Only the copies under paper/manuscript_v2/sections are written, never ../manuscript.
 """
 import io
 import re
@@ -41,11 +45,33 @@ def captions():
     return out
 
 
+def body_fixes():
+    """Rows of govde_duzeltmeler_v2.tsv as {file: [(old, new), ...]}."""
+    out = {}
+    tsv = HERE / "govde_duzeltmeler_v2.tsv"
+    if not tsv.is_file():
+        return out
+    for ln in tsv.read_text(encoding="utf-8").splitlines()[1:]:
+        if not ln.strip():
+            continue
+        f, old, new = ln.split("\t")[:3]
+        out.setdefault(f, []).append((old, new))
+    return out
+
+
 def main():
     caps = captions()
+    fixes = body_fixes()
     used = set()
+    n_fix = 0
     for p in sorted((HERE / "sections").glob("*.tex")):
         t = p.read_text(encoding="utf-8")
+        for old, new in fixes.get(p.name, []):
+            k = t.count(old)
+            if k != 1:
+                sys.exit(f"{p.name}: body phrase found {k} times (needs exactly 1): {old}")
+            t = t.replace(old, new)
+            n_fix += 1
         n_path = t.count("{../figures/fig")
         t = t.replace("{../figures/fig", "{../figures_v2/fig")
         res, pos = [], 0
@@ -73,6 +99,10 @@ def main():
     if missing:
         sys.exit(f"v2 captions without a figure: {sorted(missing)}")
     print("captions replaced:", len(used))
+    n_rows = sum(len(v) for v in fixes.values())
+    if n_fix != n_rows:
+        sys.exit(f"body fixes applied {n_fix} of {n_rows}")
+    print("body phrases replaced:", n_fix)
 
 
 if __name__ == "__main__":

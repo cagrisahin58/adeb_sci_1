@@ -637,9 +637,10 @@
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_protocol_settings.py",
-  "git_head": "e5c3374",
-  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "git_head": "fc7c6c8",
   "okunan_dosyalar": [
+    "paper/figures/charts/_kart_ortak.py",
+    "paper/figures/konsey/konsey_ortak.py",
     "results/C1_REFERANS_FOYU.md",
     "results/c1_transfer/c1_transfer_summary.json",
     "results/q1/cifar100/transfer/e1_transfer_summary.json",
@@ -647,12 +648,22 @@
     "results/q1/svhn/transfer/e7_transfer_summary.json"
   ],
   "karantina_denetimi": {
+    "paper/figures/charts/_kart_ortak.py": true,
+    "paper/figures/konsey/konsey_ortak.py": true,
     "results/C1_REFERANS_FOYU.md": true,
     "results/c1_transfer/c1_transfer_summary.json": true,
     "results/q1/cifar100/transfer/e1_transfer_summary.json": true,
     "results/q1/cifar10_l2/transfer/e6_l2_transfer_summary.json": true,
     "results/q1/svhn/transfer/e7_transfer_summary.json": true
   },
+  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim); paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi); results/c1_* (C1 sizinti duzeltmesi sonrasi yeniden uretilmis kosular; proje CLAUDE.md, 08.09.2026 netlestirmesi: gecerli yollar yalniz results/c1_* ve results/q1/*; her deger foy satiriyla denetlenir); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "okunan_siniflar": [
+    "paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim)",
+    "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
+    "results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi)",
+    "results/c1_* (C1 sizinti duzeltmesi sonrasi yeniden uretilmis kosular; proje CLAUDE.md, 08.09.2026 netlestirmesi: gecerli yollar yalniz results/c1_* ve results/q1/*; her deger foy satiriyla denetlenir)",
+    "results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari)"
+  ],
   "foy_karsilastirmasi": {
     "karsilastirma_sayisi": 75,
     "uyusmayan": 0,
@@ -1327,5 +1338,5 @@
       }
     ]
   },
-  "altyazi_taslagi": "Protocol by setting as four exploded boards. Transfer asymmetry (CNN to ViT minus ViT to CNN) of the ResNet-18 and ViT-Tiny pair: boards 1-4 are the conditioning protocols, set back layer by layer; rows are settings, mean±SD over three seed pairs with pairs as small circles (SVHN two pairs, no mean). The spine prints the spread over the four protocols."
+  "altyazi_taslagi": "Protocol by setting as four exploded boards. Transfer asymmetry (CNN to ViT minus ViT to CNN): boards 1-4 are the conditioning protocols, set back layer by layer; rows are settings, mean±SD over three seed pairs, pairs as small circles (SVHN two, no mean). Values are positions on each board's flat face; the spine prints the spread."
 }

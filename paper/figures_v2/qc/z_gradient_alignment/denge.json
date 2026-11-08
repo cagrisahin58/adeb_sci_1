@@ -1,7 +1,7 @@
 {
  "stem": "z_gradient_alignment",
  "pdf": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\yapim\\z_gradient_alignment.pdf",
- "pdf_sha256": "a82738157fe1c4d8b567c540b4066b42eb13c2f624c5a65cefa1c8fd30535a2b",
+ "pdf_sha256": "d8be23d8794574e16efaf11fbaff4fc8bc86b4c8c0e544ac1a63d483b963b5a5",
  "palet": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\palettes\\kk_uslup_Z.yaml",
  "palet_kaynagi": "VZ_PALET_DIZINI",
  "palet_aranan": [
@@ -29,18 +29,22 @@
    "#594D44",
    "#605A54",
    "#815847",
+   "#908D88",
    "#93908D",
    "#97918A",
    "#AAA7A1",
+   "#AAA8A3",
    "#AB6F57",
    "#AEAAA4",
    "#AEACA9",
    "#CFCBC4",
+   "#CFCCC6",
    "#D4D1CE",
    "#D6D0C7",
    "#DBD5CD",
    "#ECE9E5",
    "#F3EFE6",
+   "#F3F0E9",
    "#F9F6F2"
   ],
   "accent_clusters": [
@@ -60,25 +64,29 @@
   ],
   "families_math_as_text": [],
   "fonts": [
+   "ABCDEE+Open Sans",
    "ABCDEE+Open Sans SemiBold",
    "ABCDEE+Open Sans",
-   "ABCDEE+Open Sans",
-   "ABCDEE+DejaVu Sans",
-   "ABCDEE+Open Sans"
+   "ABCDEE+DejaVu Sans"
   ],
   "images": 0,
   "image_max_cover": 0.0,
-  "big_fill_cover": 0.338,
-  "big_fill_cover_all": 0.338,
+  "big_fill_cover": 0.016,
+  "big_fill_cover_all": 0.2,
   "big_fill_excluded": [
    {
     "renk": "#F3EFE6",
-    "kapsam": 0.088,
+    "kapsam": 0.137,
     "neden": "uslubun kart zemin tonu (Uslup.card_background_tones)"
    },
    {
     "renk": "#F9F6F2",
-    "kapsam": 0.117,
+    "kapsam": 0.2,
+    "neden": "uslubun kart zemin tonu (Uslup.card_background_tones)"
+   },
+   {
+    "renk": "#F3F0E9",
+    "kapsam": 0.014,
     "neden": "uslubun kart zemin tonu (Uslup.card_background_tones)"
    },
    {
@@ -101,27 +109,27 @@
  "zenginlik_olcumleri": {
   "sayfa_mm": [
    177.588,
-   94.403
+   106.468
   ],
-  "murekkep": 0.1206,
-  "ton": 0.6653,
-  "bos": 0.2142,
-  "sozcuk": 108,
-  "karakter_cm2": 2.29,
-  "yazi_kutusu_alani": 0.1311,
-  "sayisal_oran": 0.4815,
-  "veri_alani_payi": 0.5946,
+  "murekkep": 0.1147,
+  "ton": 0.6234,
+  "bos": 0.2619,
+  "sozcuk": 107,
+  "karakter_cm2": 2.19,
+  "yazi_kutusu_alani": 0.1259,
+  "sayisal_oran": 0.3084,
+  "veri_alani_payi": 0.5777,
   "veri_alani_satirlar": [
-   0.5946,
-   0.5946
+   0.5777,
+   0.5777
   ],
   "veri_alani_ic_satirlar": [],
   "ic_ice_derinlik_olculen": 2,
-  "panel_olculen": 7,
-  "ton_karti": 6,
+  "panel_olculen": 5,
+  "ton_karti": 4,
   "grup_cercevesi": 0,
-  "kutu": 6,
-  "gorselli_kutu": 6,
+  "kutu": 3,
+  "gorselli_kutu": 3,
   "yalniz_metin_kutu_orani": 0.0,
   "goruntu": 0,
   "goruntu_payi": 0.0,
@@ -188,7 +196,7 @@
    "ad": "sus arka plan",
    "kaynak": "pdf+ajan",
    "ihlal": false,
-   "olcum": "largest image 0%, largest fill 34% of the page",
+   "olcum": "largest image 0%, largest fill 2% of the page",
    "gerekce": "the stage plate and the cards are the grouping tools of style Z and carry the content"
   },
   "gereksiz_ikon": {
@@ -240,7 +248,7 @@
    "ad": "her panelin bir iddiasi",
    "kaynak": "ajan",
    "var": true,
-   "gerekce": "each card is one data set and one step (raw or residual)"
+   "gerekce": "each panel is one data set and one step (raw or residual)"
   },
   "her_sayinin_kaynagi": {
    "ad": "her sayinin kaynak dosyasi",
@@ -255,7 +263,7 @@
  "sayisal_maddeler": [
   {
    "olcut": "karakter_cm2",
-   "deger": 2.29,
+   "deger": 2.19,
    "esik": {
     "max": 4.5
    },
@@ -267,7 +275,7 @@
   },
   {
    "olcut": "yazi_kutusu_alani",
-   "deger": 0.1311,
+   "deger": 0.1259,
    "esik": {
     "max": 0.25
    },
@@ -279,7 +287,7 @@
   },
   {
    "olcut": "sayisal_oran",
-   "deger": 0.4815,
+   "deger": 0.3084,
    "esik": {
     "max": 0.55
    },
@@ -291,7 +299,7 @@
   },
   {
    "olcut": "veri_alani_payi",
-   "deger": 0.5946,
+   "deger": 0.5777,
    "esik": {
     "min": 0.45
    },
@@ -299,7 +307,7 @@
    "kaynak": "İSTEM satır 211 ve 230: veri ekseni şekil genişliğinin en az %45'i",
    "gecti": true,
    "uygulanmaz": null,
-   "not": "rows [0.5946, 0.5946]; insets []"
+   "not": "rows [0.5777, 0.5777]; insets []"
   },
   {
    "olcut": "ic_ice_derinlik",
@@ -315,7 +323,7 @@
   },
   {
    "olcut": "gomulu_gorsel",
-   "deger": 6,
+   "deger": 3,
    "esik": {
     "min": 1
    },
@@ -363,7 +371,7 @@
   },
   {
    "olcut": "gruplama_araci",
-   "deger": 6,
+   "deger": 4,
    "esik": {
     "min": 1
    },
@@ -371,11 +379,11 @@
    "kaynak": "İSTEM satır 231: her çok panelli şekilde bir gruplama aracı (ton kartı, zemin bandı)",
    "gecti": true,
    "uygulanmaz": null,
-   "not": "6 panels (manifest); 6 tone card(s), 0 group frame(s)"
+   "not": "6 panels (manifest); 4 tone card(s), 0 group frame(s)"
   },
   {
    "olcut": "ton_kapsami_h",
-   "deger": 0.6653,
+   "deger": 0.6234,
    "esik": {
     "min": 0.85
    },
@@ -428,7 +436,7 @@
  "begeni": {
   "olcutler": {
    "murekkep": {
-    "deger": 0.1206,
+    "deger": 0.1147,
     "begenilen": [
      0.046,
      0.272
@@ -439,65 +447,65 @@
     "kaynak": "20 sentezi satır 34"
    },
    "karakter_cm2": {
-    "deger": 2.29,
+    "deger": 2.19,
     "begenilen": [
      2.3,
      4.3
     ],
     "begenilmeyen_medyan": 4.9,
-    "uzaklik": 0.017,
+    "uzaklik": 0.183,
     "begenilmeyen_tarafinda": false,
     "kaynak": "20 sentezi satır 31"
    },
    "yazi_kutusu_alani": {
-    "deger": 0.1311,
+    "deger": 0.1259,
     "begenilen": [
      0.131,
      0.285
     ],
     "begenilmeyen_medyan": 0.253,
-    "uzaklik": 0.0,
+    "uzaklik": 0.033,
     "begenilmeyen_tarafinda": false,
     "kaynak": "20 sentezi satır 31"
    },
    "ton": {
-    "deger": 0.6653,
+    "deger": 0.6234,
     "begenilen": [
      0.86,
      0.924
     ],
     "begenilmeyen_medyan": 0.038,
-    "uzaklik": 0.237,
+    "uzaklik": 0.288,
     "begenilmeyen_tarafinda": false,
     "kaynak": "20 sentezi satır 33 (13 veri şekli)"
    },
    "bos": {
-    "deger": 0.2142,
+    "deger": 0.2619,
     "begenilen": [
      0.024,
      0.046
     ],
     "begenilmeyen_medyan": 0.869,
-    "uzaklik": 0.204,
+    "uzaklik": 0.262,
     "begenilmeyen_tarafinda": false,
     "kaynak": "20 sentezi satır 35"
    },
    "sayisal_oran": {
-    "deger": 0.4815,
+    "deger": 0.3084,
     "begenilen": null,
     "begenilmeyen_medyan": null,
     "uzaklik": null,
     "kaynak": "20 sentezi satır 32: histopatolojide ölçülmedi; kara kutuda veri şekillerinde 0.23-0.58 (12 raporu satır 188), medyan verilmedi"
    },
    "veri_alani_payi": {
-    "deger": 0.5946,
+    "deger": 0.5777,
     "begenilen": null,
     "begenilmeyen_medyan": null,
     "uzaklik": null,
     "kaynak": "20 sentezi satır 85: histopatolojide ölçülmedi; kara kutu tablo-grafiklerinde %11-30, medyan verilmedi"
    }
   },
-  "uzaklik": 0.092,
+  "uzaklik": 0.153,
   "olculen": 5,
   "begenilmeyen_tarafinda": 0,
   "uzak_durur": true
@@ -514,16 +522,16 @@
     "birim": "mutlak"
    },
    "bos": {
-    "deger": 0.2142,
+    "deger": 0.2619,
     "aralik": [
      0.5,
      0.7
     ],
-    "uzaklik": 1.429,
+    "uzaklik": 1.191,
     "birim": "aralik_genisligi"
    },
    "veri_alani_payi": {
-    "deger": 0.5946,
+    "deger": 0.5777,
     "aralik": [
      0.5,
      0.8
@@ -532,9 +540,9 @@
     "birim": "aralik_genisligi"
    }
   },
-  "uzaklik": 0.476
+  "uzaklik": 0.397
  },
  "tur": "veri",
- "ozet_satiri": "kar/cm² 2.29 [2.30-4.30] · yazı kutusu 0.13 [0.13-0.28] · sayısal 0.48 · veri alanı 0.59 · derinlik 2 · akış 1/1 etiketli · ton 0.67 [0.86-0.92] · mürekkep 0.121 | beğeniye uzaklık 0.09 (0/5 beğenilmeyen tarafında) | eşikler tamam",
+ "ozet_satiri": "kar/cm² 2.19 [2.30-4.30] · yazı kutusu 0.13 [0.13-0.28] · sayısal 0.31 · veri alanı 0.58 · derinlik 2 · akış 1/1 etiketli · ton 0.62 [0.86-0.92] · mürekkep 0.115 | beğeniye uzaklık 0.15 (0/5 beğenilmeyen tarafında) | eşikler tamam",
  "sonuc": "kurulabilir"
 }

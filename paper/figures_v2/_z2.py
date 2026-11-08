@@ -115,8 +115,19 @@ def tw(lines, size=None, key="r"):
     return gc(max(bl.text_box_w(ln, size) for ln in vf.norm_lines(lines, key)) + 0.05)
 
 
+def _en_dash(obj):
+    """U+2212 -> U+2013 in every string of a (nested) line/run structure (T6: outside Windows-1252)."""
+    if isinstance(obj, str):
+        return obj.replace("−", "–")
+    if isinstance(obj, tuple):
+        return tuple(_en_dash(o) for o in obj)
+    if isinstance(obj, list):
+        return [_en_dash(o) for o in obj]
+    return obj
+
+
 def T(pid, x, y, lines, *, size=None, color="ink", cont=None, align="l", w=None, key="r", valign="t"):
-    ln = vf.norm_lines(lines, key)
+    ln = vf.norm_lines(_en_dash(lines), key)
     ww = gc(w) if w is not None else tw(ln, size)
     h = len(ln) * lh(size)
     xx = gr(x)
@@ -130,7 +141,9 @@ def T(pid, x, y, lines, *, size=None, color="ink", cont=None, align="l", w=None,
 
 def fmt(v, nd=2, plus=False):
     s = f"{v:+.{nd}f}" if plus else f"{v:.{nd}f}"
-    return s.replace("-", "−")
+    # T6 (08.11.2026): Visio maps every glyph outside Windows-1252 to a blank in the PDF text layer; U+2212 is
+    # outside it, the en dash U+2013 is inside, so negative numbers print with the en dash (copy-paste keeps them)
+    return s.replace("-", "–")
 
 
 # ------------------------------------------------------------------ the dimetric view
@@ -380,6 +393,8 @@ def kot(pid, x0, x1, y, sc, ticks, labels=None, size=None, cont=None, below=True
         x = sc(v)
         vf.seg(f"{pid}_t{i}", (x, y), (x, y + (0.9 if below else -0.9)), vf.C[color], vf.LW["ince"])
         lab = labels[i] if labels else fmt(v, 1)
+        if lab is None:                       # an unlabelled tick (labels crowd at this spacing)
+            continue
         yy = y + 1.4 if below else y - 1.4 - lh(size)
         T(f"{pid}_l{i}", x, yy, [lab], size=size, align="c", color="muted", cont=cont)
 

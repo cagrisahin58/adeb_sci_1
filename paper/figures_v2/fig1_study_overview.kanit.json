@@ -191,11 +191,12 @@
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_study_overview.py",
-  "git_head": "74533ba",
-  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "git_head": "fc7c6c8",
   "okunan_dosyalar": [
     "data/cifar-10-batches-py/test_batch",
     "data/cifar-100-python/test",
+    "paper/figures/konsey/konsey_ortak.py",
+    "paper/figures/visio/_icerik_study_overview.py",
     "raporlar/konsey_2026-10-29/hucre_tablosu.json",
     "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
     "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
@@ -207,6 +208,8 @@
   "karantina_denetimi": {
     "data/cifar-10-batches-py/test_batch": true,
     "data/cifar-100-python/test": true,
+    "paper/figures/konsey/konsey_ortak.py": true,
+    "paper/figures/visio/_icerik_study_overview.py": true,
     "raporlar/konsey_2026-10-29/hucre_tablosu.json": true,
     "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": true,
     "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": true,
@@ -215,6 +218,14 @@
     "results/q1/konsey_b10_gradyan/mantel_imagenetv2.json": true,
     "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": true
   },
+  "karantina": "bu sekil icin okunan dosya siniflari: data/cifar-10-batches-py ve data/cifar-100-python test dosyalari (yalniz ilk dort goruntu); paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); paper/figures/visio/*.py (v1 icerik kurallari, salt okunur ice aktarim); raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "okunan_siniflar": [
+    "data/cifar-10-batches-py ve data/cifar-100-python test dosyalari (yalniz ilk dort goruntu)",
+    "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
+    "paper/figures/visio/*.py (v1 icerik kurallari, salt okunur ice aktarim)",
+    "raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari)",
+    "results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari)"
+  ],
   "foy_karsilastirmasi": {
     "karsilastirma_sayisi": 19,
     "uyusmayan": 0,
@@ -379,7 +390,7 @@
   },
   "goruntuler": {
     "cifar10": {
-      "png": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\yapim\\_img\\cifar10_test_0-3.png",
+      "png": "paper/figures_v2/yapim/_img/cifar10_test_0-3.png",
       "kaynak": "data/cifar-10-batches-py/test_batch",
       "kaynak_sha256": "f53d8d457504f7cff4ea9e021afcf0e0ad8e24a91f3fc42091b8adef61157831",
       "indeksler": [
@@ -391,7 +402,7 @@
       "islem": "2x2 mosaic, nearest x8"
     },
     "cifar100": {
-      "png": "\\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\yapim\\_img\\cifar100_test_0-3.png",
+      "png": "paper/figures_v2/yapim/_img/cifar100_test_0-3.png",
       "kaynak": "data/cifar-100-python/test",
       "kaynak_sha256": "4b67687d9933c4db8f0831104447f15b93774f4f464bd0516f0f0f2ac83b7864",
       "indeksler": [

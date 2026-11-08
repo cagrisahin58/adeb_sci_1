@@ -1,7 +1,7 @@
 {
   "stem": "z_decomposition_schematic",
   "kurulum_adi": "fig3_decomposition_schematic",
-  "zaman": "2026-11-08T18:57:27",
+  "zaman": "2026-11-08T23:55:09",
   "ayar": "//wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1/paper/figures_v2/visio_cizici_v2.yaml",
   "K1_kontrolcu": {
     "karar": "PASS",
@@ -34,7 +34,7 @@
   "K4_zenginlik": {
     "cikis": 0,
     "tablo": [
-      "z_decomposition_schematic                sematik kar/cm2  3.85 yazi 0.205 sayisal 0.00 veri 0.1436 derinlik 2 ton 0.442 murekkep 0.108 uzaklik 0.0 kurulabilir",
+      "z_decomposition_schematic                sematik kar/cm2  3.88 yazi 0.207 sayisal 0.00 veri 0.1436 derinlik 2 ton 0.428 murekkep 0.108 uzaklik 0.0 kurulabilir",
       "-> \\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\qc\\z_decomposition_schematic\\zenginlik.json"
     ],
     "ozet": null
@@ -42,24 +42,22 @@
   "IN_kurulum": {
     "cikis": 0,
     "son": [
-      "  z_decomposition_schematic.eps -> fig3_decomposition_schematic.eps  sha256 bf487676dd4ebea4...",
-      "  z_decomposition_schematic.svg -> fig3_decomposition_schematic.svg  sha256 3b2316e99b8edc1e...",
-      "  z_decomposition_schematic.fig.json -> fig3_decomposition_schematic.fig.json  sha256 21cd206cffd9f6df...",
-      "  z_decomposition_schematic.kanit.json -> fig3_decomposition_schematic.kanit.json  sha256 0dbb383bb4b8737d...",
-      "  z_decomposition_schematic_mm_kontrol.json -> fig3_decomposition_schematic_mm_kontrol.json  sha256 9dd56cf094e65184...",
+      "  z_decomposition_schematic.eps -> fig3_decomposition_schematic.eps  sha256 28d267e93a2ba648...",
+      "  z_decomposition_schematic.svg -> fig3_decomposition_schematic.svg  sha256 6c9110d87d067829...",
+      "  z_decomposition_schematic.fig.json -> fig3_decomposition_schematic.fig.json  sha256 8d1c424e69f0f109...",
+      "  z_decomposition_schematic.kanit.json -> fig3_decomposition_schematic.kanit.json  sha256 05338c347dd975af...",
+      "  z_decomposition_schematic_mm_kontrol.json -> fig3_decomposition_schematic_mm_kontrol.json  sha256 ab904c69c623e6ad...",
       "installed: fig3_decomposition_schematic"
     ]
   },
   "K5_fig_qc": {
-    "cikis": 1,
+    "cikis": 0,
     "son": [
       "scoring: ayarli (verdict); adjusted and strict side by side",
       "figure                        ayarli   kati  tavan(kati)   verdict  blocking",
       "fig3_decomposition_schematic    96.8   93.2  94.5/96=98.4  PASS     -",
-      "consistency: BLOCK",
-      "  - entity 'r32' is drawn in more than one colour: #9DBEA3 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig9_cells_interaction']; #E6F5E8 <- ['fig2_design_recipe']",
-      "  - entity 'r224' is drawn in more than one colour: #594D44 <- ['fig10_attack_side', 'fig9_cells_interaction']; #999188 <- ['fig2_design_recipe']",
-      "  - entity 'vit' is drawn in more than one colour: #AB6F57 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig17_feature_degradation', 'fig9_cells_interaction']; #D5B09F <- ['fig2_design_recipe']",
+      "consistency: PASS",
+      "  - 17 figures share one design system",
       "report: \\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\qc\\z_decomposition_schematic\\qc\\report.md"
     ],
     "ayarli": "96.8",
@@ -79,7 +77,7 @@
     ]
   },
   "MB_mavi_pay": [
-    0.0361,
-    55705
+    0.0359,
+    55500
   ]
 }

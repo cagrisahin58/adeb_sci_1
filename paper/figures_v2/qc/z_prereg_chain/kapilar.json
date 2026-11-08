@@ -1,7 +1,7 @@
 {
   "stem": "z_prereg_chain",
   "kurulum_adi": "fig6_prereg_chain",
-  "zaman": "2026-11-08T18:52:05",
+  "zaman": "2026-11-08T23:56:40",
   "ayar": "//wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1/paper/figures_v2/visio_cizici_v2.yaml",
   "K1_kontrolcu": {
     "karar": "PASS",
@@ -34,7 +34,7 @@
   "K4_zenginlik": {
     "cikis": 0,
     "tablo": [
-      "z_prereg_chain                           sematik kar/cm2  4.25 yazi 0.255 sayisal 0.25 veri - derinlik 2 ton 0.592 murekkep 0.109 uzaklik 1.199 kurulabilir",
+      "z_prereg_chain                           sematik kar/cm2  4.25 yazi 0.255 sayisal 0.25 veri - derinlik 2 ton 0.592 murekkep 0.110 uzaklik 1.196 kurulabilir",
       "-> \\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\qc\\z_prereg_chain\\zenginlik.json"
     ],
     "ozet": null
@@ -42,24 +42,22 @@
   "IN_kurulum": {
     "cikis": 0,
     "son": [
-      "  z_prereg_chain.eps -> fig6_prereg_chain.eps  sha256 920ab484fd645e00...",
-      "  z_prereg_chain.svg -> fig6_prereg_chain.svg  sha256 c5398c904b67b0bb...",
-      "  z_prereg_chain.fig.json -> fig6_prereg_chain.fig.json  sha256 98a3c898fdec41f0...",
-      "  z_prereg_chain.kanit.json -> fig6_prereg_chain.kanit.json  sha256 889424d7d1e83a94...",
-      "  z_prereg_chain_mm_kontrol.json -> fig6_prereg_chain_mm_kontrol.json  sha256 76c0607abeeb9461...",
+      "  z_prereg_chain.eps -> fig6_prereg_chain.eps  sha256 3e631cc3c6131e94...",
+      "  z_prereg_chain.svg -> fig6_prereg_chain.svg  sha256 e00b5f4b953eb489...",
+      "  z_prereg_chain.fig.json -> fig6_prereg_chain.fig.json  sha256 4ed56f315a682de1...",
+      "  z_prereg_chain.kanit.json -> fig6_prereg_chain.kanit.json  sha256 a0b8c761878fb5a6...",
+      "  z_prereg_chain_mm_kontrol.json -> fig6_prereg_chain_mm_kontrol.json  sha256 88a43ffe832778a5...",
       "installed: fig6_prereg_chain"
     ]
   },
   "K5_fig_qc": {
-    "cikis": 1,
+    "cikis": 0,
     "son": [
       "scoring: ayarli (verdict); adjusted and strict side by side",
       "figure             ayarli   kati  tavan(kati)   verdict  blocking",
       "fig6_prereg_chain    93.6   89.5  79.5/81=98.1  PASS     -",
-      "consistency: BLOCK",
-      "  - entity 'r32' is drawn in more than one colour: #9DBEA3 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig9_cells_interaction']; #E6F5E8 <- ['fig2_design_recipe']",
-      "  - entity 'r224' is drawn in more than one colour: #594D44 <- ['fig10_attack_side', 'fig9_cells_interaction']; #999188 <- ['fig2_design_recipe']",
-      "  - entity 'vit' is drawn in more than one colour: #AB6F57 <- ['fig10_attack_side', 'fig16_epsilon_sweep', 'fig17_feature_degradation', 'fig9_cells_interaction']; #D5B09F <- ['fig2_design_recipe']",
+      "consistency: PASS",
+      "  - 17 figures share one design system",
       "report: \\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures_v2\\qc\\z_prereg_chain\\qc\\report.md"
     ],
     "ayarli": "93.6",
@@ -80,6 +78,6 @@
   },
   "MB_mavi_pay": [
     0.0,
-    9663
+    9744
   ]
 }

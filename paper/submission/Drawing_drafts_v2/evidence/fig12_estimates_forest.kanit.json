@@ -581,20 +581,31 @@
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_estimates_forest.py",
-  "git_head": "74533ba",
-  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "git_head": "fc7c6c8",
   "okunan_dosyalar": [
+    "paper/figures/charts/_kart_ortak.py",
+    "paper/figures/konsey/fig_estimates_forest.py",
+    "paper/figures/konsey/konsey_ortak.py",
     "results/q1/konsey_ayrisim_b2.json",
     "results/q1/konsey_ayrisim_b4.json",
     "results/q1/konsey_b8_imagenetv2/b8_betimsel.json",
     "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json"
   ],
   "karantina_denetimi": {
+    "paper/figures/charts/_kart_ortak.py": true,
+    "paper/figures/konsey/fig_estimates_forest.py": true,
+    "paper/figures/konsey/konsey_ortak.py": true,
     "results/q1/konsey_ayrisim_b2.json": true,
     "results/q1/konsey_ayrisim_b4.json": true,
     "results/q1/konsey_b8_imagenetv2/b8_betimsel.json": true,
     "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": true
   },
+  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim); paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "okunan_siniflar": [
+    "paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim)",
+    "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
+    "results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari)"
+  ],
   "foy_karsilastirmasi": {
     "karsilastirma_sayisi": 76,
     "uyusmayan": 0,
@@ -1367,5 +1378,5 @@
       "A_sigma_scr_Liu.{kestirim, goruntu_bootstrap.ci90, goruntu_bootstrap.ci95, beklenti_esigi}"
     ]
   },
-  "altyazi_taslagi": "Registered estimates as two hanging tags. The upper card, Contrasts on panel similarity σ, holds H1, H2 and descriptive ImageNetV2 rows; the lower card, Directional terms, holds K-b and H3. Circles log, diamonds logit, open marks descriptive; thick and thin bars are 90% and 95% intervals, over images only on ImageNetV2. The ±0.10 lines apply to log rows only."
+  "altyazi_taslagi": "Registered estimates carved into one tablet. Upper panel, Contrasts on panel similarity σ: H1, H2 and descriptive ImageNetV2 rows; lower panel, Directional terms: K-b and H3. Circles log, diamonds logit, open marks descriptive; thick and thin bars are 90% and 95% intervals. Values are positions on the flat panel floors; the ±0.10 lines apply to log rows only."
 }

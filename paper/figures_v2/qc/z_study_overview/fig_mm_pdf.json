@@ -10,7 +10,7 @@
    "Open Sans SemiBold"
   ],
   "min_pt": 8.4,
-  "spans": 56,
+  "spans": 62,
   "issues": [],
   "checks": {
    "page_size": {
@@ -31,27 +31,28 @@
    "text_overlap": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "56 spans"
+    "detail": "62 spans"
    },
    "box_spill": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "31 closed boxes"
+    "detail": "35 closed boxes"
    }
   },
   "inputs": {
-   "page_text_sha256": "d25fed69066a8caf74c78c2e0eca805e34a79d7d20a34cc768aa2d932075a24c",
-   "spans": 56,
-   "lines": 54,
-   "drawings": 417,
-   "closed_boxes": 31
+   "page_text_sha256": "d8a996a05a40de74ffa9489622952d4d91470c36a7eb93c6c5fbd14351f37a94",
+   "spans": 62,
+   "lines": 60,
+   "drawings": 426,
+   "closed_boxes": 35
   },
   "verdict": "PASS",
   "expected_from": "visio report",
   "floor_pt": 8.0,
   "cizgi": {
    "basili_pt": [
-    0.75
+    0.75,
+    1.5
    ],
    "tokenlar_pt": {
     "ince": 0.75,
@@ -60,7 +61,8 @@
     "eksen": 0.75
    },
    "basili_uzunluk_mm": {
-    "0.750": 5422.52
+    "0.750": 5462.87,
+    "1.500": 33.5
    },
    "ok_ucu": {
     "basili_mm": [
@@ -83,17 +85,15 @@
     "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
     "adaylar": []
    },
-   "sorunlar": [
-    "token width(s) [1.5] pt never printed",
-    "the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt"
-   ],
-   "uyumlu": false,
+   "sorunlar": [],
+   "uyumlu": true,
    "token_kaynagi": "manifest",
    "basim_modeli": {
     "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
     "dpi": 120,
     "beklenen_cizgi_pt": [
-     0.75
+     0.75,
+     1.5
     ],
     "beklenen_ok_ucu_mm": [
      0.773
@@ -129,8 +129,6 @@
    "metinden_gecen": []
   },
   "uyarilar": [
-   "T4: token width(s) [1.5] pt never printed",
-   "T4: the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt",
    "T6: 2 printed glyph(s) do not reach the text layer: [{'metin': '  ', 'karakter': 'U+0020', 'glif': 693, 'font': 'DejaVu Sans', 'not': \"decodes to a space through glyph 693; the font's spaces use glyph 857\"}, {'metin': '  ', 'karakter': 'U+0020', 'glif': 693, 'font': 'DejaVu Sans', 'not': \"decodes to a space through glyph 693; the font's spaces use glyph 857\"}]"
   ]
  }

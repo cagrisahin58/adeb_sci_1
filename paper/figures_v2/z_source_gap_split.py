@@ -118,6 +118,10 @@ def main():
         T(f"lgt{j}", x + 3.6, yl, [lab], size=Z.S8)
         x += 3.6 + Z.tw([lab], Z.S8) + 3.0
     vf.seg("rule", (1.0, yl - 0.5), (W - 1.0, yl - 0.5), vf.C["frame"], vf.LW["vurgu"])
+    # review round 2: where "q n/a" comes from (the registered denominator rule, D = G at or below delta)
+    T("lgq", 1.0, yl + lh(Z.S8) + 0.4,
+      [f"q n/a: G at or below the registered {Z.fmt(data['in']['delta'], 2)} threshold, so the share is not computed"],
+      size=Z.S8, color="muted")
     for _pid in [f"st{i}" for i in range(3)]:          # the panel titles are the strips of naming step 4
         vf.note_naming(_pid, "strip")
     Z.sayfa_sigdir()

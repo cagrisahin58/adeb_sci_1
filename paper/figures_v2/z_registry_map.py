@@ -110,6 +110,9 @@ def main():
     T("hq", 1.0 + COLF, yh, [[("Test and quantity", "sb")]], size=Z.S8, color="muted")
     T("hl", 1.0 + COLF + COLQ + 1.0, yh, [[("Pre-registered values", "sb")]], size=Z.S8, color="muted")
     T("hr", 1.0 + COLF + COLQ + COLL + COLP + 2.6, yh, [[("Falsified if", "sb")]], size=Z.S8, color="muted")
+    # bulgu 5 (08.11): booktabs head rule, the one 1.5 pt (vurgu) line of the figure; table rules are the
+    # emphasis edges of style Z (as Figures 7, 13 and 16)
+    vf.seg("h_rule", (1.0, yh + LH + 0.4), (W - 1.0, yh + LH + 0.4), vf.C["frame"], vf.LW["vurgu"])
     # legend
     yl = OY + 3.4
     x = 1.0

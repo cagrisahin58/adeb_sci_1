@@ -341,9 +341,11 @@
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_similarity_matrix.py",
-  "git_head": "74533ba",
-  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "git_head": "fc7c6c8",
   "okunan_dosyalar": [
+    "paper/figures/charts/_kart_ortak.py",
+    "paper/figures/konsey/fig_similarity_matrix.py",
+    "paper/figures/konsey/konsey_ortak.py",
     "raporlar/konsey_2026-10-29/hucre_tablosu.json",
     "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json",
     "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json",
@@ -356,6 +358,9 @@
     "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json"
   ],
   "karantina_denetimi": {
+    "paper/figures/charts/_kart_ortak.py": true,
+    "paper/figures/konsey/fig_similarity_matrix.py": true,
+    "paper/figures/konsey/konsey_ortak.py": true,
     "raporlar/konsey_2026-10-29/hucre_tablosu.json": true,
     "raporlar/konsey_2026-10-29/hucre_tablosu_b8.json": true,
     "raporlar/konsey_2026-10-29/hucre_tablosu_b9.json": true,
@@ -367,6 +372,13 @@
     "results/q1/konsey_b8_imagenetv2/b8_dondurulmus_b2.json": true,
     "results/q1/konsey_b9_c100/b9_dondurulmus_b2.json": true
   },
+  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim); paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "okunan_siniflar": [
+    "paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim)",
+    "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
+    "raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari)",
+    "results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari)"
+  ],
   "foy_karsilastirmasi": {
     "karsilastirma_sayisi": 93,
     "uyusmayan": 0,

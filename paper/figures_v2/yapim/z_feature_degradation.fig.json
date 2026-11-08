@@ -88,9 +88,9 @@
           1.545
         ]
       },
-      "count": 2,
+      "count": 13,
       "count_by_kind": {
-        "1/0@0.75": 2
+        "1/0@0.75": 13
       },
       "arrow_line_weights_pt": [
         0.75
@@ -104,11 +104,55 @@
   "naming_kind": "akis",
   "naming": [
     {
-      "id": "roarr",
+      "id": "inarr",
       "kind": "flow"
     },
     {
-      "id": "inarr",
+      "id": "ro0",
+      "kind": "flow"
+    },
+    {
+      "id": "ro1",
+      "kind": "flow"
+    },
+    {
+      "id": "ro2",
+      "kind": "flow"
+    },
+    {
+      "id": "ro3",
+      "kind": "flow"
+    },
+    {
+      "id": "ro4",
+      "kind": "flow"
+    },
+    {
+      "id": "ro5",
+      "kind": "flow"
+    },
+    {
+      "id": "ro6",
+      "kind": "flow"
+    },
+    {
+      "id": "ro7",
+      "kind": "flow"
+    },
+    {
+      "id": "ro8",
+      "kind": "flow"
+    },
+    {
+      "id": "ro9",
+      "kind": "flow"
+    },
+    {
+      "id": "ro10",
+      "kind": "flow"
+    },
+    {
+      "id": "ro11",
       "kind": "flow"
     }
   ],
@@ -1017,15 +1061,14 @@
   "sablon": "ortak_satirli_katlar",
   "tur": "veri",
   "uslup_yolu": "<skill>/styles/uslup_Z.yaml",
-  "altyazi_taslagi": "Feature degradation of ViT-Tiny under attack, block by block. The clean and PGD-10 image enter the spine, block 1 at the bottom; per block, over three runs: CLS attention entropy change with 90% TOST intervals inside the ±0.05-nat band, CLS attention displacement (TV), and block-output cosine for three token sets, mean±SD. The ViT is attacked with its own PGD-10.",
+  "altyazi_taslagi": "Feature degradation of ViT-Tiny under attack, block by block. The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90% TOST intervals inside the ±0.05-nat band, attention displacement (TV), block-output cosine, mean±SD. Values are positions on the flat cards.",
   "uslup_surumu": 3,
+  "sahne_kalibi": "omurga",
   "panel_adlari": [
     "Entropy Δ",
     "TV",
     "Cosine"
   ],
   "derinlik_ekseni": "none in depth: the layer axis is the spine's height; depth is disc thickness",
-  "ikiz_kodlama": "values are positions on the flat faces of the three readout cards",
-  "sahne_kalibi": "omurga",
-  "entities_notu": "entities declare only the paper-wide families (vit, r224, r32, panel, sigma, rho); other colour roles in this figure are local and named in its legend"
+  "ikiz_kodlama": "values are positions on the flat faces of the three readout cards"
 }

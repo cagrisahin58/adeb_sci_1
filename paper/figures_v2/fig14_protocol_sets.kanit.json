@@ -253,18 +253,31 @@
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_protocol_sets.py",
-  "git_head": "74533ba",
-  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "git_head": "fc7c6c8",
   "okunan_dosyalar": [
+    "paper/figures/charts/_kart_ortak.py",
+    "paper/figures/konsey/fig_protocol_sets.py",
+    "paper/figures/konsey/konsey_ortak.py",
     "paper/manuscript/sections/03_methodology.tex",
     "results/c1_transfer/c1_transfer_summary.json",
     "results/q1/fig_protokol_kumeleri_veri.json"
   ],
   "karantina_denetimi": {
+    "paper/figures/charts/_kart_ortak.py": true,
+    "paper/figures/konsey/fig_protocol_sets.py": true,
+    "paper/figures/konsey/konsey_ortak.py": true,
     "paper/manuscript/sections/03_methodology.tex": true,
     "results/c1_transfer/c1_transfer_summary.json": true,
     "results/q1/fig_protokol_kumeleri_veri.json": true
   },
+  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim); paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); paper/manuscript/sections/*.tex (tanim cumleleri; govde metni degismez); results/c1_* (C1 sizinti duzeltmesi sonrasi yeniden uretilmis kosular; proje CLAUDE.md, 08.09.2026 netlestirmesi: gecerli yollar yalniz results/c1_* ve results/q1/*; her deger foy satiriyla denetlenir); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "okunan_siniflar": [
+    "paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim)",
+    "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
+    "paper/manuscript/sections/*.tex (tanim cumleleri; govde metni degismez)",
+    "results/c1_* (C1 sizinti duzeltmesi sonrasi yeniden uretilmis kosular; proje CLAUDE.md, 08.09.2026 netlestirmesi: gecerli yollar yalniz results/c1_* ve results/q1/*; her deger foy satiriyla denetlenir)",
+    "results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari)"
+  ],
   "foy_karsilastirmasi": {
     "karsilastirma_sayisi": 35,
     "uyusmayan": 0,
@@ -625,5 +638,5 @@
     "successful_source": "and the source's own attack succeeds"
   },
   "maske_kaynagi": "v1 MASK definitions; paper/manuscript/sections/03_methodology.tex line 215 places the masks in this figure (the former tab:protocol_masks no longer exists)",
-  "altyazi_taslagi": "Conditioning sets and measured asymmetry. Conditioning sets: nested evaluation sets in the CNN-to-ViT direction as terraces (schematic, not area-proportional) with masks and N averaged over seed pairs. Measured asymmetry: mean±SD of the within-pair difference, pairs as open circles; the steps print the identity term, the marginal subsets both-correct removes and the source robustness successful-source selects on."
+  "altyazi_taslagi": "Conditioning sets and measured asymmetry. Conditioning sets: nested evaluation sets as terraces (schematic, not area-proportional; terrace height carries no value) with masks and mean N. Measured asymmetry: mean±SD of the within-pair difference, pairs as open circles, read as positions on the flat card and printed; the steps print the three decomposition terms."
 }

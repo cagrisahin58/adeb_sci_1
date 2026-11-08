@@ -42,7 +42,7 @@
    "page_text_sha256": "2b83bdbc59abcaa74aa3bf8f15f8191fcf411cd2e1f78317e375fd851133d15c",
    "spans": 29,
    "lines": 26,
-   "drawings": 129,
+   "drawings": 140,
    "closed_boxes": 0
   },
   "verdict": "PASS",
@@ -50,7 +50,8 @@
   "floor_pt": 8.0,
   "cizgi": {
    "basili_pt": [
-    0.75
+    0.75,
+    1.5
    ],
    "tokenlar_pt": {
     "ince": 0.75,
@@ -59,7 +60,8 @@
     "eksen": 0.75
    },
    "basili_uzunluk_mm": {
-    "0.750": 4359.01
+    "0.750": 4461.66,
+    "1.500": 71.29
    },
    "ok_ucu": {
     "basili_mm": [],
@@ -70,17 +72,15 @@
     "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
     "adaylar": []
    },
-   "sorunlar": [
-    "token width(s) [1.5] pt never printed",
-    "the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt"
-   ],
-   "uyumlu": false,
+   "sorunlar": [],
+   "uyumlu": true,
    "token_kaynagi": "manifest",
    "basim_modeli": {
     "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
     "dpi": 120,
     "beklenen_cizgi_pt": [
-     0.75
+     0.75,
+     1.5
     ],
     "beklenen_ok_ucu_mm": [],
     "sorunlar": [],
@@ -98,9 +98,6 @@
    "sayi": 0,
    "metinden_gecen": []
   },
-  "uyarilar": [
-   "T4: token width(s) [1.5] pt never printed",
-   "T4: the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt"
-  ]
+  "uyarilar": []
  }
 }

@@ -2,7 +2,7 @@
  "z_spread_clean_gap": {
   "page_mm": [
    85.302,
-   109.855
+   110.49
   ],
   "fonts": [
    "Open Sans",
@@ -15,7 +15,7 @@
    "page_size": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "85.302 x 109.855 mm"
+    "detail": "85.302 x 110.490 mm"
    },
    "fonts": {
     "verdict": "PASS",
@@ -39,10 +39,10 @@
    }
   },
   "inputs": {
-   "page_text_sha256": "48ad94163e494af6e6382b2fe8642aa9c3b96b1de264684d267fa38474e7b5b9",
+   "page_text_sha256": "410fac5f51fc8051385d7ff21fac872dd7dd6f314d6d2de92dd2625dc488ae79",
    "spans": 33,
    "lines": 33,
-   "drawings": 254,
+   "drawings": 255,
    "closed_boxes": 2
   },
   "verdict": "PASS",
@@ -50,7 +50,8 @@
   "floor_pt": 8.0,
   "cizgi": {
    "basili_pt": [
-    0.75
+    0.75,
+    1.5
    ],
    "tokenlar_pt": {
     "ince": 0.75,
@@ -59,7 +60,8 @@
     "eksen": 0.75
    },
    "basili_uzunluk_mm": {
-    "0.750": 2449.82
+    "0.750": 2810.32,
+    "1.500": 83.29
    },
    "ok_ucu": {
     "basili_mm": [],
@@ -70,17 +72,15 @@
     "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
     "adaylar": []
    },
-   "sorunlar": [
-    "token width(s) [1.5] pt never printed",
-    "the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt"
-   ],
-   "uyumlu": false,
+   "sorunlar": [],
+   "uyumlu": true,
    "token_kaynagi": "manifest",
    "basim_modeli": {
     "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
     "dpi": 120,
     "beklenen_cizgi_pt": [
-     0.75
+     0.75,
+     1.5
     ],
     "beklenen_ok_ucu_mm": [],
     "sorunlar": [],
@@ -93,20 +93,6 @@
     "Open Sans SemiBold"
    ],
    "suphe": [
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
     {
      "metin": "  ",
      "karakter": "U+0020",
@@ -121,9 +107,7 @@
    "metinden_gecen": []
   },
   "uyarilar": [
-   "T4: token width(s) [1.5] pt never printed",
-   "T4: the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt",
-   "T6: 3 printed glyph(s) do not reach the text layer: [{'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}, {'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}, {'metin': '  ', 'karakter': 'U+0020', 'glif': 557, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 557; the font's spaces use glyph 3\"}]"
+   "T6: 1 printed glyph(s) do not reach the text layer: [{'metin': '  ', 'karakter': 'U+0020', 'glif': 557, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 557; the font's spaces use glyph 3\"}]"
   ]
  }
 }

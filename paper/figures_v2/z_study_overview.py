@@ -58,25 +58,40 @@ def mosaics(n=4, up=8):
         im = Image.fromarray(mos.astype("uint8"), "RGB").resize((mos.shape[1] * up, mos.shape[0] * up), Image.NEAREST)
         p = IMG_DIR / f"{name}_test_0-{n - 1}.png"
         im.save(p)
-        out[name] = {"png": Z._rel(str(p.resolve())), "kaynak": Z._rel(src), "kaynak_sha256": hashlib.sha256(raw).hexdigest(),
+        out[name] = {"png_abs": str(p.resolve()), "png": Z._rel(str(p.resolve())), "kaynak": Z._rel(src), "kaynak_sha256": hashlib.sha256(raw).hexdigest(),
                      "indeksler": list(range(n)), "islem": f"2x2 mosaic, nearest x{up}"}
-    return out
+    return out          # png_abs: Visio's Import needs a full path; only the relative "png" goes to the evidence
 
 
-LETTER = {1: "a", 2: "b", 3: "e", 4: "d"}
+LETTER = {1: "a", 2: "b", 3: "e", 4: "d", 5: "c"}
 
 
 def station(k, x, y, title, subs, cont=None, sub_runs=None):
-    """Panel letter (naming step 5, the letters the body text cites as Figure 1(a)-(e)) and title."""
-    lx, ly, lw_, lh_ = T(f"st{k}", x, y + 0.2, [[(f"({LETTER[k]})", "sb")]], size=TITLE, cont=cont)
-    vf.note_naming(f"st{k}", "letter")
-    d = lw_ + 0.2
-    T(f"st{k}_t", x + d + 1.0, y + (d - lh(TITLE)) / 2, [[(title, "sb")]], size=TITLE, cont=cont)
-    yy = y + (d - lh(TITLE)) / 2 + lh(TITLE)
+    """Second round (08.11.2026, bulgu 11): every station name is a small note card (style Z 'kutu', the flat
+    information card) whose panel letter stands inside the card at the bottom left (uslup_Z.yaml panel_harfi
+    konum kart_ici_sol_alt); title and sub-lines are indented past the letter. (x, y) is the card's top left
+    corner; returns the card's bottom y."""
+    titles = title if isinstance(title, list) else [title]
+    let = [[(f"({LETTER[k]})", "sb")]]
+    d = tw(let, TITLE) + 0.6
+    tx = x + 1.0 + d
+    wmax = max([tw([[(t_, "sb")]], TITLE) for t_ in titles] +
+               [tw([s_] if isinstance(s_, str) else [s_], S8) for s_ in subs] + [0.0])
+    hh = len(titles) * lh(TITLE) + len(subs) * lh(S8)
+    h0 = gc(1.0 + max(hh, lh(TITLE)) + 1.0)
+    w0 = gc(1.0 + d + wmax + 1.0)
+    f, _e = vf.tint_of("kutu")
+    vf.rect(f"lc{k}", gr(x), gr(y), w0, h0, fill=f, line=None, rnd=float(vf.USLUP.corner_mm), role="container",
+            ctype="card")
+    cid = f"lc{k}"
+    T(f"st{k}_t", tx, y + 1.0, [[(t_, "sb")] for t_ in titles], size=TITLE, cont=cid)
+    yy = y + 1.0 + len(titles) * lh(TITLE)
     for i, s_ in enumerate(subs):
-        T(f"st{k}_s{i}", x + d + 1.0, yy + i * lh(S8), [s_] if isinstance(s_, str) else [s_], size=S8,
-          color="muted", cont=cont)
-    return yy + len(subs) * lh(S8)
+        T(f"st{k}_s{i}", tx, yy + i * lh(S8), [s_] if isinstance(s_, str) else [s_], size=S8,
+          color="muted", cont=cid)
+    T(f"st{k}", x + 1.0, gr(y) + h0 - 1.0 - lh(TITLE), let, size=TITLE, cont=cid)
+    vf.note_naming(f"st{k}", "letter")
+    return gr(y) + h0
 
 
 def lay(C, IMG):
@@ -160,8 +175,8 @@ def lay(C, IMG):
                                  "ton_6", group="data"))
         front = recs[-1]
         if img:
-            fx, fy, fw_, fh_ = bl.fit_on_front_face(front["corners"]["front"], IMG[img]["png"], margin=0.4)
-            vf.image(f"im_{img}", fx, fy, fw_, fh_, IMG[img]["png"], border=False, group="data", grid=False)
+            fx, fy, fw_, fh_ = bl.fit_on_front_face(front["corners"]["front"], IMG[img]["png_abs"], margin=0.4)
+            vf.image(f"im_{img}", fx, fy, fw_, fh_, IMG[img]["png_abs"], border=False, group="data", grid=False)
         deckrec[name] = (X0 + (sd - cw) / 2, dy0, npanel, front, cw)
     # ---------------- floor trace: the trained models are attacked against the panels (PGD-10)
     ink, lwn = vf.C["arrow"], vf.LW["normal"]
@@ -238,21 +253,23 @@ def registry():
     x0, y0, w0 = 140.75, 24.5, 36.0
     f, e = vf.tint_of("kutu")
     rows = len(FAMILIES)
-    h0 = gc(1.25 + 4.0 + 0.25 + 2 * lh(TITLE) + 0.5 + (rows + 1) * 2 * lh(S8) + 1.25)
+    h0 = gc(1.25 + 2 * lh(TITLE) + 0.9 + (rows + 1) * 2 * lh(S8) + 0.3 + lh(TITLE) + 1.0)
     vf.rect("reg", gr(x0), gr(y0), gc(w0), h0, fill=f, line=None, rnd=float(vf.USLUP.corner_mm), role="container",
             ctype="card")
-    T("st4", x0 + 1.25, y0 + 1.25, [[("(d)", "sb")]], size=TITLE, cont="reg")
-    vf.note_naming("st4", "letter")
-    d = lh(TITLE)
-    yb = y0 + 1.25 + d + 0.25
+    yb = y0 + 1.25
     T("st4_t", x0 + 1.25, yb, [[("Registered before", "sb")], [("measurement", "sb")]], size=TITLE, cont="reg")
-    yb += 2 * lh(TITLE) + 0.5
+    yb += 2 * lh(TITLE) + 0.3
+    # bulgu 5 (08.11): booktabs head rule, the 1.5 pt (vurgu) line of the figure (as Figures 7, 13 and 16)
+    vf.seg("reg_rule", (x0 + 1.25, yb), (x0 + w0 - 1.25, yb), vf.C["frame"], vf.LW["vurgu"])
+    yb += 0.6
     for i, (nm, det, ds) in enumerate(FAMILIES):
         y = yb + i * 2 * lh(S8)
         T(f"fam{i}", x0 + 1.25, y, [[(nm, "sb")], [det if not ds else f"{det} · {ds}"]], size=S8, cont="reg",
           w=w0 - 2.0)
     y = yb + rows * 2 * lh(S8)
     T("fam_prot", x0 + 1.25, y, [[("protocol layer", "sb")], ["four nested sets"]], size=S8, cont="reg", w=w0 - 2.0)
+    T("st4", x0 + 1.25, y0 + h0 - 1.0 - lh(TITLE), [[("(d)", "sb")]], size=TITLE, cont="reg")   # bottom left
+    vf.note_naming("st4", "letter")
     return y0 + h0
 
 
@@ -269,14 +286,26 @@ def main():
     labels(S, C, deckrec, tilerec)
     split(C, S)
     registry()
-    station(1, 1.0, 2.0, "Trained models", ["2×2 on CIFAR-10: scratch | ImageNet init.",
+    station(1, 0.5, 0.75, "Trained models", ["2×2 on CIFAR-10: scratch | ImageNet init.",
                                             "seed pair R32 and V-scr replicated",
                                             f"on CIFAR-100: {C['SeedChunR']} + {C['SeedChunV']} runs"])
-    station(2, 66.0, 1.0, "Reference panels, sliced into", [])
-    cx_, cy_, cw_, ch_ = T("stc", 66.0 + vf.IDS["st2_t"]["w"] + Z.tw([[("(b)", "sb")]], TITLE) + 2.4, 1.2,
-                           [[("(c)", "sb"), (" PGD-10 matrices", "sb")]], size=TITLE)
-    vf.note_naming("stc", "letter")
-    y3 = station(3, 1.0, 88.0, "Exact split and contrasts",
+    station(2, 67.5, 0.75, "Reference panels", [])
+    # (c) has its own card below the matrix tiles and one hairline leader to each tile (bulgu 11)
+    yc = station(5, 111.5, 89.0, ["PGD-10", "matrices"], [])
+    for name, (X0, nmod, rec) in tilerec.items():
+        if name == "CIFAR-10":
+            # the CIFAR-10 tile stands right behind the glass layers of (e): any leader to it would cross them;
+            # its own data-set label already names it "matrix of 20 models"
+            continue
+        # review round 2: the leader ends with a dot on the ruled tile top in front of the deck (the deck stands
+        # on the back of the tile), so (c) points at the matrix plate while the (b) labels point at the decks
+        a, b, c_, d = rec["corners"]["top"]
+        u, w_ = 0.5, 0.07
+        tip = (a[0] + (b[0] - a[0]) * u + (d[0] - a[0]) * w_, a[1] + (b[1] - a[1]) * u + (d[1] - a[1]) * w_)
+        cx_ = min(max(tip[0], 112.5), 111.5 + vf.IDS["lc5"]["w"] - 1.0)
+        vf.seg(f"lc5_ld_{nmod}", (cx_, 88.7), tip, vf.C["frame"], vf.USLUP.line_min_pt)
+        Z.isaret(f"lc5_dot_{nmod}", tip[0], tip[1], "o", fill="ink", edge="ink", size=0.8, role="deco")
+    y3 = station(3, 0.5, 87.0, "Exact split and contrasts",
             [[("log T = log w + ", "r")] + TAU_BAR + [(" + ½ r", "r")],
              "vulnerability, symmetric similarity, direction;", "then panel means per model"])
     # the split goes to the analysis: a trace from the lowest glass layer down to station 3's title (flow label)
@@ -311,7 +340,7 @@ def main():
                     "len(modeller_ortak) - count(birincil_panel)", "NmodIN - PanelIN"))
     for name, d in IMG.items():
         deg.append(Z.ev(f"{name} test images", d["indeksler"], d["kaynak"], "b'data'[0:4] (pickle)", d["islem"]))
-    Z.kanit_yaz(STEM, deg, ek={"foy_karsilastirmasi": FOY, "okunan_anahtarlar": OKUNAN, "goruntuler": IMG,
+    Z.kanit_yaz(STEM, deg, ek={"foy_karsilastirmasi": FOY, "okunan_anahtarlar": OKUNAN, "goruntuler": {k_: {a_: b_ for a_, b_ in v_.items() if a_ != "png_abs"} for k_, v_ in IMG.items()},
                               "icerik_modulu": "paper/figures/visio/_icerik_study_overview.py (salt okunur ice aktarim)",
                               "gosterim": {"tau_bar": "τ̄", "kaynak": "paper/manuscript/macros_konsey.tex line 3"},
                               "aileler_kaynagi": "paper/figures/visio/fig_study_overview.py FAMILIES (metin, sayi degil)",

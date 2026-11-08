@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T16:01:35+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-08T20:54:53+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -17,7 +17,7 @@ Generated 2026-11-08T16:01:35+00:00; verdict from the ayarli scoring; both scori
 | A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.625in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
 | A6 Panel frames aligned | 4/4 | PASS | single panel |
-| B1 Every colour bound in the palette | 5/5 | PASS | 25 colours, all bound |
+| B1 Every colour bound in the palette | 5/5 | PASS | 26 colours, all bound |
 | B2 CVD separation, or redundant channels | 5/5 | PASS | worst CVD dE 16.9 (mitigated by marker/linestyle/hatch) |
 | B3 Greyscale separation, or redundant channels | 4/4 | PASS | worst dL* 19.0 |
 | B4 Every series has a non-colour channel | 3/3 | PASS | all series redundant |
@@ -33,7 +33,7 @@ Generated 2026-11-08T16:01:35+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): runs per cell are drawn as index cards and listed by seed |
 | E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 59 words, 0 in mandatory sentences, 59 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | Two architectures cross two initializations in four cells with their own clean s... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 6/6 richness items pass; distance to the liked reference 1.223 (1/5 on the disliked side); catalogue 0.708 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 6/6 richness items pass; distance to the liked reference 1.155 (1/5 on the disliked side); catalogue 0.708 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 | _skipped_ | - | SKIP | D2: a Visio schematic has no axes; not applied (İSTEM 5A, adjusted scoring) |
 | _warning_ | - | WARN | controller: shape_pairs_checked is 0 and the reason given is: no solid shape |
@@ -48,7 +48,7 @@ Generated 2026-11-08T16:01:35+00:00; verdict from the ayarli scoring; both scori
 | A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.625in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
 | A6 Panel frames aligned | 4/4 | PASS | single panel |
-| B1 Every colour bound in the palette | 5/5 | PASS | 25 colours, all bound |
+| B1 Every colour bound in the palette | 5/5 | PASS | 26 colours, all bound |
 | B2 CVD separation, or redundant channels | 5/5 | PASS | worst CVD dE 16.9 (mitigated by marker/linestyle/hatch) |
 | B3 Greyscale separation, or redundant channels | 4/4 | PASS | worst dL* 19.0 |
 | B4 Every series has a non-colour channel | 3/3 | PASS | all series redundant |
@@ -65,11 +65,11 @@ Generated 2026-11-08T16:01:35+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): runs per cell are drawn as index cards and listed by seed |
 | E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 59 words, 0 in mandatory sentences, 59 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | Two architectures cross two initializations in four cells with their own clean s... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 6/6 richness items pass; distance to the liked reference 1.223 (1/5 on the disliked side); catalogue 0.708 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 6/6 richness items pass; distance to the liked reference 1.155 (1/5 on the disliked side); catalogue 0.708 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 | _warning_ | - | WARN | controller: shape_pairs_checked is 0 and the reason given is: no solid shape |
 
-F: kar/cm² 5.31 [2.30-4.30] · yazı kutusu 0.32 [0.13-0.28] · sayısal 0.31 · veri alanı - · derinlik 3 · akış 0/0 etiketli · ton 0.50 [0.06-0.49] · mürekkep 0.385 | beğeniye uzaklık 1.22 (1/5 beğenilmeyen tarafında) | eşikler tamam
+F: kar/cm² 5.31 [2.30-4.30] · yazı kutusu 0.32 [0.13-0.28] · sayısal 0.31 · veri alanı 0.84 · derinlik 3 · akış 0/0 etiketli · ton 0.49 [0.06-0.49] · mürekkep 0.393 | beğeniye uzaklık 1.16 (1/5 beğenilmeyen tarafında) | eşikler tamam
 
 ## Cross-figure consistency: PASS
 - 17 figures share one design system

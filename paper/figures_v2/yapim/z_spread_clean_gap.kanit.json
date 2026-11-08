@@ -1997,16 +1997,28 @@
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_spread_clean_gap.py",
-  "git_head": "74533ba",
-  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "git_head": "fc7c6c8",
   "okunan_dosyalar": [
+    "paper/figures/charts/_kart_ortak.py",
+    "paper/figures/fig_yayilim_temiz_fark.py",
+    "paper/figures/konsey/konsey_ortak.py",
     "results/C1_REFERANS_FOYU.md",
     "results/q1/fig_yayilim_temiz_fark_veri.json"
   ],
   "karantina_denetimi": {
+    "paper/figures/charts/_kart_ortak.py": true,
+    "paper/figures/fig_yayilim_temiz_fark.py": true,
+    "paper/figures/konsey/konsey_ortak.py": true,
     "results/C1_REFERANS_FOYU.md": true,
     "results/q1/fig_yayilim_temiz_fark_veri.json": true
   },
+  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim); paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari); siniflandirilmamis: paper/figures/fig_yayilim_temiz_fark.py. run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "okunan_siniflar": [
+    "paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim)",
+    "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
+    "results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi)",
+    "results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari)"
+  ],
   "foy_karsilastirmasi": {
     "karsilastirma_sayisi": 48,
     "uyusmayan": 0,
@@ -2493,5 +2505,5 @@
       }
     ]
   },
-  "altyazi_taslagi": "Protocol spread against the clean-accuracy gap on a deep stage. All 60 model pairs. Back card, Three-protocol spread: unconditioned, target-correct and both-correct, open rings the identity prediction at p = 1; front card, Successful-source minus both-correct: the term the back card leaves out. Markers separate settings; no line is fitted, as pairs share models."
+  "altyazi_taslagi": "Protocol spread against the clean-accuracy gap on a deep stage. All 60 model pairs. Back card, Three-protocol spread: unconditioned, target-correct and both-correct, rings the identity prediction at p = 1; front card, Successful-source minus both-correct, the term left out. Values are positions on the flat cards; no line is fitted."
 }

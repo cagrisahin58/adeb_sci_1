@@ -214,9 +214,10 @@
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_epsilon_sweep.py",
-  "git_head": "e5c3374",
-  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "git_head": "fc7c6c8",
   "okunan_dosyalar": [
+    "paper/figures/charts/_kart_ortak.py",
+    "paper/figures/konsey/konsey_ortak.py",
     "results/C1_REFERANS_FOYU.md",
     "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv",
     "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv",
@@ -227,6 +228,8 @@
     "results/wrn_eval/wrn_eval_summary.json"
   ],
   "karantina_denetimi": {
+    "paper/figures/charts/_kart_ortak.py": true,
+    "paper/figures/konsey/konsey_ortak.py": true,
     "results/C1_REFERANS_FOYU.md": true,
     "results/c1_sweep/pair1/resnet18/resnet18_robustness_results.csv": true,
     "results/c1_sweep/pair1/vit_tiny/vit_tiny_robustness_results.csv": true,
@@ -236,6 +239,14 @@
     "results/c1_sweep/pair3/vit_tiny/vit_tiny_robustness_results.csv": true,
     "results/wrn_eval/wrn_eval_summary.json": true
   },
+  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim); paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi); results/c1_* (C1 sizinti duzeltmesi sonrasi yeniden uretilmis kosular; proje CLAUDE.md, 08.09.2026 netlestirmesi: gecerli yollar yalniz results/c1_* ve results/q1/*; her deger foy satiriyla denetlenir); results/wrn_eval/wrn_eval_summary.json (foy satir 354'un kaynak gosterdigi dosya; degerleri foy satir 19 ve 360-364 ile denetlenir). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "okunan_siniflar": [
+    "paper/figures/charts/*.py (v1 veri kurallari, salt okunur ice aktarim)",
+    "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
+    "results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi)",
+    "results/c1_* (C1 sizinti duzeltmesi sonrasi yeniden uretilmis kosular; proje CLAUDE.md, 08.09.2026 netlestirmesi: gecerli yollar yalniz results/c1_* ve results/q1/*; her deger foy satiriyla denetlenir)",
+    "results/wrn_eval/wrn_eval_summary.json (foy satir 354'un kaynak gosterdigi dosya; degerleri foy satir 19 ve 360-364 ile denetlenir)"
+  ],
   "foy_karsilastirmasi": {
     "karsilastirma_sayisi": 28,
     "uyusmayan": 0,
@@ -545,5 +556,10 @@
     ],
     "gerekce": "the reference sheet cites this file (line 354) and prints its values"
   },
-  "altyazi_taslagi": "Robust accuracy under PGD-10 as cut-out profiles. Each card's top edge traces CIFAR-10 test accuracy over the budget ε, clean to 16/255, as a true vertical length (scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model). Depth only orders the models."
+  "altyazi_taslagi": "Robust accuracy under PGD-10 as cut-out profiles. Each card's top edge traces CIFAR-10 test accuracy over the budget ε, clean to 16/255, as height above its own base (back bases dashed; scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model).",
+  "k7_muafiyet": {
+    "gerekce": "block height is the accuracy as a true length on the one vertical dimetric axis, and the number rows print every value (K7)",
+    "ikiz_kodlama": "every accuracy is printed as a number in the rows under the scene",
+    "kural": "uslup_Z.yaml three_d.veri_ikiz_kodlama (surum 3, K7, 08.11.2026); denge kapisi 3b_veri maddesini yalniz bu kosulla muaf sayar"
+  }
 }

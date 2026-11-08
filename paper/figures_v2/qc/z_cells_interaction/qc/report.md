@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T16:08:17+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-08T20:58:55+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -67,7 +67,7 @@ Generated 2026-11-08T16:08:17+00:00; verdict from the ayarli scoring; both scori
 | E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 7/7 richness items pass; distance to the liked reference 0.144 (0/5 on the disliked side); catalogue 0.402 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 
-F: kar/cm² 2.34 [2.30-4.30] · yazı kutusu 0.14 [0.13-0.28] · sayısal 0.26 · veri alanı - · derinlik 2 · akış 2/1 etiketli · ton 0.56 [0.86-0.92] · mürekkep 0.098 | beğeniye uzaklık 0.14 (0/5 beğenilmeyen tarafında) | eşikler tamam
+F: kar/cm² 2.40 [2.30-4.30] · yazı kutusu 0.14 [0.13-0.28] · sayısal 0.16 · veri alanı - · derinlik 2 · akış 2/1 etiketli · ton 0.56 [0.86-0.92] · mürekkep 0.098 | beğeniye uzaklık 0.14 (0/5 beğenilmeyen tarafında) | eşikler tamam
 
 ## Cross-figure consistency: PASS
-- 13 figures share one design system
+- 17 figures share one design system

@@ -158,7 +158,9 @@ def main():
         ay0, ay1 = y + 0.3, y + 6.0
         vf.spline(f"ar{k}", [(W / 2 - 6.0, ay0), (W / 2 - 9.0, (ay0 + ay1) / 2), (W / 2 - 7.0, ay1)], vf.C["arrow"], vf.LW["ince"], arrow=True)
         vf.note_naming(f"ar{k}", "flow")
-        T(f"arl{k}", W / 2 - 3.4, ay0 + 0.6, [arrow_lab], size=Z.S8, color="muted")
+        # second round: the label sits within 3 mm of the curved arrow head, so the PDF measure (denge
+        # akis_etiketi) reads it as the arrow's label, as the straight arrows of round 1 were read
+        T(f"arl{k}", W / 2 - 5.2, ay0 + 1.2, [arrow_lab], size=Z.S8, color="muted")
         y = ay1 + 0.8
         dep = 6.0 * k
         sh = Z.Sahne(OX, y + h + 0.664 * dep + 1.4)
@@ -188,8 +190,8 @@ def main():
     face = "t2_face"
     fx, fy, fw, fh = boxes[2]
     yt3 = fy + 1.8
-    br = term_row("p3_", fx + 2.0, yt3, [("G", "vul"), ("=", None), ("[σ(R) − σ(V)]", "sim"),
-                                             ("− ½[ρ(R) − ρ(V)]", "dir")], face, gap=2.0,
+    br = term_row("p3_", fx + 2.0, yt3, [("G", "vul"), ("=", None), ("[σ(R) – σ(V)]", "sim"),
+                                             ("– ½[ρ(R) – ρ(V)]", "dir")], face, gap=2.0,
                   labels=["source gap", "symmetric", "directional"])
     for k, (x0, x1, key, c, xc) in enumerate(br):
         bracket(f"b2{k}", x0, x1, yt3 + LH - 0.2, col[key], ("source gap", "symmetric", "directional")[k], c, xc)

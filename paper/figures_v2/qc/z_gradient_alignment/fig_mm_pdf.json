@@ -2,7 +2,7 @@
  "z_gradient_alignment": {
   "page_mm": [
    177.588,
-   94.403
+   106.468
   ],
   "fonts": [
    "DejaVu Sans",
@@ -10,13 +10,13 @@
    "Open Sans SemiBold"
   ],
   "min_pt": 8.4,
-  "spans": 60,
+  "spans": 53,
   "issues": [],
   "checks": {
    "page_size": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "177.588 x 94.403 mm"
+    "detail": "177.588 x 106.468 mm"
    },
    "fonts": {
     "verdict": "PASS",
@@ -31,27 +31,28 @@
    "text_overlap": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "60 spans"
+    "detail": "53 spans"
    },
    "box_spill": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "6 closed boxes"
+    "detail": "3 closed boxes"
    }
   },
   "inputs": {
-   "page_text_sha256": "6ba4e8b13b3c5e6ee6e87f44684b96c41dcdb7217f85650496e8970a751878f8",
-   "spans": 60,
-   "lines": 59,
-   "drawings": 865,
-   "closed_boxes": 6
+   "page_text_sha256": "4a433ff717d924a797f1f50244580a6b954fbe574c1ed795fcb999fa5d4f6e58",
+   "spans": 53,
+   "lines": 52,
+   "drawings": 864,
+   "closed_boxes": 3
   },
   "verdict": "PASS",
   "expected_from": "visio report",
   "floor_pt": 8.0,
   "cizgi": {
    "basili_pt": [
-    0.75
+    0.75,
+    1.5
    ],
    "tokenlar_pt": {
     "ince": 0.75,
@@ -60,7 +61,8 @@
     "eksen": 0.75
    },
    "basili_uzunluk_mm": {
-    "0.750": 6356.25
+    "0.750": 6266.47,
+    "1.500": 175.53
    },
    "ok_ucu": {
     "basili_mm": [],
@@ -71,17 +73,15 @@
     "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
     "adaylar": []
    },
-   "sorunlar": [
-    "token width(s) [1.5] pt never printed",
-    "the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt"
-   ],
-   "uyumlu": false,
+   "sorunlar": [],
+   "uyumlu": true,
    "token_kaynagi": "manifest",
    "basim_modeli": {
     "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
     "dpi": 120,
     "beklenen_cizgi_pt": [
-     0.75
+     0.75,
+     1.5
     ],
     "beklenen_ok_ucu_mm": [],
     "sorunlar": [],
@@ -94,97 +94,6 @@
     "Open Sans SemiBold"
    ],
    "suphe": [
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
-    {
-     "metin": " ",
-     "karakter": "U+0020",
-     "glif": 555,
-     "font": "Open Sans",
-     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
-    },
     {
      "metin": "  ",
      "karakter": "U+0020",
@@ -199,9 +108,7 @@
    "metinden_gecen": []
   },
   "uyarilar": [
-   "T4: token width(s) [1.5] pt never printed",
-   "T4: the line hierarchy is gone in print: tokens [0.75, 1.5] all print as 0.75 pt",
-   "T6: 14 printed glyph(s) do not reach the text layer: [{'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}, {'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}, {'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}]"
+   "T6: 1 printed glyph(s) do not reach the text layer: [{'metin': '  ', 'karakter': 'U+0020', 'glif': 693, 'font': 'DejaVu Sans', 'not': \"decodes to a space through glyph 693; the font's spaces use glyph 857\"}]"
   ]
  }
 }

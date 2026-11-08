@@ -73,6 +73,10 @@ def main():
     T("hC", fx + 1.2, fy + 1.0, [[("CIFAR-10 and CIFAR-100", "sb")]], size=Z.S8, cont=face)
     for key, lab in (("c10", "C10"), ("c100", "C100"), ("r18", "R18")):
         T(f"hc_{key}", fx + xcol[key], fy + 1.0, [lab], size=Z.S8, align="c", color="muted", cont=face)
+    # bulgu 5 (08.11): booktabs head rule, the one 1.5 pt (vurgu) line of the figure; table rules are the
+    # emphasis edges of style Z (as Figures 7, 13 and 16)
+    vf.seg("hC_rule", (fx + 1.0, fy + 1.0 + LH + 0.4), (fx + fw - 1.0, fy + 1.0 + LH + 0.4), vf.C["frame"],
+           vf.LW["vurgu"])
     for i, r in enumerate(PM.CIF):
         y = fy + 1.0 + LH + 0.8 + i * LH
         T(f"cn{i}", fx + 1.2, y, [r["id"]], size=Z.S8, cont=face)
