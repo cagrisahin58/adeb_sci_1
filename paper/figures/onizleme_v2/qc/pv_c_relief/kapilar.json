@@ -1,0 +1,58 @@
+{
+  "stem": "pv_c_relief",
+  "zaman": "2026-11-08T00:31:07",
+  "ayar": "//wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1/paper/figures/onizleme_v2/visio_cizici_v2.yaml",
+  "K1_kontrolcu": {
+    "dosya": "pv_c_relief_mm_kontrol.json",
+    "karar": "PASS",
+    "en_buyuk_sapma_mm": 0.0,
+    "on_denetim_sorun": 0,
+    "sayfa_mm": [
+      177.53541666666666,
+      88.89999999999999
+    ]
+  },
+  "K2_fig_mm_pdf": {
+    "cikis": 0,
+    "ozet": [
+      "PASS  pv_c_relief                  page 177.53 x 88.90 mm, min 8.28 pt, faces DejaVu Sans, Open Sans, Open Sans SemiBold",
+      "        ~ T4: printed width(s) [0.751] pt match no token [0.354, 0.397, 0.454, 0.85]",
+      "        ~ T4: token width(s) [0.354, 0.397, 0.454] pt never printed",
+      "        ~ T6: 11 printed glyph(s) do not reach the text layer: [{'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}, {'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}, {'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}]",
+      "        lines [0.751, 0.85] pt (tokens {'ince': 0.354, 'normal': 0.454, 'vurgu': 0.85, 'eksen': 0.397}, manifest); heads [] mm (token 1.0)",
+      "printed-figure check: 1 figure(s), 0 failing"
+    ]
+  },
+  "K3_denge": {
+    "cikis": 0,
+    "karar": "kurulabilir",
+    "ozet_satiri": "kar/cm² 1.89 [2.30-4.30] · yazı kutusu 0.11 [0.13-0.28] · sayısal 0.23 · veri alanı 0.19 · derinlik 3 · akış 0/0 etiketli · ton 0.09 [0.86-0.92] · mürekkep 0.215 | beğeniye uzaklık 0.51 (2/5 beğenilmeyen tarafında) | eşikler tamam",
+    "ihlaller": [],
+    "eksikler": [],
+    "uyarilar": [],
+    "son": [
+      "KURULABILIR  pv_c_relief: 0 violation(s), 0 missing -> \\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures\\onizleme_v2\\qc\\pv_c_relief\\denge.json",
+      "   F: kar/cm² 1.89 [2.30-4.30] · yazı kutusu 0.11 [0.13-0.28] · sayısal 0.23 · veri alanı 0.19 · derinlik 3 · akış 0/0 etiketli · ton 0.09 [0.86-0.92] · mürekkep 0.215 | beğeniye uzaklık 0.51 (2/5 beğenilmeyen tarafında) | eşikler tamam"
+    ]
+  },
+  "K4_zenginlik": {
+    "cikis": 0,
+    "tablo": [
+      "pv_c_relief                              veri    kar/cm2  1.89 yazi 0.111 sayisal 0.23 veri 0.1874 derinlik 3 ton 0.088 murekkep 0.215 uzaklik 0.507 kurulabilir",
+      "-> \\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures\\onizleme_v2\\qc\\pv_c_relief\\zenginlik.json"
+    ]
+  },
+  "K5_fig_qc": {
+    "cikis": 0,
+    "son": [
+      "scoring: ayarli (verdict); adjusted and strict side by side",
+      "figure       ayarli   kati  tavan(kati)   verdict  blocking",
+      "pv_c_relief    97.8   93.0  91.5/93=98.4  PASS     -",
+      "             ~ C4: pv_c_relief does not follow the name scheme and is not in the install mapping; renders as Figure 1",
+      "consistency: PASS",
+      "  - 3 figures share one design system",
+      "report: \\\\wsl.localhost\\Ubuntu-22.04\\home\\firat\\projects\\adeb_sci_1\\paper\\figures\\onizleme_v2\\qc\\pv_c_relief\\qc\\report.md"
+    ],
+    "rapor": "paper/figures/onizleme_v2/qc/pv_c_relief/qc/report.json"
+  }
+}

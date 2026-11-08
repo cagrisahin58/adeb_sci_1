@@ -1,0 +1,145 @@
+{
+ "pv_b_model_exploded": {
+  "page_mm": [
+   177.535,
+   106.098
+  ],
+  "fonts": [
+   "Open Sans",
+   "Open Sans SemiBold"
+  ],
+  "min_pt": 8.25,
+  "spans": 51,
+  "issues": [],
+  "checks": {
+   "page_size": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "177.535 x 106.098 mm"
+   },
+   "fonts": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "Open Sans, Open Sans SemiBold"
+   },
+   "min_type": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "smallest 8.250 pt"
+   },
+   "text_overlap": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "51 spans"
+   },
+   "box_spill": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "16 closed boxes"
+   }
+  },
+  "inputs": {
+   "page_text_sha256": "dd70202c8c382b2ccdb8b622b0abf95ed2dd020acdd044bd067fa762cbbc78e8",
+   "spans": 51,
+   "lines": 46,
+   "drawings": 438,
+   "closed_boxes": 16
+  },
+  "verdict": "PASS",
+  "expected_from": "visio report",
+  "floor_pt": 8.0,
+  "cizgi": {
+   "basili_pt": [
+    0.751
+   ],
+   "tokenlar_pt": {
+    "ince": 0.354,
+    "normal": 0.454,
+    "vurgu": 0.85,
+    "eksen": 0.397
+   },
+   "basili_uzunluk_mm": {
+    "0.751": 4856.09
+   },
+   "ok_ucu": {
+    "basili_mm": [
+     [
+      0.668,
+      1.336
+     ],
+     [
+      0.669,
+      1.337
+     ],
+     [
+      0.669,
+      1.337
+     ],
+     [
+      0.67,
+      1.338
+     ],
+     [
+      0.669,
+      1.338
+     ],
+     [
+      0.668,
+      1.336
+     ]
+    ],
+    "token_mm": 1.0,
+    "bicim": [
+     "acik",
+     "acik",
+     "acik",
+     "acik",
+     "acik",
+     "acik"
+    ],
+    "olculen": 6,
+    "beklenen": 6,
+    "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
+    "adaylar": []
+   },
+   "sorunlar": [
+    "printed width(s) [0.751] pt match no token [0.354, 0.397, 0.454, 0.85]",
+    "token width(s) [0.354, 0.397, 0.454, 0.85] pt never printed",
+    "the line hierarchy is gone in print: tokens [0.354, 0.397, 0.454, 0.85] all print as 0.751 pt",
+    "arrow head length(s) [0.668, 0.669, 0.67] mm against the token 1.0 mm (widths [1.336, 1.337, 1.338] mm)"
+   ],
+   "uyumlu": false,
+   "token_kaynagi": "manifest",
+   "basim_modeli": {
+    "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
+    "dpi": 96,
+    "beklenen_cizgi_pt": [
+     0.7508
+    ],
+    "beklenen_ok_ucu_mm": [
+     0.668
+    ],
+    "sorunlar": [],
+    "uyumlu": true
+   }
+  },
+  "glif": {
+   "tounicode_yok": [
+    "Open Sans",
+    "Open Sans SemiBold"
+   ],
+   "suphe": []
+  },
+  "egri": {
+   "sayi": 1,
+   "metinden_gecen": []
+  },
+  "uyarilar": [
+   "T4: printed width(s) [0.751] pt match no token [0.354, 0.397, 0.454, 0.85]",
+   "T4: token width(s) [0.354, 0.397, 0.454, 0.85] pt never printed",
+   "T4: the line hierarchy is gone in print: tokens [0.354, 0.397, 0.454, 0.85] all print as 0.751 pt",
+   "T4: arrow head length(s) [0.668, 0.669, 0.67] mm against the token 1.0 mm (widths [1.336, 1.337, 1.338] mm)",
+   "T11: 1 curve(s) printed; checked against text by sampling; look at the PNG as well"
+  ]
+ }
+}

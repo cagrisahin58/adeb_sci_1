@@ -1,0 +1,141 @@
+{
+ "pv_a_study_scene": {
+  "page_mm": [
+   177.535,
+   106.098
+  ],
+  "fonts": [
+   "DejaVu Sans",
+   "Open Sans",
+   "Open Sans SemiBold"
+  ],
+  "min_pt": 8.25,
+  "spans": 59,
+  "issues": [],
+  "checks": {
+   "page_size": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "177.535 x 106.098 mm"
+   },
+   "fonts": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "DejaVu Sans, Open Sans, Open Sans SemiBold"
+   },
+   "min_type": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "smallest 8.250 pt"
+   },
+   "text_overlap": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "59 spans"
+   },
+   "box_spill": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "31 closed boxes"
+   }
+  },
+  "inputs": {
+   "page_text_sha256": "5b3cd530f8e82537a89ac18d35a103c15c835de9ddfb561ad9a186a4f86f512f",
+   "spans": 59,
+   "lines": 54,
+   "drawings": 421,
+   "closed_boxes": 31
+  },
+  "verdict": "PASS",
+  "expected_from": "visio report",
+  "floor_pt": 8.0,
+  "cizgi": {
+   "basili_pt": [
+    0.751
+   ],
+   "tokenlar_pt": {
+    "ince": 0.354,
+    "normal": 0.454,
+    "vurgu": 0.85,
+    "eksen": 0.397
+   },
+   "basili_uzunluk_mm": {
+    "0.751": 5497.02
+   },
+   "ok_ucu": {
+    "basili_mm": [
+     [
+      0.67,
+      1.338
+     ],
+     [
+      0.67,
+      1.336
+     ]
+    ],
+    "token_mm": 1.0,
+    "bicim": [
+     "acik",
+     "acik"
+    ],
+    "olculen": 2,
+    "beklenen": 2,
+    "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
+    "adaylar": []
+   },
+   "sorunlar": [
+    "printed width(s) [0.751] pt match no token [0.354, 0.397, 0.454, 0.85]",
+    "token width(s) [0.354, 0.397, 0.454, 0.85] pt never printed",
+    "the line hierarchy is gone in print: tokens [0.354, 0.397, 0.454, 0.85] all print as 0.751 pt",
+    "arrow head length(s) [0.67] mm against the token 1.0 mm (widths [1.336, 1.338] mm)"
+   ],
+   "uyumlu": false,
+   "token_kaynagi": "manifest",
+   "basim_modeli": {
+    "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
+    "dpi": 96,
+    "beklenen_cizgi_pt": [
+     0.7508
+    ],
+    "beklenen_ok_ucu_mm": [
+     0.668
+    ],
+    "sorunlar": [],
+    "uyumlu": true
+   }
+  },
+  "glif": {
+   "tounicode_yok": [
+    "Open Sans",
+    "Open Sans SemiBold"
+   ],
+   "suphe": [
+    {
+     "metin": "  ",
+     "karakter": "U+0020",
+     "glif": 693,
+     "font": "DejaVu Sans",
+     "not": "decodes to a space through glyph 693; the font's spaces use glyph 857"
+    },
+    {
+     "metin": "  ",
+     "karakter": "U+0020",
+     "glif": 693,
+     "font": "DejaVu Sans",
+     "not": "decodes to a space through glyph 693; the font's spaces use glyph 857"
+    }
+   ]
+  },
+  "egri": {
+   "sayi": 0,
+   "metinden_gecen": []
+  },
+  "uyarilar": [
+   "T4: printed width(s) [0.751] pt match no token [0.354, 0.397, 0.454, 0.85]",
+   "T4: token width(s) [0.354, 0.397, 0.454, 0.85] pt never printed",
+   "T4: the line hierarchy is gone in print: tokens [0.354, 0.397, 0.454, 0.85] all print as 0.751 pt",
+   "T4: arrow head length(s) [0.67] mm against the token 1.0 mm (widths [1.336, 1.338] mm)",
+   "T6: 2 printed glyph(s) do not reach the text layer: [{'metin': '  ', 'karakter': 'U+0020', 'glif': 693, 'font': 'DejaVu Sans', 'not': \"decodes to a space through glyph 693; the font's spaces use glyph 857\"}, {'metin': '  ', 'karakter': 'U+0020', 'glif': 693, 'font': 'DejaVu Sans', 'not': \"decodes to a space through glyph 693; the font's spaces use glyph 857\"}]"
+  ]
+ }
+}

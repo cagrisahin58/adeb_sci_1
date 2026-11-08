@@ -1,0 +1,237 @@
+{
+ "torch.version": "2.11.0+cpu",
+ "timm.version": "1.0.27",
+ "vit.wrapper": "src/models/vit.py:361 CIFAR10ViTTiny",
+ "vit.timm_name": "vit_tiny_patch16_224",
+ "vit.input_hw": [
+  224,
+  224
+ ],
+ "vit.patch": [
+  16,
+  16
+ ],
+ "vit.grid": [
+  14,
+  14
+ ],
+ "vit.num_patches": 196,
+ "vit.embed_dim": 192,
+ "vit.cls_token": 1,
+ "vit.tokens": 197,
+ "vit.depth": 12,
+ "vit.heads": 3,
+ "vit.head_dim": 64,
+ "vit.mlp_hidden": 768,
+ "vit.qkv_out": 576,
+ "vit.mlp_act": "GELU",
+ "vit.norm": "LayerNorm",
+ "vit.head_out": 10,
+ "vit.global_pool": "token",
+ "vit.params": 5526346,
+ "vit.params_blocks": 5338368,
+ "vit.params_one_block": 444864,
+ "vit.params_patch_embed": 147648,
+ "vit.shape.patch_embed": [
+  1,
+  196,
+  192
+ ],
+ "vit.shape.block0": [
+  1,
+  197,
+  192
+ ],
+ "vit.shape.block_last": [
+  1,
+  197,
+  192
+ ],
+ "vit.shape.head": [
+  1,
+  10
+ ],
+ "vit.in_init_timm_name": "deit_tiny_patch16_224.fb_in1k",
+ "res.wrapper": "src/models/r224.py:139 CIFAR10ResNet18R224",
+ "res.timm_name": "resnet18",
+ "res.stem_kernel": [
+  7,
+  7
+ ],
+ "res.stem_stride": [
+  2,
+  2
+ ],
+ "res.stem_out": 64,
+ "res.maxpool_kernel": 3,
+ "res.maxpool_stride": 2,
+ "res.stages": 4,
+ "res.shape.stem": [
+  1,
+  64,
+  112,
+  112
+ ],
+ "res.shape.maxpool": [
+  1,
+  64,
+  56,
+  56
+ ],
+ "res.layer1.blocks": 2,
+ "res.layer1.block_type": "BasicBlock",
+ "res.layer1.convs_per_block": 2,
+ "res.layer1.kernel": [
+  3,
+  3
+ ],
+ "res.layer1.channels": 64,
+ "res.layer1.shape": [
+  1,
+  64,
+  56,
+  56
+ ],
+ "res.layer1.params": 147968,
+ "res.layer1.block_children": [
+  "conv1:Conv2d",
+  "bn1:BatchNorm2d",
+  "drop_block:Identity",
+  "act1:ReLU",
+  "aa:Identity",
+  "conv2:Conv2d",
+  "bn2:BatchNorm2d",
+  "act2:ReLU"
+ ],
+ "res.layer1.block_last_children": [
+  "conv1:Conv2d",
+  "bn1:BatchNorm2d",
+  "drop_block:Identity",
+  "act1:ReLU",
+  "aa:Identity",
+  "conv2:Conv2d",
+  "bn2:BatchNorm2d",
+  "act2:ReLU"
+ ],
+ "res.layer2.blocks": 2,
+ "res.layer2.block_type": "BasicBlock",
+ "res.layer2.convs_per_block": 2,
+ "res.layer2.kernel": [
+  3,
+  3
+ ],
+ "res.layer2.channels": 128,
+ "res.layer2.shape": [
+  1,
+  128,
+  28,
+  28
+ ],
+ "res.layer2.params": 525568,
+ "res.layer2.block_children": [
+  "conv1:Conv2d",
+  "bn1:BatchNorm2d",
+  "drop_block:Identity",
+  "act1:ReLU",
+  "aa:Identity",
+  "conv2:Conv2d",
+  "bn2:BatchNorm2d",
+  "act2:ReLU",
+  "downsample:Sequential"
+ ],
+ "res.layer2.block_last_children": [
+  "conv1:Conv2d",
+  "bn1:BatchNorm2d",
+  "drop_block:Identity",
+  "act1:ReLU",
+  "aa:Identity",
+  "conv2:Conv2d",
+  "bn2:BatchNorm2d",
+  "act2:ReLU"
+ ],
+ "res.layer3.blocks": 2,
+ "res.layer3.block_type": "BasicBlock",
+ "res.layer3.convs_per_block": 2,
+ "res.layer3.kernel": [
+  3,
+  3
+ ],
+ "res.layer3.channels": 256,
+ "res.layer3.shape": [
+  1,
+  256,
+  14,
+  14
+ ],
+ "res.layer3.params": 2099712,
+ "res.layer3.block_children": [
+  "conv1:Conv2d",
+  "bn1:BatchNorm2d",
+  "drop_block:Identity",
+  "act1:ReLU",
+  "aa:Identity",
+  "conv2:Conv2d",
+  "bn2:BatchNorm2d",
+  "act2:ReLU",
+  "downsample:Sequential"
+ ],
+ "res.layer3.block_last_children": [
+  "conv1:Conv2d",
+  "bn1:BatchNorm2d",
+  "drop_block:Identity",
+  "act1:ReLU",
+  "aa:Identity",
+  "conv2:Conv2d",
+  "bn2:BatchNorm2d",
+  "act2:ReLU"
+ ],
+ "res.layer4.blocks": 2,
+ "res.layer4.block_type": "BasicBlock",
+ "res.layer4.convs_per_block": 2,
+ "res.layer4.kernel": [
+  3,
+  3
+ ],
+ "res.layer4.channels": 512,
+ "res.layer4.shape": [
+  1,
+  512,
+  7,
+  7
+ ],
+ "res.layer4.params": 8393728,
+ "res.layer4.block_children": [
+  "conv1:Conv2d",
+  "bn1:BatchNorm2d",
+  "drop_block:Identity",
+  "act1:ReLU",
+  "aa:Identity",
+  "conv2:Conv2d",
+  "bn2:BatchNorm2d",
+  "act2:ReLU",
+  "downsample:Sequential"
+ ],
+ "res.layer4.block_last_children": [
+  "conv1:Conv2d",
+  "bn1:BatchNorm2d",
+  "drop_block:Identity",
+  "act1:ReLU",
+  "aa:Identity",
+  "conv2:Conv2d",
+  "bn2:BatchNorm2d",
+  "act2:ReLU"
+ ],
+ "res.shape.pool": [
+  1,
+  512
+ ],
+ "res.shape.fc": [
+  1,
+  10
+ ],
+ "res.fc_out": 10,
+ "res.params": 11181642,
+ "res.conv_layers_total": 20,
+ "res.conv_layers_main_path": 17,
+ "res.weighted_layers_main_path": 18
+}

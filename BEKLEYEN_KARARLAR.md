@@ -73,3 +73,15 @@ Seçenekler: (1) İfade olduğu gibi kalır. (2) Metin "ikinci bir etken ekler" 
 Öneri: Seçenek 2, çünkü "sürücü" İngilizce "driver" sözcüğünün çevirisi olarak Türkçe akademik metinde yabancı durur ve değişiklik iki satırlıktır; metin ile kapı sabiti aynı oturumda değiştirilip kapı zinciri WSL'den koşulmalıdır.
 
 Cevap:
+
+## K7. Yeni şekil dilinde (Üslup Z) veri şekillerinin 3B olup olmayacağı
+
+Soru: Kullanıcı ikinci makale için "komple özgün ve 3 boyutlu yeni şekillerle ve figürlerle" demiştir; veri şekillerinde (benzerlik matrisi, 2x2 etkileşimi, protokol grafikleri) ölçülen değer de yükseklik ya da derinlikle çizilsin mi?
+
+Kanıt: visio-cizici skill'inin kuralı veri grafiğinin 3B çizilmemesini ister, çünkü 3B çubuk ve derinlikli eksen değeri taşıyan uzunluğu ve açıyı izdüşümle değiştirir (`C:/Users/cagri/.claude/skills/visio-cizici/references/uc_boyut.md` satır 5 ve 11); denge kapısı da `3b_veri` yanıtını ihlal sayar. Kol C Faz 1 önizlemesi `paper/figures/onizleme_v2/pv_c_relief` bu yüzden matrisi düz bıraktı: ölçülen değer yalnız eşit hücrelerin rengi, 3B öğeler (kaide, grup sekmeleri, çerçeveler) yalnız donmuş grup tasarımını taşıyor. Çürütücü raporu (`raporlar/sekil_v2_2026-11-07/01_curutucu.md` bulgu 1) bunun kullanıcının "3 boyutlu yeni figür" beklentisini karşılamadığını yazdı. Ayrıntı `raporlar/sekil_v2_2026-11-07/01_uslup_tasarim.md` bölüm 8'dedir. Aynı işte ikinci bir onay konusu vardır: Üslup Z özgün olduğu için kataloğun ayrışma şartı onda ölçüm sınırı aranmadan okunuyor (`scripts/ayrisma.py` `OZGUN` kümesi); bu istisna da kullanıcı onayı bekliyor.
+
+Seçenekler: (1) Kural korunur: veri şekilleri düz kalır, 3B yalnız taşıyıcı sahne, model ve tasarım bilgisinde kullanılır. (2) Üslup Z için kural gevşetilir: veri yüksekliği basılı sayının ve 2B ikizin yanında, tek dimetrik eksende gerçek uzunlukla çizilir, denge kapısının `3b_veri` maddesi bu üslupta gerekçeli muafiyete açılır (motor değişikliği gerekir). (3) Karma: makale gövdesinde veri şekilleri düz, ek dosyada ya da kapak görselinde 3B kabartma sürümleri.
+
+Öneri: Seçenek 3, çünkü dergi okuru değeri uzunluk ve renkten doğru okumalı, kullanıcının "komple 3B" beklentisi de gövde dışındaki görsellerde ve bütün şematiklerde karşılanabilir; seçenek 2 skill kuralını bir üslup için delerek bütün kataloğun veri dürüstlüğü ilkesini zayıflatır.
+
+Cevap (ana oturum, 08.11.2026; kullanıcının 07.11 sözü "komple özgün ve 3 boyutlu yeni şekillerle" bağlayıcı sayıldı): Seçenek 2'nin sınırlı biçimi, yalnız ikinci makale (manuscript_v2) için. Veri şekilleri 3B sahnede kurulur; ölçülen değer her zaman düz bir ikiz kodlamayla da okunur (hücre rengi, basılı sayı ya da düz yüzeyde uzunluk), yükseklik kullanılıyorsa tek dimetrik eksende gerçek uzunlukla ve ikiz kodlamayla aynı şekilde çizilir; altyazı hangi kodlamanın değer taşıdığını söyler. Denge kapısının 3b_veri maddesi Üslup Z'de bu koşula bağlı gerekçeli muafiyet alır (muafiyet kanıt dosyasına yazılır). Asıl makale ve 17 kurulu şekil değişmez. OZGUN ayrışma istisnası kabul; ayrışma raporu yine üretilir (78/78).

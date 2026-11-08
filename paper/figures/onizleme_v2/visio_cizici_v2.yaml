@@ -1,0 +1,36 @@
+# visio-cizici proje ayari: adeb_sci_1 Uslup Z onizlemeleri (Kol C, Faz 1, 07.11.2026).
+# Yazan: gorsel-uretici yurutucu. Ana proje ayari (paper/figures/visio_cizici.yaml) DEGISTIRILMEDI;
+# bu dosya yalniz paper/figures/onizleme_v2 altindaki onizlemeler icindir ve _z_ortak.py ile _kapilar_v2.py
+# VZ_PROJE_AYARI olarak bunu verir.
+#
+# Fark yalniz iki yerde: (1) yapim, onizleme, QC ve gunluk klasorleri onizleme_v2 altindadir, boylece
+# visio/, charts/, final/, konsey/ ve paper/figures koku yazilmaz; (2) visio.dpi 96'dir. 07.11.2026'da
+# oturumun olculen DPI'i 96'dir (GetDeviceCaps(LOGPIXELSX) = 96; 31.10.2026'da 120 idi, ekran olcegi
+# degismis). Ana ayarin 120'si bu oturumda motoru durdurur; ekran olcegini degistirmek kullaniciya ait
+# bir is oldugu icin onizlemeler 96 DPI basim izgarasinda (0.75 pt) cizildi. Faz 2'de makale sekilleri
+# cizilmeden once DPI tek bir degere baglanmalidir (rapor bolum 6 ve 8).
+# DPI denetimi: motor her koşuda oturum DPI'ını GetDeviceCaps(LOGPIXELSX) ile ölçer ve bu dosyadaki visio.dpi
+# ile tutmazsa çizmeden durur (motor/visio/visiofig.py, preflight 'dpi:' maddesi; 07.11.2026'da 120'lik ana
+# ayarla bu yüzden durdu). Faz 2 tek bu v2 ayarıyla koşar; ekran ölçeği değişirse iş ortada durur ve
+# bütün şekiller tek DPI'da yeniden çizilir, iki ızgara karışmaz.
+
+visio:
+  out_dir: paper/figures/onizleme_v2
+  preview_dir: paper/figures/onizleme_v2
+  dpi: 96
+  tasklist_log: paper/figures/onizleme_v2/visio_loglari/visio_tasklist.log
+
+install:
+  target: paper/figures/onizleme_v2/_kurulum_yok
+  visio_dir: paper/figures/onizleme_v2
+  charts_dir: paper/figures/onizleme_v2
+  qc_dir: paper/figures/onizleme_v2/qc
+  log: paper/figures/onizleme_v2/visio_loglari/kurulum.log
+
+language: en
+venue: ieee_access
+
+# QC: onizlemeler henuz numarali kurulum adi tasimaz (pv_a, pv_b, pv_c); C4 ad semasi denetimi puanlanmaz,
+# yalniz uyari olarak raporlanir (fig_qc.py qc.c4.mode). Faz 2 kurulumunda bu satir kalkar.
+qc:
+  c4: {mode: warn}
