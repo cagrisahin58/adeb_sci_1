@@ -1,0 +1,1031 @@
+{
+  "stem": "fig17_feature_degradation",
+  "builder": "figures/visio/visiofig.py",
+  "engine": "visio-cizici motor/visio/visiofig.py",
+  "venue": "ieee_access",
+  "palette": "kk_uslup_Z",
+  "palette_path": "paper/figures_v2/palettes/kk_uslup_Z.yaml",
+  "palette_source": "style",
+  "uslup": "Z",
+  "uslup_uc_boyut": "dimetrik 36",
+  "uslup_uc_boyut_kaynagi": "uslup",
+  "uslup_sha256": "939996f059f62ce5c51fdb49b322faf713b0a56ccb4a1da4837976c27ac849d5",
+  "font_sans": [
+    "Open Sans"
+  ],
+  "font_fallback": [],
+  "type_scale": {
+    "small": 8.4,
+    "body": 9.0,
+    "title": 9.6,
+    "floor": 8.0
+  },
+  "design_sizes_pt": [
+    8.4
+  ],
+  "visio_print_map": {
+    "8.4": [
+      8.4,
+      8.4,
+      8.45
+    ]
+  },
+  "visio_dpi": 120,
+  "visio_lattice_pt": 0.6,
+  "line_tokens_pt": {
+    "ince": 0.75,
+    "normal": 0.75,
+    "vurgu": 1.5,
+    "eksen": 0.75
+  },
+  "arrow_head_mm": 0.77,
+  "visio_print": {
+    "dpi": 120,
+    "dpi_source": "GetDeviceCaps(LOGPIXELSX)",
+    "lattice_pt": 0.6,
+    "lattice_in": "1/120",
+    "jitter_pt": 0.05,
+    "type_rule": "printed size = the lattice point of the authored size (a half-way size may go either way) plus 0 to 0.05 pt (T2, T3)",
+    "sizes_pt": {
+      "8.4": {
+        "authored": 8.4,
+        "printed_min": 8.4,
+        "printed_max": 8.45
+      }
+    },
+    "line_rule": "printed stroke = one device pixel (lattice x 1.001) for a weight up to one lattice step, else the weight as written (T4, measured)",
+    "line_weights_pt": {
+      "ince": {
+        "token": 0.75,
+        "printed": 0.75
+      },
+      "normal": {
+        "token": 0.75,
+        "printed": 0.75
+      },
+      "vurgu": {
+        "token": 1.5,
+        "printed": 1.5
+      },
+      "eksen": {
+        "token": 0.75,
+        "printed": 0.75
+      }
+    },
+    "line_weights_used_pt": {
+      "0.75": 0.75,
+      "1.5": 1.5
+    },
+    "arrow_head": {
+      "uc": "acik",
+      "token_mm": 0.77,
+      "end_arrow": "1",
+      "end_arrow_size": "0",
+      "rule": "printed head width = EndArrowSize base (0.04/0.05/0.07/0.09 in) + 2 x the line's authored width; closed head as long, open head half (T4, measured)",
+      "printed_mm": {
+        "1/0@0.75": [
+          0.773,
+          1.545
+        ]
+      },
+      "count": 2,
+      "count_by_kind": {
+        "1/0@0.75": 2
+      },
+      "arrow_line_weights_pt": [
+        0.75
+      ],
+      "curve_token_mm": 0.77,
+      "curve_end_arrow_size": "0"
+    },
+    "measurement": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)"
+  },
+  "naming_step": 2,
+  "naming_kind": "akis",
+  "naming": [
+    {
+      "id": "roarr",
+      "kind": "flow"
+    },
+    {
+      "id": "inarr",
+      "kind": "flow"
+    }
+  ],
+  "three_d": {
+    "projection": "dimetric",
+    "angle_deg": 36.0,
+    "token": {
+      "projection": "dimetric",
+      "angle_deg": 36.0
+    },
+    "token_source": "style",
+    "objects": {
+      "base": {
+        "kind": "kart",
+        "tint": "govde_res",
+        "size_mm": {
+          "w": 9.6,
+          "d": 6.0,
+          "h": 5.0
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#999188",
+          "right": "#827B74",
+          "front": "#6B665F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#999188",
+        "outline": "#5E5953",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.0863,
+          0.0672
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "base_top",
+          "right": "base_right",
+          "front": "base_face"
+        },
+        "bbox_mm": [
+          1.3,
+          69.7156,
+          11.2411,
+          8.9844
+        ],
+        "world_mm": [
+          -0.36327126400268045,
+          -0.19098300562505252,
+          0.0
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b0": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b0_top",
+          "right": "b0_right",
+          "front": "b0_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          65.6476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          6.0
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b1": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b1_top",
+          "right": "b1_right",
+          "front": "b1_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          61.0476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          10.6
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b2": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b2_top",
+          "right": "b2_right",
+          "front": "b2_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          56.4476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          15.2
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b3": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b3_top",
+          "right": "b3_right",
+          "front": "b3_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          51.8476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          19.799999999999997
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b4": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b4_top",
+          "right": "b4_right",
+          "front": "b4_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          47.2476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          24.4
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b5": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b5_top",
+          "right": "b5_right",
+          "front": "b5_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          42.6476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          29.0
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b6": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b6_top",
+          "right": "b6_right",
+          "front": "b6_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          38.0476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          33.599999999999994
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b7": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b7_top",
+          "right": "b7_right",
+          "front": "b7_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          33.4476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          38.199999999999996
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b8": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b8_top",
+          "right": "b8_right",
+          "front": "b8_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          28.8476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          42.8
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b9": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b9_top",
+          "right": "b9_right",
+          "front": "b9_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          24.2476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          47.4
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b10": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b10_top",
+          "right": "b10_right",
+          "front": "b10_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          19.6476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          52.0
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "b11": {
+        "kind": "kart",
+        "tint": "govde_vit",
+        "size_mm": {
+          "w": 8.0,
+          "d": 4.0,
+          "h": 3.4
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#D5B09F",
+          "right": "#B59687",
+          "front": "#957B6F"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#D5B09F",
+        "outline": "#7F6A5F",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.1431,
+          0.1168
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "b11_top",
+          "right": "b11_right",
+          "front": "b11_face"
+        },
+        "bbox_mm": [
+          3.2103,
+          15.0476,
+          9.0941,
+          6.0563
+        ],
+        "world_mm": [
+          0.02853083721288152,
+          1.7096631452068762,
+          56.599999999999994
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "c0": {
+        "kind": "kart",
+        "tint": "kutu",
+        "size_mm": {
+          "w": 20.096666067063328,
+          "d": 1.4,
+          "h": 70.8
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#F9F6F2",
+          "right": "#D4D1CE",
+          "front": "#AEACA9"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#F9F6F2",
+        "outline": "#93908D",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.2841,
+          0.2269
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "c0_top",
+          "right": "c0_right",
+          "front": "c0_face"
+        },
+        "bbox_mm": [
+          20.4,
+          6.7742,
+          20.4796,
+          71.7297
+        ],
+        "world_mm": [
+          13.513691020899714,
+          7.104567809251955,
+          0.19609826957804444
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "c1": {
+        "kind": "kart",
+        "tint": "kutu",
+        "size_mm": {
+          "w": 20.096666067063328,
+          "d": 1.4,
+          "h": 70.8
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#F9F6F2",
+          "right": "#D4D1CE",
+          "front": "#AEACA9"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#F9F6F2",
+        "outline": "#93908D",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.2841,
+          0.2269
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "c1_top",
+          "right": "c1_right",
+          "front": "c1_face"
+        },
+        "bbox_mm": [
+          41.8967,
+          6.7742,
+          20.4796,
+          71.7297
+        ],
+        "world_mm": [
+          29.13193312895096,
+          15.315563602063616,
+          0.19609826957804444
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      },
+      "c2": {
+        "kind": "kart",
+        "tint": "kutu",
+        "size_mm": {
+          "w": 20.096666067063328,
+          "d": 1.4,
+          "h": 70.8
+        },
+        "projection": "dimetric",
+        "angle_deg": 36.0,
+        "angle_w_deg": 18.0,
+        "tones": {
+          "top": "#F9F6F2",
+          "right": "#D4D1CE",
+          "front": "#AEACA9"
+        },
+        "darkening": {
+          "top": 0.0,
+          "right": 0.15,
+          "front": 0.3
+        },
+        "fill": "#F9F6F2",
+        "outline": "#93908D",
+        "tone_source": "three_d.face_tones",
+        "tone_steps": [
+          0.2841,
+          0.2269
+        ],
+        "three_d_token": {
+          "angle_deg": 36.0,
+          "projection": "dimetric"
+        },
+        "faces": {
+          "top": "c2_top",
+          "right": "c2_right",
+          "front": "c2_face"
+        },
+        "bbox_mm": [
+          63.3933,
+          6.7742,
+          20.4796,
+          71.7297
+        ],
+        "world_mm": [
+          44.75017523700221,
+          23.526559394875278,
+          0.19609826957804444
+        ],
+        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+      }
+    }
+  },
+  "kind": "single",
+  "a1": {
+    "kind": "single",
+    "venue": "ieee_access",
+    "venue_width_mm": 85.29,
+    "page_width_mm": 85.3017,
+    "scale": 0.99986,
+    "scale_3dp": "1.000",
+    "lattice_pt": 0.6,
+    "lattice_mm": 0.2117,
+    "tolerance_mm": 0.1058,
+    "scale_band": [
+      0.99876,
+      1.00124
+    ],
+    "within_lattice": true,
+    "rule": "the page is the venue width of its kind on Visio's print lattice; the scale may read 0.999 or 1.001 to three decimals (snap_page, T3)"
+  },
+  "message": "Under its own attack ViT-Tiny's CLS attention entropy stays inside the registered margin in every block while attention displacement grows and block-output cosine falls with depth.",
+  "provenance": "computed",
+  "sources": {},
+  "derived_colours": {
+    "#827B74": {
+      "from": "3D right tone of govde_res (fill #999188, darkening 0.15; three_d.face_tones)",
+      "role": "fill"
+    },
+    "#5E5953": {
+      "from": "schematic colour 5E5953",
+      "role": "line"
+    },
+    "#6B665F": {
+      "from": "3D front tone of govde_res (fill #999188, darkening 0.3; three_d.face_tones)",
+      "role": "fill"
+    },
+    "#B59687": {
+      "from": "3D right tone of govde_vit (fill #D5B09F, darkening 0.15; three_d.face_tones)",
+      "role": "fill"
+    },
+    "#7F6A5F": {
+      "from": "schematic colour 7F6A5F",
+      "role": "line"
+    },
+    "#957B6F": {
+      "from": "3D front tone of govde_vit (fill #D5B09F, darkening 0.3; three_d.face_tones)",
+      "role": "fill"
+    },
+    "#D4D1CE": {
+      "from": "3D right tone of kutu (fill #F9F6F2, darkening 0.15; three_d.face_tones)",
+      "role": "fill"
+    },
+    "#93908D": {
+      "from": "schematic colour 93908D",
+      "role": "line"
+    },
+    "#AEACA9": {
+      "from": "3D front tone of kutu (fill #F9F6F2, darkening 0.3; three_d.face_tones)",
+      "role": "fill"
+    },
+    "#7B5544": {
+      "from": "schematic colour 7B5544",
+      "role": "line"
+    },
+    "#494039": {
+      "from": "schematic colour 494039",
+      "role": "line"
+    },
+    "#525237": {
+      "from": "schematic colour 525237",
+      "role": "line"
+    }
+  },
+  "entities": {
+    "vit": "#AB6F57"
+  },
+  "formats": {
+    "pdf": "fig17_feature_degradation.pdf",
+    "eps": "fig17_feature_degradation.eps",
+    "svg": "fig17_feature_degradation.svg",
+    "png": "fig17_feature_degradation.png"
+  },
+  "page_mm": [
+    85.302,
+    92.922
+  ],
+  "notes": null,
+  "panels": [
+    1,
+    3
+  ],
+  "panels_n_exempt": {},
+  "n_exempt_reason": "three runs per block; the legend says so",
+  "sablon": "ortak_satirli_katlar",
+  "tur": "veri",
+  "uslup_yolu": "<skill>/styles/uslup_Z.yaml",
+  "altyazi_taslagi": "Feature degradation of ViT-Tiny under attack, block by block. The clean and PGD-10 image enter the spine, block 1 at the bottom; per block, over three runs: CLS attention entropy change with 90% TOST intervals inside the ±0.05-nat band, CLS attention displacement (TV), and block-output cosine for three token sets, mean±SD. The ViT is attacked with its own PGD-10.",
+  "uslup_surumu": 3,
+  "panel_adlari": [
+    "Entropy Δ",
+    "TV",
+    "Cosine"
+  ],
+  "derinlik_ekseni": "none in depth: the layer axis is the spine's height; depth is disc thickness",
+  "ikiz_kodlama": "values are positions on the flat faces of the three readout cards",
+  "sahne_kalibi": "omurga",
+  "entities_notu": "entities declare only the paper-wide families (vit, r224, r32, panel, sigma, rho); other colour roles in this figure are local and named in its legend"
+}

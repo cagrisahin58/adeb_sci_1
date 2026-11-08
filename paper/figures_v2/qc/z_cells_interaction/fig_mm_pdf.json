@@ -1,0 +1,148 @@
+{
+ "z_cells_interaction": {
+  "page_mm": [
+   85.302,
+   111.76
+  ],
+  "fonts": [
+   "Open Sans",
+   "Open Sans SemiBold"
+  ],
+  "min_pt": 8.4,
+  "spans": 25,
+  "issues": [],
+  "checks": {
+   "page_size": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "85.302 x 111.760 mm"
+   },
+   "fonts": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "Open Sans, Open Sans SemiBold"
+   },
+   "min_type": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "smallest 8.400 pt"
+   },
+   "text_overlap": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "25 spans"
+   },
+   "box_spill": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "0 closed boxes"
+   }
+  },
+  "inputs": {
+   "page_text_sha256": "8546e8b17366355b53f50f08f56a7dfbb7c6f904496fe8f1c8ee2dd467c8d86c",
+   "spans": 25,
+   "lines": 25,
+   "drawings": 125,
+   "closed_boxes": 0
+  },
+  "verdict": "PASS",
+  "expected_from": "visio report",
+  "floor_pt": 8.0,
+  "cizgi": {
+   "basili_pt": [
+    0.75,
+    1.5
+   ],
+   "tokenlar_pt": {
+    "ince": 0.75,
+    "normal": 0.75,
+    "vurgu": 1.5,
+    "eksen": 0.75
+   },
+   "basili_uzunluk_mm": {
+    "0.750": 1772.32,
+    "1.500": 150.49
+   },
+   "ok_ucu": {
+    "basili_mm": [],
+    "token_mm": 0.77,
+    "bicim": [],
+    "olculen": 0,
+    "beklenen": 0,
+    "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
+    "adaylar": []
+   },
+   "sorunlar": [],
+   "uyumlu": true,
+   "token_kaynagi": "manifest",
+   "basim_modeli": {
+    "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
+    "dpi": 120,
+    "beklenen_cizgi_pt": [
+     0.75,
+     1.5
+    ],
+    "beklenen_ok_ucu_mm": [],
+    "sorunlar": [],
+    "uyumlu": true
+   }
+  },
+  "glif": {
+   "tounicode_yok": [
+    "Open Sans",
+    "Open Sans SemiBold"
+   ],
+   "suphe": [
+    {
+     "metin": " ",
+     "karakter": "U+0020",
+     "glif": 555,
+     "font": "Open Sans",
+     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
+    },
+    {
+     "metin": " ",
+     "karakter": "U+0020",
+     "glif": 555,
+     "font": "Open Sans",
+     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
+    },
+    {
+     "metin": " ",
+     "karakter": "U+0020",
+     "glif": 555,
+     "font": "Open Sans",
+     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
+    },
+    {
+     "metin": " ",
+     "karakter": "U+0020",
+     "glif": 555,
+     "font": "Open Sans",
+     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
+    },
+    {
+     "metin": " ",
+     "karakter": "U+0020",
+     "glif": 555,
+     "font": "Open Sans",
+     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
+    },
+    {
+     "metin": " ",
+     "karakter": "U+0020",
+     "glif": 555,
+     "font": "Open Sans",
+     "not": "decodes to a space through glyph 555; the font's spaces use glyph 3"
+    }
+   ]
+  },
+  "egri": {
+   "sayi": 0,
+   "metinden_gecen": []
+  },
+  "uyarilar": [
+   "T6: 6 printed glyph(s) do not reach the text layer: [{'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}, {'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}, {'metin': ' ', 'karakter': 'U+0020', 'glif': 555, 'font': 'Open Sans', 'not': \"decodes to a space through glyph 555; the font's spaces use glyph 3\"}]"
+  ]
+ }
+}

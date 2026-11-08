@@ -1,0 +1,83 @@
+% ============================================================================
+% SECTION 5: DISCUSSION
+% ============================================================================
+% 2026-10-31 (konsey turu, Y4): O1 mansetine gore yeniden yazildi (brif 4.6).
+% Eski "olcum dagilimlarinin sirasi" ve "kaynak etkisi" okumalari kaldirildi;
+% iki modelli toplamsal bolusum Onerme 1 ile uzlastirildi (tez 5.1.1 hukmu:
+% iki modelde ayrismaz, caprazlanmis panelde ayrisir); raporlama gereklilikleri
+% duz paragraf; sinirliliklar brif 8.1'in on iki maddesi; kapi C4, F1, F2, G1.
+\section{Discussion}
+\label{sec:discussion}
+
+% ----------------------------------------------------------------------------
+% 5.1 Findings
+% ----------------------------------------------------------------------------
+\subsection{What the Measurements Show}
+\label{subsec:findings}
+
+% FOY:M10.2:1839
+Against a fixed panel of robust ResNet-family CNNs, the adversarially trained ViT-Tiny looks like a weak source mostly because it is unlike the panel, and the unlikeness runs both ways: on CIFAR-10 and the log scale, once each target's white-box vulnerability is divided out, panel examples transfer into the ViT about as poorly as its own examples transfer out. The dissimilarity is present when both architectures are trained from scratch on a matched pipeline, and ImageNet initialization removes more of it for the ViT than for the ResNet. The directional term, the part that would make a model a weak source in its own right, is small and independent of architecture only on the log scale, against the CNN panel and on CIFAR-10. On CIFAR-100 its equivalence is refuted ($+0.143$) while the symmetric share replicates, and on the logit scale it is large and negative, which makes the ViT the directionally stronger source (Section~\ref{subsec:scale}).
+
+The weak-source and dissimilarity readings make different predictions. A source that is weak for its own reasons should gain from a stronger or an architecture-specific attack, yet the gap between ResNet and ViT sources is retained under each source's best attack, and our adaptation of token gradient regularization, not validated against its published gain, transfers worse than PGD-10 from every ViT source (Section~\ref{subsec:attack_side}). Similarity to the target family then accounts for most of a source's transfer deficit into it, in contrast to source-quality effects such as the better transfer of robust surrogates~\cite{awad2025defense}, which the directional term bounds on this panel. For a scratch-trained ViT-Tiny like ours, a black-box score measured with CNN surrogates therefore reflects dissimilarity along with vulnerability, and the surrogate family belongs in the report. The decomposition separates the target-vulnerability and alignment terms of Demontis et al.~\cite{demontis2019adversarial}, while their surrogate-complexity term is split between $r$ and $\log\simt$ (Proposition~\ref{prop:identifiability}(d)), and Section~\ref{subsec:gradcos} links the similarity term to input-gradient alignment as defined by Zhang et al.~\cite{zhang2024why}, an association that leaves the mechanism open.
+
+Whether the scratch-trained dissimilarity persists at ImageNet scale is unknown. On ImageNetV2 the transformers of the two same-recipe pairs initialized from clean models are, descriptively, less similar to the panel, consistent with the registered expectation, while the single scratch-trained pair is uncertain (Section~\ref{subsec:imagenet}). Nor is it known which component carries the dissimilarity, since the contrast changes patch stem, attention and parameter count together. Three behavioral readings that such comparisons invite failed direct measurement (Appendix~\ref{app:behavior}), and Section~\ref{subsec:future} outlines designs for the open questions.
+
+% ----------------------------------------------------------------------------
+% 5.2 Relation to earlier reports
+% ----------------------------------------------------------------------------
+\subsection{Relation to Earlier Reports}
+\label{subsec:prior}
+
+% FOY:M9.9:1706,1708 (r_RV +0.115; potansiyel payi)
+% FOY:M9.5:1588
+An additive fit with the WideResNet reference places the pair's asymmetry on the source (Section~\ref{subsec:pair_decomposition}). Proposition~\ref{prop:identifiability} explains why two models cannot support that reading. A two-model matrix carries no circulation, and with a single ViT among CNNs the within-family similarity loads onto the ViT's source and target effects, booking dissimilarity as a weak source. Part (b) holds on any additive scale, including the points scale of that fit. The split becomes identified only once the pair is crossed with a fixed panel and each rate is factored into $w$, $\simt$ and $r$, and then most of the ViT's source deficit is symmetric. Within the pair, about half of the log asymmetry is the ViT's higher white-box vulnerability and the rest is a seed-stable directional residual of $+0.115$, above the margin, which belongs to this pair: against the panel the ViT's directional term is equivalent to zero on the log scale.
+
+% FOY:Dis veri Mahmood, Anahtar cift:649
+% REF: Dis veri: Mahmood ve ark., Anahtar cift (protokol etkisi -0.59; bc asimetrisi -36.80)
+% FOY:M9.2:1497 (V-IN rho ortalamasi negatif; metinde sayisiz)
+Mahmood et al.~\cite{mahmood2021robustness} report the opposite direction, as do Benz et al.~\cite{benz2021adversarial} and Shao et al.~\cite{shao2022adversarial}. The conditioning protocol does not explain the disagreement on CIFAR-10: rescored with Equation~\eqref{eq:raw_identity}, their BiT-M-R50x1 and ViT-L-16 pair moves by $-0.59$ points under unconditioned scoring, against a both-correct asymmetry of $-36.80$. Their diagonal reports transfer to an independently trained copy of each model, so $w$ is undefined and the decomposition cannot be applied. Our cells suggest one candidate for the reversal. Their models are pre-trained at scale, and in our design ImageNet initialization both moves the ViT toward the CNN panel and gives it a negative directional term on the log scale, in an exploratory secondary analysis. Whether pre-training, scale or both reverse the direction remains open.
+
+% ----------------------------------------------------------------------------
+% 5.3 Reporting requirements
+% ----------------------------------------------------------------------------
+\subsection{Reporting Requirements}
+\label{subsec:implications}
+
+The four conditioning protocols estimate different quantities, so their distance measures the ambiguity a reader faces when a transfer number arrives without its conditioning set, and that set is the first thing to report (Section~\ref{subsec:transfer}). Unconditioned rates should not serve as architecture comparisons, because their departure from the target-correct rate is the target's clean error entering through the law of total probability (Equation~\eqref{eq:raw_identity}). From published raw rates and clean errors, Equation~\eqref{eq:general_identity} bounds the target-correct rate, and on the scale $h=-\log(1-T)$ the two protocols differ only by a target potential (Proposition~\ref{prop:hscale}). A claim about direction needs the targets' white-box vulnerabilities and a fixed panel over which $w$, $\simt$ and $r$ can be separated, with the scale named, because the sign of the directional term depended on it here (Section~\ref{subsec:findings}). Clean accuracies and the checkpoint-selection rule belong in the same report (Appendix~\ref{app:selection}). Initialization has to be kept apart from architecture: by the interaction of Section~\ref{subsec:twobytwo}, an ImageNet-initialized ViT set against a scratch-trained CNN mixes two effects.
+
+% FOY:TabloI:19
+% REF: Tablo I, WRN-28-10 AA 62.76 (RobustBench raporu)
+Under the matched mixed-loss recipe the CNN gives the higher absolute robust accuracy under every attack we ran (Section~\ref{subsec:robustness}), yet the WideResNet reference at 62.76\% shows that a larger model trained on extra data with a stronger recipe~\cite{gowal2020uncovering} moves robustness further than the choice between these two families.
+
+% ----------------------------------------------------------------------------
+% 5.4 Limitations
+% ----------------------------------------------------------------------------
+\subsection{Limitations}
+\label{subsec:limitations}
+
+% FOY:M9.4:1553 ; M9.4:1561 (S1 Welch %90 [-0.120, +0.119], sayi metinde IV-D)
+% FOY:M11.1:2078 (sonradan uretildi), 2112,2114 (degisen sinama yok)
+% FOY:M9.2:1496,1497,1498,1499,1505,1506,1507,1508,1509,1510,1511,1512,1513
+Every architectural conclusion rests on two small models, a ResNet-18 and a ViT-Tiny on $32\times32$ images upsampled to $224\times224$, with three runs in the original ViT cell and two in each new cell. Welch intervals, at $1.10$ to $1.95$ degrees of freedom, still place H1 and H2 away from zero but do not support the equivalence of the bridge between the two ResNet-18 pipelines (S1). The binding panel intervals hold the test images fixed; a hierarchical bootstrap that also resamples images, produced after the results were seen, changes no decision, though over three runs per cell it understates the run component. ViT adversarial training depends on pre-training on small datasets~\cite{mo2022adversarial}, and robust transformers have been trained with dedicated recipes~\cite{debenedetti2023light}. The scratch-trained ViT is also the least accurate and most vulnerable model of the design, so a less converged solution and an architectural dissimilarity cannot be told apart; the ImageNet-initialized ViT, close to the ResNet cells in clean accuracy, stays less similar to the panel only in an unregistered comparison (Section~\ref{subsec:twobytwo}).
+
+% FOY:M9.4:1551
+% FOY:M9.5:1603,1606
+% FOY:M9.2:1497
+% FOY:M10.2:1839,1857
+% FOY:M10.3:1876,1877,1878
+% FOY:M9.9:1759
+Beyond its dependence on scale and dataset, the directional term is about $+0.20$ for the scratch ViT against the secondary XCiT panel, and its mean of $-0.118$ in the ImageNet-initialized ViT cell lies outside the margin. Four of the seven CIFAR-10 panel members are ResNet-18 variants; without them no decision changes in an exploratory check (Section~\ref{subsec:twobytwo}), but the panel stays within the ResNet family. The initialization factor bundles pretrained weights, clean-phase length and input normalization, whose separate effects, and their interaction with architecture, are not identified. On CIFAR-100 the ViT's quantities may be confounded with its clean accuracy, which lies below the panel's, and the both-correct sensitivity that would bound this was not produced. TGR ran with its original settings in adapted form, without a check that the adaptation reproduces its published gain on a standard ViT, and attacks with input diversity, more steps or the self-ensemble of Naseer et al.~\cite{naseer2022improving} were not run; step sizes also differ between attacks by design. The simplest law the decomposition suggests, log asymmetry equal to the log vulnerability ratio, failed along the training trajectories ($R^2 = 0.201$ at unit slope) and is not claimed.
+
+% FOY:M10.1:1814 (matristeki modellerde en buyuk fark 0.95, Mo ViT-B; 1.20 yalniz yedek Wong2020Fast, 1816)
+% KAYNAK: CLAUDE.md (eps = 8/255)
+% KAYNAK: 13_b10_r18_r50_denetimi.md Sec. 6 (R18-R50; sayisiz) ; FOY:M11.3:2202 (log tau sirasi 55/91: medyanin ustu)
+% FOY:M11.2:2121 (S10-3 sonradan belirtildi) ; M11.3:2155 (kesifsel)
+Our training covers three datasets; ImageNetV2 enters only through independently trained checkpoints, and that panel is descriptive. Its initialized row rests on two pairs of Singh et al.~\cite{singh2023revisiting} and its scratch row on one pair of Liu et al.~\cite{liu2023comprehensive}, counted as scratch-trained on indirect evidence. The ViT-B of Mo et al.~\cite{mo2022adversarial} has a short adversarial schedule and no partner, panel initializations were not verified, and the architectures (convolution-stem ViTs, ConvNeXt, Swin) differ from ours. The common preprocessing departs from some models' own pipeline by at most $0.95$ points of clean accuracy for the models in the matrix, and the distribution shift of ImageNetV2 enters both $w$ and $T$. The gradient cosine is measured at one clean point, and the registered partial statistic removes only additive main effects; the analyses that also control the family split were specified after the results were seen. An energy-weighted cosine can also hide alignment, as one ImageNet ResNet pair with above-median transfer similarity shows (Section~\ref{subsec:gradcos}). Every model is trained under $\Linf$ at $\eps = 8/255$, so the $L_2$ result probes the protocol and not $L_2$ robustness. The mechanism account of the protocol spread is incomplete: the composition of marginal subsets covers three of the four protocols, and the successful-source protocol adds a second driver tied to the source's own robustness. Our leakage ablation, finally, answers a weaker question than the one posed, since split identity and leakage are not separable in its design.
+
+% ----------------------------------------------------------------------------
+% 5.5 Future work
+% ----------------------------------------------------------------------------
+\subsection{Future Directions}
+\label{subsec:future}
+
+A two-by-two design at the next size, ViT-Small against ResNet-50 under one recipe, would show whether the dissimilarity and its response to initialization belong to the families or to these small models (costs in Section~\ref{subsec:computational}). At ImageNet scale, same-recipe pairs trained from scratch would replace the single indirect pair. A cell that applies ImageNet normalization to random weights would separate normalization from pretraining. Measuring gradient alignment along the PGD path and per frequency band would test whether the clean point stands in for the path the attack travels.

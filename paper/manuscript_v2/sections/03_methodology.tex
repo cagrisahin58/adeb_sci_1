@@ -1,0 +1,309 @@
+% ============================================================================
+% SECTION 3: METHODOLOGY
+% ============================================================================
+% 2026-10-31 (konsey revizyonu, brif 12_makale_revizyon_brifi.md Sec. 4.4):
+% tasarim ozeti, 2x2 tasarimi (subsec:design, tab:design), ayrisim
+% (subsec:decomposition_def, Proposition 1), paneller (subsec:panels),
+% gradyan hizalanmasi (subsec:gradcos_def), istatistik ve kayit tablosu
+% (subsec:statistics, tab:registry), on kayit (subsec:prereg) eklendi.
+% Gradyan, uzamsal yerellik, belirtec toplama, dikkat ve oznitelik
+% metrikleri Ek A'ya (07_appendix.tex, Y3) tasindi; FGSM denklemi ve epsilon
+% supurmesi cumlesi de Ek'e gitti. Bu bolumdeki sayilarin cogu tasarim
+% sabitidir (% KAYNAK); olcum sayilari yalniz model ve goruntu sayilaridir
+% (% FOY). Foyde olmayan delta dayanagi (havuz r RMS) sayisiz yazildi.
+% 2026-10-31 devam turu: kesinti sonrasi metin 4575 kelimeden (yorumsuz)
+% kisaltildi; eski metin kalintisi yoktu, uzunluk yeni icerikten geliyordu.
+% Icerik, etiketler ve kapi ifadeleri (E1 "identity", eq:raw_identity; T4
+% e\,p + r_{\text{cond}}) korundu. PGD ve karisik kayip denklemleri satir
+% icine alindi; TRADES ozdeslik baglantisi yalniz 02'de (II-D) kaldi. On
+% kayit paragrafindaki "Four rules changed" sayim hatasi duzeltildi (iki
+% kural degisti; obur maddeler beyan).
+\makeatletter
+\@ifundefined{proposition}{\newtheorem{proposition}{Proposition}}{}
+\makeatother
+
+\section{Methodology}
+\label{sec:methodology}
+
+The study centers on one adversarially trained pair, a ResNet-18 and a ViT-Tiny with three seeds each, whose transfer rates are factored against a fixed panel of robust CNNs that contains neither model. A two-by-two design crosses architecture with ImageNet initialization, and every decision rule was registered before the runs it concerns (Figure~\ref{fig:study_overview}).
+
+% Sekil 1: paper/figures/fig1_study_overview.pdf (visio-cizici Uslup 8; kanit fig1_study_overview.kanit.json; yapim paper/figures/visio/study_overview).
+% 2026-10-31 visio-cizici Faz C: panel adlari sekildekiyle harfiyen ayni; harf (a)-(e) metinde 3.1, 3.5, 3.6 ve 3.9'da ayri anilir (plan 04 bolum 8).
+% FOY:M9.4:1569 (CIFAR-10 matrisi K = 20); FOY:M10.1:1826,1827 (CIFAR-100
+% 15 model, ImageNetV2 14 model); panel uyesi sayilari ON_KAYIT Sec. 2 ve
+% EK Sec. 4.1, 5.3 tasarim sabitleri.
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{../figures_v2/fig1_study_overview.pdf}
+\caption{\textbf{Study overview as one scene.} (a) Trained models: the two-by-two design, one slice per run, beside the R32 bridge; (b) Reference panels, decks of robust CNNs, sliced into (c) their PGD-10 matrices; (d) Registered before measurement gives the test families; (e) Exact split and contrasts factors each log rate. Depth runs from inputs (back) to the derived split (front).}
+\label{fig:study_overview}
+\end{figure*}
+
+% ----------------------------------------------------------------------------
+% 3.1 Threat model and models
+% ----------------------------------------------------------------------------
+\subsection{Threat Model and Models}
+\label{subsec:setup}
+
+% KAYNAK: ON_KAYIT Sec. 2-3 (eps, alpha, girdi hatti, timm adlari); EK Sec.
+% 5.2 (ImageNetV2 eps 4/255, alpha 1/255); parametre sayilari eski metin
+% 03:43 ve 03:47 (tasarim olgusu, sonuc degil).
+% KAYNAK: raporlar/konsey_2026-10-29/_ek_flop_olcumu.json (param_M 5.53, on sinifli baslik; birlesik.md m10)
+All attacks are untargeted and bounded in $\Linf$ norm, $\mathcal{B}_\eps(x) = \{x' : \|x' - x\|_\infty \leq \eps\}$, with $\eps = 8/255$ on CIFAR-10 and CIFAR-100~\cite{krizhevsky2009learning} and $\eps = 4/255$ on ImageNetV2.
+
+% KAYNAK: raporlar/hakem_konsey_2026-10-31/uygulama.md Sec. 9 (timm 1.0.27 vit_tiny_patch16_224, konteynerde okundu:
+% patch_size 16, depth 12, embed_dim 192, num_heads 3, img_size 224); ON_KAYIT Sec. 3 (32->224 bilinear buyutme; degerler 32, 224).
+Figure~\ref{fig:study_overview}(a) places the trained models in the design. The CIFAR ResNet-18~\cite{he2016deep}, called R32 here, has a $3\times3$ stem, 11.2M parameters and $32\times32$ inputs. ViT-Tiny (\texttt{timm}~\cite{rw2019timm}; 5.5M parameters, $16\times16$ patches, 12 blocks of width 192 with 3 heads) and R224, the \texttt{timm} \texttt{resnet18} with its $7\times7$ stem, read inputs upsampled bilinearly from 32 to 224 pixels. ImageNet weights come from \texttt{deit\_tiny\_patch16\_224.fb\_in1k}~\cite{touvron2021training} and \texttt{resnet18.a1\_in1k}~\cite{wightman2021resnet}. CIFAR models read raw pixels in $[0,1]$; ImageNet-initialized ones apply ImageNet normalization inside the model.
+
+% ----------------------------------------------------------------------------
+% 3.2 Attacks
+% ----------------------------------------------------------------------------
+\subsection{Attack Methods}
+\label{subsec:attack_methods}
+
+% KAYNAK: ON_KAYIT Sec. 5 B5 (MI-PGD mu 1.0, alpha eps/10; TGR alpha 2/255,
+% mu 1.0, gamma 0.5; adim 10); eski metin 03:62-69 ve 03:171 (TGR uyarlamasi).
+PGD~\cite{madry2018towards} takes ten signed-gradient steps on the cross-entropy, of size $\alpha = 2/255$ ($1/255$ on ImageNetV2), from a uniform random start, projecting onto $\mathcal{B}_\eps(x)$ after each step. This PGD-10 is used for training, white-box evaluation and every transfer matrix. AutoAttack~\cite{croce2020reliable} is the standard ensemble of APGD-CE, APGD-T, FAB-T and Square. Two further source attacks probe the dependence on the attack: momentum PGD-10 after MI-FGSM~\cite{dong2018boosting} ($\mu = 1.0$, $\alpha = \eps/10$) and, on ViT sources only, TGR~\cite{zhang2023tgr} (Section~\ref{subsec:rw_transfer}) with momentum $1.0$, $\alpha = 2/255$ and $\gamma = 0.5$. Our TGR applies one $\gamma$ to the attention, QKV and MLP paths and zeroes one maximum and one minimum entry per sample and channel across tokens, so its results speak for this adaptation only.
+
+Each source's best attack is the permitted one whose examples transfer best to the panel, chosen on even-indexed images and scored on odd-indexed ones and vice versa, and the source gap is recomputed under that choice (Section~\ref{subsec:decomposition_def}). Step sizes differ between attacks and are not tuned.
+
+% ----------------------------------------------------------------------------
+% 3.3 Training
+% ----------------------------------------------------------------------------
+\subsection{Adversarial Training}
+\label{subsec:training}
+
+% KAYNAK: eski metin 03:78-100 (C1 tarifi, dogrulama bolmesi, tohumlar);
+% CLAUDE.md (LR secimi). Tasarim sabitleri, sonuc degil.
+All models minimize $\tfrac12\mathcal{L}_{\mathrm{CE}}(f_\theta(x), y) + \tfrac12\mathcal{L}_{\mathrm{CE}}(f_\theta(x_{adv}), y)$, with $x_{adv}$ generated by PGD-10 in training mode as in the reference implementation of Rice et al.~\cite{rice2020overfitting}. Half of the loss is clean and training starts from clean checkpoints, so this mixed-loss PGD adversarial fine-tuning is not the PGD adversarial training of Madry et al.~\cite{madry2018towards}, and its robust accuracies should not be read against reference results for that method. One recipe serves every cell so that architecture is not confounded with the defense.
+
+% KAYNAK: scripts/run_c1_pipeline.sh (temiz 200 epok, SGD lr 0.1, batch 128; AT 100 epok, lr 1e-3, ViT batch 64, sabir 20;
+% tohumlar 1001-1003 ve 2001-2003); src/training/trainer.py (SGD weight_decay 5e-4, AdamW weight_decay 0.05);
+% cli/train.py (--grad-clip 10); experiments/rev2/make_val_split.py (val-size 2000, split-seed 777); CLAUDE.md (min_delta 0.1).
+Clean training of R32 and ViT-Tiny uses cosine annealing~\cite{loshchilov2016sgdr}, with SGD (weight decay $5\times10^{-4}$) for the CNN and AdamW~\cite{loshchilov2017decoupled} (weight decay 0.05) for the ViT, and adversarial fine-tuning follows with a cosine schedule; the epochs, learning rates, batch sizes and seeds of every run are given in Figure~\ref{fig:design_recipe}. Fine-tuning clips gradients at $L_2$ norm 10, skips non-finite batches and uses random crops with 4-pixel padding and horizontal flips. Selection and early stopping (patience 20, threshold 0.1 points) use PGD-10 accuracy on a fixed 2{,}000-image validation split, drawn once with seed 777 and excluded from both training stages of every model. Seeds are paired by index, and tables give means and standard deviations over runs.
+
+% 2026-10-04 (koordinator karari): onceki cift karantinadadir; hicbir sayisi metne girmez.
+An earlier pair of checkpoints, selected on a validation split that clean pre-training had already seen, gave the same absolute ordering; it predates the leakage-free protocol, and none of its numbers enters this paper.
+
+% ----------------------------------------------------------------------------
+% 3.4 Two-by-two design
+% ----------------------------------------------------------------------------
+\subsection{Architecture-by-Initialization Design}
+\label{subsec:design}
+
+% KAYNAK: ON_KAYIT Sec. 3 (hucreler, tarif, normalizasyon demeti), Sec. 4
+% (denetimler); FOY:M9:1443 (hucre tanimlari).
+A ViT-Tiny trained from scratch differs from R32 in architecture, in input pipeline and possibly in training adequacy, since adversarial training of ViTs is known to depend on pre-training~\cite{mo2022adversarial}. The design of Figure~\ref{fig:design_recipe} separates these factors. \cellname{R224-scr} shares the input pipeline and clean-phase command of the ViT-Tiny runs (\cellname{V-scr}), so the scratch row differs in the architecture package and, for \cellname{V-scr}, in training campaign and adversarial-epoch cap, and the ImageNet row starts both architectures from ImageNet weights. Initialization bundles the weights, a shorter AdamW clean phase and in-model normalization. The bundle is the same for both architectures, so it cancels from the interaction contrast only if its effect does not depend on architecture, and the separate effect of normalization is not identified.
+
+% Sekil 2: paper/figures/fig2_design_recipe.pdf (visio-cizici Uslup 8; eski Tablo 1 tab:design yerine; sayilar
+% results/q1/konsey_b3_tarif.json ve foy M13, kanit fig2_design_recipe.kanit.json). Altyazida sayi yok.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{../figures_v2/fig2_design_recipe.pdf}
+\caption{\textbf{Architecture-by-initialization design as a card cabinet.} On CIFAR-10 the drawer rows ViT-Tiny and ResNet-18 cross the columns scratch (random init.) and ImageNet init.; each drawer gives its clean stage (epochs, learning rate) and seeds, one index card per run. The R32 bridge drawer keeps its own recipe; the sign on top is the AT recipe of the four cells.}
+\label{fig:design_recipe}
+\end{figure}
+
+% KAYNAK: ON_KAYIT Sec. 4 (denetim esigi 5 puan, cokus esigi 15 yuzde, kirpilma, dislama).
+Each ImageNet-initialized run had to beat, after its first clean epoch, the mean first-epoch validation accuracy of the random-initialized runs of its architecture by 5 points, a check on loading and normalization. A validation PGD accuracy below 15\% at the fifth adversarial epoch would have lowered the learning rate of the ImageNet row, a run selected within five epochs of the cap is flagged as possibly truncated, and no run is excluded on its results. The registered contrasts use the cell means of $\sigma$ and $\rho$ (Equation~\eqref{eq:panel_def}):
+\begin{align*}
+\Asig{scr} &= \sigma(\cellname{V-scr}) - \sigma(\cellname{R224-scr}),\\
+\Isig &= [\sigma(\cellname{V-IN}) - \sigma(\cellname{V-scr})]\\
+&\quad - [\sigma(\cellname{R224-IN}) - \sigma(\cellname{R224-scr})],\\
+\Arho &= \tfrac12\{[\rho(\cellname{V-scr}) - \rho(\cellname{R224-scr})]\\
+&\quad + [\rho(\cellname{V-IN}) - \rho(\cellname{R224-IN})]\}.
+\end{align*}
+
+% ----------------------------------------------------------------------------
+% 3.5 Decomposition
+% ----------------------------------------------------------------------------
+\subsection{Vulnerability, Similarity and Direction}
+\label{subsec:decomposition_def}
+
+% KAYNAK: ON_KAYIT Sec. 2 (tanimlar, bolunmus yari, logit ve oran olcekleri,
+% panel uyesinin kendi degeri); 01_oneri_P3_kuram_olcum.md satir 15-27
+% (Onerme 1); brif Sec. 3.1 gosterim.
+% KAYNAK: eski metin 03:109-116 (T_ij tanimi; 2026-10-31 subsec:metrics'ten tasindi).
+Robust accuracy counts clean-misclassified images as non-robust, so it factorizes exactly as clean accuracy times conditioned survival; the complement of the latter is the white-box conditioned fooling rate $w_j$ of model $j$. For transfer from source $i$ to target $j$, the \emph{target-correct} rate is the fraction of images that $j$ classifies correctly and misclassifies on the example crafted on $i$,
+\begin{equation}
+    T_{ij} = \frac{\sum_{x} \mathbf{1}[f_j(x) = y]\,\mathbf{1}[f_j(x_{adv}^{(i)}) \neq y]}{\sum_{x} \mathbf{1}[f_j(x) = y]},
+\end{equation}
+so that $w_j = T_{jj}$.
+
+For two models with target-correct rates $T_{ij}$, $T_{ji}$ and white-box rates $w_i$, $w_j$, define
+\begin{align}
+\log\simt_{ij} &= \tfrac12\left[\log(T_{ij}T_{ji}) - \log(w_i w_j)\right], \label{eq:tau_def}\\
+r_{ij} &= \log(T_{ij}/T_{ji}) - \log(w_j/w_i). \label{eq:r_def}
+\end{align}
+Then, exactly,
+\begin{equation}
+\log T_{ij} = \log w_j + \log\simt_{ij} + \tfrac12 r_{ij},
+\label{eq:decomp}
+\end{equation}
+where the similarity $\simt_{ij} = \simt_{ji}$ is shared by both directions and the directional residual $r_{ij} = -r_{ji}$ is the log asymmetry left after the vulnerability ratio is removed. Equation~\eqref{eq:decomp} is an accounting identity; its content lies in the measured sizes of the terms and in how they respond to the design. Without $r$, $T_{ij} = w_j\simt_{ij}$ is the quasi-symmetry model of Caussinus~\cite{caussinus1965contribution} (Section~\ref{subsec:rw_decomposition}) with the column effect fixed at a measured value, close to two of the three factors of Demontis et al.~\cite{demontis2019adversarial}, target vulnerability and gradient alignment; their third, surrogate complexity, is absorbed as Proposition~\ref{prop:identifiability}(d) describes (Figure~\ref{fig:decomposition_schematic}).
+
+% Sekil 3: paper/figures/fig3_decomposition_schematic.pdf (visio-cizici Uslup 8; kanit fig3_decomposition_schematic.kanit.json); manifest gosterim.altyazi_notu: T(i, j) = T_ij.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{../figures_v2/fig3_decomposition_schematic.pdf}
+\caption{\textbf{Decomposition used throughout, in three tiers.} Top to bottom, the arrows per pair (i, j), panel mean and R minus V mark three steps: the log transfer rate splits exactly into vulnerability, similarity and half a directional residual; panel averages give $\sigma$ and $\rho$; the source gap G splits into symmetric and directional parts. Tiers recede with the aggregation level.}
+\label{fig:decomposition_schematic}
+\end{figure}
+
+% KAYNAK: ON_KAYIT Sec. 2 (oranlar yuzde olarak; logit tanimi x/100, dolayisiyla sabit log 100; deger 100).
+Model-level quantities average over a fixed panel $P$ of external models,
+\begin{equation}
+\begin{gathered}
+\sigma_m = \frac{1}{|P|}\sum_{c\in P}\log\simt_{mc}, \qquad \rho_m = \frac{1}{|P|}\sum_{c\in P} r_{cm},\\
+\omega_m = \log w_m.
+\end{gathered}
+\label{eq:panel_def}
+\end{equation}
+A high $\sigma_m$ means that $m$ shares adversarial directions with the panel; a positive $\rho_m$ means that $m$ receives more from the panel than it sends beyond what vulnerability explains, that is, $m$ is a directionally weak source. Rates enter the logarithm in percent, so $\omega$ and $L_k$ below carry an additive constant $\log 100$ that cancels from every contrast, and $\sigma_m$ also takes up half of any model main effect not captured by $w$. For models $R$ and $V$ the panel source gap
+\begin{equation*}
+G = \frac{1}{|P|}\sum_{c\in P}\left[\log T_{Rc} - \log T_{Vc}\right] = (\sigma_R - \sigma_V) - \tfrac12(\rho_R - \rho_V)
+\end{equation*}
+measures how much weaker a source $V$ is than $R$ against third models. Its symmetric share is $q = (\sigma_R - \sigma_V)/G$, written $q_s$ for seed pair $s$ and $q$ for the mean over pairs, and the panel's own vulnerabilities cancel from it. A pure source effect gives $q = 1/2$, the null value of K-a, so a larger $q$ measures dissimilarity beyond a source effect. For source attack $k$, $L_k(m) = |P|^{-1}\sum_{c\in P}\log T_k(m\to c)$ is the panel-mean log transfer of source $m$, so that $G = L_{\mathrm{PGD}}(R) - L_{\mathrm{PGD}}(V)$; $\Gk{k}$ is the same difference under attack $k$ for the R32 and ViT-Tiny runs, and the retained fraction $\Gk{best}/\Gk{PGD}$ asks whether the gap survives each source's best attack (Section~\ref{subsec:attack_methods}). Within-family similarity $\Dseed$ is the mean $\log\simt$ over pairs of ViT seeds minus the mean of their $\sigma$.
+
+\begin{proposition}[Identifiability]
+\label{prop:identifiability}
+Let $\ell_{ij} = \log T_{ij}$ for $i \neq j$. (a) With two models, the antisymmetric part of $\ell$ is the single number $\ell_{12} - \ell_{21}$, and an additive fit $\ell_{ij} = \mu + \alpha_i + \beta_j + s_{ij}$ with symmetric $s$ identifies only $(\alpha_1 - \alpha_2) - (\beta_1 - \beta_2)$, not its split between source and target. (b) If $\ell_{ij}$ contains a family term $\gamma\,\mathbf{1}[i,j \in C]$ and the design has a single model $V \notin C$, the additive fit absorbs the term into the source and target effects of $V$ with equal weight $-\gamma$, leaving the asymmetry unchanged. (c) Any symmetric term in $\ell_{ij}$, the family term included, cancels from $r_{ij}$ and enters $\log\simt_{ij}$ in full; over a fixed panel it moves $\sigma_m$ and leaves $\rho_m$ unchanged. (d) A source main effect $\alpha_i$ in $\ell_{ij}$ enters $r_{ij}$ as the potential difference $\alpha_i - \alpha_j$ and $\log\simt_{ij}$ as $\tfrac12(\alpha_i+\alpha_j)$; with no symmetric difference between $R$ and $V$ it gives $q = 1/2$.
+\end{proposition}
+
+Part (a) is the degree-of-freedom count of the Hodge decomposition, $K-1$ potential and $(K-1)(K-2)/2$ circulation degrees of freedom for $K$ models~\cite{jiang2011statistical}; (b) follows from $\mathbf{1}[i,j\in C] = 1 - \mathbf{1}[i=V] - \mathbf{1}[j=V]$ for $i\neq j$, and (c) from substitution into Equations~\eqref{eq:tau_def} and~\eqref{eq:r_def}; (d) follows by the same substitution. With one ViT, an additive source effect of the ViT is thus indistinguishable from its dissimilarity to the CNNs, which the decomposition assigns to $\sigma$.
+
+Estimates are split-half (Figure~\ref{fig:study_overview}(e)): $w$ comes from the even-indexed test images and $T$ from the odd-indexed ones and vice versa, and the halves are averaged, so a diagonal and an off-diagonal cell never share images; $\omega$ uses the full-sample $w$. A panel member's own $\sigma$ and $\rho$ leave that member out. The natural logarithm is primary; as sensitivities, the logit scale replaces $\log x$ by $\log[x/(1-x)]$, and the ratio scale uses the rates themselves.
+
+% ----------------------------------------------------------------------------
+% 3.6 Panels
+% ----------------------------------------------------------------------------
+\subsection{Reference Panels}
+\label{subsec:panels}
+
+% KAYNAK: ON_KAYIT Sec. 2 ve Dondurma eki (c) (P yedi uye, XCiT ikincil,
+% en az bes uye); EK Sec. 4.1 (P9), Sec. 5.1-5.5 (ImageNetV2, P8, ciftler,
+% on isleme denetimi). FOY:M9.4:1569 (CIFAR-10 K = 20); FOY:M10.1:1820
+% (ImageNetV2 n = 2000), 1826 (CIFAR-100 15 model), 1827 (ImageNetV2 14 model).
+% 2026-10-31 visio-cizici Faz C: uye adlari (RobustBench kimlikleri) Sekil 4'e (fig:panel_members) tasindi;
+% atiflar metinde kaldi (altyazi 60 sozcuk siniri). Ortak hat kurallari, gosterim, Liu ve Mo metinde.
+Panel members come from RobustBench~\cite{croce2021robustbench}, each panel was frozen before its transfer cells were computed, and Figure~\ref{fig:panel_members} lists every member by identifier; the CIFAR members come from~\cite{wong2020fast, engstrom2019robustness, carmon2019unlabeled, gowal2020uncovering, sehwag2022robust, addepalli2022efficient, rade2022reducing, rice2020overfitting, pang2022robustness, wang2023better, jia2022lasat, debenedetti2023light, hendrycks2019using}. On CIFAR-10 the primary panel $P$ holds seven $\Linf$-robust CNNs of the ResNet family, four of them (PreAct) ResNet-18 variants, trained without ImageNet pre-training, and the ImageNet pre-trained XCiT-S12 is a secondary panel (Figure~\ref{fig:study_overview}(b)). With the pair and the design cells the CIFAR-10 matrix has 20 models (Figure~\ref{fig:study_overview}(c)).
+
+% FOY:M10.1:1826 (CIFAR-100 matrisi 15 model)
+The CIFAR-100 panel is as close to $P$ as RobustBench allows: seven CNNs, with XCiT-S12 and the model of Hendrycks et al. as a secondary panel. Its pair is the CIFAR-100 ResNet-18 and ViT-Tiny with three seeds each, selected under the single-split rule used when they were trained, which differs from the CIFAR-10 rule; the matrix has 15 models.
+
+% FOY:M10.1:1820,1827 (ImageNetV2 n = 2000; 14 model)
+% KAYNAK: EK Sec. 5.2-5.5 (ortak hat Resize 256 ve CenterCrop 224; 1000 sinif logit; kendi hatla temiz dogruluk
+% en az 25 yuzde ve RobustBench degerinin 0.6 kati; degerler 256, 224, 1000, 25, 0.6).
+On ImageNet the panel holds six CNNs~\cite{salman2020adversarially, engstrom2019robustness, chen2024data, peng2023robust}. Two CNN-transformer pairs adversarially trained with a shared recipe from clean-trained models, ConvNeXt-T with ViT-S and ConvNeXt-B with ViT-B, all with convolutional stems~\cite{singh2023revisiting}, form the ImageNet-initialized row. For pair $k$ we write $\Ak{\sigma}{k}$, $\Ak{\rho}{k}$ and $\Ak{\omega}{k}$ for the transformer-minus-CNN differences in $\sigma$, $\rho$ and $\omega$, and $\AbarIN$ for the mean of $\Ak{\sigma}{k}$ over these two pairs. ConvNeXt-B and Swin-B of Liu et al.~\cite{liu2023comprehensive} give the scratch row, though only indirectly, since their shared configuration lacks a pre-training flag; their contrast is written $\Asig{scr,Liu}$ to keep it apart from the CIFAR-10 contrast $\Asig{scr}$. Mo et al.'s ViT-B~\cite{mo2022adversarial} enters unpaired and XCiT-S12 as a secondary member, for 14 models, evaluated on 2{,}000 ImageNetV2 MatchedFrequency images~\cite{recht2019imagenet}, the first two files of each class. One preprocessing pipeline (bicubic resize to 256, center crop to 224) serves all models, so a source's adversarial tensor reaches every target in the same pixel space; normalization stays as each RobustBench model applies it, and scoring uses all 1{,}000 logits. Each model's clean accuracy on its own pipeline had to reach 25\% and 0.6 times its RobustBench value, within 5 points of the common pipeline. This panel is descriptive and does not replicate the two-by-two design: initialization there means clean pre-training on the same dataset, and the architectures differ.
+
+% Sekil 4: paper/figures/fig4_panel_members.pdf (visio-cizici Uslup 8; yeni sekil Y2; kaynak hucre_tablosu.json, _b9, _b8 birincil/ikincil panel alanlari).
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{../figures_v2/fig4_panel_members.pdf}
+\caption{\textbf{Reference panel members as books on two shelves.} The front shelf, CIFAR-10 and CIFAR-100, gives each RobustBench identifier its role in the C10 and C100 columns and marks ResNet-18 variants in the R18 column. The back shelf, ImageNetV2, holds the CNN panel and the secondary XCiT-S12, then the transformer pairs and the unpaired ViT-B of Mo et al.}
+\label{fig:panel_members}
+\end{figure}
+
+% ----------------------------------------------------------------------------
+% 3.7 Conditioning protocols (2026-10-31 hakem konseyi B16: ayrisim ve panellerin ardina alindi;
+% T_ij tanimi ayrisim alt bolumune tasindi, boylece tanimlanabilirlik Onerme 1, h olcegi Onerme 2)
+% ----------------------------------------------------------------------------
+\subsection{Conditioning Protocols}
+\label{subsec:metrics}
+
+% KAYNAK: scripts/q1_e2_conditional.py (ornek bazli bootstrap, --n-boot 10000; tam test kumesi).
+The decomposition uses the target-correct rate throughout, because its diagonal is conditioned in the same way. Conditioning on correctly classified images is established practice (Section~\ref{subsec:rw_protocols}), yet the conditioning set is a protocol choice, and the protocol layer of Section~\ref{subsec:transfer} scores three alternatives on the same per-sample records, with masks drawn there in the top card of Figure~\ref{fig:protocol_sets}: the unconditioned rate, the \emph{both-correct} rate~\cite{mahmood2021robustness, ravikumar2023trend} and the \emph{successful-source} rate of Ravikumar et al.~\cite{ravikumar2023trend}, read strictly so that white-box success presupposes a clean-correct source; a loose reading without that condition is a sensitivity analysis only. The unconditioned and both-correct masks use the same samples in both directions of a pair, and the target-correct and successful-source masks do not. Rates use full test sets with per-sample outcomes logged; intervals for fixed checkpoints come from a percentile bootstrap over images with 10{,}000 resamples.
+
+Write $e$ for the target's clean error, $r_{\text{raw}}$ and $r_{\text{cond}}$ for the unconditioned and target-correct rates of a direction ($r_{\text{cond}} = T_{ij}$), and $p$ for the probability that a sample the target misclassifies on clean input is also misclassified on the source-crafted input. By the law of total probability,
+\begin{equation}
+r_{\text{raw}} = e\,p + r_{\text{cond}}\,(1 - e),
+\label{eq:general_identity}
+\end{equation}
+and, when $p=1$,
+\begin{equation}
+r_{\text{raw}} - r_{\text{cond}} = e\,(1 - r_{\text{cond}}).
+\label{eq:raw_identity}
+\end{equation}
+Over a single model $p=1$ holds by definition, but in transfer a fixed perturbation can return a misclassified sample to the correct class, so $p$ must be measured. Equation~\eqref{eq:general_identity} is an accounting identity whose only empirical content is $p$; where $p<1$, Equation~\eqref{eq:raw_identity} overstates the deviation by $e\,(1-p)$. On the scale $h = -\log(1-T)$ the identity also says which conclusions the protocol can change.
+
+\begin{proposition}[Protocol gauge on the $h$ scale]
+\label{prop:hscale}
+For every direction $i \to j$, $h^{\mathrm{raw}}_{ij} - h^{\mathrm{tc}}_{ij} = -\log(1 - e_j) + g_{ij}$ with $g_{ij} = -\log\bigl(1 + e_j(1-p_{ij})/[(1-e_j)(1-T_{ij})]\bigr)$, which vanishes at $p_{ij} = 1$. Source effects, pairwise symmetric terms and circulation of an additive decomposition of the $h$ matrix are therefore the same under the raw and target-correct protocols up to $g$, and only the target effects shift, by the known amount $-\log(1-e_j)$.
+\end{proposition}
+
+This follows from rearranging Equation~\eqref{eq:general_identity} as $1 - r_{\text{raw}} = (1-e)(1-r_{\text{cond}}) + e(1-p)$. The both-correct protocol is no such gauge, since its mask depends on the source's clean accuracy.
+
+% ----------------------------------------------------------------------------
+% 3.8 Gradient alignment
+% ----------------------------------------------------------------------------
+\subsection{Input-Gradient Alignment}
+\label{subsec:gradcos_def}
+
+% KAYNAK: EK Sec. 6.1-6.3 (tanim, ham ve ana etki artikli Spearman,
+% permutasyon 9999, tohum 20261030, karar kurali).
+To ask whether the symmetric term reflects something measured without transfer or attack, we compute for every model pair the mean cosine between input gradients on clean images,
+\begin{equation}
+c_{ij} = \frac{1}{n}\sum_{x} \cos\left(\nabla_x \mathcal{L}_i(x,y),\, \nabla_x \mathcal{L}_j(x,y)\right),
+\label{eq:cij}
+\end{equation}
+with $\mathcal{L}_m$ the cross-entropy of model $m$, gradients in $[0,1]$ pixel space through any in-model normalization, models in evaluation mode, and the images of the corresponding transfer matrix. This is the image average of the gradient similarity of Zhang et al.~\cite{zhang2024why}, and alignment is the symmetric factor of Demontis et al.~\cite{demontis2019adversarial}.
+
+% FOY:M10.5:1970 (9999 permutasyon, p tabani 1e-4)
+The raw statistic is the Spearman correlation $\rS$ between $c_{ij}$ and $\log\simt_{ij}$ over unordered pairs. The residual statistic correlates the residuals of a least-squares fit $X_{ij} = \mu + a_i + a_j + e_{ij}$ to each matrix, which removes every model-level property that adds to both members of a pair, such as robustness, gradient norm or clean accuracy, in the spirit of the partial Mantel test~\cite{smouse1986multiple}, with all model main effects removed at once. Significance comes from the Mantel test~\cite{mantel1967detection}, permuting model labels jointly over the rows and columns of $c$ with $\log\simt$ fixed, 9{,}999 times, for a one-sided $p$ with floor $10^{-4}$. The additive fit leaves in place multiplicative or interacting model effects and the block structure of the CNN and transformer families.
+
+% ----------------------------------------------------------------------------
+% 3.9 Statistical inference and the registered tests
+% ----------------------------------------------------------------------------
+\subsection{Statistical Inference}
+\label{subsec:statistics}
+
+% KAYNAK: ON_KAYIT Sec. 2, 5, 6 (cikarim birimi, delta, karar ilkesi, Holm,
+% sonuc haritasi); EK Sec. 2, 4.2, 5.6, 6.3. delta = 0.10 ve 0.06 tasarim
+% sabitidir. Dayanaktaki RMS degerleri (havuz r, 21 cift; yalniz CNN
+% ciftleri) foyde yok, sayisiz yazildi.
+The unit of inference is the training run, with images as repeated measurements shared by all models, so intervals over runs are conditional on the fixed test images and panel members; image sampling enters only the bootstraps that resample images. Two-by-two contrasts use run-level cell means and a pooled-variance $t$ interval with 5 degrees of freedom. Tests form the registered families of Figure~\ref{fig:study_overview}(d), with Holm correction at $\alpha = 0.05$ within each family (Figure~\ref{fig:registry_map}). Equivalence is tested by two one-sided tests (TOST) with margin $\delta = 0.10$ log units, roughly a ten percent relative change in a rate; it is registered for log quantities, so logit and ratio comparisons against the same band are descriptive. The margin came from the root-mean-square directional residual among the adversarially trained models seen before registration; that set includes the ViT, so the margin is loose, and every equivalence is repeated at $\delta = 0.06$, the value for CNN pairs alone. For the $\sigma$ contrasts (H1, H2, K-c) the same margin is a convention without a separate empirical basis.
+
+% KAYNAK: ON_KAYIT Sec. 6 satir 100 (O1 bolgesi ve onceden yazilmis manseti).
+% KAYNAK: results/q1/konsey_kayit_kurallari.json (K-a payda kurali, B5 kurallari, H2 logit kosulu).
+% FOY:M13:2528,2535,2547
+Support is read from Holm-adjusted $p < 0.05$; refutation, and the equivalence arms of H1 and H2, from raw intervals; equivalence support for K-b and H3 from Holm-adjusted TOST $p$, with refutation checked first, so a significant effect whose interval lies within $\pm\delta$ counts as negligible. K-a is undecided if any seed pair has $G_s \leq \delta$; the retained fraction is undecided if $\Gk{PGD} \leq \delta$, supported if its 90\% lower bound reaches $0.5$ and refuted if its upper bound falls below it; H2 support also needs a positive logit estimate. A test that cannot be computed counts as $p = 1$, and predicted sizes are reported without being criteria. A headline was written in advance for every combination of H1 to H3 outcomes, and the masking rule applies after the region is chosen. In region O1, where H1 and H2 are supported and H3 is equivalent, the registered headline, which the results below narrow, here also because the design does not separate architecture from convergence in the scratch row, attributes the ViT's weak-source appearance to a symmetric, architectural dissimilarity that ImageNet initialization reduces more for the ViT, with the asymmetry carried by target vulnerability and a small directional term independent of architecture. Secondary analyses S1 to S7 are exploratory and uncorrected, and protocol equivalence is tested by TOST at $\pm1$ and $\pm3$ points.
+
+% Sekil 5: paper/figures/fig5_registry_map.pdf (visio-cizici Uslup 8; eski Tablo 3 tab:registry yerine; esikler
+% results/q1/konsey_kayit_kurallari.json ve foy M13, kanit fig5_registry_map.kanit.json). Altyazida sayi yok.
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{../figures_v2/fig5_registry_map.pdf}
+\caption{\textbf{Registered tests and decision rules as a staircase.} Each step is one family, numbered in registration order and set behind the previous one; rows give test and quantity, place the predicted size (diamond) and falsification threshold (circle) on a number line with the $\pm$0.1 band, and state the falsifying rule. Holm correction is per family; ImageNetV2 rows are descriptive.}
+\label{fig:registry_map}
+\end{figure*}
+
+% ----------------------------------------------------------------------------
+% 3.10 Pre-registration
+% ----------------------------------------------------------------------------
+\subsection{Pre-Registration}
+\label{subsec:prereg}
+
+% FOY:M9.8:1684-1686 (betik, hucre tablosu, on kayit govdesi sha256);
+% FOY:M10.6:2022-2032 (ek govde, hucre tablolari, ozgun ve catal betikler);
+% FOY:M11.1:2078,2080 (K-a ve K-b hiyerarsik bootstrap: on kayitli, 31.10.2026'da sonradan uretildi);
+% FOY:M11.2:2121 (S10-3: ek on kayit 6.4 kesifsel, sonradan uretildi); ONKAYIT_SAPMALAR.md satir 67-87;
+% FOY:M9.8:1690, M9.9:1775 (ImageNet top-1 kayitta yok).
+% KAYNAK: ON_KAYIT Sec. 1, 7, 8 (m.7, m.17), Dondurma eki (i) m.8;
+% EK Sec. 1, 4.4, 5.7, 6.4, 12; R09 Sec. 0, 7; R11 Sec. 6 (beyanlar, brif
+% Sec. 8.2). Uretilmeyenler: S9-2, S9-4, S8-1 (D_k, q_k), S8-3 grup
+% jackknife, S8-7, S8-8, S10-1..S10-7, B10 her-ikisi-dogru Mantel.
+The main registration (panel tests, two-by-two design, attack side, masking) was frozen on 29 October 2026 before any of these runs, and an addendum (CIFAR-100, ImageNetV2, gradient alignment) on 30 October 2026 before any of its matrices or gradients was computed (Figure~\ref{fig:prereg_chain}). The registered tests ran through the frozen analysis script or, for the addendum, through a wrapper around it and a gradient script whose digests were recorded before their first run; the SHA-256 digests of the frozen script (\texttt{4bce2c983ace\ldots}), of the addendum scripts, of the cell tables and of both registration texts match the records written at freezing or before the first run and those stored in the analysis outputs. The main registration has one implementation deviation: the frozen script had no code for its hierarchical-bootstrap sensitivity of K-a and K-b, which a separate script, loading the frozen functions unchanged, computed on both CIFAR datasets after the results and an internal review had been seen (Section~\ref{subsec:panel}). The addendum has none; its exploratory S10-3, a partial Mantel test with family indicators, was specified at that point.
+
+% FOY:M10.2:1842 (K-b(B9) eski yalniz pozitif okuma ile de curutme: evet)
+Data seen before registration are not tests; besides the matrices in Figure~\ref{fig:prereg_chain}, they include desk analyses on the pool matrix, a mock run of the two-by-two code on real pair matrices, and small-sample smoke matrices and clean accuracies. The mock run and the desk analysis had already shown the $\sigma$ gap between the pair's ViT and its 32-pixel ResNet, and the H1 prediction was written with that gap known; what H1 tests beyond it is whether a 224-pixel ResNet-18 on the ViT's input pipeline reproduces the ResNet side of the gap. No full-recipe run of a new cell had been seen, so the CIFAR-10 panel predictions extend the first seed to two further seeds and a seven-member panel. Two rules changed after data had been seen. The refutation criterion of K-b was widened to both signs, which makes refutation easier, although the CIFAR-100 refutation also follows from the original one-sided rule. The clean-phase check, a loading check, was moved to the first epoch, with a single \cellname{R224-scr} run as the \cellname{R224-IN} reference; no decision depended on it. Whether the attack-side prediction predates the momentum and TGR smoke matrices cannot be verified from the file history. The directional values of the CIFAR-10 panel table had been looked at before the addendum was frozen, and its predictions were copied from the frozen ones. During the CIFAR-100 matrix a launch script printed one source's log lines to the screen; the analysis is a single call that leaves no choices.
+
+Several registered sensitivity and exploratory analyses were not produced, among them the both-correct and Hodge analyses of CIFAR-100, part of the ImageNetV2 and gradient analyses, and the both-correct Mantel test. The ImageNet top-1 accuracy of the two initialization checkpoints was not recorded.
+
+% Sekil 6: paper/figures/fig6_prereg_chain.pdf (visio-cizici Uslup 8; yeni sekil Y5; results/q1/konsey_zaman_cizelgesi.json,
+% foy M13 ve M9.8:1680-1686, kanit fig6_prereg_chain.kanit.json). Altyazidaki tek sayi takvim yili (October 2026).
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{../figures_v2/fig6_prereg_chain.pdf}
+\caption{\textbf{Pre-registration chain as a time shelf.} Seen beforehand lists the data looked at before registration; Main registration: B2-B6 and Supplement: B8-B10, the addendum of the text, give each block's models, images and cells. Cards recede in time; arrows carry the freeze dates (October 2026), commits and registration digest prefix; the strip Added after the fact names two post hoc analyses.}
+\label{fig:prereg_chain}
+\end{figure*}

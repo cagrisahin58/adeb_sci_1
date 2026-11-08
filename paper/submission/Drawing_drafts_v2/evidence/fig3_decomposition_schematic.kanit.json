@@ -1,0 +1,43 @@
+{
+  "stem": "fig3_decomposition_schematic",
+  "uslup": "Z",
+  "degerler": [
+    {
+      "etiket": "identity log T = log w + log tau-bar + r/2, max abs residual",
+      "deger": 6.661338147750939e-16,
+      "kaynak": "paper/figures/konsey/fig_decomposition_schematic.py",
+      "anahtar_yolu": "identity_check(seed=20261031, trials=200)[0]",
+      "hesap": "200 seeded random positive 7-model matrices; not drawn",
+      "kaynak_sha256": "d2250ecdee75a5717a477e737cd7caf770befd06d7007df70a981ebc9a37582b"
+    },
+    {
+      "etiket": "gap G = (sigma_R - sigma_V) - (rho_R - rho_V)/2, max abs residual",
+      "deger": 6.661338147750939e-16,
+      "kaynak": "paper/figures/konsey/fig_decomposition_schematic.py",
+      "anahtar_yolu": "identity_check(seed=20261031, trials=200)[1]",
+      "hesap": "not drawn",
+      "kaynak_sha256": "d2250ecdee75a5717a477e737cd7caf770befd06d7007df70a981ebc9a37582b"
+    },
+    {
+      "etiket": "the constant 1/2 of the definitions",
+      "deger": 0.5,
+      "kaynak": "paper/manuscript/sections/03_methodology.tex",
+      "anahtar_yolu": "eq. definitions of log tau-bar and r",
+      "hesap": "definition, printed as ½",
+      "kaynak_sha256": "ff504c487ed13de50a31992e94b242e332f662ac33024c312d3877c57b604e34"
+    }
+  ],
+  "records_sha256": null,
+  "betik": "paper/figures_v2/z_decomposition_schematic.py",
+  "git_head": "74533ba",
+  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "okunan_dosyalar": [
+    "paper/figures/konsey/fig_decomposition_schematic.py",
+    "paper/manuscript/sections/03_methodology.tex"
+  ],
+  "karantina_denetimi": {
+    "paper/figures/konsey/fig_decomposition_schematic.py": true,
+    "paper/manuscript/sections/03_methodology.tex": true
+  },
+  "altyazi_taslagi": "Decomposition used throughout, in three tiers. Top to bottom, the arrows per pair (i, j), panel mean and R minus V mark three steps: the log transfer rate splits exactly into vulnerability, similarity and half a directional residual; panel averages give σ and ρ; the source gap G splits into symmetric and directional parts. Tiers recede with the aggregation level."
+}

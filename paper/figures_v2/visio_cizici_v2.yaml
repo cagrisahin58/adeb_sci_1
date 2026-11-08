@@ -1,0 +1,29 @@
+# visio-cizici proje ayari: adeb_sci_1 sekil v2 (Uslup Z), Kol C2 Faz 2, 08.11.2026.
+# paper/figures/onizleme_v2/visio_cizici_v2.yaml dosyasindan turetildi. Ana ayar (paper/figures/visio_cizici.yaml)
+# ve asil makalenin sekilleri DEGISMEZ; butun yapim, kurulum, QC ve gunluk yollari paper/figures_v2 altindadir.
+# qc.c4 warn satiri kaldirildi: kurulum adlari numaralidir (figN_<kok>).
+#
+# DPI: gorev metni v2'nin 96 DPI'da cizilmesini ve ekran olcegine dokunulmamasini istedi. Faz 2 basinda
+# (08.11.2026) motorun kendi olcumu (visiofig._system_dpi: SetProcessDPIAware + GetDeviceCaps(LOGPIXELSX))
+# 120 verdi (DPI farkindaligi olmayan surec 96 goruyor, AppliedDPI kaydi 0x60). Visio DPI farkinda bir
+# uygulamadir ve PDF'ini motorun olctugu izgarada basar; 96 yazilirsa motor her sekilde durur. Karar: ekran
+# olcegine dokunulmadi, v2'nin 17 sekli tek DPI'da, olculen 120'de cizilir; uslup Z surum 3 tokenlari (cizgi
+# 0.75 / 1.5 pt, punto 8.4 / 9.0 / 9.6) iki izgarada da gecerlidir. Oturum olcegi is ortasinda degisirse motor
+# durur ve butun sekiller tek DPI'da yeniden cizilir; iki izgara karismaz.
+
+visio:
+  out_dir: paper/figures_v2/yapim
+  preview_dir: paper/figures_v2/yapim
+  dpi: 120
+  tasklist_log: paper/figures_v2/visio_loglari/visio_tasklist.log
+
+install:
+  target: paper/figures_v2
+  visio_dir: paper/figures_v2/yapim
+  charts_dir: paper/figures_v2/yapim_kart_yok   # butun v2 sekilleri Visio yapimidir; kart klasoru bos kalir
+  qc_dir: paper/figures_v2/qc
+  mapping: paper/figures_v2/qc/ESLEME.md
+  log: paper/figures_v2/visio_loglari/kurulum.log
+
+language: en
+venue: ieee_access

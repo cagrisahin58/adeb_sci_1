@@ -1,0 +1,332 @@
+{
+ "stem": "fig15_spread_clean_gap",
+ "page_mm": [
+  85.30166666666665,
+  109.85499999999998
+ ],
+ "grid_mm": 0.25,
+ "type_floor_pt": 8.0,
+ "body_pt": 9.0,
+ "venue": "ieee_access",
+ "uslup": "Z",
+ "uslup_path": "<skill>/styles/uslup_Z.yaml",
+ "uslup_sha256": "939996f059f62ce5c51fdb49b322faf713b0a56ccb4a1da4837976c27ac849d5",
+ "palette": "kk_uslup_Z",
+ "palette_path": "paper/figures_v2/palettes/kk_uslup_Z.yaml",
+ "palette_source": "style",
+ "visio_print_map": {
+  "8.4": [
+   8.4,
+   8.4,
+   8.45
+  ]
+ },
+ "visio_dpi": 120,
+ "visio_dpi_source": "GetDeviceCaps(LOGPIXELSX)",
+ "visio_lattice_pt": 0.6,
+ "visio_print": {
+  "dpi": 120,
+  "dpi_source": "GetDeviceCaps(LOGPIXELSX)",
+  "lattice_pt": 0.6,
+  "lattice_in": "1/120",
+  "jitter_pt": 0.05,
+  "type_rule": "printed size = the lattice point of the authored size (a half-way size may go either way) plus 0 to 0.05 pt (T2, T3)",
+  "sizes_pt": {
+   "8.4": {
+    "authored": 8.4,
+    "printed_min": 8.4,
+    "printed_max": 8.45
+   }
+  },
+  "line_rule": "printed stroke = one device pixel (lattice x 1.001) for a weight up to one lattice step, else the weight as written (T4, measured)",
+  "line_weights_pt": {
+   "ince": {
+    "token": 0.75,
+    "printed": 0.75
+   },
+   "normal": {
+    "token": 0.75,
+    "printed": 0.75
+   },
+   "vurgu": {
+    "token": 1.5,
+    "printed": 1.5
+   },
+   "eksen": {
+    "token": 0.75,
+    "printed": 0.75
+   }
+  },
+  "line_weights_used_pt": {
+   "0.75": 0.75
+  },
+  "arrow_head": {
+   "uc": "acik",
+   "token_mm": 0.77,
+   "end_arrow": "1",
+   "end_arrow_size": "0",
+   "rule": "printed head width = EndArrowSize base (0.04/0.05/0.07/0.09 in) + 2 x the line's authored width; closed head as long, open head half (T4, measured)",
+   "printed_mm": {},
+   "count": 0,
+   "count_by_kind": {},
+   "arrow_line_weights_pt": [],
+   "curve_token_mm": 0.77,
+   "curve_end_arrow_size": "0"
+  },
+  "measurement": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)"
+ },
+ "naming_step": 4,
+ "naming_kind": "serit",
+ "naming": [
+  {
+   "id": "ti_back",
+   "kind": "strip"
+  },
+  {
+   "id": "ti_front",
+   "kind": "strip"
+  }
+ ],
+ "three_d": {
+  "projection": "dimetric",
+  "angle_deg": 36.0,
+  "token": {
+   "projection": "dimetric",
+   "angle_deg": 36.0
+  },
+  "token_source": "style",
+  "objects": {
+   "stage": {
+    "kind": "plaka",
+    "tint": "sahne",
+    "size_mm": {
+     "w": 62.5,
+     "d": 68.0,
+     "h": 2.0
+    },
+    "projection": "dimetric",
+    "angle_deg": 36.0,
+    "angle_w_deg": 18.0,
+    "tones": {
+     "top": "#F3EFE6",
+     "right": "#CFCBC4",
+     "front": "#AAA7A1"
+    },
+    "darkening": {
+     "top": 0.0,
+     "right": 0.15,
+     "front": 0.3
+    },
+    "fill": "#F3EFE6",
+    "outline": "#908C86",
+    "tone_source": "three_d.face_tones",
+    "tone_steps": [
+     0.2654,
+     0.2121
+    ],
+    "three_d_token": {
+     "angle_deg": 36.0,
+     "projection": "dimetric"
+    },
+    "faces": {
+     "front": "stage_front",
+     "right": "stage_right",
+     "top": "stage_top"
+    },
+    "bbox_mm": [
+     2.5,
+     35.3435,
+     81.0994,
+     47.1565
+    ],
+    "not": "plate aligned with the page-horizontal floor direction u and the floor normal n"
+   },
+   "back": {
+    "kind": "kart",
+    "tint": "kutu",
+    "size_mm": {
+     "w": 59.5,
+     "d": 1.6,
+     "h": 36.0
+    },
+    "projection": "dimetric",
+    "angle_deg": 36.0,
+    "angle_w_deg": 18.0,
+    "tones": {
+     "top": "#F9F6F2",
+     "right": "#D4D1CE",
+     "front": "#AEACA9"
+    },
+    "darkening": {
+     "top": 0.0,
+     "right": 0.15,
+     "front": 0.3
+    },
+    "fill": "#F9F6F2",
+    "outline": "#93908D",
+    "tone_source": "three_d.face_tones",
+    "tone_steps": [
+     0.2841,
+     0.2269
+    ],
+    "three_d_token": {
+     "angle_deg": 36.0,
+     "projection": "dimetric"
+    },
+    "faces": {
+     "top": "back_top",
+     "right": "back_right",
+     "front": "back_face"
+    },
+    "bbox_mm": [
+     21.0053,
+     0.9373,
+     59.9376,
+     37.0625
+    ],
+    "world_mm": [
+     -29.05528961247376,
+     57.03037706007234,
+     0.0
+    ],
+    "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+   },
+   "front": {
+    "kind": "kart",
+    "tint": "kutu",
+    "size_mm": {
+     "w": 59.5,
+     "d": 1.6,
+     "h": 40.0
+    },
+    "projection": "dimetric",
+    "angle_deg": 36.0,
+    "angle_w_deg": 18.0,
+    "tones": {
+     "top": "#F9F6F2",
+     "right": "#D4D1CE",
+     "front": "#AEACA9"
+    },
+    "darkening": {
+     "top": 0.0,
+     "right": 0.15,
+     "front": 0.3
+    },
+    "fill": "#F9F6F2",
+    "outline": "#93908D",
+    "tone_source": "three_d.face_tones",
+    "tone_steps": [
+     0.2841,
+     0.2269
+    ],
+    "three_d_token": {
+     "angle_deg": 36.0,
+     "projection": "dimetric"
+    },
+    "faces": {
+     "top": "front_top",
+     "right": "front_right",
+     "front": "front_face"
+    },
+    "bbox_mm": [
+     4.047,
+     38.1094,
+     59.9376,
+     41.0625
+    ],
+    "world_mm": [
+     -0.20413972638461164,
+     2.1522288565257996,
+     0.0
+    ],
+    "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
+   }
+  }
+ },
+ "primitives": 257,
+ "sources": {},
+ "preflight": {
+  "issues": [],
+  "texts": 33,
+  "min_text_slack_mm": 0.617,
+  "min_clearance_mm": {
+   "plate": 0.75
+  },
+  "shape_pairs_checked": 8856,
+  "group_pairs_skipped": 8910,
+  "deco_shapes": 11,
+  "min_print_clearance_mm": {
+   "plate": 0.75
+  },
+  "families": [
+   "Open Sans"
+  ],
+  "text_layer_blank": {
+   "ay_front_l0": [
+    "−"
+   ],
+   "ay_front_l1": [
+    "−"
+   ],
+   "lgt0": [
+    "∞"
+   ]
+  }
+ },
+ "visio": {
+  "pid": 24224,
+  "version": "16,0",
+  "close": {
+   "pid": 24224,
+   "doc_closed": true,
+   "quit": true,
+   "exited": true,
+   "waited_s": 0.64,
+   "killed": false,
+   "foreign_docs": 0
+  },
+  "readback_kinds": [
+   "oval",
+   "poly",
+   "seg",
+   "text"
+  ]
+ },
+ "readback": {
+  "shapes": 257,
+  "max_deviation_mm": 5e-05,
+  "worst": "id_23",
+  "kinds": [
+   "oval",
+   "poly",
+   "seg",
+   "text"
+  ]
+ },
+ "alignment": [],
+ "alignment_failures": [],
+ "pdf": {
+  "issues": [],
+  "page_mm": [
+   85.302,
+   109.855
+  ],
+  "register_offset_mm": [
+   0.0,
+   0.0
+  ],
+  "register": null,
+  "spans": 34,
+  "sizes_pt": [
+   8.4,
+   8.425
+  ],
+  "fonts": [
+   "Open Sans",
+   "Open Sans SemiBold"
+  ],
+  "min_size_pt": 8.4,
+  "glyph_only_blank_text": []
+ },
+ "verdict": "PASS"
+}

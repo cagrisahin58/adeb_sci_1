@@ -1,0 +1,2983 @@
+{
+  "stem": "fig17_feature_degradation",
+  "uslup": "Z",
+  "degerler": [
+    {
+      "etiket": "layer 1 entropy change mean",
+      "deger": 1.3748799877551695e-05,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 334 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 1 entropy change run 1",
+      "deger": 0.0006158113246783614,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[0]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 1 entropy change run 2",
+      "deger": -8.921623521018773e-05,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[0]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 1 entropy change run 3",
+      "deger": -0.0004853486898355186,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[0]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 1 GA90 low",
+      "deger": -0.0009265435240523248,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[0].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 1 GA90 high",
+      "deger": 0.0009540411238074283,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[0].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 2 entropy change mean",
+      "deger": -0.001554616280676176,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 335 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 2 entropy change run 1",
+      "deger": -0.0016495466697961092,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[1]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 2 entropy change run 2",
+      "deger": -0.0007849454996176064,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[1]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 2 entropy change run 3",
+      "deger": -0.002229356672614813,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[1]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 2 GA90 low",
+      "deger": -0.002780013018487444,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[1].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 2 GA90 high",
+      "deger": -0.00032921954286490836,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[1].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 3 entropy change mean",
+      "deger": 0.00021603905285398164,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 336 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 3 entropy change run 1",
+      "deger": -0.0013893365394324064,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[2]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 3 entropy change run 2",
+      "deger": 0.001418638275936246,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[2]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 3 entropy change run 3",
+      "deger": 0.0006188154220581055,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[2]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 3 GA90 low",
+      "deger": -0.0022228349448413726,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[2].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 3 GA90 high",
+      "deger": 0.0026549130505493356,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[2].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 4 entropy change mean",
+      "deger": 0.0006576935411430895,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 337 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 4 entropy change run 1",
+      "deger": 0.00246274471282959,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[3]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 4 entropy change run 2",
+      "deger": -0.0010184288257732987,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[3]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 4 entropy change run 3",
+      "deger": 0.0005287647363729775,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[3]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 4 GA90 low",
+      "deger": -0.0022827137083607516,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[3].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 4 GA90 high",
+      "deger": 0.0035981007906469306,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[3].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 5 entropy change mean",
+      "deger": -0.0025355497685571513,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 338 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 5 entropy change run 1",
+      "deger": -0.004983806516975164,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[4]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 5 entropy change run 2",
+      "deger": -0.0013998508220538497,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[4]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 5 entropy change run 3",
+      "deger": -0.0012229919666424394,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[4]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 5 GA90 low",
+      "deger": -0.006113094442884227,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[4].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 5 GA90 high",
+      "deger": 0.0010419949057699244,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[4].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 6 entropy change mean",
+      "deger": -0.001538499219653507,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 339 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 6 entropy change run 1",
+      "deger": 0.0008126258617267013,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[5]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 6 entropy change run 2",
+      "deger": -0.0029283284675329924,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[5]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 6 entropy change run 3",
+      "deger": -0.00249979505315423,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[5]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 6 GA90 low",
+      "deger": -0.00499007866348069,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[5].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 6 GA90 high",
+      "deger": 0.001913080224173676,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[5].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 7 entropy change mean",
+      "deger": 0.001115798969597866,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 340 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 7 entropy change run 1",
+      "deger": 0.004961967468261719,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[6]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 7 entropy change run 2",
+      "deger": -0.002116513205692172,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[6]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 7 entropy change run 3",
+      "deger": 0.0005019426462240517,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[6]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 7 GA90 low",
+      "deger": -0.004917778960005477,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[6].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 7 GA90 high",
+      "deger": 0.007149376899201209,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[6].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 8 entropy change mean",
+      "deger": 0.001443497370928526,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 341 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 8 entropy change run 1",
+      "deger": 0.002500510308891535,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[7]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 8 entropy change run 2",
+      "deger": -0.005683088209480047,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[7]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 8 entropy change run 3",
+      "deger": 0.00751307001337409,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[7]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 8 GA90 low",
+      "deger": -0.009786445409294095,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[7].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 8 GA90 high",
+      "deger": 0.012673440151151147,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[7].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 9 entropy change mean",
+      "deger": 0.0013375917721229296,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 342 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 9 entropy change run 1",
+      "deger": 0.001081442809663713,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[8]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 9 entropy change run 2",
+      "deger": -0.00043849943904206157,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[8]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 9 entropy change run 3",
+      "deger": 0.003369831945747137,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[8]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 9 GA90 low",
+      "deger": -0.0018942647492940668,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[8].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 9 GA90 high",
+      "deger": 0.004569448293539926,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[8].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 10 entropy change mean",
+      "deger": 0.004526734342410539,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 343 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 10 entropy change run 1",
+      "deger": -0.0003664255200419575,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[9]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 10 entropy change run 2",
+      "deger": -0.0007287502521649003,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[9]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 10 entropy change run 3",
+      "deger": 0.014675378799438477,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[9]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 10 GA90 low",
+      "deger": -0.010293360717524333,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[9].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 10 GA90 high",
+      "deger": 0.01934682940234541,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[9].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 11 entropy change mean",
+      "deger": -0.001143121742643416,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 344 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 11 entropy change run 1",
+      "deger": 0.00067138671875,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[10]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 11 entropy change run 2",
+      "deger": -0.005320167634636164,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[10]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 11 entropy change run 3",
+      "deger": 0.001219415687955916,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[10]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 11 GA90 low",
+      "deger": -0.007259049542400625,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[10].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 11 GA90 high",
+      "deger": 0.0049728060571137935,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[10].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 12 entropy change mean",
+      "deger": -0.003253372541318337,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean",
+      "hesap": "mean over pair1-3 files; == foy line 345 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 12 entropy change run 1",
+      "deger": -0.005790233612060547,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[11]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 12 entropy change run 2",
+      "deger": -0.007236003875732422,
+      "kaynak": "results/c1_c4/pair2/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[11]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "a4a8d92289f233a75cd17573b8f7ac0b66ade1a6acd0798d69686e1ad6f1da03"
+    },
+    {
+      "etiket": "layer 12 entropy change run 3",
+      "deger": 0.0032661198638379574,
+      "kaynak": "results/c1_c4/pair3/c4_summary.json",
+      "anahtar_yolu": "vit.attention.entropy_delta_mean[11]",
+      "hesap": "read as stored",
+      "kaynak_sha256": "f3287f3940f84211a2d12316a2f24caae1603438eefd31044d43928f8895e234"
+    },
+    {
+      "etiket": "layer 12 GA90 low",
+      "deger": -0.012849483422391067,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[11].GA90[0]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 12 GA90 high",
+      "deger": 0.0063427383397543936,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.katmanlar[11].GA90[1]",
+      "hesap": "read",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    },
+    {
+      "etiket": "layer 1 TV mean",
+      "deger": 0.027554358045260113,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 334 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 1 TV SD",
+      "deger": 0.010177397757949567,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 334 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 2 TV mean",
+      "deger": 0.042309278001387916,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 335 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 2 TV SD",
+      "deger": 0.007065507736184599,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 335 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 3 TV mean",
+      "deger": 0.04919296130537987,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 336 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 3 TV SD",
+      "deger": 0.008798247126492499,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 336 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 4 TV mean",
+      "deger": 0.04484659060835838,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 337 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 4 TV SD",
+      "deger": 0.007669200302191225,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 337 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 5 TV mean",
+      "deger": 0.05281479159990946,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 338 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 5 TV SD",
+      "deger": 0.0043113083637277855,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 338 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 6 TV mean",
+      "deger": 0.06517925734321277,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 339 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 6 TV SD",
+      "deger": 0.009951806883032953,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 339 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 7 TV mean",
+      "deger": 0.07261326909065247,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 340 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 7 TV SD",
+      "deger": 0.006540008747990701,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 340 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 8 TV mean",
+      "deger": 0.07788995156685512,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 341 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 8 TV SD",
+      "deger": 0.006032635661396566,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 341 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 9 TV mean",
+      "deger": 0.07845599452654521,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 342 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 9 TV SD",
+      "deger": 0.010477781115428466,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 342 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 10 TV mean",
+      "deger": 0.0775856301188469,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 343 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 10 TV SD",
+      "deger": 0.007852234366964061,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 343 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 11 TV mean",
+      "deger": 0.08358107258876164,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 344 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 11 TV SD",
+      "deger": 0.0025354924875043636,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 344 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 12 TV mean",
+      "deger": 0.08410372585058212,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "mean over pair1-3; == foy line 345 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "layer 12 TV SD",
+      "deger": 0.007590731056297463,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.attention.displacement_mean",
+      "hesap": "SD over pair1-3; == foy line 345 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 1 cos_block_cls mean",
+      "deger": 0.9992515246073405,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block0.mean",
+      "hesap": "mean over pair1-3; == foy line 292 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 1 cos_block_cls SD",
+      "deger": 7.778610151302435e-05,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block0.mean",
+      "hesap": "SD over pair1-3; == foy line 292 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 1 cos_block_token_mean mean",
+      "deger": 0.9980207880338033,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block0.mean",
+      "hesap": "mean over pair1-3; == foy line 292 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 1 cos_block_token_mean SD",
+      "deger": 0.00040837783992038424,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block0.mean",
+      "hesap": "SD over pair1-3; == foy line 292 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 1 cos_block_output mean",
+      "deger": 0.9926929672559103,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block0.mean",
+      "hesap": "mean over pair1-3; == foy line 292 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 1 cos_block_output SD",
+      "deger": 0.0004169679140468707,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block0.mean",
+      "hesap": "SD over pair1-3; == foy line 292 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 2 cos_block_cls mean",
+      "deger": 0.9950184424718221,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block1.mean",
+      "hesap": "mean over pair1-3; == foy line 293 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 2 cos_block_cls SD",
+      "deger": 0.0018998912748826762,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block1.mean",
+      "hesap": "SD over pair1-3; == foy line 293 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 2 cos_block_token_mean mean",
+      "deger": 0.9959392150243124,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block1.mean",
+      "hesap": "mean over pair1-3; == foy line 293 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 2 cos_block_token_mean SD",
+      "deger": 0.0011994360679219113,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block1.mean",
+      "hesap": "SD over pair1-3; == foy line 293 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 2 cos_block_output mean",
+      "deger": 0.9901264508565267,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block1.mean",
+      "hesap": "mean over pair1-3; == foy line 293 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 2 cos_block_output SD",
+      "deger": 0.001339457711897067,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block1.mean",
+      "hesap": "SD over pair1-3; == foy line 293 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 3 cos_block_cls mean",
+      "deger": 0.9902331630388895,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block2.mean",
+      "hesap": "mean over pair1-3; == foy line 294 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 3 cos_block_cls SD",
+      "deger": 0.0030756578804561683,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block2.mean",
+      "hesap": "SD over pair1-3; == foy line 294 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 3 cos_block_token_mean mean",
+      "deger": 0.9940458734830221,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block2.mean",
+      "hesap": "mean over pair1-3; == foy line 294 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 3 cos_block_token_mean SD",
+      "deger": 0.0007576937317371335,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block2.mean",
+      "hesap": "SD over pair1-3; == foy line 294 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 3 cos_block_output mean",
+      "deger": 0.9881426890691122,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block2.mean",
+      "hesap": "mean over pair1-3; == foy line 294 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 3 cos_block_output SD",
+      "deger": 0.0010739316347096978,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block2.mean",
+      "hesap": "SD over pair1-3; == foy line 294 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 4 cos_block_cls mean",
+      "deger": 0.987285852432251,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block3.mean",
+      "hesap": "mean over pair1-3; == foy line 295 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 4 cos_block_cls SD",
+      "deger": 0.0035576450948244112,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block3.mean",
+      "hesap": "SD over pair1-3; == foy line 295 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 4 cos_block_token_mean mean",
+      "deger": 0.9918528199195862,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block3.mean",
+      "hesap": "mean over pair1-3; == foy line 295 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 4 cos_block_token_mean SD",
+      "deger": 0.0019577408709843176,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block3.mean",
+      "hesap": "SD over pair1-3; == foy line 295 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 4 cos_block_output mean",
+      "deger": 0.9861181577046713,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block3.mean",
+      "hesap": "mean over pair1-3; == foy line 295 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 4 cos_block_output SD",
+      "deger": 0.001628454081349915,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block3.mean",
+      "hesap": "SD over pair1-3; == foy line 295 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 5 cos_block_cls mean",
+      "deger": 0.9844846526781718,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block4.mean",
+      "hesap": "mean over pair1-3; == foy line 296 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 5 cos_block_cls SD",
+      "deger": 0.004133179133036072,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block4.mean",
+      "hesap": "SD over pair1-3; == foy line 296 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 5 cos_block_token_mean mean",
+      "deger": 0.9903524915377299,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block4.mean",
+      "hesap": "mean over pair1-3; == foy line 296 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 5 cos_block_token_mean SD",
+      "deger": 0.002311433259969271,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block4.mean",
+      "hesap": "SD over pair1-3; == foy line 296 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 5 cos_block_output mean",
+      "deger": 0.9847363829612732,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block4.mean",
+      "hesap": "mean over pair1-3; == foy line 296 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 5 cos_block_output SD",
+      "deger": 0.0018962820853942665,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block4.mean",
+      "hesap": "SD over pair1-3; == foy line 296 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 6 cos_block_cls mean",
+      "deger": 0.9814266165097555,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block5.mean",
+      "hesap": "mean over pair1-3; == foy line 297 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 6 cos_block_cls SD",
+      "deger": 0.0030674076865473813,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block5.mean",
+      "hesap": "SD over pair1-3; == foy line 297 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 6 cos_block_token_mean mean",
+      "deger": 0.9893583059310913,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block5.mean",
+      "hesap": "mean over pair1-3; == foy line 297 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 6 cos_block_token_mean SD",
+      "deger": 0.0017234681264022005,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block5.mean",
+      "hesap": "SD over pair1-3; == foy line 297 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 6 cos_block_output mean",
+      "deger": 0.983535091082255,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block5.mean",
+      "hesap": "mean over pair1-3; == foy line 297 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 6 cos_block_output SD",
+      "deger": 0.0020159700373137807,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block5.mean",
+      "hesap": "SD over pair1-3; == foy line 297 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 7 cos_block_cls mean",
+      "deger": 0.9781727393468221,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block6.mean",
+      "hesap": "mean over pair1-3; == foy line 298 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 7 cos_block_cls SD",
+      "deger": 0.004070247683217686,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block6.mean",
+      "hesap": "SD over pair1-3; == foy line 298 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 7 cos_block_token_mean mean",
+      "deger": 0.9885314702987671,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block6.mean",
+      "hesap": "mean over pair1-3; == foy line 298 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 7 cos_block_token_mean SD",
+      "deger": 0.001869009410084985,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block6.mean",
+      "hesap": "SD over pair1-3; == foy line 298 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 7 cos_block_output mean",
+      "deger": 0.9825900197029114,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block6.mean",
+      "hesap": "mean over pair1-3; == foy line 298 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 7 cos_block_output SD",
+      "deger": 0.0020073621905841517,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block6.mean",
+      "hesap": "SD over pair1-3; == foy line 298 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 8 cos_block_cls mean",
+      "deger": 0.9742970069249471,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block7.mean",
+      "hesap": "mean over pair1-3; == foy line 299 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 8 cos_block_cls SD",
+      "deger": 0.005751388534009241,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block7.mean",
+      "hesap": "SD over pair1-3; == foy line 299 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 8 cos_block_token_mean mean",
+      "deger": 0.9875069061915079,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block7.mean",
+      "hesap": "mean over pair1-3; == foy line 299 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 8 cos_block_token_mean SD",
+      "deger": 0.0020761201360079765,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block7.mean",
+      "hesap": "SD over pair1-3; == foy line 299 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 8 cos_block_output mean",
+      "deger": 0.9816138545672098,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block7.mean",
+      "hesap": "mean over pair1-3; == foy line 299 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 8 cos_block_output SD",
+      "deger": 0.0021127653229491006,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block7.mean",
+      "hesap": "SD over pair1-3; == foy line 299 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 9 cos_block_cls mean",
+      "deger": 0.9703248143196106,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block8.mean",
+      "hesap": "mean over pair1-3; == foy line 300 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 9 cos_block_cls SD",
+      "deger": 0.004368158119309225,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block8.mean",
+      "hesap": "SD over pair1-3; == foy line 300 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 9 cos_block_token_mean mean",
+      "deger": 0.9870334068934122,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block8.mean",
+      "hesap": "mean over pair1-3; == foy line 300 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 9 cos_block_token_mean SD",
+      "deger": 0.0014398897119280013,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block8.mean",
+      "hesap": "SD over pair1-3; == foy line 300 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 9 cos_block_output mean",
+      "deger": 0.9808602929115295,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block8.mean",
+      "hesap": "mean over pair1-3; == foy line 300 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 9 cos_block_output SD",
+      "deger": 0.0018198127995906047,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block8.mean",
+      "hesap": "SD over pair1-3; == foy line 300 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 10 cos_block_cls mean",
+      "deger": 0.9661123553911845,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block9.mean",
+      "hesap": "mean over pair1-3; == foy line 301 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 10 cos_block_cls SD",
+      "deger": 0.004409222635502307,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block9.mean",
+      "hesap": "SD over pair1-3; == foy line 301 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 10 cos_block_token_mean mean",
+      "deger": 0.98715740442276,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block9.mean",
+      "hesap": "mean over pair1-3; == foy line 301 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 10 cos_block_token_mean SD",
+      "deger": 0.0012674084150858993,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block9.mean",
+      "hesap": "SD over pair1-3; == foy line 301 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 10 cos_block_output mean",
+      "deger": 0.980493426322937,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block9.mean",
+      "hesap": "mean over pair1-3; == foy line 301 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 10 cos_block_output SD",
+      "deger": 0.0017057962374967548,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block9.mean",
+      "hesap": "SD over pair1-3; == foy line 301 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 11 cos_block_cls mean",
+      "deger": 0.9603935877482096,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block10.mean",
+      "hesap": "mean over pair1-3; == foy line 302 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 11 cos_block_cls SD",
+      "deger": 0.002918807893555089,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block10.mean",
+      "hesap": "SD over pair1-3; == foy line 302 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 11 cos_block_token_mean mean",
+      "deger": 0.987393856048584,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block10.mean",
+      "hesap": "mean over pair1-3; == foy line 302 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 11 cos_block_token_mean SD",
+      "deger": 0.002129766966898442,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block10.mean",
+      "hesap": "SD over pair1-3; == foy line 302 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 11 cos_block_output mean",
+      "deger": 0.9803239504496256,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block10.mean",
+      "hesap": "mean over pair1-3; == foy line 302 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 11 cos_block_output SD",
+      "deger": 0.0017189374323260368,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block10.mean",
+      "hesap": "SD over pair1-3; == foy line 302 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 12 cos_block_cls mean",
+      "deger": 0.9663021365801493,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block11.mean",
+      "hesap": "mean over pair1-3; == foy line 303 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 12 cos_block_cls SD",
+      "deger": 0.006110026126133466,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_cls.block11.mean",
+      "hesap": "SD over pair1-3; == foy line 303 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 12 cos_block_token_mean mean",
+      "deger": 0.9914703170458475,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block11.mean",
+      "hesap": "mean over pair1-3; == foy line 303 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 12 cos_block_token_mean SD",
+      "deger": 0.002712073058388427,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_token_mean.block11.mean",
+      "hesap": "SD over pair1-3; == foy line 303 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 12 cos_block_output mean",
+      "deger": 0.9837354818979899,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block11.mean",
+      "hesap": "mean over pair1-3; == foy line 303 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "block 12 cos_block_output SD",
+      "deger": 0.0036442512298069016,
+      "kaynak": "results/c1_c4/pair1/c4_summary.json",
+      "anahtar_yolu": "vit.cos_block_output.block11.mean",
+      "hesap": "SD over pair1-3; == foy line 303 (4 dp)",
+      "kaynak_sha256": "1c614f4425907b6f55c53c32fbb5e88914971b18169457375152c5ef3a2f7db1"
+    },
+    {
+      "etiket": "TOST margin",
+      "deger": 0.05,
+      "kaynak": "results/c1_c4/c4_entropy_tost.json",
+      "anahtar_yolu": "entropi_TOST.marj_nat",
+      "hesap": "read; == foy line 1113",
+      "kaynak_sha256": "7d52487754cc91253e710e03e9f20ceb23dbf0ef9cc9f1f74f85cb77d153e0c3"
+    }
+  ],
+  "records_sha256": null,
+  "betik": "paper/figures_v2/z_feature_degradation.py",
+  "git_head": "74533ba",
+  "karantina": "okunan dosyalar yalniz su siniflardandir: results/q1/*, results/C1_REFERANS_FOYU.md, raporlar/konsey_2026-10-29/hucre_tablosu*.json (donmus hucre tablolari), src/models/*.py ve paper/figures/onizleme_v2/pv_b_model_yapisi.txt (yapi dokumu), salt okunur ice aktarilan v1 sekil betiklerinin veri() kurallari; run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi",
+  "okunan_dosyalar": [
+    "results/C1_REFERANS_FOYU.md",
+    "results/c1_c4/c4_entropy_tost.json",
+    "results/c1_c4/pair1/c4_summary.json",
+    "results/c1_c4/pair2/c4_summary.json",
+    "results/c1_c4/pair3/c4_summary.json"
+  ],
+  "karantina_denetimi": {
+    "results/C1_REFERANS_FOYU.md": true,
+    "results/c1_c4/c4_entropy_tost.json": true,
+    "results/c1_c4/pair1/c4_summary.json": true,
+    "results/c1_c4/pair2/c4_summary.json": true,
+    "results/c1_c4/pair3/c4_summary.json": true
+  },
+  "foy_karsilastirmasi": {
+    "karsilastirma_sayisi": 169,
+    "uyusmayan": 0,
+    "sonuc": "TAMAM",
+    "foy": "results\\C1_REFERANS_FOYU.md",
+    "foy_sha256": "c85fcfc1b683e9f16407ce05b065f76faaa529b99afd4f797edcad44f5a32d9f",
+    "ayrinti": [
+      {
+        "ad": "TOST margin text",
+        "aranan_metin": "Marj +-0.05 nat",
+        "foy_satiri": 1113,
+        "capa": "esdeger katman sayisi",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 1 entropy change mean",
+        "json_degeri": 1.3748799877551695e-05,
+        "foy_satiri": 334,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.0,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 1 entropy change SD",
+        "json_degeri": 0.0005577541512431949,
+        "foy_satiri": 334,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.0006,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 1 TOST run value == summary",
+        "a": 0.0006158113246783614,
+        "b": 0.0006158113246783614,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 1 TOST run value == summary",
+        "a": -8.921623521018773e-05,
+        "b": -8.921623521018773e-05,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 1 TOST run value == summary",
+        "a": -0.0004853486898355186,
+        "b": -0.0004853486898355186,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 1 TOST mean == mean of runs",
+        "a": 1.3748799877551695e-05,
+        "b": 1.3748799877551695e-05,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 1 TV mean",
+        "json_degeri": 0.027554358045260113,
+        "foy_satiri": 334,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.0276,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 1 TV SD",
+        "json_degeri": 0.010177397757949567,
+        "foy_satiri": 334,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.0102,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 1 cos_block_cls mean",
+        "json_degeri": 0.9992515246073405,
+        "foy_satiri": 292,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.9993,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 1 cos_block_cls SD",
+        "json_degeri": 7.778610151302435e-05,
+        "foy_satiri": 292,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.0001,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 1 cos_block_token_mean mean",
+        "json_degeri": 0.9980207880338033,
+        "foy_satiri": 292,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.998,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 1 cos_block_token_mean SD",
+        "json_degeri": 0.00040837783992038424,
+        "foy_satiri": 292,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.0004,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 1 cos_block_output mean",
+        "json_degeri": 0.9926929672559103,
+        "foy_satiri": 292,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.9927,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 1 cos_block_output SD",
+        "json_degeri": 0.0004169679140468707,
+        "foy_satiri": 292,
+        "capa": "| 1 | ",
+        "foy_en_yakin": 0.0004,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 2 entropy change mean",
+        "json_degeri": -0.001554616280676176,
+        "foy_satiri": 335,
+        "capa": "| 2 | ",
+        "foy_en_yakin": -0.0016,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 2 entropy change SD",
+        "json_degeri": 0.0007268698255214876,
+        "foy_satiri": 335,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.0007,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 2 TOST run value == summary",
+        "a": -0.0016495466697961092,
+        "b": -0.0016495466697961092,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 2 TOST run value == summary",
+        "a": -0.0007849454996176064,
+        "b": -0.0007849454996176064,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 2 TOST run value == summary",
+        "a": -0.002229356672614813,
+        "b": -0.002229356672614813,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 2 TOST mean == mean of runs",
+        "a": -0.001554616280676176,
+        "b": -0.001554616280676176,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 2 TV mean",
+        "json_degeri": 0.042309278001387916,
+        "foy_satiri": 335,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.0423,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 2 TV SD",
+        "json_degeri": 0.007065507736184599,
+        "foy_satiri": 335,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.0071,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 2 cos_block_cls mean",
+        "json_degeri": 0.9950184424718221,
+        "foy_satiri": 293,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.995,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 2 cos_block_cls SD",
+        "json_degeri": 0.0018998912748826762,
+        "foy_satiri": 293,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.0019,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 2 cos_block_token_mean mean",
+        "json_degeri": 0.9959392150243124,
+        "foy_satiri": 293,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.9959,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 2 cos_block_token_mean SD",
+        "json_degeri": 0.0011994360679219113,
+        "foy_satiri": 293,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.0012,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 2 cos_block_output mean",
+        "json_degeri": 0.9901264508565267,
+        "foy_satiri": 293,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.9901,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 2 cos_block_output SD",
+        "json_degeri": 0.001339457711897067,
+        "foy_satiri": 293,
+        "capa": "| 2 | ",
+        "foy_en_yakin": 0.0013,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 3 entropy change mean",
+        "json_degeri": 0.00021603905285398164,
+        "foy_satiri": 336,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.0002,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 3 entropy change SD",
+        "json_degeri": 0.001446669362234542,
+        "foy_satiri": 336,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.0014,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 3 TOST run value == summary",
+        "a": -0.0013893365394324064,
+        "b": -0.0013893365394324064,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 3 TOST run value == summary",
+        "a": 0.001418638275936246,
+        "b": 0.001418638275936246,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 3 TOST run value == summary",
+        "a": 0.0006188154220581055,
+        "b": 0.0006188154220581055,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 3 TOST mean == mean of runs",
+        "a": 0.00021603905285398164,
+        "b": 0.00021603905285398164,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 3 TV mean",
+        "json_degeri": 0.04919296130537987,
+        "foy_satiri": 336,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.0492,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 3 TV SD",
+        "json_degeri": 0.008798247126492499,
+        "foy_satiri": 336,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.0088,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 3 cos_block_cls mean",
+        "json_degeri": 0.9902331630388895,
+        "foy_satiri": 294,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.9902,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 3 cos_block_cls SD",
+        "json_degeri": 0.0030756578804561683,
+        "foy_satiri": 294,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.0031,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 3 cos_block_token_mean mean",
+        "json_degeri": 0.9940458734830221,
+        "foy_satiri": 294,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.994,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 3 cos_block_token_mean SD",
+        "json_degeri": 0.0007576937317371335,
+        "foy_satiri": 294,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.0008,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 3 cos_block_output mean",
+        "json_degeri": 0.9881426890691122,
+        "foy_satiri": 294,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.9881,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 3 cos_block_output SD",
+        "json_degeri": 0.0010739316347096978,
+        "foy_satiri": 294,
+        "capa": "| 3 | ",
+        "foy_en_yakin": 0.0011,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 4 entropy change mean",
+        "json_degeri": 0.0006576935411430895,
+        "foy_satiri": 337,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.0007,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 4 entropy change SD",
+        "json_degeri": 0.0017441643497651896,
+        "foy_satiri": 337,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.0017,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 4 TOST run value == summary",
+        "a": 0.00246274471282959,
+        "b": 0.00246274471282959,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 4 TOST run value == summary",
+        "a": -0.0010184288257732987,
+        "b": -0.0010184288257732987,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 4 TOST run value == summary",
+        "a": 0.0005287647363729775,
+        "b": 0.0005287647363729775,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 4 TOST mean == mean of runs",
+        "a": 0.0006576935411430895,
+        "b": 0.0006576935411430895,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 4 TV mean",
+        "json_degeri": 0.04484659060835838,
+        "foy_satiri": 337,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.0448,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 4 TV SD",
+        "json_degeri": 0.007669200302191225,
+        "foy_satiri": 337,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.0077,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 4 cos_block_cls mean",
+        "json_degeri": 0.987285852432251,
+        "foy_satiri": 295,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.9873,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 4 cos_block_cls SD",
+        "json_degeri": 0.0035576450948244112,
+        "foy_satiri": 295,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.0036,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 4 cos_block_token_mean mean",
+        "json_degeri": 0.9918528199195862,
+        "foy_satiri": 295,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.9919,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 4 cos_block_token_mean SD",
+        "json_degeri": 0.0019577408709843176,
+        "foy_satiri": 295,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.002,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 4 cos_block_output mean",
+        "json_degeri": 0.9861181577046713,
+        "foy_satiri": 295,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.9861,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 4 cos_block_output SD",
+        "json_degeri": 0.001628454081349915,
+        "foy_satiri": 295,
+        "capa": "| 4 | ",
+        "foy_en_yakin": 0.0016,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 5 entropy change mean",
+        "json_degeri": -0.0025355497685571513,
+        "foy_satiri": 338,
+        "capa": "| 5 | ",
+        "foy_en_yakin": -0.0025,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 5 entropy change SD",
+        "json_degeri": 0.0021220958021058133,
+        "foy_satiri": 338,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.0021,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 5 TOST run value == summary",
+        "a": -0.004983806516975164,
+        "b": -0.004983806516975164,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 5 TOST run value == summary",
+        "a": -0.0013998508220538497,
+        "b": -0.0013998508220538497,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 5 TOST run value == summary",
+        "a": -0.0012229919666424394,
+        "b": -0.0012229919666424394,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 5 TOST mean == mean of runs",
+        "a": -0.0025355497685571513,
+        "b": -0.0025355497685571513,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 5 TV mean",
+        "json_degeri": 0.05281479159990946,
+        "foy_satiri": 338,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.0528,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 5 TV SD",
+        "json_degeri": 0.0043113083637277855,
+        "foy_satiri": 338,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.0043,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 5 cos_block_cls mean",
+        "json_degeri": 0.9844846526781718,
+        "foy_satiri": 296,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.9845,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 5 cos_block_cls SD",
+        "json_degeri": 0.004133179133036072,
+        "foy_satiri": 296,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.0041,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 5 cos_block_token_mean mean",
+        "json_degeri": 0.9903524915377299,
+        "foy_satiri": 296,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.9904,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 5 cos_block_token_mean SD",
+        "json_degeri": 0.002311433259969271,
+        "foy_satiri": 296,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.0023,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 5 cos_block_output mean",
+        "json_degeri": 0.9847363829612732,
+        "foy_satiri": 296,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.9847,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 5 cos_block_output SD",
+        "json_degeri": 0.0018962820853942665,
+        "foy_satiri": 296,
+        "capa": "| 5 | ",
+        "foy_en_yakin": 0.0019,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 6 entropy change mean",
+        "json_degeri": -0.001538499219653507,
+        "foy_satiri": 339,
+        "capa": "| 6 | ",
+        "foy_en_yakin": -0.0015,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 6 entropy change SD",
+        "json_degeri": 0.0020473768786012747,
+        "foy_satiri": 339,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.002,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 6 TOST run value == summary",
+        "a": 0.0008126258617267013,
+        "b": 0.0008126258617267013,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 6 TOST run value == summary",
+        "a": -0.0029283284675329924,
+        "b": -0.0029283284675329924,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 6 TOST run value == summary",
+        "a": -0.00249979505315423,
+        "b": -0.00249979505315423,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 6 TOST mean == mean of runs",
+        "a": -0.001538499219653507,
+        "b": -0.001538499219653507,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 6 TV mean",
+        "json_degeri": 0.06517925734321277,
+        "foy_satiri": 339,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.0652,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 6 TV SD",
+        "json_degeri": 0.009951806883032953,
+        "foy_satiri": 339,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.01,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 6 cos_block_cls mean",
+        "json_degeri": 0.9814266165097555,
+        "foy_satiri": 297,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.9814,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 6 cos_block_cls SD",
+        "json_degeri": 0.0030674076865473813,
+        "foy_satiri": 297,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.0031,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 6 cos_block_token_mean mean",
+        "json_degeri": 0.9893583059310913,
+        "foy_satiri": 297,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.9894,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 6 cos_block_token_mean SD",
+        "json_degeri": 0.0017234681264022005,
+        "foy_satiri": 297,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.0017,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 6 cos_block_output mean",
+        "json_degeri": 0.983535091082255,
+        "foy_satiri": 297,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.9835,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 6 cos_block_output SD",
+        "json_degeri": 0.0020159700373137807,
+        "foy_satiri": 297,
+        "capa": "| 6 | ",
+        "foy_en_yakin": 0.002,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 7 entropy change mean",
+        "json_degeri": 0.001115798969597866,
+        "foy_satiri": 340,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.0011,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 7 entropy change SD",
+        "json_degeri": 0.0035789435385591368,
+        "foy_satiri": 340,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.0036,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 7 TOST run value == summary",
+        "a": 0.004961967468261719,
+        "b": 0.004961967468261719,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 7 TOST run value == summary",
+        "a": -0.002116513205692172,
+        "b": -0.002116513205692172,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 7 TOST run value == summary",
+        "a": 0.0005019426462240517,
+        "b": 0.0005019426462240517,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 7 TOST mean == mean of runs",
+        "a": 0.001115798969597866,
+        "b": 0.001115798969597866,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 7 TV mean",
+        "json_degeri": 0.07261326909065247,
+        "foy_satiri": 340,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.0726,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 7 TV SD",
+        "json_degeri": 0.006540008747990701,
+        "foy_satiri": 340,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.0065,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 7 cos_block_cls mean",
+        "json_degeri": 0.9781727393468221,
+        "foy_satiri": 298,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.9782,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 7 cos_block_cls SD",
+        "json_degeri": 0.004070247683217686,
+        "foy_satiri": 298,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.0041,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 7 cos_block_token_mean mean",
+        "json_degeri": 0.9885314702987671,
+        "foy_satiri": 298,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.9885,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 7 cos_block_token_mean SD",
+        "json_degeri": 0.001869009410084985,
+        "foy_satiri": 298,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.0019,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 7 cos_block_output mean",
+        "json_degeri": 0.9825900197029114,
+        "foy_satiri": 298,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.9826,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 7 cos_block_output SD",
+        "json_degeri": 0.0020073621905841517,
+        "foy_satiri": 298,
+        "capa": "| 7 | ",
+        "foy_en_yakin": 0.002,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 8 entropy change mean",
+        "json_degeri": 0.001443497370928526,
+        "foy_satiri": 341,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.0014,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 8 entropy change SD",
+        "json_degeri": 0.0066612765461220805,
+        "foy_satiri": 341,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.0067,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 8 TOST run value == summary",
+        "a": 0.002500510308891535,
+        "b": 0.002500510308891535,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 8 TOST run value == summary",
+        "a": -0.005683088209480047,
+        "b": -0.005683088209480047,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 8 TOST run value == summary",
+        "a": 0.00751307001337409,
+        "b": 0.00751307001337409,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 8 TOST mean == mean of runs",
+        "a": 0.001443497370928526,
+        "b": 0.001443497370928526,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 8 TV mean",
+        "json_degeri": 0.07788995156685512,
+        "foy_satiri": 341,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.0779,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 8 TV SD",
+        "json_degeri": 0.006032635661396566,
+        "foy_satiri": 341,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.006,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 8 cos_block_cls mean",
+        "json_degeri": 0.9742970069249471,
+        "foy_satiri": 299,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.9743,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 8 cos_block_cls SD",
+        "json_degeri": 0.005751388534009241,
+        "foy_satiri": 299,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.0058,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 8 cos_block_token_mean mean",
+        "json_degeri": 0.9875069061915079,
+        "foy_satiri": 299,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.9875,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 8 cos_block_token_mean SD",
+        "json_degeri": 0.0020761201360079765,
+        "foy_satiri": 299,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.0021,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 8 cos_block_output mean",
+        "json_degeri": 0.9816138545672098,
+        "foy_satiri": 299,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.9816,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 8 cos_block_output SD",
+        "json_degeri": 0.0021127653229491006,
+        "foy_satiri": 299,
+        "capa": "| 8 | ",
+        "foy_en_yakin": 0.0021,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 9 entropy change mean",
+        "json_degeri": 0.0013375917721229296,
+        "foy_satiri": 342,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.0013,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 9 entropy change SD",
+        "json_degeri": 0.0019170436099158787,
+        "foy_satiri": 342,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.0019,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 9 TOST run value == summary",
+        "a": 0.001081442809663713,
+        "b": 0.001081442809663713,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 9 TOST run value == summary",
+        "a": -0.00043849943904206157,
+        "b": -0.00043849943904206157,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 9 TOST run value == summary",
+        "a": 0.003369831945747137,
+        "b": 0.003369831945747137,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 9 TOST mean == mean of runs",
+        "a": 0.0013375917721229296,
+        "b": 0.0013375917721229296,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 9 TV mean",
+        "json_degeri": 0.07845599452654521,
+        "foy_satiri": 342,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.0785,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 9 TV SD",
+        "json_degeri": 0.010477781115428466,
+        "foy_satiri": 342,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.0105,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 9 cos_block_cls mean",
+        "json_degeri": 0.9703248143196106,
+        "foy_satiri": 300,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.9703,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 9 cos_block_cls SD",
+        "json_degeri": 0.004368158119309225,
+        "foy_satiri": 300,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.0044,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 9 cos_block_token_mean mean",
+        "json_degeri": 0.9870334068934122,
+        "foy_satiri": 300,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.987,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 9 cos_block_token_mean SD",
+        "json_degeri": 0.0014398897119280013,
+        "foy_satiri": 300,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.0014,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 9 cos_block_output mean",
+        "json_degeri": 0.9808602929115295,
+        "foy_satiri": 300,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.9809,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 9 cos_block_output SD",
+        "json_degeri": 0.0018198127995906047,
+        "foy_satiri": 300,
+        "capa": "| 9 | ",
+        "foy_en_yakin": 0.0018,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 10 entropy change mean",
+        "json_degeri": 0.004526734342410539,
+        "foy_satiri": 343,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.0045,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 10 entropy change SD",
+        "json_degeri": 0.008790850814298347,
+        "foy_satiri": 343,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.0088,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 10 TOST run value == summary",
+        "a": -0.0003664255200419575,
+        "b": -0.0003664255200419575,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 10 TOST run value == summary",
+        "a": -0.0007287502521649003,
+        "b": -0.0007287502521649003,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 10 TOST run value == summary",
+        "a": 0.014675378799438477,
+        "b": 0.014675378799438477,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 10 TOST mean == mean of runs",
+        "a": 0.004526734342410539,
+        "b": 0.004526734342410539,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 10 TV mean",
+        "json_degeri": 0.0775856301188469,
+        "foy_satiri": 343,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.0776,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 10 TV SD",
+        "json_degeri": 0.007852234366964061,
+        "foy_satiri": 343,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.0079,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 10 cos_block_cls mean",
+        "json_degeri": 0.9661123553911845,
+        "foy_satiri": 301,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.9661,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 10 cos_block_cls SD",
+        "json_degeri": 0.004409222635502307,
+        "foy_satiri": 301,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.0044,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 10 cos_block_token_mean mean",
+        "json_degeri": 0.98715740442276,
+        "foy_satiri": 301,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.9872,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 10 cos_block_token_mean SD",
+        "json_degeri": 0.0012674084150858993,
+        "foy_satiri": 301,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.0013,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 10 cos_block_output mean",
+        "json_degeri": 0.980493426322937,
+        "foy_satiri": 301,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.9805,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 10 cos_block_output SD",
+        "json_degeri": 0.0017057962374967548,
+        "foy_satiri": 301,
+        "capa": "| 10 | ",
+        "foy_en_yakin": 0.0017,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 11 entropy change mean",
+        "json_degeri": -0.001143121742643416,
+        "foy_satiri": 344,
+        "capa": "| 11 | ",
+        "foy_en_yakin": -0.0011,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 11 entropy change SD",
+        "json_degeri": 0.003627791094541187,
+        "foy_satiri": 344,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.0036,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 11 TOST run value == summary",
+        "a": 0.00067138671875,
+        "b": 0.00067138671875,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 11 TOST run value == summary",
+        "a": -0.005320167634636164,
+        "b": -0.005320167634636164,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 11 TOST run value == summary",
+        "a": 0.001219415687955916,
+        "b": 0.001219415687955916,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 11 TOST mean == mean of runs",
+        "a": -0.001143121742643416,
+        "b": -0.001143121742643416,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 11 TV mean",
+        "json_degeri": 0.08358107258876164,
+        "foy_satiri": 344,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.0836,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 11 TV SD",
+        "json_degeri": 0.0025354924875043636,
+        "foy_satiri": 344,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.0025,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 11 cos_block_cls mean",
+        "json_degeri": 0.9603935877482096,
+        "foy_satiri": 302,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.9604,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 11 cos_block_cls SD",
+        "json_degeri": 0.002918807893555089,
+        "foy_satiri": 302,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.0029,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 11 cos_block_token_mean mean",
+        "json_degeri": 0.987393856048584,
+        "foy_satiri": 302,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.9874,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 11 cos_block_token_mean SD",
+        "json_degeri": 0.002129766966898442,
+        "foy_satiri": 302,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.0021,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 11 cos_block_output mean",
+        "json_degeri": 0.9803239504496256,
+        "foy_satiri": 302,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.9803,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 11 cos_block_output SD",
+        "json_degeri": 0.0017189374323260368,
+        "foy_satiri": 302,
+        "capa": "| 11 | ",
+        "foy_en_yakin": 0.0017,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 12 entropy change mean",
+        "json_degeri": -0.003253372541318337,
+        "foy_satiri": 345,
+        "capa": "| 12 | ",
+        "foy_en_yakin": -0.0033,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 12 entropy change SD",
+        "json_degeri": 0.005692134821795546,
+        "foy_satiri": 345,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.0057,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 12 TOST run value == summary",
+        "a": -0.005790233612060547,
+        "b": -0.005790233612060547,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 12 TOST run value == summary",
+        "a": -0.007236003875732422,
+        "b": -0.007236003875732422,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 12 TOST run value == summary",
+        "a": 0.0032661198638379574,
+        "b": 0.0032661198638379574,
+        "tolerans": 1e-12,
+        "aciklama": "same run values in both files",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 12 TOST mean == mean of runs",
+        "a": -0.003253372541318337,
+        "b": -0.003253372541318337,
+        "tolerans": 1e-12,
+        "aciklama": "mean of the three runs",
+        "eslesti": true
+      },
+      {
+        "ad": "layer 12 TV mean",
+        "json_degeri": 0.08410372585058212,
+        "foy_satiri": 345,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.0841,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "layer 12 TV SD",
+        "json_degeri": 0.007590731056297463,
+        "foy_satiri": 345,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.0076,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 12 cos_block_cls mean",
+        "json_degeri": 0.9663021365801493,
+        "foy_satiri": 303,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.9663,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 12 cos_block_cls SD",
+        "json_degeri": 0.006110026126133466,
+        "foy_satiri": 303,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.0061,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 12 cos_block_token_mean mean",
+        "json_degeri": 0.9914703170458475,
+        "foy_satiri": 303,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.9915,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 12 cos_block_token_mean SD",
+        "json_degeri": 0.002712073058388427,
+        "foy_satiri": 303,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.0027,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 12 cos_block_output mean",
+        "json_degeri": 0.9837354818979899,
+        "foy_satiri": 303,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.9837,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      },
+      {
+        "ad": "block 12 cos_block_output SD",
+        "json_degeri": 0.0036442512298069016,
+        "foy_satiri": 303,
+        "capa": "| 12 | ",
+        "foy_en_yakin": 0.0036,
+        "ondalik": 4,
+        "tolerans": 5.0001000000000005e-05,
+        "eslesti": true
+      }
+    ]
+  },
+  "girdiler": [
+    "results/c1_c4/pair1/c4_summary.json",
+    "results/c1_c4/pair2/c4_summary.json",
+    "results/c1_c4/pair3/c4_summary.json",
+    "results/c1_c4/c4_entropy_tost.json"
+  ],
+  "altyazi_taslagi": "Feature degradation of ViT-Tiny under attack, block by block. The clean and PGD-10 image enter the spine, block 1 at the bottom; per block, over three runs: CLS attention entropy change with 90% TOST intervals inside the ±0.05-nat band, CLS attention displacement (TV), and block-output cosine for three token sets, mean±SD. The ViT is attacked with its own PGD-10."
+}

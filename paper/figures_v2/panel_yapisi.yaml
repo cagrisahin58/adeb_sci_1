@@ -1,0 +1,60 @@
+# Panel yapisi ve adlandirma plani, sekil v2 (Uslup Z), Kol C2 Faz 2, 08.11.2026.
+# Okuyan: scripts/panel_atif_sayaci.py
+#   python <skill>/scripts/panel_atif_sayaci.py --tex paper/figures_v2/qc/main_v2_duz.tex \
+#     --yapi paper/figures_v2/panel_yapisi.yaml --json-out paper/figures_v2/qc/panel_atiflari_v2.json \
+#     --md-out paper/figures_v2/qc/panel_atiflari_v2.md
+# Govde metni degismez; sekil 1 harfleri (a)-(e) metnin bes atfi (Figure 1(a)-(e)) yuzunden korunur.
+# Dizi (1-17): harf serit akis serit rakam akis serit rakam serit yok serit serit rakam serit serit yok akis
+# Harfli pay 1/17; ayni tur ardisik en cok 2; sahne plakasi kullanan sekiller 1, 5, 6, 7, 8, 11, 14, 15 (sekiz).
+
+fig:study_overview:            # 1  maket masasi; (a) egitilmis modeller, (b) paneller, (c) matrisler, (d) kayit karti, (e) ayrisim
+  yapi: karma
+  adlandirma: harf
+  turler: [harf]
+  not: "metinde (a)-(e) bes ayri atif var; harf zorunlu"
+fig:design_recipe:             # 2  kartotek dolabi; sutun ve satir basliklari, AT tabelasi
+  yapi: lejant_seridi
+  adlandirma: serit
+fig:decomposition_schematic:   # 3  uc katli buzlu kesit, etiketli akis oklari
+  yapi: surec_zinciri
+  adlandirma: akis
+fig:panel_members:             # 4  iki rafli katalog kartlari
+  yapi: kucuk_katlar
+  adlandirma: serit
+fig:registry_map:              # 5  yedi basamakli merdiven, aile basina rakam halkasi
+  yapi: numarali_duzey
+  adlandirma: rakam
+fig:prereg_chain:              # 6  zaman rafi, etiketli akis oklari
+  yapi: surec_zinciri
+  adlandirma: akis
+fig:source_gap_split:          # 7  uc zemin levhasi, levha basina baslik
+  yapi: kucuk_katlar
+  adlandirma: serit
+fig:similarity_matrix:         # 8  uc kaide, kaide basina rakam halkasi
+  yapi: numarali_duzey
+  adlandirma: rakam
+fig:cells_interaction:         # 9  uc katli kule
+  yapi: kucuk_katlar
+  adlandirma: serit
+fig:attack_side:               # 10 abakus
+  yapi: tek_panel
+fig:gradient_alignment:        # 11 iki basamakli tribun
+  yapi: kucuk_katlar
+  adlandirma: serit
+fig:estimates_forest:          # 12 raydan asili iki etiket
+  yapi: kucuk_katlar
+  adlandirma: serit
+fig:protocol_settings:         # 13 patlatilmis dort protokol tahtasi, katman basina rakam halkasi
+  yapi: numarali_duzey
+  adlandirma: rakam
+fig:protocol_sets:             # 14 terasli havuz ve olcum karti
+  yapi: kucuk_katlar
+  adlandirma: serit
+fig:spread_clean_gap:          # 15 derin sahne, iki levha
+  yapi: kucuk_katlar
+  adlandirma: serit
+fig:epsilon_sweep:             # 16 kesik profil levhalari
+  yapi: tek_panel
+fig:feature_degradation:       # 17 ViT omurgasi, etiketli akis oklari
+  yapi: surec_zinciri
+  adlandirma: akis

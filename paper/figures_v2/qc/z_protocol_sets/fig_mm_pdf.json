@@ -1,0 +1,122 @@
+{
+ "z_protocol_sets": {
+  "page_mm": [
+   85.302,
+   126.577
+  ],
+  "fonts": [
+   "Open Sans",
+   "Open Sans SemiBold"
+  ],
+  "min_pt": 8.4,
+  "spans": 35,
+  "issues": [],
+  "checks": {
+   "page_size": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "85.302 x 126.577 mm"
+   },
+   "fonts": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "Open Sans, Open Sans SemiBold"
+   },
+   "min_type": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "smallest 8.400 pt"
+   },
+   "text_overlap": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "35 spans"
+   },
+   "box_spill": {
+    "verdict": "PASS",
+    "issues": [],
+    "detail": "4 closed boxes"
+   }
+  },
+  "inputs": {
+   "page_text_sha256": "dfcec0b197fa7119dc07fea2dda4ed0e34e928ed00fb2a9b2fb42e4388d06a42",
+   "spans": 35,
+   "lines": 35,
+   "drawings": 72,
+   "closed_boxes": 4
+  },
+  "verdict": "PASS",
+  "expected_from": "visio report",
+  "floor_pt": 8.0,
+  "cizgi": {
+   "basili_pt": [
+    0.75,
+    1.5
+   ],
+   "tokenlar_pt": {
+    "ince": 0.75,
+    "normal": 0.75,
+    "vurgu": 1.5,
+    "eksen": 0.75
+   },
+   "basili_uzunluk_mm": {
+    "0.750": 1759.75,
+    "1.500": 79.89
+   },
+   "ok_ucu": {
+    "basili_mm": [
+     [
+      0.773,
+      1.544
+     ],
+     [
+      0.773,
+      1.545
+     ],
+     [
+      0.773,
+      1.545
+     ]
+    ],
+    "token_mm": 0.77,
+    "bicim": [
+     "acik",
+     "acik",
+     "acik"
+    ],
+    "olculen": 3,
+    "beklenen": 3,
+    "beklenen_kaynagi": "manifest visio_print.arrow_head.count",
+    "adaylar": []
+   },
+   "sorunlar": [],
+   "uyumlu": true,
+   "token_kaynagi": "manifest",
+   "basim_modeli": {
+    "model": "motor/visio/olcum/basim_olcumu_96dpi.json and ok_ucu_olcumu_96dpi.json (agent MV, 30.10.2026, Visio 16.0, 96 DPI)",
+    "dpi": 120,
+    "beklenen_cizgi_pt": [
+     0.75,
+     1.5
+    ],
+    "beklenen_ok_ucu_mm": [
+     0.773
+    ],
+    "sorunlar": [],
+    "uyumlu": true
+   }
+  },
+  "glif": {
+   "tounicode_yok": [
+    "Open Sans",
+    "Open Sans SemiBold"
+   ],
+   "suphe": []
+  },
+  "egri": {
+   "sayi": 0,
+   "metinden_gecen": []
+  },
+  "uyarilar": []
+ }
+}
