@@ -1,0 +1,40 @@
+{
+ "betik": "experiments/q1_curutme_cka.py",
+ "betik_sha256": "c39225ed7d4e479e060af8a1f03adf775443a98786ec99a76c7b01f65a8c0d4d",
+ "veri_kumesi": "cifar10",
+ "model_seti": "elle (--model)",
+ "atlanan_eksik": [],
+ "uretildi_utc": "2026-11-08T14:40:16.556487+00:00",
+ "not": "c_tum = dogrusal CKA; log_gradyan_normu_ort yer tutucudur (0), gradyan normlu kismi Mantel raporlanmaz",
+ "n": 100,
+ "modeller": [
+  "Vscrp_duman",
+  "VIN21k_duman",
+  "R224SWSL_duman"
+ ],
+ "c_tum": [
+  [
+   1.0,
+   0.15283001464848073,
+   0.19065586303727086
+  ],
+  [
+   0.15283001464848073,
+   1.0,
+   0.42312192485199307
+  ],
+  [
+   0.19065586303727086,
+   0.42312192485199307,
+   1.0
+  ]
+ ],
+ "onbellek": "/mnt/d/adeb_sci_1_veri/_duman_curutme/onb_yeni",
+ "onbellegi_olmayan": [],
+ "log_gradyan_normu_ort": {
+  "Vscrp_duman": 0.0,
+  "VIN21k_duman": 0.0,
+  "R224SWSL_duman": 0.0
+ },
+ "tanim": "CKA_pgd_ij = 1/2 [CKA(f_i(X_i), f_j(X_i)) + CKA(f_i(X_j), f_j(X_j))], X_k k'nin PGD-10 ornekleri"
+}

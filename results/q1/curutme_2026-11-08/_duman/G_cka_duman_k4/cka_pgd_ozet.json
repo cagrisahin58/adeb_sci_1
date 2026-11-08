@@ -1,0 +1,51 @@
+{
+ "betik": "experiments/q1_curutme_cka.py",
+ "betik_sha256": "e134736fe7ec0410b7c9f945b1b85a1b2aaa82688d2480571bd687b2ce9660b2",
+ "veri_kumesi": "cifar10",
+ "model_seti": "elle (--model)",
+ "atlanan_eksik": [],
+ "uretildi_utc": "2026-11-08T14:43:19.224017+00:00",
+ "not": "c_tum = dogrusal CKA; log_gradyan_normu_ort yer tutucudur (0), gradyan normlu kismi Mantel raporlanmaz",
+ "n": 200,
+ "modeller": [
+  "Vscrp_duman",
+  "Debenedetti2022Light_XCiT-S12",
+  "Debenedetti2022Light_XCiT-M12",
+  "Debenedetti2022Light_XCiT-L12"
+ ],
+ "c_tum": [
+  [
+   1.0,
+   0.33993914757938054,
+   0.34699715921951635,
+   0.3124047363777265
+  ],
+  [
+   0.33993914757938054,
+   1.0,
+   0.9764570001786034,
+   0.954063793429256
+  ],
+  [
+   0.34699715921951635,
+   0.9764570001786034,
+   1.0,
+   0.9660689443682944
+  ],
+  [
+   0.3124047363777265,
+   0.954063793429256,
+   0.9660689443682944,
+   1.0
+  ]
+ ],
+ "onbellek": "/mnt/d/adeb_sci_1_veri/_duman_curutme/onb_A",
+ "onbellegi_olmayan": [],
+ "log_gradyan_normu_ort": {
+  "Vscrp_duman": 0.0,
+  "Debenedetti2022Light_XCiT-S12": 0.0,
+  "Debenedetti2022Light_XCiT-M12": 0.0,
+  "Debenedetti2022Light_XCiT-L12": 0.0
+ },
+ "tanim": "CKA_pgd_ij = 1/2 [CKA(f_i(X_i), f_j(X_i)) + CKA(f_i(X_j), f_j(X_j))], X_k k'nin PGD-10 ornekleri"
+}

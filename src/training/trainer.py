@@ -40,6 +40,10 @@ class Trainer:
         optimizer_name: str = "auto",
         lr_schedule: str = "cosine",
         max_train_batches: int = 0,
+        lr_warmup_epochs: int = 0,
+        stop_epoch: int = 0,
+        mixup_fn: Optional[Callable] = None,
+        train_criterion: Optional[nn.Module] = None,
     ):
         """
         Initialize the trainer.
@@ -72,6 +76,15 @@ class Trainer:
         self.save_every = save_every
         # Konsey B1: smoke/pilot icin epok basina en fazla N egitim batch'i (0 = sinirsiz)
         self.max_train_batches = max_train_batches
+        # Curutme B (08.11.2026): istege bagli temiz asama ekleri. Hepsi varsayilanda
+        # kapalidir ve kapaliyken egitim yolu eski koddakiyle ayni islemleri ayni sirayla
+        # yapar (regresyon: results/q1/curutme_2026-11-08/_duman/regresyon_*.txt).
+        #   stop_epoch: >0 ise egitim bu epokta durur, LR cizelgesi `epochs` uzerinden kalir
+        #   mixup_fn: timm.data.Mixup (yumusak hedef uretir); train_criterion yumusak hedefi alir
+        #   train_criterion: yalniz egitim kaybi (or. etiket yumusatmali CE); degerlendirme
+        #       kaybi her zaman self.criterion'dur
+        self.stop_epoch = stop_epoch
+        self.mixup_fn = mixup_fn
 
         # Device
         self.device = device or (
@@ -81,6 +94,7 @@ class Trainer:
 
         # Loss function
         self.criterion = criterion or nn.CrossEntropyLoss()
+        self.train_criterion = train_criterion  # None -> self.criterion (eski davranis)
 
         # Optimizer - use AdamW for ViT models, SGD for CNNs
         if optimizer is not None:
@@ -125,6 +139,19 @@ class Trainer:
         # Scheduler (varsayilan: cosine, T_max=epochs -- eski davranis)
         if scheduler is not None:
             self.scheduler = scheduler
+        elif lr_schedule == "cosine" and lr_warmup_epochs > 0:
+            # Curutme B: AdversarialTrainer'daki lr_warmup ile ayni kurulum
+            # (LinearLR 0.1 -> 1.0, ardindan cosine T_max = epochs - isinma)
+            warm = optim.lr_scheduler.LinearLR(
+                self.optimizer, start_factor=0.1, end_factor=1.0,
+                total_iters=lr_warmup_epochs,
+            )
+            cos = optim.lr_scheduler.CosineAnnealingLR(
+                self.optimizer, T_max=max(1, epochs - lr_warmup_epochs),
+            )
+            self.scheduler = optim.lr_scheduler.SequentialLR(
+                self.optimizer, [warm, cos], milestones=[lr_warmup_epochs],
+            )
         elif lr_schedule == "cosine":
             self.scheduler = optim.lr_scheduler.CosineAnnealingLR(
                 self.optimizer,
@@ -173,8 +200,20 @@ class Trainer:
 
             self.optimizer.zero_grad()
 
-            outputs = self.model(inputs)
-            loss = self.criterion(outputs, labels)
+            if self.mixup_fn is not None and inputs.size(0) % 2 == 0:
+                # Curutme B: karisik girdi ve yumusak hedef; dogruluk ozgun etikete gore
+                # (egitim dogrulugu bu kipte yalniz izleme amaclidir)
+                inputs, targets = self.mixup_fn(inputs, labels)
+                outputs = self.model(inputs)
+                loss = self.train_criterion(outputs, targets)
+            elif self.train_criterion is not None and self.mixup_fn is None:
+                # (mixup acikken tek sayili batch yumusak hedef alamaz; o batch asagidaki
+                # sert etiketli self.criterion'a duser. 48000/128 bolmesinde tek batch olusmaz.)
+                outputs = self.model(inputs)
+                loss = self.train_criterion(outputs, labels)
+            else:
+                outputs = self.model(inputs)
+                loss = self.criterion(outputs, labels)
 
             loss.backward()
             self.optimizer.step()
@@ -265,7 +304,9 @@ class Trainer:
             self.current_epoch = start_epoch - 1
 
         test_metrics = {"test_acc": 0.0}
-        for epoch in range(start_epoch, self.epochs):
+        end_epoch = (min(self.epochs, self.stop_epoch) if self.stop_epoch > 0
+                     else self.epochs)
+        for epoch in range(start_epoch, end_epoch):
             self.current_epoch = epoch
 
             # Train
@@ -337,10 +378,12 @@ class Trainer:
                 tmp_path.replace(self.checkpoint_dir / "last.pth")
 
         # Tamamlanma isareti: orkestrasyon scripti yarim egitimi tam sanmasin
-        (self.checkpoint_dir / "TRAINING_COMPLETE").write_text(
-            f"epochs_run={self.current_epoch + 1}\n"
-            f"best_acc={self.best_acc:.4f}\n"
-        )
+        marker = (f"epochs_run={self.current_epoch + 1}\n"
+                  f"best_acc={self.best_acc:.4f}\n")
+        if self.stop_epoch > 0:
+            # Curutme B: eski marker bicimi korunur, yalniz stop_epoch verildiginde eklenir
+            marker += f"stop_epoch={self.stop_epoch}\n"
+        (self.checkpoint_dir / "TRAINING_COMPLETE").write_text(marker)
 
         elapsed_time = time.time() - start_time
         if self.verbose:

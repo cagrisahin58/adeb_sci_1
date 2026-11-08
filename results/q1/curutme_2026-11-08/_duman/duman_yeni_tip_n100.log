@@ -1,0 +1,23 @@
+model seti None: 0 yerel + 0 RobustBench; atlanan []
+custom temiz dogruluk: Vscrp_duman=36.00, VIN21k_duman=80.00, R224SWSL_duman=76.00, WRN_28_10=90.00
+  Vscrp_duman: onbellege yazildi /mnt/d/adeb_sci_1_veri/_duman_curutme/onb_yeni/Vscrp_duman__pgd_linf_s10_n100_seed42_cifar10.npy (100, 3, 32, 32)
+  Vscrp_duman->Vscrp_duman: raw=91.00 cond=75.00
+  Vscrp_duman->VIN21k_duman: raw=27.00 cond=11.25
+  Vscrp_duman->R224SWSL_duman: raw=33.00 cond=15.79
+  Vscrp_duman->WRN_28_10: raw=12.00 cond=2.22
+  VIN21k_duman: onbellege yazildi /mnt/d/adeb_sci_1_veri/_duman_curutme/onb_yeni/VIN21k_duman__pgd_linf_s10_n100_seed42_cifar10.npy (100, 3, 32, 32)
+  VIN21k_duman->Vscrp_duman: raw=65.00 cond=2.78
+  VIN21k_duman->VIN21k_duman: raw=100.00 cond=100.00
+  VIN21k_duman->R224SWSL_duman: raw=46.00 cond=31.58
+  VIN21k_duman->WRN_28_10: raw=10.00 cond=1.11
+  R224SWSL_duman: onbellege yazildi /mnt/d/adeb_sci_1_veri/_duman_curutme/onb_yeni/R224SWSL_duman__pgd_linf_s10_n100_seed42_cifar10.npy (100, 3, 32, 32)
+  R224SWSL_duman->Vscrp_duman: raw=66.00 cond=5.56
+  R224SWSL_duman->VIN21k_duman: raw=36.00 cond=21.25
+  R224SWSL_duman->R224SWSL_duman: raw=100.00 cond=100.00
+  R224SWSL_duman->WRN_28_10: raw=8.00 cond=0.00
+  WRN_28_10: onbellege yazildi /mnt/d/adeb_sci_1_veri/_duman_curutme/onb_yeni/WRN_28_10__pgd_linf_s10_n100_seed42_cifar10.npy (100, 3, 32, 32)
+  WRN_28_10->Vscrp_duman: raw=66.00 cond=8.33
+  WRN_28_10->VIN21k_duman: raw=41.00 cond=26.25
+  WRN_28_10->R224SWSL_duman: raw=43.00 cond=27.63
+  WRN_28_10->WRN_28_10: raw=37.00 cond=30.00
+custom kaydedildi: results/q1/curutme_2026-11-08/_duman/yeni_tip_n100

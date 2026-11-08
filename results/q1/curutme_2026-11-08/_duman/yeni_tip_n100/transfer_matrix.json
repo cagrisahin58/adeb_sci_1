@@ -1,0 +1,140 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 100,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "Vscrp_duman",
+    "VIN21k_duman",
+    "R224SWSL_duman",
+    "WRN_28_10"
+  ],
+  "results": {
+    "Vscrp_duman->Vscrp_duman": {
+      "raw_fooling": 91.0,
+      "cond_fooling": 75.0,
+      "n_cond": 36,
+      "target_clean_acc": 36.0
+    },
+    "Vscrp_duman->VIN21k_duman": {
+      "raw_fooling": 27.0,
+      "cond_fooling": 11.25,
+      "n_cond": 80,
+      "target_clean_acc": 80.0
+    },
+    "Vscrp_duman->R224SWSL_duman": {
+      "raw_fooling": 33.0,
+      "cond_fooling": 15.79,
+      "n_cond": 76,
+      "target_clean_acc": 76.0
+    },
+    "Vscrp_duman->WRN_28_10": {
+      "raw_fooling": 12.0,
+      "cond_fooling": 2.22,
+      "n_cond": 90,
+      "target_clean_acc": 90.0
+    },
+    "VIN21k_duman->Vscrp_duman": {
+      "raw_fooling": 65.0,
+      "cond_fooling": 2.78,
+      "n_cond": 36,
+      "target_clean_acc": 36.0
+    },
+    "VIN21k_duman->VIN21k_duman": {
+      "raw_fooling": 100.0,
+      "cond_fooling": 100.0,
+      "n_cond": 80,
+      "target_clean_acc": 80.0
+    },
+    "VIN21k_duman->R224SWSL_duman": {
+      "raw_fooling": 46.0,
+      "cond_fooling": 31.58,
+      "n_cond": 76,
+      "target_clean_acc": 76.0
+    },
+    "VIN21k_duman->WRN_28_10": {
+      "raw_fooling": 10.0,
+      "cond_fooling": 1.11,
+      "n_cond": 90,
+      "target_clean_acc": 90.0
+    },
+    "R224SWSL_duman->Vscrp_duman": {
+      "raw_fooling": 66.0,
+      "cond_fooling": 5.56,
+      "n_cond": 36,
+      "target_clean_acc": 36.0
+    },
+    "R224SWSL_duman->VIN21k_duman": {
+      "raw_fooling": 36.0,
+      "cond_fooling": 21.25,
+      "n_cond": 80,
+      "target_clean_acc": 80.0
+    },
+    "R224SWSL_duman->R224SWSL_duman": {
+      "raw_fooling": 100.0,
+      "cond_fooling": 100.0,
+      "n_cond": 76,
+      "target_clean_acc": 76.0
+    },
+    "R224SWSL_duman->WRN_28_10": {
+      "raw_fooling": 8.0,
+      "cond_fooling": 0.0,
+      "n_cond": 90,
+      "target_clean_acc": 90.0
+    },
+    "WRN_28_10->Vscrp_duman": {
+      "raw_fooling": 66.0,
+      "cond_fooling": 8.33,
+      "n_cond": 36,
+      "target_clean_acc": 36.0
+    },
+    "WRN_28_10->VIN21k_duman": {
+      "raw_fooling": 41.0,
+      "cond_fooling": 26.25,
+      "n_cond": 80,
+      "target_clean_acc": 80.0
+    },
+    "WRN_28_10->R224SWSL_duman": {
+      "raw_fooling": 43.0,
+      "cond_fooling": 27.63,
+      "n_cond": 76,
+      "target_clean_acc": 76.0
+    },
+    "WRN_28_10->WRN_28_10": {
+      "raw_fooling": 37.0,
+      "cond_fooling": 30.0,
+      "n_cond": 90,
+      "target_clean_acc": 90.0
+    }
+  },
+  "attack": "pgd",
+  "sources": [
+    "Vscrp_duman",
+    "VIN21k_duman",
+    "R224SWSL_duman",
+    "WRN_28_10"
+  ],
+  "cache_adv": "/mnt/d/adeb_sci_1_veri/_duman_curutme/onb_yeni",
+  "per_source_seed": true,
+  "model_specs": {
+    "Vscrp_duman": [
+      "vit_tiny",
+      "/mnt/d/adeb_sci_1_veri/_duman_curutme/V_scrp_s2401/vit_tiny/clean/best.pth"
+    ],
+    "VIN21k_duman": [
+      "vit_tiny_in21k",
+      "/mnt/d/adeb_sci_1_veri/_duman_curutme/C1/vit_tiny_in21k/clean/best.pth"
+    ],
+    "R224SWSL_duman": [
+      "resnet18_224_swsl",
+      "/mnt/d/adeb_sci_1_veri/_duman_curutme/C2/resnet18_224_swsl/clean/best.pth"
+    ],
+    "WRN_28_10": [
+      "robustbench",
+      "default"
+    ]
+  }
+}

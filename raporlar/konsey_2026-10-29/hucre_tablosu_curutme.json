@@ -1,0 +1,305 @@
+{
+ "surum": "2026-11-08",
+ "aciklama": "Curutme ek on kaydi (ON_KAYIT_EK_CURUTME_2026-11-08.md) icin takma ad -> hucre tablosu. Dondurulmus hucre_tablosu.json'un 20 modeli ayni takma ad, hucre, tohum ve panel alanlariyla aynen kopyalanmistir; uc alan eklenmistir: ayna_panel (A blogu paneli: uc XCiT), yeni iki XCiT ve alti yeni egitilmis model. Yalniz experiments/q1_curutme_cozumleme.py tarafindan okunur; dondurulmus q1_konsey_ayrisim.py bu tabloyla cagrilmaz. Sonuclar gorulmeden dondurulur.",
+ "kaynak_tablo": "raporlar/konsey_2026-10-29/hucre_tablosu.json",
+ "hucreler": {
+  "C1-R32": "C1 ResNet-18 AT, 32x32 girdi (mevcut, kopru karsitligi S1 ve B2)",
+  "V-scr": "C1 ViT-Tiny AT, 32->224, rastgele baslatma (mevcut)",
+  "V-IN": "ViT-Tiny, deit_tiny_patch16_224.fb_in1k baslatma, model ici ImageNet normalizasyonu (yeni)",
+  "R224-scr": "timm resnet18, 32->224, rastgele baslatma, V-scr ile ayni girdi hatti (fable K3) (yeni)",
+  "R224-IN": "timm resnet18, resnet18.a1_in1k baslatma, model ici ImageNet normalizasyonu (yeni)",
+  "panel": "birincil panel P: ImageNet on egitimsiz gurbuz CNN (RobustBench CIFAR-10 Linf)",
+  "ikincil_panel": "ikincil panel: Debenedetti2022Light_XCiT-S12",
+  "V-scr+": "ViT-Tiny, sifirdan, guclu temiz tarif (TrivialAugmentWide + RandomErasing 0.25 + mixup 0.8 / cutmix 1.0 + etiket yumusatma 0.1, 10 epok isinma), B3 AT tarifi (curutme B)",
+  "V-IN21k": "ViT-Tiny, vit_tiny_patch16_224.augreg_in21k_ft_in1k baslatma, model ici AugReg normalizasyonu (0.5/0.5), V-IN tarifi (curutme C1)",
+  "R224-SWSL": "timm resnet18, resnet18.fb_swsl_ig1b_ft_in1k baslatma, model ici ImageNet normalizasyonu, R224-IN tarifi (curutme C2)",
+  "ayna_panel": "A blogu ayna paneli: Debenedetti2022Light XCiT-S12, XCiT-M12, XCiT-L12 (RobustBench CIFAR-10 Linf, ImageNet cekismeli on egitimli karma donusturucu)"
+ },
+ "modeller": {
+  "ResNet18_AT_s1001": {
+   "hucre": "C1-R32",
+   "tohum": 1001,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/resnet18_s1001/resnet18/adv/adversarial_training/best.pth",
+   "ayna_panel": false
+  },
+  "ResNet18_AT_s1002": {
+   "hucre": "C1-R32",
+   "tohum": 1002,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/resnet18_s1002/resnet18/adv/adversarial_training/best.pth",
+   "ayna_panel": false
+  },
+  "ResNet18_AT_s1003": {
+   "hucre": "C1-R32",
+   "tohum": 1003,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/resnet18_s1003/resnet18/adv/adversarial_training/best.pth",
+   "ayna_panel": false
+  },
+  "ViT_Tiny_AT_s2001": {
+   "hucre": "V-scr",
+   "tohum": 2001,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/vit_tiny_s2001/vit_tiny/adv/adversarial_training/best.pth",
+   "ayna_panel": false
+  },
+  "ViT_Tiny_AT_s2002": {
+   "hucre": "V-scr",
+   "tohum": 2002,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/vit_tiny_s2002/vit_tiny/adv/adversarial_training/best.pth",
+   "ayna_panel": false
+  },
+  "ViT_Tiny_AT_s2003": {
+   "hucre": "V-scr",
+   "tohum": 2003,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/c1/vit_tiny_s2003/vit_tiny/adv/adversarial_training/best.pth",
+   "ayna_panel": false
+  },
+  "V_IN_s2101": {
+   "hucre": "V-IN",
+   "tohum": 2101,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/V_IN_s2101/",
+   "ayna_panel": false
+  },
+  "V_IN_s2102": {
+   "hucre": "V-IN",
+   "tohum": 2102,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/V_IN_s2102/",
+   "ayna_panel": false
+  },
+  "R224_scr_s1201": {
+   "hucre": "R224-scr",
+   "tohum": 1201,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/R224_scr_s1201/",
+   "ayna_panel": false
+  },
+  "R224_scr_s1202": {
+   "hucre": "R224-scr",
+   "tohum": 1202,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/R224_scr_s1202/",
+   "ayna_panel": false
+  },
+  "R224_IN_s1301": {
+   "hucre": "R224-IN",
+   "tohum": 1301,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/R224_IN_s1301/",
+   "ayna_panel": false
+  },
+  "R224_IN_s1302": {
+   "hucre": "R224-IN",
+   "tohum": 1302,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "models/q1/konsey/R224_IN_s1302/",
+   "ayna_panel": false
+  },
+  "Wong2020Fast": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf",
+   "ayna_panel": false
+  },
+  "Engstrom2019Robustness": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf",
+   "ayna_panel": false
+  },
+  "Carmon2019Unlabeled": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf",
+   "ayna_panel": false
+  },
+  "Gowal2020Uncovering_28_10_extra": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf",
+   "ayna_panel": false
+  },
+  "Sehwag2021Proxy_R18": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf (diskte: models/robustbench_zoo/cifar10/Linf/)",
+   "ayna_panel": false
+  },
+  "Addepalli2022Efficient_RN18": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf (diskte: models/robustbench_zoo/cifar10/Linf/)",
+   "ayna_panel": false
+  },
+  "Rade2021Helper_R18_ddpm": {
+   "hucre": "panel",
+   "tohum": null,
+   "aile": "CNN",
+   "birincil_panel": true,
+   "ikincil_panel": false,
+   "kontrol_noktasi": "RobustBench cifar10 Linf (diskte: models/robustbench_zoo/cifar10/Linf/)",
+   "ayna_panel": false
+  },
+  "Debenedetti2022Light_XCiT-S12": {
+   "hucre": "ikincil_panel",
+   "tohum": null,
+   "aile": "XCiT",
+   "birincil_panel": false,
+   "ikincil_panel": true,
+   "kontrol_noktasi": "RobustBench cifar10 Linf",
+   "ayna_panel": true
+  },
+  "Debenedetti2022Light_XCiT-M12": {
+   "hucre": "ayna_panel",
+   "tohum": null,
+   "aile": "XCiT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "ayna_panel": true,
+   "kontrol_noktasi": "RobustBench cifar10 Linf (TORCH_HOME onbellegi, D diski)"
+  },
+  "Debenedetti2022Light_XCiT-L12": {
+   "hucre": "ayna_panel",
+   "tohum": null,
+   "aile": "XCiT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "ayna_panel": true,
+   "kontrol_noktasi": "RobustBench cifar10 Linf (TORCH_HOME onbellegi, D diski)"
+  },
+  "V_scrp_s2401": {
+   "hucre": "V-scr+",
+   "tohum": 2401,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "ayna_panel": false,
+   "kontrol_noktasi": "models/q1/curutme/V_scrp_s2401/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "V_scrp_s2402": {
+   "hucre": "V-scr+",
+   "tohum": 2402,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "ayna_panel": false,
+   "kontrol_noktasi": "models/q1/curutme/V_scrp_s2402/vit_tiny/adv/adversarial_training/best.pth"
+  },
+  "V_IN21k_s2501": {
+   "hucre": "V-IN21k",
+   "tohum": 2501,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "ayna_panel": false,
+   "kontrol_noktasi": "models/q1/curutme/V_IN21k_s2501/vit_tiny_in21k/adv/adversarial_training/best.pth"
+  },
+  "V_IN21k_s2502": {
+   "hucre": "V-IN21k",
+   "tohum": 2502,
+   "aile": "ViT",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "ayna_panel": false,
+   "kontrol_noktasi": "models/q1/curutme/V_IN21k_s2502/vit_tiny_in21k/adv/adversarial_training/best.pth"
+  },
+  "R224_SWSL_s1501": {
+   "hucre": "R224-SWSL",
+   "tohum": 1501,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "ayna_panel": false,
+   "kontrol_noktasi": "models/q1/curutme/R224_SWSL_s1501/resnet18_224_swsl/adv/adversarial_training/best.pth"
+  },
+  "R224_SWSL_s1502": {
+   "hucre": "R224-SWSL",
+   "tohum": 1502,
+   "aile": "CNN",
+   "birincil_panel": false,
+   "ikincil_panel": false,
+   "ayna_panel": false,
+   "kontrol_noktasi": "models/q1/curutme/R224_SWSL_s1502/resnet18_224_swsl/adv/adversarial_training/best.pth"
+  }
+ },
+ "b2_tohum_ciftleri": [
+  [
+   "ResNet18_AT_s1001",
+   "ViT_Tiny_AT_s2001"
+  ],
+  [
+   "ResNet18_AT_s1002",
+   "ViT_Tiny_AT_s2002"
+  ],
+  [
+   "ResNet18_AT_s1003",
+   "ViT_Tiny_AT_s2003"
+  ]
+ ],
+ "s4_ciftleri": [
+  [
+   "R224_scr_s1201",
+   "ViT_Tiny_AT_s2001"
+  ],
+  [
+   "R224_scr_s1202",
+   "ViT_Tiny_AT_s2002"
+  ],
+  [
+   "R224_IN_s1301",
+   "V_IN_s2101"
+  ],
+  [
+   "R224_IN_s1302",
+   "V_IN_s2102"
+  ]
+ ],
+ "ayna_notu": "A blogunda XCiT-S12'nin hucre etiketi 'ikincil_panel' olarak kalir (dondurulmus tabloyla ayni); ayna paneli ayna_panel alaniyla secilir. Sarmalayici A blogunda panel = ayna_panel uyeleri, diger bloklarda panel = birincil_panel uyeleridir."
+}

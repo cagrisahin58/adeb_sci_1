@@ -37,18 +37,40 @@ def train():
               default="auto",
               help="auto = eski davranis (sinif adinda vit -> AdamW, degilse SGD); "
                    "adamw/sgd = sinif adina bakmadan zorla (konsey B3)")
-@click.option("--init-weights", type=click.Choice(["none", "deit_tiny_in1k", "resnet18_a1_in1k"]),
+@click.option("--init-weights", type=click.Choice(["none", "deit_tiny_in1k", "resnet18_a1_in1k",
+                                                  "augreg_in21k_ft_in1k", "fb_swsl_ig1b_ft_in1k"]),
               default="none",
-              help="Govdeyi ImageNet agirliklariyla baslat (bas haric); yalniz uyumlu "
-                   "IN tipleriyle: deit_tiny_in1k -> vit_tiny_in1k, "
-                   "resnet18_a1_in1k -> resnet18_224_in1k")
+              help="Govdeyi on egitimli agirliklarla baslat (bas haric); yalniz uyumlu "
+                   "tiplerle: deit_tiny_in1k -> vit_tiny_in1k, "
+                   "resnet18_a1_in1k -> resnet18_224_in1k, "
+                   "augreg_in21k_ft_in1k -> vit_tiny_in21k, "
+                   "fb_swsl_ig1b_ft_in1k -> resnet18_224_swsl (curutme C1/C2)")
 @click.option("--lr-schedule", type=click.Choice(["cosine", "constant"]), default="cosine",
               help="Temiz asama LR cizelgesi (varsayilan cosine, T_max=epochs: eski davranis)")
 @click.option("--max-train-batches", type=int, default=0,
               help="Epok basina en fazla N egitim batch'i (yalniz smoke); 0 = sinirsiz")
+# --- Curutme B (08.11.2026): temiz asamaya ozgu artirma ve kayip bayraklari. Hicbiri
+# verilmezse egitim eski kodla ayni islemleri ayni sirayla yapar (regresyon kaniti:
+# results/q1/curutme_2026-11-08/_duman/regresyon_*.txt). ---
+@click.option("--trivial-augment", is_flag=True, default=False,
+              help="Egitim artirmasina torchvision TrivialAugmentWide ekle (crop + flip'ten sonra)")
+@click.option("--random-erasing", type=float, default=0.0,
+              help="ToTensor'dan sonra RandomErasing olasiligi (deger 0, [0,1] piksel uzayi); 0 = kapali")
+@click.option("--mixup", type=float, default=0.0,
+              help="timm Mixup alfa (0 = kapali); --cutmix ile birlikte batch kipinde, switch_prob 0.5")
+@click.option("--cutmix", type=float, default=0.0, help="timm CutMix alfa (0 = kapali)")
+@click.option("--label-smoothing", type=float, default=0.0,
+              help="Egitim kaybinda etiket yumusatma (mixup aciksa Mixup'a verilir); 0 = kapali")
+@click.option("--lr-warmup", type=int, default=0,
+              help="Ilk N epokta lineer LR isinmasi (0.1 -> 1.0), sonra cosine T_max = epochs - N; "
+                   "yalniz --lr-schedule cosine ile; 0 = kapali")
+@click.option("--stop-epoch", type=int, default=0,
+              help="Temiz egitimi bu epokta durdur, LR cizelgesi -e uzerinden kalsin "
+                   "(pilot ve duman); 0 = kapali")
 def clean(model, dataset, epochs, lr, batch_size, data_dir, output_dir, seed, device,
           val_indices, save_every, resume, timm_pretrained, optimizer_name, init_weights,
-          lr_schedule, max_train_batches):
+          lr_schedule, max_train_batches, trivial_augment, random_erasing, mixup, cutmix,
+          label_smoothing, lr_warmup, stop_epoch):
     """Train a model with clean data."""
     from src.utils.seed import set_seed
     from src.utils.device import get_device
@@ -79,7 +101,7 @@ def clean(model, dataset, epochs, lr, batch_size, data_dir, output_dir, seed, de
                                  "unexpected_nonhead", "shape_mismatch", "head_keys_skipped",
                                  "pretrained_cfg_mean", "pretrained_cfg_std",
                                  "norm_matches_cfg")}))
-    elif model in ("vit_tiny_in1k", "resnet18_224_in1k"):
+    elif model in ("vit_tiny_in1k", "resnet18_224_in1k", "vit_tiny_in21k", "resnet18_224_swsl"):
         click.echo(f"UYARI: {model} IN normalizasyonlu tiptir ama --init-weights none "
                    f"(rastgele baslatma); K3 demeti bozulur, bilerek mi?")
     click.echo(f"Optimizer: {optimizer_name}, LR schedule: {lr_schedule}")
@@ -105,6 +127,44 @@ def clean(model, dataset, epochs, lr, batch_size, data_dir, output_dir, seed, de
             batch_size=batch_size,
         )
 
+    # Curutme B: istege bagli temiz asama artirmasi ve kaybi (bayrak yoksa hicbir sey yapilmaz)
+    extra_trainer_kwargs = {}
+    if trivial_augment or random_erasing > 0:
+        from torchvision import transforms as _T
+        _aug = [_T.RandomCrop(DATASETS[dataset]["img_size"], padding=4)]
+        if DATASETS[dataset]["flip"]:
+            _aug.append(_T.RandomHorizontalFlip())
+        if trivial_augment:
+            _aug.append(_T.TrivialAugmentWide())
+        _aug.append(_T.ToTensor())
+        if random_erasing > 0:
+            _aug.append(_T.RandomErasing(p=random_erasing, value=0))
+        _ds = train_loader.dataset
+        _base = _ds.dataset if hasattr(_ds, "dataset") else _ds  # Subset -> taban veri kumesi
+        _base.transform = _T.Compose(_aug)
+        click.echo(f"TEMIZ_ARTIRMA egitim donusumu: {_base.transform}")
+    if mixup > 0 or cutmix > 0:
+        from timm.data import Mixup
+        from timm.loss import SoftTargetCrossEntropy
+        extra_trainer_kwargs["mixup_fn"] = Mixup(
+            mixup_alpha=mixup, cutmix_alpha=cutmix, prob=1.0, switch_prob=0.5, mode="batch",
+            label_smoothing=label_smoothing, num_classes=num_classes)
+        extra_trainer_kwargs["train_criterion"] = SoftTargetCrossEntropy()
+        click.echo(f"TEMIZ_KARISIM mixup={mixup} cutmix={cutmix} prob=1.0 switch_prob=0.5 "
+                   f"mode=batch label_smoothing={label_smoothing} kayip=SoftTargetCrossEntropy")
+    elif label_smoothing > 0:
+        import torch.nn as _nn
+        extra_trainer_kwargs["train_criterion"] = _nn.CrossEntropyLoss(label_smoothing=label_smoothing)
+        click.echo(f"TEMIZ_KAYIP CrossEntropyLoss(label_smoothing={label_smoothing}) (yalniz egitim)")
+    if lr_warmup > 0:
+        if lr_schedule != "cosine":
+            raise click.UsageError("--lr-warmup yalniz --lr-schedule cosine ile kullanilir")
+        extra_trainer_kwargs["lr_warmup_epochs"] = lr_warmup
+        click.echo(f"TEMIZ_ISINMA ilk {lr_warmup} epok LinearLR 0.1->1.0, sonra cosine T_max={epochs - lr_warmup}")
+    if stop_epoch > 0:
+        extra_trainer_kwargs["stop_epoch"] = stop_epoch
+        click.echo(f"TEMIZ_DURMA stop_epoch={stop_epoch} (LR cizelgesi {epochs} epok uzerinden)")
+
     # Create trainer
     checkpoint_dir = Path(output_dir) / model / "clean"
     trainer = Trainer(
@@ -119,6 +179,7 @@ def clean(model, dataset, epochs, lr, batch_size, data_dir, output_dir, seed, de
         optimizer_name=optimizer_name,
         lr_schedule=lr_schedule,
         max_train_batches=max_train_batches,
+        **extra_trainer_kwargs,
     )
     if resume:
         click.echo("Resume mode: last.pth varsa kaldigi epoch'tan devam edilecek")

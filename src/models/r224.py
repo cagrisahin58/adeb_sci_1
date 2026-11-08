@@ -25,6 +25,17 @@ Kayitli tipler:
                      `--init-weights deit_tiny_in1k` ile). Sinif adinda "vit"
                      korunur (Trainer'in otomatik iyileyici secimi ve TGR
                      kancalari self.model.blocks'a bakar).
+  vit_tiny_in21k     V-IN21k : `vit_tiny_in1k` ile ayni mimari ve buyutme; model
+                     ici normalizasyon AugReg pretrained_cfg'den
+                     (vit_tiny_patch16_224.augreg_in21k_ft_in1k; ortalama ve
+                     SD 0.5/0.5, cfg'den okunur). Agirliklar
+                     `--init-weights augreg_in21k_ft_in1k` ile (curutme C1,
+                     08.11.2026).
+  resnet18_224_swsl  R224-SWSL: `resnet18_224_in1k` ile ayni mimari; model ici
+                     normalizasyon resnet18.fb_swsl_ig1b_ft_in1k
+                     pretrained_cfg'den. Agirliklar
+                     `--init-weights fb_swsl_ig1b_ft_in1k` ile (curutme C2;
+                     CC-BY-NC-4.0, agirlik dagitilmaz).
 """
 import hashlib
 from pathlib import Path
@@ -47,11 +58,16 @@ from .vit import CIFAR10ViTTiny
 INIT_WEIGHTS = {
     "deit_tiny_in1k": ("deit_tiny_patch16_224.fb_in1k", ("vit_tiny_in1k",)),
     "resnet18_a1_in1k": ("resnet18.a1_in1k", ("resnet18_224_in1k",)),
+    # curutme C1/C2 (08.11.2026)
+    "augreg_in21k_ft_in1k": ("vit_tiny_patch16_224.augreg_in21k_ft_in1k", ("vit_tiny_in21k",)),
+    "fb_swsl_ig1b_ft_in1k": ("resnet18.fb_swsl_ig1b_ft_in1k", ("resnet18_224_swsl",)),
 }
 # Normalizasyon degerlerinin okundugu pretrained_cfg (sarmalayici tipi -> timm adi)
 NORM_SOURCE = {
     "vit_tiny_in1k": "deit_tiny_patch16_224.fb_in1k",
     "resnet18_224_in1k": "resnet18.a1_in1k",
+    "vit_tiny_in21k": "vit_tiny_patch16_224.augreg_in21k_ft_in1k",
+    "resnet18_224_swsl": "resnet18.fb_swsl_ig1b_ft_in1k",
 }
 # Yerel agirlik kopyasi (varsa ag erisimi gerekmez): models/timm_agirliklar/<ad>/model.safetensors
 LOCAL_WEIGHT_DIR = Path("models/timm_agirliklar")
@@ -98,6 +114,18 @@ class CIFAR10ViTTinyIN1k(CIFAR10ViTTiny):
         # self.resize, CIFAR10ViTTiny.forward/get_features ve
         # TimmViTAttentionMixin.get_attention_maps tarafindan kullanilir;
         # normalizasyon boylece her yolda uygulanir.
+        self.resize = ResizeNormalize(224, mean, std)
+
+
+@register_model("vit_tiny_in21k")
+class CIFAR10ViTTinyIN21k(CIFAR10ViTTiny):
+    """V-IN21k (curutme C1): `vit_tiny_in1k` ile ayni mimari ve buyutme;
+    normalizasyon AugReg pretrained_cfg'den (0.5/0.5). Agirliklar yapicida
+    yuklenmez; temiz asamada `--init-weights augreg_in21k_ft_in1k` ile."""
+
+    def __init__(self, num_classes: int = 10, pretrained: bool = False):
+        super().__init__(num_classes=num_classes, pretrained=False)
+        mean, std = imagenet_norm_from_cfg(NORM_SOURCE["vit_tiny_in21k"])
         self.resize = ResizeNormalize(224, mean, std)
 
 
@@ -148,6 +176,13 @@ class CIFAR10ResNet18R224IN1k(_ResNet18R224Base):
     _norm_key = "resnet18_224_in1k"
 
 
+@register_model("resnet18_224_swsl")
+class CIFAR10ResNet18R224SWSL(_ResNet18R224Base):
+    """R224-SWSL (curutme C2): ayni mimari + model ici
+    `resnet18.fb_swsl_ig1b_ft_in1k` normalizasyonu."""
+    _norm_key = "resnet18_224_swsl"
+
+
 def _sha256(path: Path) -> str:
     h = hashlib.sha256()
     with open(path, "rb") as f:
@@ -177,7 +212,10 @@ def load_imagenet_init(model: nn.Module, init_key: str, model_type: str,
     local = LOCAL_WEIGHT_DIR / timm_name / "model.safetensors"
     kwargs = {}
     if local.exists():
-        kwargs["pretrained_cfg_overlay"] = dict(file=str(local))
+        # custom_load=False: AugReg (vit_*.augreg_*) cfg'si ozgun Google npz yukleyicisini
+        # (custom_load=True) secer; yerel dosya timm/HF safetensors bicimindedir (curutme C1
+        # duman kosusunda np.load hatasi). deit_tiny ve resnet18.a1 cfg'lerinde zaten False.
+        kwargs["pretrained_cfg_overlay"] = dict(file=str(local), custom_load=False)
     src = timm.create_model(timm_name, pretrained=True, **kwargs)
     head_prefix = src.pretrained_cfg.get("classifier", "head")
     src_sd = src.state_dict()

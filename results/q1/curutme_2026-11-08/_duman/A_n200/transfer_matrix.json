@@ -1,0 +1,140 @@
+{
+  "pair": "custom",
+  "seed": 42,
+  "n_samples": 200,
+  "eps": 0.03137254901960784,
+  "alpha": 0.00784313725490196,
+  "steps": 10,
+  "norm": "linf",
+  "models": [
+    "Vscrp_duman",
+    "Debenedetti2022Light_XCiT-S12",
+    "Debenedetti2022Light_XCiT-M12",
+    "Debenedetti2022Light_XCiT-L12"
+  ],
+  "results": {
+    "Vscrp_duman->Vscrp_duman": {
+      "raw_fooling": 93.0,
+      "cond_fooling": 77.05,
+      "n_cond": 61,
+      "target_clean_acc": 30.5
+    },
+    "Vscrp_duman->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 10.5,
+      "cond_fooling": 2.73,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Vscrp_duman->Debenedetti2022Light_XCiT-M12": {
+      "raw_fooling": 7.0,
+      "cond_fooling": 0.53,
+      "n_cond": 187,
+      "target_clean_acc": 93.5
+    },
+    "Vscrp_duman->Debenedetti2022Light_XCiT-L12": {
+      "raw_fooling": 8.5,
+      "cond_fooling": 2.15,
+      "n_cond": 186,
+      "target_clean_acc": 93.0
+    },
+    "Debenedetti2022Light_XCiT-S12->Vscrp_duman": {
+      "raw_fooling": 71.0,
+      "cond_fooling": 9.84,
+      "n_cond": 61,
+      "target_clean_acc": 30.5
+    },
+    "Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 42.0,
+      "cond_fooling": 36.61,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-M12": {
+      "raw_fooling": 32.5,
+      "cond_fooling": 27.81,
+      "n_cond": 187,
+      "target_clean_acc": 93.5
+    },
+    "Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-L12": {
+      "raw_fooling": 28.5,
+      "cond_fooling": 23.12,
+      "n_cond": 186,
+      "target_clean_acc": 93.0
+    },
+    "Debenedetti2022Light_XCiT-M12->Vscrp_duman": {
+      "raw_fooling": 71.5,
+      "cond_fooling": 8.2,
+      "n_cond": 61,
+      "target_clean_acc": 30.5
+    },
+    "Debenedetti2022Light_XCiT-M12->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 32.5,
+      "cond_fooling": 26.23,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Debenedetti2022Light_XCiT-M12->Debenedetti2022Light_XCiT-M12": {
+      "raw_fooling": 39.5,
+      "cond_fooling": 35.29,
+      "n_cond": 187,
+      "target_clean_acc": 93.5
+    },
+    "Debenedetti2022Light_XCiT-M12->Debenedetti2022Light_XCiT-L12": {
+      "raw_fooling": 31.0,
+      "cond_fooling": 25.81,
+      "n_cond": 186,
+      "target_clean_acc": 93.0
+    },
+    "Debenedetti2022Light_XCiT-L12->Vscrp_duman": {
+      "raw_fooling": 72.5,
+      "cond_fooling": 11.48,
+      "n_cond": 61,
+      "target_clean_acc": 30.5
+    },
+    "Debenedetti2022Light_XCiT-L12->Debenedetti2022Light_XCiT-S12": {
+      "raw_fooling": 30.5,
+      "cond_fooling": 24.04,
+      "n_cond": 183,
+      "target_clean_acc": 91.5
+    },
+    "Debenedetti2022Light_XCiT-L12->Debenedetti2022Light_XCiT-M12": {
+      "raw_fooling": 30.5,
+      "cond_fooling": 25.67,
+      "n_cond": 187,
+      "target_clean_acc": 93.5
+    },
+    "Debenedetti2022Light_XCiT-L12->Debenedetti2022Light_XCiT-L12": {
+      "raw_fooling": 38.0,
+      "cond_fooling": 33.33,
+      "n_cond": 186,
+      "target_clean_acc": 93.0
+    }
+  },
+  "attack": "pgd",
+  "sources": [
+    "Vscrp_duman",
+    "Debenedetti2022Light_XCiT-S12",
+    "Debenedetti2022Light_XCiT-M12",
+    "Debenedetti2022Light_XCiT-L12"
+  ],
+  "cache_adv": "/mnt/d/adeb_sci_1_veri/_duman_curutme/onb_A",
+  "per_source_seed": true,
+  "model_specs": {
+    "Vscrp_duman": [
+      "vit_tiny",
+      "/mnt/d/adeb_sci_1_veri/_duman_curutme/V_scrp_s2401/vit_tiny/clean/best.pth"
+    ],
+    "Debenedetti2022Light_XCiT-S12": [
+      "robustbench",
+      "Debenedetti2022Light_XCiT-S12"
+    ],
+    "Debenedetti2022Light_XCiT-M12": [
+      "robustbench",
+      "Debenedetti2022Light_XCiT-M12"
+    ],
+    "Debenedetti2022Light_XCiT-L12": [
+      "robustbench",
+      "Debenedetti2022Light_XCiT-L12"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+ "sarmalayici": "experiments/q1_curutme_transfer_matrix.py",
+ "sarmalayici_sha256": "a4cc8f07c05fe83680a0e0f7019b6415175161eee61d0eeed88cd4a2c8097228",
+ "catal": "experiments/q1_ek_transfer_matrix.py",
+ "catal_sha256": "edec356afa594a681e1b3646b76f28c92bbf16c9159eace3dbc3c03cd6a87145",
+ "ozgun_dondurulmus_sha256": "f25d9062c958a296353059639398f0a0a8eb18cd48182b1afa5ec4e3986140b7",
+ "ozgun_degismedi": true,
+ "model_seti": "xcit3",
+ "model_argv": [],
+ "rb_model": [
+  "Debenedetti2022Light_XCiT-S12",
+  "Debenedetti2022Light_XCiT-M12",
+  "Debenedetti2022Light_XCiT-L12"
+ ],
+ "atlanan_eksik": [],
+ "zaman_asimi_s": 0,
+ "catal_argv": [
+  "--rb-model",
+  "Debenedetti2022Light_XCiT-S12",
+  "--rb-model",
+  "Debenedetti2022Light_XCiT-M12",
+  "--rb-model",
+  "Debenedetti2022Light_XCiT-L12",
+  "--model",
+  "Vscrp_duman:vit_tiny:/mnt/d/adeb_sci_1_veri/_duman_curutme/V_scrp_s2401/vit_tiny/clean/best.pth",
+  "--dataset",
+  "cifar10",
+  "--n-samples",
+  "200",
+  "--seed",
+  "42",
+  "--cache-adv",
+  "/mnt/d/adeb_sci_1_veri/_duman_curutme/onb_A",
+  "--out-dir",
+  "results/q1/curutme_2026-11-08/_duman/A_n200"
+ ],
+ "torch_home": "/mnt/d/adeb_sci_1_veri/onbellek/torch",
+ "baslangic_utc": "2026-11-08T13:58:59.078667+00:00",
+ "bitis_utc": "2026-11-08T14:02:12.003672+00:00"
+}

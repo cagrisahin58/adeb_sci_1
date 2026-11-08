@@ -1,0 +1,23 @@
+model seti xcit3: 0 yerel + 3 RobustBench; atlanan []
+custom temiz dogruluk: Vscrp_duman=30.50, Debenedetti2022Light_XCiT-S12=91.50, Debenedetti2022Light_XCiT-M12=93.50, Debenedetti2022Light_XCiT-L12=93.00
+  Vscrp_duman: onbellege yazildi /mnt/d/adeb_sci_1_veri/_duman_curutme/onb_A/Vscrp_duman__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  Vscrp_duman->Vscrp_duman: raw=93.00 cond=77.05
+  Vscrp_duman->Debenedetti2022Light_XCiT-S12: raw=10.50 cond=2.73
+  Vscrp_duman->Debenedetti2022Light_XCiT-M12: raw=7.00 cond=0.53
+  Vscrp_duman->Debenedetti2022Light_XCiT-L12: raw=8.50 cond=2.15
+  Debenedetti2022Light_XCiT-S12: onbellege yazildi /mnt/d/adeb_sci_1_veri/_duman_curutme/onb_A/Debenedetti2022Light_XCiT-S12__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  Debenedetti2022Light_XCiT-S12->Vscrp_duman: raw=71.00 cond=9.84
+  Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-S12: raw=42.00 cond=36.61
+  Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-M12: raw=32.50 cond=27.81
+  Debenedetti2022Light_XCiT-S12->Debenedetti2022Light_XCiT-L12: raw=28.50 cond=23.12
+  Debenedetti2022Light_XCiT-M12: onbellege yazildi /mnt/d/adeb_sci_1_veri/_duman_curutme/onb_A/Debenedetti2022Light_XCiT-M12__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  Debenedetti2022Light_XCiT-M12->Vscrp_duman: raw=71.50 cond=8.20
+  Debenedetti2022Light_XCiT-M12->Debenedetti2022Light_XCiT-S12: raw=32.50 cond=26.23
+  Debenedetti2022Light_XCiT-M12->Debenedetti2022Light_XCiT-M12: raw=39.50 cond=35.29
+  Debenedetti2022Light_XCiT-M12->Debenedetti2022Light_XCiT-L12: raw=31.00 cond=25.81
+  Debenedetti2022Light_XCiT-L12: onbellege yazildi /mnt/d/adeb_sci_1_veri/_duman_curutme/onb_A/Debenedetti2022Light_XCiT-L12__pgd_linf_s10_n200_seed42_cifar10.npy (200, 3, 32, 32)
+  Debenedetti2022Light_XCiT-L12->Vscrp_duman: raw=72.50 cond=11.48
+  Debenedetti2022Light_XCiT-L12->Debenedetti2022Light_XCiT-S12: raw=30.50 cond=24.04
+  Debenedetti2022Light_XCiT-L12->Debenedetti2022Light_XCiT-M12: raw=30.50 cond=25.67
+  Debenedetti2022Light_XCiT-L12->Debenedetti2022Light_XCiT-L12: raw=38.00 cond=33.33
+custom kaydedildi: results/q1/curutme_2026-11-08/_duman/A_n200

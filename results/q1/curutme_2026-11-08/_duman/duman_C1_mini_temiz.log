@@ -1,0 +1,20 @@
+Training vit_tiny_in21k on cuda (dataset=cifar10, num_classes=10)
+Epochs: 30, LR: 0.0001, Batch size: 128
+INIT_WEIGHTS_RAPORU {"init_key": "augreg_in21k_ft_in1k", "timm_name": "vit_tiny_patch16_224.augreg_in21k_ft_in1k", "source_file": "models/timm_agirliklar/vit_tiny_patch16_224.augreg_in21k_ft_in1k/model.safetensors", "source_sha256": "fecf81b492bd13ee7a5297cb74d1d417aac8bf7e1b7d96aed89c4691984587ed", "n_loaded": 150, "n_target_keys": 152, "missing_nonhead": [], "unexpected_nonhead": [], "shape_mismatch": [], "head_keys_skipped": ["head.bias", "head.weight"], "pretrained_cfg_mean": [0.5, 0.5, 0.5], "pretrained_cfg_std": [0.5, 0.5, 0.5], "norm_matches_cfg": true}
+Optimizer: adamw, LR schedule: cosine
+Model parameters: 5,526,346
+Fixed val split (data/val_split_indices.json): egitim 48000 ornek; secim 2000 val ornegi uzerinden (test kullanilmiyor)
+TEMIZ_DURMA stop_epoch=1 (LR cizelgesi 30 epok uzerinden)
+Using AdamW optimizer (forced, lr=0.0001, wd=0.05)
+Training on cuda
+Model parameters: 5,526,346
+Epoch 1/30:   0%|          | 0/375 [00:00<?, ?it/s]Epoch 1/30:   0%|          | 0/375 [00:24<?, ?it/s, loss=3.2, acc=5.47]Epoch 1/30:   0%|          | 1/375 [00:24<2:33:00, 24.55s/it, loss=3.2, acc=5.47]Epoch 1/30:   0%|          | 1/375 [00:24<2:33:00, 24.55s/it, loss=2.85, acc=10.9]Epoch 1/30:   1%|          | 2/375 [00:24<1:04:17, 10.34s/it, loss=2.85, acc=10.9]Epoch 1/30:   1%|          | 2/375 [00:25<1:04:17, 10.34s/it, loss=2.65, acc=15.9]Epoch 1/30:   1%|          | 2/375 [00:25<1:04:17, 10.34s/it, loss=2.44, acc=21.1]Epoch 1/30:   1%|          | 4/375 [00:25<24:04,  3.89s/it, loss=2.44, acc=21.1]  Epoch 1/30:   1%|          | 4/375 [00:25<24:04,  3.89s/it, loss=2.28, acc=26.1]Epoch 1/30:   1%|          | 4/375 [00:25<24:04,  3.89s/it, loss=2.15, acc=30.2]Epoch 1/30:   2%|▏         | 6/375 [00:25<12:51,  2.09s/it, loss=2.15, acc=30.2]Epoch 1/30:   2%|▏         | 6/375 [00:25<12:51,  2.09s/it, loss=2.05, acc=33.4]Epoch 1/30:   2%|▏         | 6/375 [00:25<12:51,  2.09s/it, loss=1.93, acc=37.3]Epoch 1/30:   2%|▏         | 8/375 [00:25<07:48,  1.28s/it, loss=1.93, acc=37.3]Epoch 1/30:   2%|▏         | 8/375 [00:25<07:48,  1.28s/it, loss=1.84, acc=40.5]Epoch 1/30:   2%|▏         | 8/375 [00:25<07:48,  1.28s/it, loss=1.75, acc=43.1]Epoch 1/30:   3%|▎         | 10/375 [00:25<05:19,  1.14it/s, loss=1.75, acc=43.1]Epoch 1/30:   3%|▎         | 10/375 [00:27<05:19,  1.14it/s, loss=1.67, acc=46.2]Epoch 1/30:   3%|▎         | 10/375 [00:27<05:19,  1.14it/s, loss=1.59, acc=49.2]Epoch 1/30:   3%|▎         | 12/375 [00:27<05:47,  1.04it/s, loss=1.59, acc=49.2]Epoch 1/30:   3%|▎         | 12/375 [00:28<05:47,  1.04it/s, loss=1.52, acc=51.3]Epoch 1/30:   3%|▎         | 12/375 [00:28<05:47,  1.04it/s, loss=1.46, acc=53.5]Epoch 1/30:   4%|▎         | 14/375 [00:28<04:11,  1.43it/s, loss=1.46, acc=53.5]Epoch 1/30:   4%|▎         | 14/375 [00:28<04:11,  1.43it/s, loss=1.4, acc=55.3] Epoch 1/30:   4%|▍         | 15/375 [00:28<03:46,  1.59it/s, loss=1.4, acc=55.3]Epoch 1/30:   4%|▍         | 15/375 [00:28<03:46,  1.59it/s, loss=1.36, acc=56.5]Epoch 1/30:   4%|▍         | 16/375 [00:28<03:16,  1.83it/s, loss=1.36, acc=56.5]Epoch 1/30:   4%|▍         | 16/375 [00:29<03:16,  1.83it/s, loss=1.31, acc=58.1]Epoch 1/30:   5%|▍         | 17/375 [00:29<02:45,  2.17it/s, loss=1.31, acc=58.1]Epoch 1/30:   5%|▍         | 17/375 [00:29<02:45,  2.17it/s, loss=1.27, acc=59.3]Epoch 1/30:   5%|▍         | 17/375 [00:29<02:45,  2.17it/s, loss=1.23, acc=60.5]Epoch 1/30:   5%|▌         | 19/375 [00:29<01:48,  3.29it/s, loss=1.23, acc=60.5]Epoch 1/30:   5%|▌         | 19/375 [00:29<01:48,  3.29it/s, loss=1.19, acc=61.8]Epoch 1/30:   5%|▌         | 20/375 [00:29<08:39,  1.46s/it, loss=1.19, acc=61.8]
+Epoch 1/30 - Train Loss: 1.1924, Train Acc: 61.76%, Test Acc: 83.35%
+  Best model saved! Accuracy: 83.35%
+
+Training completed in 0.71 minutes
+Best test accuracy: 83.35%
+
+Training complete!
+Best accuracy: 83.35%
+Checkpoint saved to: /mnt/d/adeb_sci_1_veri/_duman_curutme/C1/vit_tiny_in21k/clean
