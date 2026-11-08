@@ -75,3 +75,44 @@ Plandan sapmalar şekil girişlerinde gerekçesiyle yazılıdır: Şekil 2'de ma
 Derinlik ekseni veri ve sahne şekillerinin çoğunda bir anlam taşır (zaman, kayıt sırası, protokol katmanı, toplama düzeyi, işlem adımı, okuma sırası, iç içelik), ama abaküs (10), kule (9), asılı etiketler (12), dolap (2) ve omurga (17) tek nesneli şekillerdir ve derinlikleri yalnız nesne kalınlığıdır; bu bilinçli olarak kompozisyon girişlerinde yazıldı, çelişik doğrulayıcının bakması gereken ilk noktadır. Tek sütunlu şekillerin birçoğu v1'den yüksektir (Şekil 3, 4, 12, 13, 14: 120-128 mm); makale yine 26 sayfa kalmıştır ama yerleşim farklıdır. Gövde metnindeki iki konum sözcüğü ("top card", Şekil 14 ve 17) v2 şekilleriyle çelişir. Mavi pay ölçütü lavanta grisini maviye sayar. `_z2.py`'nin motora taşınması, Üslup Z'nin skill içi örnekleri ve `references/ayrisma_tablosu.md`'nin yeniden üretimi Faz 2 ön koşulları olarak açık kaldı. İlerleme tablosunun "not" sütunu, yeniden kurulan yedi şekilde son düzeltmenin notunu taşır (kompozisyon notu 02_kompozisyon.md'dedir).
 
 Süre yaklaşık iki buçuk saattir (ilk şeklin Visio koşusu 17:01, son paket ve ölçümler 19:15). Sonnet amele açılmadı.
+
+
+## DEVIR 2026-11-08 (yeniden başlatma öncesi)
+
+Biten adımlar şunlardır. 17 şeklin 17'si birinci turda çizildi, kapılardan geçti ve `paper/figures_v2/figN_<kök>` adıyla kuruldu. `paper/manuscript_v2/main_v2.pdf` sıfırdan derlendi: 26 sayfa, tanımsız gönderme 0, taşma 57. `paper/submission/Drawing_drafts_v2/` paketi 53 dosyayla kuruldu. Çürütücünün ikinci tur bulgularından (02_curutucu.md) aşağıdaki kısım yalnız betik ve kod düzeyinde yapıldı; şekiller henüz yeniden çizilmedi, yani kurulu şekiller ve main_v2.pdf hâlâ birinci turun hâlindedir:
+
+- Bulgu 1: `z_gradient_alignment.py` nice() artık 1-2-5 adımlarıyla çalışıyor ve etiketleri adımın gerektirdiği ondalıkla basıyor; öteki veri şekilleri tarandı, aynı hata yalnız Şekil 11'deydi.
+- Bulgu 2: `_z2.py` `_rel()` eklendi, Şekil 1 betiği görüntü yollarını depo göreli yazıyor; yol tarayıcı `C:\Users\cagri\.claude\skills\visio-cizici\motor\figspec\yollar.py` UNC (`\\wsl.localhost`, `//wsl.localhost`) ve ters bölülü `\home\` biçimlerini sayıyor; yeni test `tests\test_yollar_unc.py` 4/4 geçti; tam test koşusu bu değişiklikten sonra yapılmadı. vsdx yazar alanı henüz boşaltılmadı.
+- Bulgu 3: Şekil 11, 12, 13, 14, 15 ve 17'nin betik altyazıları "values are positions on the flat cards" gibi değeri taşıyan kodlamayı söyleyen cümleyi aldı (en çok 57 sözcük); Şekil 4 altyazısı katalog kartlarına göre düzeltildi.
+- Bulgu 4: `_z2.py` `kanit_yaz()` artık okunan gerçek dosya sınıflarını (results/c1_* gerekçesi CLAUDE.md ile, wrn_eval, ON_KAYIT, ONKAYIT_SAPMALAR, data/cifar, v1 betik modülleri) şekil başına yazıyor ve K7 muafiyetini (Şekil 7, 16) `k7_muafiyet` alanına koyuyor.
+- Bulgu 7: Şekil 3'te bağlayıcılar eğri ve katmanlar 6 mm geri çekiliyor; Şekil 6'da zaman okları eğri.
+- Bulgu 8: Şekil 17'de her bloktan ilk okuma kartına bir ok çıkıyor, blok numaraları kartın kenarında.
+- Bulgu 11 (kısmen): Şekil 5 ve 16 manifest sahne kalıbı adları, Şekil 15'te p = 1 halkaları büyütüldü (1.35 mm), Şekil 7'de eşik altındaki çift G'yi dört ondalıkla basıyor, Şekil 2'de fiş kartları kaydırılmış ve farklı yükseklikte.
+
+Şu an bulunulan adım: bütün betikler hazırdı ve 17 şeklin toplu yeniden çizimi başlamak üzereydi (yeni betik `paper/figures_v2/_hepsi_v2.py` yazıldı, çalıştırılmadı). Yarım kalmış bir Visio koşusu ya da yarım yazılmış dosya yoktur.
+
+Kalan adımlar sırayla şunlardır (Windows Git Bash'ten, depo kökünden):
+
+1. Ekran DPI'ını ölç, 120 değilse `paper/figures_v2/visio_cizici_v2.yaml` `visio.dpi` değerini ölçülen değere çevir:
+   `cd //wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1 && python -c "import sys; sys.path.insert(0,'C:/Users/cagri/.claude/skills/visio-cizici/motor/visio'); import visiofig as vf; print(vf._system_dpi())"`
+2. 17 şekli yeniden çiz, kapılardan geçir, yeniden kur (yaklaşık 30 dakika; günlük `paper/figures_v2/visio_loglari/hepsi_v2.log`):
+   `cd //wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1 && python -X utf8 paper/figures_v2/_hepsi_v2.py`
+3. Gövde metni eşleme listesini yaz (`paper/manuscript_v2/govde_duzeltmeler_v2.tsv`: `03_methodology.tex` "the top card of Figure~\ref{fig:protocol_sets}" → "the terraced top part of Figure~\ref{fig:protocol_sets}"; `07_appendix.tex` "top card of Figure~\ref{fig:feature_degradation}" → "left card of Figure~\ref{fig:feature_degradation}") ve `_bolum_uygula.py`'ye bu listeyi uygulayan adımı ekle (henüz yazılmadı).
+4. Altyazıları üret ve main_v2'yi sıfırdan derle:
+   `cd //wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1/paper/manuscript_v2 && python -X utf8 _altyazi_uret.py && MSYS_NO_PATHCONV=1 wsl.exe -d Ubuntu-22.04 -- bash -lc 'cd /home/firat/projects/adeb_sci_1/paper/manuscript_v2 && bash derle_v2.sh'`
+   Sayfa sayısı: `python -c "import fitz; print(fitz.open('//wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1/paper/manuscript_v2/main_v2.pdf').page_count)"`
+5. Makale düzeyi QC, tutarlılık ve zenginlik (ortam değişkenleri `VZ_PROJE_KOKU=//wsl.localhost/Ubuntu-22.04/home/firat/projects/adeb_sci_1`, `VZ_PROJE_AYARI=.../paper/figures_v2/visio_cizici_v2.yaml`, `VZ_PALET_DIZINI=.../paper/figures_v2/palettes`, `VZ_USLUP=Z`):
+   `python paper/manuscript_v2/_qc_kopya.py && python -X utf8 C:/Users/cagri/.claude/skills/visio-cizici/scripts/vz_duzlestir.py --tex paper/manuscript_v2/_main_v2_qc.tex --out paper/figures_v2/qc/main_v2_duz.tex && python -X utf8 C:/Users/cagri/.claude/skills/visio-cizici/motor/host/fig_qc.py --assets paper/figures_v2 --tex paper/figures_v2/qc/main_v2_duz.tex --venue ieee_access --out paper/figures_v2/qc/makale && python -X utf8 C:/Users/cagri/.claude/skills/visio-cizici/scripts/zenginlik.py --assets paper/figures_v2 --tex paper/figures_v2/qc/main_v2_duz.tex --makale --json-out paper/figures_v2/qc/zenginlik_makale.json`
+6. Yolları temizle, paketi yeniden kur, vsdx yazar alanını paket kopyalarında boşaltan adımı `_paket_v2.py`'ye ekle (henüz yazılmadı; yapılamazsa README'ye kör hakemlik notu), yol taramasını koş (UNC dahil 0 beklenir):
+   `python -X utf8 C:/Users/cagri/.claude/skills/visio-cizici/motor/visio/install.py --yollari-temizle $(ls paper/figures_v2/fig*_*.pdf | xargs -n1 basename | sed 's/.pdf//') --hedef paper/figures_v2 && python -X utf8 paper/figures_v2/_paket_v2.py && python -X utf8 C:/Users/cagri/.claude/skills/visio-cizici/motor/visio/install.py --yollari-tara paper/submission/Drawing_drafts_v2`
+7. Motor testlerinin tamamı: `cd C:/Users/cagri/.claude/skills/visio-cizici && python -m pytest tests -m "not visio" -q` (beklenen: 635 geçer, 2 bilinen histopatoloji testi başarısız).
+8. Bu rapora "İkinci tur" bölümünü ve yeni kapı tablosunu yaz; `02_ilerleme.tsv` toplu koşuyla kendiliğinden güncellenir.
+
+Açık sorunlar (çürütücünün kapanmamış bulguları ve rapor düzeltmeleri):
+
+- Bulgu 2'nin vsdx yazar alanı ("ÇAĞRI ŞAHİN") boşaltılmadı; paketteki fig1 kanıt dosyasında UNC yolu yeniden çizim ve paketleme yapılana kadar duruyor.
+- Bulgu 5: bu raporun iki beyanı yanlıştır ve düzeltilmelidir. "Her şekilde iki çizgi kalınlığı basıldı" doğru değil; Şekil 1, 2, 4, 5, 11, 12 ve 15'te yalnız 0.75 pt basıldı (T4 uyarısı yine yoktu). "Bloklayıcı yok" yalnız ayarlı kip için doğru; katı kip kararı Şekil 1, 6, 8, 11 ve 15'te BLOCK, ayarlı puan bu şekillerde de 90'ın üstünde olduğu için kapı ayarlı kiple geçiyor. `02_ilerleme.tsv` ve `qc/z_*/kapilar.json` dosyalarının QC alanları birinci turun eski koşularından kalmıştır; toplu yeniden koşu bunları günceller.
+- Bulgu 6: gövde metni eşleme listesi ve derle_v2.sh adımı yazılmadı (yukarıda adım 3).
+- Bulgu 9 (Şekil 9 ile 12'nin askı fikri, Şekil 11 ile 15'in arka-ön kart düzeni) yapılmadı.
+- Bulgu 10 (Şekil 8'in eğik ısı haritası klişesi) yapılmadı; değer düz renkle okunuyor, K7 tamam; kompozisyon dosyasına gerekçeli açık notu düşülmedi.
+- Bulgu 11'den Şekil 1'in (b)/(c) ayrımı ve panel harfinin konumu (üslup kuralı kart içi sol alt), Şekil 16'da arka levha işaretlerinin x etiketlerine göre sağa kayması yapılmadı.
