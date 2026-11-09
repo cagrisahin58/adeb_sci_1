@@ -29,7 +29,7 @@ STEM = "z_similarity_matrix"
 KIND = "double"
 W = vf.page_width(KIND)
 CAPTION = ("Pairwise symmetric similarity. log τ̄ (split-half) for all models on CIFAR-10 (1), CIFAR-100 (2) "
-           "and ImageNetV2 (3), rows and columns in frozen group order; cell colour is one of five joint quintile "
+           "and ImageNetV2 (3), rows and columns in frozen group order; cell colour is one of five pooled quintile bins with rounded "
            "bins, the dark diagonal undefined, dark frames mark the groups. Scratch-trained ViT-Tiny seeds form a "
            "block dissimilar to the CNN panel.")
 

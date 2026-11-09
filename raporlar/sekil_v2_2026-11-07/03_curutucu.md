@@ -133,3 +133,23 @@ Föy (`results/C1_REFERANS_FOYU.md`) karşılaştırması:
 - Gerçekten özgün okunanlar birinci turdaki gibi Şekil 7, 14 ve 10, kısmen de 6.
 
 Bakış kopyaları ve betikler proje dışında, `C:\Users\cagri\AppData\Local\Temp\claude\e2c0fa868388f4cf\0d0fab82-c6b8-472d-a420-d8ffb5857ab2\scratchpad\curut3\` altında: own.py (istisna benzetimi), kanit.py, pkg.py, vz.py, mm_*.json, fig2_r32.png, qc_makale. Proje altında hiçbir dosya değiştirilmedi.
+
+## Üçüncü tur çürütme (09.11.2026, sahne azaltma; opus-curutucu, salt okur)
+
+Hüküm: düzeltilmeli; sonucu değiştiren (major) bulgu yok. Denetlenen ve çürütülemeyen iddialar: 17 PNG'de sahne yalnız 1, 2, 3, 14 ve 17'de; 4-13, 15 ve 16'da kaide, yan yüz, gölge, direk ya da zemin yok; yükseklik hiçbir şekilde değer taşımıyor; palet üslup dosyasının değerleriyle sınırlı (en mavimsi ton lavanta #9E94B2); PDF metninde plinth, stele, tablet, abacus, slab, shelf, staircase, exploded, bead, tower, deep stage sayımı 0. 14 kapı dosyası 09.11 15:57-16:11 damgalı, hepsinde kontrolcü PASS (en çok 5e-05 mm), fig_mm_pdf PASS, denge kurulabilir; makale QC ayarlı 93.6-96.8, katı BLOCK yalnız Şekil 1 (87.0) ve 6 (89.5); ilerleme tablosu ve rapor kapı tablosu dosyalarla satır satır tutuyor. Sayılar: 40 kaynak dosyanın hepsi var, SHA-256 tutuyor, karantinalı run1/run2/run3 yolu yok; Şekil 12 (72 değer), 7 (37), 16 (15 değer ve en büyük SD 0.59), 13 (dört protokol ve yayılım), 14 (adımlar 9.21, 3.91, 11.10 ve N'ler), 11 (r değerleri), 17 (36 kosinüs ve entropi ortalaması, üç çift dosyasından yeniden hesap), 8 (kutu sayıları) kaynakla birebir. main_v2 26 sayfa, tek "undefined" T1/pcr yazı tipi uyarısı, taşma 57; paket 53 dosya, SHA 51/51, yol taraması 0, vsdx yazar alanı boş. Korunan yollar (paper/manuscript, manuscript_tr, paper/figures, q1_konsey_ayrisim.py, ON_KAYIT*.md) 3cc341f..7f7512e arasında değişmedi. Önceki bulgu 3 (Şekil 11 ile 12 taş levha tekrarı) ve 10 (Şekil 8 eğik ısı haritası) kapandı.
+
+Bulgular (hepsi minor):
+1. Şekil 17 altyazısı "Disc height carries no value" diyor, şekilde disk yok (blok yığını). Kapatıldı (ana oturum, 09.11): altyazı "Block height carries no value" oldu, panel adları (Entropy Δ, TV, Cosine) ve Cosine kartının üç serisi (CLS token, patch mean, all tokens) altyazıya girdi, 59 sözcük; şekil yeniden çizilip kuruldu (QC 94.6/91.1).
+2. Commit iletilerinde Co-Authored-By satırı yok. Reddedildi: kullanıcının 30.09.2026 kararı bu satırı yasaklar; bulgu kural yanlış okunarak yazılmıştır.
+3. Kayıttaki main_v2.log ve derle_v2.log PDF ile eşleşmiyor (f3e5792'den kalma). Kapatıldı: bu commit'te güncel günlükler PDF ile birlikte kaydedildi.
+4. main_v2.pdf 1 MiB sınırının üstünde. Bilinen istisna (main.pdf gibi izlenir), değişiklik yok.
+5. Ek metninde "left card of Figure feature_degradation" belirsiz (en solda kart değil blok yığını var). Kapatıldı: gövde eşlemesi "Entropy $\Delta$ card of Figure~\ref{fig:feature_degradation}" oldu (govde_duzeltmeler_v2.tsv), derlemede uygulandı.
+6. Şekil 17 altyazısı Cosine panelinin üç serisini ve panel adlarını anmıyordu. Kapatıldı (bkz. 1).
+7. Şekil 10'un x ekseni öteki şekillerden kalın ve koyu (abaküs kirişinden kalma görünüm). Açık; görsel tutarlılık, kapılar yakalamıyor.
+8. Şekil 4 alt kartta iki model adı sağ sütun yazılarına yaklaşık 1 mm yaklaşıyor; binme yok. Açık, kozmetik.
+9. Şekil 8 altyazısı "five joint quintile bins" diyordu, sınırlar yuvarlanmış (−1.1, −0.85, −0.7, −0.55; gerçek beşte birler −1.085/−0.836/−0.704/−0.567; hücre sayıları 118/186/164/172/132 kanıtla tuttu). Kapatıldı: altyazı "five pooled quintile bins with rounded bins" biçiminde yuvarlamayı söylüyor; şekil yeniden çizilip kuruldu (QC 96.2/92.0).
+10. Raporda "Manifestler sahne ve kompozisyon_dili alanlarını taşır" genellemesi; 1, 2 ve 3'ün manifestlerinde bu alanlar yok. Kapatıldı: cümle 14 şekle daraltıldı; aynı yerdeki "disklerin" sözcüğü "blokların" oldu.
+
+Doğrulanamadı: fig_mm_pdf ve fig_qc yeniden koşulmadı (JSON ve rapora dayanıldı); T6 (Windows-1252 dışı glifler PDF metin katmanında boşluk) yeniden ölçülmedi; Şekil 1'deki dilim sayıları pikselde sayılmadı. Hâlâ açık: T6, Şekil 12'de K-b C10 logit aralığının işaretin altında kalması, Şekil 10 ekseni, Şekil 4 yakınlık.
+
+Ek düzeltme (ana oturum): altyazı üreticisine Δ için $\Delta$ eşlemesi eklendi (_altyazi_uret.py); eksikken derleme "Unicode character Δ" hatasıyla duruyordu.

@@ -29,10 +29,10 @@ KIND = "single"
 W = vf.page_width(KIND)
 COSLOOK = {"cos_block_cls": ("o", "vurgu3", "CLS token"), "cos_block_token_mean": ("s", "vurgu1", "patch mean"),
            "cos_block_output": ("^", "vurgu2", "all tokens")}
-CAPTION = ("Feature degradation of ViT-Tiny under attack, block by block. The clean and PGD-10 image enter the "
-           "spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90% TOST "
-           "intervals inside the ±0.05-nat band, attention displacement (TV), block-output cosine, mean±SD. "
-           "Disc height carries no value.")
+CAPTION = ("Feature degradation of ViT-Tiny under attack, block by block. Clean and PGD-10 images enter the "
+           "stack, block 1 at the bottom; three cards per block, three runs: Entropy Δ, CLS attention entropy "
+           "change with 90% TOST intervals, ±0.05-nat band; TV, attention displacement, mean±SD; Cosine, "
+           "clean-to-adversarial cosine of CLS token, patch mean and all tokens. Block height carries no value.")
 
 
 def main():

@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-09T13:00:51+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-09T13:28:33+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -27,7 +27,7 @@ Generated 2026-11-09T13:00:51+00:00; verdict from the ayarli scoring; both scori
 | D4 No text-on-text collisions | 5/5 | PASS | clean |
 | D5 No internal experiment codes in the artwork | 3/3 | PASS | clean |
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): model and pair counts are printed under each station |
-| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 53 words, 0 in mandatory sentences, 53 counted; limit 60 on ieee_access; lead-in yes |
+| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 56 words, 0 in mandatory sentences, 56 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | Scratch-trained ViT-Tiny seeds form a block of high mutual similarity that is di... |
 | E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 4/4 richness items pass; distance to the liked reference 0.08 (0/5 on the disliked side); catalogue 0.506 |
 | _skipped_ | - | SKIP | B2-B5: no manifest entities, entity styles unknown |
@@ -55,7 +55,7 @@ Generated 2026-11-09T13:00:51+00:00; verdict from the ayarli scoring; both scori
 | D4 No text-on-text collisions | 5/5 | PASS | clean |
 | D5 No internal experiment codes in the artwork | 3/3 | PASS | clean |
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): model and pair counts are printed under each station |
-| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 53 words, 0 in mandatory sentences, 53 counted; limit 60 on ieee_access; lead-in yes |
+| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 56 words, 0 in mandatory sentences, 56 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | Scratch-trained ViT-Tiny seeds form a block of high mutual similarity that is di... |
 | E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 4/4 richness items pass; distance to the liked reference 0.08 (0/5 on the disliked side); catalogue 0.506 |
 | _skipped_ | - | SKIP | B2-B5: no manifest entities, entity styles unknown |
@@ -64,4 +64,4 @@ Generated 2026-11-09T13:00:51+00:00; verdict from the ayarli scoring; both scori
 F: kar/cm² 2.80 [2.30-4.30] · yazı kutusu 0.17 [0.13-0.28] · sayısal 0.12 · veri alanı - · derinlik 2 · akış 0/0 etiketli · ton 0.63 [0.86-0.92] · mürekkep 0.221 | beğeniye uzaklık 0.08 (0/5 beğenilmeyen tarafında) | eşikler tamam
 
 ## Cross-figure consistency: PASS
-- 16 figures share one design system
+- 17 figures share one design system

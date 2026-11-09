@@ -85,3 +85,15 @@ Seçenekler: (1) Kural korunur: veri şekilleri düz kalır, 3B yalnız taşıy�
 Öneri: Seçenek 3, çünkü dergi okuru değeri uzunluk ve renkten doğru okumalı, kullanıcının "komple 3B" beklentisi de gövde dışındaki görsellerde ve bütün şematiklerde karşılanabilir; seçenek 2 skill kuralını bir üslup için delerek bütün kataloğun veri dürüstlüğü ilkesini zayıflatır.
 
 Cevap (ana oturum, 08.11.2026; kullanıcının 07.11 sözü "komple özgün ve 3 boyutlu yeni şekillerle" bağlayıcı sayıldı): Seçenek 2'nin sınırlı biçimi, yalnız ikinci makale (manuscript_v2) için. Veri şekilleri 3B sahnede kurulur; ölçülen değer her zaman düz bir ikiz kodlamayla da okunur (hücre rengi, basılı sayı ya da düz yüzeyde uzunluk), yükseklik kullanılıyorsa tek dimetrik eksende gerçek uzunlukla ve ikiz kodlamayla aynı şekilde çizilir; altyazı hangi kodlamanın değer taşıdığını söyler. Denge kapısının 3b_veri maddesi Üslup Z'de bu koşula bağlı gerekçeli muafiyet alır (muafiyet kanıt dosyasına yazılır). Asıl makale ve 17 kurulu şekil değişmez. OZGUN ayrışma istisnası kabul; ayrışma raporu yine üretilir (78/78).
+
+## K8. Çürütme zincirinde B bloğunun (V-scr+, doğruluğu eşlenmiş sıfırdan ViT-Tiny) kırpılmış çekişmeli eğitimi
+
+Durum (09.11.2026, ana oturum): Ek ön kayıt (`raporlar/konsey_2026-10-29/ON_KAYIT_EK_CURUTME_2026-11-08.md`, §15) tohum başına 5 saatlik duvar saati sınırını temiz ve çekişmeli aşamaların toplamı olarak koyar ve yeniden başlatma kesintisini bu süreye sayar. GPU öteki projelerle paylaşıldığı için temiz aşama beklenen 45 dakika yerine 2,3 saat sürdü; ayrıca 08.11'de konteynerin dışarıdan durdurulması ve PC'nin yeniden başlatılması ilk tohumun süresinden 2,3 saat yedi. Sonuç: iki tohumun temiz eğitimi tamamlandı ve manipülasyon eşiğini geçti (en iyi doğrulama doğruluğu 91,45 ve 91,1; eşik 88,0; `results/q1/curutme_2026-11-08/V_scrp_240{1,2}_manip.json`), ama çekişmeli eğitim süre sınırına takıldı: tohum 2401'de seçilen epok 2, tohum 2402'de 31 (`V_scrp_240{1,2}_sure_siniri.json`, durum SURE_SINIRI). Ön kayıt kuralı gereği zincir bu kırpılmış kontrol noktalarıyla devam etti; D bloğu ve çözümleme bu modelleri "kırpılmış olabilir" işaretiyle kullanacak.
+
+Sorun: B bloğunun amacı temiz doğruluğu ResNet'e eşlenmiş bir ViT'nin benzerlik satırını ölçmekti; 2 ve 31 epokluk çekişmeli eğitim, 80 epoklu ötekilerle karşılaştırılabilir değildir. Bu hâliyle B'nin sonucu "kırpılmış model" uyarısıyla raporlanabilir ama H1'in doğruluk karıştırıcısı sorusunu (B1-03) kapatamaz.
+
+Seçenekler: (1) Sonuç olduğu gibi raporlanır, B "yetersiz eğitim, karar yok" diye yazılır. (2) GPU boş olduğunda iki tohumun çekişmeli aşaması kayıtlı temiz kontrol noktalarından, aynı komutla ve yalnız çekişmeli aşamaya 5 saat tanıyarak yeniden koşulur; bu, ön kayıttan açık bir sapma olarak (gerekçe: paylaşımlı GPU ve kesinti, tohumun kendisi değil) ONKAYIT_SAPMALAR kaydına yazılır, kırpılmış ve tam sonuçların ikisi de raporlanır, ön kayıt gövdesi değişmez.
+
+Öneri: Seçenek 2, çünkü kırpılma deneyin tasarımından değil ortamın yük durumundan geldi ve iki sonucu yan yana vermek hiçbir şeyi saklamaz; yalnız tam sonucu vermek ise sapmayı gizlerdi.
+
+Cevap: (bekliyor)

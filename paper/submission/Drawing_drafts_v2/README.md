@@ -39,9 +39,9 @@ package.
 | Figure 7 | visio/fig7_source_gap_split.vsdx | Visio drawing (style Z, one dimetric view) | 077b09dea5afc8b665250f05ba72dab1b260a77471f189c8c90cbd91acb0ff17 |
 | Figure 7 | evidence/fig7_source_gap_split.fig.json | figure manifest | a21341e4c7099a798613574348698ba08d536fe6b8455dc16a9185bf1a07a768 |
 | Figure 7 | evidence/fig7_source_gap_split.kanit.json | evidence file (every printed number) | 379a1a46ff6ac23bd194a16a1dc8cc680f55eece096b49c40fff2e0dee4298dc |
-| Figure 8 | visio/fig8_similarity_matrix.vsdx | Visio drawing (style Z, one dimetric view) | 257eebfcdd8e4f7316611e5147f10cbbeedeec9ac0715a9223bec38d0fbe8e17 |
-| Figure 8 | evidence/fig8_similarity_matrix.fig.json | figure manifest | 76cd35ea88989058d54d52b751095cf9df934becdae79a2be6094102c9b8fa81 |
-| Figure 8 | evidence/fig8_similarity_matrix.kanit.json | evidence file (every printed number) | aef92ba887261cc0d009d37265591779b99baab2c0b70d4f8c96d23cd1123e38 |
+| Figure 8 | visio/fig8_similarity_matrix.vsdx | Visio drawing (style Z, one dimetric view) | c70a6d0145ceaffa40b661d7cbffaeab5e79440e0a9750a2354b7edef97d4bdd |
+| Figure 8 | evidence/fig8_similarity_matrix.fig.json | figure manifest | b13bef364e4be8b5cb08075ae1a22b2684b3becd379cc0ce8c755b3dac23659a |
+| Figure 8 | evidence/fig8_similarity_matrix.kanit.json | evidence file (every printed number) | 6c9fa1953529bddc22de3e1a5d1405e451173fea9ed456c62e6e3b7601c0fbb6 |
 | Figure 9 | visio/fig9_cells_interaction.vsdx | Visio drawing (style Z, one dimetric view) | 2fffe3c93de8f260a1cd2a516f460a497077bb543335798367bfd16b22464e24 |
 | Figure 9 | evidence/fig9_cells_interaction.fig.json | figure manifest | 7e44af88c7fe0112153041f745da0a8fa78e8fde4a5bf9f684a552be6d2c4477 |
 | Figure 9 | evidence/fig9_cells_interaction.kanit.json | evidence file (every printed number) | ecce4e85e8bde7f24d097c2540474a640cfef7c45346ad7021799fa0c4eeaf83 |
@@ -66,8 +66,8 @@ package.
 | Figure 16 | visio/fig16_epsilon_sweep.vsdx | Visio drawing (style Z, one dimetric view) | 4c47b8870cdb8830b8b0fe71841dc59ffc8a99ba264df11b2eac4398f69a167a |
 | Figure 16 | evidence/fig16_epsilon_sweep.fig.json | figure manifest | 5f7af74646587134b54d5e8cd98ae9865fd218cc7e0efbf6f6e67b80831d9f7f |
 | Figure 16 | evidence/fig16_epsilon_sweep.kanit.json | evidence file (every printed number) | e1919f19eb540469b0a96d0c3790312195baf87ebadeeefbca81701cd4c3fd6d |
-| Figure 17 | visio/fig17_feature_degradation.vsdx | Visio drawing (style Z, one dimetric view) | c902ff4490b8f2b24984700f25aff95e5680a446b3a473246dcf138556e98003 |
-| Figure 17 | evidence/fig17_feature_degradation.fig.json | figure manifest | ac274e5ae4fba3dd0ed6a1db7cd54e9e30ebd6129361509b6abfe5eb472fd263 |
-| Figure 17 | evidence/fig17_feature_degradation.kanit.json | evidence file (every printed number) | a95619fcc0ae346b71f80780bd9308f6201e356d5c8bb1f0c7edbb73702f5c9d |
+| Figure 17 | visio/fig17_feature_degradation.vsdx | Visio drawing (style Z, one dimetric view) | f12799d0dcd1cff2a77b2853f4e6cf16606ac6e3b7d7ec3f20adfc3108b2dff9 |
+| Figure 17 | evidence/fig17_feature_degradation.fig.json | figure manifest | 0519149514ac32e5c20fdc8fb8f03011fb744006e59b53ec0298ade4e7ef87b5 |
+| Figure 17 | evidence/fig17_feature_degradation.kanit.json | evidence file (every printed number) | f5b1b7f61da2010ea48f70fd92611bca97bd843948fc8463f7a3108473dbc1e1 |
 
 SHA256SUMS.txt lists the same digests (`sha256sum -c SHA256SUMS.txt`).
