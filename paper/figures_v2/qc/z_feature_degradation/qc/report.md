@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T21:04:12+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-09T13:08:08+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -17,7 +17,7 @@ Generated 2026-11-08T21:04:12+00:00; verdict from the ayarli scoring; both scori
 | A4 Height within the float budget (no tolerance) | 4/4 | PASS | 3.658in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
 | A6 Panel frames aligned | 4/4 | PASS | single panel |
-| B1 Every colour bound in the palette | 5/5 | PASS | 23 colours, all bound |
+| B1 Every colour bound in the palette | 5/5 | PASS | 21 colours, all bound |
 | B2 CVD separation | 5/5 | PASS | single series |
 | B3 Greyscale separation | 4/4 | PASS | single series |
 | B4 Every series has a non-colour channel | 3/3 | PASS | all series redundant |
@@ -33,7 +33,7 @@ Generated 2026-11-08T21:04:12+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): three runs per block; the legend says so |
 | E1 Caption within the venue's word limit, with a bold lead-in | 2/4 | WARN | 0 words, 0 in mandatory sentences, 0 counted; limit 60 on ieee_access; lead-in no |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | Under its own attack ViT-Tiny's CLS attention entropy stays inside the registere... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 10/10 richness items pass; distance to the liked reference 0.218 (0/5 on the disliked side); catalogue 0.352 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 10/10 richness items pass; distance to the liked reference 0.223 (0/5 on the disliked side); catalogue 0.323 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 | _skipped_ | - | SKIP | D2: a Visio schematic has no axes; not applied (İSTEM 5A, adjusted scoring) |
 
@@ -47,7 +47,7 @@ Generated 2026-11-08T21:04:12+00:00; verdict from the ayarli scoring; both scori
 | A4 Height within the float budget (no tolerance) | 4/4 | PASS | 3.658in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
 | A6 Panel frames aligned | 4/4 | PASS | single panel |
-| B1 Every colour bound in the palette | 5/5 | PASS | 23 colours, all bound |
+| B1 Every colour bound in the palette | 5/5 | PASS | 21 colours, all bound |
 | B2 CVD separation | 5/5 | PASS | single series |
 | B3 Greyscale separation | 4/4 | PASS | single series |
 | B4 Every series has a non-colour channel | 3/3 | PASS | all series redundant |
@@ -64,10 +64,10 @@ Generated 2026-11-08T21:04:12+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): three runs per block; the legend says so |
 | E1 Caption within the venue's word limit, with a bold lead-in | 2/4 | WARN | 0 words, 0 in mandatory sentences, 0 counted; limit 60 on ieee_access; lead-in no |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | Under its own attack ViT-Tiny's CLS attention entropy stays inside the registere... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 10/10 richness items pass; distance to the liked reference 0.218 (0/5 on the disliked side); catalogue 0.352 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 10/10 richness items pass; distance to the liked reference 0.223 (0/5 on the disliked side); catalogue 0.323 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 
-F: kar/cm² 2.11 [2.30-4.30] · yazı kutusu 0.13 [0.13-0.28] · sayısal 0.41 · veri alanı 0.46 · derinlik 2 · akış 13/12 etiketli · ton 0.51 [0.86-0.92] · mürekkep 0.176 | beğeniye uzaklık 0.22 (0/5 beğenilmeyen tarafında) | eşikler tamam
+F: kar/cm² 2.11 [2.30-4.30] · yazı kutusu 0.13 [0.13-0.28] · sayısal 0.41 · veri alanı 0.46 · derinlik 2 · akış 13/12 etiketli · ton 0.50 [0.86-0.92] · mürekkep 0.161 | beğeniye uzaklık 0.22 (0/5 beğenilmeyen tarafında) | eşikler tamam
 
 ## Cross-figure consistency: PASS
-- 17 figures share one design system
+- 15 figures share one design system

@@ -94,167 +94,7 @@
   "naming_step": 1,
   "naming_kind": "yok",
   "naming": [],
-  "three_d": {
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "token": {
-      "projection": "dimetric",
-      "angle_deg": 36.0
-    },
-    "token_source": "style",
-    "objects": {
-      "c2": {
-        "kind": "profil_kart",
-        "tint": "govde_panel",
-        "size_mm": {
-          "w": 48.0,
-          "d": 4.0,
-          "h": 35.792
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#E0D3BB",
-          "right": "#BEB39F",
-          "front": "#9D9483"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#E0D3BB",
-        "outline": "#857D6F",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2033,
-          0.157
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "front": "c2_face",
-          "right": "c2_r"
-        },
-        "bbox_mm": [
-          6.0,
-          3.5048,
-          49.0941,
-          35.792
-        ],
-        "world_mm": [
-          -11.953179234936496,
-          14.0518049446086,
-          0.0
-        ],
-        "rol": "veri",
-        "not": "face in the page-parallel vertical plane; the top edge is a flat 2D profile at true size"
-      },
-      "c1": {
-        "kind": "profil_kart",
-        "tint": "govde_r32",
-        "size_mm": {
-          "w": 48.0,
-          "d": 4.0,
-          "h": 34.31333333333333
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#E6F5E8",
-          "right": "#C4D0C5",
-          "front": "#A1ACA2"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#E6F5E8",
-        "outline": "#899087",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2708,
-          0.2119
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "front": "c1_face",
-          "right": "c1_r"
-        },
-        "bbox_mm": [
-          6.0,
-          10.9601,
-          49.0941,
-          34.3133
-        ],
-        "world_mm": [
-          -5.976589617468248,
-          7.0259024723043,
-          0.0
-        ],
-        "rol": "veri",
-        "not": "face in the page-parallel vertical plane; the top edge is a flat 2D profile at true size"
-      },
-      "c0": {
-        "kind": "profil_kart",
-        "tint": "govde_vit",
-        "size_mm": {
-          "w": 48.0,
-          "d": 4.0,
-          "h": 29.41066666666667
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#D5B09F",
-          "right": "#B59687",
-          "front": "#957B6F"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#D5B09F",
-        "outline": "#7F6A5F",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.1431,
-          0.1168
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "front": "c0_face",
-          "right": "c0_r"
-        },
-        "bbox_mm": [
-          6.0,
-          21.8393,
-          49.0941,
-          29.4107
-        ],
-        "world_mm": [
-          -0.0,
-          0.0,
-          0.0
-        ],
-        "rol": "veri",
-        "not": "face in the page-parallel vertical plane; the top edge is a flat 2D profile at true size"
-      }
-    }
-  },
+  "three_d": {},
   "kind": "single",
   "a1": {
     "kind": "single",
@@ -273,45 +113,13 @@
     "within_lattice": true,
     "rule": "the page is the venue width of its kind on Visio's print lattice; the scale may read 0.999 or 1.001 to three decimals (snap_page, T3)"
   },
-  "message": "Robust accuracy under PGD-10: three cut-out profiles whose heights are the accuracies; the number rows print the same values.",
+  "message": "Robust accuracy under PGD-10 falls with the budget for all three models; the CNN margin over the ViT narrows at 16/255.",
   "provenance": "computed",
   "sources": {},
   "derived_colours": {
-    "#9D9483": {
-      "from": "3D front tone of govde_panel (fill #E0D3BB, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#857D6F": {
-      "from": "schematic colour 857D6F",
+    "#93908D": {
+      "from": "schematic colour 93908D",
       "role": "line"
-    },
-    "#BEB39F": {
-      "from": "3D right tone of govde_panel (fill #E0D3BB, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#A1ACA2": {
-      "from": "3D front tone of govde_r32 (fill #E6F5E8, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#899087": {
-      "from": "schematic colour 899087",
-      "role": "line"
-    },
-    "#C4D0C5": {
-      "from": "3D right tone of govde_r32 (fill #E6F5E8, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#957B6F": {
-      "from": "3D front tone of govde_vit (fill #D5B09F, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#7F6A5F": {
-      "from": "schematic colour 7F6A5F",
-      "role": "line"
-    },
-    "#B59687": {
-      "from": "3D right tone of govde_vit (fill #D5B09F, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
     }
   },
   "entities": {
@@ -327,7 +135,7 @@
   },
   "page_mm": [
     85.302,
-    88.9
+    102.023
   ],
   "notes": null,
   "panels": [
@@ -339,12 +147,10 @@
   "sablon": "tek_kart_veri",
   "tur": "veri",
   "uslup_yolu": "<skill>/styles/uslup_Z.yaml",
-  "altyazi_taslagi": "Robust accuracy under PGD-10 as cut-out profiles. Each card's top edge traces CIFAR-10 test accuracy over the budget ε, clean to 16/255, as height above its own base (back bases dashed; scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model).",
+  "altyazi_taslagi": "Robust accuracy under PGD-10. CIFAR-10 test accuracy over the budget ε, clean to 16/255, for ViT-Tiny AT, ResNet-18 AT and WRN-28-10; the number rows under the chart print the plotted values (mean of three seed pairs; WRN-28-10 is one RobustBench model).",
   "uslup_surumu": 3,
-  "sahne_kalibi": "kesik_profil_levhalari",
-  "ikiz_kodlama": "every accuracy is printed as a number in the rows under the scene",
-  "denge_muafiyet": {
-    "3b_veri": "block height is the accuracy as a true length on the one vertical dimetric axis, and the number rows print every value (K7)"
-  },
-  "derinlik_ekseni": "orders the models by robustness (front least robust), carries no value"
+  "sahne": false,
+  "kompozisyon_dili": "duz kart (ucuncu tur 09.11.2026: kaide, levha, vitrin, direk, raf ve zemin yok)",
+  "sahne_kalibi": "yok (tek duz kart, cizgi grafigi, ucuncu tur)",
+  "derinlik_ekseni": "none: flat card"
 }

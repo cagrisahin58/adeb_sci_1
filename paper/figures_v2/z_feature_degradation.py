@@ -5,7 +5,7 @@
 
 Single column. At the left the twelve blocks of ViT-Tiny are thin discs stacked upward (block 1 at the bottom),
 each numbered on its face; a labelled arrow brings the clean and PGD-10 image in at the base, a second one
-leads from the spine to three upright readout cards whose rows sit level with the discs: change of the CLS
+leads from the spine to three flat readout cards (third round, 09.11.2026) whose rows sit level with the discs: change of the CLS
 attention entropy (runs open, mean filled, run-level 90 % TOST interval, the registered +-0.05 nat margin as a
 band), CLS attention displacement (TV; runs, mean +- SD) and block-output cosine (CLS token, patch-token mean,
 all tokens; mean +- SD). The layer axis is the spine's height; values are positions on flat card faces.
@@ -32,7 +32,7 @@ COSLOOK = {"cos_block_cls": ("o", "vurgu3", "CLS token"), "cos_block_token_mean"
 CAPTION = ("Feature degradation of ViT-Tiny under attack, block by block. The clean and PGD-10 image enter the "
            "spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90% TOST "
            "intervals inside the ±0.05-nat band, attention displacement (TV), block-output cosine, mean±SD. "
-           "Values are positions on the flat cards.")
+           "Disc height carries no value.")
 
 
 def main():
@@ -66,8 +66,8 @@ def main():
     cbot = rowy[0] + RH / 2 + 6.2
     for c, (title, sub, (v0, v1), ticks, tlabs) in enumerate(cards):
         X, Y = Z.un(S, cx0 - 2.0 + c * (cw + 1.4), 0.0)
-        fx, fy, fw, fh = Z.kart(S, f"c{c}", X, Y, OY - cbot, cw, cbot - ctop, "kutu", t=1.4, shadow=False,
-                                group=f"c{c}")
+        # third round (09.11.2026): the readout cards are flat; the block stack keeps the stage
+        fx, fy, fw, fh = Z.kart_duz(S, f"c{c}", X, Y, OY - cbot, cw, cbot - ctop, "kutu", group=f"c{c}")
         face = f"c{c}_face"
         T(f"ct{c}", fx + fw / 2, fy + 0.6, [[(title, "sb")]], size=Z.S8, align="c", cont=face)
         T(f"cs{c}", fx + fw / 2, fy + 0.6 + lh(Z.S8), [sub], size=Z.S8, align="c", color="muted", cont=face)
@@ -164,7 +164,7 @@ def main():
         manifest={"entities": ents, "sahne_kalibi": "omurga",
                   "panel_adlari": [c[0] for c in cards],
                   "derinlik_ekseni": "none in depth: the layer axis is the spine's height; depth is disc thickness",
-                  "ikiz_kodlama": "values are positions on the flat faces of the three readout cards"},
+                  "ikiz_kodlama": "values are positions on the three flat readout cards"},
         denge={"panel_basina_bir_iddia": (True, "each readout card is one measure across the twelve blocks"),
                "dogrudan_etiket": (True, "blocks are numbered on their faces; measures name the cards")},
         n_exempt_reason="three runs per block; the legend says so", okunan_ek=inputs + ["results/C1_REFERANS_FOYU.md"])

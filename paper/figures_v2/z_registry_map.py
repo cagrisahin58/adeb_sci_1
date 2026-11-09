@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-"""z_registry_map (Fig. 5 v2, Üslup Z): registered tests and decision rules as a two-flight staircase.
+"""z_registry_map (Fig. 5 v2, Üslup Z): registered tests and decision rules as a flat table-chart.
 
     python paper/figures_v2/z_registry_map.py [--check] [--bak]
 
-Double column. Every test family is a step; the step's riser (an upright face of the one dimetric view) carries
-the family's tests row by row, its tread the depth up to the next family. The left flight holds the four
-families of the main registration, the right flight the three of the addendum; each family stands behind and
-above the previous one, so the depth axis is the registration order (rings 1-7). Each row: test id and quantity,
+Double column, flat-card composition (third round, 09.11.2026: the staircase is gone). Every test family is a
+flat row band (alternating tones), numbered by a ring in registration order (1-7) from top to bottom; the four
+families of the main registration sit in one group card, the three of the addendum in a second (the split is
+the text's sentence, 03_methodology.tex line 295). Each row: test id and quantity,
 the falsification rule underneath (muted), and at the right the registered values on a number line (predicted
 size filled diamond, falsification threshold open circle, the +-0.1 equivalence band a grey bar) with the
 predicted value printed. Measured outcomes are not drawn. Content: the v1 rule paper/figures/visio/fig_registry_map.py
@@ -22,15 +22,16 @@ import _z2 as Z  # noqa: E402
 from _z2 import vf, gr, lh, T  # noqa: E402
 
 Z.baslat()
-RM = Z.yukle_sema("paper/figures/visio/fig_registry_map.py", "v1_registry_map")
+Z.duz()
+RM =Z.yukle_sema("paper/figures/visio/fig_registry_map.py", "v1_registry_map")
 
 STEM = "z_registry_map"
 KIND = "double"
 W = vf.page_width(KIND)
-CAPTION = ("Registered tests and decision rules as a staircase. Each step is one family, numbered in registration "
-           "order and set behind the previous one; rows give test and quantity, place the predicted size (diamond) "
-           "and falsification threshold (circle) on a number line with the ±0.1 band, and state the falsifying "
-           "rule. Holm correction is per family; ImageNetV2 rows are descriptive.")
+CAPTION = ("Registered tests and decision rules. Each band is one family, numbered in registration order and "
+           "grouped into the main registration and the addendum; rows give test and quantity, place the predicted "
+           "size (diamond) and falsification threshold (circle) on a number line with the ±0.1 band, and state the "
+           "falsifying rule. Holm correction is per family; ImageNetV2 rows are descriptive.")
 
 
 def main():
@@ -43,9 +44,14 @@ def main():
         fams[-1]["rows"].append(r)
     vf.reset(STEM, W, 150.0, naming_step=3, naming_kind="rakam")
     LH = lh(Z.S8)
-    D = 4.0
     nF = len(fams)
-    FW = W - 3.0 - nF * D * 0.273 - D * 0.273 - 1.0
+    # the registration split is the text's own sentence (03_methodology.tex line 295): main = panel tests,
+    # two-by-two design, attack side, masking; addendum = CIFAR-100, ImageNetV2, gradient alignment
+    NMAIN = 4
+    assert [f["name"] for f in fams[NMAIN:]] and "CIFAR-100" in fams[NMAIN]["name"], [f["name"] for f in fams]
+    GX = 1.0                       # outer group cards
+    FX = GX + 1.2                  # family rows inside them
+    FW = W - 2 * FX
     COLF, COLQ, COLL, COLP = 30.5, 47.0, 23.0, 11.0
     COLR = FW - COLF - COLQ - COLL - COLP - 3.0
 
@@ -54,16 +60,29 @@ def main():
 
     def fam_h(f):
         return max(sum(rlines(r[8]) for r in f["rows"]) * LH, 2 * LH) + 1.8
-    tot = sum(fam_h(f) for f in fams)
-    OY = 3.0 + LH + 2.5 + tot + nF * D * 0.664 + 1.0
-    S = Z.Sahne(2.0, OY)
-    Z.plaka_un(S, "stage", *Z.un(S, -0.6, -1.5), FW + 1.6, nF * D + 2.5, 1.6, tint="sahne")
-    z, dep = 0.0, 0.0
+    # third round (09.11.2026): flat table-chart. Families run top to bottom in registration order as flat
+    # row bands (alternating tones) inside two group cards, main registration and addendum; no staircase.
+    GH = LH + 1.6                                  # group card head
+    groups = [("Main registration", "frozen before any run", fams[:NMAIN], 0),
+              ("Addendum", "frozen before its matrices or gradients", fams[NMAIN:], NMAIN)]
+    y0 = 1.0 + LH + 2.2
+    gcards = []
+    for gi, (gname, gsub, gf_, k0) in enumerate(groups):
+        gh = GH + sum(fam_h(f) for f in gf_) + (len(gf_) - 1) * 0.8 + 1.0
+        Z.duz_kart(f"grp{gi}", GX, y0, W - 2 * GX, gh, "kutu")
+        T(f"gn{gi}", FX, y0 + 0.6, [[(gname, "sb")]], size=Z.S8, cont=f"grp{gi}_face")
+        T(f"gs{gi}", FX + Z.tw([[(gname, "sb")]], Z.S8) + 1.6, y0 + 0.6, [gsub], size=Z.S8, color="muted",
+          cont=f"grp{gi}_face")
+        gcards.append((y0, gh, k0, len(gf_)))
+        y0 += gh + 2.0
+    OY = y0 - 2.0
     for k, fam in enumerate(fams):
         hgt = fam_h(fam)
-        X, Y = Z.un(S, 0.0, dep)
-        fx, fy, fw, fh = Z.kart(S, f"st{k}", X, Y, z, FW, hgt, "govde_panel" if k % 2 == 0 else "ton_6", t=D,
-                                shadow=False, group=f"stp{k}", cont="stage_top")
+        gi = 0 if k < NMAIN else 1
+        gy0, _gh, k0, _n = gcards[gi]
+        fy_ = gy0 + GH + sum(fam_h(f) + 0.8 for f in fams[k0:k])
+        fx, fy, fw, fh = Z.duz_kart(f"st{k}", FX, fy_, FW, hgt, "govde_panel" if k % 2 == 0 else "ton_6",
+                                    cont=f"grp{gi}_face")
         face = f"st{k}_face"
         Z.bl.ring(f"rg{k}", gr(fx + 1.0), gr(fy + 0.9), k + 1, container=face)
         dr = vf.IDS[f"rg{k}"]["w"]
@@ -103,18 +122,16 @@ def main():
                 T(f"tr{k}{j}", xr, y, [Z.runs(" ".join(wds[:cut])), Z.runs(" ".join(wds[cut:]))], size=Z.S8,
                   color="muted", cont=face)
             y += nl * LH
-        z += hgt
-        dep += D
     yh = 1.0
-    T("hf", 1.0, yh, [[("Family", "sb")]], size=Z.S8, color="muted")
-    T("hq", 1.0 + COLF, yh, [[("Test and quantity", "sb")]], size=Z.S8, color="muted")
-    T("hl", 1.0 + COLF + COLQ + 1.0, yh, [[("Pre-registered values", "sb")]], size=Z.S8, color="muted")
-    T("hr", 1.0 + COLF + COLQ + COLL + COLP + 2.6, yh, [[("Falsified if", "sb")]], size=Z.S8, color="muted")
+    T("hf", FX, yh, [[("Family", "sb")]], size=Z.S8, color="muted")
+    T("hq", FX + COLF, yh, [[("Test and quantity", "sb")]], size=Z.S8, color="muted")
+    T("hl", FX + COLF + COLQ + 1.0, yh, [[("Pre-registered values", "sb")]], size=Z.S8, color="muted")
+    T("hr", FX + COLF + COLQ + COLL + COLP + 1.6, yh, [[("Falsified if", "sb")]], size=Z.S8, color="muted")
     # bulgu 5 (08.11): booktabs head rule, the one 1.5 pt (vurgu) line of the figure; table rules are the
     # emphasis edges of style Z (as Figures 7, 13 and 16)
     vf.seg("h_rule", (1.0, yh + LH + 0.4), (W - 1.0, yh + LH + 0.4), vf.C["frame"], vf.LW["vurgu"])
     # legend
-    yl = OY + 3.4
+    yl = OY + 2.0
     x = 1.0
     Z.isaret("lgd", x + 1.0, yl + LH / 2, "D", fill="ink", edge="ink", size=1.7)
     T("lgdt", x + 2.6, yl, ["predicted size"], size=Z.S8)
@@ -133,18 +150,24 @@ def main():
            if not isinstance(v_, (dict, list))]
     deg.append(Z.ev("number line axis", [RM.LO, RM.HI], RM.SRC, "(axis, not data)",
                     "axis range -0.3 to 0.9, ticks 0, 0.4, 0.8, chosen to hold every threshold"))
+    deg.append(Z.ev("registration groups", {"main": [f["name"] for f in fams[:NMAIN]],
+                                            "addendum": [f["name"] for f in fams[NMAIN:]]},
+                    "paper/manuscript/sections/03_methodology.tex:295", "main registration (panel tests, two-by-two "
+                    "design, attack side, masking) ... addendum (CIFAR-100, ImageNetV2, gradient alignment)",
+                    "group membership read from the text sentence; no number drawn"))
     return Z.bitir(
         STEM, message="The registry: every pre-registered test with its quantity, predicted size, falsification "
                       "threshold and rule, ordered by registration.", kind=KIND, panels=7, caption=CAPTION,
         sablon="tablodan_sekle", tur="sematik", degerler=deg, kanit_ek={"foy_karsilastirmasi": foy},
-        manifest={"sahne_kalibi": "yedi_basamakli_merdiven",
+        manifest={"sahne_kalibi": "yok (duz satirli tablo-grafik, ucuncu tur)",
                   "istasyonlar": [f"{i + 1} {f['name']}" for i, f in enumerate(fams)],
-                  "derinlik_ekseni": "registration order: each family behind and above the previous one",
+                  "derinlik_ekseni": "none: registration order runs top to bottom",
+                  "ic_ice_derinlik": {"deger": 3, "gerekce": "group card holds family band which holds number lines"},
                   "denge_muafiyet": {"karakter_cm2": "the figure replaces Table 3; test names, quantities and rules are "
                                                      "its content",
                                      "yazi_kutusu_alani": "two lines per test (quantity and rule) at the 8 pt floor"},
                   "sonuc_cizilmedi": "measured outcomes are not drawn"},
-        denge={"panel_basina_bir_iddia": (True, "each step is one test family with its decision rules"),
+        denge={"panel_basina_bir_iddia": (True, "each band is one test family with its decision rules"),
                "her_sayinin_kaynagi": (True, "every threshold is read from the registry rules file")},
         n_exempt_reason="a registry of thresholds draws no sample", okunan_ek=[RM.SRC, "results/C1_REFERANS_FOYU.md"])
 

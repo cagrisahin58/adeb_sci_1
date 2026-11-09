@@ -4,11 +4,11 @@
   "yanitlar": {
     "3b_veri": {
       "deger": false,
-      "gerekce": "no measured value is encoded by height, depth or angle; 3D carries objects and design structure"
+      "gerekce": "no 3D is drawn; every value is a 2D position, length or colour on a flat card"
     },
     "3b_kural_disi": {
       "deger": false,
-      "gerekce": "one dimetric 36 degree view from style Z, flat face tones, no perspective, gradient, gloss or soft mask; the cast shadow is a floor projection larger than the object, not an offset copy; text stays in the plane or on a card face parallel to the page"
+      "gerekce": "flat-card figure: no projection, no thickness, no shadow, no gradient or gloss"
     },
     "clip_art": {
       "deger": false,
@@ -20,7 +20,7 @@
     },
     "sus_arka_plan": {
       "deger": false,
-      "gerekce": "the stage plate is the grouping tool of style Z and carries both cards"
+      "gerekce": "white page; the flat cards of style Z are the grouping tools and carry the content"
     },
     "gereksiz_ikon": {
       "deger": false,
@@ -36,7 +36,7 @@
     },
     "panel_basina_bir_iddia": {
       "deger": true,
-      "gerekce": "back card the spread, front card the term it leaves out"
+      "gerekce": "upper card the spread, lower card the term it leaves out"
     },
     "her_sayinin_kaynagi": {
       "deger": true,

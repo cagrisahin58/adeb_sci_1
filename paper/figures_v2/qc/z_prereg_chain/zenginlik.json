@@ -10,21 +10,23 @@
    "olcum": {
     "sayfa_mm": [
      177.588,
-     66.463
+     66.252
     ],
-    "murekkep": 0.1096,
-    "ton": 0.5919,
-    "bos": 0.2985,
-    "sozcuk": 101,
-    "karakter_cm2": 4.245,
-    "yazi_kutusu_alani": 0.2554,
-    "sayisal_oran": 0.2475,
-    "veri_alani_payi": null,
-    "veri_alani_satirlar": [],
+    "murekkep": 0.1113,
+    "ton": 0.8635,
+    "bos": 0.0252,
+    "sozcuk": 96,
+    "karakter_cm2": 4.071,
+    "yazi_kutusu_alani": 0.2456,
+    "sayisal_oran": 0.2604,
+    "veri_alani_payi": 0.1464,
+    "veri_alani_satirlar": [
+     0.1464
+    ],
     "veri_alani_ic_satirlar": [],
     "ic_ice_derinlik_olculen": 2,
-    "panel_olculen": 5,
-    "ton_karti": 4,
+    "panel_olculen": 3,
+    "ton_karti": 3,
     "grup_cercevesi": 0,
     "kutu": 3,
     "gorselli_kutu": 3,
@@ -34,11 +36,11 @@
     "ok_uclari_mm": [
      [
       1.04,
-      2.08
+      2.07
      ],
      [
       1.04,
-      2.08
+      2.07
      ]
     ],
     "akis": {
@@ -55,7 +57,7 @@
    "maddeler": [
     {
      "olcut": "karakter_cm2",
-     "deger": 4.245,
+     "deger": 4.071,
      "esik": {
       "max": 4.5
      },
@@ -67,7 +69,7 @@
     },
     {
      "olcut": "yazi_kutusu_alani",
-     "deger": 0.2554,
+     "deger": 0.2456,
      "esik": {
       "max": 0.3
      },
@@ -79,7 +81,7 @@
     },
     {
      "olcut": "sayisal_oran",
-     "deger": 0.2475,
+     "deger": 0.2604,
      "esik": {
       "max": 0.55
      },
@@ -91,7 +93,7 @@
     },
     {
      "olcut": "veri_alani_payi",
-     "deger": null,
+     "deger": 0.1464,
      "esik": {
       "min": 0.45
      },
@@ -111,7 +113,7 @@
      "kaynak": "İSTEM satır 225: her yöntem şemasında derinlik 3",
      "gecti": true,
      "uygulanmaz": null,
-     "not": "declared 3 (stage plate holds the three cards, each card holds its block entries; the polygon card faces read as one level); measured 2"
+     "not": "declared 3 (the chain card holds the three stage cards, each stage card holds its matrix glyph and block entries); measured 2"
     },
     {
      "olcut": "gomulu_gorsel",
@@ -163,7 +165,7 @@
     },
     {
      "olcut": "gruplama_araci",
-     "deger": 4,
+     "deger": 3,
      "esik": {
       "min": 1
      },
@@ -171,11 +173,11 @@
      "kaynak": "İSTEM satır 231: her çok panelli şekilde bir gruplama aracı (ton kartı, zemin bandı)",
      "gecti": true,
      "uygulanmaz": null,
-     "not": "3 panels (manifest); 4 tone card(s), 0 group frame(s)"
+     "not": "3 panels (manifest); 3 tone card(s), 0 group frame(s)"
     },
     {
      "olcut": "ton_kapsami_h",
-     "deger": 0.5919,
+     "deger": 0.8635,
      "esik": {
       "min": 0.85
      },
@@ -184,44 +186,6 @@
      "gecti": null,
      "uygulanmaz": "style H data figures only (İSTEM line 245)",
      "not": ""
-    },
-    {
-     "olcut": "uc_boyut_veri",
-     "deger": [],
-     "esik": {
-      "max": 0
-     },
-     "siddet": "blok",
-     "kaynak": "skill kuralı (veri gösterimi): eksenli veri çizimi 3B çizilmez",
-     "gecti": true,
-     "uygulanmaz": null,
-     "not": "no 3D data"
-    },
-    {
-     "olcut": "uc_boyut_gorunum",
-     "esik": {
-      "gorunum": 1
-     },
-     "siddet": "blok",
-     "kaynak": "11. ilke ve brif K1/K10: makale boyunca tek paralel izdüşüm (izometrik, dimetrik ya da eğik), tek açı; gerçek perspektif yok",
-     "deger": [
-      "dimetric 36"
-     ],
-     "gecti": true,
-     "uygulanmaz": null,
-     "not": "one view, dimetric 36"
-    },
-    {
-     "olcut": "uc_boyut_ton_basamagi",
-     "esik": {
-      "min": 0.05
-     },
-     "siddet": "blok",
-     "kaynak": "brif K10: üst > sağ > ön, ardışık yüzler arasında en az 0.05 göreli luminans",
-     "deger": 0.2121,
-     "gecti": true,
-     "uygulanmaz": null,
-     "not": "4 tone set(s), the smallest step 0.212"
     }
    ],
    "blok": [],
@@ -229,7 +193,7 @@
    "begeni": {
     "olcutler": {
      "murekkep": {
-      "deger": 0.1096,
+      "deger": 0.1113,
       "begenilen": [
        0.046,
        0.272
@@ -240,7 +204,7 @@
       "kaynak": "20 sentezi satır 34"
      },
      "karakter_cm2": {
-      "deger": 4.245,
+      "deger": 4.071,
       "begenilen": [
        2.3,
        4.3
@@ -251,7 +215,7 @@
       "kaynak": "20 sentezi satır 31"
      },
      "yazi_kutusu_alani": {
-      "deger": 0.2554,
+      "deger": 0.2456,
       "begenilen": [
        0.131,
        0.285
@@ -262,43 +226,43 @@
       "kaynak": "20 sentezi satır 31"
      },
      "ton": {
-      "deger": 0.5919,
+      "deger": 0.8635,
       "begenilen": [
        0.06,
        0.49
       ],
       "begenilmeyen_medyan": 0.038,
-      "uzaklik": 4.632,
+      "uzaklik": 16.977,
       "begenilmeyen_tarafinda": false,
       "kaynak": "12 raporu satır 53 (üç şema, bir küçük şema, bir görüntü paneli)"
      },
      "bos": {
-      "deger": 0.2985,
+      "deger": 0.0252,
       "begenilen": [
        0.421,
        0.778
       ],
       "begenilmeyen_medyan": 0.869,
-      "uzaklik": 1.346,
+      "uzaklik": 4.349,
       "begenilmeyen_tarafinda": false,
       "kaynak": "20 sentezi satır 35 (Visio şematikleri)"
      },
      "sayisal_oran": {
-      "deger": 0.2475,
+      "deger": 0.2604,
       "begenilen": null,
       "begenilmeyen_medyan": null,
       "uzaklik": null,
       "kaynak": "20 sentezi satır 32: histopatolojide ölçülmedi; kara kutuda veri şekillerinde 0.23-0.58 (12 raporu satır 188), medyan verilmedi"
      },
      "veri_alani_payi": {
-      "deger": null,
+      "deger": 0.1464,
       "begenilen": null,
       "begenilmeyen_medyan": null,
       "uzaklik": null,
       "kaynak": "20 sentezi satır 85: histopatolojide ölçülmedi; kara kutu tablo-grafiklerinde %11-30, medyan verilmedi"
      }
     },
-    "uzaklik": 1.196,
+    "uzaklik": 4.265,
     "olculen": 5,
     "begenilmeyen_tarafinda": 0,
     "uzak_durur": true
@@ -311,7 +275,7 @@
    "esik_kaynaklari": [
     "C:\\Users\\cagri\\projects\\cc_duzen\\skills\\visio-cizici\\references\\denge_esikleri.yaml"
    ],
-   "ozet_satiri": "kar/cm² 4.25 [2.30-4.30] · yazı kutusu 0.26 [0.13-0.28] · sayısal 0.25 · veri alanı - · derinlik 2 · akış 2/2 etiketli · ton 0.59 [0.06-0.49] · mürekkep 0.110 | beğeniye uzaklık 1.20 (0/5 beğenilmeyen tarafında) | eşikler tamam"
+   "ozet_satiri": "kar/cm² 4.07 [2.30-4.30] · yazı kutusu 0.25 [0.13-0.28] · sayısal 0.26 · veri alanı 0.15 · derinlik 2 · akış 2/2 etiketli · ton 0.86 [0.06-0.49] · mürekkep 0.111 | beğeniye uzaklık 4.26 (0/5 beğenilmeyen tarafında) | eşikler tamam"
   }
  }
 }

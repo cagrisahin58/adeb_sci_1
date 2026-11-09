@@ -117,362 +117,7 @@
       "kind": "strip"
     }
   ],
-  "three_d": {
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "token": {
-      "projection": "dimetric",
-      "angle_deg": 36.0
-    },
-    "token_source": "style",
-    "objects": {
-      "stage": {
-        "kind": "plaka",
-        "tint": "sahne",
-        "size_mm": {
-          "w": 155.4,
-          "d": 24.0,
-          "h": 2.0
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F3EFE6",
-          "right": "#CFCBC4",
-          "front": "#AAA7A1"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F3EFE6",
-        "outline": "#908C86",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2654,
-          0.2121
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "front": "stage_front",
-          "right": "stage_right",
-          "top": "stage_top"
-        },
-        "bbox_mm": [
-          13.1794,
-          78.3046,
-          161.9645,
-          17.9376
-        ],
-        "not": "plate aligned with the page-horizontal floor direction u and the floor normal n"
-      },
-      "st2": {
-        "kind": "kart",
-        "tint": "kutu",
-        "size_mm": {
-          "w": 48.0,
-          "d": 3.0,
-          "h": 78.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F9F6F2",
-          "right": "#D4D1CE",
-          "front": "#AEACA9"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F9F6F2",
-        "outline": "#93908D",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2841,
-          0.2269
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "st2_top",
-          "right": "st2_right",
-          "front": "st2_face"
-        },
-        "bbox_mm": [
-          122.7763,
-          0.8328,
-          48.8206,
-          80.7922
-        ],
-        "world_mm": [
-          77.85063475270958,
-          59.00491248296789,
-          0.0
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "le2": {
-        "kind": "kart",
-        "tint": "kap",
-        "size_mm": {
-          "w": 48.0,
-          "d": 1.6,
-          "h": 5.4
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F3F0E9",
-          "right": "#CFCCC6",
-          "front": "#AAA8A3"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F3F0E9",
-        "outline": "#908D88",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2673,
-          0.2133
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "le2_top",
-          "right": "le2_right",
-          "front": "le2_face"
-        },
-        "bbox_mm": [
-          122.3387,
-          38.825,
-          48.4376,
-          6.4625
-        ],
-        "world_mm": [
-          78.59518055622156,
-          57.588702206747335,
-          37.4
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "st1": {
-        "kind": "kart",
-        "tint": "kutu",
-        "size_mm": {
-          "w": 48.0,
-          "d": 3.0,
-          "h": 78.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F9F6F2",
-          "right": "#D4D1CE",
-          "front": "#AEACA9"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F9F6F2",
-        "outline": "#93908D",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2841,
-          0.2269
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "st1_top",
-          "right": "st1_right",
-          "front": "st1_face"
-        },
-        "bbox_mm": [
-          69.3882,
-          6.1453,
-          48.8206,
-          80.7922
-        ],
-        "world_mm": [
-          44.374386336395,
-          32.36720132585973,
-          0.0
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "le1": {
-        "kind": "kart",
-        "tint": "kap",
-        "size_mm": {
-          "w": 48.0,
-          "d": 1.6,
-          "h": 5.4
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F3F0E9",
-          "right": "#CFCCC6",
-          "front": "#AAA8A3"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F3F0E9",
-        "outline": "#908D88",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2673,
-          0.2133
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "le1_top",
-          "right": "le1_right",
-          "front": "le1_face"
-        },
-        "bbox_mm": [
-          68.9505,
-          44.1375,
-          48.4376,
-          6.4625
-        ],
-        "world_mm": [
-          45.11893213990698,
-          30.95099104963918,
-          37.4
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "st0": {
-        "kind": "kart",
-        "tint": "kutu",
-        "size_mm": {
-          "w": 48.0,
-          "d": 3.0,
-          "h": 78.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F9F6F2",
-          "right": "#D4D1CE",
-          "front": "#AEACA9"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F9F6F2",
-        "outline": "#93908D",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2841,
-          0.2269
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "st0_top",
-          "right": "st0_right",
-          "front": "st0_face"
-        },
-        "bbox_mm": [
-          16.0,
-          11.4578,
-          48.8206,
-          80.7922
-        ],
-        "world_mm": [
-          10.898137920080414,
-          5.7294901687515765,
-          0.0
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "le0": {
-        "kind": "kart",
-        "tint": "kap",
-        "size_mm": {
-          "w": 48.0,
-          "d": 1.6,
-          "h": 5.4
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F3F0E9",
-          "right": "#CFCCC6",
-          "front": "#AAA8A3"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F3F0E9",
-        "outline": "#908D88",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2673,
-          0.2133
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "le0_top",
-          "right": "le0_right",
-          "front": "le0_face"
-        },
-        "bbox_mm": [
-          15.5624,
-          49.45,
-          48.4376,
-          6.4625
-        ],
-        "world_mm": [
-          11.642683723592391,
-          4.31327989253102,
-          37.4
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      }
-    }
-  },
+  "three_d": {},
   "kind": "double",
   "a1": {
     "kind": "double",
@@ -495,37 +140,13 @@
   "provenance": "computed",
   "sources": {},
   "derived_colours": {
-    "#AAA7A1": {
-      "from": "3D front tone of sahne (fill #F3EFE6, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#CFCBC4": {
-      "from": "3D right tone of sahne (fill #F3EFE6, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#D4D1CE": {
-      "from": "3D right tone of kutu (fill #F9F6F2, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
-    },
     "#93908D": {
       "from": "schematic colour 93908D",
       "role": "line"
     },
-    "#AEACA9": {
-      "from": "3D front tone of kutu (fill #F9F6F2, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#CFCCC6": {
-      "from": "3D right tone of kap (fill #F3F0E9, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
-    },
     "#908D88": {
       "from": "schematic colour 908D88",
       "role": "line"
-    },
-    "#AAA8A3": {
-      "from": "3D front tone of kap (fill #F3F0E9, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
     },
     "#4B423A": {
       "from": "schematic colour 4B423A",
@@ -545,7 +166,7 @@
   },
   "page_mm": [
     177.588,
-    106.468
+    90.805
   ],
   "notes": null,
   "panels": [
@@ -557,9 +178,11 @@
   "sablon": "ortak_satirli_katlar",
   "tur": "veri",
   "uslup_yolu": "<skill>/styles/uslup_Z.yaml",
-  "altyazi_taslagi": "Input-gradient alignment against similarity on three steles. Cosine c between input gradients against log τ̄ for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; upper panels raw, lower panels residual below the ledge, with additive model main effects removed. Each panel prints the Spearman r and pair count n; values are positions on the flat faces.",
+  "altyazi_taslagi": "Input-gradient alignment against similarity. Cosine c between input gradients against log τ̄ for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; upper panels raw, lower panels residual, after the additive model main effects are removed from both matrices. Each panel prints the Spearman r and pair count n.",
   "uslup_surumu": 3,
-  "sahne_kalibi": "uc_dikili_tas",
+  "sahne": false,
+  "kompozisyon_dili": "duz kart (ucuncu tur 09.11.2026: kaide, levha, vitrin, direk, raf ve zemin yok)",
+  "sahne_kalibi": "yok (uc duz sutun karti, ucuncu tur)",
   "panel_adlari": [
     "raw",
     "residual",
@@ -567,6 +190,5 @@
     "CIFAR-100",
     "ImageNetV2"
   ],
-  "derinlik_ekseni": "registration order: CIFAR-10 (main registration) in front, CIFAR-100 and ImageNetV2 (supplement) behind; the processing step is the ledge between the upper raw and the lower residual panel",
-  "ikiz_kodlama": "values are positions on the flat faces of three upright steles"
+  "derinlik_ekseni": "none: flat column cards; the processing step is the inset strip between the raw and the residual panel"
 }

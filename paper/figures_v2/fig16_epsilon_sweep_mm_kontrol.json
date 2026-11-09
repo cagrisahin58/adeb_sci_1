@@ -2,7 +2,7 @@
  "stem": "fig16_epsilon_sweep",
  "page_mm": [
   85.30166666666665,
-  88.89999999999999
+  102.02333333333333
  ],
  "grid_mm": 0.25,
  "type_floor_pt": 8.0,
@@ -79,177 +79,22 @@
  "naming_step": 1,
  "naming_kind": "yok",
  "naming": [],
- "three_d": {
-  "projection": "dimetric",
-  "angle_deg": 36.0,
-  "token": {
-   "projection": "dimetric",
-   "angle_deg": 36.0
-  },
-  "token_source": "style",
-  "objects": {
-   "c2": {
-    "kind": "profil_kart",
-    "tint": "govde_panel",
-    "size_mm": {
-     "w": 48.0,
-     "d": 4.0,
-     "h": 35.792
-    },
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "angle_w_deg": 18.0,
-    "tones": {
-     "top": "#E0D3BB",
-     "right": "#BEB39F",
-     "front": "#9D9483"
-    },
-    "darkening": {
-     "top": 0.0,
-     "right": 0.15,
-     "front": 0.3
-    },
-    "fill": "#E0D3BB",
-    "outline": "#857D6F",
-    "tone_source": "three_d.face_tones",
-    "tone_steps": [
-     0.2033,
-     0.157
-    ],
-    "three_d_token": {
-     "angle_deg": 36.0,
-     "projection": "dimetric"
-    },
-    "faces": {
-     "front": "c2_face",
-     "right": "c2_r"
-    },
-    "bbox_mm": [
-     6.0,
-     3.5048,
-     49.0941,
-     35.792
-    ],
-    "world_mm": [
-     -11.953179234936496,
-     14.0518049446086,
-     0.0
-    ],
-    "rol": "veri",
-    "not": "face in the page-parallel vertical plane; the top edge is a flat 2D profile at true size"
-   },
-   "c1": {
-    "kind": "profil_kart",
-    "tint": "govde_r32",
-    "size_mm": {
-     "w": 48.0,
-     "d": 4.0,
-     "h": 34.31333333333333
-    },
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "angle_w_deg": 18.0,
-    "tones": {
-     "top": "#E6F5E8",
-     "right": "#C4D0C5",
-     "front": "#A1ACA2"
-    },
-    "darkening": {
-     "top": 0.0,
-     "right": 0.15,
-     "front": 0.3
-    },
-    "fill": "#E6F5E8",
-    "outline": "#899087",
-    "tone_source": "three_d.face_tones",
-    "tone_steps": [
-     0.2708,
-     0.2119
-    ],
-    "three_d_token": {
-     "angle_deg": 36.0,
-     "projection": "dimetric"
-    },
-    "faces": {
-     "front": "c1_face",
-     "right": "c1_r"
-    },
-    "bbox_mm": [
-     6.0,
-     10.9601,
-     49.0941,
-     34.3133
-    ],
-    "world_mm": [
-     -5.976589617468248,
-     7.0259024723043,
-     0.0
-    ],
-    "rol": "veri",
-    "not": "face in the page-parallel vertical plane; the top edge is a flat 2D profile at true size"
-   },
-   "c0": {
-    "kind": "profil_kart",
-    "tint": "govde_vit",
-    "size_mm": {
-     "w": 48.0,
-     "d": 4.0,
-     "h": 29.41066666666667
-    },
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "angle_w_deg": 18.0,
-    "tones": {
-     "top": "#D5B09F",
-     "right": "#B59687",
-     "front": "#957B6F"
-    },
-    "darkening": {
-     "top": 0.0,
-     "right": 0.15,
-     "front": 0.3
-    },
-    "fill": "#D5B09F",
-    "outline": "#7F6A5F",
-    "tone_source": "three_d.face_tones",
-    "tone_steps": [
-     0.1431,
-     0.1168
-    ],
-    "three_d_token": {
-     "angle_deg": 36.0,
-     "projection": "dimetric"
-    },
-    "faces": {
-     "front": "c0_face",
-     "right": "c0_r"
-    },
-    "bbox_mm": [
-     6.0,
-     21.8393,
-     49.0941,
-     29.4107
-    ],
-    "world_mm": [
-     -0.0,
-     0.0,
-     0.0
-    ],
-    "rol": "veri",
-    "not": "face in the page-parallel vertical plane; the top edge is a flat 2D profile at true size"
-   }
-  }
- },
- "primitives": 101,
+ "three_d": {},
+ "primitives": 83,
  "sources": {},
  "preflight": {
   "issues": [],
-  "texts": 31,
-  "min_text_slack_mm": 0.6,
-  "min_clearance_mm": {},
+  "texts": 37,
+  "min_text_slack_mm": 0.602,
+  "min_clearance_mm": {
+   "plate": 0.75
+  },
   "shape_pairs_checked": 123,
   "group_pairs_skipped": 30,
-  "deco_shapes": 27,
+  "deco_shapes": 1,
+  "min_print_clearance_mm": {
+   "plate": 0.75
+  },
   "families": [
    "Open Sans"
   ],
@@ -260,14 +105,14 @@
   }
  },
  "visio": {
-  "pid": 25776,
+  "pid": 3120,
   "version": "16,0",
   "close": {
-   "pid": 25776,
+   "pid": 3120,
    "doc_closed": true,
    "quit": true,
    "exited": true,
-   "waited_s": 0.61,
+   "waited_s": 0.64,
    "killed": false,
    "foreign_docs": 0
   },
@@ -278,9 +123,9 @@
   ]
  },
  "readback": {
-  "shapes": 101,
-  "max_deviation_mm": 0.0,
-  "worst": "c0_s2",
+  "shapes": 83,
+  "max_deviation_mm": 3e-05,
+  "worst": "ay_l0",
   "kinds": [
    "poly",
    "seg",
@@ -293,14 +138,14 @@
   "issues": [],
   "page_mm": [
    85.302,
-   88.9
+   102.023
   ],
   "register_offset_mm": [
    0.0,
    0.0
   ],
   "register": null,
-  "spans": 33,
+  "spans": 38,
   "sizes_pt": [
    8.4,
    8.425

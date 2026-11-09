@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Redraw, gate and reinstall every v2 figure in order (second round, 08.11.2026).
+"""Redraw, gate and reinstall every v2 figure in order (second round 08.11.2026, third round 09.11.2026).
 
     python paper/figures_v2/_hepsi_v2.py [kok ...]
 
@@ -20,20 +20,20 @@ NOTES = {
     "study_overview": "maket masasi; harfler not kartinda sol altta, (c) kilavuzlari karo yuzunde noktali; 1.5 pt kural; en tire",
     "design_recipe": "kartotek dolabi; adim 6; yazi muafiyeti; 1.5 pt kural; V-scr ve R32 uc fis karti",
     "decomposition_schematic": "uc katli buzlu kesit, egri baglayicilar, katman 6 mm geri; adim 2",
-    "panel_members": "iki rafli katalog kartlari; adim 4; yazi muafiyeti; baslik 1.5 pt kural",
-    "registry_map": "yedi basamakli merdiven; adim 3; baslik 1.5 pt kural",
-    "prereg_chain": "zaman rafi, derinlik=zaman, egri oklar; adim 2",
-    "source_gap_split": "uc zemin levhasi; K7 muaf; adim 4; q n/a notu",
-    "similarity_matrix": "uc kaide, duz matris; adim 3",
-    "cells_interaction": "uc katli kule, ortak direkler; adim 4",
-    "attack_side": "abakus; tek nesne",
-    "gradient_alignment": "uc dikili tas, ham ust/artik alt, cikinti islem; adim 4; anahtar kurali 1.5 pt",
-    "estimates_forest": "kaide ustunde iki oyuk panelli kitabe; adim 4; anahtar kurali 1.5 pt",
-    "protocol_settings": "patlatilmis dort protokol tahtasi; adim 3",
-    "protocol_sets": "terasli havuz ve olcum karti; adim 4",
-    "spread_clean_gap": "derin sahne, iki levha; adim 4; anahtar kurali 1.5 pt",
-    "epsilon_sweep": "kesik profil levhalari, hizali, gizli tabanlar kesik; K7 muaf",
-    "feature_degradation": "ViT omurgasi, blok basina okuma oku; adim 2",
+    "panel_members": "duz: iki katalog karti ust uste; adim 4; yazi muafiyeti; baslik 1.5 pt kural",
+    "registry_map": "duz: satirli tablo-grafik, ana kayit ve ek iki grup kartinda; adim 3; baslik 1.5 pt kural",
+    "prereg_chain": "duz: zincir kartinda uc kart soldan saga, duz oklar; adim 2",
+    "source_gap_split": "duz: uc kart, yatay cubuk, ortak olcek; K7 muafiyeti kalkti; adim 4; q n/a notu",
+    "similarity_matrix": "duz: uc kartta duz isi haritasi; adim 3",
+    "cells_interaction": "duz: uc kart ust uste, direk yok; adim 4",
+    "attack_side": "duz: tek kart, satir cizgileri, hucre bantlari; tek panel",
+    "gradient_alignment": "duz: uc sutun karti, ham/islem seridi/artik; adim 4; anahtar kurali 1.5 pt",
+    "estimates_forest": "duz: iki kart ust uste; adim 4; anahtar kurali 1.5 pt",
+    "protocol_settings": "duz: dort protokol karti ve sagda yayilim karti; adim 3",
+    "protocol_sets": "terasli havuz (sahne) ve duz olcum karti; adim 4",
+    "spread_clean_gap": "duz: iki kart ust uste, ortak x; adim 4; anahtar kurali 1.5 pt",
+    "epsilon_sweep": "duz: tek kartta cizgi grafigi, dogrudan etiket, sayi satirlari; K7 muafiyeti kalkti",
+    "feature_degradation": "ViT blok yigini (sahne), duz okuma kartlari; adim 2",
 }
 ORDER = list(NOTES)
 

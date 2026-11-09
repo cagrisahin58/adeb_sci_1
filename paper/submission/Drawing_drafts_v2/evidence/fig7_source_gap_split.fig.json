@@ -107,155 +107,7 @@
       "kind": "strip"
     }
   ],
-  "three_d": {
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "token": {
-      "projection": "dimetric",
-      "angle_deg": 36.0
-    },
-    "token_source": "style",
-    "objects": {
-      "slab0": {
-        "kind": "plaka",
-        "tint": "sahne",
-        "size_mm": {
-          "w": 146.0,
-          "d": 23.199999999999996,
-          "h": 1.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F3EFE6",
-          "right": "#CFCBC4",
-          "front": "#AAA7A1"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F3EFE6",
-        "outline": "#908C86",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2654,
-          0.2121
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "front": "slab0_front",
-          "right": "slab0_right",
-          "top": "slab0_top"
-        },
-        "bbox_mm": [
-          4.0,
-          38.3437,
-          152.3457,
-          17.2063
-        ],
-        "not": "plate aligned with the page-horizontal floor direction u and the floor normal n",
-        "rol": "veri"
-      },
-      "slab1": {
-        "kind": "plaka",
-        "tint": "sahne",
-        "size_mm": {
-          "w": 146.0,
-          "d": 23.199999999999996,
-          "h": 1.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F3EFE6",
-          "right": "#CFCBC4",
-          "front": "#AAA7A1"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F3EFE6",
-        "outline": "#908C86",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2654,
-          0.2121
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "front": "slab1_front",
-          "right": "slab1_right",
-          "top": "slab1_top"
-        },
-        "bbox_mm": [
-          11.7133,
-          19.617,
-          152.3457,
-          17.2063
-        ],
-        "not": "plate aligned with the page-horizontal floor direction u and the floor normal n",
-        "rol": "veri"
-      },
-      "slab2": {
-        "kind": "plaka",
-        "tint": "sahne",
-        "size_mm": {
-          "w": 146.0,
-          "d": 23.199999999999996,
-          "h": 1.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F3EFE6",
-          "right": "#CFCBC4",
-          "front": "#AAA7A1"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F3EFE6",
-        "outline": "#908C86",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2654,
-          0.2121
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "front": "slab2_front",
-          "right": "slab2_right",
-          "top": "slab2_top"
-        },
-        "bbox_mm": [
-          19.4266,
-          0.8904,
-          152.3457,
-          17.2063
-        ],
-        "not": "plate aligned with the page-horizontal floor direction u and the floor normal n",
-        "rol": "veri"
-      }
-    }
-  },
+  "three_d": {},
   "kind": "double",
   "a1": {
     "kind": "double",
@@ -278,13 +130,9 @@
   "provenance": "computed",
   "sources": {},
   "derived_colours": {
-    "#AAA7A1": {
-      "from": "3D front tone of sahne (fill #F3EFE6, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#CFCBC4": {
-      "from": "3D right tone of sahne (fill #F3EFE6, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
+    "#93908D": {
+      "from": "schematic colour 93908D",
+      "role": "line"
     },
     "#555538": {
       "from": "schematic colour 555538",
@@ -311,7 +159,7 @@
   },
   "page_mm": [
     177.588,
-    74.507
+    75.353
   ],
   "notes": null,
   "panels": [
@@ -323,17 +171,15 @@
   "sablon": "ortak_satirli_katlar",
   "tur": "veri",
   "uslup_yolu": "<skill>/styles/uslup_Z.yaml",
-  "altyazi_taslagi": "Source gap split into symmetric and directional parts, one slab per data set. Per seed pair on CIFAR-10 and CIFAR-100 and per same-recipe pair on ImageNetV2 (descriptive): olive symmetric part, lavender-grey directional part, diamond total G. Strips lie in the slab plane; the printed G and share q carry the values. A dashed part narrows the gap.",
+  "altyazi_taslagi": "Source gap split into symmetric and directional parts. One card per data set, one log-unit scale; per seed pair on CIFAR-10 and CIFAR-100 and per same-recipe pair on ImageNetV2 (descriptive): olive symmetric part, lavender-grey directional part, diamond total G; each row prints G and the share q. A dashed part narrows the gap.",
   "uslup_surumu": 3,
-  "sahne_kalibi": "zemin_levhalari",
+  "sahne": false,
+  "kompozisyon_dili": "duz kart (ucuncu tur 09.11.2026: kaide, levha, vitrin, direk, raf ve zemin yok)",
+  "sahne_kalibi": "yok (duz kartlar, ucuncu tur)",
   "panel_adlari": [
     "CIFAR-10",
     "CIFAR-100",
     "ImageNetV2, descriptive"
   ],
-  "derinlik_ekseni": "data set and registration level: CIFAR-10 in front, the addendum sets behind",
-  "ikiz_kodlama": "every row prints G and q; the strip lengths lie in the horizontal slab plane",
-  "denge_muafiyet": {
-    "3b_veri": "strip lengths lie in the horizontal slab plane, true along the one page-horizontal floor direction, and every row prints G and q (K7)"
-  }
+  "derinlik_ekseni": "none: flat cards on one shared x scale"
 }

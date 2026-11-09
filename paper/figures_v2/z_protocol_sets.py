@@ -7,7 +7,8 @@ Single column. Conditioning sets: on a sand plate four terraces rise, the widest
 set, each nested set one step higher, narrower and further in (target-correct, both-correct, successful-
 source); the terraces carry the nesting only (schematic, not area-proportional). A leader from each terrace's
 front face leads to its label: name, the condition the set adds (the mask in words) and N averaged over the
-seed pairs (CNN to ViT / ViT to CNN where the two differ). Measured asymmetry: an upright card under the pit,
+seed pairs (CNN to ViT / ViT to CNN where the two differ). Measured asymmetry: a flat card under the pit (third
+round, 09.11.2026: the card lost its thickness; the terraced pit keeps the stage because it shows a real nesting),
 per protocol the three seed-pair asymmetries (small open circles), the mean (protocol mark) and SD (line), the
 mean +- SD printed, and a stepped path whose three steps print the distances between adjacent protocols.
 Data: results/q1/fig_protokol_kumeleri_veri.json through konsey fig_protocol_sets.load_and_check, every number
@@ -36,8 +37,8 @@ MK = {"raw": ("o", "isi_2"), "target_correct": ("^", "isi_3"), "both_correct": (
 TINT = {"raw": "ton_6", "target_correct": "govde_panel", "both_correct": "govde_vit", "successful_source": "isi_4"}
 CAPTION = ("Conditioning sets and measured asymmetry. Conditioning sets: nested evaluation sets as terraces "
            "(schematic, not area-proportional; terrace height carries no value) with masks and mean N. Measured "
-           "asymmetry: mean±SD of the within-pair difference, pairs as open circles, read as positions on the "
-           "flat card and printed; the steps print the three decomposition terms.")
+           "asymmetry: mean±SD of the within-pair difference, pairs as open circles, mean±SD printed per row; "
+           "the steps print the three decomposition terms.")
 
 
 def veri():
@@ -107,12 +108,12 @@ def main():
                             f"mean over seed pairs; == foy line {PV.FOY_ROW[p][0]}"))
     T("notprop", 1.0, max(OY + 2.6, yl + 4 * (4 * lh(Z.S8) + 0.8)), ["terraces: nesting only, not area-proportional;", "N: mean over the three seed pairs"],
       size=Z.S8, color="muted")
-    # ---- Measured asymmetry: an upright card
+    # ---- Measured asymmetry: a flat card (third round, 09.11.2026: only the terraced pit keeps the stage)
     RH = lh(Z.S8) + 3.6
     CH = 1.0 + lh(Z.S8) + 0.8 + 4 * RH + 1.0 + 10.2
     cz_top = max(OY + 2.6, yl + 4 * (4 * lh(Z.S8) + 0.8)) + 2 * lh(Z.S8) + 2.0
     S2 = Z.Sahne(1.0, cz_top + CH)
-    fx, fy, fw, fh = Z.kart(S2, "card", 0.0, 0.0, 0.0, W - 1.0 - 2.4, CH, "kutu", t=1.6, shadow=False)
+    fx, fy, fw, fh = Z.kart_duz(S2, "card", 0.0, 0.0, 0.0, W - 2.0, CH, "kutu")
     face = "card_face"
     T("h2", fx + 1.2, fy + 0.8, [[("Measured asymmetry", "sb")]], size=Z.S8, cont=face)
     T("h2n", fx + fw - 1.2, fy + 0.8, ["n = 3 seed pairs"], size=Z.S8, color="muted", align="r", cont=face)

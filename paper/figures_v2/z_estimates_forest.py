@@ -1,15 +1,14 @@
 #!/usr/bin/env python
-"""z_estimates_forest (Fig. 12 v2, Üslup Z): registered estimates carved into one tablet on a low plinth.
+"""z_estimates_forest (Fig. 12 v2, Üslup Z): registered estimates on two flat cards.
 
     python paper/figures_v2/z_estimates_forest.py [--check] [--bak]
 
-Single column. Second round (08.11.2026, bulgu 9): the rail and the two hanging tags of the first round repeated
-the suspension idea of Figure 9, so the figure is now one thick upright tablet standing on a low plinth; the two
-forest plots are sunk into its face as two recessed panels (the recess walls on the left and below are seen in the
-one dimetric view, the panel floors are page-parallel and flat). Upper panel: contrasts on panel similarity sigma;
+Single column, flat-card composition (third round, 09.11.2026: the tablet, its plinth and the recessed panels of
+the second round are gone; this also closes review finding 3, the stone-slab repeat of Figures 11 and 12). Two
+flat cards stacked on one left edge each hold one forest plot. Upper card: contrasts on panel similarity sigma;
 lower panel: directional terms. Point estimate (circle log, diamond logit, open = descriptive), thick bar 90 %,
 thin line 95 % confidence interval; the +-0.10 lines and the H1 size line over the log rows of the upper panel,
-the +-0.10 band over the log rows of the lower panel. Values are positions on the flat panel floors. Data: the v1
+the +-0.10 band over the log rows of the lower panel. Data: the v1
 rule paper/figures/charts/fig_estimates_forest.py veri() (results/q1 B2, B4, B8, B9; sheet lines 1526-1939).
 Naming: step 4 (title strips, family colour as a small square beside the name).
 """
@@ -23,6 +22,7 @@ import _z2 as Z  # noqa: E402
 from _z2 import vf, gr, lh, T  # noqa: E402
 
 Z.baslat()
+Z.duz()
 EF = Z.yukle("paper/figures/charts/fig_estimates_forest.py", "v1_estimates_forest")
 
 STEM = "z_estimates_forest"
@@ -33,64 +33,39 @@ CARDS = [("a", "Contrasts on panel similarity σ", "vurgu2", (-0.62, 0.52), (-0.
          ("b", "Directional terms", "vurgu4", (-0.62, 0.24), (-0.6, -0.4, -0.2, 0.0, 0.2),
           "directional term ρ or A(ρ)")]
 LABEL = {"ImageNetV2 mean $\\bar{A}^{\\sigma}_{\\mathrm{IN}}$": "IN-V2 Ā(σ, IN)"}
-CAPTION = ("Registered estimates carved into one tablet. Upper panel, Contrasts on panel similarity σ: H1, H2 and "
-           "descriptive ImageNetV2 rows; lower panel, Directional terms: K-b and H3. Circles log, diamonds logit, "
-           "open marks descriptive; thick and thin bars are 90% and 95% intervals. Values are positions on the "
-           "flat panel floors; the ±0.10 lines apply to log rows only.")
+CAPTION = ("Registered estimates. Upper panel, Contrasts on panel similarity σ: H1, H2 and descriptive "
+           "ImageNetV2 rows; lower panel, Directional terms: K-b and H3. Circles log, diamonds logit, open marks "
+           "descriptive; thick and thin bars are 90% and 95% intervals; the ±0.10 lines apply to log rows only.")
 
 
 def main():
     D, foy, okunan = EF.veri()
     delta, thr = D["delta"], D["thr"]
     vf.reset(STEM, W, 130.0, naming_step=4, naming_kind="serit")
-    XL, XR = 1.5, W - 4.0
+    XL, XR = 1.0, W - 1.0
     RP, LABW = 4.5, 25.0
-    OY = 120.0
-    S = Z.Sahne(XL, OY)
-
-    def wx(xpage):
-        a = (xpage - XL) / S.u_page
-        return S.u[0] * a, S.u[1] * a
     heights = [5.6 + len(D[k]) * RP + 2.0 + lh(Z.S8) + 2.6 + lh(Z.S8) + 1.0 for k, *_ in CARDS]
-    # the plinth: a low thick block on the floor; the tablet stands on it, set back 2.5 mm
-    PH, PT, TT, RIM, RIDGE, RD = 3.6, 7.0, 4.5, 1.6, 2.4, 2.2
-    SWp = XR - XL
-    nvx, nvy = S.n[0] * RD, S.n[1] * RD                  # recess depth along the floor normal, on the page
-    nv = (nvx * S.ax["w"][0] + nvy * S.ax["d"][0], nvx * S.ax["w"][1] + nvy * S.ax["d"][1])
-    EXTRA = -nv[1] + 0.2                                 # the floor loses the wall height at the bottom
-    SH = RIM + heights[0] + EXTRA + RIDGE + heights[1] + EXTRA + RIM
-    X, Y = Z.un(S, -0.2, 0.0)
-    Z.kart(S, "plinth", X, Y, 0.0, SWp + 1.4, PH, "govde_res", t=PT, group="plinth", k=(0.1, 0.07))
-    X, Y = Z.un(S, 0.0, 2.0)
-    sx, sy, sw, sh = Z.kart(S, "slab", X, Y, PH, SWp, SH, "kutu", t=TT, shadow=False, group="slab",
-                            cont="plinth_top")
-    tones = Z.bl.face_tones("kutu")["tones"]
-    wall_l, wall_b, rim_edge = tones["front"], tones["right"], Z.soft(tones["front"])
+    # third round (09.11.2026): two flat cards stacked on one left edge; no plinth, no tablet, no recess walls
+    # (closes review finding 3, the stone-slab repeat of Figures 11 and 12)
+    GAPC = 2.4
     deg = []
     col = {}
-    ry = sy + RIM
+    ry = 1.0
     for ci, (key, title, ckey, (v0, v1), ticks, axlab) in enumerate(CARDS):
         ch = heights[ci]
-        x0, y0, x1, y1 = sx + RIM, ry, sx + sw - RIM, ry + ch + EXTRA
-        # the recess: its walls on the left and below are visible (the floor is shifted up-right by the depth)
-        lwall = [(x0, y0), (x0 + nv[0], y0), (x0 + nv[0], y1 + nv[1]), (x0, y1)]
-        bwall = [(x0, y1), (x0 + nv[0], y1 + nv[1]), (x1, y1 + nv[1]), (x1, y1)]
-        floor = [(x0 + nv[0], y0), (x1, y0), (x1, y1 + nv[1]), (x0 + nv[0], y1 + nv[1])]
-        face = f"rec{ci}"
-        vf.poly(f"rec{ci}_l", lwall + [lwall[0]], fill=wall_l, line=None, role="deco", container="slab_face",
-                group=f"rec{ci}w", ctype="iso")
-        vf.poly(f"rec{ci}_b", bwall + [bwall[0]], fill=wall_b, line=None, role="deco", container="slab_face",
-                group=f"rec{ci}w", ctype="iso")
-        vf.poly(face, floor + [floor[0]], fill=tones["top"], line=rim_edge, lw=vf.LW["ince"], role="deco",
-                container="slab_face", group=f"rec{ci}", ctype="plate")
-        fx, fy, fw, fh = x0 + nv[0], y0, x1 - x0 - nv[0], ch + EXTRA + nv[1]
-        ry = y1 + RIDGE
+        face = f"rec{ci}_face"
+        fx, fy, fw, fh = Z.duz_kart(f"rec{ci}", XL, ry, XR - XL, ch, "kutu")
+        y1 = ry + ch
+        ry = y1 + GAPC
         c = vf.C[ckey]
         col[key] = c
         Z.isaret(f"tsq{ci}", fx + 3.0, fy + 2.4 + lh(Z.S8) / 2, "s", fill=c, edge=c, size=2.0, group=f"card{ci}")
         T(f"ti{ci}", fx + 4.8, fy + 2.4, [[(title, "sb")]], size=Z.S8, cont=face)
-        T(f"tn{ci}", fx + fw - 1.2, fy + 2.4, [f"{len(D[key])} estimates"], size=Z.S8, color="muted", align="r",
-          cont=face)
+        # third round: Visio printed the right-aligned "6 estimates" 0.31 mm past its box; the label is now
+        # left-aligned in a box with 1.2 mm slack, its right edge where the right-aligned box ended
+        tnw = Z.tw([f"{len(D[key])} estimates"], Z.S8) + 1.2
+        T(f"tn{ci}", fx + fw - 1.2 - tnw + 1.2, fy + 2.4, [f"{len(D[key])} estimates"], size=Z.S8, color="muted",
+          cont=face, w=tnw)
         px0, px1 = fx + LABW + 1.0, fx + fw - 2.0
         sc = Z.Olcek(v0, v1, px0, px1)
         ytop = fy + 2.4 + lh(Z.S8) + 1.8
@@ -133,14 +108,15 @@ def main():
                 deg.append(Z.ev(f"{plab} {nm}", v, src, yol, f"read as stored; == foy line {n} (3 dp); position"))
         if key == "a":
             ins = [i for i, r in enumerate(rows) if r[2] == "desc"]
-            T("boot", fx + fw - 1.2, ytop + (ins[0] + 1.0) * RP - 0.2, ["image", "bootstrap"], size=Z.S8,
+            T("boot", fx + fw - 1.6,   # third round: 0.4 mm further in (Visio printed it 0.32 mm past its box)
+              ytop + (ins[0] + 1.0) * RP - 0.2, ["image", "bootstrap"], size=Z.S8,
               color="muted", align="r", cont=face)
         Z.kot(f"ax{ci}", px0, px1, ybot + 0.6, sc, list(ticks), [Z.fmt(t_, 1) if t_ else "0" for t_ in ticks],
               cont=face)
         T(f"axl{ci}", (px0 + px1) / 2, ybot + 0.6 + 1.4 + lh(Z.S8), [axlab], size=Z.S8, color="muted", align="c",
           cont=face)
-    # legend under the plinth; bulgu 5 (08.11): the key rule is the 1.5 pt (vurgu) line (as Figures 7, 13, 16)
-    yl = OY + 2.4
+    # legend under the cards; bulgu 5 (08.11): the key rule is the 1.5 pt (vurgu) line (as Figures 7, 13, 16)
+    yl = ry - GAPC + 2.4
     vf.seg("rule", (1.0, yl - 0.8), (W - 1.0, yl - 0.8), vf.C["frame"], vf.LW["vurgu"])
     items = [("o", True, "log"), ("D", True, "logit"), ("o", False, "descriptive")]
     x = 1.0
@@ -165,10 +141,9 @@ def main():
         STEM, message="H1 and H2 clear the registered margin on both scales; the directional terms stay small on "
                       "the log scale.", kind=KIND, panels=2, caption=CAPTION, sablon="ortak_satirli_katlar",
         tur="veri", degerler=deg, kanit_ek={"foy_karsilastirmasi": foy, "okunan_anahtarlar": okunan},
-        manifest={"entities": ents, "sahne_kalibi": "oyuk_panelli_kitabe",
+        manifest={"entities": ents, "sahne_kalibi": "yok (iki duz kart, ucuncu tur)",
                   "panel_adlari": [c[1] for c in CARDS],
-                  "derinlik_ekseni": "none: one tablet; depth is its thickness and the 1.1 mm recess of each panel",
-                  "ikiz_kodlama": "estimates and intervals are positions and lengths on the flat panel floors"},
+                  "derinlik_ekseni": "none: flat cards"},
         denge={"panel_basina_bir_iddia": (True, "upper panel the sigma contrasts, lower panel the directional terms")},
         n_exempt_reason="each panel prints its estimate count in the title strip",
         okunan_ek=list(okunan) if isinstance(okunan, dict) else [])

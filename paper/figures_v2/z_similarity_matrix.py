@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-"""z_similarity_matrix (Fig. 8 v2, Üslup Z): pairwise symmetric similarity as three matrices on plinths.
+"""z_similarity_matrix (Fig. 8 v2, Üslup Z): pairwise symmetric similarity as three flat heat maps.
 
     python paper/figures_v2/z_similarity_matrix.py [--check] [--bak]
 
-Double column. One long sand plate carries three low plinths; on each the split-half log tau-bar matrix of
-one data set lies flat (CIFAR-10, CIFAR-100, ImageNetV2), rows back to front and columns left to right in
-frozen group order. No cell is raised or hidden: the measured value is only the colour of each cell, one of
-five pooled quintile bins (the rule of paper/figures/charts/fig_similarity_matrix.py kutular()); the undefined
-diagonal is the darkest neutral. The frozen groups are dark frames on
-the matrix (design, not data). Depth carries the registration order: CIFAR-10 (main registration) in front,
-the addendum sets behind it. Data: the v1 rule paper/figures/charts/fig_similarity_matrix.py veri() (Mantel
-files, cell tables, frozen B2 values; K against sheet line 1970). Naming: step 3 (rings 1-3, one per plinth).
+Double column, flat-card composition (third round, 09.11.2026: plate, plinths and the oblique tile view are
+gone). Three flat cards side by side each hold the split-half log tau-bar matrix of one data set (CIFAR-10,
+CIFAR-100, ImageNetV2) as a flat heat map, rows top to bottom and columns left to right in frozen group order,
+one cell size for all three. The measured value is only the colour of each cell, one of five pooled quintile
+bins (the rule of paper/figures/charts/fig_similarity_matrix.py kutular()); the undefined diagonal is the
+darkest neutral. The frozen groups are dark frames on the diagonal (design, not data). Data: the v1 rule paper/figures/charts/fig_similarity_matrix.py veri() (Mantel
+files, cell tables, frozen B2 values; K against sheet line 1970). Naming: step 3 (rings 1-3, one per card).
 """
 from __future__ import annotations
 
@@ -22,16 +21,17 @@ import _z2 as Z  # noqa: E402
 from _z2 import vf, gr, lh, T  # noqa: E402
 
 Z.baslat()
+Z.duz()
 SMV = Z.yukle("paper/figures/charts/fig_similarity_matrix.py", "v1_similarity_matrix")
 import numpy as np  # noqa: E402
 
 STEM = "z_similarity_matrix"
 KIND = "double"
 W = vf.page_width(KIND)
-CAPTION = ("Pairwise symmetric similarity on three plinths. log τ̄ (split-half) for all models on CIFAR-10 (1), "
-           "CIFAR-100 (2) and ImageNetV2 (3), in frozen group order; cell colour is one of five joint quintile b"
-           "ins, the dark diagonal undefined. Dark frames mark the groups; no height carries a value. Scratch-tr"
-           "ained ViT-Tiny seeds form a block dissimilar to the CNN panel.")
+CAPTION = ("Pairwise symmetric similarity. log τ̄ (split-half) for all models on CIFAR-10 (1), CIFAR-100 (2) "
+           "and ImageNetV2 (3), rows and columns in frozen group order; cell colour is one of five joint quintile "
+           "bins, the dark diagonal undefined, dark frames mark the groups. Scratch-trained ViT-Tiny seeds form a "
+           "block dissimilar to the CNN panel.")
 
 
 def fmt(v):
@@ -44,38 +44,50 @@ def main():
     allv = np.concatenate([data[k]["P"][~np.isnan(data[k]["P"])] for k in keys])
     edges = SMV.kutular(allv)
     vf.reset(STEM, W, 110.0, naming_step=3, naming_kind="rakam")
-    CS, GAPX, DY, M, TW_, TH = 1.58, 4.5, 6.0, 2.6, 1.5, 1.3
+    # third round (09.11.2026): three flat cards side by side, each holding a flat heat map (rows top to bottom
+    # and columns left to right in frozen group order); no plinth, no plate, no oblique tiles (closes review 10)
+    CS = 2.0
     ns = [len(data[k]["order"]) for k in keys]
-    Ls = [n * CS for n in ns]
-    OX, OY = 10.0, 70.0
-    S = Z.Sahne(OX, OY)
-    pos, xo = [], 0.0
-    for i, L in enumerate(Ls):
-        pos.append(Z.un(S, xo, i * DY))
-        xo += 1.76 * L + GAPX
-    nmin = -0.4654 * Ls[0] - 4.0
-    nmax = max(i * DY + 0.8851 * L for i, L in enumerate(Ls)) + 4.5
-    plate_top = Z.plaka_un(S, "stage", *Z.un(S, -3.2, nmin), xo - GAPX + 8.0, nmax - nmin, 1.6)
-    plate_front_y = max(pt[1] for pt in plate_top) + 1.6
+    GAPC = 2.0
+    CWc = (W - 2.0 - 2 * GAPC) / 3
+    LHs = lh(Z.S8)
     tones = [vf.tint_of(f"isi_{i}")[0] for i in range(1, 6)]
     diag = vf.tint_of("isi_0")[0]
     deg = []
     counts_all = {}
-    ybot = 0.0
+
+    def wrap(words, width):
+        lines, cur = [], ""
+        for w_ in words:
+            cand = (cur + " " + w_).strip()
+            if Z.tw([cand], Z.S8) <= width or not cur:
+                cur = cand
+            else:
+                lines.append(cur)
+                cur = w_
+        if cur:
+            lines.append(cur)
+        return lines
+    # card height: station (ring row + sub-line), the largest matrix, the group-order lines
+    texts = []
+    for key in keys:
+        names = [b[2].replace("\n", " ") for b in data[key]["bounds"]]
+        words = [nm + ("," if i < len(names) - 1 else "") for i, nm in enumerate(names)]
+        texts.append(["groups, top to bottom:"] + wrap(words, CWc - 2.6))
+    ST_H = 4.6 + LHs
+    MAXL = max(ns) * CS
+    CH = 1.0 + ST_H + 1.6 + MAXL + 1.6 + max(len(t) for t in texts) * LHs + 1.2
     for g_, key in enumerate(keys):
         d = data[key]
         P, bounds = d["P"], d["bounds"]
         n = ns[g_]
-        L = Ls[g_]
-        X0, Y0 = pos[g_]
-        Z.golge(S, f"g_base{g_}", X0, Y0, 0.0, L, L, 0.5, group=f"m{g_}", k=(0.9, 0.7))
-        Z.prizma(S, f"base{g_}", X0, Y0, 0.0, L, L, 0.5, "kutu", group=f"m{g_}", faces=("front", "right"))
-        tabs = []
-        for g, (a, b, lab) in enumerate(bounds):
-            tint = "govde_panel" if g % 2 == 0 else "notr"
-            y0, y1 = Y0 + (n - b) * CS + 0.12, Y0 + (n - a) * CS - 0.12
-            tabs.append(("L", g, X0 - 0.5 - TW_, y0, TW_, y1 - y0, tint))
-            tabs.append(("B", g, X0 + a * CS + 0.12, Y0 + L + 0.5, (b - a) * CS - 0.24, TW_, tint))
+        L = n * CS
+        fx, fy, fw, fh = Z.duz_kart(f"card{g_}", 1.0 + g_ * (CWc + GAPC), 1.0, CWc, CH, "kutu")
+        face = f"card{g_}_face"
+        npairs = int(np.sum(~np.isnan(P))) // 2
+        Z.istasyon(g_ + 1, fx + 1.2, fy + 1.0, d["title"], [f"{n} models, {npairs} pairs"], cont=face)
+        X0 = fx + (fw - L) / 2
+        Y0 = fy + 1.0 + ST_H + 1.6 + (MAXL - L) / 2
         counts = [0] * 5
         cells = []
         for i in range(n):
@@ -90,35 +102,28 @@ def main():
         # light cells first, darker later, the undefined diagonal last: no earlier cell is a darker copy of a
         # later neighbour (the balance gate's offset-shadow test; cells never overlap, the order is not seen)
         for k, i, j, fill in sorted(cells):
-            X, Y = X0 + j * CS, Y0 + (n - 1 - i) * CS
-            pts = [S.P(X, Y, 0.5), S.P(X + CS, Y, 0.5), S.P(X + CS, Y + CS, 0.5), S.P(X, Y + CS, 0.5)]
+            x, y = X0 + j * CS, Y0 + i * CS
+            pts = [(x, y), (x + CS, y), (x + CS, y + CS), (x, y + CS)]
             vf.poly(f"c{g_}_{i}_{j}", pts + [pts[0]], fill=fill, line=vf.tint_of("kutu")[0], lw=vf.LW["ince"],
-                    role="obstacle", group=f"m{g_}", ctype="iso")
+                    role="obstacle", group=f"m{g_}")
         for g, (a, b, lab) in enumerate(bounds):
-            XA, YA = X0 + a * CS, Y0 + (n - b) * CS
-            w = (b - a) * CS
-            fr = [S.P(XA, YA, 0.5), S.P(XA + w, YA, 0.5), S.P(XA + w, YA + w, 0.5), S.P(XA, YA + w, 0.5)]
+            x, y, w = X0 + a * CS, Y0 + a * CS, (b - a) * CS
+            fr = [(x, y), (x + w, y), (x + w, y + w), (x, y + w)]
             vf.poly(f"fr{g_}_{g}", fr + [fr[0]], fill=None, line=vf.C["ink"], lw=vf.LW["vurgu"], role="deco",
-                    group=f"m{g_}", ctype="iso")
+                    group=f"m{g_}")
         counts_all[key] = counts
-        # station title above the back-left corner, group order under the front edge
-        npairs = int(np.sum(~np.isnan(P))) // 2
         deg.append(Z.ev(f"{d['title']} model count", n, SMV.SETS[g_][1], "len(modeller_ortak)", "count; == foy line 1970 (K)"))
         deg.append(Z.ev(f"{d['title']} pairs", npairs, SMV.SETS[g_][1], "log_tau_matrisi off-diagonal / 2", "count"))
         for k in range(5):
             deg.append(Z.ev(f"{d['title']} cells in bin {k + 1}", counts[k], SMV.SETS[g_][1], "log_tau_matrisi",
-                            "count over both triangles; drawn as top-face colour"))
+                            "count over both triangles; drawn as cell colour"))
         for g, (a, b, lab) in enumerate(bounds):
             deg.append(Z.ev(f"{d['title']} group {lab.replace(chr(10), ' ')} size", b - a, SMV.SETS[g_][2],
                             "modeller.<m>.hucre", "count"))
-        fp = S.P(X0, Y0, 0.0)
-        names = [b[2].replace("\n", " ") for b in bounds]
-        half = (len(names) + 1) // 2
-        yb_ = Z.istasyon(g_ + 1, fp[0] - 4.0, plate_front_y + 1.2, d["title"], [f"{n} models, {n * (n - 1) // 2} pairs"])
-        T(f"go{g_}", fp[0] - 4.0, yb_ + 0.4, ["groups, back to front:", ", ".join(names[:half]) + ",",
-                                            ", ".join(names[half:])], size=Z.S8, color="muted")
-        ybot = max(ybot, yb_ + 0.4 + 3 * lh(Z.S8))
-    # key: five bins and the diagonal, one row under the plate
+        yt = fy + 1.0 + ST_H + 1.6 + MAXL + 1.6
+        T(f"go{g_}", fx + 1.2, yt, texts[g_], size=Z.S8, color="muted", cont=face)
+    ybot = 1.0 + CH
+    # key: five bins and the diagonal, one row under the cards
     ky = ybot + 1.6
     T("kt", 1.0, ky, [[("log ", "r"), ("τ̄", "r@DejaVuSans"), (" bins:", "r")]], size=Z.S8)
     x = 1.0 + Z.tw([[("log ", "r"), ("τ̄", "r@DejaVuSans"), (" bins:", "r")]], Z.S8) + 2.0
@@ -129,7 +134,7 @@ def main():
         x += 3.8 + Z.tw([lab], Z.S8) + 3.0
     Z.isaret("keyd", x + 1.6, ky + lh(Z.S8) / 2, "s", fill=diag, edge=diag, size=3.2)
     T("keydt", x + 3.8, ky, ["diagonal"], size=Z.S8, color="muted")
-    T("hnote", 1.0, ky + lh(Z.S8) + 0.6, ["dark frames mark the frozen groups; the plinth height carries no value"],
+    T("hnote", 1.0, ky + lh(Z.S8) + 0.6, ["dark frames mark the frozen groups; rows and columns share one order"],
       size=Z.S8, color="muted")
     Z.sayfa_sigdir()
     for k in range(6):
@@ -142,16 +147,15 @@ def main():
         sablon="ic_ice_izgara", tur="veri", degerler=deg,
         kanit_ek={"foy_karsilastirmasi": foy, "okunan_anahtarlar": okunan, "kutu_kenarlari": edges,
                   "hucre_sayilari": counts_all},
-        manifest={"entities": ents, "sahne_kalibi": "uc_kaide",
+        manifest={"entities": ents, "sahne_kalibi": "yok (duz isi haritalari, ucuncu tur)",
                   "istasyonlar": ["1 CIFAR-10", "2 CIFAR-100", "3 ImageNetV2"],
-                  "derinlik_ekseni": "registration order: CIFAR-10 (main) in front, the addendum sets behind",
-                  "ikiz_kodlama": "the measured value is only the flat cell colour, read on the key strip",
+                  "derinlik_ekseni": "none: flat cards side by side",
                   "denge_muafiyet": {"veri_alani_payi": "binned matrices have equal cells and no data axis; the "
                                                          "value is read from the colour key"}},
-        denge={"3b_veri": (False, "every cell lies flat and visible; the measured log tau is only the binned colour; "
-                                  "group frames are design labels"),
+        denge={"3b_veri": (False, "flat heat map; the measured log tau is only the binned colour; group frames are "
+                                  "design labels"),
                "gokkusagi_renk_haritasi": (False, "one low-chroma sequential ramp of five steps"),
-               "panel_basina_bir_iddia": (True, "each plinth is one data set's similarity matrix")},
+               "panel_basina_bir_iddia": (True, "each card is one data set's similarity matrix")},
         n_exempt_reason="model and pair counts are printed under each station", okunan_ek=list(inputs))
 
 

@@ -2,20 +2,20 @@
  "z_prereg_chain": {
   "page_mm": [
    177.588,
-   66.463
+   66.252
   ],
   "fonts": [
    "Open Sans",
    "Open Sans SemiBold"
   ],
   "min_pt": 8.425,
-  "spans": 41,
+  "spans": 40,
   "issues": [],
   "checks": {
    "page_size": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "177.588 x 66.463 mm"
+    "detail": "177.588 x 66.252 mm"
    },
    "fonts": {
     "verdict": "PASS",
@@ -30,20 +30,20 @@
    "text_overlap": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "41 spans"
+    "detail": "40 spans"
    },
    "box_spill": {
     "verdict": "PASS",
     "issues": [],
-    "detail": "3 closed boxes"
+    "detail": "0 closed boxes"
    }
   },
   "inputs": {
-   "page_text_sha256": "8a53814ffc49154d950f781e1966ea5d17bbdc265fb1a05b38499467b3c0e480",
-   "spans": 41,
-   "lines": 39,
-   "drawings": 54,
-   "closed_boxes": 3
+   "page_text_sha256": "d19c5c68bc63782c0ae0c120f99c32b01256a6fa22ff462177e90d45281c4b88",
+   "spans": 40,
+   "lines": 38,
+   "drawings": 39,
+   "closed_boxes": 0
   },
   "verdict": "PASS",
   "expected_from": "visio report",
@@ -60,18 +60,18 @@
     "eksen": 0.75
    },
    "basili_uzunluk_mm": {
-    "0.750": 1938.76,
-    "1.500": 45.9
+    "0.750": 1496.28,
+    "1.500": 31.86
    },
    "ok_ucu": {
     "basili_mm": [
      [
       1.037,
-      2.075
+      2.074
      ],
      [
       1.037,
-      2.075
+      2.074
      ]
     ],
     "token_mm": 0.77,
@@ -85,7 +85,7 @@
     "adaylar": []
    },
    "sorunlar": [
-    "arrow head length(s) [1.037] mm against the token 0.77 mm (widths [2.075] mm)"
+    "arrow head length(s) [1.037] mm against the token 0.77 mm (widths [2.074] mm)"
    ],
    "uyumlu": false,
    "token_kaynagi": "manifest",
@@ -115,7 +115,7 @@
    "metinden_gecen": []
   },
   "uyarilar": [
-   "T4: arrow head length(s) [1.037] mm against the token 0.77 mm (widths [2.075] mm)"
+   "T4: arrow head length(s) [1.037] mm against the token 0.77 mm (widths [2.074] mm)"
   ]
  }
 }

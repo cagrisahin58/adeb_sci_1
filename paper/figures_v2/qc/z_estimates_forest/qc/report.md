@@ -1,23 +1,23 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T21:01:13+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-09T13:11:17+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
-| fig12_estimates_forest | 92.5 | 89.1 | 94.5/96 = 98.4 (90 = 86.4) | PASS | BLOCK | - | 0 |
+| fig12_estimates_forest | 94.6 | 91.1 | 94.5/96 = 98.4 (90 = 86.4) | PASS | PASS | - | 0 |
 
-## fig12_estimates_forest -- ayarli: 92.5/100 PASS (ceiling 93/93 = 100.0)
+## fig12_estimates_forest -- ayarli: 94.6/100 PASS (ceiling 93/93 = 100.0)
 
 | Check | Pts | Status | Detail |
 |---|---:|---|---|
 | A1 Placed scale within 2% of 1.000 | 6/6 | PASS | kind single: canvas 241.80pt, venue 241.77pt, scale 0.9999 |
-| A2 Minimum rendered type >= 8pt | 8/8 | PASS | smallest 8.40pt on 'H1 log' |
+| A2 Minimum rendered type >= 8pt | 8/8 | PASS | smallest 8.40pt on 'IN-V2 Ā(σ, IN)' |
 | A3 All sizes on the derived 3-step scale | 4/4 | PASS | printed 8.399->8.4 (style size), 8.424->8.4 (style size) (Visio lattice 0.6 pt, manifest; venue steps [8.0, 9.0, 10.0]) [style Z sizes [8.4, 9.0, 9.6]] |
-| A4 Height within the float budget (no tolerance) | 4/4 | PASS | 5.142in vs budget 6.509in |
+| A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.567in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
-| A6 Panel frames aligned | 2/4 | WARN | left edges [5.8, 12.0], bottom edges [172.2, 314.7, 323.4] |
-| B1 Every colour bound in the palette | 5/5 | PASS | 15 colours, all bound |
+| A6 Panel frames aligned | 4/4 | PASS | left edges [2.8], bottom edges [158.6, 296.4] |
+| B1 Every colour bound in the palette | 5/5 | PASS | 8 colours, all bound |
 | B2 CVD separation, or redundant channels | 5/5 | PASS | worst CVD dE 20.0 (mitigated by marker/linestyle/hatch) |
 | B3 Greyscale separation, or redundant channels | 4/4 | PASS | worst dL* 19.1 |
 | B4 Every series has a non-colour channel | 3/3 | PASS | all series redundant |
@@ -33,21 +33,21 @@ Generated 2026-11-08T21:01:13+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): each panel prints its estimate count in the title strip |
 | E1 Caption within the venue's word limit, with a bold lead-in | 2/4 | WARN | 0 words, 0 in mandatory sentences, 0 counted; limit 60 on ieee_access; lead-in no |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | H1 and H2 clear the registered margin on both scales; the directional terms stay... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 8/8 richness items pass; distance to the liked reference 0.048 (0/5 on the disliked side); catalogue 0.64 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 5/5 richness items pass; distance to the liked reference 0.033 (0/5 on the disliked side); catalogue 0.642 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 | _skipped_ | - | SKIP | D2: a Visio schematic has no axes; not applied (İSTEM 5A, adjusted scoring) |
 
-## fig12_estimates_forest -- kati: 89.1/100 BLOCK (ceiling 94.5/96 = 98.4)
+## fig12_estimates_forest -- kati: 91.1/100 PASS (ceiling 94.5/96 = 98.4)
 
 | Check | Pts | Status | Detail |
 |---|---:|---|---|
 | A1 Placed scale within 2% of 1.000 | 6/6 | PASS | kind single: canvas 241.80pt, venue 241.77pt, scale 0.9999 |
-| A2 Minimum rendered type >= 8pt | 8/8 | PASS | smallest 8.40pt on 'H1 log' |
+| A2 Minimum rendered type >= 8pt | 8/8 | PASS | smallest 8.40pt on 'IN-V2 Ā(σ, IN)' |
 | A3 All sizes on the derived 3-step scale | 2/4 | WARN | sizes [8.4, 8.42]; off-scale [8.4, 8.42] |
-| A4 Height within the float budget (no tolerance) | 4/4 | PASS | 5.142in vs budget 6.509in |
+| A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.567in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
-| A6 Panel frames aligned | 2/4 | WARN | left edges [5.8, 12.0], bottom edges [172.2, 314.7, 323.4] |
-| B1 Every colour bound in the palette | 5/5 | PASS | 15 colours, all bound |
+| A6 Panel frames aligned | 4/4 | PASS | left edges [2.8], bottom edges [158.6, 296.4] |
+| B1 Every colour bound in the palette | 5/5 | PASS | 8 colours, all bound |
 | B2 CVD separation, or redundant channels | 5/5 | PASS | worst CVD dE 20.0 (mitigated by marker/linestyle/hatch) |
 | B3 Greyscale separation, or redundant channels | 4/4 | PASS | worst dL* 19.1 |
 | B4 Every series has a non-colour channel | 3/3 | PASS | all series redundant |
@@ -64,10 +64,10 @@ Generated 2026-11-08T21:01:13+00:00; verdict from the ayarli scoring; both scori
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | exempt (n_exempt_reason): each panel prints its estimate count in the title strip |
 | E1 Caption within the venue's word limit, with a bold lead-in | 2/4 | WARN | 0 words, 0 in mandatory sentences, 0 counted; limit 60 on ieee_access; lead-in no |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | H1 and H2 clear the registered margin on both scales; the directional terms stay... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 8/8 richness items pass; distance to the liked reference 0.048 (0/5 on the disliked side); catalogue 0.64 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 5/5 richness items pass; distance to the liked reference 0.033 (0/5 on the disliked side); catalogue 0.642 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 
-F: kar/cm² 2.96 [2.30-4.30] · yazı kutusu 0.17 [0.13-0.28] · sayısal 0.15 · veri alanı 0.56 · derinlik 4 · akış 0/0 etiketli · ton 0.73 [0.86-0.92] · mürekkep 0.152 | beğeniye uzaklık 0.05 (0/5 beğenilmeyen tarafında) | eşikler tamam
+F: kar/cm² 3.33 [2.30-4.30] · yazı kutusu 0.19 [0.13-0.28] · sayısal 0.15 · veri alanı 0.65 · derinlik 3 · akış 0/0 etiketli · ton 0.79 [0.86-0.92] · mürekkep 0.093 | beğeniye uzaklık 0.03 (0/5 beğenilmeyen tarafında) | eşikler tamam
 
 ## Cross-figure consistency: PASS
 - 17 figures share one design system

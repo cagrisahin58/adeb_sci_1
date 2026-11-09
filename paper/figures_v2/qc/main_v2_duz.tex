@@ -480,7 +480,7 @@ On ImageNet the panel holds six CNNs~\cite{salman2020adversarially, engstrom2019
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig4_panel_members.pdf}
-\caption{\textbf{Reference panel members on two catalogue cards.} The front card, CIFAR-10 and CIFAR-100, gives each RobustBench identifier its role in the C10 and C100 columns and marks ResNet-18 variants in the R18 column. The back card, ImageNetV2, holds the CNN panel and the secondary XCiT-S12, the transformer pairs and the unpaired ViT-B of Mo et al.}
+\caption{\textbf{Reference panel members on two catalogue cards.} The upper card, CIFAR-10 and CIFAR-100, gives each RobustBench identifier its role in the C10 and C100 columns and marks ResNet-18 variants in the R18 column. The lower card, ImageNetV2, holds the CNN panel and the secondary XCiT-S12, the transformer pairs and the unpaired ViT-B of Mo et al.}
 \label{fig:panel_members}
 \end{figure}
 
@@ -553,7 +553,7 @@ Support is read from Holm-adjusted $p < 0.05$; refutation, and the equivalence a
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{../figures_v2/fig5_registry_map.pdf}
-\caption{\textbf{Registered tests and decision rules as a staircase.} Each step is one family, numbered in registration order and set behind the previous one; rows give test and quantity, place the predicted size (diamond) and falsification threshold (circle) on a number line with the $\pm$0.1 band, and state the falsifying rule. Holm correction is per family; ImageNetV2 rows are descriptive.}
+\caption{\textbf{Registered tests and decision rules.} Each band is one family, numbered in registration order and grouped into the main registration and the addendum; rows give test and quantity, place the predicted size (diamond) and falsification threshold (circle) on a number line with the $\pm$0.1 band, and state the falsifying rule. Holm correction is per family; ImageNetV2 rows are descriptive.}
 \label{fig:registry_map}
 \end{figure*}
 
@@ -584,7 +584,7 @@ Several registered sensitivity and exploratory analyses were not produced, among
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{../figures_v2/fig6_prereg_chain.pdf}
-\caption{\textbf{Pre-registration chain as a time shelf.} Seen beforehand lists the data looked at before registration; Main registration: B2-B6 and Supplement: B8-B10, the addendum of the text, give each block's models, images and cells. Cards recede in time; arrows carry the freeze dates (October 2026), commits and registration digest prefix; the strip Added after the fact names two post hoc analyses.}
+\caption{\textbf{Pre-registration chain.} Seen beforehand lists the data looked at before registration; Main registration: B2-B6 and Supplement: B8-B10, the addendum of the text, give each block's models, images and cells. Time runs left to right; arrows carry the freeze dates (October 2026), commits and registration digest prefix; the strip Added after the fact names two post hoc analyses.}
 \label{fig:prereg_chain}
 \end{figure*}
 %% <<< vz_girdi: sections/03_methodology.tex
@@ -790,7 +790,7 @@ Secondary panel & \multicolumn{5}{l}{XCiT-S12: $q_s$ 0.899, 0.825, 0.842; $\rho$
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{../figures_v2/fig7_source_gap_split.pdf}
-\caption{\textbf{Source gap split into symmetric and directional parts, one slab per data set.} Per seed pair on CIFAR-10 and CIFAR-100 and per same-recipe pair on ImageNetV2 (descriptive): olive symmetric part, lavender-grey directional part, diamond total G. Strips lie in the slab plane; the printed G and share q carry the values. A dashed part narrows the gap.}
+\caption{\textbf{Source gap split into symmetric and directional parts.} One card per data set, one log-unit scale; per seed pair on CIFAR-10 and CIFAR-100 and per same-recipe pair on ImageNetV2 (descriptive): olive symmetric part, lavender-grey directional part, diamond total G; each row prints G and the share q. A dashed part narrows the gap.}
 \label{fig:source_gap_split}
 \end{figure*}
 
@@ -799,7 +799,7 @@ Secondary panel & \multicolumn{5}{l}{XCiT-S12: $q_s$ 0.899, 0.825, 0.842; $\rho$
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{../figures_v2/fig8_similarity_matrix.pdf}
-\caption{\textbf{Pairwise symmetric similarity on three plinths.} $\log\simt$ (split-half) for all models on CIFAR-10 (1), CIFAR-100 (2) and ImageNetV2 (3), in frozen group order; cell colour is one of five joint quintile bins, the dark diagonal undefined. Dark frames mark the groups; no height carries a value. Scratch-trained ViT-Tiny seeds form a block dissimilar to the CNN panel.}
+\caption{\textbf{Pairwise symmetric similarity.} $\log\simt$ (split-half) for all models on CIFAR-10 (1), CIFAR-100 (2) and ImageNetV2 (3), rows and columns in frozen group order; cell colour is one of five joint quintile bins, the dark diagonal undefined, dark frames mark the groups. Scratch-trained ViT-Tiny seeds form a block dissimilar to the CNN panel.}
 \label{fig:similarity_matrix}
 \end{figure*}
 
@@ -912,7 +912,7 @@ $\delta = 0.06$, Holm $p$ & $4.09\times10^{-5}$ & $1.80\times10^{-3}$ & $2.13\ti
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig9_cells_interaction.pdf}
-\caption{\textbf{Two-by-two cells on CIFAR-10 as a three-floor tower.} Floors Panel similarity $\sigma$, Direction $\rho$ and Vulnerability $\omega$ share the posts at scratch and ImageNet; lines join cell means (split-half, log scale), open marks are runs, diamonds the R32 bridge. $\sigma$ prints $\Asig{scr}$ (H1) and $\Isig$ (H2); $\rho$ carries the $\pm$0.10 band. Values are positions on each floor.}
+\caption{\textbf{Two-by-two cells on CIFAR-10.} Panels Panel similarity $\sigma$, Direction $\rho$ and Vulnerability $\omega$ share the initialization positions scratch and ImageNet; lines join cell means (split-half, log scale), open marks are runs, diamonds the R32 bridge. $\sigma$ prints $\Asig{scr}$ (H1) and $\Isig$ (H2); $\rho$ carries the $\pm$0.10 band. Each panel has its own scale.}
 \label{fig:cells_interaction}
 \end{figure}
 
@@ -962,7 +962,7 @@ Full-sample selection, ratio & 0.960 \\
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig10_attack_side.pdf}
-\caption{\textbf{Transfer by attack, per source, on an abacus.} Each wire is one source; beads sit at its panel-mean log transfer L(m) under PGD-10 (circle), momentum PGD (square) and, for ViT sources, TGR (triangle). Filled beads are the attacks chosen by cross-fitted selection; TGR is never chosen. The value is the bead's position on the beam scale.}
+\caption{\textbf{Transfer by attack, per source.} Each row is one source model, grouped by cell; marks sit at its panel-mean log transfer L(m) under PGD-10 (circle), momentum PGD (square) and, for ViT sources, TGR (triangle). Filled marks are the attacks chosen by cross-fitted selection; TGR is never chosen.}
 \label{fig:attack_side}
 \end{figure}
 
@@ -1082,7 +1082,7 @@ ImageNetV2 & 0.218 & \multicolumn{2}{c}{0.187 (36)} & \multicolumn{2}{c}{0.318 (
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{../figures_v2/fig11_gradient_alignment.pdf}
-\caption{\textbf{Input-gradient alignment against similarity on three steles.} Cosine c between input gradients against $\log\simt$ for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; upper panels raw, lower panels residual below the ledge, with additive model main effects removed. Each panel prints the Spearman r and pair count n; values are positions on the flat faces.}
+\caption{\textbf{Input-gradient alignment against similarity.} Cosine c between input gradients against $\log\simt$ for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; upper panels raw, lower panels residual, after the additive model main effects are removed from both matrices. Each panel prints the Spearman r and pair count n.}
 \label{fig:gradient_alignment}
 \end{figure*}
 
@@ -1108,7 +1108,7 @@ For this ViT-Tiny, then, the symmetric dissimilarity holds on both CIFAR dataset
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig12_estimates_forest.pdf}
-\caption{\textbf{Registered estimates carved into one tablet.} Upper panel, Contrasts on panel similarity $\sigma$: H1, H2 and descriptive ImageNetV2 rows; lower panel, Directional terms: K-b and H3. Circles log, diamonds logit, open marks descriptive; thick and thin bars are 90\% and 95\% intervals. Values are positions on the flat panel floors; the $\pm$0.10 lines apply to log rows only.}
+\caption{\textbf{Registered estimates.} Upper panel, Contrasts on panel similarity $\sigma$: H1, H2 and descriptive ImageNetV2 rows; lower panel, Directional terms: K-b and H3. Circles log, diamonds logit, open marks descriptive; thick and thin bars are 90\% and 95\% intervals; the $\pm$0.10 lines apply to log rows only.}
 \label{fig:estimates_forest}
 \end{figure}
 
@@ -1147,7 +1147,7 @@ SVHN shows what happens when the pair is matched in clean accuracy. With clean g
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig13_protocol_settings.pdf}
-\caption{\textbf{Protocol by setting as four exploded boards.} Transfer asymmetry (CNN to ViT minus ViT to CNN): boards 1-4 are the conditioning protocols, set back layer by layer; rows are settings, mean$\pm$SD over three seed pairs, pairs as small circles (SVHN two, no mean). Values are positions on each board's flat face; the spine prints the spread.}
+\caption{\textbf{Protocol by setting.} Transfer asymmetry (CNN to ViT minus ViT to CNN) on one shared scale: panels 1-4 are the conditioning protocols; rows are settings, mean$\pm$SD over three seed pairs, pairs as small circles (SVHN two, no mean). The narrow panel at the right prints the spread over the four protocols.}
 \label{fig:protocol_settings}
 \end{figure}
 
@@ -1157,7 +1157,7 @@ SVHN shows what happens when the pair is matched in clean accuracy. With clean g
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig14_protocol_sets.pdf}
-\caption{\textbf{Conditioning sets and measured asymmetry.} Conditioning sets: nested evaluation sets as terraces (schematic, not area-proportional; terrace height carries no value) with masks and mean N. Measured asymmetry: mean$\pm$SD of the within-pair difference, pairs as open circles, read as positions on the flat card and printed; the steps print the three decomposition terms.}
+\caption{\textbf{Conditioning sets and measured asymmetry.} Conditioning sets: nested evaluation sets as terraces (schematic, not area-proportional; terrace height carries no value) with masks and mean N. Measured asymmetry: mean$\pm$SD of the within-pair difference, pairs as open circles, mean$\pm$SD printed per row; the steps print the three decomposition terms.}
 \label{fig:protocol_sets}
 \end{figure}
 
@@ -1167,7 +1167,7 @@ SVHN shows what happens when the pair is matched in clean accuracy. With clean g
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig15_spread_clean_gap.pdf}
-\caption{\textbf{Protocol spread against the clean-accuracy gap on a deep stage.} All 60 model pairs. Back card, Three-protocol spread: unconditioned, target-correct and both-correct, rings the identity prediction at p = 1; front card, Successful-source minus both-correct, the term left out. Values are positions on the flat cards; no line is fitted.}
+\caption{\textbf{Protocol spread against the clean-accuracy gap, all 60 model pairs.} Upper panel, Three-protocol spread: unconditioned, target-correct and both-correct, rings the identity prediction at p = 1; lower panel, Successful-source minus both-correct, the term the spread leaves out. No line is fitted.}
 \label{fig:spread_clean_gap}
 \end{figure}
 %% <<< vz_girdi: sections/04_experiments.tex
@@ -1342,7 +1342,7 @@ The CNN's margin over the ViT is widest at small perturbation budgets ($77.30$ a
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig16_epsilon_sweep.pdf}
-\caption{\textbf{Robust accuracy under PGD-10 as cut-out profiles.} Each card's top edge traces CIFAR-10 test accuracy over the budget $\eps$, clean to 16/255, as height above its own base (back bases dashed; scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model).}
+\caption{\textbf{Robust accuracy under PGD-10.} CIFAR-10 test accuracy over the budget $\eps$, clean to 16/255, for ViT-Tiny AT, ResNet-18 AT and WRN-28-10; the number rows under the chart print the plotted values (mean of three seed pairs; WRN-28-10 is one RobustBench model).}
 \label{fig:epsilon_sweep}
 \end{figure}
 
@@ -1399,7 +1399,7 @@ Feature drift is the clean-to-adversarial cosine at each residual block output u
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig17_feature_degradation.pdf}
-\caption{\textbf{Feature degradation of ViT-Tiny under attack, block by block.} The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90\% TOST intervals inside the $\pm$0.05-nat band, attention displacement (TV), block-output cosine, mean$\pm$SD. Values are positions on the flat cards.}
+\caption{\textbf{Feature degradation of ViT-Tiny under attack, block by block.} The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90\% TOST intervals inside the $\pm$0.05-nat band, attention displacement (TV), block-output cosine, mean$\pm$SD. Disc height carries no value.}
 \label{fig:feature_degradation}
 \end{figure}
 

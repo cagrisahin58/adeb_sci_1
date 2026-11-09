@@ -1,7 +1,7 @@
 <!-- scoring: ayarli -->
 # Figure QC report
 
-Generated 2026-11-08T20:58:55+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
+Generated 2026-11-09T13:01:19+00:00; verdict from the ayarli scoring; both scorings are shown, 90 is the line.
 
 | Figure | Adjusted | Strict | Strict ceiling | Verdict | Strict verdict | Blocking | Warnings |
 |---|---:|---:|---|---|---|---|---:|
@@ -14,10 +14,10 @@ Generated 2026-11-08T20:58:55+00:00; verdict from the ayarli scoring; both scori
 | A1 Placed scale within 2% of 1.000 | 6/6 | PASS | kind single: canvas 241.80pt, venue 241.77pt, scale 0.9999 |
 | A2 Minimum rendered type >= 8pt | 8/8 | PASS | smallest 8.40pt on 'Panel similarity σ' |
 | A3 All sizes on the derived 3-step scale | 4/4 | PASS | printed 8.399->8.4 (style size), 8.424->8.4 (style size) (Visio lattice 0.6 pt, manifest; venue steps [8.0, 9.0, 10.0]) [style Z sizes [8.4, 9.0, 9.6]] |
-| A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.400in vs budget 6.509in |
+| A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.067in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
-| A6 Panel frames aligned | 4/4 | PASS | single panel |
-| B1 Every colour bound in the palette | 5/5 | PASS | 20 colours, all bound |
+| A6 Panel frames aligned | 4/4 | PASS | left edges [2.8], bottom edges [78.7, 163.7, 248.7] |
+| B1 Every colour bound in the palette | 5/5 | PASS | 13 colours, all bound |
 | B2 CVD separation, or redundant channels | 5/5 | PASS | worst CVD dE 16.9 (mitigated by marker/linestyle/hatch) |
 | B3 Greyscale separation, or redundant channels | 4/4 | PASS | worst dL* 19.0 |
 | B4 Every series has a non-colour channel | 3/3 | PASS | all series redundant |
@@ -31,9 +31,9 @@ Generated 2026-11-08T20:58:55+00:00; verdict from the ayarli scoring; both scori
 | D4 No text-on-text collisions | 5/5 | PASS | clean |
 | D5 No internal experiment codes in the artwork | 3/3 | PASS | clean |
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | 3 'n = ...' annotation(s) |
-| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 58 words, 0 in mandatory sentences, 58 counted; limit 60 on ieee_access; lead-in yes |
+| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 54 words, 0 in mandatory sentences, 54 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | ViT-Tiny's panel similarity rises with ImageNet initialization while ResNet-18's... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 7/7 richness items pass; distance to the liked reference 0.144 (0/5 on the disliked side); catalogue 0.402 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 4/4 richness items pass; distance to the liked reference 0.073 (0/5 on the disliked side); catalogue 0.755 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 | _skipped_ | - | SKIP | D2: a Visio schematic has no axes; not applied (İSTEM 5A, adjusted scoring) |
 
@@ -44,10 +44,10 @@ Generated 2026-11-08T20:58:55+00:00; verdict from the ayarli scoring; both scori
 | A1 Placed scale within 2% of 1.000 | 6/6 | PASS | kind single: canvas 241.80pt, venue 241.77pt, scale 0.9999 |
 | A2 Minimum rendered type >= 8pt | 8/8 | PASS | smallest 8.40pt on 'Panel similarity σ' |
 | A3 All sizes on the derived 3-step scale | 2/4 | WARN | sizes [8.4, 8.42]; off-scale [8.4, 8.42] |
-| A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.400in vs budget 6.509in |
+| A4 Height within the float budget (no tolerance) | 4/4 | PASS | 4.067in vs budget 6.509in |
 | A5 No dead margin band over 6% | 4/4 | PASS | margins balanced |
-| A6 Panel frames aligned | 4/4 | PASS | single panel |
-| B1 Every colour bound in the palette | 5/5 | PASS | 20 colours, all bound |
+| A6 Panel frames aligned | 4/4 | PASS | left edges [2.8], bottom edges [78.7, 163.7, 248.7] |
+| B1 Every colour bound in the palette | 5/5 | PASS | 13 colours, all bound |
 | B2 CVD separation, or redundant channels | 5/5 | PASS | worst CVD dE 16.9 (mitigated by marker/linestyle/hatch) |
 | B3 Greyscale separation, or redundant channels | 4/4 | PASS | worst dL* 19.0 |
 | B4 Every series has a non-colour channel | 3/3 | PASS | all series redundant |
@@ -62,12 +62,12 @@ Generated 2026-11-08T20:58:55+00:00; verdict from the ayarli scoring; both scori
 | D4 No text-on-text collisions | 5/5 | PASS | clean |
 | D5 No internal experiment codes in the artwork | 3/3 | PASS | clean |
 | D6 Sample size stated once in the schematic, or exempt with a reason | 2/2 | PASS | 3 'n = ...' annotation(s) |
-| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 58 words, 0 in mandatory sentences, 58 counted; limit 60 on ieee_access; lead-in yes |
+| E1 Caption within the venue's word limit, with a bold lead-in | 4/4 | PASS | 54 words, 0 in mandatory sentences, 54 counted; limit 60 on ieee_access; lead-in yes |
 | E2 Manifest states the figure's one-sentence message | 3/3 | PASS | ViT-Tiny's panel similarity rises with ImageNet initialization while ResNet-18's... |
-| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 7/7 richness items pass; distance to the liked reference 0.144 (0/5 on the disliked side); catalogue 0.402 |
+| E3 Structural comparison against the liked reference and the catalogue | 3/3 | PASS | 4/4 richness items pass; distance to the liked reference 0.073 (0/5 on the disliked side); catalogue 0.755 |
 | _skipped_ | - | SKIP | D1: manifest is not stamped by figspec.export.save; dual-axis status unverified |
 
-F: kar/cm² 2.40 [2.30-4.30] · yazı kutusu 0.14 [0.13-0.28] · sayısal 0.16 · veri alanı - · derinlik 2 · akış 2/1 etiketli · ton 0.56 [0.86-0.92] · mürekkep 0.098 | beğeniye uzaklık 0.14 (0/5 beğenilmeyen tarafında) | eşikler tamam
+F: kar/cm² 2.60 [2.30-4.30] · yazı kutusu 0.15 [0.13-0.28] · sayısal 0.16 · veri alanı - · derinlik 2 · akış 2/1 etiketli · ton 0.71 [0.86-0.92] · mürekkep 0.088 | beğeniye uzaklık 0.07 (0/5 beğenilmeyen tarafında) | eşikler tamam
 
 ## Cross-figure consistency: PASS
-- 17 figures share one design system
+- 16 figures share one design system

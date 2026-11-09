@@ -260,15 +260,37 @@
       "anahtar_yolu": "(axis, not data)",
       "hesap": "axis range -0.3 to 0.9, ticks 0, 0.4, 0.8, chosen to hold every threshold",
       "kaynak_sha256": "f20158c1189feb2bcd9619491f5a16218c763e65a38530275494b7bb570ee702"
+    },
+    {
+      "etiket": "registration groups",
+      "deger": {
+        "main": [
+          "CIFAR-10 panel",
+          "2 × 2 design",
+          "attack side",
+          "masking check"
+        ],
+        "addendum": [
+          "CIFAR-100",
+          "gradient",
+          "ImageNetV2"
+        ]
+      },
+      "kaynak": "paper/manuscript/sections/03_methodology.tex",
+      "anahtar_yolu": "main registration (panel tests, two-by-two design, attack side, masking) ... addendum (CIFAR-100, ImageNetV2, gradient alignment)",
+      "hesap": "group membership read from the text sentence; no number drawn",
+      "satir": 295,
+      "kaynak_sha256": "ff504c487ed13de50a31992e94b242e332f662ac33024c312d3877c57b604e34"
     }
   ],
   "records_sha256": null,
   "betik": "paper/figures_v2/z_registry_map.py",
-  "git_head": "fc7c6c8",
+  "git_head": "3cc341f",
   "okunan_dosyalar": [
     "paper/figures/konsey/konsey_ortak.py",
     "paper/figures/visio/_sema_ortak.py",
     "paper/figures/visio/_yuz_tonlari.py",
+    "paper/manuscript/sections/03_methodology.tex",
     "results/C1_REFERANS_FOYU.md",
     "results/q1/konsey_kayit_kurallari.json"
   ],
@@ -276,13 +298,15 @@
     "paper/figures/konsey/konsey_ortak.py": true,
     "paper/figures/visio/_sema_ortak.py": true,
     "paper/figures/visio/_yuz_tonlari.py": true,
+    "paper/manuscript/sections/03_methodology.tex": true,
     "results/C1_REFERANS_FOYU.md": true,
     "results/q1/konsey_kayit_kurallari.json": true
   },
-  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); paper/figures/visio/*.py (v1 icerik kurallari, salt okunur ice aktarim); results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
+  "karantina": "bu sekil icin okunan dosya siniflari: paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz); paper/figures/visio/*.py (v1 icerik kurallari, salt okunur ice aktarim); paper/manuscript/sections/*.tex (tanim cumleleri; govde metni degismez); results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi); results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari). run1, run2, run3, attention_analysis_run3, stat_addendum, rev2_blockA ve C1 oncesi hicbir dosya okunmadi (karantina_denetimi alani dosya dosya).",
   "okunan_siniflar": [
     "paper/figures/konsey/*.py (v1 veri kurallari, salt okunur ice aktarim; sayi yazmaz)",
     "paper/figures/visio/*.py (v1 icerik kurallari, salt okunur ice aktarim)",
+    "paper/manuscript/sections/*.tex (tanim cumleleri; govde metni degismez)",
     "results/C1_REFERANS_FOYU.md (C1 sonrasi referans foyu, tek sayi kaynagi)",
     "results/q1/* (C1 sonrasi dondurulmus B2-B10 ciktilari)"
   ],
@@ -533,5 +557,5 @@
       }
     ]
   },
-  "altyazi_taslagi": "Registered tests and decision rules as a staircase. Each step is one family, numbered in registration order and set behind the previous one; rows give test and quantity, place the predicted size (diamond) and falsification threshold (circle) on a number line with the ±0.1 band, and state the falsifying rule. Holm correction is per family; ImageNetV2 rows are descriptive."
+  "altyazi_taslagi": "Registered tests and decision rules. Each band is one family, numbered in registration order and grouped into the main registration and the addendum; rows give test and quantity, place the predicted size (diamond) and falsification threshold (circle) on a number line with the ±0.1 band, and state the falsifying rule. Holm correction is per family; ImageNetV2 rows are descriptive."
 }

@@ -814,156 +814,6 @@
           56.599999999999994
         ],
         "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "c0": {
-        "kind": "kart",
-        "tint": "kutu",
-        "size_mm": {
-          "w": 20.096666067063328,
-          "d": 1.4,
-          "h": 70.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F9F6F2",
-          "right": "#D4D1CE",
-          "front": "#AEACA9"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F9F6F2",
-        "outline": "#93908D",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2841,
-          0.2269
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "c0_top",
-          "right": "c0_right",
-          "front": "c0_face"
-        },
-        "bbox_mm": [
-          20.4,
-          6.7742,
-          20.4796,
-          71.7297
-        ],
-        "world_mm": [
-          13.513691020899714,
-          7.104567809251955,
-          0.19609826957804444
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "c1": {
-        "kind": "kart",
-        "tint": "kutu",
-        "size_mm": {
-          "w": 20.096666067063328,
-          "d": 1.4,
-          "h": 70.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F9F6F2",
-          "right": "#D4D1CE",
-          "front": "#AEACA9"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F9F6F2",
-        "outline": "#93908D",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2841,
-          0.2269
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "c1_top",
-          "right": "c1_right",
-          "front": "c1_face"
-        },
-        "bbox_mm": [
-          41.8967,
-          6.7742,
-          20.4796,
-          71.7297
-        ],
-        "world_mm": [
-          29.13193312895096,
-          15.315563602063616,
-          0.19609826957804444
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "c2": {
-        "kind": "kart",
-        "tint": "kutu",
-        "size_mm": {
-          "w": 20.096666067063328,
-          "d": 1.4,
-          "h": 70.8
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F9F6F2",
-          "right": "#D4D1CE",
-          "front": "#AEACA9"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F9F6F2",
-        "outline": "#93908D",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2841,
-          0.2269
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "c2_top",
-          "right": "c2_right",
-          "front": "c2_face"
-        },
-        "bbox_mm": [
-          63.3933,
-          6.7742,
-          20.4796,
-          71.7297
-        ],
-        "world_mm": [
-          44.75017523700221,
-          23.526559394875278,
-          0.19609826957804444
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
       }
     }
   },
@@ -1013,17 +863,9 @@
       "from": "3D front tone of govde_vit (fill #D5B09F, darkening 0.3; three_d.face_tones)",
       "role": "fill"
     },
-    "#D4D1CE": {
-      "from": "3D right tone of kutu (fill #F9F6F2, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
-    },
     "#93908D": {
       "from": "schematic colour 93908D",
       "role": "line"
-    },
-    "#AEACA9": {
-      "from": "3D front tone of kutu (fill #F9F6F2, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
     },
     "#7B5544": {
       "from": "schematic colour 7B5544",
@@ -1061,8 +903,10 @@
   "sablon": "ortak_satirli_katlar",
   "tur": "veri",
   "uslup_yolu": "<skill>/styles/uslup_Z.yaml",
-  "altyazi_taslagi": "Feature degradation of ViT-Tiny under attack, block by block. The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90% TOST intervals inside the ±0.05-nat band, attention displacement (TV), block-output cosine, mean±SD. Values are positions on the flat cards.",
+  "altyazi_taslagi": "Feature degradation of ViT-Tiny under attack, block by block. The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90% TOST intervals inside the ±0.05-nat band, attention displacement (TV), block-output cosine, mean±SD. Disc height carries no value.",
   "uslup_surumu": 3,
+  "sahne": true,
+  "kompozisyon_dili": "sahne (dimetrik maket)",
   "sahne_kalibi": "omurga",
   "panel_adlari": [
     "Entropy Δ",
@@ -1070,5 +914,5 @@
     "Cosine"
   ],
   "derinlik_ekseni": "none in depth: the layer axis is the spine's height; depth is disc thickness",
-  "ikiz_kodlama": "values are positions on the flat faces of the three readout cards"
+  "ikiz_kodlama": "values are positions on the three flat readout cards"
 }

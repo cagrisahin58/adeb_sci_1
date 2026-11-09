@@ -1,14 +1,12 @@
 #!/usr/bin/env python
-"""z_panel_members (Fig. 4 v2, Üslup Z): the reference panel members as books on two shelves.
+"""z_panel_members (Fig. 4 v2, Üslup Z): the reference panel members on two flat catalogue cards.
 
     python paper/figures_v2/z_panel_members.py [--check] [--bak]
 
-Single column. Every panel member is a book lying in a stack, its spine (an upright face of the one dimetric view)
-carrying the RobustBench identifier and its marks. Front shelf: the CIFAR-10 and CIFAR-100 block, roles in the C10
-and C100 columns (filled square primary, open square secondary, triangle transformer) and the ResNet-18 dot in
-the R18 column. Back shelf, higher: the ImageNetV2 block, the CNN panel and the secondary XCiT-S12, the three
-pairs with their group heading on the spine (CNN and transformer marks) and the unpaired ViT-B. Depth carries the
-registration level (CIFAR, main registration, in front; ImageNetV2, addendum, behind). Book length carries nothing.
+Single column, flat-card composition (third round, 09.11.2026: no shelves, no depth). Upper card: the CIFAR-10
+and CIFAR-100 block, roles in the C10 and C100 columns (filled square primary, open square secondary, triangle
+transformer) and the ResNet-18 dot in the R18 column. Lower card: the ImageNetV2 block, the CNN panel and the
+secondary XCiT-S12, the three pairs under their group heading (CNN and transformer marks) and the unpaired ViT-B.
 Content: the v1 rule paper/figures/visio/fig_panel_members.py (cell tables, a10_panel.json, b8_betimsel.json;
 sheet M12.3 and M10.4). Naming: step 4 (shelf titles and column heads).
 """
@@ -22,15 +20,16 @@ import _z2 as Z  # noqa: E402
 from _z2 import vf, gr, lh, T  # noqa: E402
 
 Z.baslat()
-PM = Z.yukle_sema("paper/figures/visio/fig_panel_members.py", "v1_panel_members")
+Z.duz()
+PM =Z.yukle_sema("paper/figures/visio/fig_panel_members.py", "v1_panel_members")
 IC = PM.IC
 
 STEM = "z_panel_members"
 KIND = "single"
 W = vf.page_width(KIND)
-CAPTION = ("Reference panel members on two catalogue cards. The front card, CIFAR-10 and CIFAR-100, gives each "
+CAPTION = ("Reference panel members on two catalogue cards. The upper card, CIFAR-10 and CIFAR-100, gives each "
            "RobustBench identifier its role in the C10 and C100 columns and marks ResNet-18 variants in the R18 "
-           "column. The back card, ImageNetV2, holds the CNN panel and the secondary XCiT-S12, the transformer "
+           "column. The lower card, ImageNetV2, holds the CNN panel and the secondary XCiT-S12, the transformer "
            "pairs and the unpaired ViT-B of Mo et al.")
 
 
@@ -58,16 +57,12 @@ def main():
     nI = max(len(left), len(right))
     HC = 1.0 + LH + 0.8 + nC * LH + 1.0
     HI = 1.0 + LH + 0.8 + nI * LH + 1.0
-    DB = 10.0
-    OY = 3.0 + HI + SHT + 3.6 + HC + SHT + 1.0
-    S = Z.Sahne(2.0, OY)
+    CWd = W - 2.0
     tone_cnn, tone_x, tone_pair = "vurgu6", "vurgu4", "vurgu1"
     deg = []
-    # ---- front shelf and the CIFAR catalogue card
-    X, Y = Z.un(S, 0.4, -3.0)
-    Z.kart(S, "shelfC", X, Y, 0.0, CWd + 2.0, SHT, "govde_res", t=9.0, shadow=False, group="shelfC")
-    X, Y = Z.un(S, 0.5, 1.0)
-    fx, fy, fw, fh = Z.kart(S, "cardC", X, Y, SHT, CWd, HC, "kutu", t=1.4, shadow=False, group="cardC", cont="shelfC_top")
+    # ---- third round (09.11.2026): two flat catalogue cards, no shelves; the main-registration block (CIFAR)
+    # first, the ImageNetV2 addendum under it, both on one left edge
+    fx, fy, fw, fh = Z.duz_kart("cardC", 1.0, 3.0, CWd, HC, "kutu")
     face = "cardC_face"
     xcol = {"c10": fw - 19.5, "c100": fw - 11.5, "r18": fw - 3.8}
     T("hC", fx + 1.2, fy + 1.0, [[("CIFAR-10 and CIFAR-100", "sb")]], size=Z.S8, cont=face)
@@ -86,15 +81,12 @@ def main():
                      tone_cnn if r["aile"] == "CNN" else tone_x, f"cr{i}")
         if r["r18"]:
             Z.isaret(f"cd{i}", fx + xcol["r18"], y + LH / 2, "o", fill="ink", edge="ink", size=1.1, group=f"cr{i}")
-    # ---- back shelf, higher, and the ImageNetV2 card
-    zb = SHT + HC + 3.6 - DB * 0.664
-    X, Y = Z.un(S, -0.6, DB - 3.0)
-    Z.kart(S, "shelfI", X, Y, zb, CWd + 1.6, SHT, "govde_res", t=9.0, shadow=False, group="shelfI")
-    X, Y = Z.un(S, 0.5, DB + 1.0)
-    gx, gy, gw, gh = Z.kart(S, "cardI", X, Y, zb + SHT, CWd, HI, "kutu", t=1.4, shadow=False, group="cardI",
-                            cont="shelfI_top")
+    # ---- the ImageNetV2 card under it (addendum)
+    gx, gy, gw, gh = Z.duz_kart("cardI", 1.0, fy + fh + 3.0, CWd, HI, "kutu")
     face = "cardI_face"
     T("hI", gx + 1.2, gy + 1.0, [[("ImageNetV2", "sb")]], size=Z.S8, cont=face)
+    vf.seg("hI_rule", (gx + 1.0, gy + 1.0 + LH + 0.4), (gx + 38.6, gy + 1.0 + LH + 0.4), vf.C["frame"],
+           vf.LW["ince"])
     xr = gx + 41.6
     for i, r in enumerate(left):
         y = gy + 1.0 + LH + 0.8 + i * LH
@@ -111,8 +103,8 @@ def main():
                 mark(f"rm{i}a", xr + 1.2, y + LH / 2, "CNN", "primary", tone_pair, f"rr{i}")
             mark(f"rm{i}b", xr + 3.8, y + LH / 2, "T", "primary", tone_pair, f"rr{i}")
             T(f"rl{i}", xr + 5.6, y, [ln["label"]], size=Z.S8, cont=face)
-    # legend under the front shelf
-    yl = OY + 3.8
+    # legend under the cards
+    yl = gy + gh + 2.4
     items = [("s", tone_cnn, "primary", "panel CNN"), ("s", tone_cnn, "secondary", "secondary CNN"),
              ("^", tone_x, "secondary", "XCiT, secondary")]
     x = 1.0
@@ -161,15 +153,15 @@ def main():
         STEM, message="The reference panels list every RobustBench member with its role; ImageNetV2 adds paired "
                       "CNN and transformer models.", kind=KIND, panels=2, caption=CAPTION, sablon="tablodan_sekle",
         tur="sematik", degerler=deg, kanit_ek={"foy_karsilastirmasi": foy},
-        manifest={"entities": ents, "sahne_kalibi": "kitaplik",
+        manifest={"entities": ents, "sahne_kalibi": "yok (duz katalog kartlari, ucuncu tur)",
                   "panel_adlari": ["CIFAR-10 and CIFAR-100", "ImageNetV2"],
-                  "derinlik_ekseni": "registration level: CIFAR (main) in front, ImageNetV2 (addendum) behind",
+                  "derinlik_ekseni": "none: flat cards",
                   "denge_muafiyet": {"karakter_cm2": "the figure lists the panel members by their full RobustBench "
                                                      "identifiers, read from the cell tables; the names are its content",
                                      "yazi_kutusu_alani": "one line per panel member at the 8 pt floor; the list replaces "
                                                           "a table and its line boxes are fixed by the floor"}},
-        denge={"panel_basina_bir_iddia": (True, "each shelf is one data block of panel members")},
-        n_exempt_reason="every member is one book; the counts are in the evidence file",
+        denge={"panel_basina_bir_iddia": (True, "each card is one data block of panel members")},
+        n_exempt_reason="every member is one row; the counts are in the evidence file",
         okunan_ek=[IC.HT10, IC.HT100, IC.HT8, PM.A10, PM.B8B])
 
 

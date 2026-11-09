@@ -1,20 +1,18 @@
 #!/usr/bin/env python
-"""z_gradient_alignment (Fig. 11 v2, Üslup Z): input-gradient alignment against similarity on three steles.
+"""z_gradient_alignment (Fig. 11 v2, Üslup Z): input-gradient alignment against similarity in three flat columns.
 
     python paper/figures_v2/z_gradient_alignment.py [--check] [--bak]
 
-Double column. Second round (08.11.2026, bulgu 9 and the 2 x 3 card grid of bulgu 3): the two-step stand of the
-first round repeated the "back card raised, front card on the floor" layout of Figure 15 and was an equal-size card
-grid, which style Z lists as a don't. Now each data set is one thick stele standing on the stage plate; the steles
-step back in depth in registration order (CIFAR-10 of the main registration in front and left, CIFAR-100 and the
-descriptive ImageNetV2 of the supplement behind and to the right, as in Figures 7 and 8). On every stele the raw
-relation (cosine c between input gradients against log tau-bar) is the upper panel and the residual after the
-additive model main effects are removed from both matrices is the lower panel; between them a protruding ledge
-carries the operation ("main effects removed"), so the processing step is an object, not a second row of cards.
-Each panel is a flat scatter plot on the stele face: pair type by marker shape, colour and size (CNN-CNN stone
+Double column, flat-card composition (third round, 09.11.2026: the steles on the stage plate are gone, which also
+closes review finding 3, the repeated stone-slab idea of Figures 11 and 12). Each data set is one flat column card
+(CIFAR-10, CIFAR-100, ImageNetV2, left to right, top-aligned). In every column the raw relation (cosine c between
+input gradients against log tau-bar) is the upper panel and the residual after the additive model main effects
+are removed from both matrices is the lower panel; between them a flat inset strip names the operation ("main
+effects removed"), so a column reads as raw, operation, residual rather than as a 2 x 3 grid of equal cards.
+Each panel is a flat scatter plot: pair type by marker shape, colour and size (CNN-CNN stone
 circle, transformer-transformer terracotta triangle, mixed light square), Spearman r and the pair count printed.
 Data: the v1 rule paper/figures/charts/fig_gradient_alignment.py veri() (B10 Mantel files, frozen cell tables;
-sheet lines 1970-1977, 2009-2011). Naming: step 4 (row strips and stele titles).
+sheet lines 1970-1977, 2009-2011). Naming: step 4 (row strips and column titles).
 """
 from __future__ import annotations
 
@@ -26,6 +24,7 @@ import _z2 as Z  # noqa: E402
 from _z2 import vf, gr, lh, T  # noqa: E402
 
 Z.baslat()
+Z.duz()
 GAV = Z.yukle("paper/figures/charts/fig_gradient_alignment.py", "v1_gradient_alignment")
 
 STEM = "z_gradient_alignment"
@@ -33,14 +32,14 @@ KIND = "double"
 W = vf.page_width(KIND)
 LOOK = {"mixed": ("s", "notr", 1.0, "mixed"), "CNN-CNN": ("o", "vurgu1", 1.15, "CNN–CNN"),
         "T-T": ("^", "vurgu3", 1.35, "transformer–transformer")}
-CAPTION = ("Input-gradient alignment against similarity on three steles. Cosine c between input gradients against "
-           "log τ̄ for every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; upper panels raw, lower panels "
-           "residual below the ledge, with additive model main effects removed. Each panel prints the Spearman r "
-           "and pair count n; values are positions on the flat faces.")
+CAPTION = ("Input-gradient alignment against similarity. Cosine c between input gradients against log τ̄ for "
+           "every model pair on CIFAR-10, CIFAR-100 and ImageNetV2; upper panels raw, lower panels residual, after "
+           "the additive model main effects are removed from both matrices. Each panel prints the Spearman r and "
+           "pair count n.")
 
 
 def panel(deg, d, key, row, rk, c, fx, fy, fw, fh, face):
-    """One flat scatter plot in the rectangle (fx, fy, fw, fh) of a stele face."""
+    """One flat scatter plot in the rectangle (fx, fy, fw, fh) of a column card."""
     import math as _m
     dd = d[key]
     rs = dd["rs_h"] if rk == "raw" else dd["rs_r"]
@@ -107,39 +106,36 @@ def main():
     d, *_rest = GAV.veri()
     keys = ["cifar10", "cifar100", "imagenetv2"]
     vf.reset(STEM, W, 150.0, naming_step=4, naming_kind="serit")
-    RS, SW, G, CH = 15.0, 48.0, 3.2, 36.0
-    DS, ST, LT = 8.0, 3.0, 1.6                     # depth step between steles, stele and ledge thickness
-    LG = lh(Z.S8) + 1.4                            # ledge face height
-    OY = 118.0
-    OX = 1.0
-    S = Z.Sahne(OX, OY)
+    # third round (09.11.2026): three flat column cards side by side, top-aligned (no stage plate, no steles in
+    # depth). In each column the raw panel sits above, a flat inset strip names the operation ("main effects
+    # removed") and the residual panel sits below it; the row strips raw and residual are at the left.
+    RS, G, CH = 13.0, 2.0, 36.0
+    SW = (W - RS - 1.0 - 2 * G)
+    SW = SW / 3
+    LG = lh(Z.S8) + 1.4                            # strip height
+    OY0 = 1.0
     SH = CH + LG + 1.4 + CH
-    Z.plaka_un(S, "stage", *Z.un(S, RS - 2.0, -3.0), 3 * SW + 2 * G + 5.0, 2 * DS + 3.0 + ST + 2.0, 2.0)
     deg = []
     faces = {}
-    for c in (2, 1, 0):                            # back to front
-        X, Y = Z.un(S, RS + c * (SW + G), DS * c)
-        fx, fy, fw, fh = Z.kart(S, f"st{c}", X, Y, 0.0, SW, SH, "kutu", t=ST, k=(0.015, 0.011), group=f"st{c}",
-                                cont="stage_top")
+    for c in (0, 1, 2):
+        fx, fy, fw, fh = Z.duz_kart(f"st{c}", RS + c * (SW + G), OY0, SW, SH, "kutu")
         face = f"st{c}_face"
-        # the ledge: a thin bar standing proud of the face between the raw and the residual panel
-        X2, Y2 = Z.un(S, RS + c * (SW + G), DS * c - LT)
-        lx, ly, lw_, lh2 = Z.kart(S, f"le{c}", X2, Y2, CH + 1.4, SW, LG, "kap", t=LT, shadow=False,
-                                  group=f"le{c}", cont=face)
+        lx, ly, lw_, lh2 = Z.duz_kart(f"le{c}", fx + 1.0, fy + CH + 0.4, fw - 2.0, LG, "kap", cont=face)
         T(f"let{c}", lx + lw_ / 2, ly + 0.7, ["main effects removed"], size=Z.S8, color="muted", align="c",
           cont=f"le{c}_face")
         panel(deg, d, keys[c], 0, "raw", c, fx, fy, fw, CH, face)
         top2 = ly + lh2 + 0.4
         panel(deg, d, keys[c], 1, "res", c, fx, top2, fw, fy + fh - top2 - 1.6, face)
         faces[c] = (fx, fy, fw, fh, top2)
-    # row strips at the left, level with the panels of the front stele
+    # row strips at the left, level with the panels
     fx, fy, fw, fh, top2 = faces[0]
     T("rs0", 0.8, fy + CH / 2 - lh(Z.S8) / 2, [[("raw", "sb")]], size=Z.S8)
     T("rs1", 0.8, (top2 + fy + fh) / 2 - lh(Z.S8) / 2, [[("residual", "sb")]], size=Z.S8)
-    T("axx", OX + RS + 1.5 * SW + G, OY + 4.6, [[("x: log ", "r"), ("τ̄", "r@DejaVuSans"),
-                                                  (" (raw) or its residual;  y: input-gradient cosine c (raw) or its "
-                                                   "residual", "r")]], size=Z.S8, color="muted", align="c")
-    yl = OY + 5.6 + lh(Z.S8)
+    OY = OY0 + SH
+    T("axx", RS + 1.5 * SW + G, OY + 1.4, [[("x: log ", "r"), ("τ̄", "r@DejaVuSans"),
+                                            (" (raw) or its residual;  y: input-gradient cosine c (raw) or its "
+                                             "residual", "r")]], size=Z.S8, color="muted", align="c")
+    yl = OY + 2.4 + lh(Z.S8)
     # bulgu 5 (08.11): the key rule, the 1.5 pt (vurgu) line between scene and key (as Figures 7, 13, 16)
     vf.seg("rule", (1.0, yl - 0.5), (W - 1.0, yl - 0.5), vf.C["frame"], vf.LW["vurgu"])
     x = 1.0
@@ -159,10 +155,9 @@ def main():
         STEM, message="Input-gradient cosine rises with symmetric similarity on all three data sets, raw and after "
                       "removing model main effects.", kind=KIND, panels=6, caption=CAPTION,
         sablon="ortak_satirli_katlar", tur="veri", degerler=deg, kanit_ek={},
-        manifest={"entities": ents, "sahne_kalibi": "uc_dikili_tas",
+        manifest={"entities": ents, "sahne_kalibi": "yok (uc duz sutun karti, ucuncu tur)",
                   "panel_adlari": ["raw", "residual", "CIFAR-10", "CIFAR-100", "ImageNetV2"],
-                  "derinlik_ekseni": "registration order: CIFAR-10 (main registration) in front, CIFAR-100 and ImageNetV2 (supplement) behind; the processing step is the ledge between the upper raw and the lower residual panel",
-                  "ikiz_kodlama": "values are positions on the flat faces of three upright steles"},
+                  "derinlik_ekseni": "none: flat column cards; the processing step is the inset strip between the raw and the residual panel"},
         denge={"panel_basina_bir_iddia": (True, "each panel is one data set and one step (raw or residual)")},
         n_exempt_reason="each panel prints its pair count n", okunan_ek=[d[k]["kaynak"] for k in keys])
 

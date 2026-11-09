@@ -30,7 +30,7 @@ The CNN's margin over the ViT is widest at small perturbation budgets ($77.30$ a
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig16_epsilon_sweep.pdf}
-\caption{\textbf{Robust accuracy under PGD-10 as cut-out profiles.} Each card's top edge traces CIFAR-10 test accuracy over the budget $\eps$, clean to 16/255, as height above its own base (back bases dashed; scale bar 25 points); the number rows print the same values, which carry the result (mean of three seed pairs; WRN-28-10 is one RobustBench model).}
+\caption{\textbf{Robust accuracy under PGD-10.} CIFAR-10 test accuracy over the budget $\eps$, clean to 16/255, for ViT-Tiny AT, ResNet-18 AT and WRN-28-10; the number rows under the chart print the plotted values (mean of three seed pairs; WRN-28-10 is one RobustBench model).}
 \label{fig:epsilon_sweep}
 \end{figure}
 
@@ -87,7 +87,7 @@ Feature drift is the clean-to-adversarial cosine at each residual block output u
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\columnwidth]{../figures_v2/fig17_feature_degradation.pdf}
-\caption{\textbf{Feature degradation of ViT-Tiny under attack, block by block.} The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90\% TOST intervals inside the $\pm$0.05-nat band, attention displacement (TV), block-output cosine, mean$\pm$SD. Values are positions on the flat cards.}
+\caption{\textbf{Feature degradation of ViT-Tiny under attack, block by block.} The clean and PGD-10 image enter the spine, block 1 at the bottom; per block over three runs: CLS attention entropy change with 90\% TOST intervals inside the $\pm$0.05-nat band, attention displacement (TV), block-output cosine, mean$\pm$SD. Disc height carries no value.}
 \label{fig:feature_degradation}
 \end{figure}
 

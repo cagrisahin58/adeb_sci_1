@@ -2,7 +2,7 @@
  "stem": "fig12_estimates_forest",
  "page_mm": [
   85.30166666666665,
-  130.59833333333333
+  115.99333333333333
  ],
  "grid_mm": 0.25,
  "type_floor_pt": 8.0,
@@ -88,131 +88,21 @@
    "kind": "strip"
   }
  ],
- "three_d": {
-  "projection": "dimetric",
-  "angle_deg": 36.0,
-  "token": {
-   "projection": "dimetric",
-   "angle_deg": 36.0
-  },
-  "token_source": "style",
-  "objects": {
-   "plinth": {
-    "kind": "kart",
-    "tint": "govde_res",
-    "size_mm": {
-     "w": 81.18999820119,
-     "d": 7.0,
-     "h": 3.6
-    },
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "angle_w_deg": 18.0,
-    "tones": {
-     "top": "#999188",
-     "right": "#827B74",
-     "front": "#6B665F"
-    },
-    "darkening": {
-     "top": 0.0,
-     "right": 0.15,
-     "front": 0.3
-    },
-    "fill": "#999188",
-    "outline": "#5E5953",
-    "tone_source": "three_d.face_tones",
-    "tone_steps": [
-     0.0863,
-     0.0672
-    ],
-    "three_d_token": {
-     "angle_deg": 36.0,
-     "projection": "dimetric"
-    },
-    "faces": {
-     "top": "plinth_top",
-     "right": "plinth_right",
-     "front": "plinth_face"
-    },
-    "bbox_mm": [
-     1.3,
-     110.7515,
-     83.1046,
-     8.2485
-    ],
-    "world_mm": [
-     -0.14530850560107217,
-     -0.07639320225002101,
-     0.0
-    ],
-    "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-   },
-   "slab": {
-    "kind": "kart",
-    "tint": "kutu",
-    "size_mm": {
-     "w": 79.78999820118999,
-     "d": 4.5,
-     "h": 110.32188825742892
-    },
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "angle_w_deg": 18.0,
-    "tones": {
-     "top": "#F9F6F2",
-     "right": "#D4D1CE",
-     "front": "#AEACA9"
-    },
-    "darkening": {
-     "top": 0.0,
-     "right": 0.15,
-     "front": 0.3
-    },
-    "fill": "#F9F6F2",
-    "outline": "#93908D",
-    "tone_source": "three_d.face_tones",
-    "tone_steps": [
-     0.2841,
-     0.2269
-    ],
-    "three_d_token": {
-     "angle_deg": 36.0,
-     "projection": "dimetric"
-    },
-    "faces": {
-     "top": "slab_top",
-     "right": "slab_right",
-     "front": "slab_face"
-    },
-    "bbox_mm": [
-     2.047,
-     0.7617,
-     81.0208,
-     113.3102
-    ],
-    "world_mm": [
-     -0.9306822543899725,
-     1.7702628452756948,
-     3.6
-    ],
-    "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-   }
-  }
- },
- "primitives": 122,
+ "three_d": {},
+ "primitives": 111,
  "sources": {},
  "preflight": {
   "issues": [],
   "texts": 37,
   "min_text_slack_mm": 0.608,
   "min_clearance_mm": {
-   "plate": 1.237
+   "plate": 1.194
   },
   "shape_pairs_checked": 547,
   "group_pairs_skipped": 14,
-  "deco_shapes": 14,
+  "deco_shapes": 3,
   "min_print_clearance_mm": {
-   "plate": 0.92
+   "plate": 1.194
   },
   "families": [
    "Open Sans"
@@ -234,14 +124,14 @@
   }
  },
  "visio": {
-  "pid": 24928,
+  "pid": 25876,
   "version": "16,0",
   "close": {
-   "pid": 24928,
+   "pid": 25876,
    "doc_closed": true,
    "quit": true,
    "exited": true,
-   "waited_s": 0.61,
+   "waited_s": 0.66,
    "killed": false,
    "foreign_docs": 0
   },
@@ -253,8 +143,8 @@
   ]
  },
  "readback": {
-  "shapes": 122,
-  "max_deviation_mm": 5e-05,
+  "shapes": 111,
+  "max_deviation_mm": 4e-05,
   "worst": "pt0_2",
   "kinds": [
    "oval",
@@ -269,7 +159,7 @@
   "issues": [],
   "page_mm": [
    85.302,
-   130.598
+   115.993
   ],
   "register_offset_mm": [
    0.0,

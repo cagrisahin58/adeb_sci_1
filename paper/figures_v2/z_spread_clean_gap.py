@@ -1,14 +1,12 @@
 #!/usr/bin/env python
-"""z_spread_clean_gap (Fig. 15 v2, Üslup Z): protocol spread against the clean-accuracy gap on a deep stage.
+"""z_spread_clean_gap (Fig. 15 v2, Üslup Z): protocol spread against the clean-accuracy gap on two flat cards.
 
     python paper/figures_v2/z_spread_clean_gap.py [--check] [--bak]
 
-Single column. A deep stage plate, aligned with the cards (front edge page-horizontal), carries two upright
-cards: at the back the three-protocol spread (raw, target-correct, both-correct) of every model pair with the
-identity prediction at p = 1 as a small open ring; at the front the successful-source minus both-correct term
-with a dashed zero line. Depth tells the reading order (the measure at the back, the term it leaves out in
-front); the back card stands higher and to the right, so the two never overlap. Values are positions on flat
-cards; no line is fitted. Data: the v1 rule paper/figures/charts/fig_spread_clean_gap.py veri()
+Single column, flat-card composition (third round, 09.11.2026: the deep stage is gone). Two flat cards stacked on
+one left edge and one x scale: above, the three-protocol spread (raw, target-correct, both-correct) of every model
+pair with the identity prediction at p = 1 as a small open ring; below, the successful-source minus both-correct
+term with a dashed zero line. No line is fitted. Data: the v1 rule paper/figures/charts/fig_spread_clean_gap.py veri()
 (results/q1/fig_yayilim_temiz_fark_veri.json, checked against sheet lines 1014-1073). Naming: step 4.
 """
 from __future__ import annotations
@@ -21,6 +19,7 @@ import _z2 as Z  # noqa: E402
 from _z2 import vf, gr, lh, T  # noqa: E402
 
 Z.baslat()
+Z.duz()
 SC = Z.yukle("paper/figures/charts/fig_spread_clean_gap.py", "v1_spread_clean_gap")
 
 STEM = "z_spread_clean_gap"
@@ -36,32 +35,28 @@ GROUPS = [  # data group -> (marker, fill, edge, printed label)
     ("CIFAR-10 Linf, son kontrol noktasi", "D", "vurgu6", "muted", "last checkpoint"),
     ("CIFAR-10 Linf, RobustBench havuzu", "o", "ECE9E5", "frame", "RobustBench pool"),
 ]
-CAPTION = ("Protocol spread against the clean-accuracy gap on a deep stage. All 60 model pairs. Back card, "
-           "Three-protocol spread: unconditioned, target-correct and both-correct, rings the identity prediction "
-           "at p = 1; front card, Successful-source minus both-correct, the term left out. Values are positions "
-           "on the flat cards; no line is fitted.")
+CAPTION = ("Protocol spread against the clean-accuracy gap, all 60 model pairs. Upper panel, Three-protocol "
+           "spread: unconditioned, target-correct and both-correct, rings the identity prediction at p = 1; lower "
+           "panel, Successful-source minus both-correct, the term the spread leaves out. No line is fitted.")
 
 
 def main():
     d, by, parity, foy = SC.veri()
     N = d["noktalar"]
     vf.reset(STEM, W, 130.0, naming_step=4, naming_kind="serit")
-    OX, OY = 2.5, 118.0
-    S = Z.Sahne(OX, OY)
-    CW = 59.5
+    # third round (09.11.2026): two flat cards stacked on one left edge and one x scale (the spread above, the
+    # term it leaves out below); no stage plate, no depth
+    OX = 1.0
+    CW = W - 2 * OX
     HF, HB = 40.0, 36.0
-    DB = 62.0
-    Z.plaka_un(S, "stage", *Z.un(S, 0.0, 0.0), CW + 3.0, DB + 6.0, 2.0)
     look = {g[0]: g[1:] for g in GROUPS}
     xmax = 24.0
-    cards = [("back", "Three-protocol spread", HB, DB + 2.0, (0.0, 22.0), (0, 5, 10, 15, 20), "pts"),
-             ("front", "Successful-source minus both-correct", HF, 2.0, (-38.0, 22.0), (-30, -15, 0, 15),
+    cards = [("back", "Three-protocol spread", HB, 1.0, (0.0, 22.0), (0, 5, 10, 15, 20), "pts"),
+             ("front", "Successful-source minus both-correct", HF, 1.0 + HB + 2.4, (-38.0, 22.0), (-30, -15, 0, 15),
               "pts")]
     deg = []
-    for ci, (key, title, ch, dep, (v0, v1), ticks, ylab) in enumerate(cards):
-        X, Y = Z.un(S, 1.0, dep)
-        fx, fy, fw, fh = Z.kart(S, key, X, Y, 0.0, CW, ch, "kutu", t=1.6, k=(0.05, 0.035), group=key,
-                                cont="stage_top")
+    for ci, (key, title, ch, ytop_, (v0, v1), ticks, ylab) in enumerate(cards):
+        fx, fy, fw, fh = Z.duz_kart(key, OX, ytop_, CW, ch, "kutu")
         face = f"{key}_face"
         T(f"ti_{key}", fx + 1.2, fy + 0.8, [[(title, "sb")]], size=Z.S8, cont=face)
         px0, px1 = fx + 10.5, fx + fw - 2.0
@@ -90,9 +85,10 @@ def main():
             sz = 1.35 if "havuzu" in n["grup"] else 2.0 if "standart" in n["grup"] else 1.7
             Z.isaret(f"p{ci}_{i}", x, y, mk, fill=vf.C.get(fill, fill), edge=vf.C.get(edge, edge), size=sz,
                      group=f"pt_{key}")
-    T("xl", OX + 1.0 + CW / 2, OY + 2.8, [f"|clean-accuracy gap| (pts); n = {len(N)} pairs"], size=Z.S8, color="muted",
+    OY = 1.0 + HB + 2.4 + HF
+    T("xl", OX + CW / 2, OY + 1.0, [f"|clean-accuracy gap| (pts); n = {len(N)} pairs"], size=Z.S8, color="muted",
       align="c")
-    yl = OY + 2.8 + lh(Z.S8) + 1.6
+    yl = OY + 1.0 + lh(Z.S8) + 1.6
     # bulgu 5 (08.11): the key rule, the 1.5 pt (vurgu) line that separates scene and key (as Figures 7, 13, 16)
     vf.seg("rule", (1.0, yl - 0.6), (W - 1.0, yl - 0.6), vf.C["frame"], vf.LW["vurgu"])
     for j, (g, mk, fill, edge, lab) in enumerate(GROUPS):
@@ -103,7 +99,7 @@ def main():
         T(f"lgt{j}", cx + 2.6, cy, [lab], size=Z.S8)
     cy = yl + 4 * (lh(Z.S8) + 0.2)
     Z.isaret("lgid", 2.0, cy + lh(Z.S8) / 2, "o", fill=None, edge="ink", size=2.6)
-    T("lgidt", 3.6, cy, ["identity prediction (back card)"], size=Z.S8)
+    T("lgidt", 3.6, cy, ["identity prediction (upper card)"], size=Z.S8)
     for _pid in ["ti_back", "ti_front"]:          # the panel titles are the strips of naming step 4
         vf.note_naming(_pid, "strip")
     Z.sayfa_sigdir()
@@ -121,12 +117,10 @@ def main():
         STEM, message="The three-protocol spread grows with the clean-accuracy gap as the identity predicts; the "
                       "successful-source term it leaves out is large and of either sign.", kind=KIND, panels=2,
         caption=CAPTION, sablon="ortak_satirli_katlar", tur="veri", degerler=deg, kanit_ek={"foy_karsilastirmasi": foy},
-        manifest={"entities": ents, "sahne_kalibi": "derin_sahne",
+        manifest={"entities": ents, "sahne_kalibi": "yok (iki duz kart, ucuncu tur)",
                   "panel_adlari": [c[1] for c in cards],
-                  "derinlik_ekseni": "reading order: the measure at the back, the term it leaves out in front",
-                  "ikiz_kodlama": "values are positions on two flat upright cards"},
-        denge={"panel_basina_bir_iddia": (True, "back card the spread, front card the term it leaves out"),
-               "sus_arka_plan": (False, "the stage plate is the grouping tool of style Z and carries both cards")},
+                  "derinlik_ekseni": "none: flat cards, the spread above, the term it leaves out below"},
+        denge={"panel_basina_bir_iddia": (True, "upper card the spread, lower card the term it leaves out")},
         n_exempt_reason="each card prints n = 60 pairs", okunan_ek=[SC.DATA, "results/C1_REFERANS_FOYU.md"])
 
 

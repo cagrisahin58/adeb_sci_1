@@ -10,25 +10,25 @@
    "olcum": {
     "sayfa_mm": [
      177.588,
-     71.755
+     77.682
     ],
-    "murekkep": 0.1383,
-    "ton": 0.3886,
-    "bos": 0.4732,
+    "murekkep": 0.2206,
+    "ton": 0.6323,
+    "bos": 0.147,
     "sozcuk": 78,
-    "karakter_cm2": 3.045,
-    "yazi_kutusu_alani": 0.1795,
+    "karakter_cm2": 2.798,
+    "yazi_kutusu_alani": 0.168,
     "sayisal_oran": 0.1154,
     "veri_alani_payi": null,
     "veri_alani_satirlar": [],
     "veri_alani_ic_satirlar": [],
-    "ic_ice_derinlik_olculen": 4,
-    "panel_olculen": 2,
-    "ton_karti": 5,
-    "grup_cercevesi": 0,
-    "kutu": 0,
-    "gorselli_kutu": 0,
-    "yalniz_metin_kutu_orani": null,
+    "ic_ice_derinlik_olculen": 2,
+    "panel_olculen": 3,
+    "ton_karti": 3,
+    "grup_cercevesi": 3,
+    "kutu": 3,
+    "gorselli_kutu": 3,
+    "yalniz_metin_kutu_orani": 0.0,
     "goruntu": 0,
     "goruntu_payi": 0.0,
     "ok_uclari_mm": [],
@@ -46,7 +46,7 @@
    "maddeler": [
     {
      "olcut": "karakter_cm2",
-     "deger": 3.045,
+     "deger": 2.798,
      "esik": {
       "max": 4.5
      },
@@ -58,7 +58,7 @@
     },
     {
      "olcut": "yazi_kutusu_alani",
-     "deger": 0.1795,
+     "deger": 0.168,
      "esik": {
       "max": 0.25
      },
@@ -94,7 +94,7 @@
     },
     {
      "olcut": "ic_ice_derinlik",
-     "deger": 4,
+     "deger": 2,
      "esik": {
       "min": 3
      },
@@ -102,11 +102,11 @@
      "kaynak": "İSTEM satır 225: her yöntem şemasında derinlik 3",
      "gecti": null,
      "uygulanmaz": "required of method schemes only (template ic_ice_izgara); the paper-level share counts data figures",
-     "not": "measured 4"
+     "not": "measured 2"
     },
     {
      "olcut": "gomulu_gorsel",
-     "deger": 0,
+     "deger": 3,
      "esik": {
       "min": 1
      },
@@ -118,7 +118,7 @@
     },
     {
      "olcut": "yalniz_metin_kutu_orani",
-     "deger": null,
+     "deger": 0.0,
      "esik": {
       "max_exclusive": 0.5
      },
@@ -154,7 +154,7 @@
     },
     {
      "olcut": "gruplama_araci",
-     "deger": 5,
+     "deger": 6,
      "esik": {
       "min": 1
      },
@@ -162,11 +162,11 @@
      "kaynak": "İSTEM satır 231: her çok panelli şekilde bir gruplama aracı (ton kartı, zemin bandı)",
      "gecti": true,
      "uygulanmaz": null,
-     "not": "3 panels (manifest); 5 tone card(s), 0 group frame(s)"
+     "not": "3 panels (manifest); 3 tone card(s), 3 group frame(s)"
     },
     {
      "olcut": "ton_kapsami_h",
-     "deger": 0.3886,
+     "deger": 0.6323,
      "esik": {
       "min": 0.85
      },
@@ -175,44 +175,6 @@
      "gecti": null,
      "uygulanmaz": "style H data figures only (İSTEM line 245)",
      "not": ""
-    },
-    {
-     "olcut": "uc_boyut_veri",
-     "deger": [],
-     "esik": {
-      "max": 0
-     },
-     "siddet": "blok",
-     "kaynak": "skill kuralı (veri gösterimi): eksenli veri çizimi 3B çizilmez",
-     "gecti": true,
-     "uygulanmaz": null,
-     "not": "no 3D data"
-    },
-    {
-     "olcut": "uc_boyut_gorunum",
-     "esik": {
-      "gorunum": 1
-     },
-     "siddet": "blok",
-     "kaynak": "11. ilke ve brif K1/K10: makale boyunca tek paralel izdüşüm (izometrik, dimetrik ya da eğik), tek açı; gerçek perspektif yok",
-     "deger": [
-      "dimetric 36"
-     ],
-     "gecti": true,
-     "uygulanmaz": null,
-     "not": "one view, dimetric 36"
-    },
-    {
-     "olcut": "uc_boyut_ton_basamagi",
-     "esik": {
-      "min": 0.05
-     },
-     "siddet": "blok",
-     "kaynak": "brif K10: üst > sağ > ön, ardışık yüzler arasında en az 0.05 göreli luminans",
-     "deger": 0.2121,
-     "gecti": true,
-     "uygulanmaz": null,
-     "not": "4 tone set(s), the smallest step 0.212"
     }
    ],
    "blok": [],
@@ -220,7 +182,7 @@
    "begeni": {
     "olcutler": {
      "murekkep": {
-      "deger": 0.1383,
+      "deger": 0.2206,
       "begenilen": [
        0.046,
        0.272
@@ -231,7 +193,7 @@
       "kaynak": "20 sentezi satır 34"
      },
      "karakter_cm2": {
-      "deger": 3.045,
+      "deger": 2.798,
       "begenilen": [
        2.3,
        4.3
@@ -242,7 +204,7 @@
       "kaynak": "20 sentezi satır 31"
      },
      "yazi_kutusu_alani": {
-      "deger": 0.1795,
+      "deger": 0.168,
       "begenilen": [
        0.131,
        0.285
@@ -253,25 +215,25 @@
       "kaynak": "20 sentezi satır 31"
      },
      "ton": {
-      "deger": 0.3886,
+      "deger": 0.6323,
       "begenilen": [
        0.86,
        0.924
       ],
       "begenilmeyen_medyan": 0.038,
-      "uzaklik": 0.573,
-      "begenilmeyen_tarafinda": true,
+      "uzaklik": 0.277,
+      "begenilmeyen_tarafinda": false,
       "kaynak": "20 sentezi satır 33 (13 veri şekli)"
      },
      "bos": {
-      "deger": 0.4732,
+      "deger": 0.147,
       "begenilen": [
        0.024,
        0.046
       ],
       "begenilmeyen_medyan": 0.869,
-      "uzaklik": 0.519,
-      "begenilmeyen_tarafinda": true,
+      "uzaklik": 0.123,
+      "begenilmeyen_tarafinda": false,
       "kaynak": "20 sentezi satır 35"
      },
      "sayisal_oran": {
@@ -289,9 +251,9 @@
       "kaynak": "20 sentezi satır 85: histopatolojide ölçülmedi; kara kutu tablo-grafiklerinde %11-30, medyan verilmedi"
      }
     },
-    "uzaklik": 0.219,
+    "uzaklik": 0.08,
     "olculen": 5,
-    "begenilmeyen_tarafinda": 2,
+    "begenilmeyen_tarafinda": 0,
     "uzak_durur": true
    },
    "katalog": {
@@ -302,7 +264,7 @@
    "esik_kaynaklari": [
     "C:\\Users\\cagri\\projects\\cc_duzen\\skills\\visio-cizici\\references\\denge_esikleri.yaml"
    ],
-   "ozet_satiri": "kar/cm² 3.04 [2.30-4.30] · yazı kutusu 0.18 [0.13-0.28] · sayısal 0.12 · veri alanı - · derinlik 4 · akış 0/0 etiketli · ton 0.39 [0.86-0.92] · mürekkep 0.138 | beğeniye uzaklık 0.22 (2/5 beğenilmeyen tarafında) | eşikler tamam"
+   "ozet_satiri": "kar/cm² 2.80 [2.30-4.30] · yazı kutusu 0.17 [0.13-0.28] · sayısal 0.12 · veri alanı - · derinlik 2 · akış 0/0 etiketli · ton 0.63 [0.86-0.92] · mürekkep 0.221 | beğeniye uzaklık 0.08 (0/5 beğenilmeyen tarafında) | eşikler tamam"
   }
  }
 }

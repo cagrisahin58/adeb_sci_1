@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-"""z_cells_interaction (Fig. 9 v2, Üslup Z): the two-by-two cells on CIFAR-10 as a three-floor tower.
+"""z_cells_interaction (Fig. 9 v2, Üslup Z): the two-by-two cells on CIFAR-10 on three flat cards.
 
     python paper/figures_v2/z_cells_interaction.py [--check] [--bak]
 
-Single column. Three floor cards (panel similarity sigma, direction rho, vulnerability omega), each an upright
-card of the one dimetric view, are stacked; two posts behind them stand at the scratch and ImageNet positions,
-so the categorical axis all floors share is a structural member. Each floor carries a flat 2D interaction plot:
+Single column, flat-card composition (third round, 09.11.2026: the posts and the tower are gone). Three flat
+cards (panel similarity sigma, direction rho, vulnerability omega) are stacked on one left edge and share the
+categorical x positions (R32, scratch, ImageNet) printed once under them. Each card carries a 2D interaction plot:
 cell means joined by a line (ViT-Tiny triangles, ResNet-18 224 px circles), single runs as small open marks,
 the three R32 bridge runs as diamonds on their own position (sigma and rho only; R32 omega is not in the
 reference sheet), the registered +-0.10 band on rho, the H1 and H2 estimates printed on sigma. Values are
@@ -22,6 +22,7 @@ import _z2 as Z  # noqa: E402
 from _z2 import vf, gr, lh, T  # noqa: E402
 
 Z.baslat()
+Z.duz()
 CI = Z.yukle("paper/figures/charts/fig_cells_interaction.py", "v1_cells_interaction")
 
 STEM = "z_cells_interaction"
@@ -30,21 +31,21 @@ W = vf.page_width(KIND)
 FLOORS = [("sigma", "Panel similarity σ", "vurgu2", (-1.0, -0.9, -0.8, -0.7)),
           ("rho", "Direction ρ", "vurgu4", (-0.1, 0.0, 0.1)),
           ("omega", "Vulnerability ω = log w", "muted", (3.9, 4.0))]
-CAPTION = ("Two-by-two cells on CIFAR-10 as a three-floor tower. Floors Panel similarity σ, Direction ρ and "
-           "Vulnerability ω share the posts at scratch and ImageNet; lines join cell means (split-half, log scale), "
-           "open marks are runs, diamonds the R32 bridge. σ prints A(σ, scr) (H1) and I(σ) (H2); ρ carries the "
-           "±0.10 band. Values are positions on each floor.")
+CAPTION = ("Two-by-two cells on CIFAR-10. Panels Panel similarity σ, Direction ρ and Vulnerability ω share the "
+           "initialization positions scratch and ImageNet; lines join cell means (split-half, log scale), open marks "
+           "are runs, diamonds the R32 bridge. σ prints A(σ, scr) (H1) and I(σ) (H2); ρ carries the ±0.10 band. "
+           "Each panel has its own scale.")
 
 
 def main():
     D, foy, okunan = CI.veri()
     runs, r32, val, cm, A, I, delta = D["runs"], D["r32"], D["val"], D["cm"], D["A"], D["I"], D["delta"]
     vf.reset(STEM, W, 120.0, naming_step=4, naming_kind="serit")
-    XL, XR = 13.5, W - 3.0
-    CH, GAP, TCK = 27.0, 5.0, 2.2
+    XL, XR = 1.0, W - 1.0
+    CH, GAP, TCK = 27.0, 3.0, 2.2
     OY = 4.0 + 3 * CH + 2 * GAP + 2.0
     S = Z.Sahne(XL, OY)
-    xs = {"r32": XL + 16.0, "scr": XL + 34.0, "in": XL + 58.0}
+    xs = {"r32": XL + 20.0, "scr": XL + 40.0, "in": XL + 66.0}
 
     def wx(xpage, depth=0.0):
         a = (xpage - XL) / S.u_page
@@ -53,12 +54,6 @@ def main():
     DEP = 3.4                                      # the posts stand DEP mm behind the floor faces
     dy_dep = -(S.n[0] * DEP * S.ax["w"][1] + S.n[1] * DEP * S.ax["d"][1])   # page rise of that depth
     rise_sl = -(S.n[0] * TCK * S.ax["w"][1] + S.n[1] * TCK * S.ax["d"][1])  # page rise of a floor's top sliver
-    for k in ("scr", "in"):                        # only the post pieces visible in the gaps are drawn
-        X, Y = wx(xs[k] - 1.1, DEP)
-        for g in range(3):
-            zlo = g * (CH + GAP) + CH + rise_sl - dy_dep
-            hh = (GAP - rise_sl) if g < 2 else 1.6
-            Z.kart(S, f"post_{k}{g}", X, Y, zlo, 2.2, hh, "govde_panel", t=2.0, shadow=False, group="tower")
     col = {"vit": vf.C["vurgu3"], "res": vf.C["vurgu1"], "r32": vf.C["vurgu5"]}
     deg = []
     for f, (q, title, tcol, ticks) in enumerate(FLOORS):
@@ -145,11 +140,10 @@ def main():
                       "rho and omega move far less.", kind=KIND, panels=3, caption=CAPTION,
         sablon="ortak_satirli_katlar", tur="veri", degerler=deg,
         kanit_ek={"foy_karsilastirmasi": foy, "okunan_anahtarlar": okunan},
-        manifest={"entities": ents, "sahne_kalibi": "kule",
+        manifest={"entities": ents, "sahne_kalibi": "yok (duz kartlar, ucuncu tur)",
                   "panel_adlari": ["Panel similarity σ", "Direction ρ", "Vulnerability ω = log w"],
-                  "derinlik_ekseni": "none: floor thickness; the posts stand behind the floors",
-                  "ikiz_kodlama": "values are positions on each flat floor card, read on its own scale"},
-        denge={"panel_basina_bir_iddia": (True, "each floor shows one term across the two-by-two cells")},
+                  "derinlik_ekseni": "none: flat cards"},
+        denge={"panel_basina_bir_iddia": (True, "each card shows one term across the two-by-two cells")},
         n_exempt_reason="each floor prints its run count in the title strip", okunan_ek=[CI.J4P, CI.J2P, CI.HTP])
 
 

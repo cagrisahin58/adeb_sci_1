@@ -103,162 +103,7 @@
       "kind": "strip"
     }
   ],
-  "three_d": {
-    "projection": "dimetric",
-    "angle_deg": 36.0,
-    "token": {
-      "projection": "dimetric",
-      "angle_deg": 36.0
-    },
-    "token_source": "style",
-    "objects": {
-      "stage": {
-        "kind": "plaka",
-        "tint": "sahne",
-        "size_mm": {
-          "w": 62.5,
-          "d": 68.0,
-          "h": 2.0
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F3EFE6",
-          "right": "#CFCBC4",
-          "front": "#AAA7A1"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F3EFE6",
-        "outline": "#908C86",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2654,
-          0.2121
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "front": "stage_front",
-          "right": "stage_right",
-          "top": "stage_top"
-        },
-        "bbox_mm": [
-          2.5,
-          35.3435,
-          81.0994,
-          47.1565
-        ],
-        "not": "plate aligned with the page-horizontal floor direction u and the floor normal n"
-      },
-      "back": {
-        "kind": "kart",
-        "tint": "kutu",
-        "size_mm": {
-          "w": 59.5,
-          "d": 1.6,
-          "h": 36.0
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F9F6F2",
-          "right": "#D4D1CE",
-          "front": "#AEACA9"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F9F6F2",
-        "outline": "#93908D",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2841,
-          0.2269
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "back_top",
-          "right": "back_right",
-          "front": "back_face"
-        },
-        "bbox_mm": [
-          21.0053,
-          0.9373,
-          59.9376,
-          37.0625
-        ],
-        "world_mm": [
-          -29.05528961247376,
-          57.03037706007234,
-          0.0
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      },
-      "front": {
-        "kind": "kart",
-        "tint": "kutu",
-        "size_mm": {
-          "w": 59.5,
-          "d": 1.6,
-          "h": 40.0
-        },
-        "projection": "dimetric",
-        "angle_deg": 36.0,
-        "angle_w_deg": 18.0,
-        "tones": {
-          "top": "#F9F6F2",
-          "right": "#D4D1CE",
-          "front": "#AEACA9"
-        },
-        "darkening": {
-          "top": 0.0,
-          "right": 0.15,
-          "front": 0.3
-        },
-        "fill": "#F9F6F2",
-        "outline": "#93908D",
-        "tone_source": "three_d.face_tones",
-        "tone_steps": [
-          0.2841,
-          0.2269
-        ],
-        "three_d_token": {
-          "angle_deg": 36.0,
-          "projection": "dimetric"
-        },
-        "faces": {
-          "top": "front_top",
-          "right": "front_right",
-          "front": "front_face"
-        },
-        "bbox_mm": [
-          4.047,
-          38.1094,
-          59.9376,
-          41.0625
-        ],
-        "world_mm": [
-          -0.20413972638461164,
-          2.1522288565257996,
-          0.0
-        ],
-        "not": "face in the vertical plane through world Z and the page-horizontal floor direction; prints as a true rectangle in the dimetric view"
-      }
-    }
-  },
+  "three_d": {},
   "kind": "single",
   "a1": {
     "kind": "single",
@@ -281,25 +126,9 @@
   "provenance": "computed",
   "sources": {},
   "derived_colours": {
-    "#AAA7A1": {
-      "from": "3D front tone of sahne (fill #F3EFE6, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#CFCBC4": {
-      "from": "3D right tone of sahne (fill #F3EFE6, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
-    },
-    "#D4D1CE": {
-      "from": "3D right tone of kutu (fill #F9F6F2, darkening 0.15; three_d.face_tones)",
-      "role": "fill"
-    },
     "#93908D": {
       "from": "schematic colour 93908D",
       "role": "line"
-    },
-    "#AEACA9": {
-      "from": "3D front tone of kutu (fill #F9F6F2, darkening 0.3; three_d.face_tones)",
-      "role": "fill"
     }
   },
   "entities": {},
@@ -311,7 +140,7 @@
   },
   "page_mm": [
     85.302,
-    110.49
+    107.315
   ],
   "notes": null,
   "panels": [
@@ -323,13 +152,14 @@
   "sablon": "ortak_satirli_katlar",
   "tur": "veri",
   "uslup_yolu": "<skill>/styles/uslup_Z.yaml",
-  "altyazi_taslagi": "Protocol spread against the clean-accuracy gap on a deep stage. All 60 model pairs. Back card, Three-protocol spread: unconditioned, target-correct and both-correct, rings the identity prediction at p = 1; front card, Successful-source minus both-correct, the term left out. Values are positions on the flat cards; no line is fitted.",
+  "altyazi_taslagi": "Protocol spread against the clean-accuracy gap, all 60 model pairs. Upper panel, Three-protocol spread: unconditioned, target-correct and both-correct, rings the identity prediction at p = 1; lower panel, Successful-source minus both-correct, the term the spread leaves out. No line is fitted.",
   "uslup_surumu": 3,
-  "sahne_kalibi": "derin_sahne",
+  "sahne": false,
+  "kompozisyon_dili": "duz kart (ucuncu tur 09.11.2026: kaide, levha, vitrin, direk, raf ve zemin yok)",
+  "sahne_kalibi": "yok (iki duz kart, ucuncu tur)",
   "panel_adlari": [
     "Three-protocol spread",
     "Successful-source minus both-correct"
   ],
-  "derinlik_ekseni": "reading order: the measure at the back, the term it leaves out in front",
-  "ikiz_kodlama": "values are positions on two flat upright cards"
+  "derinlik_ekseni": "none: flat cards, the spread above, the term it leaves out below"
 }

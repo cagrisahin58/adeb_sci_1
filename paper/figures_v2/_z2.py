@@ -253,13 +253,17 @@ def golge_pts(S, foot, h, Z=0.0, k=K_LIGHT):
 def golge(S, pid, X, Y, Z, w, d, h, *, group=None, cont=None, k=K_LIGHT):
     """Cast shadow of a w x d x h box on the plane Z (light from the right and from behind)."""
     hull = golge_pts(S, [(X, Y), (X + w, Y), (X + w, Y + d), (X, Y + d)], h, Z, k)
+    if not SAHNE:
+        return hull
     f, _ = vf.tint_of("golge")
     vf.poly(pid, hull + [hull[0]], fill=f, line=None, role="deco", container=cont, group=group, ctype="golge")
     return hull
 
 
 def plaka(S, pid, X, Y, w, d, t, tint="sahne", z=0.0, lw=None):
-    """The stage plate: thin box whose top face holds what stands on it (role deco)."""
+    """The stage plate: thin box whose top face holds what stands on it (role deco). Not drawn in flat mode."""
+    if not SAHNE:
+        return None
     tones = bl.face_tones(tint)
     edge = vf.tint_of(tint)[1]
     c = {
@@ -278,12 +282,50 @@ def plaka(S, pid, X, Y, w, d, t, tint="sahne", z=0.0, lw=None):
                    {"corners": c})
 
 
+# ------------------------------------------------------------------ flat-card mode (third round, 09.11.2026)
+# The user's feedback of 09.11.2026 ("sahne gösterimini azalt biraz"): a data chart is not framed by a plinth,
+# slab, showcase, post, shelf or stage floor. A figure script that calls duz() before drawing turns the stage
+# off: kart() draws only its face as a flat card (no thickness slivers, no cast shadow, no 3D record), plaka(),
+# plaka_un() and golge() draw nothing, profil_kart() refuses. Style Z stays (palette, type, line tokens, card
+# language); the five figures that keep the stage (1, 2, 3, 14, 17) never call duz() and draw as before.
+SAHNE = True
+
+
+def duz():
+    """Turn the stage off for this figure (flat-card composition)."""
+    global SAHNE
+    SAHNE = False
+
+
+def duz_kart(pid, x, y, w, h, tint="kutu", *, face_fill=None, lw=None, group=None, cont=None, edge=None):
+    """A flat card of style Z: light sand face, one 0.75 pt edge, no thickness, no shadow. The face polygon is
+    ``<pid>_face`` (the container of its 2D content, as for kart()). Returns (x, y, w, h)."""
+    tones = bl.face_tones(tint)
+    e = edge or soft(tones["tones"]["front"])
+    e = vf.C.get(e, e)
+    face = [(x, y), (x + w, y), (x + w, y + h), (x, y + h)]
+    vf.poly(f"{pid}_face", face + [face[0]], fill=face_fill or tones["tones"]["top"], line=e,
+            lw=lw or vf.LW["ince"], role="deco", group=group or pid, ctype="plate", container=cont)
+    return x, y, w, h
+
+
+def kart_duz(S, pid, X, Y, Zh, wp, hp, tint="kutu", *, face_fill=None, lw=None, group=None, cont=None):
+    """A flat card at the page rectangle a kart() at world (X, Y, Zh) would face, in a figure that keeps its
+    stage (third round: the readout and measurement cards of Figures 14 and 17 are flat, the stage object stays)."""
+    p0 = S.P(X, Y, Zh)
+    return duz_kart(pid, p0[0], p0[1] - hp, wp, hp, tint, face_fill=face_fill, lw=lw, group=group, cont=cont)
+
+
 def kart(S, pid, X, Y, Z, wp, hp, tint="kutu", t=1.2, *, shadow=True, group=None, face_fill=None, lw=None,
          k=K_LIGHT, cont=None):
     """An upright card standing at world (X, Y, Z): its face is the vertical plane through Z and the floor
     direction u that projects to page-horizontal, so the face prints as a true page rectangle of wp x hp mm
     in the one dimetric view; the card is t mm thick along the floor normal n (top and right slivers).
-    Returns the face rectangle (x, y, w, h) in page mm, the container of the 2D content."""
+    Returns the face rectangle (x, y, w, h) in page mm, the container of the 2D content.
+    In flat-card mode (duz()) only the face is drawn, at the same page rectangle."""
+    if not SAHNE:
+        p0 = S.P(X, Y, Z)
+        return duz_kart(pid, p0[0], p0[1] - hp, wp, hp, tint, face_fill=face_fill, lw=lw, group=group, cont=cont)
     a = wp / S.u_page
     ux, uy = S.u[0] * a, S.u[1] * a
     nx, ny = S.n[0] * t, S.n[1] * t
@@ -529,6 +571,12 @@ def denge_ajan(stem, gercek, ozel=None, veri=False):
         "panel_basina_bir_iddia": (True, "each named part states one claim"),
         "her_sayinin_kaynagi": (True, "every printed number is in the evidence file with its source file and key"),
     }
+    if not SAHNE:
+        y.update({
+            "3b_veri": (False, "no 3D is drawn; every value is a 2D position, length or colour on a flat card"),
+            "3b_kural_disi": (False, "flat-card figure: no projection, no thickness, no shadow, no gradient or gloss"),
+            "sus_arka_plan": (False, "white page; the flat cards of style Z are the grouping tools and carry the content"),
+        })
     y.update(ozel or {})
     p = OUT / f"{stem}.denge_ajan.json"
     with io.open(p, "w", encoding="utf-8", newline="\n") as fh:
@@ -602,7 +650,9 @@ def bitir(stem, *, message, kind, panels, caption, sablon, tur, degerler, kanit_
         return 1
     vf.write_fig_manifest(message, kind=kind, panels=panels, n_exempt_reason=n_exempt_reason)
     m = dict(sablon=sablon, tur=tur, uslup_yolu="<skill>/styles/uslup_Z.yaml", altyazi_taslagi=caption,
-             uslup_surumu=3)
+             uslup_surumu=3, sahne=SAHNE,
+             kompozisyon_dili="sahne (dimetrik maket)" if SAHNE else
+             "duz kart (ucuncu tur 09.11.2026: kaide, levha, vitrin, direk, raf ve zemin yok)")
     m.update(manifest or {})
     manifest_ek(**m)
     kanit_yaz(stem, degerler, ek=dict(kanit_ek or {}, altyazi_taslagi=caption), okunan_ek=okunan_ek)
@@ -666,6 +716,8 @@ def profil_kart(S, pid, X, Y, Z, dx, heights, tint, t=1.4, *, edge_hex=None, gro
     """A cut-out card: an upright card (face in the page-parallel vertical plane, as in kart()) whose top edge
     is the polyline through (dx[i], heights[i]) in page mm from the card's foot point; the face is therefore a
     flat 2D profile chart printed at true size. Returns (foot page point, top page points)."""
+    if not SAHNE:
+        raise SystemExit("profil_kart is a stage part; a flat-card figure draws its profile as a 2D line chart")
     p0 = S.P(X, Y, Z)
     top = [(p0[0] + a, p0[1] - h) for a, h in zip(dx, heights)]
     nvx = S.n[0] * t
@@ -707,11 +759,14 @@ def profil_kart(S, pid, X, Y, Z, dx, heights, tint, t=1.4, *, edge_hex=None, gro
 def plaka_un(S, pid, X, Y, L, D, t, tint="sahne", z=0.0, lw=None):
     """A stage plate aligned with the cards: its front edge runs along the page-horizontal floor direction u
     (L page mm long), its depth along the floor normal n (D world mm). The front face prints as a true page
-    rectangle t mm high; the top face is the parallelogram the cards stand on. Returns the top-face corners."""
+    rectangle t mm high; the top face is the parallelogram the cards stand on. Returns the top-face corners.
+    Not drawn in flat mode (the corners are still returned)."""
     a = L / S.u_page
     ux, uy = S.u[0] * a, S.u[1] * a
     nx, ny = S.n[0] * D, S.n[1] * D
     A, B, C, Dd = (X, Y), (X + ux, Y + uy), (X + ux + nx, Y + uy + ny), (X + nx, Y + ny)
+    if not SAHNE:
+        return [S.P(*p, z) for p in (A, B, C, Dd)]
     tones = bl.face_tones(tint)
     edge = vf.tint_of(tint)[1]
     top = [S.P(*p, z) for p in (A, B, C, Dd)]
